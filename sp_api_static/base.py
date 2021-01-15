@@ -13,7 +13,7 @@ from requests import Response
 from requests.api import request
 from requests.auth import AuthBase
 
-from sp_api_static.cache import RequestCache
+from .cache import RequestCache
 
 
 class AWSSigV4(AuthBase):
