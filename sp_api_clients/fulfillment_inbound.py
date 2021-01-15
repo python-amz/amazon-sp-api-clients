@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class ASINInboundGuidance:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
         else:
@@ -39,6 +41,7 @@ class ASINInboundGuidance:
 class ASINPrepInstructions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
         else:
@@ -60,6 +63,7 @@ class ASINPrepInstructions:
 class Address:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
         else:
@@ -97,6 +101,7 @@ class Address:
 class AmazonPrepFeesDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PrepInstruction" in data:
             self.PrepInstruction: PrepInstruction = PrepInstruction(data["PrepInstruction"])
         else:
@@ -110,6 +115,7 @@ class AmazonPrepFeesDetails:
 class Amount:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: CurrencyCode = CurrencyCode(data["CurrencyCode"])
         else:
@@ -123,6 +129,7 @@ class Amount:
 class BoxContentsFeeDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TotalUnits" in data:
             self.TotalUnits: Quantity = Quantity(data["TotalUnits"])
         else:
@@ -140,6 +147,7 @@ class BoxContentsFeeDetails:
 class ConfirmPreorderResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ConfirmedNeedByDate" in data:
             self.ConfirmedNeedByDate: DateStringType = DateStringType(data["ConfirmedNeedByDate"])
         else:
@@ -153,6 +161,7 @@ class ConfirmPreorderResult:
 class ConfirmPreorderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ConfirmPreorderResult = ConfirmPreorderResult(data["payload"])
         else:
@@ -166,6 +175,7 @@ class ConfirmPreorderResponse:
 class CommonTransportResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TransportResult" in data:
             self.TransportResult: TransportResult = TransportResult(data["TransportResult"])
         else:
@@ -175,6 +185,7 @@ class CommonTransportResult:
 class ConfirmTransportResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
         else:
@@ -188,6 +199,7 @@ class ConfirmTransportResponse:
 class Contact:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
         else:
@@ -209,6 +221,7 @@ class Contact:
 class CreateInboundShipmentPlanRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipFromAddress" in data:
             self.ShipFromAddress: Address = Address(data["ShipFromAddress"])
         else:
@@ -236,6 +249,7 @@ class CreateInboundShipmentPlanRequest:
 class CreateInboundShipmentPlanResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "InboundShipmentPlans" in data:
             self.InboundShipmentPlans: InboundShipmentPlanList = InboundShipmentPlanList(data["InboundShipmentPlans"])
         else:
@@ -245,6 +259,7 @@ class CreateInboundShipmentPlanResult:
 class CreateInboundShipmentPlanResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CreateInboundShipmentPlanResult = CreateInboundShipmentPlanResult(data["payload"])
         else:
@@ -258,6 +273,7 @@ class CreateInboundShipmentPlanResponse:
 class InboundShipmentRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "InboundShipmentHeader" in data:
             self.InboundShipmentHeader: InboundShipmentHeader = InboundShipmentHeader(data["InboundShipmentHeader"])
         else:
@@ -275,6 +291,7 @@ class InboundShipmentRequest:
 class InboundShipmentResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
         else:
@@ -284,6 +301,7 @@ class InboundShipmentResult:
 class InboundShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: InboundShipmentResult = InboundShipmentResult(data["payload"])
         else:
@@ -297,6 +315,7 @@ class InboundShipmentResponse:
 class Dimensions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Length" in data:
             self.Length: BigDecimalType = BigDecimalType(data["Length"])
         else:
@@ -318,6 +337,7 @@ class Dimensions:
 class EstimateTransportResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
         else:
@@ -331,6 +351,7 @@ class EstimateTransportResponse:
 class GetBillOfLadingResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: BillOfLadingDownloadURL = BillOfLadingDownloadURL(data["payload"])
         else:
@@ -344,6 +365,7 @@ class GetBillOfLadingResponse:
 class GetInboundGuidanceResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SKUInboundGuidanceList" in data:
             self.SKUInboundGuidanceList: SKUInboundGuidanceList = SKUInboundGuidanceList(data["SKUInboundGuidanceList"])
         else:
@@ -367,6 +389,7 @@ class GetInboundGuidanceResult:
 class GetInboundGuidanceResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetInboundGuidanceResult = GetInboundGuidanceResult(data["payload"])
         else:
@@ -380,6 +403,7 @@ class GetInboundGuidanceResponse:
 class LabelDownloadURL:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "DownloadURL" in data:
             self.DownloadURL: str = str(data["DownloadURL"])
         else:
@@ -389,6 +413,7 @@ class LabelDownloadURL:
 class BillOfLadingDownloadURL:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "DownloadURL" in data:
             self.DownloadURL: str = str(data["DownloadURL"])
         else:
@@ -398,6 +423,7 @@ class BillOfLadingDownloadURL:
 class GetLabelsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: LabelDownloadURL = LabelDownloadURL(data["payload"])
         else:
@@ -411,6 +437,7 @@ class GetLabelsResponse:
 class GetPreorderInfoResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentContainsPreorderableItems" in data:
             self.ShipmentContainsPreorderableItems: bool = bool(data["ShipmentContainsPreorderableItems"])
         else:
@@ -432,6 +459,7 @@ class GetPreorderInfoResult:
 class GetPreorderInfoResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetPreorderInfoResult = GetPreorderInfoResult(data["payload"])
         else:
@@ -445,6 +473,7 @@ class GetPreorderInfoResponse:
 class GetPrepInstructionsResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SKUPrepInstructionsList" in data:
             self.SKUPrepInstructionsList: SKUPrepInstructionsList = SKUPrepInstructionsList(
                 data["SKUPrepInstructionsList"]
@@ -470,6 +499,7 @@ class GetPrepInstructionsResult:
 class GetPrepInstructionsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetPrepInstructionsResult = GetPrepInstructionsResult(data["payload"])
         else:
@@ -483,6 +513,7 @@ class GetPrepInstructionsResponse:
 class GetTransportDetailsResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TransportContent" in data:
             self.TransportContent: TransportContent = TransportContent(data["TransportContent"])
         else:
@@ -492,6 +523,7 @@ class GetTransportDetailsResult:
 class GetTransportDetailsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetTransportDetailsResult = GetTransportDetailsResult(data["payload"])
         else:
@@ -505,6 +537,7 @@ class GetTransportDetailsResponse:
 class InboundShipmentHeader:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentName" in data:
             self.ShipmentName: str = str(data["ShipmentName"])
         else:
@@ -540,6 +573,7 @@ class InboundShipmentHeader:
 class InboundShipmentInfo:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
         else:
@@ -585,6 +619,7 @@ class InboundShipmentInfo:
 class InboundShipmentItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
         else:
@@ -622,6 +657,7 @@ class InboundShipmentItem:
 class InboundShipmentPlan:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
         else:
@@ -651,6 +687,7 @@ class InboundShipmentPlan:
 class InboundShipmentPlanItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
         else:
@@ -672,6 +709,7 @@ class InboundShipmentPlanItem:
 class InboundShipmentPlanRequestItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
         else:
@@ -701,6 +739,7 @@ class InboundShipmentPlanRequestItem:
 class InvalidASIN:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
         else:
@@ -714,6 +753,7 @@ class InvalidASIN:
 class InvalidSKU:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
         else:
@@ -727,6 +767,7 @@ class InvalidSKU:
 class GetShipmentItemsResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ItemData" in data:
             self.ItemData: InboundShipmentItemList = InboundShipmentItemList(data["ItemData"])
         else:
@@ -740,6 +781,7 @@ class GetShipmentItemsResult:
 class GetShipmentItemsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetShipmentItemsResult = GetShipmentItemsResult(data["payload"])
         else:
@@ -753,6 +795,7 @@ class GetShipmentItemsResponse:
 class GetShipmentsResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentData" in data:
             self.ShipmentData: InboundShipmentList = InboundShipmentList(data["ShipmentData"])
         else:
@@ -766,6 +809,7 @@ class GetShipmentsResult:
 class GetShipmentsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetShipmentsResult = GetShipmentsResult(data["payload"])
         else:
@@ -779,6 +823,7 @@ class GetShipmentsResponse:
 class NonPartneredLtlDataInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
         else:
@@ -792,6 +837,7 @@ class NonPartneredLtlDataInput:
 class NonPartneredLtlDataOutput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
         else:
@@ -805,6 +851,7 @@ class NonPartneredLtlDataOutput:
 class NonPartneredSmallParcelDataInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
         else:
@@ -820,6 +867,7 @@ class NonPartneredSmallParcelDataInput:
 class NonPartneredSmallParcelDataOutput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PackageList" in data:
             self.PackageList: NonPartneredSmallParcelPackageOutputList = NonPartneredSmallParcelPackageOutputList(
                 data["PackageList"]
@@ -831,6 +879,7 @@ class NonPartneredSmallParcelDataOutput:
 class NonPartneredSmallParcelPackageInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TrackingId" in data:
             self.TrackingId: TrackingId = TrackingId(data["TrackingId"])
         else:
@@ -840,6 +889,7 @@ class NonPartneredSmallParcelPackageInput:
 class NonPartneredSmallParcelPackageOutput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
         else:
@@ -857,6 +907,7 @@ class NonPartneredSmallParcelPackageOutput:
 class Pallet:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Dimensions" in data:
             self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
         else:
@@ -874,6 +925,7 @@ class Pallet:
 class PartneredEstimate:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Amount" in data:
             self.Amount: Amount = Amount(data["Amount"])
         else:
@@ -891,6 +943,7 @@ class PartneredEstimate:
 class PartneredLtlDataInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Contact" in data:
             self.Contact: Contact = Contact(data["Contact"])
         else:
@@ -924,6 +977,7 @@ class PartneredLtlDataInput:
 class PartneredLtlDataOutput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Contact" in data:
             self.Contact: Contact = Contact(data["Contact"])
         else:
@@ -989,6 +1043,7 @@ class PartneredLtlDataOutput:
 class PartneredSmallParcelDataInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PackageList" in data:
             self.PackageList: PartneredSmallParcelPackageInputList = PartneredSmallParcelPackageInputList(
                 data["PackageList"]
@@ -1004,6 +1059,7 @@ class PartneredSmallParcelDataInput:
 class PartneredSmallParcelDataOutput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PackageList" in data:
             self.PackageList: PartneredSmallParcelPackageOutputList = PartneredSmallParcelPackageOutputList(
                 data["PackageList"]
@@ -1019,6 +1075,7 @@ class PartneredSmallParcelDataOutput:
 class PartneredSmallParcelPackageInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Dimensions" in data:
             self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
         else:
@@ -1032,6 +1089,7 @@ class PartneredSmallParcelPackageInput:
 class PartneredSmallParcelPackageOutput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Dimensions" in data:
             self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
         else:
@@ -1057,6 +1115,7 @@ class PartneredSmallParcelPackageOutput:
 class PrepDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PrepInstruction" in data:
             self.PrepInstruction: PrepInstruction = PrepInstruction(data["PrepInstruction"])
         else:
@@ -1070,6 +1129,7 @@ class PrepDetails:
 class PutTransportDetailsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "IsPartnered" in data:
             self.IsPartnered: bool = bool(data["IsPartnered"])
         else:
@@ -1087,6 +1147,7 @@ class PutTransportDetailsRequest:
 class PutTransportDetailsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
         else:
@@ -1100,6 +1161,7 @@ class PutTransportDetailsResponse:
 class SKUInboundGuidance:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
         else:
@@ -1121,6 +1183,7 @@ class SKUInboundGuidance:
 class SKUPrepInstructions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
         else:
@@ -1152,6 +1215,7 @@ class SKUPrepInstructions:
 class TransportContent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TransportHeader" in data:
             self.TransportHeader: TransportHeader = TransportHeader(data["TransportHeader"])
         else:
@@ -1169,6 +1233,7 @@ class TransportContent:
 class TransportDetailInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PartneredSmallParcelData" in data:
             self.PartneredSmallParcelData: PartneredSmallParcelDataInput = PartneredSmallParcelDataInput(
                 data["PartneredSmallParcelData"]
@@ -1194,6 +1259,7 @@ class TransportDetailInput:
 class TransportDetailOutput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PartneredSmallParcelData" in data:
             self.PartneredSmallParcelData: PartneredSmallParcelDataOutput = PartneredSmallParcelDataOutput(
                 data["PartneredSmallParcelData"]
@@ -1219,6 +1285,7 @@ class TransportDetailOutput:
 class TransportHeader:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerId" in data:
             self.SellerId: str = str(data["SellerId"])
         else:
@@ -1240,6 +1307,7 @@ class TransportHeader:
 class TransportResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TransportStatus" in data:
             self.TransportStatus: TransportStatus = TransportStatus(data["TransportStatus"])
         else:
@@ -1257,6 +1325,7 @@ class TransportResult:
 class VoidTransportResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
         else:
@@ -1270,6 +1339,7 @@ class VoidTransportResponse:
 class Weight:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Value" in data:
             self.Value: BigDecimalType = BigDecimalType(data["Value"])
         else:
@@ -1283,106 +1353,127 @@ class Weight:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class ASINInboundGuidanceList(list, _List["ASINInboundGuidance"]):
     def __init__(self, data):
         super().__init__([ASINInboundGuidance(datum) for datum in data])
+        self.data = data
 
 
 class ASINPrepInstructionsList(list, _List["ASINPrepInstructions"]):
     def __init__(self, data):
         super().__init__([ASINPrepInstructions(datum) for datum in data])
+        self.data = data
 
 
 class AmazonPrepFeesDetailsList(list, _List["AmazonPrepFeesDetails"]):
     def __init__(self, data):
         super().__init__([AmazonPrepFeesDetails(datum) for datum in data])
+        self.data = data
 
 
 class GuidanceReasonList(list, _List["GuidanceReason"]):
     def __init__(self, data):
         super().__init__([GuidanceReason(datum) for datum in data])
+        self.data = data
 
 
 class InboundShipmentItemList(list, _List["InboundShipmentItem"]):
     def __init__(self, data):
         super().__init__([InboundShipmentItem(datum) for datum in data])
+        self.data = data
 
 
 class InboundShipmentList(list, _List["InboundShipmentInfo"]):
     def __init__(self, data):
         super().__init__([InboundShipmentInfo(datum) for datum in data])
+        self.data = data
 
 
 class InboundShipmentPlanItemList(list, _List["InboundShipmentPlanItem"]):
     def __init__(self, data):
         super().__init__([InboundShipmentPlanItem(datum) for datum in data])
+        self.data = data
 
 
 class InboundShipmentPlanList(list, _List["InboundShipmentPlan"]):
     def __init__(self, data):
         super().__init__([InboundShipmentPlan(datum) for datum in data])
+        self.data = data
 
 
 class InboundShipmentPlanRequestItemList(list, _List["InboundShipmentPlanRequestItem"]):
     def __init__(self, data):
         super().__init__([InboundShipmentPlanRequestItem(datum) for datum in data])
+        self.data = data
 
 
 class InvalidASINList(list, _List["InvalidASIN"]):
     def __init__(self, data):
         super().__init__([InvalidASIN(datum) for datum in data])
+        self.data = data
 
 
 class InvalidSKUList(list, _List["InvalidSKU"]):
     def __init__(self, data):
         super().__init__([InvalidSKU(datum) for datum in data])
+        self.data = data
 
 
 class NonPartneredSmallParcelPackageInputList(list, _List["NonPartneredSmallParcelPackageInput"]):
     def __init__(self, data):
         super().__init__([NonPartneredSmallParcelPackageInput(datum) for datum in data])
+        self.data = data
 
 
 class NonPartneredSmallParcelPackageOutputList(list, _List["NonPartneredSmallParcelPackageOutput"]):
     def __init__(self, data):
         super().__init__([NonPartneredSmallParcelPackageOutput(datum) for datum in data])
+        self.data = data
 
 
 class PalletList(list, _List["Pallet"]):
     def __init__(self, data):
         super().__init__([Pallet(datum) for datum in data])
+        self.data = data
 
 
 class PartneredSmallParcelPackageInputList(list, _List["PartneredSmallParcelPackageInput"]):
     def __init__(self, data):
         super().__init__([PartneredSmallParcelPackageInput(datum) for datum in data])
+        self.data = data
 
 
 class PartneredSmallParcelPackageOutputList(list, _List["PartneredSmallParcelPackageOutput"]):
     def __init__(self, data):
         super().__init__([PartneredSmallParcelPackageOutput(datum) for datum in data])
+        self.data = data
 
 
 class PrepDetailsList(list, _List["PrepDetails"]):
     def __init__(self, data):
         super().__init__([PrepDetails(datum) for datum in data])
+        self.data = data
 
 
 class PrepInstructionList(list, _List["PrepInstruction"]):
     def __init__(self, data):
         super().__init__([PrepInstruction(datum) for datum in data])
+        self.data = data
 
 
 class SKUInboundGuidanceList(list, _List["SKUInboundGuidance"]):
     def __init__(self, data):
         super().__init__([SKUInboundGuidance(datum) for datum in data])
+        self.data = data
 
 
 class SKUPrepInstructionsList(list, _List["SKUPrepInstructions"]):
     def __init__(self, data):
         super().__init__([SKUPrepInstructions(datum) for datum in data])
+        self.data = data
 
 
 BarcodeInstruction = str

@@ -5,6 +5,7 @@ from typing import List as _List
 class GetMyFeesEstimateRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "FeesEstimateRequest" in data:
             self.FeesEstimateRequest: FeesEstimateRequest = FeesEstimateRequest(data["FeesEstimateRequest"])
         else:
@@ -14,6 +15,7 @@ class GetMyFeesEstimateRequest:
 class FeesEstimateRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
         else:
@@ -35,6 +37,7 @@ class FeesEstimateRequest:
 class GetMyFeesEstimateResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetMyFeesEstimateResult = GetMyFeesEstimateResult(data["payload"])
         else:
@@ -48,6 +51,7 @@ class GetMyFeesEstimateResponse:
 class GetMyFeesEstimateResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "FeesEstimateResult" in data:
             self.FeesEstimateResult: FeesEstimateResult = FeesEstimateResult(data["FeesEstimateResult"])
         else:
@@ -57,6 +61,7 @@ class GetMyFeesEstimateResult:
 class Points:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PointsNumber" in data:
             self.PointsNumber: int = int(data["PointsNumber"])
         else:
@@ -70,6 +75,7 @@ class Points:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -87,6 +93,7 @@ class Error:
 class FeesEstimateResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Status" in data:
             self.Status: str = str(data["Status"])
         else:
@@ -108,6 +115,7 @@ class FeesEstimateResult:
 class FeesEstimateIdentifier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
         else:
@@ -141,6 +149,7 @@ class FeesEstimateIdentifier:
 class PriceToEstimateFees:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ListingPrice" in data:
             self.ListingPrice: MoneyType = MoneyType(data["ListingPrice"])
         else:
@@ -158,6 +167,7 @@ class PriceToEstimateFees:
 class FeesEstimate:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TimeOfFeesEstimation" in data:
             self.TimeOfFeesEstimation: str = str(data["TimeOfFeesEstimation"])
         else:
@@ -175,6 +185,7 @@ class FeesEstimate:
 class FeesEstimateError:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Type" in data:
             self.Type: str = str(data["Type"])
         else:
@@ -196,6 +207,7 @@ class FeesEstimateError:
 class FeeDetail:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "FeeType" in data:
             self.FeeType: str = str(data["FeeType"])
         else:
@@ -225,6 +237,7 @@ class FeeDetail:
 class IncludedFeeDetail:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "FeeType" in data:
             self.FeeType: str = str(data["FeeType"])
         else:
@@ -250,6 +263,7 @@ class IncludedFeeDetail:
 class MoneyType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
         else:
@@ -263,21 +277,25 @@ class MoneyType:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class FeeDetailList(list, _List["FeeDetail"]):
     def __init__(self, data):
         super().__init__([FeeDetail(datum) for datum in data])
+        self.data = data
 
 
 class FeesEstimateErrorDetail(list, _List["dict"]):
     def __init__(self, data):
         super().__init__([dict(datum) for datum in data])
+        self.data = data
 
 
 class IncludedFeeDetailList(list, _List["IncludedFeeDetail"]):
     def __init__(self, data):
         super().__init__([IncludedFeeDetail(datum) for datum in data])
+        self.data = data
 
 
 class ProductFeesClient(__BaseClient):

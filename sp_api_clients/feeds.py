@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class CancelFeedResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -31,6 +33,7 @@ class CancelFeedResponse:
 class CreateFeedResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "feedId" in data:
             self.feedId: str = str(data["feedId"])
         else:
@@ -40,6 +43,7 @@ class CreateFeedResult:
 class Feed:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "feedId" in data:
             self.feedId: str = str(data["feedId"])
         else:
@@ -77,6 +81,7 @@ class Feed:
 class GetFeedsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: FeedList = FeedList(data["payload"])
         else:
@@ -94,6 +99,7 @@ class GetFeedsResponse:
 class GetFeedResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Feed = Feed(data["payload"])
         else:
@@ -107,6 +113,7 @@ class GetFeedResponse:
 class FeedDocumentEncryptionDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "standard" in data:
             self.standard: str = str(data["standard"])
         else:
@@ -124,6 +131,7 @@ class FeedDocumentEncryptionDetails:
 class FeedDocument:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "feedDocumentId" in data:
             self.feedDocumentId: str = str(data["feedDocumentId"])
         else:
@@ -147,6 +155,7 @@ class FeedDocument:
 class GetFeedDocumentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: FeedDocument = FeedDocument(data["payload"])
         else:
@@ -160,6 +169,7 @@ class GetFeedDocumentResponse:
 class CreateFeedResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CreateFeedResult = CreateFeedResult(data["payload"])
         else:
@@ -173,11 +183,13 @@ class CreateFeedResponse:
 class FeedOptions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
 
 
 class CreateFeedSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "feedType" in data:
             self.feedType: str = str(data["feedType"])
         else:
@@ -199,6 +211,7 @@ class CreateFeedSpecification:
 class CreateFeedDocumentSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "contentType" in data:
             self.contentType: str = str(data["contentType"])
         else:
@@ -208,6 +221,7 @@ class CreateFeedDocumentSpecification:
 class CreateFeedDocumentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CreateFeedDocumentResult = CreateFeedDocumentResult(data["payload"])
         else:
@@ -221,6 +235,7 @@ class CreateFeedDocumentResponse:
 class CreateFeedDocumentResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "feedDocumentId" in data:
             self.feedDocumentId: str = str(data["feedDocumentId"])
         else:
@@ -240,11 +255,13 @@ class CreateFeedDocumentResult:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class FeedList(list, _List["Feed"]):
     def __init__(self, data):
         super().__init__([Feed(datum) for datum in data])
+        self.data = data
 
 
 class FeedsClient(__BaseClient):

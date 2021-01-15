@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class ReportDocumentEncryptionDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "standard" in data:
             self.standard: str = str(data["standard"])
         else:
@@ -39,6 +41,7 @@ class ReportDocumentEncryptionDetails:
 class Report:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceIds" in data:
             self.marketplaceIds: _List[str] = [str(datum) for datum in data["marketplaceIds"]]
         else:
@@ -88,6 +91,7 @@ class Report:
 class CreateReportScheduleSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "reportType" in data:
             self.reportType: str = str(data["reportType"])
         else:
@@ -113,6 +117,7 @@ class CreateReportScheduleSpecification:
 class CreateReportSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "reportOptions" in data:
             self.reportOptions: ReportOptions = ReportOptions(data["reportOptions"])
         else:
@@ -138,11 +143,13 @@ class CreateReportSpecification:
 class ReportOptions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
 
 
 class ReportSchedule:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "reportScheduleId" in data:
             self.reportScheduleId: str = str(data["reportScheduleId"])
         else:
@@ -172,6 +179,7 @@ class ReportSchedule:
 class CreateReportResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "reportId" in data:
             self.reportId: str = str(data["reportId"])
         else:
@@ -181,6 +189,7 @@ class CreateReportResult:
 class GetReportsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ReportList = ReportList(data["payload"])
         else:
@@ -198,6 +207,7 @@ class GetReportsResponse:
 class CreateReportResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CreateReportResult = CreateReportResult(data["payload"])
         else:
@@ -211,6 +221,7 @@ class CreateReportResponse:
 class CancelReportResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -220,6 +231,7 @@ class CancelReportResponse:
 class CancelReportScheduleResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -229,6 +241,7 @@ class CancelReportScheduleResponse:
 class GetReportResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Report = Report(data["payload"])
         else:
@@ -242,6 +255,7 @@ class GetReportResponse:
 class GetReportSchedulesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ReportScheduleList = ReportScheduleList(data["payload"])
         else:
@@ -255,6 +269,7 @@ class GetReportSchedulesResponse:
 class GetReportScheduleResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ReportSchedule = ReportSchedule(data["payload"])
         else:
@@ -268,6 +283,7 @@ class GetReportScheduleResponse:
 class CreateReportScheduleResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "reportScheduleId" in data:
             self.reportScheduleId: str = str(data["reportScheduleId"])
         else:
@@ -277,6 +293,7 @@ class CreateReportScheduleResult:
 class CreateReportScheduleResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CreateReportScheduleResult = CreateReportScheduleResult(data["payload"])
         else:
@@ -290,6 +307,7 @@ class CreateReportScheduleResponse:
 class ReportDocument:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "reportDocumentId" in data:
             self.reportDocumentId: str = str(data["reportDocumentId"])
         else:
@@ -313,6 +331,7 @@ class ReportDocument:
 class GetReportDocumentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ReportDocument = ReportDocument(data["payload"])
         else:
@@ -326,16 +345,19 @@ class GetReportDocumentResponse:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class ReportList(list, _List["Report"]):
     def __init__(self, data):
         super().__init__([Report(datum) for datum in data])
+        self.data = data
 
 
 class ReportScheduleList(list, _List["ReportSchedule"]):
     def __init__(self, data):
         super().__init__([ReportSchedule(datum) for datum in data])
+        self.data = data
 
 
 class ReportsClient(__BaseClient):

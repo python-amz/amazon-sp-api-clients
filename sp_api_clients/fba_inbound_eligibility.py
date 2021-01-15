@@ -5,6 +5,7 @@ from typing import List as _List
 class GetItemEligibilityPreviewResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ItemEligibilityPreview = ItemEligibilityPreview(data["payload"])
         else:
@@ -18,6 +19,7 @@ class GetItemEligibilityPreviewResponse:
 class ItemEligibilityPreview:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
         else:
@@ -43,6 +45,7 @@ class ItemEligibilityPreview:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -60,6 +63,7 @@ class Error:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class FbaInboundEligibilityClient(__BaseClient):

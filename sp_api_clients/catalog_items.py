@@ -5,6 +5,7 @@ from typing import List as _List
 class ListCatalogItemsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ListMatchingItemsResponse = ListMatchingItemsResponse(data["payload"])
         else:
@@ -18,6 +19,7 @@ class ListCatalogItemsResponse:
 class ListMatchingItemsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Items" in data:
             self.Items: ItemList = ItemList(data["Items"])
         else:
@@ -27,6 +29,7 @@ class ListMatchingItemsResponse:
 class GetCatalogItemResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Item = Item(data["payload"])
         else:
@@ -40,6 +43,7 @@ class GetCatalogItemResponse:
 class Item:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Identifiers" in data:
             self.Identifiers: IdentifierType = IdentifierType(data["Identifiers"])
         else:
@@ -61,6 +65,7 @@ class Item:
 class IdentifierType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceASIN" in data:
             self.MarketplaceASIN: ASINIdentifier = ASINIdentifier(data["MarketplaceASIN"])
         else:
@@ -74,6 +79,7 @@ class IdentifierType:
 class ASINIdentifier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
         else:
@@ -87,6 +93,7 @@ class ASINIdentifier:
 class SellerSKUIdentifier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
         else:
@@ -104,6 +111,7 @@ class SellerSKUIdentifier:
 class AttributeSetListType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Actor" in data:
             self.Actor: _List[str] = [str(datum) for datum in data["Actor"]]
         else:
@@ -493,6 +501,7 @@ class AttributeSetListType:
 class DecimalWithUnits:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "value" in data:
             self.value: float = float(data["value"])
         else:
@@ -506,6 +515,7 @@ class DecimalWithUnits:
 class CreatorType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "value" in data:
             self.value: str = str(data["value"])
         else:
@@ -519,6 +529,7 @@ class CreatorType:
 class DimensionType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Height" in data:
             self.Height: DecimalWithUnits = DecimalWithUnits(data["Height"])
         else:
@@ -540,6 +551,7 @@ class DimensionType:
 class LanguageType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
         else:
@@ -557,6 +569,7 @@ class LanguageType:
 class Image:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "URL" in data:
             self.URL: str = str(data["URL"])
         else:
@@ -574,6 +587,7 @@ class Image:
 class Price:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Amount" in data:
             self.Amount: float = float(data["Amount"])
         else:
@@ -587,6 +601,7 @@ class Price:
 class RelationshipType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Color" in data:
             self.Color: str = str(data["Color"])
         else:
@@ -680,6 +695,7 @@ class RelationshipType:
 class SalesRankType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ProductCategoryId" in data:
             self.ProductCategoryId: str = str(data["ProductCategoryId"])
         else:
@@ -693,6 +709,7 @@ class SalesRankType:
 class OfferListingCountType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Count" in data:
             self.Count: int = int(data["Count"])
         else:
@@ -706,6 +723,7 @@ class OfferListingCountType:
 class QualifiersType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ItemCondition" in data:
             self.ItemCondition: str = str(data["ItemCondition"])
         else:
@@ -735,6 +753,7 @@ class QualifiersType:
 class ShippingTimeType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Max" in data:
             self.Max: str = str(data["Max"])
         else:
@@ -744,6 +763,7 @@ class ShippingTimeType:
 class ListCatalogCategoriesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ListOfCategories = ListOfCategories(data["payload"])
         else:
@@ -757,6 +777,7 @@ class ListCatalogCategoriesResponse:
 class Categories:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ProductCategoryId" in data:
             self.ProductCategoryId: str = str(data["ProductCategoryId"])
         else:
@@ -774,6 +795,7 @@ class Categories:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -791,36 +813,43 @@ class Error:
 class ItemList(list, _List["Item"]):
     def __init__(self, data):
         super().__init__([Item(datum) for datum in data])
+        self.data = data
 
 
 class AttributeSetList(list, _List["AttributeSetListType"]):
     def __init__(self, data):
         super().__init__([AttributeSetListType(datum) for datum in data])
+        self.data = data
 
 
 class RelationshipList(list, _List["RelationshipType"]):
     def __init__(self, data):
         super().__init__([RelationshipType(datum) for datum in data])
+        self.data = data
 
 
 class SalesRankList(list, _List["SalesRankType"]):
     def __init__(self, data):
         super().__init__([SalesRankType(datum) for datum in data])
+        self.data = data
 
 
 class NumberOfOfferListingsList(list, _List["OfferListingCountType"]):
     def __init__(self, data):
         super().__init__([OfferListingCountType(datum) for datum in data])
+        self.data = data
 
 
 class ListOfCategories(list, _List["Categories"]):
     def __init__(self, data):
         super().__init__([Categories(datum) for datum in data])
+        self.data = data
 
 
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class CatalogItemsClient(__BaseClient):

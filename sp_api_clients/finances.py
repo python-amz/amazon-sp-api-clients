@@ -5,6 +5,7 @@ from typing import List as _List
 class AdjustmentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AdjustmentType" in data:
             self.AdjustmentType: str = str(data["AdjustmentType"])
         else:
@@ -26,6 +27,7 @@ class AdjustmentEvent:
 class AdjustmentItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Quantity" in data:
             self.Quantity: str = str(data["Quantity"])
         else:
@@ -59,6 +61,7 @@ class AdjustmentItem:
 class AffordabilityExpenseEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -100,6 +103,7 @@ class AffordabilityExpenseEvent:
 class ChargeComponent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ChargeType" in data:
             self.ChargeType: str = str(data["ChargeType"])
         else:
@@ -113,6 +117,7 @@ class ChargeComponent:
 class ChargeInstrument:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Description" in data:
             self.Description: str = str(data["Description"])
         else:
@@ -130,6 +135,7 @@ class ChargeInstrument:
 class CouponPaymentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
@@ -167,6 +173,7 @@ class CouponPaymentEvent:
 class Currency:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
         else:
@@ -180,6 +187,7 @@ class Currency:
 class DebtRecoveryEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "DebtRecoveryType" in data:
             self.DebtRecoveryType: str = str(data["DebtRecoveryType"])
         else:
@@ -205,6 +213,7 @@ class DebtRecoveryEvent:
 class DebtRecoveryItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "RecoveryAmount" in data:
             self.RecoveryAmount: Currency = Currency(data["RecoveryAmount"])
         else:
@@ -226,6 +235,7 @@ class DebtRecoveryItem:
 class DirectPayment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "DirectPaymentType" in data:
             self.DirectPaymentType: str = str(data["DirectPaymentType"])
         else:
@@ -239,6 +249,7 @@ class DirectPayment:
 class FBALiquidationEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
@@ -260,6 +271,7 @@ class FBALiquidationEvent:
 class FeeComponent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "FeeType" in data:
             self.FeeType: str = str(data["FeeType"])
         else:
@@ -273,6 +285,7 @@ class FeeComponent:
 class FinancialEventGroup:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "FinancialEventGroupId" in data:
             self.FinancialEventGroupId: str = str(data["FinancialEventGroupId"])
         else:
@@ -322,6 +335,7 @@ class FinancialEventGroup:
 class FinancialEvents:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentEventList" in data:
             self.ShipmentEventList: ShipmentEventList = ShipmentEventList(data["ShipmentEventList"])
         else:
@@ -437,6 +451,7 @@ class FinancialEvents:
 class ImagingServicesFeeEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ImagingRequestBillingItemID" in data:
             self.ImagingRequestBillingItemID: str = str(data["ImagingRequestBillingItemID"])
         else:
@@ -458,6 +473,7 @@ class ImagingServicesFeeEvent:
 class ListFinancialEventGroupsPayload:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "NextToken" in data:
             self.NextToken: str = str(data["NextToken"])
         else:
@@ -473,6 +489,7 @@ class ListFinancialEventGroupsPayload:
 class ListFinancialEventGroupsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ListFinancialEventGroupsPayload = ListFinancialEventGroupsPayload(data["payload"])
         else:
@@ -486,6 +503,7 @@ class ListFinancialEventGroupsResponse:
 class ListFinancialEventsPayload:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "NextToken" in data:
             self.NextToken: str = str(data["NextToken"])
         else:
@@ -499,6 +517,7 @@ class ListFinancialEventsPayload:
 class ListFinancialEventsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ListFinancialEventsPayload = ListFinancialEventsPayload(data["payload"])
         else:
@@ -512,6 +531,7 @@ class ListFinancialEventsResponse:
 class LoanServicingEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "LoanAmount" in data:
             self.LoanAmount: Currency = Currency(data["LoanAmount"])
         else:
@@ -525,6 +545,7 @@ class LoanServicingEvent:
 class NetworkComminglingTransactionEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TransactionType" in data:
             self.TransactionType: str = str(data["TransactionType"])
         else:
@@ -562,6 +583,7 @@ class NetworkComminglingTransactionEvent:
 class PayWithAmazonEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerOrderId" in data:
             self.SellerOrderId: str = str(data["SellerOrderId"])
         else:
@@ -607,6 +629,7 @@ class PayWithAmazonEvent:
 class ProductAdsPaymentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "postedDate" in data:
             self.postedDate: Date = Date(data["postedDate"])
         else:
@@ -636,6 +659,7 @@ class ProductAdsPaymentEvent:
 class Promotion:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PromotionType" in data:
             self.PromotionType: str = str(data["PromotionType"])
         else:
@@ -653,6 +677,7 @@ class Promotion:
 class RemovalShipmentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
@@ -676,6 +701,7 @@ class RemovalShipmentEvent:
 class RemovalShipmentItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "RemovalShipmentItemId" in data:
             self.RemovalShipmentItemId: str = str(data["RemovalShipmentItemId"])
         else:
@@ -713,6 +739,7 @@ class RemovalShipmentItem:
 class RentalTransactionEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -760,6 +787,7 @@ class RentalTransactionEvent:
 class RetrochargeEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "RetrochargeEventType" in data:
             self.RetrochargeEventType: str = str(data["RetrochargeEventType"])
         else:
@@ -795,6 +823,7 @@ class RetrochargeEvent:
 class SAFETReimbursementEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
@@ -822,6 +851,7 @@ class SAFETReimbursementEvent:
 class SAFETReimbursementItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "itemChargeList" in data:
             self.itemChargeList: ChargeComponentList = ChargeComponentList(data["itemChargeList"])
         else:
@@ -839,6 +869,7 @@ class SAFETReimbursementItem:
 class SellerDealPaymentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "postedDate" in data:
             self.postedDate: Date = Date(data["postedDate"])
         else:
@@ -876,6 +907,7 @@ class SellerDealPaymentEvent:
 class SellerReviewEnrollmentPaymentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
@@ -905,6 +937,7 @@ class SellerReviewEnrollmentPaymentEvent:
 class ServiceFeeEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -938,6 +971,7 @@ class ServiceFeeEvent:
 class ShipmentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -995,6 +1029,7 @@ class ShipmentEvent:
 class ShipmentItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
         else:
@@ -1052,6 +1087,7 @@ class ShipmentItem:
 class SolutionProviderCreditEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ProviderTransactionType" in data:
             self.ProviderTransactionType: str = str(data["ProviderTransactionType"])
         else:
@@ -1097,6 +1133,7 @@ class SolutionProviderCreditEvent:
 class TDSReimbursementEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
@@ -1114,6 +1151,7 @@ class TDSReimbursementEvent:
 class TaxWithheldComponent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TaxCollectionModel" in data:
             self.TaxCollectionModel: str = str(data["TaxCollectionModel"])
         else:
@@ -1127,6 +1165,7 @@ class TaxWithheldComponent:
 class TrialShipmentEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -1152,6 +1191,7 @@ class TrialShipmentEvent:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -1169,171 +1209,205 @@ class Error:
 class AdjustmentEventList(list, _List["AdjustmentEvent"]):
     def __init__(self, data):
         super().__init__([AdjustmentEvent(datum) for datum in data])
+        self.data = data
 
 
 class AdjustmentItemList(list, _List["AdjustmentItem"]):
     def __init__(self, data):
         super().__init__([AdjustmentItem(datum) for datum in data])
+        self.data = data
 
 
 class AffordabilityExpenseEventList(list, _List["AffordabilityExpenseEvent"]):
     def __init__(self, data):
         super().__init__([AffordabilityExpenseEvent(datum) for datum in data])
+        self.data = data
 
 
 class ChargeComponentList(list, _List["ChargeComponent"]):
     def __init__(self, data):
         super().__init__([ChargeComponent(datum) for datum in data])
+        self.data = data
 
 
 class ChargeInstrumentList(list, _List["ChargeInstrument"]):
     def __init__(self, data):
         super().__init__([ChargeInstrument(datum) for datum in data])
+        self.data = data
 
 
 class CouponPaymentEventList(list, _List["CouponPaymentEvent"]):
     def __init__(self, data):
         super().__init__([CouponPaymentEvent(datum) for datum in data])
+        self.data = data
 
 
 class DebtRecoveryEventList(list, _List["DebtRecoveryEvent"]):
     def __init__(self, data):
         super().__init__([DebtRecoveryEvent(datum) for datum in data])
+        self.data = data
 
 
 class DebtRecoveryItemList(list, _List["DebtRecoveryItem"]):
     def __init__(self, data):
         super().__init__([DebtRecoveryItem(datum) for datum in data])
+        self.data = data
 
 
 class DirectPaymentList(list, _List["DirectPayment"]):
     def __init__(self, data):
         super().__init__([DirectPayment(datum) for datum in data])
+        self.data = data
 
 
 class FBALiquidationEventList(list, _List["FBALiquidationEvent"]):
     def __init__(self, data):
         super().__init__([FBALiquidationEvent(datum) for datum in data])
+        self.data = data
 
 
 class FeeComponentList(list, _List["FeeComponent"]):
     def __init__(self, data):
         super().__init__([FeeComponent(datum) for datum in data])
+        self.data = data
 
 
 class FinancialEventGroupList(list, _List["FinancialEventGroup"]):
     def __init__(self, data):
         super().__init__([FinancialEventGroup(datum) for datum in data])
+        self.data = data
 
 
 class ImagingServicesFeeEventList(list, _List["ImagingServicesFeeEvent"]):
     def __init__(self, data):
         super().__init__([ImagingServicesFeeEvent(datum) for datum in data])
+        self.data = data
 
 
 class LoanServicingEventList(list, _List["LoanServicingEvent"]):
     def __init__(self, data):
         super().__init__([LoanServicingEvent(datum) for datum in data])
+        self.data = data
 
 
 class NetworkComminglingTransactionEventList(list, _List["NetworkComminglingTransactionEvent"]):
     def __init__(self, data):
         super().__init__([NetworkComminglingTransactionEvent(datum) for datum in data])
+        self.data = data
 
 
 class PayWithAmazonEventList(list, _List["PayWithAmazonEvent"]):
     def __init__(self, data):
         super().__init__([PayWithAmazonEvent(datum) for datum in data])
+        self.data = data
 
 
 class ProductAdsPaymentEventList(list, _List["ProductAdsPaymentEvent"]):
     def __init__(self, data):
         super().__init__([ProductAdsPaymentEvent(datum) for datum in data])
+        self.data = data
 
 
 class PromotionList(list, _List["Promotion"]):
     def __init__(self, data):
         super().__init__([Promotion(datum) for datum in data])
+        self.data = data
 
 
 class RemovalShipmentEventList(list, _List["RemovalShipmentEvent"]):
     def __init__(self, data):
         super().__init__([RemovalShipmentEvent(datum) for datum in data])
+        self.data = data
 
 
 class RemovalShipmentItemList(list, _List["RemovalShipmentItem"]):
     def __init__(self, data):
         super().__init__([RemovalShipmentItem(datum) for datum in data])
+        self.data = data
 
 
 class RentalTransactionEventList(list, _List["RentalTransactionEvent"]):
     def __init__(self, data):
         super().__init__([RentalTransactionEvent(datum) for datum in data])
+        self.data = data
 
 
 class RetrochargeEventList(list, _List["RetrochargeEvent"]):
     def __init__(self, data):
         super().__init__([RetrochargeEvent(datum) for datum in data])
+        self.data = data
 
 
 class SAFETReimbursementEventList(list, _List["SAFETReimbursementEvent"]):
     def __init__(self, data):
         super().__init__([SAFETReimbursementEvent(datum) for datum in data])
+        self.data = data
 
 
 class SAFETReimbursementItemList(list, _List["SAFETReimbursementItem"]):
     def __init__(self, data):
         super().__init__([SAFETReimbursementItem(datum) for datum in data])
+        self.data = data
 
 
 class SellerDealPaymentEventList(list, _List["SellerDealPaymentEvent"]):
     def __init__(self, data):
         super().__init__([SellerDealPaymentEvent(datum) for datum in data])
+        self.data = data
 
 
 class SellerReviewEnrollmentPaymentEventList(list, _List["SellerReviewEnrollmentPaymentEvent"]):
     def __init__(self, data):
         super().__init__([SellerReviewEnrollmentPaymentEvent(datum) for datum in data])
+        self.data = data
 
 
 class ServiceFeeEventList(list, _List["ServiceFeeEvent"]):
     def __init__(self, data):
         super().__init__([ServiceFeeEvent(datum) for datum in data])
+        self.data = data
 
 
 class ShipmentEventList(list, _List["ShipmentEvent"]):
     def __init__(self, data):
         super().__init__([ShipmentEvent(datum) for datum in data])
+        self.data = data
 
 
 class ShipmentItemList(list, _List["ShipmentItem"]):
     def __init__(self, data):
         super().__init__([ShipmentItem(datum) for datum in data])
+        self.data = data
 
 
 class SolutionProviderCreditEventList(list, _List["SolutionProviderCreditEvent"]):
     def __init__(self, data):
         super().__init__([SolutionProviderCreditEvent(datum) for datum in data])
+        self.data = data
 
 
 class TDSReimbursementEventList(list, _List["TDSReimbursementEvent"]):
     def __init__(self, data):
         super().__init__([TDSReimbursementEvent(datum) for datum in data])
+        self.data = data
 
 
 class TaxWithheldComponentList(list, _List["TaxWithheldComponent"]):
     def __init__(self, data):
         super().__init__([TaxWithheldComponent(datum) for datum in data])
+        self.data = data
 
 
 class TrialShipmentEventList(list, _List["TrialShipmentEvent"]):
     def __init__(self, data):
         super().__init__([TrialShipmentEvent(datum) for datum in data])
+        self.data = data
 
 
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 BigDecimal = float

@@ -5,6 +5,7 @@ from typing import List as _List
 class Subscription:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "subscriptionId" in data:
             self.subscriptionId: str = str(data["subscriptionId"])
         else:
@@ -22,6 +23,7 @@ class Subscription:
 class CreateSubscriptionResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Subscription = Subscription(data["payload"])
         else:
@@ -35,6 +37,7 @@ class CreateSubscriptionResponse:
 class CreateSubscriptionRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payloadVersion" in data:
             self.payloadVersion: str = str(data["payloadVersion"])
         else:
@@ -48,6 +51,7 @@ class CreateSubscriptionRequest:
 class GetSubscriptionByIdResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Subscription = Subscription(data["payload"])
         else:
@@ -61,6 +65,7 @@ class GetSubscriptionByIdResponse:
 class GetSubscriptionResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Subscription = Subscription(data["payload"])
         else:
@@ -74,6 +79,7 @@ class GetSubscriptionResponse:
 class DeleteSubscriptionByIdResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -83,6 +89,7 @@ class DeleteSubscriptionByIdResponse:
 class Destination:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -100,6 +107,7 @@ class Destination:
 class DestinationResource:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sqs" in data:
             self.sqs: SqsResource = SqsResource(data["sqs"])
         else:
@@ -113,6 +121,7 @@ class DestinationResource:
 class DestinationResourceSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sqs" in data:
             self.sqs: SqsResource = SqsResource(data["sqs"])
         else:
@@ -126,6 +135,7 @@ class DestinationResourceSpecification:
 class SqsResource:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "arn" in data:
             self.arn: str = str(data["arn"])
         else:
@@ -135,6 +145,7 @@ class SqsResource:
 class EventBridgeResourceSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "region" in data:
             self.region: str = str(data["region"])
         else:
@@ -148,6 +159,7 @@ class EventBridgeResourceSpecification:
 class EventBridgeResource:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -165,6 +177,7 @@ class EventBridgeResource:
 class CreateDestinationRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "resourceSpecification" in data:
             self.resourceSpecification: DestinationResourceSpecification = DestinationResourceSpecification(
                 data["resourceSpecification"]
@@ -180,6 +193,7 @@ class CreateDestinationRequest:
 class CreateDestinationResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Destination = Destination(data["payload"])
         else:
@@ -193,6 +207,7 @@ class CreateDestinationResponse:
 class GetDestinationResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Destination = Destination(data["payload"])
         else:
@@ -206,6 +221,7 @@ class GetDestinationResponse:
 class GetDestinationsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: DestinationList = DestinationList(data["payload"])
         else:
@@ -219,6 +235,7 @@ class GetDestinationsResponse:
 class DeleteDestinationResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -228,6 +245,7 @@ class DeleteDestinationResponse:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -245,11 +263,13 @@ class Error:
 class DestinationList(list, _List["Destination"]):
     def __init__(self, data):
         super().__init__([Destination(datum) for datum in data])
+        self.data = data
 
 
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 NotificationType = str

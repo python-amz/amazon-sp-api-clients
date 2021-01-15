@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class Address:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -67,6 +69,7 @@ class Address:
 class CODSettings:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "isCodRequired" in data:
             self.isCodRequired: bool = bool(data["isCodRequired"])
         else:
@@ -92,6 +95,7 @@ class CODSettings:
 class CreateFulfillmentOrderItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -133,6 +137,7 @@ class CreateFulfillmentOrderItem:
 class CreateFulfillmentOrderRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
         else:
@@ -200,6 +205,7 @@ class CreateFulfillmentOrderRequest:
 class CreateFulfillmentReturnRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "items" in data:
             self.items: CreateReturnItemList = CreateReturnItemList(data["items"])
         else:
@@ -209,6 +215,7 @@ class CreateFulfillmentReturnRequest:
 class CreateFulfillmentReturnResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "returnItems" in data:
             self.returnItems: ReturnItemList = ReturnItemList(data["returnItems"])
         else:
@@ -226,6 +233,7 @@ class CreateFulfillmentReturnResult:
 class CreateFulfillmentReturnResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CreateFulfillmentReturnResult = CreateFulfillmentReturnResult(data["payload"])
         else:
@@ -239,6 +247,7 @@ class CreateFulfillmentReturnResponse:
 class CreateReturnItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerReturnItemId" in data:
             self.sellerReturnItemId: str = str(data["sellerReturnItemId"])
         else:
@@ -264,6 +273,7 @@ class CreateReturnItem:
 class Money:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
         else:
@@ -277,6 +287,7 @@ class Money:
 class DeliveryWindow:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "startDate" in data:
             self.startDate: Timestamp = Timestamp(data["startDate"])
         else:
@@ -290,6 +301,7 @@ class DeliveryWindow:
 class Fee:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -303,6 +315,7 @@ class Fee:
 class FulfillmentOrder:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerFulfillmentOrderId" in data:
             self.sellerFulfillmentOrderId: str = str(data["sellerFulfillmentOrderId"])
         else:
@@ -374,6 +387,7 @@ class FulfillmentOrder:
 class FulfillmentOrderItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -435,6 +449,7 @@ class FulfillmentOrderItem:
 class FulfillmentPreview:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "shippingSpeedCategory" in data:
             self.shippingSpeedCategory: ShippingSpeedCategory = ShippingSpeedCategory(data["shippingSpeedCategory"])
         else:
@@ -490,6 +505,7 @@ class FulfillmentPreview:
 class FulfillmentPreviewItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -515,6 +531,7 @@ class FulfillmentPreviewItem:
 class FulfillmentPreviewShipment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "earliestShipDate" in data:
             self.earliestShipDate: Timestamp = Timestamp(data["earliestShipDate"])
         else:
@@ -546,6 +563,7 @@ class FulfillmentPreviewShipment:
 class FulfillmentShipment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "amazonShipmentId" in data:
             self.amazonShipmentId: str = str(data["amazonShipmentId"])
         else:
@@ -587,6 +605,7 @@ class FulfillmentShipment:
 class FulfillmentShipmentItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -612,6 +631,7 @@ class FulfillmentShipmentItem:
 class FulfillmentShipmentPackage:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "packageNumber" in data:
             self.packageNumber: int = int(data["packageNumber"])
         else:
@@ -633,6 +653,7 @@ class FulfillmentShipmentPackage:
 class GetFulfillmentOrderResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "fulfillmentOrder" in data:
             self.fulfillmentOrder: FulfillmentOrder = FulfillmentOrder(data["fulfillmentOrder"])
         else:
@@ -660,6 +681,7 @@ class GetFulfillmentOrderResult:
 class GetFulfillmentOrderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetFulfillmentOrderResult = GetFulfillmentOrderResult(data["payload"])
         else:
@@ -673,6 +695,7 @@ class GetFulfillmentOrderResponse:
 class GetFulfillmentPreviewItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -694,6 +717,7 @@ class GetFulfillmentPreviewItem:
 class GetFulfillmentPreviewRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
         else:
@@ -731,6 +755,7 @@ class GetFulfillmentPreviewRequest:
 class GetFulfillmentPreviewResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "fulfillmentPreviews" in data:
             self.fulfillmentPreviews: FulfillmentPreviewList = FulfillmentPreviewList(data["fulfillmentPreviews"])
         else:
@@ -740,6 +765,7 @@ class GetFulfillmentPreviewResult:
 class GetFulfillmentPreviewResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetFulfillmentPreviewResult = GetFulfillmentPreviewResult(data["payload"])
         else:
@@ -753,6 +779,7 @@ class GetFulfillmentPreviewResponse:
 class InvalidItemReason:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "invalidItemReasonCode" in data:
             self.invalidItemReasonCode: InvalidItemReasonCode = InvalidItemReasonCode(data["invalidItemReasonCode"])
         else:
@@ -766,6 +793,7 @@ class InvalidItemReason:
 class InvalidReturnItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerReturnItemId" in data:
             self.sellerReturnItemId: str = str(data["sellerReturnItemId"])
         else:
@@ -783,6 +811,7 @@ class InvalidReturnItem:
 class ListAllFulfillmentOrdersResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "nextToken" in data:
             self.nextToken: str = str(data["nextToken"])
         else:
@@ -798,6 +827,7 @@ class ListAllFulfillmentOrdersResult:
 class ListAllFulfillmentOrdersResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ListAllFulfillmentOrdersResult = ListAllFulfillmentOrdersResult(data["payload"])
         else:
@@ -811,6 +841,7 @@ class ListAllFulfillmentOrdersResponse:
 class ListReturnReasonCodesResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "reasonCodeDetails" in data:
             self.reasonCodeDetails: ReasonCodeDetailsList = ReasonCodeDetailsList(data["reasonCodeDetails"])
         else:
@@ -820,6 +851,7 @@ class ListReturnReasonCodesResult:
 class ListReturnReasonCodesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ListReturnReasonCodesResult = ListReturnReasonCodesResult(data["payload"])
         else:
@@ -833,6 +865,7 @@ class ListReturnReasonCodesResponse:
 class PackageTrackingDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "packageNumber" in data:
             self.packageNumber: int = int(data["packageNumber"])
         else:
@@ -894,6 +927,7 @@ class PackageTrackingDetails:
 class GetPackageTrackingDetailsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: PackageTrackingDetails = PackageTrackingDetails(data["payload"])
         else:
@@ -907,6 +941,7 @@ class GetPackageTrackingDetailsResponse:
 class ReasonCodeDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "returnReasonCode" in data:
             self.returnReasonCode: str = str(data["returnReasonCode"])
         else:
@@ -924,6 +959,7 @@ class ReasonCodeDetails:
 class ReturnAuthorization:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "returnAuthorizationId" in data:
             self.returnAuthorizationId: str = str(data["returnAuthorizationId"])
         else:
@@ -949,6 +985,7 @@ class ReturnAuthorization:
 class ReturnItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerReturnItemId" in data:
             self.sellerReturnItemId: str = str(data["sellerReturnItemId"])
         else:
@@ -998,6 +1035,7 @@ class ReturnItem:
 class ScheduledDeliveryInfo:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "deliveryTimeZone" in data:
             self.deliveryTimeZone: str = str(data["deliveryTimeZone"])
         else:
@@ -1011,6 +1049,7 @@ class ScheduledDeliveryInfo:
 class TrackingAddress:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "city" in data:
             self.city: str = str(data["city"])
         else:
@@ -1028,6 +1067,7 @@ class TrackingAddress:
 class TrackingEvent:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "eventDate" in data:
             self.eventDate: Timestamp = Timestamp(data["eventDate"])
         else:
@@ -1049,6 +1089,7 @@ class TrackingEvent:
 class UnfulfillablePreviewItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -1070,6 +1111,7 @@ class UnfulfillablePreviewItem:
 class UpdateFulfillmentOrderItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -1115,6 +1157,7 @@ class UpdateFulfillmentOrderItem:
 class UpdateFulfillmentOrderRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
         else:
@@ -1170,6 +1213,7 @@ class UpdateFulfillmentOrderRequest:
 class UpdateFulfillmentOrderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -1179,6 +1223,7 @@ class UpdateFulfillmentOrderResponse:
 class CreateFulfillmentOrderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -1188,6 +1233,7 @@ class CreateFulfillmentOrderResponse:
 class CancelFulfillmentOrderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -1197,6 +1243,7 @@ class CancelFulfillmentOrderResponse:
 class Weight:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "unit" in data:
             self.unit: str = str(data["unit"])
         else:
@@ -1210,6 +1257,7 @@ class Weight:
 class GetFeatureInventoryResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetFeatureInventoryResult = GetFeatureInventoryResult(data["payload"])
         else:
@@ -1223,6 +1271,7 @@ class GetFeatureInventoryResponse:
 class GetFeatureInventoryResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
         else:
@@ -1244,6 +1293,7 @@ class GetFeatureInventoryResult:
 class FeatureSku:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
         else:
@@ -1269,6 +1319,7 @@ class FeatureSku:
 class GetFeaturesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetFeaturesResult = GetFeaturesResult(data["payload"])
         else:
@@ -1282,6 +1333,7 @@ class GetFeaturesResponse:
 class GetFeaturesResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "features" in data:
             self.features: Features = Features(data["features"])
         else:
@@ -1291,6 +1343,7 @@ class GetFeaturesResult:
 class Feature:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "featureName" in data:
             self.featureName: str = str(data["featureName"])
         else:
@@ -1308,6 +1361,7 @@ class Feature:
 class GetFeatureSkuResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetFeatureSkuResult = GetFeatureSkuResult(data["payload"])
         else:
@@ -1321,6 +1375,7 @@ class GetFeatureSkuResponse:
 class GetFeatureSkuResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
         else:
@@ -1346,6 +1401,7 @@ class GetFeatureSkuResult:
 class FeatureSettings:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "featureName" in data:
             self.featureName: str = str(data["featureName"])
         else:
@@ -1359,121 +1415,145 @@ class FeatureSettings:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class CreateFulfillmentOrderItemList(list, _List["CreateFulfillmentOrderItem"]):
     def __init__(self, data):
         super().__init__([CreateFulfillmentOrderItem(datum) for datum in data])
+        self.data = data
 
 
 class CreateReturnItemList(list, _List["CreateReturnItem"]):
     def __init__(self, data):
         super().__init__([CreateReturnItem(datum) for datum in data])
+        self.data = data
 
 
 class DeliveryWindowList(list, _List["DeliveryWindow"]):
     def __init__(self, data):
         super().__init__([DeliveryWindow(datum) for datum in data])
+        self.data = data
 
 
 class FeeList(list, _List["Fee"]):
     def __init__(self, data):
         super().__init__([Fee(datum) for datum in data])
+        self.data = data
 
 
 class FulfillmentOrderItemList(list, _List["FulfillmentOrderItem"]):
     def __init__(self, data):
         super().__init__([FulfillmentOrderItem(datum) for datum in data])
+        self.data = data
 
 
 class FulfillmentPreviewItemList(list, _List["FulfillmentPreviewItem"]):
     def __init__(self, data):
         super().__init__([FulfillmentPreviewItem(datum) for datum in data])
+        self.data = data
 
 
 class FulfillmentPreviewList(list, _List["FulfillmentPreview"]):
     def __init__(self, data):
         super().__init__([FulfillmentPreview(datum) for datum in data])
+        self.data = data
 
 
 class FulfillmentPreviewShipmentList(list, _List["FulfillmentPreviewShipment"]):
     def __init__(self, data):
         super().__init__([FulfillmentPreviewShipment(datum) for datum in data])
+        self.data = data
 
 
 class FulfillmentShipmentItemList(list, _List["FulfillmentShipmentItem"]):
     def __init__(self, data):
         super().__init__([FulfillmentShipmentItem(datum) for datum in data])
+        self.data = data
 
 
 class FulfillmentShipmentList(list, _List["FulfillmentShipment"]):
     def __init__(self, data):
         super().__init__([FulfillmentShipment(datum) for datum in data])
+        self.data = data
 
 
 class FulfillmentShipmentPackageList(list, _List["FulfillmentShipmentPackage"]):
     def __init__(self, data):
         super().__init__([FulfillmentShipmentPackage(datum) for datum in data])
+        self.data = data
 
 
 class GetFulfillmentPreviewItemList(list, _List["GetFulfillmentPreviewItem"]):
     def __init__(self, data):
         super().__init__([GetFulfillmentPreviewItem(datum) for datum in data])
+        self.data = data
 
 
 class InvalidReturnItemList(list, _List["InvalidReturnItem"]):
     def __init__(self, data):
         super().__init__([InvalidReturnItem(datum) for datum in data])
+        self.data = data
 
 
 class NotificationEmailList(list, _List["str"]):
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
+        self.data = data
 
 
 class ReasonCodeDetailsList(list, _List["ReasonCodeDetails"]):
     def __init__(self, data):
         super().__init__([ReasonCodeDetails(datum) for datum in data])
+        self.data = data
 
 
 class ReturnAuthorizationList(list, _List["ReturnAuthorization"]):
     def __init__(self, data):
         super().__init__([ReturnAuthorization(datum) for datum in data])
+        self.data = data
 
 
 class ReturnItemList(list, _List["ReturnItem"]):
     def __init__(self, data):
         super().__init__([ReturnItem(datum) for datum in data])
+        self.data = data
 
 
 class ShippingSpeedCategoryList(list, _List["ShippingSpeedCategory"]):
     def __init__(self, data):
         super().__init__([ShippingSpeedCategory(datum) for datum in data])
+        self.data = data
 
 
 class StringList(list, _List["str"]):
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
+        self.data = data
 
 
 class TrackingEventList(list, _List["TrackingEvent"]):
     def __init__(self, data):
         super().__init__([TrackingEvent(datum) for datum in data])
+        self.data = data
 
 
 class UnfulfillablePreviewItemList(list, _List["UnfulfillablePreviewItem"]):
     def __init__(self, data):
         super().__init__([UnfulfillablePreviewItem(datum) for datum in data])
+        self.data = data
 
 
 class UpdateFulfillmentOrderItemList(list, _List["UpdateFulfillmentOrderItem"]):
     def __init__(self, data):
         super().__init__([UpdateFulfillmentOrderItem(datum) for datum in data])
+        self.data = data
 
 
 class Features(list, _List["Feature"]):
     def __init__(self, data):
         super().__init__([Feature(datum) for datum in data])
+        self.data = data
 
 
 FulfillmentPolicy = str

@@ -5,6 +5,7 @@ from typing import List as _List
 class LinkObject:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "href" in data:
             self.href: str = str(data["href"])
         else:
@@ -18,6 +19,7 @@ class LinkObject:
 class SolicitationsAction:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -27,11 +29,13 @@ class SolicitationsAction:
 class Schema:
     def __init__(self, data):
         super().__init__()
+        self.data = data
 
 
 class GetSolicitationActionsForOrderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
         else:
@@ -49,6 +53,7 @@ class GetSolicitationActionsForOrderResponse:
 class GetSolicitationActionResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
         else:
@@ -70,6 +75,7 @@ class GetSolicitationActionResponse:
 class GetSchemaResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
         else:
@@ -87,6 +93,7 @@ class GetSchemaResponse:
 class CreateProductReviewAndSellerFeedbackSolicitationResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -96,6 +103,7 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -113,6 +121,7 @@ class Error:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class SolicitationsClient(__BaseClient):

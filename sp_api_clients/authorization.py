@@ -5,6 +5,7 @@ from typing import List as _List
 class GetAuthorizationCodeResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: AuthorizationCode = AuthorizationCode(data["payload"])
         else:
@@ -18,6 +19,7 @@ class GetAuthorizationCodeResponse:
 class AuthorizationCode:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "authorizationCode" in data:
             self.authorizationCode: str = str(data["authorizationCode"])
         else:
@@ -27,6 +29,7 @@ class AuthorizationCode:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -44,6 +47,7 @@ class Error:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class AuthorizationClient(__BaseClient):

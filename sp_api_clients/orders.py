@@ -5,6 +5,7 @@ from typing import List as _List
 class GetOrdersResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: OrdersList = OrdersList(data["payload"])
         else:
@@ -18,6 +19,7 @@ class GetOrdersResponse:
 class GetOrderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Order = Order(data["payload"])
         else:
@@ -31,6 +33,7 @@ class GetOrderResponse:
 class GetOrderBuyerInfoResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: OrderBuyerInfo = OrderBuyerInfo(data["payload"])
         else:
@@ -44,6 +47,7 @@ class GetOrderBuyerInfoResponse:
 class GetOrderAddressResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: OrderAddress = OrderAddress(data["payload"])
         else:
@@ -57,6 +61,7 @@ class GetOrderAddressResponse:
 class GetOrderItemsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: OrderItemsList = OrderItemsList(data["payload"])
         else:
@@ -70,6 +75,7 @@ class GetOrderItemsResponse:
 class GetOrderItemsBuyerInfoResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: OrderItemsBuyerInfoList = OrderItemsBuyerInfoList(data["payload"])
         else:
@@ -83,6 +89,7 @@ class GetOrderItemsBuyerInfoResponse:
 class OrdersList:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Orders" in data:
             self.Orders: OrderList = OrderList(data["Orders"])
         else:
@@ -104,6 +111,7 @@ class OrdersList:
 class Order:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -253,6 +261,7 @@ class Order:
 class OrderBuyerInfo:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -282,6 +291,7 @@ class OrderBuyerInfo:
 class OrderAddress:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
         else:
@@ -295,6 +305,7 @@ class OrderAddress:
 class Address:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
         else:
@@ -352,6 +363,7 @@ class Address:
 class Money:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
         else:
@@ -365,6 +377,7 @@ class Money:
 class PaymentExecutionDetailItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Payment" in data:
             self.Payment: Money = Money(data["Payment"])
         else:
@@ -378,6 +391,7 @@ class PaymentExecutionDetailItem:
 class BuyerTaxInfo:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CompanyLegalName" in data:
             self.CompanyLegalName: str = str(data["CompanyLegalName"])
         else:
@@ -397,6 +411,7 @@ class BuyerTaxInfo:
 class TaxClassification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
         else:
@@ -410,6 +425,7 @@ class TaxClassification:
 class OrderItemsList:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "OrderItems" in data:
             self.OrderItems: OrderItemList = OrderItemList(data["OrderItems"])
         else:
@@ -427,6 +443,7 @@ class OrderItemsList:
 class OrderItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
         else:
@@ -556,6 +573,7 @@ class OrderItem:
 class OrderItemsBuyerInfoList:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "OrderItems" in data:
             self.OrderItems: OrderItemBuyerInfoList = OrderItemBuyerInfoList(data["OrderItems"])
         else:
@@ -573,6 +591,7 @@ class OrderItemsBuyerInfoList:
 class OrderItemBuyerInfo:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "OrderItemId" in data:
             self.OrderItemId: str = str(data["OrderItemId"])
         else:
@@ -602,6 +621,7 @@ class OrderItemBuyerInfo:
 class PointsGrantedDetail:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PointsNumber" in data:
             self.PointsNumber: int = int(data["PointsNumber"])
         else:
@@ -615,6 +635,7 @@ class PointsGrantedDetail:
 class ProductInfoDetail:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "NumberOfItems" in data:
             self.NumberOfItems: int = int(data["NumberOfItems"])
         else:
@@ -624,6 +645,7 @@ class ProductInfoDetail:
 class BuyerCustomizedInfoDetail:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CustomizedURL" in data:
             self.CustomizedURL: str = str(data["CustomizedURL"])
         else:
@@ -633,6 +655,7 @@ class BuyerCustomizedInfoDetail:
 class TaxCollection:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Model" in data:
             self.Model: str = str(data["Model"])
         else:
@@ -646,6 +669,7 @@ class TaxCollection:
 class FulfillmentInstruction:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "FulfillmentSupplySourceId" in data:
             self.FulfillmentSupplySourceId: str = str(data["FulfillmentSupplySourceId"])
         else:
@@ -655,6 +679,7 @@ class FulfillmentInstruction:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -672,36 +697,43 @@ class Error:
 class OrderList(list, _List["Order"]):
     def __init__(self, data):
         super().__init__([Order(datum) for datum in data])
+        self.data = data
 
 
 class PaymentMethodDetailItemList(list, _List["str"]):
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
+        self.data = data
 
 
 class PaymentExecutionDetailItemList(list, _List["PaymentExecutionDetailItem"]):
     def __init__(self, data):
         super().__init__([PaymentExecutionDetailItem(datum) for datum in data])
+        self.data = data
 
 
 class OrderItemList(list, _List["OrderItem"]):
     def __init__(self, data):
         super().__init__([OrderItem(datum) for datum in data])
+        self.data = data
 
 
 class OrderItemBuyerInfoList(list, _List["OrderItemBuyerInfo"]):
     def __init__(self, data):
         super().__init__([OrderItemBuyerInfo(datum) for datum in data])
+        self.data = data
 
 
 class PromotionIdList(list, _List["str"]):
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
+        self.data = data
 
 
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class OrdersClient(__BaseClient):

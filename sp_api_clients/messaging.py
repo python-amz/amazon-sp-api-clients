@@ -5,6 +5,7 @@ from typing import List as _List
 class Attachment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "uploadDestinationId" in data:
             self.uploadDestinationId: str = str(data["uploadDestinationId"])
         else:
@@ -18,6 +19,7 @@ class Attachment:
 class LinkObject:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "href" in data:
             self.href: str = str(data["href"])
         else:
@@ -31,6 +33,7 @@ class LinkObject:
 class MessagingAction:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -40,11 +43,13 @@ class MessagingAction:
 class Schema:
     def __init__(self, data):
         super().__init__()
+        self.data = data
 
 
 class GetMessagingActionsForOrderResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
         else:
@@ -62,6 +67,7 @@ class GetMessagingActionsForOrderResponse:
 class GetMessagingActionResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
         else:
@@ -83,6 +89,7 @@ class GetMessagingActionResponse:
 class GetSchemaResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
         else:
@@ -100,6 +107,7 @@ class GetSchemaResponse:
 class CreateConfirmCustomizationDetailsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "text" in data:
             self.text: str = str(data["text"])
         else:
@@ -113,6 +121,7 @@ class CreateConfirmCustomizationDetailsRequest:
 class CreateConfirmCustomizationDetailsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -122,6 +131,7 @@ class CreateConfirmCustomizationDetailsResponse:
 class CreateConfirmDeliveryDetailsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "text" in data:
             self.text: str = str(data["text"])
         else:
@@ -131,6 +141,7 @@ class CreateConfirmDeliveryDetailsRequest:
 class CreateConfirmDeliveryDetailsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -140,6 +151,7 @@ class CreateConfirmDeliveryDetailsResponse:
 class CreateNegativeFeedbackRemovalResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -149,6 +161,7 @@ class CreateNegativeFeedbackRemovalResponse:
 class CreateLegalDisclosureRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "attachments" in data:
             self.attachments: _List[Attachment] = [Attachment(datum) for datum in data["attachments"]]
         else:
@@ -158,6 +171,7 @@ class CreateLegalDisclosureRequest:
 class CreateLegalDisclosureResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -167,6 +181,7 @@ class CreateLegalDisclosureResponse:
 class CreateConfirmOrderDetailsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "text" in data:
             self.text: str = str(data["text"])
         else:
@@ -176,6 +191,7 @@ class CreateConfirmOrderDetailsRequest:
 class CreateConfirmOrderDetailsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -185,6 +201,7 @@ class CreateConfirmOrderDetailsResponse:
 class CreateConfirmServiceDetailsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "text" in data:
             self.text: str = str(data["text"])
         else:
@@ -194,6 +211,7 @@ class CreateConfirmServiceDetailsRequest:
 class CreateConfirmServiceDetailsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -203,6 +221,7 @@ class CreateConfirmServiceDetailsResponse:
 class CreateAmazonMotorsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "attachments" in data:
             self.attachments: _List[Attachment] = [Attachment(datum) for datum in data["attachments"]]
         else:
@@ -212,6 +231,7 @@ class CreateAmazonMotorsRequest:
 class CreateAmazonMotorsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -221,6 +241,7 @@ class CreateAmazonMotorsResponse:
 class CreateWarrantyRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "attachments" in data:
             self.attachments: _List[Attachment] = [Attachment(datum) for datum in data["attachments"]]
         else:
@@ -238,6 +259,7 @@ class CreateWarrantyRequest:
 class CreateWarrantyResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -247,6 +269,7 @@ class CreateWarrantyResponse:
 class GetAttributesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "buyer" in data:
             self.buyer: dict = dict(data["buyer"])
         else:
@@ -260,6 +283,7 @@ class GetAttributesResponse:
 class CreateDigitalAccessKeyRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "text" in data:
             self.text: str = str(data["text"])
         else:
@@ -273,6 +297,7 @@ class CreateDigitalAccessKeyRequest:
 class CreateDigitalAccessKeyResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -282,6 +307,7 @@ class CreateDigitalAccessKeyResponse:
 class CreateUnexpectedProblemRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "text" in data:
             self.text: str = str(data["text"])
         else:
@@ -291,6 +317,7 @@ class CreateUnexpectedProblemRequest:
 class CreateUnexpectedProblemResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -300,6 +327,7 @@ class CreateUnexpectedProblemResponse:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -317,6 +345,7 @@ class Error:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class MessagingClient(__BaseClient):

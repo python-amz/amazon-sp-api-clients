@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class ErrorList:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
@@ -31,6 +33,7 @@ class ErrorList:
 class SmallAndLightEnrollment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
         else:
@@ -48,6 +51,7 @@ class SmallAndLightEnrollment:
 class SmallAndLightEligibility:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
         else:
@@ -65,6 +69,7 @@ class SmallAndLightEligibility:
 class SmallAndLightFeePreviewRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
         else:
@@ -78,6 +83,7 @@ class SmallAndLightFeePreviewRequest:
 class SmallAndLightFeePreviews:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "data" in data:
             self.data: _List[FeePreview] = [FeePreview(datum) for datum in data["data"]]
         else:
@@ -87,6 +93,7 @@ class SmallAndLightFeePreviews:
 class Item:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
         else:
@@ -100,6 +107,7 @@ class Item:
 class FeePreview:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
         else:
@@ -125,6 +133,7 @@ class FeePreview:
 class FeeLineItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "feeType" in data:
             self.feeType: str = str(data["feeType"])
         else:
@@ -138,6 +147,7 @@ class FeeLineItem:
 class MoneyType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
         else:

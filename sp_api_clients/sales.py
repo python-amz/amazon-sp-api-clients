@@ -5,6 +5,7 @@ from typing import List as _List
 class GetOrderMetricsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: OrderMetricsList = OrderMetricsList(data["payload"])
         else:
@@ -18,6 +19,7 @@ class GetOrderMetricsResponse:
 class OrderMetricsInterval:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "interval" in data:
             self.interval: str = str(data["interval"])
         else:
@@ -47,6 +49,7 @@ class OrderMetricsInterval:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -64,6 +67,7 @@ class Error:
 class Money:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
         else:
@@ -77,11 +81,13 @@ class Money:
 class OrderMetricsList(list, _List["OrderMetricsInterval"]):
     def __init__(self, data):
         super().__init__([OrderMetricsInterval(datum) for datum in data])
+        self.data = data
 
 
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 Decimal = str

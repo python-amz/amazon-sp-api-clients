@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class MarketplaceParticipation:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "marketplace" in data:
             self.marketplace: Marketplace = Marketplace(data["marketplace"])
         else:
@@ -35,6 +37,7 @@ class MarketplaceParticipation:
 class GetMarketplaceParticipationsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: MarketplaceParticipationList = MarketplaceParticipationList(data["payload"])
         else:
@@ -48,6 +51,7 @@ class GetMarketplaceParticipationsResponse:
 class Marketplace:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "id" in data:
             self.id: str = str(data["id"])
         else:
@@ -77,6 +81,7 @@ class Marketplace:
 class Participation:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "isParticipating" in data:
             self.isParticipating: bool = bool(data["isParticipating"])
         else:
@@ -90,11 +95,13 @@ class Participation:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class MarketplaceParticipationList(list, _List["MarketplaceParticipation"]):
     def __init__(self, data):
         super().__init__([MarketplaceParticipation(datum) for datum in data])
+        self.data = data
 
 
 class SellersClient(__BaseClient):

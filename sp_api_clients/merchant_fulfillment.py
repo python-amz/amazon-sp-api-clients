@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class LabelFormatOptionRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "IncludePackingSlipWithLabel" in data:
             self.IncludePackingSlipWithLabel: bool = bool(data["IncludePackingSlipWithLabel"])
         else:
@@ -31,6 +33,7 @@ class LabelFormatOptionRequest:
 class LabelFormatOption:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "IncludePackingSlipWithLabel" in data:
             self.IncludePackingSlipWithLabel: bool = bool(data["IncludePackingSlipWithLabel"])
         else:
@@ -44,6 +47,7 @@ class LabelFormatOption:
 class AvailableCarrierWillPickUpOption:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierWillPickUpOption" in data:
             self.CarrierWillPickUpOption: CarrierWillPickUpOption = CarrierWillPickUpOption(
                 data["CarrierWillPickUpOption"]
@@ -59,6 +63,7 @@ class AvailableCarrierWillPickUpOption:
 class AvailableDeliveryExperienceOption:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "DeliveryExperienceOption" in data:
             self.DeliveryExperienceOption: DeliveryExperienceOption = DeliveryExperienceOption(
                 data["DeliveryExperienceOption"]
@@ -74,6 +79,7 @@ class AvailableDeliveryExperienceOption:
 class AvailableShippingServiceOptions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AvailableCarrierWillPickUpOptions" in data:
             self.AvailableCarrierWillPickUpOptions: AvailableCarrierWillPickUpOptionsList = (
                 AvailableCarrierWillPickUpOptionsList(data["AvailableCarrierWillPickUpOptions"])
@@ -91,6 +97,7 @@ class AvailableShippingServiceOptions:
 class Constraint:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ValidationRegEx" in data:
             self.ValidationRegEx: str = str(data["ValidationRegEx"])
         else:
@@ -104,6 +111,7 @@ class Constraint:
 class AdditionalInputs:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AdditionalInputFieldName" in data:
             self.AdditionalInputFieldName: str = str(data["AdditionalInputFieldName"])
         else:
@@ -117,6 +125,7 @@ class AdditionalInputs:
 class SellerInputDefinition:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "IsRequired" in data:
             self.IsRequired: bool = bool(data["IsRequired"])
         else:
@@ -150,6 +159,7 @@ class SellerInputDefinition:
 class AdditionalSellerInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "DataType" in data:
             self.DataType: str = str(data["DataType"])
         else:
@@ -191,6 +201,7 @@ class AdditionalSellerInput:
 class AdditionalSellerInputs:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AdditionalInputFieldName" in data:
             self.AdditionalInputFieldName: str = str(data["AdditionalInputFieldName"])
         else:
@@ -204,6 +215,7 @@ class AdditionalSellerInputs:
 class Address:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Name" in data:
             self.Name: AddressName = AddressName(data["Name"])
         else:
@@ -253,6 +265,7 @@ class Address:
 class CancelShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
         else:
@@ -266,6 +279,7 @@ class CancelShipmentResponse:
 class CreateShipmentRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentRequestDetails" in data:
             self.ShipmentRequestDetails: ShipmentRequestDetails = ShipmentRequestDetails(data["ShipmentRequestDetails"])
         else:
@@ -297,6 +311,7 @@ class CreateShipmentRequest:
 class CreateShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
         else:
@@ -310,6 +325,7 @@ class CreateShipmentResponse:
 class ItemLevelFields:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Asin" in data:
             self.Asin: str = str(data["Asin"])
         else:
@@ -323,6 +339,7 @@ class ItemLevelFields:
 class GetAdditionalSellerInputsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShippingServiceId" in data:
             self.ShippingServiceId: ShippingServiceIdentifier = ShippingServiceIdentifier(data["ShippingServiceId"])
         else:
@@ -340,6 +357,7 @@ class GetAdditionalSellerInputsRequest:
 class GetAdditionalSellerInputsResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentLevelFields" in data:
             self.ShipmentLevelFields: AdditionalInputsList = AdditionalInputsList(data["ShipmentLevelFields"])
         else:
@@ -353,6 +371,7 @@ class GetAdditionalSellerInputsResult:
 class GetAdditionalSellerInputsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetAdditionalSellerInputsResult = GetAdditionalSellerInputsResult(data["payload"])
         else:
@@ -366,6 +385,7 @@ class GetAdditionalSellerInputsResponse:
 class CurrencyAmount:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
         else:
@@ -379,6 +399,7 @@ class CurrencyAmount:
 class FileContents:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Contents" in data:
             self.Contents: str = str(data["Contents"])
         else:
@@ -396,6 +417,7 @@ class FileContents:
 class GetEligibleShipmentServicesRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentRequestDetails" in data:
             self.ShipmentRequestDetails: ShipmentRequestDetails = ShipmentRequestDetails(data["ShipmentRequestDetails"])
         else:
@@ -409,6 +431,7 @@ class GetEligibleShipmentServicesRequest:
 class GetEligibleShipmentServicesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetEligibleShipmentServicesResult = GetEligibleShipmentServicesResult(data["payload"])
         else:
@@ -422,6 +445,7 @@ class GetEligibleShipmentServicesResponse:
 class GetEligibleShipmentServicesResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShippingServiceList" in data:
             self.ShippingServiceList: ShippingServiceList = ShippingServiceList(data["ShippingServiceList"])
         else:
@@ -449,6 +473,7 @@ class GetEligibleShipmentServicesResult:
 class GetShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
         else:
@@ -462,6 +487,7 @@ class GetShipmentResponse:
 class Item:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "OrderItemId" in data:
             self.OrderItemId: OrderItemId = OrderItemId(data["OrderItemId"])
         else:
@@ -493,6 +519,7 @@ class Item:
 class Label:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CustomTextForLabel" in data:
             self.CustomTextForLabel: CustomTextForLabel = CustomTextForLabel(data["CustomTextForLabel"])
         else:
@@ -518,6 +545,7 @@ class Label:
 class LabelCustomization:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CustomTextForLabel" in data:
             self.CustomTextForLabel: CustomTextForLabel = CustomTextForLabel(data["CustomTextForLabel"])
         else:
@@ -531,6 +559,7 @@ class LabelCustomization:
 class LabelDimensions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Length" in data:
             self.Length: LabelDimension = LabelDimension(data["Length"])
         else:
@@ -548,6 +577,7 @@ class LabelDimensions:
 class Length:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "value" in data:
             self.value: float = float(data["value"])
         else:
@@ -561,6 +591,7 @@ class Length:
 class PackageDimensions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Length" in data:
             self.Length: PackageDimension = PackageDimension(data["Length"])
         else:
@@ -588,6 +619,7 @@ class PackageDimensions:
 class Shipment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: ShipmentId = ShipmentId(data["ShipmentId"])
         else:
@@ -653,6 +685,7 @@ class Shipment:
 class ShipmentRequestDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: AmazonOrderId = AmazonOrderId(data["AmazonOrderId"])
         else:
@@ -698,6 +731,7 @@ class ShipmentRequestDetails:
 class ShippingOfferingFilter:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "IncludePackingSlipWithLabel" in data:
             self.IncludePackingSlipWithLabel: bool = bool(data["IncludePackingSlipWithLabel"])
         else:
@@ -719,6 +753,7 @@ class ShippingOfferingFilter:
 class ShippingService:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ShippingServiceName" in data:
             self.ShippingServiceName: str = str(data["ShippingServiceName"])
         else:
@@ -780,6 +815,7 @@ class ShippingService:
 class ShippingServiceOptions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "DeliveryExperience" in data:
             self.DeliveryExperience: DeliveryExperienceType = DeliveryExperienceType(data["DeliveryExperience"])
         else:
@@ -807,6 +843,7 @@ class ShippingServiceOptions:
 class RejectedShippingService:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
         else:
@@ -832,6 +869,7 @@ class RejectedShippingService:
 class TemporarilyUnavailableCarrier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
         else:
@@ -841,6 +879,7 @@ class TemporarilyUnavailableCarrier:
 class TermsAndConditionsNotAcceptedCarrier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
         else:
@@ -850,6 +889,7 @@ class TermsAndConditionsNotAcceptedCarrier:
 class Weight:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Value" in data:
             self.Value: WeightValue = WeightValue(data["Value"])
         else:
@@ -863,81 +903,97 @@ class Weight:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class AvailableCarrierWillPickUpOptionsList(list, _List["AvailableCarrierWillPickUpOption"]):
     def __init__(self, data):
         super().__init__([AvailableCarrierWillPickUpOption(datum) for datum in data])
+        self.data = data
 
 
 class AvailableDeliveryExperienceOptionsList(list, _List["AvailableDeliveryExperienceOption"]):
     def __init__(self, data):
         super().__init__([AvailableDeliveryExperienceOption(datum) for datum in data])
+        self.data = data
 
 
 class AvailableFormatOptionsForLabelList(list, _List["LabelFormatOption"]):
     def __init__(self, data):
         super().__init__([LabelFormatOption(datum) for datum in data])
+        self.data = data
 
 
 class Constraints(list, _List["Constraint"]):
     def __init__(self, data):
         super().__init__([Constraint(datum) for datum in data])
+        self.data = data
 
 
 class AdditionalInputsList(list, _List["AdditionalInputs"]):
     def __init__(self, data):
         super().__init__([AdditionalInputs(datum) for datum in data])
+        self.data = data
 
 
 class AdditionalSellerInputsList(list, _List["AdditionalSellerInputs"]):
     def __init__(self, data):
         super().__init__([AdditionalSellerInputs(datum) for datum in data])
+        self.data = data
 
 
 class ItemLevelFieldsList(list, _List["ItemLevelFields"]):
     def __init__(self, data):
         super().__init__([ItemLevelFields(datum) for datum in data])
+        self.data = data
 
 
 class ItemList(list, _List["Item"]):
     def __init__(self, data):
         super().__init__([Item(datum) for datum in data])
+        self.data = data
 
 
 class LabelFormatList(list, _List["LabelFormat"]):
     def __init__(self, data):
         super().__init__([LabelFormat(datum) for datum in data])
+        self.data = data
 
 
 class RestrictedSetValues(list, _List["str"]):
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
+        self.data = data
 
 
 class ShippingServiceList(list, _List["ShippingService"]):
     def __init__(self, data):
         super().__init__([ShippingService(datum) for datum in data])
+        self.data = data
 
 
 class RejectedShippingServiceList(list, _List["RejectedShippingService"]):
     def __init__(self, data):
         super().__init__([RejectedShippingService(datum) for datum in data])
+        self.data = data
 
 
 class TemporarilyUnavailableCarrierList(list, _List["TemporarilyUnavailableCarrier"]):
     def __init__(self, data):
         super().__init__([TemporarilyUnavailableCarrier(datum) for datum in data])
+        self.data = data
 
 
 class TermsAndConditionsNotAcceptedCarrierList(list, _List["TermsAndConditionsNotAcceptedCarrier"]):
     def __init__(self, data):
         super().__init__([TermsAndConditionsNotAcceptedCarrier(datum) for datum in data])
+        self.data = data
 
 
 class TransparencyCodeList(list, _List["TransparencyCode"]):
     def __init__(self, data):
         super().__init__([TransparencyCode(datum) for datum in data])
+        self.data = data
 
 
 InputTargetType = str

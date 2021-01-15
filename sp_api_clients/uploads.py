@@ -5,6 +5,7 @@ from typing import List as _List
 class CreateUploadDestinationResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: UploadDestination = UploadDestination(data["payload"])
         else:
@@ -18,6 +19,7 @@ class CreateUploadDestinationResponse:
 class UploadDestination:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "uploadDestinationId" in data:
             self.uploadDestinationId: str = str(data["uploadDestinationId"])
         else:
@@ -35,6 +37,7 @@ class UploadDestination:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -52,6 +55,7 @@ class Error:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class UploadsClient(__BaseClient):

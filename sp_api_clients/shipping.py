@@ -5,6 +5,7 @@ from typing import List as _List
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -22,6 +23,7 @@ class Error:
 class Location:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "stateOrRegion" in data:
             self.stateOrRegion: StateOrRegion = StateOrRegion(data["stateOrRegion"])
         else:
@@ -43,6 +45,7 @@ class Location:
 class Event:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "eventCode" in data:
             self.eventCode: EventCode = EventCode(data["eventCode"])
         else:
@@ -60,6 +63,7 @@ class Event:
 class TrackingSummary:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "status" in data:
             self.status: str = str(data["status"])
         else:
@@ -69,6 +73,7 @@ class TrackingSummary:
 class Address:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -118,6 +123,7 @@ class Address:
 class TimeRange:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "start" in data:
             self.start: str = str(data["start"])
         else:
@@ -131,6 +137,7 @@ class TimeRange:
 class ShippingPromiseSet:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "deliveryWindow" in data:
             self.deliveryWindow: TimeRange = TimeRange(data["deliveryWindow"])
         else:
@@ -144,6 +151,7 @@ class ShippingPromiseSet:
 class Rate:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "rateId" in data:
             self.rateId: str = str(data["rateId"])
         else:
@@ -173,6 +181,7 @@ class Rate:
 class AcceptedRate:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "totalCharge" in data:
             self.totalCharge: Currency = Currency(data["totalCharge"])
         else:
@@ -194,6 +203,7 @@ class AcceptedRate:
 class ServiceRate:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "totalCharge" in data:
             self.totalCharge: Currency = Currency(data["totalCharge"])
         else:
@@ -215,6 +225,7 @@ class ServiceRate:
 class Party:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "accountId" in data:
             self.accountId: AccountId = AccountId(data["accountId"])
         else:
@@ -224,6 +235,7 @@ class Party:
 class Currency:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "value" in data:
             self.value: float = float(data["value"])
         else:
@@ -237,6 +249,7 @@ class Currency:
 class Dimensions:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "length" in data:
             self.length: float = float(data["length"])
         else:
@@ -258,6 +271,7 @@ class Dimensions:
 class Weight:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "unit" in data:
             self.unit: str = str(data["unit"])
         else:
@@ -271,6 +285,7 @@ class Weight:
 class ContainerItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "quantity" in data:
             self.quantity: float = float(data["quantity"])
         else:
@@ -292,6 +307,7 @@ class ContainerItem:
 class Container:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "containerType" in data:
             self.containerType: str = str(data["containerType"])
         else:
@@ -321,6 +337,7 @@ class Container:
 class ContainerSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "dimensions" in data:
             self.dimensions: Dimensions = Dimensions(data["dimensions"])
         else:
@@ -334,6 +351,7 @@ class ContainerSpecification:
 class Label:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "labelStream" in data:
             self.labelStream: LabelStream = LabelStream(data["labelStream"])
         else:
@@ -347,6 +365,7 @@ class Label:
 class LabelResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "containerReferenceId" in data:
             self.containerReferenceId: ContainerReferenceId = ContainerReferenceId(data["containerReferenceId"])
         else:
@@ -364,6 +383,7 @@ class LabelResult:
 class LabelSpecification:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "labelFormat" in data:
             self.labelFormat: str = str(data["labelFormat"])
         else:
@@ -377,6 +397,7 @@ class LabelSpecification:
 class CreateShipmentRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "clientReferenceId" in data:
             self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
         else:
@@ -398,6 +419,7 @@ class CreateShipmentRequest:
 class PurchaseLabelsRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "rateId" in data:
             self.rateId: RateId = RateId(data["rateId"])
         else:
@@ -411,6 +433,7 @@ class PurchaseLabelsRequest:
 class RetrieveShippingLabelRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "labelSpecification" in data:
             self.labelSpecification: LabelSpecification = LabelSpecification(data["labelSpecification"])
         else:
@@ -420,6 +443,7 @@ class RetrieveShippingLabelRequest:
 class GetRatesRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "shipTo" in data:
             self.shipTo: Address = Address(data["shipTo"])
         else:
@@ -447,6 +471,7 @@ class GetRatesRequest:
 class PurchaseShipmentRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "clientReferenceId" in data:
             self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
         else:
@@ -480,6 +505,7 @@ class PurchaseShipmentRequest:
 class CreateShipmentResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
         else:
@@ -493,6 +519,7 @@ class CreateShipmentResult:
 class Shipment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
         else:
@@ -526,6 +553,7 @@ class Shipment:
 class PurchaseLabelsResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
         else:
@@ -547,6 +575,7 @@ class PurchaseLabelsResult:
 class RetrieveShippingLabelResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "labelStream" in data:
             self.labelStream: LabelStream = LabelStream(data["labelStream"])
         else:
@@ -560,6 +589,7 @@ class RetrieveShippingLabelResult:
 class Account:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "accountId" in data:
             self.accountId: AccountId = AccountId(data["accountId"])
         else:
@@ -569,6 +599,7 @@ class Account:
 class GetRatesResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "serviceRates" in data:
             self.serviceRates: ServiceRateList = ServiceRateList(data["serviceRates"])
         else:
@@ -578,6 +609,7 @@ class GetRatesResult:
 class PurchaseShipmentResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
         else:
@@ -595,6 +627,7 @@ class PurchaseShipmentResult:
 class TrackingInformation:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "trackingId" in data:
             self.trackingId: TrackingId = TrackingId(data["trackingId"])
         else:
@@ -616,6 +649,7 @@ class TrackingInformation:
 class CreateShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: CreateShipmentResult = CreateShipmentResult(data["payload"])
         else:
@@ -629,6 +663,7 @@ class CreateShipmentResponse:
 class GetShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
         else:
@@ -642,6 +677,7 @@ class GetShipmentResponse:
 class GetRatesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetRatesResult = GetRatesResult(data["payload"])
         else:
@@ -655,6 +691,7 @@ class GetRatesResponse:
 class PurchaseShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: PurchaseShipmentResult = PurchaseShipmentResult(data["payload"])
         else:
@@ -668,6 +705,7 @@ class PurchaseShipmentResponse:
 class CancelShipmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -677,6 +715,7 @@ class CancelShipmentResponse:
 class PurchaseLabelsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: PurchaseLabelsResult = PurchaseLabelsResult(data["payload"])
         else:
@@ -690,6 +729,7 @@ class PurchaseLabelsResponse:
 class RetrieveShippingLabelResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: RetrieveShippingLabelResult = RetrieveShippingLabelResult(data["payload"])
         else:
@@ -703,6 +743,7 @@ class RetrieveShippingLabelResponse:
 class GetAccountResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: Account = Account(data["payload"])
         else:
@@ -716,6 +757,7 @@ class GetAccountResponse:
 class GetTrackingInformationResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: TrackingInformation = TrackingInformation(data["payload"])
         else:
@@ -729,41 +771,49 @@ class GetTrackingInformationResponse:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class EventList(list, _List["Event"]):
     def __init__(self, data):
         super().__init__([Event(datum) for datum in data])
+        self.data = data
 
 
 class ServiceTypeList(list, _List["ServiceType"]):
     def __init__(self, data):
         super().__init__([ServiceType(datum) for datum in data])
+        self.data = data
 
 
 class RateList(list, _List["Rate"]):
     def __init__(self, data):
         super().__init__([Rate(datum) for datum in data])
+        self.data = data
 
 
 class ServiceRateList(list, _List["ServiceRate"]):
     def __init__(self, data):
         super().__init__([ServiceRate(datum) for datum in data])
+        self.data = data
 
 
 class ContainerList(list, _List["Container"]):
     def __init__(self, data):
         super().__init__([Container(datum) for datum in data])
+        self.data = data
 
 
 class ContainerSpecificationList(list, _List["ContainerSpecification"]):
     def __init__(self, data):
         super().__init__([ContainerSpecification(datum) for datum in data])
+        self.data = data
 
 
 class LabelResultList(list, _List["LabelResult"]):
     def __init__(self, data):
         super().__init__([LabelResult(datum) for datum in data])
+        self.data = data
 
 
 AccountId = str

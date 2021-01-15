@@ -5,6 +5,7 @@ from typing import List as _List
 class GetPricingResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: PriceList = PriceList(data["payload"])
         else:
@@ -18,6 +19,7 @@ class GetPricingResponse:
 class GetOffersResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetOffersResult = GetOffersResult(data["payload"])
         else:
@@ -31,6 +33,7 @@ class GetOffersResponse:
 class GetOffersResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceID" in data:
             self.MarketplaceID: str = str(data["MarketplaceID"])
         else:
@@ -68,6 +71,7 @@ class GetOffersResult:
 class Price:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "status" in data:
             self.status: str = str(data["status"])
         else:
@@ -89,6 +93,7 @@ class Price:
 class Product:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Identifiers" in data:
             self.Identifiers: IdentifierType = IdentifierType(data["Identifiers"])
         else:
@@ -118,6 +123,7 @@ class Product:
 class IdentifierType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceASIN" in data:
             self.MarketplaceASIN: ASINIdentifier = ASINIdentifier(data["MarketplaceASIN"])
         else:
@@ -131,6 +137,7 @@ class IdentifierType:
 class ASINIdentifier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
         else:
@@ -144,6 +151,7 @@ class ASINIdentifier:
 class SellerSKUIdentifier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
         else:
@@ -161,6 +169,7 @@ class SellerSKUIdentifier:
 class CompetitivePricingType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CompetitivePrices" in data:
             self.CompetitivePrices: CompetitivePriceList = CompetitivePriceList(data["CompetitivePrices"])
         else:
@@ -180,6 +189,7 @@ class CompetitivePricingType:
 class CompetitivePriceType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CompetitivePriceId" in data:
             self.CompetitivePriceId: str = str(data["CompetitivePriceId"])
         else:
@@ -205,6 +215,7 @@ class CompetitivePriceType:
 class OfferListingCountType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "Count" in data:
             self.Count: int = int(data["Count"])
         else:
@@ -218,6 +229,7 @@ class OfferListingCountType:
 class MoneyType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
         else:
@@ -231,6 +243,7 @@ class MoneyType:
 class SalesRankType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "ProductCategoryId" in data:
             self.ProductCategoryId: str = str(data["ProductCategoryId"])
         else:
@@ -244,6 +257,7 @@ class SalesRankType:
 class PriceType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "LandedPrice" in data:
             self.LandedPrice: MoneyType = MoneyType(data["LandedPrice"])
         else:
@@ -265,6 +279,7 @@ class PriceType:
 class OfferType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "BuyingPrice" in data:
             self.BuyingPrice: PriceType = PriceType(data["BuyingPrice"])
         else:
@@ -294,6 +309,7 @@ class OfferType:
 class Points:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "PointsNumber" in data:
             self.PointsNumber: int = int(data["PointsNumber"])
         else:
@@ -307,6 +323,7 @@ class Points:
 class ItemIdentifier:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
         else:
@@ -328,6 +345,7 @@ class ItemIdentifier:
 class Summary:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "TotalOfferCount" in data:
             self.TotalOfferCount: int = int(data["TotalOfferCount"])
         else:
@@ -365,6 +383,7 @@ class Summary:
 class OfferCountType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "condition" in data:
             self.condition: str = str(data["condition"])
         else:
@@ -382,6 +401,7 @@ class OfferCountType:
 class LowestPriceType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "condition" in data:
             self.condition: str = str(data["condition"])
         else:
@@ -411,6 +431,7 @@ class LowestPriceType:
 class BuyBoxPriceType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "condition" in data:
             self.condition: str = str(data["condition"])
         else:
@@ -436,6 +457,7 @@ class BuyBoxPriceType:
 class OfferDetail:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "MyOffer" in data:
             self.MyOffer: bool = bool(data["MyOffer"])
         else:
@@ -485,6 +507,7 @@ class OfferDetail:
 class SellerFeedbackType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "SellerPositiveFeedbackRating" in data:
             self.SellerPositiveFeedbackRating: float = float(data["SellerPositiveFeedbackRating"])
         else:
@@ -498,6 +521,7 @@ class SellerFeedbackType:
 class DetailedShippingTimeType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "minimumHours" in data:
             self.minimumHours: int = int(data["minimumHours"])
         else:
@@ -519,6 +543,7 @@ class DetailedShippingTimeType:
 class ShipsFromType:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "State" in data:
             self.State: str = str(data["State"])
         else:
@@ -532,6 +557,7 @@ class ShipsFromType:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -549,66 +575,79 @@ class Error:
 class PriceList(list, _List["Price"]):
     def __init__(self, data):
         super().__init__([Price(datum) for datum in data])
+        self.data = data
 
 
 class AttributeSetList(list, _List["dict"]):
     def __init__(self, data):
         super().__init__([dict(datum) for datum in data])
+        self.data = data
 
 
 class RelationshipList(list, _List["dict"]):
     def __init__(self, data):
         super().__init__([dict(datum) for datum in data])
+        self.data = data
 
 
 class CompetitivePriceList(list, _List["CompetitivePriceType"]):
     def __init__(self, data):
         super().__init__([CompetitivePriceType(datum) for datum in data])
+        self.data = data
 
 
 class NumberOfOfferListingsList(list, _List["OfferListingCountType"]):
     def __init__(self, data):
         super().__init__([OfferListingCountType(datum) for datum in data])
+        self.data = data
 
 
 class SalesRankList(list, _List["SalesRankType"]):
     def __init__(self, data):
         super().__init__([SalesRankType(datum) for datum in data])
+        self.data = data
 
 
 class OffersList(list, _List["OfferType"]):
     def __init__(self, data):
         super().__init__([OfferType(datum) for datum in data])
+        self.data = data
 
 
 class BuyBoxEligibleOffers(list, _List["OfferCountType"]):
     def __init__(self, data):
         super().__init__([OfferCountType(datum) for datum in data])
+        self.data = data
 
 
 class BuyBoxPrices(list, _List["BuyBoxPriceType"]):
     def __init__(self, data):
         super().__init__([BuyBoxPriceType(datum) for datum in data])
+        self.data = data
 
 
 class LowestPrices(list, _List["LowestPriceType"]):
     def __init__(self, data):
         super().__init__([LowestPriceType(datum) for datum in data])
+        self.data = data
 
 
 class NumberOfOffers(list, _List["OfferCountType"]):
     def __init__(self, data):
         super().__init__([OfferCountType(datum) for datum in data])
+        self.data = data
 
 
 class OfferDetailList(list, _List["OfferDetail"]):
     def __init__(self, data):
         super().__init__([OfferDetail(datum) for datum in data])
+        self.data = data
 
 
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 ConditionType = str

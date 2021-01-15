@@ -5,6 +5,7 @@ from typing import List as _List
 class GetServiceJobByServiceJobIdResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: ServiceJob = ServiceJob(data["payload"])
         else:
@@ -18,6 +19,7 @@ class GetServiceJobByServiceJobIdResponse:
 class CancelServiceJobByServiceJobIdResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -27,6 +29,7 @@ class CancelServiceJobByServiceJobIdResponse:
 class CompleteServiceJobByServiceJobIdResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
         else:
@@ -36,6 +39,7 @@ class CompleteServiceJobByServiceJobIdResponse:
 class GetServiceJobsResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: JobListing = JobListing(data["payload"])
         else:
@@ -49,6 +53,7 @@ class GetServiceJobsResponse:
 class SetAppointmentResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "appointmentId" in data:
             self.appointmentId: AppointmentId = AppointmentId(data["appointmentId"])
         else:
@@ -66,6 +71,7 @@ class SetAppointmentResponse:
 class JobListing:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "totalResultSize" in data:
             self.totalResultSize: int = int(data["totalResultSize"])
         else:
@@ -87,6 +93,7 @@ class JobListing:
 class ServiceJob:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "createTime" in data:
             self.createTime: str = str(data["createTime"])
         else:
@@ -146,6 +153,7 @@ class ServiceJob:
 class ScopeOfWork:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
         else:
@@ -167,6 +175,7 @@ class ScopeOfWork:
 class Seller:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "sellerId" in data:
             self.sellerId: str = str(data["sellerId"])
         else:
@@ -176,6 +185,7 @@ class Seller:
 class ServiceJobProvider:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "serviceJobProviderId" in data:
             self.serviceJobProviderId: str = str(data["serviceJobProviderId"])
         else:
@@ -185,6 +195,7 @@ class ServiceJobProvider:
 class Buyer:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "buyerId" in data:
             self.buyerId: str = str(data["buyerId"])
         else:
@@ -206,6 +217,7 @@ class Buyer:
 class AppointmentTime:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "startTime" in data:
             self.startTime: str = str(data["startTime"])
         else:
@@ -219,6 +231,7 @@ class AppointmentTime:
 class Appointment:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "appointmentId" in data:
             self.appointmentId: AppointmentId = AppointmentId(data["appointmentId"])
         else:
@@ -248,6 +261,7 @@ class Appointment:
 class Technician:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "technicianId" in data:
             self.technicianId: str = str(data["technicianId"])
         else:
@@ -261,6 +275,7 @@ class Technician:
 class Poa:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "appointmentTime" in data:
             self.appointmentTime: AppointmentTime = AppointmentTime(data["appointmentTime"])
         else:
@@ -286,6 +301,7 @@ class Poa:
 class AssociatedItem:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
         else:
@@ -319,6 +335,7 @@ class AssociatedItem:
 class ItemDelivery:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "estimatedDeliveryDate" in data:
             self.estimatedDeliveryDate: str = str(data["estimatedDeliveryDate"])
         else:
@@ -332,6 +349,7 @@ class ItemDelivery:
 class ItemDeliveryPromise:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "startTime" in data:
             self.startTime: str = str(data["startTime"])
         else:
@@ -345,6 +363,7 @@ class ItemDeliveryPromise:
 class ServiceLocation:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "serviceLocationType" in data:
             self.serviceLocationType: str = str(data["serviceLocationType"])
         else:
@@ -358,6 +377,7 @@ class ServiceLocation:
 class Address:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -407,6 +427,7 @@ class Address:
 class AddAppointmentRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "appointmentTime" in data:
             self.appointmentTime: AppointmentTimeInput = AppointmentTimeInput(data["appointmentTime"])
         else:
@@ -416,6 +437,7 @@ class AddAppointmentRequest:
 class RescheduleAppointmentRequest:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "appointmentTime" in data:
             self.appointmentTime: AppointmentTimeInput = AppointmentTimeInput(data["appointmentTime"])
         else:
@@ -429,6 +451,7 @@ class RescheduleAppointmentRequest:
 class AppointmentTimeInput:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "startTime" in data:
             self.startTime: str = str(data["startTime"])
         else:
@@ -442,6 +465,7 @@ class AppointmentTimeInput:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -463,6 +487,7 @@ class Error:
 class Warning:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -480,11 +505,13 @@ class Warning:
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class WarningList(list, _List["Warning"]):
     def __init__(self, data):
         super().__init__([Warning(datum) for datum in data])
+        self.data = data
 
 
 ServiceJobId = str

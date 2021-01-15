@@ -5,6 +5,7 @@ from typing import List as _List
 class Granularity:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "granularityType" in data:
             self.granularityType: str = str(data["granularityType"])
         else:
@@ -18,6 +19,7 @@ class Granularity:
 class ReservedQuantity:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "totalReservedQuantity" in data:
             self.totalReservedQuantity: int = int(data["totalReservedQuantity"])
         else:
@@ -39,6 +41,7 @@ class ReservedQuantity:
 class ResearchingQuantityEntry:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
         else:
@@ -52,6 +55,7 @@ class ResearchingQuantityEntry:
 class ResearchingQuantity:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "totalResearchingQuantity" in data:
             self.totalResearchingQuantity: int = int(data["totalResearchingQuantity"])
         else:
@@ -67,6 +71,7 @@ class ResearchingQuantity:
 class UnfulfillableQuantity:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "totalUnfulfillableQuantity" in data:
             self.totalUnfulfillableQuantity: int = int(data["totalUnfulfillableQuantity"])
         else:
@@ -100,6 +105,7 @@ class UnfulfillableQuantity:
 class InventoryDetails:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "fulfillableQuantity" in data:
             self.fulfillableQuantity: int = int(data["fulfillableQuantity"])
         else:
@@ -133,6 +139,7 @@ class InventoryDetails:
 class InventorySummary:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
         else:
@@ -170,6 +177,7 @@ class InventorySummary:
 class Pagination:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "nextToken" in data:
             self.nextToken: str = str(data["nextToken"])
         else:
@@ -179,6 +187,7 @@ class Pagination:
 class GetInventorySummariesResult:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "granularity" in data:
             self.granularity: Granularity = Granularity(data["granularity"])
         else:
@@ -192,6 +201,7 @@ class GetInventorySummariesResult:
 class GetInventorySummariesResponse:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "payload" in data:
             self.payload: GetInventorySummariesResult = GetInventorySummariesResult(data["payload"])
         else:
@@ -209,6 +219,7 @@ class GetInventorySummariesResponse:
 class Error:
     def __init__(self, data):
         super().__init__()
+        self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
         else:
@@ -226,11 +237,13 @@ class Error:
 class InventorySummaries(list, _List["InventorySummary"]):
     def __init__(self, data):
         super().__init__([InventorySummary(datum) for datum in data])
+        self.data = data
 
 
 class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
+        self.data = data
 
 
 class FbaInventoryClient(__BaseClient):

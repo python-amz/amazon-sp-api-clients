@@ -5,6 +5,7 @@ from typing import List as _List
 class {{ component_name }}:
     def __init__(self, data):
         super().__init__()
+        self.data = data
     {% for name, property in component.properties.items() %}
         if '{{ name }}' in data:
         {% set type = property.type %}
@@ -35,6 +36,7 @@ class {{ component_name }}:
 class {{ component_name }}(list, _List['{{ item_type }}']):
     def __init__(self, data):
         super().__init__([{{ item_type }}(datum) for datum in data])
+        self.data = data
 {% endfor %}
 
 {% for component_name, component in alias_components.items() %}
