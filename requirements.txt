@@ -1,0 +1,8 @@
+peewee
+boto3
+black
+cachetools
+requests
+pytest
+jinja2
+wheel

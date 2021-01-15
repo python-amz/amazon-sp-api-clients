@@ -1,0 +1,2932 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Selling Partner API for Pricing",
+        "description": "The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for Amazon Marketplace products.",
+        "contact": {
+            "name": "Selling Partner API Developer Support",
+            "url": "https://sellercentral.amazon.com/gp/mws/contactus.html"
+        },
+        "license": {
+            "name": "Apache License 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        },
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "https://sellingpartnerapi-na.amazon.com/"
+        }
+    ],
+    "paths": {
+        "/products/pricing/v0/price": {
+            "get": {
+                "tags": [
+                    "productPricing"
+                ],
+                "description": "Returns pricing information for a seller's offer listings based on seller SKU or ASIN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 1 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "getPricing",
+                "parameters": [
+                    {
+                        "name": "MarketplaceId",
+                        "in": "query",
+                        "description": "A marketplace identifier. Specifies the marketplace for which prices are returned.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Asins",
+                        "in": "query",
+                        "description": "A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "maxItems": 20,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Skus",
+                        "in": "query",
+                        "description": "A list of up to twenty seller SKU values used to identify items in the given marketplace.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "maxItems": 20,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ItemType",
+                        "in": "query",
+                        "description": "Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "Asin",
+                                "Sku"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "Asin",
+                                    "description": "The Amazon Standard Identification Number (ASIN)."
+                                },
+                                {
+                                    "value": "Sku",
+                                    "description": "The seller SKU."
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "Asin",
+                                "description": "The Amazon Standard Identification Number (ASIN)."
+                            },
+                            {
+                                "value": "Sku",
+                                "description": "The seller SKU."
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ItemCondition",
+                        "in": "query",
+                        "description": "Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "New",
+                                "Used",
+                                "Collectible",
+                                "Refurbished",
+                                "Club"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "New",
+                                    "description": "New"
+                                },
+                                {
+                                    "value": "Used",
+                                    "description": "Used"
+                                },
+                                {
+                                    "value": "Collectible",
+                                    "description": "Collectible"
+                                },
+                                {
+                                    "value": "Refurbished",
+                                    "description": "Refurbished"
+                                },
+                                {
+                                    "value": "Club",
+                                    "description": "Club"
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "New",
+                                "description": "New"
+                            },
+                            {
+                                "value": "Used",
+                                "description": "Used"
+                            },
+                            {
+                                "value": "Collectible",
+                                "description": "Collectible"
+                            },
+                            {
+                                "value": "Refurbished",
+                                "description": "Refurbished"
+                            },
+                            {
+                                "value": "Club",
+                                "description": "Club"
+                            }
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Asin"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "Offers": [
+                                                    {
+                                                        "BuyingPrice": {
+                                                            "ListingPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "LandedPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "Shipping": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 0.0
+                                                            }
+                                                        },
+                                                        "RegularPrice": {
+                                                            "CurrencyCode": "USD",
+                                                            "Amount": 10.0
+                                                        },
+                                                        "FulfillmentChannel": "MERCHANT",
+                                                        "ItemCondition": "New",
+                                                        "ItemSubCondition": "New",
+                                                        "SellerSKU": "NABetaASINB00V5DG6IQ"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "Offers": [
+                                                    {
+                                                        "BuyingPrice": {
+                                                            "ListingPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "LandedPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "Shipping": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 0.0
+                                                            }
+                                                        },
+                                                        "RegularPrice": {
+                                                            "CurrencyCode": "USD",
+                                                            "Amount": 10.0
+                                                        },
+                                                        "FulfillmentChannel": "MERCHANT",
+                                                        "ItemCondition": "New",
+                                                        "ItemSubCondition": "New",
+                                                        "SellerSKU": "NABetaASINB00551Q3CS"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Sku"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00V5DG6IQ"
+                                                    }
+                                                },
+                                                "Offers": [
+                                                    {
+                                                        "BuyingPrice": {
+                                                            "ListingPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "LandedPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "Shipping": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 0.0
+                                                            }
+                                                        },
+                                                        "RegularPrice": {
+                                                            "CurrencyCode": "USD",
+                                                            "Amount": 10.0
+                                                        },
+                                                        "FulfillmentChannel": "MERCHANT",
+                                                        "ItemCondition": "New",
+                                                        "ItemSubCondition": "New",
+                                                        "SellerSKU": "NABetaASINB00V5DG6IQ"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00551Q3CS"
+                                                    }
+                                                },
+                                                "Offers": [
+                                                    {
+                                                        "BuyingPrice": {
+                                                            "ListingPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "LandedPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10.0
+                                                            },
+                                                            "Shipping": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 0.0
+                                                            }
+                                                        },
+                                                        "RegularPrice": {
+                                                            "CurrencyCode": "USD",
+                                                            "Amount": 10.0
+                                                        },
+                                                        "FulfillmentChannel": "MERCHANT",
+                                                        "ItemCondition": "New",
+                                                        "ItemSubCondition": "New",
+                                                        "SellerSKU": "NABetaASINB00551Q3CS"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Asin"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "office_product_display_on_website",
+                                                        "Rank": 19
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069616",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "705333011",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069242",
+                                                        "Rank": 17
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "464394",
+                                                        "Rank": 224
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "12954861",
+                                                        "Rank": 1057
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Sku"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00V5DG6IQ"
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "office_product_display_on_website",
+                                                        "Rank": 19
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069616",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "705333011",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069242",
+                                                        "Rank": 17
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00551Q3CS"
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "464394",
+                                                        "Rank": 224
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "12954861",
+                                                        "Rank": 1057
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "TEST_CASE_400"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Invalid Input"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The specified resource does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products/pricing/v0/competitivePrice": {
+            "get": {
+                "tags": [
+                    "productPricing"
+                ],
+                "description": "Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 1 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "getCompetitivePricing",
+                "parameters": [
+                    {
+                        "name": "MarketplaceId",
+                        "in": "query",
+                        "description": "A marketplace identifier. Specifies the marketplace for which prices are returned.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Asins",
+                        "in": "query",
+                        "description": "A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "maxItems": 20,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Skus",
+                        "in": "query",
+                        "description": "A list of up to twenty seller SKU values used to identify items in the given marketplace.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "maxItems": 20,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ItemType",
+                        "in": "query",
+                        "description": "Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter. Possible values: Asin, Sku.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "Asin",
+                                "Sku"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "Asin",
+                                    "description": "The Amazon Standard Identification Number (ASIN)."
+                                },
+                                {
+                                    "value": "Sku",
+                                    "description": "The seller SKU."
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "Asin",
+                                "description": "The Amazon Standard Identification Number (ASIN)."
+                            },
+                            {
+                                "value": "Sku",
+                                "description": "The seller SKU."
+                            }
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Asin"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [
+                                                        {
+                                                            "CompetitivePriceId": "4545645646",
+                                                            "Price": {
+                                                                "LandedPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 10
+                                                                },
+                                                                "ListingPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 130
+                                                                },
+                                                                "Shipping": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 120
+                                                                },
+                                                                "Points": {
+                                                                    "PointsNumber": 130,
+                                                                    "PointsMonetaryValue": {
+                                                                        "CurrencyCode": "USD",
+                                                                        "Amount": 10
+                                                                    }
+                                                                }
+                                                            },
+                                                            "condition": "new",
+                                                            "belongsToRequester": true
+                                                        }
+                                                    ],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 20,
+                                                            "condition": "new"
+                                                        }
+                                                    ],
+                                                    "TradeInValue": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 10
+                                                    }
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "325345",
+                                                        "Rank": 1
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [
+                                                        {
+                                                            "CompetitivePriceId": "45456452646",
+                                                            "Price": {
+                                                                "LandedPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 10
+                                                                },
+                                                                "ListingPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 130
+                                                                },
+                                                                "Shipping": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 120
+                                                                },
+                                                                "Points": {
+                                                                    "PointsNumber": 130,
+                                                                    "PointsMonetaryValue": {
+                                                                        "CurrencyCode": "USD",
+                                                                        "Amount": 10
+                                                                    }
+                                                                }
+                                                            },
+                                                            "condition": "new",
+                                                            "belongsToRequester": true
+                                                        }
+                                                    ],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "new"
+                                                        }
+                                                    ],
+                                                    "TradeInValue": {
+                                                        "CurrencyCode": "string",
+                                                        "Amount": 0
+                                                    }
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "54564",
+                                                        "Rank": 1
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Sku"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00V5DG6IQ"
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [
+                                                        {
+                                                            "CompetitivePriceId": "3454535",
+                                                            "Price": {
+                                                                "LandedPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 10
+                                                                },
+                                                                "ListingPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 130
+                                                                },
+                                                                "Shipping": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 120
+                                                                },
+                                                                "Points": {
+                                                                    "PointsNumber": 130,
+                                                                    "PointsMonetaryValue": {
+                                                                        "CurrencyCode": "USD",
+                                                                        "Amount": 10
+                                                                    }
+                                                                }
+                                                            },
+                                                            "condition": "new",
+                                                            "belongsToRequester": true
+                                                        }
+                                                    ],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 402,
+                                                            "condition": "new"
+                                                        }
+                                                    ],
+                                                    "TradeInValue": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 20
+                                                    }
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "676554",
+                                                        "Rank": 1
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00551Q3CS"
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [
+                                                        {
+                                                            "CompetitivePriceId": "4545645646",
+                                                            "Price": {
+                                                                "LandedPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 10
+                                                                },
+                                                                "ListingPrice": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 130
+                                                                },
+                                                                "Shipping": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 120
+                                                                },
+                                                                "Points": {
+                                                                    "PointsNumber": 130,
+                                                                    "PointsMonetaryValue": {
+                                                                        "CurrencyCode": "USD",
+                                                                        "Amount": 10
+                                                                    }
+                                                                }
+                                                            },
+                                                            "condition": "new",
+                                                            "belongsToRequester": true
+                                                        }
+                                                    ],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 402,
+                                                            "condition": "new"
+                                                        }
+                                                    ],
+                                                    "TradeInValue": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 20
+                                                    }
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "35345",
+                                                        "Rank": 1
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Asin"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "office_product_display_on_website",
+                                                        "Rank": 19
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069616",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "705333011",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069242",
+                                                        "Rank": 17
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "ASIN": "B00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "",
+                                                        "SellerId": "",
+                                                        "SellerSKU": ""
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "464394",
+                                                        "Rank": 224
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "12954861",
+                                                        "Rank": 1057
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        },
+                                        "ItemType": {
+                                            "value": "Sku"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": [
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00V5DG6IQ",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00V5DG6IQ"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00V5DG6IQ"
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "office_product_display_on_website",
+                                                        "Rank": 19
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069616",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "705333011",
+                                                        "Rank": 1
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "1069242",
+                                                        "Rank": 17
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "status": "Success",
+                                            "SellerSKU": "NABetaASINB00551Q3CS",
+                                            "Product": {
+                                                "Identifiers": {
+                                                    "MarketplaceASIN": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "ASIN": "B00551Q3CS"
+                                                    },
+                                                    "SKUIdentifier": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "SellerId": "A3TH9S8BH6GOGM",
+                                                        "SellerSKU": "NABetaASINB00551Q3CS"
+                                                    }
+                                                },
+                                                "CompetitivePricing": {
+                                                    "CompetitivePrices": [],
+                                                    "NumberOfOfferListings": [
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "New"
+                                                        },
+                                                        {
+                                                            "Count": 1,
+                                                            "condition": "Any"
+                                                        }
+                                                    ]
+                                                },
+                                                "SalesRankings": [
+                                                    {
+                                                        "ProductCategoryId": "464394",
+                                                        "Rank": 224
+                                                    },
+                                                    {
+                                                        "ProductCategoryId": "12954861",
+                                                        "Rank": 1057
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "MarketplaceId": {
+                                            "value": "TEST_CASE_400"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Invalid Input"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The specified resource does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPricingResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products/pricing/v0/listings/{SellerSKU}/offers": {
+            "get": {
+                "tags": [
+                    "productPricing"
+                ],
+                "description": "Returns the lowest priced offers for a single SKU listing.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 1 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "getListingOffers",
+                "parameters": [
+                    {
+                        "name": "MarketplaceId",
+                        "in": "query",
+                        "description": "A marketplace identifier. Specifies the marketplace for which prices are returned.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ItemCondition",
+                        "in": "query",
+                        "description": "Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "New",
+                                "Used",
+                                "Collectible",
+                                "Refurbished",
+                                "Club"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "New",
+                                    "description": "New"
+                                },
+                                {
+                                    "value": "Used",
+                                    "description": "Used"
+                                },
+                                {
+                                    "value": "Collectible",
+                                    "description": "Collectible"
+                                },
+                                {
+                                    "value": "Refurbished",
+                                    "description": "Refurbished"
+                                },
+                                {
+                                    "value": "Club",
+                                    "description": "Club"
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "New",
+                                "description": "New"
+                            },
+                            {
+                                "value": "Used",
+                                "description": "Used"
+                            },
+                            {
+                                "value": "Collectible",
+                                "description": "Collectible"
+                            },
+                            {
+                                "value": "Refurbished",
+                                "description": "Refurbished"
+                            },
+                            {
+                                "value": "Club",
+                                "description": "Club"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "SellerSKU",
+                        "in": "path",
+                        "description": "Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "SellerSKU": {
+                                            "value": "NABetaASINB00V5DG6IQ"
+                                        },
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": {
+                                        "SKU": "NABetaASINB00V5DG6IQ",
+                                        "status": "Success",
+                                        "ItemCondition": "New",
+                                        "Identifier": {
+                                            "MarketplaceId": "ATVPDKIKX0DER",
+                                            "ItemCondition": "New",
+                                            "SellerSKU": "NABetaASINB00V5DG6IQ"
+                                        },
+                                        "Summary": {
+                                            "LowestPrices": [
+                                                {
+                                                    "condition": "new",
+                                                    "fulfillmentChannel": "Merchant",
+                                                    "LandedPrice": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 10.0
+                                                    },
+                                                    "ListingPrice": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 10.0
+                                                    },
+                                                    "Shipping": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 0.0
+                                                    }
+                                                }
+                                            ],
+                                            "NumberOfOffers": [
+                                                {
+                                                    "condition": "new",
+                                                    "fulfillmentChannel": "Merchant"
+                                                }
+                                            ],
+                                            "BuyBoxEligibleOffers": [
+                                                {
+                                                    "condition": "new",
+                                                    "fulfillmentChannel": "Merchant"
+                                                }
+                                            ],
+                                            "TotalOfferCount": 1
+                                        },
+                                        "Offers": [
+                                            {
+                                                "Shipping": {
+                                                    "CurrencyCode": "USD",
+                                                    "Amount": 0.0
+                                                },
+                                                "ListingPrice": {
+                                                    "CurrencyCode": "USD",
+                                                    "Amount": 10.0
+                                                },
+                                                "ShippingTime": {
+                                                    "maximumHours": 48,
+                                                    "minimumHours": 24,
+                                                    "availabilityType": "NOW"
+                                                },
+                                                "SellerFeedbackRating": {
+                                                    "FeedbackCount": 0,
+                                                    "SellerPositiveFeedbackRating": 0.0
+                                                },
+                                                "ShipsFrom": {
+                                                    "State": "WA",
+                                                    "Country": "US"
+                                                },
+                                                "SubCondition": "new",
+                                                "IsFeaturedMerchant": false,
+                                                "MyOffer": true,
+                                                "IsFulfilledByAmazon": false
+                                            }
+                                        ],
+                                        "MarketplaceID": "ATVPDKIKX0DER"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "SellerSKU": {
+                                            "value": "TEST_CASE_400"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Invalid Input"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The specified resource does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products/pricing/v0/items/{Asin}/offers": {
+            "get": {
+                "tags": [
+                    "productPricing"
+                ],
+                "description": "Returns the lowest priced offers for a single item based on ASIN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 1 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "getItemOffers",
+                "parameters": [
+                    {
+                        "name": "MarketplaceId",
+                        "in": "query",
+                        "description": "A marketplace identifier. Specifies the marketplace for which prices are returned.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ItemCondition",
+                        "in": "query",
+                        "description": "Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "New",
+                                "Used",
+                                "Collectible",
+                                "Refurbished",
+                                "Club"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "New",
+                                    "description": "New"
+                                },
+                                {
+                                    "value": "Used",
+                                    "description": "Used"
+                                },
+                                {
+                                    "value": "Collectible",
+                                    "description": "Collectible"
+                                },
+                                {
+                                    "value": "Refurbished",
+                                    "description": "Refurbished"
+                                },
+                                {
+                                    "value": "Club",
+                                    "description": "Club"
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "New",
+                                "description": "New"
+                            },
+                            {
+                                "value": "Used",
+                                "description": "Used"
+                            },
+                            {
+                                "value": "Collectible",
+                                "description": "Collectible"
+                            },
+                            {
+                                "value": "Refurbished",
+                                "description": "Refurbished"
+                            },
+                            {
+                                "value": "Club",
+                                "description": "Club"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Asin",
+                        "in": "path",
+                        "description": "The Amazon Standard Identification Number (ASIN) of the item.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "Asin": {
+                                            "value": "B00V5DG6IQ"
+                                        },
+                                        "MarketplaceId": {
+                                            "value": "ATVPDKIKX0DER"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": {
+                                        "ASIN": "B00V5DG6IQ",
+                                        "status": "Success",
+                                        "ItemCondition": "New",
+                                        "Identifier": {
+                                            "MarketplaceId": "ATVPDKIKX0DER",
+                                            "ItemCondition": "New",
+                                            "ASIN": "B00V5DG6IQ"
+                                        },
+                                        "Summary": {
+                                            "LowestPrices": [
+                                                {
+                                                    "condition": "new",
+                                                    "fulfillmentChannel": "Merchant",
+                                                    "LandedPrice": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 10.0
+                                                    },
+                                                    "ListingPrice": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 10.0
+                                                    },
+                                                    "Shipping": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 0.0
+                                                    }
+                                                }
+                                            ],
+                                            "NumberOfOffers": [
+                                                {
+                                                    "condition": "new",
+                                                    "fulfillmentChannel": "Merchant"
+                                                }
+                                            ],
+                                            "BuyBoxEligibleOffers": [
+                                                {
+                                                    "condition": "new",
+                                                    "fulfillmentChannel": "Merchant"
+                                                }
+                                            ],
+                                            "TotalOfferCount": 1
+                                        },
+                                        "Offers": [
+                                            {
+                                                "Shipping": {
+                                                    "CurrencyCode": "USD",
+                                                    "Amount": 0.0
+                                                },
+                                                "ListingPrice": {
+                                                    "CurrencyCode": "USD",
+                                                    "Amount": 10.0
+                                                },
+                                                "ShippingTime": {
+                                                    "maximumHours": 48,
+                                                    "minimumHours": 24,
+                                                    "availabilityType": "NOW"
+                                                },
+                                                "SellerFeedbackRating": {
+                                                    "FeedbackCount": 0,
+                                                    "SellerPositiveFeedbackRating": 0.0
+                                                },
+                                                "ShipsFrom": {
+                                                    "State": "WA",
+                                                    "Country": "US"
+                                                },
+                                                "SubCondition": "new",
+                                                "IsFeaturedMerchant": false,
+                                                "IsFulfilledByAmazon": false
+                                            }
+                                        ],
+                                        "MarketplaceID": "ATVPDKIKX0DER"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "Asin": {
+                                            "value": "TEST_CASE_400"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Invalid Input"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The specified resource does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOffersResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetPricingResponse": {
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "$ref": "#/components/schemas/PriceList"
+                    },
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "The response schema for the getPricing and getCompetitivePricing operations."
+            },
+            "GetOffersResponse": {
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "$ref": "#/components/schemas/GetOffersResult"
+                    },
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "The response schema for the getListingOffers and getItemOffers operations."
+            },
+            "PriceList": {
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Price"
+                }
+            },
+            "GetOffersResult": {
+                "required": [
+                    "Identifier",
+                    "ItemCondition",
+                    "MarketplaceID",
+                    "Offers",
+                    "Summary",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "MarketplaceID": {
+                        "type": "string",
+                        "description": "A marketplace identifier."
+                    },
+                    "ASIN": {
+                        "type": "string",
+                        "description": "The Amazon Standard Identification Number (ASIN) of the item."
+                    },
+                    "SKU": {
+                        "type": "string",
+                        "description": "The stock keeping unit (SKU) of the item."
+                    },
+                    "ItemCondition": {
+                        "$ref": "#/components/schemas/ConditionType"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the operation."
+                    },
+                    "Identifier": {
+                        "$ref": "#/components/schemas/ItemIdentifier"
+                    },
+                    "Summary": {
+                        "$ref": "#/components/schemas/Summary"
+                    },
+                    "Offers": {
+                        "$ref": "#/components/schemas/OfferDetailList"
+                    }
+                }
+            },
+            "Price": {
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the operation."
+                    },
+                    "SellerSKU": {
+                        "type": "string",
+                        "description": "The seller stock keeping unit (SKU) of the item."
+                    },
+                    "ASIN": {
+                        "type": "string",
+                        "description": "The Amazon Standard Identification Number (ASIN) of the item."
+                    },
+                    "Product": {
+                        "$ref": "#/components/schemas/Product"
+                    }
+                }
+            },
+            "Product": {
+                "required": [
+                    "Identifiers"
+                ],
+                "type": "object",
+                "properties": {
+                    "Identifiers": {
+                        "$ref": "#/components/schemas/IdentifierType"
+                    },
+                    "AttributeSets": {
+                        "$ref": "#/components/schemas/AttributeSetList"
+                    },
+                    "Relationships": {
+                        "$ref": "#/components/schemas/RelationshipList"
+                    },
+                    "CompetitivePricing": {
+                        "$ref": "#/components/schemas/CompetitivePricingType"
+                    },
+                    "SalesRankings": {
+                        "$ref": "#/components/schemas/SalesRankList"
+                    },
+                    "Offers": {
+                        "$ref": "#/components/schemas/OffersList"
+                    }
+                },
+                "description": "An item."
+            },
+            "IdentifierType": {
+                "required": [
+                    "MarketplaceASIN"
+                ],
+                "type": "object",
+                "properties": {
+                    "MarketplaceASIN": {
+                        "$ref": "#/components/schemas/ASINIdentifier"
+                    },
+                    "SKUIdentifier": {
+                        "$ref": "#/components/schemas/SellerSKUIdentifier"
+                    }
+                },
+                "description": "Specifies the identifiers used to uniquely identify an item."
+            },
+            "ASINIdentifier": {
+                "required": [
+                    "ASIN",
+                    "MarketplaceId"
+                ],
+                "type": "object",
+                "properties": {
+                    "MarketplaceId": {
+                        "type": "string",
+                        "description": "A marketplace identifier."
+                    },
+                    "ASIN": {
+                        "type": "string",
+                        "description": "The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                }
+            },
+            "SellerSKUIdentifier": {
+                "required": [
+                    "MarketplaceId",
+                    "SellerId",
+                    "SellerSKU"
+                ],
+                "type": "object",
+                "properties": {
+                    "MarketplaceId": {
+                        "type": "string",
+                        "description": "A marketplace identifier."
+                    },
+                    "SellerId": {
+                        "type": "string",
+                        "description": "The seller identifier submitted for the operation."
+                    },
+                    "SellerSKU": {
+                        "type": "string",
+                        "description": "The seller stock keeping unit (SKU) of the item."
+                    }
+                }
+            },
+            "AttributeSetList": {
+                "type": "array",
+                "description": "A list of product attributes if they are applicable to the product that is returned.",
+                "items": {
+                    "type": "object",
+                    "properties": {}
+                }
+            },
+            "RelationshipList": {
+                "type": "array",
+                "description": "A list that contains product variation information, if applicable.",
+                "items": {
+                    "type": "object",
+                    "properties": {}
+                }
+            },
+            "CompetitivePricingType": {
+                "required": [
+                    "CompetitivePrices",
+                    "NumberOfOfferListings"
+                ],
+                "type": "object",
+                "properties": {
+                    "CompetitivePrices": {
+                        "$ref": "#/components/schemas/CompetitivePriceList"
+                    },
+                    "NumberOfOfferListings": {
+                        "$ref": "#/components/schemas/NumberOfOfferListingsList"
+                    },
+                    "TradeInValue": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    }
+                },
+                "description": "Competitive pricing information for the item."
+            },
+            "CompetitivePriceList": {
+                "type": "array",
+                "description": "A list of competitive pricing information.",
+                "items": {
+                    "$ref": "#/components/schemas/CompetitivePriceType"
+                }
+            },
+            "CompetitivePriceType": {
+                "required": [
+                    "CompetitivePriceId",
+                    "Price"
+                ],
+                "type": "object",
+                "properties": {
+                    "CompetitivePriceId": {
+                        "type": "string",
+                        "description": "The pricing model for each price that is returned.\n\nPossible values:\n\n* 1 - New Buy Box Price.\n* 2 - Used Buy Box Price."
+                    },
+                    "Price": {
+                        "$ref": "#/components/schemas/PriceType"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "description": "Indicates the condition of the item whose pricing information is returned. Possible values are: New, Used, Collectible, Refurbished, or Club."
+                    },
+                    "subcondition": {
+                        "type": "string",
+                        "description": "Indicates the subcondition of the item whose pricing information is returned. Possible values are: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other."
+                    },
+                    "belongsToRequester": {
+                        "type": "boolean",
+                        "description": " Indicates whether or not the pricing information is for an offer listing that belongs to the requester. The requester is the seller associated with the SellerId that was submitted with the request. Possible values are: true and false."
+                    }
+                }
+            },
+            "NumberOfOfferListingsList": {
+                "type": "array",
+                "description": "The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.",
+                "items": {
+                    "$ref": "#/components/schemas/OfferListingCountType"
+                }
+            },
+            "OfferListingCountType": {
+                "required": [
+                    "Count",
+                    "condition"
+                ],
+                "type": "object",
+                "properties": {
+                    "Count": {
+                        "type": "integer",
+                        "description": "The number of offer listings.",
+                        "format": "int32"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "description": "The condition of the item."
+                    }
+                },
+                "description": "The number of offer listings with the specified condition."
+            },
+            "MoneyType": {
+                "type": "object",
+                "properties": {
+                    "CurrencyCode": {
+                        "type": "string",
+                        "description": "The currency code in ISO 4217 format."
+                    },
+                    "Amount": {
+                        "type": "number",
+                        "description": "The monetary value."
+                    }
+                }
+            },
+            "SalesRankList": {
+                "type": "array",
+                "description": "A list of sales rank information for the item, by category.",
+                "items": {
+                    "$ref": "#/components/schemas/SalesRankType"
+                }
+            },
+            "SalesRankType": {
+                "required": [
+                    "ProductCategoryId",
+                    "Rank"
+                ],
+                "type": "object",
+                "properties": {
+                    "ProductCategoryId": {
+                        "type": "string",
+                        "description": " Identifies the item category from which the sales rank is taken."
+                    },
+                    "Rank": {
+                        "type": "integer",
+                        "description": "The sales rank of the item within the item category.",
+                        "format": "int32"
+                    }
+                }
+            },
+            "PriceType": {
+                "required": [
+                    "ListingPrice"
+                ],
+                "type": "object",
+                "properties": {
+                    "LandedPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "ListingPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "Shipping": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "Points": {
+                        "$ref": "#/components/schemas/Points"
+                    }
+                }
+            },
+            "OffersList": {
+                "type": "array",
+                "description": "A list of offers.",
+                "items": {
+                    "$ref": "#/components/schemas/OfferType"
+                }
+            },
+            "OfferType": {
+                "required": [
+                    "BuyingPrice",
+                    "FulfillmentChannel",
+                    "ItemCondition",
+                    "ItemSubCondition",
+                    "RegularPrice",
+                    "SellerSKU"
+                ],
+                "type": "object",
+                "properties": {
+                    "BuyingPrice": {
+                        "$ref": "#/components/schemas/PriceType"
+                    },
+                    "RegularPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "FulfillmentChannel": {
+                        "type": "string",
+                        "description": "The fulfillment channel for the offer listing. Possible values:\n\n* Amazon - Fulfilled by Amazon.\n* Merchant - Fulfilled by the seller."
+                    },
+                    "ItemCondition": {
+                        "type": "string",
+                        "description": "The item condition for the offer listing. Possible values: New, Used, Collectible, Refurbished, or Club."
+                    },
+                    "ItemSubCondition": {
+                        "type": "string",
+                        "description": "The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other."
+                    },
+                    "SellerSKU": {
+                        "type": "string",
+                        "description": "The seller stock keeping unit (SKU) of the item."
+                    }
+                }
+            },
+            "Points": {
+                "type": "object",
+                "properties": {
+                    "PointsNumber": {
+                        "type": "integer",
+                        "description": "The number of points.",
+                        "format": "int32"
+                    },
+                    "PointsMonetaryValue": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    }
+                }
+            },
+            "ConditionType": {
+                "type": "string",
+                "description": "Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.",
+                "enum": [
+                    "New",
+                    "Used",
+                    "Collectible",
+                    "Refurbished",
+                    "Club"
+                ],
+                "x-docgen-enum-table-extension": [
+                    {
+                        "value": "New",
+                        "description": "New"
+                    },
+                    {
+                        "value": "Used",
+                        "description": "Used"
+                    },
+                    {
+                        "value": "Collectible",
+                        "description": "Collectible"
+                    },
+                    {
+                        "value": "Refurbished",
+                        "description": "Refurbished"
+                    },
+                    {
+                        "value": "Club",
+                        "description": "Club"
+                    }
+                ]
+            },
+            "ItemIdentifier": {
+                "required": [
+                    "ItemCondition",
+                    "MarketplaceId"
+                ],
+                "type": "object",
+                "properties": {
+                    "MarketplaceId": {
+                        "type": "string",
+                        "description": "A marketplace identifier. Specifies the marketplace from which prices are returned."
+                    },
+                    "ASIN": {
+                        "type": "string",
+                        "description": "The Amazon Standard Identification Number (ASIN) of the item."
+                    },
+                    "SellerSKU": {
+                        "type": "string",
+                        "description": "The seller stock keeping unit (SKU) of the item."
+                    },
+                    "ItemCondition": {
+                        "$ref": "#/components/schemas/ConditionType"
+                    }
+                },
+                "description": "Information that identifies an item."
+            },
+            "Summary": {
+                "required": [
+                    "TotalOfferCount"
+                ],
+                "type": "object",
+                "properties": {
+                    "TotalOfferCount": {
+                        "type": "integer",
+                        "description": "The number of unique offers contained in NumberOfOffers.",
+                        "format": "int32"
+                    },
+                    "NumberOfOffers": {
+                        "$ref": "#/components/schemas/NumberOfOffers"
+                    },
+                    "LowestPrices": {
+                        "$ref": "#/components/schemas/LowestPrices"
+                    },
+                    "BuyBoxPrices": {
+                        "$ref": "#/components/schemas/BuyBoxPrices"
+                    },
+                    "ListPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "SuggestedLowerPricePlusShipping": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "BuyBoxEligibleOffers": {
+                        "$ref": "#/components/schemas/BuyBoxEligibleOffers"
+                    },
+                    "OffersAvailableTime": {
+                        "type": "string",
+                        "description": "When the status is ActiveButTooSoonForProcessing, this is the time when the offers will be available for processing.",
+                        "format": "date-time"
+                    }
+                },
+                "description": "Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers."
+            },
+            "BuyBoxEligibleOffers": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/OfferCountType"
+                }
+            },
+            "BuyBoxPrices": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/BuyBoxPriceType"
+                }
+            },
+            "LowestPrices": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/LowestPriceType"
+                }
+            },
+            "NumberOfOffers": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/OfferCountType"
+                }
+            },
+            "OfferCountType": {
+                "type": "object",
+                "properties": {
+                    "condition": {
+                        "type": "string",
+                        "description": "Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club."
+                    },
+                    "fulfillmentChannel": {
+                        "$ref": "#/components/schemas/FulfillmentChannelType"
+                    },
+                    "OfferCount": {
+                        "type": "integer",
+                        "description": "The number of offers in a fulfillment channel that meet a specific condition.",
+                        "format": "int32"
+                    }
+                },
+                "description": "The total number of offers for the specified condition and fulfillment channel."
+            },
+            "FulfillmentChannelType": {
+                "type": "string",
+                "description": "Indicates whether the item is fulfilled by Amazon or by the seller (merchant).",
+                "enum": [
+                    "Amazon",
+                    "Merchant"
+                ],
+                "x-docgen-enum-table-extension": [
+                    {
+                        "value": "Amazon",
+                        "description": "Fulfilled by Amazon."
+                    },
+                    {
+                        "value": "Merchant",
+                        "description": "Fulfilled by the seller."
+                    }
+                ]
+            },
+            "LowestPriceType": {
+                "required": [
+                    "LandedPrice",
+                    "ListingPrice",
+                    "Shipping",
+                    "condition",
+                    "fulfillmentChannel"
+                ],
+                "type": "object",
+                "properties": {
+                    "condition": {
+                        "type": "string",
+                        "description": "Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club."
+                    },
+                    "fulfillmentChannel": {
+                        "type": "string",
+                        "description": "Indicates whether the item is fulfilled by Amazon or by the seller."
+                    },
+                    "LandedPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "ListingPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "Shipping": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "Points": {
+                        "$ref": "#/components/schemas/Points"
+                    }
+                }
+            },
+            "BuyBoxPriceType": {
+                "required": [
+                    "LandedPrice",
+                    "ListingPrice",
+                    "Shipping",
+                    "condition"
+                ],
+                "type": "object",
+                "properties": {
+                    "condition": {
+                        "type": "string",
+                        "description": "Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club."
+                    },
+                    "LandedPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "ListingPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "Shipping": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "Points": {
+                        "$ref": "#/components/schemas/Points"
+                    }
+                }
+            },
+            "OfferDetailList": {
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/OfferDetail"
+                }
+            },
+            "OfferDetail": {
+                "required": [
+                    "IsFulfilledByAmazon",
+                    "ListingPrice",
+                    "Shipping",
+                    "ShippingTime",
+                    "SubCondition"
+                ],
+                "type": "object",
+                "properties": {
+                    "MyOffer": {
+                        "type": "boolean",
+                        "description": "When true, this is the seller's offer."
+                    },
+                    "SubCondition": {
+                        "type": "string",
+                        "description": "The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other."
+                    },
+                    "SellerFeedbackRating": {
+                        "$ref": "#/components/schemas/SellerFeedbackType"
+                    },
+                    "ShippingTime": {
+                        "$ref": "#/components/schemas/DetailedShippingTimeType"
+                    },
+                    "ListingPrice": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "Points": {
+                        "$ref": "#/components/schemas/Points"
+                    },
+                    "Shipping": {
+                        "$ref": "#/components/schemas/MoneyType"
+                    },
+                    "ShipsFrom": {
+                        "$ref": "#/components/schemas/ShipsFromType"
+                    },
+                    "IsFulfilledByAmazon": {
+                        "type": "boolean",
+                        "description": "When true, the offer is fulfilled by Amazon."
+                    },
+                    "IsBuyBoxWinner": {
+                        "type": "boolean",
+                        "description": "When true, the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime."
+                    },
+                    "IsFeaturedMerchant": {
+                        "type": "boolean",
+                        "description": "When true, the seller of the item is eligible to win the Buy Box."
+                    }
+                }
+            },
+            "SellerFeedbackType": {
+                "required": [
+                    "FeedbackCount"
+                ],
+                "type": "object",
+                "properties": {
+                    "SellerPositiveFeedbackRating": {
+                        "type": "number",
+                        "description": "The percentage of positive feedback for the seller in the past 365 days.",
+                        "format": "double"
+                    },
+                    "FeedbackCount": {
+                        "type": "integer",
+                        "description": "The number of ratings received about the seller.",
+                        "format": "int64"
+                    }
+                },
+                "description": "Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received."
+            },
+            "ErrorList": {
+                "type": "array",
+                "description": "A list of error responses returned when a request is unsuccessful.",
+                "items": {
+                    "$ref": "#/components/schemas/Error"
+                }
+            },
+            "DetailedShippingTimeType": {
+                "type": "object",
+                "properties": {
+                    "minimumHours": {
+                        "type": "integer",
+                        "description": "The minimum time, in hours, that the item will likely be shipped after the order has been placed.",
+                        "format": "int64"
+                    },
+                    "maximumHours": {
+                        "type": "integer",
+                        "description": "The maximum time, in hours, that the item will likely be shipped after the order has been placed.",
+                        "format": "int64"
+                    },
+                    "availableDate": {
+                        "type": "number",
+                        "description": "The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping."
+                    },
+                    "availabilityType": {
+                        "type": "string",
+                        "description": "Indicates whether the item is available for shipping now, or on a known or an unknown date in the future. If known, the availableDate property indicates the date that the item will be available for shipping. Possible values: NOW, FUTURE_WITHOUT_DATE, FUTURE_WITH_DATE.",
+                        "enum": [
+                            "NOW",
+                            "FUTURE_WITHOUT_DATE",
+                            "FUTURE_WITH_DATE"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "NOW",
+                                "description": "The item is available for shipping now."
+                            },
+                            {
+                                "value": "FUTURE_WITHOUT_DATE",
+                                "description": "The item will be available for shipping on an unknown date in the future."
+                            },
+                            {
+                                "value": "FUTURE_WITH_DATE",
+                                "description": "The item will be available for shipping on a known date in the future."
+                            }
+                        ]
+                    }
+                },
+                "description": "The time range in which an item will likely be shipped once an order has been placed."
+            },
+            "ShipsFromType": {
+                "type": "object",
+                "properties": {
+                    "State": {
+                        "type": "string",
+                        "description": "The state from where the item is shipped."
+                    },
+                    "Country": {
+                        "type": "string",
+                        "description": "The country from where the item is shipped."
+                    }
+                },
+                "description": "The state and country from where the item is shipped."
+            },
+            "Error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": "An error code that identifies the type of error that occurred."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A message that describes the error condition in a human-readable form."
+                    },
+                    "details": {
+                        "type": "string",
+                        "description": "Additional information that can help the caller understand or fix the issue."
+                    }
+                },
+                "description": "Error response returned when the request is unsuccessful."
+            }
+        }
+    }
+}

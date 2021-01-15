@@ -1,0 +1,3211 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Selling Partner API for Services",
+        "description": "With the Services API, you can build applications that help service providers get and modify their service orders.",
+        "contact": {
+            "name": "Selling Partner API Developer Support",
+            "url": "https://sellercentral.amazon.com/gp/mws/contactus.html"
+        },
+        "license": {
+            "name": "Apache License 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        },
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "https://sellingpartnerapi-na.amazon.com/"
+        }
+    ],
+    "paths": {
+        "/service/v1/serviceJobs/{serviceJobId}": {
+            "get": {
+                "tags": [
+                    "service"
+                ],
+                "description": "Gets service job details for the service job indicated by the service job identifier you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 20 | 40 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "getServiceJobByServiceJobId",
+                "parameters": [
+                    {
+                        "name": "serviceJobId",
+                        "in": "path",
+                        "description": "A service job identifier.",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {}
+                                },
+                                "response": {
+                                    "payload": {}
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "payload": {}
+                                }
+                            }
+                        ]
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Unable to process the contained instructions.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/service/v1/serviceJobs/{serviceJobId}/cancellations": {
+            "put": {
+                "tags": [
+                    "service"
+                ],
+                "description": "Cancels the service job indicated by the service job identifier you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 20 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "cancelServiceJobByServiceJobId",
+                "parameters": [
+                    {
+                        "name": "serviceJobId",
+                        "in": "path",
+                        "description": "An Amazon defined service job identifier.",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cancellationReasonCode",
+                        "in": "query",
+                        "description": "A cancel reason code that specifies the reason for cancelling a service job.",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "pattern": "^[A-Z0-9_]*$",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "V1"
+                                        }
+                                    }
+                                },
+                                "response": {}
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "nullJobId"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "V1"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "message": "Missing or invalid request parameters: [serviceJobId]",
+                                            "code": "InvalidInput"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "NULL"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "message": "Missing or invalid request parameters: [cancellationReasonCode]",
+                                            "code": "InvalidInput"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "nullJobId"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "NULL"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "message": "Missing or invalid request parameters: [serviceJobId, cancellationReasonCode]",
+                                            "code": "InvalidInput"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "unauthorizedJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "V1"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "UnauthorizedAction",
+                                            "message": "Not authorized to access this resource.Please check your input again"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {}
+                                },
+                                "response": {}
+                            }
+                        ]
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Unable to process the contained instructions",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "completedJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "V1"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Job with jobId completedJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut and jobStatus COMPLETED cannot be cancelled"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "INV1"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Received invalid input reason code IV1 for jobId validJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "invalidJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        },
+                                        "cancellationReasonCode": {
+                                            "value": "V1"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Job not found for jobId invalidJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/service/v1/serviceJobs/{serviceJobId}/completions": {
+            "put": {
+                "tags": [
+                    "service"
+                ],
+                "description": "Completes the service job indicated by the service job identifier you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 20 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "completeServiceJobByServiceJobId",
+                "parameters": [
+                    {
+                        "name": "serviceJobId",
+                        "in": "path",
+                        "description": "An Amazon defined service job identifier.",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    }
+                                },
+                                "response": {}
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "nullJobId"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "message": "Missing or invalid request parameters: [serviceJobId]",
+                                            "code": "InvalidInput"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "unauthorizedJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "UnauthorizedAction",
+                                            "message": "Not authorized to access this resource.Please check your input again"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Unable to process the contained instructions",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "cancelledJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Operation not allowed on job with jobId : cancelledJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut and jobState : CANCELLED"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "invalidJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Job not found for jobId invalidJobId-48b6d5a3-b708-dbe9-038d-dd95e8d74iut"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompleteServiceJobByServiceJobIdResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/service/v1/serviceJobs": {
+            "get": {
+                "tags": [
+                    "service"
+                ],
+                "description": "Gets service job details for the specified filter query.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 10 | 40 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "getServiceJobs",
+                "parameters": [
+                    {
+                        "name": "serviceOrderIds",
+                        "in": "query",
+                        "description": "List of service order ids for the query you want to perform.Max values supported 20. ",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "maxItems": 20,
+                            "minItems": 1,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "serviceJobStatus",
+                        "in": "query",
+                        "description": "A list of one or more job status by which to filter the list of jobs.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "NOT_SERVICED",
+                                    "CANCELLED",
+                                    "COMPLETED",
+                                    "PENDING_SCHEDULE",
+                                    "NOT_FULFILLABLE",
+                                    "HOLD",
+                                    "PAYMENT_DECLINED"
+                                ],
+                                "x-docgen-enum-table-extension": [
+                                    {
+                                        "value": "NOT_SERVICED",
+                                        "description": "Jobs which are not serviced."
+                                    },
+                                    {
+                                        "value": "CANCELLED",
+                                        "description": "Jobs which are cancelled."
+                                    },
+                                    {
+                                        "value": "COMPLETED",
+                                        "description": "Jobs successfully completed."
+                                    },
+                                    {
+                                        "value": "PENDING_SCHEDULE",
+                                        "description": "Jobs which are pending schedule."
+                                    },
+                                    {
+                                        "value": "NOT_FULFILLABLE",
+                                        "description": "Jobs which are not fulfillable."
+                                    },
+                                    {
+                                        "value": "HOLD",
+                                        "description": "Jobs which are on hold."
+                                    },
+                                    {
+                                        "value": "PAYMENT_DECLINED",
+                                        "description": "Jobs for which payment was declined."
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "pageToken",
+                        "in": "query",
+                        "description": "String returned in the response of your previous request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "A non-negative integer that indicates the maximum number of jobs to return in the list, Value must be 1 - 20. Default 20. ",
+                        "schema": {
+                            "maximum": 20,
+                            "minimum": 1,
+                            "type": "integer",
+                            "default": 20
+                        }
+                    },
+                    {
+                        "name": "sortField",
+                        "in": "query",
+                        "description": "Sort fields on which you want to sort the output.",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "JOB_DATE",
+                                "JOB_STATUS"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "JOB_DATE",
+                                    "description": "Sort on job date."
+                                },
+                                {
+                                    "value": "JOB_STATUS",
+                                    "description": "Sort on job status."
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "JOB_DATE",
+                                "description": "Sort on job date."
+                            },
+                            {
+                                "value": "JOB_STATUS",
+                                "description": "Sort on job status."
+                            }
+                        ]
+                    },
+                    {
+                        "name": "sortOrder",
+                        "in": "query",
+                        "description": "Sort order for the query you want to perform.",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "ASC",
+                                "DESC"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "ASC",
+                                    "description": "Sort in ascending order."
+                                },
+                                {
+                                    "value": "DESC",
+                                    "description": "Sort in descending order."
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "ASC",
+                                "description": "Sort in ascending order."
+                            },
+                            {
+                                "value": "DESC",
+                                "description": "Sort in descending order."
+                            }
+                        ]
+                    },
+                    {
+                        "name": "createdAfter",
+                        "in": "query",
+                        "description": "A date used for selecting jobs created after (or at) a specified time must be in ISO 8601 format. Required if LastUpdatedAfter is not specified.Specifying both CreatedAfter and LastUpdatedAfter returns an error. ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "createdBefore",
+                        "in": "query",
+                        "description": "A date used for selecting jobs created before (or at) a specified time must be in ISO 8601 format. ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastUpdatedAfter",
+                        "in": "query",
+                        "description": "A date used for selecting jobs updated after (or at) a specified time must be in ISO 8601 format. Required if createdAfter is not specified.Specifying both CreatedAfter and LastUpdatedAfter returns an error. ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastUpdatedBefore",
+                        "in": "query",
+                        "description": "A date used for selecting jobs updated before (or at) a specified time must be in ISO 8601 format. ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scheduleStartDate",
+                        "in": "query",
+                        "description": "A date used for filtering jobs schedule after (or at) a specified time must be in ISO 8601 format. schedule end date should not be earlier than schedule start date. ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scheduleEndDate",
+                        "in": "query",
+                        "description": "A date used for filtering jobs schedule before (or at) a specified time must be in ISO 8601 format. schedule end date should not be earlier than schedule start date. ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "marketplaceIds",
+                        "in": "query",
+                        "description": "Used to select jobs that were placed in the specified marketplaces. ",
+                        "required": true,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "maxItems": 1,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {}
+                                },
+                                "response": {
+                                    "payload": {
+                                        "totalResultSize": 1,
+                                        "nextPageToken": "merchantSklktoreIdbcdcd2ad-5883-4e48-b114-f13328a9e9f",
+                                        "previousPageToken": "merchantSklktoreIdbcdcd2ad-5883-4e48-b114-f13328a9e9f",
+                                        "jobs": [
+                                            {
+                                                "serviceOrderId": "2345324",
+                                                "serviceJobId": "34534399990035",
+                                                "createTime": "2019-12-11T14:49:53.952Z",
+                                                "serviceJobStatus": "COMPLETED",
+                                                "buyer": {
+                                                    "name": "nameExample"
+                                                },
+                                                "appointments": [
+                                                    {
+                                                        "appointmentId": "appointmentIdExample",
+                                                        "appointmentStatus": "COMPLETED",
+                                                        "appointmentTime": {
+                                                            "startTime": "2020-01-31T06:38:56.961Z",
+                                                            "durationInMinutes": 60
+                                                        },
+                                                        "assignedTechnicians": [
+                                                            {
+                                                                "technicianId": "technicianIdExample",
+                                                                "name": "nameExample"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "createdAfter": {
+                                            "value": "TEST_CASE_400"
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Invalid Input"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetServiceJobsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/service/v1/serviceJobs/{serviceJobId}/appointments": {
+            "post": {
+                "tags": [
+                    "service"
+                ],
+                "description": "Adds an appointment to the service job indicated by the service job identifier you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 20 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "addAppointmentForServiceJobByServiceJobId",
+                "parameters": [
+                    {
+                        "name": "serviceJobId",
+                        "in": "path",
+                        "description": "An Amazon defined service job identifier.",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Add appointment operation input details.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddAppointmentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "appointmentId": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-2-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z",
+                                                    "durationInMinutes": 60
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "appointmentId": "validJobId-2-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "nullJobId"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z",
+                                                    "durationInMinutes": 60
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Missing or invalid request parameters: [serviceJobId]"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "unauthorizedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "UnauthorizedAction",
+                                            "message": "Not authorized to access this resource. Please check your input again."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Unable to process the contained instructions",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000+05:30"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "ISO8601 time 2021-01-01T10:00:00.000+05:30 is not in UTC."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10-00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to parse ISO8601 input: 2021-01-01T10-00:00.000Z"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "invalidJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "No job exist with jobId : invalidJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "completedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Operation not allowed on job with jobId : completedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468 and jobState : COMPLETED"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "withActiveAppointmentJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : withActiveAppointmentJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Job already has an active appointmentId."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2019-01-01T10:00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Start time of appointment should be in the future."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2022-01-01T10:00:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Start time for appointment is beyond the maximum allowed period of 365 days."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:15:00.000Z"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Appointment slot is not available."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        },
+        "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}": {
+            "post": {
+                "tags": [
+                    "service"
+                ],
+                "description": "Reschedules an appointment for the service job indicated by the service job identifier you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 20 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "rescheduleAppointmentForServiceJobByServiceJobId",
+                "parameters": [
+                    {
+                        "name": "serviceJobId",
+                        "in": "path",
+                        "description": "An Amazon defined service job identifier.",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "appointmentId",
+                        "in": "path",
+                        "description": "An existing appointment identifier for the Service Job.",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Reschedule appointment operation input details.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RescheduleAppointmentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "appointmentId": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693d34468_new_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-2-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-2-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z",
+                                                    "durationInMinutes": 60
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "appointmentId": "validJobId-2-9cb9bc29-3d7d-5e49-5709-efb693d34468_new_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-3-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-3-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z",
+                                                    "durationInMinutes": 60
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "appointmentId": "validJobId-3-9cb9bc29-3d7d-5e49-5709-efb693d34468_new_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a",
+                                    "warnings": [
+                                        {
+                                            "code": "RESOURCES_UNASSIGNED",
+                                            "message": "Unassigned resources : ATechnicianId,BTechnicianId"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "nullJobId"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z",
+                                                    "durationInMinutes": 60
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Missing or invalid request parameters: [serviceJobId]"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-1-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "nullAppointmentId"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z",
+                                                    "durationInMinutes": 60
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Missing or invalid request parameters: [appointmentId]"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "unauthorizedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "unauthorizedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "UnauthorizedAction",
+                                            "message": "Not authorized to access this resource. Please check your input again."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Unable to process the contained instructions",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000+05:30"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "ISO8601 time 2021-01-01T10:00:00.000+05:30 is not in UTC."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10-00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to parse ISO8601 input: 2021-01-01T10-00:00.000Z"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "invalidJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "invalidJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "No job exist with jobId : invalidJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "completedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "completedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Operation not allowed on job with jobId : completedJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468 and jobState : COMPLETED"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2019-01-01T10:00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Start time of appointment should be in the future."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2022-01-01T10:00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Start time for appointment is beyond the maximum allowed period of 365 days."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:15:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "R1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Appointment slot is not available."
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "serviceJobId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468"
+                                        },
+                                        "appointmentId": {
+                                            "value": "validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468_00b9d5f2-839d-c13e-b8cd-dae1c3995b2a"
+                                        },
+                                        "body": {
+                                            "value": {
+                                                "appointmentTime": {
+                                                    "startTime": "2021-01-01T10:00:00.000Z"
+                                                },
+                                                "rescheduleReasonCode": "U1"
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidInput",
+                                            "message": "Failed to add appointment for jobId : validJobId-9cb9bc29-3d7d-5e49-5709-efb693d34468, reason : Appointment reschedule reason code is not valid."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SetAppointmentResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetServiceJobByServiceJobIdResponse": {
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "$ref": "#/components/schemas/ServiceJob"
+                    },
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "The response schema for the GetServiceJobByServiceJobId operation."
+            },
+            "CancelServiceJobByServiceJobIdResponse": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "Response schema for CancelServiceJobByServiceJobId operation."
+            },
+            "CompleteServiceJobByServiceJobIdResponse": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "Response schema for CompleteServiceJobByServiceJobId operation."
+            },
+            "GetServiceJobsResponse": {
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "$ref": "#/components/schemas/JobListing"
+                    },
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "Response schema for GetJobs operation."
+            },
+            "SetAppointmentResponse": {
+                "type": "object",
+                "properties": {
+                    "appointmentId": {
+                        "$ref": "#/components/schemas/AppointmentId"
+                    },
+                    "warnings": {
+                        "$ref": "#/components/schemas/WarningList"
+                    },
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "Response schema for add or reschedule appointment operation."
+            },
+            "JobListing": {
+                "type": "object",
+                "properties": {
+                    "totalResultSize": {
+                        "type": "integer",
+                        "description": "Total result size of the query result."
+                    },
+                    "nextPageToken": {
+                        "type": "string",
+                        "description": "A generated string used to pass information to your next request.If nextPageToken is returned, pass the value of nextPageToken to the pageToken to get next results."
+                    },
+                    "previousPageToken": {
+                        "type": "string",
+                        "description": "A generated string used to pass information to your next request.If previousPageToken is returned, pass the value of previousPageToken to the pageToken to get previous page results."
+                    },
+                    "jobs": {
+                        "type": "array",
+                        "description": "List of job details for the given input.",
+                        "items": {
+                            "$ref": "#/components/schemas/ServiceJob"
+                        }
+                    }
+                },
+                "description": "The payload for the GetJobs operation."
+            },
+            "ServiceJob": {
+                "type": "object",
+                "properties": {
+                    "createTime": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the job, in ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "serviceJobId": {
+                        "$ref": "#/components/schemas/ServiceJobId"
+                    },
+                    "serviceJobStatus": {
+                        "type": "string",
+                        "description": "The status of the service job.",
+                        "enum": [
+                            "NOT_SERVICED",
+                            "CANCELLED",
+                            "COMPLETED",
+                            "PENDING_SCHEDULE",
+                            "NOT_FULFILLABLE",
+                            "HOLD",
+                            "PAYMENT_DECLINED"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "NOT_SERVICED",
+                                "description": "Indicates that the service for the service job is not complete."
+                            },
+                            {
+                                "value": "CANCELLED",
+                                "description": "Indicates that the service job is cancelled."
+                            },
+                            {
+                                "value": "COMPLETED",
+                                "description": "Indicates that the service is performed and the service job is closed successfully."
+                            },
+                            {
+                                "value": "PENDING_SCHEDULE",
+                                "description": "Indicates that an appointment for the service job has not been scheduled."
+                            },
+                            {
+                                "value": "NOT_FULFILLABLE",
+                                "description": "Indicates that the service job is not actionable due to an unexpected exception."
+                            },
+                            {
+                                "value": "HOLD",
+                                "description": "Indicates that the appointment time preference given by customer cannot be serviced by the service provider."
+                            },
+                            {
+                                "value": "PAYMENT_DECLINED",
+                                "description": "Indicates that the customer payment has been declined."
+                            }
+                        ]
+                    },
+                    "scopeOfWork": {
+                        "$ref": "#/components/schemas/ScopeOfWork"
+                    },
+                    "seller": {
+                        "$ref": "#/components/schemas/Seller"
+                    },
+                    "serviceJobProvider": {
+                        "$ref": "#/components/schemas/ServiceJobProvider"
+                    },
+                    "preferredAppointmentTimes": {
+                        "type": "array",
+                        "description": "A list of appointment windows preferred by the buyer. Included only if the buyer selected appointment windows when creating the order.",
+                        "items": {
+                            "$ref": "#/components/schemas/AppointmentTime"
+                        }
+                    },
+                    "appointments": {
+                        "type": "array",
+                        "description": "A list of appointments.",
+                        "items": {
+                            "$ref": "#/components/schemas/Appointment"
+                        }
+                    },
+                    "serviceOrderId": {
+                        "$ref": "#/components/schemas/OrderId"
+                    },
+                    "marketplaceId": {
+                        "pattern": "^[A-Z0-9]*$",
+                        "type": "string",
+                        "description": "The marketplace identifier."
+                    },
+                    "buyer": {
+                        "$ref": "#/components/schemas/Buyer"
+                    },
+                    "associatedItems": {
+                        "type": "array",
+                        "description": "A list of items associated with the service job.",
+                        "items": {
+                            "$ref": "#/components/schemas/AssociatedItem"
+                        }
+                    },
+                    "serviceLocation": {
+                        "$ref": "#/components/schemas/ServiceLocation"
+                    }
+                },
+                "description": "The job details of a service."
+            },
+            "ServiceJobId": {
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string",
+                "description": "Amazon identifier for the service job."
+            },
+            "OrderId": {
+                "maxLength": 20,
+                "minLength": 5,
+                "type": "string",
+                "description": "The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format."
+            },
+            "ScopeOfWork": {
+                "type": "object",
+                "properties": {
+                    "asin": {
+                        "type": "string",
+                        "description": "The Amazon Standard Identification Number (ASIN) of the service job."
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "The title of the service job."
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "The number of service jobs."
+                    },
+                    "requiredSkills": {
+                        "type": "array",
+                        "description": "A list of skills required to perform the job.",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "description": "The scope of work for the order."
+            },
+            "Seller": {
+                "type": "object",
+                "properties": {
+                    "sellerId": {
+                        "pattern": "^[A-Z0-9]*$",
+                        "type": "string",
+                        "description": "The identifier of the seller of the service job."
+                    }
+                },
+                "description": "Information about the seller of the service job."
+            },
+            "ServiceJobProvider": {
+                "type": "object",
+                "properties": {
+                    "serviceJobProviderId": {
+                        "pattern": "^[A-Z0-9]*$",
+                        "type": "string",
+                        "description": "The identifier of the service job provider."
+                    }
+                },
+                "description": "Information about the service job provider."
+            },
+            "Buyer": {
+                "type": "object",
+                "properties": {
+                    "buyerId": {
+                        "pattern": "^[A-Z0-9]*$",
+                        "type": "string",
+                        "description": "The identifier of the buyer."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the buyer."
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "The phone number of the buyer."
+                    },
+                    "isPrimeMember": {
+                        "type": "boolean",
+                        "description": "When true, the service is for an Amazon Prime buyer."
+                    }
+                },
+                "description": "Information about the buyer."
+            },
+            "AppointmentTime": {
+                "required": [
+                    "durationInMinutes",
+                    "startTime"
+                ],
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "description": "The date and time of the start of the appointment window, in ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "durationInMinutes": {
+                        "minimum": 1,
+                        "type": "integer",
+                        "description": "The duration of the appointment window, in minutes."
+                    }
+                },
+                "description": "The time of the appointment window."
+            },
+            "AppointmentId": {
+                "maxLength": 100,
+                "minLength": 5,
+                "type": "string",
+                "description": "The appointment identifier."
+            },
+            "Appointment": {
+                "type": "object",
+                "properties": {
+                    "appointmentId": {
+                        "$ref": "#/components/schemas/AppointmentId"
+                    },
+                    "appointmentStatus": {
+                        "type": "string",
+                        "description": "The status of the appointment.",
+                        "enum": [
+                            "ACTIVE",
+                            "CANCELLED",
+                            "COMPLETED"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "ACTIVE",
+                                "description": "Indicates that an appointment is scheduled."
+                            },
+                            {
+                                "value": "CANCELLED",
+                                "description": "Indicates that the appointment is cancelled."
+                            },
+                            {
+                                "value": "COMPLETED",
+                                "description": "Indicates that the appointment is completed."
+                            }
+                        ]
+                    },
+                    "appointmentTime": {
+                        "$ref": "#/components/schemas/AppointmentTime"
+                    },
+                    "assignedTechnicians": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "A list of technicians assigned to the service job.",
+                        "items": {
+                            "$ref": "#/components/schemas/Technician"
+                        }
+                    },
+                    "rescheduledAppointmentId": {
+                        "$ref": "#/components/schemas/AppointmentId"
+                    },
+                    "poa": {
+                        "$ref": "#/components/schemas/Poa"
+                    }
+                },
+                "description": "The details of an appointment."
+            },
+            "Technician": {
+                "type": "object",
+                "properties": {
+                    "technicianId": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "The technician identifier."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the technician."
+                    }
+                },
+                "description": "A technician who is assigned to perform the service job in part or in full."
+            },
+            "Poa": {
+                "type": "object",
+                "properties": {
+                    "appointmentTime": {
+                        "$ref": "#/components/schemas/AppointmentTime"
+                    },
+                    "technicians": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "A list of technicians.",
+                        "items": {
+                            "$ref": "#/components/schemas/Technician"
+                        }
+                    },
+                    "uploadingTechnician": {
+                        "pattern": "^[A-Z0-9]*$",
+                        "type": "string",
+                        "description": "The identifier of the technician who uploaded the POA."
+                    },
+                    "uploadTime": {
+                        "type": "string",
+                        "description": "The date and time when the POA was uploaded, in ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "poaType": {
+                        "type": "string",
+                        "description": "The type of POA uploaded.",
+                        "enum": [
+                            "NO_SIGNATURE_DUMMY_POS",
+                            "CUSTOMER_SIGNATURE",
+                            "DUMMY_RECEIPT",
+                            "POA_RECEIPT"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "NO_SIGNATURE_DUMMY_POS",
+                                "description": "Indicates that the type of proof of appointment uploaded is a dummy signature."
+                            },
+                            {
+                                "value": "CUSTOMER_SIGNATURE",
+                                "description": "Indicates that the type of proof of appointment uploaded is a customer signature."
+                            },
+                            {
+                                "value": "DUMMY_RECEIPT",
+                                "description": "Indicates that the type of proof of appointment uploaded is a dummy receipt."
+                            },
+                            {
+                                "value": "POA_RECEIPT",
+                                "description": "Indicates that the type of proof of appointment is a receipt."
+                            }
+                        ]
+                    }
+                },
+                "description": "Proof of Appointment (POA) details."
+            },
+            "AssociatedItem": {
+                "type": "object",
+                "properties": {
+                    "asin": {
+                        "type": "string",
+                        "description": "The Amazon Standard Identification Number (ASIN) of the item."
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "The title of the item."
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "The total number of items included in the order."
+                    },
+                    "orderId": {
+                        "$ref": "#/components/schemas/OrderId"
+                    },
+                    "itemStatus": {
+                        "type": "string",
+                        "description": "The status of the item.",
+                        "enum": [
+                            "ACTIVE",
+                            "CANCELLED",
+                            "SHIPPED",
+                            "DELIVERED"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "ACTIVE",
+                                "description": "Indicates the item is yet to be shipped."
+                            },
+                            {
+                                "value": "CANCELLED",
+                                "description": "Indicates the item has been cancelled."
+                            },
+                            {
+                                "value": "SHIPPED",
+                                "description": "Indicates the item is shipped but not delivered."
+                            },
+                            {
+                                "value": "DELIVERED",
+                                "description": "Indicates the item is delivered."
+                            }
+                        ]
+                    },
+                    "brandName": {
+                        "type": "string",
+                        "description": "The brand name of the item."
+                    },
+                    "itemDelivery": {
+                        "$ref": "#/components/schemas/ItemDelivery"
+                    }
+                },
+                "description": "Information about an item associated with the service job."
+            },
+            "ItemDelivery": {
+                "type": "object",
+                "properties": {
+                    "estimatedDeliveryDate": {
+                        "type": "string",
+                        "description": "The date and time of the latest Estimated Delivery Date (EDD) of all the items with an EDD. In ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "itemDeliveryPromise": {
+                        "$ref": "#/components/schemas/ItemDeliveryPromise"
+                    }
+                },
+                "description": "Delivery information for the item."
+            },
+            "ItemDeliveryPromise": {
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "description": "The date and time of the start of the promised delivery window, in ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "description": "The date and time of the end of the promised delivery window, in ISO 8601 format.",
+                        "format": "date-time"
+                    }
+                },
+                "description": "Promised delivery information for the item."
+            },
+            "ServiceLocation": {
+                "type": "object",
+                "properties": {
+                    "serviceLocationType": {
+                        "type": "string",
+                        "description": "The location of the service job.",
+                        "enum": [
+                            "IN_HOME",
+                            "IN_STORE",
+                            "ONLINE"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "IN_HOME",
+                                "description": "Indicates the service for the service job is performed at the customers home address."
+                            },
+                            {
+                                "value": "IN_STORE",
+                                "description": "Indicates the service for the service job is performed at the service providers store."
+                            },
+                            {
+                                "value": "ONLINE",
+                                "description": "Indicates the service for the service job is performed remotely."
+                            }
+                        ]
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    }
+                },
+                "description": "Information about the location of the service job."
+            },
+            "Address": {
+                "required": [
+                    "addressLine1",
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the person, business, or institution."
+                    },
+                    "addressLine1": {
+                        "type": "string",
+                        "description": "The first line of the address."
+                    },
+                    "addressLine2": {
+                        "type": "string",
+                        "description": "Additional address information, if required."
+                    },
+                    "addressLine3": {
+                        "type": "string",
+                        "description": "Additional address information, if required."
+                    },
+                    "city": {
+                        "type": "string",
+                        "description": "The city."
+                    },
+                    "county": {
+                        "type": "string",
+                        "description": "The county."
+                    },
+                    "district": {
+                        "type": "string",
+                        "description": "The district."
+                    },
+                    "stateOrRegion": {
+                        "type": "string",
+                        "description": "The state or region."
+                    },
+                    "postalCode": {
+                        "type": "string",
+                        "description": "The postal code. This can contain letters, digits, spaces, and/or punctuation."
+                    },
+                    "countryCode": {
+                        "type": "string",
+                        "description": "The two digit country code, in ISO 3166-1 alpha-2 format."
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "The phone number."
+                    }
+                },
+                "description": "The shipping address for the service job."
+            },
+            "AddAppointmentRequest": {
+                "required": [
+                    "appointmentTime"
+                ],
+                "type": "object",
+                "properties": {
+                    "appointmentTime": {
+                        "$ref": "#/components/schemas/AppointmentTimeInput"
+                    }
+                },
+                "description": "Input for add appointment operation."
+            },
+            "RescheduleAppointmentRequest": {
+                "required": [
+                    "appointmentTime",
+                    "rescheduleReasonCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "appointmentTime": {
+                        "$ref": "#/components/schemas/AppointmentTimeInput"
+                    },
+                    "rescheduleReasonCode": {
+                        "$ref": "#/components/schemas/RescheduleReasonCode"
+                    }
+                },
+                "description": "Input for rescheduled appointment operation."
+            },
+            "AppointmentTimeInput": {
+                "required": [
+                    "startTime"
+                ],
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "description": "The date, time in UTC for the start time of an appointment in ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "durationInMinutes": {
+                        "type": "integer",
+                        "description": "The duration of an appointment in minutes."
+                    }
+                },
+                "description": "The input appointment time details."
+            },
+            "RescheduleReasonCode": {
+                "type": "string",
+                "description": "Appointment reschedule reason code."
+            },
+            "ErrorList": {
+                "type": "array",
+                "description": "A list of error responses returned when a request is unsuccessful.",
+                "items": {
+                    "$ref": "#/components/schemas/Error"
+                }
+            },
+            "Error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": "An error code that identifies the type of error that occurred."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A message that describes the error condition in a human-readable form."
+                    },
+                    "details": {
+                        "type": "string",
+                        "description": "Additional details that can help the caller understand or fix the issue."
+                    },
+                    "errorLevel": {
+                        "type": "string",
+                        "description": "The type of error.",
+                        "enum": [
+                            "ERROR",
+                            "WARNING"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "ERROR",
+                                "description": "Error"
+                            },
+                            {
+                                "value": "WARNING",
+                                "description": "Warning"
+                            }
+                        ]
+                    }
+                },
+                "description": "Error response returned when the request is unsuccessful."
+            },
+            "WarningList": {
+                "type": "array",
+                "description": "A list of warnings returned in the sucessful execution response of an API request.",
+                "items": {
+                    "$ref": "#/components/schemas/Warning"
+                }
+            },
+            "Warning": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": "An warning code that identifies the type of warning that occurred."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A message that describes the warning condition in a human-readable form."
+                    },
+                    "details": {
+                        "type": "string",
+                        "description": "Additional details that can help the caller understand or address the warning."
+                    }
+                },
+                "description": "Warning returned when the request is successful but execution have some important callouts on basis of which API clients should take defined actions."
+            }
+        }
+    }
+}

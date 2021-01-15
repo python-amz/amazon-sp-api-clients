@@ -1,0 +1,7 @@
+/test_api.py
+/venv
+/venv39
+__pycache__
+/.pytest_cache
+/.idea
+/.sp-api.sqlite
