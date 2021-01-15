@@ -87,3 +87,16 @@ If my build is not suitable for your demand,
 or amazon api model updates but my build do not follow,
 you can clone this repo, modify the `api.pyt` template and build it by yourself,
 and please push a PR, thanks!
+
+# Acknowledgement
+
+The auth method is partially from
+[python-amazon-sp-api](https://github.com/saleweaver/python-amazon-sp-api).
+
+# Note
+
+If this library helps you, please give me a star, thanks!
+
+如果这个库对您有用，请为我点亮Star，谢谢！
+
+商业合作请联系 [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com)。
