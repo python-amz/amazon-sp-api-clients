@@ -147,9 +147,9 @@ class BaseClient:
         if aws_secret_key is None:
             aws_secret_key = os.environ.get('SP_API_AWS_SECRET_KEY')
         if lwa_client_key is None:
-            lwa_client_key = os.environ.get('SP_API_CLIENT_ID')
+            lwa_client_key = os.environ.get('SP_API_LWA_CLIENT_KEY')
         if lwa_client_secret is None:
-            lwa_client_secret = os.environ.get('SP_API_CLIENT_SECRET')
+            lwa_client_secret = os.environ.get('SP_API_LWA_CLIENT_SECRET')
         self._client = boto3.client('sts', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
         self._role_arn = role_arn
         self._endpoint = endpoint
