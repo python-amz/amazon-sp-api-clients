@@ -1,4 +1,4 @@
-# sp-api-clients
+# amazon-sp-api-clients
 
 This is a package generated from amazon selling partner open api models.
 
@@ -11,9 +11,29 @@ but enough for myself.
 * provide code to generate clients, in case that amazon update models;
 * type hint.
 
+## Note
+
+Because that this repo currently do not need community contribution,
+and is mainly for my personal usage,
+so I made this repo private.
+You can download the client from pypi and use it free.
+But if you want to generate a new client lib to support your business,
+please contact and pay me and I will provide technical support. 
+
+For technical support, please contact [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com).
+
+
+由于这个库目前不打算接受社区的协助，而且主要是用于我的个人使用，
+因此我将这个库设置成了私有库。
+您可以免费从pypi安装并使用这个库，
+但是如果您想生成一个新的客户端以适应您的业务逻辑，
+我可以为您提供付费技术支持。
+
+商业合作请联系 [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com)。
+
 ## Usage
 
-For saving time, just paste my test code here.
+For saving time, I just paste part of my test code here as a demo.
 
 For better understanding, all the fields are the same length of actual fields,
 and some readable information are kept.

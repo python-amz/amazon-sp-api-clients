@@ -4,15 +4,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="sp-api-clients",  # Replace with your own username
-    version="0.2.4",
+    name="amazon-sp-api-clients",
+    version="0.1.3",
     author="Haoyu Pan",
     author_email="panhaoyu.china@outlook.com",
     description="Amazon selling partner api clients.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/panhaoyu/sp-api-clients",
-    packages=['sp_api_clients'],
+    packages=['amazon_sp_api_clients'],
     install_requires=[
         'peewee',
         'cachetools',
