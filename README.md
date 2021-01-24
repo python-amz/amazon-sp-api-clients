@@ -41,7 +41,7 @@ and some readable information are kept.
 ```python
 def test_api():
     from datetime import datetime
-    import sp_api_clients
+    import amazon_sp_api_clients
     endpoint = "https://sellingpartnerapi-eu.amazon.com"
     marketplace_id = "XXXXXXXXXXXXXX"
 
@@ -65,7 +65,7 @@ def test_api():
         lwa_client_key=client_id,
         lwa_client_secret=client_secret,
     )
-    order_client = sp_api_clients.orders.OrdersClient(**client_config, use_cache=True)
+    order_client = amazon_sp_api_clients.orders.OrdersClient(**client_config, use_cache=True)
 
     orders = order_client.getOrders(
         MarketplaceIds=[marketplace_id],
