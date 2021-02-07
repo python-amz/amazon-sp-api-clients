@@ -112,6 +112,7 @@ class BaseClient:
     def __init__(self, *,
                  role_arn: str = None,
                  endpoint: str = None,
+                 region: str = None,
                  marketplace_id: str = None,
                  refresh_token: str = None,
                  aws_access_key: str = None,
@@ -138,6 +139,8 @@ class BaseClient:
             role_arn = os.environ.get('SP_API_ROLE_ARN')
         if endpoint is None:
             endpoint = os.environ.get('SP_API_ENDPOINT')
+        if region is None:
+            region = os.environ.get('SP_API_REGION')
         if marketplace_id is None:
             marketplace_id = os.environ.get('SP_API_MARKETPLACE_ID')
         if refresh_token is None:
@@ -153,6 +156,7 @@ class BaseClient:
         self._client = boto3.client('sts', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
         self._role_arn = role_arn
         self._endpoint = endpoint
+        self._region = region
         self._marketplace_id = marketplace_id
         self._refresh_token = refresh_token
         self._aws_access_key = aws_access_key
@@ -212,7 +216,7 @@ class BaseClient:
         auth = AWSSigV4('execute-api',
                         aws_access_key_id=role.get('AccessKeyId'),
                         aws_secret_access_key=role.get('SecretAccessKey'),
-                        region='eu-west-1',
+                        region=self._region,
                         aws_session_token=role.get('SessionToken'))
         response = request(method, self._endpoint + path, params=params, data=data, headers=parsed_headers, auth=auth)
 

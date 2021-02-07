@@ -61,6 +61,7 @@ The client configuration can be set both at the initiation and as environment va
 
 * SP_API_ROLE_ARN
 * SP_API_ENDPOINT
+* SP_API_REGION
 * SP_API_MARKETPLACE_ID
 * SP_API_REFRESH_TOKEN
 * SP_API_AWS_ACCESS_KEY
