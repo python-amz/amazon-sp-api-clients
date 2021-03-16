@@ -6,3 +6,5 @@ requests
 pytest
 jinja2
 wheel
+pycryptodome
+beautifulsoup4

@@ -1,5 +1,6 @@
 import hashlib
 import hmac
+import json
 import os
 import urllib
 from collections import OrderedDict
@@ -218,7 +219,12 @@ class BaseClient:
                         aws_secret_access_key=role.get('SecretAccessKey'),
                         region=self._region,
                         aws_session_token=role.get('SessionToken'))
-        response = request(method, self._endpoint + path, params=params, data=data, headers=parsed_headers, auth=auth)
+        if method == 'POST':
+            response = request(method, self._endpoint + path, data=json.dumps(data), headers=parsed_headers, auth=auth)
+        elif method == 'GET':
+            response = request(method, self._endpoint + path, params=params, headers=parsed_headers, auth=auth)
+        else:
+            raise ValueError('unknown method')
 
         e = response.json().get('errors', None)
         if e:
