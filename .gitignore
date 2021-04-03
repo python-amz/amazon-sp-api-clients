@@ -5,4 +5,3 @@ __pycache__
 /.pytest_cache
 /.idea
 /.sp-api.sqlite
-/test_api_*.py
