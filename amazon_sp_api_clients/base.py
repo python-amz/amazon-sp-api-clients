@@ -5,6 +5,7 @@ import os
 import urllib
 from collections import OrderedDict
 from datetime import datetime
+from time import sleep
 from urllib.parse import urlparse
 
 import boto3
@@ -219,16 +220,26 @@ class BaseClient:
                         aws_secret_access_key=role.get('SecretAccessKey'),
                         region=self._region,
                         aws_session_token=role.get('SessionToken'))
-        if method == 'POST':
-            response = request(method, self._endpoint + path, data=json.dumps(data), headers=parsed_headers, auth=auth)
-        elif method == 'GET':
-            response = request(method, self._endpoint + path, params=params, headers=parsed_headers, auth=auth)
-        else:
-            raise ValueError('unknown method')
+        while True:
 
-        e = response.json().get('errors', None)
-        if e:
-            raise SellingApiException(e)
+            if method == 'POST':
+                response = request(method, self._endpoint + path, data=json.dumps(data), headers=parsed_headers,
+                                   auth=auth)
+            elif method == 'GET':
+                response = request(method, self._endpoint + path, params=params, headers=parsed_headers, auth=auth)
+            else:
+                raise ValueError('unknown method')
+
+            # If found error, and the error is QuotaExceed, just resend the request
+            e = response.json().get('errors', None)
+            if e:
+                if len(e) == 1 and 'code' in e[0] and e[0]['code'] in ('QuotaExceeded',):
+                    sleep(0.1)
+                    continue
+                else:
+                    raise SellingApiException(e)
+            else:
+                break
 
         if self.use_cache:
             cache_keys: RequestCache.KEYS_TYPE = (path, method, params, data, headers)
