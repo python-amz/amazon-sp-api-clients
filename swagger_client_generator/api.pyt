@@ -40,18 +40,43 @@ class {{ component_name }}(list, _List['{{ item_type }}']):
 {% endfor %}
 
 {% for component_name, component in alias_components.items() %}
-{{ component_name }} = {{ component.type }}
+class {{ component_name }}({{component.type}}):
+    pass
 {% endfor %}
 
 
 
 {% for component_name, component in parameters.items() %}
-{{ component_name }} = {{ component.type }}
+class {{ component_name }}({{component.type}}):
+    pass
 {% endfor %}
 
 
 {% for component_name, component in ref_components.items() %}
-{{ component_name }} = {{ component.type }}
+class {{ component_name }}({% for type in component.types %}{{ type }}, {% endfor %}):
+    def __init__(self, data):
+
+    {% for name, property in component.properties.items() %}
+        if '{{ name }}' in data:
+        {% set type = property.type %}
+        {% if type == 'list' %}
+            {% set item_type = property.item_type %}
+            self.{{ name }}: _List[{{ item_type }}] = [{{ item_type }}(datum) for datum in data.pop('{{ name }}')]
+        {% else %}
+            self.{{ name }}: {{ type }} = {{ type }}(data.pop('{{ name }}'))
+        {% endif %}
+        else:
+        {% if type == 'list' %}
+            {% set item_type = property.item_type %}
+            self.{{ name }}: _List[{{ item_type }}] = []
+        {% else %}
+            self.{{ name }}: {{ type }} = None
+        {% endif %}
+    {% endfor %}
+
+        self.data = data
+        super().__init__(data)
+
 {% endfor %}
 
 
@@ -60,6 +85,10 @@ class {{ component_name }}(list, _List['{{ item_type }}']):
 class {{ class_name }}Client(__BaseClient):
 {% for operation_name, operation in operations.items() %}
     def {{ operation_name }}(self,
+        {% if operation.request_body %}
+            data: {{ operation.request_body.type }},
+        {% endif %}
+
         {% for path_parameter_name, path_parameter in operation.path_parameters.items() %}
             {% set type = path_parameter.type %}
             {% if type == 'list' %}
@@ -96,20 +125,20 @@ class {{ class_name }}Client(__BaseClient):
                 {{ path_parameter_name }} = {{ path_parameter_name }},
             {% endfor %}
         )
-        data = {}
+        params = {}
         {% for query_parameter_name, query_parameter in operation.query_parameters.items() %}
         if {{ query_parameter_name }} is not None:
             {% set type = query_parameter.type %}
             {% if type == 'list' %}
-            data['{{ query_parameter_name }}'] = ','.join(map(str, {{ query_parameter_name }}))
+            params['{{ query_parameter_name }}'] = ','.join(map(str, {{ query_parameter_name }}))
             {% else %}
-            data['{{ query_parameter_name }}'] = {{ query_parameter_name }},
+            params['{{ query_parameter_name }}'] = {{ query_parameter_name }},
             {% endif %}
         {% endfor %}
         {% if operation.method == 'GET' %}
-        response = self.request(url, method='{{ operation.method }}', params=data)
+        response = self.request(url, method='{{ operation.method }}', params=params)
         {% else %}
-        response = self.request(url, method='{{ operation.method }}', data=data)
+        response = self.request(url, method='{{ operation.method }}', data=data.data)
         {% endif %}
         return {
             {% for status_code, response in operation.responses.items() %}

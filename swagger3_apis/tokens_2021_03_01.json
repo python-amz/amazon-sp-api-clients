@@ -1,0 +1,423 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Selling Partner API for Tokens ",
+        "description": "The Selling Partner API for Tokens provides a secure way to access a customers's PII (Personally Identifiable Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted resources that you specify. The RDT authorizes you to make subsequent requests to access these restricted resources.",
+        "contact": {
+            "name": "Selling Partner API Developer Support",
+            "url": "https://sellercentral.amazon.com/gp/mws/contactus.html"
+        },
+        "license": {
+            "name": "Apache License 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        },
+        "version": "2021-03-01"
+    },
+    "servers": [
+        {
+            "url": "https://sellingpartnerapi-na.amazon.com/"
+        }
+    ],
+    "paths": {
+        "/tokens/2021-03-01/restrictedDataToken": {
+            "post": {
+                "tags": [
+                    "tokens"
+                ],
+                "description": "Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII). See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.\n\nThe path of a restricted resource can be:\n- A specific path containing a seller's order ID, for example ```/orders/v0/orders/902-3159896-1390916/address```. The returned RDT authorizes a subsequent call to the getOrderAddress operation of the Orders API for that specific order only. For example, ```GET /orders/v0/orders/902-3159896-1390916/address```.\n- A generic path that does not contain a seller's order ID, for example```/orders/v0/orders/{orderId}/address```). The returned RDT authorizes subsequent calls to the getOrderAddress operation for *any* of a seller's order IDs. For example, ```GET /orders/v0/orders/902-3159896-1390916/address``` and ```GET /orders/v0/orders/483-3488972-0896720/address```\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 1 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "createRestrictedDataToken",
+                "requestBody": {
+                    "description": "The restricted data token request details.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateRestrictedDataTokenRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateRestrictedDataTokenResponse"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "body": {
+                                            "value": {
+                                                "restrictedResources": [
+                                                    {
+                                                        "method": "GET",
+                                                        "path": "/orders/v0/orders/{orderId}/address"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "restrictedDataToken": "Atz.sprdt|IQEBLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSR",
+                                    "expiresIn": 3600
+                                }
+                            },
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "body": {
+                                            "value": {
+                                                "restrictedResources": [
+                                                    {
+                                                        "method": "GET",
+                                                        "path": "/orders/v0/orders/943-12-123434/address"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "restrictedDataToken": "Atz.sprdt|AODFNESLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSR",
+                                    "expiresIn": 3600
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {
+                                        "body": {
+                                            "value": {
+                                                "restrictedResources": [
+                                                    {
+                                                        "method": "",
+                                                        "path": "/orders/v1/orders/902-1845936-5435065/address"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "response": {
+                                    "errors": [
+                                        {
+                                            "code": "InvalidRequest",
+                                            "message": "Request is missing or has invalid parameters",
+                                            "details": "Resource not provided."
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The specified resource does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateRestrictedDataTokenRequest": {
+                "required": [
+                    "restrictedResources"
+                ],
+                "type": "object",
+                "properties": {
+                    "restrictedResources": {
+                        "type": "array",
+                        "description": "A list of restricted resources.\nMaximum: 50",
+                        "items": {
+                            "$ref": "#/components/schemas/RestrictedResource"
+                        }
+                    }
+                },
+                "description": "The request schema for the createRestrictedDataToken operation."
+            },
+            "RestrictedResource": {
+                "required": [
+                    "method",
+                    "path"
+                ],
+                "type": "object",
+                "properties": {
+                    "method": {
+                        "type": "string",
+                        "description": "The HTTP method used with the restricted resource.",
+                        "enum": [
+                            "GET",
+                            "PUT",
+                            "POST",
+                            "DELETE"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "GET",
+                                "description": "The GET method."
+                            },
+                            {
+                                "value": "PUT",
+                                "description": "The PUT method."
+                            },
+                            {
+                                "value": "POST",
+                                "description": "The POST method."
+                            },
+                            {
+                                "value": "DELETE",
+                                "description": "The DELETE method."
+                            }
+                        ]
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The path from a restricted operation. This could be:\n\n- A specific path containing a seller's order ID, for example ```/orders/v0/orders/902-3159896-1390916/address```.\n\n- A generic path that does not contain a seller's order ID, for example```/orders/v0/orders/{orderId}/address```)."
+                    }
+                },
+                "description": "Model of a restricted resource."
+            },
+            "CreateRestrictedDataTokenResponse": {
+                "type": "object",
+                "properties": {
+                    "restrictedDataToken": {
+                        "type": "string",
+                        "description": "A Restricted Data Token (RDT). This is a short-lived access token that authorizes you to access the restricted resources that you specified. Pass this value with the x-amzn-access-token header when making subsequent calls to these restricted resources."
+                    },
+                    "expiresIn": {
+                        "type": "integer",
+                        "description": "The lifetime of the Restricted Data Token, in seconds."
+                    }
+                },
+                "description": "The response schema for the createRestrictedDataToken operation."
+            },
+            "Error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": "An error code that identifies the type of error that occurred."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A message that describes the error condition."
+                    },
+                    "details": {
+                        "type": "string",
+                        "description": "Additional details that can help the caller understand or fix the issue."
+                    }
+                },
+                "description": "An error response returned when the request is unsuccessful."
+            },
+            "ErrorList": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                },
+                "description": "A list of error responses returned when a request is unsuccessful."
+            }
+        }
+    }
+}

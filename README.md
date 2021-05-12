@@ -5,6 +5,12 @@ This is a package generated from amazon selling partner open api models.
 This package is for my personal usage, and may not be a good package,
 but enough for myself.
 
+## Attention
+
+V1.0.0 changes many api, compared with v0.x.x!
+
+注意！V1.0.0相较于v0.x.x更改了大量的API！
+
 ## Features
 
 * ready to use;
@@ -22,12 +28,9 @@ please contact and pay me and I will provide technical support.
 
 For technical support, please contact [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com).
 
+Previously this lib is only open access but not open source, and now it's time to make it public to serve more people.
 
-由于这个库目前不打算接受社区的协助，而且主要是用于我的个人使用，
-因此我将这个库设置成了私有库。
-您可以免费从pypi安装并使用这个库，
-但是如果您想生成一个新的客户端以适应您的业务逻辑，
-我可以为您提供付费技术支持。
+If there's any bug, please fell free to open an issue or send a pr. 
 
 商业合作请联系 [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com)。
 
@@ -65,7 +68,7 @@ def test_api():
         lwa_client_key=client_id,
         lwa_client_secret=client_secret,
     )
-    order_client = amazon_sp_api_clients.orders.OrdersClient(**client_config, use_cache=True)
+    order_client = amazon_sp_api_clients.OrdersV0Client(**client_config, use_cache=True)
 
     orders = order_client.getOrders(
         MarketplaceIds=[marketplace_id],

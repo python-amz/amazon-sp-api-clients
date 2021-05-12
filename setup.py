@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="amazon-sp-api-clients",
-    version="0.1.6",
+    version="1.0.0",
     author="Haoyu Pan",
     author_email="panhaoyu.china@outlook.com",
     description="Amazon selling partner api clients.",

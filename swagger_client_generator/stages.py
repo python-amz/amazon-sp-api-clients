@@ -112,7 +112,22 @@ def stage_5_ref_components(data: dict):
     parsed_components = {}
     for component_name, component_data in components.items():
         parsed_component = parsed_components.setdefault(component_name, {})
-        parsed_component['type'] = parse_type(component_data['$ref'])
+        extra_properties = parsed_component.setdefault('properties', {})
+        base_types = parsed_component.setdefault('base_types', [])
+        if '$ref' in component_data:
+            base_types.append(parse_type(component_data['$ref']))
+        elif 'allOf' in component_data:
+            for datum in component_data['allOf']:
+                if '$ref' in datum:
+                    base_types.append(parse_type(datum['$ref']))
+                elif datum['type'] == 'object':
+                    for k, v in datum['properties'].items():
+                        property_obj = extra_properties.setdefault(k, {})
+                        property_obj['type'] = parse_type(v['$ref'])
+                else:
+                    raise NotImplementedError
+        else:
+            raise NotImplementedError
     return parsed_components
 
 
@@ -122,6 +137,18 @@ def stage_6_operations(data: dict):
     for url, url_data in paths.items():
         for method, method_data in url_data.items():
             parsed_operation_data = parsed_operations.setdefault(method_data['operationId'], {})
+            # parse_type(method_data['requestBody']['content']['application/json']['schema']['$ref'])
+            if method == 'post' and 'requestBody' in method_data:
+                request_body = method_data['requestBody']
+                assert 'content' in request_body
+                request_body_content = request_body['content']
+                assert set(request_body_content.keys()) == {'application/json'}
+                request_body_json = request_body_content['application/json']
+                assert set(request_body_json.keys()) == {'schema'}
+                request_body_schema = request_body_json['schema']
+                assert '$ref' in request_body_schema
+                request_body_type = parse_type(request_body_schema['$ref'])
+                parsed_operation_data.setdefault('request_body', {}).setdefault('type', request_body_type)
             parsed_operation_data['url'] = url
             parsed_operation_data['method'] = method.upper()
 
@@ -186,12 +213,11 @@ def render(module: str, data: dict, template: Template = None):
         template_path = path.join(path.dirname(path.abspath(__file__)), 'api.pyt') if template is None else template
         with open(template_path, 'r', encoding='utf-8') as f:
             template = Template(f.read())
-    return template.render(
-        class_name=class_name,
-        dict_components=stage_1_dict_components(data),
-        list_components=stage_2_list_components(data),
-        alias_components=stage_3_alias_components(data),
-        parameters=stage_4_parameters(data),
-        ref_components=stage_5_ref_components(data),
-        operations=stage_6_operations(data),
-    )
+    context = dict(class_name=class_name,
+                   dict_components=stage_1_dict_components(data),
+                   list_components=stage_2_list_components(data),
+                   alias_components=stage_3_alias_components(data),
+                   parameters=stage_4_parameters(data),
+                   ref_components=stage_5_ref_components(data),
+                   operations=stage_6_operations(data))
+    return context, template.render(**context)
