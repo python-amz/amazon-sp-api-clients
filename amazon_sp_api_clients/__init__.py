@@ -1,3 +1,4 @@
+from .marketplaces import MarketPlaces
 from .aplus_content_2020_11_01 import AplusContent20201101Client
 from .authorization_v1 import AuthorizationV1Client
 from .catalog_items_2020_12_01 import CatalogItems20201201Client
