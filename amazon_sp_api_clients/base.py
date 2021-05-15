@@ -6,6 +6,7 @@ import urllib
 from collections import OrderedDict
 from datetime import datetime
 from time import sleep
+from typing import Union
 from urllib.parse import urlparse
 
 import boto3
@@ -74,7 +75,13 @@ class AWSSigV4(AuthBase):
             payload_hash = hashlib.sha256(''.encode('utf-8')).hexdigest()
         else:
             if r.body:
-                payload_hash = hashlib.sha256(r.body.encode('utf-8')).hexdigest()
+                if isinstance(r.body, str):
+                    payload_hash = hashlib.sha256(r.body.encode('utf-8')).hexdigest()
+                elif isinstance(r.body, bytes):
+                    payload_hash = hashlib.sha256(r.body).hexdigest()
+                else:
+                    raise TypeError('r.body type should be str or bytes')
+
             else:
                 payload_hash = hashlib.sha256(''.encode('utf-8')).hexdigest()
 
@@ -187,12 +194,20 @@ class BaseClient:
             self._access_token_cache[refresh_token] = access_token
         return self._access_token_cache[refresh_token]
 
-    def request(self, path: str, *, data: dict = None, params: dict = None, headers=None, method='GET') -> Response:
+    def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
+                method='GET') -> Response:
 
         parsed_params = {}
-        parsed_data = {}
+        parsed_data: bytes = b''
         params is None or parsed_params.update(params)
-        data is None or parsed_data.update(data)
+        if data is None:
+            parsed_data = json.dumps({}).encode()
+        elif isinstance(data, dict):
+            parsed_data = json.dumps(data).encode()
+        elif isinstance(data, bytes):
+            parsed_data = data
+        else:
+            raise TypeError('data should be a dict or bytes')
 
         if self.use_cache:
             cache_keys: RequestCache.KEYS_TYPE = (path, method, params, data, headers)
@@ -223,7 +238,7 @@ class BaseClient:
         while True:
 
             if method == 'POST':
-                response = request(method, self._endpoint + path, data=json.dumps(data), headers=parsed_headers,
+                response = request(method, self._endpoint + path, data=parsed_data, headers=parsed_headers,
                                    auth=auth)
             elif method == 'GET':
                 response = request(method, self._endpoint + path, params=params, headers=parsed_headers, auth=auth)
