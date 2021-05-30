@@ -5,3 +5,4 @@ __pycache__
 /.pytest_cache
 /.idea
 /.sp-api.sqlite
+/tests/client_config.py
