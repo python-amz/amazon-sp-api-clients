@@ -52,7 +52,8 @@ def test_generate_clients():
 
     path.exists('amazon_sp_api_clients') and shutil.rmtree('amazon_sp_api_clients')
     shutil.copytree('amazon_sp_api_static', 'amazon_sp_api_clients')
-
+    with open('amazon_sp_api_clients/__init__.py', mode='r', encoding='utf-8') as f:
+        init_lines = f.readlines()
     for src_path in map(Path, glob(str(base_dir / 'swagger3_apis/*.json'))):
         module_name = src_path.stem
 
@@ -74,9 +75,12 @@ def test_generate_clients():
             traceback.print_tb(e.__traceback__)
             raise
         package_name = path.split(path.splitext(src_path)[0])[1]
-        with open('amazon_sp_api_clients/__init__.py', mode='a', encoding='utf-8') as f:
-            f.write(f'from .{package_name} import {context["class_name"]}Client\n')
-    return
+
+        init_lines.insert(0, f'from .{package_name} import {context["class_name"]}Client\n')
+    init_content = ''.join(init_lines)
+    init_content = black.format_str(init_content, mode=black.Mode(line_length=120))
+    with open('amazon_sp_api_clients/__init__.py', mode='w', encoding='utf-8') as f:
+        f.write(init_content)
 
 
 def test_upload():

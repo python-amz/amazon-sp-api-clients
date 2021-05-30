@@ -1,17 +1,19 @@
 import setuptools
 
+import amazon_sp_api_clients
+
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="amazon-sp-api-clients",
-    version="1.1.1",
-    author="Haoyu Pan",
-    author_email="panhaoyu.china@outlook.com",
-    description="Amazon selling partner api clients.",
+    version=amazon_sp_api_clients.version,
+    author=amazon_sp_api_clients.author,
+    author_email=amazon_sp_api_clients.author_email,
+    description=amazon_sp_api_clients.description,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/panhaoyu/sp-api-clients",
+    url=amazon_sp_api_clients.url,
     packages=['amazon_sp_api_clients'],
     install_requires=[
         'peewee',
