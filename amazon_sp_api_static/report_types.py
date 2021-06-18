@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from enum import IntEnum, Enum
 
 
-class _ReportTypeGroup(IntEnum):
+class ReportTypeGroup(IntEnum):
     inventory_reports = 1
     order_reports = 2
     order_tracking_reports = 3
@@ -24,6 +24,10 @@ class _ReportTypeGroup(IntEnum):
     amazon_pay_report = 13
     b2b_product_opportunities_reports = 14
 
+    @property
+    def reports(self):
+        return (report for report in ReportType if report.group == self)
+
 
 @dataclass
 class __ReportTypeDefinition:
@@ -36,8 +40,8 @@ class __ReportTypeDefinition:
         return self.group_index * 100 + self.report_index
 
     @property
-    def group(self) -> _ReportTypeGroup:
-        return _ReportTypeGroup(self.group_index)
+    def group(self) -> ReportTypeGroup:
+        return ReportTypeGroup(self.group_index)
 
 
 class ReportType(__ReportTypeDefinition, Enum):

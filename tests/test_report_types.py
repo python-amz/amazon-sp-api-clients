@@ -1,4 +1,4 @@
-from amazon_sp_api_static.report_types import ReportType, _ReportTypeGroup
+from amazon_sp_api_static.report_types import ReportType, ReportTypeGroup
 
 
 def test_types():
@@ -7,4 +7,10 @@ def test_types():
     assert t.index == 103
     assert t.name == 'active_listings_report'
     assert t.upload_name == 'GET_MERCHANT_LISTINGS_DATA'
-    assert t.group == _ReportTypeGroup.inventory_reports
+    assert t.group == ReportTypeGroup.inventory_reports
+
+
+def test_query_type_from_group():
+    for group in ReportTypeGroup:
+        for r in group.reports:
+            assert isinstance(r.index, int)
