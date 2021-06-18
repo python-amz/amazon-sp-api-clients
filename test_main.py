@@ -6,9 +6,13 @@ import traceback
 from glob import glob
 from os import path
 from pathlib import Path
+from pprint import pprint
 
 import black
 import requests
+from bs4 import BeautifulSoup, Tag
+from jinja2 import Template
+from markdown import markdown
 
 from swagger_client_generator.stages import render
 
@@ -45,6 +49,57 @@ def test_convert_to_open_api_3():
             dst = dst_dir / f'{module}_{version}.json'
             with open(dst, 'w', encoding='utf-8') as f:
                 json.dump(content, f, indent=4)
+
+
+def test_get_parse_report_markdown():
+    url = 'https://raw.githubusercontent.com/amzn/selling-partner-api-docs/main' \
+          '/references/reports-api/reportType_string_array_values.md'
+    text = requests.get(url).text
+    with open('report_types.md', 'w', encoding='utf-8') as f:
+        f.write(text)
+
+
+def test_parse_reports():
+    with open('report_types.md', 'r', encoding='utf-8') as f:
+        text = f.read()
+    html = markdown(text)
+    soup = BeautifulSoup(html)
+    print()
+    groups: dict[str, dict[str, str]] = {}
+    for i in soup.select('h2'):
+        i: Tag
+        group_name = i.text.lower().replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_')
+        group_name = re.sub(r'_+', '_', group_name)
+
+        for row in i.find_next('table').select('tr td:first-child'):
+            row: Tag
+            lines = row.text.splitlines()
+            if len(lines) == 1:
+                continue
+            report_name = lines[0]
+            if lines[-1].startswith('reportType value: '):
+                report_type_slug = lines[-1].split('reportType value: ', maxsplit=1)[1]
+            elif lines[-2] == 'reportType value:':
+                report_type_slug = lines[-1]
+            else:
+                raise
+            report_name = report_name.lower().replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_')
+            report_name = re.sub(r'_+', '_', report_name)
+
+            groups.setdefault(group_name, {}).setdefault(report_name, report_type_slug)
+
+    template_path = Path(__file__).parent.absolute() / 'swagger_client_generator' / 'report_types.pyt'
+    with open(template_path, 'r', encoding='utf-8') as f:
+        template = Template(f.read())
+    content = template.render(groups=groups)
+    content = black.format_str(content, mode=black.Mode(line_length=120))
+    for _ in range(5):
+        content = content.replace('\n\n', '\n')
+    content = black.format_str(content, mode=black.Mode(line_length=120))
+    with open('amazon_sp_api_static/report_types.py', 'w', encoding='utf-8') as f:
+        f.write(content)
+    with open('amazon_sp_api_clients/report_types.py', 'w', encoding='utf-8') as f:
+        f.write(content)
 
 
 def test_generate_clients():

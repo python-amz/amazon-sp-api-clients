@@ -9,3 +9,4 @@ wheel
 twine
 pycryptodome
 beautifulsoup4
+markdown

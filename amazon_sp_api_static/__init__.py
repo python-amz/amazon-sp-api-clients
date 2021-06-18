@@ -1,6 +1,6 @@
 from .marketplaces import MarketPlaces
 
-version = '1.1.2'
+version = '1.2.0'
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"

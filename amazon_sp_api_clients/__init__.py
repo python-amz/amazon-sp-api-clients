@@ -36,7 +36,7 @@ from .authorization_v1 import AuthorizationV1Client
 from .aplus_content_2020_11_01 import AplusContent20201101Client
 from .marketplaces import MarketPlaces
 
-version = "1.1.2"
+version = "1.2.0"
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"
