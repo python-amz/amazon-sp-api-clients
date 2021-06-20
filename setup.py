@@ -20,6 +20,7 @@ setuptools.setup(
         'cachetools',
         'requests',
         'boto3',
+        'pycryptodome',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
