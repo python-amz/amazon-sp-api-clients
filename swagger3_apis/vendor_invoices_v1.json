@@ -73,8 +73,19 @@
                                             "value": {
                                                 "invoices": [
                                                     {
+                                                        "id": "TestInvoice202",
+                                                        "date": "2020-06-08T12:00:00.000Z",
+                                                        "billToParty": {
+                                                            "partyId": "TES1"
+                                                        },
                                                         "invoiceType": "Invoice",
-                                                        "id": "TestInvoice202"
+                                                        "remitToParty": {
+                                                            "partyId": "ABCDE"
+                                                        },
+                                                        "invoiceTotal": {
+                                                            "amount": "112.05",
+                                                            "currencyCode": "USD"
+                                                        }
                                                     }
                                                 ]
                                             }
@@ -167,6 +178,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }

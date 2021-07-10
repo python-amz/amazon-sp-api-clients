@@ -286,6 +286,90 @@ class ItemVendorDetailsByMarketplace:
             self.subcategoryCode: str = None
 
 
+class ItemSearchResults:
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "numberOfResults" in data:
+            self.numberOfResults: int = int(data["numberOfResults"])
+        else:
+            self.numberOfResults: int = None
+        if "pagination" in data:
+            self.pagination: Pagination = Pagination(data["pagination"])
+        else:
+            self.pagination: Pagination = None
+        if "refinements" in data:
+            self.refinements: Refinements = Refinements(data["refinements"])
+        else:
+            self.refinements: Refinements = None
+        if "items" in data:
+            self.items: _List[Item] = [Item(datum) for datum in data["items"]]
+        else:
+            self.items: _List[Item] = []
+
+
+class Pagination:
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "nextToken" in data:
+            self.nextToken: str = str(data["nextToken"])
+        else:
+            self.nextToken: str = None
+        if "previousToken" in data:
+            self.previousToken: str = str(data["previousToken"])
+        else:
+            self.previousToken: str = None
+
+
+class Refinements:
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "brands" in data:
+            self.brands: _List[BrandRefinement] = [BrandRefinement(datum) for datum in data["brands"]]
+        else:
+            self.brands: _List[BrandRefinement] = []
+        if "classifications" in data:
+            self.classifications: _List[ClassificationRefinement] = [
+                ClassificationRefinement(datum) for datum in data["classifications"]
+            ]
+        else:
+            self.classifications: _List[ClassificationRefinement] = []
+
+
+class BrandRefinement:
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "numberOfResults" in data:
+            self.numberOfResults: int = int(data["numberOfResults"])
+        else:
+            self.numberOfResults: int = None
+        if "brandName" in data:
+            self.brandName: str = str(data["brandName"])
+        else:
+            self.brandName: str = None
+
+
+class ClassificationRefinement:
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "numberOfResults" in data:
+            self.numberOfResults: int = int(data["numberOfResults"])
+        else:
+            self.numberOfResults: int = None
+        if "displayName" in data:
+            self.displayName: str = str(data["displayName"])
+        else:
+            self.displayName: str = None
+        if "classificationId" in data:
+            self.classificationId: str = str(data["classificationId"])
+        else:
+            self.classificationId: str = None
+
+
 class ItemIdentifiers(list, _List["ItemIdentifiersByMarketplace"]):
     def __init__(self, data):
         super().__init__([ItemIdentifiersByMarketplace(datum) for datum in data])
@@ -333,11 +417,57 @@ class ItemAsin(str):
 
 
 class CatalogItems20201201Client(__BaseClient):
+    def searchCatalogItems(
+        self,
+        keywords: _List[str],
+        marketplaceIds: _List[str],
+        includedData: _List[str] = None,
+        brandNames: _List[str] = None,
+        classificationIds: _List[str] = None,
+        pageSize: int = None,
+        pageToken: str = None,
+        keywordsLocale: str = None,
+        locale: str = None,
+    ):
+        url = "/catalog/2020-12-01/items".format()
+        params = {}
+        if keywords is not None:
+            params["keywords"] = ",".join(map(str, keywords))
+        if marketplaceIds is not None:
+            params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
+        if includedData is not None:
+            params["includedData"] = ",".join(map(str, includedData))
+        if brandNames is not None:
+            params["brandNames"] = ",".join(map(str, brandNames))
+        if classificationIds is not None:
+            params["classificationIds"] = ",".join(map(str, classificationIds))
+        if pageSize is not None:
+            params["pageSize"] = (pageSize,)
+        if pageToken is not None:
+            params["pageToken"] = (pageToken,)
+        if keywordsLocale is not None:
+            params["keywordsLocale"] = (keywordsLocale,)
+        if locale is not None:
+            params["locale"] = (locale,)
+        response = self.request(url, method="GET", params=params)
+        return {
+            200: ItemSearchResults,
+            400: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            413: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }[response.status_code](response.json())
+
     def getCatalogItem(
         self,
         asin: str,
         marketplaceIds: _List[str],
         includedData: _List[str] = None,
+        locale: str = None,
     ):
         url = "/catalog/2020-12-01/items/{asin}".format(
             asin=asin,
@@ -347,6 +477,8 @@ class CatalogItems20201201Client(__BaseClient):
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if includedData is not None:
             params["includedData"] = ",".join(map(str, includedData))
+        if locale is not None:
+            params["locale"] = (locale,)
         response = self.request(url, method="GET", params=params)
         return {
             200: Item,

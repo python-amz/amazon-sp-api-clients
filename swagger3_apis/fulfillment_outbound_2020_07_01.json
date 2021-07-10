@@ -45,6 +45,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -97,7 +103,11 @@
                                             "featureConstraints": [
                                                 {
                                                     "featureName": "BLANK_BOX",
-                                                    "featureFulfillmentPolicy": "REQUIRED"
+                                                    "featureFulfillmentPolicy": "NotRequired"
+                                                },
+                                                {
+                                                    "featureName": "BLOCK_AMZL",
+                                                    "featureFulfillmentPolicy": "Required"
                                                 }
                                             ]
                                         }
@@ -133,7 +143,11 @@
                                                 "featureConstraints": [
                                                     {
                                                         "featureName": "BLANK_BOX",
-                                                        "featureFulfillmentPolicy": "REQUIRED"
+                                                        "featureFulfillmentPolicy": "Required"
+                                                    },
+                                                    {
+                                                        "featureName": "BLOCK_AMZL",
+                                                        "featureFulfillmentPolicy": "Required"
                                                     }
                                                 ]
                                             }
@@ -184,7 +198,11 @@
                                                 "featureConstraints": [
                                                     {
                                                         "featureName": "BLANK_BOX",
-                                                        "featureFulfillmentPolicy": "REQUIRED"
+                                                        "featureFulfillmentPolicy": "Required"
+                                                    },
+                                                    {
+                                                        "featureName": "BLOCK_AMZL",
+                                                        "featureFulfillmentPolicy": "Required"
                                                     }
                                                 ]
                                             }
@@ -199,6 +217,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -259,6 +283,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -295,6 +325,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -310,6 +346,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -331,6 +373,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -346,6 +394,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -398,6 +452,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -432,7 +492,11 @@
                                             "featureConstraints": [
                                                 {
                                                     "featureName": "BLANK_BOX",
-                                                    "featureFulfillmentPolicy": "REQUIRED"
+                                                    "featureFulfillmentPolicy": "Required"
+                                                },
+                                                {
+                                                    "featureName": "BLOCK_AMZL",
+                                                    "featureFulfillmentPolicy": "Required"
                                                 }
                                             ]
                                         },
@@ -495,7 +559,11 @@
                                                 "featureConstraints": [
                                                     {
                                                         "featureName": "BLANK_BOX",
-                                                        "featureFulfillmentPolicy": "NOT_REQUIRED"
+                                                        "featureFulfillmentPolicy": "NotRequired"
+                                                    },
+                                                    {
+                                                        "featureName": "BLOCK_AMZL",
+                                                        "featureFulfillmentPolicy": "NotRequired"
                                                     }
                                                 ]
                                             },
@@ -522,7 +590,11 @@
                                                 "featureConstraints": [
                                                     {
                                                         "featureName": "BLANK_BOX",
-                                                        "featureFulfillmentPolicy": "REQUIRED"
+                                                        "featureFulfillmentPolicy": "NotRequired"
+                                                    },
+                                                    {
+                                                        "featureName": "BLOCK_AMZL",
+                                                        "featureFulfillmentPolicy": "Required"
                                                     }
                                                 ]
                                             },
@@ -834,6 +906,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -869,6 +947,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -908,6 +992,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -923,6 +1013,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -944,6 +1040,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -959,6 +1061,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -996,6 +1104,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1079,6 +1193,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1241,6 +1361,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1277,6 +1403,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1292,6 +1424,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1313,6 +1451,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1328,6 +1472,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1370,6 +1520,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1479,6 +1635,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1514,6 +1676,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1553,6 +1721,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1568,6 +1742,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1589,6 +1769,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1604,6 +1790,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1669,6 +1861,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1812,6 +2010,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1847,6 +2051,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1886,6 +2096,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1901,6 +2117,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1922,6 +2144,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1937,6 +2165,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1987,6 +2221,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2099,6 +2339,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2150,6 +2396,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2165,6 +2417,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2186,6 +2444,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2201,6 +2465,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2222,6 +2492,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2237,6 +2513,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2279,6 +2561,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2490,6 +2778,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2525,6 +2819,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2564,6 +2864,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2579,6 +2885,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2600,6 +2912,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2615,6 +2933,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2667,6 +2991,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2715,6 +3045,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2777,6 +3113,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2813,6 +3155,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2828,6 +3176,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2849,6 +3203,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2864,6 +3224,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2909,6 +3275,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2936,6 +3308,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2977,6 +3355,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3013,6 +3397,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3028,6 +3418,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3049,6 +3445,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3064,6 +3466,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3104,6 +3512,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3164,6 +3578,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3199,6 +3619,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3238,6 +3664,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3253,6 +3685,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3274,6 +3712,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3289,6 +3733,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3346,6 +3796,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3437,6 +3893,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3472,6 +3934,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3511,6 +3979,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3526,6 +4000,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3547,6 +4027,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3562,6 +4048,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3620,6 +4112,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3706,6 +4204,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3741,6 +4245,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3780,6 +4290,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3795,6 +4311,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3816,6 +4338,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -3831,6 +4359,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -6171,7 +6705,7 @@
                         ]
                     }
                 },
-                "description": "Settings to apply to an order that includes the specified fulfillment feature."
+                "description": "FeatureSettings allows users to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, use featureName as BLOCK_AMZL and featureFulfillmentPolicy as Required. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using BLOCK_AMZL in an order request will take precedence over your Seller Central account setting."
             }
         }
     }

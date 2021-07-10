@@ -24,6 +24,10 @@ class GetOrderResponse:
             self.payload: Order = Order(data["payload"])
         else:
             self.payload: Order = None
+        if "errors" in data:
+            self.errors: ErrorList = ErrorList(data["errors"])
+        else:
+            self.errors: ErrorList = None
 
 
 class OrderList:

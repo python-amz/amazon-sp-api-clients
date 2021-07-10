@@ -256,6 +256,18 @@ class Order:
             self.FulfillmentInstruction: FulfillmentInstruction = FulfillmentInstruction(data["FulfillmentInstruction"])
         else:
             self.FulfillmentInstruction: FulfillmentInstruction = None
+        if "IsISPU" in data:
+            self.IsISPU: bool = bool(data["IsISPU"])
+        else:
+            self.IsISPU: bool = None
+        if "MarketplaceTaxInfo" in data:
+            self.MarketplaceTaxInfo: MarketplaceTaxInfo = MarketplaceTaxInfo(data["MarketplaceTaxInfo"])
+        else:
+            self.MarketplaceTaxInfo: MarketplaceTaxInfo = None
+        if "SellerDisplayName" in data:
+            self.SellerDisplayName: str = str(data["SellerDisplayName"])
+        else:
+            self.SellerDisplayName: str = None
 
 
 class OrderBuyerInfo:
@@ -400,6 +412,18 @@ class BuyerTaxInfo:
             self.TaxingRegion: str = str(data["TaxingRegion"])
         else:
             self.TaxingRegion: str = None
+        if "TaxClassifications" in data:
+            self.TaxClassifications: _List[TaxClassification] = [
+                TaxClassification(datum) for datum in data["TaxClassifications"]
+            ]
+        else:
+            self.TaxClassifications: _List[TaxClassification] = []
+
+
+class MarketplaceTaxInfo:
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
         if "TaxClassifications" in data:
             self.TaxClassifications: _List[TaxClassification] = [
                 TaxClassification(datum) for datum in data["TaxClassifications"]
@@ -564,6 +588,10 @@ class OrderItem:
             self.IossNumber: str = str(data["IossNumber"])
         else:
             self.IossNumber: str = None
+        if "StoreChainStoreId" in data:
+            self.StoreChainStoreId: str = str(data["StoreChainStoreId"])
+        else:
+            self.StoreChainStoreId: str = None
         if "DeemedResellerCategory" in data:
             self.DeemedResellerCategory: str = str(data["DeemedResellerCategory"])
         else:
@@ -753,6 +781,9 @@ class OrdersV0Client(__BaseClient):
         EasyShipShipmentStatuses: _List[str] = None,
         NextToken: str = None,
         AmazonOrderIds: _List[str] = None,
+        ActualFulfillmentSupplySourceId: str = None,
+        IsISPU: bool = None,
+        StoreChainStoreId: str = None,
     ):
         url = "/orders/v0/orders".format()
         params = {}
@@ -784,6 +815,12 @@ class OrdersV0Client(__BaseClient):
             params["NextToken"] = (NextToken,)
         if AmazonOrderIds is not None:
             params["AmazonOrderIds"] = ",".join(map(str, AmazonOrderIds))
+        if ActualFulfillmentSupplySourceId is not None:
+            params["ActualFulfillmentSupplySourceId"] = (ActualFulfillmentSupplySourceId,)
+        if IsISPU is not None:
+            params["IsISPU"] = (IsISPU,)
+        if StoreChainStoreId is not None:
+            params["StoreChainStoreId"] = (StoreChainStoreId,)
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOrdersResponse,

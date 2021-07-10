@@ -199,6 +199,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -375,7 +381,7 @@
                 "properties": {
                     "restrictedDataToken": {
                         "type": "string",
-                        "description": "A Restricted Data Token (RDT). This is a short-lived access token that authorizes you to access the restricted resources that you specified. Pass this value with the x-amzn-access-token header when making subsequent calls to these restricted resources."
+                        "description": "A Restricted Data Token (RDT). This is a short-lived access token that authorizes you to access the restricted resources that you specified. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources."
                     },
                     "expiresIn": {
                         "type": "integer",

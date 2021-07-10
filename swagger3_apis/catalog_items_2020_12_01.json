@@ -19,6 +19,621 @@
         }
     ],
     "paths": {
+        "/catalog/2020-12-01/items": {
+            "get": {
+                "tags": [
+                    "catalog"
+                ],
+                "description": "Search for and return a list of Amazon catalog items and associated information.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 1 | 5 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "searchCatalogItems",
+                "parameters": [
+                    {
+                        "name": "keywords",
+                        "in": "query",
+                        "description": "A comma-delimited list of words or item identifiers to search the Amazon catalog for.",
+                        "required": true,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "shoes"
+                    },
+                    {
+                        "name": "marketplaceIds",
+                        "in": "query",
+                        "description": "A comma-delimited list of Amazon marketplace identifiers for the request.",
+                        "required": true,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "maxItems": 1,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "ATVPDKIKX0DER"
+                    },
+                    {
+                        "name": "includedData",
+                        "in": "query",
+                        "description": "A comma-delimited list of data sets to include in the response. Default: summaries.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "identifiers",
+                                    "images",
+                                    "productTypes",
+                                    "salesRanks",
+                                    "summaries",
+                                    "variations",
+                                    "vendorDetails"
+                                ],
+                                "x-docgen-enum-table-extension": [
+                                    {
+                                        "value": "identifiers",
+                                        "description": "Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers."
+                                    },
+                                    {
+                                        "value": "images",
+                                        "description": "Images for an item in the Amazon catalog. All image variants are provided to brand owners; a thumbnail of the \"MAIN\" image variant is provided otherwise."
+                                    },
+                                    {
+                                        "value": "productTypes",
+                                        "description": "Product types associated with the Amazon catalog item."
+                                    },
+                                    {
+                                        "value": "salesRanks",
+                                        "description": "Sales ranks of an Amazon catalog item."
+                                    },
+                                    {
+                                        "value": "summaries",
+                                        "description": "Summary details of an Amazon catalog item."
+                                    },
+                                    {
+                                        "value": "variations",
+                                        "description": "Variation details of an Amazon catalog item (variation relationships)."
+                                    },
+                                    {
+                                        "value": "vendorDetails",
+                                        "description": "Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only."
+                                    }
+                                ]
+                            }
+                        },
+                        "example": "summaries"
+                    },
+                    {
+                        "name": "brandNames",
+                        "in": "query",
+                        "description": "A comma-delimited list of brand names to limit the search to.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "Beautiful Boats"
+                    },
+                    {
+                        "name": "classificationIds",
+                        "in": "query",
+                        "description": "A comma-delimited list of classification identifiers to limit the search to.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "12345678"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of results to be returned per page.",
+                        "schema": {
+                            "maximum": 20,
+                            "type": "integer",
+                            "default": 10
+                        },
+                        "example": 9
+                    },
+                    {
+                        "name": "pageToken",
+                        "in": "query",
+                        "description": "A token to fetch a certain page when there are multiple pages worth of results.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "sdlkj234lkj234lksjdflkjwdflkjsfdlkj234234234234"
+                    },
+                    {
+                        "name": "keywordsLocale",
+                        "in": "query",
+                        "description": "The language the keywords are provided in. Defaults to the primary locale of the marketplace.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en_US"
+                    },
+                    {
+                        "name": "locale",
+                        "in": "query",
+                        "description": "Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en_US"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ItemSearchResults"
+                                },
+                                "example": {
+                                    "numberOfResults": 3097,
+                                    "pagination": {
+                                        "nextPage": "xsdflkj324lkjsdlkj3423klkjsdfkljlk2j34klj2l3k4jlksdjl234",
+                                        "previousPage": "ilkjsdflkj234lkjds234234lkjl234lksjdflkj234234lkjsfsdflkj333d"
+                                    },
+                                    "refinements": {
+                                        "brands": [
+                                            {
+                                                "numberOfResults": 1,
+                                                "brandName": "Truly Teague"
+                                            },
+                                            {
+                                                "numberOfResults": 20,
+                                                "brandName": "Always Awesome Apparel"
+                                            }
+                                        ],
+                                        "categories": [
+                                            {
+                                                "numberOfResults": 300,
+                                                "displayName": "Electronics",
+                                                "classificationId": "493964"
+                                            },
+                                            {
+                                                "numberOfResults": 4000,
+                                                "displayName": "Tools & Home Improvement",
+                                                "classificationId": "468240"
+                                            }
+                                        ]
+                                    },
+                                    "items": [
+                                        {
+                                            "asin": "B07N4M94X4",
+                                            "identifiers": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "identifiers": [
+                                                        {
+                                                            "type": "ean",
+                                                            "identifier": "0887276302195"
+                                                        },
+                                                        {
+                                                            "type": "upc",
+                                                            "identifier": "887276302195"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "images": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "images": [
+                                                        {
+                                                            "variant": "MAIN",
+                                                            "link": "https://m.media-amazon.com/images/I/51DZzp3w3vL.jpg",
+                                                            "height": 333,
+                                                            "width": 500
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "productTypes": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "productType": "TELEVISION"
+                                                }
+                                            ],
+                                            "salesRanks": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "ranks": [
+                                                        {
+                                                            "title": "OLED TVs",
+                                                            "link": "http://www.amazon.com/gp/bestsellers/electronics/6463520011",
+                                                            "rank": 3
+                                                        },
+                                                        {
+                                                            "title": "Electronics",
+                                                            "link": "http://www.amazon.com/gp/bestsellers/electronics",
+                                                            "rank": 1544
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "summaries": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "brandName": "Samsung Electronics",
+                                                    "browseNode": "6463520011",
+                                                    "colorName": "Black",
+                                                    "itemName": "Samsung QN82Q60RAFXZA Flat 82-Inch QLED 4K Q60 Series (2019) Ultra HD Smart TV with HDR and Alexa Compatibility",
+                                                    "manufacturer": "Samsung",
+                                                    "modelNumber": "QN82Q60RAFXZA",
+                                                    "sizeName": "82-Inch",
+                                                    "styleName": "TV only"
+                                                }
+                                            ],
+                                            "variations": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "asins": [
+                                                        "B08J7TQ9FL"
+                                                    ],
+                                                    "type": "PARENT"
+                                                }
+                                            ],
+                                            "vendorDetails": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "brandCode": "SAMF9",
+                                                    "categoryCode": "50400100",
+                                                    "manufacturerCode": "SAMF9",
+                                                    "manufacturerCodeParent": "SAMF9",
+                                                    "productGroup": "Home Entertainment",
+                                                    "replenishmentCategory": "NEW_PRODUCT",
+                                                    "subcategoryCode": "50400150"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "x-amazon-spds-sandbox-behaviors": [
+                            {
+                                "request": {
+                                    "parameters": {}
+                                },
+                                "response": {
+                                    "numberOfResults": 12247,
+                                    "pagination": {
+                                        "nextToken": "9HkIVcuuPmX_bm51o3-igBfN45pxW4Ru7ElIM6GCECYCuXJKzT26f-AlJJZYjIPp8wkOEmQdma1wt_JvE7qiRmNsKy7hH"
+                                    },
+                                    "refinements": {
+                                        "brands": [
+                                            {
+                                                "numberOfResults": 91,
+                                                "brandName": "Polo Ralph Lauren"
+                                            },
+                                            {
+                                                "numberOfResults": 79,
+                                                "brandName": "Eddie Bauer"
+                                            },
+                                            {
+                                                "numberOfResults": 46,
+                                                "brandName": "Cutter & Buck"
+                                            },
+                                            {
+                                                "numberOfResults": 39,
+                                                "brandName": "FILA"
+                                            },
+                                            {
+                                                "numberOfResults": 37,
+                                                "brandName": "Orvis"
+                                            }
+                                        ],
+                                        "classifications": [
+                                            {
+                                                "numberOfResults": 1243,
+                                                "displayName": "Clothing, Shoes & Jewelry",
+                                                "classificationId": "7141124011"
+                                            },
+                                            {
+                                                "numberOfResults": 126,
+                                                "displayName": "Sports & Outdoors",
+                                                "classificationId": "3375301"
+                                            }
+                                        ]
+                                    },
+                                    "items": [
+                                        {
+                                            "asin": "B002N36Q3M",
+                                            "summaries": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "brandName": "Fred Perry",
+                                                    "colorName": "Wht/Brt Red/Nvy",
+                                                    "itemName": "Fred Perry Men's Twin Tipped Polo Shirt-M1200, WHT/BRT RED/NVY, X-Large",
+                                                    "manufacturer": "Fred Perry Men's Apparel",
+                                                    "modelNumber": "M1200",
+                                                    "sizeName": "X-Large",
+                                                    "styleName": "Twin Tipped Polo Shirt-m1200"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "asin": "B002N3ABSI",
+                                            "summaries": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "brandName": "Fred Perry",
+                                                    "colorName": "White/Bright Red/Navy",
+                                                    "itemName": "Fred Perry Men's Twin Tipped Polo, White/Bright Red/Navy, SM",
+                                                    "manufacturer": "Fred Perry Apparel Mens",
+                                                    "modelNumber": "M1200-748",
+                                                    "sizeName": "SM",
+                                                    "styleName": "Twin Tipped Fred Perry Polo"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "asin": "B01N5B3598",
+                                            "summaries": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "brandName": "NHL",
+                                                    "colorName": "Red",
+                                                    "itemName": "NHL New Jersey Devils Men's Polo, Small, Red",
+                                                    "manufacturer": "Knight's Apparel",
+                                                    "modelNumber": "H0MEE3ZAMZ",
+                                                    "sizeName": "Small"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "asin": "B00HIVDUXI",
+                                            "summaries": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "brandName": "adidas",
+                                                    "colorName": "Bold Red/White",
+                                                    "itemName": "Adidas Golf Men's Puremotion Textured Stripe Polo, Bold Red/White, Large",
+                                                    "manufacturer": "TaylorMade - Adidas Golf Apparel",
+                                                    "modelNumber": "TM3010S4",
+                                                    "sizeName": "Large"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "asin": "B005ZZ12YS",
+                                            "summaries": [
+                                                {
+                                                    "marketplaceId": "ATVPDKIKX0DER",
+                                                    "brandName": "RALPH LAUREN",
+                                                    "colorName": "Black / Red Pony",
+                                                    "itemName": "Polo Ralph Lauren Men's Long-sleeved T-shirt / Sleepwear / Thermal in Black, Red Pony (Large / L)",
+                                                    "sizeName": "Large"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/catalog/2020-12-01/items/{asin}": {
             "get": {
                 "tags": [
@@ -54,7 +669,7 @@
                     {
                         "name": "includedData",
                         "in": "query",
-                        "description": "A comma-delimited list of data sets to include in the response.",
+                        "description": "A comma-delimited list of data sets to include in the response. Default: summaries.",
                         "style": "form",
                         "explode": false,
                         "schema": {
@@ -74,7 +689,7 @@
                                 "x-docgen-enum-table-extension": [
                                     {
                                         "value": "attributes",
-                                        "description": "A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners."
+                                        "description": "A JSON object containing structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related Amazon product type definitions available in the Selling Partner API for Product Type Definitions."
                                     },
                                     {
                                         "value": "identifiers",
@@ -108,6 +723,15 @@
                             }
                         },
                         "example": "summaries"
+                    },
+                    {
+                        "name": "locale",
+                        "in": "query",
+                        "description": "Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en_US"
                     }
                 ],
                 "responses": {
@@ -368,6 +992,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -583,7 +1213,7 @@
             },
             "ItemAttributes": {
                 "type": "object",
-                "description": "A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners."
+                "description": "A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions."
             },
             "ItemIdentifiers": {
                 "type": "array",
@@ -1015,6 +1645,114 @@
                     }
                 },
                 "description": "Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace."
+            },
+            "ItemSearchResults": {
+                "required": [
+                    "items",
+                    "numberOfResults",
+                    "pagination",
+                    "refinements"
+                ],
+                "type": "object",
+                "properties": {
+                    "numberOfResults": {
+                        "type": "integer",
+                        "description": "The estimated total number of products matched by the search query (only results up to the page count limit will be returned per request regardless of the number found).\n\nNote: The maximum number of items (ASINs) that can be returned and paged through is 1000."
+                    },
+                    "pagination": {
+                        "$ref": "#/components/schemas/Pagination"
+                    },
+                    "refinements": {
+                        "$ref": "#/components/schemas/Refinements"
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "A list of items from the Amazon catalog.",
+                        "items": {
+                            "$ref": "#/components/schemas/Item"
+                        }
+                    }
+                },
+                "description": "Items in the Amazon catalog and search related metadata."
+            },
+            "Pagination": {
+                "type": "object",
+                "properties": {
+                    "nextToken": {
+                        "type": "string",
+                        "description": "A token that can be used to fetch the next page."
+                    },
+                    "previousToken": {
+                        "type": "string",
+                        "description": "A token that can be used to fetch the previous page."
+                    }
+                },
+                "description": "When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object."
+            },
+            "Refinements": {
+                "required": [
+                    "brands",
+                    "classifications"
+                ],
+                "type": "object",
+                "properties": {
+                    "brands": {
+                        "type": "array",
+                        "description": "Brand search refinements.",
+                        "items": {
+                            "$ref": "#/components/schemas/BrandRefinement"
+                        }
+                    },
+                    "classifications": {
+                        "type": "array",
+                        "description": "Classification search refinements.",
+                        "items": {
+                            "$ref": "#/components/schemas/ClassificationRefinement"
+                        }
+                    }
+                },
+                "description": "Search refinements."
+            },
+            "BrandRefinement": {
+                "required": [
+                    "brandName",
+                    "numberOfResults"
+                ],
+                "type": "object",
+                "properties": {
+                    "numberOfResults": {
+                        "type": "integer",
+                        "description": "The estimated number of results that would still be returned if refinement key applied."
+                    },
+                    "brandName": {
+                        "type": "string",
+                        "description": "Brand name. For display and can be used as a search refinement."
+                    }
+                },
+                "description": "Description of a brand that can be used to get more fine-grained search results."
+            },
+            "ClassificationRefinement": {
+                "required": [
+                    "classificationId",
+                    "displayName",
+                    "numberOfResults"
+                ],
+                "type": "object",
+                "properties": {
+                    "numberOfResults": {
+                        "type": "integer",
+                        "description": "The estimated number of results that would still be returned if refinement key applied."
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "Display name for the classification."
+                    },
+                    "classificationId": {
+                        "type": "string",
+                        "description": "Identifier for the classification that can be used for search refinement purposes."
+                    }
+                },
+                "description": "Description of a classification that can be used to get more fine-grained search results."
             }
         }
     }

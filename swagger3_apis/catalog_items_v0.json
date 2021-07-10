@@ -24,7 +24,7 @@
                 "tags": [
                     "catalog"
                 ],
-                "description": "Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value. MarketplaceId is always required.\n\nThis operation returns a maximum of ten products and does not return non-buyable products.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 6 | 40 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value.\n\nMarketplaceId is always required. At least one of Query, SellerSKU, UPC, EAN, ISBN, JAN is also required.\n\nThis operation returns a maximum of ten products and does not return non-buyable products.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 6 | 40 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "listCatalogItems",
                 "parameters": [
                     {
@@ -385,6 +385,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -445,6 +451,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -463,6 +475,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -478,6 +496,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -766,6 +790,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -826,6 +856,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -844,6 +880,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -859,6 +901,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1016,6 +1064,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1076,6 +1130,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1094,6 +1154,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1109,6 +1175,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1940,7 +2012,7 @@
                     },
                     "SellerPositiveFeedbackRating": {
                         "type": "string",
-                        "description": "(98-100%, 95-97%, 90-94%, 80-89%, 70-79%, Less than 70%, or Just launched ) \ufffd Indicates the percentage of feedback ratings that were positive over the past 12 months."
+                        "description": "(98-100%, 95-97%, 90-94%, 80-89%, 70-79%, Less than 70%, or Just launched ) \u2013 Indicates the percentage of feedback ratings that were positive over the past 12 months."
                     }
                 }
             },
@@ -1949,7 +2021,7 @@
                 "properties": {
                     "Max": {
                         "type": "string",
-                        "description": "(0-2 days, 3-7 days, 8-13 days, or 14 or more days) \ufffd Indicates the maximum time within which the item will likely be shipped once an order has been placed."
+                        "description": "(0-2 days, 3-7 days, 8-13 days, or 14 or more days) \u2013 Indicates the maximum time within which the item will likely be shipped once an order has been placed."
                     }
                 }
             },

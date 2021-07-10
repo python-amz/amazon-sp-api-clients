@@ -76,7 +76,30 @@
                                             "value": {
                                                 "shipmentConfirmations": [
                                                     {
-                                                        "shipmentIdentifier": "TestShipmentConfirmation202"
+                                                        "shipmentIdentifier": "TestShipmentConfirmation202",
+                                                        "shipmentConfirmationDate": "2021-03-11T12:38:23.388Z",
+                                                        "sellingParty": {
+                                                            "partyId": "ABCD1"
+                                                        },
+                                                        "shipFromParty": {
+                                                            "partyId": "EFGH1"
+                                                        },
+                                                        "shipToParty": {
+                                                            "partyId": "JKL1"
+                                                        },
+                                                        "shipmentConfirmationType": "Original",
+                                                        "shippedItems": [
+                                                            {
+                                                                "itemSequenceNumber": "001",
+                                                                "shippedQuantity": {
+                                                                    "amount": 100,
+                                                                    "unitOfMeasure": "Eaches"
+                                                                },
+                                                                "itemDetails": {
+                                                                    "purchaseOrderNumber": "TestOrder202"
+                                                                }
+                                                            }
+                                                        ]
                                                     }
                                                 ]
                                             }
@@ -150,6 +173,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }

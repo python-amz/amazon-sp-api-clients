@@ -1130,7 +1130,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1603,7 +1603,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1770,7 +1770,30 @@
                                             "value": {
                                                 "acknowledgements": [
                                                     {
-                                                        "purchaseOrderNumber": "TestOrder202"
+                                                        "purchaseOrderNumber": "TestOrder202",
+                                                        "sellingParty": {
+                                                            "partyId": "API01"
+                                                        },
+                                                        "acknowledgementDate": "2021-03-12T17:35:26.308Z",
+                                                        "items": [
+                                                            {
+                                                                "vendorProductIdentifier": "028877454078",
+                                                                "orderedQuantity": {
+                                                                    "amount": 10
+                                                                },
+                                                                "netCost": {
+                                                                    "amount": "10.2"
+                                                                },
+                                                                "itemAcknowledgements": [
+                                                                    {
+                                                                        "acknowledgementCode": "Accepted",
+                                                                        "acknowledgedQuantity": {
+                                                                            "amount": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
                                                     }
                                                 ]
                                             }
@@ -1882,7 +1905,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2893,7 +2916,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }

@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Selling Partner API for Uploads",
-        "description": "The Selling Partner API for Uploads provides operations that support uploading files.",
+        "description": "The Uploads API lets you upload files that you can programmatically access using other Selling Partner APIs, such as the A+ Content API and the Messaging API.",
         "contact": {
             "name": "Selling Partner API Developer Support",
             "url": "https://sellercentral.amazon.com/gp/mws/contactus.html"
@@ -24,7 +24,7 @@
                 "tags": [
                     "uploads"
                 ],
-                "description": "Creates an upload destination for a resource that you specify and returns the information required to upload to that destination.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| .1 | 5 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Creates an upload destination, returning the information required to upload a file to the destination and to programmatically access the file.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| .1 | 5 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "createUploadDestinationForResource",
                 "parameters": [
                     {
@@ -54,7 +54,7 @@
                     {
                         "name": "resource",
                         "in": "path",
-                        "description": "The URL of the resource for the upload destination that you are creating. For example, to create an upload destination for a Buyer-Seller Messaging message, the {resource} would be /messaging and the path would be  /uploads/v1/uploadDestinations/messaging",
+                        "description": "The resource for the upload destination that you are creating. For example, if you are creating an upload destination for the createLegalDisclosure operation of the Messaging API, the {resource} would be /messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure, and the entire path would be /uploads/2020-11-01/uploadDestinations/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -75,8 +75,14 @@
                     "201": {
                         "description": "Success.",
                         "headers": {
-                            "x-amzn-requestId": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "TPS rate customer is authorized for.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -105,6 +111,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "TPS rate customer is authorized for.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -144,6 +156,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -159,6 +177,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "TPS rate customer is authorized for.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -180,6 +204,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "TPS rate customer is authorized for.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -195,6 +225,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "TPS rate customer is authorized for.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -216,6 +252,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "TPS rate customer is authorized for.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -231,6 +273,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "TPS rate customer is authorized for.",
                                 "schema": {
                                     "type": "string"
                                 }

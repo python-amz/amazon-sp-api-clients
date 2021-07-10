@@ -206,6 +206,22 @@ class CompetitivePriceType:
             self.subcondition: str = str(data["subcondition"])
         else:
             self.subcondition: str = None
+        if "offerType" in data:
+            self.offerType: OfferCustomerType = OfferCustomerType(data["offerType"])
+        else:
+            self.offerType: OfferCustomerType = None
+        if "quantityTier" in data:
+            self.quantityTier: int = int(data["quantityTier"])
+        else:
+            self.quantityTier: int = None
+        if "quantityDiscountType" in data:
+            self.quantityDiscountType: QuantityDiscountType = QuantityDiscountType(data["quantityDiscountType"])
+        else:
+            self.quantityDiscountType: QuantityDiscountType = None
+        if "sellerId" in data:
+            self.sellerId: str = str(data["sellerId"])
+        else:
+            self.sellerId: str = None
         if "belongsToRequester" in data:
             self.belongsToRequester: bool = bool(data["belongsToRequester"])
         else:
@@ -280,6 +296,10 @@ class OfferType:
     def __init__(self, data):
         super().__init__()
         self.data = data
+        if "offerType" in data:
+            self.offerType: OfferCustomerType = OfferCustomerType(data["offerType"])
+        else:
+            self.offerType: OfferCustomerType = None
         if "BuyingPrice" in data:
             self.BuyingPrice: PriceType = PriceType(data["BuyingPrice"])
         else:
@@ -288,6 +308,16 @@ class OfferType:
             self.RegularPrice: MoneyType = MoneyType(data["RegularPrice"])
         else:
             self.RegularPrice: MoneyType = None
+        if "businessPrice" in data:
+            self.businessPrice: MoneyType = MoneyType(data["businessPrice"])
+        else:
+            self.businessPrice: MoneyType = None
+        if "quantityDiscountPrices" in data:
+            self.quantityDiscountPrices: _List[QuantityDiscountPriceType] = [
+                QuantityDiscountPriceType(datum) for datum in data["quantityDiscountPrices"]
+            ]
+        else:
+            self.quantityDiscountPrices: _List[QuantityDiscountPriceType] = []
         if "FulfillmentChannel" in data:
             self.FulfillmentChannel: str = str(data["FulfillmentChannel"])
         else:
@@ -304,6 +334,24 @@ class OfferType:
             self.SellerSKU: str = str(data["SellerSKU"])
         else:
             self.SellerSKU: str = None
+
+
+class QuantityDiscountPriceType:
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "quantityTier" in data:
+            self.quantityTier: int = int(data["quantityTier"])
+        else:
+            self.quantityTier: int = None
+        if "quantityDiscountType" in data:
+            self.quantityDiscountType: QuantityDiscountType = QuantityDiscountType(data["quantityDiscountType"])
+        else:
+            self.quantityDiscountType: QuantityDiscountType = None
+        if "price" in data:
+            self.price: MoneyType = MoneyType(data["price"])
+        else:
+            self.price: MoneyType = None
 
 
 class Points:
@@ -410,6 +458,18 @@ class LowestPriceType:
             self.fulfillmentChannel: str = str(data["fulfillmentChannel"])
         else:
             self.fulfillmentChannel: str = None
+        if "offerType" in data:
+            self.offerType: OfferCustomerType = OfferCustomerType(data["offerType"])
+        else:
+            self.offerType: OfferCustomerType = None
+        if "quantityTier" in data:
+            self.quantityTier: int = int(data["quantityTier"])
+        else:
+            self.quantityTier: int = None
+        if "quantityDiscountType" in data:
+            self.quantityDiscountType: QuantityDiscountType = QuantityDiscountType(data["quantityDiscountType"])
+        else:
+            self.quantityDiscountType: QuantityDiscountType = None
         if "LandedPrice" in data:
             self.LandedPrice: MoneyType = MoneyType(data["LandedPrice"])
         else:
@@ -436,6 +496,18 @@ class BuyBoxPriceType:
             self.condition: str = str(data["condition"])
         else:
             self.condition: str = None
+        if "offerType" in data:
+            self.offerType: OfferCustomerType = OfferCustomerType(data["offerType"])
+        else:
+            self.offerType: OfferCustomerType = None
+        if "quantityTier" in data:
+            self.quantityTier: int = int(data["quantityTier"])
+        else:
+            self.quantityTier: int = None
+        if "quantityDiscountType" in data:
+            self.quantityDiscountType: QuantityDiscountType = QuantityDiscountType(data["quantityDiscountType"])
+        else:
+            self.quantityDiscountType: QuantityDiscountType = None
         if "LandedPrice" in data:
             self.LandedPrice: MoneyType = MoneyType(data["LandedPrice"])
         else:
@@ -452,16 +524,28 @@ class BuyBoxPriceType:
             self.Points: Points = Points(data["Points"])
         else:
             self.Points: Points = None
+        if "sellerId" in data:
+            self.sellerId: str = str(data["sellerId"])
+        else:
+            self.sellerId: str = None
 
 
 class OfferDetail:
     def __init__(self, data):
         super().__init__()
         self.data = data
+        if "sellerId" in data:
+            self.sellerId: str = str(data["sellerId"])
+        else:
+            self.sellerId: str = None
         if "MyOffer" in data:
             self.MyOffer: bool = bool(data["MyOffer"])
         else:
             self.MyOffer: bool = None
+        if "offerType" in data:
+            self.offerType: OfferCustomerType = OfferCustomerType(data["offerType"])
+        else:
+            self.offerType: OfferCustomerType = None
         if "SubCondition" in data:
             self.SubCondition: str = str(data["SubCondition"])
         else:
@@ -478,6 +562,12 @@ class OfferDetail:
             self.ListingPrice: MoneyType = MoneyType(data["ListingPrice"])
         else:
             self.ListingPrice: MoneyType = None
+        if "quantityDiscountPrices" in data:
+            self.quantityDiscountPrices: _List[QuantityDiscountPriceType] = [
+                QuantityDiscountPriceType(datum) for datum in data["quantityDiscountPrices"]
+            ]
+        else:
+            self.quantityDiscountPrices: _List[QuantityDiscountPriceType] = []
         if "Points" in data:
             self.Points: Points = Points(data["Points"])
         else:
@@ -650,6 +740,14 @@ class ErrorList(list, _List["Error"]):
         self.data = data
 
 
+class OfferCustomerType(str):
+    pass
+
+
+class QuantityDiscountType(str):
+    pass
+
+
 class ConditionType(str):
     pass
 
@@ -666,6 +764,7 @@ class ProductPricingV0Client(__BaseClient):
         Asins: _List[str] = None,
         Skus: _List[str] = None,
         ItemCondition: str = None,
+        OfferType: str = None,
     ):
         url = "/products/pricing/v0/price".format()
         params = {}
@@ -679,6 +778,8 @@ class ProductPricingV0Client(__BaseClient):
             params["ItemType"] = (ItemType,)
         if ItemCondition is not None:
             params["ItemCondition"] = (ItemCondition,)
+        if OfferType is not None:
+            params["OfferType"] = (OfferType,)
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPricingResponse,
@@ -697,6 +798,7 @@ class ProductPricingV0Client(__BaseClient):
         ItemType: str,
         Asins: _List[str] = None,
         Skus: _List[str] = None,
+        CustomerType: str = None,
     ):
         url = "/products/pricing/v0/competitivePrice".format()
         params = {}
@@ -708,6 +810,8 @@ class ProductPricingV0Client(__BaseClient):
             params["Skus"] = ",".join(map(str, Skus))
         if ItemType is not None:
             params["ItemType"] = (ItemType,)
+        if CustomerType is not None:
+            params["CustomerType"] = (CustomerType,)
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPricingResponse,
@@ -725,6 +829,7 @@ class ProductPricingV0Client(__BaseClient):
         SellerSKU: str,
         MarketplaceId: str,
         ItemCondition: str,
+        CustomerType: str = None,
     ):
         url = "/products/pricing/v0/listings/{SellerSKU}/offers".format(
             SellerSKU=SellerSKU,
@@ -734,6 +839,8 @@ class ProductPricingV0Client(__BaseClient):
             params["MarketplaceId"] = (MarketplaceId,)
         if ItemCondition is not None:
             params["ItemCondition"] = (ItemCondition,)
+        if CustomerType is not None:
+            params["CustomerType"] = (CustomerType,)
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOffersResponse,
@@ -751,6 +858,7 @@ class ProductPricingV0Client(__BaseClient):
         Asin: str,
         MarketplaceId: str,
         ItemCondition: str,
+        CustomerType: str = None,
     ):
         url = "/products/pricing/v0/items/{Asin}/offers".format(
             Asin=Asin,
@@ -760,6 +868,8 @@ class ProductPricingV0Client(__BaseClient):
             params["MarketplaceId"] = (MarketplaceId,)
         if ItemCondition is not None:
             params["ItemCondition"] = (ItemCondition,)
+        if CustomerType is not None:
+            params["CustomerType"] = (CustomerType,)
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOffersResponse,
