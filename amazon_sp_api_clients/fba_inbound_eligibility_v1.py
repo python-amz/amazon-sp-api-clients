@@ -91,4 +91,4 @@ class FbaInboundEligibilityV1Client(__BaseClient):
             429: GetItemEligibilityPreviewResponse,
             500: GetItemEligibilityPreviewResponse,
             503: GetItemEligibilityPreviewResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

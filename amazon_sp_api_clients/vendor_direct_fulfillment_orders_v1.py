@@ -568,7 +568,7 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: GetOrdersResponse,
             500: GetOrdersResponse,
             503: GetOrdersResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getOrder(
         self,
@@ -589,7 +589,7 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: GetOrderResponse,
             500: GetOrderResponse,
             503: GetOrderResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def submitAcknowledgement(
         self,
@@ -608,4 +608,4 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: SubmitAcknowledgementResponse,
             500: SubmitAcknowledgementResponse,
             503: SubmitAcknowledgementResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

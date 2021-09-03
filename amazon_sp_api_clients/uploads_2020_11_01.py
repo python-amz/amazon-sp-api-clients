@@ -87,4 +87,4 @@ class Uploads20201101Client(__BaseClient):
             429: CreateUploadDestinationResponse,
             500: CreateUploadDestinationResponse,
             503: CreateUploadDestinationResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

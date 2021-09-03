@@ -830,7 +830,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrdersResponse,
             500: GetOrdersResponse,
             503: GetOrdersResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getOrder(
         self,
@@ -849,7 +849,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderResponse,
             500: GetOrderResponse,
             503: GetOrderResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getOrderBuyerInfo(
         self,
@@ -868,7 +868,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderBuyerInfoResponse,
             500: GetOrderBuyerInfoResponse,
             503: GetOrderBuyerInfoResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getOrderAddress(
         self,
@@ -887,7 +887,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderAddressResponse,
             500: GetOrderAddressResponse,
             503: GetOrderAddressResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getOrderItems(
         self,
@@ -909,7 +909,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderItemsResponse,
             500: GetOrderItemsResponse,
             503: GetOrderItemsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getOrderItemsBuyerInfo(
         self,
@@ -931,4 +931,4 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderItemsBuyerInfoResponse,
             500: GetOrderItemsBuyerInfoResponse,
             503: GetOrderItemsBuyerInfoResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

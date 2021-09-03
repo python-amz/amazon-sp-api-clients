@@ -76,4 +76,4 @@ class AuthorizationV1Client(__BaseClient):
             429: GetAuthorizationCodeResponse,
             500: GetAuthorizationCodeResponse,
             503: GetAuthorizationCodeResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

@@ -468,4 +468,4 @@ class VendorInvoicesV1Client(__BaseClient):
             429: SubmitInvoicesResponse,
             500: SubmitInvoicesResponse,
             503: SubmitInvoicesResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

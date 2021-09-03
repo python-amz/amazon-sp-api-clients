@@ -646,4 +646,4 @@ class VendorShipmentsV1Client(__BaseClient):
             429: SubmitShipmentConfirmationsResponse,
             500: SubmitShipmentConfirmationsResponse,
             503: SubmitShipmentConfirmationsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

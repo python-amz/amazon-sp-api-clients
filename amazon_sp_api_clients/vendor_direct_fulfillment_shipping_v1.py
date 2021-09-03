@@ -778,7 +778,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetShippingLabelListResponse,
             500: GetShippingLabelListResponse,
             503: GetShippingLabelListResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def submitShippingLabelRequest(
         self,
@@ -797,7 +797,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: SubmitShippingLabelsResponse,
             500: SubmitShippingLabelsResponse,
             503: SubmitShippingLabelsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getShippingLabel(
         self,
@@ -818,7 +818,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetShippingLabelResponse,
             500: GetShippingLabelResponse,
             503: GetShippingLabelResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def submitShipmentConfirmations(
         self,
@@ -837,7 +837,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: SubmitShipmentConfirmationsResponse,
             500: SubmitShipmentConfirmationsResponse,
             503: SubmitShipmentConfirmationsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def submitShipmentStatusUpdates(
         self,
@@ -856,7 +856,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: SubmitShipmentStatusUpdatesResponse,
             500: SubmitShipmentStatusUpdatesResponse,
             503: SubmitShipmentStatusUpdatesResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getCustomerInvoices(
         self,
@@ -891,7 +891,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetCustomerInvoiceResponse,
             500: GetCustomerInvoiceResponse,
             503: GetCustomerInvoiceResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getCustomerInvoice(
         self,
@@ -912,7 +912,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetCustomerInvoiceResponse,
             500: GetCustomerInvoiceResponse,
             503: GetCustomerInvoiceResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getPackingSlips(
         self,
@@ -948,7 +948,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetPackingSlipListResponse,
             500: GetPackingSlipListResponse,
             503: GetPackingSlipListResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getPackingSlip(
         self,
@@ -969,4 +969,4 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetPackingSlipResponse,
             500: GetPackingSlipResponse,
             503: GetPackingSlipResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

@@ -296,7 +296,7 @@ class NotificationsV1Client(__BaseClient):
             429: GetSubscriptionResponse,
             500: GetSubscriptionResponse,
             503: GetSubscriptionResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def createSubscription(
         self,
@@ -319,7 +319,7 @@ class NotificationsV1Client(__BaseClient):
             429: CreateSubscriptionResponse,
             500: CreateSubscriptionResponse,
             503: CreateSubscriptionResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getSubscriptionById(
         self,
@@ -343,7 +343,7 @@ class NotificationsV1Client(__BaseClient):
             429: GetSubscriptionByIdResponse,
             500: GetSubscriptionByIdResponse,
             503: GetSubscriptionByIdResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def deleteSubscriptionById(
         self,
@@ -367,7 +367,7 @@ class NotificationsV1Client(__BaseClient):
             429: DeleteSubscriptionByIdResponse,
             500: DeleteSubscriptionByIdResponse,
             503: DeleteSubscriptionByIdResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getDestinations(
         self,
@@ -386,7 +386,7 @@ class NotificationsV1Client(__BaseClient):
             429: GetDestinationsResponse,
             500: GetDestinationsResponse,
             503: GetDestinationsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def createDestination(
         self,
@@ -406,7 +406,7 @@ class NotificationsV1Client(__BaseClient):
             429: CreateDestinationResponse,
             500: CreateDestinationResponse,
             503: CreateDestinationResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getDestination(
         self,
@@ -428,7 +428,7 @@ class NotificationsV1Client(__BaseClient):
             429: GetDestinationResponse,
             500: GetDestinationResponse,
             503: GetDestinationResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def deleteDestination(
         self,
@@ -450,4 +450,4 @@ class NotificationsV1Client(__BaseClient):
             429: DeleteDestinationResponse,
             500: DeleteDestinationResponse,
             503: DeleteDestinationResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

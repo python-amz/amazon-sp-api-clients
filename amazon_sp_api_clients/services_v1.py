@@ -551,7 +551,7 @@ class ServicesV1Client(__BaseClient):
             429: GetServiceJobByServiceJobIdResponse,
             500: GetServiceJobByServiceJobIdResponse,
             503: GetServiceJobByServiceJobIdResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def cancelServiceJobByServiceJobId(
         self,
@@ -576,7 +576,7 @@ class ServicesV1Client(__BaseClient):
             429: CancelServiceJobByServiceJobIdResponse,
             500: CancelServiceJobByServiceJobIdResponse,
             503: CancelServiceJobByServiceJobIdResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def completeServiceJobByServiceJobId(
         self,
@@ -598,7 +598,7 @@ class ServicesV1Client(__BaseClient):
             429: CompleteServiceJobByServiceJobIdResponse,
             500: CompleteServiceJobByServiceJobIdResponse,
             503: CompleteServiceJobByServiceJobIdResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getServiceJobs(
         self,
@@ -655,7 +655,7 @@ class ServicesV1Client(__BaseClient):
             429: GetServiceJobsResponse,
             500: GetServiceJobsResponse,
             503: GetServiceJobsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def addAppointmentForServiceJobByServiceJobId(
         self,
@@ -678,7 +678,7 @@ class ServicesV1Client(__BaseClient):
             429: SetAppointmentResponse,
             500: SetAppointmentResponse,
             503: SetAppointmentResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def rescheduleAppointmentForServiceJobByServiceJobId(
         self,
@@ -703,4 +703,4 @@ class ServicesV1Client(__BaseClient):
             429: SetAppointmentResponse,
             500: SetAppointmentResponse,
             503: SetAppointmentResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

@@ -196,7 +196,7 @@ class BaseClient:
         return self._access_token_cache[refresh_token]
 
     @staticmethod
-    def __get_response_json(response: requests.Response):
+    def _get_response_json(response: requests.Response):
         try:
             return response.json()
         except json.JSONDecodeError:
@@ -254,7 +254,7 @@ class BaseClient:
                 raise ValueError('unknown method')
 
             # If found error, and the error is QuotaExceed, just resend the request
-            e = self.__get_response_json(response).get('errors', None)
+            e = self._get_response_json(response).get('errors', None)
             if e:
                 if len(e) == 1 and 'code' in e[0] and e[0]['code'] in ('QuotaExceeded',):
                     sleep(0.1)

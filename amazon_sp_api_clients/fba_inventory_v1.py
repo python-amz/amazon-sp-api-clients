@@ -282,4 +282,4 @@ class FbaInventoryV1Client(__BaseClient):
             429: GetInventorySummariesResponse,
             500: GetInventorySummariesResponse,
             503: GetInventorySummariesResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

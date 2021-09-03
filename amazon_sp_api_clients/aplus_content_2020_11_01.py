@@ -1135,7 +1135,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def createContentDocument(
         self,
@@ -1156,7 +1156,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getContentDocument(
         self,
@@ -1183,7 +1183,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def updateContentDocument(
         self,
@@ -1208,7 +1208,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def listContentDocumentAsinRelations(
         self,
@@ -1241,7 +1241,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def postContentDocumentAsinRelations(
         self,
@@ -1266,7 +1266,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def validateContentDocumentAsinRelations(
         self,
@@ -1290,7 +1290,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def searchContentPublishRecords(
         self,
@@ -1316,7 +1316,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def postContentDocumentApprovalSubmission(
         self,
@@ -1340,7 +1340,7 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def postContentDocumentSuspendSubmission(
         self,
@@ -1364,4 +1364,4 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

@@ -40,7 +40,7 @@ from .aplus_content_2020_11_01 import AplusContent20201101Client
 from .marketplaces import MarketPlaces
 from .report_types import ReportType, ReportTypeGroup
 
-version = "1.4.0"
+version = "1.4.1"
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"

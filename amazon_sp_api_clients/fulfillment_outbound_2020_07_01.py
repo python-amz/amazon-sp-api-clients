@@ -1625,7 +1625,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: GetFulfillmentPreviewResponse,
             500: GetFulfillmentPreviewResponse,
             503: GetFulfillmentPreviewResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def listAllFulfillmentOrders(
         self,
@@ -1648,7 +1648,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: ListAllFulfillmentOrdersResponse,
             500: ListAllFulfillmentOrdersResponse,
             503: ListAllFulfillmentOrdersResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def createFulfillmentOrder(
         self,
@@ -1666,7 +1666,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: CreateFulfillmentOrderResponse,
             500: CreateFulfillmentOrderResponse,
             503: CreateFulfillmentOrderResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getPackageTrackingDetails(
         self,
@@ -1686,7 +1686,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: GetPackageTrackingDetailsResponse,
             500: GetPackageTrackingDetailsResponse,
             503: GetPackageTrackingDetailsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def listReturnReasonCodes(
         self,
@@ -1715,7 +1715,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: ListReturnReasonCodesResponse,
             500: ListReturnReasonCodesResponse,
             503: ListReturnReasonCodesResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def createFulfillmentReturn(
         self,
@@ -1735,7 +1735,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: CreateFulfillmentReturnResponse,
             500: CreateFulfillmentReturnResponse,
             503: CreateFulfillmentReturnResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getFulfillmentOrder(
         self,
@@ -1755,7 +1755,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: GetFulfillmentOrderResponse,
             500: GetFulfillmentOrderResponse,
             503: GetFulfillmentOrderResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def updateFulfillmentOrder(
         self,
@@ -1775,7 +1775,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: UpdateFulfillmentOrderResponse,
             500: UpdateFulfillmentOrderResponse,
             503: UpdateFulfillmentOrderResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def cancelFulfillmentOrder(
         self,
@@ -1795,7 +1795,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: CancelFulfillmentOrderResponse,
             500: CancelFulfillmentOrderResponse,
             503: CancelFulfillmentOrderResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getFeatures(
         self,
@@ -1815,7 +1815,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: GetFeaturesResponse,
             500: GetFeaturesResponse,
             503: GetFeaturesResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getFeatureInventory(
         self,
@@ -1841,7 +1841,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: GetFeatureInventoryResponse,
             500: GetFeatureInventoryResponse,
             503: GetFeatureInventoryResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getFeatureSKU(
         self,
@@ -1866,4 +1866,4 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             429: GetFeatureSkuResponse,
             500: GetFeatureSkuResponse,
             503: GetFeatureSkuResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

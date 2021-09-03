@@ -896,7 +896,7 @@ class CatalogItemsV0Client(__BaseClient):
             429: ListCatalogItemsResponse,
             500: ListCatalogItemsResponse,
             503: ListCatalogItemsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getCatalogItem(
         self,
@@ -919,7 +919,7 @@ class CatalogItemsV0Client(__BaseClient):
             429: GetCatalogItemResponse,
             500: GetCatalogItemResponse,
             503: GetCatalogItemResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def listCatalogCategories(
         self,
@@ -945,4 +945,4 @@ class CatalogItemsV0Client(__BaseClient):
             429: ListCatalogCategoriesResponse,
             500: ListCatalogCategoriesResponse,
             503: ListCatalogCategoriesResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))

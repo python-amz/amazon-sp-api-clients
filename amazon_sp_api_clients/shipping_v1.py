@@ -889,7 +889,7 @@ class ShippingV1Client(__BaseClient):
             429: CreateShipmentResponse,
             500: CreateShipmentResponse,
             503: CreateShipmentResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getShipment(
         self,
@@ -909,7 +909,7 @@ class ShippingV1Client(__BaseClient):
             429: GetShipmentResponse,
             500: GetShipmentResponse,
             503: GetShipmentResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def cancelShipment(
         self,
@@ -929,7 +929,7 @@ class ShippingV1Client(__BaseClient):
             429: CancelShipmentResponse,
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def purchaseLabels(
         self,
@@ -950,7 +950,7 @@ class ShippingV1Client(__BaseClient):
             429: PurchaseLabelsResponse,
             500: PurchaseLabelsResponse,
             503: PurchaseLabelsResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def retrieveShippingLabel(
         self,
@@ -973,7 +973,7 @@ class ShippingV1Client(__BaseClient):
             429: RetrieveShippingLabelResponse,
             500: RetrieveShippingLabelResponse,
             503: RetrieveShippingLabelResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def purchaseShipment(
         self,
@@ -991,7 +991,7 @@ class ShippingV1Client(__BaseClient):
             429: PurchaseShipmentResponse,
             500: PurchaseShipmentResponse,
             503: PurchaseShipmentResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getRates(
         self,
@@ -1009,7 +1009,7 @@ class ShippingV1Client(__BaseClient):
             429: GetRatesResponse,
             500: GetRatesResponse,
             503: GetRatesResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getAccount(
         self,
@@ -1026,7 +1026,7 @@ class ShippingV1Client(__BaseClient):
             429: GetAccountResponse,
             500: GetAccountResponse,
             503: GetAccountResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
 
     def getTrackingInformation(
         self,
@@ -1046,4 +1046,4 @@ class ShippingV1Client(__BaseClient):
             429: GetTrackingInformationResponse,
             500: GetTrackingInformationResponse,
             503: GetTrackingInformationResponse,
-        }[response.status_code](self.__get_response_json(response))
+        }[response.status_code](self._get_response_json(response))
