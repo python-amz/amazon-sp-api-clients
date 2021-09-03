@@ -10,6 +10,7 @@ from typing import Union
 from urllib.parse import urlparse
 
 import boto3
+import demjson
 import requests
 from cachetools import TTLCache
 from requests import Response
@@ -194,6 +195,13 @@ class BaseClient:
             self._access_token_cache[refresh_token] = access_token
         return self._access_token_cache[refresh_token]
 
+    @staticmethod
+    def __get_response_json(response: requests.Response):
+        try:
+            return response.json()
+        except json.JSONDecodeError:
+            return demjson.decode(response.text)
+
     def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
                 method='GET') -> Response:
 
@@ -246,7 +254,7 @@ class BaseClient:
                 raise ValueError('unknown method')
 
             # If found error, and the error is QuotaExceed, just resend the request
-            e = response.json().get('errors', None)
+            e = self.__get_response_json(response).get('errors', None)
             if e:
                 if len(e) == 1 and 'code' in e[0] and e[0]['code'] in ('QuotaExceeded',):
                     sleep(0.1)

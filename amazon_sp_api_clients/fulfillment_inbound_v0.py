@@ -1609,7 +1609,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetInboundGuidanceResponse,
             500: GetInboundGuidanceResponse,
             503: GetInboundGuidanceResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def createInboundShipmentPlan(
         self,
@@ -1627,7 +1627,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: CreateInboundShipmentPlanResponse,
             500: CreateInboundShipmentPlanResponse,
             503: CreateInboundShipmentPlanResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def updateInboundShipment(
         self,
@@ -1647,7 +1647,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: InboundShipmentResponse,
             500: InboundShipmentResponse,
             503: InboundShipmentResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def createInboundShipment(
         self,
@@ -1668,7 +1668,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: InboundShipmentResponse,
             500: InboundShipmentResponse,
             503: InboundShipmentResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getPreorderInfo(
         self,
@@ -1691,7 +1691,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetPreorderInfoResponse,
             500: GetPreorderInfoResponse,
             503: GetPreorderInfoResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def confirmPreorder(
         self,
@@ -1717,7 +1717,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: ConfirmPreorderResponse,
             500: ConfirmPreorderResponse,
             503: ConfirmPreorderResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getPrepInstructions(
         self,
@@ -1743,7 +1743,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetPrepInstructionsResponse,
             500: GetPrepInstructionsResponse,
             503: GetPrepInstructionsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getTransportDetails(
         self,
@@ -1763,7 +1763,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetTransportDetailsResponse,
             500: GetTransportDetailsResponse,
             503: GetTransportDetailsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def putTransportDetails(
         self,
@@ -1783,7 +1783,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: PutTransportDetailsResponse,
             500: PutTransportDetailsResponse,
             503: PutTransportDetailsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def voidTransport(
         self,
@@ -1803,7 +1803,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: VoidTransportResponse,
             500: VoidTransportResponse,
             503: VoidTransportResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def estimateTransport(
         self,
@@ -1823,7 +1823,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: EstimateTransportResponse,
             500: EstimateTransportResponse,
             503: EstimateTransportResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def confirmTransport(
         self,
@@ -1843,7 +1843,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: ConfirmTransportResponse,
             500: ConfirmTransportResponse,
             503: ConfirmTransportResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getLabels(
         self,
@@ -1884,7 +1884,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetLabelsResponse,
             500: GetLabelsResponse,
             503: GetLabelsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getBillOfLading(
         self,
@@ -1904,7 +1904,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetBillOfLadingResponse,
             500: GetBillOfLadingResponse,
             503: GetBillOfLadingResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getShipments(
         self,
@@ -1942,7 +1942,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetShipmentsResponse,
             500: GetShipmentsResponse,
             503: GetShipmentsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getShipmentItemsByShipmentId(
         self,
@@ -1965,7 +1965,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetShipmentItemsResponse,
             500: GetShipmentItemsResponse,
             503: GetShipmentItemsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getShipmentItems(
         self,
@@ -1997,4 +1997,4 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetShipmentItemsResponse,
             500: GetShipmentItemsResponse,
             503: GetShipmentItemsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

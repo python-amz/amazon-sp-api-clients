@@ -206,7 +206,7 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def createFeed(
         self,
@@ -225,7 +225,7 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getFeed(
         self,
@@ -246,7 +246,7 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def cancelFeed(
         self,
@@ -266,7 +266,7 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def createFeedDocument(
         self,
@@ -285,7 +285,7 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getFeedDocument(
         self,
@@ -306,4 +306,4 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

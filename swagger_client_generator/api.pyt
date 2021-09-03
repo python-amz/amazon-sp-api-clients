@@ -144,6 +144,6 @@ class {{ class_name }}Client(__BaseClient):
             {% for status_code, response in operation.responses.items() %}
                 {{ status_code }}: {{ response.type }},
             {% endfor %}
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
 {% endfor %}

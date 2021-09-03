@@ -334,7 +334,7 @@ class ProductFeesV0Client(__BaseClient):
             429: GetMyFeesEstimateResponse,
             500: GetMyFeesEstimateResponse,
             503: GetMyFeesEstimateResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getMyFeesEstimateForASIN(
         self,
@@ -355,4 +355,4 @@ class ProductFeesV0Client(__BaseClient):
             429: GetMyFeesEstimateResponse,
             500: GetMyFeesEstimateResponse,
             503: GetMyFeesEstimateResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

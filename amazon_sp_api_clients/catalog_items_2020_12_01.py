@@ -460,7 +460,7 @@ class CatalogItems20201201Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getCatalogItem(
         self,
@@ -490,4 +490,4 @@ class CatalogItems20201201Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

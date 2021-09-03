@@ -1167,7 +1167,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetEligibleShipmentServicesResponse,
             500: GetEligibleShipmentServicesResponse,
             503: GetEligibleShipmentServicesResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getEligibleShipmentServices(
         self,
@@ -1185,7 +1185,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetEligibleShipmentServicesResponse,
             500: GetEligibleShipmentServicesResponse,
             503: GetEligibleShipmentServicesResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getShipment(
         self,
@@ -1205,7 +1205,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetShipmentResponse,
             500: GetShipmentResponse,
             503: GetShipmentResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def cancelShipment(
         self,
@@ -1225,7 +1225,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: CancelShipmentResponse,
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def cancelShipmentOld(
         self,
@@ -1245,7 +1245,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: CancelShipmentResponse,
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def createShipment(
         self,
@@ -1263,7 +1263,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: CreateShipmentResponse,
             500: CreateShipmentResponse,
             503: CreateShipmentResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getAdditionalSellerInputsOld(
         self,
@@ -1281,7 +1281,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetAdditionalSellerInputsResponse,
             500: GetAdditionalSellerInputsResponse,
             503: GetAdditionalSellerInputsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getAdditionalSellerInputs(
         self,
@@ -1299,4 +1299,4 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetAdditionalSellerInputsResponse,
             500: GetAdditionalSellerInputsResponse,
             503: GetAdditionalSellerInputsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

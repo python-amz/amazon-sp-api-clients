@@ -790,7 +790,7 @@ class ProductPricingV0Client(__BaseClient):
             429: GetPricingResponse,
             500: GetPricingResponse,
             503: GetPricingResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getCompetitivePricing(
         self,
@@ -822,7 +822,7 @@ class ProductPricingV0Client(__BaseClient):
             429: GetPricingResponse,
             500: GetPricingResponse,
             503: GetPricingResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getListingOffers(
         self,
@@ -851,7 +851,7 @@ class ProductPricingV0Client(__BaseClient):
             429: GetOffersResponse,
             500: GetOffersResponse,
             503: GetOffersResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getItemOffers(
         self,
@@ -880,4 +880,4 @@ class ProductPricingV0Client(__BaseClient):
             429: GetOffersResponse,
             500: GetOffersResponse,
             503: GetOffersResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

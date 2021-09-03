@@ -88,4 +88,4 @@ class VendorTransactionStatusV1Client(__BaseClient):
             429: GetTransactionResponse,
             500: GetTransactionResponse,
             503: GetTransactionResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

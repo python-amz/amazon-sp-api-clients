@@ -10,3 +10,4 @@ twine
 pycryptodome
 beautifulsoup4
 markdown
+demjson

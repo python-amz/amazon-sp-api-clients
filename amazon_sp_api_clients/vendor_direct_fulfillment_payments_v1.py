@@ -366,4 +366,4 @@ class VendorDirectFulfillmentPaymentsV1Client(__BaseClient):
             429: SubmitInvoiceResponse,
             500: SubmitInvoiceResponse,
             503: SubmitInvoiceResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

@@ -145,4 +145,4 @@ class VendorDirectFulfillmentInventoryV1Client(__BaseClient):
             429: SubmitInventoryUpdateResponse,
             500: SubmitInventoryUpdateResponse,
             503: SubmitInventoryUpdateResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

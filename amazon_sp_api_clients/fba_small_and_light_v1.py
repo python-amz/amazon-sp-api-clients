@@ -197,7 +197,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def putSmallAndLightEnrollmentBySellerSKU(
         self,
@@ -221,7 +221,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def deleteSmallAndLightEnrollmentBySellerSKU(
         self,
@@ -244,7 +244,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getSmallAndLightEligibilityBySellerSKU(
         self,
@@ -268,7 +268,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))
 
     def getSmallAndLightFeePreview(
         self,
@@ -286,4 +286,4 @@ class FbaSmallAndLightV1Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

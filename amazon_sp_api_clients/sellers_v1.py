@@ -121,4 +121,4 @@ class SellersV1Client(__BaseClient):
             429: GetMarketplaceParticipationsResponse,
             500: GetMarketplaceParticipationsResponse,
             503: GetMarketplaceParticipationsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

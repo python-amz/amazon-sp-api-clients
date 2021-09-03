@@ -138,4 +138,4 @@ class SalesV1Client(__BaseClient):
             429: GetOrderMetricsResponse,
             500: GetOrderMetricsResponse,
             503: GetOrderMetricsResponse,
-        }[response.status_code](response.json())
+        }[response.status_code](self.__get_response_json(response))

@@ -21,6 +21,7 @@ setuptools.setup(
         'requests',
         'boto3',
         'pycryptodome',
+        'demjson',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
