@@ -1,6 +1,5 @@
 /test_api.py
-/venv
-/venv39
+/venv*
 __pycache__
 /.pytest_cache
 /.idea
