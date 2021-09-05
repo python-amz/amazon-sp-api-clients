@@ -208,7 +208,7 @@ class BaseClient:
             return demjson.decode(response.text)
 
     def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
-                method='GET') -> Response:
+                method='GET', check_exception=True) -> Response:
 
         parsed_params = {}
         parsed_data: bytes = b''
@@ -259,6 +259,9 @@ class BaseClient:
                 raise ValueError('unknown method')
 
             self.last_response = response
+
+            if not check_exception:
+                break
 
             # If found error, and the error is QuotaExceed, just resend the request
             e = self._get_response_json(response).get('errors', None)
