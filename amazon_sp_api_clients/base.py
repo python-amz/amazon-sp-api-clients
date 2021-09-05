@@ -119,6 +119,11 @@ class BaseClient:
     _access_token_cache = TTLCache(maxsize=1000, ttl=3000)
     request_cache: RequestCache = None
 
+    # Sometime the response are required, however, current architecture is not able to return the response.
+    # So, the last response is recorded here. Usually, the client will not request multiple requests. So, it will not
+    # cause the data conflict.
+    last_response: Response = None
+
     def __init__(self, *,
                  role_arn: str = None,
                  endpoint: str = None,
@@ -252,6 +257,8 @@ class BaseClient:
                 response = request(method, self._endpoint + path, params=params, headers=parsed_headers, auth=auth)
             else:
                 raise ValueError('unknown method')
+
+            self.last_response = response
 
             # If found error, and the error is QuotaExceed, just resend the request
             e = self._get_response_json(response).get('errors', None)
