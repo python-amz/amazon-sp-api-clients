@@ -3,6 +3,8 @@ from typing import List as _List
 
 
 class ListCatalogItemsResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +19,8 @@ class ListCatalogItemsResponse:
 
 
 class ListMatchingItemsResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -27,6 +31,8 @@ class ListMatchingItemsResponse:
 
 
 class GetCatalogItemResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -41,6 +47,10 @@ class GetCatalogItemResponse:
 
 
 class Item:
+    """
+    An item in the Amazon catalog.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -63,6 +73,8 @@ class Item:
 
 
 class IdentifierType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -77,6 +89,8 @@ class IdentifierType:
 
 
 class ASINIdentifier:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -91,6 +105,8 @@ class ASINIdentifier:
 
 
 class SellerSKUIdentifier:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -109,6 +125,10 @@ class SellerSKUIdentifier:
 
 
 class AttributeSetListType:
+    """
+    The attributes of the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -499,6 +519,10 @@ class AttributeSetListType:
 
 
 class DecimalWithUnits:
+    """
+    The decimal value and unit.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -513,6 +537,10 @@ class DecimalWithUnits:
 
 
 class CreatorType:
+    """
+    The creator type attribute of an item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -527,6 +555,10 @@ class CreatorType:
 
 
 class DimensionType:
+    """
+    The dimension type attribute of an item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -549,6 +581,10 @@ class DimensionType:
 
 
 class LanguageType:
+    """
+    The language type attribute of an item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -567,6 +603,10 @@ class LanguageType:
 
 
 class Image:
+    """
+    The image attribute of the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -585,6 +625,10 @@ class Image:
 
 
 class Price:
+    """
+    The price attribute of the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -599,6 +643,10 @@ class Price:
 
 
 class RelationshipType:
+    """
+    Specific variations of the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -697,6 +745,8 @@ class RelationshipType:
 
 
 class SalesRankType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -711,6 +761,10 @@ class SalesRankType:
 
 
 class OfferListingCountType:
+    """
+    The number of offer listings with the specified condition.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -725,6 +779,8 @@ class OfferListingCountType:
 
 
 class QualifiersType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -755,6 +811,8 @@ class QualifiersType:
 
 
 class ShippingTimeType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -765,6 +823,8 @@ class ShippingTimeType:
 
 
 class ListCatalogCategoriesResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -779,6 +839,8 @@ class ListCatalogCategoriesResponse:
 
 
 class Categories:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -797,6 +859,10 @@ class Categories:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -815,48 +881,86 @@ class Error:
 
 
 class ItemList(list, _List["Item"]):
+    """
+    A list of items.
+    """
+
     def __init__(self, data):
         super().__init__([Item(datum) for datum in data])
         self.data = data
 
 
 class AttributeSetList(list, _List["AttributeSetListType"]):
+    """
+    A list of attributes for the item.
+    """
+
     def __init__(self, data):
         super().__init__([AttributeSetListType(datum) for datum in data])
         self.data = data
 
 
 class RelationshipList(list, _List["RelationshipType"]):
+    """
+    A list of variation relationship information, if applicable for the item.
+    """
+
     def __init__(self, data):
         super().__init__([RelationshipType(datum) for datum in data])
         self.data = data
 
 
 class SalesRankList(list, _List["SalesRankType"]):
+    """
+    A list of sales rank information for the item by category.
+    """
+
     def __init__(self, data):
         super().__init__([SalesRankType(datum) for datum in data])
         self.data = data
 
 
 class NumberOfOfferListingsList(list, _List["OfferListingCountType"]):
+    """
+    The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned. Possible listing condition values are: Any, New, Used, Collectible, Refurbished, or Club.
+    """
+
     def __init__(self, data):
         super().__init__([OfferListingCountType(datum) for datum in data])
         self.data = data
 
 
 class ListOfCategories(list, _List["Categories"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([Categories(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class CatalogItemsV0Client(__BaseClient):
+    """
+        Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value.
+    MarketplaceId is always required. At least one of Query, SellerSKU, UPC, EAN, ISBN, JAN is also required.
+    This operation returns a maximum of ten products and does not return non-buyable products.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 6 | 40 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def listCatalogItems(
         self,
         MarketplaceId: str,
@@ -898,6 +1002,16 @@ class CatalogItemsV0Client(__BaseClient):
             503: ListCatalogItemsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a specified item and its attributes.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 2 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getCatalogItem(
         self,
         asin: str,
@@ -920,6 +1034,16 @@ class CatalogItemsV0Client(__BaseClient):
             500: GetCatalogItemResponse,
             503: GetCatalogItemResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 1 | 40 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def listCatalogCategories(
         self,

@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetOrdersResponse:
+    """
+    The response schema for the getOrders operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetOrdersResponse:
 
 
 class GetOrderResponse:
+    """
+    The response schema for the getOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,10 @@ class GetOrderResponse:
 
 
 class GetOrderBuyerInfoResponse:
+    """
+    The response schema for the getOrderBuyerInfo operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -45,6 +57,10 @@ class GetOrderBuyerInfoResponse:
 
 
 class GetOrderAddressResponse:
+    """
+    The response schema for the getOrderAddress operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -59,6 +75,10 @@ class GetOrderAddressResponse:
 
 
 class GetOrderItemsResponse:
+    """
+    The response schema for the getOrderItems operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -73,6 +93,10 @@ class GetOrderItemsResponse:
 
 
 class GetOrderItemsBuyerInfoResponse:
+    """
+    The response schema for the getOrderItemsBuyerInfo operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -87,6 +111,10 @@ class GetOrderItemsBuyerInfoResponse:
 
 
 class OrdersList:
+    """
+    A list of orders along with additional information to make subsequent API calls.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -109,6 +137,10 @@ class OrdersList:
 
 
 class Order:
+    """
+    Order information.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -271,6 +303,10 @@ class Order:
 
 
 class OrderBuyerInfo:
+    """
+    Buyer information for an order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -301,6 +337,10 @@ class OrderBuyerInfo:
 
 
 class OrderAddress:
+    """
+    The shipping address for the order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -315,6 +355,10 @@ class OrderAddress:
 
 
 class Address:
+    """
+    The shipping address for the order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -373,6 +417,10 @@ class Address:
 
 
 class Money:
+    """
+    The monetary value of the order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -387,6 +435,10 @@ class Money:
 
 
 class PaymentExecutionDetailItem:
+    """
+    Information about a sub-payment method used to pay for a COD order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -401,6 +453,10 @@ class PaymentExecutionDetailItem:
 
 
 class BuyerTaxInfo:
+    """
+    Tax information about the buyer.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -421,6 +477,10 @@ class BuyerTaxInfo:
 
 
 class MarketplaceTaxInfo:
+    """
+    Tax information about the marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -433,6 +493,10 @@ class MarketplaceTaxInfo:
 
 
 class TaxClassification:
+    """
+    The tax classification for the order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -447,6 +511,10 @@ class TaxClassification:
 
 
 class OrderItemsList:
+    """
+    The order items list along with the order ID.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -465,6 +533,10 @@ class OrderItemsList:
 
 
 class OrderItem:
+    """
+    A single order item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -599,6 +671,10 @@ class OrderItem:
 
 
 class OrderItemsBuyerInfoList:
+    """
+    A single order item's buyer information list with the order ID.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -617,6 +693,10 @@ class OrderItemsBuyerInfoList:
 
 
 class OrderItemBuyerInfo:
+    """
+    A single order item's buyer information.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -647,6 +727,10 @@ class OrderItemBuyerInfo:
 
 
 class PointsGrantedDetail:
+    """
+    The number of Amazon Points offered with the purchase of an item, and their monetary value.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -661,6 +745,10 @@ class PointsGrantedDetail:
 
 
 class ProductInfoDetail:
+    """
+    Product information on the number of items.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -671,6 +759,10 @@ class ProductInfoDetail:
 
 
 class BuyerCustomizedInfoDetail:
+    """
+    Buyer information for custom orders from the Amazon Custom program.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -681,6 +773,10 @@ class BuyerCustomizedInfoDetail:
 
 
 class TaxCollection:
+    """
+    Information about withheld taxes.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -695,6 +791,10 @@ class TaxCollection:
 
 
 class FulfillmentInstruction:
+    """
+    Contains the instructions about the fulfillment like where should it be fulfilled from.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -705,6 +805,10 @@ class FulfillmentInstruction:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -723,48 +827,86 @@ class Error:
 
 
 class OrderList(list, _List["Order"]):
+    """
+    A list of orders.
+    """
+
     def __init__(self, data):
         super().__init__([Order(datum) for datum in data])
         self.data = data
 
 
 class PaymentMethodDetailItemList(list, _List["str"]):
+    """
+    A list of payment method detail items.
+    """
+
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
         self.data = data
 
 
 class PaymentExecutionDetailItemList(list, _List["PaymentExecutionDetailItem"]):
+    """
+    A list of payment execution detail items.
+    """
+
     def __init__(self, data):
         super().__init__([PaymentExecutionDetailItem(datum) for datum in data])
         self.data = data
 
 
 class OrderItemList(list, _List["OrderItem"]):
+    """
+    A list of order items.
+    """
+
     def __init__(self, data):
         super().__init__([OrderItem(datum) for datum in data])
         self.data = data
 
 
 class OrderItemBuyerInfoList(list, _List["OrderItemBuyerInfo"]):
+    """
+    A single order item's buyer information list.
+    """
+
     def __init__(self, data):
         super().__init__([OrderItemBuyerInfo(datum) for datum in data])
         self.data = data
 
 
 class PromotionIdList(list, _List["str"]):
+    """
+    A list of promotion identifiers provided by the seller when the promotions were created.
+    """
+
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class OrdersV0Client(__BaseClient):
+    """
+        Returns orders created or updated during the time frame indicated by the specified parameters. You can also apply a range of filtering criteria to narrow the list of orders returned. If NextToken is present, that will be used to retrieve the orders instead of other criteria.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 0.0055 | 20 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getOrders(
         self,
         MarketplaceIds: _List[str],
@@ -832,6 +974,16 @@ class OrdersV0Client(__BaseClient):
             503: GetOrdersResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns the order indicated by the specified order ID.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 0.0055 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getOrder(
         self,
         orderId: str,
@@ -850,6 +1002,16 @@ class OrdersV0Client(__BaseClient):
             500: GetOrderResponse,
             503: GetOrderResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns buyer information for the order indicated by the specified order ID.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 0.0055 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getOrderBuyerInfo(
         self,
@@ -870,6 +1032,16 @@ class OrdersV0Client(__BaseClient):
             503: GetOrderBuyerInfoResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns the shipping address for the order indicated by the specified order ID.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 0.0055 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getOrderAddress(
         self,
         orderId: str,
@@ -888,6 +1060,17 @@ class OrdersV0Client(__BaseClient):
             500: GetOrderAddressResponse,
             503: GetOrderAddressResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns detailed order item information for the order indicated by the specified order ID. If NextToken is provided, it's used to retrieve the next page of order items.
+Note: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 0.0055 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getOrderItems(
         self,
@@ -910,6 +1093,16 @@ class OrdersV0Client(__BaseClient):
             500: GetOrderItemsResponse,
             503: GetOrderItemsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns buyer information in the order items of the order indicated by the specified order ID.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 0.0055 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getOrderItemsBuyerInfo(
         self,

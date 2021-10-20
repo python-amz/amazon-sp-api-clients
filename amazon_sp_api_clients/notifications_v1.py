@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Subscription:
+    """
+    Represents a subscription to receive notifications.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Subscription:
 
 
 class CreateSubscriptionResponse:
+    """
+    The response schema for the createSubscription operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -35,6 +43,10 @@ class CreateSubscriptionResponse:
 
 
 class CreateSubscriptionRequest:
+    """
+    The request schema for the createSubscription operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -49,6 +61,10 @@ class CreateSubscriptionRequest:
 
 
 class GetSubscriptionByIdResponse:
+    """
+    The response schema for the getSubscriptionById operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -63,6 +79,10 @@ class GetSubscriptionByIdResponse:
 
 
 class GetSubscriptionResponse:
+    """
+    The response schema for the getSubscription operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -77,6 +97,10 @@ class GetSubscriptionResponse:
 
 
 class DeleteSubscriptionByIdResponse:
+    """
+    The response schema for the deleteSubscriptionById operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -87,6 +111,10 @@ class DeleteSubscriptionByIdResponse:
 
 
 class Destination:
+    """
+    Represents a destination created when you call the createDestination operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -105,6 +133,10 @@ class Destination:
 
 
 class DestinationResource:
+    """
+    The destination resource types.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -119,6 +151,10 @@ class DestinationResource:
 
 
 class DestinationResourceSpecification:
+    """
+    The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -133,6 +169,10 @@ class DestinationResourceSpecification:
 
 
 class SqsResource:
+    """
+    The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -143,6 +183,10 @@ class SqsResource:
 
 
 class EventBridgeResourceSpecification:
+    """
+    The information required to create an Amazon EventBridge destination.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -157,6 +201,10 @@ class EventBridgeResourceSpecification:
 
 
 class EventBridgeResource:
+    """
+    Represents an Amazon EventBridge destination.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -175,6 +223,10 @@ class EventBridgeResource:
 
 
 class CreateDestinationRequest:
+    """
+    The request schema for the createDestination operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -191,6 +243,10 @@ class CreateDestinationRequest:
 
 
 class CreateDestinationResponse:
+    """
+    The response schema for the createDestination operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -205,6 +261,10 @@ class CreateDestinationResponse:
 
 
 class GetDestinationResponse:
+    """
+    The response schema for the getDestination operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -219,6 +279,10 @@ class GetDestinationResponse:
 
 
 class GetDestinationsResponse:
+    """
+    The response schema for the getDestinations operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -233,6 +297,10 @@ class GetDestinationsResponse:
 
 
 class DeleteDestinationResponse:
+    """
+    The response schema for the deleteDestination operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -243,6 +311,10 @@ class DeleteDestinationResponse:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -261,22 +333,42 @@ class Error:
 
 
 class DestinationList(list, _List["Destination"]):
+    """
+    A list of destinations.
+    """
+
     def __init__(self, data):
         super().__init__([Destination(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class NotificationType(str):
-    pass
+    """
+       The type of notification to which you want to subscribe.
+    For more information about notification types, see the Notifications API Use Case Guide.
+    """
 
 
 class NotificationsV1Client(__BaseClient):
+    """
+        Returns information about subscriptions of the specified notification type. You can use this API to get subscription information when you do not have a subscription identifier.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 1 | 5 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getSubscription(
         self,
         notificationType: str,
@@ -297,6 +389,15 @@ class NotificationsV1Client(__BaseClient):
             500: GetSubscriptionResponse,
             503: GetSubscriptionResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def createSubscription(
         self,
@@ -320,6 +421,15 @@ class NotificationsV1Client(__BaseClient):
             500: CreateSubscriptionResponse,
             503: CreateSubscriptionResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getSubscriptionById(
         self,
@@ -345,6 +455,15 @@ class NotificationsV1Client(__BaseClient):
             503: GetSubscriptionByIdResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def deleteSubscriptionById(
         self,
         subscriptionId: str,
@@ -369,6 +488,15 @@ class NotificationsV1Client(__BaseClient):
             503: DeleteSubscriptionByIdResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getDestinations(
         self,
     ):
@@ -387,6 +515,15 @@ class NotificationsV1Client(__BaseClient):
             500: GetDestinationsResponse,
             503: GetDestinationsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def createDestination(
         self,
@@ -407,6 +544,15 @@ class NotificationsV1Client(__BaseClient):
             500: CreateDestinationResponse,
             503: CreateDestinationResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getDestination(
         self,
@@ -429,6 +575,15 @@ class NotificationsV1Client(__BaseClient):
             500: GetDestinationResponse,
             503: GetDestinationResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def deleteDestination(
         self,

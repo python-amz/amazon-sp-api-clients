@@ -3,6 +3,9 @@ from typing import List as _List
 
 {% for component_name, component in dict_components.items() %}
 class {{ component_name }}:
+    """
+    {{component.source.description}}
+    """
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -34,6 +37,9 @@ class {{ component_name }}:
 {% for component_name, component in list_components.items() %}
     {% set item_type = component.item_type %}
 class {{ component_name }}(list, _List['{{ item_type }}']):
+    """
+    {{component.source.description}}
+    """
     def __init__(self, data):
         super().__init__([{{ item_type }}(datum) for datum in data])
         self.data = data
@@ -41,19 +47,26 @@ class {{ component_name }}(list, _List['{{ item_type }}']):
 
 {% for component_name, component in alias_components.items() %}
 class {{ component_name }}({{component.type}}):
-    pass
+    """
+    {{component.source.description}}
+    """
 {% endfor %}
 
 
 
 {% for component_name, component in parameters.items() %}
 class {{ component_name }}({{component.type}}):
-    pass
+    """
+    {{component.source.description}}
+    """
 {% endfor %}
 
 
 {% for component_name, component in ref_components.items() %}
 class {{ component_name }}({% for type in component.types %}{{ type }}, {% endfor %}):
+    """
+    {{component.source.description}}
+    """
     def __init__(self, data):
 
     {% for name, property in component.properties.items() %}
@@ -84,6 +97,9 @@ class {{ component_name }}({% for type in component.types %}{{ type }}, {% endfo
 
 class {{ class_name }}Client(__BaseClient):
 {% for operation_name, operation in operations.items() %}
+    """
+    {{operation.source.description}}
+    """
     def {{ operation_name }}(self,
         {% if operation.request_body %}
             data: {{ operation.request_body.type }},

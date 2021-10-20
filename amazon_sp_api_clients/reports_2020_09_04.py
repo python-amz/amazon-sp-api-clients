@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class ReportDocumentEncryptionDetails:
+    """
+    Encryption details required for decryption of a report document's contents.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -39,6 +47,8 @@ class ReportDocumentEncryptionDetails:
 
 
 class Report:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -89,6 +99,8 @@ class Report:
 
 
 class CreateReportScheduleSpecification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -115,6 +127,8 @@ class CreateReportScheduleSpecification:
 
 
 class CreateReportSpecification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -141,12 +155,20 @@ class CreateReportSpecification:
 
 
 class ReportOptions:
+    """
+    Additional information passed to reports. This varies by report type.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
 
 
 class ReportSchedule:
+    """
+    Detailed information about a report schedule.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -177,6 +199,8 @@ class ReportSchedule:
 
 
 class CreateReportResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -187,6 +211,10 @@ class CreateReportResult:
 
 
 class GetReportsResponse:
+    """
+    The response for the getReports operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -205,6 +233,10 @@ class GetReportsResponse:
 
 
 class CreateReportResponse:
+    """
+    The response for the createReport operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -219,6 +251,10 @@ class CreateReportResponse:
 
 
 class CancelReportResponse:
+    """
+    The response for the cancelReport operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -229,6 +265,10 @@ class CancelReportResponse:
 
 
 class CancelReportScheduleResponse:
+    """
+    The response for the cancelReportSchedule operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -239,6 +279,10 @@ class CancelReportScheduleResponse:
 
 
 class GetReportResponse:
+    """
+    The response for the getReport operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -253,6 +297,10 @@ class GetReportResponse:
 
 
 class GetReportSchedulesResponse:
+    """
+    The response for the getReportSchedules operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -267,6 +315,10 @@ class GetReportSchedulesResponse:
 
 
 class GetReportScheduleResponse:
+    """
+    The response for the getReportSchedule operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -281,6 +333,8 @@ class GetReportScheduleResponse:
 
 
 class CreateReportScheduleResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -291,6 +345,10 @@ class CreateReportScheduleResult:
 
 
 class CreateReportScheduleResponse:
+    """
+    The response for the createReportSchedule operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -305,6 +363,8 @@ class CreateReportScheduleResponse:
 
 
 class ReportDocument:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -329,6 +389,10 @@ class ReportDocument:
 
 
 class GetReportDocumentResponse:
+    """
+    Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -343,24 +407,41 @@ class GetReportDocumentResponse:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class ReportList(list, _List["Report"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([Report(datum) for datum in data])
         self.data = data
 
 
 class ReportScheduleList(list, _List["ReportSchedule"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([ReportSchedule(datum) for datum in data])
         self.data = data
 
 
 class Reports20200904Client(__BaseClient):
+    """
+        Returns report details for the reports that match the filters that you specify.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 0.0222 | 10 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getReports(
         self,
         reportTypes: _List[str] = None,
@@ -400,6 +481,15 @@ class Reports20200904Client(__BaseClient):
             503: GetReportsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Creates a report.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.0167 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createReport(
         self,
         data: CreateReportSpecification,
@@ -418,6 +508,15 @@ class Reports20200904Client(__BaseClient):
             500: CreateReportResponse,
             503: CreateReportResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns report details (including the reportDocumentId, if available) for the report that you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2.0 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getReport(
         self,
@@ -440,6 +539,15 @@ class Reports20200904Client(__BaseClient):
             503: GetReportResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.0222 | 10 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def cancelReport(
         self,
         reportId: str,
@@ -460,6 +568,15 @@ class Reports20200904Client(__BaseClient):
             500: CancelReportResponse,
             503: CancelReportResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns report schedule details that match the filters that you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.0222 | 10 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getReportSchedules(
         self,
@@ -482,6 +599,15 @@ class Reports20200904Client(__BaseClient):
             503: GetReportSchedulesResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.0222 | 10 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createReportSchedule(
         self,
         data: CreateReportScheduleSpecification,
@@ -500,6 +626,15 @@ class Reports20200904Client(__BaseClient):
             500: CreateReportScheduleResponse,
             503: CreateReportScheduleResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns report schedule details for the report schedule that you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.0222 | 10 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getReportSchedule(
         self,
@@ -522,6 +657,15 @@ class Reports20200904Client(__BaseClient):
             503: GetReportScheduleResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Cancels the report schedule that you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.0222 | 10 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def cancelReportSchedule(
         self,
         reportScheduleId: str,
@@ -542,6 +686,15 @@ class Reports20200904Client(__BaseClient):
             500: CancelReportScheduleResponse,
             503: CancelReportScheduleResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the information required for retrieving a report document's contents. This includes a presigned URL for the report document as well as the information required to decrypt the document's contents.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.0167 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getReportDocument(
         self,

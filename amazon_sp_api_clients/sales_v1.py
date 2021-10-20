@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetOrderMetricsResponse:
+    """
+    The response schema for the getOrderMetrics operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetOrderMetricsResponse:
 
 
 class OrderMetricsInterval:
+    """
+    Contains order metrics.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -47,6 +55,10 @@ class OrderMetricsInterval:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -65,6 +77,10 @@ class Error:
 
 
 class Money:
+    """
+    The currency type and the amount.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -79,22 +95,41 @@ class Money:
 
 
 class OrderMetricsList(list, _List["OrderMetricsInterval"]):
+    """
+    A set of order metrics, each scoped to a particular time interval.
+    """
+
     def __init__(self, data):
         super().__init__([OrderMetricsInterval(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 class SalesV1Client(__BaseClient):
+    """
+        Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | .5 | 15 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getOrderMetrics(
         self,
         marketplaceIds: _List[str],

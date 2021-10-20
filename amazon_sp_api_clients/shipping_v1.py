@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class Location:
+    """
+    The location where the person, business or institution is located.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -43,6 +51,10 @@ class Location:
 
 
 class Event:
+    """
+    An event of a shipment
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -61,6 +73,10 @@ class Event:
 
 
 class TrackingSummary:
+    """
+    The tracking summary.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -71,6 +87,10 @@ class TrackingSummary:
 
 
 class Address:
+    """
+    The address.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -121,6 +141,10 @@ class Address:
 
 
 class TimeRange:
+    """
+    The time range.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -135,6 +159,10 @@ class TimeRange:
 
 
 class ShippingPromiseSet:
+    """
+    The promised delivery time and pickup time.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -149,6 +177,10 @@ class ShippingPromiseSet:
 
 
 class Rate:
+    """
+    The available rate that can be used to send the shipment
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -179,6 +211,10 @@ class Rate:
 
 
 class AcceptedRate:
+    """
+    The specific rate purchased for the shipment, or null if unpurchased.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -201,6 +237,10 @@ class AcceptedRate:
 
 
 class ServiceRate:
+    """
+    The specific rate for a shipping service, or null if no service available.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -223,6 +263,10 @@ class ServiceRate:
 
 
 class Party:
+    """
+    The account related with the shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -233,6 +277,10 @@ class Party:
 
 
 class Currency:
+    """
+    The total value of all items in the container.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -247,6 +295,10 @@ class Currency:
 
 
 class Dimensions:
+    """
+    A set of measurements for a three-dimensional object.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -269,6 +321,10 @@ class Dimensions:
 
 
 class Weight:
+    """
+    The weight.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -283,6 +339,10 @@ class Weight:
 
 
 class ContainerItem:
+    """
+    Item in the container.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -305,6 +365,10 @@ class ContainerItem:
 
 
 class Container:
+    """
+    Container in the shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -335,6 +399,10 @@ class Container:
 
 
 class ContainerSpecification:
+    """
+    Container specification for checking the service rate.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -349,6 +417,10 @@ class ContainerSpecification:
 
 
 class Label:
+    """
+    The label details of the container.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -363,6 +435,10 @@ class Label:
 
 
 class LabelResult:
+    """
+    Label details including label stream, format, size.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -381,6 +457,10 @@ class LabelResult:
 
 
 class LabelSpecification:
+    """
+    The label specification info.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -395,6 +475,10 @@ class LabelSpecification:
 
 
 class CreateShipmentRequest:
+    """
+    The request schema for the createShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -417,6 +501,10 @@ class CreateShipmentRequest:
 
 
 class PurchaseLabelsRequest:
+    """
+    The request schema for the purchaseLabels operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -431,6 +519,10 @@ class PurchaseLabelsRequest:
 
 
 class RetrieveShippingLabelRequest:
+    """
+    The request schema for the retrieveShippingLabel operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -441,6 +533,10 @@ class RetrieveShippingLabelRequest:
 
 
 class GetRatesRequest:
+    """
+    The payload schema for the getRates operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -469,6 +565,10 @@ class GetRatesRequest:
 
 
 class PurchaseShipmentRequest:
+    """
+    The payload schema for the purchaseShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -503,6 +603,10 @@ class PurchaseShipmentRequest:
 
 
 class CreateShipmentResult:
+    """
+    The payload schema for the createShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -517,6 +621,10 @@ class CreateShipmentResult:
 
 
 class Shipment:
+    """
+    The shipment related data.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -551,6 +659,10 @@ class Shipment:
 
 
 class PurchaseLabelsResult:
+    """
+    The payload schema for the purchaseLabels operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -573,6 +685,10 @@ class PurchaseLabelsResult:
 
 
 class RetrieveShippingLabelResult:
+    """
+    The payload schema for the retrieveShippingLabel operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -587,6 +703,10 @@ class RetrieveShippingLabelResult:
 
 
 class Account:
+    """
+    The account related data.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -597,6 +717,10 @@ class Account:
 
 
 class GetRatesResult:
+    """
+    The payload schema for the getRates operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -607,6 +731,10 @@ class GetRatesResult:
 
 
 class PurchaseShipmentResult:
+    """
+    The payload schema for the purchaseShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -625,6 +753,10 @@ class PurchaseShipmentResult:
 
 
 class TrackingInformation:
+    """
+    The payload schema for the getTrackingInformation operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -647,6 +779,10 @@ class TrackingInformation:
 
 
 class CreateShipmentResponse:
+    """
+    The response schema for the createShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -661,6 +797,10 @@ class CreateShipmentResponse:
 
 
 class GetShipmentResponse:
+    """
+    The response schema for the getShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -675,6 +815,10 @@ class GetShipmentResponse:
 
 
 class GetRatesResponse:
+    """
+    The response schema for the getRates operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -689,6 +833,10 @@ class GetRatesResponse:
 
 
 class PurchaseShipmentResponse:
+    """
+    The response schema for the purchaseShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -703,6 +851,10 @@ class PurchaseShipmentResponse:
 
 
 class CancelShipmentResponse:
+    """
+    The response schema for the cancelShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -713,6 +865,10 @@ class CancelShipmentResponse:
 
 
 class PurchaseLabelsResponse:
+    """
+    The response schema for the purchaseLabels operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -727,6 +883,10 @@ class PurchaseLabelsResponse:
 
 
 class RetrieveShippingLabelResponse:
+    """
+    The response schema for the retrieveShippingLabel operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -741,6 +901,10 @@ class RetrieveShippingLabelResponse:
 
 
 class GetAccountResponse:
+    """
+    The response schema for the getAccount operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -755,6 +919,10 @@ class GetAccountResponse:
 
 
 class GetTrackingInformationResponse:
+    """
+    The response schema for the getTrackingInformation operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -769,110 +937,179 @@ class GetTrackingInformationResponse:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class EventList(list, _List["Event"]):
+    """
+    A list of events of a shipment.
+    """
+
     def __init__(self, data):
         super().__init__([Event(datum) for datum in data])
         self.data = data
 
 
 class ServiceTypeList(list, _List["ServiceType"]):
+    """
+    A list of service types that can be used to send the shipment.
+    """
+
     def __init__(self, data):
         super().__init__([ServiceType(datum) for datum in data])
         self.data = data
 
 
 class RateList(list, _List["Rate"]):
+    """
+    A list of all the available rates that can be used to send the shipment.
+    """
+
     def __init__(self, data):
         super().__init__([Rate(datum) for datum in data])
         self.data = data
 
 
 class ServiceRateList(list, _List["ServiceRate"]):
+    """
+    A list of service rates.
+    """
+
     def __init__(self, data):
         super().__init__([ServiceRate(datum) for datum in data])
         self.data = data
 
 
 class ContainerList(list, _List["Container"]):
+    """
+    A list of container.
+    """
+
     def __init__(self, data):
         super().__init__([Container(datum) for datum in data])
         self.data = data
 
 
 class ContainerSpecificationList(list, _List["ContainerSpecification"]):
+    """
+    A list of container specifications.
+    """
+
     def __init__(self, data):
         super().__init__([ContainerSpecification(datum) for datum in data])
         self.data = data
 
 
 class LabelResultList(list, _List["LabelResult"]):
+    """
+    A list of label results
+    """
+
     def __init__(self, data):
         super().__init__([LabelResult(datum) for datum in data])
         self.data = data
 
 
 class AccountId(str):
-    pass
+    """
+    This is the Amazon Shipping account id generated during the Amazon Shipping onboarding process.
+    """
 
 
 class ShipmentId(str):
-    pass
+    """
+    The unique shipment identifier.
+    """
 
 
 class ClientReferenceId(str):
-    pass
+    """
+    Client reference id.
+    """
 
 
 class ContainerReferenceId(str):
-    pass
+    """
+    An identifier for the container. This must be unique within all the containers in the same shipment.
+    """
 
 
 class EventCode(str):
-    pass
+    """
+    The event code of a shipment, such as Departed, Received, and ReadyForReceive.
+    """
 
 
 class StateOrRegion(str):
-    pass
+    """
+    The state or region where the person, business or institution is located.
+    """
 
 
 class City(str):
-    pass
+    """
+    The city where the person, business or institution is located.
+    """
 
 
 class CountryCode(str):
-    pass
+    """
+    The two digit country code. In ISO 3166-1 alpha-2 format.
+    """
 
 
 class PostalCode(str):
-    pass
+    """
+    The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
+    """
 
 
 class TrackingId(str):
-    pass
+    """
+    The tracking id generated to each shipment. It contains a series of letters or digits or both.
+    """
 
 
 class PromisedDeliveryDate(str):
-    pass
+    """
+    The promised delivery date and time of a shipment.
+    """
 
 
 class ServiceType(str):
-    pass
+    """
+    The type of shipping service that will be used for the service offering.
+    """
 
 
 class RateId(str):
-    pass
+    """
+    An identifier for the rating.
+    """
 
 
 class LabelStream(str):
-    pass
+    """
+    Contains binary image data encoded as a base-64 string.
+    """
 
 
 class ShippingV1Client(__BaseClient):
+    """
+        Create a new shipment.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 5 | 15 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createShipment(
         self,
         data: CreateShipmentRequest,
@@ -890,6 +1127,15 @@ class ShippingV1Client(__BaseClient):
             500: CreateShipmentResponse,
             503: CreateShipmentResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Return the entire shipment object for the shipmentId.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getShipment(
         self,
@@ -911,6 +1157,15 @@ class ShippingV1Client(__BaseClient):
             503: GetShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Cancel a shipment by the given shipmentId.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def cancelShipment(
         self,
         shipmentId: str,
@@ -930,6 +1185,15 @@ class ShippingV1Client(__BaseClient):
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Purchase shipping labels based on a given rate.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def purchaseLabels(
         self,
@@ -951,6 +1215,15 @@ class ShippingV1Client(__BaseClient):
             500: PurchaseLabelsResponse,
             503: PurchaseLabelsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Retrieve shipping label based on the shipment id and tracking id.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def retrieveShippingLabel(
         self,
@@ -975,6 +1248,15 @@ class ShippingV1Client(__BaseClient):
             503: RetrieveShippingLabelResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Purchase shipping labels.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def purchaseShipment(
         self,
         data: PurchaseShipmentRequest,
@@ -992,6 +1274,15 @@ class ShippingV1Client(__BaseClient):
             500: PurchaseShipmentResponse,
             503: PurchaseShipmentResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Get service rates.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getRates(
         self,
@@ -1011,6 +1302,15 @@ class ShippingV1Client(__BaseClient):
             503: GetRatesResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Verify if the current account is valid.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 15 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getAccount(
         self,
     ):
@@ -1027,6 +1327,15 @@ class ShippingV1Client(__BaseClient):
             500: GetAccountResponse,
             503: GetAccountResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Return the tracking information of a shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getTrackingInformation(
         self,

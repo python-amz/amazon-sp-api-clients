@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetServiceJobByServiceJobIdResponse:
+    """
+    The response schema for the GetServiceJobByServiceJobId operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetServiceJobByServiceJobIdResponse:
 
 
 class CancelServiceJobByServiceJobIdResponse:
+    """
+    Response schema for CancelServiceJobByServiceJobId operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -27,6 +35,10 @@ class CancelServiceJobByServiceJobIdResponse:
 
 
 class CompleteServiceJobByServiceJobIdResponse:
+    """
+    Response schema for CompleteServiceJobByServiceJobId operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -37,6 +49,10 @@ class CompleteServiceJobByServiceJobIdResponse:
 
 
 class GetServiceJobsResponse:
+    """
+    Response schema for GetJobs operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -51,6 +67,10 @@ class GetServiceJobsResponse:
 
 
 class SetAppointmentResponse:
+    """
+    Response schema for add or reschedule appointment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -69,6 +89,10 @@ class SetAppointmentResponse:
 
 
 class JobListing:
+    """
+    The payload for the GetJobs operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -91,6 +115,10 @@ class JobListing:
 
 
 class ServiceJob:
+    """
+    The job details of a service.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -151,6 +179,10 @@ class ServiceJob:
 
 
 class ScopeOfWork:
+    """
+    The scope of work for the order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -173,6 +205,10 @@ class ScopeOfWork:
 
 
 class Seller:
+    """
+    Information about the seller of the service job.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -183,6 +219,10 @@ class Seller:
 
 
 class ServiceJobProvider:
+    """
+    Information about the service job provider.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -193,6 +233,10 @@ class ServiceJobProvider:
 
 
 class Buyer:
+    """
+    Information about the buyer.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -215,6 +259,10 @@ class Buyer:
 
 
 class AppointmentTime:
+    """
+    The time of the appointment window.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -229,6 +277,10 @@ class AppointmentTime:
 
 
 class Appointment:
+    """
+    The details of an appointment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -259,6 +311,10 @@ class Appointment:
 
 
 class Technician:
+    """
+    A technician who is assigned to perform the service job in part or in full.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -273,6 +329,10 @@ class Technician:
 
 
 class Poa:
+    """
+    Proof of Appointment (POA) details.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -299,6 +359,10 @@ class Poa:
 
 
 class AssociatedItem:
+    """
+    Information about an item associated with the service job.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -333,6 +397,10 @@ class AssociatedItem:
 
 
 class ItemDelivery:
+    """
+    Delivery information for the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -347,6 +415,10 @@ class ItemDelivery:
 
 
 class ItemDeliveryPromise:
+    """
+    Promised delivery information for the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -361,6 +433,10 @@ class ItemDeliveryPromise:
 
 
 class ServiceLocation:
+    """
+    Information about the location of the service job.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -375,6 +451,10 @@ class ServiceLocation:
 
 
 class Address:
+    """
+    The shipping address for the service job.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -425,6 +505,10 @@ class Address:
 
 
 class AddAppointmentRequest:
+    """
+    Input for add appointment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -435,6 +519,10 @@ class AddAppointmentRequest:
 
 
 class RescheduleAppointmentRequest:
+    """
+    Input for rescheduled appointment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -449,6 +537,10 @@ class RescheduleAppointmentRequest:
 
 
 class AppointmentTimeInput:
+    """
+    The input appointment time details.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -463,6 +555,10 @@ class AppointmentTimeInput:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -485,6 +581,10 @@ class Error:
 
 
 class Warning:
+    """
+    Warning returned when the request is successful but execution have some important callouts on basis of which API clients should take defined actions.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -503,34 +603,59 @@ class Warning:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class WarningList(list, _List["Warning"]):
+    """
+    A list of warnings returned in the sucessful execution response of an API request.
+    """
+
     def __init__(self, data):
         super().__init__([Warning(datum) for datum in data])
         self.data = data
 
 
 class ServiceJobId(str):
-    pass
+    """
+    Amazon identifier for the service job.
+    """
 
 
 class OrderId(str):
-    pass
+    """
+    The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
+    """
 
 
 class AppointmentId(str):
-    pass
+    """
+    The appointment identifier.
+    """
 
 
 class RescheduleReasonCode(str):
-    pass
+    """
+    Appointment reschedule reason code.
+    """
 
 
 class ServicesV1Client(__BaseClient):
+    """
+        Gets service job details for the service job indicated by the service job identifier you specify.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 20 | 40 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getServiceJobByServiceJobId(
         self,
         serviceJobId: str,
@@ -552,6 +677,15 @@ class ServicesV1Client(__BaseClient):
             500: GetServiceJobByServiceJobIdResponse,
             503: GetServiceJobByServiceJobIdResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Cancels the service job indicated by the service job identifier you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 20 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def cancelServiceJobByServiceJobId(
         self,
@@ -578,6 +712,15 @@ class ServicesV1Client(__BaseClient):
             503: CancelServiceJobByServiceJobIdResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Completes the service job indicated by the service job identifier you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 20 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def completeServiceJobByServiceJobId(
         self,
         serviceJobId: str,
@@ -599,6 +742,15 @@ class ServicesV1Client(__BaseClient):
             500: CompleteServiceJobByServiceJobIdResponse,
             503: CompleteServiceJobByServiceJobIdResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Gets service job details for the specified filter query.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 10 | 40 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getServiceJobs(
         self,
@@ -657,6 +809,15 @@ class ServicesV1Client(__BaseClient):
             503: GetServiceJobsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Adds an appointment to the service job indicated by the service job identifier you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 20 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def addAppointmentForServiceJobByServiceJobId(
         self,
         data: AddAppointmentRequest,
@@ -679,6 +840,15 @@ class ServicesV1Client(__BaseClient):
             500: SetAppointmentResponse,
             503: SetAppointmentResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Reschedules an appointment for the service job indicated by the service job identifier you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 5 | 20 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def rescheduleAppointmentForServiceJobByServiceJobId(
         self,

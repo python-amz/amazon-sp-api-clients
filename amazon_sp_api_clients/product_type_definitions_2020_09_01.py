@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class ErrorList:
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,8 @@ class ErrorList:
 
 
 class SchemaLink:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -45,6 +55,10 @@ class SchemaLink:
 
 
 class ProductTypeDefinition:
+    """
+    A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -87,6 +101,10 @@ class ProductTypeDefinition:
 
 
 class PropertyGroup:
+    """
+    A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -105,6 +123,10 @@ class PropertyGroup:
 
 
 class ProductTypeVersion:
+    """
+    The version details for an Amazon product type.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -123,6 +145,10 @@ class ProductTypeVersion:
 
 
 class ProductType:
+    """
+    An Amazon product type with a definition available.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -137,6 +163,10 @@ class ProductType:
 
 
 class ProductTypeList:
+    """
+    A list of Amazon product types with definitions available.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -147,6 +177,16 @@ class ProductTypeList:
 
 
 class ProductTypeDefinitions20200901Client(__BaseClient):
+    """
+        Search for and return a list of Amazon product types that have definitions available.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 5 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def searchDefinitionsProductTypes(
         self,
         marketplaceIds: _List[str],
@@ -170,6 +210,16 @@ class ProductTypeDefinitions20200901Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Retrieve an Amazon product type definition.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 5 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getDefinitionsProductType(
         self,

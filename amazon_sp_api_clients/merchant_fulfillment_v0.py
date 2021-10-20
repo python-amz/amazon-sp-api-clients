@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class LabelFormatOptionRequest:
+    """
+    Whether to include a packing slip.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,10 @@ class LabelFormatOptionRequest:
 
 
 class LabelFormatOption:
+    """
+    The label format details and whether to include a packing slip.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -45,6 +57,10 @@ class LabelFormatOption:
 
 
 class AvailableCarrierWillPickUpOption:
+    """
+    Indicates whether the carrier will pick up the package, and what fee is charged, if any.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -61,6 +77,10 @@ class AvailableCarrierWillPickUpOption:
 
 
 class AvailableDeliveryExperienceOption:
+    """
+    The available delivery confirmation options, and the fee charged, if any.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -77,6 +97,10 @@ class AvailableDeliveryExperienceOption:
 
 
 class AvailableShippingServiceOptions:
+    """
+    The available shipping service options.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -95,6 +119,10 @@ class AvailableShippingServiceOptions:
 
 
 class Constraint:
+    """
+    A validation constraint.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -109,6 +137,10 @@ class Constraint:
 
 
 class AdditionalInputs:
+    """
+    Maps the additional seller input to the definition. The key to the map is the field name.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -123,6 +155,10 @@ class AdditionalInputs:
 
 
 class SellerInputDefinition:
+    """
+    Specifies characteristics that apply to a seller input.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -157,6 +193,10 @@ class SellerInputDefinition:
 
 
 class AdditionalSellerInput:
+    """
+    Additional information required to purchase shipping.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -199,6 +239,10 @@ class AdditionalSellerInput:
 
 
 class AdditionalSellerInputs:
+    """
+    An additional set of seller inputs required to purchase shipping.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -213,6 +257,10 @@ class AdditionalSellerInputs:
 
 
 class Address:
+    """
+    The postal address information.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -263,6 +311,10 @@ class Address:
 
 
 class CancelShipmentResponse:
+    """
+    Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -277,6 +329,10 @@ class CancelShipmentResponse:
 
 
 class CreateShipmentRequest:
+    """
+    Request schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -309,6 +365,10 @@ class CreateShipmentRequest:
 
 
 class CreateShipmentResponse:
+    """
+    Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -323,6 +383,8 @@ class CreateShipmentResponse:
 
 
 class ItemLevelFields:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -337,6 +399,10 @@ class ItemLevelFields:
 
 
 class GetAdditionalSellerInputsRequest:
+    """
+    Request schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -355,6 +421,10 @@ class GetAdditionalSellerInputsRequest:
 
 
 class GetAdditionalSellerInputsResult:
+    """
+    The payload for the getAdditionalSellerInputs operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -369,6 +439,10 @@ class GetAdditionalSellerInputsResult:
 
 
 class GetAdditionalSellerInputsResponse:
+    """
+    Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -383,6 +457,10 @@ class GetAdditionalSellerInputsResponse:
 
 
 class CurrencyAmount:
+    """
+    Currency type and amount.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -397,6 +475,10 @@ class CurrencyAmount:
 
 
 class FileContents:
+    """
+    The document data and checksum.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -415,6 +497,10 @@ class FileContents:
 
 
 class GetEligibleShipmentServicesRequest:
+    """
+    Request schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -429,6 +515,10 @@ class GetEligibleShipmentServicesRequest:
 
 
 class GetEligibleShipmentServicesResponse:
+    """
+    Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -443,6 +533,10 @@ class GetEligibleShipmentServicesResponse:
 
 
 class GetEligibleShipmentServicesResult:
+    """
+    The payload for the getEligibleShipmentServices operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -471,6 +565,10 @@ class GetEligibleShipmentServicesResult:
 
 
 class GetShipmentResponse:
+    """
+    Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -485,6 +583,10 @@ class GetShipmentResponse:
 
 
 class Item:
+    """
+    An Amazon order item identifier and a quantity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -517,6 +619,10 @@ class Item:
 
 
 class Label:
+    """
+    Data for creating a shipping label and dimensions for printing the label.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -543,6 +649,10 @@ class Label:
 
 
 class LabelCustomization:
+    """
+    Custom text for shipping labels.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -557,6 +667,10 @@ class LabelCustomization:
 
 
 class LabelDimensions:
+    """
+    Dimensions for printing a shipping label.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -575,6 +689,10 @@ class LabelDimensions:
 
 
 class Length:
+    """
+    The length.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -589,6 +707,10 @@ class Length:
 
 
 class PackageDimensions:
+    """
+    The dimensions of a package contained in a shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -617,6 +739,10 @@ class PackageDimensions:
 
 
 class Shipment:
+    """
+    The details of a shipment, including the shipment status.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -683,6 +809,10 @@ class Shipment:
 
 
 class ShipmentRequestDetails:
+    """
+    Shipment information required for requesting shipping service offers or for creating a shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -729,6 +859,10 @@ class ShipmentRequestDetails:
 
 
 class ShippingOfferingFilter:
+    """
+    Filter for use when requesting eligible shipping services.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -751,6 +885,10 @@ class ShippingOfferingFilter:
 
 
 class ShippingService:
+    """
+    A shipping service offer made by a carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -813,6 +951,10 @@ class ShippingService:
 
 
 class ShippingServiceOptions:
+    """
+    Extra services provided by a carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -841,6 +983,10 @@ class ShippingServiceOptions:
 
 
 class RejectedShippingService:
+    """
+    Information about a rejected shipping service
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -867,6 +1013,10 @@ class RejectedShippingService:
 
 
 class TemporarilyUnavailableCarrier:
+    """
+    A carrier who is temporarily unavailable, most likely due to a service outage experienced by the carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -877,6 +1027,10 @@ class TemporarilyUnavailableCarrier:
 
 
 class TermsAndConditionsNotAcceptedCarrier:
+    """
+    A carrier whose terms and conditions have not been accepted by the seller.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -887,6 +1041,10 @@ class TermsAndConditionsNotAcceptedCarrier:
 
 
 class Weight:
+    """
+    The weight.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -901,256 +1059,403 @@ class Weight:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class AvailableCarrierWillPickUpOptionsList(list, _List["AvailableCarrierWillPickUpOption"]):
+    """
+    List of available carrier pickup options.
+    """
+
     def __init__(self, data):
         super().__init__([AvailableCarrierWillPickUpOption(datum) for datum in data])
         self.data = data
 
 
 class AvailableDeliveryExperienceOptionsList(list, _List["AvailableDeliveryExperienceOption"]):
+    """
+    List of available delivery experience options.
+    """
+
     def __init__(self, data):
         super().__init__([AvailableDeliveryExperienceOption(datum) for datum in data])
         self.data = data
 
 
 class AvailableFormatOptionsForLabelList(list, _List["LabelFormatOption"]):
+    """
+    The available label formats.
+    """
+
     def __init__(self, data):
         super().__init__([LabelFormatOption(datum) for datum in data])
         self.data = data
 
 
 class Constraints(list, _List["Constraint"]):
+    """
+    List of constraints.
+    """
+
     def __init__(self, data):
         super().__init__([Constraint(datum) for datum in data])
         self.data = data
 
 
 class AdditionalInputsList(list, _List["AdditionalInputs"]):
+    """
+    A list of additional inputs.
+    """
+
     def __init__(self, data):
         super().__init__([AdditionalInputs(datum) for datum in data])
         self.data = data
 
 
 class AdditionalSellerInputsList(list, _List["AdditionalSellerInputs"]):
+    """
+    A list of additional seller input pairs required to purchase shipping.
+    """
+
     def __init__(self, data):
         super().__init__([AdditionalSellerInputs(datum) for datum in data])
         self.data = data
 
 
 class ItemLevelFieldsList(list, _List["ItemLevelFields"]):
+    """
+    A list of item level fields.
+    """
+
     def __init__(self, data):
         super().__init__([ItemLevelFields(datum) for datum in data])
         self.data = data
 
 
 class ItemList(list, _List["Item"]):
+    """
+    The list of items to be included in a shipment.
+    """
+
     def __init__(self, data):
         super().__init__([Item(datum) for datum in data])
         self.data = data
 
 
 class LabelFormatList(list, _List["LabelFormat"]):
+    """
+    List of label formats.
+    """
+
     def __init__(self, data):
         super().__init__([LabelFormat(datum) for datum in data])
         self.data = data
 
 
 class RestrictedSetValues(list, _List["str"]):
+    """
+    The set of fixed values in an additional seller input.
+    """
+
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
         self.data = data
 
 
 class ShippingServiceList(list, _List["ShippingService"]):
+    """
+    A list of shipping services offers.
+    """
+
     def __init__(self, data):
         super().__init__([ShippingService(datum) for datum in data])
         self.data = data
 
 
 class RejectedShippingServiceList(list, _List["RejectedShippingService"]):
+    """
+    List of services that were for some reason unavailable for this request
+    """
+
     def __init__(self, data):
         super().__init__([RejectedShippingService(datum) for datum in data])
         self.data = data
 
 
 class TemporarilyUnavailableCarrierList(list, _List["TemporarilyUnavailableCarrier"]):
+    """
+    A list of temporarily unavailable carriers.
+    """
+
     def __init__(self, data):
         super().__init__([TemporarilyUnavailableCarrier(datum) for datum in data])
         self.data = data
 
 
 class TermsAndConditionsNotAcceptedCarrierList(list, _List["TermsAndConditionsNotAcceptedCarrier"]):
+    """
+    List of carriers whose terms and conditions were not accepted by the seller.
+    """
+
     def __init__(self, data):
         super().__init__([TermsAndConditionsNotAcceptedCarrier(datum) for datum in data])
         self.data = data
 
 
 class TransparencyCodeList(list, _List["TransparencyCode"]):
+    """
+    A list of transparency codes.
+    """
+
     def __init__(self, data):
         super().__init__([TransparencyCode(datum) for datum in data])
         self.data = data
 
 
 class InputTargetType(str):
-    pass
+    """
+    Indicates whether the additional seller input is at the item or shipment level.
+    """
 
 
 class AddressLine1(str):
-    pass
+    """
+    The street address information.
+    """
 
 
 class AddressLine2(str):
-    pass
+    """
+    Additional street address information.
+    """
 
 
 class AddressLine3(str):
-    pass
+    """
+    Additional street address information.
+    """
 
 
 class AddressName(str):
-    pass
+    """
+    The name of the addressee, or business name.
+    """
 
 
 class AmazonOrderId(str):
-    pass
+    """
+    An Amazon-defined order identifier, in 3-7-7 format. <br>**Pattern** : `[0-9A-Z]{3}-[0-9]{7}-[0-9]{7}`.
+    """
 
 
 class City(str):
-    pass
+    """
+    The city.
+    """
 
 
 class CountryCode(str):
-    pass
+    """
+    The country code. A two-character country code, in ISO 3166-1 alpha-2 format.
+    """
 
 
 class CustomTextForLabel(str):
-    pass
+    """
+        Custom text to print on the label.
+    Note: Custom text is only included on labels that are in ZPL format (ZPL203). FedEx does not support CustomTextForLabel.
+    """
 
 
 class DeliveryExperienceType(str):
-    pass
+    """
+    The delivery confirmation level.
+    """
 
 
 class DistrictOrCounty(str):
-    pass
+    """
+    The district or county.
+    """
 
 
 class EmailAddress(str):
-    pass
+    """
+    The email address.
+    """
 
 
 class FileType(str):
-    pass
+    """
+    The file type for a label.
+    """
 
 
 class HazmatType(str):
-    pass
+    """
+    Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information on hazardous materials.
+    """
 
 
 class ItemQuantity(int):
-    pass
+    """
+    The number of items.
+    """
 
 
 class ItemDescription(str):
-    pass
+    """
+    The description of the item.
+    """
 
 
 class LabelDimension(float):
-    pass
+    """
+    A label dimension.
+    """
 
 
 class LabelFormat(str):
-    pass
+    """
+    The label format.
+    """
 
 
 class OrderItemId(str):
-    pass
+    """
+    An Amazon-defined identifier for an individual item in an order.
+    """
 
 
 class PackageDimension(float):
-    pass
+    """ """
 
 
 class PhoneNumber(str):
-    pass
+    """
+    The phone number.
+    """
 
 
 class PostalCode(str):
-    pass
+    """
+    The zip code or postal code.
+    """
 
 
 class PredefinedPackageDimensions(str):
-    pass
+    """
+        An enumeration of predefined parcel tokens. If you specify a PredefinedPackageDimensions token, you are not obligated to use a branded package from a carrier. For example, if you specify the FedEx_Box_10kg token, you do not have to use that particular package from FedEx. You are only obligated to use a box that matches the dimensions specified by the token.
+    Note: Please note that carriers can have restrictions on the type of package allowed for certain ship methods. Check the carrier website for all details. Example: Flat rate pricing is available when materials are sent by USPS in a USPS-produced Flat Rate Envelope or Box.
+    """
 
 
 class SellerOrderId(str):
-    pass
+    """
+    A seller-defined order identifier.
+    """
 
 
 class ShipmentId(str):
-    pass
+    """
+    An Amazon-defined shipment identifier.
+    """
 
 
 class ShipmentStatus(str):
-    pass
+    """
+    The shipment status.
+    """
 
 
 class DeliveryExperienceOption(str):
-    pass
+    """
+    The delivery confirmation level.
+    """
 
 
 class ShippingServiceIdentifier(str):
-    pass
+    """
+    An Amazon-defined shipping service identifier.
+    """
 
 
 class CarrierWillPickUpOption(str):
-    pass
+    """
+    Carrier will pick up option.
+    """
 
 
 class StandardIdForLabel(str):
-    pass
+    """
+    The type of standard identifier to print on the label.
+    """
 
 
 class StateOrProvinceCode(str):
-    pass
+    """
+    The state or province code.
+    """
 
 
 class Timestamp(str):
-    pass
+    """ """
 
 
 class TrackingId(str):
-    pass
+    """
+    The shipment tracking identifier provided by the carrier.
+    """
 
 
 class TransparencyCode(str):
-    pass
+    """
+    The Transparency code associated with the item.
+    """
 
 
 class UnitOfLength(str):
-    pass
+    """
+    The unit of length.
+    """
 
 
 class UnitOfWeight(str):
-    pass
+    """
+    The unit of weight.
+    """
 
 
 class WeightValue(float):
-    pass
+    """
+    The weight value.
+    """
 
 
 class AvailableFormatOptionsForLabel:
+    """ """
+
     def __init__(self, data):
         self.data = data
         super().__init__(data)
 
 
 class MerchantFulfillmentV0Client(__BaseClient):
+    """
+        Returns a list of shipping service offers that satisfy the specified shipment request details.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 1 | 1 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getEligibleShipmentServicesOld(
         self,
         data: GetEligibleShipmentServicesRequest,
@@ -1169,6 +1474,15 @@ class MerchantFulfillmentV0Client(__BaseClient):
             503: GetEligibleShipmentServicesResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a list of shipping service offers that satisfy the specified shipment request details.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getEligibleShipmentServices(
         self,
         data: GetEligibleShipmentServicesRequest,
@@ -1186,6 +1500,15 @@ class MerchantFulfillmentV0Client(__BaseClient):
             500: GetEligibleShipmentServicesResponse,
             503: GetEligibleShipmentServicesResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the shipment information for an existing shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getShipment(
         self,
@@ -1207,6 +1530,15 @@ class MerchantFulfillmentV0Client(__BaseClient):
             503: GetShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Cancel the shipment indicated by the specified shipment identifier.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def cancelShipment(
         self,
         shipmentId: str,
@@ -1226,6 +1558,15 @@ class MerchantFulfillmentV0Client(__BaseClient):
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Cancel the shipment indicated by the specified shipment identifer.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def cancelShipmentOld(
         self,
@@ -1247,6 +1588,15 @@ class MerchantFulfillmentV0Client(__BaseClient):
             503: CancelShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Create a shipment with the information provided.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createShipment(
         self,
         data: CreateShipmentRequest,
@@ -1265,6 +1615,15 @@ class MerchantFulfillmentV0Client(__BaseClient):
             503: CreateShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getAdditionalSellerInputsOld(
         self,
         data: GetAdditionalSellerInputsRequest,
@@ -1282,6 +1641,15 @@ class MerchantFulfillmentV0Client(__BaseClient):
             500: GetAdditionalSellerInputsResponse,
             503: GetAdditionalSellerInputsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 1 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getAdditionalSellerInputs(
         self,

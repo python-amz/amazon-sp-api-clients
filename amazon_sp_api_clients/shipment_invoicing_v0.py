@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetShipmentDetailsResponse:
+    """
+    The response schema for the getShipmentDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetShipmentDetailsResponse:
 
 
 class ShipmentDetail:
+    """
+    The information required by a selling partner to issue a shipment invoice.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -81,6 +89,10 @@ class ShipmentDetail:
 
 
 class Address:
+    """
+    The shipping address details of the shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -135,6 +147,10 @@ class Address:
 
 
 class BuyerTaxInfo:
+    """
+    Tax information about the buyer.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -153,6 +169,10 @@ class BuyerTaxInfo:
 
 
 class MarketplaceTaxInfo:
+    """
+    Tax information about the marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -171,6 +191,10 @@ class MarketplaceTaxInfo:
 
 
 class TaxClassification:
+    """
+    The tax classification for the entity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -185,6 +209,10 @@ class TaxClassification:
 
 
 class ShipmentItem:
+    """
+    The shipment item information required by a seller to issue a shipment invoice.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -235,6 +263,10 @@ class ShipmentItem:
 
 
 class Money:
+    """
+    The currency type and amount.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -249,6 +281,10 @@ class Money:
 
 
 class Error:
+    """
+    An error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -267,6 +303,10 @@ class Error:
 
 
 class SubmitInvoiceRequest:
+    """
+    The request schema for the submitInvoice operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -281,6 +321,10 @@ class SubmitInvoiceRequest:
 
 
 class SubmitInvoiceResponse:
+    """
+    The response schema for the submitInvoice operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -291,6 +335,10 @@ class SubmitInvoiceResponse:
 
 
 class ShipmentInvoiceStatusInfo:
+    """
+    The shipment invoice status information.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -305,6 +353,10 @@ class ShipmentInvoiceStatusInfo:
 
 
 class ShipmentInvoiceStatusResponse:
+    """
+    The shipment invoice status response.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -315,6 +367,10 @@ class ShipmentInvoiceStatusResponse:
 
 
 class GetInvoiceStatusResponse:
+    """
+    The response schema for the getInvoiceStatus operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -329,48 +385,84 @@ class GetInvoiceStatusResponse:
 
 
 class PaymentMethodDetailItemList(list, _List["str"]):
+    """
+    The list of payment method details.
+    """
+
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
         self.data = data
 
 
 class TaxClassificationList(list, _List["TaxClassification"]):
+    """
+    The list of tax classifications.
+    """
+
     def __init__(self, data):
         super().__init__([TaxClassification(datum) for datum in data])
         self.data = data
 
 
 class ShipmentItems(list, _List["ShipmentItem"]):
+    """
+    A list of shipment items.
+    """
+
     def __init__(self, data):
         super().__init__([ShipmentItem(datum) for datum in data])
         self.data = data
 
 
 class SerialNumbersList(list, _List["str"]):
+    """
+    The list of serial numbers.
+    """
+
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class AddressTypeEnum(str):
-    pass
+    """
+    The shipping address type.
+    """
 
 
 class Blob(str):
-    pass
+    """
+    Shipment invoice document content.
+    """
 
 
 class ShipmentInvoiceStatus(str):
-    pass
+    """
+    The shipment invoice status.
+    """
 
 
 class ShipmentInvoicingV0Client(__BaseClient):
+    """
+        Returns the shipment details required to issue an invoice for the specified shipment.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 1.133 | 25 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getShipmentDetails(
         self,
         shipmentId: str,
@@ -391,6 +483,16 @@ class ShipmentInvoicingV0Client(__BaseClient):
             500: GetShipmentDetailsResponse,
             503: GetShipmentDetailsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Submits a shipment invoice document for a given shipment.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 1.133 | 25 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def submitInvoice(
         self,
@@ -413,6 +515,16 @@ class ShipmentInvoicingV0Client(__BaseClient):
             500: SubmitInvoiceResponse,
             503: SubmitInvoiceResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the invoice status for the shipment you specify.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 1.133 | 25 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getInvoiceStatus(
         self,

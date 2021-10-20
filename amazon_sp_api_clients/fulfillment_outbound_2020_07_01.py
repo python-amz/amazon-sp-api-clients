@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class Address:
+    """
+    A physical address.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -67,6 +75,10 @@ class Address:
 
 
 class CODSettings:
+    """
+    The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -93,6 +105,10 @@ class CODSettings:
 
 
 class CreateFulfillmentOrderItem:
+    """
+    Item information for creating a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -135,6 +151,10 @@ class CreateFulfillmentOrderItem:
 
 
 class CreateFulfillmentOrderRequest:
+    """
+    The request body schema for the createFulfillmentOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -203,6 +223,10 @@ class CreateFulfillmentOrderRequest:
 
 
 class CreateFulfillmentReturnRequest:
+    """
+    The createFulfillmentReturn operation creates a fulfillment return for items that were fulfilled using the createFulfillmentOrder operation. For calls to createFulfillmentReturn, you must include ReturnReasonCode values returned by a previous call to the listReturnReasonCodes operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -213,6 +237,8 @@ class CreateFulfillmentReturnRequest:
 
 
 class CreateFulfillmentReturnResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -231,6 +257,10 @@ class CreateFulfillmentReturnResult:
 
 
 class CreateFulfillmentReturnResponse:
+    """
+    The response schema for the createFulfillmentReturn operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -245,6 +275,10 @@ class CreateFulfillmentReturnResponse:
 
 
 class CreateReturnItem:
+    """
+    An item that Amazon accepted for return.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -271,6 +305,10 @@ class CreateReturnItem:
 
 
 class Money:
+    """
+    An amount of money, including units in the form of currency.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -285,6 +323,10 @@ class Money:
 
 
 class DeliveryWindow:
+    """
+    The time range within which a Scheduled Delivery fulfillment order should be delivered.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -299,6 +341,10 @@ class DeliveryWindow:
 
 
 class Fee:
+    """
+    Fee type and cost.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -313,6 +359,10 @@ class Fee:
 
 
 class FulfillmentOrder:
+    """
+    General information about a fulfillment order, including its status.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -385,6 +435,10 @@ class FulfillmentOrder:
 
 
 class FulfillmentOrderItem:
+    """
+    Item information for a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -447,6 +501,10 @@ class FulfillmentOrderItem:
 
 
 class FulfillmentPreview:
+    """
+    Information about a fulfillment order preview, including delivery and fee information based on shipping method.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -503,6 +561,10 @@ class FulfillmentPreview:
 
 
 class FulfillmentPreviewItem:
+    """
+    Item information for a shipment in a fulfillment order preview.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -529,6 +591,10 @@ class FulfillmentPreviewItem:
 
 
 class FulfillmentPreviewShipment:
+    """
+    Delivery and item information for a shipment in a fulfillment order preview.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -561,6 +627,10 @@ class FulfillmentPreviewShipment:
 
 
 class FulfillmentShipment:
+    """
+    Delivery and item information for a shipment in a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -603,6 +673,10 @@ class FulfillmentShipment:
 
 
 class FulfillmentShipmentItem:
+    """
+    Item information for a shipment in a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -629,6 +703,10 @@ class FulfillmentShipmentItem:
 
 
 class FulfillmentShipmentPackage:
+    """
+    Package information for a shipment in a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -651,6 +729,8 @@ class FulfillmentShipmentPackage:
 
 
 class GetFulfillmentOrderResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -679,6 +759,10 @@ class GetFulfillmentOrderResult:
 
 
 class GetFulfillmentOrderResponse:
+    """
+    The response schema for the getFulfillmentOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -693,6 +777,10 @@ class GetFulfillmentOrderResponse:
 
 
 class GetFulfillmentPreviewItem:
+    """
+    Item information for a fulfillment order preview.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -715,6 +803,10 @@ class GetFulfillmentPreviewItem:
 
 
 class GetFulfillmentPreviewRequest:
+    """
+    The request body schema for the getFulfillmentPreview operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -753,6 +845,10 @@ class GetFulfillmentPreviewRequest:
 
 
 class GetFulfillmentPreviewResult:
+    """
+    A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and estimated ship dates and arrival dates.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -763,6 +859,10 @@ class GetFulfillmentPreviewResult:
 
 
 class GetFulfillmentPreviewResponse:
+    """
+    The response schema for the getFulfillmentPreview operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -777,6 +877,10 @@ class GetFulfillmentPreviewResponse:
 
 
 class InvalidItemReason:
+    """
+    The reason that the item is invalid for return.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -791,6 +895,10 @@ class InvalidItemReason:
 
 
 class InvalidReturnItem:
+    """
+    An item that is invalid for return.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -809,6 +917,8 @@ class InvalidReturnItem:
 
 
 class ListAllFulfillmentOrdersResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -825,6 +935,10 @@ class ListAllFulfillmentOrdersResult:
 
 
 class ListAllFulfillmentOrdersResponse:
+    """
+    The response schema for the listAllFulfillmentOrders operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -839,6 +953,8 @@ class ListAllFulfillmentOrdersResponse:
 
 
 class ListReturnReasonCodesResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -849,6 +965,10 @@ class ListReturnReasonCodesResult:
 
 
 class ListReturnReasonCodesResponse:
+    """
+    The response schema for the listReturnReasonCodes operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -863,6 +983,8 @@ class ListReturnReasonCodesResponse:
 
 
 class PackageTrackingDetails:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -925,6 +1047,10 @@ class PackageTrackingDetails:
 
 
 class GetPackageTrackingDetailsResponse:
+    """
+    The response schema for the getPackageTrackingDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -939,6 +1065,10 @@ class GetPackageTrackingDetailsResponse:
 
 
 class ReasonCodeDetails:
+    """
+    A return reason code, a description, and an optional description translation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -957,6 +1087,10 @@ class ReasonCodeDetails:
 
 
 class ReturnAuthorization:
+    """
+    Return authorization information for items accepted for return.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -983,6 +1117,10 @@ class ReturnAuthorization:
 
 
 class ReturnItem:
+    """
+    An item that Amazon accepted for return.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1033,6 +1171,10 @@ class ReturnItem:
 
 
 class ScheduledDeliveryInfo:
+    """
+    Delivery information for a scheduled delivery.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1047,6 +1189,10 @@ class ScheduledDeliveryInfo:
 
 
 class TrackingAddress:
+    """
+    Address information for tracking the package.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1065,6 +1211,10 @@ class TrackingAddress:
 
 
 class TrackingEvent:
+    """
+    Information for tracking package deliveries.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1087,6 +1237,10 @@ class TrackingEvent:
 
 
 class UnfulfillablePreviewItem:
+    """
+    Information about unfulfillable items in a fulfillment order preview.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1109,6 +1263,10 @@ class UnfulfillablePreviewItem:
 
 
 class UpdateFulfillmentOrderItem:
+    """
+    Item information for updating a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1155,6 +1313,8 @@ class UpdateFulfillmentOrderItem:
 
 
 class UpdateFulfillmentOrderRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1211,6 +1371,10 @@ class UpdateFulfillmentOrderRequest:
 
 
 class UpdateFulfillmentOrderResponse:
+    """
+    The response schema for the updateFulfillmentOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1221,6 +1385,10 @@ class UpdateFulfillmentOrderResponse:
 
 
 class CreateFulfillmentOrderResponse:
+    """
+    The response schema for the createFulfillmentOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1231,6 +1399,10 @@ class CreateFulfillmentOrderResponse:
 
 
 class CancelFulfillmentOrderResponse:
+    """
+    The response schema for the cancelFulfillmentOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1241,6 +1413,10 @@ class CancelFulfillmentOrderResponse:
 
 
 class Weight:
+    """
+    The weight.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1255,6 +1431,10 @@ class Weight:
 
 
 class GetFeatureInventoryResponse:
+    """
+    The breakdown of eligibility inventory by feature.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1269,6 +1449,10 @@ class GetFeatureInventoryResponse:
 
 
 class GetFeatureInventoryResult:
+    """
+    The payload for the getEligibileInventory operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1291,6 +1475,10 @@ class GetFeatureInventoryResult:
 
 
 class FeatureSku:
+    """
+    Information about an SKU, including the count available, identifiers, and a list of overlapping SKUs that share the same inventory pool.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1317,6 +1505,10 @@ class FeatureSku:
 
 
 class GetFeaturesResponse:
+    """
+    The response schema for the getFeatures operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1331,6 +1523,10 @@ class GetFeaturesResponse:
 
 
 class GetFeaturesResult:
+    """
+    The payload for the getFeatures operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1341,6 +1537,10 @@ class GetFeaturesResult:
 
 
 class Feature:
+    """
+    A Multi-Channel Fulfillment feature.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1359,6 +1559,10 @@ class Feature:
 
 
 class GetFeatureSkuResponse:
+    """
+    The response schema for the getFeatureSKU operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1373,6 +1577,10 @@ class GetFeatureSkuResponse:
 
 
 class GetFeatureSkuResult:
+    """
+    The payload for the getFeatureSKU operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1399,6 +1607,10 @@ class GetFeatureSkuResult:
 
 
 class FeatureSettings:
+    """
+    FeatureSettings allows users to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, use featureName as BLOCK_AMZL and featureFulfillmentPolicy as Required. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using BLOCK_AMZL in an order request will take precedence over your Seller Central account setting.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1413,202 +1625,327 @@ class FeatureSettings:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class CreateFulfillmentOrderItemList(list, _List["CreateFulfillmentOrderItem"]):
+    """
+    An array of item information for creating a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__([CreateFulfillmentOrderItem(datum) for datum in data])
         self.data = data
 
 
 class CreateReturnItemList(list, _List["CreateReturnItem"]):
+    """
+    An array of items to be returned.
+    """
+
     def __init__(self, data):
         super().__init__([CreateReturnItem(datum) for datum in data])
         self.data = data
 
 
 class DeliveryWindowList(list, _List["DeliveryWindow"]):
+    """
+    An array of delivery windows.
+    """
+
     def __init__(self, data):
         super().__init__([DeliveryWindow(datum) for datum in data])
         self.data = data
 
 
 class FeeList(list, _List["Fee"]):
+    """
+    An array of fee type and cost pairs.
+    """
+
     def __init__(self, data):
         super().__init__([Fee(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentOrderItemList(list, _List["FulfillmentOrderItem"]):
+    """
+    An array of fulfillment order item information.
+    """
+
     def __init__(self, data):
         super().__init__([FulfillmentOrderItem(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentPreviewItemList(list, _List["FulfillmentPreviewItem"]):
+    """
+    An array of fulfillment preview item information.
+    """
+
     def __init__(self, data):
         super().__init__([FulfillmentPreviewItem(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentPreviewList(list, _List["FulfillmentPreview"]):
+    """
+    An array of fulfillment preview information.
+    """
+
     def __init__(self, data):
         super().__init__([FulfillmentPreview(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentPreviewShipmentList(list, _List["FulfillmentPreviewShipment"]):
+    """
+    An array of fulfillment preview shipment information.
+    """
+
     def __init__(self, data):
         super().__init__([FulfillmentPreviewShipment(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentShipmentItemList(list, _List["FulfillmentShipmentItem"]):
+    """
+    An array of fulfillment shipment item information.
+    """
+
     def __init__(self, data):
         super().__init__([FulfillmentShipmentItem(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentShipmentList(list, _List["FulfillmentShipment"]):
+    """
+    An array of fulfillment shipment information.
+    """
+
     def __init__(self, data):
         super().__init__([FulfillmentShipment(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentShipmentPackageList(list, _List["FulfillmentShipmentPackage"]):
+    """
+    An array of fulfillment shipment package information.
+    """
+
     def __init__(self, data):
         super().__init__([FulfillmentShipmentPackage(datum) for datum in data])
         self.data = data
 
 
 class GetFulfillmentPreviewItemList(list, _List["GetFulfillmentPreviewItem"]):
+    """
+    An array of fulfillment preview item information.
+    """
+
     def __init__(self, data):
         super().__init__([GetFulfillmentPreviewItem(datum) for datum in data])
         self.data = data
 
 
 class InvalidReturnItemList(list, _List["InvalidReturnItem"]):
+    """
+    An array of invalid return item information.
+    """
+
     def __init__(self, data):
         super().__init__([InvalidReturnItem(datum) for datum in data])
         self.data = data
 
 
 class NotificationEmailList(list, _List["str"]):
+    """
+    A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+    """
+
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
         self.data = data
 
 
 class ReasonCodeDetailsList(list, _List["ReasonCodeDetails"]):
+    """
+    An array of return reason code details.
+    """
+
     def __init__(self, data):
         super().__init__([ReasonCodeDetails(datum) for datum in data])
         self.data = data
 
 
 class ReturnAuthorizationList(list, _List["ReturnAuthorization"]):
+    """
+    An array of return authorization information.
+    """
+
     def __init__(self, data):
         super().__init__([ReturnAuthorization(datum) for datum in data])
         self.data = data
 
 
 class ReturnItemList(list, _List["ReturnItem"]):
+    """
+    An array of items that Amazon accepted for return. Returns empty if no items were accepted for return.
+    """
+
     def __init__(self, data):
         super().__init__([ReturnItem(datum) for datum in data])
         self.data = data
 
 
 class ShippingSpeedCategoryList(list, _List["ShippingSpeedCategory"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([ShippingSpeedCategory(datum) for datum in data])
         self.data = data
 
 
 class StringList(list, _List["str"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([str(datum) for datum in data])
         self.data = data
 
 
 class TrackingEventList(list, _List["TrackingEvent"]):
+    """
+    An array of tracking event information.
+    """
+
     def __init__(self, data):
         super().__init__([TrackingEvent(datum) for datum in data])
         self.data = data
 
 
 class UnfulfillablePreviewItemList(list, _List["UnfulfillablePreviewItem"]):
+    """
+    An array of unfulfillable preview item information.
+    """
+
     def __init__(self, data):
         super().__init__([UnfulfillablePreviewItem(datum) for datum in data])
         self.data = data
 
 
 class UpdateFulfillmentOrderItemList(list, _List["UpdateFulfillmentOrderItem"]):
+    """
+    An array of fulfillment order item information for updating a fulfillment order.
+    """
+
     def __init__(self, data):
         super().__init__([UpdateFulfillmentOrderItem(datum) for datum in data])
         self.data = data
 
 
 class Features(list, _List["Feature"]):
+    """
+    An array of features.
+    """
+
     def __init__(self, data):
         super().__init__([Feature(datum) for datum in data])
         self.data = data
 
 
 class FulfillmentPolicy(str):
-    pass
+    """
+    The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
+    """
 
 
 class FulfillmentOrderStatus(str):
-    pass
+    """
+    The current status of the fulfillment order.
+    """
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+    """
 
 
 class FulfillmentAction(str):
-    pass
+    """
+    Specifies whether the fulfillment order should ship now or have an order hold put on it.
+    """
 
 
 class FulfillmentReturnItemStatus(str):
-    pass
+    """
+    Indicates if the return item has been processed by a fulfillment center.
+    """
 
 
 class InvalidItemReasonCode(str):
-    pass
+    """
+    A code for why the item is invalid for return.
+    """
 
 
 class CurrentStatus(str):
-    pass
+    """
+    The current delivery status of the package.
+    """
 
 
 class AdditionalLocationInfo(str):
-    pass
+    """
+    Additional location information.
+    """
 
 
 class ReturnItemDisposition(str):
-    pass
+    """
+    The condition of the return item when received by an Amazon fulfillment center.
+    """
 
 
 class Timestamp(str):
-    pass
+    """ """
 
 
 class EventCode(str):
-    pass
+    """
+    The event code for the delivery event.
+    """
 
 
 class Quantity(int):
-    pass
+    """
+    The item quantity.
+    """
 
 
 class ShippingSpeedCategory(str):
-    pass
+    """
+    The shipping method used for the fulfillment order.
+    """
 
 
 class FulfillmentOutbound20200701Client(__BaseClient):
+    """
+        Returns a list of fulfillment order previews based on shipping criteria that you specify.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 2 | 30 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getFulfillmentPreview(
         self,
         data: GetFulfillmentPreviewRequest,
@@ -1626,6 +1963,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             500: GetFulfillmentPreviewResponse,
             503: GetFulfillmentPreviewResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next token parameter.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def listAllFulfillmentOrders(
         self,
@@ -1650,6 +1996,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             503: ListAllFulfillmentOrdersResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createFulfillmentOrder(
         self,
         data: CreateFulfillmentOrderRequest,
@@ -1667,6 +2022,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             500: CreateFulfillmentOrderResponse,
             503: CreateFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getPackageTrackingDetails(
         self,
@@ -1687,6 +2051,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             500: GetPackageTrackingDetailsResponse,
             503: GetPackageTrackingDetailsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of return reason codes for a seller SKU in a given marketplace.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def listReturnReasonCodes(
         self,
@@ -1717,6 +2090,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             503: ListReturnReasonCodesResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Creates a fulfillment return. 
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createFulfillmentReturn(
         self,
         sellerFulfillmentOrderId: str,
@@ -1736,6 +2118,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             500: CreateFulfillmentReturnResponse,
             503: CreateFulfillmentReturnResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the fulfillment order indicated by the specified order identifier.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getFulfillmentOrder(
         self,
@@ -1757,6 +2148,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             503: GetFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Updates and/or requests shipment for a fulfillment order with an order hold on it.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def updateFulfillmentOrder(
         self,
         sellerFulfillmentOrderId: str,
@@ -1776,6 +2176,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             500: UpdateFulfillmentOrderResponse,
             503: UpdateFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def cancelFulfillmentOrder(
         self,
@@ -1797,6 +2206,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             503: CancelFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getFeatures(
         self,
         marketplaceId: str,
@@ -1816,6 +2234,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             500: GetFeaturesResponse,
             503: GetFeaturesResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of inventory items that are eligible for the fulfillment feature you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getFeatureInventory(
         self,
@@ -1842,6 +2269,15 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             500: GetFeatureInventoryResponse,
             503: GetFeatureInventoryResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getFeatureSKU(
         self,

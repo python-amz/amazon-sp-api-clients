@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class PackingSlip:
+    """
+    Packing slip information.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class PackingSlip:
 
 
 class PackingSlipList:
+    """
+    A list of packing slips.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -35,6 +43,8 @@ class PackingSlipList:
 
 
 class GetPackingSlipListResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -49,6 +59,8 @@ class GetPackingSlipListResponse:
 
 
 class GetPackingSlipResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -63,6 +75,8 @@ class GetPackingSlipResponse:
 
 
 class SubmitShippingLabelsRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -75,6 +89,8 @@ class SubmitShippingLabelsRequest:
 
 
 class ShippingLabelRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -97,6 +113,10 @@ class ShippingLabelRequest:
 
 
 class Item:
+    """
+    Details of the item being shipped.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -119,6 +139,8 @@ class Item:
 
 
 class PackedItem:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -141,6 +163,10 @@ class PackedItem:
 
 
 class Package:
+    """
+    Details of the package being shipped.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -175,6 +201,8 @@ class Package:
 
 
 class PartyIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -195,6 +223,10 @@ class PartyIdentification:
 
 
 class ShipmentDetails:
+    """
+    Details about a shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -221,6 +253,10 @@ class ShipmentDetails:
 
 
 class StatusUpdateDetails:
+    """
+    Details for the shipment status update given by the vendor for the specific package.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -251,6 +287,10 @@ class StatusUpdateDetails:
 
 
 class TaxRegistrationDetails:
+    """
+    Tax registration details of the entity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -273,6 +313,10 @@ class TaxRegistrationDetails:
 
 
 class Address:
+    """
+    Address of the party.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -323,6 +367,10 @@ class Address:
 
 
 class Dimensions:
+    """
+    Physical dimensional measurements of a container.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -345,6 +393,10 @@ class Dimensions:
 
 
 class Weight:
+    """
+    The weight.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -359,6 +411,10 @@ class Weight:
 
 
 class ItemQuantity:
+    """
+    Details of item quantity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -373,6 +429,10 @@ class ItemQuantity:
 
 
 class SubmitShipmentConfirmationsResponse:
+    """
+    The response schema for the submitShipmentConfirmations operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -387,6 +447,10 @@ class SubmitShipmentConfirmationsResponse:
 
 
 class SubmitShipmentStatusUpdatesResponse:
+    """
+    The response schema for the submitShipmentStatusUpdates operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -401,6 +465,10 @@ class SubmitShipmentStatusUpdatesResponse:
 
 
 class GetShippingLabelListResponse:
+    """
+    The response schema for the getShippingLabels operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -415,6 +483,10 @@ class GetShippingLabelListResponse:
 
 
 class GetShippingLabelResponse:
+    """
+    The response schema for the getShippingLabel operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -429,6 +501,8 @@ class GetShippingLabelResponse:
 
 
 class ShippingLabelList:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -443,6 +517,10 @@ class ShippingLabelList:
 
 
 class LabelData:
+    """
+    Details of the shipment label.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -469,6 +547,8 @@ class LabelData:
 
 
 class ShippingLabel:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -495,6 +575,10 @@ class ShippingLabel:
 
 
 class SubmitShippingLabelsResponse:
+    """
+    The response schema for the submitShippingLabelRequest operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -509,6 +593,8 @@ class SubmitShippingLabelsResponse:
 
 
 class SubmitShipmentConfirmationsRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -521,6 +607,8 @@ class SubmitShipmentConfirmationsRequest:
 
 
 class ShipmentConfirmation:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -551,6 +639,8 @@ class ShipmentConfirmation:
 
 
 class SubmitShipmentStatusUpdatesRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -563,6 +653,8 @@ class SubmitShipmentStatusUpdatesRequest:
 
 
 class ShipmentStatusUpdate:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -585,6 +677,10 @@ class ShipmentStatusUpdate:
 
 
 class GetCustomerInvoicesResponse:
+    """
+    The response schema for the getCustomerInvoices operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -599,6 +695,10 @@ class GetCustomerInvoicesResponse:
 
 
 class GetCustomerInvoiceResponse:
+    """
+    The response schema for the getCustomerInvoice operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -613,6 +713,8 @@ class GetCustomerInvoiceResponse:
 
 
 class CustomerInvoiceList:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -629,6 +731,8 @@ class CustomerInvoiceList:
 
 
 class Pagination:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -639,6 +743,8 @@ class Pagination:
 
 
 class CustomerInvoice:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -653,6 +759,8 @@ class CustomerInvoice:
 
 
 class TransactionReference:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -663,6 +771,10 @@ class TransactionReference:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -681,6 +793,8 @@ class Error:
 
 
 class Container:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -735,16 +849,32 @@ class Container:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
+    """
 
 
 class VendorDirectFulfillmentShippingV1Client(__BaseClient):
+    """
+        Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getShippingLabels(
         self,
         createdAfter: str,
@@ -780,6 +910,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             503: GetShippingLabelListResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Creates a shipping label for a purchase order and returns a transactionId for reference.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def submitShippingLabelRequest(
         self,
         data: SubmitShippingLabelsRequest,
@@ -798,6 +938,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             500: SubmitShippingLabelsResponse,
             503: SubmitShippingLabelsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a shipping label for the purchaseOrderNumber that you specify.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getShippingLabel(
         self,
@@ -820,6 +970,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             503: GetShippingLabelResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Submits one or more shipment confirmations for vendor orders.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def submitShipmentConfirmations(
         self,
         data: SubmitShipmentConfirmationsRequest,
@@ -839,6 +999,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             503: SubmitShipmentConfirmationsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def submitShipmentStatusUpdates(
         self,
         data: SubmitShipmentStatusUpdatesRequest,
@@ -857,6 +1027,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             500: SubmitShipmentStatusUpdatesResponse,
             503: SubmitShipmentStatusUpdatesResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getCustomerInvoices(
         self,
@@ -893,6 +1073,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             503: GetCustomerInvoiceResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a customer invoice based on the purchaseOrderNumber that you specify.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getCustomerInvoice(
         self,
         purchaseOrderNumber: str,
@@ -913,6 +1103,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             500: GetCustomerInvoiceResponse,
             503: GetCustomerInvoiceResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getPackingSlips(
         self,
@@ -949,6 +1149,16 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             500: GetPackingSlipListResponse,
             503: GetPackingSlipListResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a packing slip based on the purchaseOrderNumber that you specify.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getPackingSlip(
         self,

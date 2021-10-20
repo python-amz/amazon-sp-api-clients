@@ -6,3 +6,4 @@ __pycache__
 /.sp-api.sqlite
 /tests/client_config.py
 /report_types.md
+/docs/build

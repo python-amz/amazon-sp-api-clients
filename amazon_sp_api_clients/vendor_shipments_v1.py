@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class SubmitShipmentConfirmationsRequest:
+    """
+    The request schema for the SubmitShipmentConfirmations operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -15,6 +19,8 @@ class SubmitShipmentConfirmationsRequest:
 
 
 class ShipmentConfirmation:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -89,6 +95,10 @@ class ShipmentConfirmation:
 
 
 class ShipmentMeasurements:
+    """
+    Shipment measurement details.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -111,6 +121,8 @@ class ShipmentMeasurements:
 
 
 class TransportationDetails:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -133,6 +145,8 @@ class TransportationDetails:
 
 
 class ImportDetails:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -163,6 +177,10 @@ class ImportDetails:
 
 
 class Item:
+    """
+    Details of the item being shipped.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -189,6 +207,10 @@ class Item:
 
 
 class Carton:
+    """
+    Details of the carton/package being shipped.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -221,6 +243,10 @@ class Carton:
 
 
 class Pallet:
+    """
+    Details of the Pallet/Tare being shipped.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -257,6 +283,10 @@ class Pallet:
 
 
 class ItemDetails:
+    """
+    Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -283,6 +313,8 @@ class ItemDetails:
 
 
 class ContainerIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -297,6 +329,10 @@ class ContainerIdentification:
 
 
 class ContainerItem:
+    """
+    Carton/Pallet level details for the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -315,6 +351,8 @@ class ContainerItem:
 
 
 class CartonReferenceDetails:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -329,6 +367,8 @@ class CartonReferenceDetails:
 
 
 class PartyIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -349,6 +389,10 @@ class PartyIdentification:
 
 
 class TaxRegistrationDetails:
+    """
+    Tax registration details of the entity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -363,6 +407,10 @@ class TaxRegistrationDetails:
 
 
 class Address:
+    """
+    Address of the party.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -413,6 +461,10 @@ class Address:
 
 
 class Route:
+    """
+    This is used only for direct import shipment confirmations.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -423,6 +475,10 @@ class Route:
 
 
 class Stop:
+    """
+    Contractual or operational port or point relevant to the movement of the cargo.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -445,6 +501,10 @@ class Stop:
 
 
 class Location:
+    """
+    Location identifier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -463,6 +523,10 @@ class Location:
 
 
 class Dimensions:
+    """
+    Physical dimensional measurements of a container.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -485,6 +549,10 @@ class Dimensions:
 
 
 class Volume:
+    """
+    The volume of the container.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -499,6 +567,10 @@ class Volume:
 
 
 class Weight:
+    """
+    The weight.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -513,6 +585,10 @@ class Weight:
 
 
 class Money:
+    """
+    An amount of money, including units in the form of currency.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -527,6 +603,10 @@ class Money:
 
 
 class ItemQuantity:
+    """
+    Details of item quantity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -545,6 +625,8 @@ class ItemQuantity:
 
 
 class Expiry:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -563,6 +645,8 @@ class Expiry:
 
 
 class Duration:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -577,6 +661,10 @@ class Duration:
 
 
 class SubmitShipmentConfirmationsResponse:
+    """
+    The response schema for the SubmitShipmentConfirmations operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -591,6 +679,8 @@ class SubmitShipmentConfirmationsResponse:
 
 
 class TransactionReference:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -601,6 +691,10 @@ class TransactionReference:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -619,16 +713,32 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 class VendorShipmentsV1Client(__BaseClient):
+    """
+        Submits one or more shipment confirmations for vendor orders.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def SubmitShipmentConfirmations(
         self,
         data: SubmitShipmentConfirmationsRequest,

@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class SubmitInvoicesResponse:
+    """
+    The response schema for the submitInvoices operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,8 @@ class SubmitInvoicesResponse:
 
 
 class TransactionId:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -27,6 +33,10 @@ class TransactionId:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -45,6 +55,10 @@ class Error:
 
 
 class SubmitInvoicesRequest:
+    """
+    The request schema for the submitInvoices operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -55,6 +69,8 @@ class SubmitInvoicesRequest:
 
 
 class Invoice:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -125,6 +141,8 @@ class Invoice:
 
 
 class PartyIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -145,6 +163,10 @@ class PartyIdentification:
 
 
 class TaxRegistrationDetails:
+    """
+    Tax registration details of the entity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -159,6 +181,10 @@ class TaxRegistrationDetails:
 
 
 class Address:
+    """
+    A physical address.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -209,6 +235,10 @@ class Address:
 
 
 class InvoiceItem:
+    """
+    Details of the item being invoiced.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -261,6 +291,10 @@ class InvoiceItem:
 
 
 class TaxDetails:
+    """
+    Details of tax amount applied.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -283,6 +317,10 @@ class TaxDetails:
 
 
 class Money:
+    """
+    An amount of money, including units in the form of currency.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -297,6 +335,10 @@ class Money:
 
 
 class AdditionalDetails:
+    """
+    Additional information provided by the selling party for tax-related or any other purpose.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -315,6 +357,10 @@ class AdditionalDetails:
 
 
 class ChargeDetails:
+    """
+    Monetary and tax details of the charge.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -337,6 +383,10 @@ class ChargeDetails:
 
 
 class AllowanceDetails:
+    """
+    Monetary and tax details of the allowance.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -359,6 +409,10 @@ class AllowanceDetails:
 
 
 class PaymentTerms:
+    """
+    Terms of the payment for the invoice. The basis of the payment terms is the invoice date.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -381,6 +435,10 @@ class PaymentTerms:
 
 
 class CreditNoteDetails:
+    """
+    References required in order to process a credit note. This information is required only if InvoiceType is CreditNote.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -415,6 +473,10 @@ class CreditNoteDetails:
 
 
 class ItemQuantity:
+    """
+    Details of quantity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -433,24 +495,44 @@ class ItemQuantity:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 class DateTime(str):
-    pass
+    """
+    Defines a date and time according to ISO8601.
+    """
 
 
 class Date(str):
-    pass
+    """
+    ISO Date without time, Example 2018-09-20.
+    """
 
 
 class VendorInvoicesV1Client(__BaseClient):
+    """
+        Submit new invoices to Amazon.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def submitInvoices(
         self,
         data: SubmitInvoicesRequest,

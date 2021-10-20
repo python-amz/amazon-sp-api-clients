@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetPurchaseOrdersResponse:
+    """
+    The response schema for the getPurchaseOrders operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetPurchaseOrdersResponse:
 
 
 class GetPurchaseOrderResponse:
+    """
+    The response schema for the getPurchaseOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,8 @@ class GetPurchaseOrderResponse:
 
 
 class OrderList:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -45,6 +55,8 @@ class OrderList:
 
 
 class Pagination:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -55,6 +67,8 @@ class Pagination:
 
 
 class Order:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -73,6 +87,10 @@ class Order:
 
 
 class OrderDetails:
+    """
+    Details of an order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -135,6 +153,10 @@ class OrderDetails:
 
 
 class ImportDetails:
+    """
+    Import details for an import order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -161,6 +183,8 @@ class ImportDetails:
 
 
 class PartyIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -179,6 +203,10 @@ class PartyIdentification:
 
 
 class TaxRegistrationDetails:
+    """
+    Tax registration details of the entity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -193,6 +221,10 @@ class TaxRegistrationDetails:
 
 
 class Address:
+    """
+    Address of the party.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -243,6 +275,8 @@ class Address:
 
 
 class OrderItem:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -277,6 +311,10 @@ class OrderItem:
 
 
 class Money:
+    """
+    An amount of money, including units in the form of currency.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -291,6 +329,10 @@ class Money:
 
 
 class SubmitAcknowledgementResponse:
+    """
+    The response schema for the submitAcknowledgement operation
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -305,6 +347,8 @@ class SubmitAcknowledgementResponse:
 
 
 class TransactionId:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -315,6 +359,10 @@ class TransactionId:
 
 
 class SubmitAcknowledgementRequest:
+    """
+    The request schema for the submitAcknowledgment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -327,6 +375,8 @@ class SubmitAcknowledgementRequest:
 
 
 class OrderAcknowledgement:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -349,6 +399,10 @@ class OrderAcknowledgement:
 
 
 class OrderAcknowledgementItem:
+    """
+    Details of the item being acknowledged.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -389,6 +443,8 @@ class OrderAcknowledgementItem:
 
 
 class OrderItemAcknowledgement:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -415,6 +471,10 @@ class OrderItemAcknowledgement:
 
 
 class ItemQuantity:
+    """
+    Details of quantity ordered.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -433,6 +493,10 @@ class ItemQuantity:
 
 
 class GetPurchaseOrdersStatusResponse:
+    """
+    The response schema for the getPurchaseOrdersStatus operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -447,6 +511,8 @@ class GetPurchaseOrdersStatusResponse:
 
 
 class OrderListStatus:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -461,6 +527,10 @@ class OrderListStatus:
 
 
 class OrderStatus:
+    """
+    Current status of a purchase order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -495,6 +565,8 @@ class OrderStatus:
 
 
 class OrderItemStatus:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -529,6 +601,10 @@ class OrderItemStatus:
 
 
 class OrderedQuantityDetails:
+    """
+    Details of item quantity ordered
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -547,6 +623,10 @@ class OrderedQuantityDetails:
 
 
 class AcknowledgementStatusDetails:
+    """
+    Details of item quantity ordered
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -565,6 +645,10 @@ class AcknowledgementStatusDetails:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -583,26 +667,48 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class ItemStatus(list, _List["OrderItemStatus"]):
+    """
+    Detailed description of items order status.
+    """
+
     def __init__(self, data):
         super().__init__([OrderItemStatus(datum) for datum in data])
         self.data = data
 
 
 class DateTimeInterval(str):
-    pass
+    """
+    Defines a date time interval according to ISO8601. Interval is separated by double hyphen (--).
+    """
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 class VendorOrdersV1Client(__BaseClient):
+    """
+        Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the createdAfter, createdBefore, changedAfter and changedBefore parameters. The date range to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting includeDetails to false. You can then use the getPurchaseOrder operation to receive details for a specific purchase order.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getPurchaseOrders(
         self,
         limit: int = None,
@@ -656,6 +762,16 @@ class VendorOrdersV1Client(__BaseClient):
             503: GetPurchaseOrdersResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a purchase order based on the purchaseOrderNumber value that you specify.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getPurchaseOrder(
         self,
         purchaseOrderNumber: str,
@@ -677,6 +793,16 @@ class VendorOrdersV1Client(__BaseClient):
             503: GetPurchaseOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Submits acknowledgements for one or more purchase orders.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def submitAcknowledgement(
         self,
         data: SubmitAcknowledgementRequest,
@@ -695,6 +821,16 @@ class VendorOrdersV1Client(__BaseClient):
             500: SubmitAcknowledgementResponse,
             503: SubmitAcknowledgementResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getPurchaseOrdersStatus(
         self,

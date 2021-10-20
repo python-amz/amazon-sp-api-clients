@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class CreateUploadDestinationResponse:
+    """
+    The response schema for the createUploadDestination operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class CreateUploadDestinationResponse:
 
 
 class UploadDestination:
+    """
+    Information about an upload destination.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -35,6 +43,10 @@ class UploadDestination:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -53,12 +65,25 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class Uploads20201101Client(__BaseClient):
+    """
+        Creates an upload destination, returning the information required to upload a file to the destination and to programmatically access the file.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | .1 | 5 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createUploadDestinationForResource(
         self,
         resource: str,

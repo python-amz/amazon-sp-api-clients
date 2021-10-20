@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,8 @@ class Error:
 
 
 class MarketplaceParticipation:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -35,6 +41,10 @@ class MarketplaceParticipation:
 
 
 class GetMarketplaceParticipationsResponse:
+    """
+    The response schema for the getMarketplaceParticipations operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -49,6 +59,10 @@ class GetMarketplaceParticipationsResponse:
 
 
 class Marketplace:
+    """
+    Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -79,6 +93,10 @@ class Marketplace:
 
 
 class Participation:
+    """
+    Detailed information that is specific to a seller in a Marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -93,18 +111,35 @@ class Participation:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class MarketplaceParticipationList(list, _List["MarketplaceParticipation"]):
+    """
+    List of marketplace participations.
+    """
+
     def __init__(self, data):
         super().__init__([MarketplaceParticipation(datum) for datum in data])
         self.data = data
 
 
 class SellersV1Client(__BaseClient):
+    """
+        Returns a list of marketplaces that the seller submitting the request can sell in and information about the seller's participation in those marketplaces.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | .016 | 15 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getMarketplaceParticipations(
         self,
     ):

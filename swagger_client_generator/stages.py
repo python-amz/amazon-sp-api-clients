@@ -42,7 +42,9 @@ def stage_1_dict_components(data: dict):
     #                                                  'item_type': item_type}}}}
     result = {}
     for component_name, component_data in components.items():
-        parsed_component = result.setdefault(component_name, {})
+        parsed_component = result.setdefault(component_name, {
+            'source': component_data,
+        })
         parsed_properties = parsed_component.setdefault('properties', {})
         if 'properties' not in component_data:
             continue
@@ -69,7 +71,9 @@ def stage_2_list_components(data: dict):
     # 解析数据
     parsed_components = {}
     for component_name, component_data in components.items():
-        parsed_component_data = parsed_components.setdefault(component_name, {})
+        parsed_component_data = parsed_components.setdefault(component_name, {
+            'source': component_data,
+        })
         if 'items' not in component_data:
             raise ParseError('list component items not found')
         parsed_component_data['item_type'] = get_item_type(component_data['items'])
@@ -84,7 +88,9 @@ def stage_3_alias_components(data: dict):
     # 解析数据
     parsed_components = {}
     for component_name, component_data in components.items():
-        parsed_component = parsed_components.setdefault(component_name, {})
+        parsed_component = parsed_components.setdefault(component_name, {
+            'source': component_data,
+        })
         parsed_component['type'] = parse_type(component_data['type'])
     return parsed_components
 
@@ -95,7 +101,9 @@ def stage_4_parameters(data: dict):
     parameters: dict = data['components']['parameters']
     parsed_parameters = {}
     for parameter_name, parameter_data in parameters.items():
-        parsed_parameter = parsed_parameters.setdefault(parameter_name, {})
+        parsed_parameter = parsed_parameters.setdefault(parameter_name, {
+            'source': parameter_data,
+        })
         schema_data: dict = parameter_data['schema']
         parsed_parameter['type'] = parse_type(schema_data['type'])
     return parsed_parameters
@@ -111,7 +119,9 @@ def stage_5_ref_components(data: dict):
     # 解析数据
     parsed_components = {}
     for component_name, component_data in components.items():
-        parsed_component = parsed_components.setdefault(component_name, {})
+        parsed_component = parsed_components.setdefault(component_name, {
+            'source': component_data,
+        })
         extra_properties = parsed_component.setdefault('properties', {})
         base_types = parsed_component.setdefault('base_types', [])
         if '$ref' in component_data:
@@ -136,7 +146,9 @@ def stage_6_operations(data: dict):
     parsed_operations = {}
     for url, url_data in paths.items():
         for method, method_data in url_data.items():
-            parsed_operation_data = parsed_operations.setdefault(method_data['operationId'], {})
+            parsed_operation_data = parsed_operations.setdefault(method_data['operationId'], {
+                'source': method_data,
+            })
             # parse_type(method_data['requestBody']['content']['application/json']['schema']['$ref'])
             if method == 'post' and 'requestBody' in method_data:
                 request_body = method_data['requestBody']

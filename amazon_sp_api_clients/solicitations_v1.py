@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class LinkObject:
+    """
+    A Link object.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class LinkObject:
 
 
 class SolicitationsAction:
+    """
+    A simple object containing the name of the template.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -27,12 +35,20 @@ class SolicitationsAction:
 
 
 class Schema:
+    """
+    A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
 
 
 class GetSolicitationActionsForOrderResponse:
+    """
+    The response schema for the getSolicitationActionsForOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -51,6 +67,10 @@ class GetSolicitationActionsForOrderResponse:
 
 
 class GetSolicitationActionResponse:
+    """
+    Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -73,6 +93,8 @@ class GetSolicitationActionResponse:
 
 
 class GetSchemaResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -91,6 +113,10 @@ class GetSchemaResponse:
 
 
 class CreateProductReviewAndSellerFeedbackSolicitationResponse:
+    """
+    The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -101,6 +127,10 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -119,12 +149,25 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class SolicitationsV1Client(__BaseClient):
+    """
+        Returns a list of solicitation types that are available for an order that you specify. A solicitation type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a solicitation. Currently only the productReviewAndSellerFeedbackSolicitation solicitation type is available.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 1 | 5 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getSolicitationActionsForOrder(
         self,
         amazonOrderId: str,
@@ -148,6 +191,15 @@ class SolicitationsV1Client(__BaseClient):
             500: GetSolicitationActionsForOrderResponse,
             503: GetSolicitationActionsForOrderResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send only one productReviewAndSellerFeedback or free form proactive message per order.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def createProductReviewAndSellerFeedbackSolicitation(
         self,

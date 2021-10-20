@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class ErrorList:
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,10 @@ class ErrorList:
 
 
 class SmallAndLightEnrollment:
+    """
+    The Small and Light enrollment status of the item indicated by the specified seller SKU.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -49,6 +61,10 @@ class SmallAndLightEnrollment:
 
 
 class SmallAndLightEligibility:
+    """
+    The Small and Light eligibility status of the item indicated by the specified seller SKU.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -67,6 +83,10 @@ class SmallAndLightEligibility:
 
 
 class SmallAndLightFeePreviewRequest:
+    """
+    Request schema for submitting items for which to retrieve fee estimates.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -81,6 +101,8 @@ class SmallAndLightFeePreviewRequest:
 
 
 class SmallAndLightFeePreviews:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -91,6 +113,10 @@ class SmallAndLightFeePreviews:
 
 
 class Item:
+    """
+    An item to be sold.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -105,6 +131,10 @@ class Item:
 
 
 class FeePreview:
+    """
+    The fee estimate for a specific item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -131,6 +161,10 @@ class FeePreview:
 
 
 class FeeLineItem:
+    """
+    Fee details for a specific fee.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -145,6 +179,8 @@ class FeeLineItem:
 
 
 class MoneyType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -159,22 +195,39 @@ class MoneyType:
 
 
 class MarketplaceId(str):
-    pass
+    """
+    A marketplace identifier.
+    """
 
 
 class SellerSKU(str):
-    pass
+    """
+    Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+    """
 
 
 class SmallAndLightEnrollmentStatus(str):
-    pass
+    """
+    The Small and Light enrollment status of the item.
+    """
 
 
 class SmallAndLightEligibilityStatus(str):
-    pass
+    """
+    The Small and Light eligibility status of the item.
+    """
 
 
 class FbaSmallAndLightV1Client(__BaseClient):
+    """
+        Returns the Small and Light enrollment status for the item indicated by the specified seller SKU in the specified marketplace.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 2 | 10 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getSmallAndLightEnrollmentBySellerSKU(
         self,
         sellerSKU: str,
@@ -198,6 +251,15 @@ class FbaSmallAndLightV1Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Enrolls the item indicated by the specified seller SKU in the Small and Light program in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def putSmallAndLightEnrollmentBySellerSKU(
         self,
@@ -223,6 +285,15 @@ class FbaSmallAndLightV1Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Removes the item indicated by the specified seller SKU from the Small and Light program in the specified marketplace. If the item is not eligible for disenrollment, the ineligibility reasons are returned.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def deleteSmallAndLightEnrollmentBySellerSKU(
         self,
         sellerSKU: str,
@@ -245,6 +316,15 @@ class FbaSmallAndLightV1Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the Small and Light program eligibility status of the item indicated by the specified seller SKU in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 10 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getSmallAndLightEligibilityBySellerSKU(
         self,
@@ -269,6 +349,15 @@ class FbaSmallAndLightV1Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the Small and Light fee estimates for the specified items. You must include a marketplaceId parameter to retrieve the proper fee estimates for items to be sold in that marketplace. The ordering of items in the response will mirror the order of the items in the request. Duplicate ASIN/price combinations are removed.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 3 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getSmallAndLightFeePreview(
         self,

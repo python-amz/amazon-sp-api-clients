@@ -1,7 +1,7 @@
 from .marketplaces import MarketPlaces
 from .report_types import ReportType, ReportTypeGroup
 
-version = '1.6.0'
+version = '1.6.1'
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"

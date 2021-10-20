@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class ErrorList:
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,10 @@ class ErrorList:
 
 
 class Issue:
+    """
+    An issue with a listings item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -53,6 +65,10 @@ class Issue:
 
 
 class PatchOperation:
+    """
+    Individual JSON Patch operation for an HTTP PATCH request.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -71,6 +87,10 @@ class PatchOperation:
 
 
 class ListingsItemPatchRequest:
+    """
+    The request body schema for the patchListingsItem operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -85,6 +105,10 @@ class ListingsItemPatchRequest:
 
 
 class ListingsItemPutRequest:
+    """
+    The request body schema for the putListingsItem operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -103,6 +127,10 @@ class ListingsItemPutRequest:
 
 
 class ListingsItemSubmissionResponse:
+    """
+    Response containing the results of a submission to the Selling Partner API for Listings Items.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -125,6 +153,16 @@ class ListingsItemSubmissionResponse:
 
 
 class ListingsItems20200901Client(__BaseClient):
+    """
+        Creates a new or fully-updates an existing listings item for a selling partner.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 5 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def putListingsItem(
         self,
         sellerId: str,
@@ -153,6 +191,16 @@ class ListingsItems20200901Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Delete a listings item for a selling partner.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 5 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def deleteListingsItem(
         self,
         sellerId: str,
@@ -180,6 +228,16 @@ class ListingsItems20200901Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 5 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def patchListingsItem(
         self,

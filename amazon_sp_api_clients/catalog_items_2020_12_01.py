@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class ErrorList:
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,10 @@ class ErrorList:
 
 
 class Item:
+    """
+    An item in the Amazon catalog.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -73,12 +85,20 @@ class Item:
 
 
 class ItemAttributes:
+    """
+    A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
 
 
 class ItemIdentifiersByMarketplace:
+    """
+    Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -93,6 +113,10 @@ class ItemIdentifiersByMarketplace:
 
 
 class ItemIdentifier:
+    """
+    Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -107,6 +131,10 @@ class ItemIdentifier:
 
 
 class ItemImagesByMarketplace:
+    """
+    Images for an item in the Amazon catalog for the indicated Amazon marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -121,6 +149,10 @@ class ItemImagesByMarketplace:
 
 
 class ItemImage:
+    """
+    Image for an item in the Amazon catalog.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -143,6 +175,10 @@ class ItemImage:
 
 
 class ItemProductTypeByMarketplace:
+    """
+    Product type associated with the Amazon catalog item for the indicated Amazon marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -157,6 +193,10 @@ class ItemProductTypeByMarketplace:
 
 
 class ItemSalesRanksByMarketplace:
+    """
+    Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -171,6 +211,10 @@ class ItemSalesRanksByMarketplace:
 
 
 class ItemSalesRank:
+    """
+    Sales rank of an Amazon catalog item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -189,6 +233,10 @@ class ItemSalesRank:
 
 
 class ItemSummaryByMarketplace:
+    """
+    Summary details of an Amazon catalog item for the indicated Amazon marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -231,6 +279,10 @@ class ItemSummaryByMarketplace:
 
 
 class ItemVariationsByMarketplace:
+    """
+    Variation details for the Amazon catalog item for the indicated Amazon marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -249,6 +301,10 @@ class ItemVariationsByMarketplace:
 
 
 class ItemVendorDetailsByMarketplace:
+    """
+    Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -287,6 +343,10 @@ class ItemVendorDetailsByMarketplace:
 
 
 class ItemSearchResults:
+    """
+    Items in the Amazon catalog and search related metadata.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -309,6 +369,10 @@ class ItemSearchResults:
 
 
 class Pagination:
+    """
+    When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -323,6 +387,10 @@ class Pagination:
 
 
 class Refinements:
+    """
+    Search refinements.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -339,6 +407,10 @@ class Refinements:
 
 
 class BrandRefinement:
+    """
+    Description of a brand that can be used to get more fine-grained search results.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -353,6 +425,10 @@ class BrandRefinement:
 
 
 class ClassificationRefinement:
+    """
+    Description of a classification that can be used to get more fine-grained search results.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -371,52 +447,92 @@ class ClassificationRefinement:
 
 
 class ItemIdentifiers(list, _List["ItemIdentifiersByMarketplace"]):
+    """
+    Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
+    """
+
     def __init__(self, data):
         super().__init__([ItemIdentifiersByMarketplace(datum) for datum in data])
         self.data = data
 
 
 class ItemImages(list, _List["ItemImagesByMarketplace"]):
+    """
+    Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a thumbnail of the "MAIN" image variant is provided.
+    """
+
     def __init__(self, data):
         super().__init__([ItemImagesByMarketplace(datum) for datum in data])
         self.data = data
 
 
 class ItemProductTypes(list, _List["ItemProductTypeByMarketplace"]):
+    """
+    Product types associated with the Amazon catalog item.
+    """
+
     def __init__(self, data):
         super().__init__([ItemProductTypeByMarketplace(datum) for datum in data])
         self.data = data
 
 
 class ItemSalesRanks(list, _List["ItemSalesRanksByMarketplace"]):
+    """
+    Sales ranks of an Amazon catalog item.
+    """
+
     def __init__(self, data):
         super().__init__([ItemSalesRanksByMarketplace(datum) for datum in data])
         self.data = data
 
 
 class ItemSummaries(list, _List["ItemSummaryByMarketplace"]):
+    """
+    Summary details of an Amazon catalog item.
+    """
+
     def __init__(self, data):
         super().__init__([ItemSummaryByMarketplace(datum) for datum in data])
         self.data = data
 
 
 class ItemVariations(list, _List["ItemVariationsByMarketplace"]):
+    """
+    Variation details by marketplace for an Amazon catalog item (variation relationships).
+    """
+
     def __init__(self, data):
         super().__init__([ItemVariationsByMarketplace(datum) for datum in data])
         self.data = data
 
 
 class ItemVendorDetails(list, _List["ItemVendorDetailsByMarketplace"]):
+    """
+    Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.
+    """
+
     def __init__(self, data):
         super().__init__([ItemVendorDetailsByMarketplace(datum) for datum in data])
         self.data = data
 
 
 class ItemAsin(str):
-    pass
+    """
+    Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
+    """
 
 
 class CatalogItems20201201Client(__BaseClient):
+    """
+        Search for and return a list of Amazon catalog items and associated information.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 1 | 5 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def searchCatalogItems(
         self,
         keywords: _List[str],
@@ -461,6 +577,16 @@ class CatalogItems20201201Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Retrieves details for an item in the Amazon catalog.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 5 | 5 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getCatalogItem(
         self,

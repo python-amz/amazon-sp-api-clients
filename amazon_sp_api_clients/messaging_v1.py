@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Attachment:
+    """
+    Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class Attachment:
 
 
 class LinkObject:
+    """
+    A Link object.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,10 @@ class LinkObject:
 
 
 class MessagingAction:
+    """
+    A simple object containing the name of the template.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -41,12 +53,20 @@ class MessagingAction:
 
 
 class Schema:
+    """
+    A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
 
 
 class GetMessagingActionsForOrderResponse:
+    """
+    The response schema for the getMessagingActionsForOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -65,6 +85,10 @@ class GetMessagingActionsForOrderResponse:
 
 
 class GetMessagingActionResponse:
+    """
+    Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -87,6 +111,8 @@ class GetMessagingActionResponse:
 
 
 class GetSchemaResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -105,6 +131,10 @@ class GetSchemaResponse:
 
 
 class CreateConfirmCustomizationDetailsRequest:
+    """
+    The request schema for the confirmCustomizationDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -119,6 +149,10 @@ class CreateConfirmCustomizationDetailsRequest:
 
 
 class CreateConfirmCustomizationDetailsResponse:
+    """
+    The response schema for the confirmCustomizationDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -129,6 +163,10 @@ class CreateConfirmCustomizationDetailsResponse:
 
 
 class CreateConfirmDeliveryDetailsRequest:
+    """
+    The request schema for the createConfirmDeliveryDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -139,6 +177,10 @@ class CreateConfirmDeliveryDetailsRequest:
 
 
 class CreateConfirmDeliveryDetailsResponse:
+    """
+    The response schema for the createConfirmDeliveryDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -149,6 +191,10 @@ class CreateConfirmDeliveryDetailsResponse:
 
 
 class CreateNegativeFeedbackRemovalResponse:
+    """
+    The response schema for the createNegativeFeedbackRemoval operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -159,6 +205,10 @@ class CreateNegativeFeedbackRemovalResponse:
 
 
 class CreateLegalDisclosureRequest:
+    """
+    The request schema for the createLegalDisclosure operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -169,6 +219,10 @@ class CreateLegalDisclosureRequest:
 
 
 class CreateLegalDisclosureResponse:
+    """
+    The response schema for the createLegalDisclosure operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -179,6 +233,10 @@ class CreateLegalDisclosureResponse:
 
 
 class CreateConfirmOrderDetailsRequest:
+    """
+    The request schema for the createConfirmOrderDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -189,6 +247,10 @@ class CreateConfirmOrderDetailsRequest:
 
 
 class CreateConfirmOrderDetailsResponse:
+    """
+    The response schema for the createConfirmOrderDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -199,6 +261,10 @@ class CreateConfirmOrderDetailsResponse:
 
 
 class CreateConfirmServiceDetailsRequest:
+    """
+    The request schema for the createConfirmServiceDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -209,6 +275,10 @@ class CreateConfirmServiceDetailsRequest:
 
 
 class CreateConfirmServiceDetailsResponse:
+    """
+    The response schema for the createConfirmServiceDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -219,6 +289,10 @@ class CreateConfirmServiceDetailsResponse:
 
 
 class CreateAmazonMotorsRequest:
+    """
+    The request schema for the createAmazonMotors operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -229,6 +303,10 @@ class CreateAmazonMotorsRequest:
 
 
 class CreateAmazonMotorsResponse:
+    """
+    The response schema for the createAmazonMotors operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -239,6 +317,10 @@ class CreateAmazonMotorsResponse:
 
 
 class CreateWarrantyRequest:
+    """
+    The request schema for the createWarranty operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -257,6 +339,10 @@ class CreateWarrantyRequest:
 
 
 class CreateWarrantyResponse:
+    """
+    The response schema for the createWarranty operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -267,6 +353,10 @@ class CreateWarrantyResponse:
 
 
 class GetAttributesResponse:
+    """
+    The response schema for the GetAttributes operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -281,6 +371,10 @@ class GetAttributesResponse:
 
 
 class CreateDigitalAccessKeyRequest:
+    """
+    The request schema for the createDigitalAccessKey operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -295,6 +389,10 @@ class CreateDigitalAccessKeyRequest:
 
 
 class CreateDigitalAccessKeyResponse:
+    """
+    The response schema for the createDigitalAccessKey operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -305,6 +403,10 @@ class CreateDigitalAccessKeyResponse:
 
 
 class CreateUnexpectedProblemRequest:
+    """
+    The request schema for the createUnexpectedProblem operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -315,6 +417,10 @@ class CreateUnexpectedProblemRequest:
 
 
 class CreateUnexpectedProblemResponse:
+    """
+    The response schema for the createUnexpectedProblem operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -325,6 +431,10 @@ class CreateUnexpectedProblemResponse:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -343,12 +453,25 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class MessagingV1Client(__BaseClient):
+    """
+        Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 1 | 5 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getMessagingActionsForOrder(
         self,
         amazonOrderId: str,
@@ -372,6 +495,15 @@ class MessagingV1Client(__BaseClient):
             500: GetMessagingActionsForOrderResponse,
             503: GetMessagingActionsForOrderResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def confirmCustomizationDetails(
         self,
@@ -398,6 +530,15 @@ class MessagingV1Client(__BaseClient):
             503: CreateConfirmCustomizationDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createConfirmDeliveryDetails(
         self,
         data: CreateConfirmDeliveryDetailsRequest,
@@ -422,6 +563,15 @@ class MessagingV1Client(__BaseClient):
             500: CreateConfirmDeliveryDetailsResponse,
             503: CreateConfirmDeliveryDetailsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def createLegalDisclosure(
         self,
@@ -448,6 +598,15 @@ class MessagingV1Client(__BaseClient):
             503: CreateLegalDisclosureResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be sent after the seller has resolved the buyer's problem.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createNegativeFeedbackRemoval(
         self,
         amazonOrderId: str,
@@ -471,6 +630,15 @@ class MessagingV1Client(__BaseClient):
             500: CreateNegativeFeedbackRemovalResponse,
             503: CreateNegativeFeedbackRemovalResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends a message to ask a buyer an order-related question prior to shipping their order.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def createConfirmOrderDetails(
         self,
@@ -497,6 +665,15 @@ class MessagingV1Client(__BaseClient):
             503: CreateConfirmOrderDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a service call.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createConfirmServiceDetails(
         self,
         data: CreateConfirmServiceDetailsRequest,
@@ -521,6 +698,15 @@ class MessagingV1Client(__BaseClient):
             500: CreateConfirmServiceDetailsResponse,
             503: CreateConfirmServiceDetailsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def CreateAmazonMotors(
         self,
@@ -547,6 +733,15 @@ class MessagingV1Client(__BaseClient):
             503: CreateAmazonMotorsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Sends a message to a buyer to provide details about warranty information on a purchase in their order.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def CreateWarranty(
         self,
         data: CreateWarrantyRequest,
@@ -572,6 +767,14 @@ class MessagingV1Client(__BaseClient):
             503: CreateWarrantyResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a response containing attributes related to an order. This includes buyer preferences.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+    """
+
     def GetAttributes(
         self,
         amazonOrderId: str,
@@ -595,6 +798,15 @@ class MessagingV1Client(__BaseClient):
             500: GetAttributesResponse,
             503: GetAttributesResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def createDigitalAccessKey(
         self,
@@ -620,6 +832,15 @@ class MessagingV1Client(__BaseClient):
             500: CreateDigitalAccessKeyResponse,
             503: CreateDigitalAccessKeyResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the order.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 1 | 5 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def createUnexpectedProblem(
         self,

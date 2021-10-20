@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Granularity:
+    """
+    Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class Granularity:
 
 
 class ReservedQuantity:
+    """
+    The quantity of reserved inventory.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -39,6 +47,10 @@ class ReservedQuantity:
 
 
 class ResearchingQuantityEntry:
+    """
+    The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -53,6 +65,10 @@ class ResearchingQuantityEntry:
 
 
 class ResearchingQuantity:
+    """
+    The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -69,6 +85,10 @@ class ResearchingQuantity:
 
 
 class UnfulfillableQuantity:
+    """
+    The quantity of unfulfillable inventory.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -103,6 +123,10 @@ class UnfulfillableQuantity:
 
 
 class InventoryDetails:
+    """
+    Summarized inventory details. This object will not appear if the details parameter in the request is false.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -137,6 +161,10 @@ class InventoryDetails:
 
 
 class InventorySummary:
+    """
+    Inventory summary for a specific item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -175,6 +203,10 @@ class InventorySummary:
 
 
 class Pagination:
+    """
+    The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -185,6 +217,10 @@ class Pagination:
 
 
 class GetInventorySummariesResult:
+    """
+    The payload schema for the getInventorySummaries operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -199,6 +235,10 @@ class GetInventorySummariesResult:
 
 
 class GetInventorySummariesResponse:
+    """
+    The Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -217,6 +257,10 @@ class GetInventorySummariesResponse:
 
 
 class Error:
+    """
+    An error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -235,18 +279,38 @@ class Error:
 
 
 class InventorySummaries(list, _List["InventorySummary"]):
+    """
+    A list of inventory summaries.
+    """
+
     def __init__(self, data):
         super().__init__([InventorySummary(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class FbaInventoryV1Client(__BaseClient):
+    """
+        Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:
+    - All inventory summaries with available details are returned when the startDateTime and sellerSkus parameters are omitted.
+    - When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus parameter is ignored.
+    - When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 90 | 150 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getInventorySummaries(
         self,
         granularityType: str,

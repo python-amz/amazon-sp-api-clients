@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetMyFeesEstimateRequest:
+    """
+    Request schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -13,6 +17,8 @@ class GetMyFeesEstimateRequest:
 
 
 class FeesEstimateRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -41,6 +47,8 @@ class FeesEstimateRequest:
 
 
 class GetMyFeesEstimateResponse:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -55,6 +63,10 @@ class GetMyFeesEstimateResponse:
 
 
 class GetMyFeesEstimateResult:
+    """
+    Response schema.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -65,6 +77,8 @@ class GetMyFeesEstimateResult:
 
 
 class Points:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -79,6 +93,8 @@ class Points:
 
 
 class Error:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -97,6 +113,10 @@ class Error:
 
 
 class FeesEstimateResult:
+    """
+    An item identifier and the estimated fees for the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -119,6 +139,10 @@ class FeesEstimateResult:
 
 
 class FeesEstimateIdentifier:
+    """
+    An item identifier, marketplace, time of request, and other details that identify an estimate.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -159,6 +183,10 @@ class FeesEstimateIdentifier:
 
 
 class PriceToEstimateFees:
+    """
+    Price information for an item, used to estimate fees.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -177,6 +205,10 @@ class PriceToEstimateFees:
 
 
 class FeesEstimate:
+    """
+    The total estimated fees for an item and a list of details.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -195,6 +227,10 @@ class FeesEstimate:
 
 
 class FeesEstimateError:
+    """
+    An unexpected error occurred during this operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -217,6 +253,10 @@ class FeesEstimateError:
 
 
 class FeeDetail:
+    """
+    The type of fee, fee amount, and other details.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -247,6 +287,10 @@ class FeeDetail:
 
 
 class IncludedFeeDetail:
+    """
+    The type of fee, fee amount, and other details.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -273,6 +317,8 @@ class IncludedFeeDetail:
 
 
 class MoneyType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -287,34 +333,63 @@ class MoneyType:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class FeeDetailList(list, _List["FeeDetail"]):
+    """
+    A list of other fees that contribute to a given fee.
+    """
+
     def __init__(self, data):
         super().__init__([FeeDetail(datum) for datum in data])
         self.data = data
 
 
 class FeesEstimateErrorDetail(list, _List["dict"]):
+    """
+    Additional information that can help the caller understand or fix the issue.
+    """
+
     def __init__(self, data):
         super().__init__([dict(datum) for datum in data])
         self.data = data
 
 
 class IncludedFeeDetailList(list, _List["IncludedFeeDetail"]):
+    """
+    A list of other fees that contribute to a given fee.
+    """
+
     def __init__(self, data):
         super().__init__([IncludedFeeDetail(datum) for datum in data])
         self.data = data
 
 
 class OptionalFulfillmentProgram(str):
-    pass
+    """
+    An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+    """
 
 
 class ProductFeesV0Client(__BaseClient):
+    """
+        Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.
+    You can call getMyFeesEstimateForSKU for an item on behalf of a seller before the seller sets the item's price. They can then take estimated fees into account. With each fees estimate request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 20 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getMyFeesEstimateForSKU(
         self,
         data: GetMyFeesEstimateRequest,
@@ -335,6 +410,17 @@ class ProductFeesV0Client(__BaseClient):
             500: GetMyFeesEstimateResponse,
             503: GetMyFeesEstimateResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
+You can call getMyFeesEstimateForASIN for an item on behalf of a seller before the seller sets the item's price. They can then take estimated fees into account. With each product fees request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getMyFeesEstimateForASIN(
         self,

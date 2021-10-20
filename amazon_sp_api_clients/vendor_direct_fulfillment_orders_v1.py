@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetOrdersResponse:
+    """
+    The response schema for the getOrders operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetOrdersResponse:
 
 
 class GetOrderResponse:
+    """
+    The response schema for the getOrder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,8 @@ class GetOrderResponse:
 
 
 class OrderList:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -45,6 +55,8 @@ class OrderList:
 
 
 class Pagination:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -55,6 +67,8 @@ class Pagination:
 
 
 class Order:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -69,6 +83,10 @@ class Order:
 
 
 class OrderDetails:
+    """
+    Details of an order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -115,6 +133,8 @@ class OrderDetails:
 
 
 class PartyIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -133,6 +153,10 @@ class PartyIdentification:
 
 
 class TaxRegistrationDetails:
+    """
+    Tax registration details of the entity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -155,6 +179,10 @@ class TaxRegistrationDetails:
 
 
 class Address:
+    """
+    Address of the party.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -209,6 +237,8 @@ class Address:
 
 
 class OrderItem:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -257,6 +287,10 @@ class OrderItem:
 
 
 class Money:
+    """
+    An amount of money, including units in the form of currency.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -271,6 +305,10 @@ class Money:
 
 
 class SubmitAcknowledgementResponse:
+    """
+    The response schema for the submitAcknowledgement operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -285,6 +323,8 @@ class SubmitAcknowledgementResponse:
 
 
 class TransactionId:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -295,6 +335,10 @@ class TransactionId:
 
 
 class SubmitAcknowledgementRequest:
+    """
+    The request schema for the submitAcknowledgement operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -307,6 +351,10 @@ class SubmitAcknowledgementRequest:
 
 
 class OrderAcknowledgementItem:
+    """
+    Details of an individual order being acknowledged.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -343,6 +391,8 @@ class OrderAcknowledgementItem:
 
 
 class OrderItemAcknowledgement:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -365,6 +415,10 @@ class OrderItemAcknowledgement:
 
 
 class ItemQuantity:
+    """
+    Details of quantity ordered.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -379,6 +433,8 @@ class ItemQuantity:
 
 
 class TaxDetails:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -401,6 +457,10 @@ class TaxDetails:
 
 
 class AcknowledgementStatus:
+    """
+    Status of acknowledgement.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -415,6 +475,10 @@ class AcknowledgementStatus:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -433,6 +497,10 @@ class Error:
 
 
 class ShipmentDetails:
+    """
+    Shipment details required for the shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -467,6 +535,10 @@ class ShipmentDetails:
 
 
 class ShipmentDates:
+    """
+    Shipment dates.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -481,6 +553,10 @@ class ShipmentDates:
 
 
 class ScheduledDeliveryShipment:
+    """
+    Dates for the scheduled delivery shipments.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -499,6 +575,10 @@ class ScheduledDeliveryShipment:
 
 
 class GiftDetails:
+    """
+    Gift details for the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -513,22 +593,42 @@ class GiftDetails:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class TaxLineItem(list, _List["TaxDetails"]):
+    """
+    A list of tax line items.
+    """
+
     def __init__(self, data):
         super().__init__([TaxDetails(datum) for datum in data])
         self.data = data
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+    """
 
 
 class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
+    """
+        Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getOrders(
         self,
         createdAfter: str,
@@ -570,6 +670,16 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             503: GetOrdersResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns purchase order information for the purchaseOrderNumber that you specify.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getOrder(
         self,
         purchaseOrderNumber: str,
@@ -590,6 +700,16 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             500: GetOrderResponse,
             503: GetOrderResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Submits acknowledgements for one or more purchase orders.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def submitAcknowledgement(
         self,

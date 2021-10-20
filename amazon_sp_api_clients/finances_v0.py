@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class AdjustmentEvent:
+    """
+    An adjustment to the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -25,6 +29,10 @@ class AdjustmentEvent:
 
 
 class AdjustmentItem:
+    """
+    An item in an adjustment to the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -59,6 +67,10 @@ class AdjustmentItem:
 
 
 class AffordabilityExpenseEvent:
+    """
+    An expense related to an affordability promotion.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -101,6 +113,42 @@ class AffordabilityExpenseEvent:
 
 
 class ChargeComponent:
+    """
+        A charge on the seller's account.
+    Possible values:
+    * Principal - The selling price of the order item, equal to the selling price of the item multiplied by the quantity ordered.
+    * Tax - The tax collected by the seller on the Principal.
+    * MarketplaceFacilitatorTax-Principal - The tax withheld on the Principal.
+    * MarketplaceFacilitatorTax-Shipping - The tax withheld on the ShippingCharge.
+    * MarketplaceFacilitatorTax-Giftwrap - The tax withheld on the Giftwrap charge.
+    * MarketplaceFacilitatorTax-Other - The tax withheld on other miscellaneous charges.
+    * Discount - The promotional discount for an order item.
+    * TaxDiscount - The tax amount deducted for promotional rebates.
+    * CODItemCharge - The COD charge for an order item.
+    * CODItemTaxCharge - The tax collected by the seller on a CODItemCharge.
+    * CODOrderCharge - The COD charge for an order.
+    * CODOrderTaxCharge - The tax collected by the seller on a CODOrderCharge.
+    * CODShippingCharge - Shipping charges for a COD order.
+    * CODShippingTaxCharge - The tax collected by the seller on a CODShippingCharge.
+    * ShippingCharge - The shipping charge.
+    * ShippingTax - The tax collected by the seller on a ShippingCharge.
+    * Goodwill - The amount given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+    * Giftwrap - The gift wrap charge.
+    * GiftwrapTax - The tax collected by the seller on a Giftwrap charge.
+    * RestockingFee - The charge applied to the buyer when returning a product in certain categories.
+    * ReturnShipping - The amount given to the buyer to compensate for shipping the item back in the event we are at fault.
+    * PointsFee - The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+    * GenericDeduction - A generic bad debt deduction.
+    * FreeReplacementReturnShipping - The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+    * PaymentMethodFee - The fee collected for certain payment methods in certain marketplaces.
+    * ExportCharge - The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+    * SAFE-TReimbursement - The SAFE-T claim amount for the item.
+    * TCS-CGST - Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+    * TCS-SGST - Tax Collected at Source for State Goods and Services Tax (SGST).
+    * TCS-IGST - Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+    * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -115,6 +163,10 @@ class ChargeComponent:
 
 
 class ChargeInstrument:
+    """
+    A payment instrument.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -133,6 +185,10 @@ class ChargeInstrument:
 
 
 class CouponPaymentEvent:
+    """
+    An event related to coupon payments.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -171,6 +227,10 @@ class CouponPaymentEvent:
 
 
 class Currency:
+    """
+    A currency type and amount.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -185,6 +245,10 @@ class Currency:
 
 
 class DebtRecoveryEvent:
+    """
+    A debt payment or debt adjustment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -211,6 +275,10 @@ class DebtRecoveryEvent:
 
 
 class DebtRecoveryItem:
+    """
+    An item of a debt payment or debt adjustment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -233,6 +301,10 @@ class DebtRecoveryItem:
 
 
 class DirectPayment:
+    """
+    A payment made directly to a seller.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -247,6 +319,10 @@ class DirectPayment:
 
 
 class FBALiquidationEvent:
+    """
+    A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -269,6 +345,10 @@ class FBALiquidationEvent:
 
 
 class FeeComponent:
+    """
+    A fee associated with the event.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -283,6 +363,10 @@ class FeeComponent:
 
 
 class FinancialEventGroup:
+    """
+    Information related to a financial event group.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -333,6 +417,10 @@ class FinancialEventGroup:
 
 
 class FinancialEvents:
+    """
+    Contains all information related to a financial event.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -449,6 +537,10 @@ class FinancialEvents:
 
 
 class ImagingServicesFeeEvent:
+    """
+    A fee event related to Amazon Imaging services.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -471,6 +563,10 @@ class ImagingServicesFeeEvent:
 
 
 class ListFinancialEventGroupsPayload:
+    """
+    The payload for the listFinancialEventGroups operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -487,6 +583,10 @@ class ListFinancialEventGroupsPayload:
 
 
 class ListFinancialEventGroupsResponse:
+    """
+    The response schema for the listFinancialEventGroups operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -501,6 +601,10 @@ class ListFinancialEventGroupsResponse:
 
 
 class ListFinancialEventsPayload:
+    """
+    The payload for the listFinancialEvents operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -515,6 +619,10 @@ class ListFinancialEventsPayload:
 
 
 class ListFinancialEventsResponse:
+    """
+    The response schema for the listFinancialEvents operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -529,6 +637,10 @@ class ListFinancialEventsResponse:
 
 
 class LoanServicingEvent:
+    """
+    A loan advance, loan payment, or loan refund.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -543,6 +655,10 @@ class LoanServicingEvent:
 
 
 class NetworkComminglingTransactionEvent:
+    """
+    A network commingling transaction event.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -581,6 +697,10 @@ class NetworkComminglingTransactionEvent:
 
 
 class PayWithAmazonEvent:
+    """
+    An event related to the seller's Pay with Amazon account.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -627,6 +747,10 @@ class PayWithAmazonEvent:
 
 
 class ProductAdsPaymentEvent:
+    """
+    A Sponsored Products payment event.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -657,6 +781,10 @@ class ProductAdsPaymentEvent:
 
 
 class Promotion:
+    """
+    A promotion applied to an item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -675,6 +803,10 @@ class Promotion:
 
 
 class RemovalShipmentEvent:
+    """
+    A removal shipment event for a removal order.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -699,6 +831,10 @@ class RemovalShipmentEvent:
 
 
 class RemovalShipmentItem:
+    """
+    Item-level information for a removal shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -737,6 +873,10 @@ class RemovalShipmentItem:
 
 
 class RentalTransactionEvent:
+    """
+    An event related to a rental transaction.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -785,6 +925,10 @@ class RentalTransactionEvent:
 
 
 class RetrochargeEvent:
+    """
+    A retrocharge or retrocharge reversal.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -821,6 +965,10 @@ class RetrochargeEvent:
 
 
 class SAFETReimbursementEvent:
+    """
+    A SAFE-T claim reimbursement on the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -849,6 +997,10 @@ class SAFETReimbursementEvent:
 
 
 class SAFETReimbursementItem:
+    """
+    An item from a SAFE-T claim reimbursement.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -867,6 +1019,10 @@ class SAFETReimbursementItem:
 
 
 class SellerDealPaymentEvent:
+    """
+    An event linked to the payment of a fee related to the specified deal.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -905,6 +1061,10 @@ class SellerDealPaymentEvent:
 
 
 class SellerReviewEnrollmentPaymentEvent:
+    """
+    A fee payment event for the Early Reviewer Program.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -935,6 +1095,10 @@ class SellerReviewEnrollmentPaymentEvent:
 
 
 class ServiceFeeEvent:
+    """
+    A service fee on the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -969,6 +1133,10 @@ class ServiceFeeEvent:
 
 
 class ShipmentEvent:
+    """
+    A shipment, refund, guarantee claim, or chargeback.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1027,6 +1195,10 @@ class ShipmentEvent:
 
 
 class ShipmentItem:
+    """
+    An item of a shipment, refund, guarantee claim, or chargeback.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1085,6 +1257,10 @@ class ShipmentItem:
 
 
 class SolutionProviderCreditEvent:
+    """
+    A credit given to a solution provider.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1131,6 +1307,10 @@ class SolutionProviderCreditEvent:
 
 
 class TDSReimbursementEvent:
+    """
+    A tax deduction at source (TDS) claim reimbursement event on the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1149,6 +1329,10 @@ class TDSReimbursementEvent:
 
 
 class TaxWithheldComponent:
+    """
+    Information about the taxes withheld.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1163,6 +1347,10 @@ class TaxWithheldComponent:
 
 
 class TrialShipmentEvent:
+    """
+    An event related to a trial shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1189,6 +1377,10 @@ class TrialShipmentEvent:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1207,218 +1399,363 @@ class Error:
 
 
 class AdjustmentEventList(list, _List["AdjustmentEvent"]):
+    """
+    A list of adjustment event information for the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__([AdjustmentEvent(datum) for datum in data])
         self.data = data
 
 
 class AdjustmentItemList(list, _List["AdjustmentItem"]):
+    """
+    A list of information about items in an adjustment to the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__([AdjustmentItem(datum) for datum in data])
         self.data = data
 
 
 class AffordabilityExpenseEventList(list, _List["AffordabilityExpenseEvent"]):
+    """
+    A list of expense information related to an affordability promotion.
+    """
+
     def __init__(self, data):
         super().__init__([AffordabilityExpenseEvent(datum) for datum in data])
         self.data = data
 
 
 class ChargeComponentList(list, _List["ChargeComponent"]):
+    """
+    A list of charge information on the seller's account.
+    """
+
     def __init__(self, data):
         super().__init__([ChargeComponent(datum) for datum in data])
         self.data = data
 
 
 class ChargeInstrumentList(list, _List["ChargeInstrument"]):
+    """
+    A list of payment instruments.
+    """
+
     def __init__(self, data):
         super().__init__([ChargeInstrument(datum) for datum in data])
         self.data = data
 
 
 class CouponPaymentEventList(list, _List["CouponPaymentEvent"]):
+    """
+    A list of coupon payment event information.
+    """
+
     def __init__(self, data):
         super().__init__([CouponPaymentEvent(datum) for datum in data])
         self.data = data
 
 
 class DebtRecoveryEventList(list, _List["DebtRecoveryEvent"]):
+    """
+    A list of debt recovery event information.
+    """
+
     def __init__(self, data):
         super().__init__([DebtRecoveryEvent(datum) for datum in data])
         self.data = data
 
 
 class DebtRecoveryItemList(list, _List["DebtRecoveryItem"]):
+    """
+    A list of debt recovery item information.
+    """
+
     def __init__(self, data):
         super().__init__([DebtRecoveryItem(datum) for datum in data])
         self.data = data
 
 
 class DirectPaymentList(list, _List["DirectPayment"]):
+    """
+    A list of direct payment information.
+    """
+
     def __init__(self, data):
         super().__init__([DirectPayment(datum) for datum in data])
         self.data = data
 
 
 class FBALiquidationEventList(list, _List["FBALiquidationEvent"]):
+    """
+    A list of FBA inventory liquidation payment events.
+    """
+
     def __init__(self, data):
         super().__init__([FBALiquidationEvent(datum) for datum in data])
         self.data = data
 
 
 class FeeComponentList(list, _List["FeeComponent"]):
+    """
+    A list of fee component information.
+    """
+
     def __init__(self, data):
         super().__init__([FeeComponent(datum) for datum in data])
         self.data = data
 
 
 class FinancialEventGroupList(list, _List["FinancialEventGroup"]):
+    """
+    A list of financial event group information.
+    """
+
     def __init__(self, data):
         super().__init__([FinancialEventGroup(datum) for datum in data])
         self.data = data
 
 
 class ImagingServicesFeeEventList(list, _List["ImagingServicesFeeEvent"]):
+    """
+    A list of fee events related to Amazon Imaging services.
+    """
+
     def __init__(self, data):
         super().__init__([ImagingServicesFeeEvent(datum) for datum in data])
         self.data = data
 
 
 class LoanServicingEventList(list, _List["LoanServicingEvent"]):
+    """
+    A list of loan servicing events.
+    """
+
     def __init__(self, data):
         super().__init__([LoanServicingEvent(datum) for datum in data])
         self.data = data
 
 
 class NetworkComminglingTransactionEventList(list, _List["NetworkComminglingTransactionEvent"]):
+    """
+    A list of network commingling transaction events.
+    """
+
     def __init__(self, data):
         super().__init__([NetworkComminglingTransactionEvent(datum) for datum in data])
         self.data = data
 
 
 class PayWithAmazonEventList(list, _List["PayWithAmazonEvent"]):
+    """
+    A list of events related to the seller's Pay with Amazon account.
+    """
+
     def __init__(self, data):
         super().__init__([PayWithAmazonEvent(datum) for datum in data])
         self.data = data
 
 
 class ProductAdsPaymentEventList(list, _List["ProductAdsPaymentEvent"]):
+    """
+    A list of sponsored products payment events.
+    """
+
     def __init__(self, data):
         super().__init__([ProductAdsPaymentEvent(datum) for datum in data])
         self.data = data
 
 
 class PromotionList(list, _List["Promotion"]):
+    """
+    A list of promotions.
+    """
+
     def __init__(self, data):
         super().__init__([Promotion(datum) for datum in data])
         self.data = data
 
 
 class RemovalShipmentEventList(list, _List["RemovalShipmentEvent"]):
+    """
+    A list of removal shipment event information.
+    """
+
     def __init__(self, data):
         super().__init__([RemovalShipmentEvent(datum) for datum in data])
         self.data = data
 
 
 class RemovalShipmentItemList(list, _List["RemovalShipmentItem"]):
+    """
+    A list of information about removal shipment items.
+    """
+
     def __init__(self, data):
         super().__init__([RemovalShipmentItem(datum) for datum in data])
         self.data = data
 
 
 class RentalTransactionEventList(list, _List["RentalTransactionEvent"]):
+    """
+    A list of rental transaction event information.
+    """
+
     def __init__(self, data):
         super().__init__([RentalTransactionEvent(datum) for datum in data])
         self.data = data
 
 
 class RetrochargeEventList(list, _List["RetrochargeEvent"]):
+    """
+    A list of information about Retrocharge or RetrochargeReversal events.
+    """
+
     def __init__(self, data):
         super().__init__([RetrochargeEvent(datum) for datum in data])
         self.data = data
 
 
 class SAFETReimbursementEventList(list, _List["SAFETReimbursementEvent"]):
+    """
+    A list of SAFETReimbursementEvents.
+    """
+
     def __init__(self, data):
         super().__init__([SAFETReimbursementEvent(datum) for datum in data])
         self.data = data
 
 
 class SAFETReimbursementItemList(list, _List["SAFETReimbursementItem"]):
+    """
+    A list of SAFETReimbursementItems.
+    """
+
     def __init__(self, data):
         super().__init__([SAFETReimbursementItem(datum) for datum in data])
         self.data = data
 
 
 class SellerDealPaymentEventList(list, _List["SellerDealPaymentEvent"]):
+    """
+    A list of payment events for deal-related fees.
+    """
+
     def __init__(self, data):
         super().__init__([SellerDealPaymentEvent(datum) for datum in data])
         self.data = data
 
 
 class SellerReviewEnrollmentPaymentEventList(list, _List["SellerReviewEnrollmentPaymentEvent"]):
+    """
+    A list of information about fee events for the Early Reviewer Program.
+    """
+
     def __init__(self, data):
         super().__init__([SellerReviewEnrollmentPaymentEvent(datum) for datum in data])
         self.data = data
 
 
 class ServiceFeeEventList(list, _List["ServiceFeeEvent"]):
+    """
+    A list of information about service fee events.
+    """
+
     def __init__(self, data):
         super().__init__([ServiceFeeEvent(datum) for datum in data])
         self.data = data
 
 
 class ShipmentEventList(list, _List["ShipmentEvent"]):
+    """
+    A list of shipment event information.
+    """
+
     def __init__(self, data):
         super().__init__([ShipmentEvent(datum) for datum in data])
         self.data = data
 
 
 class ShipmentItemList(list, _List["ShipmentItem"]):
+    """
+    A list of shipment items.
+    """
+
     def __init__(self, data):
         super().__init__([ShipmentItem(datum) for datum in data])
         self.data = data
 
 
 class SolutionProviderCreditEventList(list, _List["SolutionProviderCreditEvent"]):
+    """
+    A list of information about solution provider credits.
+    """
+
     def __init__(self, data):
         super().__init__([SolutionProviderCreditEvent(datum) for datum in data])
         self.data = data
 
 
 class TDSReimbursementEventList(list, _List["TDSReimbursementEvent"]):
+    """
+    A list of information about tax deduction at source (TDS) claim reimbursement events.
+    """
+
     def __init__(self, data):
         super().__init__([TDSReimbursementEvent(datum) for datum in data])
         self.data = data
 
 
 class TaxWithheldComponentList(list, _List["TaxWithheldComponent"]):
+    """
+    A list of information about taxes withheld.
+    """
+
     def __init__(self, data):
         super().__init__([TaxWithheldComponent(datum) for datum in data])
         self.data = data
 
 
 class TrialShipmentEventList(list, _List["TrialShipmentEvent"]):
+    """
+    A list of information about trial shipment financial events.
+    """
+
     def __init__(self, data):
         super().__init__([TrialShipmentEvent(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class BigDecimal(float):
-    pass
+    """ """
 
 
 class Date(str):
-    pass
+    """ """
 
 
 class FinancesV0Client(__BaseClient):
+    """
+        Returns financial event groups for a given date range.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 0.5 | 30 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def listFinancialEventGroups(
         self,
         MaxResultsPerPage: int = None,
@@ -1447,6 +1784,15 @@ class FinancesV0Client(__BaseClient):
             503: ListFinancialEventGroupsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns all financial events for the specified financial event group.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.5 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def listFinancialEventsByGroupId(
         self,
         eventGroupId: str,
@@ -1472,6 +1818,15 @@ class FinancesV0Client(__BaseClient):
             503: ListFinancialEventsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns all financial events for the specified order.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.5 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def listFinancialEventsByOrderId(
         self,
         orderId: str,
@@ -1496,6 +1851,15 @@ class FinancesV0Client(__BaseClient):
             500: ListFinancialEventsResponse,
             503: ListFinancialEventsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns financial events for the specified data range.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 0.5 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def listFinancialEvents(
         self,

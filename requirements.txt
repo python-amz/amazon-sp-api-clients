@@ -11,3 +11,7 @@ pycryptodome
 beautifulsoup4
 markdown
 demjson
+sphinx
+recommonmark
+sphinx-inplace
+pydata_sphinx_theme

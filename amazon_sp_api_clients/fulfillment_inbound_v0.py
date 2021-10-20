@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -21,6 +25,10 @@ class Error:
 
 
 class ASINInboundGuidance:
+    """
+    Reasons why a given ASIN is not recommended for shipment to Amazon's fulfillment network.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -39,6 +47,10 @@ class ASINInboundGuidance:
 
 
 class ASINPrepInstructions:
+    """
+    Item preparation instructions to help with item sourcing decisions.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -61,6 +73,8 @@ class ASINPrepInstructions:
 
 
 class Address:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -99,6 +113,10 @@ class Address:
 
 
 class AmazonPrepFeesDetails:
+    """
+    The fees for Amazon to prep goods for shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -113,6 +131,10 @@ class AmazonPrepFeesDetails:
 
 
 class Amount:
+    """
+    The monetary value.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -127,6 +149,10 @@ class Amount:
 
 
 class BoxContentsFeeDetails:
+    """
+    The manual processing fee per unit and total fee for a shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -145,6 +171,8 @@ class BoxContentsFeeDetails:
 
 
 class ConfirmPreorderResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -159,6 +187,10 @@ class ConfirmPreorderResult:
 
 
 class ConfirmPreorderResponse:
+    """
+    The response schema for the confirmPreorder operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -173,6 +205,8 @@ class ConfirmPreorderResponse:
 
 
 class CommonTransportResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -183,6 +217,10 @@ class CommonTransportResult:
 
 
 class ConfirmTransportResponse:
+    """
+    The response schema for the confirmTransport operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -197,6 +235,10 @@ class ConfirmTransportResponse:
 
 
 class Contact:
+    """
+    Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -219,6 +261,10 @@ class Contact:
 
 
 class CreateInboundShipmentPlanRequest:
+    """
+    The request schema for the createInboundShipmentPlan operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -247,6 +293,8 @@ class CreateInboundShipmentPlanRequest:
 
 
 class CreateInboundShipmentPlanResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -257,6 +305,10 @@ class CreateInboundShipmentPlanResult:
 
 
 class CreateInboundShipmentPlanResponse:
+    """
+    The response schema for the createInboundShipmentPlan operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -271,6 +323,10 @@ class CreateInboundShipmentPlanResponse:
 
 
 class InboundShipmentRequest:
+    """
+    The request schema for an inbound shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -289,6 +345,8 @@ class InboundShipmentRequest:
 
 
 class InboundShipmentResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -299,6 +357,10 @@ class InboundShipmentResult:
 
 
 class InboundShipmentResponse:
+    """
+    The response schema for this operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -313,6 +375,10 @@ class InboundShipmentResponse:
 
 
 class Dimensions:
+    """
+    The dimension values and unit of measurement.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -335,6 +401,10 @@ class Dimensions:
 
 
 class EstimateTransportResponse:
+    """
+    The response schema for the estimateTransport operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -349,6 +419,10 @@ class EstimateTransportResponse:
 
 
 class GetBillOfLadingResponse:
+    """
+    The response schema for the getBillOfLading operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -363,6 +437,8 @@ class GetBillOfLadingResponse:
 
 
 class GetInboundGuidanceResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -387,6 +463,10 @@ class GetInboundGuidanceResult:
 
 
 class GetInboundGuidanceResponse:
+    """
+    The response schema for the getInboundGuidance operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -401,6 +481,8 @@ class GetInboundGuidanceResponse:
 
 
 class LabelDownloadURL:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -411,6 +493,8 @@ class LabelDownloadURL:
 
 
 class BillOfLadingDownloadURL:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -421,6 +505,10 @@ class BillOfLadingDownloadURL:
 
 
 class GetLabelsResponse:
+    """
+    The response schema for the getLabels operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -435,6 +523,8 @@ class GetLabelsResponse:
 
 
 class GetPreorderInfoResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -457,6 +547,10 @@ class GetPreorderInfoResult:
 
 
 class GetPreorderInfoResponse:
+    """
+    The response schema for the getPreorderInfo operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -471,6 +565,8 @@ class GetPreorderInfoResponse:
 
 
 class GetPrepInstructionsResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -497,6 +593,10 @@ class GetPrepInstructionsResult:
 
 
 class GetPrepInstructionsResponse:
+    """
+    The response schema for the getPrepInstructions operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -511,6 +611,8 @@ class GetPrepInstructionsResponse:
 
 
 class GetTransportDetailsResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -521,6 +623,10 @@ class GetTransportDetailsResult:
 
 
 class GetTransportDetailsResponse:
+    """
+    The response schema for the getTransportDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -535,6 +641,10 @@ class GetTransportDetailsResponse:
 
 
 class InboundShipmentHeader:
+    """
+    Inbound shipment information used to create and update inbound shipments.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -571,6 +681,10 @@ class InboundShipmentHeader:
 
 
 class InboundShipmentInfo:
+    """
+    Information about the seller's inbound shipments. Returned by the listInboundShipments operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -617,6 +731,10 @@ class InboundShipmentInfo:
 
 
 class InboundShipmentItem:
+    """
+    Item information for an inbound shipment. Submitted with a call to the createInboundShipment or updateInboundShipment operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -655,6 +773,10 @@ class InboundShipmentItem:
 
 
 class InboundShipmentPlan:
+    """
+    Inbound shipment information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -685,6 +807,10 @@ class InboundShipmentPlan:
 
 
 class InboundShipmentPlanItem:
+    """
+    Item information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -707,6 +833,10 @@ class InboundShipmentPlanItem:
 
 
 class InboundShipmentPlanRequestItem:
+    """
+    Item information for creating an inbound shipment plan. Submitted with a call to the createInboundShipmentPlan operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -737,6 +867,8 @@ class InboundShipmentPlanRequestItem:
 
 
 class InvalidASIN:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -751,6 +883,8 @@ class InvalidASIN:
 
 
 class InvalidSKU:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -765,6 +899,8 @@ class InvalidSKU:
 
 
 class GetShipmentItemsResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -779,6 +915,10 @@ class GetShipmentItemsResult:
 
 
 class GetShipmentItemsResponse:
+    """
+    The response schema for the getShipmentItems operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -793,6 +933,8 @@ class GetShipmentItemsResponse:
 
 
 class GetShipmentsResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -807,6 +949,10 @@ class GetShipmentsResult:
 
 
 class GetShipmentsResponse:
+    """
+    The response schema for the getShipments operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -821,6 +967,10 @@ class GetShipmentsResponse:
 
 
 class NonPartneredLtlDataInput:
+    """
+    Information that you provide to Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by a carrier that has not partnered with Amazon.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -835,6 +985,10 @@ class NonPartneredLtlDataInput:
 
 
 class NonPartneredLtlDataOutput:
+    """
+    Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment shipped by a carrier that has not partnered with Amazon.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -849,6 +1003,10 @@ class NonPartneredLtlDataOutput:
 
 
 class NonPartneredSmallParcelDataInput:
+    """
+    Information that you provide to Amazon about a Small Parcel shipment shipped by a carrier that has not partnered with Amazon.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -865,6 +1023,10 @@ class NonPartneredSmallParcelDataInput:
 
 
 class NonPartneredSmallParcelDataOutput:
+    """
+    Information returned by Amazon about a Small Parcel shipment by a carrier that has not partnered with Amazon.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -877,6 +1039,10 @@ class NonPartneredSmallParcelDataOutput:
 
 
 class NonPartneredSmallParcelPackageInput:
+    """
+    The tracking number of the package, provided by the carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -887,6 +1053,10 @@ class NonPartneredSmallParcelPackageInput:
 
 
 class NonPartneredSmallParcelPackageOutput:
+    """
+    Carrier, tracking number, and status information for the package.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -905,6 +1075,10 @@ class NonPartneredSmallParcelPackageOutput:
 
 
 class Pallet:
+    """
+    Pallet information.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -923,6 +1097,10 @@ class Pallet:
 
 
 class PartneredEstimate:
+    """
+    The estimated shipping cost for a shipment using an Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -941,6 +1119,10 @@ class PartneredEstimate:
 
 
 class PartneredLtlDataInput:
+    """
+    Information that is required by an Amazon-partnered carrier to ship a Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -975,6 +1157,10 @@ class PartneredLtlDataInput:
 
 
 class PartneredLtlDataOutput:
+    """
+    Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1041,6 +1227,10 @@ class PartneredLtlDataOutput:
 
 
 class PartneredSmallParcelDataInput:
+    """
+    Information that is required by an Amazon-partnered carrier to ship a Small Parcel inbound shipment.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1057,6 +1247,10 @@ class PartneredSmallParcelDataInput:
 
 
 class PartneredSmallParcelDataOutput:
+    """
+    Information returned by Amazon about a Small Parcel shipment by an Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1073,6 +1267,10 @@ class PartneredSmallParcelDataOutput:
 
 
 class PartneredSmallParcelPackageInput:
+    """
+    Dimension and weight information for the package.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1087,6 +1285,10 @@ class PartneredSmallParcelPackageInput:
 
 
 class PartneredSmallParcelPackageOutput:
+    """
+    Dimension, weight, and shipping information for the package.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1113,6 +1315,10 @@ class PartneredSmallParcelPackageOutput:
 
 
 class PrepDetails:
+    """
+    Preparation instructions and who is responsible for the preparation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1127,6 +1333,10 @@ class PrepDetails:
 
 
 class PutTransportDetailsRequest:
+    """
+    The request schema for a putTransportDetails operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1145,6 +1355,10 @@ class PutTransportDetailsRequest:
 
 
 class PutTransportDetailsResponse:
+    """
+    Workflow status for a shipment with an Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1159,6 +1373,10 @@ class PutTransportDetailsResponse:
 
 
 class SKUInboundGuidance:
+    """
+    Reasons why a given seller SKU is not recommended for shipment to Amazon's fulfillment network.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1181,6 +1399,10 @@ class SKUInboundGuidance:
 
 
 class SKUPrepInstructions:
+    """
+    Labeling requirements and item preparation instructions to help you prepare items for shipment to Amazon's fulfillment network.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1213,6 +1435,10 @@ class SKUPrepInstructions:
 
 
 class TransportContent:
+    """
+    Inbound shipment information, including carrier details, shipment status, and the workflow status for a request for shipment with an Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1231,6 +1457,10 @@ class TransportContent:
 
 
 class TransportDetailInput:
+    """
+    Information required to create an Amazon-partnered carrier shipping estimate, or to alert the Amazon fulfillment center to the arrival of an inbound shipment by a non-Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1257,6 +1487,10 @@ class TransportDetailInput:
 
 
 class TransportDetailOutput:
+    """
+    Inbound shipment information, including carrier details and shipment status.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1283,6 +1517,10 @@ class TransportDetailOutput:
 
 
 class TransportHeader:
+    """
+    The shipping identifier, information about whether the shipment is by an Amazon-partnered carrier, and information about whether the shipment is Small Parcel or Less Than Truckload/Full Truckload (LTL/FTL).
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1305,6 +1543,10 @@ class TransportHeader:
 
 
 class TransportResult:
+    """
+    The workflow status for a shipment with an Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1323,6 +1565,10 @@ class TransportResult:
 
 
 class VoidTransportResponse:
+    """
+    The response schema for the voidTransport operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1337,6 +1583,10 @@ class VoidTransportResponse:
 
 
 class Weight:
+    """
+    The weight of the package.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -1351,240 +1601,377 @@ class Weight:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class ASINInboundGuidanceList(list, _List["ASINInboundGuidance"]):
+    """
+    A list of ASINs and their associated inbound guidance.
+    """
+
     def __init__(self, data):
         super().__init__([ASINInboundGuidance(datum) for datum in data])
         self.data = data
 
 
 class ASINPrepInstructionsList(list, _List["ASINPrepInstructions"]):
+    """
+    A list of item preparation instructions.
+    """
+
     def __init__(self, data):
         super().__init__([ASINPrepInstructions(datum) for datum in data])
         self.data = data
 
 
 class AmazonPrepFeesDetailsList(list, _List["AmazonPrepFeesDetails"]):
+    """
+    A list of preparation instructions and fees for Amazon to prep goods for shipment.
+    """
+
     def __init__(self, data):
         super().__init__([AmazonPrepFeesDetails(datum) for datum in data])
         self.data = data
 
 
 class GuidanceReasonList(list, _List["GuidanceReason"]):
+    """
+    A list of inbound guidance reason information.
+    """
+
     def __init__(self, data):
         super().__init__([GuidanceReason(datum) for datum in data])
         self.data = data
 
 
 class InboundShipmentItemList(list, _List["InboundShipmentItem"]):
+    """
+    A list of inbound shipment item information.
+    """
+
     def __init__(self, data):
         super().__init__([InboundShipmentItem(datum) for datum in data])
         self.data = data
 
 
 class InboundShipmentList(list, _List["InboundShipmentInfo"]):
+    """
+    A list of inbound shipment information.
+    """
+
     def __init__(self, data):
         super().__init__([InboundShipmentInfo(datum) for datum in data])
         self.data = data
 
 
 class InboundShipmentPlanItemList(list, _List["InboundShipmentPlanItem"]):
+    """
+    A list of inbound shipment plan item information.
+    """
+
     def __init__(self, data):
         super().__init__([InboundShipmentPlanItem(datum) for datum in data])
         self.data = data
 
 
 class InboundShipmentPlanList(list, _List["InboundShipmentPlan"]):
+    """
+    A list of inbound shipment plan information
+    """
+
     def __init__(self, data):
         super().__init__([InboundShipmentPlan(datum) for datum in data])
         self.data = data
 
 
 class InboundShipmentPlanRequestItemList(list, _List["InboundShipmentPlanRequestItem"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([InboundShipmentPlanRequestItem(datum) for datum in data])
         self.data = data
 
 
 class InvalidASINList(list, _List["InvalidASIN"]):
+    """
+    A list of invalid ASIN values and the reasons they are invalid.
+    """
+
     def __init__(self, data):
         super().__init__([InvalidASIN(datum) for datum in data])
         self.data = data
 
 
 class InvalidSKUList(list, _List["InvalidSKU"]):
+    """
+    A list of invalid SKU values and the reason they are invalid.
+    """
+
     def __init__(self, data):
         super().__init__([InvalidSKU(datum) for datum in data])
         self.data = data
 
 
 class NonPartneredSmallParcelPackageInputList(list, _List["NonPartneredSmallParcelPackageInput"]):
+    """
+    A list of package tracking information.
+    """
+
     def __init__(self, data):
         super().__init__([NonPartneredSmallParcelPackageInput(datum) for datum in data])
         self.data = data
 
 
 class NonPartneredSmallParcelPackageOutputList(list, _List["NonPartneredSmallParcelPackageOutput"]):
+    """
+    A list of packages, including carrier, tracking number, and status information for each package.
+    """
+
     def __init__(self, data):
         super().__init__([NonPartneredSmallParcelPackageOutput(datum) for datum in data])
         self.data = data
 
 
 class PalletList(list, _List["Pallet"]):
+    """
+    A list of pallet information.
+    """
+
     def __init__(self, data):
         super().__init__([Pallet(datum) for datum in data])
         self.data = data
 
 
 class PartneredSmallParcelPackageInputList(list, _List["PartneredSmallParcelPackageInput"]):
+    """
+    A list of dimensions and weight information for packages.
+    """
+
     def __init__(self, data):
         super().__init__([PartneredSmallParcelPackageInput(datum) for datum in data])
         self.data = data
 
 
 class PartneredSmallParcelPackageOutputList(list, _List["PartneredSmallParcelPackageOutput"]):
+    """
+    A list of packages, including shipping information from the Amazon-partnered carrier.
+    """
+
     def __init__(self, data):
         super().__init__([PartneredSmallParcelPackageOutput(datum) for datum in data])
         self.data = data
 
 
 class PrepDetailsList(list, _List["PrepDetails"]):
+    """
+    A list of preparation instructions and who is responsible for that preparation.
+    """
+
     def __init__(self, data):
         super().__init__([PrepDetails(datum) for datum in data])
         self.data = data
 
 
 class PrepInstructionList(list, _List["PrepInstruction"]):
+    """
+    A list of preparation instructions to help with item sourcing decisions.
+    """
+
     def __init__(self, data):
         super().__init__([PrepInstruction(datum) for datum in data])
         self.data = data
 
 
 class SKUInboundGuidanceList(list, _List["SKUInboundGuidance"]):
+    """
+    A list of SKU inbound guidance information.
+    """
+
     def __init__(self, data):
         super().__init__([SKUInboundGuidance(datum) for datum in data])
         self.data = data
 
 
 class SKUPrepInstructionsList(list, _List["SKUPrepInstructions"]):
+    """
+    A list of SKU labeling requirements and item preparation instructions.
+    """
+
     def __init__(self, data):
         super().__init__([SKUPrepInstructions(datum) for datum in data])
         self.data = data
 
 
 class BarcodeInstruction(str):
-    pass
+    """
+    Labeling requirements for the item. For more information about FBA labeling requirements, see the Seller Central Help for your marketplace.
+    """
 
 
 class BigDecimalType(float):
-    pass
+    """ """
 
 
 class BoxContentsSource(str):
-    pass
+    """
+    Where the seller provided box contents information for a shipment.
+    """
 
 
 class Condition(str):
-    pass
+    """
+    The condition of the item.
+    """
 
 
 class CurrencyCode(str):
-    pass
+    """
+    The currency code.
+    """
 
 
 class DateStringType(str):
-    pass
+    """ """
 
 
 class ErrorReason(str):
-    pass
+    """
+    The reason that the ASIN is invalid.
+    """
 
 
 class GuidanceReason(str):
-    pass
+    """
+    A reason for the current inbound guidance for an item.
+    """
 
 
 class InboundGuidance(str):
-    pass
+    """
+    Specific inbound guidance for an item.
+    """
 
 
 class IntendedBoxContentsSource(str):
-    pass
+    """
+    How the seller intends to provide box contents information for a shipment.
+    """
 
 
 class LabelPrepPreference(str):
-    pass
+    """
+    The preference for label preparation for an inbound shipment.
+    """
 
 
 class LabelPrepType(str):
-    pass
+    """
+    The type of label preparation that is required for the inbound shipment.
+    """
 
 
 class PackageStatus(str):
-    pass
+    """
+    The shipment status of the package.
+    """
 
 
 class PrepGuidance(str):
-    pass
+    """
+    Item preparation instructions.
+    """
 
 
 class PrepInstruction(str):
-    pass
+    """
+    Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, see the Seller Central Help for your marketplace.
+    """
 
 
 class PrepOwner(str):
-    pass
+    """
+    Indicates who will prepare the item.
+    """
 
 
 class ProNumber(str):
-    pass
+    """
+    The PRO number ("progressive number" or "progressive ID") assigned to the shipment by the carrier.
+    """
 
 
 class Quantity(int):
-    pass
+    """
+    The item quantity.
+    """
 
 
 class SellerFreightClass(str):
-    pass
+    """
+    The freight class of the shipment. For information about determining the freight class, contact the carrier.
+    """
 
 
 class ShipmentStatus(str):
-    pass
+    """
+    Indicates the status of the inbound shipment. When used with the createInboundShipment operation, WORKING is the only valid value. When used with the updateInboundShipment operation, possible values are WORKING, SHIPPED or CANCELLED.
+    """
 
 
 class ShipmentType(str):
-    pass
+    """
+    Specifies the carrier shipment type in a putTransportDetails request.
+    """
 
 
 class TimeStampStringType(str):
-    pass
+    """ """
 
 
 class TrackingId(str):
-    pass
+    """
+    The tracking number of the package, provided by the carrier.
+    """
 
 
 class TransportStatus(str):
-    pass
+    """
+    Indicates the status of the Amazon-partnered carrier shipment.
+    """
 
 
 class UnitOfMeasurement(str):
-    pass
+    """
+    Indicates the unit of measurement.
+    """
 
 
 class UnitOfWeight(str):
-    pass
+    """
+    Indicates the unit of weight.
+    """
 
 
 class UnsignedIntType(int):
-    pass
+    """ """
 
 
 class FulfillmentInboundV0Client(__BaseClient):
+    """
+        Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 2 | 30 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getInboundGuidance(
         self,
         MarketplaceId: str,
@@ -1611,6 +1998,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: GetInboundGuidanceResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createInboundShipmentPlan(
         self,
         data: CreateInboundShipmentPlanRequest,
@@ -1628,6 +2024,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: CreateInboundShipmentPlanResponse,
             503: CreateInboundShipmentPlanResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def updateInboundShipment(
         self,
@@ -1649,6 +2054,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: InboundShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createInboundShipment(
         self,
         data: InboundShipmentRequest,
@@ -1669,6 +2083,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: InboundShipmentResponse,
             503: InboundShipmentResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order. 
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getPreorderInfo(
         self,
@@ -1692,6 +2115,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: GetPreorderInfoResponse,
             503: GetPreorderInfoResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns information needed to confirm a shipment for pre-order. Call this operation after calling the getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def confirmPreorder(
         self,
@@ -1719,6 +2151,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: ConfirmPreorderResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getPrepInstructions(
         self,
         ShipToCountryCode: str,
@@ -1745,6 +2186,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: GetPrepInstructionsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns current transportation information about an inbound shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getTransportDetails(
         self,
         shipmentId: str,
@@ -1764,6 +2214,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: GetTransportDetailsResponse,
             503: GetTransportDetailsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Sends transportation information to Amazon about an inbound shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def putTransportDetails(
         self,
@@ -1785,6 +2244,17 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: PutTransportDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier.
+To be successful, you must call this operation before the VoidDeadline date that is returned by the getTransportDetails operation.
+Important: The VoidDeadline date is 24 hours after you confirm a Small Parcel shipment transportation request or one hour after you confirm a Less Than Truckload/Full Truckload (LTL/FTL) shipment transportation request. After the void deadline passes, your account will be charged for the shipping cost.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def voidTransport(
         self,
         shipmentId: str,
@@ -1804,6 +2274,16 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: VoidTransportResponse,
             503: VoidTransportResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
+Prior to calling the estimateTransport operation, you must call the putTransportDetails operation to provide Amazon with the transportation information for the inbound shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def estimateTransport(
         self,
@@ -1825,6 +2305,17 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: EstimateTransportResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment.
+Prior to calling the confirmTransport operation, you should call the getTransportDetails operation to get the Amazon-partnered shipping estimate.
+Important: After confirming the transportation request, if the seller decides that they do not want the Amazon-partnered carrier to ship the inbound shipment, you can call the voidTransport operation to cancel the transportation request. Note that for a Small Parcel shipment, the seller has 24 hours after confirming a transportation request to void the transportation request. For a Less Than Truckload/Full Truckload (LTL/FTL) shipment, the seller has one hour after confirming a transportation request to void it. After the grace period has expired the seller's account will be charged for the shipping cost.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def confirmTransport(
         self,
         shipmentId: str,
@@ -1844,6 +2335,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: ConfirmTransportResponse,
             503: ConfirmTransportResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getLabels(
         self,
@@ -1886,6 +2386,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: GetLabelsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getBillOfLading(
         self,
         shipmentId: str,
@@ -1905,6 +2414,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: GetBillOfLadingResponse,
             503: GetBillOfLadingResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of inbound shipments based on criteria that you specify.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getShipments(
         self,
@@ -1944,6 +2462,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: GetShipmentsResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns a list of items in a specified inbound shipment.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getShipmentItemsByShipmentId(
         self,
         shipmentId: str,
@@ -1966,6 +2493,15 @@ class FulfillmentInboundV0Client(__BaseClient):
             500: GetShipmentItemsResponse,
             503: GetShipmentItemsResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
+**Usage Plan:**
+| Rate (requests per second) | Burst |
+| ---- | ---- |
+| 2 | 30 |
+For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getShipmentItems(
         self,

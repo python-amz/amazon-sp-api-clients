@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class SubmitInvoiceRequest:
+    """
+    The request schema for the submitInvoice operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -13,6 +17,8 @@ class SubmitInvoiceRequest:
 
 
 class InvoiceDetail:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -73,6 +79,8 @@ class InvoiceDetail:
 
 
 class InvoiceItem:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -119,6 +127,8 @@ class InvoiceItem:
 
 
 class PartyIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -139,6 +149,10 @@ class PartyIdentification:
 
 
 class TaxRegistrationDetail:
+    """
+    Tax registration details of the entity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -161,6 +175,10 @@ class TaxRegistrationDetail:
 
 
 class Address:
+    """
+    Address of the party.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -211,6 +229,10 @@ class Address:
 
 
 class Money:
+    """
+    An amount of money, including units in the form of currency.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -225,6 +247,10 @@ class Money:
 
 
 class TaxDetail:
+    """
+    Details of tax amount applied.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -247,6 +273,10 @@ class TaxDetail:
 
 
 class ChargeDetails:
+    """
+    Monetary and tax details of the charge.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -265,6 +295,10 @@ class ChargeDetails:
 
 
 class AdditionalDetails:
+    """
+    A field where selling party can provide additional information for tax related or any other purposes.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -283,6 +317,10 @@ class AdditionalDetails:
 
 
 class ItemQuantity:
+    """
+    Details of item quantity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -297,6 +335,10 @@ class ItemQuantity:
 
 
 class SubmitInvoiceResponse:
+    """
+    The response schema for the submitInvoice operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -311,6 +353,8 @@ class SubmitInvoiceResponse:
 
 
 class TransactionReference:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -321,6 +365,10 @@ class TransactionReference:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -339,16 +387,32 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class Decimal(str):
-    pass
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 class VendorDirectFulfillmentPaymentsV1Client(__BaseClient):
+    """
+        Submits one or more invoices for a vendor's direct fulfillment orders.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def submitInvoice(
         self,
         data: SubmitInvoiceRequest,

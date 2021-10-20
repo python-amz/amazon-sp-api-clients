@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetPricingResponse:
+    """
+    The response schema for the getPricing and getCompetitivePricing operations.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetPricingResponse:
 
 
 class GetOffersResponse:
+    """
+    The response schema for the getListingOffers and getItemOffers operations.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +39,8 @@ class GetOffersResponse:
 
 
 class GetOffersResult:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -69,6 +79,8 @@ class GetOffersResult:
 
 
 class Price:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -91,6 +103,10 @@ class Price:
 
 
 class Product:
+    """
+    An item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -121,6 +137,10 @@ class Product:
 
 
 class IdentifierType:
+    """
+    Specifies the identifiers used to uniquely identify an item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -135,6 +155,8 @@ class IdentifierType:
 
 
 class ASINIdentifier:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -149,6 +171,8 @@ class ASINIdentifier:
 
 
 class SellerSKUIdentifier:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -167,6 +191,10 @@ class SellerSKUIdentifier:
 
 
 class CompetitivePricingType:
+    """
+    Competitive pricing information for the item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -187,6 +215,8 @@ class CompetitivePricingType:
 
 
 class CompetitivePriceType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -229,6 +259,10 @@ class CompetitivePriceType:
 
 
 class OfferListingCountType:
+    """
+    The number of offer listings with the specified condition.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -243,6 +277,8 @@ class OfferListingCountType:
 
 
 class MoneyType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -257,6 +293,8 @@ class MoneyType:
 
 
 class SalesRankType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -271,6 +309,8 @@ class SalesRankType:
 
 
 class PriceType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -293,6 +333,8 @@ class PriceType:
 
 
 class OfferType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -337,6 +379,10 @@ class OfferType:
 
 
 class QuantityDiscountPriceType:
+    """
+    Contains pricing information that includes special pricing when buying in bulk.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -355,6 +401,8 @@ class QuantityDiscountPriceType:
 
 
 class Points:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -369,6 +417,10 @@ class Points:
 
 
 class ItemIdentifier:
+    """
+    Information that identifies an item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -391,6 +443,10 @@ class ItemIdentifier:
 
 
 class Summary:
+    """
+    Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -429,6 +485,10 @@ class Summary:
 
 
 class OfferCountType:
+    """
+    The total number of offers for the specified condition and fulfillment channel.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -447,6 +507,8 @@ class OfferCountType:
 
 
 class LowestPriceType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -489,6 +551,8 @@ class LowestPriceType:
 
 
 class BuyBoxPriceType:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -531,6 +595,8 @@ class BuyBoxPriceType:
 
 
 class OfferDetail:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -595,6 +661,10 @@ class OfferDetail:
 
 
 class SellerFeedbackType:
+    """
+    Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -609,6 +679,10 @@ class SellerFeedbackType:
 
 
 class DetailedShippingTimeType:
+    """
+    The time range in which an item will likely be shipped once an order has been placed.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -631,6 +705,10 @@ class DetailedShippingTimeType:
 
 
 class ShipsFromType:
+    """
+    The state and country from where the item is shipped.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -645,6 +723,10 @@ class ShipsFromType:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -663,100 +745,154 @@ class Error:
 
 
 class PriceList(list, _List["Price"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([Price(datum) for datum in data])
         self.data = data
 
 
 class AttributeSetList(list, _List["dict"]):
+    """
+    A list of product attributes if they are applicable to the product that is returned.
+    """
+
     def __init__(self, data):
         super().__init__([dict(datum) for datum in data])
         self.data = data
 
 
 class RelationshipList(list, _List["dict"]):
+    """
+    A list that contains product variation information, if applicable.
+    """
+
     def __init__(self, data):
         super().__init__([dict(datum) for datum in data])
         self.data = data
 
 
 class CompetitivePriceList(list, _List["CompetitivePriceType"]):
+    """
+    A list of competitive pricing information.
+    """
+
     def __init__(self, data):
         super().__init__([CompetitivePriceType(datum) for datum in data])
         self.data = data
 
 
 class NumberOfOfferListingsList(list, _List["OfferListingCountType"]):
+    """
+    The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
+    """
+
     def __init__(self, data):
         super().__init__([OfferListingCountType(datum) for datum in data])
         self.data = data
 
 
 class SalesRankList(list, _List["SalesRankType"]):
+    """
+    A list of sales rank information for the item, by category.
+    """
+
     def __init__(self, data):
         super().__init__([SalesRankType(datum) for datum in data])
         self.data = data
 
 
 class OffersList(list, _List["OfferType"]):
+    """
+    A list of offers.
+    """
+
     def __init__(self, data):
         super().__init__([OfferType(datum) for datum in data])
         self.data = data
 
 
 class BuyBoxEligibleOffers(list, _List["OfferCountType"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([OfferCountType(datum) for datum in data])
         self.data = data
 
 
 class BuyBoxPrices(list, _List["BuyBoxPriceType"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([BuyBoxPriceType(datum) for datum in data])
         self.data = data
 
 
 class LowestPrices(list, _List["LowestPriceType"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([LowestPriceType(datum) for datum in data])
         self.data = data
 
 
 class NumberOfOffers(list, _List["OfferCountType"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([OfferCountType(datum) for datum in data])
         self.data = data
 
 
 class OfferDetailList(list, _List["OfferDetail"]):
+    """ """
+
     def __init__(self, data):
         super().__init__([OfferDetail(datum) for datum in data])
         self.data = data
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class OfferCustomerType(str):
-    pass
+    """ """
 
 
 class QuantityDiscountType(str):
-    pass
+    """ """
 
 
 class ConditionType(str):
-    pass
+    """
+    Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.
+    """
 
 
 class FulfillmentChannelType(str):
-    pass
+    """
+    Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
+    """
 
 
 class ProductPricingV0Client(__BaseClient):
+    """
+        Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 20 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getPricing(
         self,
         MarketplaceId: str,
@@ -792,6 +928,16 @@ class ProductPricingV0Client(__BaseClient):
             503: GetPricingResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 20 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getCompetitivePricing(
         self,
         MarketplaceId: str,
@@ -824,6 +970,16 @@ class ProductPricingV0Client(__BaseClient):
             503: GetPricingResponse,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Returns the lowest priced offers for a single SKU listing.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 5 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getListingOffers(
         self,
         SellerSKU: str,
@@ -852,6 +1008,16 @@ class ProductPricingV0Client(__BaseClient):
             500: GetOffersResponse,
             503: GetOffersResponse,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns the lowest priced offers for a single item based on ASIN.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 5 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getItemOffers(
         self,

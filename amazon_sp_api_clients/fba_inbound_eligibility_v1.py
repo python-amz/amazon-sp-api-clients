@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class GetItemEligibilityPreviewResponse:
+    """
+    The response schema for the getItemEligibilityPreview operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -17,6 +21,10 @@ class GetItemEligibilityPreviewResponse:
 
 
 class ItemEligibilityPreview:
+    """
+    The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -43,6 +51,10 @@ class ItemEligibilityPreview:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -61,12 +73,25 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class FbaInboundEligibilityV1Client(__BaseClient):
+    """
+        This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
+    **Usage Plan:**
+    | Rate (requests per second) | Burst |
+    | ---- | ---- |
+    | 1 | 1 |
+    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def getItemEligibilityPreview(
         self,
         asin: str,

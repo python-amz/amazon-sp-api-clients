@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class AplusResponse:
+    """
+    The base response data for all A+ Content operations when a request is successful or partially successful. Individual operations may extend this with additional data.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -13,6 +17,10 @@ class AplusResponse:
 
 
 class ErrorList:
+    """
+    The error response for when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -23,6 +31,10 @@ class ErrorList:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -41,6 +53,10 @@ class Error:
 
 
 class ContentMetadataRecord:
+    """
+    The metadata for an A+ Content document, with additional information for content management.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -55,6 +71,10 @@ class ContentMetadataRecord:
 
 
 class ContentMetadata:
+    """
+    The metadata of an A+ Content document.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -81,6 +101,10 @@ class ContentMetadata:
 
 
 class AsinMetadata:
+    """
+    The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the listContentDocumentAsinRelations operation, the related ASINs are returned without metadata.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -111,6 +135,10 @@ class AsinMetadata:
 
 
 class PublishRecord:
+    """
+    The full context for an A+ Content publishing event.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -141,6 +169,10 @@ class PublishRecord:
 
 
 class ImageCropSpecification:
+    """
+    The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -155,6 +187,10 @@ class ImageCropSpecification:
 
 
 class ImageDimensions:
+    """
+    The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -169,6 +205,10 @@ class ImageDimensions:
 
 
 class ImageOffsets:
+    """
+    The top left corner of the cropped image, specified in the original image's coordinate space.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -183,6 +223,10 @@ class ImageOffsets:
 
 
 class IntegerWithUnits:
+    """
+    A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -197,6 +241,10 @@ class IntegerWithUnits:
 
 
 class ContentRecord:
+    """
+    A content document with additional information for content management.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -215,6 +263,10 @@ class ContentRecord:
 
 
 class ContentDocument:
+    """
+    The A+ Content document. This is the enhanced content that is published to product detail pages.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -241,6 +293,10 @@ class ContentDocument:
 
 
 class ContentModule:
+    """
+    An A+ Content module. An A+ Content document is composed of content modules. The contentModuleType property selects which content module types to use.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -335,6 +391,10 @@ class ContentModule:
 
 
 class StandardCompanyLogoModule:
+    """
+    The standard company logo image.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -345,6 +405,10 @@ class StandardCompanyLogoModule:
 
 
 class StandardComparisonTableModule:
+    """
+    The standard product comparison table.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -361,6 +425,10 @@ class StandardComparisonTableModule:
 
 
 class StandardFourImageTextModule:
+    """
+    Four standard images with text, presented across a single row.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -387,6 +455,10 @@ class StandardFourImageTextModule:
 
 
 class StandardFourImageTextQuadrantModule:
+    """
+    Four standard images with text, presented on a grid of four quadrants.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -409,6 +481,10 @@ class StandardFourImageTextQuadrantModule:
 
 
 class StandardHeaderImageTextModule:
+    """
+    Standard headline text, an image, and body text.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -423,6 +499,10 @@ class StandardHeaderImageTextModule:
 
 
 class StandardImageSidebarModule:
+    """
+    Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -453,6 +533,10 @@ class StandardImageSidebarModule:
 
 
 class StandardImageTextOverlayModule:
+    """
+    A standard background image with a floating text box.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -467,6 +551,10 @@ class StandardImageTextOverlayModule:
 
 
 class StandardMultipleImageTextModule:
+    """
+    Standard images with text, presented one at a time. The user clicks on thumbnails to view each block.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -479,6 +567,10 @@ class StandardMultipleImageTextModule:
 
 
 class StandardProductDescriptionModule:
+    """
+    Standard product description text.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -489,6 +581,10 @@ class StandardProductDescriptionModule:
 
 
 class StandardSingleImageHighlightsModule:
+    """
+    A standard image with several paragraphs and a bulleted list.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -519,6 +615,10 @@ class StandardSingleImageHighlightsModule:
 
 
 class StandardSingleImageSpecsDetailModule:
+    """
+    A standard image with paragraphs and a bulleted list, and extra space for technical details.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -559,6 +659,10 @@ class StandardSingleImageSpecsDetailModule:
 
 
 class StandardSingleSideImageModule:
+    """
+    A standard headline and body text with an image on the side.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -573,6 +677,10 @@ class StandardSingleSideImageModule:
 
 
 class StandardTechSpecsModule:
+    """
+    The standard table of technical feature names and definitions.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -593,6 +701,10 @@ class StandardTechSpecsModule:
 
 
 class StandardTextModule:
+    """
+    A standard headline and body text.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -607,6 +719,10 @@ class StandardTextModule:
 
 
 class StandardThreeImageTextModule:
+    """
+    Three standard images with text, presented across a single row.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -629,6 +745,10 @@ class StandardThreeImageTextModule:
 
 
 class StandardComparisonProductBlock:
+    """
+    The A+ Content standard comparison product block.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -659,6 +779,10 @@ class StandardComparisonProductBlock:
 
 
 class StandardHeaderTextListBlock:
+    """
+    The A+ standard fixed-length list of text, with a related headline.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -673,6 +797,10 @@ class StandardHeaderTextListBlock:
 
 
 class StandardTextListBlock:
+    """
+    The A+ Content standard fixed length list of text, usually presented as bullet points.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -683,6 +811,10 @@ class StandardTextListBlock:
 
 
 class StandardImageTextCaptionBlock:
+    """
+    The A+ Content standard image and text block, with a related caption. The caption may not display on all devices.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -697,6 +829,10 @@ class StandardImageTextCaptionBlock:
 
 
 class StandardImageCaptionBlock:
+    """
+    The A+ Content standard image and caption block.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -711,6 +847,10 @@ class StandardImageCaptionBlock:
 
 
 class StandardImageTextBlock:
+    """
+    The A+ Content standard image and text box block.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -729,6 +869,10 @@ class StandardImageTextBlock:
 
 
 class StandardTextBlock:
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -743,6 +887,10 @@ class StandardTextBlock:
 
 
 class StandardTextPairBlock:
+    """
+    The A+ Content standard label and description block, comprised of a pair of text components.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -757,6 +905,10 @@ class StandardTextPairBlock:
 
 
 class TextItem:
+    """
+    Rich positional text, usually presented as a collection of bullet points.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -771,6 +923,10 @@ class TextItem:
 
 
 class PlainTextItem:
+    """
+    Plain positional text, used in collections of brief labels and descriptors.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -785,6 +941,10 @@ class PlainTextItem:
 
 
 class ImageComponent:
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -803,6 +963,10 @@ class ImageComponent:
 
 
 class ParagraphComponent:
+    """
+    A list of rich text content, usually presented in a text box.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -813,6 +977,10 @@ class ParagraphComponent:
 
 
 class TextComponent:
+    """
+    Rich text content.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -827,6 +995,10 @@ class TextComponent:
 
 
 class Decorator:
+    """
+    A decorator applied to a content string value in order to create rich text.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -849,6 +1021,8 @@ class Decorator:
 
 
 class PostContentDocumentRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -859,6 +1033,8 @@ class PostContentDocumentRequest:
 
 
 class PostContentDocumentAsinRelationsRequest:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -869,164 +1045,259 @@ class PostContentDocumentAsinRelationsRequest:
 
 
 class MessageSet(list, _List["Error"]):
+    """
+    A set of messages to the user, such as warnings or comments.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class ContentMetadataRecordList(list, _List["ContentMetadataRecord"]):
+    """
+    A list of A+ Content metadata records.
+    """
+
     def __init__(self, data):
         super().__init__([ContentMetadataRecord(datum) for datum in data])
         self.data = data
 
 
 class ContentBadgeSet(list, _List["ContentBadge"]):
+    """
+    The set of content badges.
+    """
+
     def __init__(self, data):
         super().__init__([ContentBadge(datum) for datum in data])
         self.data = data
 
 
 class AsinBadgeSet(list, _List["AsinBadge"]):
+    """
+    The set of ASIN badges.
+    """
+
     def __init__(self, data):
         super().__init__([AsinBadge(datum) for datum in data])
         self.data = data
 
 
 class AsinSet(list, _List["Asin"]):
+    """
+    The set of ASINs.
+    """
+
     def __init__(self, data):
         super().__init__([Asin(datum) for datum in data])
         self.data = data
 
 
 class AsinMetadataSet(list, _List["AsinMetadata"]):
+    """
+    The set of ASIN metadata.
+    """
+
     def __init__(self, data):
         super().__init__([AsinMetadata(datum) for datum in data])
         self.data = data
 
 
 class PublishRecordList(list, _List["PublishRecord"]):
+    """
+    A list of A+ Content publishing records.
+    """
+
     def __init__(self, data):
         super().__init__([PublishRecord(datum) for datum in data])
         self.data = data
 
 
 class ContentReferenceKeySet(list, _List["ContentReferenceKey"]):
+    """
+    A set of content reference keys.
+    """
+
     def __init__(self, data):
         super().__init__([ContentReferenceKey(datum) for datum in data])
         self.data = data
 
 
 class ContentRecordList(list, _List["ContentRecord"]):
+    """
+    A list of A+ Content records.
+    """
+
     def __init__(self, data):
         super().__init__([ContentRecord(datum) for datum in data])
         self.data = data
 
 
 class ContentModuleList(list, _List["ContentModule"]):
+    """
+    A list of A+ Content modules.
+    """
+
     def __init__(self, data):
         super().__init__([ContentModule(datum) for datum in data])
         self.data = data
 
 
 class DecoratorSet(list, _List["Decorator"]):
+    """
+    A set of content decorators.
+    """
+
     def __init__(self, data):
         super().__init__([Decorator(datum) for datum in data])
         self.data = data
 
 
 class ContentType(str):
-    pass
+    """
+    The A+ Content document type.
+    """
 
 
 class ContentSubType(str):
-    pass
+    """
+    The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
+    """
 
 
 class ContentStatus(str):
-    pass
+    """
+    The submission status of the content document.
+    """
 
 
 class ContentBadge(str):
-    pass
+    """
+    A flag that provides additional information about an A+ Content document.
+    """
 
 
 class AsinBadge(str):
-    pass
+    """
+    A flag that provides additional information about an ASIN. This is contextual and may change depending on the request that generated it.
+    """
 
 
 class MarketplaceId(str):
-    pass
+    """
+    The identifier for the marketplace where the A+ Content is published.
+    """
 
 
 class LanguageTag(str):
-    pass
+    """
+        The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
+    **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
+    """
 
 
 class Asin(str):
-    pass
+    """
+    The Amazon Standard Identification Number (ASIN).
+    """
 
 
 class ContentReferenceKey(str):
-    pass
+    """
+    A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+    """
 
 
 class PageToken(str):
-    pass
+    """
+    A page token that is returned when the results of the call exceed the page size. To get another page of results, call the operation again, passing in this value with the pageToken parameter.
+    """
 
 
 class ContentModuleType(str):
-    pass
+    """
+    The type of A+ Content module.
+    """
 
 
 class ColorType(str):
-    pass
+    """
+    The relative color scheme of content.
+    """
 
 
 class PositionType(str):
-    pass
+    """
+    The relative positioning of content.
+    """
 
 
 class DecoratorType(str):
-    pass
+    """
+    The type of rich text decorator.
+    """
 
 
 class GetContentDocumentIncludedDataType(str):
-    pass
+    """
+    The type of data to include in the response, such as the contents or the metadata of the A+ Content documents.
+    """
 
 
 class ListContentDocumentAsinRelationsIncludedDataType(str):
-    pass
+    """
+    The type of data to include in the response, such as metadata about the related ASINs.
+    """
 
 
 class contentReferenceKey(str):
-    pass
+    """
+    The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+    """
 
 
 class marketplaceId(str):
-    pass
+    """
+    The identifier for the marketplace where the A+ Content is published.
+    """
 
 
 class pageToken(str):
-    pass
+    """
+    A page token from the nextPageToken response element returned by your previous call to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any other parameter will cause the request to fail. When no nextPageToken value is returned there are no more pages to return. A pageToken value is not usable across different operations.
+    """
 
 
 class asinSet(list):
-    pass
+    """
+    The set of ASINs.
+    """
 
 
 class asin(str):
-    pass
+    """
+    The Amazon Standard Identification Number (ASIN).
+    """
 
 
 class getContentDocumentIncludedDataSet(list):
-    pass
+    """
+    The set of A+ data types to include in the response.
+    """
 
 
 class listContentDocumentAsinRelationsIncludedDataSet(list):
-    pass
+    """
+    The set of A+ data types to include in the response.
+    """
 
 
 class AplusPaginatedResponse:
+    """
+    The base response data for paginated A+ Content operations. Individual operations may extend this with additional data. If nextPageToken is not returned, there are no more pages to return.
+    """
+
     def __init__(self, data):
         if "nextPageToken" in data:
             self.nextPageToken: PageToken = PageToken(data.pop("nextPageToken"))
@@ -1037,6 +1308,8 @@ class AplusPaginatedResponse:
 
 
 class SearchContentDocumentsResponse:
+    """ """
+
     def __init__(self, data):
         if "contentMetadataRecords" in data:
             self.contentMetadataRecords: ContentMetadataRecordList = ContentMetadataRecordList(
@@ -1049,6 +1322,8 @@ class SearchContentDocumentsResponse:
 
 
 class GetContentDocumentResponse:
+    """ """
+
     def __init__(self, data):
         if "contentRecord" in data:
             self.contentRecord: ContentRecord = ContentRecord(data.pop("contentRecord"))
@@ -1059,6 +1334,8 @@ class GetContentDocumentResponse:
 
 
 class PostContentDocumentResponse:
+    """ """
+
     def __init__(self, data):
         if "contentReferenceKey" in data:
             self.contentReferenceKey: ContentReferenceKey = ContentReferenceKey(data.pop("contentReferenceKey"))
@@ -1069,6 +1346,8 @@ class PostContentDocumentResponse:
 
 
 class ListContentDocumentAsinRelationsResponse:
+    """ """
+
     def __init__(self, data):
         if "asinMetadataSet" in data:
             self.asinMetadataSet: AsinMetadataSet = AsinMetadataSet(data.pop("asinMetadataSet"))
@@ -1079,18 +1358,24 @@ class ListContentDocumentAsinRelationsResponse:
 
 
 class PostContentDocumentAsinRelationsResponse:
+    """ """
+
     def __init__(self, data):
         self.data = data
         super().__init__(data)
 
 
 class ValidateContentDocumentAsinRelationsResponse:
+    """ """
+
     def __init__(self, data):
         self.data = data
         super().__init__(data)
 
 
 class SearchContentPublishRecordsResponse:
+    """ """
+
     def __init__(self, data):
         if "publishRecordList" in data:
             self.publishRecordList: PublishRecordList = PublishRecordList(data.pop("publishRecordList"))
@@ -1101,18 +1386,32 @@ class SearchContentPublishRecordsResponse:
 
 
 class PostContentDocumentApprovalSubmissionResponse:
+    """ """
+
     def __init__(self, data):
         self.data = data
         super().__init__(data)
 
 
 class PostContentDocumentSuspendSubmissionResponse:
+    """ """
+
     def __init__(self, data):
         self.data = data
         super().__init__(data)
 
 
 class AplusContent20201101Client(__BaseClient):
+    """
+        Returns a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the getContentDocument operation to get the actual contents of the A+ Content documents.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def searchContentDocuments(
         self,
         marketplaceId: str,
@@ -1137,6 +1436,16 @@ class AplusContent20201101Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Creates a new A+ Content document.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def createContentDocument(
         self,
         data: PostContentDocumentRequest,
@@ -1157,6 +1466,16 @@ class AplusContent20201101Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns an A+ Content document, if available.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def getContentDocument(
         self,
@@ -1185,6 +1504,16 @@ class AplusContent20201101Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Updates an existing A+ Content document.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def updateContentDocument(
         self,
         data: PostContentDocumentRequest,
@@ -1209,6 +1538,16 @@ class AplusContent20201101Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the asinSet parameter, the operation returns all ASINs related to the content document.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def listContentDocumentAsinRelations(
         self,
@@ -1243,6 +1582,16 @@ class AplusContent20201101Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def postContentDocumentAsinRelations(
         self,
         data: PostContentDocumentAsinRelationsRequest,
@@ -1268,6 +1617,16 @@ class AplusContent20201101Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Checks if the A+ Content document is valid for use on a set of ASINs.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def validateContentDocumentAsinRelations(
         self,
         data: PostContentDocumentRequest,
@@ -1291,6 +1650,16 @@ class AplusContent20201101Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Searches for A+ Content publishing records, if available.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def searchContentPublishRecords(
         self,
@@ -1318,6 +1687,16 @@ class AplusContent20201101Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
+    """
+    Submits an A+ Content document for review, approval, and publishing.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def postContentDocumentApprovalSubmission(
         self,
         contentReferenceKey: str,
@@ -1341,6 +1720,16 @@ class AplusContent20201101Client(__BaseClient):
             500: ErrorList,
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
+
+    """
+    Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
+**Usage Plans:**
+| Plan type | Rate (requests per second) | Burst |
+| ---- | ---- | ---- |
+|Default| 10 | 10 |
+|Selling partner specific| Variable | Variable |
+The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
 
     def postContentDocumentSuspendSubmission(
         self,

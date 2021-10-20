@@ -3,6 +3,10 @@ from typing import List as _List
 
 
 class SubmitInventoryUpdateRequest:
+    """
+    The request body for the submitInventoryUpdate operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -13,6 +17,8 @@ class SubmitInventoryUpdateRequest:
 
 
 class InventoryUpdate:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -31,6 +37,10 @@ class InventoryUpdate:
 
 
 class ItemDetails:
+    """
+    Updated inventory details for an item.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -53,6 +63,8 @@ class ItemDetails:
 
 
 class PartyIdentification:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -63,6 +75,10 @@ class PartyIdentification:
 
 
 class ItemQuantity:
+    """
+    Details of item quantity.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -77,6 +93,10 @@ class ItemQuantity:
 
 
 class SubmitInventoryUpdateResponse:
+    """
+    The response schema for the submitInventoryUpdate operation.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -91,6 +111,8 @@ class SubmitInventoryUpdateResponse:
 
 
 class TransactionReference:
+    """ """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -101,6 +123,10 @@ class TransactionReference:
 
 
 class Error:
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__()
         self.data = data
@@ -119,12 +145,26 @@ class Error:
 
 
 class ErrorList(list, _List["Error"]):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
 
 
 class VendorDirectFulfillmentInventoryV1Client(__BaseClient):
+    """
+        Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
+    **Usage Plans:**
+    | Plan type | Rate (requests per second) | Burst |
+    | ---- | ---- | ---- |
+    |Default| 10 | 10 |
+    |Selling partner specific| Variable | Variable |
+    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+    """
+
     def submitInventoryUpdate(
         self,
         data: SubmitInventoryUpdateRequest,
