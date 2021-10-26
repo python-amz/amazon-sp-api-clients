@@ -29,7 +29,7 @@ def convert_bool(value):
     if value in TRUE_VALUES:
         return True
     elif value in FALSE_VALUES:
-        return FALSE_VALUES
+        return False
     else:
         raise ValueError('Wrong boolean value')
 
