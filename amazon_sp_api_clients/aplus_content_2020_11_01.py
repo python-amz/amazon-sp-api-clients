@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -769,7 +769,7 @@ class StandardComparisonProductBlock:
         else:
             self.asin: Asin = None
         if "highlight" in data:
-            self.highlight: bool = bool(data["highlight"])
+            self.highlight: bool = convert_bool(data["highlight"])
         else:
             self.highlight: bool = None
         if "metrics" in data:

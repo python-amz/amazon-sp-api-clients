@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -281,19 +281,19 @@ class AttributeSetListType:
         else:
             self.ItemDimensions: DimensionType = None
         if "IsAdultProduct" in data:
-            self.IsAdultProduct: bool = bool(data["IsAdultProduct"])
+            self.IsAdultProduct: bool = convert_bool(data["IsAdultProduct"])
         else:
             self.IsAdultProduct: bool = None
         if "IsAutographed" in data:
-            self.IsAutographed: bool = bool(data["IsAutographed"])
+            self.IsAutographed: bool = convert_bool(data["IsAutographed"])
         else:
             self.IsAutographed: bool = None
         if "IsEligibleForTradeIn" in data:
-            self.IsEligibleForTradeIn: bool = bool(data["IsEligibleForTradeIn"])
+            self.IsEligibleForTradeIn: bool = convert_bool(data["IsEligibleForTradeIn"])
         else:
             self.IsEligibleForTradeIn: bool = None
         if "IsMemorabilia" in data:
-            self.IsMemorabilia: bool = bool(data["IsMemorabilia"])
+            self.IsMemorabilia: bool = convert_bool(data["IsMemorabilia"])
         else:
             self.IsMemorabilia: bool = None
         if "IssuesPerYear" in data:

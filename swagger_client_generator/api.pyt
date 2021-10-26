@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 {% for component_name, component in dict_components.items() %}
@@ -16,7 +16,7 @@ class {{ component_name }}:
             {% set item_type = property.item_type %}
             self.{{ name }}: _List[{{ item_type }}] = [{{ item_type }}(datum) for datum in data['{{ name }}']]
         {% else %}
-            self.{{ name }}: {{ type }} = {{ type }}(data['{{ name }}'])
+            self.{{ name }}: {{ type }} = {{ property.converter }}(data['{{ name }}'])
         {% endif %}
         else:
         {% if type == 'list' %}

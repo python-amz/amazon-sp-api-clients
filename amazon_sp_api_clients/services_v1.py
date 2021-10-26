@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -253,7 +253,7 @@ class Buyer:
         else:
             self.phone: str = None
         if "isPrimeMember" in data:
-            self.isPrimeMember: bool = bool(data["isPrimeMember"])
+            self.isPrimeMember: bool = convert_bool(data["isPrimeMember"])
         else:
             self.isPrimeMember: bool = None
 

@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -505,19 +505,19 @@ class ShipmentDetails:
         super().__init__()
         self.data = data
         if "isPriorityShipment" in data:
-            self.isPriorityShipment: bool = bool(data["isPriorityShipment"])
+            self.isPriorityShipment: bool = convert_bool(data["isPriorityShipment"])
         else:
             self.isPriorityShipment: bool = None
         if "isScheduledDeliveryShipment" in data:
-            self.isScheduledDeliveryShipment: bool = bool(data["isScheduledDeliveryShipment"])
+            self.isScheduledDeliveryShipment: bool = convert_bool(data["isScheduledDeliveryShipment"])
         else:
             self.isScheduledDeliveryShipment: bool = None
         if "isPslipRequired" in data:
-            self.isPslipRequired: bool = bool(data["isPslipRequired"])
+            self.isPslipRequired: bool = convert_bool(data["isPslipRequired"])
         else:
             self.isPslipRequired: bool = None
         if "isGift" in data:
-            self.isGift: bool = bool(data["isGift"])
+            self.isGift: bool = convert_bool(data["isGift"])
         else:
             self.isGift: bool = None
         if "shipMethod" in data:

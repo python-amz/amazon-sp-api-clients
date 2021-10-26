@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -27,7 +27,7 @@ class FeesEstimateRequest:
         else:
             self.MarketplaceId: str = None
         if "IsAmazonFulfilled" in data:
-            self.IsAmazonFulfilled: bool = bool(data["IsAmazonFulfilled"])
+            self.IsAmazonFulfilled: bool = convert_bool(data["IsAmazonFulfilled"])
         else:
             self.IsAmazonFulfilled: bool = None
         if "PriceToEstimateFees" in data:
@@ -163,7 +163,7 @@ class FeesEstimateIdentifier:
         else:
             self.IdValue: str = None
         if "IsAmazonFulfilled" in data:
-            self.IsAmazonFulfilled: bool = bool(data["IsAmazonFulfilled"])
+            self.IsAmazonFulfilled: bool = convert_bool(data["IsAmazonFulfilled"])
         else:
             self.IsAmazonFulfilled: bool = None
         if "PriceToEstimateFees" in data:

@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -101,11 +101,11 @@ class Participation:
         super().__init__()
         self.data = data
         if "isParticipating" in data:
-            self.isParticipating: bool = bool(data["isParticipating"])
+            self.isParticipating: bool = convert_bool(data["isParticipating"])
         else:
             self.isParticipating: bool = None
         if "hasSuspendedListings" in data:
-            self.hasSuspendedListings: bool = bool(data["hasSuspendedListings"])
+            self.hasSuspendedListings: bool = convert_bool(data["hasSuspendedListings"])
         else:
             self.hasSuspendedListings: bool = None
 

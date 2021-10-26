@@ -1,4 +1,6 @@
 from copy import deepcopy
+from dataclasses import dataclass, field
+from enum import Enum, auto
 from logging import getLogger
 from os import path
 
@@ -29,69 +31,105 @@ def get_item_type(item_data):
     return item_type
 
 
+@dataclass
+class Field:
+    name: str  # property name, the identifier in python
+    type: str = 'object'  # the type, used for type hint
+    source: dict = field(default_factory=dict)
+
+    @property
+    def item_type(self) -> str:
+        assert self.type == 'list'
+        return get_item_type(self.source['items'])
+
+    @property
+    def converter(self):
+        if self.type == 'bool':
+            return 'convert_bool'
+        else:
+            return self.type
+
+
+class ComponentType(Enum):
+    dict = auto()
+    list = auto()
+    alias = auto()
+    parameter = auto()
+
+
+@dataclass
+class Component:
+    name: str
+    type_category: ComponentType = ComponentType.dict
+    type: str = ''  # alias type
+    source: dict = field(default_factory=dict)
+    properties: dict[str, Field] = field(default_factory=dict)
+    item_type: str = ''  # for list component only
+    base_types: list = field(default_factory=list)
+
+    @property
+    def description(self):
+        return self.source.get('description', '')
+
+
 def stage_1_dict_components(data: dict):
-    # 执行分流过程
     if set(data['components'].keys()) - {'schemas', 'parameters'}:
         raise ParseError('data.components.schemas')
-    components: dict[str, dict]
-    components = data['components']['schemas']
+    components: dict[str, dict] = data['components']['schemas']
     components = {k: v for k, v in components.items() if 'type' in v and v['type'] == 'object'}
 
-    # 解析数据
+    # Parse
     # {component_name: {'properties': {property_name: {'type': property_type,
     #                                                  'item_type': item_type}}}}
-    result = {}
+    result: dict[str, Component] = {}
     for component_name, component_data in components.items():
-        parsed_component = result.setdefault(component_name, {
-            'source': component_data,
-        })
-        parsed_properties = parsed_component.setdefault('properties', {})
+        parsed_component = result.setdefault(component_name, Component(
+            name=component_name, type_category=ComponentType.dict, source=component_data,
+        ))
         if 'properties' not in component_data:
             continue
-        for property_name, property_data in component_data['properties'].items():
-            parsed_property_data = parsed_properties.setdefault(property_name, {})
+        for property_name, property_data in parsed_component.source['properties'].items():
+            property_obj = parsed_component.properties.setdefault(
+                property_name, Field(
+                    property_name,
+                    source=property_data,
+                ))
             property_data: dict
             if '$ref' in property_data:
-                property_type = parse_type(property_data['$ref'])
+                property_obj.type = parse_type(property_data['$ref'])
             elif 'type' in property_data:
-                property_type = parse_type(property_data['type'])
+                property_obj.type = parse_type(property_data['type'])
             else:
                 raise ParseError('dict component property type')
-            parsed_property_data['type'] = property_type
-            if property_type == 'list':
-                parsed_property_data['item_type'] = get_item_type(property_data['items'])
     return result
 
 
 def stage_2_list_components(data: dict):
-    # 分流
     components = data['components']['schemas']
     components = {k: v for k, v in components.items() if 'type' in v and v['type'] == 'array'}
 
-    # 解析数据
-    parsed_components = {}
+    # Parse
+    parsed_components: dict[str, Component] = {}
     for component_name, component_data in components.items():
-        parsed_component_data = parsed_components.setdefault(component_name, {
-            'source': component_data,
-        })
+        parsed_component_data: Component = parsed_components.setdefault(component_name, Component(
+            name=component_name, type_category=ComponentType.list, source=component_data,
+        ))
         if 'items' not in component_data:
             raise ParseError('list component items not found')
-        parsed_component_data['item_type'] = get_item_type(component_data['items'])
+        parsed_component_data.item_type = get_item_type(component_data['items'])
     return parsed_components
 
 
 def stage_3_alias_components(data: dict):
-    # 分流
     components = data['components']['schemas']
     components = {k: v for k, v in components.items() if 'type' in v and v['type'] not in ('array', 'object')}
 
-    # 解析数据
-    parsed_components = {}
+    parsed_components: dict[str, Component] = {}
     for component_name, component_data in components.items():
-        parsed_component = parsed_components.setdefault(component_name, {
-            'source': component_data,
-        })
-        parsed_component['type'] = parse_type(component_data['type'])
+        parsed_components.setdefault(component_name, Component(
+            name=component_name, type_category=ComponentType.alias, source=component_data,
+            type=parse_type(component_data['type']),
+        ))
     return parsed_components
 
 
@@ -99,31 +137,28 @@ def stage_4_parameters(data: dict):
     if 'parameters' not in data['components']:
         return {}
     parameters: dict = data['components']['parameters']
-    parsed_parameters = {}
+    parsed_parameters: dict[str, Component] = {}
     for parameter_name, parameter_data in parameters.items():
-        parsed_parameter = parsed_parameters.setdefault(parameter_name, {
-            'source': parameter_data,
-        })
-        schema_data: dict = parameter_data['schema']
-        parsed_parameter['type'] = parse_type(schema_data['type'])
+        parsed_parameter = parsed_parameters.setdefault(parameter_name, Component(
+            name=parameter_name, type_category=ComponentType.parameter, source=parameter_data,
+        ))
+        parsed_parameter.type = parse_type(parsed_parameter.source['schema']['type'])
     return parsed_parameters
 
 
 def stage_5_ref_components(data: dict):
-    # 分流
     components = data['components']['schemas']
     components = {k: v for k, v in components.items() if 'type' not in v}
     if not components:
         return {}
 
-    # 解析数据
-    parsed_components = {}
+    parsed_components: dict[str, Component] = {}
     for component_name, component_data in components.items():
-        parsed_component = parsed_components.setdefault(component_name, {
-            'source': component_data,
-        })
-        extra_properties = parsed_component.setdefault('properties', {})
-        base_types = parsed_component.setdefault('base_types', [])
+        parsed_component = parsed_components.setdefault(component_name, Component(
+            name=component_name, source=component_data
+        ))
+        extra_properties = parsed_component.properties
+        base_types = parsed_component.base_types
         if '$ref' in component_data:
             base_types.append(parse_type(component_data['$ref']))
         elif 'allOf' in component_data:

@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -135,11 +135,11 @@ class ProductTypeVersion:
         else:
             self.version: str = None
         if "latest" in data:
-            self.latest: bool = bool(data["latest"])
+            self.latest: bool = convert_bool(data["latest"])
         else:
             self.latest: bool = None
         if "releaseCandidate" in data:
-            self.releaseCandidate: bool = bool(data["releaseCandidate"])
+            self.releaseCandidate: bool = convert_bool(data["releaseCandidate"])
         else:
             self.releaseCandidate: bool = None
 

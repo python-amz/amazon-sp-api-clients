@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -529,11 +529,11 @@ class GetPreorderInfoResult:
         super().__init__()
         self.data = data
         if "ShipmentContainsPreorderableItems" in data:
-            self.ShipmentContainsPreorderableItems: bool = bool(data["ShipmentContainsPreorderableItems"])
+            self.ShipmentContainsPreorderableItems: bool = convert_bool(data["ShipmentContainsPreorderableItems"])
         else:
             self.ShipmentContainsPreorderableItems: bool = None
         if "ShipmentConfirmedForPreorder" in data:
-            self.ShipmentConfirmedForPreorder: bool = bool(data["ShipmentConfirmedForPreorder"])
+            self.ShipmentConfirmedForPreorder: bool = convert_bool(data["ShipmentConfirmedForPreorder"])
         else:
             self.ShipmentConfirmedForPreorder: bool = None
         if "NeedByDate" in data:
@@ -661,7 +661,7 @@ class InboundShipmentHeader:
         else:
             self.DestinationFulfillmentCenterId: str = None
         if "AreCasesRequired" in data:
-            self.AreCasesRequired: bool = bool(data["AreCasesRequired"])
+            self.AreCasesRequired: bool = convert_bool(data["AreCasesRequired"])
         else:
             self.AreCasesRequired: bool = None
         if "ShipmentStatus" in data:
@@ -713,7 +713,7 @@ class InboundShipmentInfo:
         else:
             self.LabelPrepType: LabelPrepType = None
         if "AreCasesRequired" in data:
-            self.AreCasesRequired: bool = bool(data["AreCasesRequired"])
+            self.AreCasesRequired: bool = convert_bool(data["AreCasesRequired"])
         else:
             self.AreCasesRequired: bool = None
         if "ConfirmedNeedByDate" in data:
@@ -1091,7 +1091,7 @@ class Pallet:
         else:
             self.Weight: Weight = None
         if "IsStacked" in data:
-            self.IsStacked: bool = bool(data["IsStacked"])
+            self.IsStacked: bool = convert_bool(data["IsStacked"])
         else:
             self.IsStacked: bool = None
 
@@ -1213,7 +1213,7 @@ class PartneredLtlDataOutput:
         else:
             self.AmazonReferenceId: str = None
         if "IsBillOfLadingAvailable" in data:
-            self.IsBillOfLadingAvailable: bool = bool(data["IsBillOfLadingAvailable"])
+            self.IsBillOfLadingAvailable: bool = convert_bool(data["IsBillOfLadingAvailable"])
         else:
             self.IsBillOfLadingAvailable: bool = None
         if "PartneredEstimate" in data:
@@ -1341,7 +1341,7 @@ class PutTransportDetailsRequest:
         super().__init__()
         self.data = data
         if "IsPartnered" in data:
-            self.IsPartnered: bool = bool(data["IsPartnered"])
+            self.IsPartnered: bool = convert_bool(data["IsPartnered"])
         else:
             self.IsPartnered: bool = None
         if "ShipmentType" in data:
@@ -1533,7 +1533,7 @@ class TransportHeader:
         else:
             self.ShipmentId: str = None
         if "IsPartnered" in data:
-            self.IsPartnered: bool = bool(data["IsPartnered"])
+            self.IsPartnered: bool = convert_bool(data["IsPartnered"])
         else:
             self.IsPartnered: bool = None
         if "ShipmentType" in data:

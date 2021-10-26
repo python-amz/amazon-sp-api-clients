@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -239,7 +239,7 @@ class ShipmentDetails:
         else:
             self.shipmentStatus: str = None
         if "isPriorityShipment" in data:
-            self.isPriorityShipment: bool = bool(data["isPriorityShipment"])
+            self.isPriorityShipment: bool = convert_bool(data["isPriorityShipment"])
         else:
             self.isPriorityShipment: bool = None
         if "vendorOrderNumber" in data:

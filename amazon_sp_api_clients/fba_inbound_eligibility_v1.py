@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -41,7 +41,7 @@ class ItemEligibilityPreview:
         else:
             self.program: str = None
         if "isEligibleForProgram" in data:
-            self.isEligibleForProgram: bool = bool(data["isEligibleForProgram"])
+            self.isEligibleForProgram: bool = convert_bool(data["isEligibleForProgram"])
         else:
             self.isEligibleForProgram: bool = None
         if "ineligibilityReasonList" in data:

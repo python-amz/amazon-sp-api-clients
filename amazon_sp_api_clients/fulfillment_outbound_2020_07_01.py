@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -83,7 +83,7 @@ class CODSettings:
         super().__init__()
         self.data = data
         if "isCodRequired" in data:
-            self.isCodRequired: bool = bool(data["isCodRequired"])
+            self.isCodRequired: bool = convert_bool(data["isCodRequired"])
         else:
             self.isCodRequired: bool = None
         if "codCharge" in data:
@@ -517,11 +517,11 @@ class FulfillmentPreview:
         else:
             self.scheduledDeliveryInfo: ScheduledDeliveryInfo = None
         if "isFulfillable" in data:
-            self.isFulfillable: bool = bool(data["isFulfillable"])
+            self.isFulfillable: bool = convert_bool(data["isFulfillable"])
         else:
             self.isFulfillable: bool = None
         if "isCODCapable" in data:
-            self.isCODCapable: bool = bool(data["isCODCapable"])
+            self.isCODCapable: bool = convert_bool(data["isCODCapable"])
         else:
             self.isCODCapable: bool = None
         if "estimatedShippingWeight" in data:
@@ -829,11 +829,11 @@ class GetFulfillmentPreviewRequest:
         else:
             self.shippingSpeedCategories: ShippingSpeedCategoryList = None
         if "includeCODFulfillmentPreview" in data:
-            self.includeCODFulfillmentPreview: bool = bool(data["includeCODFulfillmentPreview"])
+            self.includeCODFulfillmentPreview: bool = convert_bool(data["includeCODFulfillmentPreview"])
         else:
             self.includeCODFulfillmentPreview: bool = None
         if "includeDeliveryWindows" in data:
-            self.includeDeliveryWindows: bool = bool(data["includeDeliveryWindows"])
+            self.includeDeliveryWindows: bool = convert_bool(data["includeDeliveryWindows"])
         else:
             self.includeDeliveryWindows: bool = None
         if "featureConstraints" in data:
@@ -1553,7 +1553,7 @@ class Feature:
         else:
             self.featureDescription: str = None
         if "sellerEligible" in data:
-            self.sellerEligible: bool = bool(data["sellerEligible"])
+            self.sellerEligible: bool = convert_bool(data["sellerEligible"])
         else:
             self.sellerEligible: bool = None
 
@@ -1593,7 +1593,7 @@ class GetFeatureSkuResult:
         else:
             self.featureName: str = None
         if "isEligible" in data:
-            self.isEligible: bool = bool(data["isEligible"])
+            self.isEligible: bool = convert_bool(data["isEligible"])
         else:
             self.isEligible: bool = None
         if "ineligibleReasons" in data:

@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -253,7 +253,7 @@ class CompetitivePriceType:
         else:
             self.sellerId: str = None
         if "belongsToRequester" in data:
-            self.belongsToRequester: bool = bool(data["belongsToRequester"])
+            self.belongsToRequester: bool = convert_bool(data["belongsToRequester"])
         else:
             self.belongsToRequester: bool = None
 
@@ -605,7 +605,7 @@ class OfferDetail:
         else:
             self.sellerId: str = None
         if "MyOffer" in data:
-            self.MyOffer: bool = bool(data["MyOffer"])
+            self.MyOffer: bool = convert_bool(data["MyOffer"])
         else:
             self.MyOffer: bool = None
         if "offerType" in data:
@@ -647,15 +647,15 @@ class OfferDetail:
         else:
             self.ShipsFrom: ShipsFromType = None
         if "IsFulfilledByAmazon" in data:
-            self.IsFulfilledByAmazon: bool = bool(data["IsFulfilledByAmazon"])
+            self.IsFulfilledByAmazon: bool = convert_bool(data["IsFulfilledByAmazon"])
         else:
             self.IsFulfilledByAmazon: bool = None
         if "IsBuyBoxWinner" in data:
-            self.IsBuyBoxWinner: bool = bool(data["IsBuyBoxWinner"])
+            self.IsBuyBoxWinner: bool = convert_bool(data["IsBuyBoxWinner"])
         else:
             self.IsBuyBoxWinner: bool = None
         if "IsFeaturedMerchant" in data:
-            self.IsFeaturedMerchant: bool = bool(data["IsFeaturedMerchant"])
+            self.IsFeaturedMerchant: bool = convert_bool(data["IsFeaturedMerchant"])
         else:
             self.IsFeaturedMerchant: bool = None
 

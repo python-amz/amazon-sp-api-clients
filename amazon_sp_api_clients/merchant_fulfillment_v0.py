@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -33,7 +33,7 @@ class LabelFormatOptionRequest:
         super().__init__()
         self.data = data
         if "IncludePackingSlipWithLabel" in data:
-            self.IncludePackingSlipWithLabel: bool = bool(data["IncludePackingSlipWithLabel"])
+            self.IncludePackingSlipWithLabel: bool = convert_bool(data["IncludePackingSlipWithLabel"])
         else:
             self.IncludePackingSlipWithLabel: bool = None
 
@@ -47,7 +47,7 @@ class LabelFormatOption:
         super().__init__()
         self.data = data
         if "IncludePackingSlipWithLabel" in data:
-            self.IncludePackingSlipWithLabel: bool = bool(data["IncludePackingSlipWithLabel"])
+            self.IncludePackingSlipWithLabel: bool = convert_bool(data["IncludePackingSlipWithLabel"])
         else:
             self.IncludePackingSlipWithLabel: bool = None
         if "LabelFormat" in data:
@@ -163,7 +163,7 @@ class SellerInputDefinition:
         super().__init__()
         self.data = data
         if "IsRequired" in data:
-            self.IsRequired: bool = bool(data["IsRequired"])
+            self.IsRequired: bool = convert_bool(data["IsRequired"])
         else:
             self.IsRequired: bool = None
         if "DataType" in data:
@@ -209,7 +209,7 @@ class AdditionalSellerInput:
         else:
             self.ValueAsString: str = None
         if "ValueAsBoolean" in data:
-            self.ValueAsBoolean: bool = bool(data["ValueAsBoolean"])
+            self.ValueAsBoolean: bool = convert_bool(data["ValueAsBoolean"])
         else:
             self.ValueAsBoolean: bool = None
         if "ValueAsInteger" in data:
@@ -867,11 +867,11 @@ class ShippingOfferingFilter:
         super().__init__()
         self.data = data
         if "IncludePackingSlipWithLabel" in data:
-            self.IncludePackingSlipWithLabel: bool = bool(data["IncludePackingSlipWithLabel"])
+            self.IncludePackingSlipWithLabel: bool = convert_bool(data["IncludePackingSlipWithLabel"])
         else:
             self.IncludePackingSlipWithLabel: bool = None
         if "IncludeComplexShippingOptions" in data:
-            self.IncludeComplexShippingOptions: bool = bool(data["IncludeComplexShippingOptions"])
+            self.IncludeComplexShippingOptions: bool = convert_bool(data["IncludeComplexShippingOptions"])
         else:
             self.IncludeComplexShippingOptions: bool = None
         if "CarrierWillPickUp" in data:
@@ -945,7 +945,7 @@ class ShippingService:
         else:
             self.AvailableFormatOptionsForLabel: AvailableFormatOptionsForLabelList = None
         if "RequiresAdditionalSellerInputs" in data:
-            self.RequiresAdditionalSellerInputs: bool = bool(data["RequiresAdditionalSellerInputs"])
+            self.RequiresAdditionalSellerInputs: bool = convert_bool(data["RequiresAdditionalSellerInputs"])
         else:
             self.RequiresAdditionalSellerInputs: bool = None
 
@@ -967,7 +967,7 @@ class ShippingServiceOptions:
         else:
             self.DeclaredValue: CurrencyAmount = None
         if "CarrierWillPickUp" in data:
-            self.CarrierWillPickUp: bool = bool(data["CarrierWillPickUp"])
+            self.CarrierWillPickUp: bool = convert_bool(data["CarrierWillPickUp"])
         else:
             self.CarrierWillPickUp: bool = None
         if "CarrierWillPickUpOption" in data:

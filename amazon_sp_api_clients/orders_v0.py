@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -245,19 +245,19 @@ class Order:
         else:
             self.LatestDeliveryDate: str = None
         if "IsBusinessOrder" in data:
-            self.IsBusinessOrder: bool = bool(data["IsBusinessOrder"])
+            self.IsBusinessOrder: bool = convert_bool(data["IsBusinessOrder"])
         else:
             self.IsBusinessOrder: bool = None
         if "IsPrime" in data:
-            self.IsPrime: bool = bool(data["IsPrime"])
+            self.IsPrime: bool = convert_bool(data["IsPrime"])
         else:
             self.IsPrime: bool = None
         if "IsPremiumOrder" in data:
-            self.IsPremiumOrder: bool = bool(data["IsPremiumOrder"])
+            self.IsPremiumOrder: bool = convert_bool(data["IsPremiumOrder"])
         else:
             self.IsPremiumOrder: bool = None
         if "IsGlobalExpressEnabled" in data:
-            self.IsGlobalExpressEnabled: bool = bool(data["IsGlobalExpressEnabled"])
+            self.IsGlobalExpressEnabled: bool = convert_bool(data["IsGlobalExpressEnabled"])
         else:
             self.IsGlobalExpressEnabled: bool = None
         if "ReplacedOrderId" in data:
@@ -265,7 +265,7 @@ class Order:
         else:
             self.ReplacedOrderId: str = None
         if "IsReplacementOrder" in data:
-            self.IsReplacementOrder: bool = bool(data["IsReplacementOrder"])
+            self.IsReplacementOrder: bool = convert_bool(data["IsReplacementOrder"])
         else:
             self.IsReplacementOrder: bool = None
         if "PromiseResponseDueDate" in data:
@@ -273,11 +273,11 @@ class Order:
         else:
             self.PromiseResponseDueDate: str = None
         if "IsEstimatedShipDateSet" in data:
-            self.IsEstimatedShipDateSet: bool = bool(data["IsEstimatedShipDateSet"])
+            self.IsEstimatedShipDateSet: bool = convert_bool(data["IsEstimatedShipDateSet"])
         else:
             self.IsEstimatedShipDateSet: bool = None
         if "IsSoldByAB" in data:
-            self.IsSoldByAB: bool = bool(data["IsSoldByAB"])
+            self.IsSoldByAB: bool = convert_bool(data["IsSoldByAB"])
         else:
             self.IsSoldByAB: bool = None
         if "DefaultShipFromLocationAddress" in data:
@@ -289,7 +289,7 @@ class Order:
         else:
             self.FulfillmentInstruction: FulfillmentInstruction = None
         if "IsISPU" in data:
-            self.IsISPU: bool = bool(data["IsISPU"])
+            self.IsISPU: bool = convert_bool(data["IsISPU"])
         else:
             self.IsISPU: bool = None
         if "MarketplaceTaxInfo" in data:
@@ -617,7 +617,7 @@ class OrderItem:
         else:
             self.CODFeeDiscount: Money = None
         if "IsGift" in data:
-            self.IsGift: bool = bool(data["IsGift"])
+            self.IsGift: bool = convert_bool(data["IsGift"])
         else:
             self.IsGift: bool = None
         if "ConditionNote" in data:
@@ -649,11 +649,11 @@ class OrderItem:
         else:
             self.TaxCollection: TaxCollection = None
         if "SerialNumberRequired" in data:
-            self.SerialNumberRequired: bool = bool(data["SerialNumberRequired"])
+            self.SerialNumberRequired: bool = convert_bool(data["SerialNumberRequired"])
         else:
             self.SerialNumberRequired: bool = None
         if "IsTransparency" in data:
-            self.IsTransparency: bool = bool(data["IsTransparency"])
+            self.IsTransparency: bool = convert_bool(data["IsTransparency"])
         else:
             self.IsTransparency: bool = None
         if "IossNumber" in data:

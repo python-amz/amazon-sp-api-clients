@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -297,7 +297,7 @@ class OrderItem:
         else:
             self.orderedQuantity: ItemQuantity = None
         if "isBackOrderAllowed" in data:
-            self.isBackOrderAllowed: bool = bool(data["isBackOrderAllowed"])
+            self.isBackOrderAllowed: bool = convert_bool(data["isBackOrderAllowed"])
         else:
             self.isBackOrderAllowed: bool = None
         if "netCost" in data:

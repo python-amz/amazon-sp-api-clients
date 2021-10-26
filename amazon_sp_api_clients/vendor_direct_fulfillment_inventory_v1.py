@@ -1,4 +1,4 @@
-from .base import BaseClient as __BaseClient
+from .base import BaseClient as __BaseClient, convert_bool
 from typing import List as _List
 
 
@@ -27,7 +27,7 @@ class InventoryUpdate:
         else:
             self.sellingParty: PartyIdentification = None
         if "isFullUpdate" in data:
-            self.isFullUpdate: bool = bool(data["isFullUpdate"])
+            self.isFullUpdate: bool = convert_bool(data["isFullUpdate"])
         else:
             self.isFullUpdate: bool = None
         if "items" in data:
@@ -57,7 +57,7 @@ class ItemDetails:
         else:
             self.availableQuantity: ItemQuantity = None
         if "isObsolete" in data:
-            self.isObsolete: bool = bool(data["isObsolete"])
+            self.isObsolete: bool = convert_bool(data["isObsolete"])
         else:
             self.isObsolete: bool = None
 

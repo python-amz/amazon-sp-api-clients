@@ -19,6 +19,20 @@ from requests.auth import AuthBase
 
 from .cache import RequestCache
 
+TRUE_VALUES = (True, 'true', 't', 'yes', 'y')
+FALSE_VALUES = (False, 'false', 'f', 'no', 'n')
+
+
+def convert_bool(value):
+    if isinstance(value, str):
+        value = value.lower()
+    if value in TRUE_VALUES:
+        return True
+    elif value in FALSE_VALUES:
+        return FALSE_VALUES
+    else:
+        raise ValueError('Wrong boolean value')
+
 
 class AWSSigV4(AuthBase):
 
