@@ -394,10 +394,10 @@ class QuantityDiscountPriceType:
             self.quantityDiscountType: QuantityDiscountType = QuantityDiscountType(data["quantityDiscountType"])
         else:
             self.quantityDiscountType: QuantityDiscountType = None
-        if "price" in data:
-            self.price: MoneyType = MoneyType(data["price"])
+        if "listingPrice" in data:
+            self.listingPrice: MoneyType = MoneyType(data["listingPrice"])
         else:
-            self.price: MoneyType = None
+            self.listingPrice: MoneyType = None
 
 
 class Points:
@@ -470,10 +470,18 @@ class Summary:
             self.ListPrice: MoneyType = MoneyType(data["ListPrice"])
         else:
             self.ListPrice: MoneyType = None
+        if "CompetitivePriceThreshold" in data:
+            self.CompetitivePriceThreshold: MoneyType = MoneyType(data["CompetitivePriceThreshold"])
+        else:
+            self.CompetitivePriceThreshold: MoneyType = None
         if "SuggestedLowerPricePlusShipping" in data:
             self.SuggestedLowerPricePlusShipping: MoneyType = MoneyType(data["SuggestedLowerPricePlusShipping"])
         else:
             self.SuggestedLowerPricePlusShipping: MoneyType = None
+        if "SalesRankings" in data:
+            self.SalesRankings: SalesRankList = SalesRankList(data["SalesRankings"])
+        else:
+            self.SalesRankings: SalesRankList = None
         if "BuyBoxEligibleOffers" in data:
             self.BuyBoxEligibleOffers: BuyBoxEligibleOffers = BuyBoxEligibleOffers(data["BuyBoxEligibleOffers"])
         else:
@@ -600,10 +608,6 @@ class OfferDetail:
     def __init__(self, data):
         super().__init__()
         self.data = data
-        if "sellerId" in data:
-            self.sellerId: str = str(data["sellerId"])
-        else:
-            self.sellerId: str = None
         if "MyOffer" in data:
             self.MyOffer: bool = convert_bool(data["MyOffer"])
         else:
@@ -616,6 +620,14 @@ class OfferDetail:
             self.SubCondition: str = str(data["SubCondition"])
         else:
             self.SubCondition: str = None
+        if "SellerId" in data:
+            self.SellerId: str = str(data["SellerId"])
+        else:
+            self.SellerId: str = None
+        if "ConditionNotes" in data:
+            self.ConditionNotes: str = str(data["ConditionNotes"])
+        else:
+            self.ConditionNotes: str = None
         if "SellerFeedbackRating" in data:
             self.SellerFeedbackRating: SellerFeedbackType = SellerFeedbackType(data["SellerFeedbackRating"])
         else:
@@ -650,6 +662,10 @@ class OfferDetail:
             self.IsFulfilledByAmazon: bool = convert_bool(data["IsFulfilledByAmazon"])
         else:
             self.IsFulfilledByAmazon: bool = None
+        if "PrimeInformation" in data:
+            self.PrimeInformation: PrimeInformationType = PrimeInformationType(data["PrimeInformation"])
+        else:
+            self.PrimeInformation: PrimeInformationType = None
         if "IsBuyBoxWinner" in data:
             self.IsBuyBoxWinner: bool = convert_bool(data["IsBuyBoxWinner"])
         else:
@@ -658,6 +674,24 @@ class OfferDetail:
             self.IsFeaturedMerchant: bool = convert_bool(data["IsFeaturedMerchant"])
         else:
             self.IsFeaturedMerchant: bool = None
+
+
+class PrimeInformationType:
+    """
+    Amazon Prime information.
+    """
+
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "IsPrime" in data:
+            self.IsPrime: bool = convert_bool(data["IsPrime"])
+        else:
+            self.IsPrime: bool = None
+        if "IsNationalPrime" in data:
+            self.IsNationalPrime: bool = convert_bool(data["IsNationalPrime"])
+        else:
+            self.IsNationalPrime: bool = None
 
 
 class SellerFeedbackType:
@@ -695,9 +729,9 @@ class DetailedShippingTimeType:
         else:
             self.maximumHours: int = None
         if "availableDate" in data:
-            self.availableDate: float = float(data["availableDate"])
+            self.availableDate: str = str(data["availableDate"])
         else:
-            self.availableDate: float = None
+            self.availableDate: str = None
         if "availabilityType" in data:
             self.availabilityType: str = str(data["availabilityType"])
         else:

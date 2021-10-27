@@ -39,7 +39,9 @@ class Error:
 
 
 class Report:
-    """ """
+    """
+    Detailed information about the report.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -119,7 +121,9 @@ class CreateReportScheduleSpecification:
 
 
 class CreateReportSpecification:
-    """ """
+    """
+    Information required to create the report.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -191,7 +195,9 @@ class ReportSchedule:
 
 
 class ReportScheduleList:
-    """ """
+    """
+    A list of report schedules.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -203,7 +209,9 @@ class ReportScheduleList:
 
 
 class CreateReportResponse:
-    """ """
+    """
+    Response schema.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -233,7 +241,9 @@ class GetReportsResponse:
 
 
 class CreateReportScheduleResponse:
-    """ """
+    """
+    Response schema.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -245,7 +255,9 @@ class CreateReportScheduleResponse:
 
 
 class ReportDocument:
-    """ """
+    """
+    Information required for the report document.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -265,7 +277,9 @@ class ReportDocument:
 
 
 class ReportList(list, _List["Report"]):
-    """ """
+    """
+    A list of reports.
+    """
 
     def __init__(self, data):
         super().__init__([Report(datum) for datum in data])

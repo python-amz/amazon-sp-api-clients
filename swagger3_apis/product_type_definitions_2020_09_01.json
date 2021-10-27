@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Selling Partner API for Product Type Definitions",
-        "description": "The Selling Partner API for Product Type Definitions provides programmatic access to attribute and data requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds).",
+        "description": "The Selling Partner API for Product Type Definitions provides programmatic access to attribute and data requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds).\n\nFor more information, see the [Product Type Definitions API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/product-type-definitions-api-use-case-guide/definitions-product-types-api-use-case-guide_2020-09-01.md).",
         "contact": {
             "name": "Selling Partner API Developer Support",
             "url": "https://sellercentral.amazon.com/gp/mws/contactus.html"
@@ -24,7 +24,7 @@
                 "tags": [
                     "definitions"
                 ],
-                "description": "Search for and return a list of Amazon product types that have definitions available.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Search for and return a list of Amazon product types that have definitions available.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
                 "operationId": "searchDefinitionsProductTypes",
                 "parameters": [
                     {
@@ -91,23 +91,25 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {}
-                                },
-                                "response": {
-                                    "productTypes": [
-                                        {
-                                            "name": "LUGGAGE",
-                                            "marketplaceIds": [
-                                                "ATVPDKIKX0DER"
-                                            ]
-                                        }
-                                    ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {}
+                                    },
+                                    "response": {
+                                        "productTypes": [
+                                            {
+                                                "name": "LUGGAGE",
+                                                "marketplaceIds": [
+                                                    "ATVPDKIKX0DER"
+                                                ]
+                                            }
+                                        ]
+                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -132,28 +134,30 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "keywords": {
-                                            "value": [
-                                                "Invalid Request"
-                                            ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "keywords": {
+                                                "value": [
+                                                    "Invalid Request"
+                                                ]
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "BAD_REQUEST",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "BAD_REQUEST",
-                                            "message": "Invalid input",
-                                            "details": "Invalid input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
@@ -207,7 +211,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -231,7 +235,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -273,7 +277,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -297,7 +301,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -319,7 +323,7 @@
                 "tags": [
                     "definitions"
                 ],
-                "description": "Retrieve an Amazon product type definition.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Retrieve an Amazon product type definition.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
                 "operationId": "getDefinitionsProductType",
                 "parameters": [
                     {
@@ -870,58 +874,60 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {}
-                                },
-                                "response": {
-                                    "metaSchema": {
-                                        "link": {
-                                            "resource": "https://meta-schema-url",
-                                            "verb": "GET"
-                                        },
-                                        "checksum": "c7af9479ca7261645cea9db56c5f720d"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {}
                                     },
-                                    "schema": {
-                                        "link": {
-                                            "resource": "https://schema-url",
-                                            "verb": "GET"
+                                    "response": {
+                                        "metaSchema": {
+                                            "link": {
+                                                "resource": "https://meta-schema-url",
+                                                "verb": "GET"
+                                            },
+                                            "checksum": "c7af9479ca7261645cea9db56c5f720d"
                                         },
-                                        "checksum": "c7af9479ca7261645cea9db56c5f720d"
-                                    },
-                                    "requirements": "LISTING",
-                                    "requirementsEnforced": "ENFORCED",
-                                    "propertyGroups": {
-                                        "product_identity": {
-                                            "title": "Product Identity",
-                                            "description": "Information to uniquely identify your product (e.g., UPC, EAN, GTIN, Product Type, Brand)",
-                                            "propertyNames": [
-                                                "item_name",
-                                                "brand",
-                                                "external_product_id",
-                                                "gtin_exemption_reason",
-                                                "merchant_suggested_asin",
-                                                "product_type",
-                                                "product_category",
-                                                "product_subcategory",
-                                                "item_type_keyword"
-                                            ]
+                                        "schema": {
+                                            "link": {
+                                                "resource": "https://schema-url",
+                                                "verb": "GET"
+                                            },
+                                            "checksum": "c7af9479ca7261645cea9db56c5f720d"
+                                        },
+                                        "requirements": "LISTING",
+                                        "requirementsEnforced": "ENFORCED",
+                                        "propertyGroups": {
+                                            "product_identity": {
+                                                "title": "Product Identity",
+                                                "description": "Information to uniquely identify your product (e.g., UPC, EAN, GTIN, Product Type, Brand)",
+                                                "propertyNames": [
+                                                    "item_name",
+                                                    "brand",
+                                                    "external_product_id",
+                                                    "gtin_exemption_reason",
+                                                    "merchant_suggested_asin",
+                                                    "product_type",
+                                                    "product_category",
+                                                    "product_subcategory",
+                                                    "item_type_keyword"
+                                                ]
+                                            }
+                                        },
+                                        "locale": "en_US",
+                                        "marketplaceIds": [
+                                            "ATVPDKIKX0DER"
+                                        ],
+                                        "productType": "LUGGAGE",
+                                        "productTypeVersion": {
+                                            "version": "UHqSqmb4FNUk=",
+                                            "latest": true,
+                                            "releaseCandidate": false
                                         }
-                                    },
-                                    "locale": "en_US",
-                                    "marketplaceIds": [
-                                        "ATVPDKIKX0DER"
-                                    ],
-                                    "productType": "LUGGAGE",
-                                    "productTypeVersion": {
-                                        "version": "UHqSqmb4FNUk=",
-                                        "latest": true,
-                                        "releaseCandidate": false
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -946,26 +952,28 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "productType": {
-                                            "value": "INVALID"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "productType": {
+                                                "value": "INVALID"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "BAD_REQUEST",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "BAD_REQUEST",
-                                            "message": "Invalid input",
-                                            "details": "Invalid input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
@@ -1019,7 +1027,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1043,7 +1051,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1067,7 +1075,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1091,7 +1099,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1115,7 +1123,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }

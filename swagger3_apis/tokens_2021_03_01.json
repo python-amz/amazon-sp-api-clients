@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Selling Partner API for Tokens ",
-        "description": "The Selling Partner API for Tokens provides a secure way to access a customers's PII (Personally Identifiable Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted resources that you specify. The RDT authorizes you to make subsequent requests to access these restricted resources.",
+        "description": "The Selling Partner API for Tokens provides a secure way to access a customer's PII (Personally Identifiable Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the restricted resources that you specified.\n\nFor more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).",
         "contact": {
             "name": "Selling Partner API Developer Support",
             "url": "https://sellercentral.amazon.com/gp/mws/contactus.html"
@@ -24,7 +24,7 @@
                 "tags": [
                     "tokens"
                 ],
-                "description": "Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII). See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.\n\nThe path of a restricted resource can be:\n- A specific path containing a seller's order ID, for example ```/orders/v0/orders/902-3159896-1390916/address```. The returned RDT authorizes a subsequent call to the getOrderAddress operation of the Orders API for that specific order only. For example, ```GET /orders/v0/orders/902-3159896-1390916/address```.\n- A generic path that does not contain a seller's order ID, for example```/orders/v0/orders/{orderId}/address```). The returned RDT authorizes subsequent calls to the getOrderAddress operation for *any* of a seller's order IDs. For example, ```GET /orders/v0/orders/902-3159896-1390916/address``` and ```GET /orders/v0/orders/483-3488972-0896720/address```\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 1 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 1 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "createRestrictedDataToken",
                 "requestBody": {
                     "description": "The restricted data token request details.",
@@ -61,48 +61,51 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "restrictedResources": [
-                                                    {
-                                                        "method": "GET",
-                                                        "path": "/orders/v0/orders/{orderId}/address"
-                                                    }
-                                                ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "targetApplication": "amzn1.sellerapps.app.target-application",
+                                                    "restrictedResources": [
+                                                        {
+                                                            "method": "GET",
+                                                            "path": "/orders/v0/orders/{orderId}/address"
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "restrictedDataToken": "Atz.sprdt|IQEBLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSR",
+                                        "expiresIn": 3600
                                     }
                                 },
-                                "response": {
-                                    "restrictedDataToken": "Atz.sprdt|IQEBLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSR",
-                                    "expiresIn": 3600
-                                }
-                            },
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "restrictedResources": [
-                                                    {
-                                                        "method": "GET",
-                                                        "path": "/orders/v0/orders/943-12-123434/address"
-                                                    }
-                                                ]
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "restrictedResources": [
+                                                        {
+                                                            "method": "GET",
+                                                            "path": "/orders/v0/orders/943-12-123434/address"
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "restrictedDataToken": "Atz.sprdt|AODFNESLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSR",
+                                        "expiresIn": 3600
                                     }
-                                },
-                                "response": {
-                                    "restrictedDataToken": "Atz.sprdt|AODFNESLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSR",
-                                    "expiresIn": 3600
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -127,33 +130,36 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "restrictedResources": [
-                                                    {
-                                                        "method": "",
-                                                        "path": "/orders/v1/orders/902-1845936-5435065/address"
-                                                    }
-                                                ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "targetApplication": "amzn1.sellerapps.app.target-application",
+                                                    "restrictedResources": [
+                                                        {
+                                                            "method": "",
+                                                            "path": "/orders/v1/orders/902-1845936-5435065/address"
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidRequest",
+                                                "message": "Request is missing or has invalid parameters",
+                                                "details": "Resource not provided."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidRequest",
-                                            "message": "Request is missing or has invalid parameters",
-                                            "details": "Resource not provided."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -225,7 +231,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -249,7 +255,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -273,7 +279,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -297,7 +303,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -324,6 +330,10 @@
                 ],
                 "type": "object",
                 "properties": {
+                    "targetApplication": {
+                        "type": "string",
+                        "description": "The application ID for the target application to which access is being delegated."
+                    },
                     "restrictedResources": {
                         "type": "array",
                         "description": "A list of restricted resources.\nMaximum: 50",
@@ -343,7 +353,7 @@
                 "properties": {
                     "method": {
                         "type": "string",
-                        "description": "The HTTP method used with the restricted resource.",
+                        "description": "The HTTP method in the restricted resource.",
                         "enum": [
                             "GET",
                             "PUT",
@@ -371,7 +381,14 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The path from a restricted operation. This could be:\n\n- A specific path containing a seller's order ID, for example ```/orders/v0/orders/902-3159896-1390916/address```.\n\n- A generic path that does not contain a seller's order ID, for example```/orders/v0/orders/{orderId}/address```)."
+                        "description": "The path in the restricted resource. Here are some path examples:\n- ```/orders/v0/orders```. For getting an RDT for the getOrders operation of the Orders API. For bulk orders.\n- ```/orders/v0/orders/123-1234567-1234567```. For getting an RDT for the getOrder operation of the Orders API. For a specific order.\n- ```/orders/v0/orders/123-1234567-1234567/orderItems```. For getting an RDT for the getOrderItems operation of the Orders API. For the order items in a specific order.\n- ```/mfn/v0/shipments/FBA1234ABC5D```. For getting an RDT for the getShipment operation of the Shipping API. For a specific shipment.\n- ```/mfn/v0/shipments/{shipmentId}```. For getting an RDT for the getShipment operation of the Shipping API. For any of a selling partner's shipments that you specify when you call the getShipment operation."
+                    },
+                    "dataElements": {
+                        "type": "array",
+                        "description": "Indicates the type of Personally Identifiable Information requested. This parameter is required only when getting an RDT for use with the getOrder, getOrders, or getOrderItems operation of the Orders API. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md). Possible values include:\n- **buyerInfo**. On the order level this includes general identifying information about the buyer and tax-related information. On the order item level this includes gift wrap information and custom order information, if available.\n- **shippingAddress**. This includes information for fulfilling orders.",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "description": "Model of a restricted resource."
@@ -381,7 +398,7 @@
                 "properties": {
                     "restrictedDataToken": {
                         "type": "string",
-                        "description": "A Restricted Data Token (RDT). This is a short-lived access token that authorizes you to access the restricted resources that you specified. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources."
+                        "description": "A Restricted Data Token (RDT). This is a short-lived access token that authorizes calls to restricted operations. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources."
                     },
                     "expiresIn": {
                         "type": "integer",

@@ -162,44 +162,6 @@ class PackedItem:
             self.packedQuantity: ItemQuantity = None
 
 
-class Package:
-    """
-    Details of the package being shipped.
-    """
-
-    def __init__(self, data):
-        super().__init__()
-        self.data = data
-        if "packageIdentifier" in data:
-            self.packageIdentifier: str = str(data["packageIdentifier"])
-        else:
-            self.packageIdentifier: str = None
-        if "trackingNumber" in data:
-            self.trackingNumber: str = str(data["trackingNumber"])
-        else:
-            self.trackingNumber: str = None
-        if "manifestId" in data:
-            self.manifestId: str = str(data["manifestId"])
-        else:
-            self.manifestId: str = None
-        if "manifestDate" in data:
-            self.manifestDate: str = str(data["manifestDate"])
-        else:
-            self.manifestDate: str = None
-        if "shipMethod" in data:
-            self.shipMethod: str = str(data["shipMethod"])
-        else:
-            self.shipMethod: str = None
-        if "weight" in data:
-            self.weight: Weight = Weight(data["weight"])
-        else:
-            self.weight: Weight = None
-        if "dimensions" in data:
-            self.dimensions: Dimensions = Dimensions(data["dimensions"])
-        else:
-            self.dimensions: Dimensions = None
-
-
 class PartyIdentification:
     """ """
 

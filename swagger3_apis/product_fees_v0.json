@@ -24,7 +24,7 @@
                 "tags": [
                     "fees"
                 ],
-                "description": "Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.\n\nYou can call getMyFeesEstimateForSKU for an item on behalf of a seller before the seller sets the item's price. They can then take estimated fees into account. With each fees estimate request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 10 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.\n\nYou can call getMyFeesEstimateForSKU for an item on behalf of a selling partner before the selling partner sets the item's price. They can then take estimated fees into account. With each fees estimate request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.\n\n**Note:** This value is only an estimate, actual costs may vary. Search \"fees\" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 10 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "getMyFeesEstimateForSKU",
                 "parameters": [
                     {
@@ -71,15 +71,50 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "FeesEstimateRequest": {
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "FeesEstimateRequest": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "IsAmazonFulfilled": false,
+                                                        "PriceToEstimateFees": {
+                                                            "ListingPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10
+                                                            },
+                                                            "Shipping": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10
+                                                            },
+                                                            "Points": {
+                                                                "PointsNumber": 0,
+                                                                "PointsMonetaryValue": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 0
+                                                                }
+                                                            }
+                                                        },
+                                                        "Identifier": "UmaS1"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "FeesEstimateResult": {
+                                                "Status": "Success",
+                                                "FeesEstimateIdentifier": {
                                                     "MarketplaceId": "ATVPDKIKX0DER",
+                                                    "IdType": "ASIN",
+                                                    "SellerId": "A3TH9S8BH6GOGM",
+                                                    "SellerInputIdentifier": "UmaS1",
                                                     "IsAmazonFulfilled": false,
+                                                    "IdValue": "B00V5DG6IQ",
                                                     "PriceToEstimateFees": {
                                                         "ListingPrice": {
                                                             "CurrencyCode": "USD",
@@ -96,61 +131,28 @@
                                                                 "Amount": 0
                                                             }
                                                         }
-                                                    },
-                                                    "Identifier": "UmaS1"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "FeesEstimateResult": {
-                                            "Status": "Success",
-                                            "FeesEstimateIdentifier": {
-                                                "MarketplaceId": "ATVPDKIKX0DER",
-                                                "IdType": "ASIN",
-                                                "SellerId": "A3TH9S8BH6GOGM",
-                                                "SellerInputIdentifier": "UmaS1",
-                                                "IsAmazonFulfilled": false,
-                                                "IdValue": "B00V5DG6IQ",
-                                                "PriceToEstimateFees": {
-                                                    "ListingPrice": {
-                                                        "CurrencyCode": "USD",
-                                                        "Amount": 10
-                                                    },
-                                                    "Shipping": {
-                                                        "CurrencyCode": "USD",
-                                                        "Amount": 10
-                                                    },
-                                                    "Points": {
-                                                        "PointsNumber": 0,
-                                                        "PointsMonetaryValue": {
-                                                            "CurrencyCode": "USD",
-                                                            "Amount": 0
-                                                        }
                                                     }
-                                                }
-                                            },
-                                            "FeesEstimate": {
-                                                "TimeOfFeesEstimation": "Mon Oct 28 18:49:32 UTC 2019",
-                                                "TotalFeesEstimate": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 3.0
                                                 },
-                                                "FeeDetailList": []
-                                            },
-                                            "Error": {
-                                                "Type": "",
-                                                "Code": "",
-                                                "Message": "",
-                                                "Detail": []
+                                                "FeesEstimate": {
+                                                    "TimeOfFeesEstimation": "Mon Oct 28 18:49:32 UTC 2019",
+                                                    "TotalFeesEstimate": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 3.0
+                                                    },
+                                                    "FeeDetailList": []
+                                                },
+                                                "Error": {
+                                                    "Type": "",
+                                                    "Code": "",
+                                                    "Message": "",
+                                                    "Detail": []
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -175,30 +177,32 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "FeesEstimateRequest": {
-                                                    "MarketplaceId": "WRNGMRKTPLCE"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "FeesEstimateRequest": {
+                                                        "MarketplaceId": "WRNGMRKTPLCE"
+                                                    }
                                                 }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Incorrect Marketplace identifier.",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Incorrect Marketplace identifier.",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -210,7 +214,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -276,7 +280,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -300,7 +304,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -324,7 +328,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -347,7 +351,7 @@
                 "tags": [
                     "fees"
                 ],
-                "description": "Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.\n\nYou can call getMyFeesEstimateForASIN for an item on behalf of a seller before the seller sets the item's price. They can then take estimated fees into account. With each product fees request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 10 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.\n\nYou can call getMyFeesEstimateForASIN for an item on behalf of a selling partner before the selling partner sets the item's price. They can then take estimated fees into account. With each product fees request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.\n\n**Note:** This value is only an estimate, actual costs may vary. Search \"fees\" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 10 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "getMyFeesEstimateForASIN",
                 "parameters": [
                     {
@@ -394,15 +398,50 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "FeesEstimateRequest": {
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "FeesEstimateRequest": {
+                                                        "MarketplaceId": "ATVPDKIKX0DER",
+                                                        "IsAmazonFulfilled": false,
+                                                        "PriceToEstimateFees": {
+                                                            "ListingPrice": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10
+                                                            },
+                                                            "Shipping": {
+                                                                "CurrencyCode": "USD",
+                                                                "Amount": 10
+                                                            },
+                                                            "Points": {
+                                                                "PointsNumber": 0,
+                                                                "PointsMonetaryValue": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "Amount": 0
+                                                                }
+                                                            }
+                                                        },
+                                                        "Identifier": "UmaS1"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "FeesEstimateResult": {
+                                                "Status": "Success",
+                                                "FeesEstimateIdentifier": {
                                                     "MarketplaceId": "ATVPDKIKX0DER",
+                                                    "IdType": "ASIN",
+                                                    "SellerId": "A3TH9S8BH6GOGM",
+                                                    "SellerInputIdentifier": "UmaS1",
                                                     "IsAmazonFulfilled": false,
+                                                    "IdValue": "B00V5DG6IQ",
                                                     "PriceToEstimateFees": {
                                                         "ListingPrice": {
                                                             "CurrencyCode": "USD",
@@ -419,61 +458,28 @@
                                                                 "Amount": 0
                                                             }
                                                         }
-                                                    },
-                                                    "Identifier": "UmaS1"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "FeesEstimateResult": {
-                                            "Status": "Success",
-                                            "FeesEstimateIdentifier": {
-                                                "MarketplaceId": "ATVPDKIKX0DER",
-                                                "IdType": "ASIN",
-                                                "SellerId": "A3TH9S8BH6GOGM",
-                                                "SellerInputIdentifier": "UmaS1",
-                                                "IsAmazonFulfilled": false,
-                                                "IdValue": "B00V5DG6IQ",
-                                                "PriceToEstimateFees": {
-                                                    "ListingPrice": {
-                                                        "CurrencyCode": "USD",
-                                                        "Amount": 10
-                                                    },
-                                                    "Shipping": {
-                                                        "CurrencyCode": "USD",
-                                                        "Amount": 10
-                                                    },
-                                                    "Points": {
-                                                        "PointsNumber": 0,
-                                                        "PointsMonetaryValue": {
-                                                            "CurrencyCode": "USD",
-                                                            "Amount": 0
-                                                        }
                                                     }
-                                                }
-                                            },
-                                            "FeesEstimate": {
-                                                "TimeOfFeesEstimation": "Mon Oct 28 18:49:32 UTC 2019",
-                                                "TotalFeesEstimate": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 3.0
                                                 },
-                                                "FeeDetailList": []
-                                            },
-                                            "Error": {
-                                                "Type": "",
-                                                "Code": "",
-                                                "Message": "",
-                                                "Detail": []
+                                                "FeesEstimate": {
+                                                    "TimeOfFeesEstimation": "Mon Oct 28 18:49:32 UTC 2019",
+                                                    "TotalFeesEstimate": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 3.0
+                                                    },
+                                                    "FeeDetailList": []
+                                                },
+                                                "Error": {
+                                                    "Type": "",
+                                                    "Code": "",
+                                                    "Message": "",
+                                                    "Detail": []
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -498,30 +504,32 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "FeesEstimateRequest": {
-                                                    "MarketplaceId": "WRNGMRKTPLCE"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "FeesEstimateRequest": {
+                                                        "MarketplaceId": "WRNGMRKTPLCE"
+                                                    }
                                                 }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Incorrect Marketplace identifier.",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Incorrect Marketplace identifier.",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -533,7 +541,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -599,7 +607,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -623,7 +631,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -647,7 +655,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }

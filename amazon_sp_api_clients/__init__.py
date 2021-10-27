@@ -24,6 +24,8 @@ from .orders_v0 import OrdersV0Client
 from .notifications_v1 import NotificationsV1Client
 from .messaging_v1 import MessagingV1Client
 from .merchant_fulfillment_v0 import MerchantFulfillmentV0Client
+from .listings_restrictions_2021_08_01 import ListingsRestrictions20210801Client
+from .listings_items_2021_08_01 import ListingsItems20210801Client
 from .listings_items_2020_09_01 import ListingsItems20200901Client
 from .fulfillment_outbound_2020_07_01 import FulfillmentOutbound20200701Client
 from .fulfillment_inbound_v0 import FulfillmentInboundV0Client
@@ -40,7 +42,7 @@ from .aplus_content_2020_11_01 import AplusContent20201101Client
 from .marketplaces import MarketPlaces
 from .report_types import ReportType, ReportTypeGroup
 
-version = "1.6.3"
+version = "1.7.0"
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"

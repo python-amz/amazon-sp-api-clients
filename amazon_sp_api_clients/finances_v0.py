@@ -534,6 +534,34 @@ class FinancialEvents:
             )
         else:
             self.AffordabilityExpenseReversalEventList: AffordabilityExpenseEventList = None
+        if "TrialShipmentEventList" in data:
+            self.TrialShipmentEventList: TrialShipmentEventList = TrialShipmentEventList(data["TrialShipmentEventList"])
+        else:
+            self.TrialShipmentEventList: TrialShipmentEventList = None
+        if "ShipmentSettleEventList" in data:
+            self.ShipmentSettleEventList: ShipmentSettleEventList = ShipmentSettleEventList(
+                data["ShipmentSettleEventList"]
+            )
+        else:
+            self.ShipmentSettleEventList: ShipmentSettleEventList = None
+        if "TaxWithholdingEventList" in data:
+            self.TaxWithholdingEventList: TaxWithholdingEventList = TaxWithholdingEventList(
+                data["TaxWithholdingEventList"]
+            )
+        else:
+            self.TaxWithholdingEventList: TaxWithholdingEventList = None
+        if "RemovalShipmentEventList" in data:
+            self.RemovalShipmentEventList: RemovalShipmentEventList = RemovalShipmentEventList(
+                data["RemovalShipmentEventList"]
+            )
+        else:
+            self.RemovalShipmentEventList: RemovalShipmentEventList = None
+        if "RemovalShipmentAdjustmentEventList" in data:
+            self.RemovalShipmentAdjustmentEventList: RemovalShipmentAdjustmentEventList = (
+                RemovalShipmentAdjustmentEventList(data["RemovalShipmentAdjustmentEventList"])
+            )
+        else:
+            self.RemovalShipmentAdjustmentEventList: RemovalShipmentAdjustmentEventList = None
 
 
 class ImagingServicesFeeEvent:
@@ -814,6 +842,10 @@ class RemovalShipmentEvent:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
             self.PostedDate: Date = None
+        if "MerchantOrderId" in data:
+            self.MerchantOrderId: str = str(data["MerchantOrderId"])
+        else:
+            self.MerchantOrderId: str = None
         if "OrderId" in data:
             self.OrderId: str = str(data["OrderId"])
         else:
@@ -870,6 +902,83 @@ class RemovalShipmentItem:
             self.TaxWithheld: Currency = Currency(data["TaxWithheld"])
         else:
             self.TaxWithheld: Currency = None
+
+
+class RemovalShipmentAdjustmentEvent:
+    """
+        A financial adjustment event for FBA liquidated inventory.
+    Possible adjustment:
+    * Positive values - Buyer needs to pay more amount to Amazon. E.g. charge was wrongly calculated 0$ instead of 100$ due to system error.
+    * Negative Values - Buyer get refund. E.g. Buyer receives less items or damaged items and as part of their adjustment buyer gets refund.
+    """
+
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "PostedDate" in data:
+            self.PostedDate: Date = Date(data["PostedDate"])
+        else:
+            self.PostedDate: Date = None
+        if "AdjustmentEventId" in data:
+            self.AdjustmentEventId: str = str(data["AdjustmentEventId"])
+        else:
+            self.AdjustmentEventId: str = None
+        if "MerchantOrderId" in data:
+            self.MerchantOrderId: str = str(data["MerchantOrderId"])
+        else:
+            self.MerchantOrderId: str = None
+        if "OrderId" in data:
+            self.OrderId: str = str(data["OrderId"])
+        else:
+            self.OrderId: str = None
+        if "TransactionType" in data:
+            self.TransactionType: str = str(data["TransactionType"])
+        else:
+            self.TransactionType: str = None
+        if "RemovalShipmentItemAdjustmentList" in data:
+            self.RemovalShipmentItemAdjustmentList: _List[RemovalShipmentItemAdjustment] = [
+                RemovalShipmentItemAdjustment(datum) for datum in data["RemovalShipmentItemAdjustmentList"]
+            ]
+        else:
+            self.RemovalShipmentItemAdjustmentList: _List[RemovalShipmentItemAdjustment] = []
+
+
+class RemovalShipmentItemAdjustment:
+    """
+    Item-level information for a removal shipment item adjustment.
+    """
+
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "RemovalShipmentItemId" in data:
+            self.RemovalShipmentItemId: str = str(data["RemovalShipmentItemId"])
+        else:
+            self.RemovalShipmentItemId: str = None
+        if "TaxCollectionModel" in data:
+            self.TaxCollectionModel: str = str(data["TaxCollectionModel"])
+        else:
+            self.TaxCollectionModel: str = None
+        if "FulfillmentNetworkSKU" in data:
+            self.FulfillmentNetworkSKU: str = str(data["FulfillmentNetworkSKU"])
+        else:
+            self.FulfillmentNetworkSKU: str = None
+        if "AdjustedQuantity" in data:
+            self.AdjustedQuantity: int = int(data["AdjustedQuantity"])
+        else:
+            self.AdjustedQuantity: int = None
+        if "RevenueAdjustment" in data:
+            self.RevenueAdjustment: Currency = Currency(data["RevenueAdjustment"])
+        else:
+            self.RevenueAdjustment: Currency = None
+        if "TaxAmountAdjustment" in data:
+            self.TaxAmountAdjustment: Currency = Currency(data["TaxAmountAdjustment"])
+        else:
+            self.TaxAmountAdjustment: Currency = None
+        if "TaxWithheldAdjustment" in data:
+            self.TaxWithheldAdjustment: Currency = Currency(data["TaxWithheldAdjustment"])
+        else:
+            self.TaxWithheldAdjustment: Currency = None
 
 
 class RentalTransactionEvent:
@@ -1306,9 +1415,27 @@ class SolutionProviderCreditEvent:
             self.TransactionCreationDate: Date = None
 
 
-class TDSReimbursementEvent:
+class TaxWithholdingPeriod:
     """
-    A tax deduction at source (TDS) claim reimbursement event on the seller's account.
+    Period which taxwithholding on seller's account is calculated.
+    """
+
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "StartDate" in data:
+            self.StartDate: Date = Date(data["StartDate"])
+        else:
+            self.StartDate: Date = None
+        if "EndDate" in data:
+            self.EndDate: Date = Date(data["EndDate"])
+        else:
+            self.EndDate: Date = None
+
+
+class TaxWithholdingEvent:
+    """
+    A TaxWithholding event on seller's account.
     """
 
     def __init__(self, data):
@@ -1318,14 +1445,18 @@ class TDSReimbursementEvent:
             self.PostedDate: Date = Date(data["PostedDate"])
         else:
             self.PostedDate: Date = None
-        if "TdsOrderId" in data:
-            self.TdsOrderId: str = str(data["TdsOrderId"])
+        if "BaseAmount" in data:
+            self.BaseAmount: Currency = Currency(data["BaseAmount"])
         else:
-            self.TdsOrderId: str = None
-        if "ReimbursedAmount" in data:
-            self.ReimbursedAmount: Currency = Currency(data["ReimbursedAmount"])
+            self.BaseAmount: Currency = None
+        if "WithheldAmount" in data:
+            self.WithheldAmount: Currency = Currency(data["WithheldAmount"])
         else:
-            self.ReimbursedAmount: Currency = None
+            self.WithheldAmount: Currency = None
+        if "TaxWithholdingPeriod" in data:
+            self.TaxWithholdingPeriod: TaxWithholdingPeriod = TaxWithholdingPeriod(data["TaxWithholdingPeriod"])
+        else:
+            self.TaxWithholdingPeriod: TaxWithholdingPeriod = None
 
 
 class TaxWithheldComponent:
@@ -1598,6 +1729,16 @@ class RemovalShipmentItemList(list, _List["RemovalShipmentItem"]):
         self.data = data
 
 
+class RemovalShipmentAdjustmentEventList(list, _List["RemovalShipmentAdjustmentEvent"]):
+    """
+    A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.
+    """
+
+    def __init__(self, data):
+        super().__init__([RemovalShipmentAdjustmentEvent(datum) for datum in data])
+        self.data = data
+
+
 class RentalTransactionEventList(list, _List["RentalTransactionEvent"]):
     """
     A list of rental transaction event information.
@@ -1698,13 +1839,13 @@ class SolutionProviderCreditEventList(list, _List["SolutionProviderCreditEvent"]
         self.data = data
 
 
-class TDSReimbursementEventList(list, _List["TDSReimbursementEvent"]):
+class TaxWithholdingEventList(list, _List["TaxWithholdingEvent"]):
     """
-    A list of information about tax deduction at source (TDS) claim reimbursement events.
+    List of TaxWithholding events.
     """
 
     def __init__(self, data):
-        super().__init__([TDSReimbursementEvent(datum) for datum in data])
+        super().__init__([TaxWithholdingEvent(datum) for datum in data])
         self.data = data
 
 
@@ -1725,6 +1866,16 @@ class TrialShipmentEventList(list, _List["TrialShipmentEvent"]):
 
     def __init__(self, data):
         super().__init__([TrialShipmentEvent(datum) for datum in data])
+        self.data = data
+
+
+class ShipmentSettleEventList(list, _List["ShipmentEvent"]):
+    """
+    A list of information about shipment settle financial events.
+    """
+
+    def __init__(self, data):
+        super().__init__([ShipmentEvent(datum) for datum in data])
         self.data = data
 
 

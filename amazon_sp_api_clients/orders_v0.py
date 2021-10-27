@@ -300,6 +300,14 @@ class Order:
             self.SellerDisplayName: str = str(data["SellerDisplayName"])
         else:
             self.SellerDisplayName: str = None
+        if "ShippingAddress" in data:
+            self.ShippingAddress: Address = Address(data["ShippingAddress"])
+        else:
+            self.ShippingAddress: Address = None
+        if "BuyerInfo" in data:
+            self.BuyerInfo: BuyerInfo = BuyerInfo(data["BuyerInfo"])
+        else:
+            self.BuyerInfo: BuyerInfo = None
 
 
 class OrderBuyerInfo:
@@ -668,6 +676,10 @@ class OrderItem:
             self.DeemedResellerCategory: str = str(data["DeemedResellerCategory"])
         else:
             self.DeemedResellerCategory: str = None
+        if "BuyerInfo" in data:
+            self.BuyerInfo: ItemBuyerInfo = ItemBuyerInfo(data["BuyerInfo"])
+        else:
+            self.BuyerInfo: ItemBuyerInfo = None
 
 
 class OrderItemsBuyerInfoList:
@@ -802,6 +814,66 @@ class FulfillmentInstruction:
             self.FulfillmentSupplySourceId: str = str(data["FulfillmentSupplySourceId"])
         else:
             self.FulfillmentSupplySourceId: str = None
+
+
+class BuyerInfo:
+    """
+    Buyer information
+    """
+
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "BuyerEmail" in data:
+            self.BuyerEmail: str = str(data["BuyerEmail"])
+        else:
+            self.BuyerEmail: str = None
+        if "BuyerName" in data:
+            self.BuyerName: str = str(data["BuyerName"])
+        else:
+            self.BuyerName: str = None
+        if "BuyerCounty" in data:
+            self.BuyerCounty: str = str(data["BuyerCounty"])
+        else:
+            self.BuyerCounty: str = None
+        if "BuyerTaxInfo" in data:
+            self.BuyerTaxInfo: BuyerTaxInfo = BuyerTaxInfo(data["BuyerTaxInfo"])
+        else:
+            self.BuyerTaxInfo: BuyerTaxInfo = None
+        if "PurchaseOrderNumber" in data:
+            self.PurchaseOrderNumber: str = str(data["PurchaseOrderNumber"])
+        else:
+            self.PurchaseOrderNumber: str = None
+
+
+class ItemBuyerInfo:
+    """
+    A single item's buyer information.
+    """
+
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        if "BuyerCustomizedInfo" in data:
+            self.BuyerCustomizedInfo: BuyerCustomizedInfoDetail = BuyerCustomizedInfoDetail(data["BuyerCustomizedInfo"])
+        else:
+            self.BuyerCustomizedInfo: BuyerCustomizedInfoDetail = None
+        if "GiftWrapPrice" in data:
+            self.GiftWrapPrice: Money = Money(data["GiftWrapPrice"])
+        else:
+            self.GiftWrapPrice: Money = None
+        if "GiftWrapTax" in data:
+            self.GiftWrapTax: Money = Money(data["GiftWrapTax"])
+        else:
+            self.GiftWrapTax: Money = None
+        if "GiftMessageText" in data:
+            self.GiftMessageText: str = str(data["GiftMessageText"])
+        else:
+            self.GiftMessageText: str = None
+        if "GiftWrapLevel" in data:
+            self.GiftWrapLevel: str = str(data["GiftWrapLevel"])
+        else:
+            self.GiftWrapLevel: str = None
 
 
 class Error:
@@ -1004,7 +1076,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         }[response.status_code](self._get_response_json(response))
 
     """
-    Returns buyer information for the order indicated by the specified order ID.
+    Returns buyer information for the specified order.
+**Important.** We recommend using the getOrders operation to get buyer information for an order, as the getOrderBuyerInfo operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).
 **Usage Plans:**
 | Plan type | Rate (requests per second) | Burst |
 | ---- | ---- | ---- |
@@ -1033,7 +1106,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         }[response.status_code](self._get_response_json(response))
 
     """
-    Returns the shipping address for the order indicated by the specified order ID.
+    Returns the shipping address for the specified order.
+**Important.** We recommend using the getOrders operation to get shipping address information for an order, as the getOrderAddress operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).
 **Usage Plans:**
 | Plan type | Rate (requests per second) | Burst |
 | ---- | ---- | ---- |
@@ -1095,7 +1169,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         }[response.status_code](self._get_response_json(response))
 
     """
-    Returns buyer information in the order items of the order indicated by the specified order ID.
+    Returns buyer information for the order items in the specified order.
+**Important.** We recommend using the getOrderItems operation to get buyer information for the order items in an order, as the getOrderItemsBuyerInfo operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).
 **Usage Plans:**
 | Plan type | Rate (requests per second) | Burst |
 | ---- | ---- | ---- |

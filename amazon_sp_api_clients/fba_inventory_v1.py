@@ -307,7 +307,7 @@ class FbaInventoryV1Client(__BaseClient):
     **Usage Plan:**
     | Rate (requests per second) | Burst |
     | ---- | ---- |
-    | 90 | 150 |
+    | 2 | 2 |
     For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
     """
 

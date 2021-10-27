@@ -73,52 +73,54 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MaxResultsPerPage": {
-                                            "value": 1
-                                        },
-                                        "FinancialEventGroupStartedBefore": {
-                                            "value": "2019-10-31"
-                                        },
-                                        "FinancialEventGroupStartedAfter": {
-                                            "value": "2019-10-13"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MaxResultsPerPage": {
+                                                "value": 1
+                                            },
+                                            "FinancialEventGroupStartedBefore": {
+                                                "value": "2019-10-31"
+                                            },
+                                            "FinancialEventGroupStartedAfter": {
+                                                "value": "2019-10-13"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "NextToken": "3493805734095308457308475",
+                                            "FinancialEventGroupList": [
+                                                {
+                                                    "FinancialEventGroupId": "1",
+                                                    "ProcessingStatus": "PROCESSED",
+                                                    "FundTransferStatus": "TRANSFERED",
+                                                    "OriginalTotal": {
+                                                        "CurrencyCode": "USD",
+                                                        "CurrencyAmount": 10.34
+                                                    },
+                                                    "ConvertedTotal": {
+                                                        "CurrencyCode": "USD",
+                                                        "CurrencyAmount": 39.43
+                                                    },
+                                                    "FundTransferDate": "2020-02-07T14:38:42.128Z",
+                                                    "TraceId": "34550454504545",
+                                                    "AccountTail": "4854564857",
+                                                    "BeginningBalance": {
+                                                        "CurrencyCode": "USD",
+                                                        "CurrencyAmount": 55.33
+                                                    },
+                                                    "FinancialEventGroupStart": "2020-02-07T14:38:42.128Z",
+                                                    "FinancialEventGroupEnd": "2020-02-07T14:38:42.128Z"
+                                                }
+                                            ]
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "NextToken": "3493805734095308457308475",
-                                        "FinancialEventGroupList": [
-                                            {
-                                                "FinancialEventGroupId": "1",
-                                                "ProcessingStatus": "PROCESSED",
-                                                "FundTransferStatus": "TRANSFERED",
-                                                "OriginalTotal": {
-                                                    "CurrencyCode": "USD",
-                                                    "CurrencyAmount": 10.34
-                                                },
-                                                "ConvertedTotal": {
-                                                    "CurrencyCode": "USD",
-                                                    "CurrencyAmount": 39.43
-                                                },
-                                                "FundTransferDate": "2020-02-07T14:38:42.128Z",
-                                                "TraceId": "34550454504545",
-                                                "AccountTail": "4854564857",
-                                                "BeginningBalance": {
-                                                    "CurrencyCode": "USD",
-                                                    "CurrencyAmount": 55.33
-                                                },
-                                                "FinancialEventGroupStart": "2020-02-07T14:38:42.128Z",
-                                                "FinancialEventGroupEnd": "2020-02-07T14:38:42.128Z"
-                                            }
-                                        ]
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -129,25 +131,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MaxResultsPerPage": {
-                                            "value": 10
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MaxResultsPerPage": {
+                                                "value": 10
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Date range is invalid."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Date range is invalid."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
@@ -175,6 +179,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -190,6 +200,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -211,6 +227,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -226,6 +248,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -287,332 +315,368 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MaxResultsPerPage": {
-                                            "value": 10
-                                        },
-                                        "eventGroupId": {
-                                            "value": "485734534857"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MaxResultsPerPage": {
+                                                "value": 10
+                                            },
+                                            "eventGroupId": {
+                                                "value": "485734534857"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "NextToken": "Next token value",
-                                        "FinancialEvents": {
-                                            "ChargebackEventList": [
-                                                {
-                                                    "AmazonOrderId": "444-555-3343433",
-                                                    "SellerOrderId": "454645645656456",
-                                                    "MarketplaceName": "1",
-                                                    "OrderChargeList": [
-                                                        {
-                                                            "ChargeType": "Tax",
-                                                            "ChargeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "OrderChargeAdjustmentList": [
-                                                        {
-                                                            "ChargeType": "Tax",
-                                                            "ChargeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "ShipmentFeeList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "ShipmentFeeAdjustmentList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "OrderFeeList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "OrderFeeAdjustmentList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "DirectPaymentList": [
-                                                        {
-                                                            "DirectPaymentType": "StoredValueCardRevenue",
-                                                            "DirectPaymentAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "PostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "ShipmentItemList": [
-                                                        {
-                                                            "SellerSKU": "456454455464",
-                                                            "OrderItemId": "4565465645646",
-                                                            "OrderAdjustmentItemId": "456456465464",
-                                                            "QuantityShipped": 0,
-                                                            "ItemChargeList": [
-                                                                {
-                                                                    "ChargeType": "Tax",
-                                                                    "ChargeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "NextToken": "Next token value",
+                                            "FinancialEvents": {
+                                                "ChargebackEventList": [
+                                                    {
+                                                        "AmazonOrderId": "444-555-3343433",
+                                                        "SellerOrderId": "454645645656456",
+                                                        "MarketplaceName": "1",
+                                                        "OrderChargeList": [
+                                                            {
+                                                                "ChargeType": "Tax",
+                                                                "ChargeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
                                                                 }
-                                                            ],
-                                                            "ItemChargeAdjustmentList": [
-                                                                {
-                                                                    "ChargeType": "Tax",
-                                                                    "ChargeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
+                                                            }
+                                                        ],
+                                                        "OrderChargeAdjustmentList": [
+                                                            {
+                                                                "ChargeType": "Tax",
+                                                                "ChargeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
                                                                 }
-                                                            ],
-                                                            "ItemFeeList": [
-                                                                {
-                                                                    "FeeType": "FixedClosingFee",
-                                                                    "FeeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
+                                                            }
+                                                        ],
+                                                        "ShipmentFeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
                                                                 }
-                                                            ],
-                                                            "ItemFeeAdjustmentList": [
-                                                                {
-                                                                    "FeeType": "FixedClosingFee",
-                                                                    "FeeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
+                                                            }
+                                                        ],
+                                                        "ShipmentFeeAdjustmentList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
                                                                 }
-                                                            ],
-                                                            "ItemTaxWithheldList": [
-                                                                {
-                                                                    "TaxCollectionModel": "Free",
-                                                                    "TaxesWithheld": [
-                                                                        {
-                                                                            "ChargeType": "Tax",
-                                                                            "ChargeAmount": {
-                                                                                "CurrencyCode": "USD",
-                                                                                "CurrencyAmount": 25.37
-                                                                            }
+                                                            }
+                                                        ],
+                                                        "OrderFeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ],
+                                                        "OrderFeeAdjustmentList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ],
+                                                        "DirectPaymentList": [
+                                                            {
+                                                                "DirectPaymentType": "StoredValueCardRevenue",
+                                                                "DirectPaymentAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ],
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "ShipmentItemList": [
+                                                            {
+                                                                "SellerSKU": "456454455464",
+                                                                "OrderItemId": "4565465645646",
+                                                                "OrderAdjustmentItemId": "456456465464",
+                                                                "QuantityShipped": 0,
+                                                                "ItemChargeList": [
+                                                                    {
+                                                                        "ChargeType": "Tax",
+                                                                        "ChargeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
                                                                         }
-                                                                    ]
-                                                                }
-                                                            ],
-                                                            "PromotionList": [
-                                                                {
-                                                                    "PromotionType": "Free",
-                                                                    "PromotionId": "546564565",
-                                                                    "PromotionAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
                                                                     }
-                                                                }
-                                                            ],
-                                                            "PromotionAdjustmentList": [
-                                                                {
-                                                                    "PromotionType": "Free",
-                                                                    "PromotionId": "546564565",
-                                                                    "PromotionAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
-                                                                }
-                                                            ],
-                                                            "CostOfPointsGranted": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            },
-                                                            "CostOfPointsReturned": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "ShipmentItemAdjustmentList": [
-                                                        {
-                                                            "SellerSKU": "456454455464",
-                                                            "OrderItemId": "4565465645646",
-                                                            "OrderAdjustmentItemId": "456456465464",
-                                                            "QuantityShipped": 0,
-                                                            "ItemChargeList": [
-                                                                {
-                                                                    "ChargeType": "Tax",
-                                                                    "ChargeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
-                                                                }
-                                                            ],
-                                                            "ItemChargeAdjustmentList": [
-                                                                {
-                                                                    "ChargeType": "Tax",
-                                                                    "ChargeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
-                                                                }
-                                                            ],
-                                                            "ItemFeeList": [
-                                                                {
-                                                                    "FeeType": "FixedClosingFee",
-                                                                    "FeeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
-                                                                }
-                                                            ],
-                                                            "ItemFeeAdjustmentList": [
-                                                                {
-                                                                    "FeeType": "FixedClosingFee",
-                                                                    "FeeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
-                                                                }
-                                                            ],
-                                                            "ItemTaxWithheldList": [
-                                                                {
-                                                                    "TaxCollectionModel": "Free",
-                                                                    "TaxesWithheld": [
-                                                                        {
-                                                                            "ChargeType": "Tax",
-                                                                            "ChargeAmount": {
-                                                                                "CurrencyCode": "USD",
-                                                                                "CurrencyAmount": 25.37
-                                                                            }
+                                                                ],
+                                                                "ItemChargeAdjustmentList": [
+                                                                    {
+                                                                        "ChargeType": "Tax",
+                                                                        "ChargeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
                                                                         }
-                                                                    ]
-                                                                }
-                                                            ],
-                                                            "PromotionList": [
-                                                                {
-                                                                    "PromotionType": "Free",
-                                                                    "PromotionId": "546564565",
-                                                                    "PromotionAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
                                                                     }
-                                                                }
-                                                            ],
-                                                            "PromotionAdjustmentList": [
-                                                                {
-                                                                    "PromotionType": "Free",
-                                                                    "PromotionId": "546564565",
-                                                                    "PromotionAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
+                                                                ],
+                                                                "ItemFeeList": [
+                                                                    {
+                                                                        "FeeType": "FixedClosingFee",
+                                                                        "FeeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
                                                                     }
+                                                                ],
+                                                                "ItemFeeAdjustmentList": [
+                                                                    {
+                                                                        "FeeType": "FixedClosingFee",
+                                                                        "FeeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "ItemTaxWithheldList": [
+                                                                    {
+                                                                        "TaxCollectionModel": "Free",
+                                                                        "TaxesWithheld": [
+                                                                            {
+                                                                                "ChargeType": "Tax",
+                                                                                "ChargeAmount": {
+                                                                                    "CurrencyCode": "USD",
+                                                                                    "CurrencyAmount": 25.37
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "PromotionList": [
+                                                                    {
+                                                                        "PromotionType": "Free",
+                                                                        "PromotionId": "546564565",
+                                                                        "PromotionAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "PromotionAdjustmentList": [
+                                                                    {
+                                                                        "PromotionType": "Free",
+                                                                        "PromotionId": "546564565",
+                                                                        "PromotionAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "CostOfPointsGranted": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                },
+                                                                "CostOfPointsReturned": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
                                                                 }
-                                                            ],
-                                                            "CostOfPointsGranted": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            },
-                                                            "CostOfPointsReturned": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
                                                             }
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "ImagingServicesFeeEventList": [
-                                                {
-                                                    "ImagingRequestBillingItemID": "456456456",
-                                                    "ASIN": "4564565456456546456",
-                                                    "PostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "FeeList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
+                                                        ],
+                                                        "ShipmentItemAdjustmentList": [
+                                                            {
+                                                                "SellerSKU": "456454455464",
+                                                                "OrderItemId": "4565465645646",
+                                                                "OrderAdjustmentItemId": "456456465464",
+                                                                "QuantityShipped": 0,
+                                                                "ItemChargeList": [
+                                                                    {
+                                                                        "ChargeType": "Tax",
+                                                                        "ChargeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "ItemChargeAdjustmentList": [
+                                                                    {
+                                                                        "ChargeType": "Tax",
+                                                                        "ChargeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "ItemFeeList": [
+                                                                    {
+                                                                        "FeeType": "FixedClosingFee",
+                                                                        "FeeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "ItemFeeAdjustmentList": [
+                                                                    {
+                                                                        "FeeType": "FixedClosingFee",
+                                                                        "FeeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "ItemTaxWithheldList": [
+                                                                    {
+                                                                        "TaxCollectionModel": "Free",
+                                                                        "TaxesWithheld": [
+                                                                            {
+                                                                                "ChargeType": "Tax",
+                                                                                "ChargeAmount": {
+                                                                                    "CurrencyCode": "USD",
+                                                                                    "CurrencyAmount": 25.37
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "PromotionList": [
+                                                                    {
+                                                                        "PromotionType": "Free",
+                                                                        "PromotionId": "546564565",
+                                                                        "PromotionAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "PromotionAdjustmentList": [
+                                                                    {
+                                                                        "PromotionType": "Free",
+                                                                        "PromotionId": "546564565",
+                                                                        "PromotionAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "CostOfPointsGranted": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                },
+                                                                "CostOfPointsReturned": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
                                                             }
+                                                        ]
+                                                    }
+                                                ],
+                                                "ImagingServicesFeeEventList": [
+                                                    {
+                                                        "ImagingRequestBillingItemID": "456456456",
+                                                        "ASIN": "4564565456456546456",
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "FeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "NetworkComminglingTransactionEventList": [
+                                                    {
+                                                        "TransactionType": "Free",
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "NetCoTransactionID": "4565645",
+                                                        "SwapReason": "None",
+                                                        "ASIN": "464567656576",
+                                                        "MarketplaceId": "string",
+                                                        "TaxExclusiveAmount": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "TaxAmount": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
                                                         }
-                                                    ]
-                                                }
-                                            ],
-                                            "NetworkComminglingTransactionEventList": [
-                                                {
-                                                    "TransactionType": "Free",
-                                                    "PostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "NetCoTransactionID": "4565645",
-                                                    "SwapReason": "None",
-                                                    "ASIN": "464567656576",
-                                                    "MarketplaceId": "string",
-                                                    "TaxExclusiveAmount": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "TaxAmount": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
                                                     }
-                                                }
-                                            ],
-                                            "AffordabilityExpenseReversalEventList": [
-                                                {
-                                                    "AmazonOrderId": "444-555-3343433",
-                                                    "PostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "MarketplaceId": "1",
-                                                    "TransactionType": "Free",
-                                                    "BaseExpense": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "TaxTypeCGST": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "TaxTypeSGST": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "TaxTypeIGST": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "TotalExpense": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
+                                                ],
+                                                "AffordabilityExpenseReversalEventList": [
+                                                    {
+                                                        "AmazonOrderId": "444-555-3343433",
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "MarketplaceId": "1",
+                                                        "TransactionType": "Free",
+                                                        "BaseExpense": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "TaxTypeCGST": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "TaxTypeSGST": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "TaxTypeIGST": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "TotalExpense": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        }
                                                     }
-                                                }
-                                            ]
+                                                ],
+                                                "TrialShipmentEventList": [
+                                                    {
+                                                        "AmazonOrderId": "444-555-3343433",
+                                                        "FinancialEventGroupId": "1",
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "SKU": "456454455464",
+                                                        "FeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "TaxWithholdingEventList": [
+                                                    {
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "BaseAmount": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "WithheldAmount": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "TaxWithholdingPeriod": {
+                                                            "StartDate": "2020-02-05T13:56:00.363Z",
+                                                            "EndDate": "2020-02-05T13:56:00.363Z"
+                                                        }
+                                                    }
+                                                ]
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -623,25 +687,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "eventGroupId": {
-                                            "value": "BADID"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "eventGroupId": {
+                                                "value": "BADID"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Bad event group ID provided."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Bad event group ID provided."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
@@ -669,6 +735,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -684,6 +756,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -705,6 +783,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -720,6 +804,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -781,144 +871,146 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MaxResultsPerPage": {
-                                            "value": 10
-                                        },
-                                        "orderId": {
-                                            "value": "485-734-5434857"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MaxResultsPerPage": {
+                                                "value": 10
+                                            },
+                                            "orderId": {
+                                                "value": "485-734-5434857"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "NextToken": "Next token value",
-                                        "FinancialEvents": {
-                                            "RetrochargeEventList": [
-                                                {
-                                                    "RetrochargeEventType": "Retrocharge",
-                                                    "AmazonOrderId": "444-555-3343433",
-                                                    "PostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "BaseTax": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "ShippingTax": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "MarketplaceName": "1",
-                                                    "RetrochargeTaxWithheldList": [
-                                                        {
-                                                            "TaxCollectionModel": "Free",
-                                                            "TaxesWithheld": [
-                                                                {
-                                                                    "ChargeType": "Tax",
-                                                                    "ChargeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "NextToken": "Next token value",
+                                            "FinancialEvents": {
+                                                "RetrochargeEventList": [
+                                                    {
+                                                        "RetrochargeEventType": "Retrocharge",
+                                                        "AmazonOrderId": "444-555-3343433",
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "BaseTax": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "ShippingTax": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "MarketplaceName": "1",
+                                                        "RetrochargeTaxWithheldList": [
+                                                            {
+                                                                "TaxCollectionModel": "Free",
+                                                                "TaxesWithheld": [
+                                                                    {
+                                                                        "ChargeType": "Tax",
+                                                                        "ChargeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
                                                                     }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "RentalTransactionEventList": [
-                                                {
-                                                    "AmazonOrderId": "444-555-3343433",
-                                                    "RentalEventType": "string",
-                                                    "ExtensionLength": 0,
-                                                    "PostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "RentalChargeList": [
-                                                        {
-                                                            "ChargeType": "Tax",
-                                                            "ChargeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
+                                                                ]
                                                             }
-                                                        }
-                                                    ],
-                                                    "RentalFeeList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "MarketplaceName": "1",
-                                                    "RentalInitialValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "RentalReimbursement": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "RentalTaxWithheldList": [
-                                                        {
-                                                            "TaxCollectionModel": "Free",
-                                                            "TaxesWithheld": [
-                                                                {
-                                                                    "ChargeType": "Tax",
-                                                                    "ChargeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "ProductAdsPaymentEventList": [
-                                                {
-                                                    "postedDate": "2020-02-05T13:56:00.363Z",
-                                                    "transactionType": "Free",
-                                                    "invoiceId": "3454535453",
-                                                    "baseValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "taxValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "transactionValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
+                                                        ]
                                                     }
-                                                }
-                                            ],
-                                            "ServiceFeeEventList": [
-                                                {
-                                                    "AmazonOrderId": "444-555-3343433",
-                                                    "FeeReason": "Free",
-                                                    "FeeList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
+                                                ],
+                                                "RentalTransactionEventList": [
+                                                    {
+                                                        "AmazonOrderId": "444-555-3343433",
+                                                        "RentalEventType": "string",
+                                                        "ExtensionLength": 0,
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "RentalChargeList": [
+                                                            {
+                                                                "ChargeType": "Tax",
+                                                                "ChargeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
                                                             }
+                                                        ],
+                                                        "RentalFeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ],
+                                                        "MarketplaceName": "1",
+                                                        "RentalInitialValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "RentalReimbursement": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "RentalTaxWithheldList": [
+                                                            {
+                                                                "TaxCollectionModel": "Free",
+                                                                "TaxesWithheld": [
+                                                                    {
+                                                                        "ChargeType": "Tax",
+                                                                        "ChargeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "ProductAdsPaymentEventList": [
+                                                    {
+                                                        "postedDate": "2020-02-05T13:56:00.363Z",
+                                                        "transactionType": "Free",
+                                                        "invoiceId": "3454535453",
+                                                        "baseValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "taxValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "transactionValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
                                                         }
-                                                    ],
-                                                    "SellerSKU": "456454455464",
-                                                    "FnSKU": "Fn134",
-                                                    "FeeDescription": "FeeDescription",
-                                                    "ASIN": "KJHJ457648GHD"
-                                                }
-                                            ]
+                                                    }
+                                                ],
+                                                "ServiceFeeEventList": [
+                                                    {
+                                                        "AmazonOrderId": "444-555-3343433",
+                                                        "FeeReason": "Free",
+                                                        "FeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ],
+                                                        "SellerSKU": "456454455464",
+                                                        "FnSKU": "Fn134",
+                                                        "FeeDescription": "FeeDescription",
+                                                        "ASIN": "KJHJ457648GHD"
+                                                    }
+                                                ]
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -929,25 +1021,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "orderId": {
-                                            "value": "BAD-ORDER"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "BAD-ORDER"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Bad order ID provided."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Bad order ID provided."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
@@ -975,6 +1069,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -990,6 +1090,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1011,6 +1117,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1026,6 +1138,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1096,140 +1214,142 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MaxResultsPerPage": {
-                                            "value": 10
-                                        },
-                                        "NextToken": {
-                                            "value": "jehgri34yo7jr9e8f984tr9i4o"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MaxResultsPerPage": {
+                                                "value": 10
+                                            },
+                                            "NextToken": {
+                                                "value": "jehgri34yo7jr9e8f984tr9i4o"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "NextToken": "Next token value",
-                                        "FinancialEvents": {
-                                            "PayWithAmazonEventList": [
-                                                {
-                                                    "SellerOrderId": "454645645656456",
-                                                    "TransactionPostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "BusinessObjectType": "Free",
-                                                    "SalesChannel": "None",
-                                                    "Charge": {
-                                                        "ChargeType": "Tax",
-                                                        "ChargeAmount": {
-                                                            "CurrencyCode": "USD",
-                                                            "CurrencyAmount": 25.37
-                                                        }
-                                                    },
-                                                    "FeeList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "PaymentAmountType": "Tax",
-                                                    "AmountDescription": "Tax",
-                                                    "FulfillmentChannel": "FulfillmentChannel",
-                                                    "StoreName": "Etsy"
-                                                }
-                                            ],
-                                            "ServiceProviderCreditEventList": [
-                                                {
-                                                    "ProviderTransactionType": "Free",
-                                                    "SellerOrderId": "454645645656456",
-                                                    "MarketplaceId": "1",
-                                                    "MarketplaceCountryCode": "US",
-                                                    "SellerId": "4564565546",
-                                                    "SellerStoreName": "Etsy",
-                                                    "ProviderId": "1",
-                                                    "ProviderStoreName": "Etsy",
-                                                    "TransactionAmount": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "TransactionCreationDate": "2020-02-05T13:56:00.363Z"
-                                                }
-                                            ],
-                                            "RentalTransactionEventList": [
-                                                {
-                                                    "AmazonOrderId": "444-555-3343433",
-                                                    "RentalEventType": "string",
-                                                    "ExtensionLength": 0,
-                                                    "PostedDate": "2020-02-05T13:56:00.363Z",
-                                                    "RentalChargeList": [
-                                                        {
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "NextToken": "Next token value",
+                                            "FinancialEvents": {
+                                                "PayWithAmazonEventList": [
+                                                    {
+                                                        "SellerOrderId": "454645645656456",
+                                                        "TransactionPostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "BusinessObjectType": "Free",
+                                                        "SalesChannel": "None",
+                                                        "Charge": {
                                                             "ChargeType": "Tax",
                                                             "ChargeAmount": {
                                                                 "CurrencyCode": "USD",
                                                                 "CurrencyAmount": 25.37
                                                             }
-                                                        }
-                                                    ],
-                                                    "RentalFeeList": [
-                                                        {
-                                                            "FeeType": "FixedClosingFee",
-                                                            "FeeAmount": {
-                                                                "CurrencyCode": "USD",
-                                                                "CurrencyAmount": 25.37
-                                                            }
-                                                        }
-                                                    ],
-                                                    "MarketplaceName": "1",
-                                                    "RentalInitialValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "RentalReimbursement": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "RentalTaxWithheldList": [
-                                                        {
-                                                            "TaxCollectionModel": "Free",
-                                                            "TaxesWithheld": [
-                                                                {
-                                                                    "ChargeType": "Tax",
-                                                                    "ChargeAmount": {
-                                                                        "CurrencyCode": "USD",
-                                                                        "CurrencyAmount": 25.37
-                                                                    }
+                                                        },
+                                                        "FeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
                                                                 }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "ProductAdsPaymentEventList": [
-                                                {
-                                                    "postedDate": "2020-02-05T13:56:00.363Z",
-                                                    "transactionType": "Free",
-                                                    "invoiceId": "3454535453",
-                                                    "baseValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "taxValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
-                                                    },
-                                                    "transactionValue": {
-                                                        "CurrencyCode": "USD",
-                                                        "CurrencyAmount": 25.37
+                                                            }
+                                                        ],
+                                                        "PaymentAmountType": "Tax",
+                                                        "AmountDescription": "Tax",
+                                                        "FulfillmentChannel": "FulfillmentChannel",
+                                                        "StoreName": "Etsy"
                                                     }
-                                                }
-                                            ]
+                                                ],
+                                                "ServiceProviderCreditEventList": [
+                                                    {
+                                                        "ProviderTransactionType": "Free",
+                                                        "SellerOrderId": "454645645656456",
+                                                        "MarketplaceId": "1",
+                                                        "MarketplaceCountryCode": "US",
+                                                        "SellerId": "4564565546",
+                                                        "SellerStoreName": "Etsy",
+                                                        "ProviderId": "1",
+                                                        "ProviderStoreName": "Etsy",
+                                                        "TransactionAmount": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "TransactionCreationDate": "2020-02-05T13:56:00.363Z"
+                                                    }
+                                                ],
+                                                "RentalTransactionEventList": [
+                                                    {
+                                                        "AmazonOrderId": "444-555-3343433",
+                                                        "RentalEventType": "string",
+                                                        "ExtensionLength": 0,
+                                                        "PostedDate": "2020-02-05T13:56:00.363Z",
+                                                        "RentalChargeList": [
+                                                            {
+                                                                "ChargeType": "Tax",
+                                                                "ChargeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ],
+                                                        "RentalFeeList": [
+                                                            {
+                                                                "FeeType": "FixedClosingFee",
+                                                                "FeeAmount": {
+                                                                    "CurrencyCode": "USD",
+                                                                    "CurrencyAmount": 25.37
+                                                                }
+                                                            }
+                                                        ],
+                                                        "MarketplaceName": "1",
+                                                        "RentalInitialValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "RentalReimbursement": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "RentalTaxWithheldList": [
+                                                            {
+                                                                "TaxCollectionModel": "Free",
+                                                                "TaxesWithheld": [
+                                                                    {
+                                                                        "ChargeType": "Tax",
+                                                                        "ChargeAmount": {
+                                                                            "CurrencyCode": "USD",
+                                                                            "CurrencyAmount": 25.37
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "ProductAdsPaymentEventList": [
+                                                    {
+                                                        "postedDate": "2020-02-05T13:56:00.363Z",
+                                                        "transactionType": "Free",
+                                                        "invoiceId": "3454535453",
+                                                        "baseValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "taxValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        },
+                                                        "transactionValue": {
+                                                            "CurrencyCode": "USD",
+                                                            "CurrencyAmount": 25.37
+                                                        }
+                                                    }
+                                                ]
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -1240,25 +1360,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MaxResultsPerPage": {
-                                            "value": 2
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MaxResultsPerPage": {
+                                                "value": 2
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Input not valid."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Input not valid."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
@@ -1286,6 +1408,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1301,6 +1429,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1322,6 +1456,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1337,6 +1477,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1814,6 +1960,21 @@
                     },
                     "AffordabilityExpenseReversalEventList": {
                         "$ref": "#/components/schemas/AffordabilityExpenseEventList"
+                    },
+                    "TrialShipmentEventList": {
+                        "$ref": "#/components/schemas/TrialShipmentEventList"
+                    },
+                    "ShipmentSettleEventList": {
+                        "$ref": "#/components/schemas/ShipmentSettleEventList"
+                    },
+                    "TaxWithholdingEventList": {
+                        "$ref": "#/components/schemas/TaxWithholdingEventList"
+                    },
+                    "RemovalShipmentEventList": {
+                        "$ref": "#/components/schemas/RemovalShipmentEventList"
+                    },
+                    "RemovalShipmentAdjustmentEventList": {
+                        "$ref": "#/components/schemas/RemovalShipmentAdjustmentEventList"
                     }
                 },
                 "description": "Contains all information related to a financial event."
@@ -2070,6 +2231,10 @@
                     "PostedDate": {
                         "$ref": "#/components/schemas/Date"
                     },
+                    "MerchantOrderId": {
+                        "type": "string",
+                        "description": "The merchant removal orderId."
+                    },
                     "OrderId": {
                         "type": "string",
                         "description": "The identifier for the removal shipment order."
@@ -2132,6 +2297,77 @@
                 "items": {
                     "$ref": "#/components/schemas/RemovalShipmentItem"
                 }
+            },
+            "RemovalShipmentAdjustmentEvent": {
+                "type": "object",
+                "properties": {
+                    "PostedDate": {
+                        "$ref": "#/components/schemas/Date"
+                    },
+                    "AdjustmentEventId": {
+                        "type": "string",
+                        "description": "The unique identifier for the adjustment event."
+                    },
+                    "MerchantOrderId": {
+                        "type": "string",
+                        "description": "The merchant removal orderId."
+                    },
+                    "OrderId": {
+                        "type": "string",
+                        "description": "The orderId for shipping inventory."
+                    },
+                    "TransactionType": {
+                        "type": "string",
+                        "description": "The type of removal order.\n\nPossible values:\n\n* WHOLESALE_LIQUIDATION."
+                    },
+                    "RemovalShipmentItemAdjustmentList": {
+                        "type": "array",
+                        "description": "A comma-delimited list of Removal shipmentItemAdjustment details for FBA inventory.",
+                        "items": {
+                            "$ref": "#/components/schemas/RemovalShipmentItemAdjustment"
+                        }
+                    }
+                },
+                "description": "A financial adjustment event for FBA liquidated inventory.\n\nPossible adjustment:\n\n* Positive values - Buyer needs to pay more amount to Amazon. E.g. charge was wrongly calculated 0$ instead of 100$ due to system error. \n\n* Negative Values - Buyer get refund. E.g. Buyer receives less items or damaged items and as part of their adjustment buyer gets refund."
+            },
+            "RemovalShipmentAdjustmentEventList": {
+                "type": "array",
+                "description": "A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.",
+                "items": {
+                    "$ref": "#/components/schemas/RemovalShipmentAdjustmentEvent"
+                }
+            },
+            "RemovalShipmentItemAdjustment": {
+                "type": "object",
+                "properties": {
+                    "RemovalShipmentItemId": {
+                        "type": "string",
+                        "description": "An identifier for an item in a removal shipment."
+                    },
+                    "TaxCollectionModel": {
+                        "type": "string",
+                        "description": "The tax collection model applied to the item.\n\nPossible values:\n\n* MarketplaceFacilitator - Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.\n\n* Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon."
+                    },
+                    "FulfillmentNetworkSKU": {
+                        "type": "string",
+                        "description": "The Amazon fulfillment network SKU for the item."
+                    },
+                    "AdjustedQuantity": {
+                        "type": "integer",
+                        "description": "Adjusted quantity of removal shipmentItemAdjustment items.",
+                        "format": "int32"
+                    },
+                    "RevenueAdjustment": {
+                        "$ref": "#/components/schemas/Currency"
+                    },
+                    "TaxAmountAdjustment": {
+                        "$ref": "#/components/schemas/Currency"
+                    },
+                    "TaxWithheldAdjustment": {
+                        "$ref": "#/components/schemas/Currency"
+                    }
+                },
+                "description": "Item-level information for a removal shipment item adjustment."
             },
             "RentalTransactionEvent": {
                 "type": "object",
@@ -2549,27 +2785,41 @@
                     "$ref": "#/components/schemas/SolutionProviderCreditEvent"
                 }
             },
-            "TDSReimbursementEvent": {
+            "TaxWithholdingPeriod": {
+                "type": "object",
+                "properties": {
+                    "StartDate": {
+                        "$ref": "#/components/schemas/Date"
+                    },
+                    "EndDate": {
+                        "$ref": "#/components/schemas/Date"
+                    }
+                },
+                "description": "Period which taxwithholding on seller's account is calculated."
+            },
+            "TaxWithholdingEvent": {
                 "type": "object",
                 "properties": {
                     "PostedDate": {
                         "$ref": "#/components/schemas/Date"
                     },
-                    "TdsOrderId": {
-                        "type": "string",
-                        "description": "A tax deduction at source (TDS) claim identifier."
-                    },
-                    "ReimbursedAmount": {
+                    "BaseAmount": {
                         "$ref": "#/components/schemas/Currency"
+                    },
+                    "WithheldAmount": {
+                        "$ref": "#/components/schemas/Currency"
+                    },
+                    "TaxWithholdingPeriod": {
+                        "$ref": "#/components/schemas/TaxWithholdingPeriod"
                     }
                 },
-                "description": "A tax deduction at source (TDS) claim reimbursement event on the seller's account."
+                "description": "A TaxWithholding event on seller's account."
             },
-            "TDSReimbursementEventList": {
+            "TaxWithholdingEventList": {
                 "type": "array",
-                "description": "A list of information about tax deduction at source (TDS) claim reimbursement events.",
+                "description": "List of TaxWithholding events.",
                 "items": {
-                    "$ref": "#/components/schemas/TDSReimbursementEvent"
+                    "$ref": "#/components/schemas/TaxWithholdingEvent"
                 }
             },
             "TaxWithheldComponent": {
@@ -2621,6 +2871,13 @@
                 "description": "A list of information about trial shipment financial events.",
                 "items": {
                     "$ref": "#/components/schemas/TrialShipmentEvent"
+                }
+            },
+            "ShipmentSettleEventList": {
+                "type": "array",
+                "description": "A list of information about shipment settle financial events.",
+                "items": {
+                    "$ref": "#/components/schemas/ShipmentEvent"
                 }
             },
             "ErrorList": {

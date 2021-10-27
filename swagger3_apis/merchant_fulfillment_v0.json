@@ -40,7 +40,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -60,155 +60,157 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipmentRequestDetails": {
-                                                    "AmazonOrderId": "903-5563053-5647845",
-                                                    "ItemList": [
-                                                        {
-                                                            "OrderItemId": "52986411826454",
-                                                            "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipmentRequestDetails": {
+                                                        "AmazonOrderId": "903-5563053-5647845",
+                                                        "ItemList": [
+                                                            {
+                                                                "OrderItemId": "52986411826454",
+                                                                "Quantity": 1
+                                                            }
+                                                        ],
+                                                        "ShipFromAddress": {
+                                                            "Name": "John Doe",
+                                                            "AddressLine1": "300 Turnbull Ave",
+                                                            "Email": "jdoeasdfllkj@yahoo.com",
+                                                            "City": "Detroit",
+                                                            "StateOrProvinceCode": "MI",
+                                                            "PostalCode": "48123",
+                                                            "CountryCode": "US",
+                                                            "Phone": "7132341234"
+                                                        },
+                                                        "PackageDimensions": {
+                                                            "Length": 10,
+                                                            "Width": 10,
+                                                            "Height": 10,
+                                                            "Unit": "inches"
+                                                        },
+                                                        "Weight": {
+                                                            "Value": 10,
+                                                            "Unit": "oz"
+                                                        },
+                                                        "ShippingServiceOptions": {
+                                                            "DeliveryExperience": "NoTracking",
+                                                            "CarrierWillPickUp": false,
+                                                            "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                         }
-                                                    ],
-                                                    "ShipFromAddress": {
-                                                        "Name": "John Doe",
-                                                        "AddressLine1": "300 Turnbull Ave",
-                                                        "Email": "jdoeasdfllkj@yahoo.com",
-                                                        "City": "Detroit",
-                                                        "StateOrProvinceCode": "MI",
-                                                        "PostalCode": "48123",
-                                                        "CountryCode": "US",
-                                                        "Phone": "7132341234"
-                                                    },
-                                                    "PackageDimensions": {
-                                                        "Length": 10,
-                                                        "Width": 10,
-                                                        "Height": 10,
-                                                        "Unit": "inches"
-                                                    },
-                                                    "Weight": {
-                                                        "Value": 10,
-                                                        "Unit": "oz"
-                                                    },
-                                                    "ShippingServiceOptions": {
-                                                        "DeliveryExperience": "NoTracking",
-                                                        "CarrierWillPickUp": false,
-                                                        "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                     }
                                                 }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShippingServiceList": [
-                                            {
-                                                "ShippingServiceName": "UPS 2nd Day Air",
-                                                "CarrierName": "UPS",
-                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                                "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t",
-                                                "ShipDate": "2019-10-28T16:36:36Z",
-                                                "EarliestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
-                                                "LatestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
-                                                "Rate": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 34.73
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShippingServiceList": [
+                                                {
+                                                    "ShippingServiceName": "UPS 2nd Day Air",
+                                                    "CarrierName": "UPS",
+                                                    "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                    "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t",
+                                                    "ShipDate": "2019-10-28T16:36:36Z",
+                                                    "EarliestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
+                                                    "LatestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
+                                                    "Rate": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 34.73
+                                                    },
+                                                    "ShippingServiceOptions": {
+                                                        "DeliveryExperience": "NoTracking",
+                                                        "CarrierWillPickUp": false,
+                                                        "LabelFormat": ""
+                                                    },
+                                                    "AvailableLabelFormats": [
+                                                        "ZPL203",
+                                                        "ShippingServiceDefault",
+                                                        "PDF",
+                                                        "PNG"
+                                                    ],
+                                                    "AvailableFormatOptionsForLabel": [
+                                                        {
+                                                            "LabelFormat": "ZPL203"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "ShippingServiceDefault"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PDF"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PNG"
+                                                        }
+                                                    ]
                                                 },
-                                                "ShippingServiceOptions": {
-                                                    "DeliveryExperience": "NoTracking",
-                                                    "CarrierWillPickUp": false,
-                                                    "LabelFormat": ""
+                                                {
+                                                    "ShippingServiceName": "UPS Next Day Air Saver",
+                                                    "CarrierName": "UPS",
+                                                    "ShippingServiceId": "UPS_PTP_NEXT_DAY_AIR_SAVER",
+                                                    "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKqqhKGQ2YZmuxsXKVXmdgdWNvfxb1qfm5bGm8NuqlqnNT3eTiJ4viTctepggbeUKUSykClJ+Qmw43zdA8wsgREhQCmb4Bbo/skapLQS1F9uwH2FgY5SfMsj/egudyocpVRT45KSQAT0H5YiXW3OyyRAae9fZ0RzDJAABHiisOyYyXnB1mtWOZqc7rlGR4yyqN7jmiT4t8dmuGPX7ptY4qskrN+6VHZO9bM9tdDS0ysHhAVv4jO3Q5sWFg4nEPaARWSsrpa6zSGMLxAOj56O3tcP",
+                                                    "ShipDate": "2019-10-28T16:36:36Z",
+                                                    "EarliestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
+                                                    "LatestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
+                                                    "Rate": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 98.75
+                                                    },
+                                                    "ShippingServiceOptions": {
+                                                        "DeliveryExperience": "NoTracking",
+                                                        "CarrierWillPickUp": false,
+                                                        "LabelFormat": ""
+                                                    },
+                                                    "AvailableLabelFormats": [
+                                                        "ZPL203",
+                                                        "ShippingServiceDefault",
+                                                        "PDF",
+                                                        "PNG"
+                                                    ],
+                                                    "AvailableFormatOptionsForLabel": [
+                                                        {
+                                                            "LabelFormat": "ZPL203"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "ShippingServiceDefault"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PDF"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PNG"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "TemporarilyUnavailableCarrierList": [
+                                                {
+                                                    "CarrierName": "UPS"
                                                 },
-                                                "AvailableLabelFormats": [
-                                                    "ZPL203",
-                                                    "ShippingServiceDefault",
-                                                    "PDF",
-                                                    "PNG"
-                                                ],
-                                                "AvailableFormatOptionsForLabel": [
-                                                    {
-                                                        "LabelFormat": "ZPL203"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "ShippingServiceDefault"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PDF"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PNG"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "ShippingServiceName": "UPS Next Day Air Saver",
-                                                "CarrierName": "UPS",
-                                                "ShippingServiceId": "UPS_PTP_NEXT_DAY_AIR_SAVER",
-                                                "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKqqhKGQ2YZmuxsXKVXmdgdWNvfxb1qfm5bGm8NuqlqnNT3eTiJ4viTctepggbeUKUSykClJ+Qmw43zdA8wsgREhQCmb4Bbo/skapLQS1F9uwH2FgY5SfMsj/egudyocpVRT45KSQAT0H5YiXW3OyyRAae9fZ0RzDJAABHiisOyYyXnB1mtWOZqc7rlGR4yyqN7jmiT4t8dmuGPX7ptY4qskrN+6VHZO9bM9tdDS0ysHhAVv4jO3Q5sWFg4nEPaARWSsrpa6zSGMLxAOj56O3tcP",
-                                                "ShipDate": "2019-10-28T16:36:36Z",
-                                                "EarliestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
-                                                "LatestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
-                                                "Rate": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 98.75
+                                                {
+                                                    "CarrierName": "DHLECOMMERCE"
+                                                }
+                                            ],
+                                            "TermsAndConditionsNotAcceptedCarrierList": [
+                                                {
+                                                    "CarrierName": "YANWEN"
                                                 },
-                                                "ShippingServiceOptions": {
-                                                    "DeliveryExperience": "NoTracking",
-                                                    "CarrierWillPickUp": false,
-                                                    "LabelFormat": ""
-                                                },
-                                                "AvailableLabelFormats": [
-                                                    "ZPL203",
-                                                    "ShippingServiceDefault",
-                                                    "PDF",
-                                                    "PNG"
-                                                ],
-                                                "AvailableFormatOptionsForLabel": [
-                                                    {
-                                                        "LabelFormat": "ZPL203"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "ShippingServiceDefault"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PDF"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PNG"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "TemporarilyUnavailableCarrierList": [
-                                            {
-                                                "CarrierName": "UPS"
-                                            },
-                                            {
-                                                "CarrierName": "DHLECOMMERCE"
-                                            }
-                                        ],
-                                        "TermsAndConditionsNotAcceptedCarrierList": [
-                                            {
-                                                "CarrierName": "YANWEN"
-                                            },
-                                            {
-                                                "CarrierName": "CHINA_POST"
-                                            }
-                                        ]
+                                                {
+                                                    "CarrierName": "CHINA_POST"
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -228,73 +230,75 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipmentRequestDetails": {
-                                                    "AmazonOrderId": "TEST_CASE_400",
-                                                    "ItemList": [
-                                                        {
-                                                            "OrderItemId": "52986411826454",
-                                                            "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipmentRequestDetails": {
+                                                        "AmazonOrderId": "TEST_CASE_400",
+                                                        "ItemList": [
+                                                            {
+                                                                "OrderItemId": "52986411826454",
+                                                                "Quantity": 1
+                                                            }
+                                                        ],
+                                                        "ShipFromAddress": {
+                                                            "Name": "John Doe",
+                                                            "AddressLine1": "300 Turnbull Ave",
+                                                            "Email": "jdoeasdfllkj@yahoo.com",
+                                                            "City": "Detroit",
+                                                            "StateOrProvinceCode": "MI",
+                                                            "PostalCode": "48123",
+                                                            "CountryCode": "USA",
+                                                            "Phone": "7132341234"
+                                                        },
+                                                        "PackageDimensions": {
+                                                            "Length": 10,
+                                                            "Width": 10,
+                                                            "Height": 10,
+                                                            "Unit": "inches"
+                                                        },
+                                                        "Weight": {
+                                                            "Value": 10,
+                                                            "Unit": "oz"
+                                                        },
+                                                        "ShippingServiceOptions": {
+                                                            "DeliveryExperience": "NoTracking",
+                                                            "CarrierWillPickUp": false,
+                                                            "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                         }
-                                                    ],
-                                                    "ShipFromAddress": {
-                                                        "Name": "John Doe",
-                                                        "AddressLine1": "300 Turnbull Ave",
-                                                        "Email": "jdoeasdfllkj@yahoo.com",
-                                                        "City": "Detroit",
-                                                        "StateOrProvinceCode": "MI",
-                                                        "PostalCode": "48123",
-                                                        "CountryCode": "USA",
-                                                        "Phone": "7132341234"
-                                                    },
-                                                    "PackageDimensions": {
-                                                        "Length": 10,
-                                                        "Width": 10,
-                                                        "Height": 10,
-                                                        "Unit": "inches"
-                                                    },
-                                                    "Weight": {
-                                                        "Value": 10,
-                                                        "Unit": "oz"
-                                                    },
-                                                    "ShippingServiceOptions": {
-                                                        "DeliveryExperience": "NoTracking",
-                                                        "CarrierWillPickUp": false,
-                                                        "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                     }
                                                 }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "1 validation error detected: Value 'USA' at 'shipmentRequestDetails.shipFromAddress.countryCode' failed to satisfy constraint: Member must have length less than or equal to 2",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "1 validation error detected: Value 'USA' at 'shipmentRequestDetails.shipFromAddress.countryCode' failed to satisfy constraint: Member must have length less than or equal to 2",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -311,7 +315,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -329,8 +333,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -347,14 +357,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -371,14 +381,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -395,14 +405,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -441,7 +451,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -461,155 +471,157 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipmentRequestDetails": {
-                                                    "AmazonOrderId": "903-5563053-5647845",
-                                                    "ItemList": [
-                                                        {
-                                                            "OrderItemId": "52986411826454",
-                                                            "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipmentRequestDetails": {
+                                                        "AmazonOrderId": "903-5563053-5647845",
+                                                        "ItemList": [
+                                                            {
+                                                                "OrderItemId": "52986411826454",
+                                                                "Quantity": 1
+                                                            }
+                                                        ],
+                                                        "ShipFromAddress": {
+                                                            "Name": "John Doe",
+                                                            "AddressLine1": "300 Turnbull Ave",
+                                                            "Email": "jdoeasdfllkj@yahoo.com",
+                                                            "City": "Detroit",
+                                                            "StateOrProvinceCode": "MI",
+                                                            "PostalCode": "48123",
+                                                            "CountryCode": "US",
+                                                            "Phone": "7132341234"
+                                                        },
+                                                        "PackageDimensions": {
+                                                            "Length": 10,
+                                                            "Width": 10,
+                                                            "Height": 10,
+                                                            "Unit": "inches"
+                                                        },
+                                                        "Weight": {
+                                                            "Value": 10,
+                                                            "Unit": "oz"
+                                                        },
+                                                        "ShippingServiceOptions": {
+                                                            "DeliveryExperience": "NoTracking",
+                                                            "CarrierWillPickUp": false,
+                                                            "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                         }
-                                                    ],
-                                                    "ShipFromAddress": {
-                                                        "Name": "John Doe",
-                                                        "AddressLine1": "300 Turnbull Ave",
-                                                        "Email": "jdoeasdfllkj@yahoo.com",
-                                                        "City": "Detroit",
-                                                        "StateOrProvinceCode": "MI",
-                                                        "PostalCode": "48123",
-                                                        "CountryCode": "US",
-                                                        "Phone": "7132341234"
-                                                    },
-                                                    "PackageDimensions": {
-                                                        "Length": 10,
-                                                        "Width": 10,
-                                                        "Height": 10,
-                                                        "Unit": "inches"
-                                                    },
-                                                    "Weight": {
-                                                        "Value": 10,
-                                                        "Unit": "oz"
-                                                    },
-                                                    "ShippingServiceOptions": {
-                                                        "DeliveryExperience": "NoTracking",
-                                                        "CarrierWillPickUp": false,
-                                                        "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                     }
                                                 }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShippingServiceList": [
-                                            {
-                                                "ShippingServiceName": "UPS 2nd Day Air",
-                                                "CarrierName": "UPS",
-                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                                "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t",
-                                                "ShipDate": "2019-10-28T16:36:36Z",
-                                                "EarliestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
-                                                "LatestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
-                                                "Rate": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 34.73
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShippingServiceList": [
+                                                {
+                                                    "ShippingServiceName": "UPS 2nd Day Air",
+                                                    "CarrierName": "UPS",
+                                                    "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                    "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t",
+                                                    "ShipDate": "2019-10-28T16:36:36Z",
+                                                    "EarliestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
+                                                    "LatestEstimatedDeliveryDate": "2019-10-31T06:00:00Z",
+                                                    "Rate": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 34.73
+                                                    },
+                                                    "ShippingServiceOptions": {
+                                                        "DeliveryExperience": "NoTracking",
+                                                        "CarrierWillPickUp": false,
+                                                        "LabelFormat": ""
+                                                    },
+                                                    "AvailableLabelFormats": [
+                                                        "ZPL203",
+                                                        "ShippingServiceDefault",
+                                                        "PDF",
+                                                        "PNG"
+                                                    ],
+                                                    "AvailableFormatOptionsForLabel": [
+                                                        {
+                                                            "LabelFormat": "ZPL203"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "ShippingServiceDefault"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PDF"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PNG"
+                                                        }
+                                                    ]
                                                 },
-                                                "ShippingServiceOptions": {
-                                                    "DeliveryExperience": "NoTracking",
-                                                    "CarrierWillPickUp": false,
-                                                    "LabelFormat": ""
+                                                {
+                                                    "ShippingServiceName": "UPS Next Day Air Saver",
+                                                    "CarrierName": "UPS",
+                                                    "ShippingServiceId": "UPS_PTP_NEXT_DAY_AIR_SAVER",
+                                                    "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKqqhKGQ2YZmuxsXKVXmdgdWNvfxb1qfm5bGm8NuqlqnNT3eTiJ4viTctepggbeUKUSykClJ+Qmw43zdA8wsgREhQCmb4Bbo/skapLQS1F9uwH2FgY5SfMsj/egudyocpVRT45KSQAT0H5YiXW3OyyRAae9fZ0RzDJAABHiisOyYyXnB1mtWOZqc7rlGR4yyqN7jmiT4t8dmuGPX7ptY4qskrN+6VHZO9bM9tdDS0ysHhAVv4jO3Q5sWFg4nEPaARWSsrpa6zSGMLxAOj56O3tcP",
+                                                    "ShipDate": "2019-10-28T16:36:36Z",
+                                                    "EarliestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
+                                                    "LatestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
+                                                    "Rate": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 98.75
+                                                    },
+                                                    "ShippingServiceOptions": {
+                                                        "DeliveryExperience": "NoTracking",
+                                                        "CarrierWillPickUp": false,
+                                                        "LabelFormat": ""
+                                                    },
+                                                    "AvailableLabelFormats": [
+                                                        "ZPL203",
+                                                        "ShippingServiceDefault",
+                                                        "PDF",
+                                                        "PNG"
+                                                    ],
+                                                    "AvailableFormatOptionsForLabel": [
+                                                        {
+                                                            "LabelFormat": "ZPL203"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "ShippingServiceDefault"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PDF"
+                                                        },
+                                                        {
+                                                            "LabelFormat": "PNG"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "TemporarilyUnavailableCarrierList": [
+                                                {
+                                                    "CarrierName": "UPS"
                                                 },
-                                                "AvailableLabelFormats": [
-                                                    "ZPL203",
-                                                    "ShippingServiceDefault",
-                                                    "PDF",
-                                                    "PNG"
-                                                ],
-                                                "AvailableFormatOptionsForLabel": [
-                                                    {
-                                                        "LabelFormat": "ZPL203"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "ShippingServiceDefault"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PDF"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PNG"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "ShippingServiceName": "UPS Next Day Air Saver",
-                                                "CarrierName": "UPS",
-                                                "ShippingServiceId": "UPS_PTP_NEXT_DAY_AIR_SAVER",
-                                                "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKqqhKGQ2YZmuxsXKVXmdgdWNvfxb1qfm5bGm8NuqlqnNT3eTiJ4viTctepggbeUKUSykClJ+Qmw43zdA8wsgREhQCmb4Bbo/skapLQS1F9uwH2FgY5SfMsj/egudyocpVRT45KSQAT0H5YiXW3OyyRAae9fZ0RzDJAABHiisOyYyXnB1mtWOZqc7rlGR4yyqN7jmiT4t8dmuGPX7ptY4qskrN+6VHZO9bM9tdDS0ysHhAVv4jO3Q5sWFg4nEPaARWSsrpa6zSGMLxAOj56O3tcP",
-                                                "ShipDate": "2019-10-28T16:36:36Z",
-                                                "EarliestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
-                                                "LatestEstimatedDeliveryDate": "2019-10-30T06:00:00Z",
-                                                "Rate": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 98.75
+                                                {
+                                                    "CarrierName": "DHLECOMMERCE"
+                                                }
+                                            ],
+                                            "TermsAndConditionsNotAcceptedCarrierList": [
+                                                {
+                                                    "CarrierName": "YANWEN"
                                                 },
-                                                "ShippingServiceOptions": {
-                                                    "DeliveryExperience": "NoTracking",
-                                                    "CarrierWillPickUp": false,
-                                                    "LabelFormat": ""
-                                                },
-                                                "AvailableLabelFormats": [
-                                                    "ZPL203",
-                                                    "ShippingServiceDefault",
-                                                    "PDF",
-                                                    "PNG"
-                                                ],
-                                                "AvailableFormatOptionsForLabel": [
-                                                    {
-                                                        "LabelFormat": "ZPL203"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "ShippingServiceDefault"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PDF"
-                                                    },
-                                                    {
-                                                        "LabelFormat": "PNG"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "TemporarilyUnavailableCarrierList": [
-                                            {
-                                                "CarrierName": "UPS"
-                                            },
-                                            {
-                                                "CarrierName": "DHLECOMMERCE"
-                                            }
-                                        ],
-                                        "TermsAndConditionsNotAcceptedCarrierList": [
-                                            {
-                                                "CarrierName": "YANWEN"
-                                            },
-                                            {
-                                                "CarrierName": "CHINA_POST"
-                                            }
-                                        ]
+                                                {
+                                                    "CarrierName": "CHINA_POST"
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -629,73 +641,75 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipmentRequestDetails": {
-                                                    "AmazonOrderId": "TEST_CASE_400",
-                                                    "ItemList": [
-                                                        {
-                                                            "OrderItemId": "52986411826454",
-                                                            "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipmentRequestDetails": {
+                                                        "AmazonOrderId": "TEST_CASE_400",
+                                                        "ItemList": [
+                                                            {
+                                                                "OrderItemId": "52986411826454",
+                                                                "Quantity": 1
+                                                            }
+                                                        ],
+                                                        "ShipFromAddress": {
+                                                            "Name": "John Doe",
+                                                            "AddressLine1": "300 Turnbull Ave",
+                                                            "Email": "jdoeasdfllkj@yahoo.com",
+                                                            "City": "Detroit",
+                                                            "StateOrProvinceCode": "MI",
+                                                            "PostalCode": "48123",
+                                                            "CountryCode": "USA",
+                                                            "Phone": "7132341234"
+                                                        },
+                                                        "PackageDimensions": {
+                                                            "Length": 10,
+                                                            "Width": 10,
+                                                            "Height": 10,
+                                                            "Unit": "inches"
+                                                        },
+                                                        "Weight": {
+                                                            "Value": 10,
+                                                            "Unit": "oz"
+                                                        },
+                                                        "ShippingServiceOptions": {
+                                                            "DeliveryExperience": "NoTracking",
+                                                            "CarrierWillPickUp": false,
+                                                            "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                         }
-                                                    ],
-                                                    "ShipFromAddress": {
-                                                        "Name": "John Doe",
-                                                        "AddressLine1": "300 Turnbull Ave",
-                                                        "Email": "jdoeasdfllkj@yahoo.com",
-                                                        "City": "Detroit",
-                                                        "StateOrProvinceCode": "MI",
-                                                        "PostalCode": "48123",
-                                                        "CountryCode": "USA",
-                                                        "Phone": "7132341234"
-                                                    },
-                                                    "PackageDimensions": {
-                                                        "Length": 10,
-                                                        "Width": 10,
-                                                        "Height": 10,
-                                                        "Unit": "inches"
-                                                    },
-                                                    "Weight": {
-                                                        "Value": 10,
-                                                        "Unit": "oz"
-                                                    },
-                                                    "ShippingServiceOptions": {
-                                                        "DeliveryExperience": "NoTracking",
-                                                        "CarrierWillPickUp": false,
-                                                        "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                     }
                                                 }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "1 validation error detected: Value 'USA' at 'shipmentRequestDetails.shipFromAddress.countryCode' failed to satisfy constraint: Member must have length less than or equal to 2",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "1 validation error detected: Value 'USA' at 'shipmentRequestDetails.shipFromAddress.countryCode' failed to satisfy constraint: Member must have length less than or equal to 2",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -712,7 +726,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -730,8 +744,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -748,14 +768,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -772,14 +792,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -796,14 +816,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -844,7 +864,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -864,105 +884,107 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behavior": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "abcddcba-00c3-4f6f-a63a-639f76ee9253"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentId": "abcddcba-00c3-4f6f-a63a-639f76ee9253",
-                                        "AmazonOrderId": "903-5563053-5647845",
-                                        "SellerOrderId": "903-5563053-5647845",
-                                        "Insurance": {
-                                            "CurrencyCode": "USD",
-                                            "Amount": 0.0
-                                        },
-                                        "ItemList": [
-                                            {
-                                                "OrderItemId": "12958298061782",
-                                                "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "abcddcba-00c3-4f6f-a63a-639f76ee9253"
                                             }
-                                        ],
-                                        "ShipFromAddress": {
-                                            "Name": "John Doe",
-                                            "AddressLine1": "300 Turnbull Ave",
-                                            "Email": "jdoeasdfllkj@yahoo.com",
-                                            "City": "Detroit",
-                                            "StateOrProvinceCode": "MI",
-                                            "PostalCode": "48123",
-                                            "CountryCode": "US",
-                                            "Phone": "7132341234"
-                                        },
-                                        "ShipToAddress": {
-                                            "Name": "New York",
-                                            "AddressLine1": "TIME WARNER CENTER",
-                                            "AddressLine2": "10 COLUMBUS CIR",
-                                            "Email": "",
-                                            "City": "NEW YORK",
-                                            "StateOrProvinceCode": "NY",
-                                            "PostalCode": "10019-1158",
-                                            "CountryCode": "US",
-                                            "Phone": ""
-                                        },
-                                        "PackageDimensions": {
-                                            "Length": 10.0,
-                                            "Width": 10.0,
-                                            "Height": 10.0,
-                                            "Unit": "inches"
-                                        },
-                                        "Weight": {
-                                            "Value": 10,
-                                            "Unit": "oz"
-                                        },
-                                        "ShippingService": {
-                                            "ShippingServiceName": "UPS 2nd Day Air",
-                                            "CarrierName": "UPS",
-                                            "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                            "ShippingServiceOfferId": "",
-                                            "ShipDate": "2019-10-28T18:00:00Z",
-                                            "Rate": {
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentId": "abcddcba-00c3-4f6f-a63a-639f76ee9253",
+                                            "AmazonOrderId": "903-5563053-5647845",
+                                            "SellerOrderId": "903-5563053-5647845",
+                                            "Insurance": {
                                                 "CurrencyCode": "USD",
-                                                "Amount": 34.73
+                                                "Amount": 0.0
                                             },
-                                            "ShippingServiceOptions": {
-                                                "DeliveryExperience": "DeliveryConfirmationWithoutSignature",
-                                                "DeclaredValue": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 0.0
+                                            "ItemList": [
+                                                {
+                                                    "OrderItemId": "12958298061782",
+                                                    "Quantity": 1
                                                 }
+                                            ],
+                                            "ShipFromAddress": {
+                                                "Name": "John Doe",
+                                                "AddressLine1": "300 Turnbull Ave",
+                                                "Email": "jdoeasdfllkj@yahoo.com",
+                                                "City": "Detroit",
+                                                "StateOrProvinceCode": "MI",
+                                                "PostalCode": "48123",
+                                                "CountryCode": "US",
+                                                "Phone": "7132341234"
                                             },
-                                            "RequiresAdditionalSellerInputs": false
-                                        },
-                                        "Label": {
-                                            "Dimensions": {
-                                                "Length": 6.0,
-                                                "Width": 4.0,
+                                            "ShipToAddress": {
+                                                "Name": "New York",
+                                                "AddressLine1": "TIME WARNER CENTER",
+                                                "AddressLine2": "10 COLUMBUS CIR",
+                                                "Email": "",
+                                                "City": "NEW YORK",
+                                                "StateOrProvinceCode": "NY",
+                                                "PostalCode": "10019-1158",
+                                                "CountryCode": "US",
+                                                "Phone": ""
+                                            },
+                                            "PackageDimensions": {
+                                                "Length": 10.0,
+                                                "Width": 10.0,
+                                                "Height": 10.0,
                                                 "Unit": "inches"
                                             },
-                                            "FileContents": {
-                                                "Contents": "H4sIAAAAAAAAAOS6dV",
-                                                "FileType": "image/png",
-                                                "Checksum": "9ALVyphCKfc3+Lb2ssyh8A=="
-                                            }
-                                        },
-                                        "Status": "Purchased",
-                                        "TrackingId": "1Z17E2100206868939",
-                                        "CreatedDate": "2019-10-28T18:29:34Z",
-                                        "LastUpdatedDate": "2019-10-28T18:30:35Z"
+                                            "Weight": {
+                                                "Value": 10,
+                                                "Unit": "oz"
+                                            },
+                                            "ShippingService": {
+                                                "ShippingServiceName": "UPS 2nd Day Air",
+                                                "CarrierName": "UPS",
+                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                "ShippingServiceOfferId": "",
+                                                "ShipDate": "2019-10-28T18:00:00Z",
+                                                "Rate": {
+                                                    "CurrencyCode": "USD",
+                                                    "Amount": 34.73
+                                                },
+                                                "ShippingServiceOptions": {
+                                                    "DeliveryExperience": "DeliveryConfirmationWithoutSignature",
+                                                    "DeclaredValue": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 0.0
+                                                    }
+                                                },
+                                                "RequiresAdditionalSellerInputs": false
+                                            },
+                                            "Label": {
+                                                "Dimensions": {
+                                                    "Length": 6.0,
+                                                    "Width": 4.0,
+                                                    "Unit": "inches"
+                                                },
+                                                "FileContents": {
+                                                    "Contents": "H4sIAAAAAAAAAOS6dV",
+                                                    "FileType": "image/png",
+                                                    "Checksum": "9ALVyphCKfc3+Lb2ssyh8A=="
+                                                }
+                                            },
+                                            "Status": "Purchased",
+                                            "TrackingId": "1Z17E2100206868939",
+                                            "CreatedDate": "2019-10-28T18:29:34Z",
+                                            "LastUpdatedDate": "2019-10-28T18:30:35Z"
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -982,38 +1004,40 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behavior": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "aabbccdd-1beb-4cda-8bf4-7366cfddbec1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "aabbccdd-1beb-4cda-8bf4-7366cfddbec1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "1 validation error detected: Value 'TEST_CASE_400' at 'shipmentId' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "1 validation error detected: Value 'TEST_CASE_400' at 'shipmentId' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1030,7 +1054,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1048,8 +1072,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1066,14 +1096,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1090,14 +1120,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1114,14 +1144,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1159,7 +1189,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1179,101 +1209,103 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "be7a0a53-00c3-4f6f-a63a-639f76ee9253"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentId": "be7a0a53-00c3-4f6f-a63a-639f76ee9253",
-                                        "AmazonOrderId": "903-5563053-5647845",
-                                        "SellerOrderId": "903-5563053-5647845",
-                                        "Insurance": {
-                                            "CurrencyCode": "USD",
-                                            "Amount": 0.0
-                                        },
-                                        "ItemList": [
-                                            {
-                                                "OrderItemId": "12958298061782",
-                                                "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "be7a0a53-00c3-4f6f-a63a-639f76ee9253"
                                             }
-                                        ],
-                                        "ShipFromAddress": {
-                                            "Name": "John Doe",
-                                            "AddressLine1": "300 Turnbull Ave",
-                                            "Email": "jdoeasdfllkj@yahoo.com",
-                                            "City": "Detroit",
-                                            "StateOrProvinceCode": "MI",
-                                            "PostalCode": "48123",
-                                            "CountryCode": "US",
-                                            "Phone": "7132341234"
-                                        },
-                                        "ShipToAddress": {
-                                            "Name": "New York",
-                                            "AddressLine1": "TIME WARNER CENTER",
-                                            "AddressLine2": "10 COLUMBUS CIR",
-                                            "Email": "",
-                                            "City": "NEW YORK",
-                                            "StateOrProvinceCode": "NY",
-                                            "PostalCode": "10019-1158",
-                                            "CountryCode": "US",
-                                            "Phone": ""
-                                        },
-                                        "PackageDimensions": {
-                                            "Length": 10.0,
-                                            "Width": 10.0,
-                                            "Height": 10.0,
-                                            "Unit": "inches"
-                                        },
-                                        "Weight": {
-                                            "Value": 10,
-                                            "Unit": "oz"
-                                        },
-                                        "ShippingService": {
-                                            "ShippingServiceName": "UPS 2nd Day Air",
-                                            "CarrierName": "UPS",
-                                            "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                            "ShippingServiceOfferId": "",
-                                            "ShipDate": "2019-10-28T18:00:00Z",
-                                            "Rate": {
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentId": "be7a0a53-00c3-4f6f-a63a-639f76ee9253",
+                                            "AmazonOrderId": "903-5563053-5647845",
+                                            "SellerOrderId": "903-5563053-5647845",
+                                            "Insurance": {
                                                 "CurrencyCode": "USD",
-                                                "Amount": 34.73
+                                                "Amount": 0.0
                                             },
-                                            "ShippingServiceOptions": {
-                                                "DeliveryExperience": "DeliveryConfirmationWithoutSignature",
-                                                "DeclaredValue": {
+                                            "ItemList": [
+                                                {
+                                                    "OrderItemId": "12958298061782",
+                                                    "Quantity": 1
+                                                }
+                                            ],
+                                            "ShipFromAddress": {
+                                                "Name": "John Doe",
+                                                "AddressLine1": "300 Turnbull Ave",
+                                                "Email": "jdoeasdfllkj@yahoo.com",
+                                                "City": "Detroit",
+                                                "StateOrProvinceCode": "MI",
+                                                "PostalCode": "48123",
+                                                "CountryCode": "US",
+                                                "Phone": "7132341234"
+                                            },
+                                            "ShipToAddress": {
+                                                "Name": "New York",
+                                                "AddressLine1": "TIME WARNER CENTER",
+                                                "AddressLine2": "10 COLUMBUS CIR",
+                                                "Email": "",
+                                                "City": "NEW YORK",
+                                                "StateOrProvinceCode": "NY",
+                                                "PostalCode": "10019-1158",
+                                                "CountryCode": "US",
+                                                "Phone": ""
+                                            },
+                                            "PackageDimensions": {
+                                                "Length": 10.0,
+                                                "Width": 10.0,
+                                                "Height": 10.0,
+                                                "Unit": "inches"
+                                            },
+                                            "Weight": {
+                                                "Value": 10,
+                                                "Unit": "oz"
+                                            },
+                                            "ShippingService": {
+                                                "ShippingServiceName": "UPS 2nd Day Air",
+                                                "CarrierName": "UPS",
+                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                "ShippingServiceOfferId": "",
+                                                "ShipDate": "2019-10-28T18:00:00Z",
+                                                "Rate": {
                                                     "CurrencyCode": "USD",
-                                                    "Amount": 0.0
+                                                    "Amount": 34.73
+                                                },
+                                                "ShippingServiceOptions": {
+                                                    "DeliveryExperience": "DeliveryConfirmationWithoutSignature",
+                                                    "DeclaredValue": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 0.0
+                                                    }
+                                                },
+                                                "RequiresAdditionalSellerInputs": false
+                                            },
+                                            "Label": {
+                                                "Dimensions": {},
+                                                "FileContents": {
+                                                    "Contents": "",
+                                                    "FileType": "",
+                                                    "Checksum": ""
                                                 }
                                             },
-                                            "RequiresAdditionalSellerInputs": false
-                                        },
-                                        "Label": {
-                                            "Dimensions": {},
-                                            "FileContents": {
-                                                "Contents": "",
-                                                "FileType": "",
-                                                "Checksum": ""
-                                            }
-                                        },
-                                        "Status": "RefundPending",
-                                        "TrackingId": "1Z17E2100206868939",
-                                        "CreatedDate": "2019-10-28T18:29:34Z",
-                                        "LastUpdatedDate": "2019-10-28T18:36:55Z"
+                                            "Status": "RefundPending",
+                                            "TrackingId": "1Z17E2100206868939",
+                                            "CreatedDate": "2019-10-28T18:29:34Z",
+                                            "LastUpdatedDate": "2019-10-28T18:36:55Z"
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1293,38 +1325,40 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "87d20cf7-1beb-4cda-8bf4-7366cfddbec1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "87d20cf7-1beb-4cda-8bf4-7366cfddbec1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "1 validation error detected: Value 'TEST_CASE_400' at 'shipmentId' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "1 validation error detected: Value 'TEST_CASE_400' at 'shipmentId' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1341,7 +1375,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1359,8 +1393,14 @@
                     "404": {
                         "description": "The resource specified does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1377,14 +1417,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1401,14 +1441,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1425,14 +1465,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1472,7 +1512,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1492,101 +1532,103 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "be7a0a53-00c3-4f6f-a63a-639f76ee9253"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentId": "be7a0a53-00c3-4f6f-a63a-639f76ee9253",
-                                        "AmazonOrderId": "903-5563053-5647845",
-                                        "SellerOrderId": "903-5563053-5647845",
-                                        "Insurance": {
-                                            "CurrencyCode": "USD",
-                                            "Amount": 0.0
-                                        },
-                                        "ItemList": [
-                                            {
-                                                "OrderItemId": "12958298061782",
-                                                "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "be7a0a53-00c3-4f6f-a63a-639f76ee9253"
                                             }
-                                        ],
-                                        "ShipFromAddress": {
-                                            "Name": "John Doe",
-                                            "AddressLine1": "300 Turnbull Ave",
-                                            "Email": "jdoeasdfllkj@yahoo.com",
-                                            "City": "Detroit",
-                                            "StateOrProvinceCode": "MI",
-                                            "PostalCode": "48123",
-                                            "CountryCode": "US",
-                                            "Phone": "7132341234"
-                                        },
-                                        "ShipToAddress": {
-                                            "Name": "New York",
-                                            "AddressLine1": "TIME WARNER CENTER",
-                                            "AddressLine2": "10 COLUMBUS CIR",
-                                            "Email": "",
-                                            "City": "NEW YORK",
-                                            "StateOrProvinceCode": "NY",
-                                            "PostalCode": "10019-1158",
-                                            "CountryCode": "US",
-                                            "Phone": ""
-                                        },
-                                        "PackageDimensions": {
-                                            "Length": 10.0,
-                                            "Width": 10.0,
-                                            "Height": 10.0,
-                                            "Unit": "inches"
-                                        },
-                                        "Weight": {
-                                            "Value": 10,
-                                            "Unit": "oz"
-                                        },
-                                        "ShippingService": {
-                                            "ShippingServiceName": "UPS 2nd Day Air",
-                                            "CarrierName": "UPS",
-                                            "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                            "ShippingServiceOfferId": "",
-                                            "ShipDate": "2019-10-28T18:00:00Z",
-                                            "Rate": {
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentId": "be7a0a53-00c3-4f6f-a63a-639f76ee9253",
+                                            "AmazonOrderId": "903-5563053-5647845",
+                                            "SellerOrderId": "903-5563053-5647845",
+                                            "Insurance": {
                                                 "CurrencyCode": "USD",
-                                                "Amount": 34.73
+                                                "Amount": 0.0
                                             },
-                                            "ShippingServiceOptions": {
-                                                "DeliveryExperience": "DeliveryConfirmationWithoutSignature",
-                                                "DeclaredValue": {
+                                            "ItemList": [
+                                                {
+                                                    "OrderItemId": "12958298061782",
+                                                    "Quantity": 1
+                                                }
+                                            ],
+                                            "ShipFromAddress": {
+                                                "Name": "John Doe",
+                                                "AddressLine1": "300 Turnbull Ave",
+                                                "Email": "jdoeasdfllkj@yahoo.com",
+                                                "City": "Detroit",
+                                                "StateOrProvinceCode": "MI",
+                                                "PostalCode": "48123",
+                                                "CountryCode": "US",
+                                                "Phone": "7132341234"
+                                            },
+                                            "ShipToAddress": {
+                                                "Name": "New York",
+                                                "AddressLine1": "TIME WARNER CENTER",
+                                                "AddressLine2": "10 COLUMBUS CIR",
+                                                "Email": "",
+                                                "City": "NEW YORK",
+                                                "StateOrProvinceCode": "NY",
+                                                "PostalCode": "10019-1158",
+                                                "CountryCode": "US",
+                                                "Phone": ""
+                                            },
+                                            "PackageDimensions": {
+                                                "Length": 10.0,
+                                                "Width": 10.0,
+                                                "Height": 10.0,
+                                                "Unit": "inches"
+                                            },
+                                            "Weight": {
+                                                "Value": 10,
+                                                "Unit": "oz"
+                                            },
+                                            "ShippingService": {
+                                                "ShippingServiceName": "UPS 2nd Day Air",
+                                                "CarrierName": "UPS",
+                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                "ShippingServiceOfferId": "",
+                                                "ShipDate": "2019-10-28T18:00:00Z",
+                                                "Rate": {
                                                     "CurrencyCode": "USD",
-                                                    "Amount": 0.0
+                                                    "Amount": 34.73
+                                                },
+                                                "ShippingServiceOptions": {
+                                                    "DeliveryExperience": "DeliveryConfirmationWithoutSignature",
+                                                    "DeclaredValue": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 0.0
+                                                    }
+                                                },
+                                                "RequiresAdditionalSellerInputs": false
+                                            },
+                                            "Label": {
+                                                "Dimensions": {},
+                                                "FileContents": {
+                                                    "Contents": "",
+                                                    "FileType": "",
+                                                    "Checksum": ""
                                                 }
                                             },
-                                            "RequiresAdditionalSellerInputs": false
-                                        },
-                                        "Label": {
-                                            "Dimensions": {},
-                                            "FileContents": {
-                                                "Contents": "",
-                                                "FileType": "",
-                                                "Checksum": ""
-                                            }
-                                        },
-                                        "Status": "RefundPending",
-                                        "TrackingId": "1Z17E2100206868939",
-                                        "CreatedDate": "2019-10-28T18:29:34Z",
-                                        "LastUpdatedDate": "2019-10-28T18:36:55Z"
+                                            "Status": "RefundPending",
+                                            "TrackingId": "1Z17E2100206868939",
+                                            "CreatedDate": "2019-10-28T18:29:34Z",
+                                            "LastUpdatedDate": "2019-10-28T18:36:55Z"
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1606,38 +1648,40 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "87d20cf7-1beb-4cda-8bf4-7366cfddbec1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "87d20cf7-1beb-4cda-8bf4-7366cfddbec1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "1 validation error detected: Value 'TEST_CASE_400' at 'shipmentId' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "1 validation error detected: Value 'TEST_CASE_400' at 'shipmentId' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1654,7 +1698,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1672,8 +1716,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1690,14 +1740,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1714,14 +1764,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1738,14 +1788,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1783,7 +1833,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1803,143 +1853,145 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipmentRequestDetails": {
-                                                    "AmazonOrderId": "903-5563053-5647845",
-                                                    "ItemList": [
-                                                        {
-                                                            "OrderItemId": "52986411826454",
-                                                            "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipmentRequestDetails": {
+                                                        "AmazonOrderId": "903-5563053-5647845",
+                                                        "ItemList": [
+                                                            {
+                                                                "OrderItemId": "52986411826454",
+                                                                "Quantity": 1
+                                                            }
+                                                        ],
+                                                        "ShipFromAddress": {
+                                                            "Name": "John Doe",
+                                                            "AddressLine1": "300 Turnbull Ave",
+                                                            "Email": "jdoeasdfllkj@yahoo.com",
+                                                            "City": "Detroit",
+                                                            "StateOrProvinceCode": "MI",
+                                                            "PostalCode": "48123",
+                                                            "CountryCode": "US",
+                                                            "Phone": "7132341234"
+                                                        },
+                                                        "PackageDimensions": {
+                                                            "Length": 10,
+                                                            "Width": 10,
+                                                            "Height": 10,
+                                                            "Unit": "inches"
+                                                        },
+                                                        "Weight": {
+                                                            "Value": 10,
+                                                            "Unit": "oz"
+                                                        },
+                                                        "ShippingServiceOptions": {
+                                                            "DeliveryExperience": "NoTracking",
+                                                            "CarrierWillPickUp": false,
+                                                            "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                         }
-                                                    ],
-                                                    "ShipFromAddress": {
-                                                        "Name": "John Doe",
-                                                        "AddressLine1": "300 Turnbull Ave",
-                                                        "Email": "jdoeasdfllkj@yahoo.com",
-                                                        "City": "Detroit",
-                                                        "StateOrProvinceCode": "MI",
-                                                        "PostalCode": "48123",
-                                                        "CountryCode": "US",
-                                                        "Phone": "7132341234"
                                                     },
-                                                    "PackageDimensions": {
-                                                        "Length": 10,
-                                                        "Width": 10,
-                                                        "Height": 10,
-                                                        "Unit": "inches"
-                                                    },
-                                                    "Weight": {
-                                                        "Value": 10,
-                                                        "Unit": "oz"
-                                                    },
-                                                    "ShippingServiceOptions": {
-                                                        "DeliveryExperience": "NoTracking",
-                                                        "CarrierWillPickUp": false,
-                                                        "CarrierWillPickUpOption": "ShipperWillDropOff"
-                                                    }
-                                                },
-                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                                "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t"
+                                                    "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                    "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t"
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentId": "be7a0a53-00c3-4f6f-a63a-639f76ee9253",
-                                        "AmazonOrderId": "903-5563053-5647845",
-                                        "Insurance": {
-                                            "CurrencyCode": "USD",
-                                            "Amount": 0
-                                        },
-                                        "ItemList": [
-                                            {
-                                                "OrderItemId": "12958298061782",
-                                                "Quantity": 1
-                                            }
-                                        ],
-                                        "ShipFromAddress": {
-                                            "Name": "John Doe",
-                                            "AddressLine1": "300 Turnbull Ave",
-                                            "Email": "jdoeasdfllkj@yahoo.com",
-                                            "City": "Detroit",
-                                            "StateOrProvinceCode": "MI",
-                                            "PostalCode": "48123",
-                                            "CountryCode": "US",
-                                            "Phone": "7132341234"
-                                        },
-                                        "ShipToAddress": {
-                                            "Name": "New York",
-                                            "AddressLine1": "TIME WARNER CENTER",
-                                            "AddressLine2": "10 COLUMBUS CIR",
-                                            "Email": "",
-                                            "City": "NEW YORK",
-                                            "StateOrProvinceCode": "NY",
-                                            "PostalCode": "10019-1158",
-                                            "CountryCode": "US",
-                                            "Phone": ""
-                                        },
-                                        "PackageDimensions": {
-                                            "Length": 10,
-                                            "Width": 10,
-                                            "Height": 10,
-                                            "Unit": "inches"
-                                        },
-                                        "Weight": {
-                                            "Value": 10,
-                                            "Unit": "oz"
-                                        },
-                                        "ShippingService": {
-                                            "ShippingServiceName": "UPS 2nd Day Air",
-                                            "CarrierName": "UPS",
-                                            "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                            "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t",
-                                            "ShipDate": "2019-10-28T16:37:37Z",
-                                            "EarliestEstimatedDeliveryDate": "2019-10-30T07:00:00Z",
-                                            "LatestEstimatedDeliveryDate": "2019-10-30T07:00:00Z",
-                                            "Rate": {
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentId": "be7a0a53-00c3-4f6f-a63a-639f76ee9253",
+                                            "AmazonOrderId": "903-5563053-5647845",
+                                            "Insurance": {
                                                 "CurrencyCode": "USD",
-                                                "Amount": 34.73
+                                                "Amount": 0
                                             },
-                                            "ShippingServiceOptions": {
-                                                "DeliveryExperience": "NoTracking",
-                                                "DeclaredValue": {
-                                                    "CurrencyCode": "USD",
-                                                    "Amount": 0
+                                            "ItemList": [
+                                                {
+                                                    "OrderItemId": "12958298061782",
+                                                    "Quantity": 1
                                                 }
+                                            ],
+                                            "ShipFromAddress": {
+                                                "Name": "John Doe",
+                                                "AddressLine1": "300 Turnbull Ave",
+                                                "Email": "jdoeasdfllkj@yahoo.com",
+                                                "City": "Detroit",
+                                                "StateOrProvinceCode": "MI",
+                                                "PostalCode": "48123",
+                                                "CountryCode": "US",
+                                                "Phone": "7132341234"
                                             },
-                                            "RequiresAdditionalSellerInputs": false
-                                        },
-                                        "Label": {
-                                            "Dimensions": {
-                                                "Length": 6.0,
-                                                "Width": 4.0,
+                                            "ShipToAddress": {
+                                                "Name": "New York",
+                                                "AddressLine1": "TIME WARNER CENTER",
+                                                "AddressLine2": "10 COLUMBUS CIR",
+                                                "Email": "",
+                                                "City": "NEW YORK",
+                                                "StateOrProvinceCode": "NY",
+                                                "PostalCode": "10019-1158",
+                                                "CountryCode": "US",
+                                                "Phone": ""
+                                            },
+                                            "PackageDimensions": {
+                                                "Length": 10,
+                                                "Width": 10,
+                                                "Height": 10,
                                                 "Unit": "inches"
                                             },
-                                            "FileContents": {
-                                                "Contents": "H4sIAAAAAAAAAOR",
-                                                "FileType": "image/png",
-                                                "Checksum": "d+eUxK5WTGxkGsTF0pmefQ=="
+                                            "Weight": {
+                                                "Value": 10,
+                                                "Unit": "oz"
                                             },
-                                            "LabelFormat": "PNG"
-                                        },
-                                        "Status": "Purchased",
-                                        "TrackingId": "1Z17E2100217295733",
-                                        "CreatedDate": "2019-10-28T16:37:43Z"
+                                            "ShippingService": {
+                                                "ShippingServiceName": "UPS 2nd Day Air",
+                                                "CarrierName": "UPS",
+                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t",
+                                                "ShipDate": "2019-10-28T16:37:37Z",
+                                                "EarliestEstimatedDeliveryDate": "2019-10-30T07:00:00Z",
+                                                "LatestEstimatedDeliveryDate": "2019-10-30T07:00:00Z",
+                                                "Rate": {
+                                                    "CurrencyCode": "USD",
+                                                    "Amount": 34.73
+                                                },
+                                                "ShippingServiceOptions": {
+                                                    "DeliveryExperience": "NoTracking",
+                                                    "DeclaredValue": {
+                                                        "CurrencyCode": "USD",
+                                                        "Amount": 0
+                                                    }
+                                                },
+                                                "RequiresAdditionalSellerInputs": false
+                                            },
+                                            "Label": {
+                                                "Dimensions": {
+                                                    "Length": 6.0,
+                                                    "Width": 4.0,
+                                                    "Unit": "inches"
+                                                },
+                                                "FileContents": {
+                                                    "Contents": "H4sIAAAAAAAAAOR",
+                                                    "FileType": "image/png",
+                                                    "Checksum": "d+eUxK5WTGxkGsTF0pmefQ=="
+                                                },
+                                                "LabelFormat": "PNG"
+                                            },
+                                            "Status": "Purchased",
+                                            "TrackingId": "1Z17E2100217295733",
+                                            "CreatedDate": "2019-10-28T16:37:43Z"
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -1959,75 +2011,77 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipmentRequestDetails": {
-                                                    "AmazonOrderId": "TEST_CASE_400",
-                                                    "ItemList": [
-                                                        {
-                                                            "OrderItemId": "52986411826454",
-                                                            "Quantity": 1
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipmentRequestDetails": {
+                                                        "AmazonOrderId": "TEST_CASE_400",
+                                                        "ItemList": [
+                                                            {
+                                                                "OrderItemId": "52986411826454",
+                                                                "Quantity": 1
+                                                            }
+                                                        ],
+                                                        "ShipFromAddress": {
+                                                            "Name": "John Doe",
+                                                            "AddressLine1": "300 Turnbull Ave",
+                                                            "Email": "jdoeasdfllkj@yahoo.com",
+                                                            "City": "Detroit",
+                                                            "StateOrProvinceCode": "MI",
+                                                            "PostalCode": "48123",
+                                                            "CountryCode": "USA",
+                                                            "Phone": "7132341234"
+                                                        },
+                                                        "PackageDimensions": {
+                                                            "Length": 10,
+                                                            "Width": 10,
+                                                            "Height": 10,
+                                                            "Unit": "inches"
+                                                        },
+                                                        "Weight": {
+                                                            "Value": 10,
+                                                            "Unit": "oz"
+                                                        },
+                                                        "ShippingServiceOptions": {
+                                                            "DeliveryExperience": "NoTracking",
+                                                            "CarrierWillPickUp": false,
+                                                            "CarrierWillPickUpOption": "ShipperWillDropOff"
                                                         }
-                                                    ],
-                                                    "ShipFromAddress": {
-                                                        "Name": "John Doe",
-                                                        "AddressLine1": "300 Turnbull Ave",
-                                                        "Email": "jdoeasdfllkj@yahoo.com",
-                                                        "City": "Detroit",
-                                                        "StateOrProvinceCode": "MI",
-                                                        "PostalCode": "48123",
-                                                        "CountryCode": "USA",
-                                                        "Phone": "7132341234"
                                                     },
-                                                    "PackageDimensions": {
-                                                        "Length": 10,
-                                                        "Width": 10,
-                                                        "Height": 10,
-                                                        "Unit": "inches"
-                                                    },
-                                                    "Weight": {
-                                                        "Value": 10,
-                                                        "Unit": "oz"
-                                                    },
-                                                    "ShippingServiceOptions": {
-                                                        "DeliveryExperience": "NoTracking",
-                                                        "CarrierWillPickUp": false,
-                                                        "CarrierWillPickUpOption": "ShipperWillDropOff"
-                                                    }
-                                                },
-                                                "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
-                                                "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t"
+                                                    "ShippingServiceId": "UPS_PTP_2ND_DAY_AIR",
+                                                    "ShippingServiceOfferId": "WHgxtyn6qjGGaCzOCog1azF5HLHje5Pz3Lc2Fmt5eKoZAReW8oJ1SMumuBS8lA/Hjuglhyiu0+KRLvyJxFV0PB9YFMDhygs3VyTL0WGYkGxiuRkmuEvpqldUn9rrkWVodqnR4vx2VtXvtER/Ju6RqYoddJZGy6RS2KLzzhQ2NclN0NYXMZVqpOe5RsRBddXaGuJr7oza3M52+JzChocAHzcurIhCRynpbxfmNLzZMQEbgnpGLzuaoSMzfxg90/NaXFR/Ou01du/uKd5AbfMW/AxAKP9ht6Oi9lDHq6WkGqvjkVLW0/jj/fBgblIwcs+t"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "1 validation error detected: Value 'USA' at 'shipmentRequestDetails.shipFromAddress.countryCode' failed to satisfy constraint: Member must have length less than or equal to 2",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "1 validation error detected: Value 'USA' at 'shipmentRequestDetails.shipFromAddress.countryCode' failed to satisfy constraint: Member must have length less than or equal to 2",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2044,7 +2098,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -2062,8 +2116,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2080,14 +2140,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2104,14 +2164,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2128,14 +2188,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2174,7 +2234,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -2194,50 +2254,52 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShippingServiceId": "UPS_PTP_GND",
-                                                "ShipFromAddress": {
-                                                    "Name": "John Doe",
-                                                    "AddressLine1": "300 Turnbull Ave",
-                                                    "Email": "jdoeasdfllkj@yahoo.com",
-                                                    "City": "Detroit",
-                                                    "StateOrProvinceCode": "MI",
-                                                    "PostalCode": "48123",
-                                                    "CountryCode": "US",
-                                                    "Phone": "7132341234"
-                                                },
-                                                "OrderId": "903-5563053-5647845"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShippingServiceId": "UPS_PTP_GND",
+                                                    "ShipFromAddress": {
+                                                        "Name": "John Doe",
+                                                        "AddressLine1": "300 Turnbull Ave",
+                                                        "Email": "jdoeasdfllkj@yahoo.com",
+                                                        "City": "Detroit",
+                                                        "StateOrProvinceCode": "MI",
+                                                        "PostalCode": "48123",
+                                                        "CountryCode": "US",
+                                                        "Phone": "7132341234"
+                                                    },
+                                                    "OrderId": "903-5563053-5647845"
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentLevelFields": [
-                                            {
-                                                "AdditionalInputFieldName": "John Doe"
-                                            }
-                                        ],
-                                        "ItemLevelFieldsList": [
-                                            {
-                                                "Asin": "ASIN_ID_200",
-                                                "AdditionalInputs": []
-                                            }
-                                        ]
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentLevelFields": [
+                                                {
+                                                    "AdditionalInputFieldName": "John Doe"
+                                                }
+                                            ],
+                                            "ItemLevelFieldsList": [
+                                                {
+                                                    "Asin": "ASIN_ID_200",
+                                                    "AdditionalInputs": []
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -2257,51 +2319,53 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShippingServiceId": "UPS_PTP_GND",
-                                                "ShipFromAddress": {
-                                                    "Name": "John Doe",
-                                                    "AddressLine1": "300 Turnbull Ave",
-                                                    "Email": "jdoeasdfllkj@yahoo.com",
-                                                    "City": "Detroit",
-                                                    "StateOrProvinceCode": "MI",
-                                                    "PostalCode": "48123",
-                                                    "CountryCode": "XX",
-                                                    "Phone": "7132341234"
-                                                },
-                                                "OrderId": "901-5563053-5647845"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShippingServiceId": "UPS_PTP_GND",
+                                                    "ShipFromAddress": {
+                                                        "Name": "John Doe",
+                                                        "AddressLine1": "300 Turnbull Ave",
+                                                        "Email": "jdoeasdfllkj@yahoo.com",
+                                                        "City": "Detroit",
+                                                        "StateOrProvinceCode": "MI",
+                                                        "PostalCode": "48123",
+                                                        "CountryCode": "XX",
+                                                        "Phone": "7132341234"
+                                                    },
+                                                    "OrderId": "901-5563053-5647845"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid Ship From Address when calling GetAdditionalSellerInputs",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid Ship From Address when calling GetAdditionalSellerInputs",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2318,7 +2382,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -2336,8 +2400,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2354,14 +2424,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2378,14 +2448,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2402,14 +2472,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2448,7 +2518,7 @@
                     "200": {
                         "description": "Success",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -2468,50 +2538,52 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShippingServiceId": "UPS_PTP_GND",
-                                                "ShipFromAddress": {
-                                                    "Name": "John Doe",
-                                                    "AddressLine1": "300 Turnbull Ave",
-                                                    "Email": "jdoeasdfllkj@yahoo.com",
-                                                    "City": "Detroit",
-                                                    "StateOrProvinceCode": "MI",
-                                                    "PostalCode": "48123",
-                                                    "CountryCode": "US",
-                                                    "Phone": "7132341234"
-                                                },
-                                                "OrderId": "903-5563053-5647845"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShippingServiceId": "UPS_PTP_GND",
+                                                    "ShipFromAddress": {
+                                                        "Name": "John Doe",
+                                                        "AddressLine1": "300 Turnbull Ave",
+                                                        "Email": "jdoeasdfllkj@yahoo.com",
+                                                        "City": "Detroit",
+                                                        "StateOrProvinceCode": "MI",
+                                                        "PostalCode": "48123",
+                                                        "CountryCode": "US",
+                                                        "Phone": "7132341234"
+                                                    },
+                                                    "OrderId": "903-5563053-5647845"
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentLevelFields": [
-                                            {
-                                                "AdditionalInputFieldName": "John Doe"
-                                            }
-                                        ],
-                                        "ItemLevelFieldsList": [
-                                            {
-                                                "Asin": "ASIN_ID_200",
-                                                "AdditionalInputs": []
-                                            }
-                                        ]
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentLevelFields": [
+                                                {
+                                                    "AdditionalInputFieldName": "John Doe"
+                                                }
+                                            ],
+                                            "ItemLevelFieldsList": [
+                                                {
+                                                    "Asin": "ASIN_ID_200",
+                                                    "AdditionalInputs": []
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -2531,51 +2603,53 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShippingServiceId": "UPS_PTP_GND",
-                                                "ShipFromAddress": {
-                                                    "Name": "John Doe",
-                                                    "AddressLine1": "300 Turnbull Ave",
-                                                    "Email": "jdoeasdfllkj@yahoo.com",
-                                                    "City": "Detroit",
-                                                    "StateOrProvinceCode": "MI",
-                                                    "PostalCode": "48123",
-                                                    "CountryCode": "XX",
-                                                    "Phone": "7132341234"
-                                                },
-                                                "OrderId": "901-5563053-5647845"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShippingServiceId": "UPS_PTP_GND",
+                                                    "ShipFromAddress": {
+                                                        "Name": "John Doe",
+                                                        "AddressLine1": "300 Turnbull Ave",
+                                                        "Email": "jdoeasdfllkj@yahoo.com",
+                                                        "City": "Detroit",
+                                                        "StateOrProvinceCode": "MI",
+                                                        "PostalCode": "48123",
+                                                        "CountryCode": "XX",
+                                                        "Phone": "7132341234"
+                                                    },
+                                                    "OrderId": "901-5563053-5647845"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid Ship From Address when calling GetAdditionalSellerInputs",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid Ship From Address when calling GetAdditionalSellerInputs",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2592,7 +2666,7 @@
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
@@ -2610,8 +2684,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2628,14 +2708,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2652,14 +2732,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2676,14 +2756,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3058,7 +3138,7 @@
             },
             "AmazonOrderId": {
                 "type": "string",
-                "description": "An Amazon-defined order identifier, in 3-7-7 format. <br>**Pattern** : `[0-9A-Z]{3}-[0-9]{7}-[0-9]{7}`."
+                "description": "An Amazon-defined order identifier, in 3-7-7 format."
             },
             "CancelShipmentResponse": {
                 "type": "object",

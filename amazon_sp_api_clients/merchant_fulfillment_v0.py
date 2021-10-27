@@ -1250,7 +1250,7 @@ class AddressName(str):
 
 class AmazonOrderId(str):
     """
-    An Amazon-defined order identifier, in 3-7-7 format. <br>**Pattern** : `[0-9A-Z]{3}-[0-9]{7}-[0-9]{7}`.
+    An Amazon-defined order identifier, in 3-7-7 format.
     """
 
 

@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Selling Partner API for Listings Items",
-        "description": "The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which you use to retrieve the information about Amazon product types needed to use the Listings Items API.\n\nFor more information, see the [Listing Items API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/listings-items-api-use-case-guide/listings-items-api-use-case-guide_2020-09-01.md).",
+        "description": "The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which you use to retrieve the information about Amazon product types needed to use the Listings Items API.\n\nFor more information, see the [Listings Items API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/listings-items-api-use-case-guide/listings-items-api-use-case-guide_2021-08-01.md).",
         "contact": {
             "name": "Selling Partner API Developer Support",
             "url": "https://sellercentral.amazon.com/gp/mws/contactus.html"
@@ -11,7 +11,7 @@
             "name": "Apache License 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0"
         },
-        "version": "2020-09-01"
+        "version": "2021-08-01"
     },
     "servers": [
         {
@@ -19,12 +19,404 @@
         }
     ],
     "paths": {
-        "/listings/2020-09-01/items/{sellerId}/{sku}": {
+        "/listings/2021-08-01/items/{sellerId}/{sku}": {
+            "get": {
+                "tags": [
+                    "listings"
+                ],
+                "description": "Returns details about a listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
+                "operationId": "getListingsItem",
+                "parameters": [
+                    {
+                        "name": "sellerId",
+                        "in": "path",
+                        "description": "A selling partner identifier, such as a merchant account or vendor code.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sku",
+                        "in": "path",
+                        "description": "A selling partner provided identifier for an Amazon listing.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "marketplaceIds",
+                        "in": "query",
+                        "description": "A comma-delimited list of Amazon marketplace identifiers for the request.",
+                        "required": true,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "ATVPDKIKX0DER"
+                    },
+                    {
+                        "name": "issueLocale",
+                        "in": "query",
+                        "description": "A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: \"en_US\", \"fr_CA\", \"fr_FR\". Localized messages default to \"en_US\" when a localization is not available in the specified locale.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en_US"
+                    },
+                    {
+                        "name": "includedData",
+                        "in": "query",
+                        "description": "A comma-delimited list of data sets to include in the response. Default: summaries.",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "summaries",
+                                    "attributes",
+                                    "issues",
+                                    "offers",
+                                    "fulfillmentAvailability",
+                                    "procurement"
+                                ],
+                                "x-docgen-enum-table-extension": [
+                                    {
+                                        "value": "summaries",
+                                        "description": "Summary details of the listing item."
+                                    },
+                                    {
+                                        "value": "attributes",
+                                        "description": "JSON object containing structured listing item attribute data keyed by attribute name."
+                                    },
+                                    {
+                                        "value": "issues",
+                                        "description": "Issues associated with the listing item."
+                                    },
+                                    {
+                                        "value": "offers",
+                                        "description": "Current offers for the listing item."
+                                    },
+                                    {
+                                        "value": "fulfillmentAvailability",
+                                        "description": "Fulfillment availability details for the listing item."
+                                    },
+                                    {
+                                        "value": "procurement",
+                                        "description": "Vendor procurement details for the listing item. "
+                                    }
+                                ]
+                            }
+                        },
+                        "example": "summaries"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                },
+                                "example": {
+                                    "sku": "GM-ZDPI-9B4E",
+                                    "summaries": [
+                                        {
+                                            "marketplaceId": "ATVPDKIKX0DER",
+                                            "asin": "B071VG5N9D",
+                                            "productType": "LUGGAGE",
+                                            "conditionType": "new_new",
+                                            "status": [
+                                                "BUYABLE"
+                                            ],
+                                            "itemName": "Hardside Carry-On Spinner Suitcase Luggage",
+                                            "createdDate": "2021-02-01T00:00:00Z",
+                                            "lastUpdatedDate": "2021-03-01T00:00:00Z",
+                                            "mainImage": {
+                                                "link": "https://www.example.com/luggage.png",
+                                                "height": 500,
+                                                "width": 500
+                                            }
+                                        }
+                                    ],
+                                    "offers": [
+                                        {
+                                            "marketplaceId": "ATVPDKIKX0DER",
+                                            "offerType": "B2C",
+                                            "price": {
+                                                "currencyCode": "USD",
+                                                "amount": "100.00"
+                                            }
+                                        }
+                                    ],
+                                    "fulfillmentAvailability": [
+                                        {
+                                            "fulfillmentChannelCode": "DEFAULT",
+                                            "quantity": 100
+                                        }
+                                    ],
+                                    "issues": []
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {}
+                                        }
+                                    },
+                                    "response": {
+                                        "sku": "GM-ZDPI-9B4E",
+                                        "summaries": [
+                                            {
+                                                "marketplaceId": "ATVPDKIKX0DER",
+                                                "asin": "B071VG5N9D",
+                                                "productType": "LUGGAGE",
+                                                "conditionType": "new_new",
+                                                "status": [
+                                                    "BUYABLE"
+                                                ],
+                                                "itemName": "Hardside Carry-On Spinner Suitcase Luggage",
+                                                "createdDate": "2021-02-01T00:00:00Z",
+                                                "lastUpdatedDate": "2021-03-01T00:00:00Z",
+                                                "mainImage": {
+                                                    "link": "https://www.example.com/luggage.png",
+                                                    "height": 500,
+                                                    "width": 500
+                                                }
+                                            }
+                                        ],
+                                        "offers": [
+                                            {
+                                                "marketplaceId": "ATVPDKIKX0DER",
+                                                "offerType": "B2C",
+                                                "price": {
+                                                    "currencyCode": "USD",
+                                                    "amount": "100.00"
+                                                }
+                                            }
+                                        ],
+                                        "fulfillmentAvailability": [
+                                            {
+                                                "fulfillmentChannelCode": "DEFAULT",
+                                                "quantity": 100
+                                            }
+                                        ],
+                                        "issues": []
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "sku": {
+                                                "value": "BadSKU"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "BAD_REQUEST",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference identifier.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorList"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "listings"
                 ],
-                "description": "Creates a new or fully-updates an existing listings item for a selling partner.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
+                "description": "Creates a new or fully-updates an existing listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
                 "operationId": "putListingsItem",
                 "parameters": [
                     {
@@ -201,12 +593,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -222,12 +608,6 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -249,12 +629,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -270,12 +644,6 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -297,12 +665,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -320,7 +682,7 @@
                 "tags": [
                     "listings"
                 ],
-                "description": "Delete a listings item for a selling partner.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
+                "description": "Delete a listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
                 "operationId": "deleteListingsItem",
                 "parameters": [
                     {
@@ -484,12 +846,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -505,12 +861,6 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -532,12 +882,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -553,12 +897,6 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -580,12 +918,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -602,7 +934,7 @@
                 "tags": [
                     "listings"
                 ],
-                "description": "Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
+                "description": "Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).",
                 "operationId": "patchListingsItem",
                 "parameters": [
                     {
@@ -779,12 +1111,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -800,12 +1126,6 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -827,12 +1147,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -851,12 +1165,6 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                                "schema": {
-                                    "type": "string"
-                                }
                             }
                         },
                         "content": {
@@ -872,12 +1180,6 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -935,6 +1237,224 @@
                 },
                 "description": "A list of error responses returned when a request is unsuccessful."
             },
+            "Item": {
+                "required": [
+                    "sku"
+                ],
+                "type": "object",
+                "properties": {
+                    "sku": {
+                        "type": "string",
+                        "description": "A selling partner provided identifier for an Amazon listing."
+                    },
+                    "summaries": {
+                        "$ref": "#/components/schemas/ItemSummaries"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ItemAttributes"
+                    },
+                    "issues": {
+                        "$ref": "#/components/schemas/ItemIssues"
+                    },
+                    "offers": {
+                        "$ref": "#/components/schemas/ItemOffers"
+                    },
+                    "fulfillmentAvailability": {
+                        "type": "array",
+                        "description": "Fulfillment availability for the listings item.",
+                        "items": {
+                            "$ref": "#/components/schemas/FulfillmentAvailability"
+                        }
+                    },
+                    "procurement": {
+                        "$ref": "#/components/schemas/ItemProcurement"
+                    }
+                },
+                "description": "A listings item."
+            },
+            "ItemSummaries": {
+                "type": "array",
+                "description": "Summary details of a listings item.",
+                "items": {
+                    "$ref": "#/components/schemas/ItemSummaryByMarketplace"
+                }
+            },
+            "ItemSummaryByMarketplace": {
+                "required": [
+                    "asin",
+                    "createdDate",
+                    "itemName",
+                    "lastUpdatedDate",
+                    "marketplaceId",
+                    "productType",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "marketplaceId": {
+                        "type": "string",
+                        "description": "A marketplace identifier. Identifies the Amazon marketplace for the listings item."
+                    },
+                    "asin": {
+                        "type": "string",
+                        "description": "Amazon Standard Identification Number (ASIN) of the listings item."
+                    },
+                    "productType": {
+                        "type": "string",
+                        "description": "The Amazon product type of the listings item."
+                    },
+                    "conditionType": {
+                        "type": "string",
+                        "description": "Identifies the condition of the listings item.",
+                        "enum": [
+                            "new_new",
+                            "new_open_box",
+                            "new_oem",
+                            "refurbished_refurbished",
+                            "used_like_new",
+                            "used_very_good",
+                            "used_good",
+                            "used_acceptable",
+                            "collectible_like_new",
+                            "collectible_very_good",
+                            "collectible_good",
+                            "collectible_acceptable",
+                            "club_club"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "new_new",
+                                "description": "New"
+                            },
+                            {
+                                "value": "new_open_box",
+                                "description": "New - Open Box."
+                            },
+                            {
+                                "value": "new_oem",
+                                "description": "New - OEM."
+                            },
+                            {
+                                "value": "refurbished_refurbished",
+                                "description": "Refurbished"
+                            },
+                            {
+                                "value": "used_like_new",
+                                "description": "Used - Like New."
+                            },
+                            {
+                                "value": "used_very_good",
+                                "description": "Used - Very Good."
+                            },
+                            {
+                                "value": "used_good",
+                                "description": "Used - Good."
+                            },
+                            {
+                                "value": "used_acceptable",
+                                "description": "Used - Acceptable."
+                            },
+                            {
+                                "value": "collectible_like_new",
+                                "description": "Collectible - Like New."
+                            },
+                            {
+                                "value": "collectible_very_good",
+                                "description": "Collectible - Very Good."
+                            },
+                            {
+                                "value": "collectible_good",
+                                "description": "Collectible - Good."
+                            },
+                            {
+                                "value": "collectible_acceptable",
+                                "description": "Collectible - Acceptable."
+                            },
+                            {
+                                "value": "club_club",
+                                "description": "Club"
+                            }
+                        ]
+                    },
+                    "status": {
+                        "type": "array",
+                        "description": "Statuses that apply to the listings item.",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "BUYABLE",
+                                "DISCOVERABLE"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "BUYABLE",
+                                    "description": "The listings item can be purchased by shoppers. This status does not apply to vendor listings."
+                                },
+                                {
+                                    "value": "DISCOVERABLE",
+                                    "description": "The listings item is visible to shoppers."
+                                }
+                            ]
+                        }
+                    },
+                    "fnSku": {
+                        "type": "string",
+                        "description": "Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item."
+                    },
+                    "itemName": {
+                        "type": "string",
+                        "description": "Name, or title, associated with an Amazon catalog item."
+                    },
+                    "createdDate": {
+                        "type": "string",
+                        "description": "Date the listings item was created, in ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "lastUpdatedDate": {
+                        "type": "string",
+                        "description": "Date the listings item was last updated, in ISO 8601 format.",
+                        "format": "date-time"
+                    },
+                    "mainImage": {
+                        "$ref": "#/components/schemas/ItemImage"
+                    }
+                },
+                "description": "Summary details of a listings item for an Amazon marketplace."
+            },
+            "ItemImage": {
+                "required": [
+                    "height",
+                    "link",
+                    "width"
+                ],
+                "type": "object",
+                "properties": {
+                    "link": {
+                        "type": "string",
+                        "description": "Link, or URL, for the image."
+                    },
+                    "height": {
+                        "type": "integer",
+                        "description": "Height of the image in pixels."
+                    },
+                    "width": {
+                        "type": "integer",
+                        "description": "Width of the image in pixels."
+                    }
+                },
+                "description": "Image for the listings item."
+            },
+            "ItemAttributes": {
+                "type": "object",
+                "description": "JSON object containing structured listings item attribute data keyed by attribute name."
+            },
+            "ItemIssues": {
+                "type": "array",
+                "description": "Issues associated with the listings item.",
+                "items": {
+                    "$ref": "#/components/schemas/Issue"
+                }
+            },
             "Issue": {
                 "required": [
                     "code",
@@ -974,12 +1494,124 @@
                             }
                         ]
                     },
-                    "attributeName": {
-                        "type": "string",
-                        "description": "Name of the attribute associated with the issue, if applicable."
+                    "attributeNames": {
+                        "type": "array",
+                        "description": "Names of the attributes associated with the issue, if applicable.",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "description": "An issue with a listings item."
+            },
+            "ItemOffers": {
+                "type": "array",
+                "description": "Offer details for the listings item.",
+                "items": {
+                    "$ref": "#/components/schemas/ItemOfferByMarketplace"
+                }
+            },
+            "ItemOfferByMarketplace": {
+                "required": [
+                    "marketplaceId",
+                    "offerType",
+                    "price"
+                ],
+                "type": "object",
+                "properties": {
+                    "marketplaceId": {
+                        "type": "string",
+                        "description": "Amazon marketplace identifier."
+                    },
+                    "offerType": {
+                        "type": "string",
+                        "description": "Type of offer for the listings item.",
+                        "enum": [
+                            "B2C",
+                            "B2B"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "B2C",
+                                "description": "The offer on this listings item is available for Business to Consumer purchase, meaning that it is available to shoppers on Amazon retail sites."
+                            },
+                            {
+                                "value": "B2B",
+                                "description": "The offer on this listings item is available for Business to Business purchase."
+                            }
+                        ]
+                    },
+                    "price": {
+                        "$ref": "#/components/schemas/Money"
+                    },
+                    "points": {
+                        "$ref": "#/components/schemas/Points"
+                    }
+                },
+                "description": "Offer details of a listings item for an Amazon marketplace."
+            },
+            "ItemProcurement": {
+                "required": [
+                    "costPrice"
+                ],
+                "type": "object",
+                "properties": {
+                    "costPrice": {
+                        "$ref": "#/components/schemas/Money"
+                    }
+                },
+                "description": "Vendor procurement information for the listings item."
+            },
+            "FulfillmentAvailability": {
+                "required": [
+                    "fulfillmentChannelCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "fulfillmentChannelCode": {
+                        "type": "string",
+                        "description": "Designates which fulfillment network will be used."
+                    },
+                    "quantity": {
+                        "minimum": 0,
+                        "type": "integer",
+                        "description": "The quantity of the item you are making available for sale."
+                    }
+                },
+                "description": "Fulfillment availability details for the listings item."
+            },
+            "Money": {
+                "required": [
+                    "amount",
+                    "currencyCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "currencyCode": {
+                        "type": "string",
+                        "description": "Three-digit currency code. In ISO 4217 format."
+                    },
+                    "amount": {
+                        "$ref": "#/components/schemas/Decimal"
+                    }
+                },
+                "description": "The currency type and the amount."
+            },
+            "Decimal": {
+                "type": "string",
+                "description": "A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation."
+            },
+            "Points": {
+                "required": [
+                    "pointsNumber"
+                ],
+                "type": "object",
+                "properties": {
+                    "pointsNumber": {
+                        "type": "integer"
+                    }
+                },
+                "description": "The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP)."
             },
             "PatchOperation": {
                 "required": [

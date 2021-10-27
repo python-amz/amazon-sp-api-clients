@@ -516,12 +516,6 @@ class DateTime(str):
     """
 
 
-class Date(str):
-    """
-    ISO Date without time, Example 2018-09-20.
-    """
-
-
 class VendorInvoicesV1Client(__BaseClient):
     """
         Submit new invoices to Amazon.

@@ -238,7 +238,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS throttle rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation..",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -337,150 +337,152 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "granularity": {
-                                            "value": "Total"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "granularity": {
+                                                "value": "Total"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "payload": [
+                                            {
+                                                "interval": "2019-08-01T00:00-07:00--2018-08-03T00:00-07:00",
+                                                "unitCount": 2,
+                                                "orderItemCount": 2,
+                                                "orderCount": 2,
+                                                "averageUnitPrice": {
+                                                    "amount": "12.5",
+                                                    "currencyCode": "USD"
+                                                },
+                                                "totalSales": {
+                                                    "amount": "25",
+                                                    "currencyCode": "USD"
+                                                }
+                                            }
+                                        ]
                                     }
                                 },
-                                "response": {
-                                    "payload": [
-                                        {
-                                            "interval": "2019-08-01T00:00-07:00--2018-08-03T00:00-07:00",
-                                            "unitCount": 2,
-                                            "orderItemCount": 2,
-                                            "orderCount": 2,
-                                            "averageUnitPrice": {
-                                                "amount": "12.5",
-                                                "currencyCode": "USD"
-                                            },
-                                            "totalSales": {
-                                                "amount": "25",
-                                                "currencyCode": "USD"
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "granularity": {
+                                                "value": "Day"
                                             }
                                         }
-                                    ]
-                                }
-                            },
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "granularity": {
-                                            "value": "Day"
-                                        }
+                                    },
+                                    "response": {
+                                        "payload": [
+                                            {
+                                                "interval": "2019-08-01T00:00-07:00--2018-08-02T00:00-07:00",
+                                                "unitCount": 1,
+                                                "orderItemCount": 1,
+                                                "orderCount": 1,
+                                                "averageUnitPrice": {
+                                                    "amount": "22.95",
+                                                    "currencyCode": "USD"
+                                                },
+                                                "totalSales": {
+                                                    "amount": "22.95",
+                                                    "currencyCode": "USD"
+                                                }
+                                            },
+                                            {
+                                                "interval": "2019-08-02T00:00-07:00--2018-08-03T00:00-07:00",
+                                                "unitCount": 1,
+                                                "orderItemCount": 1,
+                                                "orderCount": 1,
+                                                "averageUnitPrice": {
+                                                    "amount": "2.05",
+                                                    "currencyCode": "USD"
+                                                },
+                                                "totalSales": {
+                                                    "amount": "2.05",
+                                                    "currencyCode": "USD"
+                                                }
+                                            }
+                                        ]
                                     }
                                 },
-                                "response": {
-                                    "payload": [
-                                        {
-                                            "interval": "2019-08-01T00:00-07:00--2018-08-02T00:00-07:00",
-                                            "unitCount": 1,
-                                            "orderItemCount": 1,
-                                            "orderCount": 1,
-                                            "averageUnitPrice": {
-                                                "amount": "22.95",
-                                                "currencyCode": "USD"
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "granularity": {
+                                                "value": "Total"
                                             },
-                                            "totalSales": {
-                                                "amount": "22.95",
-                                                "currencyCode": "USD"
-                                            }
-                                        },
-                                        {
-                                            "interval": "2019-08-02T00:00-07:00--2018-08-03T00:00-07:00",
-                                            "unitCount": 1,
-                                            "orderItemCount": 1,
-                                            "orderCount": 1,
-                                            "averageUnitPrice": {
-                                                "amount": "2.05",
-                                                "currencyCode": "USD"
-                                            },
-                                            "totalSales": {
-                                                "amount": "2.05",
-                                                "currencyCode": "USD"
+                                            "asin": {
+                                                "value": "B008OLKVEW"
                                             }
                                         }
-                                    ]
-                                }
-                            },
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "granularity": {
-                                            "value": "Total"
-                                        },
-                                        "asin": {
-                                            "value": "B008OLKVEW"
-                                        }
+                                    },
+                                    "response": {
+                                        "payload": [
+                                            {
+                                                "interval": "2018-05-01T00:00-07:00--2018-05-03T00:00-07:00",
+                                                "unitCount": 1,
+                                                "orderItemCount": 1,
+                                                "orderCount": 1,
+                                                "averageUnitPrice": {
+                                                    "amount": "22.95",
+                                                    "currencyCode": "USD"
+                                                },
+                                                "totalSales": {
+                                                    "amount": "22.95",
+                                                    "currencyCode": "USD"
+                                                }
+                                            }
+                                        ]
                                     }
                                 },
-                                "response": {
-                                    "payload": [
-                                        {
-                                            "interval": "2018-05-01T00:00-07:00--2018-05-03T00:00-07:00",
-                                            "unitCount": 1,
-                                            "orderItemCount": 1,
-                                            "orderCount": 1,
-                                            "averageUnitPrice": {
-                                                "amount": "22.95",
-                                                "currencyCode": "USD"
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "granularity": {
+                                                "value": "Day"
                                             },
-                                            "totalSales": {
-                                                "amount": "22.95",
-                                                "currencyCode": "USD"
+                                            "asin": {
+                                                "value": "B008OLKVEW"
                                             }
                                         }
-                                    ]
-                                }
-                            },
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "granularity": {
-                                            "value": "Day"
-                                        },
-                                        "asin": {
-                                            "value": "B008OLKVEW"
-                                        }
+                                    },
+                                    "response": {
+                                        "payload": [
+                                            {
+                                                "interval": "2018-05-01T00:00-07:00--2018-05-02T00:00-07:00",
+                                                "unitCount": 1,
+                                                "orderItemCount": 1,
+                                                "orderCount": 1,
+                                                "averageUnitPrice": {
+                                                    "amount": "22.95",
+                                                    "currencyCode": "USD"
+                                                },
+                                                "totalSales": {
+                                                    "amount": "22.95",
+                                                    "currencyCode": "USD"
+                                                }
+                                            },
+                                            {
+                                                "interval": "2018-05-02T00:00-07:00--2018-05-03T00:00-07:00",
+                                                "unitCount": 0,
+                                                "orderItemCount": 0,
+                                                "orderCount": 0,
+                                                "averageUnitPrice": {
+                                                    "amount": "0",
+                                                    "currencyCode": "USD"
+                                                },
+                                                "totalSales": {
+                                                    "amount": "0",
+                                                    "currencyCode": "USD"
+                                                }
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "payload": [
-                                        {
-                                            "interval": "2018-05-01T00:00-07:00--2018-05-02T00:00-07:00",
-                                            "unitCount": 1,
-                                            "orderItemCount": 1,
-                                            "orderCount": 1,
-                                            "averageUnitPrice": {
-                                                "amount": "22.95",
-                                                "currencyCode": "USD"
-                                            },
-                                            "totalSales": {
-                                                "amount": "22.95",
-                                                "currencyCode": "USD"
-                                            }
-                                        },
-                                        {
-                                            "interval": "2018-05-02T00:00-07:00--2018-05-03T00:00-07:00",
-                                            "unitCount": 0,
-                                            "orderItemCount": 0,
-                                            "orderCount": 0,
-                                            "averageUnitPrice": {
-                                                "amount": "0",
-                                                "currencyCode": "USD"
-                                            },
-                                            "totalSales": {
-                                                "amount": "0",
-                                                "currencyCode": "USD"
-                                            }
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -492,7 +494,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS throttle rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -532,6 +534,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -552,7 +560,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS throttle rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -576,7 +584,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS throttle rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -600,7 +608,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS throttle rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -624,7 +632,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS throttle rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -648,7 +656,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "TPS throttle rate customer is authorized for.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -771,7 +779,7 @@
             },
             "Decimal": {
                 "type": "string",
-                "description": "A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`."
+                "description": "A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation."
             }
         }
     }

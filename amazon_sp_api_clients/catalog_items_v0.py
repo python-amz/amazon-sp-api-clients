@@ -760,68 +760,6 @@ class SalesRankType:
             self.Rank: int = None
 
 
-class OfferListingCountType:
-    """
-    The number of offer listings with the specified condition.
-    """
-
-    def __init__(self, data):
-        super().__init__()
-        self.data = data
-        if "Count" in data:
-            self.Count: int = int(data["Count"])
-        else:
-            self.Count: int = None
-        if "condition" in data:
-            self.condition: str = str(data["condition"])
-        else:
-            self.condition: str = None
-
-
-class QualifiersType:
-    """ """
-
-    def __init__(self, data):
-        super().__init__()
-        self.data = data
-        if "ItemCondition" in data:
-            self.ItemCondition: str = str(data["ItemCondition"])
-        else:
-            self.ItemCondition: str = None
-        if "ItemSubcondition" in data:
-            self.ItemSubcondition: str = str(data["ItemSubcondition"])
-        else:
-            self.ItemSubcondition: str = None
-        if "FulfillmentChannel" in data:
-            self.FulfillmentChannel: str = str(data["FulfillmentChannel"])
-        else:
-            self.FulfillmentChannel: str = None
-        if "ShipsDomestically" in data:
-            self.ShipsDomestically: str = str(data["ShipsDomestically"])
-        else:
-            self.ShipsDomestically: str = None
-        if "ShippingTime" in data:
-            self.ShippingTime: ShippingTimeType = ShippingTimeType(data["ShippingTime"])
-        else:
-            self.ShippingTime: ShippingTimeType = None
-        if "SellerPositiveFeedbackRating" in data:
-            self.SellerPositiveFeedbackRating: str = str(data["SellerPositiveFeedbackRating"])
-        else:
-            self.SellerPositiveFeedbackRating: str = None
-
-
-class ShippingTimeType:
-    """ """
-
-    def __init__(self, data):
-        super().__init__()
-        self.data = data
-        if "Max" in data:
-            self.Max: str = str(data["Max"])
-        else:
-            self.Max: str = None
-
-
 class ListCatalogCategoriesResponse:
     """ """
 
@@ -917,16 +855,6 @@ class SalesRankList(list, _List["SalesRankType"]):
 
     def __init__(self, data):
         super().__init__([SalesRankType(datum) for datum in data])
-        self.data = data
-
-
-class NumberOfOfferListingsList(list, _List["OfferListingCountType"]):
-    """
-    The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned. Possible listing condition values are: Any, New, Used, Collectible, Refurbished, or Club.
-    """
-
-    def __init__(self, data):
-        super().__init__([OfferListingCountType(datum) for datum in data])
         self.data = data
 
 

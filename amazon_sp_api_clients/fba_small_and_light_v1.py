@@ -155,9 +155,9 @@ class FeePreview:
         else:
             self.totalFees: MoneyType = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
-            self.errors: ErrorList = None
+            self.errors: _List[Error] = []
 
 
 class FeeLineItem:

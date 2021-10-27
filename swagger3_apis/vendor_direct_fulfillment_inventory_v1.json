@@ -71,70 +71,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "inventory": {
-                                                    "sellingParty": {
-                                                        "partyId": "VENDORID"
-                                                    },
-                                                    "isFullUpdate": false,
-                                                    "items": [
-                                                        {
-                                                            "buyerProductIdentifier": "ABCD4562",
-                                                            "vendorProductIdentifier": "7Q89K11",
-                                                            "availableQuantity": {
-                                                                "amount": 10,
-                                                                "unitOfMeasure": "Each"
-                                                            },
-                                                            "isObsolete": false
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "inventory": {
+                                                        "sellingParty": {
+                                                            "partyId": "VENDORID"
                                                         },
-                                                        {
-                                                            "buyerProductIdentifier": "ABCD4563",
-                                                            "vendorProductIdentifier": "7Q89K12",
-                                                            "availableQuantity": {
-                                                                "amount": 15,
-                                                                "unitOfMeasure": "Each"
+                                                        "isFullUpdate": false,
+                                                        "items": [
+                                                            {
+                                                                "buyerProductIdentifier": "ABCD4562",
+                                                                "vendorProductIdentifier": "7Q89K11",
+                                                                "availableQuantity": {
+                                                                    "amount": 10,
+                                                                    "unitOfMeasure": "Each"
+                                                                },
+                                                                "isObsolete": false
                                                             },
-                                                            "isObsolete": false
-                                                        },
-                                                        {
-                                                            "buyerProductIdentifier": "ABCD4564",
-                                                            "vendorProductIdentifier": "7Q89K13",
-                                                            "availableQuantity": {
-                                                                "amount": 20,
-                                                                "unitOfMeasure": "Each"
+                                                            {
+                                                                "buyerProductIdentifier": "ABCD4563",
+                                                                "vendorProductIdentifier": "7Q89K12",
+                                                                "availableQuantity": {
+                                                                    "amount": 15,
+                                                                    "unitOfMeasure": "Each"
+                                                                },
+                                                                "isObsolete": false
                                                             },
-                                                            "isObsolete": false
-                                                        }
-                                                    ]
+                                                            {
+                                                                "buyerProductIdentifier": "ABCD4564",
+                                                                "vendorProductIdentifier": "7Q89K13",
+                                                                "availableQuantity": {
+                                                                    "amount": 20,
+                                                                    "unitOfMeasure": "Each"
+                                                                },
+                                                                "isObsolete": false
+                                                            }
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "transactionId": "20190905010908-8a3b6901-ef20-412f-9270-21c021796605"
+                                        }
                                     }
                                 },
-                                "response": {
-                                    "payload": {
-                                        "transactionId": "20190905010908-8a3b6901-ef20-412f-9270-21c021796605"
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {}
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "transactionId": "mock-TransactionId-20190905010908-8a3b6901-ef20-412f-9270-21c021796605"
+                                        }
                                     }
                                 }
-                            },
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {}
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "transactionId": "mock-TransactionId-20190905010908-8a3b6901-ef20-412f-9270-21c021796605"
-                                    }
-                                }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -159,26 +161,28 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "warehouseId": {
-                                            "value": "DUMMYCODE"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "warehouseId": {
+                                                "value": "DUMMYCODE"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid transmission ID.",
+                                                "details": ""
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid transmission ID.",
-                                            "details": ""
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
@@ -206,6 +210,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -226,7 +236,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -250,7 +260,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -274,7 +284,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -298,7 +308,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -322,7 +332,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }

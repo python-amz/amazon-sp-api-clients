@@ -142,7 +142,7 @@
                     "200": {
                         "description": "Success.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -162,46 +162,48 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedTypes": {
-                                            "value": [
-                                                "POST_PRODUCT_DATA"
-                                            ]
-                                        },
-                                        "pageSize": {
-                                            "value": 10
-                                        },
-                                        "processingStatuses": {
-                                            "value": [
-                                                "CANCELLED",
-                                                "DONE"
-                                            ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedTypes": {
+                                                "value": [
+                                                    "POST_PRODUCT_DATA"
+                                                ]
+                                            },
+                                            "pageSize": {
+                                                "value": 10
+                                            },
+                                            "processingStatuses": {
+                                                "value": [
+                                                    "CANCELLED",
+                                                    "DONE"
+                                                ]
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "feeds": [
+                                            {
+                                                "feedId": "FeedId1",
+                                                "feedType": "POST_PRODUCT_DATA",
+                                                "createdTime": "2019-12-11T13:16:24.630Z",
+                                                "processingStatus": "CANCELLED",
+                                                "processingStartTime": "2019-12-11T13:16:24.630Z",
+                                                "processingEndTime": "2019-12-11T13:16:24.630Z"
+                                            }
+                                        ],
+                                        "nextToken": "VGhpcyB0b2tlbiBpcyBvcGFxdWUgYW5kIGludGVudGlvbmFsbHkgb2JmdXNjYXRlZA=="
                                     }
-                                },
-                                "response": {
-                                    "feeds": [
-                                        {
-                                            "feedId": "FeedId1",
-                                            "feedType": "POST_PRODUCT_DATA",
-                                            "createdTime": "2019-12-11T13:16:24.630Z",
-                                            "processingStatus": "CANCELLED",
-                                            "processingStartTime": "2019-12-11T13:16:24.630Z",
-                                            "processingEndTime": "2019-12-11T13:16:24.630Z"
-                                        }
-                                    ],
-                                    "nextToken": "VGhpcyB0b2tlbiBpcyBvcGFxdWUgYW5kIGludGVudGlvbmFsbHkgb2JmdXNjYXRlZA=="
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -221,46 +223,48 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedTypes": {
-                                            "value": [
-                                                "POST_PRODUCT_DATA"
-                                            ]
-                                        },
-                                        "processingStatuses": {
-                                            "value": [
-                                                "BAD_VALUE",
-                                                "DONE"
-                                            ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedTypes": {
+                                                "value": [
+                                                    "POST_PRODUCT_DATA"
+                                                ]
+                                            },
+                                            "processingStatuses": {
+                                                "value": [
+                                                    "BAD_VALUE",
+                                                    "DONE"
+                                                ]
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "400",
+                                                "message": "Invalid input",
+                                                "details": "Dates were not provided"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "400",
-                                            "message": "Invalid input",
-                                            "details": "Dates were not provided"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -277,7 +281,7 @@
                     "403": {
                         "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -295,8 +299,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -313,14 +323,14 @@
                     "415": {
                         "description": "The request's Content-Type header is invalid.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -337,14 +347,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -361,14 +371,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -385,14 +395,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -428,7 +438,7 @@
                     "202": {
                         "description": "Success.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -448,32 +458,34 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "feedType": "POST_PRODUCT_DATA",
-                                                "marketplaceIds": [
-                                                    "ATVPDKIKX0DER",
-                                                    "A1F83G8C2ARO7P"
-                                                ],
-                                                "inputFeedDocumentId": "3d4e42b5-1d6e-44e8-a89c-2abfca0625bb"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "feedType": "POST_PRODUCT_DATA",
+                                                    "marketplaceIds": [
+                                                        "ATVPDKIKX0DER",
+                                                        "A1F83G8C2ARO7P"
+                                                    ],
+                                                    "inputFeedDocumentId": "3d4e42b5-1d6e-44e8-a89c-2abfca0625bb"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "feedId": "3485934"
                                     }
-                                },
-                                "response": {
-                                    "feedId": "3485934"
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -493,44 +505,46 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "marketplaceIds": [
-                                                    "ATVPDKIKX0DER",
-                                                    "A1F83G8C2ARO7P"
-                                                ],
-                                                "inputFeedDocumentId": "badDocumentId"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "marketplaceIds": [
+                                                        "ATVPDKIKX0DER",
+                                                        "A1F83G8C2ARO7P"
+                                                    ],
+                                                    "inputFeedDocumentId": "badDocumentId"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "400",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "400",
-                                            "message": "Invalid input",
-                                            "details": "Invalid input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -547,7 +561,7 @@
                     "403": {
                         "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -565,8 +579,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -583,14 +603,14 @@
                     "415": {
                         "description": "The request's Content-Type header is invalid.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -607,14 +627,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -631,14 +651,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -655,14 +675,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -702,7 +722,7 @@
                     "200": {
                         "description": "Success.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -722,30 +742,32 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedId": {
-                                            "value": "feedId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedId": {
+                                                "value": "feedId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "feedId": "FeedId1",
+                                        "feedType": "POST_PRODUCT_DATA",
+                                        "createdTime": "2019-12-11T13:16:24.630Z",
+                                        "processingStatus": "CANCELLED",
+                                        "processingStartTime": "2019-12-11T13:16:24.630Z",
+                                        "processingEndTime": "2019-12-11T13:16:24.630Z"
                                     }
-                                },
-                                "response": {
-                                    "feedId": "FeedId1",
-                                    "feedType": "POST_PRODUCT_DATA",
-                                    "createdTime": "2019-12-11T13:16:24.630Z",
-                                    "processingStatus": "CANCELLED",
-                                    "processingStartTime": "2019-12-11T13:16:24.630Z",
-                                    "processingEndTime": "2019-12-11T13:16:24.630Z"
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -765,38 +787,40 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedId": {
-                                            "value": "badFeedId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedId": {
+                                                "value": "badFeedId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "400",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "400",
-                                            "message": "Invalid input",
-                                            "details": "Invalid input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -813,7 +837,7 @@
                     "403": {
                         "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -831,8 +855,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -849,14 +879,14 @@
                     "415": {
                         "description": "The request's Content-Type header is invalid.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -873,14 +903,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -897,14 +927,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -921,14 +951,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -965,7 +995,7 @@
                     "200": {
                         "description": "Success.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -979,22 +1009,24 @@
                             }
                         },
                         "content": {},
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedId": {
-                                            "value": "ID1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedId": {
+                                                "value": "ID1"
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1014,38 +1046,40 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedId": {
-                                            "value": "BADID1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedId": {
+                                                "value": "BADID1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "400",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "400",
-                                            "message": "Invalid input",
-                                            "details": "Invalid input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1062,7 +1096,7 @@
                     "403": {
                         "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1080,8 +1114,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1098,14 +1138,14 @@
                     "415": {
                         "description": "The request's Content-Type header is invalid.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1122,14 +1162,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1146,14 +1186,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1170,14 +1210,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1215,7 +1255,7 @@
                     "201": {
                         "description": "Successfully created a feed document that is ready to receive contents.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1235,28 +1275,30 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "contentType": "text/tab-separated-values; charset=UTF-8"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "contentType": "text/tab-separated-values; charset=UTF-8"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "feedDocumentId": "3d4e42b5-1d6e-44e8-a89c-2abfca0625bb",
+                                        "url": "https://d34o8swod1owfl.cloudfront.net/Feed_101__POST_PRODUCT_DATA_.xml"
                                     }
-                                },
-                                "response": {
-                                    "feedDocumentId": "3d4e42b5-1d6e-44e8-a89c-2abfca0625bb",
-                                    "url": "https://d34o8swod1owfl.cloudfront.net/Feed_101__POST_PRODUCT_DATA_%2BKEY%3DFeed_101%2BMode%3DCBC%2BINITVEC%3D8f+6c+cc+56+0d+50+a2+d0+31+ec+80+be+f2+6a+1d+0a"
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1276,31 +1318,33 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {}
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {}
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "400",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "400",
-                                            "message": "Invalid input",
-                                            "details": "Invalid input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "403": {
                         "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1318,8 +1362,14 @@
                     "404": {
                         "description": "The resource specified does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1336,14 +1386,14 @@
                     "413": {
                         "description": "The request size exceeded the maximum accepted size.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1360,14 +1410,14 @@
                     "415": {
                         "description": "The request payload is in an unsupported format.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1384,14 +1434,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1408,14 +1458,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1432,14 +1482,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1479,7 +1529,7 @@
                     "200": {
                         "description": "Success.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1499,26 +1549,28 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedDocumentId": {
-                                            "value": "0356cf79-b8b0-4226-b4b9-0ee058ea5760"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedDocumentId": {
+                                                "value": "0356cf79-b8b0-4226-b4b9-0ee058ea5760"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "feedDocumentId": "0356cf79-b8b0-4226-b4b9-0ee058ea5760",
+                                        "url": "https://d34o8swod1owfl.cloudfront.net/Feed_101__POST_PRODUCT_DATA_.xml"
                                     }
-                                },
-                                "response": {
-                                    "feedDocumentId": "0356cf79-b8b0-4226-b4b9-0ee058ea5760",
-                                    "url": "https://d34o8swod1owfl.cloudfront.net/SampleResult%2BKey%3DSample%2BINITVEC%3D58+fa+bf+a7+08+11+95+0f+c1+a8+c6+e0+d5+6f+ae+c8"
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1538,38 +1590,40 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "feedDocumentId": {
-                                            "value": "badDocumentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "feedDocumentId": {
+                                                "value": "badDocumentId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "400",
+                                                "message": "Invalid input",
+                                                "details": "Invalid input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "400",
-                                            "message": "Invalid input",
-                                            "details": "Invalid input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1586,7 +1640,7 @@
                     "403": {
                         "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
@@ -1604,8 +1658,14 @@
                     "404": {
                         "description": "The specified resource does not exist.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1622,14 +1682,14 @@
                     "415": {
                         "description": "The request's Content-Type header is invalid.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference identifier.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1646,14 +1706,14 @@
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1670,14 +1730,14 @@
                     "500": {
                         "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1694,14 +1754,14 @@
                     "503": {
                         "description": "Temporary overloading or maintenance of the server.",
                         "headers": {
-                            "x-amzn-requestid": {
+                            "x-amzn-RequestId": {
                                 "description": "Unique request reference ID.",
                                 "schema": {
                                     "type": "string"
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1768,7 +1828,8 @@
                         "type": "string",
                         "description": "The identifier for the feed. This identifier is unique only in combination with a seller ID."
                     }
-                }
+                },
+                "description": "Response schema."
             },
             "Feed": {
                 "required": [
@@ -1846,10 +1907,12 @@
                         "type": "string",
                         "description": "The identifier for the feed document. This identifier is unique only in combination with a seller ID."
                     }
-                }
+                },
+                "description": "Detailed information about the feed."
             },
             "FeedList": {
                 "type": "array",
+                "description": "A list of feeds.",
                 "items": {
                     "$ref": "#/components/schemas/Feed"
                 }
@@ -1898,7 +1961,8 @@
                             }
                         ]
                     }
-                }
+                },
+                "description": "Information required for the feed document."
             },
             "FeedOptions": {
                 "type": "object",
@@ -1935,7 +1999,8 @@
                     "feedOptions": {
                         "$ref": "#/components/schemas/FeedOptions"
                     }
-                }
+                },
+                "description": "Information required to create the feed."
             },
             "CreateFeedDocumentSpecification": {
                 "required": [
@@ -1947,7 +2012,8 @@
                         "type": "string",
                         "description": "The content type of the feed."
                     }
-                }
+                },
+                "description": "Specifies the content type for the createFeedDocument operation."
             },
             "CreateFeedDocumentResponse": {
                 "required": [

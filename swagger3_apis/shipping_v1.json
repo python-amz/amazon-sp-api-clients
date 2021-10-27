@@ -45,6 +45,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -82,49 +88,51 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_200"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_200"
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "shipmentId": "TEST_CASE_200",
-                                        "eligibleRates": [
-                                            {
-                                                "billedWeight": {
-                                                    "value": 4,
-                                                    "unit": "kg"
-                                                },
-                                                "totalCharge": {
-                                                    "value": 3.25,
-                                                    "unit": "GBP"
-                                                },
-                                                "serviceType": "Amazon Shipping Standard",
-                                                "promise": {
-                                                    "deliveryWindow": {
-                                                        "start": "2018-08-25T20:22:30.737Z",
-                                                        "end": "2018-08-26T20:22:30.737Z"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "shipmentId": "TEST_CASE_200",
+                                            "eligibleRates": [
+                                                {
+                                                    "billedWeight": {
+                                                        "value": 4,
+                                                        "unit": "kg"
                                                     },
-                                                    "receiveWindow": {
-                                                        "start": "2018-08-23T09:22:30.737Z",
-                                                        "end": "2018-08-23T11:22:30.737Z"
-                                                    }
-                                                },
-                                                "rateId": "RI123456",
-                                                "expirationTime": "2018-08-22T09:22:30.737Z"
-                                            }
-                                        ]
+                                                    "totalCharge": {
+                                                        "value": 3.25,
+                                                        "unit": "GBP"
+                                                    },
+                                                    "serviceType": "Amazon Shipping Standard",
+                                                    "promise": {
+                                                        "deliveryWindow": {
+                                                            "start": "2018-08-25T20:22:30.737Z",
+                                                            "end": "2018-08-26T20:22:30.737Z"
+                                                        },
+                                                        "receiveWindow": {
+                                                            "start": "2018-08-23T09:22:30.737Z",
+                                                            "end": "2018-08-23T11:22:30.737Z"
+                                                        }
+                                                    },
+                                                    "rateId": "RI123456",
+                                                    "expirationTime": "2018-08-22T09:22:30.737Z"
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -134,42 +142,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CreateShipmentResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_400"
-                                            }
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid input."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "401": {
-                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -182,27 +157,76 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_401"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_400"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid input."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateShipmentResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_401"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     },
                     "403": {
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
@@ -221,27 +245,29 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_403"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_403"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "404": {
                         "description": "The resource specified does not exist.",
@@ -251,6 +277,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -260,27 +292,29 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_404"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_404"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "NotFound",
+                                                "message": "The requested resource doesn't exist."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "NotFound",
-                                            "message": "The requested resource doesn't exist."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
@@ -290,6 +324,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -299,27 +339,29 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_429"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_429"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "QuotaExceeded",
+                                                "message": "You exceeded your quota for the requested resource."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "QuotaExceeded",
-                                            "message": "You exceeded your quota for the requested resource."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "500": {
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
@@ -329,42 +371,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CreateShipmentResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_500"
-                                            }
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InternalFailure",
-                                            "message": "We encountered an internal error. Please try again."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "503": {
-                        "description": "Temporary overloading or maintenance of the server.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -377,27 +386,76 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_503"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_500"
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InternalFailure",
+                                                "message": "We encountered an internal error. Please try again."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "ServiceUnavailable",
-                                            "message": "Service is temporarily unavailable. Please try again."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateShipmentResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_503"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "ServiceUnavailable",
+                                                "message": "Service is temporarily unavailable. Please try again."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     }
                 },
                 "x-codegen-request-body-name": "body"
@@ -426,6 +484,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -468,8 +532,6 @@
                                     "containers": [
                                         {
                                             "containerReferenceId": "CRI123456789",
-                                            "clientReferenceId": "911-7267646-6348616",
-                                            "trackingId": "1512748795322",
                                             "items": [
                                                 {
                                                     "title": "String",
@@ -504,85 +566,85 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_200"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_200"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "shipmentId": "TEST_CASE_200",
+                                            "clientReferenceId": "911-7267646-6348616",
+                                            "shipFrom": {},
+                                            "shipTo": {},
+                                            "acceptedRate": {
+                                                "billedWeight": {
+                                                    "value": 4,
+                                                    "unit": "kg"
+                                                },
+                                                "totalCharge": {
+                                                    "value": 3.5,
+                                                    "unit": "GBP"
+                                                },
+                                                "serviceType": "Amazon Shipping Standard",
+                                                "promise": {
+                                                    "deliveryWindow": {
+                                                        "start": "2018-08-25T20:22:30.737Z",
+                                                        "end": "2018-08-26T20:22:30.737Z"
+                                                    },
+                                                    "receiveWindow": {
+                                                        "start": "2018-08-23T09:22:30.737Z",
+                                                        "end": "2018-08-23T11:22:30.737Z"
+                                                    }
+                                                }
+                                            },
+                                            "shipper": {
+                                                "accountId": "2755049166"
+                                            },
+                                            "containers": [
+                                                {
+                                                    "containerReferenceId": "CRI123456789",
+                                                    "items": [
+                                                        {
+                                                            "title": "String",
+                                                            "unitWeight": {
+                                                                "value": 0.08164656,
+                                                                "unit": "kg"
+                                                            },
+                                                            "quantity": 2,
+                                                            "unitPrice": {
+                                                                "value": 14.99,
+                                                                "unit": "GBP"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "dimensions": {
+                                                        "height": 12.0,
+                                                        "length": 36.0,
+                                                        "width": 31.0,
+                                                        "unit": "CM"
+                                                    },
+                                                    "containerType": "PACKAGE",
+                                                    "weight": {
+                                                        "unit": "kg",
+                                                        "value": 4
+                                                    },
+                                                    "value": {
+                                                        "value": 29.98,
+                                                        "unit": "GBP"
+                                                    }
+                                                }
+                                            ]
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "shipmentId": "TEST_CASE_200",
-                                        "clientReferenceId": "911-7267646-6348616",
-                                        "shipFrom": {},
-                                        "shipTo": {},
-                                        "acceptedRate": {
-                                            "billedWeight": {
-                                                "value": 4,
-                                                "unit": "kg"
-                                            },
-                                            "totalCharge": {
-                                                "value": 3.5,
-                                                "unit": "GBP"
-                                            },
-                                            "serviceType": "Amazon Shipping Standard",
-                                            "promise": {
-                                                "deliveryWindow": {
-                                                    "start": "2018-08-25T20:22:30.737Z",
-                                                    "end": "2018-08-26T20:22:30.737Z"
-                                                },
-                                                "receiveWindow": {
-                                                    "start": "2018-08-23T09:22:30.737Z",
-                                                    "end": "2018-08-23T11:22:30.737Z"
-                                                }
-                                            }
-                                        },
-                                        "shipper": {
-                                            "accountId": "2755049166"
-                                        },
-                                        "containers": [
-                                            {
-                                                "containerReferenceId": "CRI123456789",
-                                                "clientReferenceId": "911-7267646-6348616",
-                                                "trackingId": "1512748795322",
-                                                "items": [
-                                                    {
-                                                        "title": "String",
-                                                        "unitWeight": {
-                                                            "value": 0.08164656,
-                                                            "unit": "kg"
-                                                        },
-                                                        "quantity": 2,
-                                                        "unitPrice": {
-                                                            "value": 14.99,
-                                                            "unit": "GBP"
-                                                        }
-                                                    }
-                                                ],
-                                                "dimensions": {
-                                                    "height": 12.0,
-                                                    "length": 36.0,
-                                                    "width": 31.0,
-                                                    "unit": "CM"
-                                                },
-                                                "containerType": "PACKAGE",
-                                                "weight": {
-                                                    "unit": "kg",
-                                                    "value": 4
-                                                },
-                                                "value": {
-                                                    "value": 29.98,
-                                                    "unit": "GBP"
-                                                }
-                                            }
-                                        ]
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -592,40 +654,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/GetShipmentResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_400"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid input."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "401": {
-                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -638,25 +669,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_401"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_400"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid input."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetShipmentResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_401"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     },
                     "403": {
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
@@ -675,25 +753,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_403"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_403"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "404": {
                         "description": "The resource specified does not exist.",
@@ -703,6 +783,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -712,25 +798,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_404"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_404"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "NotFound",
+                                                "message": "The requested resource doesn't exist."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "NotFound",
-                                            "message": "The requested resource doesn't exist."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
@@ -740,6 +828,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -749,25 +843,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_429"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_429"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "QuotaExceeded",
+                                                "message": "You exceeded your quota for the requested resource."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "QuotaExceeded",
-                                            "message": "You exceeded your quota for the requested resource."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "500": {
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
@@ -777,40 +873,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/GetShipmentResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_500"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InternalFailure",
-                                            "message": "We encountered an internal error. Please try again."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "503": {
-                        "description": "Temporary overloading or maintenance of the server.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -823,25 +888,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_503"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_500"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InternalFailure",
+                                                "message": "We encountered an internal error. Please try again."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "ServiceUnavailable",
-                                            "message": "Service is temporarily unavailable. Please try again."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetShipmentResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_503"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "ServiceUnavailable",
+                                                "message": "Service is temporarily unavailable. Please try again."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     }
                 }
             }
@@ -872,6 +984,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -881,20 +999,20 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_200"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_200"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {}
+                                    },
+                                    "response": {}
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -904,40 +1022,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CancelShipmentResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_400"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid input."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "401": {
-                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -950,25 +1037,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_401"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_400"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid input."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelShipmentResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_401"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     },
                     "403": {
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
@@ -987,25 +1121,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_403"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_403"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "404": {
                         "description": "The resource specified does not exist.",
@@ -1015,6 +1151,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1024,25 +1166,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_404"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_404"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "NotFound",
+                                                "message": "The requested resource doesn't exist."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "NotFound",
-                                            "message": "The requested resource doesn't exist."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
@@ -1052,6 +1196,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1061,25 +1211,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_429"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_429"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "QuotaExceeded",
+                                                "message": "You exceeded your quota for the requested resource."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "QuotaExceeded",
-                                            "message": "You exceeded your quota for the requested resource."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "500": {
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
@@ -1089,40 +1241,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CancelShipmentResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_500"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InternalFailure",
-                                            "message": "We encountered an internal error. Please try again."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "503": {
-                        "description": "Temporary overloading or maintenance of the server.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1135,25 +1256,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_503"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_500"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InternalFailure",
+                                                "message": "We encountered an internal error. Please try again."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "ServiceUnavailable",
-                                            "message": "Service is temporarily unavailable. Please try again."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CancelShipmentResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_503"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "ServiceUnavailable",
+                                                "message": "Service is temporarily unavailable. Please try again."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     }
                 }
             }
@@ -1191,6 +1359,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1241,57 +1415,59 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_200"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "shipmentId": "TEST_CASE_200",
-                                        "clientReferenceId": "911-7267646-6348616",
-                                        "acceptedRate": {
-                                            "billedWeight": {
-                                                "value": 4,
-                                                "unit": "kg"
-                                            },
-                                            "totalCharge": {
-                                                "value": 3.5,
-                                                "unit": "GBP"
-                                            },
-                                            "serviceType": "Amazon Shipping Standard",
-                                            "promise": {
-                                                "deliveryWindow": {
-                                                    "start": "2018-08-25T20:22:30.737Z",
-                                                    "end": "2018-08-26T20:22:30.737Z"
-                                                },
-                                                "receiveWindow": {
-                                                    "start": "2018-08-23T09:22:30.737Z",
-                                                    "end": "2018-08-23T11:22:30.737Z"
-                                                }
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_200"
                                             }
-                                        },
-                                        "labelResults": [
-                                            {
-                                                "containerReferenceId": "CRI123456789",
-                                                "trackingId": "1512748795322",
-                                                "label": {
-                                                    "labelStream": "iVBORw0KGgo...AAAARK5CYII=(Truncated)",
-                                                    "labelSpecification": {
-                                                        "labelFormat": "PNG",
-                                                        "labelStockSize": "4x6"
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "shipmentId": "TEST_CASE_200",
+                                            "clientReferenceId": "911-7267646-6348616",
+                                            "acceptedRate": {
+                                                "billedWeight": {
+                                                    "value": 4,
+                                                    "unit": "kg"
+                                                },
+                                                "totalCharge": {
+                                                    "value": 3.5,
+                                                    "unit": "GBP"
+                                                },
+                                                "serviceType": "Amazon Shipping Standard",
+                                                "promise": {
+                                                    "deliveryWindow": {
+                                                        "start": "2018-08-25T20:22:30.737Z",
+                                                        "end": "2018-08-26T20:22:30.737Z"
+                                                    },
+                                                    "receiveWindow": {
+                                                        "start": "2018-08-23T09:22:30.737Z",
+                                                        "end": "2018-08-23T11:22:30.737Z"
                                                     }
                                                 }
-                                            }
-                                        ]
+                                            },
+                                            "labelResults": [
+                                                {
+                                                    "containerReferenceId": "CRI123456789",
+                                                    "trackingId": "1512748795322",
+                                                    "label": {
+                                                        "labelStream": "iVBORw0KGgo...AAAARK5CYII=(Truncated)",
+                                                        "labelSpecification": {
+                                                            "labelFormat": "PNG",
+                                                            "labelStockSize": "4x6"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -1301,40 +1477,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PurchaseLabelsResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_400"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid input."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "401": {
-                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1347,25 +1492,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_401"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_400"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid input."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchaseLabelsResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_401"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     },
                     "403": {
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
@@ -1384,25 +1576,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_403"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_403"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "404": {
                         "description": "The resource specified does not exist.",
@@ -1412,6 +1606,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1421,25 +1621,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_404"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_404"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "NotFound",
+                                                "message": "The requested resource doesn't exist."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "NotFound",
-                                            "message": "The requested resource doesn't exist."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
@@ -1449,6 +1651,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1458,25 +1666,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_429"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_429"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "QuotaExceeded",
+                                                "message": "You exceeded your quota for the requested resource."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "QuotaExceeded",
-                                            "message": "You exceeded your quota for the requested resource."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "500": {
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
@@ -1486,40 +1696,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PurchaseLabelsResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_500"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InternalFailure",
-                                            "message": "We encountered an internal error. Please try again."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "503": {
-                        "description": "Temporary overloading or maintenance of the server.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1532,25 +1711,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_503"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_500"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InternalFailure",
+                                                "message": "We encountered an internal error. Please try again."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "ServiceUnavailable",
-                                            "message": "Service is temporarily unavailable. Please try again."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchaseLabelsResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_503"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "ServiceUnavailable",
+                                                "message": "Service is temporarily unavailable. Please try again."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     }
                 },
                 "x-codegen-request-body-name": "body"
@@ -1600,6 +1826,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1616,26 +1848,28 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_200"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_200"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "labelStream": "iVBORw0KGgo...AAAARK5CYII=(Truncated)",
-                                        "labelSpecification": {
-                                            "labelFormat": "PNG",
-                                            "labelStockSize": "4x6"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "labelStream": "iVBORw0KGgo...AAAARK5CYII=(Truncated)",
+                                            "labelSpecification": {
+                                                "labelFormat": "PNG",
+                                                "labelStockSize": "4x6"
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -1645,40 +1879,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RetrieveShippingLabelResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_400"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid input."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "401": {
-                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1691,25 +1894,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_401"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_400"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid input."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RetrieveShippingLabelResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_401"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     },
                     "403": {
                         "description": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
@@ -1728,25 +1978,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_403"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_403"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Unauthorized",
+                                                "message": "Access to requested resource is denied."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Unauthorized",
-                                            "message": "Access to requested resource is denied."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "404": {
                         "description": "The resource specified does not exist.",
@@ -1756,6 +2008,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1765,25 +2023,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_404"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_404"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "NotFound",
+                                                "message": "The requested resource doesn't exist."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "NotFound",
-                                            "message": "The requested resource doesn't exist."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "429": {
                         "description": "The frequency of requests was greater than allowed.",
@@ -1793,6 +2053,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -1802,25 +2068,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_429"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_429"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "QuotaExceeded",
+                                                "message": "You exceeded your quota for the requested resource."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "QuotaExceeded",
-                                            "message": "You exceeded your quota for the requested resource."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "500": {
                         "description": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
@@ -1830,40 +2098,9 @@
                                 "schema": {
                                     "type": "string"
                                 }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RetrieveShippingLabelResponse"
-                                }
-                            }
-                        },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_500"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InternalFailure",
-                                            "message": "We encountered an internal error. Please try again."
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "503": {
-                        "description": "Temporary overloading or maintenance of the server.",
-                        "headers": {
-                            "x-amzn-RequestId": {
-                                "description": "Unique request reference id.",
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1876,25 +2113,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "TEST_CASE_503"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_500"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InternalFailure",
+                                                "message": "We encountered an internal error. Please try again."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "ServiceUnavailable",
-                                            "message": "Service is temporarily unavailable. Please try again."
-                                        }
-                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
                                 }
                             }
-                        ]
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RetrieveShippingLabelResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "TEST_CASE_503"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "ServiceUnavailable",
+                                                "message": "Service is temporarily unavailable. Please try again."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     }
                 },
                 "x-codegen-request-body-name": "body"
@@ -1923,6 +2207,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1972,64 +2262,72 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "clientReferenceId": "TEST_CASE_200"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "clientReferenceId": "TEST_CASE_200"
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "shipmentId": "TEST_CASE_200",
-                                        "serviceRate": {
-                                            "billableWeight": {
-                                                "value": 4,
-                                                "unit": "kg"
-                                            },
-                                            "totalCharge": {
-                                                "value": 3.5,
-                                                "unit": "GBP"
-                                            },
-                                            "serviceType": "Amazon Shipping Standard",
-                                            "promise": {
-                                                "deliveryWindow": {
-                                                    "start": "2018-08-25T20:22:30.737Z",
-                                                    "end": "2018-08-26T20:22:30.737Z"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "shipmentId": "TEST_CASE_200",
+                                            "serviceRate": {
+                                                "billableWeight": {
+                                                    "value": 4,
+                                                    "unit": "kg"
                                                 },
-                                                "receiveWindow": {
-                                                    "start": "2018-08-23T09:22:30.737Z",
-                                                    "end": "2018-08-23T11:22:30.737Z"
-                                                }
-                                            }
-                                        },
-                                        "labelResults": [
-                                            {
-                                                "containerReferenceId": "CRI123456789",
-                                                "trackingId": "1512748795322",
-                                                "label": {
-                                                    "labelStream": "iVBORw0KGgo...AAAARK5CYII=(Truncated)",
-                                                    "labelSpecification": {
-                                                        "labelFormat": "PNG",
-                                                        "labelStockSize": "4x6"
+                                                "totalCharge": {
+                                                    "value": 3.5,
+                                                    "unit": "GBP"
+                                                },
+                                                "serviceType": "Amazon Shipping Standard",
+                                                "promise": {
+                                                    "deliveryWindow": {
+                                                        "start": "2018-08-25T20:22:30.737Z",
+                                                        "end": "2018-08-26T20:22:30.737Z"
+                                                    },
+                                                    "receiveWindow": {
+                                                        "start": "2018-08-23T09:22:30.737Z",
+                                                        "end": "2018-08-23T11:22:30.737Z"
                                                     }
                                                 }
-                                            }
-                                        ]
+                                            },
+                                            "labelResults": [
+                                                {
+                                                    "containerReferenceId": "CRI123456789",
+                                                    "trackingId": "1512748795322",
+                                                    "label": {
+                                                        "labelStream": "iVBORw0KGgo...AAAARK5CYII=(Truncated)",
+                                                        "labelSpecification": {
+                                                            "labelFormat": "PNG",
+                                                            "labelStockSize": "4x6"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2048,6 +2346,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2087,6 +2391,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2102,6 +2412,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2123,6 +2439,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2138,6 +2460,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2181,6 +2509,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2215,46 +2549,54 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {}
-                                },
-                                "response": {
-                                    "payload": {
-                                        "serviceRates": [
-                                            {
-                                                "billableWeight": {
-                                                    "value": 4,
-                                                    "unit": "kg"
-                                                },
-                                                "totalCharge": {
-                                                    "value": 3.25,
-                                                    "unit": "GBP"
-                                                },
-                                                "serviceType": "Amazon Shipping Standard",
-                                                "promise": {
-                                                    "deliveryWindow": {
-                                                        "start": "2018-08-25T20:22:30.737Z",
-                                                        "end": "2018-08-26T20:22:30.737Z"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {}
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "serviceRates": [
+                                                {
+                                                    "billableWeight": {
+                                                        "value": 4,
+                                                        "unit": "kg"
                                                     },
-                                                    "receiveWindow": {
-                                                        "start": "2018-08-23T09:22:30.737Z",
-                                                        "end": "2018-08-23T11:22:30.737Z"
+                                                    "totalCharge": {
+                                                        "value": 3.25,
+                                                        "unit": "GBP"
+                                                    },
+                                                    "serviceType": "Amazon Shipping Standard",
+                                                    "promise": {
+                                                        "deliveryWindow": {
+                                                            "start": "2018-08-25T20:22:30.737Z",
+                                                            "end": "2018-08-26T20:22:30.737Z"
+                                                        },
+                                                        "receiveWindow": {
+                                                            "start": "2018-08-23T09:22:30.737Z",
+                                                            "end": "2018-08-23T11:22:30.737Z"
+                                                        }
                                                     }
                                                 }
-                                            }
-                                        ]
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request is missing or has invalid parameters and cannot be parsed.",
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2273,6 +2615,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2312,6 +2660,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2327,6 +2681,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2348,6 +2708,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2363,6 +2729,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2396,6 +2768,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2408,24 +2786,32 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {}
-                                },
-                                "response": {
-                                    "payload": {
-                                        "accountId": "2755049166"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {}
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "accountId": "2755049166"
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2444,6 +2830,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2483,6 +2875,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2498,6 +2896,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2519,6 +2923,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2534,6 +2944,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2576,6 +2992,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2591,7 +3013,7 @@
                                             "location": {
                                                 "city": "San Bernardino",
                                                 "countryCode": "US",
-                                                "stateProvince": "CA",
+                                                "stateOrRegion": "CA",
                                                 "postalCode": "92404"
                                             },
                                             "eventTime": "2019-04-04T06:45:12Z"
@@ -2604,44 +3026,52 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "trackingId": {
-                                            "value": "TEST_CASE_200"
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "trackingId": "TEST_CASE_200",
-                                        "eventHistory": [
-                                            {
-                                                "eventCode": "Delivered",
-                                                "location": {
-                                                    "city": "San Bernardino",
-                                                    "countryCode": "US",
-                                                    "stateProvince": "CA",
-                                                    "postalCode": "92404"
-                                                },
-                                                "eventTime": "2019-04-04T06:45:12Z"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "trackingId": {
+                                                "value": "TEST_CASE_200"
                                             }
-                                        ],
-                                        "promisedDeliveryDate": "2019-04-04T07:05:06Z",
-                                        "summary": {
-                                            "status": "Delivered"
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "trackingId": "TEST_CASE_200",
+                                            "eventHistory": [
+                                                {
+                                                    "eventCode": "Delivered",
+                                                    "location": {
+                                                        "city": "San Bernardino",
+                                                        "countryCode": "US",
+                                                        "stateOrRegion": "CA",
+                                                        "postalCode": "92404"
+                                                    },
+                                                    "eventTime": "2019-04-04T06:45:12Z"
+                                                }
+                                            ],
+                                            "promisedDeliveryDate": "2019-04-04T07:05:06Z",
+                                            "summary": {
+                                                "status": "Delivered"
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2654,31 +3084,39 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "trackingId": {
-                                            "value": "TEST_CASE_400"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "trackingId": {
+                                                "value": "TEST_CASE_400"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid Input"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "InvalidInput",
-                                            "message": "Invalid Input"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2718,6 +3156,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2733,6 +3177,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2754,6 +3204,12 @@
                                 "schema": {
                                     "type": "string"
                                 }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                                "schema": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "content": {
@@ -2769,6 +3225,12 @@
                         "headers": {
                             "x-amzn-RequestId": {
                                 "description": "Unique request reference id.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }

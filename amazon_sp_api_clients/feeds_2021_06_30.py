@@ -39,7 +39,9 @@ class ErrorList:
 
 
 class CreateFeedResponse:
-    """ """
+    """
+    Response schema.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -51,7 +53,9 @@ class CreateFeedResponse:
 
 
 class Feed:
-    """ """
+    """
+    Detailed information about the feed.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -109,7 +113,9 @@ class GetFeedsResponse:
 
 
 class FeedDocument:
-    """ """
+    """
+    Information required for the feed document.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -139,7 +145,9 @@ class FeedOptions:
 
 
 class CreateFeedSpecification:
-    """ """
+    """
+    Information required to create the feed.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -163,7 +171,9 @@ class CreateFeedSpecification:
 
 
 class CreateFeedDocumentSpecification:
-    """ """
+    """
+    Specifies the content type for the createFeedDocument operation.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -193,7 +203,9 @@ class CreateFeedDocumentResponse:
 
 
 class FeedList(list, _List["Feed"]):
-    """ """
+    """
+    A list of feeds.
+    """
 
     def __init__(self, data):
         super().__init__([Feed(datum) for datum in data])

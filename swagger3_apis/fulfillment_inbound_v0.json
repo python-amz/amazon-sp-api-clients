@@ -89,58 +89,60 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "MarketplaceId"
-                                        },
-                                        "SellerSKUList": {
-                                            "value": [
-                                                "sku1",
-                                                "sku2"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "MarketplaceId"
+                                            },
+                                            "SellerSKUList": {
+                                                "value": [
+                                                    "sku1",
+                                                    "sku2"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "SKUInboundGuidanceList": [
+                                                {
+                                                    "SellerSKU": "SellerSKU",
+                                                    "ASIN": "ASIN",
+                                                    "InboundGuidance": "InboundNotRecommended",
+                                                    "GuidanceReasonList": [
+                                                        "SlowMovingASIN"
+                                                    ]
+                                                }
+                                            ],
+                                            "InvalidSKUList": [
+                                                {
+                                                    "SellerSKU": "SellerSKU",
+                                                    "ErrorReason": "DoesNotExist"
+                                                }
+                                            ],
+                                            "ASINInboundGuidanceList": [
+                                                {
+                                                    "ASIN": "ASIN",
+                                                    "InboundGuidance": "InboundNotRecommended",
+                                                    "GuidanceReasonList": [
+                                                        "SlowMovingASIN"
+                                                    ]
+                                                }
+                                            ],
+                                            "InvalidASINList": [
+                                                {
+                                                    "ASIN": "ASIN",
+                                                    "ErrorReason": "DoesNotExist"
+                                                }
                                             ]
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "SKUInboundGuidanceList": [
-                                            {
-                                                "SellerSKU": "SellerSKU",
-                                                "ASIN": "ASIN",
-                                                "InboundGuidance": "InboundNotRecommended",
-                                                "GuidanceReasonList": [
-                                                    "SlowMovingASIN"
-                                                ]
-                                            }
-                                        ],
-                                        "InvalidSKUList": [
-                                            {
-                                                "SellerSKU": "SellerSKU",
-                                                "ErrorReason": "DoesNotExist"
-                                            }
-                                        ],
-                                        "ASINInboundGuidanceList": [
-                                            {
-                                                "ASIN": "ASIN",
-                                                "InboundGuidance": "InboundNotRecommended",
-                                                "GuidanceReasonList": [
-                                                    "SlowMovingASIN"
-                                                ]
-                                            }
-                                        ],
-                                        "InvalidASINList": [
-                                            {
-                                                "ASIN": "ASIN",
-                                                "ErrorReason": "DoesNotExist"
-                                            }
-                                        ]
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -165,31 +167,33 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "BADVALUE"
-                                        },
-                                        "SellerSKUList": {
-                                            "value": [
-                                                "sku1",
-                                                "sku2"
-                                            ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "BADVALUE"
+                                            },
+                                            "SellerSKUList": {
+                                                "value": [
+                                                    "sku1",
+                                                    "sku2"
+                                                ]
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "MarketplaceId is incorrect"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "MarketplaceId is incorrect"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -201,7 +205,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -267,7 +271,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -291,7 +295,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -315,7 +319,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -373,91 +377,93 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipFromAddress": {
-                                                    "Name": "Name",
-                                                    "AddressLine1": "123 any st",
-                                                    "AddressLine2": "AddressLine2",
-                                                    "DistrictOrCounty": "Washtenaw",
-                                                    "City": "Ann Arbor",
-                                                    "StateOrProvinceCode": "MI",
-                                                    "CountryCode": "US",
-                                                    "PostalCode": "48188"
-                                                },
-                                                "LabelPrepPreference": "SELLER_LABEL",
-                                                "ShipToCountryCode": "ShipToCountryCode",
-                                                "ShipToCountrySubdivisionCode": "ShipToCountrySubdivisionCode",
-                                                "InboundShipmentPlanRequestItems": [
-                                                    {
-                                                        "SellerSKU": "SellerSKU",
-                                                        "ASIN": "ASIN",
-                                                        "Condition": "NewItem",
-                                                        "Quantity": 1,
-                                                        "QuantityInCase": 1,
-                                                        "PrepDetailsList": [
-                                                            {
-                                                                "PrepInstruction": "Polybagging",
-                                                                "PrepOwner": "AMAZON"
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "InboundShipmentPlans": [
-                                            {
-                                                "ShipmentId": "ShipmentId",
-                                                "DestinationFulfillmentCenterId": "ABE2",
-                                                "ShipToAddress": {
-                                                    "Name": "John Doe",
-                                                    "AddressLine1": "123 any s",
-                                                    "AddressLine2": "",
-                                                    "DistrictOrCounty": "Wayne",
-                                                    "City": "Detroit",
-                                                    "StateOrProvinceCode": "MI",
-                                                    "CountryCode": "US",
-                                                    "PostalCode": "48110"
-                                                },
-                                                "LabelPrepType": "NO_LABEL",
-                                                "Items": [
-                                                    {
-                                                        "SellerSKU": "SellerSKU",
-                                                        "FulfillmentNetworkSKU": "FulfillmentNetworkSKU",
-                                                        "Quantity": 10,
-                                                        "PrepDetailsList": [
-                                                            {
-                                                                "PrepInstruction": "Polybagging",
-                                                                "PrepOwner": "AMAZON"
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "EstimatedBoxContentsFee": {
-                                                    "TotalUnits": 10,
-                                                    "FeePerUnit": {
-                                                        "CurrencyCode": "USD",
-                                                        "Value": 10
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipFromAddress": {
+                                                        "Name": "Name",
+                                                        "AddressLine1": "123 any st",
+                                                        "AddressLine2": "AddressLine2",
+                                                        "DistrictOrCounty": "Washtenaw",
+                                                        "City": "Ann Arbor",
+                                                        "StateOrProvinceCode": "MI",
+                                                        "CountryCode": "US",
+                                                        "PostalCode": "48188"
                                                     },
-                                                    "TotalFee": {
-                                                        "CurrencyCode": "USD",
-                                                        "Value": 10
-                                                    }
+                                                    "LabelPrepPreference": "SELLER_LABEL",
+                                                    "ShipToCountryCode": "ShipToCountryCode",
+                                                    "ShipToCountrySubdivisionCode": "ShipToCountrySubdivisionCode",
+                                                    "InboundShipmentPlanRequestItems": [
+                                                        {
+                                                            "SellerSKU": "SellerSKU",
+                                                            "ASIN": "ASIN",
+                                                            "Condition": "NewItem",
+                                                            "Quantity": 1,
+                                                            "QuantityInCase": 1,
+                                                            "PrepDetailsList": [
+                                                                {
+                                                                    "PrepInstruction": "Polybagging",
+                                                                    "PrepOwner": "AMAZON"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
                                                 }
                                             }
-                                        ]
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "InboundShipmentPlans": [
+                                                {
+                                                    "ShipmentId": "ShipmentId",
+                                                    "DestinationFulfillmentCenterId": "ABE2",
+                                                    "ShipToAddress": {
+                                                        "Name": "John Doe",
+                                                        "AddressLine1": "123 any s",
+                                                        "AddressLine2": "",
+                                                        "DistrictOrCounty": "Wayne",
+                                                        "City": "Detroit",
+                                                        "StateOrProvinceCode": "MI",
+                                                        "CountryCode": "US",
+                                                        "PostalCode": "48110"
+                                                    },
+                                                    "LabelPrepType": "NO_LABEL",
+                                                    "Items": [
+                                                        {
+                                                            "SellerSKU": "SellerSKU",
+                                                            "FulfillmentNetworkSKU": "FulfillmentNetworkSKU",
+                                                            "Quantity": 10,
+                                                            "PrepDetailsList": [
+                                                                {
+                                                                    "PrepInstruction": "Polybagging",
+                                                                    "PrepOwner": "AMAZON"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "EstimatedBoxContentsFee": {
+                                                        "TotalUnits": 10,
+                                                        "FeePerUnit": {
+                                                            "CurrencyCode": "USD",
+                                                            "Value": 10
+                                                        },
+                                                        "TotalFee": {
+                                                            "CurrencyCode": "USD",
+                                                            "Value": 10
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -482,54 +488,56 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "ShipFromAddress": {
-                                                    "Name": "BADBAD NAME",
-                                                    "AddressLine1": "BADAddressLine1",
-                                                    "AddressLine2": "BADAddressLine2",
-                                                    "DistrictOrCounty": "BADDistrictOrCounty",
-                                                    "City": "BADCity",
-                                                    "StateOrProvinceCode": "BADStateOrProvinceCode",
-                                                    "CountryCode": "BADCountryCode",
-                                                    "PostalCode": "BADPostalCodeg"
-                                                },
-                                                "LabelPrepPreference": "BADSELLER_LABEL",
-                                                "ShipToCountryCode": "BADShipToCountryCode",
-                                                "ShipToCountrySubdivisionCode": "BADShipToCountrySubdivisionCode",
-                                                "InboundShipmentPlanRequestItems": [
-                                                    {
-                                                        "SellerSKU": "BADSellerSKU",
-                                                        "ASIN": "BADASIN",
-                                                        "Condition": "BADNewItem",
-                                                        "Quantity": 0,
-                                                        "QuantityInCase": 0,
-                                                        "PrepDetailsList": [
-                                                            {
-                                                                "PrepInstruction": "BADPolybagging",
-                                                                "PrepOwner": "BADAMAZON"
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "ShipFromAddress": {
+                                                        "Name": "BADBAD NAME",
+                                                        "AddressLine1": "BADAddressLine1",
+                                                        "AddressLine2": "BADAddressLine2",
+                                                        "DistrictOrCounty": "BADDistrictOrCounty",
+                                                        "City": "BADCity",
+                                                        "StateOrProvinceCode": "BADStateOrProvinceCode",
+                                                        "CountryCode": "BADCountryCode",
+                                                        "PostalCode": "BADPostalCodeg"
+                                                    },
+                                                    "LabelPrepPreference": "BADSELLER_LABEL",
+                                                    "ShipToCountryCode": "BADShipToCountryCode",
+                                                    "ShipToCountrySubdivisionCode": "BADShipToCountrySubdivisionCode",
+                                                    "InboundShipmentPlanRequestItems": [
+                                                        {
+                                                            "SellerSKU": "BADSellerSKU",
+                                                            "ASIN": "BADASIN",
+                                                            "Condition": "BADNewItem",
+                                                            "Quantity": 0,
+                                                            "QuantityInCase": 0,
+                                                            "PrepDetailsList": [
+                                                                {
+                                                                    "PrepInstruction": "BADPolybagging",
+                                                                    "PrepOwner": "BADAMAZON"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Invalid data. Please check details"
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Invalid data. Please check details"
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -541,7 +549,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -607,7 +615,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -631,7 +639,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -655,7 +663,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -725,46 +733,48 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "MarketplaceId": "ATVPDKIKX0DER",
-                                                "InboundShipmentHeader": {
-                                                    "ShipmentName": "Shipment for FBA15DJCQ1ZF",
-                                                    "ShipFromAddress": {
-                                                        "Name": "Uma Test",
-                                                        "AddressLine1": "123 any st",
-                                                        "AddressLine2": "",
-                                                        "DistrictOrCounty": "Washtenaw",
-                                                        "City": "Ann Arbor",
-                                                        "StateOrProvinceCode": "CO",
-                                                        "CountryCode": "US",
-                                                        "PostalCode": "48104"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "MarketplaceId": "ATVPDKIKX0DER",
+                                                    "InboundShipmentHeader": {
+                                                        "ShipmentName": "Shipment for FBA15DJCQ1ZF",
+                                                        "ShipFromAddress": {
+                                                            "Name": "Uma Test",
+                                                            "AddressLine1": "123 any st",
+                                                            "AddressLine2": "",
+                                                            "DistrictOrCounty": "Washtenaw",
+                                                            "City": "Ann Arbor",
+                                                            "StateOrProvinceCode": "CO",
+                                                            "CountryCode": "US",
+                                                            "PostalCode": "48104"
+                                                        },
+                                                        "DestinationFulfillmentCenterId": "ABE2",
+                                                        "ShipmentStatus": "WORKING",
+                                                        "LabelPrepPreference": "SELLER_LABEL"
                                                     },
-                                                    "DestinationFulfillmentCenterId": "ABE2",
-                                                    "ShipmentStatus": "WORKING",
-                                                    "LabelPrepPreference": "SELLER_LABEL"
-                                                },
-                                                "InboundShipmentItems": [
-                                                    {
-                                                        "SellerSKU": "PSMM-TEST-SKU-Apr-03_21_17_20-0379",
-                                                        "QuantityShipped": 1
-                                                    }
-                                                ]
+                                                    "InboundShipmentItems": [
+                                                        {
+                                                            "SellerSKU": "PSMM-TEST-SKU-Apr-03_21_17_20-0379",
+                                                            "QuantityShipped": 1
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentId": "FBA15DJCQ1ZF"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentId": "FBA15DJCQ1ZF"
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -789,49 +799,51 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "MarketplaceId": "BADID",
-                                                "InboundShipmentHeader": {
-                                                    "ShipmentName": "Shipment for FBA15DJCQ1ZF",
-                                                    "ShipFromAddress": {
-                                                        "Name": "Uma Test",
-                                                        "AddressLine1": "123 any st",
-                                                        "AddressLine2": "",
-                                                        "DistrictOrCounty": "Washtenaw",
-                                                        "City": "Ann Arbor",
-                                                        "StateOrProvinceCode": "CO",
-                                                        "CountryCode": "US",
-                                                        "PostalCode": "48104"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "MarketplaceId": "BADID",
+                                                    "InboundShipmentHeader": {
+                                                        "ShipmentName": "Shipment for FBA15DJCQ1ZF",
+                                                        "ShipFromAddress": {
+                                                            "Name": "Uma Test",
+                                                            "AddressLine1": "123 any st",
+                                                            "AddressLine2": "",
+                                                            "DistrictOrCounty": "Washtenaw",
+                                                            "City": "Ann Arbor",
+                                                            "StateOrProvinceCode": "CO",
+                                                            "CountryCode": "US",
+                                                            "PostalCode": "48104"
+                                                        },
+                                                        "DestinationFulfillmentCenterId": "ABE2",
+                                                        "ShipmentStatus": "WORKING",
+                                                        "LabelPrepPreference": "SELLER_LABEL"
                                                     },
-                                                    "DestinationFulfillmentCenterId": "ABE2",
-                                                    "ShipmentStatus": "WORKING",
-                                                    "LabelPrepPreference": "SELLER_LABEL"
-                                                },
-                                                "InboundShipmentItems": [
-                                                    {
-                                                        "SellerSKU": "PSMM-TEST-SKU-Apr-03_21_17_20-0379",
-                                                        "QuantityShipped": 1
-                                                    }
-                                                ]
+                                                    "InboundShipmentItems": [
+                                                        {
+                                                            "SellerSKU": "PSMM-TEST-SKU-Apr-03_21_17_20-0379",
+                                                            "QuantityShipped": 1
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -843,7 +855,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -909,7 +921,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -933,7 +945,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -957,7 +969,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1025,58 +1037,60 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "InboundShipmentHeader": {
-                                                    "ShipmentName": "43545345",
-                                                    "ShipFromAddress": {
-                                                        "Name": "35435345",
-                                                        "AddressLine1": "123 any st",
-                                                        "DistrictOrCounty": "Washtenaw",
-                                                        "City": "Ann Arbor",
-                                                        "StateOrProvinceCode": "Test",
-                                                        "CountryCode": "US",
-                                                        "PostalCode": "48103"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "InboundShipmentHeader": {
+                                                        "ShipmentName": "43545345",
+                                                        "ShipFromAddress": {
+                                                            "Name": "35435345",
+                                                            "AddressLine1": "123 any st",
+                                                            "DistrictOrCounty": "Washtenaw",
+                                                            "City": "Ann Arbor",
+                                                            "StateOrProvinceCode": "Test",
+                                                            "CountryCode": "US",
+                                                            "PostalCode": "48103"
+                                                        },
+                                                        "DestinationFulfillmentCenterId": "AEB2",
+                                                        "AreCasesRequired": true,
+                                                        "ShipmentStatus": "WORKING",
+                                                        "LabelPrepPreference": "SELLER_LABEL",
+                                                        "IntendedBoxContentsSource": "NONE"
                                                     },
-                                                    "DestinationFulfillmentCenterId": "AEB2",
-                                                    "AreCasesRequired": true,
-                                                    "ShipmentStatus": "WORKING",
-                                                    "LabelPrepPreference": "SELLER_LABEL",
-                                                    "IntendedBoxContentsSource": "NONE"
-                                                },
-                                                "InboundShipmentItems": [
-                                                    {
-                                                        "ShipmentId": "345453",
-                                                        "SellerSKU": "34534545",
-                                                        "FulfillmentNetworkSKU": "435435435",
-                                                        "QuantityShipped": 0,
-                                                        "QuantityReceived": 0,
-                                                        "QuantityInCase": 0,
-                                                        "ReleaseDate": "2020-04-23",
-                                                        "PrepDetailsList": [
-                                                            {
-                                                                "PrepInstruction": "Polybagging",
-                                                                "PrepOwner": "AMAZON"
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "MarketplaceId": "MarketplaceId"
+                                                    "InboundShipmentItems": [
+                                                        {
+                                                            "ShipmentId": "345453",
+                                                            "SellerSKU": "34534545",
+                                                            "FulfillmentNetworkSKU": "435435435",
+                                                            "QuantityShipped": 0,
+                                                            "QuantityReceived": 0,
+                                                            "QuantityInCase": 0,
+                                                            "ReleaseDate": "2020-04-23",
+                                                            "PrepDetailsList": [
+                                                                {
+                                                                    "PrepInstruction": "Polybagging",
+                                                                    "PrepOwner": "AMAZON"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "MarketplaceId": "MarketplaceId"
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentId": "ShipmentId"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentId": "ShipmentId"
+                                        }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -1101,54 +1115,56 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "body": {
-                                            "value": {
-                                                "MarketplaceId": "BADATVPDKIKX0DER",
-                                                "InboundShipmentHeader": {
-                                                    "ShipmentName": "Shipment for FBA15DJCQ1ZF",
-                                                    "ShipFromAddress": {
-                                                        "Name": "Uma Test",
-                                                        "AddressLine1": "123 any st",
-                                                        "AddressLine2": "",
-                                                        "DistrictOrCounty": "Washtenaw",
-                                                        "City": "Ann Arbor",
-                                                        "StateOrProvinceCode": "MI",
-                                                        "CountryCode": "US",
-                                                        "PostalCode": "48103"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "MarketplaceId": "BADATVPDKIKX0DER",
+                                                    "InboundShipmentHeader": {
+                                                        "ShipmentName": "Shipment for FBA15DJCQ1ZF",
+                                                        "ShipFromAddress": {
+                                                            "Name": "Uma Test",
+                                                            "AddressLine1": "123 any st",
+                                                            "AddressLine2": "",
+                                                            "DistrictOrCounty": "Washtenaw",
+                                                            "City": "Ann Arbor",
+                                                            "StateOrProvinceCode": "MI",
+                                                            "CountryCode": "US",
+                                                            "PostalCode": "48103"
+                                                        },
+                                                        "DestinationFulfillmentCenterId": "ABE2",
+                                                        "ShipmentStatus": "WORKING",
+                                                        "LabelPrepPreference": "SELLER_LABEL"
                                                     },
-                                                    "DestinationFulfillmentCenterId": "ABE2",
-                                                    "ShipmentStatus": "WORKING",
-                                                    "LabelPrepPreference": "SELLER_LABEL"
-                                                },
-                                                "InboundShipmentItems": [
-                                                    {
-                                                        "ShipmentId": "FBA15DJCQ1ZF",
-                                                        "SellerSKU": "PSMM-TEST-SKU-Apr-03_21_17_20-0379",
-                                                        "FulfillmentNetworkSKU": "X0014ENQ7B",
-                                                        "QuantityShipped": 1,
-                                                        "QuantityReceived": 1,
-                                                        "QuantityInCase": 1,
-                                                        "ReleaseDate": "2020-02-27"
-                                                    }
-                                                ]
+                                                    "InboundShipmentItems": [
+                                                        {
+                                                            "ShipmentId": "FBA15DJCQ1ZF",
+                                                            "SellerSKU": "PSMM-TEST-SKU-Apr-03_21_17_20-0379",
+                                                            "FulfillmentNetworkSKU": "X0014ENQ7B",
+                                                            "QuantityShipped": 1,
+                                                            "QuantityReceived": 1,
+                                                            "QuantityInCase": 1,
+                                                            "ReleaseDate": "2020-02-27"
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -1160,7 +1176,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1226,7 +1242,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1250,7 +1266,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1274,7 +1290,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1343,28 +1359,30 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
-                                        },
-                                        "MarketplaceId": {
-                                            "value": "MarketplaceId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            },
+                                            "MarketplaceId": {
+                                                "value": "MarketplaceId1"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentContainsPreorderableItems": true,
+                                            "ShipmentConfirmedForPreorder": true,
+                                            "NeedByDate": "2020-04-23",
+                                            "ConfirmedFulfillableDate": "2020-04-23"
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentContainsPreorderableItems": true,
-                                        "ShipmentConfirmedForPreorder": true,
-                                        "NeedByDate": "2020-04-23",
-                                        "ConfirmedFulfillableDate": "2020-04-23"
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -1389,28 +1407,30 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "BADshipmentId1"
-                                        },
-                                        "MarketplaceId": {
-                                            "value": "BADMarketplaceId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "BADshipmentId1"
+                                            },
+                                            "MarketplaceId": {
+                                                "value": "BADMarketplaceId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -1422,7 +1442,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1488,7 +1508,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1512,7 +1532,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1536,7 +1556,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1614,29 +1634,31 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
-                                        },
-                                        "NeedByDate": {
-                                            "value": "2020-10-10"
-                                        },
-                                        "MarketplaceId": {
-                                            "value": "MarketplaceId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            },
+                                            "NeedByDate": {
+                                                "value": "2020-10-10"
+                                            },
+                                            "MarketplaceId": {
+                                                "value": "MarketplaceId1"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ConfirmedNeedByDate": "2020-04-23",
+                                            "ConfirmedFulfillableDate": "2020-04-23"
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ConfirmedNeedByDate": "2020-04-23",
-                                        "ConfirmedFulfillableDate": "2020-04-23"
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -1661,31 +1683,33 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "BADshipmentId1"
-                                        },
-                                        "NeedByDate": {
-                                            "value": "2020-10-10"
-                                        },
-                                        "MarketplaceId": {
-                                            "value": "BADMarketplaceId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "BADshipmentId1"
+                                            },
+                                            "NeedByDate": {
+                                                "value": "2020-10-10"
+                                            },
+                                            "MarketplaceId": {
+                                                "value": "BADMarketplaceId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -1697,7 +1721,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1763,7 +1787,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1787,7 +1811,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1811,7 +1835,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -1899,68 +1923,70 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "ShipToCountryCode": {
-                                            "value": "US"
-                                        },
-                                        "ASINList": {
-                                            "value": [
-                                                "ASIN1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "ShipToCountryCode": {
+                                                "value": "US"
+                                            },
+                                            "ASINList": {
+                                                "value": [
+                                                    "ASIN1"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "SKUPrepInstructionsList": [
+                                                {
+                                                    "SellerSKU": "SellerSKU",
+                                                    "ASIN": "ASIN1",
+                                                    "BarcodeInstruction": "RequiresFNSKULabel",
+                                                    "PrepGuidance": "ConsultHelpDocuments",
+                                                    "PrepInstructionList": [
+                                                        "Polybagging"
+                                                    ],
+                                                    "AmazonPrepFeesDetailsList": [
+                                                        {
+                                                            "PrepInstruction": "Polybagging",
+                                                            "FeePerUnit": {
+                                                                "CurrencyCode": "USD",
+                                                                "Value": 10
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "InvalidSKUList": [
+                                                {
+                                                    "SellerSKU": "SellerSKU",
+                                                    "ErrorReason": "DoesNotExist"
+                                                }
+                                            ],
+                                            "ASINPrepInstructionsList": [
+                                                {
+                                                    "ASIN": "ASIN1",
+                                                    "BarcodeInstruction": "RequiresFNSKULabel",
+                                                    "PrepGuidance": "ConsultHelpDocuments",
+                                                    "PrepInstructionList": [
+                                                        "Polybagging"
+                                                    ]
+                                                }
+                                            ],
+                                            "InvalidASINList": [
+                                                {
+                                                    "ASIN": "ASIN1",
+                                                    "ErrorReason": "DoesNotExist"
+                                                }
                                             ]
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "SKUPrepInstructionsList": [
-                                            {
-                                                "SellerSKU": "SellerSKU",
-                                                "ASIN": "ASIN1",
-                                                "BarcodeInstruction": "RequiresFNSKULabel",
-                                                "PrepGuidance": "ConsultHelpDocuments",
-                                                "PrepInstructionList": [
-                                                    "Polybagging"
-                                                ],
-                                                "AmazonPrepFeesDetailsList": [
-                                                    {
-                                                        "PrepInstruction": "Polybagging",
-                                                        "FeePerUnit": {
-                                                            "CurrencyCode": "USD",
-                                                            "Value": 10
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "InvalidSKUList": [
-                                            {
-                                                "SellerSKU": "SellerSKU",
-                                                "ErrorReason": "DoesNotExist"
-                                            }
-                                        ],
-                                        "ASINPrepInstructionsList": [
-                                            {
-                                                "ASIN": "ASIN1",
-                                                "BarcodeInstruction": "RequiresFNSKULabel",
-                                                "PrepGuidance": "ConsultHelpDocuments",
-                                                "PrepInstructionList": [
-                                                    "Polybagging"
-                                                ]
-                                            }
-                                        ],
-                                        "InvalidASINList": [
-                                            {
-                                                "ASIN": "ASIN1",
-                                                "ErrorReason": "DoesNotExist"
-                                            }
-                                        ]
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -1985,30 +2011,32 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "ShipToCountryCode": {
-                                            "value": "US"
-                                        },
-                                        "ASINList": {
-                                            "value": [
-                                                "BADASIN"
-                                            ]
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "ShipToCountryCode": {
+                                                "value": "US"
+                                            },
+                                            "ASINList": {
+                                                "value": [
+                                                    "BADASIN"
+                                                ]
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -2020,7 +2048,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2086,7 +2114,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2110,7 +2138,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2134,7 +2162,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2193,52 +2221,54 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "TransportContent": {
-                                            "TransportHeader": {
-                                                "SellerId": "A3O2V2ZBRHE3NZ",
-                                                "ShipmentId": "FBA15DJCPTRK",
-                                                "IsPartnered": true,
-                                                "ShipmentType": "SP"
-                                            },
-                                            "TransportDetails": {
-                                                "PartneredSmallParcelData": {
-                                                    "PackageList": [
-                                                        {
-                                                            "Dimensions": {
-                                                                "Length": 11.0,
-                                                                "Width": 11.0,
-                                                                "Height": 11.0,
-                                                                "Unit": "IN"
-                                                            },
-                                                            "Weight": {
-                                                                "Value": 11.0,
-                                                                "Unit": "pounds"
-                                                            },
-                                                            "CarrierName": "UNITED_PARCEL_SERVICE_INC",
-                                                            "PackageStatus": "SHIPPED"
-                                                        }
-                                                    ]
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "TransportContent": {
+                                                "TransportHeader": {
+                                                    "SellerId": "A3O2V2ZBRHE3NZ",
+                                                    "ShipmentId": "FBA15DJCPTRK",
+                                                    "IsPartnered": true,
+                                                    "ShipmentType": "SP"
+                                                },
+                                                "TransportDetails": {
+                                                    "PartneredSmallParcelData": {
+                                                        "PackageList": [
+                                                            {
+                                                                "Dimensions": {
+                                                                    "Length": 11.0,
+                                                                    "Width": 11.0,
+                                                                    "Height": 11.0,
+                                                                    "Unit": "IN"
+                                                                },
+                                                                "Weight": {
+                                                                    "Value": 11.0,
+                                                                    "Unit": "pounds"
+                                                                },
+                                                                "CarrierName": "UNITED_PARCEL_SERVICE_INC",
+                                                                "PackageStatus": "SHIPPED"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "TransportResult": {
+                                                    "TransportStatus": "WORKING"
                                                 }
-                                            },
-                                            "TransportResult": {
-                                                "TransportStatus": "WORKING"
                                             }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -2263,25 +2293,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "BADshipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "BADshipmentId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -2293,7 +2325,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2359,7 +2391,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2383,7 +2415,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2407,7 +2439,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2474,95 +2506,97 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
-                                        },
-                                        "body": {
-                                            "value": {
-                                                "IsPartnered": true,
-                                                "ShipmentType": "SP",
-                                                "TransportDetails": {
-                                                    "PartneredSmallParcelData": {
-                                                        "PackageList": [
-                                                            {
-                                                                "Dimensions": {
-                                                                    "Length": 11,
-                                                                    "Width": 11,
-                                                                    "Height": 11,
-                                                                    "Unit": "inches"
-                                                                },
-                                                                "Weight": {
-                                                                    "Value": 11,
-                                                                    "Unit": "pounds"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "IsPartnered": true,
+                                                    "ShipmentType": "SP",
+                                                    "TransportDetails": {
+                                                        "PartneredSmallParcelData": {
+                                                            "PackageList": [
+                                                                {
+                                                                    "Dimensions": {
+                                                                        "Length": 11,
+                                                                        "Width": 11,
+                                                                        "Height": 11,
+                                                                        "Unit": "inches"
+                                                                    },
+                                                                    "Weight": {
+                                                                        "Value": 11,
+                                                                        "Unit": "pounds"
+                                                                    }
                                                                 }
-                                                            }
-                                                        ],
-                                                        "CarrierName": "string"
-                                                    },
-                                                    "NonPartneredSmallParcelData": {
-                                                        "CarrierName": "USPS",
-                                                        "PackageList": [
-                                                            {
-                                                                "TrackingId": "werwrwerwrwrer"
-                                                            }
-                                                        ]
-                                                    },
-                                                    "PartneredLtlData": {
-                                                        "Contact": {
-                                                            "Name": "Test1",
-                                                            "Phone": "234-343-3434",
-                                                            "Email": "abc@test.com",
-                                                            "Fax": "234-343-3434"
+                                                            ],
+                                                            "CarrierName": "string"
                                                         },
-                                                        "BoxCount": 1,
-                                                        "SellerFreightClass": "50",
-                                                        "FreightReadyDate": "2020-03-27",
-                                                        "PalletList": [
-                                                            {
-                                                                "Dimensions": {
-                                                                    "Length": 13,
-                                                                    "Width": 13,
-                                                                    "Height": 13,
-                                                                    "Unit": "inches"
-                                                                },
-                                                                "Weight": {
-                                                                    "Value": 13,
-                                                                    "Unit": "pounds"
-                                                                },
-                                                                "IsStacked": true
-                                                            }
-                                                        ],
-                                                        "TotalWeight": {
-                                                            "Value": 13,
-                                                            "Unit": "pounds"
+                                                        "NonPartneredSmallParcelData": {
+                                                            "CarrierName": "USPS",
+                                                            "PackageList": [
+                                                                {
+                                                                    "TrackingId": "werwrwerwrwrer"
+                                                                }
+                                                            ]
                                                         },
-                                                        "SellerDeclaredValue": {
-                                                            "CurrencyCode": "USD",
-                                                            "Value": 20
+                                                        "PartneredLtlData": {
+                                                            "Contact": {
+                                                                "Name": "Test1",
+                                                                "Phone": "234-343-3434",
+                                                                "Email": "abc@test.com",
+                                                                "Fax": "234-343-3434"
+                                                            },
+                                                            "BoxCount": 1,
+                                                            "SellerFreightClass": "50",
+                                                            "FreightReadyDate": "2020-03-27",
+                                                            "PalletList": [
+                                                                {
+                                                                    "Dimensions": {
+                                                                        "Length": 13,
+                                                                        "Width": 13,
+                                                                        "Height": 13,
+                                                                        "Unit": "inches"
+                                                                    },
+                                                                    "Weight": {
+                                                                        "Value": 13,
+                                                                        "Unit": "pounds"
+                                                                    },
+                                                                    "IsStacked": true
+                                                                }
+                                                            ],
+                                                            "TotalWeight": {
+                                                                "Value": 13,
+                                                                "Unit": "pounds"
+                                                            },
+                                                            "SellerDeclaredValue": {
+                                                                "CurrencyCode": "USD",
+                                                                "Value": 20
+                                                            }
+                                                        },
+                                                        "NonPartneredLtlData": {
+                                                            "CarrierName": "USPS",
+                                                            "ProNumber": "3746274"
                                                         }
-                                                    },
-                                                    "NonPartneredLtlData": {
-                                                        "CarrierName": "USPS",
-                                                        "ProNumber": "3746274"
                                                     }
                                                 }
                                             }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "TransportResult": {
-                                            "TransportStatus": "WORKING"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "TransportResult": {
+                                                "TransportStatus": "WORKING"
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -2587,96 +2621,98 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
-                                        },
-                                        "body": {
-                                            "value": {
-                                                "IsPartnered": true,
-                                                "ShipmentType": "SP",
-                                                "TransportDetails": {
-                                                    "PartneredSmallParcelData": {
-                                                        "PackageList": [
-                                                            {
-                                                                "Dimensions": {
-                                                                    "Length": 11,
-                                                                    "Width": 11,
-                                                                    "Height": 11,
-                                                                    "Unit": "inches"
-                                                                },
-                                                                "Weight": {
-                                                                    "Value": 11,
-                                                                    "Unit": "pounds"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "IsPartnered": true,
+                                                    "ShipmentType": "SP",
+                                                    "TransportDetails": {
+                                                        "PartneredSmallParcelData": {
+                                                            "PackageList": [
+                                                                {
+                                                                    "Dimensions": {
+                                                                        "Length": 11,
+                                                                        "Width": 11,
+                                                                        "Height": 11,
+                                                                        "Unit": "inches"
+                                                                    },
+                                                                    "Weight": {
+                                                                        "Value": 11,
+                                                                        "Unit": "pounds"
+                                                                    }
                                                                 }
-                                                            }
-                                                        ],
-                                                        "CarrierName": "string"
-                                                    },
-                                                    "NonPartneredSmallParcelData": {
-                                                        "CarrierName": "USPS",
-                                                        "PackageList": [
-                                                            {
-                                                                "TrackingId": "werwrwerwrwrer"
-                                                            }
-                                                        ]
-                                                    },
-                                                    "PartneredLtlData": {
-                                                        "Contact": {
-                                                            "Name": "Test1",
-                                                            "Phone": "234-343-3434",
-                                                            "Email": "abc@test.com",
-                                                            "Fax": "234-343-3434"
+                                                            ],
+                                                            "CarrierName": "string"
                                                         },
-                                                        "BoxCount": 1,
-                                                        "SellerFreightClass": "50",
-                                                        "FreightReadyDate": "2020-03-27",
-                                                        "PalletList": [
-                                                            {
-                                                                "Dimensions": {
-                                                                    "Length": 13,
-                                                                    "Width": 13,
-                                                                    "Height": 13,
-                                                                    "Unit": "inches"
-                                                                },
-                                                                "Weight": {
-                                                                    "Value": 13,
-                                                                    "Unit": "pounds"
-                                                                },
-                                                                "IsStacked": true
-                                                            }
-                                                        ],
-                                                        "TotalWeight": {
-                                                            "Value": 13,
-                                                            "Unit": "pounds"
+                                                        "NonPartneredSmallParcelData": {
+                                                            "CarrierName": "USPS",
+                                                            "PackageList": [
+                                                                {
+                                                                    "TrackingId": "werwrwerwrwrer"
+                                                                }
+                                                            ]
                                                         },
-                                                        "SellerDeclaredValue": {
-                                                            "CurrencyCode": "USD",
-                                                            "Value": 20
+                                                        "PartneredLtlData": {
+                                                            "Contact": {
+                                                                "Name": "Test1",
+                                                                "Phone": "234-343-3434",
+                                                                "Email": "abc@test.com",
+                                                                "Fax": "234-343-3434"
+                                                            },
+                                                            "BoxCount": 1,
+                                                            "SellerFreightClass": "50",
+                                                            "FreightReadyDate": "2020-03-27",
+                                                            "PalletList": [
+                                                                {
+                                                                    "Dimensions": {
+                                                                        "Length": 13,
+                                                                        "Width": 13,
+                                                                        "Height": 13,
+                                                                        "Unit": "inches"
+                                                                    },
+                                                                    "Weight": {
+                                                                        "Value": 13,
+                                                                        "Unit": "pounds"
+                                                                    },
+                                                                    "IsStacked": true
+                                                                }
+                                                            ],
+                                                            "TotalWeight": {
+                                                                "Value": 13,
+                                                                "Unit": "pounds"
+                                                            },
+                                                            "SellerDeclaredValue": {
+                                                                "CurrencyCode": "USD",
+                                                                "Value": 20
+                                                            }
+                                                        },
+                                                        "NonPartneredLtlData": {
+                                                            "CarrierName": "USPS",
+                                                            "ProNumber": "3746274"
                                                         }
-                                                    },
-                                                    "NonPartneredLtlData": {
-                                                        "CarrierName": "USPS",
-                                                        "ProNumber": "3746274"
                                                     }
                                                 }
                                             }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -2688,7 +2724,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2754,7 +2790,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2778,7 +2814,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2802,7 +2838,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -2862,24 +2898,26 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "TransportResult": {
-                                            "TransportStatus": "VOIDING"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "TransportResult": {
+                                                "TransportStatus": "VOIDING"
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -2904,25 +2942,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "badshipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "badshipmentId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -2934,7 +2974,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3000,7 +3040,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3024,7 +3064,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3048,7 +3088,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3107,24 +3147,26 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "TransportResult": {
-                                            "TransportStatus": "ESTIMATING"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "TransportResult": {
+                                                "TransportStatus": "ESTIMATING"
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -3149,25 +3191,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "BadshipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "BadshipmentId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -3179,7 +3223,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3245,7 +3289,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3269,7 +3313,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3293,7 +3337,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3352,24 +3396,26 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            }
                                         }
-                                    }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "TransportResult": {
-                                            "TransportStatus": "CONFIRMING"
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "TransportResult": {
+                                                "TransportStatus": "CONFIRMING"
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -3394,25 +3440,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -3424,7 +3472,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3490,7 +3538,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3514,7 +3562,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3538,7 +3586,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3808,28 +3856,30 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "348975493"
-                                        },
-                                        "PageType": {
-                                            "value": "PackageLabel_Letter_2"
-                                        },
-                                        "LabelType": {
-                                            "value": "BARCODE_2D"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "348975493"
+                                            },
+                                            "PageType": {
+                                                "value": "PackageLabel_Letter_2"
+                                            },
+                                            "LabelType": {
+                                                "value": "BARCODE_2D"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "DownloadURL": "http://www.labels.url.com"
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "DownloadURL": "http://www.labels.url.com"
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -3854,31 +3904,33 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "BADVALUE"
-                                        },
-                                        "PageType": {
-                                            "value": "PackageLabel_Letter_2"
-                                        },
-                                        "LabelType": {
-                                            "value": "BARCODE_2D"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "BADVALUE"
+                                            },
+                                            "PageType": {
+                                                "value": "PackageLabel_Letter_2"
+                                            },
+                                            "LabelType": {
+                                                "value": "BARCODE_2D"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -3890,7 +3942,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3956,7 +4008,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -3980,7 +4032,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4004,7 +4056,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4063,22 +4115,24 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "shipmentId"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "shipmentId"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "DownloadURL": "http://bill-of.lading.url.com"
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "DownloadURL": "http://bill-of.lading.url.com"
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -4103,25 +4157,27 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "shipmentId": {
-                                            "value": "badid1"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "shipmentId": {
+                                                "value": "badid1"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -4133,7 +4189,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4199,7 +4255,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4223,7 +4279,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4247,7 +4303,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4454,43 +4510,45 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "ATVPDKIKX0DER"
-                                        },
-                                        "QueryType": {
-                                            "value": "SHIPMENT"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "ATVPDKIKX0DER"
+                                            },
+                                            "QueryType": {
+                                                "value": "SHIPMENT"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ShipmentData": [
+                                                {
+                                                    "ShipmentId": "FBA15DJ9S3J5",
+                                                    "ShipmentName": "FBA (2/11/20, 11:18 AM) - 1",
+                                                    "ShipFromAddress": {
+                                                        "Name": "vungu+naperfectUS",
+                                                        "AddressLine1": "501 Fairview Ave N",
+                                                        "City": "Seattle",
+                                                        "StateOrProvinceCode": "WA",
+                                                        "CountryCode": "US",
+                                                        "PostalCode": "98109"
+                                                    },
+                                                    "DestinationFulfillmentCenterId": "MKC6",
+                                                    "ShipmentStatus": "SHIPPED",
+                                                    "LabelPrepType": "SELLER_LABEL",
+                                                    "BoxContentsSource": "INTERACTIVE"
+                                                }
+                                            ],
+                                            "NextToken": "AAAAAAAAAADwtRhfSFJXzbRgKc+wYysmXwEAAAAAAACLuoztkDYG/ClQt9ELs4kYW6MrmpJdFf1QQYk6hSIZSsy5ipek26YvTwmkD9i4cbQny1EWwuuU88wghPxa7770q5R+YYCuP4pYWVy3AVAzWzAib6BRlDr4B0msx6sOKcYCy6ms4J021964JOS9nZhRBGfJ86d96S91rhJPli55+r7Jp+VHPly2FCJ2mAuC53sGTsNP108IUuPdbZqq2myWZ5U+EggLjhRBvXhHFFxRclETG7XfyX46A9nCKKhJYEjDFmMPQoQPtqSuxtMAUMDLPs4MttashstL96Oiu79VYhjV84L13mdMNZS6g21HKgU5E6CDivHvsgS5kC7joXHrXGjwpXMeLcfJqwg+DocBFiU2NELMEbfksrIGXVVjFqiLxHtTiDBsuDxDLbYeVepW0E9oA/ppbZJK4c0nDbgT3WSxxfsgpmAZ42O6iVMhW/KVlJZFDjKsmmHATcq5S5c="
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ShipmentData": [
-                                            {
-                                                "ShipmentId": "FBA15DJ9S3J5",
-                                                "ShipmentName": "FBA (2/11/20, 11:18 AM) - 1",
-                                                "ShipFromAddress": {
-                                                    "Name": "vungu+naperfectUS",
-                                                    "AddressLine1": "501 Fairview Ave N",
-                                                    "City": "Seattle",
-                                                    "StateOrProvinceCode": "WA",
-                                                    "CountryCode": "US",
-                                                    "PostalCode": "98109"
-                                                },
-                                                "DestinationFulfillmentCenterId": "MKC6",
-                                                "ShipmentStatus": "SHIPPED",
-                                                "LabelPrepType": "SELLER_LABEL",
-                                                "BoxContentsSource": "INTERACTIVE"
-                                            }
-                                        ],
-                                        "NextToken": "AAAAAAAAAADwtRhfSFJXzbRgKc+wYysmXwEAAAAAAACLuoztkDYG/ClQt9ELs4kYW6MrmpJdFf1QQYk6hSIZSsy5ipek26YvTwmkD9i4cbQny1EWwuuU88wghPxa7770q5R+YYCuP4pYWVy3AVAzWzAib6BRlDr4B0msx6sOKcYCy6ms4J021964JOS9nZhRBGfJ86d96S91rhJPli55+r7Jp+VHPly2FCJ2mAuC53sGTsNP108IUuPdbZqq2myWZ5U+EggLjhRBvXhHFFxRclETG7XfyX46A9nCKKhJYEjDFmMPQoQPtqSuxtMAUMDLPs4MttashstL96Oiu79VYhjV84L13mdMNZS6g21HKgU5E6CDivHvsgS5kC7joXHrXGjwpXMeLcfJqwg+DocBFiU2NELMEbfksrIGXVVjFqiLxHtTiDBsuDxDLbYeVepW0E9oA/ppbZJK4c0nDbgT3WSxxfsgpmAZ42O6iVMhW/KVlJZFDjKsmmHATcq5S5c="
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -4515,28 +4573,30 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "BADATVPDKIKX0DER"
-                                        },
-                                        "QueryType": {
-                                            "value": "BADSHIPMENT"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "BADATVPDKIKX0DER"
+                                            },
+                                            "QueryType": {
+                                                "value": "BADSHIPMENT"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -4548,7 +4608,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4614,7 +4674,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4638,7 +4698,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4662,7 +4722,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4730,46 +4790,48 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "ATVPDKIKX0DER"
-                                        },
-                                        "shipmentId": {
-                                            "value": "FBA15DJ9SVVD"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "ATVPDKIKX0DER"
+                                            },
+                                            "shipmentId": {
+                                                "value": "FBA15DJ9SVVD"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ItemData": [
+                                                {
+                                                    "ShipmentId": "FBA15DF2763D",
+                                                    "SellerSKU": "CR-47K6-H6QN",
+                                                    "FulfillmentNetworkSKU": "X0014BIZ8T",
+                                                    "QuantityShipped": 4,
+                                                    "QuantityReceived": 0,
+                                                    "QuantityInCase": 0,
+                                                    "ReleaseDate": "2013-05-29",
+                                                    "PrepDetailsList": [
+                                                        {
+                                                            "PrepInstruction": "Labeling",
+                                                            "PrepOwner": "SELLER"
+                                                        },
+                                                        {
+                                                            "PrepInstruction": "Polybagging",
+                                                            "PrepOwner": "SELLER"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "NextToken": "AAAAAAAAAABtqoY6CcWi1L8mJB7Nnt2gaQEAAAAAAAD6ehPTas9PliWJK6+QPwRpOgJJTgQphGOQ+9o1k7PBrBe5GrNyGDQYBmz2D4yDT4FVSHVhpbKi8Mgrw3tfRTLrkcMQOn5CvEySS5ePVzv8WhjCDxM9FGwBzoeDWLKx9OEy29XlAFkeBdwaxOAxEMF97uQkxGhUQS5sGeXdSAXNXMgCoOXMgw+JlsgzIq3Byt/yObIt8z9T0GPk440bqiQZl3ceVEiLX2g2LAa5qNwJBtCgYtizJsYSu/tX9zbR0Fe13bSqTOUEAXykYvQSTYCbuEPC3UFukVLobuP0lW+WZzZxcbWRxEzBTHnlgorzdsCc4cBnWVhTdp5nxTPeiYGbda9KilRFXtVl1vgXCHq5npDNV9yULsgjAqFPDBaz8YMlKoJgCe2E1GmbHzenJW21IHcIo3gtmujx+ib3Y9j23SwCfEbsUR9OrFNvGxiZ0VS7qYzm+fvElsU9jBx1PFrOigHnGD71Yq+y"
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ItemData": [
-                                            {
-                                                "ShipmentId": "FBA15DF2763D",
-                                                "SellerSKU": "CR-47K6-H6QN",
-                                                "FulfillmentNetworkSKU": "X0014BIZ8T",
-                                                "QuantityShipped": 4,
-                                                "QuantityReceived": 0,
-                                                "QuantityInCase": 0,
-                                                "ReleaseDate": "2013-05-29",
-                                                "PrepDetailsList": [
-                                                    {
-                                                        "PrepInstruction": "Labeling",
-                                                        "PrepOwner": "SELLER"
-                                                    },
-                                                    {
-                                                        "PrepInstruction": "Polybagging",
-                                                        "PrepOwner": "SELLER"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "NextToken": "AAAAAAAAAABtqoY6CcWi1L8mJB7Nnt2gaQEAAAAAAAD6ehPTas9PliWJK6+QPwRpOgJJTgQphGOQ+9o1k7PBrBe5GrNyGDQYBmz2D4yDT4FVSHVhpbKi8Mgrw3tfRTLrkcMQOn5CvEySS5ePVzv8WhjCDxM9FGwBzoeDWLKx9OEy29XlAFkeBdwaxOAxEMF97uQkxGhUQS5sGeXdSAXNXMgCoOXMgw+JlsgzIq3Byt/yObIt8z9T0GPk440bqiQZl3ceVEiLX2g2LAa5qNwJBtCgYtizJsYSu/tX9zbR0Fe13bSqTOUEAXykYvQSTYCbuEPC3UFukVLobuP0lW+WZzZxcbWRxEzBTHnlgorzdsCc4cBnWVhTdp5nxTPeiYGbda9KilRFXtVl1vgXCHq5npDNV9yULsgjAqFPDBaz8YMlKoJgCe2E1GmbHzenJW21IHcIo3gtmujx+ib3Y9j23SwCfEbsUR9OrFNvGxiZ0VS7qYzm+fvElsU9jBx1PFrOigHnGD71Yq+y"
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -4794,28 +4856,30 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "BADATVPDKIKX0DER"
-                                        },
-                                        "shipmentId": {
-                                            "value": "BADFBA15DJ9SVVD"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "BADATVPDKIKX0DER"
+                                            },
+                                            "shipmentId": {
+                                                "value": "BADFBA15DJ9SVVD"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -4827,7 +4891,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4893,7 +4957,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4917,7 +4981,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -4941,7 +5005,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -5059,89 +5123,91 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "ATVPDKIKX0DER"
-                                        },
-                                        "QueryType": {
-                                            "value": "SHIPMENT"
-                                        },
-                                        "NextToken": {
-                                            "value": "NextToken"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "ATVPDKIKX0DER"
+                                            },
+                                            "QueryType": {
+                                                "value": "SHIPMENT"
+                                            },
+                                            "NextToken": {
+                                                "value": "NextToken"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ItemData": [
+                                                {
+                                                    "ShipmentId": "FBA15DF2763D",
+                                                    "SellerSKU": "CR-47K6-H6QN",
+                                                    "FulfillmentNetworkSKU": "X0014BIZ8T",
+                                                    "QuantityShipped": 4,
+                                                    "QuantityReceived": 0,
+                                                    "QuantityInCase": 0,
+                                                    "ReleaseDate": "2013-05-29",
+                                                    "PrepDetailsList": [
+                                                        {
+                                                            "PrepInstruction": "Labeling",
+                                                            "PrepOwner": "SELLER"
+                                                        },
+                                                        {
+                                                            "PrepInstruction": "Polybagging",
+                                                            "PrepOwner": "SELLER"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "NextToken": "AAAAAAAAAABtqoY6CcWi1L8mJB7Nnt2gaQEAAAAAAAD6ehPTas9PliWJK6QPwRpOgJJTgQphGOQ9o1k7PBrBe5GrNyGDQYBmz2D4yDT4FVSHVhpbKi8Mgrw3tfRTLrkcMQOn5CvEySS5ePVzv8WhjCDxM9FGwBzoeDWLKx9OEy29XlAFkeBdwaxOAxEMF97uQkxGhUQS5sGeXdSAXNXMgCoOXMgwJlsgzIq3BytyObIt8z9T0GPk440bqiQZl3ceVEiLX2g2LAa5qNwJBtCgYtizJsYSutX9zbR0Fe13bSqTOUEAXykYvQSTYCbuEPC3UFukVLobuP0lWWZzZxcbWRxEzBTHnlgorzdsCc4cBnWVhTdp5nxTPeiYGbda9KilRFXtVl1vgXCHq5npDNV9yULsgjAqFPDBaz8YMlKoJgCe2E1GmbHzenJW21IHcIo3gtmujxib3Y9j23SwCfEbsUR9OrFNvGxiZ0VS7qYzmfvElsU9jBx1PFrOigHnGD71Yq"
                                         }
                                     }
                                 },
-                                "response": {
-                                    "payload": {
-                                        "ItemData": [
-                                            {
-                                                "ShipmentId": "FBA15DF2763D",
-                                                "SellerSKU": "CR-47K6-H6QN",
-                                                "FulfillmentNetworkSKU": "X0014BIZ8T",
-                                                "QuantityShipped": 4,
-                                                "QuantityReceived": 0,
-                                                "QuantityInCase": 0,
-                                                "ReleaseDate": "2013-05-29",
-                                                "PrepDetailsList": [
-                                                    {
-                                                        "PrepInstruction": "Labeling",
-                                                        "PrepOwner": "SELLER"
-                                                    },
-                                                    {
-                                                        "PrepInstruction": "Polybagging",
-                                                        "PrepOwner": "SELLER"
-                                                    }
-                                                ]
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "ATVPDKIKX0DER"
+                                            },
+                                            "QueryType": {
+                                                "value": "SHIPMENT"
+                                            },
+                                            "NextToken": {
+                                                "value": "AAAAAAAAAABtqoY6CcWi1L8mJB7Nnt2gaQEAAAAAAAD6ehPTas9PliWJK6QPwRpOgJJTgQphGOQ9o1k7PBrBe5GrNyGDQYBmz2D4yDT4FVSHVhpbKi8Mgrw3tfRTLrkcMQOn5CvEySS5ePVzv8WhjCDxM9FGwBzoeDWLKx9OEy29XlAFkeBdwaxOAxEMF97uQkxGhUQS5sGeXdSAXNXMgCoOXMgwJlsgzIq3BytyObIt8z9T0GPk440bqiQZl3ceVEiLX2g2LAa5qNwJBtCgYtizJsYSutX9zbR0Fe13bSqTOUEAXykYvQSTYCbuEPC3UFukVLobuP0lWWZzZxcbWRxEzBTHnlgorzdsCc4cBnWVhTdp5nxTPeiYGbda9KilRFXtVl1vgXCHq5npDNV9yULsgjAqFPDBaz8YMlKoJgCe2E1GmbHzenJW21IHcIo3gtmujxib3Y9j23SwCfEbsUR9OrFNvGxiZ0VS7qYzmfvElsU9jBx1PFrOigHnGD71Yq"
                                             }
-                                        ],
-                                        "NextToken": "AAAAAAAAAABtqoY6CcWi1L8mJB7Nnt2gaQEAAAAAAAD6ehPTas9PliWJK6QPwRpOgJJTgQphGOQ9o1k7PBrBe5GrNyGDQYBmz2D4yDT4FVSHVhpbKi8Mgrw3tfRTLrkcMQOn5CvEySS5ePVzv8WhjCDxM9FGwBzoeDWLKx9OEy29XlAFkeBdwaxOAxEMF97uQkxGhUQS5sGeXdSAXNXMgCoOXMgwJlsgzIq3BytyObIt8z9T0GPk440bqiQZl3ceVEiLX2g2LAa5qNwJBtCgYtizJsYSutX9zbR0Fe13bSqTOUEAXykYvQSTYCbuEPC3UFukVLobuP0lWWZzZxcbWRxEzBTHnlgorzdsCc4cBnWVhTdp5nxTPeiYGbda9KilRFXtVl1vgXCHq5npDNV9yULsgjAqFPDBaz8YMlKoJgCe2E1GmbHzenJW21IHcIo3gtmujxib3Y9j23SwCfEbsUR9OrFNvGxiZ0VS7qYzmfvElsU9jBx1PFrOigHnGD71Yq"
-                                    }
-                                }
-                            },
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "ATVPDKIKX0DER"
-                                        },
-                                        "QueryType": {
-                                            "value": "SHIPMENT"
-                                        },
-                                        "NextToken": {
-                                            "value": "AAAAAAAAAABtqoY6CcWi1L8mJB7Nnt2gaQEAAAAAAAD6ehPTas9PliWJK6QPwRpOgJJTgQphGOQ9o1k7PBrBe5GrNyGDQYBmz2D4yDT4FVSHVhpbKi8Mgrw3tfRTLrkcMQOn5CvEySS5ePVzv8WhjCDxM9FGwBzoeDWLKx9OEy29XlAFkeBdwaxOAxEMF97uQkxGhUQS5sGeXdSAXNXMgCoOXMgwJlsgzIq3BytyObIt8z9T0GPk440bqiQZl3ceVEiLX2g2LAa5qNwJBtCgYtizJsYSutX9zbR0Fe13bSqTOUEAXykYvQSTYCbuEPC3UFukVLobuP0lWWZzZxcbWRxEzBTHnlgorzdsCc4cBnWVhTdp5nxTPeiYGbda9KilRFXtVl1vgXCHq5npDNV9yULsgjAqFPDBaz8YMlKoJgCe2E1GmbHzenJW21IHcIo3gtmujxib3Y9j23SwCfEbsUR9OrFNvGxiZ0VS7qYzmfvElsU9jBx1PFrOigHnGD71Yq"
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "ItemData": [
+                                                {
+                                                    "ShipmentId": "FBA15DF2763D",
+                                                    "SellerSKU": "CR-47K6-H6QN",
+                                                    "FulfillmentNetworkSKU": "X0014BIZ8T",
+                                                    "QuantityShipped": 4,
+                                                    "QuantityReceived": 0,
+                                                    "QuantityInCase": 0,
+                                                    "ReleaseDate": "2013-05-29",
+                                                    "PrepDetailsList": [
+                                                        {
+                                                            "PrepInstruction": "Labeling",
+                                                            "PrepOwner": "SELLER"
+                                                        },
+                                                        {
+                                                            "PrepInstruction": "Polybagging",
+                                                            "PrepOwner": "SELLER"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
                                         }
                                     }
-                                },
-                                "response": {
-                                    "payload": {
-                                        "ItemData": [
-                                            {
-                                                "ShipmentId": "FBA15DF2763D",
-                                                "SellerSKU": "CR-47K6-H6QN",
-                                                "FulfillmentNetworkSKU": "X0014BIZ8T",
-                                                "QuantityShipped": 4,
-                                                "QuantityReceived": 0,
-                                                "QuantityInCase": 0,
-                                                "ReleaseDate": "2013-05-29",
-                                                "PrepDetailsList": [
-                                                    {
-                                                        "PrepInstruction": "Labeling",
-                                                        "PrepOwner": "SELLER"
-                                                    },
-                                                    {
-                                                        "PrepInstruction": "Polybagging",
-                                                        "PrepOwner": "SELLER"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "400": {
                         "description": "Request has missing or invalid parameters and cannot be parsed.",
@@ -5166,31 +5232,33 @@
                                 }
                             }
                         },
-                        "x-amazon-spds-sandbox-behaviors": [
-                            {
-                                "request": {
-                                    "parameters": {
-                                        "MarketplaceId": {
-                                            "value": "BADATVPDKIKX0DER"
-                                        },
-                                        "QueryType": {
-                                            "value": "BADSHIPMENT"
-                                        },
-                                        "NextToken": {
-                                            "value": "BADNextToken"
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "MarketplaceId": {
+                                                "value": "BADATVPDKIKX0DER"
+                                            },
+                                            "QueryType": {
+                                                "value": "BADSHIPMENT"
+                                            },
+                                            "NextToken": {
+                                                "value": "BADNextToken"
+                                            }
                                         }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "Invalid Input",
+                                                "message": "Data is invalid. Please check."
+                                            }
+                                        ]
                                     }
-                                },
-                                "response": {
-                                    "errors": [
-                                        {
-                                            "code": "Invalid Input",
-                                            "message": "Data is invalid. Please check."
-                                        }
-                                    ]
                                 }
-                            }
-                        ]
+                            ]
+                        }
                     },
                     "401": {
                         "description": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
@@ -5202,7 +5270,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -5268,7 +5336,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -5292,7 +5360,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }
@@ -5316,7 +5384,7 @@
                                 }
                             },
                             "x-amzn-RateLimit-Limit": {
-                                "description": "Your rate limit (requests per second) for this operation.",
+                                "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
                                 "schema": {
                                     "type": "string"
                                 }

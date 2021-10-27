@@ -314,6 +314,10 @@ class SubmitInvoiceRequest:
             self.InvoiceContent: Blob = Blob(data["InvoiceContent"])
         else:
             self.InvoiceContent: Blob = None
+        if "MarketplaceId" in data:
+            self.MarketplaceId: str = str(data["MarketplaceId"])
+        else:
+            self.MarketplaceId: str = None
         if "ContentMD5Value" in data:
             self.ContentMD5Value: str = str(data["ContentMD5Value"])
         else:

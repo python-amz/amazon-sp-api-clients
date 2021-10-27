@@ -1124,16 +1124,6 @@ class ContentReferenceKeySet(list, _List["ContentReferenceKey"]):
         self.data = data
 
 
-class ContentRecordList(list, _List["ContentRecord"]):
-    """
-    A list of A+ Content records.
-    """
-
-    def __init__(self, data):
-        super().__init__([ContentRecord(datum) for datum in data])
-        self.data = data
-
-
 class ContentModuleList(list, _List["ContentModule"]):
     """
     A list of A+ Content modules.
@@ -1236,18 +1226,6 @@ class PositionType(str):
 class DecoratorType(str):
     """
     The type of rich text decorator.
-    """
-
-
-class GetContentDocumentIncludedDataType(str):
-    """
-    The type of data to include in the response, such as the contents or the metadata of the A+ Content documents.
-    """
-
-
-class ListContentDocumentAsinRelationsIncludedDataType(str):
-    """
-    The type of data to include in the response, such as metadata about the related ASINs.
     """
 
 
