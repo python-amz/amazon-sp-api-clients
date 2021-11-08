@@ -1985,7 +1985,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             params["SellerSKUList"] = ",".join(map(str, SellerSKUList))
         if ASINList is not None:
             params["ASINList"] = ",".join(map(str, ASINList))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetInboundGuidanceResponse,
             400: GetInboundGuidanceResponse,
@@ -2011,7 +2015,12 @@ class FulfillmentInboundV0Client(__BaseClient):
         """
         url = "/fba/inbound/v0/plans".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateInboundShipmentPlanResponse,
             400: CreateInboundShipmentPlanResponse,
@@ -2025,6 +2034,7 @@ class FulfillmentInboundV0Client(__BaseClient):
 
     def updateInboundShipment(
         self,
+        data: InboundShipmentRequest,
         shipmentId: str,
     ):
         """
@@ -2039,7 +2049,12 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+            data=data.data,
+        )
         return {
             200: InboundShipmentResponse,
             400: InboundShipmentResponse,
@@ -2068,7 +2083,12 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: InboundShipmentResponse,
             400: InboundShipmentResponse,
@@ -2099,7 +2119,11 @@ class FulfillmentInboundV0Client(__BaseClient):
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPreorderInfoResponse,
             400: GetPreorderInfoResponse,
@@ -2133,7 +2157,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             params["NeedByDate"] = NeedByDate
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+        )
         return {
             200: ConfirmPreorderResponse,
             400: ConfirmPreorderResponse,
@@ -2167,7 +2195,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             params["SellerSKUList"] = ",".join(map(str, SellerSKUList))
         if ASINList is not None:
             params["ASINList"] = ",".join(map(str, ASINList))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPrepInstructionsResponse,
             400: GetPrepInstructionsResponse,
@@ -2195,7 +2227,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetTransportDetailsResponse,
             400: GetTransportDetailsResponse,
@@ -2209,6 +2245,7 @@ class FulfillmentInboundV0Client(__BaseClient):
 
     def putTransportDetails(
         self,
+        data: PutTransportDetailsRequest,
         shipmentId: str,
     ):
         """
@@ -2223,7 +2260,12 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+            data=data.data,
+        )
         return {
             200: PutTransportDetailsResponse,
             400: PutTransportDetailsResponse,
@@ -2253,7 +2295,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+        )
         return {
             200: VoidTransportResponse,
             400: VoidTransportResponse,
@@ -2282,7 +2328,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+        )
         return {
             200: EstimateTransportResponse,
             400: EstimateTransportResponse,
@@ -2312,7 +2362,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+        )
         return {
             200: ConfirmTransportResponse,
             400: ConfirmTransportResponse,
@@ -2361,7 +2415,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             params["PageSize"] = PageSize
         if PageStartIndex is not None:
             params["PageStartIndex"] = PageStartIndex
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetLabelsResponse,
             400: GetLabelsResponse,
@@ -2389,7 +2447,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetBillOfLadingResponse,
             400: GetBillOfLadingResponse,
@@ -2435,7 +2497,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             params["NextToken"] = NextToken
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShipmentsResponse,
             400: GetShipmentsResponse,
@@ -2466,7 +2532,11 @@ class FulfillmentInboundV0Client(__BaseClient):
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShipmentItemsResponse,
             400: GetShipmentItemsResponse,
@@ -2506,7 +2576,11 @@ class FulfillmentInboundV0Client(__BaseClient):
             params["NextToken"] = NextToken
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShipmentItemsResponse,
             400: GetShipmentItemsResponse,

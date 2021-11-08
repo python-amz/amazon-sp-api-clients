@@ -336,7 +336,11 @@ class FbaInventoryV1Client(__BaseClient):
             params["nextToken"] = nextToken
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetInventorySummariesResponse,
             400: GetInventorySummariesResponse,

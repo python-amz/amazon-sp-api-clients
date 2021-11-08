@@ -105,7 +105,11 @@ class FbaInboundEligibilityV1Client(__BaseClient):
             params["asin"] = asin
         if program is not None:
             params["program"] = program
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetItemEligibilityPreviewResponse,
             400: GetItemEligibilityPreviewResponse,

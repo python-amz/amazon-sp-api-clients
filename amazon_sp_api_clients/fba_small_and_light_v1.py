@@ -238,7 +238,11 @@ class FbaSmallAndLightV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: SmallAndLightEnrollment,
             400: ErrorList,
@@ -270,7 +274,11 @@ class FbaSmallAndLightV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+        )
         return {
             200: SmallAndLightEnrollment,
             400: ErrorList,
@@ -302,7 +310,11 @@ class FbaSmallAndLightV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             204: None,
             400: ErrorList,
@@ -334,7 +346,11 @@ class FbaSmallAndLightV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: SmallAndLightEligibility,
             400: ErrorList,
@@ -361,7 +377,12 @@ class FbaSmallAndLightV1Client(__BaseClient):
         """
         url = "/fba/smallAndLight/v1/feePreviews".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: SmallAndLightFeePreviews,
             400: ErrorList,

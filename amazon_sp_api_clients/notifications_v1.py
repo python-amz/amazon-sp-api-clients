@@ -376,7 +376,11 @@ class NotificationsV1Client(__BaseClient):
             notificationType=notificationType,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetSubscriptionResponse,
             400: GetSubscriptionResponse,
@@ -406,7 +410,12 @@ class NotificationsV1Client(__BaseClient):
             notificationType=notificationType,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateSubscriptionResponse,
             400: CreateSubscriptionResponse,
@@ -438,7 +447,11 @@ class NotificationsV1Client(__BaseClient):
             notificationType=notificationType,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetSubscriptionByIdResponse,
             400: GetSubscriptionByIdResponse,
@@ -470,7 +483,11 @@ class NotificationsV1Client(__BaseClient):
             notificationType=notificationType,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: DeleteSubscriptionByIdResponse,
             400: DeleteSubscriptionByIdResponse,
@@ -497,7 +514,11 @@ class NotificationsV1Client(__BaseClient):
         """
         url = "/notifications/v1/destinations".format()
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetDestinationsResponse,
             400: GetDestinationsResponse,
@@ -525,7 +546,12 @@ class NotificationsV1Client(__BaseClient):
         """
         url = "/notifications/v1/destinations".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateDestinationResponse,
             400: CreateDestinationResponse,
@@ -555,7 +581,11 @@ class NotificationsV1Client(__BaseClient):
             destinationId=destinationId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetDestinationResponse,
             400: GetDestinationResponse,
@@ -585,7 +615,11 @@ class NotificationsV1Client(__BaseClient):
             destinationId=destinationId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: DeleteDestinationResponse,
             400: DeleteDestinationResponse,

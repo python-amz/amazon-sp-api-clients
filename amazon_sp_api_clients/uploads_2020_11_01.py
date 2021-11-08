@@ -100,7 +100,11 @@ class Uploads20201101Client(__BaseClient):
             params["contentMD5"] = contentMD5
         if contentType is not None:
             params["contentType"] = contentType
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+        )
         return {
             201: CreateUploadDestinationResponse,
             400: CreateUploadDestinationResponse,

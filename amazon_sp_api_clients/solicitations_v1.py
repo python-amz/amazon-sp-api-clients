@@ -178,7 +178,11 @@ class SolicitationsV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetSolicitationActionsForOrderResponse,
             400: GetSolicitationActionsForOrderResponse,
@@ -210,7 +214,11 @@ class SolicitationsV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+        )
         return {
             201: CreateProductReviewAndSellerFeedbackSolicitationResponse,
             400: CreateProductReviewAndSellerFeedbackSolicitationResponse,

@@ -321,7 +321,11 @@ class Reports20210630Client(__BaseClient):
             params["createdUntil"] = createdUntil
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetReportsResponse,
             400: ErrorList,
@@ -348,7 +352,12 @@ class Reports20210630Client(__BaseClient):
         """
         url = "/reports/2021-06-30/reports".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: CreateReportResponse,
             400: ErrorList,
@@ -377,7 +386,11 @@ class Reports20210630Client(__BaseClient):
             reportId=reportId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: Report,
             400: ErrorList,
@@ -406,7 +419,11 @@ class Reports20210630Client(__BaseClient):
             reportId=reportId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: None,
             400: ErrorList,
@@ -435,7 +452,11 @@ class Reports20210630Client(__BaseClient):
         params = {}
         if reportTypes is not None:
             params["reportTypes"] = ",".join(map(str, reportTypes))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ReportScheduleList,
             400: ErrorList,
@@ -462,7 +483,12 @@ class Reports20210630Client(__BaseClient):
         """
         url = "/reports/2021-06-30/schedules".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateReportScheduleResponse,
             400: ErrorList,
@@ -491,7 +517,11 @@ class Reports20210630Client(__BaseClient):
             reportScheduleId=reportScheduleId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ReportSchedule,
             400: ErrorList,
@@ -520,7 +550,11 @@ class Reports20210630Client(__BaseClient):
             reportScheduleId=reportScheduleId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: None,
             400: ErrorList,
@@ -549,7 +583,11 @@ class Reports20210630Client(__BaseClient):
             reportDocumentId=reportDocumentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ReportDocument,
             400: ErrorList,

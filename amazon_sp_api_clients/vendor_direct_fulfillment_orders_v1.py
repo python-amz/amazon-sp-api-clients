@@ -657,7 +657,11 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             params["nextToken"] = nextToken
         if includeDetails is not None:
             params["includeDetails"] = includeDetails
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrdersResponse,
             400: GetOrdersResponse,
@@ -686,7 +690,11 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             purchaseOrderNumber=purchaseOrderNumber,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrderResponse,
             400: GetOrderResponse,
@@ -714,7 +722,12 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
         """
         url = "/vendor/directFulfillment/orders/v1/acknowledgements".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: SubmitAcknowledgementResponse,
             400: SubmitAcknowledgementResponse,

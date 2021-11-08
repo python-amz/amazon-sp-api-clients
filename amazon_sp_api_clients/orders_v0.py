@@ -1034,7 +1034,11 @@ class OrdersV0Client(__BaseClient):
             params["IsISPU"] = IsISPU
         if StoreChainStoreId is not None:
             params["StoreChainStoreId"] = StoreChainStoreId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrdersResponse,
             400: GetOrdersResponse,
@@ -1062,7 +1066,11 @@ class OrdersV0Client(__BaseClient):
             orderId=orderId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrderResponse,
             400: GetOrderResponse,
@@ -1091,7 +1099,11 @@ class OrdersV0Client(__BaseClient):
             orderId=orderId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrderBuyerInfoResponse,
             400: GetOrderBuyerInfoResponse,
@@ -1120,7 +1132,11 @@ class OrdersV0Client(__BaseClient):
             orderId=orderId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrderAddressResponse,
             400: GetOrderAddressResponse,
@@ -1152,7 +1168,11 @@ class OrdersV0Client(__BaseClient):
         params = {}
         if NextToken is not None:
             params["NextToken"] = NextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrderItemsResponse,
             400: GetOrderItemsResponse,
@@ -1184,7 +1204,11 @@ class OrdersV0Client(__BaseClient):
         params = {}
         if NextToken is not None:
             params["NextToken"] = NextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrderItemsBuyerInfoResponse,
             400: GetOrderItemsBuyerInfoResponse,

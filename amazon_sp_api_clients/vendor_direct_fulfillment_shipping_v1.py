@@ -859,7 +859,11 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             params["sortOrder"] = sortOrder
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShippingLabelListResponse,
             400: GetShippingLabelListResponse,
@@ -886,7 +890,12 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: SubmitShippingLabelsResponse,
             400: SubmitShippingLabelsResponse,
@@ -916,7 +925,11 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             purchaseOrderNumber=purchaseOrderNumber,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShippingLabelResponse,
             400: GetShippingLabelResponse,
@@ -944,7 +957,12 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: SubmitShipmentConfirmationsResponse,
             400: SubmitShipmentConfirmationsResponse,
@@ -972,7 +990,12 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: SubmitShipmentStatusUpdatesResponse,
             400: SubmitShipmentStatusUpdatesResponse,
@@ -1017,7 +1040,11 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             params["sortOrder"] = sortOrder
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetCustomerInvoicesResponse,
             400: GetCustomerInvoiceResponse,
@@ -1046,7 +1073,11 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             purchaseOrderNumber=purchaseOrderNumber,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetCustomerInvoiceResponse,
             400: GetCustomerInvoiceResponse,
@@ -1091,7 +1122,11 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             params["sortOrder"] = sortOrder
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPackingSlipListResponse,
             400: GetPackingSlipListResponse,
@@ -1121,7 +1156,11 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             purchaseOrderNumber=purchaseOrderNumber,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPackingSlipResponse,
             400: GetPackingSlipResponse,

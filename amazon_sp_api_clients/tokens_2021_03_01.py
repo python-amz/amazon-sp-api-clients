@@ -114,7 +114,12 @@ class Tokens20210301Client(__BaseClient):
         """
         url = "/tokens/2021-03-01/restrictedDataToken".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateRestrictedDataTokenResponse,
             400: ErrorList,

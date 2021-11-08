@@ -467,7 +467,11 @@ class Reports20200904Client(__BaseClient):
             params["createdUntil"] = createdUntil
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetReportsResponse,
             400: GetReportsResponse,
@@ -494,7 +498,12 @@ class Reports20200904Client(__BaseClient):
         """
         url = "/reports/2020-09-04/reports".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: CreateReportResponse,
             400: CreateReportResponse,
@@ -523,7 +532,11 @@ class Reports20200904Client(__BaseClient):
             reportId=reportId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetReportResponse,
             400: GetReportResponse,
@@ -552,7 +565,11 @@ class Reports20200904Client(__BaseClient):
             reportId=reportId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: CancelReportResponse,
             400: CancelReportResponse,
@@ -581,7 +598,11 @@ class Reports20200904Client(__BaseClient):
         params = {}
         if reportTypes is not None:
             params["reportTypes"] = ",".join(map(str, reportTypes))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetReportSchedulesResponse,
             400: GetReportSchedulesResponse,
@@ -608,7 +629,12 @@ class Reports20200904Client(__BaseClient):
         """
         url = "/reports/2020-09-04/schedules".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateReportScheduleResponse,
             400: CreateReportScheduleResponse,
@@ -637,7 +663,11 @@ class Reports20200904Client(__BaseClient):
             reportScheduleId=reportScheduleId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetReportScheduleResponse,
             400: GetReportScheduleResponse,
@@ -666,7 +696,11 @@ class Reports20200904Client(__BaseClient):
             reportScheduleId=reportScheduleId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: CancelReportScheduleResponse,
             400: CancelReportScheduleResponse,
@@ -695,7 +729,11 @@ class Reports20200904Client(__BaseClient):
             reportDocumentId=reportDocumentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetReportDocumentResponse,
             400: GetReportDocumentResponse,

@@ -949,7 +949,11 @@ class ProductPricingV0Client(__BaseClient):
             params["ItemCondition"] = ItemCondition
         if OfferType is not None:
             params["OfferType"] = OfferType
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPricingResponse,
             400: GetPricingResponse,
@@ -990,7 +994,11 @@ class ProductPricingV0Client(__BaseClient):
             params["ItemType"] = ItemType
         if CustomerType is not None:
             params["CustomerType"] = CustomerType
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPricingResponse,
             400: GetPricingResponse,
@@ -1028,7 +1036,11 @@ class ProductPricingV0Client(__BaseClient):
             params["ItemCondition"] = ItemCondition
         if CustomerType is not None:
             params["CustomerType"] = CustomerType
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOffersResponse,
             400: GetOffersResponse,
@@ -1066,7 +1078,11 @@ class ProductPricingV0Client(__BaseClient):
             params["ItemCondition"] = ItemCondition
         if CustomerType is not None:
             params["CustomerType"] = CustomerType
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOffersResponse,
             400: GetOffersResponse,

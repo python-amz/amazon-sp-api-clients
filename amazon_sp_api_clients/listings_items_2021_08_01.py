@@ -428,7 +428,11 @@ class ListingsItems20210801Client(__BaseClient):
             params["issueLocale"] = issueLocale
         if includedData is not None:
             params["includedData"] = ",".join(map(str, includedData))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: Item,
             400: ErrorList,
@@ -443,6 +447,7 @@ class ListingsItems20210801Client(__BaseClient):
 
     def putListingsItem(
         self,
+        data: ListingsItemPutRequest,
         sellerId: str,
         sku: str,
         marketplaceIds: _List[str],
@@ -465,7 +470,12 @@ class ListingsItems20210801Client(__BaseClient):
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if issueLocale is not None:
             params["issueLocale"] = issueLocale
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+            data=data.data,
+        )
         return {
             200: ListingsItemSubmissionResponse,
             400: ErrorList,
@@ -501,7 +511,11 @@ class ListingsItems20210801Client(__BaseClient):
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if issueLocale is not None:
             params["issueLocale"] = issueLocale
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: ListingsItemSubmissionResponse,
             400: ErrorList,
@@ -515,6 +529,7 @@ class ListingsItems20210801Client(__BaseClient):
 
     def patchListingsItem(
         self,
+        data: ListingsItemPatchRequest,
         sellerId: str,
         sku: str,
         marketplaceIds: _List[str],
@@ -537,7 +552,12 @@ class ListingsItems20210801Client(__BaseClient):
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if issueLocale is not None:
             params["issueLocale"] = issueLocale
-        response = self.request(url, method="PATCH", data=params)
+        response = self.request(
+            path=url,
+            method="PATCH",
+            params=params,
+            data=data.data,
+        )
         return {
             200: ListingsItemSubmissionResponse,
             400: ErrorList,

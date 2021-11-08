@@ -241,8 +241,7 @@ class Operation:
 
     @cached_property
     def request_body(self):
-        if not (self.source_method == 'post' and 'requestBody' in self.source):
-            return {}
+        assert 'requestBody' in self.source
         request_body = self.source['requestBody']
         assert 'content' in request_body
         request_body_content = request_body['content']
@@ -255,6 +254,11 @@ class Operation:
         return {
             'type': request_body_type
         }
+
+    @property
+    def require_data(self):
+        """If the operation requires data parameter"""
+        return 'requestBody' in self.source
 
     @cached_property
     def operation_id(self):

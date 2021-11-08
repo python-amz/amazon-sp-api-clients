@@ -197,7 +197,11 @@ class ProductTypeDefinitions20200901Client(__BaseClient):
             params["keywords"] = ",".join(map(str, keywords))
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ProductTypeList,
             400: ErrorList,
@@ -245,7 +249,11 @@ class ProductTypeDefinitions20200901Client(__BaseClient):
             params["requirementsEnforced"] = requirementsEnforced
         if locale is not None:
             params["locale"] = locale
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ProductTypeDefinition,
             400: ErrorList,

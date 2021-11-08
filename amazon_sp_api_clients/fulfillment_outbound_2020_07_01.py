@@ -1951,7 +1951,12 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetFulfillmentPreviewResponse,
             400: GetFulfillmentPreviewResponse,
@@ -1982,7 +1987,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             params["queryStartDate"] = queryStartDate
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListAllFulfillmentOrdersResponse,
             400: ListAllFulfillmentOrdersResponse,
@@ -2008,7 +2017,12 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateFulfillmentOrderResponse,
             400: CreateFulfillmentOrderResponse,
@@ -2036,7 +2050,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         params = {}
         if packageNumber is not None:
             params["packageNumber"] = packageNumber
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPackageTrackingDetailsResponse,
             400: GetPackageTrackingDetailsResponse,
@@ -2073,7 +2091,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             params["sellerFulfillmentOrderId"] = sellerFulfillmentOrderId
         if language is not None:
             params["language"] = language
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListReturnReasonCodesResponse,
             400: ListReturnReasonCodesResponse,
@@ -2087,6 +2109,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
 
     def createFulfillmentReturn(
         self,
+        data: CreateFulfillmentReturnRequest,
         sellerFulfillmentOrderId: str,
     ):
         """
@@ -2101,7 +2124,12 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateFulfillmentReturnResponse,
             400: CreateFulfillmentReturnResponse,
@@ -2129,7 +2157,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetFulfillmentOrderResponse,
             400: GetFulfillmentOrderResponse,
@@ -2143,6 +2175,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
 
     def updateFulfillmentOrder(
         self,
+        data: UpdateFulfillmentOrderRequest,
         sellerFulfillmentOrderId: str,
     ):
         """
@@ -2157,7 +2190,12 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+            data=data.data,
+        )
         return {
             200: UpdateFulfillmentOrderResponse,
             400: UpdateFulfillmentOrderResponse,
@@ -2185,7 +2223,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+        )
         return {
             200: CancelFulfillmentOrderResponse,
             400: CancelFulfillmentOrderResponse,
@@ -2213,7 +2255,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetFeaturesResponse,
             400: GetFeaturesResponse,
@@ -2247,7 +2293,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             params["marketplaceId"] = marketplaceId
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetFeatureInventoryResponse,
             400: GetFeatureInventoryResponse,
@@ -2280,7 +2330,11 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetFeatureSkuResponse,
             400: GetFeatureSkuResponse,

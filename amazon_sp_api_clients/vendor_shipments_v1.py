@@ -744,7 +744,12 @@ class VendorShipmentsV1Client(__BaseClient):
         """
         url = "/vendor/shipping/v1/shipmentConfirmations".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: SubmitShipmentConfirmationsResponse,
             400: SubmitShipmentConfirmationsResponse,

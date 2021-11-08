@@ -564,7 +564,11 @@ class CatalogItems20201201Client(__BaseClient):
             params["keywordsLocale"] = keywordsLocale
         if locale is not None:
             params["locale"] = locale
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ItemSearchResults,
             400: ErrorList,
@@ -603,7 +607,11 @@ class CatalogItems20201201Client(__BaseClient):
             params["includedData"] = ",".join(map(str, includedData))
         if locale is not None:
             params["locale"] = locale
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: Item,
             400: ErrorList,

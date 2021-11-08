@@ -663,7 +663,11 @@ class ServicesV1Client(__BaseClient):
             serviceJobId=serviceJobId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetServiceJobByServiceJobIdResponse,
             400: GetServiceJobByServiceJobIdResponse,
@@ -696,7 +700,11 @@ class ServicesV1Client(__BaseClient):
         params = {}
         if cancellationReasonCode is not None:
             params["cancellationReasonCode"] = cancellationReasonCode
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+        )
         return {
             200: CancelServiceJobByServiceJobIdResponse,
             400: CancelServiceJobByServiceJobIdResponse,
@@ -726,7 +734,11 @@ class ServicesV1Client(__BaseClient):
             serviceJobId=serviceJobId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+        )
         return {
             200: CompleteServiceJobByServiceJobIdResponse,
             400: CompleteServiceJobByServiceJobIdResponse,
@@ -792,7 +804,11 @@ class ServicesV1Client(__BaseClient):
             params["scheduleEndDate"] = scheduleEndDate
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetServiceJobsResponse,
             400: GetServiceJobsResponse,
@@ -822,7 +838,12 @@ class ServicesV1Client(__BaseClient):
             serviceJobId=serviceJobId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: SetAppointmentResponse,
             400: SetAppointmentResponse,
@@ -855,7 +876,12 @@ class ServicesV1Client(__BaseClient):
             appointmentId=appointmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: SetAppointmentResponse,
             400: SetAppointmentResponse,

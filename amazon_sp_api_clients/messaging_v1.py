@@ -482,7 +482,11 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetMessagingActionsForOrderResponse,
             400: GetMessagingActionsForOrderResponse,
@@ -515,7 +519,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateConfirmCustomizationDetailsResponse,
             400: CreateConfirmCustomizationDetailsResponse,
@@ -548,7 +557,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateConfirmDeliveryDetailsResponse,
             400: CreateConfirmDeliveryDetailsResponse,
@@ -581,7 +595,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateLegalDisclosureResponse,
             400: CreateLegalDisclosureResponse,
@@ -613,7 +632,11 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+        )
         return {
             201: CreateNegativeFeedbackRemovalResponse,
             400: CreateNegativeFeedbackRemovalResponse,
@@ -646,7 +669,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateConfirmOrderDetailsResponse,
             400: CreateConfirmOrderDetailsResponse,
@@ -679,7 +707,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateConfirmServiceDetailsResponse,
             400: CreateConfirmServiceDetailsResponse,
@@ -712,7 +745,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateAmazonMotorsResponse,
             400: CreateAmazonMotorsResponse,
@@ -745,7 +783,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateWarrantyResponse,
             400: CreateWarrantyResponse,
@@ -776,7 +819,11 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetAttributesResponse,
             400: GetAttributesResponse,
@@ -809,7 +856,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateDigitalAccessKeyResponse,
             400: CreateDigitalAccessKeyResponse,
@@ -842,7 +894,12 @@ class MessagingV1Client(__BaseClient):
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateUnexpectedProblemResponse,
             400: CreateUnexpectedProblemResponse,

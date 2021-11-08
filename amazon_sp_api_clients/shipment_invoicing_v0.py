@@ -474,7 +474,11 @@ class ShipmentInvoicingV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShipmentDetailsResponse,
             400: GetShipmentDetailsResponse,
@@ -505,7 +509,12 @@ class ShipmentInvoicingV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: SubmitInvoiceResponse,
             400: SubmitInvoiceResponse,
@@ -535,7 +544,11 @@ class ShipmentInvoicingV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetInvoiceStatusResponse,
             400: GetInvoiceStatusResponse,

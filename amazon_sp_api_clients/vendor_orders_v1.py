@@ -749,7 +749,11 @@ class VendorOrdersV1Client(__BaseClient):
             params["purchaseOrderState"] = purchaseOrderState
         if orderingVendorCode is not None:
             params["orderingVendorCode"] = orderingVendorCode
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPurchaseOrdersResponse,
             400: GetPurchaseOrdersResponse,
@@ -778,7 +782,11 @@ class VendorOrdersV1Client(__BaseClient):
             purchaseOrderNumber=purchaseOrderNumber,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPurchaseOrderResponse,
             400: GetPurchaseOrderResponse,
@@ -806,7 +814,12 @@ class VendorOrdersV1Client(__BaseClient):
         """
         url = "/vendor/orders/v1/acknowledgements".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: SubmitAcknowledgementResponse,
             400: SubmitAcknowledgementResponse,
@@ -869,7 +882,11 @@ class VendorOrdersV1Client(__BaseClient):
             params["orderingVendorCode"] = orderingVendorCode
         if shipToPartyId is not None:
             params["shipToPartyId"] = shipToPartyId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetPurchaseOrdersStatusResponse,
             400: GetPurchaseOrdersStatusResponse,

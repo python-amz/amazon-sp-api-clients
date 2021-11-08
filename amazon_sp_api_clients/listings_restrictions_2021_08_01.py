@@ -147,7 +147,11 @@ class ListingsRestrictions20210801Client(__BaseClient):
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if reasonLocale is not None:
             params["reasonLocale"] = reasonLocale
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: RestrictionList,
             400: ErrorList,

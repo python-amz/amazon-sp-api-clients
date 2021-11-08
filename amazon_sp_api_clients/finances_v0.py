@@ -1923,7 +1923,11 @@ class FinancesV0Client(__BaseClient):
             params["FinancialEventGroupStartedAfter"] = FinancialEventGroupStartedAfter
         if NextToken is not None:
             params["NextToken"] = NextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListFinancialEventGroupsResponse,
             400: ListFinancialEventGroupsResponse,
@@ -1956,7 +1960,11 @@ class FinancesV0Client(__BaseClient):
             params["MaxResultsPerPage"] = MaxResultsPerPage
         if NextToken is not None:
             params["NextToken"] = NextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListFinancialEventsResponse,
             400: ListFinancialEventsResponse,
@@ -1989,7 +1997,11 @@ class FinancesV0Client(__BaseClient):
             params["MaxResultsPerPage"] = MaxResultsPerPage
         if NextToken is not None:
             params["NextToken"] = NextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListFinancialEventsResponse,
             400: ListFinancialEventsResponse,
@@ -2025,7 +2037,11 @@ class FinancesV0Client(__BaseClient):
             params["PostedBefore"] = PostedBefore
         if NextToken is not None:
             params["NextToken"] = NextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListFinancialEventsResponse,
             400: ListFinancialEventsResponse,

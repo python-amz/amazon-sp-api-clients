@@ -224,9 +224,12 @@ class BaseClient:
     def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
                 method='GET', check_exception=True) -> Response:
 
+        # process params
         parsed_params = {}
-        parsed_data: bytes = b''
         params is None or parsed_params.update(params)
+
+        # process data
+        parsed_data: bytes
         if data is None:
             parsed_data = json.dumps({}).encode()
         elif isinstance(data, dict):
@@ -236,12 +239,14 @@ class BaseClient:
         else:
             raise TypeError('data should be a dict or bytes')
 
+        # process cache, will be removed in next main version
         if self.use_cache:
             cache_keys: RequestCache.KEYS_TYPE = (path, method, params, data, headers)
             response = self.request_cache[cache_keys]
             if response is not None:
                 return response
 
+        # process headers
         parsed_headers = {
             'host': self._endpoint[8:],
             'user-agent': 'python-sp-api',
@@ -249,31 +254,26 @@ class BaseClient:
             'x-amz-date': datetime.utcnow().strftime('%Y%m%dT%H%M%SZ'),
             'content-type': 'application/json'
         }
-
         headers is None or parsed_headers.update(headers)
 
+        # process auth
         if 'role' not in self._role_cache:
             role = self._client.assume_role(RoleArn=self._role_arn, RoleSessionName='guid').get('Credentials')
             self._role_cache['role'] = role
         role = self._role_cache['role']
-
         auth = AWSSigV4('execute-api',
                         aws_access_key_id=role.get('AccessKeyId'),
                         aws_secret_access_key=role.get('SecretAccessKey'),
                         region=self._region,
                         aws_session_token=role.get('SessionToken'))
-        while True:
+        url = self._endpoint + path
 
-            if method in ('POST', 'PUT', 'PATCH', 'DELETE'):
-                response = request(method, self._endpoint + path, data=parsed_data, headers=parsed_headers,
-                                   auth=auth)
-            elif method == 'GET':
-                response = request(method, self._endpoint + path, params=params, headers=parsed_headers, auth=auth)
-            else:
-                raise ValueError('unknown method')
+        # process quota exceeded exception
+        while True:
+            response = request(method=method, url=url, data=parsed_data, headers=parsed_headers,
+                               auth=auth, params=params)
 
             self.last_response = response
-
             if not check_exception:
                 break
 
@@ -288,6 +288,7 @@ class BaseClient:
             else:
                 break
 
+        # process cache, will be removed in the next main version
         if self.use_cache:
             cache_keys: RequestCache.KEYS_TYPE = (path, method, params, data, headers)
             self.request_cache[cache_keys] = response

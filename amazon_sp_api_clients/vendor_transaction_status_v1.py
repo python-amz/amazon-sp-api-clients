@@ -104,7 +104,11 @@ class VendorTransactionStatusV1Client(__BaseClient):
             transactionId=transactionId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetTransactionResponse,
             400: GetTransactionResponse,

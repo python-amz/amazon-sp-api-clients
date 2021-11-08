@@ -247,7 +247,11 @@ class Feeds20210630Client(__BaseClient):
             params["createdUntil"] = createdUntil
         if nextToken is not None:
             params["nextToken"] = nextToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetFeedsResponse,
             400: ErrorList,
@@ -274,7 +278,12 @@ class Feeds20210630Client(__BaseClient):
         """
         url = "/feeds/2021-06-30/feeds".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: CreateFeedResponse,
             400: ErrorList,
@@ -303,7 +312,11 @@ class Feeds20210630Client(__BaseClient):
             feedId=feedId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: Feed,
             400: ErrorList,
@@ -332,7 +345,11 @@ class Feeds20210630Client(__BaseClient):
             feedId=feedId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: None,
             400: ErrorList,
@@ -359,7 +376,12 @@ class Feeds20210630Client(__BaseClient):
         """
         url = "/feeds/2021-06-30/documents".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             201: CreateFeedDocumentResponse,
             400: ErrorList,
@@ -388,7 +410,11 @@ class Feeds20210630Client(__BaseClient):
             feedDocumentId=feedDocumentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: FeedDocument,
             400: ErrorList,

@@ -144,7 +144,11 @@ class SellersV1Client(__BaseClient):
         """
         url = "/sellers/v1/marketplaceParticipations".format()
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetMarketplaceParticipationsResponse,
             400: GetMarketplaceParticipationsResponse,

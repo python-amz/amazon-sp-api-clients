@@ -1115,7 +1115,12 @@ class ShippingV1Client(__BaseClient):
         """
         url = "/shipping/v1/shipments".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateShipmentResponse,
             400: CreateShipmentResponse,
@@ -1143,7 +1148,11 @@ class ShippingV1Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShipmentResponse,
             400: GetShipmentResponse,
@@ -1171,7 +1180,11 @@ class ShippingV1Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+        )
         return {
             200: CancelShipmentResponse,
             400: CancelShipmentResponse,
@@ -1200,7 +1213,12 @@ class ShippingV1Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: PurchaseLabelsResponse,
             400: PurchaseLabelsResponse,
@@ -1231,7 +1249,12 @@ class ShippingV1Client(__BaseClient):
             trackingId=trackingId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: RetrieveShippingLabelResponse,
             400: RetrieveShippingLabelResponse,
@@ -1257,7 +1280,12 @@ class ShippingV1Client(__BaseClient):
         """
         url = "/shipping/v1/purchaseShipment".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: PurchaseShipmentResponse,
             400: PurchaseShipmentResponse,
@@ -1283,7 +1311,12 @@ class ShippingV1Client(__BaseClient):
         """
         url = "/shipping/v1/rates".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetRatesResponse,
             400: GetRatesResponse,
@@ -1308,7 +1341,11 @@ class ShippingV1Client(__BaseClient):
         """
         url = "/shipping/v1/account".format()
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetAccountResponse,
             400: GetAccountResponse,
@@ -1336,7 +1373,11 @@ class ShippingV1Client(__BaseClient):
             trackingId=trackingId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetTrackingInformationResponse,
             400: GetTrackingInformationResponse,

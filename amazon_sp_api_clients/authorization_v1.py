@@ -89,7 +89,11 @@ class AuthorizationV1Client(__BaseClient):
             params["developerId"] = developerId
         if mwsAuthToken is not None:
             params["mwsAuthToken"] = mwsAuthToken
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetAuthorizationCodeResponse,
             400: GetAuthorizationCodeResponse,

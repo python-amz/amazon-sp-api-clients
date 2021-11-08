@@ -173,7 +173,12 @@ class VendorDirectFulfillmentInventoryV1Client(__BaseClient):
             warehouseId=warehouseId,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             202: SubmitInventoryUpdateResponse,
             400: SubmitInventoryUpdateResponse,

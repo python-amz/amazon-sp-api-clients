@@ -161,7 +161,11 @@ class SalesV1Client(__BaseClient):
             params["asin"] = asin
         if sku is not None:
             params["sku"] = sku
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetOrderMetricsResponse,
             400: GetOrderMetricsResponse,

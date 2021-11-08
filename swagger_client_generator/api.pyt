@@ -98,7 +98,7 @@ class {{ component_name }}({% for type in component.types %}{{ type }}, {% endfo
 class {{ class_name }}Client(__BaseClient):
 {% for operation_name, operation in operations.items() %}
     def {{ operation_name }}(self,
-        {% if operation.request_body %}
+        {% if operation.require_data %}
             data: {{ operation.request_body.type }},
         {% endif %}
 
@@ -110,6 +110,7 @@ class {{ class_name }}Client(__BaseClient):
                 {{ path_parameter_name }}: {{ type }},
             {% endif %}
         {% endfor %}
+
         {% for query_parameter_name, query_parameter in operation.query_parameters.items() %}
             {% if query_parameter.required == True%}
                 {% set type = query_parameter.type %}
@@ -152,11 +153,14 @@ class {{ class_name }}Client(__BaseClient):
             params['{{ query_parameter_name }}'] = {{ query_parameter_name }}
             {% endif %}
         {% endfor %}
-        {% if operation.method == 'GET' %}
-        response = self.request(url, method='{{ operation.method }}', params=params)
-        {% else %}
-        response = self.request(url, method='{{ operation.method }}', data=params)
+        response = self.request(
+            path=url,
+            method='{{ operation.method }}',
+            params=params,
+        {% if operation.require_data %}
+            data=data.data,
         {% endif %}
+        )
         return {
             {% for status_code, response in operation.responses.items() %}
                 {{ status_code }}: {{ response.type }},

@@ -1461,7 +1461,12 @@ class MerchantFulfillmentV0Client(__BaseClient):
         """
         url = "/mfn/v0/eligibleServices".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetEligibleShipmentServicesResponse,
             400: GetEligibleShipmentServicesResponse,
@@ -1487,7 +1492,12 @@ class MerchantFulfillmentV0Client(__BaseClient):
         """
         url = "/mfn/v0/eligibleShippingServices".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetEligibleShipmentServicesResponse,
             400: GetEligibleShipmentServicesResponse,
@@ -1515,7 +1525,11 @@ class MerchantFulfillmentV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetShipmentResponse,
             400: GetShipmentResponse,
@@ -1543,7 +1557,11 @@ class MerchantFulfillmentV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=params)
+        response = self.request(
+            path=url,
+            method="DELETE",
+            params=params,
+        )
         return {
             200: CancelShipmentResponse,
             400: CancelShipmentResponse,
@@ -1571,7 +1589,11 @@ class MerchantFulfillmentV0Client(__BaseClient):
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=params)
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+        )
         return {
             200: CancelShipmentResponse,
             400: CancelShipmentResponse,
@@ -1597,7 +1619,12 @@ class MerchantFulfillmentV0Client(__BaseClient):
         """
         url = "/mfn/v0/shipments".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: CreateShipmentResponse,
             400: CreateShipmentResponse,
@@ -1623,7 +1650,12 @@ class MerchantFulfillmentV0Client(__BaseClient):
         """
         url = "/mfn/v0/sellerInputs".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetAdditionalSellerInputsResponse,
             400: GetAdditionalSellerInputsResponse,
@@ -1649,7 +1681,12 @@ class MerchantFulfillmentV0Client(__BaseClient):
         """
         url = "/mfn/v0/additionalSellerInputs".format()
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetAdditionalSellerInputsResponse,
             400: GetAdditionalSellerInputsResponse,

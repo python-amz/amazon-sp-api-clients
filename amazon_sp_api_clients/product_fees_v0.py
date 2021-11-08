@@ -399,7 +399,12 @@ class ProductFeesV0Client(__BaseClient):
             SellerSKU=SellerSKU,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetMyFeesEstimateResponse,
             400: GetMyFeesEstimateResponse,
@@ -431,7 +436,12 @@ class ProductFeesV0Client(__BaseClient):
             Asin=Asin,
         )
         params = {}
-        response = self.request(url, method="POST", data=params)
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
         return {
             200: GetMyFeesEstimateResponse,
             400: GetMyFeesEstimateResponse,

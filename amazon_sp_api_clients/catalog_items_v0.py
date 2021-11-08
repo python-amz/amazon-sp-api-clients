@@ -917,7 +917,11 @@ class CatalogItemsV0Client(__BaseClient):
             params["ISBN"] = ISBN
         if JAN is not None:
             params["JAN"] = JAN
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListCatalogItemsResponse,
             400: ListCatalogItemsResponse,
@@ -949,7 +953,11 @@ class CatalogItemsV0Client(__BaseClient):
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: GetCatalogItemResponse,
             400: GetCatalogItemResponse,
@@ -984,7 +992,11 @@ class CatalogItemsV0Client(__BaseClient):
             params["ASIN"] = ASIN
         if SellerSKU is not None:
             params["SellerSKU"] = SellerSKU
-        response = self.request(url, method="GET", params=params)
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
         return {
             200: ListCatalogCategoriesResponse,
             400: ListCatalogCategoriesResponse,
