@@ -1,9 +1,8 @@
-from copy import deepcopy
 from dataclasses import dataclass, field
 from enum import Enum, auto
+from functools import cached_property
 from logging import getLogger
 from os import path
-from typing import Any
 
 from jinja2 import Template
 
@@ -178,18 +177,71 @@ def stage_5_ref_components(data: dict):
 
 
 @dataclass
+class OperationParameter:
+    swagger_data: dict
+    source: dict
+
+    @cached_property
+    def __parsed_source(self):
+        if '$ref' in self.source:
+            ref: str = self.source['$ref']
+            ref = ref.rsplit('/', maxsplit=1)[1]
+            return self.swagger_data['components']['parameters'][ref]
+        else:
+            return self.source
+
+    @property
+    def name(self):
+        return self.__parsed_source['name']
+
+    @property
+    def location(self):
+        return self.__parsed_source['in']
+
+    @cached_property
+    def required(self):
+        return self.__parsed_source.get('required', False)
+
+    @cached_property
+    def default(self):
+        return self.__parsed_source.get('default', None)
+
+    @cached_property
+    def schema_data(self):
+        return self.__parsed_source.get('schema')
+
+    @cached_property
+    def type(self):
+        return parse_type(self.schema_data['type'])
+
+    @cached_property
+    def item_type(self):
+        assert self.type == 'list'
+        return parse_type(self.schema_data['items']['type'])
+
+
+@dataclass
 class Operation:
     swagger_data: dict
     url: str
     method: str
     operation_id: str = ''
-    source: Any = None
+    source: dict = None
     request_body: dict = field(default_factory=dict)
 
-    query_parameters: dict = field(default_factory=dict)
-    path_parameters: dict = field(default_factory=dict)
+    @cached_property
+    def __parameters(self):
+        return [OperationParameter(swagger_data=self.swagger_data, source=d) for d in self.source.get('parameters', [])]
 
-    @property
+    @cached_property
+    def query_parameters(self):
+        return {d.name: d for d in self.__parameters if d.location == 'query'}
+
+    @cached_property
+    def path_parameters(self):
+        return {d.name: d for d in self.__parameters if d.location == 'path'}
+
+    @cached_property
     def responses(self):
         if 'responses' not in self.source:
             return {}
@@ -235,29 +287,6 @@ def stage_6_operations(data: dict):
                 assert '$ref' in request_body_schema
                 request_body_type = parse_type(request_body_schema['$ref'])
                 parsed_operation_data.request_body.setdefault('type', request_body_type)
-
-            if 'parameters' in method_data:
-                for parameter_data in method_data['parameters']:
-                    if '$ref' in parameter_data:
-                        ref: str = parameter_data['$ref']
-                        ref = ref.rsplit('/', maxsplit=1)[1]
-                        parameter_data = data['components']['parameters'][ref]
-                    parameter_data: dict = deepcopy(parameter_data)
-
-                    if parameter_data['in'] == 'query':
-                        parsed_parameter_data = parsed_operation_data.query_parameters.setdefault(
-                            parameter_data['name'], {})
-                    elif parameter_data['in'] == 'path':
-                        parsed_parameter_data = parsed_operation_data.path_parameters.setdefault(
-                            parameter_data['name'], {})
-                    else:
-                        raise ParseError('parameter data in')
-                    parsed_parameter_data['required'] = parameter_data.setdefault('required', False)
-                    parsed_parameter_data['default'] = parameter_data.setdefault('default', None)
-                    schema_data = parameter_data['schema']
-                    parsed_parameter_data['type'] = parse_type(schema_data['type'])
-                    if parsed_parameter_data['type'] == 'list':
-                        parsed_parameter_data['item_type'] = parse_type(schema_data['items']['type'])
 
     return parsed_operations
 
