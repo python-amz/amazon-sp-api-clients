@@ -412,6 +412,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         response = self.request(url, method="DELETE", data=params)
         return {
+            200: None,
             400: ErrorList,
             401: ErrorList,
             403: ErrorList,
@@ -529,6 +530,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         response = self.request(url, method="DELETE", data=params)
         return {
+            200: None,
             400: ErrorList,
             401: ErrorList,
             403: ErrorList,

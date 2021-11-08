@@ -3,6 +3,7 @@ from dataclasses import dataclass, field
 from enum import Enum, auto
 from logging import getLogger
 from os import path
+from typing import Any
 
 from jinja2 import Template
 
@@ -176,14 +177,52 @@ def stage_5_ref_components(data: dict):
     return parsed_components
 
 
+@dataclass
+class Operation:
+    swagger_data: dict
+    url: str
+    method: str
+    operation_id: str = ''
+    source: Any = None
+    request_body: dict = field(default_factory=dict)
+
+    query_parameters: dict = field(default_factory=dict)
+    path_parameters: dict = field(default_factory=dict)
+
+    @property
+    def responses(self):
+        if 'responses' not in self.source:
+            return {}
+        result = {}
+        for status_code, response_data in self.source['responses'].items():
+            if 'application/json' in response_data['content']:
+                parsed_response_data = result.setdefault(status_code, {})
+                response_type = parse_type(response_data['content']['application/json']['schema']['$ref'])
+                parsed_response_data['type'] = response_type
+            elif 'application/hal+json' in response_data['content']:
+                parsed_response_data = result.setdefault(status_code, {})
+                response_type = parse_type(response_data['content']['application/hal+json']['schema']['$ref'])
+                parsed_response_data['type'] = response_type
+            elif response_data['content'] == {}:
+                parsed_response_data = result.setdefault(status_code, {})
+                parsed_response_data['type'] = 'None'
+            else:
+                raise ValueError(f'Could not parse response: {self.url}, {self.method}, {status_code}')
+        return result
+
+
 def stage_6_operations(data: dict):
     paths = data['paths']
-    parsed_operations = {}
+    parsed_operations: dict[str, Operation] = {}
     for url, url_data in paths.items():
         for method, method_data in url_data.items():
-            parsed_operation_data = parsed_operations.setdefault(method_data['operationId'], {
-                'source': method_data,
-            })
+            parsed_operation_data: Operation = parsed_operations.setdefault(method_data['operationId'], Operation(
+                swagger_data=data,
+                url=url,
+                method=method.upper(),
+                operation_id=method_data['operationId'],
+                source=method_data,
+            ))
             # parse_type(method_data['requestBody']['content']['application/json']['schema']['$ref'])
             if method == 'post' and 'requestBody' in method_data:
                 request_body = method_data['requestBody']
@@ -195,13 +234,9 @@ def stage_6_operations(data: dict):
                 request_body_schema = request_body_json['schema']
                 assert '$ref' in request_body_schema
                 request_body_type = parse_type(request_body_schema['$ref'])
-                parsed_operation_data.setdefault('request_body', {}).setdefault('type', request_body_type)
-            parsed_operation_data['url'] = url
-            parsed_operation_data['method'] = method.upper()
+                parsed_operation_data.request_body.setdefault('type', request_body_type)
 
-            parsed_query_parameter_data_list = parsed_operation_data.setdefault('query_parameters', {})
-            parsed_path_parameter_data_list = parsed_operation_data.setdefault('path_parameters', {})
-            parsed_response_data_list = parsed_operation_data.setdefault('responses', {})
+            parsed_path_parameter_data_list = parsed_operation_data.path_parameters
 
             if 'parameters' in method_data:
                 for parameter_data in method_data['parameters']:
@@ -212,7 +247,8 @@ def stage_6_operations(data: dict):
                     parameter_data: dict = deepcopy(parameter_data)
 
                     if parameter_data['in'] == 'query':
-                        parsed_parameter_data = parsed_query_parameter_data_list.setdefault(parameter_data['name'], {})
+                        parsed_parameter_data = parsed_operation_data.query_parameters.setdefault(
+                            parameter_data['name'], {})
                     elif parameter_data['in'] == 'path':
                         parsed_parameter_data = parsed_path_parameter_data_list.setdefault(parameter_data['name'], {})
                     else:
@@ -224,18 +260,6 @@ def stage_6_operations(data: dict):
                     if parsed_parameter_data['type'] == 'list':
                         parsed_parameter_data['item_type'] = parse_type(schema_data['items']['type'])
 
-            if 'responses' in method_data:
-                for status_code, response_data in method_data['responses'].items():
-                    if 'application/json' in response_data['content']:
-                        parsed_response_data = parsed_response_data_list.setdefault(status_code, {})
-                        response_type = parse_type(response_data['content']['application/json']['schema']['$ref'])
-                        parsed_response_data['type'] = response_type
-                    elif 'application/hal+json' in response_data['content']:
-                        parsed_response_data = parsed_response_data_list.setdefault(status_code, {})
-                        response_type = parse_type(response_data['content']['application/hal+json']['schema']['$ref'])
-                        parsed_response_data['type'] = response_type
-                    else:
-                        logger.warning(f'Could not parse response: {url}, {method}, {status_code}')
     return parsed_operations
 
 

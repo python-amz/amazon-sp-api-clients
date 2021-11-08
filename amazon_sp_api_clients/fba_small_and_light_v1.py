@@ -307,6 +307,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         response = self.request(url, method="DELETE", data=params)
         return {
+            204: None,
             400: ErrorList,
             403: ErrorList,
             404: ErrorList,
