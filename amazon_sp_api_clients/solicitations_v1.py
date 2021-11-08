@@ -212,7 +212,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateProductReviewAndSellerFeedbackSolicitationResponse,
             400: CreateProductReviewAndSellerFeedbackSolicitationResponse,

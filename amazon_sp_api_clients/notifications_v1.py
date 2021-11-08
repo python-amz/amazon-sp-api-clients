@@ -408,7 +408,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             notificationType=notificationType,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: CreateSubscriptionResponse,
             400: CreateSubscriptionResponse,
@@ -474,7 +474,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             notificationType=notificationType,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=data.data)
+        response = self.request(url, method="DELETE", data=params)
         return {
             200: DeleteSubscriptionByIdResponse,
             400: DeleteSubscriptionByIdResponse,
@@ -531,7 +531,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/notifications/v1/destinations".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: CreateDestinationResponse,
             400: CreateDestinationResponse,
@@ -593,7 +593,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             destinationId=destinationId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=data.data)
+        response = self.request(url, method="DELETE", data=params)
         return {
             200: DeleteDestinationResponse,
             400: DeleteDestinationResponse,

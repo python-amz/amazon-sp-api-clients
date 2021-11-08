@@ -400,7 +400,7 @@ class ProductFeesV0Client(__BaseClient):
             SellerSKU=SellerSKU,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetMyFeesEstimateResponse,
             400: GetMyFeesEstimateResponse,
@@ -433,7 +433,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             Asin=Asin,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetMyFeesEstimateResponse,
             400: GetMyFeesEstimateResponse,

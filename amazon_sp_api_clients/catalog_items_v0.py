@@ -903,21 +903,21 @@ class CatalogItemsV0Client(__BaseClient):
         url = "/catalog/v0/items".format()
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         if Query is not None:
-            params["Query"] = (Query,)
+            params["Query"] = Query
         if QueryContextId is not None:
-            params["QueryContextId"] = (QueryContextId,)
+            params["QueryContextId"] = QueryContextId
         if SellerSKU is not None:
-            params["SellerSKU"] = (SellerSKU,)
+            params["SellerSKU"] = SellerSKU
         if UPC is not None:
-            params["UPC"] = (UPC,)
+            params["UPC"] = UPC
         if EAN is not None:
-            params["EAN"] = (EAN,)
+            params["EAN"] = EAN
         if ISBN is not None:
-            params["ISBN"] = (ISBN,)
+            params["ISBN"] = ISBN
         if JAN is not None:
-            params["JAN"] = (JAN,)
+            params["JAN"] = JAN
         response = self.request(url, method="GET", params=params)
         return {
             200: ListCatalogItemsResponse,
@@ -950,7 +950,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetCatalogItemResponse,
@@ -982,11 +982,11 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/catalog/v0/categories".format()
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         if ASIN is not None:
-            params["ASIN"] = (ASIN,)
+            params["ASIN"] = ASIN
         if SellerSKU is not None:
-            params["SellerSKU"] = (SellerSKU,)
+            params["SellerSKU"] = SellerSKU
         response = self.request(url, method="GET", params=params)
         return {
             200: ListCatalogCategoriesResponse,

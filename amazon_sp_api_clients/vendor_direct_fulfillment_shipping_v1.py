@@ -849,17 +849,17 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format()
         params = {}
         if shipFromPartyId is not None:
-            params["shipFromPartyId"] = (shipFromPartyId,)
+            params["shipFromPartyId"] = shipFromPartyId
         if limit is not None:
-            params["limit"] = (limit,)
+            params["limit"] = limit
         if createdAfter is not None:
-            params["createdAfter"] = (createdAfter,)
+            params["createdAfter"] = createdAfter
         if createdBefore is not None:
-            params["createdBefore"] = (createdBefore,)
+            params["createdBefore"] = createdBefore
         if sortOrder is not None:
-            params["sortOrder"] = (sortOrder,)
+            params["sortOrder"] = sortOrder
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetShippingLabelListResponse,
@@ -888,7 +888,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
     ):
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: SubmitShippingLabelsResponse,
             400: SubmitShippingLabelsResponse,
@@ -948,7 +948,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
     ):
         url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: SubmitShipmentConfirmationsResponse,
             400: SubmitShipmentConfirmationsResponse,
@@ -977,7 +977,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
     ):
         url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: SubmitShipmentStatusUpdatesResponse,
             400: SubmitShipmentStatusUpdatesResponse,
@@ -1012,17 +1012,17 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/vendor/directFulfillment/shipping/v1/customerInvoices".format()
         params = {}
         if shipFromPartyId is not None:
-            params["shipFromPartyId"] = (shipFromPartyId,)
+            params["shipFromPartyId"] = shipFromPartyId
         if limit is not None:
-            params["limit"] = (limit,)
+            params["limit"] = limit
         if createdAfter is not None:
-            params["createdAfter"] = (createdAfter,)
+            params["createdAfter"] = createdAfter
         if createdBefore is not None:
-            params["createdBefore"] = (createdBefore,)
+            params["createdBefore"] = createdBefore
         if sortOrder is not None:
-            params["sortOrder"] = (sortOrder,)
+            params["sortOrder"] = sortOrder
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetCustomerInvoicesResponse,
@@ -1088,17 +1088,17 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/vendor/directFulfillment/shipping/v1/packingSlips".format()
         params = {}
         if shipFromPartyId is not None:
-            params["shipFromPartyId"] = (shipFromPartyId,)
+            params["shipFromPartyId"] = shipFromPartyId
         if limit is not None:
-            params["limit"] = (limit,)
+            params["limit"] = limit
         if createdAfter is not None:
-            params["createdAfter"] = (createdAfter,)
+            params["createdAfter"] = createdAfter
         if createdBefore is not None:
-            params["createdBefore"] = (createdBefore,)
+            params["createdBefore"] = createdBefore
         if sortOrder is not None:
-            params["sortOrder"] = (sortOrder,)
+            params["sortOrder"] = sortOrder
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPackingSlipListResponse,

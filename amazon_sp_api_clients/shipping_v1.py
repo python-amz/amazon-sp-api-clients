@@ -1116,7 +1116,7 @@ class ShippingV1Client(__BaseClient):
     ):
         url = "/shipping/v1/shipments".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: CreateShipmentResponse,
             400: CreateShipmentResponse,
@@ -1174,7 +1174,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: CancelShipmentResponse,
             400: CancelShipmentResponse,
@@ -1204,7 +1204,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: PurchaseLabelsResponse,
             400: PurchaseLabelsResponse,
@@ -1236,7 +1236,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             trackingId=trackingId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: RetrieveShippingLabelResponse,
             400: RetrieveShippingLabelResponse,
@@ -1263,7 +1263,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/shipping/v1/purchaseShipment".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: PurchaseShipmentResponse,
             400: PurchaseShipmentResponse,
@@ -1290,7 +1290,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/shipping/v1/rates".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetRatesResponse,
             400: GetRatesResponse,

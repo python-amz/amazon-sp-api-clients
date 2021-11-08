@@ -324,17 +324,17 @@ class FbaInventoryV1Client(__BaseClient):
         url = "/fba/inventory/v1/summaries".format()
         params = {}
         if details is not None:
-            params["details"] = (details,)
+            params["details"] = details
         if granularityType is not None:
-            params["granularityType"] = (granularityType,)
+            params["granularityType"] = granularityType
         if granularityId is not None:
-            params["granularityId"] = (granularityId,)
+            params["granularityId"] = granularityId
         if startDateTime is not None:
-            params["startDateTime"] = (startDateTime,)
+            params["startDateTime"] = startDateTime
         if sellerSkus is not None:
             params["sellerSkus"] = ",".join(map(str, sellerSkus))
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         response = self.request(url, method="GET", params=params)

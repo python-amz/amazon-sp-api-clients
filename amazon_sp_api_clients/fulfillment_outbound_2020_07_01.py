@@ -1952,7 +1952,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
     ):
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetFulfillmentPreviewResponse,
             400: GetFulfillmentPreviewResponse,
@@ -1981,9 +1981,9 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         url = "/fba/outbound/2020-07-01/fulfillmentOrders".format()
         params = {}
         if queryStartDate is not None:
-            params["queryStartDate"] = (queryStartDate,)
+            params["queryStartDate"] = queryStartDate
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: ListAllFulfillmentOrdersResponse,
@@ -2011,7 +2011,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/fba/outbound/2020-07-01/fulfillmentOrders".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: CreateFulfillmentOrderResponse,
             400: CreateFulfillmentOrderResponse,
@@ -2039,7 +2039,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         url = "/fba/outbound/2020-07-01/tracking".format()
         params = {}
         if packageNumber is not None:
-            params["packageNumber"] = (packageNumber,)
+            params["packageNumber"] = packageNumber
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPackageTrackingDetailsResponse,
@@ -2071,13 +2071,13 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         url = "/fba/outbound/2020-07-01/returnReasonCodes".format()
         params = {}
         if sellerSku is not None:
-            params["sellerSku"] = (sellerSku,)
+            params["sellerSku"] = sellerSku
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         if sellerFulfillmentOrderId is not None:
-            params["sellerFulfillmentOrderId"] = (sellerFulfillmentOrderId,)
+            params["sellerFulfillmentOrderId"] = sellerFulfillmentOrderId
         if language is not None:
-            params["language"] = (language,)
+            params["language"] = language
         response = self.request(url, method="GET", params=params)
         return {
             200: ListReturnReasonCodesResponse,
@@ -2107,7 +2107,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: CreateFulfillmentReturnResponse,
             400: CreateFulfillmentReturnResponse,
@@ -2165,7 +2165,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: UpdateFulfillmentOrderResponse,
             400: UpdateFulfillmentOrderResponse,
@@ -2194,7 +2194,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: CancelFulfillmentOrderResponse,
             400: CancelFulfillmentOrderResponse,
@@ -2222,7 +2222,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         url = "/fba/outbound/2020-07-01/features".format()
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetFeaturesResponse,
@@ -2255,9 +2255,9 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetFeatureInventoryResponse,
@@ -2291,7 +2291,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetFeatureSkuResponse,

@@ -426,7 +426,7 @@ class ListingsItems20210801Client(__BaseClient):
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if issueLocale is not None:
-            params["issueLocale"] = (issueLocale,)
+            params["issueLocale"] = issueLocale
         if includedData is not None:
             params["includedData"] = ",".join(map(str, includedData))
         response = self.request(url, method="GET", params=params)
@@ -466,8 +466,8 @@ The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits 
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if issueLocale is not None:
-            params["issueLocale"] = (issueLocale,)
-        response = self.request(url, method="PUT", data=data.data)
+            params["issueLocale"] = issueLocale
+        response = self.request(url, method="PUT", data=params)
         return {
             200: ListingsItemSubmissionResponse,
             400: ErrorList,
@@ -503,8 +503,8 @@ The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits 
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if issueLocale is not None:
-            params["issueLocale"] = (issueLocale,)
-        response = self.request(url, method="DELETE", data=data.data)
+            params["issueLocale"] = issueLocale
+        response = self.request(url, method="DELETE", data=params)
         return {
             200: ListingsItemSubmissionResponse,
             400: ErrorList,
@@ -540,8 +540,8 @@ The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits 
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if issueLocale is not None:
-            params["issueLocale"] = (issueLocale,)
-        response = self.request(url, method="PATCH", data=data.data)
+            params["issueLocale"] = issueLocale
+        response = self.request(url, method="PATCH", data=params)
         return {
             200: ListingsItemSubmissionResponse,
             400: ErrorList,

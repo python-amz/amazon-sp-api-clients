@@ -103,9 +103,9 @@ class FbaInboundEligibilityV1Client(__BaseClient):
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if asin is not None:
-            params["asin"] = (asin,)
+            params["asin"] = asin
         if program is not None:
-            params["program"] = (program,)
+            params["program"] = program
         response = self.request(url, method="GET", params=params)
         return {
             200: GetItemEligibilityPreviewResponse,

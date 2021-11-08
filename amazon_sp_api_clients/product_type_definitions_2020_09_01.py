@@ -236,17 +236,17 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if sellerId is not None:
-            params["sellerId"] = (sellerId,)
+            params["sellerId"] = sellerId
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if productTypeVersion is not None:
-            params["productTypeVersion"] = (productTypeVersion,)
+            params["productTypeVersion"] = productTypeVersion
         if requirements is not None:
-            params["requirements"] = (requirements,)
+            params["requirements"] = requirements
         if requirementsEnforced is not None:
-            params["requirementsEnforced"] = (requirementsEnforced,)
+            params["requirementsEnforced"] = requirementsEnforced
         if locale is not None:
-            params["locale"] = (locale,)
+            params["locale"] = locale
         response = self.request(url, method="GET", params=params)
         return {
             200: ProductTypeDefinition,

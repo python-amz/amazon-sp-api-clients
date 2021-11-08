@@ -147,21 +147,21 @@ class SalesV1Client(__BaseClient):
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if interval is not None:
-            params["interval"] = (interval,)
+            params["interval"] = interval
         if granularityTimeZone is not None:
-            params["granularityTimeZone"] = (granularityTimeZone,)
+            params["granularityTimeZone"] = granularityTimeZone
         if granularity is not None:
-            params["granularity"] = (granularity,)
+            params["granularity"] = granularity
         if buyerType is not None:
-            params["buyerType"] = (buyerType,)
+            params["buyerType"] = buyerType
         if fulfillmentNetwork is not None:
-            params["fulfillmentNetwork"] = (fulfillmentNetwork,)
+            params["fulfillmentNetwork"] = fulfillmentNetwork
         if firstDayOfWeek is not None:
-            params["firstDayOfWeek"] = (firstDayOfWeek,)
+            params["firstDayOfWeek"] = firstDayOfWeek
         if asin is not None:
-            params["asin"] = (asin,)
+            params["asin"] = asin
         if sku is not None:
-            params["sku"] = (sku,)
+            params["sku"] = sku
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOrderMetricsResponse,

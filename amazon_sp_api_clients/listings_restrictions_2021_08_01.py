@@ -139,15 +139,15 @@ class ListingsRestrictions20210801Client(__BaseClient):
         url = "/listings/2021-08-01/restrictions".format()
         params = {}
         if asin is not None:
-            params["asin"] = (asin,)
+            params["asin"] = asin
         if conditionType is not None:
-            params["conditionType"] = (conditionType,)
+            params["conditionType"] = conditionType
         if sellerId is not None:
-            params["sellerId"] = (sellerId,)
+            params["sellerId"] = sellerId
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if reasonLocale is not None:
-            params["reasonLocale"] = (reasonLocale,)
+            params["reasonLocale"] = reasonLocale
         response = self.request(url, method="GET", params=params)
         return {
             200: RestrictionList,

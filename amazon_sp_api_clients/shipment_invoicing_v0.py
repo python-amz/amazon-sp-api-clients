@@ -507,7 +507,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: SubmitInvoiceResponse,
             400: SubmitInvoiceResponse,

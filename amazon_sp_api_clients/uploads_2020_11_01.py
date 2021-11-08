@@ -98,10 +98,10 @@ class Uploads20201101Client(__BaseClient):
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if contentMD5 is not None:
-            params["contentMD5"] = (contentMD5,)
+            params["contentMD5"] = contentMD5
         if contentType is not None:
-            params["contentType"] = (contentType,)
-        response = self.request(url, method="POST", data=data.data)
+            params["contentType"] = contentType
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateUploadDestinationResponse,
             400: CreateUploadDestinationResponse,

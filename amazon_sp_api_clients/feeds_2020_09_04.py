@@ -347,15 +347,15 @@ class Feeds20200904Client(__BaseClient):
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if pageSize is not None:
-            params["pageSize"] = (pageSize,)
+            params["pageSize"] = pageSize
         if processingStatuses is not None:
             params["processingStatuses"] = ",".join(map(str, processingStatuses))
         if createdSince is not None:
-            params["createdSince"] = (createdSince,)
+            params["createdSince"] = createdSince
         if createdUntil is not None:
-            params["createdUntil"] = (createdUntil,)
+            params["createdUntil"] = createdUntil
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetFeedsResponse,
@@ -384,7 +384,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/feeds/2020-09-04/feeds".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: CreateFeedResponse,
             400: CreateFeedResponse,
@@ -444,7 +444,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             feedId=feedId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=data.data)
+        response = self.request(url, method="DELETE", data=params)
         return {
             200: CancelFeedResponse,
             400: CancelFeedResponse,
@@ -472,7 +472,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/feeds/2020-09-04/documents".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateFeedDocumentResponse,
             400: CreateFeedDocumentResponse,

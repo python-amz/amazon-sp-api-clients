@@ -85,11 +85,11 @@ class AuthorizationV1Client(__BaseClient):
         url = "/authorization/v1/authorizationCode".format()
         params = {}
         if sellingPartnerId is not None:
-            params["sellingPartnerId"] = (sellingPartnerId,)
+            params["sellingPartnerId"] = sellingPartnerId
         if developerId is not None:
-            params["developerId"] = (developerId,)
+            params["developerId"] = developerId
         if mwsAuthToken is not None:
-            params["mwsAuthToken"] = (mwsAuthToken,)
+            params["mwsAuthToken"] = mwsAuthToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetAuthorizationCodeResponse,

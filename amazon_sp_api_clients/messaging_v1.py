@@ -517,7 +517,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateConfirmCustomizationDetailsResponse,
             400: CreateConfirmCustomizationDetailsResponse,
@@ -551,7 +551,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateConfirmDeliveryDetailsResponse,
             400: CreateConfirmDeliveryDetailsResponse,
@@ -585,7 +585,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateLegalDisclosureResponse,
             400: CreateLegalDisclosureResponse,
@@ -618,7 +618,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateNegativeFeedbackRemovalResponse,
             400: CreateNegativeFeedbackRemovalResponse,
@@ -652,7 +652,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateConfirmOrderDetailsResponse,
             400: CreateConfirmOrderDetailsResponse,
@@ -686,7 +686,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateConfirmServiceDetailsResponse,
             400: CreateConfirmServiceDetailsResponse,
@@ -720,7 +720,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateAmazonMotorsResponse,
             400: CreateAmazonMotorsResponse,
@@ -754,7 +754,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateWarrantyResponse,
             400: CreateWarrantyResponse,
@@ -820,7 +820,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateDigitalAccessKeyResponse,
             400: CreateDigitalAccessKeyResponse,
@@ -854,7 +854,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateUnexpectedProblemResponse,
             400: CreateUnexpectedProblemResponse,

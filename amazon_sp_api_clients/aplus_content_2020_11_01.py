@@ -1398,9 +1398,9 @@ class AplusContent20201101Client(__BaseClient):
         url = "/aplus/2020-11-01/contentDocuments".format()
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         if pageToken is not None:
-            params["pageToken"] = (pageToken,)
+            params["pageToken"] = pageToken
         response = self.request(url, method="GET", params=params)
         return {
             200: SearchContentDocumentsResponse,
@@ -1432,8 +1432,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/aplus/2020-11-01/contentDocuments".format()
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
-        response = self.request(url, method="POST", data=data.data)
+            params["marketplaceId"] = marketplaceId
+        response = self.request(url, method="POST", data=params)
         return {
             200: PostContentDocumentResponse,
             400: ErrorList,
@@ -1466,7 +1466,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         if includedDataSet is not None:
             params["includedDataSet"] = ",".join(map(str, includedDataSet))
         response = self.request(url, method="GET", params=params)
@@ -1503,8 +1503,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
-        response = self.request(url, method="POST", data=data.data)
+            params["marketplaceId"] = marketplaceId
+        response = self.request(url, method="POST", data=params)
         return {
             200: PostContentDocumentResponse,
             400: ErrorList,
@@ -1540,13 +1540,13 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         if includedDataSet is not None:
             params["includedDataSet"] = ",".join(map(str, includedDataSet))
         if asinSet is not None:
             params["asinSet"] = ",".join(map(str, asinSet))
         if pageToken is not None:
-            params["pageToken"] = (pageToken,)
+            params["pageToken"] = pageToken
         response = self.request(url, method="GET", params=params)
         return {
             200: ListContentDocumentAsinRelationsResponse,
@@ -1581,8 +1581,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
-        response = self.request(url, method="POST", data=data.data)
+            params["marketplaceId"] = marketplaceId
+        response = self.request(url, method="POST", data=params)
         return {
             200: PostContentDocumentAsinRelationsResponse,
             400: ErrorList,
@@ -1614,10 +1614,10 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/aplus/2020-11-01/contentAsinValidations".format()
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         if asinSet is not None:
             params["asinSet"] = ",".join(map(str, asinSet))
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: ValidateContentDocumentAsinRelationsResponse,
             400: ErrorList,
@@ -1648,11 +1648,11 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/aplus/2020-11-01/contentPublishRecords".format()
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
+            params["marketplaceId"] = marketplaceId
         if asin is not None:
-            params["asin"] = (asin,)
+            params["asin"] = asin
         if pageToken is not None:
-            params["pageToken"] = (pageToken,)
+            params["pageToken"] = pageToken
         response = self.request(url, method="GET", params=params)
         return {
             200: SearchContentPublishRecordsResponse,
@@ -1685,8 +1685,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
-        response = self.request(url, method="POST", data=data.data)
+            params["marketplaceId"] = marketplaceId
+        response = self.request(url, method="POST", data=params)
         return {
             200: PostContentDocumentApprovalSubmissionResponse,
             400: ErrorList,
@@ -1719,8 +1719,8 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if marketplaceId is not None:
-            params["marketplaceId"] = (marketplaceId,)
-        response = self.request(url, method="POST", data=data.data)
+            params["marketplaceId"] = marketplaceId
+        response = self.request(url, method="POST", data=params)
         return {
             200: PostContentDocumentSuspendSubmissionResponse,
             400: ErrorList,

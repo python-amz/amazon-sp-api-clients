@@ -1917,13 +1917,13 @@ class FinancesV0Client(__BaseClient):
         url = "/finances/v0/financialEventGroups".format()
         params = {}
         if MaxResultsPerPage is not None:
-            params["MaxResultsPerPage"] = (MaxResultsPerPage,)
+            params["MaxResultsPerPage"] = MaxResultsPerPage
         if FinancialEventGroupStartedBefore is not None:
-            params["FinancialEventGroupStartedBefore"] = (FinancialEventGroupStartedBefore,)
+            params["FinancialEventGroupStartedBefore"] = FinancialEventGroupStartedBefore
         if FinancialEventGroupStartedAfter is not None:
-            params["FinancialEventGroupStartedAfter"] = (FinancialEventGroupStartedAfter,)
+            params["FinancialEventGroupStartedAfter"] = FinancialEventGroupStartedAfter
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: ListFinancialEventGroupsResponse,
@@ -1955,9 +1955,9 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if MaxResultsPerPage is not None:
-            params["MaxResultsPerPage"] = (MaxResultsPerPage,)
+            params["MaxResultsPerPage"] = MaxResultsPerPage
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: ListFinancialEventsResponse,
@@ -1989,9 +1989,9 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if MaxResultsPerPage is not None:
-            params["MaxResultsPerPage"] = (MaxResultsPerPage,)
+            params["MaxResultsPerPage"] = MaxResultsPerPage
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: ListFinancialEventsResponse,
@@ -2022,13 +2022,13 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         url = "/finances/v0/financialEvents".format()
         params = {}
         if MaxResultsPerPage is not None:
-            params["MaxResultsPerPage"] = (MaxResultsPerPage,)
+            params["MaxResultsPerPage"] = MaxResultsPerPage
         if PostedAfter is not None:
-            params["PostedAfter"] = (PostedAfter,)
+            params["PostedAfter"] = PostedAfter
         if PostedBefore is not None:
-            params["PostedBefore"] = (PostedBefore,)
+            params["PostedBefore"] = PostedBefore
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: ListFinancialEventsResponse,

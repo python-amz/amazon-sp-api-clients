@@ -533,7 +533,7 @@ class VendorInvoicesV1Client(__BaseClient):
     ):
         url = "/vendor/payments/v1/invoices".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: SubmitInvoicesResponse,
             400: SubmitInvoicesResponse,

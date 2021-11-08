@@ -643,21 +643,21 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
         url = "/vendor/directFulfillment/orders/v1/purchaseOrders".format()
         params = {}
         if shipFromPartyId is not None:
-            params["shipFromPartyId"] = (shipFromPartyId,)
+            params["shipFromPartyId"] = shipFromPartyId
         if status is not None:
-            params["status"] = (status,)
+            params["status"] = status
         if limit is not None:
-            params["limit"] = (limit,)
+            params["limit"] = limit
         if createdAfter is not None:
-            params["createdAfter"] = (createdAfter,)
+            params["createdAfter"] = createdAfter
         if createdBefore is not None:
-            params["createdBefore"] = (createdBefore,)
+            params["createdBefore"] = createdBefore
         if sortOrder is not None:
-            params["sortOrder"] = (sortOrder,)
+            params["sortOrder"] = sortOrder
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         if includeDetails is not None:
-            params["includeDetails"] = (includeDetails,)
+            params["includeDetails"] = includeDetails
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOrdersResponse,
@@ -717,7 +717,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
     ):
         url = "/vendor/directFulfillment/orders/v1/acknowledgements".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: SubmitAcknowledgementResponse,
             400: SubmitAcknowledgementResponse,

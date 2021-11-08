@@ -148,13 +148,13 @@ class {{ class_name }}Client(__BaseClient):
             {% if type == 'list' %}
             params['{{ query_parameter_name }}'] = ','.join(map(str, {{ query_parameter_name }}))
             {% else %}
-            params['{{ query_parameter_name }}'] = {{ query_parameter_name }},
+            params['{{ query_parameter_name }}'] = {{ query_parameter_name }}
             {% endif %}
         {% endfor %}
         {% if operation.method == 'GET' %}
         response = self.request(url, method='{{ operation.method }}', params=params)
         {% else %}
-        response = self.request(url, method='{{ operation.method }}', data=data.data)
+        response = self.request(url, method='{{ operation.method }}', data=params)
         {% endif %}
         return {
             {% for status_code, response in operation.responses.items() %}

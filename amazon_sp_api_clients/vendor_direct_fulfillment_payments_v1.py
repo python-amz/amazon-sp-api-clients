@@ -419,7 +419,7 @@ class VendorDirectFulfillmentPaymentsV1Client(__BaseClient):
     ):
         url = "/vendor/directFulfillment/payments/v1/invoices".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: SubmitInvoiceResponse,
             400: SubmitInvoiceResponse,

@@ -727,29 +727,29 @@ class VendorOrdersV1Client(__BaseClient):
         url = "/vendor/orders/v1/purchaseOrders".format()
         params = {}
         if limit is not None:
-            params["limit"] = (limit,)
+            params["limit"] = limit
         if createdAfter is not None:
-            params["createdAfter"] = (createdAfter,)
+            params["createdAfter"] = createdAfter
         if createdBefore is not None:
-            params["createdBefore"] = (createdBefore,)
+            params["createdBefore"] = createdBefore
         if sortOrder is not None:
-            params["sortOrder"] = (sortOrder,)
+            params["sortOrder"] = sortOrder
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         if includeDetails is not None:
-            params["includeDetails"] = (includeDetails,)
+            params["includeDetails"] = includeDetails
         if changedAfter is not None:
-            params["changedAfter"] = (changedAfter,)
+            params["changedAfter"] = changedAfter
         if changedBefore is not None:
-            params["changedBefore"] = (changedBefore,)
+            params["changedBefore"] = changedBefore
         if poItemState is not None:
-            params["poItemState"] = (poItemState,)
+            params["poItemState"] = poItemState
         if isPOChanged is not None:
-            params["isPOChanged"] = (isPOChanged,)
+            params["isPOChanged"] = isPOChanged
         if purchaseOrderState is not None:
-            params["purchaseOrderState"] = (purchaseOrderState,)
+            params["purchaseOrderState"] = purchaseOrderState
         if orderingVendorCode is not None:
-            params["orderingVendorCode"] = (orderingVendorCode,)
+            params["orderingVendorCode"] = orderingVendorCode
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPurchaseOrdersResponse,
@@ -809,7 +809,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
     ):
         url = "/vendor/orders/v1/acknowledgements".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: SubmitAcknowledgementResponse,
             400: SubmitAcknowledgementResponse,
@@ -850,29 +850,29 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/vendor/orders/v1/purchaseOrdersStatus".format()
         params = {}
         if limit is not None:
-            params["limit"] = (limit,)
+            params["limit"] = limit
         if sortOrder is not None:
-            params["sortOrder"] = (sortOrder,)
+            params["sortOrder"] = sortOrder
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         if createdAfter is not None:
-            params["createdAfter"] = (createdAfter,)
+            params["createdAfter"] = createdAfter
         if createdBefore is not None:
-            params["createdBefore"] = (createdBefore,)
+            params["createdBefore"] = createdBefore
         if updatedAfter is not None:
-            params["updatedAfter"] = (updatedAfter,)
+            params["updatedAfter"] = updatedAfter
         if updatedBefore is not None:
-            params["updatedBefore"] = (updatedBefore,)
+            params["updatedBefore"] = updatedBefore
         if purchaseOrderNumber is not None:
-            params["purchaseOrderNumber"] = (purchaseOrderNumber,)
+            params["purchaseOrderNumber"] = purchaseOrderNumber
         if purchaseOrderStatus is not None:
-            params["purchaseOrderStatus"] = (purchaseOrderStatus,)
+            params["purchaseOrderStatus"] = purchaseOrderStatus
         if itemConfirmationStatus is not None:
-            params["itemConfirmationStatus"] = (itemConfirmationStatus,)
+            params["itemConfirmationStatus"] = itemConfirmationStatus
         if orderingVendorCode is not None:
-            params["orderingVendorCode"] = (orderingVendorCode,)
+            params["orderingVendorCode"] = orderingVendorCode
         if shipToPartyId is not None:
-            params["shipToPartyId"] = (shipToPartyId,)
+            params["shipToPartyId"] = shipToPartyId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPurchaseOrdersStatusResponse,

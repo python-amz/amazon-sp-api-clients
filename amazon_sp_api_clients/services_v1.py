@@ -697,8 +697,8 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if cancellationReasonCode is not None:
-            params["cancellationReasonCode"] = (cancellationReasonCode,)
-        response = self.request(url, method="PUT", data=data.data)
+            params["cancellationReasonCode"] = cancellationReasonCode
+        response = self.request(url, method="PUT", data=params)
         return {
             200: CancelServiceJobByServiceJobIdResponse,
             400: CancelServiceJobByServiceJobIdResponse,
@@ -729,7 +729,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             serviceJobId=serviceJobId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: CompleteServiceJobByServiceJobIdResponse,
             400: CompleteServiceJobByServiceJobIdResponse,
@@ -775,25 +775,25 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         if serviceJobStatus is not None:
             params["serviceJobStatus"] = ",".join(map(str, serviceJobStatus))
         if pageToken is not None:
-            params["pageToken"] = (pageToken,)
+            params["pageToken"] = pageToken
         if pageSize is not None:
-            params["pageSize"] = (pageSize,)
+            params["pageSize"] = pageSize
         if sortField is not None:
-            params["sortField"] = (sortField,)
+            params["sortField"] = sortField
         if sortOrder is not None:
-            params["sortOrder"] = (sortOrder,)
+            params["sortOrder"] = sortOrder
         if createdAfter is not None:
-            params["createdAfter"] = (createdAfter,)
+            params["createdAfter"] = createdAfter
         if createdBefore is not None:
-            params["createdBefore"] = (createdBefore,)
+            params["createdBefore"] = createdBefore
         if lastUpdatedAfter is not None:
-            params["lastUpdatedAfter"] = (lastUpdatedAfter,)
+            params["lastUpdatedAfter"] = lastUpdatedAfter
         if lastUpdatedBefore is not None:
-            params["lastUpdatedBefore"] = (lastUpdatedBefore,)
+            params["lastUpdatedBefore"] = lastUpdatedBefore
         if scheduleStartDate is not None:
-            params["scheduleStartDate"] = (scheduleStartDate,)
+            params["scheduleStartDate"] = scheduleStartDate
         if scheduleEndDate is not None:
-            params["scheduleEndDate"] = (scheduleEndDate,)
+            params["scheduleEndDate"] = scheduleEndDate
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         response = self.request(url, method="GET", params=params)
@@ -827,7 +827,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             serviceJobId=serviceJobId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: SetAppointmentResponse,
             400: SetAppointmentResponse,
@@ -861,7 +861,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             appointmentId=appointmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: SetAppointmentResponse,
             400: SetAppointmentResponse,

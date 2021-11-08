@@ -939,17 +939,17 @@ class ProductPricingV0Client(__BaseClient):
         url = "/products/pricing/v0/price".format()
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         if Asins is not None:
             params["Asins"] = ",".join(map(str, Asins))
         if Skus is not None:
             params["Skus"] = ",".join(map(str, Skus))
         if ItemType is not None:
-            params["ItemType"] = (ItemType,)
+            params["ItemType"] = ItemType
         if ItemCondition is not None:
-            params["ItemCondition"] = (ItemCondition,)
+            params["ItemCondition"] = ItemCondition
         if OfferType is not None:
-            params["OfferType"] = (OfferType,)
+            params["OfferType"] = OfferType
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPricingResponse,
@@ -983,15 +983,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         url = "/products/pricing/v0/competitivePrice".format()
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         if Asins is not None:
             params["Asins"] = ",".join(map(str, Asins))
         if Skus is not None:
             params["Skus"] = ",".join(map(str, Skus))
         if ItemType is not None:
-            params["ItemType"] = (ItemType,)
+            params["ItemType"] = ItemType
         if CustomerType is not None:
-            params["CustomerType"] = (CustomerType,)
+            params["CustomerType"] = CustomerType
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPricingResponse,
@@ -1026,11 +1026,11 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         if ItemCondition is not None:
-            params["ItemCondition"] = (ItemCondition,)
+            params["ItemCondition"] = ItemCondition
         if CustomerType is not None:
-            params["CustomerType"] = (CustomerType,)
+            params["CustomerType"] = CustomerType
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOffersResponse,
@@ -1065,11 +1065,11 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         if ItemCondition is not None:
-            params["ItemCondition"] = (ItemCondition,)
+            params["ItemCondition"] = ItemCondition
         if CustomerType is not None:
-            params["CustomerType"] = (CustomerType,)
+            params["CustomerType"] = CustomerType
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOffersResponse,

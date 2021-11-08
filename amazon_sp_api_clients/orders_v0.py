@@ -1002,13 +1002,13 @@ class OrdersV0Client(__BaseClient):
         url = "/orders/v0/orders".format()
         params = {}
         if CreatedAfter is not None:
-            params["CreatedAfter"] = (CreatedAfter,)
+            params["CreatedAfter"] = CreatedAfter
         if CreatedBefore is not None:
-            params["CreatedBefore"] = (CreatedBefore,)
+            params["CreatedBefore"] = CreatedBefore
         if LastUpdatedAfter is not None:
-            params["LastUpdatedAfter"] = (LastUpdatedAfter,)
+            params["LastUpdatedAfter"] = LastUpdatedAfter
         if LastUpdatedBefore is not None:
-            params["LastUpdatedBefore"] = (LastUpdatedBefore,)
+            params["LastUpdatedBefore"] = LastUpdatedBefore
         if OrderStatuses is not None:
             params["OrderStatuses"] = ",".join(map(str, OrderStatuses))
         if MarketplaceIds is not None:
@@ -1018,23 +1018,23 @@ class OrdersV0Client(__BaseClient):
         if PaymentMethods is not None:
             params["PaymentMethods"] = ",".join(map(str, PaymentMethods))
         if BuyerEmail is not None:
-            params["BuyerEmail"] = (BuyerEmail,)
+            params["BuyerEmail"] = BuyerEmail
         if SellerOrderId is not None:
-            params["SellerOrderId"] = (SellerOrderId,)
+            params["SellerOrderId"] = SellerOrderId
         if MaxResultsPerPage is not None:
-            params["MaxResultsPerPage"] = (MaxResultsPerPage,)
+            params["MaxResultsPerPage"] = MaxResultsPerPage
         if EasyShipShipmentStatuses is not None:
             params["EasyShipShipmentStatuses"] = ",".join(map(str, EasyShipShipmentStatuses))
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         if AmazonOrderIds is not None:
             params["AmazonOrderIds"] = ",".join(map(str, AmazonOrderIds))
         if ActualFulfillmentSupplySourceId is not None:
-            params["ActualFulfillmentSupplySourceId"] = (ActualFulfillmentSupplySourceId,)
+            params["ActualFulfillmentSupplySourceId"] = ActualFulfillmentSupplySourceId
         if IsISPU is not None:
-            params["IsISPU"] = (IsISPU,)
+            params["IsISPU"] = IsISPU
         if StoreChainStoreId is not None:
-            params["StoreChainStoreId"] = (StoreChainStoreId,)
+            params["StoreChainStoreId"] = StoreChainStoreId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOrdersResponse,
@@ -1156,7 +1156,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOrderItemsResponse,
@@ -1189,7 +1189,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         )
         params = {}
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetOrderItemsBuyerInfoResponse,

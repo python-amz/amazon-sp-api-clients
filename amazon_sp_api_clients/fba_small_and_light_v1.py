@@ -272,7 +272,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: SmallAndLightEnrollment,
             400: ErrorList,
@@ -305,7 +305,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
-        response = self.request(url, method="DELETE", data=data.data)
+        response = self.request(url, method="DELETE", data=params)
         return {
             400: ErrorList,
             403: ErrorList,
@@ -365,7 +365,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/fba/smallAndLight/v1/feePreviews".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: SmallAndLightFeePreviews,
             400: ErrorList,

@@ -1981,7 +1981,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         url = "/fba/inbound/v0/itemsGuidance".format()
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         if SellerSKUList is not None:
             params["SellerSKUList"] = ",".join(map(str, SellerSKUList))
         if ASINList is not None:
@@ -2013,7 +2013,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/fba/inbound/v0/plans".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: CreateInboundShipmentPlanResponse,
             400: CreateInboundShipmentPlanResponse,
@@ -2042,7 +2042,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: InboundShipmentResponse,
             400: InboundShipmentResponse,
@@ -2072,7 +2072,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: InboundShipmentResponse,
             400: InboundShipmentResponse,
@@ -2103,7 +2103,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetPreorderInfoResponse,
@@ -2136,10 +2136,10 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if NeedByDate is not None:
-            params["NeedByDate"] = (NeedByDate,)
+            params["NeedByDate"] = NeedByDate
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
-        response = self.request(url, method="PUT", data=data.data)
+            params["MarketplaceId"] = MarketplaceId
+        response = self.request(url, method="PUT", data=params)
         return {
             200: ConfirmPreorderResponse,
             400: ConfirmPreorderResponse,
@@ -2169,7 +2169,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         url = "/fba/inbound/v0/prepInstructions".format()
         params = {}
         if ShipToCountryCode is not None:
-            params["ShipToCountryCode"] = (ShipToCountryCode,)
+            params["ShipToCountryCode"] = ShipToCountryCode
         if SellerSKUList is not None:
             params["SellerSKUList"] = ",".join(map(str, SellerSKUList))
         if ASINList is not None:
@@ -2232,7 +2232,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: PutTransportDetailsResponse,
             400: PutTransportDetailsResponse,
@@ -2263,7 +2263,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: VoidTransportResponse,
             400: VoidTransportResponse,
@@ -2293,7 +2293,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: EstimateTransportResponse,
             400: EstimateTransportResponse,
@@ -2324,7 +2324,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: ConfirmTransportResponse,
             400: ConfirmTransportResponse,
@@ -2361,19 +2361,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if PageType is not None:
-            params["PageType"] = (PageType,)
+            params["PageType"] = PageType
         if LabelType is not None:
-            params["LabelType"] = (LabelType,)
+            params["LabelType"] = LabelType
         if NumberOfPackages is not None:
-            params["NumberOfPackages"] = (NumberOfPackages,)
+            params["NumberOfPackages"] = NumberOfPackages
         if PackageLabelsToPrint is not None:
             params["PackageLabelsToPrint"] = ",".join(map(str, PackageLabelsToPrint))
         if NumberOfPallets is not None:
-            params["NumberOfPallets"] = (NumberOfPallets,)
+            params["NumberOfPallets"] = NumberOfPallets
         if PageSize is not None:
-            params["PageSize"] = (PageSize,)
+            params["PageSize"] = PageSize
         if PageStartIndex is not None:
-            params["PageStartIndex"] = (PageStartIndex,)
+            params["PageStartIndex"] = PageStartIndex
         response = self.request(url, method="GET", params=params)
         return {
             200: GetLabelsResponse,
@@ -2441,15 +2441,15 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         if ShipmentIdList is not None:
             params["ShipmentIdList"] = ",".join(map(str, ShipmentIdList))
         if LastUpdatedAfter is not None:
-            params["LastUpdatedAfter"] = (LastUpdatedAfter,)
+            params["LastUpdatedAfter"] = LastUpdatedAfter
         if LastUpdatedBefore is not None:
-            params["LastUpdatedBefore"] = (LastUpdatedBefore,)
+            params["LastUpdatedBefore"] = LastUpdatedBefore
         if QueryType is not None:
-            params["QueryType"] = (QueryType,)
+            params["QueryType"] = QueryType
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetShipmentsResponse,
@@ -2481,7 +2481,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         )
         params = {}
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetShipmentItemsResponse,
@@ -2514,15 +2514,15 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         url = "/fba/inbound/v0/shipmentItems".format()
         params = {}
         if LastUpdatedAfter is not None:
-            params["LastUpdatedAfter"] = (LastUpdatedAfter,)
+            params["LastUpdatedAfter"] = LastUpdatedAfter
         if LastUpdatedBefore is not None:
-            params["LastUpdatedBefore"] = (LastUpdatedBefore,)
+            params["LastUpdatedBefore"] = LastUpdatedBefore
         if QueryType is not None:
-            params["QueryType"] = (QueryType,)
+            params["QueryType"] = QueryType
         if NextToken is not None:
-            params["NextToken"] = (NextToken,)
+            params["NextToken"] = NextToken
         if MarketplaceId is not None:
-            params["MarketplaceId"] = (MarketplaceId,)
+            params["MarketplaceId"] = MarketplaceId
         response = self.request(url, method="GET", params=params)
         return {
             200: GetShipmentItemsResponse,

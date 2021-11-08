@@ -315,13 +315,13 @@ class Reports20210630Client(__BaseClient):
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
         if pageSize is not None:
-            params["pageSize"] = (pageSize,)
+            params["pageSize"] = pageSize
         if createdSince is not None:
-            params["createdSince"] = (createdSince,)
+            params["createdSince"] = createdSince
         if createdUntil is not None:
-            params["createdUntil"] = (createdUntil,)
+            params["createdUntil"] = createdUntil
         if nextToken is not None:
-            params["nextToken"] = (nextToken,)
+            params["nextToken"] = nextToken
         response = self.request(url, method="GET", params=params)
         return {
             200: GetReportsResponse,
@@ -350,7 +350,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/reports/2021-06-30/reports".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             202: CreateReportResponse,
             400: ErrorList,
@@ -410,7 +410,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             reportId=reportId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=data.data)
+        response = self.request(url, method="DELETE", data=params)
         return {
             400: ErrorList,
             401: ErrorList,
@@ -467,7 +467,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/reports/2021-06-30/schedules".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             201: CreateReportScheduleResponse,
             400: ErrorList,
@@ -527,7 +527,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             reportScheduleId=reportScheduleId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=data.data)
+        response = self.request(url, method="DELETE", data=params)
         return {
             400: ErrorList,
             401: ErrorList,

@@ -558,13 +558,13 @@ class CatalogItems20201201Client(__BaseClient):
         if classificationIds is not None:
             params["classificationIds"] = ",".join(map(str, classificationIds))
         if pageSize is not None:
-            params["pageSize"] = (pageSize,)
+            params["pageSize"] = pageSize
         if pageToken is not None:
-            params["pageToken"] = (pageToken,)
+            params["pageToken"] = pageToken
         if keywordsLocale is not None:
-            params["keywordsLocale"] = (keywordsLocale,)
+            params["keywordsLocale"] = keywordsLocale
         if locale is not None:
-            params["locale"] = (locale,)
+            params["locale"] = locale
         response = self.request(url, method="GET", params=params)
         return {
             200: ItemSearchResults,
@@ -604,7 +604,7 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         if includedData is not None:
             params["includedData"] = ",".join(map(str, includedData))
         if locale is not None:
-            params["locale"] = (locale,)
+            params["locale"] = locale
         response = self.request(url, method="GET", params=params)
         return {
             200: Item,

@@ -1462,7 +1462,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
     ):
         url = "/mfn/v0/eligibleServices".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetEligibleShipmentServicesResponse,
             400: GetEligibleShipmentServicesResponse,
@@ -1489,7 +1489,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/mfn/v0/eligibleShippingServices".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetEligibleShipmentServicesResponse,
             400: GetEligibleShipmentServicesResponse,
@@ -1547,7 +1547,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="DELETE", data=data.data)
+        response = self.request(url, method="DELETE", data=params)
         return {
             200: CancelShipmentResponse,
             400: CancelShipmentResponse,
@@ -1576,7 +1576,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             shipmentId=shipmentId,
         )
         params = {}
-        response = self.request(url, method="PUT", data=data.data)
+        response = self.request(url, method="PUT", data=params)
         return {
             200: CancelShipmentResponse,
             400: CancelShipmentResponse,
@@ -1603,7 +1603,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/mfn/v0/shipments".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: CreateShipmentResponse,
             400: CreateShipmentResponse,
@@ -1630,7 +1630,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/mfn/v0/sellerInputs".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetAdditionalSellerInputsResponse,
             400: GetAdditionalSellerInputsResponse,
@@ -1657,7 +1657,7 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
     ):
         url = "/mfn/v0/additionalSellerInputs".format()
         params = {}
-        response = self.request(url, method="POST", data=data.data)
+        response = self.request(url, method="POST", data=params)
         return {
             200: GetAdditionalSellerInputsResponse,
             400: GetAdditionalSellerInputsResponse,
