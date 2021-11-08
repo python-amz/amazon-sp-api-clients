@@ -236,8 +236,6 @@ def stage_6_operations(data: dict):
                 request_body_type = parse_type(request_body_schema['$ref'])
                 parsed_operation_data.request_body.setdefault('type', request_body_type)
 
-            parsed_path_parameter_data_list = parsed_operation_data.path_parameters
-
             if 'parameters' in method_data:
                 for parameter_data in method_data['parameters']:
                     if '$ref' in parameter_data:
@@ -250,7 +248,8 @@ def stage_6_operations(data: dict):
                         parsed_parameter_data = parsed_operation_data.query_parameters.setdefault(
                             parameter_data['name'], {})
                     elif parameter_data['in'] == 'path':
-                        parsed_parameter_data = parsed_path_parameter_data_list.setdefault(parameter_data['name'], {})
+                        parsed_parameter_data = parsed_operation_data.path_parameters.setdefault(
+                            parameter_data['name'], {})
                     else:
                         raise ParseError('parameter data in')
                     parsed_parameter_data['required'] = parameter_data.setdefault('required', False)
