@@ -254,7 +254,10 @@ class Operation:
 
     @cached_property
     def __parameters(self):
-        return [OperationParameter(swagger_data=self.swagger_data, source=d) for d in self.source.get('parameters', [])]
+        result = [OperationParameter(swagger_data=self.swagger_data, source=source)
+                  for source in self.source.get('parameters', [])]
+        assert all(p.location in ('path', 'query') for p in result)
+        return result
 
     @cached_property
     def operation_id(self):
