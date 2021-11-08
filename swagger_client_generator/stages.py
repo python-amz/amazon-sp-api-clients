@@ -236,6 +236,10 @@ class Operation:
         return self.source_method.upper()
 
     @cached_property
+    def description(self):
+        return self.source.get('description', '').replace('"""', r'\"\"\"')
+
+    @cached_property
     def request_body(self):
         if not (self.source_method == 'post' and 'requestBody' in self.source):
             return {}
@@ -293,7 +297,7 @@ class Operation:
         return result
 
 
-def stage_6_operations(data: dict):
+def stage_6_operations(data: dict) -> dict[str, Operation]:
     paths = data['paths']
     parsed_operations: dict[str, Operation] = {
         method_data['operationId']: Operation(

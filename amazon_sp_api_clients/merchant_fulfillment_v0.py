@@ -1447,19 +1447,18 @@ class AvailableFormatOptionsForLabel:
 
 
 class MerchantFulfillmentV0Client(__BaseClient):
-    """
-        Returns a list of shipping service offers that satisfy the specified shipment request details.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 1 | 1 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getEligibleShipmentServicesOld(
         self,
         data: GetEligibleShipmentServicesRequest,
     ):
+        """
+                Returns a list of shipping service offers that satisfy the specified shipment request details.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/eligibleServices".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1474,19 +1473,18 @@ class MerchantFulfillmentV0Client(__BaseClient):
             503: GetEligibleShipmentServicesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of shipping service offers that satisfy the specified shipment request details.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getEligibleShipmentServices(
         self,
         data: GetEligibleShipmentServicesRequest,
     ):
+        """
+                Returns a list of shipping service offers that satisfy the specified shipment request details.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/eligibleShippingServices".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1501,19 +1499,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetEligibleShipmentServicesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the shipment information for an existing shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getShipment(
         self,
         shipmentId: str,
     ):
+        """
+                Returns the shipment information for an existing shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/shipments/{shipmentId}".format(
             shipmentId=shipmentId,
         )
@@ -1530,19 +1527,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancel the shipment indicated by the specified shipment identifier.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelShipment(
         self,
         shipmentId: str,
     ):
+        """
+                Cancel the shipment indicated by the specified shipment identifier.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/shipments/{shipmentId}".format(
             shipmentId=shipmentId,
         )
@@ -1559,19 +1555,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancel the shipment indicated by the specified shipment identifer.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelShipmentOld(
         self,
         shipmentId: str,
     ):
+        """
+                Cancel the shipment indicated by the specified shipment identifer.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/shipments/{shipmentId}/cancel".format(
             shipmentId=shipmentId,
         )
@@ -1588,19 +1583,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Create a shipment with the information provided.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createShipment(
         self,
         data: CreateShipmentRequest,
     ):
+        """
+                Create a shipment with the information provided.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/shipments".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1615,19 +1609,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getAdditionalSellerInputsOld(
         self,
         data: GetAdditionalSellerInputsRequest,
     ):
+        """
+                Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/sellerInputs".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1642,19 +1635,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetAdditionalSellerInputsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getAdditionalSellerInputs(
         self,
         data: GetAdditionalSellerInputsRequest,
     ):
+        """
+                Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/mfn/v0/additionalSellerInputs".format()
         params = {}
         response = self.request(url, method="POST", data=params)

@@ -121,15 +121,6 @@ class Decimal(str):
 
 
 class SalesV1Client(__BaseClient):
-    """
-        Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | .5 | 15 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getOrderMetrics(
         self,
         marketplaceIds: _List[str],
@@ -142,6 +133,14 @@ class SalesV1Client(__BaseClient):
         asin: str = None,
         sku: str = None,
     ):
+        """
+                Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | .5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/sales/v1/orderMetrics".format()
         params = {}
         if marketplaceIds is not None:

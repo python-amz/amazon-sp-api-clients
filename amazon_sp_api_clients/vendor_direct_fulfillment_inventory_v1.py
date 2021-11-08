@@ -155,21 +155,20 @@ class ErrorList(list, _List["Error"]):
 
 
 class VendorDirectFulfillmentInventoryV1Client(__BaseClient):
-    """
-        Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 10 | 10 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def submitInventoryUpdate(
         self,
         data: SubmitInventoryUpdateRequest,
         warehouseId: str,
     ):
+        """
+                Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/inventory/v1/warehouses/{warehouseId}/items".format(
             warehouseId=warehouseId,
         )

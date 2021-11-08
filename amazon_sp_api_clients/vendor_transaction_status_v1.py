@@ -87,20 +87,19 @@ class ErrorList(list, _List["Error"]):
 
 
 class VendorTransactionStatusV1Client(__BaseClient):
-    """
-        Returns the status of the transaction that you specify.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 10 | 10 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getTransaction(
         self,
         transactionId: str,
     ):
+        """
+                Returns the status of the transaction that you specify.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/transactions/v1/transactions/{transactionId}".format(
             transactionId=transactionId,
         )

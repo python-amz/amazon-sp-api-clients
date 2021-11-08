@@ -917,16 +917,6 @@ class FulfillmentChannelType(str):
 
 
 class ProductPricingV0Client(__BaseClient):
-    """
-        Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 10 | 20 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPricing(
         self,
         MarketplaceId: str,
@@ -936,6 +926,15 @@ class ProductPricingV0Client(__BaseClient):
         ItemCondition: str = None,
         OfferType: str = None,
     ):
+        """
+                Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 20 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/products/pricing/v0/price".format()
         params = {}
         if MarketplaceId is not None:
@@ -962,16 +961,6 @@ class ProductPricingV0Client(__BaseClient):
             503: GetPricingResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 20 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getCompetitivePricing(
         self,
         MarketplaceId: str,
@@ -980,6 +969,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         Skus: _List[str] = None,
         CustomerType: str = None,
     ):
+        """
+                Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 20 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/products/pricing/v0/competitivePrice".format()
         params = {}
         if MarketplaceId is not None:
@@ -1004,16 +1002,6 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetPricingResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the lowest priced offers for a single SKU listing.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 5 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getListingOffers(
         self,
         SellerSKU: str,
@@ -1021,6 +1009,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         ItemCondition: str,
         CustomerType: str = None,
     ):
+        """
+                Returns the lowest priced offers for a single SKU listing.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/products/pricing/v0/listings/{SellerSKU}/offers".format(
             SellerSKU=SellerSKU,
         )
@@ -1043,16 +1040,6 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetOffersResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the lowest priced offers for a single item based on ASIN.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 5 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getItemOffers(
         self,
         Asin: str,
@@ -1060,6 +1047,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         ItemCondition: str,
         CustomerType: str = None,
     ):
+        """
+                Returns the lowest priced offers for a single item based on ASIN.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/products/pricing/v0/items/{Asin}/offers".format(
             Asin=Asin,
         )

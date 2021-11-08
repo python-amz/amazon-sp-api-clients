@@ -1380,21 +1380,20 @@ class PostContentDocumentSuspendSubmissionResponse:
 
 
 class AplusContent20201101Client(__BaseClient):
-    """
-        Returns a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the getContentDocument operation to get the actual contents of the A+ Content documents.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 10 | 10 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def searchContentDocuments(
         self,
         marketplaceId: str,
         pageToken: str = None,
     ):
+        """
+                Returns a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the getContentDocument operation to get the actual contents of the A+ Content documents.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments".format()
         params = {}
         if marketplaceId is not None:
@@ -1414,21 +1413,20 @@ class AplusContent20201101Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a new A+ Content document.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createContentDocument(
         self,
         data: PostContentDocumentRequest,
         marketplaceId: str,
     ):
+        """
+                Creates a new A+ Content document.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments".format()
         params = {}
         if marketplaceId is not None:
@@ -1445,22 +1443,21 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns an A+ Content document, if available.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getContentDocument(
         self,
         contentReferenceKey: str,
         marketplaceId: str,
         includedDataSet: _List[str],
     ):
+        """
+                Returns an A+ Content document, if available.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}".format(
             contentReferenceKey=contentReferenceKey,
         )
@@ -1482,22 +1479,21 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Updates an existing A+ Content document.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def updateContentDocument(
         self,
         data: PostContentDocumentRequest,
         contentReferenceKey: str,
         marketplaceId: str,
     ):
+        """
+                Updates an existing A+ Content document.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}".format(
             contentReferenceKey=contentReferenceKey,
         )
@@ -1517,16 +1513,6 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the asinSet parameter, the operation returns all ASINs related to the content document.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listContentDocumentAsinRelations(
         self,
         contentReferenceKey: str,
@@ -1535,6 +1521,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         asinSet: _List[str] = None,
         pageToken: str = None,
     ):
+        """
+                Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the asinSet parameter, the operation returns all ASINs related to the content document.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins".format(
             contentReferenceKey=contentReferenceKey,
         )
@@ -1560,22 +1555,21 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def postContentDocumentAsinRelations(
         self,
         data: PostContentDocumentAsinRelationsRequest,
         contentReferenceKey: str,
         marketplaceId: str,
     ):
+        """
+                Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins".format(
             contentReferenceKey=contentReferenceKey,
         )
@@ -1595,22 +1589,21 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Checks if the A+ Content document is valid for use on a set of ASINs.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def validateContentDocumentAsinRelations(
         self,
         data: PostContentDocumentRequest,
         marketplaceId: str,
         asinSet: _List[str] = None,
     ):
+        """
+                Checks if the A+ Content document is valid for use on a set of ASINs.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentAsinValidations".format()
         params = {}
         if marketplaceId is not None:
@@ -1629,22 +1622,21 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Searches for A+ Content publishing records, if available.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def searchContentPublishRecords(
         self,
         marketplaceId: str,
         asin: str,
         pageToken: str = None,
     ):
+        """
+                Searches for A+ Content publishing records, if available.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentPublishRecords".format()
         params = {}
         if marketplaceId is not None:
@@ -1665,21 +1657,20 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Submits an A+ Content document for review, approval, and publishing.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def postContentDocumentApprovalSubmission(
         self,
         contentReferenceKey: str,
         marketplaceId: str,
     ):
+        """
+                Submits an A+ Content document for review, approval, and publishing.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions".format(
             contentReferenceKey=contentReferenceKey,
         )
@@ -1699,21 +1690,20 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def postContentDocumentSuspendSubmission(
         self,
         contentReferenceKey: str,
         marketplaceId: str,
     ):
+        """
+                Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions".format(
             contentReferenceKey=contentReferenceKey,
         )

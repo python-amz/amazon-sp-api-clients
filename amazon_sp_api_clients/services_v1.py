@@ -647,19 +647,18 @@ class RescheduleReasonCode(str):
 
 
 class ServicesV1Client(__BaseClient):
-    """
-        Gets service job details for the service job indicated by the service job identifier you specify.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 20 | 40 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getServiceJobByServiceJobId(
         self,
         serviceJobId: str,
     ):
+        """
+                Gets service job details for the service job indicated by the service job identifier you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 20 | 40 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/service/v1/serviceJobs/{serviceJobId}".format(
             serviceJobId=serviceJobId,
         )
@@ -678,20 +677,19 @@ class ServicesV1Client(__BaseClient):
             503: GetServiceJobByServiceJobIdResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancels the service job indicated by the service job identifier you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 20 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelServiceJobByServiceJobId(
         self,
         serviceJobId: str,
         cancellationReasonCode: str,
     ):
+        """
+                Cancels the service job indicated by the service job identifier you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 20 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/service/v1/serviceJobs/{serviceJobId}/cancellations".format(
             serviceJobId=serviceJobId,
         )
@@ -712,19 +710,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelServiceJobByServiceJobIdResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Completes the service job indicated by the service job identifier you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 20 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def completeServiceJobByServiceJobId(
         self,
         serviceJobId: str,
     ):
+        """
+                Completes the service job indicated by the service job identifier you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 20 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/service/v1/serviceJobs/{serviceJobId}/completions".format(
             serviceJobId=serviceJobId,
         )
@@ -743,15 +740,6 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CompleteServiceJobByServiceJobIdResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Gets service job details for the specified filter query.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 10 | 40 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getServiceJobs(
         self,
         marketplaceIds: _List[str],
@@ -768,6 +756,14 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         scheduleStartDate: str = None,
         scheduleEndDate: str = None,
     ):
+        """
+                Gets service job details for the specified filter query.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 40 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/service/v1/serviceJobs".format()
         params = {}
         if serviceOrderIds is not None:
@@ -809,20 +805,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetServiceJobsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Adds an appointment to the service job indicated by the service job identifier you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 20 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def addAppointmentForServiceJobByServiceJobId(
         self,
         data: AddAppointmentRequest,
         serviceJobId: str,
     ):
+        """
+                Adds an appointment to the service job indicated by the service job identifier you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 20 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/service/v1/serviceJobs/{serviceJobId}/appointments".format(
             serviceJobId=serviceJobId,
         )
@@ -841,21 +836,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: SetAppointmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Reschedules an appointment for the service job indicated by the service job identifier you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 20 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def rescheduleAppointmentForServiceJobByServiceJobId(
         self,
         data: RescheduleAppointmentRequest,
         serviceJobId: str,
         appointmentId: str,
     ):
+        """
+                Reschedules an appointment for the service job indicated by the service job identifier you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 20 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}".format(
             serviceJobId=serviceJobId,
             appointmentId=appointmentId,

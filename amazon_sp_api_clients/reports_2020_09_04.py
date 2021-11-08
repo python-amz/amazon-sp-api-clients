@@ -433,15 +433,6 @@ class ReportScheduleList(list, _List["ReportSchedule"]):
 
 
 class Reports20200904Client(__BaseClient):
-    """
-        Returns report details for the reports that match the filters that you specify.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 0.0222 | 10 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getReports(
         self,
         reportTypes: _List[str] = None,
@@ -452,6 +443,14 @@ class Reports20200904Client(__BaseClient):
         createdUntil: str = None,
         nextToken: str = None,
     ):
+        """
+                Returns report details for the reports that match the filters that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/reports".format()
         params = {}
         if reportTypes is not None:
@@ -481,19 +480,18 @@ class Reports20200904Client(__BaseClient):
             503: GetReportsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a report.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0167 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createReport(
         self,
         data: CreateReportSpecification,
     ):
+        """
+                Creates a report.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/reports".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -509,19 +507,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateReportResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns report details (including the reportDocumentId, if available) for the report that you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2.0 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getReport(
         self,
         reportId: str,
     ):
+        """
+                Returns report details (including the reportDocumentId, if available) for the report that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2.0 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/reports/{reportId}".format(
             reportId=reportId,
         )
@@ -539,19 +536,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetReportResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0222 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelReport(
         self,
         reportId: str,
     ):
+        """
+                Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/reports/{reportId}".format(
             reportId=reportId,
         )
@@ -569,19 +565,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelReportResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns report schedule details that match the filters that you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0222 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getReportSchedules(
         self,
         reportTypes: _List[str],
     ):
+        """
+                Returns report schedule details that match the filters that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/schedules".format()
         params = {}
         if reportTypes is not None:
@@ -599,19 +594,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetReportSchedulesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0222 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createReportSchedule(
         self,
         data: CreateReportScheduleSpecification,
     ):
+        """
+                Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/schedules".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -627,19 +621,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateReportScheduleResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns report schedule details for the report schedule that you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0222 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getReportSchedule(
         self,
         reportScheduleId: str,
     ):
+        """
+                Returns report schedule details for the report schedule that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/schedules/{reportScheduleId}".format(
             reportScheduleId=reportScheduleId,
         )
@@ -657,19 +650,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetReportScheduleResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancels the report schedule that you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0222 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelReportSchedule(
         self,
         reportScheduleId: str,
     ):
+        """
+                Cancels the report schedule that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/schedules/{reportScheduleId}".format(
             reportScheduleId=reportScheduleId,
         )
@@ -687,19 +679,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelReportScheduleResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the information required for retrieving a report document's contents. This includes a presigned URL for the report document as well as the information required to decrypt the document's contents.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0167 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getReportDocument(
         self,
         reportDocumentId: str,
     ):
+        """
+                Returns the information required for retrieving a report document's contents. This includes a presigned URL for the report document as well as the information required to decrypt the document's contents.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/reports/2020-09-04/documents/{reportDocumentId}".format(
             reportDocumentId=reportDocumentId,
         )

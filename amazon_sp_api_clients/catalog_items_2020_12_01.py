@@ -523,16 +523,6 @@ class ItemAsin(str):
 
 
 class CatalogItems20201201Client(__BaseClient):
-    """
-        Search for and return a list of Amazon catalog items and associated information.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 5 | 5 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
-    """
-
     def searchCatalogItems(
         self,
         keywords: _List[str],
@@ -545,6 +535,15 @@ class CatalogItems20201201Client(__BaseClient):
         keywordsLocale: str = None,
         locale: str = None,
     ):
+        """
+                Search for and return a list of Amazon catalog items and associated information.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 5 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
+        """
         url = "/catalog/2020-12-01/items".format()
         params = {}
         if keywords is not None:
@@ -578,16 +577,6 @@ class CatalogItems20201201Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Retrieves details for an item in the Amazon catalog.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 5 | 5 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
-    """
-
     def getCatalogItem(
         self,
         asin: str,
@@ -595,6 +584,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         includedData: _List[str] = None,
         locale: str = None,
     ):
+        """
+                Retrieves details for an item in the Amazon catalog.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 5 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
+        """
         url = "/catalog/2020-12-01/items/{asin}".format(
             asin=asin,
         )

@@ -83,21 +83,20 @@ class ErrorList(list, _List["Error"]):
 
 
 class FbaInboundEligibilityV1Client(__BaseClient):
-    """
-        This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 1 | 1 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getItemEligibilityPreview(
         self,
         asin: str,
         program: str,
         marketplaceIds: _List[str] = None,
     ):
+        """
+                This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v1/eligibility/itemPreview".format()
         params = {}
         if marketplaceIds is not None:

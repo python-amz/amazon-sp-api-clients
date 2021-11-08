@@ -360,19 +360,18 @@ class NotificationType(str):
 
 
 class NotificationsV1Client(__BaseClient):
-    """
-        Returns information about subscriptions of the specified notification type. You can use this API to get subscription information when you do not have a subscription identifier.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 1 | 5 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getSubscription(
         self,
         notificationType: str,
     ):
+        """
+                Returns information about subscriptions of the specified notification type. You can use this API to get subscription information when you do not have a subscription identifier.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/subscriptions/{notificationType}".format(
             notificationType=notificationType,
         )
@@ -390,20 +389,19 @@ class NotificationsV1Client(__BaseClient):
             503: GetSubscriptionResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createSubscription(
         self,
         data: CreateSubscriptionRequest,
         notificationType: str,
     ):
+        """
+                Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/subscriptions/{notificationType}".format(
             notificationType=notificationType,
         )
@@ -422,20 +420,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateSubscriptionResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getSubscriptionById(
         self,
         subscriptionId: str,
         notificationType: str,
     ):
+        """
+                Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(
             subscriptionId=subscriptionId,
             notificationType=notificationType,
@@ -455,20 +452,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetSubscriptionByIdResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def deleteSubscriptionById(
         self,
         subscriptionId: str,
         notificationType: str,
     ):
+        """
+                Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(
             subscriptionId=subscriptionId,
             notificationType=notificationType,
@@ -488,18 +484,17 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: DeleteSubscriptionByIdResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getDestinations(
         self,
     ):
+        """
+                Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/destinations".format()
         params = {}
         response = self.request(url, method="GET", params=params)
@@ -516,19 +511,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetDestinationsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createDestination(
         self,
         data: CreateDestinationRequest,
     ):
+        """
+                Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/destinations".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -545,19 +539,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateDestinationResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getDestination(
         self,
         destinationId: str,
     ):
+        """
+                Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/destinations/{destinationId}".format(
             destinationId=destinationId,
         )
@@ -576,19 +569,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetDestinationResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def deleteDestination(
         self,
         destinationId: str,
     ):
+        """
+                Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/notifications/v1/destinations/{destinationId}".format(
             destinationId=destinationId,
         )

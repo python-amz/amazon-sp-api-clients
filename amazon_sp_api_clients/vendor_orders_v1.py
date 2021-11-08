@@ -699,16 +699,6 @@ class Decimal(str):
 
 
 class VendorOrdersV1Client(__BaseClient):
-    """
-        Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the createdAfter, createdBefore, changedAfter and changedBefore parameters. The date range to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting includeDetails to false. You can then use the getPurchaseOrder operation to receive details for a specific purchase order.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 10 | 10 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPurchaseOrders(
         self,
         limit: int = None,
@@ -724,6 +714,15 @@ class VendorOrdersV1Client(__BaseClient):
         purchaseOrderState: str = None,
         orderingVendorCode: str = None,
     ):
+        """
+                Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the createdAfter, createdBefore, changedAfter and changedBefore parameters. The date range to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting includeDetails to false. You can then use the getPurchaseOrder operation to receive details for a specific purchase order.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/orders/v1/purchaseOrders".format()
         params = {}
         if limit is not None:
@@ -762,20 +761,19 @@ class VendorOrdersV1Client(__BaseClient):
             503: GetPurchaseOrdersResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a purchase order based on the purchaseOrderNumber value that you specify.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPurchaseOrder(
         self,
         purchaseOrderNumber: str,
     ):
+        """
+                Returns a purchase order based on the purchaseOrderNumber value that you specify.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}".format(
             purchaseOrderNumber=purchaseOrderNumber,
         )
@@ -793,20 +791,19 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetPurchaseOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Submits acknowledgements for one or more purchase orders.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def submitAcknowledgement(
         self,
         data: SubmitAcknowledgementRequest,
     ):
+        """
+                Submits acknowledgements for one or more purchase orders.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/orders/v1/acknowledgements".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -821,16 +818,6 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             500: SubmitAcknowledgementResponse,
             503: SubmitAcknowledgementResponse,
         }[response.status_code](self._get_response_json(response))
-
-    """
-    Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
 
     def getPurchaseOrdersStatus(
         self,
@@ -847,6 +834,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         orderingVendorCode: str = None,
         shipToPartyId: str = None,
     ):
+        """
+                Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/orders/v1/purchaseOrdersStatus".format()
         params = {}
         if limit is not None:

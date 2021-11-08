@@ -463,20 +463,19 @@ class ErrorList(list, _List["Error"]):
 
 
 class MessagingV1Client(__BaseClient):
-    """
-        Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 1 | 5 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getMessagingActionsForOrder(
         self,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}".format(
             amazonOrderId=amazonOrderId,
         )
@@ -496,21 +495,20 @@ class MessagingV1Client(__BaseClient):
             503: GetMessagingActionsForOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def confirmCustomizationDetails(
         self,
         data: CreateConfirmCustomizationDetailsRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails".format(
             amazonOrderId=amazonOrderId,
         )
@@ -530,21 +528,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateConfirmCustomizationDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createConfirmDeliveryDetails(
         self,
         data: CreateConfirmDeliveryDetailsRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails".format(
             amazonOrderId=amazonOrderId,
         )
@@ -564,21 +561,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateConfirmDeliveryDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createLegalDisclosure(
         self,
         data: CreateLegalDisclosureRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure".format(
             amazonOrderId=amazonOrderId,
         )
@@ -598,20 +594,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateLegalDisclosureResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be sent after the seller has resolved the buyer's problem.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createNegativeFeedbackRemoval(
         self,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be sent after the seller has resolved the buyer's problem.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval".format(
             amazonOrderId=amazonOrderId,
         )
@@ -631,21 +626,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateNegativeFeedbackRemovalResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a message to ask a buyer an order-related question prior to shipping their order.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createConfirmOrderDetails(
         self,
         data: CreateConfirmOrderDetailsRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a message to ask a buyer an order-related question prior to shipping their order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails".format(
             amazonOrderId=amazonOrderId,
         )
@@ -665,21 +659,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateConfirmOrderDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a service call.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createConfirmServiceDetails(
         self,
         data: CreateConfirmServiceDetailsRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a service call.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails".format(
             amazonOrderId=amazonOrderId,
         )
@@ -699,21 +692,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateConfirmServiceDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def CreateAmazonMotors(
         self,
         data: CreateAmazonMotorsRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors".format(
             amazonOrderId=amazonOrderId,
         )
@@ -733,21 +725,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateAmazonMotorsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a message to a buyer to provide details about warranty information on a purchase in their order.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def CreateWarranty(
         self,
         data: CreateWarrantyRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a message to a buyer to provide details about warranty information on a purchase in their order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty".format(
             amazonOrderId=amazonOrderId,
         )
@@ -767,19 +758,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateWarrantyResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a response containing attributes related to an order. This includes buyer preferences.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-    """
-
     def GetAttributes(
         self,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Returns a response containing attributes related to an order. This includes buyer preferences.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/attributes".format(
             amazonOrderId=amazonOrderId,
         )
@@ -799,21 +789,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetAttributesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createDigitalAccessKey(
         self,
         data: CreateDigitalAccessKeyRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey".format(
             amazonOrderId=amazonOrderId,
         )
@@ -833,21 +822,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateDigitalAccessKeyResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the order.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createUnexpectedProblem(
         self,
         data: CreateUnexpectedProblemRequest,
         amazonOrderId: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem".format(
             amazonOrderId=amazonOrderId,
         )

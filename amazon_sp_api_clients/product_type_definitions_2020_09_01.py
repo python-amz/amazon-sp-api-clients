@@ -177,21 +177,20 @@ class ProductTypeList:
 
 
 class ProductTypeDefinitions20200901Client(__BaseClient):
-    """
-        Search for and return a list of Amazon product types that have definitions available.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 5 | 10 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
-    """
-
     def searchDefinitionsProductTypes(
         self,
         marketplaceIds: _List[str],
         keywords: _List[str] = None,
     ):
+        """
+                Search for and return a list of Amazon product types that have definitions available.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
+        """
         url = "/definitions/2020-09-01/productTypes".format()
         params = {}
         if keywords is not None:
@@ -211,16 +210,6 @@ class ProductTypeDefinitions20200901Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Retrieve an Amazon product type definition.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 5 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
-    """
-
     def getDefinitionsProductType(
         self,
         productType: str,
@@ -231,6 +220,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         requirementsEnforced: str = None,
         locale: str = None,
     ):
+        """
+                Retrieve an Amazon product type definition.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
+        """
         url = "/definitions/2020-09-01/productTypes/{productType}".format(
             productType=productType,
         )

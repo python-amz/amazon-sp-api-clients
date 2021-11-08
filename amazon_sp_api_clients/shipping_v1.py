@@ -1101,19 +1101,18 @@ class LabelStream(str):
 
 
 class ShippingV1Client(__BaseClient):
-    """
-        Create a new shipment.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 5 | 15 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createShipment(
         self,
         data: CreateShipmentRequest,
     ):
+        """
+                Create a new shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/shipments".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1128,19 +1127,18 @@ class ShippingV1Client(__BaseClient):
             503: CreateShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Return the entire shipment object for the shipmentId.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getShipment(
         self,
         shipmentId: str,
     ):
+        """
+                Return the entire shipment object for the shipmentId.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/shipments/{shipmentId}".format(
             shipmentId=shipmentId,
         )
@@ -1157,19 +1155,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancel a shipment by the given shipmentId.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelShipment(
         self,
         shipmentId: str,
     ):
+        """
+                Cancel a shipment by the given shipmentId.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/shipments/{shipmentId}/cancel".format(
             shipmentId=shipmentId,
         )
@@ -1186,20 +1183,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Purchase shipping labels based on a given rate.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def purchaseLabels(
         self,
         data: PurchaseLabelsRequest,
         shipmentId: str,
     ):
+        """
+                Purchase shipping labels based on a given rate.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels".format(
             shipmentId=shipmentId,
         )
@@ -1216,21 +1212,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: PurchaseLabelsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Retrieve shipping label based on the shipment id and tracking id.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def retrieveShippingLabel(
         self,
         data: RetrieveShippingLabelRequest,
         shipmentId: str,
         trackingId: str,
     ):
+        """
+                Retrieve shipping label based on the shipment id and tracking id.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label".format(
             shipmentId=shipmentId,
             trackingId=trackingId,
@@ -1248,19 +1243,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: RetrieveShippingLabelResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Purchase shipping labels.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def purchaseShipment(
         self,
         data: PurchaseShipmentRequest,
     ):
+        """
+                Purchase shipping labels.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/purchaseShipment".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1275,19 +1269,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: PurchaseShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Get service rates.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getRates(
         self,
         data: GetRatesRequest,
     ):
+        """
+                Get service rates.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/rates".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1302,18 +1295,17 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetRatesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Verify if the current account is valid.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 5 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getAccount(
         self,
     ):
+        """
+                Verify if the current account is valid.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/account".format()
         params = {}
         response = self.request(url, method="GET", params=params)
@@ -1328,19 +1320,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetAccountResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Return the tracking information of a shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 1 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getTrackingInformation(
         self,
         trackingId: str,
     ):
+        """
+                Return the tracking information of a shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/shipping/v1/tracking/{trackingId}".format(
             trackingId=trackingId,
         )

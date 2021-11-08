@@ -827,16 +827,6 @@ class Decimal(str):
 
 
 class VendorDirectFulfillmentShippingV1Client(__BaseClient):
-    """
-        Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 10 | 10 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getShippingLabels(
         self,
         createdAfter: str,
@@ -846,6 +836,15 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         sortOrder: str = None,
         nextToken: str = None,
     ):
+        """
+                Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format()
         params = {}
         if shipFromPartyId is not None:
@@ -872,20 +871,19 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             503: GetShippingLabelListResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a shipping label for a purchase order and returns a transactionId for reference.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def submitShippingLabelRequest(
         self,
         data: SubmitShippingLabelsRequest,
     ):
+        """
+                Creates a shipping label for a purchase order and returns a transactionId for reference.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -901,20 +899,19 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: SubmitShippingLabelsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a shipping label for the purchaseOrderNumber that you specify.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getShippingLabel(
         self,
         purchaseOrderNumber: str,
     ):
+        """
+                Returns a shipping label for the purchaseOrderNumber that you specify.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}".format(
             purchaseOrderNumber=purchaseOrderNumber,
         )
@@ -932,20 +929,19 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetShippingLabelResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Submits one or more shipment confirmations for vendor orders.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def submitShipmentConfirmations(
         self,
         data: SubmitShipmentConfirmationsRequest,
     ):
+        """
+                Submits one or more shipment confirmations for vendor orders.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -961,20 +957,19 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: SubmitShipmentConfirmationsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def submitShipmentStatusUpdates(
         self,
         data: SubmitShipmentStatusUpdatesRequest,
     ):
+        """
+                This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -990,16 +985,6 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: SubmitShipmentStatusUpdatesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getCustomerInvoices(
         self,
         createdAfter: str,
@@ -1009,6 +994,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         sortOrder: str = None,
         nextToken: str = None,
     ):
+        """
+                Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/customerInvoices".format()
         params = {}
         if shipFromPartyId is not None:
@@ -1035,20 +1029,19 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetCustomerInvoiceResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a customer invoice based on the purchaseOrderNumber that you specify.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getCustomerInvoice(
         self,
         purchaseOrderNumber: str,
     ):
+        """
+                Returns a customer invoice based on the purchaseOrderNumber that you specify.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}".format(
             purchaseOrderNumber=purchaseOrderNumber,
         )
@@ -1066,16 +1059,6 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetCustomerInvoiceResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPackingSlips(
         self,
         createdAfter: str,
@@ -1085,6 +1068,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         sortOrder: str = None,
         nextToken: str = None,
     ):
+        """
+                Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/packingSlips".format()
         params = {}
         if shipFromPartyId is not None:
@@ -1112,20 +1104,19 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetPackingSlipListResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a packing slip based on the purchaseOrderNumber that you specify.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 10 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPackingSlip(
         self,
         purchaseOrderNumber: str,
     ):
+        """
+                Returns a packing slip based on the purchaseOrderNumber that you specify.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}".format(
             purchaseOrderNumber=purchaseOrderNumber,
         )

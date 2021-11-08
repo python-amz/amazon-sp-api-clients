@@ -321,15 +321,6 @@ class FeedList(list, _List["Feed"]):
 
 
 class Feeds20200904Client(__BaseClient):
-    """
-        Returns feed details for the feeds that match the filters that you specify.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 0.0222 | 10 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFeeds(
         self,
         feedTypes: _List[str] = None,
@@ -340,6 +331,14 @@ class Feeds20200904Client(__BaseClient):
         createdUntil: str = None,
         nextToken: str = None,
     ):
+        """
+                Returns feed details for the feeds that match the filters that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/feeds/2020-09-04/feeds".format()
         params = {}
         if feedTypes is not None:
@@ -369,19 +368,18 @@ class Feeds20200904Client(__BaseClient):
             503: GetFeedsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0083 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createFeed(
         self,
         data: CreateFeedSpecification,
     ):
+        """
+                Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0083 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/feeds/2020-09-04/feeds".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -397,19 +395,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateFeedResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2.0 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFeed(
         self,
         feedId: str,
     ):
+        """
+                Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2.0 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/feeds/2020-09-04/feeds/{feedId}".format(
             feedId=feedId,
         )
@@ -427,19 +424,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetFeedResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0222 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelFeed(
         self,
         feedId: str,
     ):
+        """
+                Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/feeds/2020-09-04/feeds/{feedId}".format(
             feedId=feedId,
         )
@@ -457,19 +453,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelFeedResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a feed document for the feed type that you specify. This operation returns encryption details for encrypting the contents of the document, as well as a presigned URL for uploading the encrypted feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0083 | 15 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createFeedDocument(
         self,
         data: CreateFeedDocumentSpecification,
     ):
+        """
+                Creates a feed document for the feed type that you specify. This operation returns encryption details for encrypting the contents of the document, as well as a presigned URL for uploading the encrypted feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0083 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/feeds/2020-09-04/documents".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -485,19 +480,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateFeedDocumentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the information required for retrieving a feed document's contents. This includes a presigned URL for the feed document as well as the information required to decrypt the document's contents.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.0222 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFeedDocument(
         self,
         feedDocumentId: str,
     ):
+        """
+                Returns the information required for retrieving a feed document's contents. This includes a presigned URL for the feed document as well as the information required to decrypt the document's contents.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/feeds/2020-09-04/documents/{feedDocumentId}".format(
             feedDocumentId=feedDocumentId,
         )

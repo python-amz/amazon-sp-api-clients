@@ -153,16 +153,6 @@ class ListingsItemSubmissionResponse:
 
 
 class ListingsItems20200901Client(__BaseClient):
-    """
-        Creates a new or fully-updates an existing listings item for a selling partner.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 5 | 10 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
-    """
-
     def putListingsItem(
         self,
         sellerId: str,
@@ -170,6 +160,15 @@ class ListingsItems20200901Client(__BaseClient):
         marketplaceIds: _List[str],
         issueLocale: str = None,
     ):
+        """
+                Creates a new or fully-updates an existing listings item for a selling partner.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
+        """
         url = "/listings/2020-09-01/items/{sellerId}/{sku}".format(
             sellerId=sellerId,
             sku=sku,
@@ -191,16 +190,6 @@ class ListingsItems20200901Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Delete a listings item for a selling partner.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 5 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
-    """
-
     def deleteListingsItem(
         self,
         sellerId: str,
@@ -208,6 +197,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         marketplaceIds: _List[str],
         issueLocale: str = None,
     ):
+        """
+                Delete a listings item for a selling partner.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
+        """
         url = "/listings/2020-09-01/items/{sellerId}/{sku}".format(
             sellerId=sellerId,
             sku=sku,
@@ -229,16 +227,6 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 5 | 10 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
-    """
-
     def patchListingsItem(
         self,
         sellerId: str,
@@ -246,6 +234,15 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
         marketplaceIds: _List[str],
         issueLocale: str = None,
     ):
+        """
+                Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
+        """
         url = "/listings/2020-09-01/items/{sellerId}/{sku}".format(
             sellerId=sellerId,
             sku=sku,

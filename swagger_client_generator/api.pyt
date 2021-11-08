@@ -97,9 +97,6 @@ class {{ component_name }}({% for type in component.types %}{{ type }}, {% endfo
 
 class {{ class_name }}Client(__BaseClient):
 {% for operation_name, operation in operations.items() %}
-    """
-    {{operation.source.description}}
-    """
     def {{ operation_name }}(self,
         {% if operation.request_body %}
             data: {{ operation.request_body.type }},
@@ -136,6 +133,10 @@ class {{ class_name }}Client(__BaseClient):
             {% endif %}
         {% endfor %}
     ):
+        """
+        {{ operation.description }}
+        """
+
         url = '{{ operation.url }}'.format(
             {% for path_parameter_name, path_parameter in operation.path_parameters.items() %}
                 {{ path_parameter_name }} = {{ path_parameter_name }},

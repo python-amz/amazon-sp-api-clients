@@ -219,20 +219,19 @@ class SmallAndLightEligibilityStatus(str):
 
 
 class FbaSmallAndLightV1Client(__BaseClient):
-    """
-        Returns the Small and Light enrollment status for the item indicated by the specified seller SKU in the specified marketplace.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 2 | 10 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getSmallAndLightEnrollmentBySellerSKU(
         self,
         sellerSKU: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Returns the Small and Light enrollment status for the item indicated by the specified seller SKU in the specified marketplace.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}".format(
             sellerSKU=sellerSKU,
         )
@@ -252,20 +251,19 @@ class FbaSmallAndLightV1Client(__BaseClient):
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Enrolls the item indicated by the specified seller SKU in the Small and Light program in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def putSmallAndLightEnrollmentBySellerSKU(
         self,
         sellerSKU: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Enrolls the item indicated by the specified seller SKU in the Small and Light program in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}".format(
             sellerSKU=sellerSKU,
         )
@@ -285,20 +283,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Removes the item indicated by the specified seller SKU from the Small and Light program in the specified marketplace. If the item is not eligible for disenrollment, the ineligibility reasons are returned.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 5 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def deleteSmallAndLightEnrollmentBySellerSKU(
         self,
         sellerSKU: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Removes the item indicated by the specified seller SKU from the Small and Light program in the specified marketplace. If the item is not eligible for disenrollment, the ineligibility reasons are returned.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}".format(
             sellerSKU=sellerSKU,
         )
@@ -318,20 +315,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the Small and Light program eligibility status of the item indicated by the specified seller SKU in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 10 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getSmallAndLightEligibilityBySellerSKU(
         self,
         sellerSKU: str,
         marketplaceIds: _List[str],
     ):
+        """
+                Returns the Small and Light program eligibility status of the item indicated by the specified seller SKU in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 10 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/smallAndLight/v1/eligibilities/{sellerSKU}".format(
             sellerSKU=sellerSKU,
         )
@@ -351,19 +347,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ErrorList,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the Small and Light fee estimates for the specified items. You must include a marketplaceId parameter to retrieve the proper fee estimates for items to be sold in that marketplace. The ordering of items in the response will mirror the order of the items in the request. Duplicate ASIN/price combinations are removed.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 1 | 3 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getSmallAndLightFeePreview(
         self,
         data: SmallAndLightFeePreviewRequest,
     ):
+        """
+                Returns the Small and Light fee estimates for the specified items. You must include a marketplaceId parameter to retrieve the proper fee estimates for items to be sold in that marketplace. The ordering of items in the response will mirror the order of the items in the request. Duplicate ASIN/price combinations are removed.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 3 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/smallAndLight/v1/feePreviews".format()
         params = {}
         response = self.request(url, method="POST", data=params)

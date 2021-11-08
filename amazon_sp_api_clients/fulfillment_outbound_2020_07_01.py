@@ -1937,19 +1937,18 @@ class ShippingSpeedCategory(str):
 
 
 class FulfillmentOutbound20200701Client(__BaseClient):
-    """
-        Returns a list of fulfillment order previews based on shipping criteria that you specify.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 2 | 30 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFulfillmentPreview(
         self,
         data: GetFulfillmentPreviewRequest,
     ):
+        """
+                Returns a list of fulfillment order previews based on shipping criteria that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -1964,20 +1963,19 @@ class FulfillmentOutbound20200701Client(__BaseClient):
             503: GetFulfillmentPreviewResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next token parameter.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listAllFulfillmentOrders(
         self,
         queryStartDate: str = None,
         nextToken: str = None,
     ):
+        """
+                Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next token parameter.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders".format()
         params = {}
         if queryStartDate is not None:
@@ -1996,19 +1994,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ListAllFulfillmentOrdersResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createFulfillmentOrder(
         self,
         data: CreateFulfillmentOrderRequest,
     ):
+        """
+                Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -2023,19 +2020,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPackageTrackingDetails(
         self,
         packageNumber: int,
     ):
+        """
+                Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/tracking".format()
         params = {}
         if packageNumber is not None:
@@ -2052,15 +2048,6 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetPackageTrackingDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of return reason codes for a seller SKU in a given marketplace.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listReturnReasonCodes(
         self,
         sellerSku: str,
@@ -2068,6 +2055,14 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         marketplaceId: str = None,
         sellerFulfillmentOrderId: str = None,
     ):
+        """
+                Returns a list of return reason codes for a seller SKU in a given marketplace.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/returnReasonCodes".format()
         params = {}
         if sellerSku is not None:
@@ -2090,19 +2085,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ListReturnReasonCodesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Creates a fulfillment return. 
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createFulfillmentReturn(
         self,
         sellerFulfillmentOrderId: str,
     ):
+        """
+                Creates a fulfillment return.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return".format(
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
@@ -2119,19 +2113,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateFulfillmentReturnResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the fulfillment order indicated by the specified order identifier.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFulfillmentOrder(
         self,
         sellerFulfillmentOrderId: str,
     ):
+        """
+                Returns the fulfillment order indicated by the specified order identifier.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}".format(
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
@@ -2148,19 +2141,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Updates and/or requests shipment for a fulfillment order with an order hold on it.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def updateFulfillmentOrder(
         self,
         sellerFulfillmentOrderId: str,
     ):
+        """
+                Updates and/or requests shipment for a fulfillment order with an order hold on it.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}".format(
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
@@ -2177,19 +2169,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: UpdateFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def cancelFulfillmentOrder(
         self,
         sellerFulfillmentOrderId: str,
     ):
+        """
+                Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel".format(
             sellerFulfillmentOrderId=sellerFulfillmentOrderId,
         )
@@ -2206,19 +2197,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CancelFulfillmentOrderResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFeatures(
         self,
         marketplaceId: str,
     ):
+        """
+                Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/features".format()
         params = {}
         if marketplaceId is not None:
@@ -2235,21 +2225,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetFeaturesResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of inventory items that are eligible for the fulfillment feature you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFeatureInventory(
         self,
         featureName: str,
         marketplaceId: str,
         nextToken: str = None,
     ):
+        """
+                Returns a list of inventory items that are eligible for the fulfillment feature you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/features/inventory/{featureName}".format(
             featureName=featureName,
         )
@@ -2270,21 +2259,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetFeatureInventoryResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getFeatureSKU(
         self,
         featureName: str,
         sellerSku: str,
         marketplaceId: str,
     ):
+        """
+                Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/outbound/2020-07-01/features/inventory/{featureName}/{sellerSku}".format(
             featureName=featureName,
             sellerSku=sellerSku,

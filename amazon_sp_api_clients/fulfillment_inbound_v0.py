@@ -1963,21 +1963,20 @@ class UnsignedIntType(int):
 
 
 class FulfillmentInboundV0Client(__BaseClient):
-    """
-        Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 2 | 30 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getInboundGuidance(
         self,
         MarketplaceId: str,
         SellerSKUList: _List[str] = None,
         ASINList: _List[str] = None,
     ):
+        """
+                Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/itemsGuidance".format()
         params = {}
         if MarketplaceId is not None:
@@ -1998,19 +1997,18 @@ class FulfillmentInboundV0Client(__BaseClient):
             503: GetInboundGuidanceResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createInboundShipmentPlan(
         self,
         data: CreateInboundShipmentPlanRequest,
     ):
+        """
+                Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/plans".format()
         params = {}
         response = self.request(url, method="POST", data=params)
@@ -2025,19 +2023,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: CreateInboundShipmentPlanResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def updateInboundShipment(
         self,
         shipmentId: str,
     ):
+        """
+                Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}".format(
             shipmentId=shipmentId,
         )
@@ -2054,20 +2051,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: InboundShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createInboundShipment(
         self,
         data: InboundShipmentRequest,
         shipmentId: str,
     ):
+        """
+                Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}".format(
             shipmentId=shipmentId,
         )
@@ -2084,20 +2080,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: InboundShipmentResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order. 
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPreorderInfo(
         self,
         shipmentId: str,
         MarketplaceId: str,
     ):
+        """
+                Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/preorder".format(
             shipmentId=shipmentId,
         )
@@ -2116,21 +2111,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetPreorderInfoResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns information needed to confirm a shipment for pre-order. Call this operation after calling the getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def confirmPreorder(
         self,
         shipmentId: str,
         NeedByDate: str,
         MarketplaceId: str,
     ):
+        """
+                Returns information needed to confirm a shipment for pre-order. Call this operation after calling the getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/preorder/confirm".format(
             shipmentId=shipmentId,
         )
@@ -2151,21 +2145,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ConfirmPreorderResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getPrepInstructions(
         self,
         ShipToCountryCode: str,
         SellerSKUList: _List[str] = None,
         ASINList: _List[str] = None,
     ):
+        """
+                Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/prepInstructions".format()
         params = {}
         if ShipToCountryCode is not None:
@@ -2186,19 +2179,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetPrepInstructionsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns current transportation information about an inbound shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getTransportDetails(
         self,
         shipmentId: str,
     ):
+        """
+                Returns current transportation information about an inbound shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport".format(
             shipmentId=shipmentId,
         )
@@ -2215,19 +2207,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetTransportDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Sends transportation information to Amazon about an inbound shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def putTransportDetails(
         self,
         shipmentId: str,
     ):
+        """
+                Sends transportation information to Amazon about an inbound shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport".format(
             shipmentId=shipmentId,
         )
@@ -2244,21 +2235,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: PutTransportDetailsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier.
-To be successful, you must call this operation before the VoidDeadline date that is returned by the getTransportDetails operation.
-Important: The VoidDeadline date is 24 hours after you confirm a Small Parcel shipment transportation request or one hour after you confirm a Less Than Truckload/Full Truckload (LTL/FTL) shipment transportation request. After the void deadline passes, your account will be charged for the shipping cost.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def voidTransport(
         self,
         shipmentId: str,
     ):
+        """
+                Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier.
+        To be successful, you must call this operation before the VoidDeadline date that is returned by the getTransportDetails operation.
+        Important: The VoidDeadline date is 24 hours after you confirm a Small Parcel shipment transportation request or one hour after you confirm a Less Than Truckload/Full Truckload (LTL/FTL) shipment transportation request. After the void deadline passes, your account will be charged for the shipping cost.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/void".format(
             shipmentId=shipmentId,
         )
@@ -2275,20 +2265,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: VoidTransportResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
-Prior to calling the estimateTransport operation, you must call the putTransportDetails operation to provide Amazon with the transportation information for the inbound shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def estimateTransport(
         self,
         shipmentId: str,
     ):
+        """
+                Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
+        Prior to calling the estimateTransport operation, you must call the putTransportDetails operation to provide Amazon with the transportation information for the inbound shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/estimate".format(
             shipmentId=shipmentId,
         )
@@ -2305,21 +2294,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: EstimateTransportResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment.
-Prior to calling the confirmTransport operation, you should call the getTransportDetails operation to get the Amazon-partnered shipping estimate.
-Important: After confirming the transportation request, if the seller decides that they do not want the Amazon-partnered carrier to ship the inbound shipment, you can call the voidTransport operation to cancel the transportation request. Note that for a Small Parcel shipment, the seller has 24 hours after confirming a transportation request to void the transportation request. For a Less Than Truckload/Full Truckload (LTL/FTL) shipment, the seller has one hour after confirming a transportation request to void it. After the grace period has expired the seller's account will be charged for the shipping cost.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def confirmTransport(
         self,
         shipmentId: str,
     ):
+        """
+                Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment.
+        Prior to calling the confirmTransport operation, you should call the getTransportDetails operation to get the Amazon-partnered shipping estimate.
+        Important: After confirming the transportation request, if the seller decides that they do not want the Amazon-partnered carrier to ship the inbound shipment, you can call the voidTransport operation to cancel the transportation request. Note that for a Small Parcel shipment, the seller has 24 hours after confirming a transportation request to void the transportation request. For a Less Than Truckload/Full Truckload (LTL/FTL) shipment, the seller has one hour after confirming a transportation request to void it. After the grace period has expired the seller's account will be charged for the shipping cost.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/confirm".format(
             shipmentId=shipmentId,
         )
@@ -2336,15 +2324,6 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ConfirmTransportResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getLabels(
         self,
         shipmentId: str,
@@ -2356,6 +2335,14 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         PageSize: int = None,
         PageStartIndex: int = None,
     ):
+        """
+                Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/labels".format(
             shipmentId=shipmentId,
         )
@@ -2386,19 +2373,18 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetLabelsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getBillOfLading(
         self,
         shipmentId: str,
     ):
+        """
+                Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/billOfLading".format(
             shipmentId=shipmentId,
         )
@@ -2415,15 +2401,6 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetBillOfLadingResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of inbound shipments based on criteria that you specify.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getShipments(
         self,
         QueryType: str,
@@ -2434,6 +2411,14 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         LastUpdatedBefore: str = None,
         NextToken: str = None,
     ):
+        """
+                Returns a list of inbound shipments based on criteria that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments".format()
         params = {}
         if ShipmentStatusList is not None:
@@ -2462,20 +2447,19 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetShipmentsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of items in a specified inbound shipment.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getShipmentItemsByShipmentId(
         self,
         shipmentId: str,
         MarketplaceId: str,
     ):
+        """
+                Returns a list of items in a specified inbound shipment.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipments/{shipmentId}/items".format(
             shipmentId=shipmentId,
         )
@@ -2494,15 +2478,6 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: GetShipmentItemsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 2 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getShipmentItems(
         self,
         QueryType: str,
@@ -2511,6 +2486,14 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         LastUpdatedBefore: str = None,
         NextToken: str = None,
     ):
+        """
+                Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inbound/v0/shipmentItems".format()
         params = {}
         if LastUpdatedAfter is not None:

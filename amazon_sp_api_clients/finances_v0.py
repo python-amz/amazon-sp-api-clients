@@ -1898,15 +1898,6 @@ class Date(str):
 
 
 class FinancesV0Client(__BaseClient):
-    """
-        Returns financial event groups for a given date range.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 0.5 | 30 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listFinancialEventGroups(
         self,
         MaxResultsPerPage: int = None,
@@ -1914,6 +1905,14 @@ class FinancesV0Client(__BaseClient):
         FinancialEventGroupStartedAfter: str = None,
         NextToken: str = None,
     ):
+        """
+                Returns financial event groups for a given date range.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/finances/v0/financialEventGroups".format()
         params = {}
         if MaxResultsPerPage is not None:
@@ -1935,21 +1934,20 @@ class FinancesV0Client(__BaseClient):
             503: ListFinancialEventGroupsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns all financial events for the specified financial event group.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.5 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listFinancialEventsByGroupId(
         self,
         eventGroupId: str,
         MaxResultsPerPage: int = None,
         NextToken: str = None,
     ):
+        """
+                Returns all financial events for the specified financial event group.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/finances/v0/financialEventGroups/{eventGroupId}/financialEvents".format(
             eventGroupId=eventGroupId,
         )
@@ -1969,21 +1967,20 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ListFinancialEventsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns all financial events for the specified order.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.5 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listFinancialEventsByOrderId(
         self,
         orderId: str,
         MaxResultsPerPage: int = None,
         NextToken: str = None,
     ):
+        """
+                Returns all financial events for the specified order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/finances/v0/orders/{orderId}/financialEvents".format(
             orderId=orderId,
         )
@@ -2003,15 +2000,6 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
             503: ListFinancialEventsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns financial events for the specified data range.
-**Usage Plan:**
-| Rate (requests per second) | Burst |
-| ---- | ---- |
-| 0.5 | 30 |
-For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listFinancialEvents(
         self,
         MaxResultsPerPage: int = None,
@@ -2019,6 +2007,14 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         PostedBefore: str = None,
         NextToken: str = None,
     ):
+        """
+                Returns financial events for the specified data range.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/finances/v0/financialEvents".format()
         params = {}
         if MaxResultsPerPage is not None:

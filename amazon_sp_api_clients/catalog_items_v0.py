@@ -877,18 +877,6 @@ class ErrorList(list, _List["Error"]):
 
 
 class CatalogItemsV0Client(__BaseClient):
-    """
-        Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value.
-    MarketplaceId is always required. At least one of Query, SellerSKU, UPC, EAN, ISBN, JAN is also required.
-    This operation returns a maximum of ten products and does not return non-buyable products.
-    **Usage Plans:**
-    | Plan type | Rate (requests per second) | Burst |
-    | ---- | ---- | ---- |
-    |Default| 6 | 40 |
-    |Selling partner specific| Variable | Variable |
-    The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listCatalogItems(
         self,
         MarketplaceId: str,
@@ -900,6 +888,17 @@ class CatalogItemsV0Client(__BaseClient):
         ISBN: str = None,
         JAN: str = None,
     ):
+        """
+                Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value.
+        MarketplaceId is always required. At least one of Query, SellerSKU, UPC, EAN, ISBN, JAN is also required.
+        This operation returns a maximum of ten products and does not return non-buyable products.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 6 | 40 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/catalog/v0/items".format()
         params = {}
         if MarketplaceId is not None:
@@ -930,21 +929,20 @@ class CatalogItemsV0Client(__BaseClient):
             503: ListCatalogItemsResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns a specified item and its attributes.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 2 | 20 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getCatalogItem(
         self,
         asin: str,
         MarketplaceId: str,
     ):
+        """
+                Returns a specified item and its attributes.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 2 | 20 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/catalog/v0/items/{asin}".format(
             asin=asin,
         )
@@ -963,22 +961,21 @@ The x-amzn-RateLimit-Limit response header returns the usage plan rate limits th
             503: GetCatalogItemResponse,
         }[response.status_code](self._get_response_json(response))
 
-    """
-    Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
-**Usage Plans:**
-| Plan type | Rate (requests per second) | Burst |
-| ---- | ---- | ---- |
-|Default| 1 | 40 |
-|Selling partner specific| Variable | Variable |
-The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def listCatalogCategories(
         self,
         MarketplaceId: str,
         ASIN: str = None,
         SellerSKU: str = None,
     ):
+        """
+                Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 1 | 40 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/catalog/v0/categories".format()
         params = {}
         if MarketplaceId is not None:

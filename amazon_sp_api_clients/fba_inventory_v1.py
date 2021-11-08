@@ -299,18 +299,6 @@ class ErrorList(list, _List["Error"]):
 
 
 class FbaInventoryV1Client(__BaseClient):
-    """
-        Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:
-    - All inventory summaries with available details are returned when the startDateTime and sellerSkus parameters are omitted.
-    - When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus parameter is ignored.
-    - When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | 2 | 2 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getInventorySummaries(
         self,
         granularityType: str,
@@ -321,6 +309,17 @@ class FbaInventoryV1Client(__BaseClient):
         sellerSkus: _List[str] = None,
         nextToken: str = None,
     ):
+        """
+                Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:
+        - All inventory summaries with available details are returned when the startDateTime and sellerSkus parameters are omitted.
+        - When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus parameter is ignored.
+        - When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 2 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/fba/inventory/v1/summaries".format()
         params = {}
         if details is not None:

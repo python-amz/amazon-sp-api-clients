@@ -75,15 +75,6 @@ class ErrorList(list, _List["Error"]):
 
 
 class Uploads20201101Client(__BaseClient):
-    """
-        Creates an upload destination, returning the information required to upload a file to the destination and to programmatically access the file.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | .1 | 5 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def createUploadDestinationForResource(
         self,
         resource: str,
@@ -91,6 +82,14 @@ class Uploads20201101Client(__BaseClient):
         contentMD5: str,
         contentType: str = None,
     ):
+        """
+                Creates an upload destination, returning the information required to upload a file to the destination and to programmatically access the file.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | .1 | 5 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/uploads/2020-11-01/uploadDestinations/{resource}".format(
             resource=resource,
         )

@@ -131,18 +131,17 @@ class MarketplaceParticipationList(list, _List["MarketplaceParticipation"]):
 
 
 class SellersV1Client(__BaseClient):
-    """
-        Returns a list of marketplaces that the seller submitting the request can sell in and information about the seller's participation in those marketplaces.
-    **Usage Plan:**
-    | Rate (requests per second) | Burst |
-    | ---- | ---- |
-    | .016 | 15 |
-    For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-    """
-
     def getMarketplaceParticipations(
         self,
     ):
+        """
+                Returns a list of marketplaces that the seller submitting the request can sell in and information about the seller's participation in those marketplaces.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | .016 | 15 |
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
         url = "/sellers/v1/marketplaceParticipations".format()
         params = {}
         response = self.request(url, method="GET", params=params)
