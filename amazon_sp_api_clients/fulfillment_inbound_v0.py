@@ -1990,7 +1990,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetInboundGuidanceResponse,
             400: GetInboundGuidanceResponse,
             401: GetInboundGuidanceResponse,
@@ -1999,7 +1999,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetInboundGuidanceResponse,
             500: GetInboundGuidanceResponse,
             503: GetInboundGuidanceResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createInboundShipmentPlan(
         self,
@@ -2021,7 +2022,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: CreateInboundShipmentPlanResponse,
             400: CreateInboundShipmentPlanResponse,
             401: CreateInboundShipmentPlanResponse,
@@ -2030,7 +2031,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: CreateInboundShipmentPlanResponse,
             500: CreateInboundShipmentPlanResponse,
             503: CreateInboundShipmentPlanResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def updateInboundShipment(
         self,
@@ -2053,7 +2055,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: InboundShipmentResponse,
             400: InboundShipmentResponse,
             401: InboundShipmentResponse,
@@ -2062,7 +2064,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: InboundShipmentResponse,
             500: InboundShipmentResponse,
             503: InboundShipmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createInboundShipment(
         self,
@@ -2085,7 +2088,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: InboundShipmentResponse,
             400: InboundShipmentResponse,
             401: InboundShipmentResponse,
@@ -2094,7 +2097,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: InboundShipmentResponse,
             500: InboundShipmentResponse,
             503: InboundShipmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPreorderInfo(
         self,
@@ -2118,7 +2122,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPreorderInfoResponse,
             400: GetPreorderInfoResponse,
             401: GetPreorderInfoResponse,
@@ -2127,7 +2131,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetPreorderInfoResponse,
             500: GetPreorderInfoResponse,
             503: GetPreorderInfoResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def confirmPreorder(
         self,
@@ -2154,7 +2159,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="PUT",
             params=params,
         )
-        return {
+        response_type = {
             200: ConfirmPreorderResponse,
             400: ConfirmPreorderResponse,
             401: ConfirmPreorderResponse,
@@ -2163,7 +2168,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: ConfirmPreorderResponse,
             500: ConfirmPreorderResponse,
             503: ConfirmPreorderResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPrepInstructions(
         self,
@@ -2192,7 +2198,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPrepInstructionsResponse,
             400: GetPrepInstructionsResponse,
             401: GetPrepInstructionsResponse,
@@ -2201,7 +2207,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetPrepInstructionsResponse,
             500: GetPrepInstructionsResponse,
             503: GetPrepInstructionsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getTransportDetails(
         self,
@@ -2222,7 +2229,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetTransportDetailsResponse,
             400: GetTransportDetailsResponse,
             401: GetTransportDetailsResponse,
@@ -2231,7 +2238,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetTransportDetailsResponse,
             500: GetTransportDetailsResponse,
             503: GetTransportDetailsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def putTransportDetails(
         self,
@@ -2254,7 +2262,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: PutTransportDetailsResponse,
             400: PutTransportDetailsResponse,
             401: PutTransportDetailsResponse,
@@ -2263,7 +2271,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: PutTransportDetailsResponse,
             500: PutTransportDetailsResponse,
             503: PutTransportDetailsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def voidTransport(
         self,
@@ -2286,7 +2295,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="POST",
             params=params,
         )
-        return {
+        response_type = {
             200: VoidTransportResponse,
             400: VoidTransportResponse,
             401: VoidTransportResponse,
@@ -2295,7 +2304,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: VoidTransportResponse,
             500: VoidTransportResponse,
             503: VoidTransportResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def estimateTransport(
         self,
@@ -2317,7 +2327,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="POST",
             params=params,
         )
-        return {
+        response_type = {
             200: EstimateTransportResponse,
             400: EstimateTransportResponse,
             401: EstimateTransportResponse,
@@ -2326,7 +2336,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: EstimateTransportResponse,
             500: EstimateTransportResponse,
             503: EstimateTransportResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def confirmTransport(
         self,
@@ -2349,7 +2360,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="POST",
             params=params,
         )
-        return {
+        response_type = {
             200: ConfirmTransportResponse,
             400: ConfirmTransportResponse,
             401: ConfirmTransportResponse,
@@ -2358,7 +2369,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: ConfirmTransportResponse,
             500: ConfirmTransportResponse,
             503: ConfirmTransportResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getLabels(
         self,
@@ -2400,7 +2412,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetLabelsResponse,
             400: GetLabelsResponse,
             401: GetLabelsResponse,
@@ -2409,7 +2421,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetLabelsResponse,
             500: GetLabelsResponse,
             503: GetLabelsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getBillOfLading(
         self,
@@ -2430,7 +2443,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetBillOfLadingResponse,
             400: GetBillOfLadingResponse,
             401: GetBillOfLadingResponse,
@@ -2439,7 +2452,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetBillOfLadingResponse,
             500: GetBillOfLadingResponse,
             503: GetBillOfLadingResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getShipments(
         self,
@@ -2480,7 +2494,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetShipmentsResponse,
             400: GetShipmentsResponse,
             401: GetShipmentsResponse,
@@ -2489,7 +2503,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetShipmentsResponse,
             500: GetShipmentsResponse,
             503: GetShipmentsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getShipmentItemsByShipmentId(
         self,
@@ -2513,7 +2528,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetShipmentItemsResponse,
             400: GetShipmentItemsResponse,
             401: GetShipmentItemsResponse,
@@ -2522,7 +2537,8 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetShipmentItemsResponse,
             500: GetShipmentItemsResponse,
             503: GetShipmentItemsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getShipmentItems(
         self,
@@ -2557,7 +2573,7 @@ class FulfillmentInboundV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetShipmentItemsResponse,
             400: GetShipmentItemsResponse,
             401: GetShipmentItemsResponse,
@@ -2566,4 +2582,5 @@ class FulfillmentInboundV0Client(__BaseClient):
             429: GetShipmentItemsResponse,
             500: GetShipmentItemsResponse,
             503: GetShipmentItemsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

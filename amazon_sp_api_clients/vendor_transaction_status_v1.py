@@ -107,7 +107,7 @@ class VendorTransactionStatusV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetTransactionResponse,
             400: GetTransactionResponse,
             401: GetTransactionResponse,
@@ -117,4 +117,5 @@ class VendorTransactionStatusV1Client(__BaseClient):
             429: GetTransactionResponse,
             500: GetTransactionResponse,
             503: GetTransactionResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

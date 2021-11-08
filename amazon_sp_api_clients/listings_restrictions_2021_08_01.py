@@ -152,7 +152,7 @@ class ListingsRestrictions20210801Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: RestrictionList,
             400: ErrorList,
             403: ErrorList,
@@ -162,4 +162,5 @@ class ListingsRestrictions20210801Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

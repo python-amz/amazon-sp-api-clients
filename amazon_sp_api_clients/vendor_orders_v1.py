@@ -754,7 +754,7 @@ class VendorOrdersV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPurchaseOrdersResponse,
             400: GetPurchaseOrdersResponse,
             403: GetPurchaseOrdersResponse,
@@ -763,7 +763,8 @@ class VendorOrdersV1Client(__BaseClient):
             429: GetPurchaseOrdersResponse,
             500: GetPurchaseOrdersResponse,
             503: GetPurchaseOrdersResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPurchaseOrder(
         self,
@@ -785,7 +786,7 @@ class VendorOrdersV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPurchaseOrderResponse,
             400: GetPurchaseOrderResponse,
             401: GetPurchaseOrderResponse,
@@ -795,7 +796,8 @@ class VendorOrdersV1Client(__BaseClient):
             429: GetPurchaseOrderResponse,
             500: GetPurchaseOrderResponse,
             503: GetPurchaseOrderResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitAcknowledgement(
         self,
@@ -818,7 +820,7 @@ class VendorOrdersV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: SubmitAcknowledgementResponse,
             400: SubmitAcknowledgementResponse,
             403: SubmitAcknowledgementResponse,
@@ -828,7 +830,8 @@ class VendorOrdersV1Client(__BaseClient):
             429: SubmitAcknowledgementResponse,
             500: SubmitAcknowledgementResponse,
             503: SubmitAcknowledgementResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPurchaseOrdersStatus(
         self,
@@ -885,7 +888,7 @@ class VendorOrdersV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPurchaseOrdersStatusResponse,
             400: GetPurchaseOrdersStatusResponse,
             403: GetPurchaseOrdersStatusResponse,
@@ -894,4 +897,5 @@ class VendorOrdersV1Client(__BaseClient):
             429: GetPurchaseOrdersStatusResponse,
             500: GetPurchaseOrdersStatusResponse,
             503: GetPurchaseOrdersStatusResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

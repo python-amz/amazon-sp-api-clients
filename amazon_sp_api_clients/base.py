@@ -231,7 +231,7 @@ class BaseClient:
         # process data
         parsed_data: bytes
         if data is None:
-            parsed_data = json.dumps({}).encode()
+            parsed_data = b''
         elif isinstance(data, dict):
             parsed_data = json.dumps(data).encode()
         elif isinstance(data, bytes):

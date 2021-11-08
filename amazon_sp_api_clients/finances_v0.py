@@ -1928,7 +1928,7 @@ class FinancesV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ListFinancialEventGroupsResponse,
             400: ListFinancialEventGroupsResponse,
             403: ListFinancialEventGroupsResponse,
@@ -1936,7 +1936,8 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventGroupsResponse,
             500: ListFinancialEventGroupsResponse,
             503: ListFinancialEventGroupsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def listFinancialEventsByGroupId(
         self,
@@ -1963,7 +1964,7 @@ class FinancesV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ListFinancialEventsResponse,
             400: ListFinancialEventsResponse,
             403: ListFinancialEventsResponse,
@@ -1971,7 +1972,8 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventsResponse,
             500: ListFinancialEventsResponse,
             503: ListFinancialEventsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def listFinancialEventsByOrderId(
         self,
@@ -1998,7 +2000,7 @@ class FinancesV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ListFinancialEventsResponse,
             400: ListFinancialEventsResponse,
             403: ListFinancialEventsResponse,
@@ -2006,7 +2008,8 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventsResponse,
             500: ListFinancialEventsResponse,
             503: ListFinancialEventsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def listFinancialEvents(
         self,
@@ -2038,7 +2041,7 @@ class FinancesV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ListFinancialEventsResponse,
             400: ListFinancialEventsResponse,
             403: ListFinancialEventsResponse,
@@ -2046,4 +2049,5 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventsResponse,
             500: ListFinancialEventsResponse,
             503: ListFinancialEventsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

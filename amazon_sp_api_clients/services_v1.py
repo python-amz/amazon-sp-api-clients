@@ -666,7 +666,7 @@ class ServicesV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetServiceJobByServiceJobIdResponse,
             400: GetServiceJobByServiceJobIdResponse,
             403: GetServiceJobByServiceJobIdResponse,
@@ -677,7 +677,8 @@ class ServicesV1Client(__BaseClient):
             429: GetServiceJobByServiceJobIdResponse,
             500: GetServiceJobByServiceJobIdResponse,
             503: GetServiceJobByServiceJobIdResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelServiceJobByServiceJobId(
         self,
@@ -701,7 +702,7 @@ class ServicesV1Client(__BaseClient):
             method="PUT",
             params=params,
         )
-        return {
+        response_type = {
             200: CancelServiceJobByServiceJobIdResponse,
             400: CancelServiceJobByServiceJobIdResponse,
             403: CancelServiceJobByServiceJobIdResponse,
@@ -712,7 +713,8 @@ class ServicesV1Client(__BaseClient):
             429: CancelServiceJobByServiceJobIdResponse,
             500: CancelServiceJobByServiceJobIdResponse,
             503: CancelServiceJobByServiceJobIdResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def completeServiceJobByServiceJobId(
         self,
@@ -733,7 +735,7 @@ class ServicesV1Client(__BaseClient):
             method="PUT",
             params=params,
         )
-        return {
+        response_type = {
             200: CompleteServiceJobByServiceJobIdResponse,
             400: CompleteServiceJobByServiceJobIdResponse,
             403: CompleteServiceJobByServiceJobIdResponse,
@@ -744,7 +746,8 @@ class ServicesV1Client(__BaseClient):
             429: CompleteServiceJobByServiceJobIdResponse,
             500: CompleteServiceJobByServiceJobIdResponse,
             503: CompleteServiceJobByServiceJobIdResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getServiceJobs(
         self,
@@ -803,7 +806,7 @@ class ServicesV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetServiceJobsResponse,
             400: GetServiceJobsResponse,
             403: GetServiceJobsResponse,
@@ -813,7 +816,8 @@ class ServicesV1Client(__BaseClient):
             429: GetServiceJobsResponse,
             500: GetServiceJobsResponse,
             503: GetServiceJobsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def addAppointmentForServiceJobByServiceJobId(
         self,
@@ -836,7 +840,7 @@ class ServicesV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: SetAppointmentResponse,
             400: SetAppointmentResponse,
             403: SetAppointmentResponse,
@@ -847,7 +851,8 @@ class ServicesV1Client(__BaseClient):
             429: SetAppointmentResponse,
             500: SetAppointmentResponse,
             503: SetAppointmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def rescheduleAppointmentForServiceJobByServiceJobId(
         self,
@@ -871,7 +876,7 @@ class ServicesV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: SetAppointmentResponse,
             400: SetAppointmentResponse,
             403: SetAppointmentResponse,
@@ -882,4 +887,5 @@ class ServicesV1Client(__BaseClient):
             429: SetAppointmentResponse,
             500: SetAppointmentResponse,
             503: SetAppointmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

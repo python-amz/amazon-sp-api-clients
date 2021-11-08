@@ -379,7 +379,7 @@ class NotificationsV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetSubscriptionResponse,
             400: GetSubscriptionResponse,
             403: GetSubscriptionResponse,
@@ -389,7 +389,8 @@ class NotificationsV1Client(__BaseClient):
             429: GetSubscriptionResponse,
             500: GetSubscriptionResponse,
             503: GetSubscriptionResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createSubscription(
         self,
@@ -412,7 +413,7 @@ class NotificationsV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: CreateSubscriptionResponse,
             400: CreateSubscriptionResponse,
             403: CreateSubscriptionResponse,
@@ -423,7 +424,8 @@ class NotificationsV1Client(__BaseClient):
             429: CreateSubscriptionResponse,
             500: CreateSubscriptionResponse,
             503: CreateSubscriptionResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getSubscriptionById(
         self,
@@ -445,7 +447,7 @@ class NotificationsV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetSubscriptionByIdResponse,
             400: GetSubscriptionByIdResponse,
             403: GetSubscriptionByIdResponse,
@@ -456,7 +458,8 @@ class NotificationsV1Client(__BaseClient):
             429: GetSubscriptionByIdResponse,
             500: GetSubscriptionByIdResponse,
             503: GetSubscriptionByIdResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def deleteSubscriptionById(
         self,
@@ -478,7 +481,7 @@ class NotificationsV1Client(__BaseClient):
             method="DELETE",
             params=params,
         )
-        return {
+        response_type = {
             200: DeleteSubscriptionByIdResponse,
             400: DeleteSubscriptionByIdResponse,
             403: DeleteSubscriptionByIdResponse,
@@ -489,7 +492,8 @@ class NotificationsV1Client(__BaseClient):
             429: DeleteSubscriptionByIdResponse,
             500: DeleteSubscriptionByIdResponse,
             503: DeleteSubscriptionByIdResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getDestinations(
         self,
@@ -509,7 +513,7 @@ class NotificationsV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetDestinationsResponse,
             400: GetDestinationsResponse,
             403: GetDestinationsResponse,
@@ -520,7 +524,8 @@ class NotificationsV1Client(__BaseClient):
             429: GetDestinationsResponse,
             500: GetDestinationsResponse,
             503: GetDestinationsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createDestination(
         self,
@@ -542,7 +547,7 @@ class NotificationsV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: CreateDestinationResponse,
             400: CreateDestinationResponse,
             403: CreateDestinationResponse,
@@ -553,7 +558,8 @@ class NotificationsV1Client(__BaseClient):
             429: CreateDestinationResponse,
             500: CreateDestinationResponse,
             503: CreateDestinationResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getDestination(
         self,
@@ -574,7 +580,7 @@ class NotificationsV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetDestinationResponse,
             400: GetDestinationResponse,
             403: GetDestinationResponse,
@@ -585,7 +591,8 @@ class NotificationsV1Client(__BaseClient):
             429: GetDestinationResponse,
             500: GetDestinationResponse,
             503: GetDestinationResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def deleteDestination(
         self,
@@ -606,7 +613,7 @@ class NotificationsV1Client(__BaseClient):
             method="DELETE",
             params=params,
         )
-        return {
+        response_type = {
             200: DeleteDestinationResponse,
             400: DeleteDestinationResponse,
             403: DeleteDestinationResponse,
@@ -617,4 +624,5 @@ class NotificationsV1Client(__BaseClient):
             429: DeleteDestinationResponse,
             500: DeleteDestinationResponse,
             503: DeleteDestinationResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

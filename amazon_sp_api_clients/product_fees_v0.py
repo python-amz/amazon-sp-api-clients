@@ -403,7 +403,7 @@ class ProductFeesV0Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: GetMyFeesEstimateResponse,
             400: GetMyFeesEstimateResponse,
             401: GetMyFeesEstimateResponse,
@@ -412,7 +412,8 @@ class ProductFeesV0Client(__BaseClient):
             429: GetMyFeesEstimateResponse,
             500: GetMyFeesEstimateResponse,
             503: GetMyFeesEstimateResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getMyFeesEstimateForASIN(
         self,
@@ -438,7 +439,7 @@ class ProductFeesV0Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: GetMyFeesEstimateResponse,
             400: GetMyFeesEstimateResponse,
             401: GetMyFeesEstimateResponse,
@@ -447,4 +448,5 @@ class ProductFeesV0Client(__BaseClient):
             429: GetMyFeesEstimateResponse,
             500: GetMyFeesEstimateResponse,
             503: GetMyFeesEstimateResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

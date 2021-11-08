@@ -485,7 +485,7 @@ class MessagingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetMessagingActionsForOrderResponse,
             400: GetMessagingActionsForOrderResponse,
             403: GetMessagingActionsForOrderResponse,
@@ -495,7 +495,8 @@ class MessagingV1Client(__BaseClient):
             429: GetMessagingActionsForOrderResponse,
             500: GetMessagingActionsForOrderResponse,
             503: GetMessagingActionsForOrderResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def confirmCustomizationDetails(
         self,
@@ -521,7 +522,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateConfirmCustomizationDetailsResponse,
             400: CreateConfirmCustomizationDetailsResponse,
             403: CreateConfirmCustomizationDetailsResponse,
@@ -531,7 +532,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmCustomizationDetailsResponse,
             500: CreateConfirmCustomizationDetailsResponse,
             503: CreateConfirmCustomizationDetailsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createConfirmDeliveryDetails(
         self,
@@ -557,7 +559,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateConfirmDeliveryDetailsResponse,
             400: CreateConfirmDeliveryDetailsResponse,
             403: CreateConfirmDeliveryDetailsResponse,
@@ -567,7 +569,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmDeliveryDetailsResponse,
             500: CreateConfirmDeliveryDetailsResponse,
             503: CreateConfirmDeliveryDetailsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createLegalDisclosure(
         self,
@@ -593,7 +596,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateLegalDisclosureResponse,
             400: CreateLegalDisclosureResponse,
             403: CreateLegalDisclosureResponse,
@@ -603,7 +606,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateLegalDisclosureResponse,
             500: CreateLegalDisclosureResponse,
             503: CreateLegalDisclosureResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createNegativeFeedbackRemoval(
         self,
@@ -627,7 +631,7 @@ class MessagingV1Client(__BaseClient):
             method="POST",
             params=params,
         )
-        return {
+        response_type = {
             201: CreateNegativeFeedbackRemovalResponse,
             400: CreateNegativeFeedbackRemovalResponse,
             403: CreateNegativeFeedbackRemovalResponse,
@@ -637,7 +641,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateNegativeFeedbackRemovalResponse,
             500: CreateNegativeFeedbackRemovalResponse,
             503: CreateNegativeFeedbackRemovalResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createConfirmOrderDetails(
         self,
@@ -663,7 +668,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateConfirmOrderDetailsResponse,
             400: CreateConfirmOrderDetailsResponse,
             403: CreateConfirmOrderDetailsResponse,
@@ -673,7 +678,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmOrderDetailsResponse,
             500: CreateConfirmOrderDetailsResponse,
             503: CreateConfirmOrderDetailsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createConfirmServiceDetails(
         self,
@@ -699,7 +705,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateConfirmServiceDetailsResponse,
             400: CreateConfirmServiceDetailsResponse,
             403: CreateConfirmServiceDetailsResponse,
@@ -709,7 +715,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmServiceDetailsResponse,
             500: CreateConfirmServiceDetailsResponse,
             503: CreateConfirmServiceDetailsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def CreateAmazonMotors(
         self,
@@ -735,7 +742,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateAmazonMotorsResponse,
             400: CreateAmazonMotorsResponse,
             403: CreateAmazonMotorsResponse,
@@ -745,7 +752,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateAmazonMotorsResponse,
             500: CreateAmazonMotorsResponse,
             503: CreateAmazonMotorsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def CreateWarranty(
         self,
@@ -771,7 +779,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateWarrantyResponse,
             400: CreateWarrantyResponse,
             403: CreateWarrantyResponse,
@@ -781,7 +789,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateWarrantyResponse,
             500: CreateWarrantyResponse,
             503: CreateWarrantyResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def GetAttributes(
         self,
@@ -804,7 +813,7 @@ class MessagingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetAttributesResponse,
             400: GetAttributesResponse,
             403: GetAttributesResponse,
@@ -814,7 +823,8 @@ class MessagingV1Client(__BaseClient):
             429: GetAttributesResponse,
             500: GetAttributesResponse,
             503: GetAttributesResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createDigitalAccessKey(
         self,
@@ -840,7 +850,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateDigitalAccessKeyResponse,
             400: CreateDigitalAccessKeyResponse,
             403: CreateDigitalAccessKeyResponse,
@@ -850,7 +860,8 @@ class MessagingV1Client(__BaseClient):
             429: CreateDigitalAccessKeyResponse,
             500: CreateDigitalAccessKeyResponse,
             503: CreateDigitalAccessKeyResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createUnexpectedProblem(
         self,
@@ -876,7 +887,7 @@ class MessagingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateUnexpectedProblemResponse,
             400: CreateUnexpectedProblemResponse,
             403: CreateUnexpectedProblemResponse,
@@ -886,4 +897,5 @@ class MessagingV1Client(__BaseClient):
             429: CreateUnexpectedProblemResponse,
             500: CreateUnexpectedProblemResponse,
             503: CreateUnexpectedProblemResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

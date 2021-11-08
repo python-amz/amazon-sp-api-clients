@@ -326,7 +326,7 @@ class Reports20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetReportsResponse,
             400: ErrorList,
             401: ErrorList,
@@ -336,7 +336,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createReport(
         self,
@@ -358,7 +359,7 @@ class Reports20210630Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: CreateReportResponse,
             400: ErrorList,
             401: ErrorList,
@@ -368,7 +369,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReport(
         self,
@@ -389,7 +391,7 @@ class Reports20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: Report,
             400: ErrorList,
             401: ErrorList,
@@ -399,7 +401,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelReport(
         self,
@@ -420,7 +423,7 @@ class Reports20210630Client(__BaseClient):
             method="DELETE",
             params=params,
         )
-        return {
+        response_type = {
             200: None,
             400: ErrorList,
             401: ErrorList,
@@ -430,7 +433,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReportSchedules(
         self,
@@ -453,7 +457,7 @@ class Reports20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ReportScheduleList,
             400: ErrorList,
             401: ErrorList,
@@ -463,7 +467,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createReportSchedule(
         self,
@@ -485,7 +490,7 @@ class Reports20210630Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateReportScheduleResponse,
             400: ErrorList,
             401: ErrorList,
@@ -495,7 +500,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReportSchedule(
         self,
@@ -516,7 +522,7 @@ class Reports20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ReportSchedule,
             400: ErrorList,
             401: ErrorList,
@@ -526,7 +532,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelReportSchedule(
         self,
@@ -547,7 +554,7 @@ class Reports20210630Client(__BaseClient):
             method="DELETE",
             params=params,
         )
-        return {
+        response_type = {
             200: None,
             400: ErrorList,
             401: ErrorList,
@@ -557,7 +564,8 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReportDocument(
         self,
@@ -578,7 +586,7 @@ class Reports20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ReportDocument,
             400: ErrorList,
             401: ErrorList,
@@ -588,4 +596,5 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

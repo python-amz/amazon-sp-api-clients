@@ -662,7 +662,7 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrdersResponse,
             400: GetOrdersResponse,
             403: GetOrdersResponse,
@@ -671,7 +671,8 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: GetOrdersResponse,
             500: GetOrdersResponse,
             503: GetOrdersResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrder(
         self,
@@ -693,7 +694,7 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrderResponse,
             400: GetOrderResponse,
             401: GetOrderResponse,
@@ -703,7 +704,8 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: GetOrderResponse,
             500: GetOrderResponse,
             503: GetOrderResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitAcknowledgement(
         self,
@@ -726,7 +728,7 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: SubmitAcknowledgementResponse,
             400: SubmitAcknowledgementResponse,
             403: SubmitAcknowledgementResponse,
@@ -736,4 +738,5 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: SubmitAcknowledgementResponse,
             500: SubmitAcknowledgementResponse,
             503: SubmitAcknowledgementResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

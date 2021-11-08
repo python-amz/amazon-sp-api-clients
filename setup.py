@@ -22,6 +22,7 @@ setuptools.setup(
         'boto3',
         'pycryptodome',
         'demjson',
+        'chardet',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

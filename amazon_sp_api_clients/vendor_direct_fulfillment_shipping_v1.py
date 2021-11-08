@@ -864,7 +864,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetShippingLabelListResponse,
             400: GetShippingLabelListResponse,
             403: GetShippingLabelListResponse,
@@ -873,7 +873,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetShippingLabelListResponse,
             500: GetShippingLabelListResponse,
             503: GetShippingLabelListResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitShippingLabelRequest(
         self,
@@ -896,7 +897,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: SubmitShippingLabelsResponse,
             400: SubmitShippingLabelsResponse,
             403: SubmitShippingLabelsResponse,
@@ -906,7 +907,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: SubmitShippingLabelsResponse,
             500: SubmitShippingLabelsResponse,
             503: SubmitShippingLabelsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getShippingLabel(
         self,
@@ -928,7 +930,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetShippingLabelResponse,
             400: GetShippingLabelResponse,
             401: GetShippingLabelResponse,
@@ -938,7 +940,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetShippingLabelResponse,
             500: GetShippingLabelResponse,
             503: GetShippingLabelResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitShipmentConfirmations(
         self,
@@ -961,7 +964,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: SubmitShipmentConfirmationsResponse,
             400: SubmitShipmentConfirmationsResponse,
             403: SubmitShipmentConfirmationsResponse,
@@ -971,7 +974,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: SubmitShipmentConfirmationsResponse,
             500: SubmitShipmentConfirmationsResponse,
             503: SubmitShipmentConfirmationsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitShipmentStatusUpdates(
         self,
@@ -994,7 +998,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: SubmitShipmentStatusUpdatesResponse,
             400: SubmitShipmentStatusUpdatesResponse,
             403: SubmitShipmentStatusUpdatesResponse,
@@ -1004,7 +1008,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: SubmitShipmentStatusUpdatesResponse,
             500: SubmitShipmentStatusUpdatesResponse,
             503: SubmitShipmentStatusUpdatesResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getCustomerInvoices(
         self,
@@ -1043,7 +1048,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetCustomerInvoicesResponse,
             400: GetCustomerInvoiceResponse,
             403: GetCustomerInvoiceResponse,
@@ -1052,7 +1057,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetCustomerInvoiceResponse,
             500: GetCustomerInvoiceResponse,
             503: GetCustomerInvoiceResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getCustomerInvoice(
         self,
@@ -1074,7 +1080,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetCustomerInvoiceResponse,
             400: GetCustomerInvoiceResponse,
             401: GetCustomerInvoiceResponse,
@@ -1084,7 +1090,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetCustomerInvoiceResponse,
             500: GetCustomerInvoiceResponse,
             503: GetCustomerInvoiceResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPackingSlips(
         self,
@@ -1123,7 +1130,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPackingSlipListResponse,
             400: GetPackingSlipListResponse,
             401: GetPackingSlipListResponse,
@@ -1133,7 +1140,8 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetPackingSlipListResponse,
             500: GetPackingSlipListResponse,
             503: GetPackingSlipListResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPackingSlip(
         self,
@@ -1155,7 +1163,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPackingSlipResponse,
             400: GetPackingSlipResponse,
             401: GetPackingSlipResponse,
@@ -1165,4 +1173,5 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
             429: GetPackingSlipResponse,
             500: GetPackingSlipResponse,
             503: GetPackingSlipResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

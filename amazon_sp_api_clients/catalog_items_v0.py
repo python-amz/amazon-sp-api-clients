@@ -922,7 +922,7 @@ class CatalogItemsV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ListCatalogItemsResponse,
             400: ListCatalogItemsResponse,
             401: ListCatalogItemsResponse,
@@ -931,7 +931,8 @@ class CatalogItemsV0Client(__BaseClient):
             429: ListCatalogItemsResponse,
             500: ListCatalogItemsResponse,
             503: ListCatalogItemsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getCatalogItem(
         self,
@@ -956,7 +957,7 @@ class CatalogItemsV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetCatalogItemResponse,
             400: GetCatalogItemResponse,
             401: GetCatalogItemResponse,
@@ -965,7 +966,8 @@ class CatalogItemsV0Client(__BaseClient):
             429: GetCatalogItemResponse,
             500: GetCatalogItemResponse,
             503: GetCatalogItemResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def listCatalogCategories(
         self,
@@ -995,7 +997,7 @@ class CatalogItemsV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ListCatalogCategoriesResponse,
             400: ListCatalogCategoriesResponse,
             401: ListCatalogCategoriesResponse,
@@ -1004,4 +1006,5 @@ class CatalogItemsV0Client(__BaseClient):
             429: ListCatalogCategoriesResponse,
             500: ListCatalogCategoriesResponse,
             503: ListCatalogCategoriesResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

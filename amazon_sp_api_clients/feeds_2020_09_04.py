@@ -360,7 +360,7 @@ class Feeds20200904Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetFeedsResponse,
             400: GetFeedsResponse,
             401: GetFeedsResponse,
@@ -370,7 +370,8 @@ class Feeds20200904Client(__BaseClient):
             429: GetFeedsResponse,
             500: GetFeedsResponse,
             503: GetFeedsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createFeed(
         self,
@@ -392,7 +393,7 @@ class Feeds20200904Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: CreateFeedResponse,
             400: CreateFeedResponse,
             401: CreateFeedResponse,
@@ -402,7 +403,8 @@ class Feeds20200904Client(__BaseClient):
             429: CreateFeedResponse,
             500: CreateFeedResponse,
             503: CreateFeedResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getFeed(
         self,
@@ -423,7 +425,7 @@ class Feeds20200904Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetFeedResponse,
             400: GetFeedResponse,
             401: GetFeedResponse,
@@ -433,7 +435,8 @@ class Feeds20200904Client(__BaseClient):
             429: GetFeedResponse,
             500: GetFeedResponse,
             503: GetFeedResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelFeed(
         self,
@@ -454,7 +457,7 @@ class Feeds20200904Client(__BaseClient):
             method="DELETE",
             params=params,
         )
-        return {
+        response_type = {
             200: CancelFeedResponse,
             400: CancelFeedResponse,
             401: CancelFeedResponse,
@@ -464,7 +467,8 @@ class Feeds20200904Client(__BaseClient):
             429: CancelFeedResponse,
             500: CancelFeedResponse,
             503: CancelFeedResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createFeedDocument(
         self,
@@ -486,7 +490,7 @@ class Feeds20200904Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateFeedDocumentResponse,
             400: CreateFeedDocumentResponse,
             403: CreateFeedDocumentResponse,
@@ -496,7 +500,8 @@ class Feeds20200904Client(__BaseClient):
             429: CreateFeedDocumentResponse,
             500: CreateFeedDocumentResponse,
             503: CreateFeedDocumentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getFeedDocument(
         self,
@@ -517,7 +522,7 @@ class Feeds20200904Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetFeedDocumentResponse,
             400: GetFeedDocumentResponse,
             401: GetFeedDocumentResponse,
@@ -527,4 +532,5 @@ class Feeds20200904Client(__BaseClient):
             429: GetFeedDocumentResponse,
             500: GetFeedDocumentResponse,
             503: GetFeedDocumentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

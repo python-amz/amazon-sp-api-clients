@@ -1405,7 +1405,7 @@ class AplusContent20201101Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: SearchContentDocumentsResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1415,7 +1415,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createContentDocument(
         self,
@@ -1441,7 +1442,7 @@ class AplusContent20201101Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: PostContentDocumentResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1450,7 +1451,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getContentDocument(
         self,
@@ -1478,7 +1480,7 @@ class AplusContent20201101Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetContentDocumentResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1488,7 +1490,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def updateContentDocument(
         self,
@@ -1515,7 +1518,7 @@ class AplusContent20201101Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: PostContentDocumentResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1525,7 +1528,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def listContentDocumentAsinRelations(
         self,
@@ -1559,7 +1563,7 @@ class AplusContent20201101Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: ListContentDocumentAsinRelationsResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1569,7 +1573,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def postContentDocumentAsinRelations(
         self,
@@ -1596,7 +1601,7 @@ class AplusContent20201101Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: PostContentDocumentAsinRelationsResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1606,7 +1611,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def validateContentDocumentAsinRelations(
         self,
@@ -1635,7 +1641,7 @@ class AplusContent20201101Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: ValidateContentDocumentAsinRelationsResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1644,7 +1650,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def searchContentPublishRecords(
         self,
@@ -1674,7 +1681,7 @@ class AplusContent20201101Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: SearchContentPublishRecordsResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1683,7 +1690,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def postContentDocumentApprovalSubmission(
         self,
@@ -1708,7 +1716,7 @@ class AplusContent20201101Client(__BaseClient):
             method="POST",
             params=params,
         )
-        return {
+        response_type = {
             200: PostContentDocumentApprovalSubmissionResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1718,7 +1726,8 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def postContentDocumentSuspendSubmission(
         self,
@@ -1743,7 +1752,7 @@ class AplusContent20201101Client(__BaseClient):
             method="POST",
             params=params,
         )
-        return {
+        response_type = {
             200: PostContentDocumentSuspendSubmissionResponse,
             400: ErrorList,
             401: ErrorList,
@@ -1753,4 +1762,5 @@ class AplusContent20201101Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

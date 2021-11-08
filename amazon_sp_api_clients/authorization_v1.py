@@ -94,7 +94,7 @@ class AuthorizationV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetAuthorizationCodeResponse,
             400: GetAuthorizationCodeResponse,
             403: GetAuthorizationCodeResponse,
@@ -104,4 +104,5 @@ class AuthorizationV1Client(__BaseClient):
             429: GetAuthorizationCodeResponse,
             500: GetAuthorizationCodeResponse,
             503: GetAuthorizationCodeResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

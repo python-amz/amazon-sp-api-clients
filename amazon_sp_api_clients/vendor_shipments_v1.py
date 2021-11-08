@@ -750,7 +750,7 @@ class VendorShipmentsV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: SubmitShipmentConfirmationsResponse,
             400: SubmitShipmentConfirmationsResponse,
             403: SubmitShipmentConfirmationsResponse,
@@ -760,4 +760,5 @@ class VendorShipmentsV1Client(__BaseClient):
             429: SubmitShipmentConfirmationsResponse,
             500: SubmitShipmentConfirmationsResponse,
             503: SubmitShipmentConfirmationsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

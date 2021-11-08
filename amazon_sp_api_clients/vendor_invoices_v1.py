@@ -538,7 +538,7 @@ class VendorInvoicesV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: SubmitInvoicesResponse,
             400: SubmitInvoicesResponse,
             403: SubmitInvoicesResponse,
@@ -548,4 +548,5 @@ class VendorInvoicesV1Client(__BaseClient):
             429: SubmitInvoicesResponse,
             500: SubmitInvoicesResponse,
             503: SubmitInvoicesResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

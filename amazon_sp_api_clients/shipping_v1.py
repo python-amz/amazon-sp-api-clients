@@ -1121,7 +1121,7 @@ class ShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: CreateShipmentResponse,
             400: CreateShipmentResponse,
             401: CreateShipmentResponse,
@@ -1130,7 +1130,8 @@ class ShippingV1Client(__BaseClient):
             429: CreateShipmentResponse,
             500: CreateShipmentResponse,
             503: CreateShipmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getShipment(
         self,
@@ -1151,7 +1152,7 @@ class ShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetShipmentResponse,
             400: GetShipmentResponse,
             401: GetShipmentResponse,
@@ -1160,7 +1161,8 @@ class ShippingV1Client(__BaseClient):
             429: GetShipmentResponse,
             500: GetShipmentResponse,
             503: GetShipmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelShipment(
         self,
@@ -1181,7 +1183,7 @@ class ShippingV1Client(__BaseClient):
             method="POST",
             params=params,
         )
-        return {
+        response_type = {
             200: CancelShipmentResponse,
             400: CancelShipmentResponse,
             401: CancelShipmentResponse,
@@ -1190,7 +1192,8 @@ class ShippingV1Client(__BaseClient):
             429: CancelShipmentResponse,
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def purchaseLabels(
         self,
@@ -1213,7 +1216,7 @@ class ShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: PurchaseLabelsResponse,
             400: PurchaseLabelsResponse,
             401: PurchaseLabelsResponse,
@@ -1222,7 +1225,8 @@ class ShippingV1Client(__BaseClient):
             429: PurchaseLabelsResponse,
             500: PurchaseLabelsResponse,
             503: PurchaseLabelsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def retrieveShippingLabel(
         self,
@@ -1246,7 +1250,7 @@ class ShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: RetrieveShippingLabelResponse,
             400: RetrieveShippingLabelResponse,
             401: RetrieveShippingLabelResponse,
@@ -1255,7 +1259,8 @@ class ShippingV1Client(__BaseClient):
             429: RetrieveShippingLabelResponse,
             500: RetrieveShippingLabelResponse,
             503: RetrieveShippingLabelResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def purchaseShipment(
         self,
@@ -1277,7 +1282,7 @@ class ShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: PurchaseShipmentResponse,
             400: PurchaseShipmentResponse,
             401: PurchaseShipmentResponse,
@@ -1286,7 +1291,8 @@ class ShippingV1Client(__BaseClient):
             429: PurchaseShipmentResponse,
             500: PurchaseShipmentResponse,
             503: PurchaseShipmentResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getRates(
         self,
@@ -1308,7 +1314,7 @@ class ShippingV1Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: GetRatesResponse,
             400: GetRatesResponse,
             401: GetRatesResponse,
@@ -1317,7 +1323,8 @@ class ShippingV1Client(__BaseClient):
             429: GetRatesResponse,
             500: GetRatesResponse,
             503: GetRatesResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getAccount(
         self,
@@ -1337,7 +1344,7 @@ class ShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetAccountResponse,
             400: GetAccountResponse,
             401: GetAccountResponse,
@@ -1346,7 +1353,8 @@ class ShippingV1Client(__BaseClient):
             429: GetAccountResponse,
             500: GetAccountResponse,
             503: GetAccountResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getTrackingInformation(
         self,
@@ -1367,7 +1375,7 @@ class ShippingV1Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetTrackingInformationResponse,
             400: GetTrackingInformationResponse,
             401: GetTrackingInformationResponse,
@@ -1376,4 +1384,5 @@ class ShippingV1Client(__BaseClient):
             429: GetTrackingInformationResponse,
             500: GetTrackingInformationResponse,
             503: GetTrackingInformationResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

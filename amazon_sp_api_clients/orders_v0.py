@@ -1039,7 +1039,7 @@ class OrdersV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrdersResponse,
             400: GetOrdersResponse,
             403: GetOrdersResponse,
@@ -1047,7 +1047,8 @@ class OrdersV0Client(__BaseClient):
             429: GetOrdersResponse,
             500: GetOrdersResponse,
             503: GetOrdersResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrder(
         self,
@@ -1069,7 +1070,7 @@ class OrdersV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrderResponse,
             400: GetOrderResponse,
             403: GetOrderResponse,
@@ -1077,7 +1078,8 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderResponse,
             500: GetOrderResponse,
             503: GetOrderResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderBuyerInfo(
         self,
@@ -1100,7 +1102,7 @@ class OrdersV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrderBuyerInfoResponse,
             400: GetOrderBuyerInfoResponse,
             403: GetOrderBuyerInfoResponse,
@@ -1108,7 +1110,8 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderBuyerInfoResponse,
             500: GetOrderBuyerInfoResponse,
             503: GetOrderBuyerInfoResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderAddress(
         self,
@@ -1131,7 +1134,7 @@ class OrdersV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrderAddressResponse,
             400: GetOrderAddressResponse,
             403: GetOrderAddressResponse,
@@ -1139,7 +1142,8 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderAddressResponse,
             500: GetOrderAddressResponse,
             503: GetOrderAddressResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderItems(
         self,
@@ -1165,7 +1169,7 @@ class OrdersV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrderItemsResponse,
             400: GetOrderItemsResponse,
             403: GetOrderItemsResponse,
@@ -1173,7 +1177,8 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderItemsResponse,
             500: GetOrderItemsResponse,
             503: GetOrderItemsResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderItemsBuyerInfo(
         self,
@@ -1199,7 +1204,7 @@ class OrdersV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOrderItemsBuyerInfoResponse,
             400: GetOrderItemsBuyerInfoResponse,
             403: GetOrderItemsBuyerInfoResponse,
@@ -1207,4 +1212,5 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderItemsBuyerInfoResponse,
             500: GetOrderItemsBuyerInfoResponse,
             503: GetOrderItemsBuyerInfoResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

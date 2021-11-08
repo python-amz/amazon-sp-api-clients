@@ -120,7 +120,7 @@ class Tokens20210301Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             200: CreateRestrictedDataTokenResponse,
             400: ErrorList,
             401: ErrorList,
@@ -130,4 +130,5 @@ class Tokens20210301Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

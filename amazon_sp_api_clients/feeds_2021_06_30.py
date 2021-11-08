@@ -252,7 +252,7 @@ class Feeds20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetFeedsResponse,
             400: ErrorList,
             401: ErrorList,
@@ -262,7 +262,8 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createFeed(
         self,
@@ -284,7 +285,7 @@ class Feeds20210630Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             202: CreateFeedResponse,
             400: ErrorList,
             401: ErrorList,
@@ -294,7 +295,8 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getFeed(
         self,
@@ -315,7 +317,7 @@ class Feeds20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: Feed,
             400: ErrorList,
             401: ErrorList,
@@ -325,7 +327,8 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelFeed(
         self,
@@ -346,7 +349,7 @@ class Feeds20210630Client(__BaseClient):
             method="DELETE",
             params=params,
         )
-        return {
+        response_type = {
             200: None,
             400: ErrorList,
             401: ErrorList,
@@ -356,7 +359,8 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def createFeedDocument(
         self,
@@ -378,7 +382,7 @@ class Feeds20210630Client(__BaseClient):
             params=params,
             data=data.data,
         )
-        return {
+        response_type = {
             201: CreateFeedDocumentResponse,
             400: ErrorList,
             403: ErrorList,
@@ -388,7 +392,8 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getFeedDocument(
         self,
@@ -409,7 +414,7 @@ class Feeds20210630Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: FeedDocument,
             400: ErrorList,
             401: ErrorList,
@@ -419,4 +424,5 @@ class Feeds20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))

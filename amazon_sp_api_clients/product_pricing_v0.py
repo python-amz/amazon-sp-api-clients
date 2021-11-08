@@ -954,7 +954,7 @@ class ProductPricingV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPricingResponse,
             400: GetPricingResponse,
             401: GetPricingResponse,
@@ -963,7 +963,8 @@ class ProductPricingV0Client(__BaseClient):
             429: GetPricingResponse,
             500: GetPricingResponse,
             503: GetPricingResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getCompetitivePricing(
         self,
@@ -999,7 +1000,7 @@ class ProductPricingV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetPricingResponse,
             400: GetPricingResponse,
             401: GetPricingResponse,
@@ -1008,7 +1009,8 @@ class ProductPricingV0Client(__BaseClient):
             429: GetPricingResponse,
             500: GetPricingResponse,
             503: GetPricingResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getListingOffers(
         self,
@@ -1039,7 +1041,7 @@ class ProductPricingV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOffersResponse,
             400: GetOffersResponse,
             401: GetOffersResponse,
@@ -1048,7 +1050,8 @@ class ProductPricingV0Client(__BaseClient):
             429: GetOffersResponse,
             500: GetOffersResponse,
             503: GetOffersResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
 
     def getItemOffers(
         self,
@@ -1079,7 +1082,7 @@ class ProductPricingV0Client(__BaseClient):
             method="GET",
             params=params,
         )
-        return {
+        response_type = {
             200: GetOffersResponse,
             400: GetOffersResponse,
             401: GetOffersResponse,
@@ -1088,4 +1091,5 @@ class ProductPricingV0Client(__BaseClient):
             429: GetOffersResponse,
             500: GetOffersResponse,
             503: GetOffersResponse,
-        }[response.status_code](self._get_response_json(response))
+        }[response.status_code]
+        return None if response_type is None else response_type(self._get_response_json(response))
