@@ -223,15 +223,42 @@ class OperationParameter:
 @dataclass
 class Operation:
     swagger_data: dict
-    url: str
-    method: str
-    operation_id: str = ''
+    source_url: str
+    source_method: str
     source: dict = None
-    request_body: dict = field(default_factory=dict)
+
+    @cached_property
+    def url(self):
+        return self.source_url
+
+    @cached_property
+    def method(self):
+        return self.source_method.upper()
+
+    @cached_property
+    def request_body(self):
+        if not (self.source_method == 'post' and 'requestBody' in self.source):
+            return {}
+        request_body = self.source['requestBody']
+        assert 'content' in request_body
+        request_body_content = request_body['content']
+        assert set(request_body_content.keys()) == {'application/json'}
+        request_body_json = request_body_content['application/json']
+        assert set(request_body_json.keys()) == {'schema'}
+        request_body_schema = request_body_json['schema']
+        assert '$ref' in request_body_schema
+        request_body_type = parse_type(request_body_schema['$ref'])
+        return {
+            'type': request_body_type
+        }
 
     @cached_property
     def __parameters(self):
         return [OperationParameter(swagger_data=self.swagger_data, source=d) for d in self.source.get('parameters', [])]
+
+    @cached_property
+    def operation_id(self):
+        return self.source['operationId']
 
     @cached_property
     def query_parameters(self):
@@ -259,35 +286,22 @@ class Operation:
                 parsed_response_data = result.setdefault(status_code, {})
                 parsed_response_data['type'] = 'None'
             else:
-                raise ValueError(f'Could not parse response: {self.url}, {self.method}, {status_code}')
+                raise ValueError(f'Could not parse response: {self.source_url}, {self.source_method}, {status_code}')
         return result
 
 
 def stage_6_operations(data: dict):
     paths = data['paths']
-    parsed_operations: dict[str, Operation] = {}
-    for url, url_data in paths.items():
-        for method, method_data in url_data.items():
-            parsed_operation_data: Operation = parsed_operations.setdefault(method_data['operationId'], Operation(
-                swagger_data=data,
-                url=url,
-                method=method.upper(),
-                operation_id=method_data['operationId'],
-                source=method_data,
-            ))
-            # parse_type(method_data['requestBody']['content']['application/json']['schema']['$ref'])
-            if method == 'post' and 'requestBody' in method_data:
-                request_body = method_data['requestBody']
-                assert 'content' in request_body
-                request_body_content = request_body['content']
-                assert set(request_body_content.keys()) == {'application/json'}
-                request_body_json = request_body_content['application/json']
-                assert set(request_body_json.keys()) == {'schema'}
-                request_body_schema = request_body_json['schema']
-                assert '$ref' in request_body_schema
-                request_body_type = parse_type(request_body_schema['$ref'])
-                parsed_operation_data.request_body.setdefault('type', request_body_type)
-
+    parsed_operations: dict[str, Operation] = {
+        method_data['operationId']: Operation(
+            swagger_data=data,
+            source_url=url,
+            source_method=method,
+            source=method_data,
+        )
+        for url, url_data in paths.items()
+        for method, method_data in url_data.items()
+    }
     return parsed_operations
 
 
