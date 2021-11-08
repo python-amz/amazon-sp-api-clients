@@ -264,7 +264,7 @@ class BaseClient:
                         aws_session_token=role.get('SessionToken'))
         while True:
 
-            if method == 'POST':
+            if method in ('POST', 'PUT', 'PATCH', 'DELETE'):
                 response = request(method, self._endpoint + path, data=parsed_data, headers=parsed_headers,
                                    auth=auth)
             elif method == 'GET':
