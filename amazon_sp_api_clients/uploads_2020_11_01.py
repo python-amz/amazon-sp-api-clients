@@ -90,9 +90,7 @@ class Uploads20201101Client(__BaseClient):
         | .1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/uploads/2020-11-01/uploadDestinations/{resource}".format(
-            resource=resource,
-        )
+        url = f"/uploads/2020-11-01/uploadDestinations/{resource}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))

@@ -659,9 +659,7 @@ class ServicesV1Client(__BaseClient):
         | 20 | 40 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}".format(
-            serviceJobId=serviceJobId,
-        )
+        url = f"/service/v1/serviceJobs/{serviceJobId}"
         params = {}
         response = self.request(
             path=url,
@@ -694,9 +692,7 @@ class ServicesV1Client(__BaseClient):
         | 5 | 20 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/cancellations".format(
-            serviceJobId=serviceJobId,
-        )
+        url = f"/service/v1/serviceJobs/{serviceJobId}/cancellations"
         params = {}
         if cancellationReasonCode is not None:
             params["cancellationReasonCode"] = cancellationReasonCode
@@ -730,9 +726,7 @@ class ServicesV1Client(__BaseClient):
         | 5 | 20 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/completions".format(
-            serviceJobId=serviceJobId,
-        )
+        url = f"/service/v1/serviceJobs/{serviceJobId}/completions"
         params = {}
         response = self.request(
             path=url,
@@ -776,7 +770,7 @@ class ServicesV1Client(__BaseClient):
         | 10 | 40 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/service/v1/serviceJobs".format()
+        url = f"/service/v1/serviceJobs"
         params = {}
         if serviceOrderIds is not None:
             params["serviceOrderIds"] = ",".join(map(str, serviceOrderIds))
@@ -834,9 +828,7 @@ class ServicesV1Client(__BaseClient):
         | 5 | 20 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/appointments".format(
-            serviceJobId=serviceJobId,
-        )
+        url = f"/service/v1/serviceJobs/{serviceJobId}/appointments"
         params = {}
         response = self.request(
             path=url,
@@ -871,10 +863,7 @@ class ServicesV1Client(__BaseClient):
         | 5 | 20 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}".format(
-            serviceJobId=serviceJobId,
-            appointmentId=appointmentId,
-        )
+        url = f"/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}"
         params = {}
         response = self.request(
             path=url,

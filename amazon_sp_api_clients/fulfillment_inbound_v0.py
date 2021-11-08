@@ -1977,7 +1977,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/itemsGuidance".format()
+        url = f"/fba/inbound/v0/itemsGuidance"
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
@@ -2013,7 +2013,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/plans".format()
+        url = f"/fba/inbound/v0/plans"
         params = {}
         response = self.request(
             path=url,
@@ -2045,9 +2045,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}"
         params = {}
         response = self.request(
             path=url,
@@ -2079,9 +2077,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}"
         params = {}
         response = self.request(
             path=url,
@@ -2113,9 +2109,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/preorder".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/preorder"
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
@@ -2149,9 +2143,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/preorder/confirm".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/preorder/confirm"
         params = {}
         if NeedByDate is not None:
             params["NeedByDate"] = NeedByDate
@@ -2187,7 +2179,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/prepInstructions".format()
+        url = f"/fba/inbound/v0/prepInstructions"
         params = {}
         if ShipToCountryCode is not None:
             params["ShipToCountryCode"] = ShipToCountryCode
@@ -2223,9 +2215,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/transport".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/transport"
         params = {}
         response = self.request(
             path=url,
@@ -2256,9 +2246,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/transport".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/transport"
         params = {}
         response = self.request(
             path=url,
@@ -2291,9 +2279,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/transport/void".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/transport/void"
         params = {}
         response = self.request(
             path=url,
@@ -2324,9 +2310,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/transport/estimate".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/transport/estimate"
         params = {}
         response = self.request(
             path=url,
@@ -2358,9 +2342,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/transport/confirm".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/transport/confirm"
         params = {}
         response = self.request(
             path=url,
@@ -2397,9 +2379,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/labels".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/labels"
         params = {}
         if PageType is not None:
             params["PageType"] = PageType
@@ -2443,9 +2423,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/billOfLading".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/billOfLading"
         params = {}
         response = self.request(
             path=url,
@@ -2481,7 +2459,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments".format()
+        url = f"/fba/inbound/v0/shipments"
         params = {}
         if ShipmentStatusList is not None:
             params["ShipmentStatusList"] = ",".join(map(str, ShipmentStatusList))
@@ -2526,9 +2504,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipments/{shipmentId}/items".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/fba/inbound/v0/shipments/{shipmentId}/items"
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
@@ -2564,7 +2540,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v0/shipmentItems".format()
+        url = f"/fba/inbound/v0/shipmentItems"
         params = {}
         if LastUpdatedAfter is not None:
             params["LastUpdatedAfter"] = LastUpdatedAfter

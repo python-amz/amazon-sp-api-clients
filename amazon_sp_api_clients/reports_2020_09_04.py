@@ -451,7 +451,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/reports".format()
+        url = f"/reports/2020-09-04/reports"
         params = {}
         if reportTypes is not None:
             params["reportTypes"] = ",".join(map(str, reportTypes))
@@ -496,7 +496,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0167 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/reports".format()
+        url = f"/reports/2020-09-04/reports"
         params = {}
         response = self.request(
             path=url,
@@ -528,9 +528,7 @@ class Reports20200904Client(__BaseClient):
         | 2.0 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/reports/{reportId}".format(
-            reportId=reportId,
-        )
+        url = f"/reports/2020-09-04/reports/{reportId}"
         params = {}
         response = self.request(
             path=url,
@@ -561,9 +559,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/reports/{reportId}".format(
-            reportId=reportId,
-        )
+        url = f"/reports/2020-09-04/reports/{reportId}"
         params = {}
         response = self.request(
             path=url,
@@ -594,7 +590,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/schedules".format()
+        url = f"/reports/2020-09-04/schedules"
         params = {}
         if reportTypes is not None:
             params["reportTypes"] = ",".join(map(str, reportTypes))
@@ -627,7 +623,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/schedules".format()
+        url = f"/reports/2020-09-04/schedules"
         params = {}
         response = self.request(
             path=url,
@@ -659,9 +655,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/schedules/{reportScheduleId}".format(
-            reportScheduleId=reportScheduleId,
-        )
+        url = f"/reports/2020-09-04/schedules/{reportScheduleId}"
         params = {}
         response = self.request(
             path=url,
@@ -692,9 +686,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/schedules/{reportScheduleId}".format(
-            reportScheduleId=reportScheduleId,
-        )
+        url = f"/reports/2020-09-04/schedules/{reportScheduleId}"
         params = {}
         response = self.request(
             path=url,
@@ -725,9 +717,7 @@ class Reports20200904Client(__BaseClient):
         | 0.0167 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/reports/2020-09-04/documents/{reportDocumentId}".format(
-            reportDocumentId=reportDocumentId,
-        )
+        url = f"/reports/2020-09-04/documents/{reportDocumentId}"
         params = {}
         response = self.request(
             path=url,

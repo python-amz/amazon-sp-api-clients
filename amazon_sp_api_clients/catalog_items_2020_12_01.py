@@ -544,7 +544,7 @@ class CatalogItems20201201Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
         """
-        url = "/catalog/2020-12-01/items".format()
+        url = f"/catalog/2020-12-01/items"
         params = {}
         if keywords is not None:
             params["keywords"] = ",".join(map(str, keywords))
@@ -597,9 +597,7 @@ class CatalogItems20201201Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
         """
-        url = "/catalog/2020-12-01/items/{asin}".format(
-            asin=asin,
-        )
+        url = f"/catalog/2020-12-01/items/{asin}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))

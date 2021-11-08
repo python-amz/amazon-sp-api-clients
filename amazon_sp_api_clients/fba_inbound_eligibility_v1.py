@@ -97,7 +97,7 @@ class FbaInboundEligibilityV1Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inbound/v1/eligibility/itemPreview".format()
+        url = f"/fba/inbound/v1/eligibility/itemPreview"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))

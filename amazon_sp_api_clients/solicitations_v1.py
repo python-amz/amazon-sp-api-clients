@@ -172,9 +172,7 @@ class SolicitationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/solicitations/v1/orders/{amazonOrderId}".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/solicitations/v1/orders/{amazonOrderId}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -208,9 +206,7 @@ class SolicitationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/solicitations/v1/orders/{amazonOrderId}/solicitations/productReviewAndSellerFeedback".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/solicitations/v1/orders/{amazonOrderId}/solicitations/productReviewAndSellerFeedback"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))

@@ -998,7 +998,7 @@ class OrdersV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/orders/v0/orders".format()
+        url = f"/orders/v0/orders"
         params = {}
         if CreatedAfter is not None:
             params["CreatedAfter"] = CreatedAfter
@@ -1062,9 +1062,7 @@ class OrdersV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/orders/v0/orders/{orderId}".format(
-            orderId=orderId,
-        )
+        url = f"/orders/v0/orders/{orderId}"
         params = {}
         response = self.request(
             path=url,
@@ -1095,9 +1093,7 @@ class OrdersV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/orders/v0/orders/{orderId}/buyerInfo".format(
-            orderId=orderId,
-        )
+        url = f"/orders/v0/orders/{orderId}/buyerInfo"
         params = {}
         response = self.request(
             path=url,
@@ -1128,9 +1124,7 @@ class OrdersV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/orders/v0/orders/{orderId}/address".format(
-            orderId=orderId,
-        )
+        url = f"/orders/v0/orders/{orderId}/address"
         params = {}
         response = self.request(
             path=url,
@@ -1162,9 +1156,7 @@ class OrdersV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/orders/v0/orders/{orderId}/orderItems".format(
-            orderId=orderId,
-        )
+        url = f"/orders/v0/orders/{orderId}/orderItems"
         params = {}
         if NextToken is not None:
             params["NextToken"] = NextToken
@@ -1198,9 +1190,7 @@ class OrdersV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/orders/v0/orders/{orderId}/orderItems/buyerInfo".format(
-            orderId=orderId,
-        )
+        url = f"/orders/v0/orders/{orderId}/orderItems/buyerInfo"
         params = {}
         if NextToken is not None:
             params["NextToken"] = NextToken

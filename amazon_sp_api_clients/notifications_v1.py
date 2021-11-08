@@ -372,9 +372,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/subscriptions/{notificationType}".format(
-            notificationType=notificationType,
-        )
+        url = f"/notifications/v1/subscriptions/{notificationType}"
         params = {}
         response = self.request(
             path=url,
@@ -406,9 +404,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/subscriptions/{notificationType}".format(
-            notificationType=notificationType,
-        )
+        url = f"/notifications/v1/subscriptions/{notificationType}"
         params = {}
         response = self.request(
             path=url,
@@ -442,10 +438,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(
-            subscriptionId=subscriptionId,
-            notificationType=notificationType,
-        )
+        url = f"/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
         params = {}
         response = self.request(
             path=url,
@@ -478,10 +471,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(
-            subscriptionId=subscriptionId,
-            notificationType=notificationType,
-        )
+        url = f"/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
         params = {}
         response = self.request(
             path=url,
@@ -512,7 +502,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/destinations".format()
+        url = f"/notifications/v1/destinations"
         params = {}
         response = self.request(
             path=url,
@@ -544,7 +534,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/destinations".format()
+        url = f"/notifications/v1/destinations"
         params = {}
         response = self.request(
             path=url,
@@ -577,9 +567,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/destinations/{destinationId}".format(
-            destinationId=destinationId,
-        )
+        url = f"/notifications/v1/destinations/{destinationId}"
         params = {}
         response = self.request(
             path=url,
@@ -611,9 +599,7 @@ class NotificationsV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/notifications/v1/destinations/{destinationId}".format(
-            destinationId=destinationId,
-        )
+        url = f"/notifications/v1/destinations/{destinationId}"
         params = {}
         response = self.request(
             path=url,

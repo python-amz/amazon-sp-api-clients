@@ -476,9 +476,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -513,9 +511,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -551,9 +547,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -589,9 +583,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -626,9 +618,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -663,9 +653,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -701,9 +689,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -739,9 +725,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -777,9 +761,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/warranty"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -813,9 +795,7 @@ class MessagingV1Client(__BaseClient):
         | ---- | ---- |
         | 1 | 5 |
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/attributes".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/attributes"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -850,9 +830,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -888,9 +866,7 @@ class MessagingV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem".format(
-            amazonOrderId=amazonOrderId,
-        )
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))

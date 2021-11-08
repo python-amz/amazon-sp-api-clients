@@ -142,7 +142,7 @@ class SellersV1Client(__BaseClient):
         | .016 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/sellers/v1/marketplaceParticipations".format()
+        url = f"/sellers/v1/marketplaceParticipations"
         params = {}
         response = self.request(
             path=url,

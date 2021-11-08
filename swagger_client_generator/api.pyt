@@ -138,11 +138,7 @@ class {{ class_name }}Client(__BaseClient):
         {{ operation.description }}
         """
 
-        url = '{{ operation.url }}'.format(
-            {% for path_parameter_name, path_parameter in operation.path_parameters.items() %}
-                {{ path_parameter_name }} = {{ path_parameter_name }},
-            {% endfor %}
-        )
+        url = f'{{ operation.url }}'
         params = {}
         {% for query_parameter_name, query_parameter in operation.query_parameters.items() %}
         if {{ query_parameter_name }} is not None:

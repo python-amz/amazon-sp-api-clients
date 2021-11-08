@@ -1394,7 +1394,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments".format()
+        url = f"/aplus/2020-11-01/contentDocuments"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1431,7 +1431,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments".format()
+        url = f"/aplus/2020-11-01/contentDocuments"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1467,9 +1467,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}".format(
-            contentReferenceKey=contentReferenceKey,
-        )
+        url = f"/aplus/2020-11-01/contentDocuments/{contentReferenceKey}"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1507,9 +1505,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}".format(
-            contentReferenceKey=contentReferenceKey,
-        )
+        url = f"/aplus/2020-11-01/contentDocuments/{contentReferenceKey}"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1548,9 +1544,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins".format(
-            contentReferenceKey=contentReferenceKey,
-        )
+        url = f"/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1592,9 +1586,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins".format(
-            contentReferenceKey=contentReferenceKey,
-        )
+        url = f"/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1631,7 +1623,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentAsinValidations".format()
+        url = f"/aplus/2020-11-01/contentAsinValidations"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1669,7 +1661,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentPublishRecords".format()
+        url = f"/aplus/2020-11-01/contentPublishRecords"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1707,9 +1699,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions".format(
-            contentReferenceKey=contentReferenceKey,
-        )
+        url = f"/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -1744,9 +1734,7 @@ class AplusContent20201101Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions".format(
-            contentReferenceKey=contentReferenceKey,
-        )
+        url = f"/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId

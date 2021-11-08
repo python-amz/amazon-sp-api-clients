@@ -845,7 +845,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format()
+        url = f"/vendor/directFulfillment/shipping/v1/shippingLabels"
         params = {}
         if shipFromPartyId is not None:
             params["shipFromPartyId"] = shipFromPartyId
@@ -888,7 +888,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format()
+        url = f"/vendor/directFulfillment/shipping/v1/shippingLabels"
         params = {}
         response = self.request(
             path=url,
@@ -921,9 +921,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}".format(
-            purchaseOrderNumber=purchaseOrderNumber,
-        )
+        url = f"/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}"
         params = {}
         response = self.request(
             path=url,
@@ -955,7 +953,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations".format()
+        url = f"/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
         params = {}
         response = self.request(
             path=url,
@@ -988,7 +986,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates".format()
+        url = f"/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
         params = {}
         response = self.request(
             path=url,
@@ -1026,7 +1024,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/customerInvoices".format()
+        url = f"/vendor/directFulfillment/shipping/v1/customerInvoices"
         params = {}
         if shipFromPartyId is not None:
             params["shipFromPartyId"] = shipFromPartyId
@@ -1069,9 +1067,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}".format(
-            purchaseOrderNumber=purchaseOrderNumber,
-        )
+        url = f"/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}"
         params = {}
         response = self.request(
             path=url,
@@ -1108,7 +1104,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/packingSlips".format()
+        url = f"/vendor/directFulfillment/shipping/v1/packingSlips"
         params = {}
         if shipFromPartyId is not None:
             params["shipFromPartyId"] = shipFromPartyId
@@ -1152,9 +1148,7 @@ class VendorDirectFulfillmentShippingV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}".format(
-            purchaseOrderNumber=purchaseOrderNumber,
-        )
+        url = f"/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}"
         params = {}
         response = self.request(
             path=url,

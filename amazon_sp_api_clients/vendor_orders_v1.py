@@ -723,7 +723,7 @@ class VendorOrdersV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/orders/v1/purchaseOrders".format()
+        url = f"/vendor/orders/v1/purchaseOrders"
         params = {}
         if limit is not None:
             params["limit"] = limit
@@ -778,9 +778,7 @@ class VendorOrdersV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}".format(
-            purchaseOrderNumber=purchaseOrderNumber,
-        )
+        url = f"/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}"
         params = {}
         response = self.request(
             path=url,
@@ -812,7 +810,7 @@ class VendorOrdersV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/orders/v1/acknowledgements".format()
+        url = f"/vendor/orders/v1/acknowledgements"
         params = {}
         response = self.request(
             path=url,
@@ -856,7 +854,7 @@ class VendorOrdersV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/orders/v1/purchaseOrdersStatus".format()
+        url = f"/vendor/orders/v1/purchaseOrdersStatus"
         params = {}
         if limit is not None:
             params["limit"] = limit

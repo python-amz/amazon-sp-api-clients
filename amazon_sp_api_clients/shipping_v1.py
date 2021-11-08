@@ -1113,7 +1113,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/shipments".format()
+        url = f"/shipping/v1/shipments"
         params = {}
         response = self.request(
             path=url,
@@ -1144,9 +1144,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/shipments/{shipmentId}".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/shipping/v1/shipments/{shipmentId}"
         params = {}
         response = self.request(
             path=url,
@@ -1176,9 +1174,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/shipments/{shipmentId}/cancel".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/shipping/v1/shipments/{shipmentId}/cancel"
         params = {}
         response = self.request(
             path=url,
@@ -1209,9 +1205,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/shipping/v1/shipments/{shipmentId}/purchaseLabels"
         params = {}
         response = self.request(
             path=url,
@@ -1244,10 +1238,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label".format(
-            shipmentId=shipmentId,
-            trackingId=trackingId,
-        )
+        url = f"/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label"
         params = {}
         response = self.request(
             path=url,
@@ -1278,7 +1269,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/purchaseShipment".format()
+        url = f"/shipping/v1/purchaseShipment"
         params = {}
         response = self.request(
             path=url,
@@ -1309,7 +1300,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/rates".format()
+        url = f"/shipping/v1/rates"
         params = {}
         response = self.request(
             path=url,
@@ -1339,7 +1330,7 @@ class ShippingV1Client(__BaseClient):
         | 5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/account".format()
+        url = f"/shipping/v1/account"
         params = {}
         response = self.request(
             path=url,
@@ -1369,9 +1360,7 @@ class ShippingV1Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/shipping/v1/tracking/{trackingId}".format(
-            trackingId=trackingId,
-        )
+        url = f"/shipping/v1/tracking/{trackingId}"
         params = {}
         response = self.request(
             path=url,

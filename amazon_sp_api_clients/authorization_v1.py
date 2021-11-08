@@ -81,7 +81,7 @@ class AuthorizationV1Client(__BaseClient):
         | 1 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/authorization/v1/authorizationCode".format()
+        url = f"/authorization/v1/authorizationCode"
         params = {}
         if sellingPartnerId is not None:
             params["sellingPartnerId"] = sellingPartnerId

@@ -232,9 +232,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
         | 2 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}".format(
-            sellerSKU=sellerSKU,
-        )
+        url = f"/fba/smallAndLight/v1/enrollments/{sellerSKU}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -268,9 +266,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
         | 2 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}".format(
-            sellerSKU=sellerSKU,
-        )
+        url = f"/fba/smallAndLight/v1/enrollments/{sellerSKU}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -304,9 +300,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
         | 2 | 5 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}".format(
-            sellerSKU=sellerSKU,
-        )
+        url = f"/fba/smallAndLight/v1/enrollments/{sellerSKU}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -340,9 +334,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
         | 2 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/smallAndLight/v1/eligibilities/{sellerSKU}".format(
-            sellerSKU=sellerSKU,
-        )
+        url = f"/fba/smallAndLight/v1/eligibilities/{sellerSKU}"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
@@ -375,7 +367,7 @@ class FbaSmallAndLightV1Client(__BaseClient):
         | 1 | 3 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/smallAndLight/v1/feePreviews".format()
+        url = f"/fba/smallAndLight/v1/feePreviews"
         params = {}
         response = self.request(
             path=url,

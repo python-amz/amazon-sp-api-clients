@@ -899,7 +899,7 @@ class CatalogItemsV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/catalog/v0/items".format()
+        url = f"/catalog/v0/items"
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
@@ -947,9 +947,7 @@ class CatalogItemsV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/catalog/v0/items/{asin}".format(
-            asin=asin,
-        )
+        url = f"/catalog/v0/items/{asin}"
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId
@@ -984,7 +982,7 @@ class CatalogItemsV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/catalog/v0/categories".format()
+        url = f"/catalog/v0/categories"
         params = {}
         if MarketplaceId is not None:
             params["MarketplaceId"] = MarketplaceId

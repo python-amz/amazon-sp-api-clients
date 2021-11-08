@@ -1459,7 +1459,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/eligibleServices".format()
+        url = f"/mfn/v0/eligibleServices"
         params = {}
         response = self.request(
             path=url,
@@ -1490,7 +1490,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/eligibleShippingServices".format()
+        url = f"/mfn/v0/eligibleShippingServices"
         params = {}
         response = self.request(
             path=url,
@@ -1521,9 +1521,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/shipments/{shipmentId}".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/mfn/v0/shipments/{shipmentId}"
         params = {}
         response = self.request(
             path=url,
@@ -1553,9 +1551,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/shipments/{shipmentId}".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/mfn/v0/shipments/{shipmentId}"
         params = {}
         response = self.request(
             path=url,
@@ -1585,9 +1581,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/shipments/{shipmentId}/cancel".format(
-            shipmentId=shipmentId,
-        )
+        url = f"/mfn/v0/shipments/{shipmentId}/cancel"
         params = {}
         response = self.request(
             path=url,
@@ -1617,7 +1611,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/shipments".format()
+        url = f"/mfn/v0/shipments"
         params = {}
         response = self.request(
             path=url,
@@ -1648,7 +1642,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/sellerInputs".format()
+        url = f"/mfn/v0/sellerInputs"
         params = {}
         response = self.request(
             path=url,
@@ -1679,7 +1673,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | 1 | 1 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/mfn/v0/additionalSellerInputs".format()
+        url = f"/mfn/v0/additionalSellerInputs"
         params = {}
         response = self.request(
             path=url,

@@ -1913,7 +1913,7 @@ class FinancesV0Client(__BaseClient):
         | 0.5 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/finances/v0/financialEventGroups".format()
+        url = f"/finances/v0/financialEventGroups"
         params = {}
         if MaxResultsPerPage is not None:
             params["MaxResultsPerPage"] = MaxResultsPerPage
@@ -1952,9 +1952,7 @@ class FinancesV0Client(__BaseClient):
         | 0.5 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/finances/v0/financialEventGroups/{eventGroupId}/financialEvents".format(
-            eventGroupId=eventGroupId,
-        )
+        url = f"/finances/v0/financialEventGroups/{eventGroupId}/financialEvents"
         params = {}
         if MaxResultsPerPage is not None:
             params["MaxResultsPerPage"] = MaxResultsPerPage
@@ -1989,9 +1987,7 @@ class FinancesV0Client(__BaseClient):
         | 0.5 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/finances/v0/orders/{orderId}/financialEvents".format(
-            orderId=orderId,
-        )
+        url = f"/finances/v0/orders/{orderId}/financialEvents"
         params = {}
         if MaxResultsPerPage is not None:
             params["MaxResultsPerPage"] = MaxResultsPerPage
@@ -2027,7 +2023,7 @@ class FinancesV0Client(__BaseClient):
         | 0.5 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/finances/v0/financialEvents".format()
+        url = f"/finances/v0/financialEvents"
         params = {}
         if MaxResultsPerPage is not None:
             params["MaxResultsPerPage"] = MaxResultsPerPage

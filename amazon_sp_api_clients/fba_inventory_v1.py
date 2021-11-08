@@ -320,7 +320,7 @@ class FbaInventoryV1Client(__BaseClient):
         | 2 | 2 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/inventory/v1/summaries".format()
+        url = f"/fba/inventory/v1/summaries"
         params = {}
         if details is not None:
             params["details"] = details

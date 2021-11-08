@@ -1949,7 +1949,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview".format()
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders/preview"
         params = {}
         response = self.request(
             path=url,
@@ -1981,7 +1981,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders".format()
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders"
         params = {}
         if queryStartDate is not None:
             params["queryStartDate"] = queryStartDate
@@ -2015,7 +2015,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders".format()
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders"
         params = {}
         response = self.request(
             path=url,
@@ -2046,7 +2046,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/tracking".format()
+        url = f"/fba/outbound/2020-07-01/tracking"
         params = {}
         if packageNumber is not None:
             params["packageNumber"] = packageNumber
@@ -2081,7 +2081,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/returnReasonCodes".format()
+        url = f"/fba/outbound/2020-07-01/returnReasonCodes"
         params = {}
         if sellerSku is not None:
             params["sellerSku"] = sellerSku
@@ -2120,9 +2120,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return".format(
-            sellerFulfillmentOrderId=sellerFulfillmentOrderId,
-        )
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return"
         params = {}
         response = self.request(
             path=url,
@@ -2153,9 +2151,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}".format(
-            sellerFulfillmentOrderId=sellerFulfillmentOrderId,
-        )
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         params = {}
         response = self.request(
             path=url,
@@ -2186,9 +2182,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}".format(
-            sellerFulfillmentOrderId=sellerFulfillmentOrderId,
-        )
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         params = {}
         response = self.request(
             path=url,
@@ -2219,9 +2213,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel".format(
-            sellerFulfillmentOrderId=sellerFulfillmentOrderId,
-        )
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
         params = {}
         response = self.request(
             path=url,
@@ -2251,7 +2243,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/features".format()
+        url = f"/fba/outbound/2020-07-01/features"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -2285,9 +2277,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/features/inventory/{featureName}".format(
-            featureName=featureName,
-        )
+        url = f"/fba/outbound/2020-07-01/features/inventory/{featureName}"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId
@@ -2323,10 +2313,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | 2 | 30 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/fba/outbound/2020-07-01/features/inventory/{featureName}/{sellerSku}".format(
-            featureName=featureName,
-            sellerSku=sellerSku,
-        )
+        url = f"/fba/outbound/2020-07-01/features/inventory/{featureName}/{sellerSku}"
         params = {}
         if marketplaceId is not None:
             params["marketplaceId"] = marketplaceId

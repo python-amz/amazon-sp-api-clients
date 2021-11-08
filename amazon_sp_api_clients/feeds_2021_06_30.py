@@ -231,7 +231,7 @@ class Feeds20210630Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/feeds/2021-06-30/feeds".format()
+        url = f"/feeds/2021-06-30/feeds"
         params = {}
         if feedTypes is not None:
             params["feedTypes"] = ",".join(map(str, feedTypes))
@@ -276,7 +276,7 @@ class Feeds20210630Client(__BaseClient):
         | 0.0083 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/feeds/2021-06-30/feeds".format()
+        url = f"/feeds/2021-06-30/feeds"
         params = {}
         response = self.request(
             path=url,
@@ -308,9 +308,7 @@ class Feeds20210630Client(__BaseClient):
         | 2.0 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/feeds/2021-06-30/feeds/{feedId}".format(
-            feedId=feedId,
-        )
+        url = f"/feeds/2021-06-30/feeds/{feedId}"
         params = {}
         response = self.request(
             path=url,
@@ -341,9 +339,7 @@ class Feeds20210630Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/feeds/2021-06-30/feeds/{feedId}".format(
-            feedId=feedId,
-        )
+        url = f"/feeds/2021-06-30/feeds/{feedId}"
         params = {}
         response = self.request(
             path=url,
@@ -374,7 +370,7 @@ class Feeds20210630Client(__BaseClient):
         | 0.0083 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/feeds/2021-06-30/documents".format()
+        url = f"/feeds/2021-06-30/documents"
         params = {}
         response = self.request(
             path=url,
@@ -406,9 +402,7 @@ class Feeds20210630Client(__BaseClient):
         | 0.0222 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/feeds/2021-06-30/documents/{feedDocumentId}".format(
-            feedDocumentId=feedDocumentId,
-        )
+        url = f"/feeds/2021-06-30/documents/{feedDocumentId}"
         params = {}
         response = self.request(
             path=url,

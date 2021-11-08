@@ -742,7 +742,7 @@ class VendorShipmentsV1Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/vendor/shipping/v1/shipmentConfirmations".format()
+        url = f"/vendor/shipping/v1/shipmentConfirmations"
         params = {}
         response = self.request(
             path=url,

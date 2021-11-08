@@ -395,9 +395,7 @@ class ProductFeesV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/products/fees/v0/listings/{SellerSKU}/feesEstimate".format(
-            SellerSKU=SellerSKU,
-        )
+        url = f"/products/fees/v0/listings/{SellerSKU}/feesEstimate"
         params = {}
         response = self.request(
             path=url,
@@ -432,9 +430,7 @@ class ProductFeesV0Client(__BaseClient):
         |Selling partner specific| Variable | Variable |
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/products/fees/v0/items/{Asin}/feesEstimate".format(
-            Asin=Asin,
-        )
+        url = f"/products/fees/v0/items/{Asin}/feesEstimate"
         params = {}
         response = self.request(
             path=url,

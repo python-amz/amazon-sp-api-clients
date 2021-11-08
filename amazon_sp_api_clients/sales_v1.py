@@ -141,7 +141,7 @@ class SalesV1Client(__BaseClient):
         | .5 | 15 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
-        url = "/sales/v1/orderMetrics".format()
+        url = f"/sales/v1/orderMetrics"
         params = {}
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))

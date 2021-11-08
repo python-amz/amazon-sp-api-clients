@@ -135,7 +135,7 @@ class ListingsRestrictions20210801Client(__BaseClient):
         | 5 | 10 |
         The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/usage-plans-rate-limits/Usage-Plans-and-Rate-Limits.md).
         """
-        url = "/listings/2021-08-01/restrictions".format()
+        url = f"/listings/2021-08-01/restrictions"
         params = {}
         if asin is not None:
             params["asin"] = asin
