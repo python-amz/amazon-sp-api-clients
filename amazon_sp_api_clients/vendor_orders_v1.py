@@ -598,6 +598,10 @@ class OrderItemStatus:
             self.acknowledgementStatus: dict = dict(data["acknowledgementStatus"])
         else:
             self.acknowledgementStatus: dict = None
+        if "receivingStatus" in data:
+            self.receivingStatus: dict = dict(data["receivingStatus"])
+        else:
+            self.receivingStatus: dict = None
 
 
 class OrderedQuantityDetails:
@@ -845,6 +849,7 @@ class VendorOrdersV1Client(__BaseClient):
         purchaseOrderNumber: str = None,
         purchaseOrderStatus: str = None,
         itemConfirmationStatus: str = None,
+        itemReceiveStatus: str = None,
         orderingVendorCode: str = None,
         shipToPartyId: str = None,
     ):
@@ -879,6 +884,8 @@ class VendorOrdersV1Client(__BaseClient):
             params["purchaseOrderStatus"] = purchaseOrderStatus
         if itemConfirmationStatus is not None:
             params["itemConfirmationStatus"] = itemConfirmationStatus
+        if itemReceiveStatus is not None:
+            params["itemReceiveStatus"] = itemReceiveStatus
         if orderingVendorCode is not None:
             params["orderingVendorCode"] = orderingVendorCode
         if shipToPartyId is not None:

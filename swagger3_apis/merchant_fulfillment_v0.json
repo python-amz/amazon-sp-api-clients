@@ -4250,7 +4250,7 @@
             "StateOrProvinceCode": {
                 "maxLength": 30,
                 "type": "string",
-                "description": "The state or province code."
+                "description": "The state or province code. **Note.** Required in the Canada, US, and UK marketplaces. Also required for shipments originating from China."
             },
             "RejectedShippingService": {
                 "required": [

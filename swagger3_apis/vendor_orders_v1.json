@@ -2193,7 +2193,7 @@
                     {
                         "name": "itemConfirmationStatus",
                         "in": "query",
-                        "description": "Filters purchase orders based on the specified purchase order item status. If not included in filter, purchase orders for all statuses are included.",
+                        "description": "Filters purchase orders based on their item confirmation status. If the item confirmation status is not included in the filter, purchase orders for all confirmation statuses are included.",
                         "schema": {
                             "type": "string",
                             "enum": [
@@ -2205,38 +2205,79 @@
                             "x-docgen-enum-table-extension": [
                                 {
                                     "value": "ACCEPTED",
-                                    "description": "Status for orders accepted by vendors."
+                                    "description": "Provides a list of orders that has at least one item fully accepted by vendors."
                                 },
                                 {
                                     "value": "PARTIALLY_ACCEPTED",
-                                    "description": "Status for orders that are partially accepted by vendors."
+                                    "description": "Provides a list of orders that has at least one item partially accepted by vendors."
                                 },
                                 {
                                     "value": "REJECTED",
-                                    "description": "Status for orders that are rejected by vendors."
+                                    "description": "Provides a list of orders that has at least one item rejected by vendors."
                                 },
                                 {
                                     "value": "UNCONFIRMED",
-                                    "description": "Status for orders that are yet to be confirmed by vendors."
+                                    "description": "Provides a list of orders that has at least one item yet to be confirmed by vendors."
                                 }
                             ]
                         },
                         "x-docgen-enum-table-extension": [
                             {
                                 "value": "ACCEPTED",
-                                "description": "Status for orders accepted by vendors."
+                                "description": "Provides a list of orders that has at least one item fully accepted by vendors."
                             },
                             {
                                 "value": "PARTIALLY_ACCEPTED",
-                                "description": "Status for orders that are partially accepted by vendors."
+                                "description": "Provides a list of orders that has at least one item partially accepted by vendors."
                             },
                             {
                                 "value": "REJECTED",
-                                "description": "Status for orders that are rejected by vendors."
+                                "description": "Provides a list of orders that has at least one item rejected by vendors."
                             },
                             {
                                 "value": "UNCONFIRMED",
-                                "description": "Status for orders that are yet to be confirmed by vendors."
+                                "description": "Provides a list of orders that has at least one item yet to be confirmed by vendors."
+                            }
+                        ]
+                    },
+                    {
+                        "name": "itemReceiveStatus",
+                        "in": "query",
+                        "description": "Filters purchase orders based on the purchase order's item receive status. If the item receive status is not included in the filter, purchase orders for all receive statuses are included.",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "NOT_RECEIVED",
+                                "PARTIALLY_RECEIVED",
+                                "RECEIVED"
+                            ],
+                            "x-docgen-enum-table-extension": [
+                                {
+                                    "value": "NOT_RECEIVED",
+                                    "description": "Provides a list of orders that have at least one item not received by the buyer."
+                                },
+                                {
+                                    "value": "PARTIALLY_RECEIVED",
+                                    "description": "Provides a list of orders that have at least one item not received by the buyer."
+                                },
+                                {
+                                    "value": "RECEIVED",
+                                    "description": "Provides a list of orders that have at least one item fully received by the buyer."
+                                }
+                            ]
+                        },
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "NOT_RECEIVED",
+                                "description": "Provides a list of orders that have at least one item not received by the buyer."
+                            },
+                            {
+                                "value": "PARTIALLY_RECEIVED",
+                                "description": "Provides a list of orders that have at least one item not received by the buyer."
+                            },
+                            {
+                                "value": "RECEIVED",
+                                "description": "Provides a list of orders that have at least one item fully received by the buyer."
                             }
                         ]
                     },
@@ -2371,6 +2412,15 @@
                                                                         }
                                                                     }
                                                                 ]
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "RECEIVED",
+                                                                "receivedQuantity": {
+                                                                    "amount": 1,
+                                                                    "unitOfMeasure": "Cases",
+                                                                    "unitSize": 1
+                                                                },
+                                                                "lastReceiveDate": "2020-08-28T21:06:23.193Z"
                                                             }
                                                         },
                                                         {
@@ -2437,6 +2487,15 @@
                                                                         }
                                                                     }
                                                                 ]
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "PARTIALLY_RECEIVED",
+                                                                "receivedQuantity": {
+                                                                    "amount": 10,
+                                                                    "unitOfMeasure": "Eaches",
+                                                                    "unitSize": 1
+                                                                },
+                                                                "lastReceiveDate": "2020-08-30T21:05:58.193Z"
                                                             }
                                                         },
                                                         {
@@ -2490,6 +2549,14 @@
                                                                         }
                                                                     }
                                                                 ]
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "NOT_RECEIVED",
+                                                                "receivedQuantity": {
+                                                                    "amount": 0,
+                                                                    "unitOfMeasure": "Eaches",
+                                                                    "unitSize": 1
+                                                                }
                                                             }
                                                         }
                                                     ]
@@ -2558,6 +2625,14 @@
                                                                     "unitSize": 1
                                                                 },
                                                                 "rejectedQuantity": {
+                                                                    "amount": 0,
+                                                                    "unitOfMeasure": "Eaches",
+                                                                    "unitSize": 1
+                                                                }
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "NOT_RECEIVED",
+                                                                "receivedQuantity": {
                                                                     "amount": 0,
                                                                     "unitOfMeasure": "Eaches",
                                                                     "unitSize": 1
@@ -2643,6 +2718,14 @@
                                                                     "unitOfMeasure": "Eaches",
                                                                     "unitSize": 1
                                                                 }
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "NOT_RECEIVED",
+                                                                "receivedQuantity": {
+                                                                    "amount": 0,
+                                                                    "unitOfMeasure": "Eaches",
+                                                                    "unitSize": 1
+                                                                }
                                                             }
                                                         }
                                                     ]
@@ -2704,6 +2787,14 @@
                                                                     "unitSize": 1
                                                                 },
                                                                 "rejectedQuantity": {
+                                                                    "amount": 0,
+                                                                    "unitOfMeasure": "Eaches",
+                                                                    "unitSize": 1
+                                                                }
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "NOT_RECEIVED",
+                                                                "receivedQuantity": {
                                                                     "amount": 0,
                                                                     "unitOfMeasure": "Eaches",
                                                                     "unitSize": 1
@@ -2776,6 +2867,14 @@
                                                                     "unitOfMeasure": "Eaches",
                                                                     "unitSize": 1
                                                                 }
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "NOT_RECEIVED",
+                                                                "receivedQuantity": {
+                                                                    "amount": 0,
+                                                                    "unitOfMeasure": "Eaches",
+                                                                    "unitSize": 1
+                                                                }
                                                             }
                                                         }
                                                     ]
@@ -2837,6 +2936,14 @@
                                                                     "unitSize": 1
                                                                 },
                                                                 "rejectedQuantity": {
+                                                                    "amount": 0,
+                                                                    "unitOfMeasure": "Eaches",
+                                                                    "unitSize": 1
+                                                                }
+                                                            },
+                                                            "receivingStatus": {
+                                                                "receiveStatus": "NOT_RECEIVED",
+                                                                "receivedQuantity": {
                                                                     "amount": 0,
                                                                     "unitOfMeasure": "Eaches",
                                                                     "unitSize": 1
@@ -3605,7 +3712,6 @@
             "OrderAcknowledgementItem": {
                 "required": [
                     "itemAcknowledgements",
-                    "netCost",
                     "orderedQuantity"
                 ],
                 "type": "object",
@@ -3919,6 +4025,43 @@
                             }
                         },
                         "description": "Acknowledgement status information."
+                    },
+                    "receivingStatus": {
+                        "type": "object",
+                        "properties": {
+                            "receiveStatus": {
+                                "type": "string",
+                                "description": "Receive status of the line item.",
+                                "enum": [
+                                    "NOT_RECEIVED",
+                                    "PARTIALLY_RECEIVED",
+                                    "RECEIVED"
+                                ],
+                                "x-docgen-enum-table-extension": [
+                                    {
+                                        "value": "NOT_RECEIVED",
+                                        "description": "The buyer has not received any of the item."
+                                    },
+                                    {
+                                        "value": "PARTIALLY_RECEIVE",
+                                        "description": "The buyer has received some of the item and is expecting to receive the rest of the confirmed quantity."
+                                    },
+                                    {
+                                        "value": "RECEIVED",
+                                        "description": "Receiving is complete. The buyer has received all confirmed items."
+                                    }
+                                ]
+                            },
+                            "receivedQuantity": {
+                                "$ref": "#/components/schemas/ItemQuantity"
+                            },
+                            "lastReceiveDate": {
+                                "type": "string",
+                                "description": "The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.",
+                                "format": "date-time"
+                            }
+                        },
+                        "description": "Item receive status at the buyer's warehouse."
                     }
                 }
             },
