@@ -113,5 +113,5 @@ class Uploads20201101Client(__BaseClient):
             429: CreateUploadDestinationResponse,
             500: CreateUploadDestinationResponse,
             503: CreateUploadDestinationResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

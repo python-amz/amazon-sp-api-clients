@@ -1047,7 +1047,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrdersResponse,
             500: GetOrdersResponse,
             503: GetOrdersResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrder(
@@ -1078,7 +1078,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderResponse,
             500: GetOrderResponse,
             503: GetOrderResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderBuyerInfo(
@@ -1110,7 +1110,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderBuyerInfoResponse,
             500: GetOrderBuyerInfoResponse,
             503: GetOrderBuyerInfoResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderAddress(
@@ -1142,7 +1142,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderAddressResponse,
             500: GetOrderAddressResponse,
             503: GetOrderAddressResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderItems(
@@ -1177,7 +1177,7 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderItemsResponse,
             500: GetOrderItemsResponse,
             503: GetOrderItemsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrderItemsBuyerInfo(
@@ -1212,5 +1212,5 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderItemsBuyerInfoResponse,
             500: GetOrderItemsBuyerInfoResponse,
             503: GetOrderItemsBuyerInfoResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

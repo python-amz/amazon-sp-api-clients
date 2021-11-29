@@ -191,7 +191,7 @@ class SolicitationsV1Client(__BaseClient):
             429: GetSolicitationActionsForOrderResponse,
             500: GetSolicitationActionsForOrderResponse,
             503: GetSolicitationActionsForOrderResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createProductReviewAndSellerFeedbackSolicitation(
@@ -226,5 +226,5 @@ class SolicitationsV1Client(__BaseClient):
             429: CreateProductReviewAndSellerFeedbackSolicitationResponse,
             500: CreateProductReviewAndSellerFeedbackSolicitationResponse,
             503: CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

@@ -191,7 +191,7 @@ class ListingsItems20200901Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def deleteListingsItem(
@@ -230,7 +230,7 @@ class ListingsItems20200901Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def patchListingsItem(
@@ -271,5 +271,5 @@ class ListingsItems20200901Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

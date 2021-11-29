@@ -1936,7 +1936,7 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventGroupsResponse,
             500: ListFinancialEventGroupsResponse,
             503: ListFinancialEventGroupsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def listFinancialEventsByGroupId(
@@ -1972,7 +1972,7 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventsResponse,
             500: ListFinancialEventsResponse,
             503: ListFinancialEventsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def listFinancialEventsByOrderId(
@@ -2008,7 +2008,7 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventsResponse,
             500: ListFinancialEventsResponse,
             503: ListFinancialEventsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def listFinancialEvents(
@@ -2049,5 +2049,5 @@ class FinancesV0Client(__BaseClient):
             429: ListFinancialEventsResponse,
             500: ListFinancialEventsResponse,
             503: ListFinancialEventsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

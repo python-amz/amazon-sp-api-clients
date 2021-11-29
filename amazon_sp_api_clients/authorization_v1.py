@@ -104,5 +104,5 @@ class AuthorizationV1Client(__BaseClient):
             429: GetAuthorizationCodeResponse,
             500: GetAuthorizationCodeResponse,
             503: GetAuthorizationCodeResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

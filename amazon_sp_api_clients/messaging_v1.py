@@ -495,7 +495,7 @@ class MessagingV1Client(__BaseClient):
             429: GetMessagingActionsForOrderResponse,
             500: GetMessagingActionsForOrderResponse,
             503: GetMessagingActionsForOrderResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def confirmCustomizationDetails(
@@ -532,7 +532,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmCustomizationDetailsResponse,
             500: CreateConfirmCustomizationDetailsResponse,
             503: CreateConfirmCustomizationDetailsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createConfirmDeliveryDetails(
@@ -569,7 +569,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmDeliveryDetailsResponse,
             500: CreateConfirmDeliveryDetailsResponse,
             503: CreateConfirmDeliveryDetailsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createLegalDisclosure(
@@ -606,7 +606,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateLegalDisclosureResponse,
             500: CreateLegalDisclosureResponse,
             503: CreateLegalDisclosureResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createNegativeFeedbackRemoval(
@@ -641,7 +641,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateNegativeFeedbackRemovalResponse,
             500: CreateNegativeFeedbackRemovalResponse,
             503: CreateNegativeFeedbackRemovalResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createConfirmOrderDetails(
@@ -678,7 +678,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmOrderDetailsResponse,
             500: CreateConfirmOrderDetailsResponse,
             503: CreateConfirmOrderDetailsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createConfirmServiceDetails(
@@ -715,7 +715,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateConfirmServiceDetailsResponse,
             500: CreateConfirmServiceDetailsResponse,
             503: CreateConfirmServiceDetailsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def CreateAmazonMotors(
@@ -752,7 +752,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateAmazonMotorsResponse,
             500: CreateAmazonMotorsResponse,
             503: CreateAmazonMotorsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def CreateWarranty(
@@ -789,7 +789,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateWarrantyResponse,
             500: CreateWarrantyResponse,
             503: CreateWarrantyResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def GetAttributes(
@@ -823,7 +823,7 @@ class MessagingV1Client(__BaseClient):
             429: GetAttributesResponse,
             500: GetAttributesResponse,
             503: GetAttributesResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createDigitalAccessKey(
@@ -860,7 +860,7 @@ class MessagingV1Client(__BaseClient):
             429: CreateDigitalAccessKeyResponse,
             500: CreateDigitalAccessKeyResponse,
             503: CreateDigitalAccessKeyResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createUnexpectedProblem(
@@ -897,5 +897,5 @@ class MessagingV1Client(__BaseClient):
             429: CreateUnexpectedProblemResponse,
             500: CreateUnexpectedProblemResponse,
             503: CreateUnexpectedProblemResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

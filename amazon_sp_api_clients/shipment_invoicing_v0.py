@@ -487,7 +487,7 @@ class ShipmentInvoicingV0Client(__BaseClient):
             429: GetShipmentDetailsResponse,
             500: GetShipmentDetailsResponse,
             503: GetShipmentDetailsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitInvoice(
@@ -522,7 +522,7 @@ class ShipmentInvoicingV0Client(__BaseClient):
             429: SubmitInvoiceResponse,
             500: SubmitInvoiceResponse,
             503: SubmitInvoiceResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getInvoiceStatus(
@@ -555,5 +555,5 @@ class ShipmentInvoicingV0Client(__BaseClient):
             429: GetInvoiceStatusResponse,
             500: GetInvoiceStatusResponse,
             503: GetInvoiceStatusResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

@@ -434,5 +434,5 @@ class VendorDirectFulfillmentPaymentsV1Client(__BaseClient):
             429: SubmitInvoiceResponse,
             500: SubmitInvoiceResponse,
             503: SubmitInvoiceResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

@@ -963,7 +963,7 @@ class ProductPricingV0Client(__BaseClient):
             429: GetPricingResponse,
             500: GetPricingResponse,
             503: GetPricingResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getCompetitivePricing(
@@ -1009,7 +1009,7 @@ class ProductPricingV0Client(__BaseClient):
             429: GetPricingResponse,
             500: GetPricingResponse,
             503: GetPricingResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getListingOffers(
@@ -1050,7 +1050,7 @@ class ProductPricingV0Client(__BaseClient):
             429: GetOffersResponse,
             500: GetOffersResponse,
             503: GetOffersResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getItemOffers(
@@ -1091,5 +1091,5 @@ class ProductPricingV0Client(__BaseClient):
             429: GetOffersResponse,
             500: GetOffersResponse,
             503: GetOffersResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

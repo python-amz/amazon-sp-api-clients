@@ -159,5 +159,5 @@ class SellersV1Client(__BaseClient):
             429: GetMarketplaceParticipationsResponse,
             500: GetMarketplaceParticipationsResponse,
             503: GetMarketplaceParticipationsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

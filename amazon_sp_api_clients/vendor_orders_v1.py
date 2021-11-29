@@ -767,7 +767,7 @@ class VendorOrdersV1Client(__BaseClient):
             429: GetPurchaseOrdersResponse,
             500: GetPurchaseOrdersResponse,
             503: GetPurchaseOrdersResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPurchaseOrder(
@@ -800,7 +800,7 @@ class VendorOrdersV1Client(__BaseClient):
             429: GetPurchaseOrderResponse,
             500: GetPurchaseOrderResponse,
             503: GetPurchaseOrderResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitAcknowledgement(
@@ -834,7 +834,7 @@ class VendorOrdersV1Client(__BaseClient):
             429: SubmitAcknowledgementResponse,
             500: SubmitAcknowledgementResponse,
             503: SubmitAcknowledgementResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getPurchaseOrdersStatus(
@@ -904,5 +904,5 @@ class VendorOrdersV1Client(__BaseClient):
             429: GetPurchaseOrdersStatusResponse,
             500: GetPurchaseOrdersStatusResponse,
             503: GetPurchaseOrdersStatusResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

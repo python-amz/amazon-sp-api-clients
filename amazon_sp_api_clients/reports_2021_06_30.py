@@ -336,7 +336,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createReport(
@@ -369,7 +369,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReport(
@@ -401,7 +401,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelReport(
@@ -433,7 +433,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReportSchedules(
@@ -467,7 +467,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createReportSchedule(
@@ -500,7 +500,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReportSchedule(
@@ -532,7 +532,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelReportSchedule(
@@ -564,7 +564,7 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getReportDocument(
@@ -596,5 +596,5 @@ class Reports20210630Client(__BaseClient):
             429: ErrorList,
             500: ErrorList,
             503: ErrorList,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

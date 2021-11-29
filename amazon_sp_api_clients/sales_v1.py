@@ -176,5 +176,5 @@ class SalesV1Client(__BaseClient):
             429: GetOrderMetricsResponse,
             500: GetOrderMetricsResponse,
             503: GetOrderMetricsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

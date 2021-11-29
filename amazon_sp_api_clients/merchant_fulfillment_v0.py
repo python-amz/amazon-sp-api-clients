@@ -1476,7 +1476,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetEligibleShipmentServicesResponse,
             500: GetEligibleShipmentServicesResponse,
             503: GetEligibleShipmentServicesResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getEligibleShipmentServices(
@@ -1508,7 +1508,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetEligibleShipmentServicesResponse,
             500: GetEligibleShipmentServicesResponse,
             503: GetEligibleShipmentServicesResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getShipment(
@@ -1539,7 +1539,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetShipmentResponse,
             500: GetShipmentResponse,
             503: GetShipmentResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelShipment(
@@ -1570,7 +1570,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: CancelShipmentResponse,
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelShipmentOld(
@@ -1601,7 +1601,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: CancelShipmentResponse,
             500: CancelShipmentResponse,
             503: CancelShipmentResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createShipment(
@@ -1633,7 +1633,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: CreateShipmentResponse,
             500: CreateShipmentResponse,
             503: CreateShipmentResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getAdditionalSellerInputsOld(
@@ -1665,7 +1665,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetAdditionalSellerInputsResponse,
             500: GetAdditionalSellerInputsResponse,
             503: GetAdditionalSellerInputsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getAdditionalSellerInputs(
@@ -1697,5 +1697,5 @@ class MerchantFulfillmentV0Client(__BaseClient):
             429: GetAdditionalSellerInputsResponse,
             500: GetAdditionalSellerInputsResponse,
             503: GetAdditionalSellerInputsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

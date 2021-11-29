@@ -117,5 +117,5 @@ class VendorTransactionStatusV1Client(__BaseClient):
             429: GetTransactionResponse,
             500: GetTransactionResponse,
             503: GetTransactionResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

@@ -161,7 +161,7 @@ class {{ class_name }}Client(__BaseClient):
             {% for status_code, response in operation.responses.items() %}
                 {{ status_code }}: {{ response.type }},
             {% endfor %}
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
 {% endfor %}

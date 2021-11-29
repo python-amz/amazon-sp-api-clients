@@ -671,7 +671,7 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: GetOrdersResponse,
             500: GetOrdersResponse,
             503: GetOrdersResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getOrder(
@@ -704,7 +704,7 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: GetOrderResponse,
             500: GetOrderResponse,
             503: GetOrderResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def submitAcknowledgement(
@@ -738,5 +738,5 @@ class VendorDirectFulfillmentOrdersV1Client(__BaseClient):
             429: SubmitAcknowledgementResponse,
             500: SubmitAcknowledgementResponse,
             503: SubmitAcknowledgementResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

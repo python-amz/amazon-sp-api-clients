@@ -370,7 +370,7 @@ class Feeds20200904Client(__BaseClient):
             429: GetFeedsResponse,
             500: GetFeedsResponse,
             503: GetFeedsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createFeed(
@@ -403,7 +403,7 @@ class Feeds20200904Client(__BaseClient):
             429: CreateFeedResponse,
             500: CreateFeedResponse,
             503: CreateFeedResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getFeed(
@@ -435,7 +435,7 @@ class Feeds20200904Client(__BaseClient):
             429: GetFeedResponse,
             500: GetFeedResponse,
             503: GetFeedResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def cancelFeed(
@@ -467,7 +467,7 @@ class Feeds20200904Client(__BaseClient):
             429: CancelFeedResponse,
             500: CancelFeedResponse,
             503: CancelFeedResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def createFeedDocument(
@@ -500,7 +500,7 @@ class Feeds20200904Client(__BaseClient):
             429: CreateFeedDocumentResponse,
             500: CreateFeedDocumentResponse,
             503: CreateFeedDocumentResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getFeedDocument(
@@ -532,5 +532,5 @@ class Feeds20200904Client(__BaseClient):
             429: GetFeedDocumentResponse,
             500: GetFeedDocumentResponse,
             503: GetFeedDocumentResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

@@ -349,5 +349,5 @@ class FbaInventoryV1Client(__BaseClient):
             429: GetInventorySummariesResponse,
             500: GetInventorySummariesResponse,
             503: GetInventorySummariesResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

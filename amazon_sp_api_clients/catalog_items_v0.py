@@ -931,7 +931,7 @@ class CatalogItemsV0Client(__BaseClient):
             429: ListCatalogItemsResponse,
             500: ListCatalogItemsResponse,
             503: ListCatalogItemsResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def getCatalogItem(
@@ -966,7 +966,7 @@ class CatalogItemsV0Client(__BaseClient):
             429: GetCatalogItemResponse,
             500: GetCatalogItemResponse,
             503: GetCatalogItemResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
     def listCatalogCategories(
@@ -1006,5 +1006,5 @@ class CatalogItemsV0Client(__BaseClient):
             429: ListCatalogCategoriesResponse,
             500: ListCatalogCategoriesResponse,
             503: ListCatalogCategoriesResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

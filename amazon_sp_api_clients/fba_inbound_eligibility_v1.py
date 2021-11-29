@@ -119,5 +119,5 @@ class FbaInboundEligibilityV1Client(__BaseClient):
             429: GetItemEligibilityPreviewResponse,
             500: GetItemEligibilityPreviewResponse,
             503: GetItemEligibilityPreviewResponse,
-        }[response.status_code]
+        }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
