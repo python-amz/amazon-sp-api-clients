@@ -1,35 +1,33 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class RestrictionList(__BaseObject):
+class RestrictionList(__BaseDictObject):
     """
     A list of restrictions for the specified Amazon catalog item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "restrictions" in data:
             self.restrictions: _List[Restriction] = [Restriction(datum) for datum in data["restrictions"]]
         else:
             self.restrictions: _List[Restriction] = []
 
 
-class Restriction(__BaseObject):
+class Restriction(__BaseDictObject):
     """
     A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "conditionType" in data:
-            self.conditionType: str = str(data["conditionType"])
+            self.conditionType: str = self._get_value(str, "conditionType")
         else:
             self.conditionType: str = None
         if "reasons" in data:
@@ -38,20 +36,19 @@ class Restriction(__BaseObject):
             self.reasons: _List[Reason] = []
 
 
-class Reason(__BaseObject):
+class Reason(__BaseDictObject):
     """
     A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "reasonCode" in data:
-            self.reasonCode: str = str(data["reasonCode"])
+            self.reasonCode: str = self._get_value(str, "reasonCode")
         else:
             self.reasonCode: str = None
         if "links" in data:
@@ -60,50 +57,48 @@ class Reason(__BaseObject):
             self.links: _List[Link] = []
 
 
-class Link(__BaseObject):
+class Link(__BaseDictObject):
     """
     A link to resources related to a listing restriction.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "resource" in data:
-            self.resource: str = str(data["resource"])
+            self.resource: str = self._get_value(str, "resource")
         else:
             self.resource: str = None
         if "verb" in data:
-            self.verb: str = str(data["verb"])
+            self.verb: str = self._get_value(str, "verb")
         else:
             self.verb: str = None
         if "title" in data:
-            self.title: str = str(data["title"])
+            self.title: str = self._get_value(str, "title")
         else:
             self.title: str = None
         if "type" in data:
-            self.type: str = str(data["type"])
+            self.type: str = self._get_value(str, "type")
         else:
             self.type: str = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

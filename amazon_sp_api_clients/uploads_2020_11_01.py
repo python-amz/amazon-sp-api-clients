@@ -1,65 +1,62 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class CreateUploadDestinationResponse(__BaseObject):
+class CreateUploadDestinationResponse(__BaseDictObject):
     """
     The response schema for the createUploadDestination operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: UploadDestination = UploadDestination(data["payload"])
+            self.payload: UploadDestination = self._get_value(UploadDestination, "payload")
         else:
             self.payload: UploadDestination = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class UploadDestination(__BaseObject):
+class UploadDestination(__BaseDictObject):
     """
     Information about an upload destination.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "uploadDestinationId" in data:
-            self.uploadDestinationId: str = str(data["uploadDestinationId"])
+            self.uploadDestinationId: str = self._get_value(str, "uploadDestinationId")
         else:
             self.uploadDestinationId: str = None
         if "url" in data:
-            self.url: str = str(data["url"])
+            self.url: str = self._get_value(str, "url")
         else:
             self.url: str = None
         if "headers" in data:
-            self.headers: dict = dict(data["headers"])
+            self.headers: dict = self._get_value(dict, "headers")
         else:
             self.headers: dict = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

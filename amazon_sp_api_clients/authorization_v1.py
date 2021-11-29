@@ -1,57 +1,54 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class GetAuthorizationCodeResponse(__BaseObject):
+class GetAuthorizationCodeResponse(__BaseDictObject):
     """
     The response schema for the GetAuthorizationCode operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: AuthorizationCode = AuthorizationCode(data["payload"])
+            self.payload: AuthorizationCode = self._get_value(AuthorizationCode, "payload")
         else:
             self.payload: AuthorizationCode = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class AuthorizationCode(__BaseObject):
+class AuthorizationCode(__BaseDictObject):
     """
     A Login with Amazon (LWA) authorization code.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "authorizationCode" in data:
-            self.authorizationCode: str = str(data["authorizationCode"])
+            self.authorizationCode: str = self._get_value(str, "authorizationCode")
         else:
             self.authorizationCode: str = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

@@ -1,1601 +1,1549 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ASINInboundGuidance(__BaseObject):
+class ASINInboundGuidance(__BaseDictObject):
     """
     Reasons why a given ASIN is not recommended for shipment to Amazon's fulfillment network.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "InboundGuidance" in data:
-            self.InboundGuidance: InboundGuidance = InboundGuidance(data["InboundGuidance"])
+            self.InboundGuidance: InboundGuidance = self._get_value(InboundGuidance, "InboundGuidance")
         else:
             self.InboundGuidance: InboundGuidance = None
         if "GuidanceReasonList" in data:
-            self.GuidanceReasonList: GuidanceReasonList = GuidanceReasonList(data["GuidanceReasonList"])
+            self.GuidanceReasonList: GuidanceReasonList = self._get_value(GuidanceReasonList, "GuidanceReasonList")
         else:
             self.GuidanceReasonList: GuidanceReasonList = None
 
 
-class ASINPrepInstructions(__BaseObject):
+class ASINPrepInstructions(__BaseDictObject):
     """
     Item preparation instructions to help with item sourcing decisions.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "BarcodeInstruction" in data:
-            self.BarcodeInstruction: BarcodeInstruction = BarcodeInstruction(data["BarcodeInstruction"])
+            self.BarcodeInstruction: BarcodeInstruction = self._get_value(BarcodeInstruction, "BarcodeInstruction")
         else:
             self.BarcodeInstruction: BarcodeInstruction = None
         if "PrepGuidance" in data:
-            self.PrepGuidance: PrepGuidance = PrepGuidance(data["PrepGuidance"])
+            self.PrepGuidance: PrepGuidance = self._get_value(PrepGuidance, "PrepGuidance")
         else:
             self.PrepGuidance: PrepGuidance = None
         if "PrepInstructionList" in data:
-            self.PrepInstructionList: PrepInstructionList = PrepInstructionList(data["PrepInstructionList"])
+            self.PrepInstructionList: PrepInstructionList = self._get_value(PrepInstructionList, "PrepInstructionList")
         else:
             self.PrepInstructionList: PrepInstructionList = None
 
 
-class Address(__BaseObject):
+class Address(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Name" in data:
-            self.Name: str = str(data["Name"])
+            self.Name: str = self._get_value(str, "Name")
         else:
             self.Name: str = None
         if "AddressLine1" in data:
-            self.AddressLine1: str = str(data["AddressLine1"])
+            self.AddressLine1: str = self._get_value(str, "AddressLine1")
         else:
             self.AddressLine1: str = None
         if "AddressLine2" in data:
-            self.AddressLine2: str = str(data["AddressLine2"])
+            self.AddressLine2: str = self._get_value(str, "AddressLine2")
         else:
             self.AddressLine2: str = None
         if "DistrictOrCounty" in data:
-            self.DistrictOrCounty: str = str(data["DistrictOrCounty"])
+            self.DistrictOrCounty: str = self._get_value(str, "DistrictOrCounty")
         else:
             self.DistrictOrCounty: str = None
         if "City" in data:
-            self.City: str = str(data["City"])
+            self.City: str = self._get_value(str, "City")
         else:
             self.City: str = None
         if "StateOrProvinceCode" in data:
-            self.StateOrProvinceCode: str = str(data["StateOrProvinceCode"])
+            self.StateOrProvinceCode: str = self._get_value(str, "StateOrProvinceCode")
         else:
             self.StateOrProvinceCode: str = None
         if "CountryCode" in data:
-            self.CountryCode: str = str(data["CountryCode"])
+            self.CountryCode: str = self._get_value(str, "CountryCode")
         else:
             self.CountryCode: str = None
         if "PostalCode" in data:
-            self.PostalCode: str = str(data["PostalCode"])
+            self.PostalCode: str = self._get_value(str, "PostalCode")
         else:
             self.PostalCode: str = None
 
 
-class AmazonPrepFeesDetails(__BaseObject):
+class AmazonPrepFeesDetails(__BaseDictObject):
     """
     The fees for Amazon to prep goods for shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PrepInstruction" in data:
-            self.PrepInstruction: PrepInstruction = PrepInstruction(data["PrepInstruction"])
+            self.PrepInstruction: PrepInstruction = self._get_value(PrepInstruction, "PrepInstruction")
         else:
             self.PrepInstruction: PrepInstruction = None
         if "FeePerUnit" in data:
-            self.FeePerUnit: Amount = Amount(data["FeePerUnit"])
+            self.FeePerUnit: Amount = self._get_value(Amount, "FeePerUnit")
         else:
             self.FeePerUnit: Amount = None
 
 
-class Amount(__BaseObject):
+class Amount(__BaseDictObject):
     """
     The monetary value.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CurrencyCode" in data:
-            self.CurrencyCode: CurrencyCode = CurrencyCode(data["CurrencyCode"])
+            self.CurrencyCode: CurrencyCode = self._get_value(CurrencyCode, "CurrencyCode")
         else:
             self.CurrencyCode: CurrencyCode = None
         if "Value" in data:
-            self.Value: BigDecimalType = BigDecimalType(data["Value"])
+            self.Value: BigDecimalType = self._get_value(BigDecimalType, "Value")
         else:
             self.Value: BigDecimalType = None
 
 
-class BoxContentsFeeDetails(__BaseObject):
+class BoxContentsFeeDetails(__BaseDictObject):
     """
     The manual processing fee per unit and total fee for a shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TotalUnits" in data:
-            self.TotalUnits: Quantity = Quantity(data["TotalUnits"])
+            self.TotalUnits: Quantity = self._get_value(Quantity, "TotalUnits")
         else:
             self.TotalUnits: Quantity = None
         if "FeePerUnit" in data:
-            self.FeePerUnit: Amount = Amount(data["FeePerUnit"])
+            self.FeePerUnit: Amount = self._get_value(Amount, "FeePerUnit")
         else:
             self.FeePerUnit: Amount = None
         if "TotalFee" in data:
-            self.TotalFee: Amount = Amount(data["TotalFee"])
+            self.TotalFee: Amount = self._get_value(Amount, "TotalFee")
         else:
             self.TotalFee: Amount = None
 
 
-class ConfirmPreorderResult(__BaseObject):
+class ConfirmPreorderResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ConfirmedNeedByDate" in data:
-            self.ConfirmedNeedByDate: DateStringType = DateStringType(data["ConfirmedNeedByDate"])
+            self.ConfirmedNeedByDate: DateStringType = self._get_value(DateStringType, "ConfirmedNeedByDate")
         else:
             self.ConfirmedNeedByDate: DateStringType = None
         if "ConfirmedFulfillableDate" in data:
-            self.ConfirmedFulfillableDate: DateStringType = DateStringType(data["ConfirmedFulfillableDate"])
+            self.ConfirmedFulfillableDate: DateStringType = self._get_value(DateStringType, "ConfirmedFulfillableDate")
         else:
             self.ConfirmedFulfillableDate: DateStringType = None
 
 
-class ConfirmPreorderResponse(__BaseObject):
+class ConfirmPreorderResponse(__BaseDictObject):
     """
     The response schema for the confirmPreorder operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ConfirmPreorderResult = ConfirmPreorderResult(data["payload"])
+            self.payload: ConfirmPreorderResult = self._get_value(ConfirmPreorderResult, "payload")
         else:
             self.payload: ConfirmPreorderResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CommonTransportResult(__BaseObject):
+class CommonTransportResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TransportResult" in data:
-            self.TransportResult: TransportResult = TransportResult(data["TransportResult"])
+            self.TransportResult: TransportResult = self._get_value(TransportResult, "TransportResult")
         else:
             self.TransportResult: TransportResult = None
 
 
-class ConfirmTransportResponse(__BaseObject):
+class ConfirmTransportResponse(__BaseDictObject):
     """
     The response schema for the confirmTransport operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
+            self.payload: CommonTransportResult = self._get_value(CommonTransportResult, "payload")
         else:
             self.payload: CommonTransportResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Contact(__BaseObject):
+class Contact(__BaseDictObject):
     """
     Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Name" in data:
-            self.Name: str = str(data["Name"])
+            self.Name: str = self._get_value(str, "Name")
         else:
             self.Name: str = None
         if "Phone" in data:
-            self.Phone: str = str(data["Phone"])
+            self.Phone: str = self._get_value(str, "Phone")
         else:
             self.Phone: str = None
         if "Email" in data:
-            self.Email: str = str(data["Email"])
+            self.Email: str = self._get_value(str, "Email")
         else:
             self.Email: str = None
         if "Fax" in data:
-            self.Fax: str = str(data["Fax"])
+            self.Fax: str = self._get_value(str, "Fax")
         else:
             self.Fax: str = None
 
 
-class CreateInboundShipmentPlanRequest(__BaseObject):
+class CreateInboundShipmentPlanRequest(__BaseDictObject):
     """
     The request schema for the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipFromAddress" in data:
-            self.ShipFromAddress: Address = Address(data["ShipFromAddress"])
+            self.ShipFromAddress: Address = self._get_value(Address, "ShipFromAddress")
         else:
             self.ShipFromAddress: Address = None
         if "LabelPrepPreference" in data:
-            self.LabelPrepPreference: LabelPrepPreference = LabelPrepPreference(data["LabelPrepPreference"])
+            self.LabelPrepPreference: LabelPrepPreference = self._get_value(LabelPrepPreference, "LabelPrepPreference")
         else:
             self.LabelPrepPreference: LabelPrepPreference = None
         if "ShipToCountryCode" in data:
-            self.ShipToCountryCode: str = str(data["ShipToCountryCode"])
+            self.ShipToCountryCode: str = self._get_value(str, "ShipToCountryCode")
         else:
             self.ShipToCountryCode: str = None
         if "ShipToCountrySubdivisionCode" in data:
-            self.ShipToCountrySubdivisionCode: str = str(data["ShipToCountrySubdivisionCode"])
+            self.ShipToCountrySubdivisionCode: str = self._get_value(str, "ShipToCountrySubdivisionCode")
         else:
             self.ShipToCountrySubdivisionCode: str = None
         if "InboundShipmentPlanRequestItems" in data:
-            self.InboundShipmentPlanRequestItems: InboundShipmentPlanRequestItemList = (
-                InboundShipmentPlanRequestItemList(data["InboundShipmentPlanRequestItems"])
+            self.InboundShipmentPlanRequestItems: InboundShipmentPlanRequestItemList = self._get_value(
+                InboundShipmentPlanRequestItemList, "InboundShipmentPlanRequestItems"
             )
         else:
             self.InboundShipmentPlanRequestItems: InboundShipmentPlanRequestItemList = None
 
 
-class CreateInboundShipmentPlanResult(__BaseObject):
+class CreateInboundShipmentPlanResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "InboundShipmentPlans" in data:
-            self.InboundShipmentPlans: InboundShipmentPlanList = InboundShipmentPlanList(data["InboundShipmentPlans"])
+            self.InboundShipmentPlans: InboundShipmentPlanList = self._get_value(
+                InboundShipmentPlanList, "InboundShipmentPlans"
+            )
         else:
             self.InboundShipmentPlans: InboundShipmentPlanList = None
 
 
-class CreateInboundShipmentPlanResponse(__BaseObject):
+class CreateInboundShipmentPlanResponse(__BaseDictObject):
     """
     The response schema for the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CreateInboundShipmentPlanResult = CreateInboundShipmentPlanResult(data["payload"])
+            self.payload: CreateInboundShipmentPlanResult = self._get_value(CreateInboundShipmentPlanResult, "payload")
         else:
             self.payload: CreateInboundShipmentPlanResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class InboundShipmentRequest(__BaseObject):
+class InboundShipmentRequest(__BaseDictObject):
     """
     The request schema for an inbound shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "InboundShipmentHeader" in data:
-            self.InboundShipmentHeader: InboundShipmentHeader = InboundShipmentHeader(data["InboundShipmentHeader"])
+            self.InboundShipmentHeader: InboundShipmentHeader = self._get_value(
+                InboundShipmentHeader, "InboundShipmentHeader"
+            )
         else:
             self.InboundShipmentHeader: InboundShipmentHeader = None
         if "InboundShipmentItems" in data:
-            self.InboundShipmentItems: InboundShipmentItemList = InboundShipmentItemList(data["InboundShipmentItems"])
+            self.InboundShipmentItems: InboundShipmentItemList = self._get_value(
+                InboundShipmentItemList, "InboundShipmentItems"
+            )
         else:
             self.InboundShipmentItems: InboundShipmentItemList = None
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
 
 
-class InboundShipmentResult(__BaseObject):
+class InboundShipmentResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentId" in data:
-            self.ShipmentId: str = str(data["ShipmentId"])
+            self.ShipmentId: str = self._get_value(str, "ShipmentId")
         else:
             self.ShipmentId: str = None
 
 
-class InboundShipmentResponse(__BaseObject):
+class InboundShipmentResponse(__BaseDictObject):
     """
     The response schema for this operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: InboundShipmentResult = InboundShipmentResult(data["payload"])
+            self.payload: InboundShipmentResult = self._get_value(InboundShipmentResult, "payload")
         else:
             self.payload: InboundShipmentResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Dimensions(__BaseObject):
+class Dimensions(__BaseDictObject):
     """
     The dimension values and unit of measurement.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Length" in data:
-            self.Length: BigDecimalType = BigDecimalType(data["Length"])
+            self.Length: BigDecimalType = self._get_value(BigDecimalType, "Length")
         else:
             self.Length: BigDecimalType = None
         if "Width" in data:
-            self.Width: BigDecimalType = BigDecimalType(data["Width"])
+            self.Width: BigDecimalType = self._get_value(BigDecimalType, "Width")
         else:
             self.Width: BigDecimalType = None
         if "Height" in data:
-            self.Height: BigDecimalType = BigDecimalType(data["Height"])
+            self.Height: BigDecimalType = self._get_value(BigDecimalType, "Height")
         else:
             self.Height: BigDecimalType = None
         if "Unit" in data:
-            self.Unit: UnitOfMeasurement = UnitOfMeasurement(data["Unit"])
+            self.Unit: UnitOfMeasurement = self._get_value(UnitOfMeasurement, "Unit")
         else:
             self.Unit: UnitOfMeasurement = None
 
 
-class EstimateTransportResponse(__BaseObject):
+class EstimateTransportResponse(__BaseDictObject):
     """
     The response schema for the estimateTransport operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
+            self.payload: CommonTransportResult = self._get_value(CommonTransportResult, "payload")
         else:
             self.payload: CommonTransportResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetBillOfLadingResponse(__BaseObject):
+class GetBillOfLadingResponse(__BaseDictObject):
     """
     The response schema for the getBillOfLading operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: BillOfLadingDownloadURL = BillOfLadingDownloadURL(data["payload"])
+            self.payload: BillOfLadingDownloadURL = self._get_value(BillOfLadingDownloadURL, "payload")
         else:
             self.payload: BillOfLadingDownloadURL = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetInboundGuidanceResult(__BaseObject):
+class GetInboundGuidanceResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SKUInboundGuidanceList" in data:
-            self.SKUInboundGuidanceList: SKUInboundGuidanceList = SKUInboundGuidanceList(data["SKUInboundGuidanceList"])
+            self.SKUInboundGuidanceList: SKUInboundGuidanceList = self._get_value(
+                SKUInboundGuidanceList, "SKUInboundGuidanceList"
+            )
         else:
             self.SKUInboundGuidanceList: SKUInboundGuidanceList = None
         if "InvalidSKUList" in data:
-            self.InvalidSKUList: InvalidSKUList = InvalidSKUList(data["InvalidSKUList"])
+            self.InvalidSKUList: InvalidSKUList = self._get_value(InvalidSKUList, "InvalidSKUList")
         else:
             self.InvalidSKUList: InvalidSKUList = None
         if "ASINInboundGuidanceList" in data:
-            self.ASINInboundGuidanceList: ASINInboundGuidanceList = ASINInboundGuidanceList(
-                data["ASINInboundGuidanceList"]
+            self.ASINInboundGuidanceList: ASINInboundGuidanceList = self._get_value(
+                ASINInboundGuidanceList, "ASINInboundGuidanceList"
             )
         else:
             self.ASINInboundGuidanceList: ASINInboundGuidanceList = None
         if "InvalidASINList" in data:
-            self.InvalidASINList: InvalidASINList = InvalidASINList(data["InvalidASINList"])
+            self.InvalidASINList: InvalidASINList = self._get_value(InvalidASINList, "InvalidASINList")
         else:
             self.InvalidASINList: InvalidASINList = None
 
 
-class GetInboundGuidanceResponse(__BaseObject):
+class GetInboundGuidanceResponse(__BaseDictObject):
     """
     The response schema for the getInboundGuidance operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetInboundGuidanceResult = GetInboundGuidanceResult(data["payload"])
+            self.payload: GetInboundGuidanceResult = self._get_value(GetInboundGuidanceResult, "payload")
         else:
             self.payload: GetInboundGuidanceResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class LabelDownloadURL(__BaseObject):
+class LabelDownloadURL(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "DownloadURL" in data:
-            self.DownloadURL: str = str(data["DownloadURL"])
+            self.DownloadURL: str = self._get_value(str, "DownloadURL")
         else:
             self.DownloadURL: str = None
 
 
-class BillOfLadingDownloadURL(__BaseObject):
+class BillOfLadingDownloadURL(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "DownloadURL" in data:
-            self.DownloadURL: str = str(data["DownloadURL"])
+            self.DownloadURL: str = self._get_value(str, "DownloadURL")
         else:
             self.DownloadURL: str = None
 
 
-class GetLabelsResponse(__BaseObject):
+class GetLabelsResponse(__BaseDictObject):
     """
     The response schema for the getLabels operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: LabelDownloadURL = LabelDownloadURL(data["payload"])
+            self.payload: LabelDownloadURL = self._get_value(LabelDownloadURL, "payload")
         else:
             self.payload: LabelDownloadURL = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetPreorderInfoResult(__BaseObject):
+class GetPreorderInfoResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentContainsPreorderableItems" in data:
-            self.ShipmentContainsPreorderableItems: bool = convert_bool(data["ShipmentContainsPreorderableItems"])
+            self.ShipmentContainsPreorderableItems: bool = self._get_value(
+                convert_bool, "ShipmentContainsPreorderableItems"
+            )
         else:
             self.ShipmentContainsPreorderableItems: bool = None
         if "ShipmentConfirmedForPreorder" in data:
-            self.ShipmentConfirmedForPreorder: bool = convert_bool(data["ShipmentConfirmedForPreorder"])
+            self.ShipmentConfirmedForPreorder: bool = self._get_value(convert_bool, "ShipmentConfirmedForPreorder")
         else:
             self.ShipmentConfirmedForPreorder: bool = None
         if "NeedByDate" in data:
-            self.NeedByDate: DateStringType = DateStringType(data["NeedByDate"])
+            self.NeedByDate: DateStringType = self._get_value(DateStringType, "NeedByDate")
         else:
             self.NeedByDate: DateStringType = None
         if "ConfirmedFulfillableDate" in data:
-            self.ConfirmedFulfillableDate: DateStringType = DateStringType(data["ConfirmedFulfillableDate"])
+            self.ConfirmedFulfillableDate: DateStringType = self._get_value(DateStringType, "ConfirmedFulfillableDate")
         else:
             self.ConfirmedFulfillableDate: DateStringType = None
 
 
-class GetPreorderInfoResponse(__BaseObject):
+class GetPreorderInfoResponse(__BaseDictObject):
     """
     The response schema for the getPreorderInfo operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetPreorderInfoResult = GetPreorderInfoResult(data["payload"])
+            self.payload: GetPreorderInfoResult = self._get_value(GetPreorderInfoResult, "payload")
         else:
             self.payload: GetPreorderInfoResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetPrepInstructionsResult(__BaseObject):
+class GetPrepInstructionsResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SKUPrepInstructionsList" in data:
-            self.SKUPrepInstructionsList: SKUPrepInstructionsList = SKUPrepInstructionsList(
-                data["SKUPrepInstructionsList"]
+            self.SKUPrepInstructionsList: SKUPrepInstructionsList = self._get_value(
+                SKUPrepInstructionsList, "SKUPrepInstructionsList"
             )
         else:
             self.SKUPrepInstructionsList: SKUPrepInstructionsList = None
         if "InvalidSKUList" in data:
-            self.InvalidSKUList: InvalidSKUList = InvalidSKUList(data["InvalidSKUList"])
+            self.InvalidSKUList: InvalidSKUList = self._get_value(InvalidSKUList, "InvalidSKUList")
         else:
             self.InvalidSKUList: InvalidSKUList = None
         if "ASINPrepInstructionsList" in data:
-            self.ASINPrepInstructionsList: ASINPrepInstructionsList = ASINPrepInstructionsList(
-                data["ASINPrepInstructionsList"]
+            self.ASINPrepInstructionsList: ASINPrepInstructionsList = self._get_value(
+                ASINPrepInstructionsList, "ASINPrepInstructionsList"
             )
         else:
             self.ASINPrepInstructionsList: ASINPrepInstructionsList = None
         if "InvalidASINList" in data:
-            self.InvalidASINList: InvalidASINList = InvalidASINList(data["InvalidASINList"])
+            self.InvalidASINList: InvalidASINList = self._get_value(InvalidASINList, "InvalidASINList")
         else:
             self.InvalidASINList: InvalidASINList = None
 
 
-class GetPrepInstructionsResponse(__BaseObject):
+class GetPrepInstructionsResponse(__BaseDictObject):
     """
     The response schema for the getPrepInstructions operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetPrepInstructionsResult = GetPrepInstructionsResult(data["payload"])
+            self.payload: GetPrepInstructionsResult = self._get_value(GetPrepInstructionsResult, "payload")
         else:
             self.payload: GetPrepInstructionsResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetTransportDetailsResult(__BaseObject):
+class GetTransportDetailsResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TransportContent" in data:
-            self.TransportContent: TransportContent = TransportContent(data["TransportContent"])
+            self.TransportContent: TransportContent = self._get_value(TransportContent, "TransportContent")
         else:
             self.TransportContent: TransportContent = None
 
 
-class GetTransportDetailsResponse(__BaseObject):
+class GetTransportDetailsResponse(__BaseDictObject):
     """
     The response schema for the getTransportDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetTransportDetailsResult = GetTransportDetailsResult(data["payload"])
+            self.payload: GetTransportDetailsResult = self._get_value(GetTransportDetailsResult, "payload")
         else:
             self.payload: GetTransportDetailsResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class InboundShipmentHeader(__BaseObject):
+class InboundShipmentHeader(__BaseDictObject):
     """
     Inbound shipment information used to create and update inbound shipments.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentName" in data:
-            self.ShipmentName: str = str(data["ShipmentName"])
+            self.ShipmentName: str = self._get_value(str, "ShipmentName")
         else:
             self.ShipmentName: str = None
         if "ShipFromAddress" in data:
-            self.ShipFromAddress: Address = Address(data["ShipFromAddress"])
+            self.ShipFromAddress: Address = self._get_value(Address, "ShipFromAddress")
         else:
             self.ShipFromAddress: Address = None
         if "DestinationFulfillmentCenterId" in data:
-            self.DestinationFulfillmentCenterId: str = str(data["DestinationFulfillmentCenterId"])
+            self.DestinationFulfillmentCenterId: str = self._get_value(str, "DestinationFulfillmentCenterId")
         else:
             self.DestinationFulfillmentCenterId: str = None
         if "AreCasesRequired" in data:
-            self.AreCasesRequired: bool = convert_bool(data["AreCasesRequired"])
+            self.AreCasesRequired: bool = self._get_value(convert_bool, "AreCasesRequired")
         else:
             self.AreCasesRequired: bool = None
         if "ShipmentStatus" in data:
-            self.ShipmentStatus: ShipmentStatus = ShipmentStatus(data["ShipmentStatus"])
+            self.ShipmentStatus: ShipmentStatus = self._get_value(ShipmentStatus, "ShipmentStatus")
         else:
             self.ShipmentStatus: ShipmentStatus = None
         if "LabelPrepPreference" in data:
-            self.LabelPrepPreference: LabelPrepPreference = LabelPrepPreference(data["LabelPrepPreference"])
+            self.LabelPrepPreference: LabelPrepPreference = self._get_value(LabelPrepPreference, "LabelPrepPreference")
         else:
             self.LabelPrepPreference: LabelPrepPreference = None
         if "IntendedBoxContentsSource" in data:
-            self.IntendedBoxContentsSource: IntendedBoxContentsSource = IntendedBoxContentsSource(
-                data["IntendedBoxContentsSource"]
+            self.IntendedBoxContentsSource: IntendedBoxContentsSource = self._get_value(
+                IntendedBoxContentsSource, "IntendedBoxContentsSource"
             )
         else:
             self.IntendedBoxContentsSource: IntendedBoxContentsSource = None
 
 
-class InboundShipmentInfo(__BaseObject):
+class InboundShipmentInfo(__BaseDictObject):
     """
     Information about the seller's inbound shipments. Returned by the listInboundShipments operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentId" in data:
-            self.ShipmentId: str = str(data["ShipmentId"])
+            self.ShipmentId: str = self._get_value(str, "ShipmentId")
         else:
             self.ShipmentId: str = None
         if "ShipmentName" in data:
-            self.ShipmentName: str = str(data["ShipmentName"])
+            self.ShipmentName: str = self._get_value(str, "ShipmentName")
         else:
             self.ShipmentName: str = None
         if "ShipFromAddress" in data:
-            self.ShipFromAddress: Address = Address(data["ShipFromAddress"])
+            self.ShipFromAddress: Address = self._get_value(Address, "ShipFromAddress")
         else:
             self.ShipFromAddress: Address = None
         if "DestinationFulfillmentCenterId" in data:
-            self.DestinationFulfillmentCenterId: str = str(data["DestinationFulfillmentCenterId"])
+            self.DestinationFulfillmentCenterId: str = self._get_value(str, "DestinationFulfillmentCenterId")
         else:
             self.DestinationFulfillmentCenterId: str = None
         if "ShipmentStatus" in data:
-            self.ShipmentStatus: ShipmentStatus = ShipmentStatus(data["ShipmentStatus"])
+            self.ShipmentStatus: ShipmentStatus = self._get_value(ShipmentStatus, "ShipmentStatus")
         else:
             self.ShipmentStatus: ShipmentStatus = None
         if "LabelPrepType" in data:
-            self.LabelPrepType: LabelPrepType = LabelPrepType(data["LabelPrepType"])
+            self.LabelPrepType: LabelPrepType = self._get_value(LabelPrepType, "LabelPrepType")
         else:
             self.LabelPrepType: LabelPrepType = None
         if "AreCasesRequired" in data:
-            self.AreCasesRequired: bool = convert_bool(data["AreCasesRequired"])
+            self.AreCasesRequired: bool = self._get_value(convert_bool, "AreCasesRequired")
         else:
             self.AreCasesRequired: bool = None
         if "ConfirmedNeedByDate" in data:
-            self.ConfirmedNeedByDate: DateStringType = DateStringType(data["ConfirmedNeedByDate"])
+            self.ConfirmedNeedByDate: DateStringType = self._get_value(DateStringType, "ConfirmedNeedByDate")
         else:
             self.ConfirmedNeedByDate: DateStringType = None
         if "BoxContentsSource" in data:
-            self.BoxContentsSource: BoxContentsSource = BoxContentsSource(data["BoxContentsSource"])
+            self.BoxContentsSource: BoxContentsSource = self._get_value(BoxContentsSource, "BoxContentsSource")
         else:
             self.BoxContentsSource: BoxContentsSource = None
         if "EstimatedBoxContentsFee" in data:
-            self.EstimatedBoxContentsFee: BoxContentsFeeDetails = BoxContentsFeeDetails(data["EstimatedBoxContentsFee"])
+            self.EstimatedBoxContentsFee: BoxContentsFeeDetails = self._get_value(
+                BoxContentsFeeDetails, "EstimatedBoxContentsFee"
+            )
         else:
             self.EstimatedBoxContentsFee: BoxContentsFeeDetails = None
 
 
-class InboundShipmentItem(__BaseObject):
+class InboundShipmentItem(__BaseDictObject):
     """
     Item information for an inbound shipment. Submitted with a call to the createInboundShipment or updateInboundShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentId" in data:
-            self.ShipmentId: str = str(data["ShipmentId"])
+            self.ShipmentId: str = self._get_value(str, "ShipmentId")
         else:
             self.ShipmentId: str = None
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "FulfillmentNetworkSKU" in data:
-            self.FulfillmentNetworkSKU: str = str(data["FulfillmentNetworkSKU"])
+            self.FulfillmentNetworkSKU: str = self._get_value(str, "FulfillmentNetworkSKU")
         else:
             self.FulfillmentNetworkSKU: str = None
         if "QuantityShipped" in data:
-            self.QuantityShipped: Quantity = Quantity(data["QuantityShipped"])
+            self.QuantityShipped: Quantity = self._get_value(Quantity, "QuantityShipped")
         else:
             self.QuantityShipped: Quantity = None
         if "QuantityReceived" in data:
-            self.QuantityReceived: Quantity = Quantity(data["QuantityReceived"])
+            self.QuantityReceived: Quantity = self._get_value(Quantity, "QuantityReceived")
         else:
             self.QuantityReceived: Quantity = None
         if "QuantityInCase" in data:
-            self.QuantityInCase: Quantity = Quantity(data["QuantityInCase"])
+            self.QuantityInCase: Quantity = self._get_value(Quantity, "QuantityInCase")
         else:
             self.QuantityInCase: Quantity = None
         if "ReleaseDate" in data:
-            self.ReleaseDate: DateStringType = DateStringType(data["ReleaseDate"])
+            self.ReleaseDate: DateStringType = self._get_value(DateStringType, "ReleaseDate")
         else:
             self.ReleaseDate: DateStringType = None
         if "PrepDetailsList" in data:
-            self.PrepDetailsList: PrepDetailsList = PrepDetailsList(data["PrepDetailsList"])
+            self.PrepDetailsList: PrepDetailsList = self._get_value(PrepDetailsList, "PrepDetailsList")
         else:
             self.PrepDetailsList: PrepDetailsList = None
 
 
-class InboundShipmentPlan(__BaseObject):
+class InboundShipmentPlan(__BaseDictObject):
     """
     Inbound shipment information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentId" in data:
-            self.ShipmentId: str = str(data["ShipmentId"])
+            self.ShipmentId: str = self._get_value(str, "ShipmentId")
         else:
             self.ShipmentId: str = None
         if "DestinationFulfillmentCenterId" in data:
-            self.DestinationFulfillmentCenterId: str = str(data["DestinationFulfillmentCenterId"])
+            self.DestinationFulfillmentCenterId: str = self._get_value(str, "DestinationFulfillmentCenterId")
         else:
             self.DestinationFulfillmentCenterId: str = None
         if "ShipToAddress" in data:
-            self.ShipToAddress: Address = Address(data["ShipToAddress"])
+            self.ShipToAddress: Address = self._get_value(Address, "ShipToAddress")
         else:
             self.ShipToAddress: Address = None
         if "LabelPrepType" in data:
-            self.LabelPrepType: LabelPrepType = LabelPrepType(data["LabelPrepType"])
+            self.LabelPrepType: LabelPrepType = self._get_value(LabelPrepType, "LabelPrepType")
         else:
             self.LabelPrepType: LabelPrepType = None
         if "Items" in data:
-            self.Items: InboundShipmentPlanItemList = InboundShipmentPlanItemList(data["Items"])
+            self.Items: InboundShipmentPlanItemList = self._get_value(InboundShipmentPlanItemList, "Items")
         else:
             self.Items: InboundShipmentPlanItemList = None
         if "EstimatedBoxContentsFee" in data:
-            self.EstimatedBoxContentsFee: BoxContentsFeeDetails = BoxContentsFeeDetails(data["EstimatedBoxContentsFee"])
+            self.EstimatedBoxContentsFee: BoxContentsFeeDetails = self._get_value(
+                BoxContentsFeeDetails, "EstimatedBoxContentsFee"
+            )
         else:
             self.EstimatedBoxContentsFee: BoxContentsFeeDetails = None
 
 
-class InboundShipmentPlanItem(__BaseObject):
+class InboundShipmentPlanItem(__BaseDictObject):
     """
     Item information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "FulfillmentNetworkSKU" in data:
-            self.FulfillmentNetworkSKU: str = str(data["FulfillmentNetworkSKU"])
+            self.FulfillmentNetworkSKU: str = self._get_value(str, "FulfillmentNetworkSKU")
         else:
             self.FulfillmentNetworkSKU: str = None
         if "Quantity" in data:
-            self.Quantity: Quantity = Quantity(data["Quantity"])
+            self.Quantity: Quantity = self._get_value(Quantity, "Quantity")
         else:
             self.Quantity: Quantity = None
         if "PrepDetailsList" in data:
-            self.PrepDetailsList: PrepDetailsList = PrepDetailsList(data["PrepDetailsList"])
+            self.PrepDetailsList: PrepDetailsList = self._get_value(PrepDetailsList, "PrepDetailsList")
         else:
             self.PrepDetailsList: PrepDetailsList = None
 
 
-class InboundShipmentPlanRequestItem(__BaseObject):
+class InboundShipmentPlanRequestItem(__BaseDictObject):
     """
     Item information for creating an inbound shipment plan. Submitted with a call to the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "Condition" in data:
-            self.Condition: Condition = Condition(data["Condition"])
+            self.Condition: Condition = self._get_value(Condition, "Condition")
         else:
             self.Condition: Condition = None
         if "Quantity" in data:
-            self.Quantity: Quantity = Quantity(data["Quantity"])
+            self.Quantity: Quantity = self._get_value(Quantity, "Quantity")
         else:
             self.Quantity: Quantity = None
         if "QuantityInCase" in data:
-            self.QuantityInCase: Quantity = Quantity(data["QuantityInCase"])
+            self.QuantityInCase: Quantity = self._get_value(Quantity, "QuantityInCase")
         else:
             self.QuantityInCase: Quantity = None
         if "PrepDetailsList" in data:
-            self.PrepDetailsList: PrepDetailsList = PrepDetailsList(data["PrepDetailsList"])
+            self.PrepDetailsList: PrepDetailsList = self._get_value(PrepDetailsList, "PrepDetailsList")
         else:
             self.PrepDetailsList: PrepDetailsList = None
 
 
-class InvalidASIN(__BaseObject):
+class InvalidASIN(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "ErrorReason" in data:
-            self.ErrorReason: ErrorReason = ErrorReason(data["ErrorReason"])
+            self.ErrorReason: ErrorReason = self._get_value(ErrorReason, "ErrorReason")
         else:
             self.ErrorReason: ErrorReason = None
 
 
-class InvalidSKU(__BaseObject):
+class InvalidSKU(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "ErrorReason" in data:
-            self.ErrorReason: ErrorReason = ErrorReason(data["ErrorReason"])
+            self.ErrorReason: ErrorReason = self._get_value(ErrorReason, "ErrorReason")
         else:
             self.ErrorReason: ErrorReason = None
 
 
-class GetShipmentItemsResult(__BaseObject):
+class GetShipmentItemsResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ItemData" in data:
-            self.ItemData: InboundShipmentItemList = InboundShipmentItemList(data["ItemData"])
+            self.ItemData: InboundShipmentItemList = self._get_value(InboundShipmentItemList, "ItemData")
         else:
             self.ItemData: InboundShipmentItemList = None
         if "NextToken" in data:
-            self.NextToken: str = str(data["NextToken"])
+            self.NextToken: str = self._get_value(str, "NextToken")
         else:
             self.NextToken: str = None
 
 
-class GetShipmentItemsResponse(__BaseObject):
+class GetShipmentItemsResponse(__BaseDictObject):
     """
     The response schema for the getShipmentItems operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetShipmentItemsResult = GetShipmentItemsResult(data["payload"])
+            self.payload: GetShipmentItemsResult = self._get_value(GetShipmentItemsResult, "payload")
         else:
             self.payload: GetShipmentItemsResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetShipmentsResult(__BaseObject):
+class GetShipmentsResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentData" in data:
-            self.ShipmentData: InboundShipmentList = InboundShipmentList(data["ShipmentData"])
+            self.ShipmentData: InboundShipmentList = self._get_value(InboundShipmentList, "ShipmentData")
         else:
             self.ShipmentData: InboundShipmentList = None
         if "NextToken" in data:
-            self.NextToken: str = str(data["NextToken"])
+            self.NextToken: str = self._get_value(str, "NextToken")
         else:
             self.NextToken: str = None
 
 
-class GetShipmentsResponse(__BaseObject):
+class GetShipmentsResponse(__BaseDictObject):
     """
     The response schema for the getShipments operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetShipmentsResult = GetShipmentsResult(data["payload"])
+            self.payload: GetShipmentsResult = self._get_value(GetShipmentsResult, "payload")
         else:
             self.payload: GetShipmentsResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class NonPartneredLtlDataInput(__BaseObject):
+class NonPartneredLtlDataInput(__BaseDictObject):
     """
     Information that you provide to Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CarrierName" in data:
-            self.CarrierName: str = str(data["CarrierName"])
+            self.CarrierName: str = self._get_value(str, "CarrierName")
         else:
             self.CarrierName: str = None
         if "ProNumber" in data:
-            self.ProNumber: ProNumber = ProNumber(data["ProNumber"])
+            self.ProNumber: ProNumber = self._get_value(ProNumber, "ProNumber")
         else:
             self.ProNumber: ProNumber = None
 
 
-class NonPartneredLtlDataOutput(__BaseObject):
+class NonPartneredLtlDataOutput(__BaseDictObject):
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment shipped by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CarrierName" in data:
-            self.CarrierName: str = str(data["CarrierName"])
+            self.CarrierName: str = self._get_value(str, "CarrierName")
         else:
             self.CarrierName: str = None
         if "ProNumber" in data:
-            self.ProNumber: ProNumber = ProNumber(data["ProNumber"])
+            self.ProNumber: ProNumber = self._get_value(ProNumber, "ProNumber")
         else:
             self.ProNumber: ProNumber = None
 
 
-class NonPartneredSmallParcelDataInput(__BaseObject):
+class NonPartneredSmallParcelDataInput(__BaseDictObject):
     """
     Information that you provide to Amazon about a Small Parcel shipment shipped by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CarrierName" in data:
-            self.CarrierName: str = str(data["CarrierName"])
+            self.CarrierName: str = self._get_value(str, "CarrierName")
         else:
             self.CarrierName: str = None
         if "PackageList" in data:
-            self.PackageList: NonPartneredSmallParcelPackageInputList = NonPartneredSmallParcelPackageInputList(
-                data["PackageList"]
+            self.PackageList: NonPartneredSmallParcelPackageInputList = self._get_value(
+                NonPartneredSmallParcelPackageInputList, "PackageList"
             )
         else:
             self.PackageList: NonPartneredSmallParcelPackageInputList = None
 
 
-class NonPartneredSmallParcelDataOutput(__BaseObject):
+class NonPartneredSmallParcelDataOutput(__BaseDictObject):
     """
     Information returned by Amazon about a Small Parcel shipment by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PackageList" in data:
-            self.PackageList: NonPartneredSmallParcelPackageOutputList = NonPartneredSmallParcelPackageOutputList(
-                data["PackageList"]
+            self.PackageList: NonPartneredSmallParcelPackageOutputList = self._get_value(
+                NonPartneredSmallParcelPackageOutputList, "PackageList"
             )
         else:
             self.PackageList: NonPartneredSmallParcelPackageOutputList = None
 
 
-class NonPartneredSmallParcelPackageInput(__BaseObject):
+class NonPartneredSmallParcelPackageInput(__BaseDictObject):
     """
     The tracking number of the package, provided by the carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TrackingId" in data:
-            self.TrackingId: TrackingId = TrackingId(data["TrackingId"])
+            self.TrackingId: TrackingId = self._get_value(TrackingId, "TrackingId")
         else:
             self.TrackingId: TrackingId = None
 
 
-class NonPartneredSmallParcelPackageOutput(__BaseObject):
+class NonPartneredSmallParcelPackageOutput(__BaseDictObject):
     """
     Carrier, tracking number, and status information for the package.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CarrierName" in data:
-            self.CarrierName: str = str(data["CarrierName"])
+            self.CarrierName: str = self._get_value(str, "CarrierName")
         else:
             self.CarrierName: str = None
         if "TrackingId" in data:
-            self.TrackingId: TrackingId = TrackingId(data["TrackingId"])
+            self.TrackingId: TrackingId = self._get_value(TrackingId, "TrackingId")
         else:
             self.TrackingId: TrackingId = None
         if "PackageStatus" in data:
-            self.PackageStatus: PackageStatus = PackageStatus(data["PackageStatus"])
+            self.PackageStatus: PackageStatus = self._get_value(PackageStatus, "PackageStatus")
         else:
             self.PackageStatus: PackageStatus = None
 
 
-class Pallet(__BaseObject):
+class Pallet(__BaseDictObject):
     """
     Pallet information.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Dimensions" in data:
-            self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
+            self.Dimensions: Dimensions = self._get_value(Dimensions, "Dimensions")
         else:
             self.Dimensions: Dimensions = None
         if "Weight" in data:
-            self.Weight: Weight = Weight(data["Weight"])
+            self.Weight: Weight = self._get_value(Weight, "Weight")
         else:
             self.Weight: Weight = None
         if "IsStacked" in data:
-            self.IsStacked: bool = convert_bool(data["IsStacked"])
+            self.IsStacked: bool = self._get_value(convert_bool, "IsStacked")
         else:
             self.IsStacked: bool = None
 
 
-class PartneredEstimate(__BaseObject):
+class PartneredEstimate(__BaseDictObject):
     """
     The estimated shipping cost for a shipment using an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Amount" in data:
-            self.Amount: Amount = Amount(data["Amount"])
+            self.Amount: Amount = self._get_value(Amount, "Amount")
         else:
             self.Amount: Amount = None
         if "ConfirmDeadline" in data:
-            self.ConfirmDeadline: TimeStampStringType = TimeStampStringType(data["ConfirmDeadline"])
+            self.ConfirmDeadline: TimeStampStringType = self._get_value(TimeStampStringType, "ConfirmDeadline")
         else:
             self.ConfirmDeadline: TimeStampStringType = None
         if "VoidDeadline" in data:
-            self.VoidDeadline: TimeStampStringType = TimeStampStringType(data["VoidDeadline"])
+            self.VoidDeadline: TimeStampStringType = self._get_value(TimeStampStringType, "VoidDeadline")
         else:
             self.VoidDeadline: TimeStampStringType = None
 
 
-class PartneredLtlDataInput(__BaseObject):
+class PartneredLtlDataInput(__BaseDictObject):
     """
     Information that is required by an Amazon-partnered carrier to ship a Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Contact" in data:
-            self.Contact: Contact = Contact(data["Contact"])
+            self.Contact: Contact = self._get_value(Contact, "Contact")
         else:
             self.Contact: Contact = None
         if "BoxCount" in data:
-            self.BoxCount: UnsignedIntType = UnsignedIntType(data["BoxCount"])
+            self.BoxCount: UnsignedIntType = self._get_value(UnsignedIntType, "BoxCount")
         else:
             self.BoxCount: UnsignedIntType = None
         if "SellerFreightClass" in data:
-            self.SellerFreightClass: SellerFreightClass = SellerFreightClass(data["SellerFreightClass"])
+            self.SellerFreightClass: SellerFreightClass = self._get_value(SellerFreightClass, "SellerFreightClass")
         else:
             self.SellerFreightClass: SellerFreightClass = None
         if "FreightReadyDate" in data:
-            self.FreightReadyDate: DateStringType = DateStringType(data["FreightReadyDate"])
+            self.FreightReadyDate: DateStringType = self._get_value(DateStringType, "FreightReadyDate")
         else:
             self.FreightReadyDate: DateStringType = None
         if "PalletList" in data:
-            self.PalletList: PalletList = PalletList(data["PalletList"])
+            self.PalletList: PalletList = self._get_value(PalletList, "PalletList")
         else:
             self.PalletList: PalletList = None
         if "TotalWeight" in data:
-            self.TotalWeight: Weight = Weight(data["TotalWeight"])
+            self.TotalWeight: Weight = self._get_value(Weight, "TotalWeight")
         else:
             self.TotalWeight: Weight = None
         if "SellerDeclaredValue" in data:
-            self.SellerDeclaredValue: Amount = Amount(data["SellerDeclaredValue"])
+            self.SellerDeclaredValue: Amount = self._get_value(Amount, "SellerDeclaredValue")
         else:
             self.SellerDeclaredValue: Amount = None
 
 
-class PartneredLtlDataOutput(__BaseObject):
+class PartneredLtlDataOutput(__BaseDictObject):
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Contact" in data:
-            self.Contact: Contact = Contact(data["Contact"])
+            self.Contact: Contact = self._get_value(Contact, "Contact")
         else:
             self.Contact: Contact = None
         if "BoxCount" in data:
-            self.BoxCount: UnsignedIntType = UnsignedIntType(data["BoxCount"])
+            self.BoxCount: UnsignedIntType = self._get_value(UnsignedIntType, "BoxCount")
         else:
             self.BoxCount: UnsignedIntType = None
         if "SellerFreightClass" in data:
-            self.SellerFreightClass: SellerFreightClass = SellerFreightClass(data["SellerFreightClass"])
+            self.SellerFreightClass: SellerFreightClass = self._get_value(SellerFreightClass, "SellerFreightClass")
         else:
             self.SellerFreightClass: SellerFreightClass = None
         if "FreightReadyDate" in data:
-            self.FreightReadyDate: DateStringType = DateStringType(data["FreightReadyDate"])
+            self.FreightReadyDate: DateStringType = self._get_value(DateStringType, "FreightReadyDate")
         else:
             self.FreightReadyDate: DateStringType = None
         if "PalletList" in data:
-            self.PalletList: PalletList = PalletList(data["PalletList"])
+            self.PalletList: PalletList = self._get_value(PalletList, "PalletList")
         else:
             self.PalletList: PalletList = None
         if "TotalWeight" in data:
-            self.TotalWeight: Weight = Weight(data["TotalWeight"])
+            self.TotalWeight: Weight = self._get_value(Weight, "TotalWeight")
         else:
             self.TotalWeight: Weight = None
         if "SellerDeclaredValue" in data:
-            self.SellerDeclaredValue: Amount = Amount(data["SellerDeclaredValue"])
+            self.SellerDeclaredValue: Amount = self._get_value(Amount, "SellerDeclaredValue")
         else:
             self.SellerDeclaredValue: Amount = None
         if "AmazonCalculatedValue" in data:
-            self.AmazonCalculatedValue: Amount = Amount(data["AmazonCalculatedValue"])
+            self.AmazonCalculatedValue: Amount = self._get_value(Amount, "AmazonCalculatedValue")
         else:
             self.AmazonCalculatedValue: Amount = None
         if "PreviewPickupDate" in data:
-            self.PreviewPickupDate: DateStringType = DateStringType(data["PreviewPickupDate"])
+            self.PreviewPickupDate: DateStringType = self._get_value(DateStringType, "PreviewPickupDate")
         else:
             self.PreviewPickupDate: DateStringType = None
         if "PreviewDeliveryDate" in data:
-            self.PreviewDeliveryDate: DateStringType = DateStringType(data["PreviewDeliveryDate"])
+            self.PreviewDeliveryDate: DateStringType = self._get_value(DateStringType, "PreviewDeliveryDate")
         else:
             self.PreviewDeliveryDate: DateStringType = None
         if "PreviewFreightClass" in data:
-            self.PreviewFreightClass: SellerFreightClass = SellerFreightClass(data["PreviewFreightClass"])
+            self.PreviewFreightClass: SellerFreightClass = self._get_value(SellerFreightClass, "PreviewFreightClass")
         else:
             self.PreviewFreightClass: SellerFreightClass = None
         if "AmazonReferenceId" in data:
-            self.AmazonReferenceId: str = str(data["AmazonReferenceId"])
+            self.AmazonReferenceId: str = self._get_value(str, "AmazonReferenceId")
         else:
             self.AmazonReferenceId: str = None
         if "IsBillOfLadingAvailable" in data:
-            self.IsBillOfLadingAvailable: bool = convert_bool(data["IsBillOfLadingAvailable"])
+            self.IsBillOfLadingAvailable: bool = self._get_value(convert_bool, "IsBillOfLadingAvailable")
         else:
             self.IsBillOfLadingAvailable: bool = None
         if "PartneredEstimate" in data:
-            self.PartneredEstimate: PartneredEstimate = PartneredEstimate(data["PartneredEstimate"])
+            self.PartneredEstimate: PartneredEstimate = self._get_value(PartneredEstimate, "PartneredEstimate")
         else:
             self.PartneredEstimate: PartneredEstimate = None
         if "CarrierName" in data:
-            self.CarrierName: str = str(data["CarrierName"])
+            self.CarrierName: str = self._get_value(str, "CarrierName")
         else:
             self.CarrierName: str = None
 
 
-class PartneredSmallParcelDataInput(__BaseObject):
+class PartneredSmallParcelDataInput(__BaseDictObject):
     """
     Information that is required by an Amazon-partnered carrier to ship a Small Parcel inbound shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PackageList" in data:
-            self.PackageList: PartneredSmallParcelPackageInputList = PartneredSmallParcelPackageInputList(
-                data["PackageList"]
+            self.PackageList: PartneredSmallParcelPackageInputList = self._get_value(
+                PartneredSmallParcelPackageInputList, "PackageList"
             )
         else:
             self.PackageList: PartneredSmallParcelPackageInputList = None
         if "CarrierName" in data:
-            self.CarrierName: str = str(data["CarrierName"])
+            self.CarrierName: str = self._get_value(str, "CarrierName")
         else:
             self.CarrierName: str = None
 
 
-class PartneredSmallParcelDataOutput(__BaseObject):
+class PartneredSmallParcelDataOutput(__BaseDictObject):
     """
     Information returned by Amazon about a Small Parcel shipment by an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PackageList" in data:
-            self.PackageList: PartneredSmallParcelPackageOutputList = PartneredSmallParcelPackageOutputList(
-                data["PackageList"]
+            self.PackageList: PartneredSmallParcelPackageOutputList = self._get_value(
+                PartneredSmallParcelPackageOutputList, "PackageList"
             )
         else:
             self.PackageList: PartneredSmallParcelPackageOutputList = None
         if "PartneredEstimate" in data:
-            self.PartneredEstimate: PartneredEstimate = PartneredEstimate(data["PartneredEstimate"])
+            self.PartneredEstimate: PartneredEstimate = self._get_value(PartneredEstimate, "PartneredEstimate")
         else:
             self.PartneredEstimate: PartneredEstimate = None
 
 
-class PartneredSmallParcelPackageInput(__BaseObject):
+class PartneredSmallParcelPackageInput(__BaseDictObject):
     """
     Dimension and weight information for the package.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Dimensions" in data:
-            self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
+            self.Dimensions: Dimensions = self._get_value(Dimensions, "Dimensions")
         else:
             self.Dimensions: Dimensions = None
         if "Weight" in data:
-            self.Weight: Weight = Weight(data["Weight"])
+            self.Weight: Weight = self._get_value(Weight, "Weight")
         else:
             self.Weight: Weight = None
 
 
-class PartneredSmallParcelPackageOutput(__BaseObject):
+class PartneredSmallParcelPackageOutput(__BaseDictObject):
     """
     Dimension, weight, and shipping information for the package.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Dimensions" in data:
-            self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
+            self.Dimensions: Dimensions = self._get_value(Dimensions, "Dimensions")
         else:
             self.Dimensions: Dimensions = None
         if "Weight" in data:
-            self.Weight: Weight = Weight(data["Weight"])
+            self.Weight: Weight = self._get_value(Weight, "Weight")
         else:
             self.Weight: Weight = None
         if "CarrierName" in data:
-            self.CarrierName: str = str(data["CarrierName"])
+            self.CarrierName: str = self._get_value(str, "CarrierName")
         else:
             self.CarrierName: str = None
         if "TrackingId" in data:
-            self.TrackingId: TrackingId = TrackingId(data["TrackingId"])
+            self.TrackingId: TrackingId = self._get_value(TrackingId, "TrackingId")
         else:
             self.TrackingId: TrackingId = None
         if "PackageStatus" in data:
-            self.PackageStatus: PackageStatus = PackageStatus(data["PackageStatus"])
+            self.PackageStatus: PackageStatus = self._get_value(PackageStatus, "PackageStatus")
         else:
             self.PackageStatus: PackageStatus = None
 
 
-class PrepDetails(__BaseObject):
+class PrepDetails(__BaseDictObject):
     """
     Preparation instructions and who is responsible for the preparation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PrepInstruction" in data:
-            self.PrepInstruction: PrepInstruction = PrepInstruction(data["PrepInstruction"])
+            self.PrepInstruction: PrepInstruction = self._get_value(PrepInstruction, "PrepInstruction")
         else:
             self.PrepInstruction: PrepInstruction = None
         if "PrepOwner" in data:
-            self.PrepOwner: PrepOwner = PrepOwner(data["PrepOwner"])
+            self.PrepOwner: PrepOwner = self._get_value(PrepOwner, "PrepOwner")
         else:
             self.PrepOwner: PrepOwner = None
 
 
-class PutTransportDetailsRequest(__BaseObject):
+class PutTransportDetailsRequest(__BaseDictObject):
     """
     The request schema for a putTransportDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "IsPartnered" in data:
-            self.IsPartnered: bool = convert_bool(data["IsPartnered"])
+            self.IsPartnered: bool = self._get_value(convert_bool, "IsPartnered")
         else:
             self.IsPartnered: bool = None
         if "ShipmentType" in data:
-            self.ShipmentType: ShipmentType = ShipmentType(data["ShipmentType"])
+            self.ShipmentType: ShipmentType = self._get_value(ShipmentType, "ShipmentType")
         else:
             self.ShipmentType: ShipmentType = None
         if "TransportDetails" in data:
-            self.TransportDetails: TransportDetailInput = TransportDetailInput(data["TransportDetails"])
+            self.TransportDetails: TransportDetailInput = self._get_value(TransportDetailInput, "TransportDetails")
         else:
             self.TransportDetails: TransportDetailInput = None
 
 
-class PutTransportDetailsResponse(__BaseObject):
+class PutTransportDetailsResponse(__BaseDictObject):
     """
     Workflow status for a shipment with an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
+            self.payload: CommonTransportResult = self._get_value(CommonTransportResult, "payload")
         else:
             self.payload: CommonTransportResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class SKUInboundGuidance(__BaseObject):
+class SKUInboundGuidance(__BaseDictObject):
     """
     Reasons why a given seller SKU is not recommended for shipment to Amazon's fulfillment network.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "InboundGuidance" in data:
-            self.InboundGuidance: InboundGuidance = InboundGuidance(data["InboundGuidance"])
+            self.InboundGuidance: InboundGuidance = self._get_value(InboundGuidance, "InboundGuidance")
         else:
             self.InboundGuidance: InboundGuidance = None
         if "GuidanceReasonList" in data:
-            self.GuidanceReasonList: GuidanceReasonList = GuidanceReasonList(data["GuidanceReasonList"])
+            self.GuidanceReasonList: GuidanceReasonList = self._get_value(GuidanceReasonList, "GuidanceReasonList")
         else:
             self.GuidanceReasonList: GuidanceReasonList = None
 
 
-class SKUPrepInstructions(__BaseObject):
+class SKUPrepInstructions(__BaseDictObject):
     """
     Labeling requirements and item preparation instructions to help you prepare items for shipment to Amazon's fulfillment network.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "BarcodeInstruction" in data:
-            self.BarcodeInstruction: BarcodeInstruction = BarcodeInstruction(data["BarcodeInstruction"])
+            self.BarcodeInstruction: BarcodeInstruction = self._get_value(BarcodeInstruction, "BarcodeInstruction")
         else:
             self.BarcodeInstruction: BarcodeInstruction = None
         if "PrepGuidance" in data:
-            self.PrepGuidance: PrepGuidance = PrepGuidance(data["PrepGuidance"])
+            self.PrepGuidance: PrepGuidance = self._get_value(PrepGuidance, "PrepGuidance")
         else:
             self.PrepGuidance: PrepGuidance = None
         if "PrepInstructionList" in data:
-            self.PrepInstructionList: PrepInstructionList = PrepInstructionList(data["PrepInstructionList"])
+            self.PrepInstructionList: PrepInstructionList = self._get_value(PrepInstructionList, "PrepInstructionList")
         else:
             self.PrepInstructionList: PrepInstructionList = None
         if "AmazonPrepFeesDetailsList" in data:
-            self.AmazonPrepFeesDetailsList: AmazonPrepFeesDetailsList = AmazonPrepFeesDetailsList(
-                data["AmazonPrepFeesDetailsList"]
+            self.AmazonPrepFeesDetailsList: AmazonPrepFeesDetailsList = self._get_value(
+                AmazonPrepFeesDetailsList, "AmazonPrepFeesDetailsList"
             )
         else:
             self.AmazonPrepFeesDetailsList: AmazonPrepFeesDetailsList = None
 
 
-class TransportContent(__BaseObject):
+class TransportContent(__BaseDictObject):
     """
     Inbound shipment information, including carrier details, shipment status, and the workflow status for a request for shipment with an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TransportHeader" in data:
-            self.TransportHeader: TransportHeader = TransportHeader(data["TransportHeader"])
+            self.TransportHeader: TransportHeader = self._get_value(TransportHeader, "TransportHeader")
         else:
             self.TransportHeader: TransportHeader = None
         if "TransportDetails" in data:
-            self.TransportDetails: TransportDetailOutput = TransportDetailOutput(data["TransportDetails"])
+            self.TransportDetails: TransportDetailOutput = self._get_value(TransportDetailOutput, "TransportDetails")
         else:
             self.TransportDetails: TransportDetailOutput = None
         if "TransportResult" in data:
-            self.TransportResult: TransportResult = TransportResult(data["TransportResult"])
+            self.TransportResult: TransportResult = self._get_value(TransportResult, "TransportResult")
         else:
             self.TransportResult: TransportResult = None
 
 
-class TransportDetailInput(__BaseObject):
+class TransportDetailInput(__BaseDictObject):
     """
     Information required to create an Amazon-partnered carrier shipping estimate, or to alert the Amazon fulfillment center to the arrival of an inbound shipment by a non-Amazon-partnered carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PartneredSmallParcelData" in data:
-            self.PartneredSmallParcelData: PartneredSmallParcelDataInput = PartneredSmallParcelDataInput(
-                data["PartneredSmallParcelData"]
+            self.PartneredSmallParcelData: PartneredSmallParcelDataInput = self._get_value(
+                PartneredSmallParcelDataInput, "PartneredSmallParcelData"
             )
         else:
             self.PartneredSmallParcelData: PartneredSmallParcelDataInput = None
         if "NonPartneredSmallParcelData" in data:
-            self.NonPartneredSmallParcelData: NonPartneredSmallParcelDataInput = NonPartneredSmallParcelDataInput(
-                data["NonPartneredSmallParcelData"]
+            self.NonPartneredSmallParcelData: NonPartneredSmallParcelDataInput = self._get_value(
+                NonPartneredSmallParcelDataInput, "NonPartneredSmallParcelData"
             )
         else:
             self.NonPartneredSmallParcelData: NonPartneredSmallParcelDataInput = None
         if "PartneredLtlData" in data:
-            self.PartneredLtlData: PartneredLtlDataInput = PartneredLtlDataInput(data["PartneredLtlData"])
+            self.PartneredLtlData: PartneredLtlDataInput = self._get_value(PartneredLtlDataInput, "PartneredLtlData")
         else:
             self.PartneredLtlData: PartneredLtlDataInput = None
         if "NonPartneredLtlData" in data:
-            self.NonPartneredLtlData: NonPartneredLtlDataInput = NonPartneredLtlDataInput(data["NonPartneredLtlData"])
+            self.NonPartneredLtlData: NonPartneredLtlDataInput = self._get_value(
+                NonPartneredLtlDataInput, "NonPartneredLtlData"
+            )
         else:
             self.NonPartneredLtlData: NonPartneredLtlDataInput = None
 
 
-class TransportDetailOutput(__BaseObject):
+class TransportDetailOutput(__BaseDictObject):
     """
     Inbound shipment information, including carrier details and shipment status.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PartneredSmallParcelData" in data:
-            self.PartneredSmallParcelData: PartneredSmallParcelDataOutput = PartneredSmallParcelDataOutput(
-                data["PartneredSmallParcelData"]
+            self.PartneredSmallParcelData: PartneredSmallParcelDataOutput = self._get_value(
+                PartneredSmallParcelDataOutput, "PartneredSmallParcelData"
             )
         else:
             self.PartneredSmallParcelData: PartneredSmallParcelDataOutput = None
         if "NonPartneredSmallParcelData" in data:
-            self.NonPartneredSmallParcelData: NonPartneredSmallParcelDataOutput = NonPartneredSmallParcelDataOutput(
-                data["NonPartneredSmallParcelData"]
+            self.NonPartneredSmallParcelData: NonPartneredSmallParcelDataOutput = self._get_value(
+                NonPartneredSmallParcelDataOutput, "NonPartneredSmallParcelData"
             )
         else:
             self.NonPartneredSmallParcelData: NonPartneredSmallParcelDataOutput = None
         if "PartneredLtlData" in data:
-            self.PartneredLtlData: PartneredLtlDataOutput = PartneredLtlDataOutput(data["PartneredLtlData"])
+            self.PartneredLtlData: PartneredLtlDataOutput = self._get_value(PartneredLtlDataOutput, "PartneredLtlData")
         else:
             self.PartneredLtlData: PartneredLtlDataOutput = None
         if "NonPartneredLtlData" in data:
-            self.NonPartneredLtlData: NonPartneredLtlDataOutput = NonPartneredLtlDataOutput(data["NonPartneredLtlData"])
+            self.NonPartneredLtlData: NonPartneredLtlDataOutput = self._get_value(
+                NonPartneredLtlDataOutput, "NonPartneredLtlData"
+            )
         else:
             self.NonPartneredLtlData: NonPartneredLtlDataOutput = None
 
 
-class TransportHeader(__BaseObject):
+class TransportHeader(__BaseDictObject):
     """
     The shipping identifier, information about whether the shipment is by an Amazon-partnered carrier, and information about whether the shipment is Small Parcel or Less Than Truckload/Full Truckload (LTL/FTL).
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerId" in data:
-            self.SellerId: str = str(data["SellerId"])
+            self.SellerId: str = self._get_value(str, "SellerId")
         else:
             self.SellerId: str = None
         if "ShipmentId" in data:
-            self.ShipmentId: str = str(data["ShipmentId"])
+            self.ShipmentId: str = self._get_value(str, "ShipmentId")
         else:
             self.ShipmentId: str = None
         if "IsPartnered" in data:
-            self.IsPartnered: bool = convert_bool(data["IsPartnered"])
+            self.IsPartnered: bool = self._get_value(convert_bool, "IsPartnered")
         else:
             self.IsPartnered: bool = None
         if "ShipmentType" in data:
-            self.ShipmentType: ShipmentType = ShipmentType(data["ShipmentType"])
+            self.ShipmentType: ShipmentType = self._get_value(ShipmentType, "ShipmentType")
         else:
             self.ShipmentType: ShipmentType = None
 
 
-class TransportResult(__BaseObject):
+class TransportResult(__BaseDictObject):
     """
     The workflow status for a shipment with an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TransportStatus" in data:
-            self.TransportStatus: TransportStatus = TransportStatus(data["TransportStatus"])
+            self.TransportStatus: TransportStatus = self._get_value(TransportStatus, "TransportStatus")
         else:
             self.TransportStatus: TransportStatus = None
         if "ErrorCode" in data:
-            self.ErrorCode: str = str(data["ErrorCode"])
+            self.ErrorCode: str = self._get_value(str, "ErrorCode")
         else:
             self.ErrorCode: str = None
         if "ErrorDescription" in data:
-            self.ErrorDescription: str = str(data["ErrorDescription"])
+            self.ErrorDescription: str = self._get_value(str, "ErrorDescription")
         else:
             self.ErrorDescription: str = None
 
 
-class VoidTransportResponse(__BaseObject):
+class VoidTransportResponse(__BaseDictObject):
     """
     The response schema for the voidTransport operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
+            self.payload: CommonTransportResult = self._get_value(CommonTransportResult, "payload")
         else:
             self.payload: CommonTransportResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Weight(__BaseObject):
+class Weight(__BaseDictObject):
     """
     The weight of the package.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Value" in data:
-            self.Value: BigDecimalType = BigDecimalType(data["Value"])
+            self.Value: BigDecimalType = self._get_value(BigDecimalType, "Value")
         else:
             self.Value: BigDecimalType = None
         if "Unit" in data:
-            self.Unit: UnitOfWeight = UnitOfWeight(data["Unit"])
+            self.Unit: UnitOfWeight = self._get_value(UnitOfWeight, "Unit")
         else:
             self.Unit: UnitOfWeight = None
 

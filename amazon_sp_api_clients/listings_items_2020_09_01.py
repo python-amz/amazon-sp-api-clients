@@ -1,83 +1,79 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ErrorList(__BaseObject):
+class ErrorList(__BaseDictObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
             self.errors: _List[Error] = []
 
 
-class Issue(__BaseObject):
+class Issue(__BaseDictObject):
     """
     An issue with a listings item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "severity" in data:
-            self.severity: str = str(data["severity"])
+            self.severity: str = self._get_value(str, "severity")
         else:
             self.severity: str = None
         if "attributeName" in data:
-            self.attributeName: str = str(data["attributeName"])
+            self.attributeName: str = self._get_value(str, "attributeName")
         else:
             self.attributeName: str = None
 
 
-class PatchOperation(__BaseObject):
+class PatchOperation(__BaseDictObject):
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "op" in data:
-            self.op: str = str(data["op"])
+            self.op: str = self._get_value(str, "op")
         else:
             self.op: str = None
         if "path" in data:
-            self.path: str = str(data["path"])
+            self.path: str = self._get_value(str, "path")
         else:
             self.path: str = None
         if "value" in data:
@@ -86,16 +82,15 @@ class PatchOperation(__BaseObject):
             self.value: _List[dict] = []
 
 
-class ListingsItemPatchRequest(__BaseObject):
+class ListingsItemPatchRequest(__BaseDictObject):
     """
     The request body schema for the patchListingsItem operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "productType" in data:
-            self.productType: str = str(data["productType"])
+            self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
         if "patches" in data:
@@ -104,46 +99,44 @@ class ListingsItemPatchRequest(__BaseObject):
             self.patches: _List[PatchOperation] = []
 
 
-class ListingsItemPutRequest(__BaseObject):
+class ListingsItemPutRequest(__BaseDictObject):
     """
     The request body schema for the putListingsItem operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "productType" in data:
-            self.productType: str = str(data["productType"])
+            self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
         if "requirements" in data:
-            self.requirements: str = str(data["requirements"])
+            self.requirements: str = self._get_value(str, "requirements")
         else:
             self.requirements: str = None
         if "attributes" in data:
-            self.attributes: dict = dict(data["attributes"])
+            self.attributes: dict = self._get_value(dict, "attributes")
         else:
             self.attributes: dict = None
 
 
-class ListingsItemSubmissionResponse(__BaseObject):
+class ListingsItemSubmissionResponse(__BaseDictObject):
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "sku" in data:
-            self.sku: str = str(data["sku"])
+            self.sku: str = self._get_value(str, "sku")
         else:
             self.sku: str = None
         if "status" in data:
-            self.status: str = str(data["status"])
+            self.status: str = self._get_value(str, "status")
         else:
             self.status: str = None
         if "submissionId" in data:
-            self.submissionId: str = str(data["submissionId"])
+            self.submissionId: str = self._get_value(str, "submissionId")
         else:
             self.submissionId: str = None
         if "issues" in data:

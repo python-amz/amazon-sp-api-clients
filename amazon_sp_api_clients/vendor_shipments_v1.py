@@ -1,15 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class SubmitShipmentConfirmationsRequest(__BaseObject):
+class SubmitShipmentConfirmationsRequest(__BaseDictObject):
     """
     The request schema for the SubmitShipmentConfirmations operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "shipmentConfirmations" in data:
             self.shipmentConfirmations: _List[ShipmentConfirmation] = [
                 ShipmentConfirmation(datum) for datum in data["shipmentConfirmations"]
@@ -18,66 +17,69 @@ class SubmitShipmentConfirmationsRequest(__BaseObject):
             self.shipmentConfirmations: _List[ShipmentConfirmation] = []
 
 
-class ShipmentConfirmation(__BaseObject):
+class ShipmentConfirmation(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "shipmentIdentifier" in data:
-            self.shipmentIdentifier: str = str(data["shipmentIdentifier"])
+            self.shipmentIdentifier: str = self._get_value(str, "shipmentIdentifier")
         else:
             self.shipmentIdentifier: str = None
         if "shipmentConfirmationType" in data:
-            self.shipmentConfirmationType: str = str(data["shipmentConfirmationType"])
+            self.shipmentConfirmationType: str = self._get_value(str, "shipmentConfirmationType")
         else:
             self.shipmentConfirmationType: str = None
         if "shipmentType" in data:
-            self.shipmentType: str = str(data["shipmentType"])
+            self.shipmentType: str = self._get_value(str, "shipmentType")
         else:
             self.shipmentType: str = None
         if "shipmentStructure" in data:
-            self.shipmentStructure: str = str(data["shipmentStructure"])
+            self.shipmentStructure: str = self._get_value(str, "shipmentStructure")
         else:
             self.shipmentStructure: str = None
         if "transportationDetails" in data:
-            self.transportationDetails: TransportationDetails = TransportationDetails(data["transportationDetails"])
+            self.transportationDetails: TransportationDetails = self._get_value(
+                TransportationDetails, "transportationDetails"
+            )
         else:
             self.transportationDetails: TransportationDetails = None
         if "amazonReferenceNumber" in data:
-            self.amazonReferenceNumber: str = str(data["amazonReferenceNumber"])
+            self.amazonReferenceNumber: str = self._get_value(str, "amazonReferenceNumber")
         else:
             self.amazonReferenceNumber: str = None
         if "shipmentConfirmationDate" in data:
-            self.shipmentConfirmationDate: str = str(data["shipmentConfirmationDate"])
+            self.shipmentConfirmationDate: str = self._get_value(str, "shipmentConfirmationDate")
         else:
             self.shipmentConfirmationDate: str = None
         if "shippedDate" in data:
-            self.shippedDate: str = str(data["shippedDate"])
+            self.shippedDate: str = self._get_value(str, "shippedDate")
         else:
             self.shippedDate: str = None
         if "estimatedDeliveryDate" in data:
-            self.estimatedDeliveryDate: str = str(data["estimatedDeliveryDate"])
+            self.estimatedDeliveryDate: str = self._get_value(str, "estimatedDeliveryDate")
         else:
             self.estimatedDeliveryDate: str = None
         if "sellingParty" in data:
-            self.sellingParty: PartyIdentification = PartyIdentification(data["sellingParty"])
+            self.sellingParty: PartyIdentification = self._get_value(PartyIdentification, "sellingParty")
         else:
             self.sellingParty: PartyIdentification = None
         if "shipFromParty" in data:
-            self.shipFromParty: PartyIdentification = PartyIdentification(data["shipFromParty"])
+            self.shipFromParty: PartyIdentification = self._get_value(PartyIdentification, "shipFromParty")
         else:
             self.shipFromParty: PartyIdentification = None
         if "shipToParty" in data:
-            self.shipToParty: PartyIdentification = PartyIdentification(data["shipToParty"])
+            self.shipToParty: PartyIdentification = self._get_value(PartyIdentification, "shipToParty")
         else:
             self.shipToParty: PartyIdentification = None
         if "shipmentMeasurements" in data:
-            self.shipmentMeasurements: ShipmentMeasurements = ShipmentMeasurements(data["shipmentMeasurements"])
+            self.shipmentMeasurements: ShipmentMeasurements = self._get_value(
+                ShipmentMeasurements, "shipmentMeasurements"
+            )
         else:
             self.shipmentMeasurements: ShipmentMeasurements = None
         if "importDetails" in data:
-            self.importDetails: ImportDetails = ImportDetails(data["importDetails"])
+            self.importDetails: ImportDetails = self._get_value(ImportDetails, "importDetails")
         else:
             self.importDetails: ImportDetails = None
         if "shippedItems" in data:
@@ -94,126 +96,121 @@ class ShipmentConfirmation(__BaseObject):
             self.pallets: _List[Pallet] = []
 
 
-class ShipmentMeasurements(__BaseObject):
+class ShipmentMeasurements(__BaseDictObject):
     """
     Shipment measurement details.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "grossShipmentWeight" in data:
-            self.grossShipmentWeight: Weight = Weight(data["grossShipmentWeight"])
+            self.grossShipmentWeight: Weight = self._get_value(Weight, "grossShipmentWeight")
         else:
             self.grossShipmentWeight: Weight = None
         if "shipmentVolume" in data:
-            self.shipmentVolume: Volume = Volume(data["shipmentVolume"])
+            self.shipmentVolume: Volume = self._get_value(Volume, "shipmentVolume")
         else:
             self.shipmentVolume: Volume = None
         if "cartonCount" in data:
-            self.cartonCount: int = int(data["cartonCount"])
+            self.cartonCount: int = self._get_value(int, "cartonCount")
         else:
             self.cartonCount: int = None
         if "palletCount" in data:
-            self.palletCount: int = int(data["palletCount"])
+            self.palletCount: int = self._get_value(int, "palletCount")
         else:
             self.palletCount: int = None
 
 
-class TransportationDetails(__BaseObject):
+class TransportationDetails(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "carrierScac" in data:
-            self.carrierScac: str = str(data["carrierScac"])
+            self.carrierScac: str = self._get_value(str, "carrierScac")
         else:
             self.carrierScac: str = None
         if "carrierShipmentReferenceNumber" in data:
-            self.carrierShipmentReferenceNumber: str = str(data["carrierShipmentReferenceNumber"])
+            self.carrierShipmentReferenceNumber: str = self._get_value(str, "carrierShipmentReferenceNumber")
         else:
             self.carrierShipmentReferenceNumber: str = None
         if "transportationMode" in data:
-            self.transportationMode: str = str(data["transportationMode"])
+            self.transportationMode: str = self._get_value(str, "transportationMode")
         else:
             self.transportationMode: str = None
         if "billOfLadingNumber" in data:
-            self.billOfLadingNumber: str = str(data["billOfLadingNumber"])
+            self.billOfLadingNumber: str = self._get_value(str, "billOfLadingNumber")
         else:
             self.billOfLadingNumber: str = None
 
 
-class ImportDetails(__BaseObject):
+class ImportDetails(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "methodOfPayment" in data:
-            self.methodOfPayment: str = str(data["methodOfPayment"])
+            self.methodOfPayment: str = self._get_value(str, "methodOfPayment")
         else:
             self.methodOfPayment: str = None
         if "sealNumber" in data:
-            self.sealNumber: str = str(data["sealNumber"])
+            self.sealNumber: str = self._get_value(str, "sealNumber")
         else:
             self.sealNumber: str = None
         if "route" in data:
-            self.route: Route = Route(data["route"])
+            self.route: Route = self._get_value(Route, "route")
         else:
             self.route: Route = None
         if "importContainers" in data:
-            self.importContainers: str = str(data["importContainers"])
+            self.importContainers: str = self._get_value(str, "importContainers")
         else:
             self.importContainers: str = None
         if "billableWeight" in data:
-            self.billableWeight: Weight = Weight(data["billableWeight"])
+            self.billableWeight: Weight = self._get_value(Weight, "billableWeight")
         else:
             self.billableWeight: Weight = None
         if "estimatedShipByDate" in data:
-            self.estimatedShipByDate: str = str(data["estimatedShipByDate"])
+            self.estimatedShipByDate: str = self._get_value(str, "estimatedShipByDate")
         else:
             self.estimatedShipByDate: str = None
 
 
-class Item(__BaseObject):
+class Item(__BaseDictObject):
     """
     Details of the item being shipped.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "itemSequenceNumber" in data:
-            self.itemSequenceNumber: str = str(data["itemSequenceNumber"])
+            self.itemSequenceNumber: str = self._get_value(str, "itemSequenceNumber")
         else:
             self.itemSequenceNumber: str = None
         if "amazonProductIdentifier" in data:
-            self.amazonProductIdentifier: str = str(data["amazonProductIdentifier"])
+            self.amazonProductIdentifier: str = self._get_value(str, "amazonProductIdentifier")
         else:
             self.amazonProductIdentifier: str = None
         if "vendorProductIdentifier" in data:
-            self.vendorProductIdentifier: str = str(data["vendorProductIdentifier"])
+            self.vendorProductIdentifier: str = self._get_value(str, "vendorProductIdentifier")
         else:
             self.vendorProductIdentifier: str = None
         if "shippedQuantity" in data:
-            self.shippedQuantity: ItemQuantity = ItemQuantity(data["shippedQuantity"])
+            self.shippedQuantity: ItemQuantity = self._get_value(ItemQuantity, "shippedQuantity")
         else:
             self.shippedQuantity: ItemQuantity = None
         if "itemDetails" in data:
-            self.itemDetails: ItemDetails = ItemDetails(data["itemDetails"])
+            self.itemDetails: ItemDetails = self._get_value(ItemDetails, "itemDetails")
         else:
             self.itemDetails: ItemDetails = None
 
 
-class Carton(__BaseObject):
+class Carton(__BaseDictObject):
     """
     Details of the carton/package being shipped.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "cartonIdentifiers" in data:
             self.cartonIdentifiers: _List[ContainerIdentification] = [
                 ContainerIdentification(datum) for datum in data["cartonIdentifiers"]
@@ -221,19 +218,19 @@ class Carton(__BaseObject):
         else:
             self.cartonIdentifiers: _List[ContainerIdentification] = []
         if "cartonSequenceNumber" in data:
-            self.cartonSequenceNumber: str = str(data["cartonSequenceNumber"])
+            self.cartonSequenceNumber: str = self._get_value(str, "cartonSequenceNumber")
         else:
             self.cartonSequenceNumber: str = None
         if "dimensions" in data:
-            self.dimensions: Dimensions = Dimensions(data["dimensions"])
+            self.dimensions: Dimensions = self._get_value(Dimensions, "dimensions")
         else:
             self.dimensions: Dimensions = None
         if "weight" in data:
-            self.weight: Weight = Weight(data["weight"])
+            self.weight: Weight = self._get_value(Weight, "weight")
         else:
             self.weight: Weight = None
         if "trackingNumber" in data:
-            self.trackingNumber: str = str(data["trackingNumber"])
+            self.trackingNumber: str = self._get_value(str, "trackingNumber")
         else:
             self.trackingNumber: str = None
         if "items" in data:
@@ -242,14 +239,13 @@ class Carton(__BaseObject):
             self.items: _List[ContainerItem] = []
 
 
-class Pallet(__BaseObject):
+class Pallet(__BaseDictObject):
     """
     Details of the Pallet/Tare being shipped.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "palletIdentifiers" in data:
             self.palletIdentifiers: _List[ContainerIdentification] = [
                 ContainerIdentification(datum) for datum in data["palletIdentifiers"]
@@ -257,23 +253,25 @@ class Pallet(__BaseObject):
         else:
             self.palletIdentifiers: _List[ContainerIdentification] = []
         if "tier" in data:
-            self.tier: int = int(data["tier"])
+            self.tier: int = self._get_value(int, "tier")
         else:
             self.tier: int = None
         if "block" in data:
-            self.block: int = int(data["block"])
+            self.block: int = self._get_value(int, "block")
         else:
             self.block: int = None
         if "dimensions" in data:
-            self.dimensions: Dimensions = Dimensions(data["dimensions"])
+            self.dimensions: Dimensions = self._get_value(Dimensions, "dimensions")
         else:
             self.dimensions: Dimensions = None
         if "weight" in data:
-            self.weight: Weight = Weight(data["weight"])
+            self.weight: Weight = self._get_value(Weight, "weight")
         else:
             self.weight: Weight = None
         if "cartonReferenceDetails" in data:
-            self.cartonReferenceDetails: CartonReferenceDetails = CartonReferenceDetails(data["cartonReferenceDetails"])
+            self.cartonReferenceDetails: CartonReferenceDetails = self._get_value(
+                CartonReferenceDetails, "cartonReferenceDetails"
+            )
         else:
             self.cartonReferenceDetails: CartonReferenceDetails = None
         if "items" in data:
@@ -282,82 +280,78 @@ class Pallet(__BaseObject):
             self.items: _List[ContainerItem] = []
 
 
-class ItemDetails(__BaseObject):
+class ItemDetails(__BaseDictObject):
     """
     Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "purchaseOrderNumber" in data:
-            self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
+            self.purchaseOrderNumber: str = self._get_value(str, "purchaseOrderNumber")
         else:
             self.purchaseOrderNumber: str = None
         if "lotNumber" in data:
-            self.lotNumber: str = str(data["lotNumber"])
+            self.lotNumber: str = self._get_value(str, "lotNumber")
         else:
             self.lotNumber: str = None
         if "expiry" in data:
-            self.expiry: Expiry = Expiry(data["expiry"])
+            self.expiry: Expiry = self._get_value(Expiry, "expiry")
         else:
             self.expiry: Expiry = None
         if "maximumRetailPrice" in data:
-            self.maximumRetailPrice: Money = Money(data["maximumRetailPrice"])
+            self.maximumRetailPrice: Money = self._get_value(Money, "maximumRetailPrice")
         else:
             self.maximumRetailPrice: Money = None
         if "handlingCode" in data:
-            self.handlingCode: str = str(data["handlingCode"])
+            self.handlingCode: str = self._get_value(str, "handlingCode")
         else:
             self.handlingCode: str = None
 
 
-class ContainerIdentification(__BaseObject):
+class ContainerIdentification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "containerIdentificationType" in data:
-            self.containerIdentificationType: str = str(data["containerIdentificationType"])
+            self.containerIdentificationType: str = self._get_value(str, "containerIdentificationType")
         else:
             self.containerIdentificationType: str = None
         if "containerIdentificationNumber" in data:
-            self.containerIdentificationNumber: str = str(data["containerIdentificationNumber"])
+            self.containerIdentificationNumber: str = self._get_value(str, "containerIdentificationNumber")
         else:
             self.containerIdentificationNumber: str = None
 
 
-class ContainerItem(__BaseObject):
+class ContainerItem(__BaseDictObject):
     """
     Carton/Pallet level details for the item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "itemReference" in data:
-            self.itemReference: str = str(data["itemReference"])
+            self.itemReference: str = self._get_value(str, "itemReference")
         else:
             self.itemReference: str = None
         if "shippedQuantity" in data:
-            self.shippedQuantity: ItemQuantity = ItemQuantity(data["shippedQuantity"])
+            self.shippedQuantity: ItemQuantity = self._get_value(ItemQuantity, "shippedQuantity")
         else:
             self.shippedQuantity: ItemQuantity = None
         if "itemDetails" in data:
-            self.itemDetails: ItemDetails = ItemDetails(data["itemDetails"])
+            self.itemDetails: ItemDetails = self._get_value(ItemDetails, "itemDetails")
         else:
             self.itemDetails: ItemDetails = None
 
 
-class CartonReferenceDetails(__BaseObject):
+class CartonReferenceDetails(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "cartonCount" in data:
-            self.cartonCount: int = int(data["cartonCount"])
+            self.cartonCount: int = self._get_value(int, "cartonCount")
         else:
             self.cartonCount: int = None
         if "cartonReferenceNumbers" in data:
@@ -366,18 +360,17 @@ class CartonReferenceDetails(__BaseObject):
             self.cartonReferenceNumbers: _List[str] = []
 
 
-class PartyIdentification(__BaseObject):
+class PartyIdentification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "address" in data:
-            self.address: Address = Address(data["address"])
+            self.address: Address = self._get_value(Address, "address")
         else:
             self.address: Address = None
         if "partyId" in data:
-            self.partyId: str = str(data["partyId"])
+            self.partyId: str = self._get_value(str, "partyId")
         else:
             self.partyId: str = None
         if "taxRegistrationDetails" in data:
@@ -388,326 +381,311 @@ class PartyIdentification(__BaseObject):
             self.taxRegistrationDetails: _List[TaxRegistrationDetails] = []
 
 
-class TaxRegistrationDetails(__BaseObject):
+class TaxRegistrationDetails(__BaseDictObject):
     """
     Tax registration details of the entity.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "taxRegistrationType" in data:
-            self.taxRegistrationType: str = str(data["taxRegistrationType"])
+            self.taxRegistrationType: str = self._get_value(str, "taxRegistrationType")
         else:
             self.taxRegistrationType: str = None
         if "taxRegistrationNumber" in data:
-            self.taxRegistrationNumber: str = str(data["taxRegistrationNumber"])
+            self.taxRegistrationNumber: str = self._get_value(str, "taxRegistrationNumber")
         else:
             self.taxRegistrationNumber: str = None
 
 
-class Address(__BaseObject):
+class Address(__BaseDictObject):
     """
     Address of the party.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
         if "addressLine1" in data:
-            self.addressLine1: str = str(data["addressLine1"])
+            self.addressLine1: str = self._get_value(str, "addressLine1")
         else:
             self.addressLine1: str = None
         if "addressLine2" in data:
-            self.addressLine2: str = str(data["addressLine2"])
+            self.addressLine2: str = self._get_value(str, "addressLine2")
         else:
             self.addressLine2: str = None
         if "addressLine3" in data:
-            self.addressLine3: str = str(data["addressLine3"])
+            self.addressLine3: str = self._get_value(str, "addressLine3")
         else:
             self.addressLine3: str = None
         if "city" in data:
-            self.city: str = str(data["city"])
+            self.city: str = self._get_value(str, "city")
         else:
             self.city: str = None
         if "county" in data:
-            self.county: str = str(data["county"])
+            self.county: str = self._get_value(str, "county")
         else:
             self.county: str = None
         if "district" in data:
-            self.district: str = str(data["district"])
+            self.district: str = self._get_value(str, "district")
         else:
             self.district: str = None
         if "stateOrRegion" in data:
-            self.stateOrRegion: str = str(data["stateOrRegion"])
+            self.stateOrRegion: str = self._get_value(str, "stateOrRegion")
         else:
             self.stateOrRegion: str = None
         if "postalCode" in data:
-            self.postalCode: str = str(data["postalCode"])
+            self.postalCode: str = self._get_value(str, "postalCode")
         else:
             self.postalCode: str = None
         if "countryCode" in data:
-            self.countryCode: str = str(data["countryCode"])
+            self.countryCode: str = self._get_value(str, "countryCode")
         else:
             self.countryCode: str = None
         if "phone" in data:
-            self.phone: str = str(data["phone"])
+            self.phone: str = self._get_value(str, "phone")
         else:
             self.phone: str = None
 
 
-class Route(__BaseObject):
+class Route(__BaseDictObject):
     """
     This is used only for direct import shipment confirmations.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "stops" in data:
             self.stops: _List[Stop] = [Stop(datum) for datum in data["stops"]]
         else:
             self.stops: _List[Stop] = []
 
 
-class Stop(__BaseObject):
+class Stop(__BaseDictObject):
     """
     Contractual or operational port or point relevant to the movement of the cargo.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "functionCode" in data:
-            self.functionCode: str = str(data["functionCode"])
+            self.functionCode: str = self._get_value(str, "functionCode")
         else:
             self.functionCode: str = None
         if "locationIdentification" in data:
-            self.locationIdentification: Location = Location(data["locationIdentification"])
+            self.locationIdentification: Location = self._get_value(Location, "locationIdentification")
         else:
             self.locationIdentification: Location = None
         if "arrivalTime" in data:
-            self.arrivalTime: str = str(data["arrivalTime"])
+            self.arrivalTime: str = self._get_value(str, "arrivalTime")
         else:
             self.arrivalTime: str = None
         if "departureTime" in data:
-            self.departureTime: str = str(data["departureTime"])
+            self.departureTime: str = self._get_value(str, "departureTime")
         else:
             self.departureTime: str = None
 
 
-class Location(__BaseObject):
+class Location(__BaseDictObject):
     """
     Location identifier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "type" in data:
-            self.type: str = str(data["type"])
+            self.type: str = self._get_value(str, "type")
         else:
             self.type: str = None
         if "locationCode" in data:
-            self.locationCode: str = str(data["locationCode"])
+            self.locationCode: str = self._get_value(str, "locationCode")
         else:
             self.locationCode: str = None
         if "countryCode" in data:
-            self.countryCode: str = str(data["countryCode"])
+            self.countryCode: str = self._get_value(str, "countryCode")
         else:
             self.countryCode: str = None
 
 
-class Dimensions(__BaseObject):
+class Dimensions(__BaseDictObject):
     """
     Physical dimensional measurements of a container.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "length" in data:
-            self.length: Decimal = Decimal(data["length"])
+            self.length: Decimal = self._get_value(Decimal, "length")
         else:
             self.length: Decimal = None
         if "width" in data:
-            self.width: Decimal = Decimal(data["width"])
+            self.width: Decimal = self._get_value(Decimal, "width")
         else:
             self.width: Decimal = None
         if "height" in data:
-            self.height: Decimal = Decimal(data["height"])
+            self.height: Decimal = self._get_value(Decimal, "height")
         else:
             self.height: Decimal = None
         if "unitOfMeasure" in data:
-            self.unitOfMeasure: str = str(data["unitOfMeasure"])
+            self.unitOfMeasure: str = self._get_value(str, "unitOfMeasure")
         else:
             self.unitOfMeasure: str = None
 
 
-class Volume(__BaseObject):
+class Volume(__BaseDictObject):
     """
     The volume of the container.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "unitOfMeasure" in data:
-            self.unitOfMeasure: str = str(data["unitOfMeasure"])
+            self.unitOfMeasure: str = self._get_value(str, "unitOfMeasure")
         else:
             self.unitOfMeasure: str = None
         if "value" in data:
-            self.value: Decimal = Decimal(data["value"])
+            self.value: Decimal = self._get_value(Decimal, "value")
         else:
             self.value: Decimal = None
 
 
-class Weight(__BaseObject):
+class Weight(__BaseDictObject):
     """
     The weight.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "unitOfMeasure" in data:
-            self.unitOfMeasure: str = str(data["unitOfMeasure"])
+            self.unitOfMeasure: str = self._get_value(str, "unitOfMeasure")
         else:
             self.unitOfMeasure: str = None
         if "value" in data:
-            self.value: Decimal = Decimal(data["value"])
+            self.value: Decimal = self._get_value(Decimal, "value")
         else:
             self.value: Decimal = None
 
 
-class Money(__BaseObject):
+class Money(__BaseDictObject):
     """
     An amount of money, including units in the form of currency.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "currencyCode" in data:
-            self.currencyCode: str = str(data["currencyCode"])
+            self.currencyCode: str = self._get_value(str, "currencyCode")
         else:
             self.currencyCode: str = None
         if "amount" in data:
-            self.amount: Decimal = Decimal(data["amount"])
+            self.amount: Decimal = self._get_value(Decimal, "amount")
         else:
             self.amount: Decimal = None
 
 
-class ItemQuantity(__BaseObject):
+class ItemQuantity(__BaseDictObject):
     """
     Details of item quantity.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "amount" in data:
-            self.amount: int = int(data["amount"])
+            self.amount: int = self._get_value(int, "amount")
         else:
             self.amount: int = None
         if "unitOfMeasure" in data:
-            self.unitOfMeasure: str = str(data["unitOfMeasure"])
+            self.unitOfMeasure: str = self._get_value(str, "unitOfMeasure")
         else:
             self.unitOfMeasure: str = None
         if "unitSize" in data:
-            self.unitSize: int = int(data["unitSize"])
+            self.unitSize: int = self._get_value(int, "unitSize")
         else:
             self.unitSize: int = None
 
 
-class Expiry(__BaseObject):
+class Expiry(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "manufacturerDate" in data:
-            self.manufacturerDate: str = str(data["manufacturerDate"])
+            self.manufacturerDate: str = self._get_value(str, "manufacturerDate")
         else:
             self.manufacturerDate: str = None
         if "expiryDate" in data:
-            self.expiryDate: str = str(data["expiryDate"])
+            self.expiryDate: str = self._get_value(str, "expiryDate")
         else:
             self.expiryDate: str = None
         if "expiryAfterDuration" in data:
-            self.expiryAfterDuration: Duration = Duration(data["expiryAfterDuration"])
+            self.expiryAfterDuration: Duration = self._get_value(Duration, "expiryAfterDuration")
         else:
             self.expiryAfterDuration: Duration = None
 
 
-class Duration(__BaseObject):
+class Duration(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "durationUnit" in data:
-            self.durationUnit: str = str(data["durationUnit"])
+            self.durationUnit: str = self._get_value(str, "durationUnit")
         else:
             self.durationUnit: str = None
         if "durationValue" in data:
-            self.durationValue: int = int(data["durationValue"])
+            self.durationValue: int = self._get_value(int, "durationValue")
         else:
             self.durationValue: int = None
 
 
-class SubmitShipmentConfirmationsResponse(__BaseObject):
+class SubmitShipmentConfirmationsResponse(__BaseDictObject):
     """
     The response schema for the SubmitShipmentConfirmations operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: TransactionReference = TransactionReference(data["payload"])
+            self.payload: TransactionReference = self._get_value(TransactionReference, "payload")
         else:
             self.payload: TransactionReference = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class TransactionReference(__BaseObject):
+class TransactionReference(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "transactionId" in data:
-            self.transactionId: str = str(data["transactionId"])
+            self.transactionId: str = self._get_value(str, "transactionId")
         else:
             self.transactionId: str = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

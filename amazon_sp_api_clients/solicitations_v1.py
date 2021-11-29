@@ -1,149 +1,141 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class LinkObject(__BaseObject):
+class LinkObject(__BaseDictObject):
     """
     A Link object.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "href" in data:
-            self.href: str = str(data["href"])
+            self.href: str = self._get_value(str, "href")
         else:
             self.href: str = None
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
 
 
-class SolicitationsAction(__BaseObject):
+class SolicitationsAction(__BaseDictObject):
     """
     A simple object containing the name of the template.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
 
 
-class Schema(__BaseObject):
+class Schema(__BaseDictObject):
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
 
 
-class GetSolicitationActionsForOrderResponse(__BaseObject):
+class GetSolicitationActionsForOrderResponse(__BaseDictObject):
     """
     The response schema for the getSolicitationActionsForOrder operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "_links" in data:
-            self._links: dict = dict(data["_links"])
+            self._links: dict = self._get_value(dict, "_links")
         else:
             self._links: dict = None
         if "_embedded" in data:
-            self._embedded: dict = dict(data["_embedded"])
+            self._embedded: dict = self._get_value(dict, "_embedded")
         else:
             self._embedded: dict = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetSolicitationActionResponse(__BaseObject):
+class GetSolicitationActionResponse(__BaseDictObject):
     """
     Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "_links" in data:
-            self._links: dict = dict(data["_links"])
+            self._links: dict = self._get_value(dict, "_links")
         else:
             self._links: dict = None
         if "_embedded" in data:
-            self._embedded: dict = dict(data["_embedded"])
+            self._embedded: dict = self._get_value(dict, "_embedded")
         else:
             self._embedded: dict = None
         if "payload" in data:
-            self.payload: SolicitationsAction = SolicitationsAction(data["payload"])
+            self.payload: SolicitationsAction = self._get_value(SolicitationsAction, "payload")
         else:
             self.payload: SolicitationsAction = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetSchemaResponse(__BaseObject):
+class GetSchemaResponse(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "_links" in data:
-            self._links: dict = dict(data["_links"])
+            self._links: dict = self._get_value(dict, "_links")
         else:
             self._links: dict = None
         if "payload" in data:
-            self.payload: Schema = Schema(data["payload"])
+            self.payload: Schema = self._get_value(Schema, "payload")
         else:
             self.payload: Schema = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateProductReviewAndSellerFeedbackSolicitationResponse(__BaseObject):
+class CreateProductReviewAndSellerFeedbackSolicitationResponse(__BaseDictObject):
     """
     The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

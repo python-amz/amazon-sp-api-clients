@@ -1,389 +1,379 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class GetShipmentDetailsResponse(__BaseObject):
+class GetShipmentDetailsResponse(__BaseDictObject):
     """
     The response schema for the getShipmentDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ShipmentDetail = ShipmentDetail(data["payload"])
+            self.payload: ShipmentDetail = self._get_value(ShipmentDetail, "payload")
         else:
             self.payload: ShipmentDetail = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class ShipmentDetail(__BaseObject):
+class ShipmentDetail(__BaseDictObject):
     """
     The information required by a selling partner to issue a shipment invoice.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "WarehouseId" in data:
-            self.WarehouseId: str = str(data["WarehouseId"])
+            self.WarehouseId: str = self._get_value(str, "WarehouseId")
         else:
             self.WarehouseId: str = None
         if "AmazonOrderId" in data:
-            self.AmazonOrderId: str = str(data["AmazonOrderId"])
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
         if "AmazonShipmentId" in data:
-            self.AmazonShipmentId: str = str(data["AmazonShipmentId"])
+            self.AmazonShipmentId: str = self._get_value(str, "AmazonShipmentId")
         else:
             self.AmazonShipmentId: str = None
         if "PurchaseDate" in data:
-            self.PurchaseDate: str = str(data["PurchaseDate"])
+            self.PurchaseDate: str = self._get_value(str, "PurchaseDate")
         else:
             self.PurchaseDate: str = None
         if "ShippingAddress" in data:
-            self.ShippingAddress: Address = Address(data["ShippingAddress"])
+            self.ShippingAddress: Address = self._get_value(Address, "ShippingAddress")
         else:
             self.ShippingAddress: Address = None
         if "PaymentMethodDetails" in data:
-            self.PaymentMethodDetails: PaymentMethodDetailItemList = PaymentMethodDetailItemList(
-                data["PaymentMethodDetails"]
+            self.PaymentMethodDetails: PaymentMethodDetailItemList = self._get_value(
+                PaymentMethodDetailItemList, "PaymentMethodDetails"
             )
         else:
             self.PaymentMethodDetails: PaymentMethodDetailItemList = None
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
         if "SellerId" in data:
-            self.SellerId: str = str(data["SellerId"])
+            self.SellerId: str = self._get_value(str, "SellerId")
         else:
             self.SellerId: str = None
         if "BuyerName" in data:
-            self.BuyerName: str = str(data["BuyerName"])
+            self.BuyerName: str = self._get_value(str, "BuyerName")
         else:
             self.BuyerName: str = None
         if "BuyerCounty" in data:
-            self.BuyerCounty: str = str(data["BuyerCounty"])
+            self.BuyerCounty: str = self._get_value(str, "BuyerCounty")
         else:
             self.BuyerCounty: str = None
         if "BuyerTaxInfo" in data:
-            self.BuyerTaxInfo: BuyerTaxInfo = BuyerTaxInfo(data["BuyerTaxInfo"])
+            self.BuyerTaxInfo: BuyerTaxInfo = self._get_value(BuyerTaxInfo, "BuyerTaxInfo")
         else:
             self.BuyerTaxInfo: BuyerTaxInfo = None
         if "MarketplaceTaxInfo" in data:
-            self.MarketplaceTaxInfo: MarketplaceTaxInfo = MarketplaceTaxInfo(data["MarketplaceTaxInfo"])
+            self.MarketplaceTaxInfo: MarketplaceTaxInfo = self._get_value(MarketplaceTaxInfo, "MarketplaceTaxInfo")
         else:
             self.MarketplaceTaxInfo: MarketplaceTaxInfo = None
         if "SellerDisplayName" in data:
-            self.SellerDisplayName: str = str(data["SellerDisplayName"])
+            self.SellerDisplayName: str = self._get_value(str, "SellerDisplayName")
         else:
             self.SellerDisplayName: str = None
         if "ShipmentItems" in data:
-            self.ShipmentItems: ShipmentItems = ShipmentItems(data["ShipmentItems"])
+            self.ShipmentItems: ShipmentItems = self._get_value(ShipmentItems, "ShipmentItems")
         else:
             self.ShipmentItems: ShipmentItems = None
 
 
-class Address(__BaseObject):
+class Address(__BaseDictObject):
     """
     The shipping address details of the shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Name" in data:
-            self.Name: str = str(data["Name"])
+            self.Name: str = self._get_value(str, "Name")
         else:
             self.Name: str = None
         if "AddressLine1" in data:
-            self.AddressLine1: str = str(data["AddressLine1"])
+            self.AddressLine1: str = self._get_value(str, "AddressLine1")
         else:
             self.AddressLine1: str = None
         if "AddressLine2" in data:
-            self.AddressLine2: str = str(data["AddressLine2"])
+            self.AddressLine2: str = self._get_value(str, "AddressLine2")
         else:
             self.AddressLine2: str = None
         if "AddressLine3" in data:
-            self.AddressLine3: str = str(data["AddressLine3"])
+            self.AddressLine3: str = self._get_value(str, "AddressLine3")
         else:
             self.AddressLine3: str = None
         if "City" in data:
-            self.City: str = str(data["City"])
+            self.City: str = self._get_value(str, "City")
         else:
             self.City: str = None
         if "County" in data:
-            self.County: str = str(data["County"])
+            self.County: str = self._get_value(str, "County")
         else:
             self.County: str = None
         if "District" in data:
-            self.District: str = str(data["District"])
+            self.District: str = self._get_value(str, "District")
         else:
             self.District: str = None
         if "StateOrRegion" in data:
-            self.StateOrRegion: str = str(data["StateOrRegion"])
+            self.StateOrRegion: str = self._get_value(str, "StateOrRegion")
         else:
             self.StateOrRegion: str = None
         if "PostalCode" in data:
-            self.PostalCode: str = str(data["PostalCode"])
+            self.PostalCode: str = self._get_value(str, "PostalCode")
         else:
             self.PostalCode: str = None
         if "CountryCode" in data:
-            self.CountryCode: str = str(data["CountryCode"])
+            self.CountryCode: str = self._get_value(str, "CountryCode")
         else:
             self.CountryCode: str = None
         if "Phone" in data:
-            self.Phone: str = str(data["Phone"])
+            self.Phone: str = self._get_value(str, "Phone")
         else:
             self.Phone: str = None
         if "AddressType" in data:
-            self.AddressType: AddressTypeEnum = AddressTypeEnum(data["AddressType"])
+            self.AddressType: AddressTypeEnum = self._get_value(AddressTypeEnum, "AddressType")
         else:
             self.AddressType: AddressTypeEnum = None
 
 
-class BuyerTaxInfo(__BaseObject):
+class BuyerTaxInfo(__BaseDictObject):
     """
     Tax information about the buyer.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CompanyLegalName" in data:
-            self.CompanyLegalName: str = str(data["CompanyLegalName"])
+            self.CompanyLegalName: str = self._get_value(str, "CompanyLegalName")
         else:
             self.CompanyLegalName: str = None
         if "TaxingRegion" in data:
-            self.TaxingRegion: str = str(data["TaxingRegion"])
+            self.TaxingRegion: str = self._get_value(str, "TaxingRegion")
         else:
             self.TaxingRegion: str = None
         if "TaxClassifications" in data:
-            self.TaxClassifications: TaxClassificationList = TaxClassificationList(data["TaxClassifications"])
+            self.TaxClassifications: TaxClassificationList = self._get_value(
+                TaxClassificationList, "TaxClassifications"
+            )
         else:
             self.TaxClassifications: TaxClassificationList = None
 
 
-class MarketplaceTaxInfo(__BaseObject):
+class MarketplaceTaxInfo(__BaseDictObject):
     """
     Tax information about the marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CompanyLegalName" in data:
-            self.CompanyLegalName: str = str(data["CompanyLegalName"])
+            self.CompanyLegalName: str = self._get_value(str, "CompanyLegalName")
         else:
             self.CompanyLegalName: str = None
         if "TaxingRegion" in data:
-            self.TaxingRegion: str = str(data["TaxingRegion"])
+            self.TaxingRegion: str = self._get_value(str, "TaxingRegion")
         else:
             self.TaxingRegion: str = None
         if "TaxClassifications" in data:
-            self.TaxClassifications: TaxClassificationList = TaxClassificationList(data["TaxClassifications"])
+            self.TaxClassifications: TaxClassificationList = self._get_value(
+                TaxClassificationList, "TaxClassifications"
+            )
         else:
             self.TaxClassifications: TaxClassificationList = None
 
 
-class TaxClassification(__BaseObject):
+class TaxClassification(__BaseDictObject):
     """
     The tax classification for the entity.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Name" in data:
-            self.Name: str = str(data["Name"])
+            self.Name: str = self._get_value(str, "Name")
         else:
             self.Name: str = None
         if "Value" in data:
-            self.Value: str = str(data["Value"])
+            self.Value: str = self._get_value(str, "Value")
         else:
             self.Value: str = None
 
 
-class ShipmentItem(__BaseObject):
+class ShipmentItem(__BaseDictObject):
     """
     The shipment item information required by a seller to issue a shipment invoice.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "OrderItemId" in data:
-            self.OrderItemId: str = str(data["OrderItemId"])
+            self.OrderItemId: str = self._get_value(str, "OrderItemId")
         else:
             self.OrderItemId: str = None
         if "Title" in data:
-            self.Title: str = str(data["Title"])
+            self.Title: str = self._get_value(str, "Title")
         else:
             self.Title: str = None
         if "QuantityOrdered" in data:
-            self.QuantityOrdered: float = float(data["QuantityOrdered"])
+            self.QuantityOrdered: float = self._get_value(float, "QuantityOrdered")
         else:
             self.QuantityOrdered: float = None
         if "ItemPrice" in data:
-            self.ItemPrice: Money = Money(data["ItemPrice"])
+            self.ItemPrice: Money = self._get_value(Money, "ItemPrice")
         else:
             self.ItemPrice: Money = None
         if "ShippingPrice" in data:
-            self.ShippingPrice: Money = Money(data["ShippingPrice"])
+            self.ShippingPrice: Money = self._get_value(Money, "ShippingPrice")
         else:
             self.ShippingPrice: Money = None
         if "GiftWrapPrice" in data:
-            self.GiftWrapPrice: Money = Money(data["GiftWrapPrice"])
+            self.GiftWrapPrice: Money = self._get_value(Money, "GiftWrapPrice")
         else:
             self.GiftWrapPrice: Money = None
         if "ShippingDiscount" in data:
-            self.ShippingDiscount: Money = Money(data["ShippingDiscount"])
+            self.ShippingDiscount: Money = self._get_value(Money, "ShippingDiscount")
         else:
             self.ShippingDiscount: Money = None
         if "PromotionDiscount" in data:
-            self.PromotionDiscount: Money = Money(data["PromotionDiscount"])
+            self.PromotionDiscount: Money = self._get_value(Money, "PromotionDiscount")
         else:
             self.PromotionDiscount: Money = None
         if "SerialNumbers" in data:
-            self.SerialNumbers: SerialNumbersList = SerialNumbersList(data["SerialNumbers"])
+            self.SerialNumbers: SerialNumbersList = self._get_value(SerialNumbersList, "SerialNumbers")
         else:
             self.SerialNumbers: SerialNumbersList = None
 
 
-class Money(__BaseObject):
+class Money(__BaseDictObject):
     """
     The currency type and amount.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CurrencyCode" in data:
-            self.CurrencyCode: str = str(data["CurrencyCode"])
+            self.CurrencyCode: str = self._get_value(str, "CurrencyCode")
         else:
             self.CurrencyCode: str = None
         if "Amount" in data:
-            self.Amount: str = str(data["Amount"])
+            self.Amount: str = self._get_value(str, "Amount")
         else:
             self.Amount: str = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class SubmitInvoiceRequest(__BaseObject):
+class SubmitInvoiceRequest(__BaseDictObject):
     """
     The request schema for the submitInvoice operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "InvoiceContent" in data:
-            self.InvoiceContent: Blob = Blob(data["InvoiceContent"])
+            self.InvoiceContent: Blob = self._get_value(Blob, "InvoiceContent")
         else:
             self.InvoiceContent: Blob = None
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
         if "ContentMD5Value" in data:
-            self.ContentMD5Value: str = str(data["ContentMD5Value"])
+            self.ContentMD5Value: str = self._get_value(str, "ContentMD5Value")
         else:
             self.ContentMD5Value: str = None
 
 
-class SubmitInvoiceResponse(__BaseObject):
+class SubmitInvoiceResponse(__BaseDictObject):
     """
     The response schema for the submitInvoice operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class ShipmentInvoiceStatusInfo(__BaseObject):
+class ShipmentInvoiceStatusInfo(__BaseDictObject):
     """
     The shipment invoice status information.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "AmazonShipmentId" in data:
-            self.AmazonShipmentId: str = str(data["AmazonShipmentId"])
+            self.AmazonShipmentId: str = self._get_value(str, "AmazonShipmentId")
         else:
             self.AmazonShipmentId: str = None
         if "InvoiceStatus" in data:
-            self.InvoiceStatus: ShipmentInvoiceStatus = ShipmentInvoiceStatus(data["InvoiceStatus"])
+            self.InvoiceStatus: ShipmentInvoiceStatus = self._get_value(ShipmentInvoiceStatus, "InvoiceStatus")
         else:
             self.InvoiceStatus: ShipmentInvoiceStatus = None
 
 
-class ShipmentInvoiceStatusResponse(__BaseObject):
+class ShipmentInvoiceStatusResponse(__BaseDictObject):
     """
     The shipment invoice status response.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Shipments" in data:
-            self.Shipments: ShipmentInvoiceStatusInfo = ShipmentInvoiceStatusInfo(data["Shipments"])
+            self.Shipments: ShipmentInvoiceStatusInfo = self._get_value(ShipmentInvoiceStatusInfo, "Shipments")
         else:
             self.Shipments: ShipmentInvoiceStatusInfo = None
 
 
-class GetInvoiceStatusResponse(__BaseObject):
+class GetInvoiceStatusResponse(__BaseDictObject):
     """
     The response schema for the getInvoiceStatus operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ShipmentInvoiceStatusResponse = ShipmentInvoiceStatusResponse(data["payload"])
+            self.payload: ShipmentInvoiceStatusResponse = self._get_value(ShipmentInvoiceStatusResponse, "payload")
         else:
             self.payload: ShipmentInvoiceStatusResponse = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 

@@ -1,133 +1,128 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class Location(__BaseObject):
+class Location(__BaseDictObject):
     """
     The location where the person, business or institution is located.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "stateOrRegion" in data:
-            self.stateOrRegion: StateOrRegion = StateOrRegion(data["stateOrRegion"])
+            self.stateOrRegion: StateOrRegion = self._get_value(StateOrRegion, "stateOrRegion")
         else:
             self.stateOrRegion: StateOrRegion = None
         if "city" in data:
-            self.city: City = City(data["city"])
+            self.city: City = self._get_value(City, "city")
         else:
             self.city: City = None
         if "countryCode" in data:
-            self.countryCode: CountryCode = CountryCode(data["countryCode"])
+            self.countryCode: CountryCode = self._get_value(CountryCode, "countryCode")
         else:
             self.countryCode: CountryCode = None
         if "postalCode" in data:
-            self.postalCode: PostalCode = PostalCode(data["postalCode"])
+            self.postalCode: PostalCode = self._get_value(PostalCode, "postalCode")
         else:
             self.postalCode: PostalCode = None
 
 
-class Event(__BaseObject):
+class Event(__BaseDictObject):
     """
     An event of a shipment
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "eventCode" in data:
-            self.eventCode: EventCode = EventCode(data["eventCode"])
+            self.eventCode: EventCode = self._get_value(EventCode, "eventCode")
         else:
             self.eventCode: EventCode = None
         if "eventTime" in data:
-            self.eventTime: str = str(data["eventTime"])
+            self.eventTime: str = self._get_value(str, "eventTime")
         else:
             self.eventTime: str = None
         if "location" in data:
-            self.location: Location = Location(data["location"])
+            self.location: Location = self._get_value(Location, "location")
         else:
             self.location: Location = None
 
 
-class TrackingSummary(__BaseObject):
+class TrackingSummary(__BaseDictObject):
     """
     The tracking summary.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "status" in data:
-            self.status: str = str(data["status"])
+            self.status: str = self._get_value(str, "status")
         else:
             self.status: str = None
 
 
-class Address(__BaseObject):
+class Address(__BaseDictObject):
     """
     The address.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
         if "addressLine1" in data:
-            self.addressLine1: str = str(data["addressLine1"])
+            self.addressLine1: str = self._get_value(str, "addressLine1")
         else:
             self.addressLine1: str = None
         if "addressLine2" in data:
-            self.addressLine2: str = str(data["addressLine2"])
+            self.addressLine2: str = self._get_value(str, "addressLine2")
         else:
             self.addressLine2: str = None
         if "addressLine3" in data:
-            self.addressLine3: str = str(data["addressLine3"])
+            self.addressLine3: str = self._get_value(str, "addressLine3")
         else:
             self.addressLine3: str = None
         if "stateOrRegion" in data:
-            self.stateOrRegion: StateOrRegion = StateOrRegion(data["stateOrRegion"])
+            self.stateOrRegion: StateOrRegion = self._get_value(StateOrRegion, "stateOrRegion")
         else:
             self.stateOrRegion: StateOrRegion = None
         if "city" in data:
-            self.city: City = City(data["city"])
+            self.city: City = self._get_value(City, "city")
         else:
             self.city: City = None
         if "countryCode" in data:
-            self.countryCode: CountryCode = CountryCode(data["countryCode"])
+            self.countryCode: CountryCode = self._get_value(CountryCode, "countryCode")
         else:
             self.countryCode: CountryCode = None
         if "postalCode" in data:
-            self.postalCode: PostalCode = PostalCode(data["postalCode"])
+            self.postalCode: PostalCode = self._get_value(PostalCode, "postalCode")
         else:
             self.postalCode: PostalCode = None
         if "email" in data:
-            self.email: str = str(data["email"])
+            self.email: str = self._get_value(str, "email")
         else:
             self.email: str = None
         if "copyEmails" in data:
@@ -135,257 +130,248 @@ class Address(__BaseObject):
         else:
             self.copyEmails: _List[str] = []
         if "phoneNumber" in data:
-            self.phoneNumber: str = str(data["phoneNumber"])
+            self.phoneNumber: str = self._get_value(str, "phoneNumber")
         else:
             self.phoneNumber: str = None
 
 
-class TimeRange(__BaseObject):
+class TimeRange(__BaseDictObject):
     """
     The time range.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "start" in data:
-            self.start: str = str(data["start"])
+            self.start: str = self._get_value(str, "start")
         else:
             self.start: str = None
         if "end" in data:
-            self.end: str = str(data["end"])
+            self.end: str = self._get_value(str, "end")
         else:
             self.end: str = None
 
 
-class ShippingPromiseSet(__BaseObject):
+class ShippingPromiseSet(__BaseDictObject):
     """
     The promised delivery time and pickup time.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "deliveryWindow" in data:
-            self.deliveryWindow: TimeRange = TimeRange(data["deliveryWindow"])
+            self.deliveryWindow: TimeRange = self._get_value(TimeRange, "deliveryWindow")
         else:
             self.deliveryWindow: TimeRange = None
         if "receiveWindow" in data:
-            self.receiveWindow: TimeRange = TimeRange(data["receiveWindow"])
+            self.receiveWindow: TimeRange = self._get_value(TimeRange, "receiveWindow")
         else:
             self.receiveWindow: TimeRange = None
 
 
-class Rate(__BaseObject):
+class Rate(__BaseDictObject):
     """
     The available rate that can be used to send the shipment
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "rateId" in data:
-            self.rateId: str = str(data["rateId"])
+            self.rateId: str = self._get_value(str, "rateId")
         else:
             self.rateId: str = None
         if "totalCharge" in data:
-            self.totalCharge: Currency = Currency(data["totalCharge"])
+            self.totalCharge: Currency = self._get_value(Currency, "totalCharge")
         else:
             self.totalCharge: Currency = None
         if "billedWeight" in data:
-            self.billedWeight: Weight = Weight(data["billedWeight"])
+            self.billedWeight: Weight = self._get_value(Weight, "billedWeight")
         else:
             self.billedWeight: Weight = None
         if "expirationTime" in data:
-            self.expirationTime: str = str(data["expirationTime"])
+            self.expirationTime: str = self._get_value(str, "expirationTime")
         else:
             self.expirationTime: str = None
         if "serviceType" in data:
-            self.serviceType: ServiceType = ServiceType(data["serviceType"])
+            self.serviceType: ServiceType = self._get_value(ServiceType, "serviceType")
         else:
             self.serviceType: ServiceType = None
         if "promise" in data:
-            self.promise: ShippingPromiseSet = ShippingPromiseSet(data["promise"])
+            self.promise: ShippingPromiseSet = self._get_value(ShippingPromiseSet, "promise")
         else:
             self.promise: ShippingPromiseSet = None
 
 
-class AcceptedRate(__BaseObject):
+class AcceptedRate(__BaseDictObject):
     """
     The specific rate purchased for the shipment, or null if unpurchased.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "totalCharge" in data:
-            self.totalCharge: Currency = Currency(data["totalCharge"])
+            self.totalCharge: Currency = self._get_value(Currency, "totalCharge")
         else:
             self.totalCharge: Currency = None
         if "billedWeight" in data:
-            self.billedWeight: Weight = Weight(data["billedWeight"])
+            self.billedWeight: Weight = self._get_value(Weight, "billedWeight")
         else:
             self.billedWeight: Weight = None
         if "serviceType" in data:
-            self.serviceType: ServiceType = ServiceType(data["serviceType"])
+            self.serviceType: ServiceType = self._get_value(ServiceType, "serviceType")
         else:
             self.serviceType: ServiceType = None
         if "promise" in data:
-            self.promise: ShippingPromiseSet = ShippingPromiseSet(data["promise"])
+            self.promise: ShippingPromiseSet = self._get_value(ShippingPromiseSet, "promise")
         else:
             self.promise: ShippingPromiseSet = None
 
 
-class ServiceRate(__BaseObject):
+class ServiceRate(__BaseDictObject):
     """
     The specific rate for a shipping service, or null if no service available.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "totalCharge" in data:
-            self.totalCharge: Currency = Currency(data["totalCharge"])
+            self.totalCharge: Currency = self._get_value(Currency, "totalCharge")
         else:
             self.totalCharge: Currency = None
         if "billableWeight" in data:
-            self.billableWeight: Weight = Weight(data["billableWeight"])
+            self.billableWeight: Weight = self._get_value(Weight, "billableWeight")
         else:
             self.billableWeight: Weight = None
         if "serviceType" in data:
-            self.serviceType: ServiceType = ServiceType(data["serviceType"])
+            self.serviceType: ServiceType = self._get_value(ServiceType, "serviceType")
         else:
             self.serviceType: ServiceType = None
         if "promise" in data:
-            self.promise: ShippingPromiseSet = ShippingPromiseSet(data["promise"])
+            self.promise: ShippingPromiseSet = self._get_value(ShippingPromiseSet, "promise")
         else:
             self.promise: ShippingPromiseSet = None
 
 
-class Party(__BaseObject):
+class Party(__BaseDictObject):
     """
     The account related with the shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "accountId" in data:
-            self.accountId: AccountId = AccountId(data["accountId"])
+            self.accountId: AccountId = self._get_value(AccountId, "accountId")
         else:
             self.accountId: AccountId = None
 
 
-class Currency(__BaseObject):
+class Currency(__BaseDictObject):
     """
     The total value of all items in the container.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "value" in data:
-            self.value: float = float(data["value"])
+            self.value: float = self._get_value(float, "value")
         else:
             self.value: float = None
         if "unit" in data:
-            self.unit: str = str(data["unit"])
+            self.unit: str = self._get_value(str, "unit")
         else:
             self.unit: str = None
 
 
-class Dimensions(__BaseObject):
+class Dimensions(__BaseDictObject):
     """
     A set of measurements for a three-dimensional object.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "length" in data:
-            self.length: float = float(data["length"])
+            self.length: float = self._get_value(float, "length")
         else:
             self.length: float = None
         if "width" in data:
-            self.width: float = float(data["width"])
+            self.width: float = self._get_value(float, "width")
         else:
             self.width: float = None
         if "height" in data:
-            self.height: float = float(data["height"])
+            self.height: float = self._get_value(float, "height")
         else:
             self.height: float = None
         if "unit" in data:
-            self.unit: str = str(data["unit"])
+            self.unit: str = self._get_value(str, "unit")
         else:
             self.unit: str = None
 
 
-class Weight(__BaseObject):
+class Weight(__BaseDictObject):
     """
     The weight.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "unit" in data:
-            self.unit: str = str(data["unit"])
+            self.unit: str = self._get_value(str, "unit")
         else:
             self.unit: str = None
         if "value" in data:
-            self.value: float = float(data["value"])
+            self.value: float = self._get_value(float, "value")
         else:
             self.value: float = None
 
 
-class ContainerItem(__BaseObject):
+class ContainerItem(__BaseDictObject):
     """
     Item in the container.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "quantity" in data:
-            self.quantity: float = float(data["quantity"])
+            self.quantity: float = self._get_value(float, "quantity")
         else:
             self.quantity: float = None
         if "unitPrice" in data:
-            self.unitPrice: Currency = Currency(data["unitPrice"])
+            self.unitPrice: Currency = self._get_value(Currency, "unitPrice")
         else:
             self.unitPrice: Currency = None
         if "unitWeight" in data:
-            self.unitWeight: Weight = Weight(data["unitWeight"])
+            self.unitWeight: Weight = self._get_value(Weight, "unitWeight")
         else:
             self.unitWeight: Weight = None
         if "title" in data:
-            self.title: str = str(data["title"])
+            self.title: str = self._get_value(str, "title")
         else:
             self.title: str = None
 
 
-class Container(__BaseObject):
+class Container(__BaseDictObject):
     """
     Container in the shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "containerType" in data:
-            self.containerType: str = str(data["containerType"])
+            self.containerType: str = self._get_value(str, "containerType")
         else:
             self.containerType: str = None
         if "containerReferenceId" in data:
-            self.containerReferenceId: ContainerReferenceId = ContainerReferenceId(data["containerReferenceId"])
+            self.containerReferenceId: ContainerReferenceId = self._get_value(
+                ContainerReferenceId, "containerReferenceId"
+            )
         else:
             self.containerReferenceId: ContainerReferenceId = None
         if "value" in data:
-            self.value: Currency = Currency(data["value"])
+            self.value: Currency = self._get_value(Currency, "value")
         else:
             self.value: Currency = None
         if "dimensions" in data:
-            self.dimensions: Dimensions = Dimensions(data["dimensions"])
+            self.dimensions: Dimensions = self._get_value(Dimensions, "dimensions")
         else:
             self.dimensions: Dimensions = None
         if "items" in data:
@@ -393,545 +379,523 @@ class Container(__BaseObject):
         else:
             self.items: _List[ContainerItem] = []
         if "weight" in data:
-            self.weight: Weight = Weight(data["weight"])
+            self.weight: Weight = self._get_value(Weight, "weight")
         else:
             self.weight: Weight = None
 
 
-class ContainerSpecification(__BaseObject):
+class ContainerSpecification(__BaseDictObject):
     """
     Container specification for checking the service rate.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "dimensions" in data:
-            self.dimensions: Dimensions = Dimensions(data["dimensions"])
+            self.dimensions: Dimensions = self._get_value(Dimensions, "dimensions")
         else:
             self.dimensions: Dimensions = None
         if "weight" in data:
-            self.weight: Weight = Weight(data["weight"])
+            self.weight: Weight = self._get_value(Weight, "weight")
         else:
             self.weight: Weight = None
 
 
-class Label(__BaseObject):
+class Label(__BaseDictObject):
     """
     The label details of the container.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "labelStream" in data:
-            self.labelStream: LabelStream = LabelStream(data["labelStream"])
+            self.labelStream: LabelStream = self._get_value(LabelStream, "labelStream")
         else:
             self.labelStream: LabelStream = None
         if "labelSpecification" in data:
-            self.labelSpecification: LabelSpecification = LabelSpecification(data["labelSpecification"])
+            self.labelSpecification: LabelSpecification = self._get_value(LabelSpecification, "labelSpecification")
         else:
             self.labelSpecification: LabelSpecification = None
 
 
-class LabelResult(__BaseObject):
+class LabelResult(__BaseDictObject):
     """
     Label details including label stream, format, size.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "containerReferenceId" in data:
-            self.containerReferenceId: ContainerReferenceId = ContainerReferenceId(data["containerReferenceId"])
+            self.containerReferenceId: ContainerReferenceId = self._get_value(
+                ContainerReferenceId, "containerReferenceId"
+            )
         else:
             self.containerReferenceId: ContainerReferenceId = None
         if "trackingId" in data:
-            self.trackingId: str = str(data["trackingId"])
+            self.trackingId: str = self._get_value(str, "trackingId")
         else:
             self.trackingId: str = None
         if "label" in data:
-            self.label: Label = Label(data["label"])
+            self.label: Label = self._get_value(Label, "label")
         else:
             self.label: Label = None
 
 
-class LabelSpecification(__BaseObject):
+class LabelSpecification(__BaseDictObject):
     """
     The label specification info.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "labelFormat" in data:
-            self.labelFormat: str = str(data["labelFormat"])
+            self.labelFormat: str = self._get_value(str, "labelFormat")
         else:
             self.labelFormat: str = None
         if "labelStockSize" in data:
-            self.labelStockSize: str = str(data["labelStockSize"])
+            self.labelStockSize: str = self._get_value(str, "labelStockSize")
         else:
             self.labelStockSize: str = None
 
 
-class CreateShipmentRequest(__BaseObject):
+class CreateShipmentRequest(__BaseDictObject):
     """
     The request schema for the createShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "clientReferenceId" in data:
-            self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
+            self.clientReferenceId: ClientReferenceId = self._get_value(ClientReferenceId, "clientReferenceId")
         else:
             self.clientReferenceId: ClientReferenceId = None
         if "shipTo" in data:
-            self.shipTo: Address = Address(data["shipTo"])
+            self.shipTo: Address = self._get_value(Address, "shipTo")
         else:
             self.shipTo: Address = None
         if "shipFrom" in data:
-            self.shipFrom: Address = Address(data["shipFrom"])
+            self.shipFrom: Address = self._get_value(Address, "shipFrom")
         else:
             self.shipFrom: Address = None
         if "containers" in data:
-            self.containers: ContainerList = ContainerList(data["containers"])
+            self.containers: ContainerList = self._get_value(ContainerList, "containers")
         else:
             self.containers: ContainerList = None
 
 
-class PurchaseLabelsRequest(__BaseObject):
+class PurchaseLabelsRequest(__BaseDictObject):
     """
     The request schema for the purchaseLabels operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "rateId" in data:
-            self.rateId: RateId = RateId(data["rateId"])
+            self.rateId: RateId = self._get_value(RateId, "rateId")
         else:
             self.rateId: RateId = None
         if "labelSpecification" in data:
-            self.labelSpecification: LabelSpecification = LabelSpecification(data["labelSpecification"])
+            self.labelSpecification: LabelSpecification = self._get_value(LabelSpecification, "labelSpecification")
         else:
             self.labelSpecification: LabelSpecification = None
 
 
-class RetrieveShippingLabelRequest(__BaseObject):
+class RetrieveShippingLabelRequest(__BaseDictObject):
     """
     The request schema for the retrieveShippingLabel operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "labelSpecification" in data:
-            self.labelSpecification: LabelSpecification = LabelSpecification(data["labelSpecification"])
+            self.labelSpecification: LabelSpecification = self._get_value(LabelSpecification, "labelSpecification")
         else:
             self.labelSpecification: LabelSpecification = None
 
 
-class GetRatesRequest(__BaseObject):
+class GetRatesRequest(__BaseDictObject):
     """
     The payload schema for the getRates operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "shipTo" in data:
-            self.shipTo: Address = Address(data["shipTo"])
+            self.shipTo: Address = self._get_value(Address, "shipTo")
         else:
             self.shipTo: Address = None
         if "shipFrom" in data:
-            self.shipFrom: Address = Address(data["shipFrom"])
+            self.shipFrom: Address = self._get_value(Address, "shipFrom")
         else:
             self.shipFrom: Address = None
         if "serviceTypes" in data:
-            self.serviceTypes: ServiceTypeList = ServiceTypeList(data["serviceTypes"])
+            self.serviceTypes: ServiceTypeList = self._get_value(ServiceTypeList, "serviceTypes")
         else:
             self.serviceTypes: ServiceTypeList = None
         if "shipDate" in data:
-            self.shipDate: str = str(data["shipDate"])
+            self.shipDate: str = self._get_value(str, "shipDate")
         else:
             self.shipDate: str = None
         if "containerSpecifications" in data:
-            self.containerSpecifications: ContainerSpecificationList = ContainerSpecificationList(
-                data["containerSpecifications"]
+            self.containerSpecifications: ContainerSpecificationList = self._get_value(
+                ContainerSpecificationList, "containerSpecifications"
             )
         else:
             self.containerSpecifications: ContainerSpecificationList = None
 
 
-class PurchaseShipmentRequest(__BaseObject):
+class PurchaseShipmentRequest(__BaseDictObject):
     """
     The payload schema for the purchaseShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "clientReferenceId" in data:
-            self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
+            self.clientReferenceId: ClientReferenceId = self._get_value(ClientReferenceId, "clientReferenceId")
         else:
             self.clientReferenceId: ClientReferenceId = None
         if "shipTo" in data:
-            self.shipTo: Address = Address(data["shipTo"])
+            self.shipTo: Address = self._get_value(Address, "shipTo")
         else:
             self.shipTo: Address = None
         if "shipFrom" in data:
-            self.shipFrom: Address = Address(data["shipFrom"])
+            self.shipFrom: Address = self._get_value(Address, "shipFrom")
         else:
             self.shipFrom: Address = None
         if "shipDate" in data:
-            self.shipDate: str = str(data["shipDate"])
+            self.shipDate: str = self._get_value(str, "shipDate")
         else:
             self.shipDate: str = None
         if "serviceType" in data:
-            self.serviceType: ServiceType = ServiceType(data["serviceType"])
+            self.serviceType: ServiceType = self._get_value(ServiceType, "serviceType")
         else:
             self.serviceType: ServiceType = None
         if "containers" in data:
-            self.containers: ContainerList = ContainerList(data["containers"])
+            self.containers: ContainerList = self._get_value(ContainerList, "containers")
         else:
             self.containers: ContainerList = None
         if "labelSpecification" in data:
-            self.labelSpecification: LabelSpecification = LabelSpecification(data["labelSpecification"])
+            self.labelSpecification: LabelSpecification = self._get_value(LabelSpecification, "labelSpecification")
         else:
             self.labelSpecification: LabelSpecification = None
 
 
-class CreateShipmentResult(__BaseObject):
+class CreateShipmentResult(__BaseDictObject):
     """
     The payload schema for the createShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "shipmentId" in data:
-            self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
+            self.shipmentId: ShipmentId = self._get_value(ShipmentId, "shipmentId")
         else:
             self.shipmentId: ShipmentId = None
         if "eligibleRates" in data:
-            self.eligibleRates: RateList = RateList(data["eligibleRates"])
+            self.eligibleRates: RateList = self._get_value(RateList, "eligibleRates")
         else:
             self.eligibleRates: RateList = None
 
 
-class Shipment(__BaseObject):
+class Shipment(__BaseDictObject):
     """
     The shipment related data.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "shipmentId" in data:
-            self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
+            self.shipmentId: ShipmentId = self._get_value(ShipmentId, "shipmentId")
         else:
             self.shipmentId: ShipmentId = None
         if "clientReferenceId" in data:
-            self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
+            self.clientReferenceId: ClientReferenceId = self._get_value(ClientReferenceId, "clientReferenceId")
         else:
             self.clientReferenceId: ClientReferenceId = None
         if "shipFrom" in data:
-            self.shipFrom: Address = Address(data["shipFrom"])
+            self.shipFrom: Address = self._get_value(Address, "shipFrom")
         else:
             self.shipFrom: Address = None
         if "shipTo" in data:
-            self.shipTo: Address = Address(data["shipTo"])
+            self.shipTo: Address = self._get_value(Address, "shipTo")
         else:
             self.shipTo: Address = None
         if "acceptedRate" in data:
-            self.acceptedRate: AcceptedRate = AcceptedRate(data["acceptedRate"])
+            self.acceptedRate: AcceptedRate = self._get_value(AcceptedRate, "acceptedRate")
         else:
             self.acceptedRate: AcceptedRate = None
         if "shipper" in data:
-            self.shipper: Party = Party(data["shipper"])
+            self.shipper: Party = self._get_value(Party, "shipper")
         else:
             self.shipper: Party = None
         if "containers" in data:
-            self.containers: ContainerList = ContainerList(data["containers"])
+            self.containers: ContainerList = self._get_value(ContainerList, "containers")
         else:
             self.containers: ContainerList = None
 
 
-class PurchaseLabelsResult(__BaseObject):
+class PurchaseLabelsResult(__BaseDictObject):
     """
     The payload schema for the purchaseLabels operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "shipmentId" in data:
-            self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
+            self.shipmentId: ShipmentId = self._get_value(ShipmentId, "shipmentId")
         else:
             self.shipmentId: ShipmentId = None
         if "clientReferenceId" in data:
-            self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
+            self.clientReferenceId: ClientReferenceId = self._get_value(ClientReferenceId, "clientReferenceId")
         else:
             self.clientReferenceId: ClientReferenceId = None
         if "acceptedRate" in data:
-            self.acceptedRate: AcceptedRate = AcceptedRate(data["acceptedRate"])
+            self.acceptedRate: AcceptedRate = self._get_value(AcceptedRate, "acceptedRate")
         else:
             self.acceptedRate: AcceptedRate = None
         if "labelResults" in data:
-            self.labelResults: LabelResultList = LabelResultList(data["labelResults"])
+            self.labelResults: LabelResultList = self._get_value(LabelResultList, "labelResults")
         else:
             self.labelResults: LabelResultList = None
 
 
-class RetrieveShippingLabelResult(__BaseObject):
+class RetrieveShippingLabelResult(__BaseDictObject):
     """
     The payload schema for the retrieveShippingLabel operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "labelStream" in data:
-            self.labelStream: LabelStream = LabelStream(data["labelStream"])
+            self.labelStream: LabelStream = self._get_value(LabelStream, "labelStream")
         else:
             self.labelStream: LabelStream = None
         if "labelSpecification" in data:
-            self.labelSpecification: LabelSpecification = LabelSpecification(data["labelSpecification"])
+            self.labelSpecification: LabelSpecification = self._get_value(LabelSpecification, "labelSpecification")
         else:
             self.labelSpecification: LabelSpecification = None
 
 
-class Account(__BaseObject):
+class Account(__BaseDictObject):
     """
     The account related data.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "accountId" in data:
-            self.accountId: AccountId = AccountId(data["accountId"])
+            self.accountId: AccountId = self._get_value(AccountId, "accountId")
         else:
             self.accountId: AccountId = None
 
 
-class GetRatesResult(__BaseObject):
+class GetRatesResult(__BaseDictObject):
     """
     The payload schema for the getRates operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "serviceRates" in data:
-            self.serviceRates: ServiceRateList = ServiceRateList(data["serviceRates"])
+            self.serviceRates: ServiceRateList = self._get_value(ServiceRateList, "serviceRates")
         else:
             self.serviceRates: ServiceRateList = None
 
 
-class PurchaseShipmentResult(__BaseObject):
+class PurchaseShipmentResult(__BaseDictObject):
     """
     The payload schema for the purchaseShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "shipmentId" in data:
-            self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
+            self.shipmentId: ShipmentId = self._get_value(ShipmentId, "shipmentId")
         else:
             self.shipmentId: ShipmentId = None
         if "serviceRate" in data:
-            self.serviceRate: ServiceRate = ServiceRate(data["serviceRate"])
+            self.serviceRate: ServiceRate = self._get_value(ServiceRate, "serviceRate")
         else:
             self.serviceRate: ServiceRate = None
         if "labelResults" in data:
-            self.labelResults: LabelResultList = LabelResultList(data["labelResults"])
+            self.labelResults: LabelResultList = self._get_value(LabelResultList, "labelResults")
         else:
             self.labelResults: LabelResultList = None
 
 
-class TrackingInformation(__BaseObject):
+class TrackingInformation(__BaseDictObject):
     """
     The payload schema for the getTrackingInformation operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "trackingId" in data:
-            self.trackingId: TrackingId = TrackingId(data["trackingId"])
+            self.trackingId: TrackingId = self._get_value(TrackingId, "trackingId")
         else:
             self.trackingId: TrackingId = None
         if "summary" in data:
-            self.summary: TrackingSummary = TrackingSummary(data["summary"])
+            self.summary: TrackingSummary = self._get_value(TrackingSummary, "summary")
         else:
             self.summary: TrackingSummary = None
         if "promisedDeliveryDate" in data:
-            self.promisedDeliveryDate: PromisedDeliveryDate = PromisedDeliveryDate(data["promisedDeliveryDate"])
+            self.promisedDeliveryDate: PromisedDeliveryDate = self._get_value(
+                PromisedDeliveryDate, "promisedDeliveryDate"
+            )
         else:
             self.promisedDeliveryDate: PromisedDeliveryDate = None
         if "eventHistory" in data:
-            self.eventHistory: EventList = EventList(data["eventHistory"])
+            self.eventHistory: EventList = self._get_value(EventList, "eventHistory")
         else:
             self.eventHistory: EventList = None
 
 
-class CreateShipmentResponse(__BaseObject):
+class CreateShipmentResponse(__BaseDictObject):
     """
     The response schema for the createShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CreateShipmentResult = CreateShipmentResult(data["payload"])
+            self.payload: CreateShipmentResult = self._get_value(CreateShipmentResult, "payload")
         else:
             self.payload: CreateShipmentResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetShipmentResponse(__BaseObject):
+class GetShipmentResponse(__BaseDictObject):
     """
     The response schema for the getShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Shipment = Shipment(data["payload"])
+            self.payload: Shipment = self._get_value(Shipment, "payload")
         else:
             self.payload: Shipment = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetRatesResponse(__BaseObject):
+class GetRatesResponse(__BaseDictObject):
     """
     The response schema for the getRates operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetRatesResult = GetRatesResult(data["payload"])
+            self.payload: GetRatesResult = self._get_value(GetRatesResult, "payload")
         else:
             self.payload: GetRatesResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class PurchaseShipmentResponse(__BaseObject):
+class PurchaseShipmentResponse(__BaseDictObject):
     """
     The response schema for the purchaseShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: PurchaseShipmentResult = PurchaseShipmentResult(data["payload"])
+            self.payload: PurchaseShipmentResult = self._get_value(PurchaseShipmentResult, "payload")
         else:
             self.payload: PurchaseShipmentResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CancelShipmentResponse(__BaseObject):
+class CancelShipmentResponse(__BaseDictObject):
     """
     The response schema for the cancelShipment operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class PurchaseLabelsResponse(__BaseObject):
+class PurchaseLabelsResponse(__BaseDictObject):
     """
     The response schema for the purchaseLabels operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: PurchaseLabelsResult = PurchaseLabelsResult(data["payload"])
+            self.payload: PurchaseLabelsResult = self._get_value(PurchaseLabelsResult, "payload")
         else:
             self.payload: PurchaseLabelsResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class RetrieveShippingLabelResponse(__BaseObject):
+class RetrieveShippingLabelResponse(__BaseDictObject):
     """
     The response schema for the retrieveShippingLabel operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: RetrieveShippingLabelResult = RetrieveShippingLabelResult(data["payload"])
+            self.payload: RetrieveShippingLabelResult = self._get_value(RetrieveShippingLabelResult, "payload")
         else:
             self.payload: RetrieveShippingLabelResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetAccountResponse(__BaseObject):
+class GetAccountResponse(__BaseDictObject):
     """
     The response schema for the getAccount operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Account = Account(data["payload"])
+            self.payload: Account = self._get_value(Account, "payload")
         else:
             self.payload: Account = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetTrackingInformationResponse(__BaseObject):
+class GetTrackingInformationResponse(__BaseDictObject):
     """
     The response schema for the getTrackingInformation operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: TrackingInformation = TrackingInformation(data["payload"])
+            self.payload: TrackingInformation = self._get_value(TrackingInformation, "payload")
         else:
             self.payload: TrackingInformation = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 

@@ -1,111 +1,107 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ReportDocumentEncryptionDetails(__BaseObject):
+class ReportDocumentEncryptionDetails(__BaseDictObject):
     """
     Encryption details required for decryption of a report document's contents.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "standard" in data:
-            self.standard: str = str(data["standard"])
+            self.standard: str = self._get_value(str, "standard")
         else:
             self.standard: str = None
         if "initializationVector" in data:
-            self.initializationVector: str = str(data["initializationVector"])
+            self.initializationVector: str = self._get_value(str, "initializationVector")
         else:
             self.initializationVector: str = None
         if "key" in data:
-            self.key: str = str(data["key"])
+            self.key: str = self._get_value(str, "key")
         else:
             self.key: str = None
 
 
-class Report(__BaseObject):
+class Report(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceIds" in data:
             self.marketplaceIds: _List[str] = [str(datum) for datum in data["marketplaceIds"]]
         else:
             self.marketplaceIds: _List[str] = []
         if "reportId" in data:
-            self.reportId: str = str(data["reportId"])
+            self.reportId: str = self._get_value(str, "reportId")
         else:
             self.reportId: str = None
         if "reportType" in data:
-            self.reportType: str = str(data["reportType"])
+            self.reportType: str = self._get_value(str, "reportType")
         else:
             self.reportType: str = None
         if "dataStartTime" in data:
-            self.dataStartTime: str = str(data["dataStartTime"])
+            self.dataStartTime: str = self._get_value(str, "dataStartTime")
         else:
             self.dataStartTime: str = None
         if "dataEndTime" in data:
-            self.dataEndTime: str = str(data["dataEndTime"])
+            self.dataEndTime: str = self._get_value(str, "dataEndTime")
         else:
             self.dataEndTime: str = None
         if "reportScheduleId" in data:
-            self.reportScheduleId: str = str(data["reportScheduleId"])
+            self.reportScheduleId: str = self._get_value(str, "reportScheduleId")
         else:
             self.reportScheduleId: str = None
         if "createdTime" in data:
-            self.createdTime: str = str(data["createdTime"])
+            self.createdTime: str = self._get_value(str, "createdTime")
         else:
             self.createdTime: str = None
         if "processingStatus" in data:
-            self.processingStatus: str = str(data["processingStatus"])
+            self.processingStatus: str = self._get_value(str, "processingStatus")
         else:
             self.processingStatus: str = None
         if "processingStartTime" in data:
-            self.processingStartTime: str = str(data["processingStartTime"])
+            self.processingStartTime: str = self._get_value(str, "processingStartTime")
         else:
             self.processingStartTime: str = None
         if "processingEndTime" in data:
-            self.processingEndTime: str = str(data["processingEndTime"])
+            self.processingEndTime: str = self._get_value(str, "processingEndTime")
         else:
             self.processingEndTime: str = None
         if "reportDocumentId" in data:
-            self.reportDocumentId: str = str(data["reportDocumentId"])
+            self.reportDocumentId: str = self._get_value(str, "reportDocumentId")
         else:
             self.reportDocumentId: str = None
 
 
-class CreateReportScheduleSpecification(__BaseObject):
+class CreateReportScheduleSpecification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "reportType" in data:
-            self.reportType: str = str(data["reportType"])
+            self.reportType: str = self._get_value(str, "reportType")
         else:
             self.reportType: str = None
         if "marketplaceIds" in data:
@@ -113,39 +109,38 @@ class CreateReportScheduleSpecification(__BaseObject):
         else:
             self.marketplaceIds: _List[str] = []
         if "reportOptions" in data:
-            self.reportOptions: ReportOptions = ReportOptions(data["reportOptions"])
+            self.reportOptions: ReportOptions = self._get_value(ReportOptions, "reportOptions")
         else:
             self.reportOptions: ReportOptions = None
         if "period" in data:
-            self.period: str = str(data["period"])
+            self.period: str = self._get_value(str, "period")
         else:
             self.period: str = None
         if "nextReportCreationTime" in data:
-            self.nextReportCreationTime: str = str(data["nextReportCreationTime"])
+            self.nextReportCreationTime: str = self._get_value(str, "nextReportCreationTime")
         else:
             self.nextReportCreationTime: str = None
 
 
-class CreateReportSpecification(__BaseObject):
+class CreateReportSpecification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "reportOptions" in data:
-            self.reportOptions: ReportOptions = ReportOptions(data["reportOptions"])
+            self.reportOptions: ReportOptions = self._get_value(ReportOptions, "reportOptions")
         else:
             self.reportOptions: ReportOptions = None
         if "reportType" in data:
-            self.reportType: str = str(data["reportType"])
+            self.reportType: str = self._get_value(str, "reportType")
         else:
             self.reportType: str = None
         if "dataStartTime" in data:
-            self.dataStartTime: str = str(data["dataStartTime"])
+            self.dataStartTime: str = self._get_value(str, "dataStartTime")
         else:
             self.dataStartTime: str = None
         if "dataEndTime" in data:
-            self.dataEndTime: str = str(data["dataEndTime"])
+            self.dataEndTime: str = self._get_value(str, "dataEndTime")
         else:
             self.dataEndTime: str = None
         if "marketplaceIds" in data:
@@ -154,30 +149,28 @@ class CreateReportSpecification(__BaseObject):
             self.marketplaceIds: _List[str] = []
 
 
-class ReportOptions(__BaseObject):
+class ReportOptions(__BaseDictObject):
     """
     Additional information passed to reports. This varies by report type.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
 
 
-class ReportSchedule(__BaseObject):
+class ReportSchedule(__BaseDictObject):
     """
     Detailed information about a report schedule.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "reportScheduleId" in data:
-            self.reportScheduleId: str = str(data["reportScheduleId"])
+            self.reportScheduleId: str = self._get_value(str, "reportScheduleId")
         else:
             self.reportScheduleId: str = None
         if "reportType" in data:
-            self.reportType: str = str(data["reportType"])
+            self.reportType: str = self._get_value(str, "reportType")
         else:
             self.reportType: str = None
         if "marketplaceIds" in data:
@@ -185,223 +178,211 @@ class ReportSchedule(__BaseObject):
         else:
             self.marketplaceIds: _List[str] = []
         if "reportOptions" in data:
-            self.reportOptions: ReportOptions = ReportOptions(data["reportOptions"])
+            self.reportOptions: ReportOptions = self._get_value(ReportOptions, "reportOptions")
         else:
             self.reportOptions: ReportOptions = None
         if "period" in data:
-            self.period: str = str(data["period"])
+            self.period: str = self._get_value(str, "period")
         else:
             self.period: str = None
         if "nextReportCreationTime" in data:
-            self.nextReportCreationTime: str = str(data["nextReportCreationTime"])
+            self.nextReportCreationTime: str = self._get_value(str, "nextReportCreationTime")
         else:
             self.nextReportCreationTime: str = None
 
 
-class CreateReportResult(__BaseObject):
+class CreateReportResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "reportId" in data:
-            self.reportId: str = str(data["reportId"])
+            self.reportId: str = self._get_value(str, "reportId")
         else:
             self.reportId: str = None
 
 
-class GetReportsResponse(__BaseObject):
+class GetReportsResponse(__BaseDictObject):
     """
     The response for the getReports operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ReportList = ReportList(data["payload"])
+            self.payload: ReportList = self._get_value(ReportList, "payload")
         else:
             self.payload: ReportList = None
         if "nextToken" in data:
-            self.nextToken: str = str(data["nextToken"])
+            self.nextToken: str = self._get_value(str, "nextToken")
         else:
             self.nextToken: str = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateReportResponse(__BaseObject):
+class CreateReportResponse(__BaseDictObject):
     """
     The response for the createReport operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CreateReportResult = CreateReportResult(data["payload"])
+            self.payload: CreateReportResult = self._get_value(CreateReportResult, "payload")
         else:
             self.payload: CreateReportResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CancelReportResponse(__BaseObject):
+class CancelReportResponse(__BaseDictObject):
     """
     The response for the cancelReport operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CancelReportScheduleResponse(__BaseObject):
+class CancelReportScheduleResponse(__BaseDictObject):
     """
     The response for the cancelReportSchedule operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetReportResponse(__BaseObject):
+class GetReportResponse(__BaseDictObject):
     """
     The response for the getReport operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Report = Report(data["payload"])
+            self.payload: Report = self._get_value(Report, "payload")
         else:
             self.payload: Report = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetReportSchedulesResponse(__BaseObject):
+class GetReportSchedulesResponse(__BaseDictObject):
     """
     The response for the getReportSchedules operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ReportScheduleList = ReportScheduleList(data["payload"])
+            self.payload: ReportScheduleList = self._get_value(ReportScheduleList, "payload")
         else:
             self.payload: ReportScheduleList = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetReportScheduleResponse(__BaseObject):
+class GetReportScheduleResponse(__BaseDictObject):
     """
     The response for the getReportSchedule operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ReportSchedule = ReportSchedule(data["payload"])
+            self.payload: ReportSchedule = self._get_value(ReportSchedule, "payload")
         else:
             self.payload: ReportSchedule = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateReportScheduleResult(__BaseObject):
+class CreateReportScheduleResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "reportScheduleId" in data:
-            self.reportScheduleId: str = str(data["reportScheduleId"])
+            self.reportScheduleId: str = self._get_value(str, "reportScheduleId")
         else:
             self.reportScheduleId: str = None
 
 
-class CreateReportScheduleResponse(__BaseObject):
+class CreateReportScheduleResponse(__BaseDictObject):
     """
     The response for the createReportSchedule operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CreateReportScheduleResult = CreateReportScheduleResult(data["payload"])
+            self.payload: CreateReportScheduleResult = self._get_value(CreateReportScheduleResult, "payload")
         else:
             self.payload: CreateReportScheduleResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class ReportDocument(__BaseObject):
+class ReportDocument(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "reportDocumentId" in data:
-            self.reportDocumentId: str = str(data["reportDocumentId"])
+            self.reportDocumentId: str = self._get_value(str, "reportDocumentId")
         else:
             self.reportDocumentId: str = None
         if "url" in data:
-            self.url: str = str(data["url"])
+            self.url: str = self._get_value(str, "url")
         else:
             self.url: str = None
         if "encryptionDetails" in data:
-            self.encryptionDetails: ReportDocumentEncryptionDetails = ReportDocumentEncryptionDetails(
-                data["encryptionDetails"]
+            self.encryptionDetails: ReportDocumentEncryptionDetails = self._get_value(
+                ReportDocumentEncryptionDetails, "encryptionDetails"
             )
         else:
             self.encryptionDetails: ReportDocumentEncryptionDetails = None
         if "compressionAlgorithm" in data:
-            self.compressionAlgorithm: str = str(data["compressionAlgorithm"])
+            self.compressionAlgorithm: str = self._get_value(str, "compressionAlgorithm")
         else:
             self.compressionAlgorithm: str = None
 
 
-class GetReportDocumentResponse(__BaseObject):
+class GetReportDocumentResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ReportDocument = ReportDocument(data["payload"])
+            self.payload: ReportDocument = self._get_value(ReportDocument, "payload")
         else:
             self.payload: ReportDocument = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 

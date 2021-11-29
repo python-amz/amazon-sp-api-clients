@@ -1,95 +1,91 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class GetOrderMetricsResponse(__BaseObject):
+class GetOrderMetricsResponse(__BaseDictObject):
     """
     The response schema for the getOrderMetrics operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: OrderMetricsList = OrderMetricsList(data["payload"])
+            self.payload: OrderMetricsList = self._get_value(OrderMetricsList, "payload")
         else:
             self.payload: OrderMetricsList = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class OrderMetricsInterval(__BaseObject):
+class OrderMetricsInterval(__BaseDictObject):
     """
     Contains order metrics.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "interval" in data:
-            self.interval: str = str(data["interval"])
+            self.interval: str = self._get_value(str, "interval")
         else:
             self.interval: str = None
         if "unitCount" in data:
-            self.unitCount: int = int(data["unitCount"])
+            self.unitCount: int = self._get_value(int, "unitCount")
         else:
             self.unitCount: int = None
         if "orderItemCount" in data:
-            self.orderItemCount: int = int(data["orderItemCount"])
+            self.orderItemCount: int = self._get_value(int, "orderItemCount")
         else:
             self.orderItemCount: int = None
         if "orderCount" in data:
-            self.orderCount: int = int(data["orderCount"])
+            self.orderCount: int = self._get_value(int, "orderCount")
         else:
             self.orderCount: int = None
         if "averageUnitPrice" in data:
-            self.averageUnitPrice: Money = Money(data["averageUnitPrice"])
+            self.averageUnitPrice: Money = self._get_value(Money, "averageUnitPrice")
         else:
             self.averageUnitPrice: Money = None
         if "totalSales" in data:
-            self.totalSales: Money = Money(data["totalSales"])
+            self.totalSales: Money = self._get_value(Money, "totalSales")
         else:
             self.totalSales: Money = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class Money(__BaseObject):
+class Money(__BaseDictObject):
     """
     The currency type and the amount.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "currencyCode" in data:
-            self.currencyCode: str = str(data["currencyCode"])
+            self.currencyCode: str = self._get_value(str, "currencyCode")
         else:
             self.currencyCode: str = None
         if "amount" in data:
-            self.amount: Decimal = Decimal(data["amount"])
+            self.amount: Decimal = self._get_value(Decimal, "amount")
         else:
             self.amount: Decimal = None
 

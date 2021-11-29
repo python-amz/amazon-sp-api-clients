@@ -1,69 +1,66 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ErrorList(__BaseObject):
+class ErrorList(__BaseDictObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
             self.errors: _List[Error] = []
 
 
-class Item(__BaseObject):
+class Item(__BaseDictObject):
     """
     A listings item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "sku" in data:
-            self.sku: str = str(data["sku"])
+            self.sku: str = self._get_value(str, "sku")
         else:
             self.sku: str = None
         if "summaries" in data:
-            self.summaries: ItemSummaries = ItemSummaries(data["summaries"])
+            self.summaries: ItemSummaries = self._get_value(ItemSummaries, "summaries")
         else:
             self.summaries: ItemSummaries = None
         if "attributes" in data:
-            self.attributes: ItemAttributes = ItemAttributes(data["attributes"])
+            self.attributes: ItemAttributes = self._get_value(ItemAttributes, "attributes")
         else:
             self.attributes: ItemAttributes = None
         if "issues" in data:
-            self.issues: ItemIssues = ItemIssues(data["issues"])
+            self.issues: ItemIssues = self._get_value(ItemIssues, "issues")
         else:
             self.issues: ItemIssues = None
         if "offers" in data:
-            self.offers: ItemOffers = ItemOffers(data["offers"])
+            self.offers: ItemOffers = self._get_value(ItemOffers, "offers")
         else:
             self.offers: ItemOffers = None
         if "fulfillmentAvailability" in data:
@@ -73,33 +70,32 @@ class Item(__BaseObject):
         else:
             self.fulfillmentAvailability: _List[FulfillmentAvailability] = []
         if "procurement" in data:
-            self.procurement: ItemProcurement = ItemProcurement(data["procurement"])
+            self.procurement: ItemProcurement = self._get_value(ItemProcurement, "procurement")
         else:
             self.procurement: ItemProcurement = None
 
 
-class ItemSummaryByMarketplace(__BaseObject):
+class ItemSummaryByMarketplace(__BaseDictObject):
     """
     Summary details of a listings item for an Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "asin" in data:
-            self.asin: str = str(data["asin"])
+            self.asin: str = self._get_value(str, "asin")
         else:
             self.asin: str = None
         if "productType" in data:
-            self.productType: str = str(data["productType"])
+            self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
         if "conditionType" in data:
-            self.conditionType: str = str(data["conditionType"])
+            self.conditionType: str = self._get_value(str, "conditionType")
         else:
             self.conditionType: str = None
         if "status" in data:
@@ -107,77 +103,74 @@ class ItemSummaryByMarketplace(__BaseObject):
         else:
             self.status: _List[str] = []
         if "fnSku" in data:
-            self.fnSku: str = str(data["fnSku"])
+            self.fnSku: str = self._get_value(str, "fnSku")
         else:
             self.fnSku: str = None
         if "itemName" in data:
-            self.itemName: str = str(data["itemName"])
+            self.itemName: str = self._get_value(str, "itemName")
         else:
             self.itemName: str = None
         if "createdDate" in data:
-            self.createdDate: str = str(data["createdDate"])
+            self.createdDate: str = self._get_value(str, "createdDate")
         else:
             self.createdDate: str = None
         if "lastUpdatedDate" in data:
-            self.lastUpdatedDate: str = str(data["lastUpdatedDate"])
+            self.lastUpdatedDate: str = self._get_value(str, "lastUpdatedDate")
         else:
             self.lastUpdatedDate: str = None
         if "mainImage" in data:
-            self.mainImage: ItemImage = ItemImage(data["mainImage"])
+            self.mainImage: ItemImage = self._get_value(ItemImage, "mainImage")
         else:
             self.mainImage: ItemImage = None
 
 
-class ItemImage(__BaseObject):
+class ItemImage(__BaseDictObject):
     """
     Image for the listings item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "link" in data:
-            self.link: str = str(data["link"])
+            self.link: str = self._get_value(str, "link")
         else:
             self.link: str = None
         if "height" in data:
-            self.height: int = int(data["height"])
+            self.height: int = self._get_value(int, "height")
         else:
             self.height: int = None
         if "width" in data:
-            self.width: int = int(data["width"])
+            self.width: int = self._get_value(int, "width")
         else:
             self.width: int = None
 
 
-class ItemAttributes(__BaseObject):
+class ItemAttributes(__BaseDictObject):
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
 
 
-class Issue(__BaseObject):
+class Issue(__BaseDictObject):
     """
     An issue with a listings item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "severity" in data:
-            self.severity: str = str(data["severity"])
+            self.severity: str = self._get_value(str, "severity")
         else:
             self.severity: str = None
         if "attributeNames" in data:
@@ -186,110 +179,104 @@ class Issue(__BaseObject):
             self.attributeNames: _List[str] = []
 
 
-class ItemOfferByMarketplace(__BaseObject):
+class ItemOfferByMarketplace(__BaseDictObject):
     """
     Offer details of a listings item for an Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "offerType" in data:
-            self.offerType: str = str(data["offerType"])
+            self.offerType: str = self._get_value(str, "offerType")
         else:
             self.offerType: str = None
         if "price" in data:
-            self.price: Money = Money(data["price"])
+            self.price: Money = self._get_value(Money, "price")
         else:
             self.price: Money = None
         if "points" in data:
-            self.points: Points = Points(data["points"])
+            self.points: Points = self._get_value(Points, "points")
         else:
             self.points: Points = None
 
 
-class ItemProcurement(__BaseObject):
+class ItemProcurement(__BaseDictObject):
     """
     Vendor procurement information for the listings item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "costPrice" in data:
-            self.costPrice: Money = Money(data["costPrice"])
+            self.costPrice: Money = self._get_value(Money, "costPrice")
         else:
             self.costPrice: Money = None
 
 
-class FulfillmentAvailability(__BaseObject):
+class FulfillmentAvailability(__BaseDictObject):
     """
     Fulfillment availability details for the listings item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "fulfillmentChannelCode" in data:
-            self.fulfillmentChannelCode: str = str(data["fulfillmentChannelCode"])
+            self.fulfillmentChannelCode: str = self._get_value(str, "fulfillmentChannelCode")
         else:
             self.fulfillmentChannelCode: str = None
         if "quantity" in data:
-            self.quantity: int = int(data["quantity"])
+            self.quantity: int = self._get_value(int, "quantity")
         else:
             self.quantity: int = None
 
 
-class Money(__BaseObject):
+class Money(__BaseDictObject):
     """
     The currency type and the amount.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "currencyCode" in data:
-            self.currencyCode: str = str(data["currencyCode"])
+            self.currencyCode: str = self._get_value(str, "currencyCode")
         else:
             self.currencyCode: str = None
         if "amount" in data:
-            self.amount: Decimal = Decimal(data["amount"])
+            self.amount: Decimal = self._get_value(Decimal, "amount")
         else:
             self.amount: Decimal = None
 
 
-class Points(__BaseObject):
+class Points(__BaseDictObject):
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "pointsNumber" in data:
-            self.pointsNumber: int = int(data["pointsNumber"])
+            self.pointsNumber: int = self._get_value(int, "pointsNumber")
         else:
             self.pointsNumber: int = None
 
 
-class PatchOperation(__BaseObject):
+class PatchOperation(__BaseDictObject):
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "op" in data:
-            self.op: str = str(data["op"])
+            self.op: str = self._get_value(str, "op")
         else:
             self.op: str = None
         if "path" in data:
-            self.path: str = str(data["path"])
+            self.path: str = self._get_value(str, "path")
         else:
             self.path: str = None
         if "value" in data:
@@ -298,16 +285,15 @@ class PatchOperation(__BaseObject):
             self.value: _List[dict] = []
 
 
-class ListingsItemPatchRequest(__BaseObject):
+class ListingsItemPatchRequest(__BaseDictObject):
     """
     The request body schema for the patchListingsItem operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "productType" in data:
-            self.productType: str = str(data["productType"])
+            self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
         if "patches" in data:
@@ -316,46 +302,44 @@ class ListingsItemPatchRequest(__BaseObject):
             self.patches: _List[PatchOperation] = []
 
 
-class ListingsItemPutRequest(__BaseObject):
+class ListingsItemPutRequest(__BaseDictObject):
     """
     The request body schema for the putListingsItem operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "productType" in data:
-            self.productType: str = str(data["productType"])
+            self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
         if "requirements" in data:
-            self.requirements: str = str(data["requirements"])
+            self.requirements: str = self._get_value(str, "requirements")
         else:
             self.requirements: str = None
         if "attributes" in data:
-            self.attributes: dict = dict(data["attributes"])
+            self.attributes: dict = self._get_value(dict, "attributes")
         else:
             self.attributes: dict = None
 
 
-class ListingsItemSubmissionResponse(__BaseObject):
+class ListingsItemSubmissionResponse(__BaseDictObject):
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "sku" in data:
-            self.sku: str = str(data["sku"])
+            self.sku: str = self._get_value(str, "sku")
         else:
             self.sku: str = None
         if "status" in data:
-            self.status: str = str(data["status"])
+            self.status: str = self._get_value(str, "status")
         else:
             self.status: str = None
         if "submissionId" in data:
-            self.submissionId: str = str(data["submissionId"])
+            self.submissionId: str = self._get_value(str, "submissionId")
         else:
             self.submissionId: str = None
         if "issues" in data:

@@ -296,6 +296,14 @@ class BaseClient:
         return response
 
 
-class BaseObject:
+class BaseDictObject:
     def __init__(self, data):
-        pass
+        self.data: dict = data
+
+    def _get_value(self, klass: type, name: str):
+        value = self.data.get(name, None)
+        try:
+            result = klass(value)
+        except KeyError:
+            result = None
+        return result

@@ -1,109 +1,104 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ErrorList(__BaseObject):
+class ErrorList(__BaseDictObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
             self.errors: _List[Error] = []
 
 
-class Item(__BaseObject):
+class Item(__BaseDictObject):
     """
     An item in the Amazon catalog.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "asin" in data:
-            self.asin: ItemAsin = ItemAsin(data["asin"])
+            self.asin: ItemAsin = self._get_value(ItemAsin, "asin")
         else:
             self.asin: ItemAsin = None
         if "attributes" in data:
-            self.attributes: ItemAttributes = ItemAttributes(data["attributes"])
+            self.attributes: ItemAttributes = self._get_value(ItemAttributes, "attributes")
         else:
             self.attributes: ItemAttributes = None
         if "identifiers" in data:
-            self.identifiers: ItemIdentifiers = ItemIdentifiers(data["identifiers"])
+            self.identifiers: ItemIdentifiers = self._get_value(ItemIdentifiers, "identifiers")
         else:
             self.identifiers: ItemIdentifiers = None
         if "images" in data:
-            self.images: ItemImages = ItemImages(data["images"])
+            self.images: ItemImages = self._get_value(ItemImages, "images")
         else:
             self.images: ItemImages = None
         if "productTypes" in data:
-            self.productTypes: ItemProductTypes = ItemProductTypes(data["productTypes"])
+            self.productTypes: ItemProductTypes = self._get_value(ItemProductTypes, "productTypes")
         else:
             self.productTypes: ItemProductTypes = None
         if "salesRanks" in data:
-            self.salesRanks: ItemSalesRanks = ItemSalesRanks(data["salesRanks"])
+            self.salesRanks: ItemSalesRanks = self._get_value(ItemSalesRanks, "salesRanks")
         else:
             self.salesRanks: ItemSalesRanks = None
         if "summaries" in data:
-            self.summaries: ItemSummaries = ItemSummaries(data["summaries"])
+            self.summaries: ItemSummaries = self._get_value(ItemSummaries, "summaries")
         else:
             self.summaries: ItemSummaries = None
         if "variations" in data:
-            self.variations: ItemVariations = ItemVariations(data["variations"])
+            self.variations: ItemVariations = self._get_value(ItemVariations, "variations")
         else:
             self.variations: ItemVariations = None
         if "vendorDetails" in data:
-            self.vendorDetails: ItemVendorDetails = ItemVendorDetails(data["vendorDetails"])
+            self.vendorDetails: ItemVendorDetails = self._get_value(ItemVendorDetails, "vendorDetails")
         else:
             self.vendorDetails: ItemVendorDetails = None
 
 
-class ItemAttributes(__BaseObject):
+class ItemAttributes(__BaseDictObject):
     """
     A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
 
 
-class ItemIdentifiersByMarketplace(__BaseObject):
+class ItemIdentifiersByMarketplace(__BaseDictObject):
     """
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "identifiers" in data:
@@ -112,34 +107,32 @@ class ItemIdentifiersByMarketplace(__BaseObject):
             self.identifiers: _List[ItemIdentifier] = []
 
 
-class ItemIdentifier(__BaseObject):
+class ItemIdentifier(__BaseDictObject):
     """
     Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "identifierType" in data:
-            self.identifierType: str = str(data["identifierType"])
+            self.identifierType: str = self._get_value(str, "identifierType")
         else:
             self.identifierType: str = None
         if "identifier" in data:
-            self.identifier: str = str(data["identifier"])
+            self.identifier: str = self._get_value(str, "identifier")
         else:
             self.identifier: str = None
 
 
-class ItemImagesByMarketplace(__BaseObject):
+class ItemImagesByMarketplace(__BaseDictObject):
     """
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "images" in data:
@@ -148,60 +141,57 @@ class ItemImagesByMarketplace(__BaseObject):
             self.images: _List[ItemImage] = []
 
 
-class ItemImage(__BaseObject):
+class ItemImage(__BaseDictObject):
     """
     Image for an item in the Amazon catalog.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "variant" in data:
-            self.variant: str = str(data["variant"])
+            self.variant: str = self._get_value(str, "variant")
         else:
             self.variant: str = None
         if "link" in data:
-            self.link: str = str(data["link"])
+            self.link: str = self._get_value(str, "link")
         else:
             self.link: str = None
         if "height" in data:
-            self.height: int = int(data["height"])
+            self.height: int = self._get_value(int, "height")
         else:
             self.height: int = None
         if "width" in data:
-            self.width: int = int(data["width"])
+            self.width: int = self._get_value(int, "width")
         else:
             self.width: int = None
 
 
-class ItemProductTypeByMarketplace(__BaseObject):
+class ItemProductTypeByMarketplace(__BaseDictObject):
     """
     Product type associated with the Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "productType" in data:
-            self.productType: str = str(data["productType"])
+            self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
 
 
-class ItemSalesRanksByMarketplace(__BaseObject):
+class ItemSalesRanksByMarketplace(__BaseDictObject):
     """
     Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "ranks" in data:
@@ -210,84 +200,81 @@ class ItemSalesRanksByMarketplace(__BaseObject):
             self.ranks: _List[ItemSalesRank] = []
 
 
-class ItemSalesRank(__BaseObject):
+class ItemSalesRank(__BaseDictObject):
     """
     Sales rank of an Amazon catalog item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "title" in data:
-            self.title: str = str(data["title"])
+            self.title: str = self._get_value(str, "title")
         else:
             self.title: str = None
         if "link" in data:
-            self.link: str = str(data["link"])
+            self.link: str = self._get_value(str, "link")
         else:
             self.link: str = None
         if "rank" in data:
-            self.rank: int = int(data["rank"])
+            self.rank: int = self._get_value(int, "rank")
         else:
             self.rank: int = None
 
 
-class ItemSummaryByMarketplace(__BaseObject):
+class ItemSummaryByMarketplace(__BaseDictObject):
     """
     Summary details of an Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "brandName" in data:
-            self.brandName: str = str(data["brandName"])
+            self.brandName: str = self._get_value(str, "brandName")
         else:
             self.brandName: str = None
         if "browseNode" in data:
-            self.browseNode: str = str(data["browseNode"])
+            self.browseNode: str = self._get_value(str, "browseNode")
         else:
             self.browseNode: str = None
         if "colorName" in data:
-            self.colorName: str = str(data["colorName"])
+            self.colorName: str = self._get_value(str, "colorName")
         else:
             self.colorName: str = None
         if "itemName" in data:
-            self.itemName: str = str(data["itemName"])
+            self.itemName: str = self._get_value(str, "itemName")
         else:
             self.itemName: str = None
         if "manufacturer" in data:
-            self.manufacturer: str = str(data["manufacturer"])
+            self.manufacturer: str = self._get_value(str, "manufacturer")
         else:
             self.manufacturer: str = None
         if "modelNumber" in data:
-            self.modelNumber: str = str(data["modelNumber"])
+            self.modelNumber: str = self._get_value(str, "modelNumber")
         else:
             self.modelNumber: str = None
         if "sizeName" in data:
-            self.sizeName: str = str(data["sizeName"])
+            self.sizeName: str = self._get_value(str, "sizeName")
         else:
             self.sizeName: str = None
         if "styleName" in data:
-            self.styleName: str = str(data["styleName"])
+            self.styleName: str = self._get_value(str, "styleName")
         else:
             self.styleName: str = None
 
 
-class ItemVariationsByMarketplace(__BaseObject):
+class ItemVariationsByMarketplace(__BaseDictObject):
     """
     Variation details for the Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "asins" in data:
@@ -295,71 +282,69 @@ class ItemVariationsByMarketplace(__BaseObject):
         else:
             self.asins: _List[str] = []
         if "variationType" in data:
-            self.variationType: str = str(data["variationType"])
+            self.variationType: str = self._get_value(str, "variationType")
         else:
             self.variationType: str = None
 
 
-class ItemVendorDetailsByMarketplace(__BaseObject):
+class ItemVendorDetailsByMarketplace(__BaseDictObject):
     """
     Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "brandCode" in data:
-            self.brandCode: str = str(data["brandCode"])
+            self.brandCode: str = self._get_value(str, "brandCode")
         else:
             self.brandCode: str = None
         if "categoryCode" in data:
-            self.categoryCode: str = str(data["categoryCode"])
+            self.categoryCode: str = self._get_value(str, "categoryCode")
         else:
             self.categoryCode: str = None
         if "manufacturerCode" in data:
-            self.manufacturerCode: str = str(data["manufacturerCode"])
+            self.manufacturerCode: str = self._get_value(str, "manufacturerCode")
         else:
             self.manufacturerCode: str = None
         if "manufacturerCodeParent" in data:
-            self.manufacturerCodeParent: str = str(data["manufacturerCodeParent"])
+            self.manufacturerCodeParent: str = self._get_value(str, "manufacturerCodeParent")
         else:
             self.manufacturerCodeParent: str = None
         if "productGroup" in data:
-            self.productGroup: str = str(data["productGroup"])
+            self.productGroup: str = self._get_value(str, "productGroup")
         else:
             self.productGroup: str = None
         if "replenishmentCategory" in data:
-            self.replenishmentCategory: str = str(data["replenishmentCategory"])
+            self.replenishmentCategory: str = self._get_value(str, "replenishmentCategory")
         else:
             self.replenishmentCategory: str = None
         if "subcategoryCode" in data:
-            self.subcategoryCode: str = str(data["subcategoryCode"])
+            self.subcategoryCode: str = self._get_value(str, "subcategoryCode")
         else:
             self.subcategoryCode: str = None
 
 
-class ItemSearchResults(__BaseObject):
+class ItemSearchResults(__BaseDictObject):
     """
     Items in the Amazon catalog and search related metadata.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "numberOfResults" in data:
-            self.numberOfResults: int = int(data["numberOfResults"])
+            self.numberOfResults: int = self._get_value(int, "numberOfResults")
         else:
             self.numberOfResults: int = None
         if "pagination" in data:
-            self.pagination: Pagination = Pagination(data["pagination"])
+            self.pagination: Pagination = self._get_value(Pagination, "pagination")
         else:
             self.pagination: Pagination = None
         if "refinements" in data:
-            self.refinements: Refinements = Refinements(data["refinements"])
+            self.refinements: Refinements = self._get_value(Refinements, "refinements")
         else:
             self.refinements: Refinements = None
         if "items" in data:
@@ -368,32 +353,30 @@ class ItemSearchResults(__BaseObject):
             self.items: _List[Item] = []
 
 
-class Pagination(__BaseObject):
+class Pagination(__BaseDictObject):
     """
     When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "nextToken" in data:
-            self.nextToken: str = str(data["nextToken"])
+            self.nextToken: str = self._get_value(str, "nextToken")
         else:
             self.nextToken: str = None
         if "previousToken" in data:
-            self.previousToken: str = str(data["previousToken"])
+            self.previousToken: str = self._get_value(str, "previousToken")
         else:
             self.previousToken: str = None
 
 
-class Refinements(__BaseObject):
+class Refinements(__BaseDictObject):
     """
     Search refinements.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "brands" in data:
             self.brands: _List[BrandRefinement] = [BrandRefinement(datum) for datum in data["brands"]]
         else:
@@ -406,42 +389,40 @@ class Refinements(__BaseObject):
             self.classifications: _List[ClassificationRefinement] = []
 
 
-class BrandRefinement(__BaseObject):
+class BrandRefinement(__BaseDictObject):
     """
     Description of a brand that can be used to get more fine-grained search results.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "numberOfResults" in data:
-            self.numberOfResults: int = int(data["numberOfResults"])
+            self.numberOfResults: int = self._get_value(int, "numberOfResults")
         else:
             self.numberOfResults: int = None
         if "brandName" in data:
-            self.brandName: str = str(data["brandName"])
+            self.brandName: str = self._get_value(str, "brandName")
         else:
             self.brandName: str = None
 
 
-class ClassificationRefinement(__BaseObject):
+class ClassificationRefinement(__BaseDictObject):
     """
     Description of a classification that can be used to get more fine-grained search results.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "numberOfResults" in data:
-            self.numberOfResults: int = int(data["numberOfResults"])
+            self.numberOfResults: int = self._get_value(int, "numberOfResults")
         else:
             self.numberOfResults: int = None
         if "displayName" in data:
-            self.displayName: str = str(data["displayName"])
+            self.displayName: str = self._get_value(str, "displayName")
         else:
             self.displayName: str = None
         if "classificationId" in data:
-            self.classificationId: str = str(data["classificationId"])
+            self.classificationId: str = self._get_value(str, "classificationId")
         else:
             self.classificationId: str = None
 

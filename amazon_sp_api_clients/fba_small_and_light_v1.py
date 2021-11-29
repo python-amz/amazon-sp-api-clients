@@ -1,97 +1,92 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ErrorList(__BaseObject):
+class ErrorList(__BaseDictObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
             self.errors: _List[Error] = []
 
 
-class SmallAndLightEnrollment(__BaseObject):
+class SmallAndLightEnrollment(__BaseDictObject):
     """
     The Small and Light enrollment status of the item indicated by the specified seller SKU.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
+            self.marketplaceId: MarketplaceId = self._get_value(MarketplaceId, "marketplaceId")
         else:
             self.marketplaceId: MarketplaceId = None
         if "sellerSKU" in data:
-            self.sellerSKU: SellerSKU = SellerSKU(data["sellerSKU"])
+            self.sellerSKU: SellerSKU = self._get_value(SellerSKU, "sellerSKU")
         else:
             self.sellerSKU: SellerSKU = None
         if "status" in data:
-            self.status: SmallAndLightEnrollmentStatus = SmallAndLightEnrollmentStatus(data["status"])
+            self.status: SmallAndLightEnrollmentStatus = self._get_value(SmallAndLightEnrollmentStatus, "status")
         else:
             self.status: SmallAndLightEnrollmentStatus = None
 
 
-class SmallAndLightEligibility(__BaseObject):
+class SmallAndLightEligibility(__BaseDictObject):
     """
     The Small and Light eligibility status of the item indicated by the specified seller SKU.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
+            self.marketplaceId: MarketplaceId = self._get_value(MarketplaceId, "marketplaceId")
         else:
             self.marketplaceId: MarketplaceId = None
         if "sellerSKU" in data:
-            self.sellerSKU: SellerSKU = SellerSKU(data["sellerSKU"])
+            self.sellerSKU: SellerSKU = self._get_value(SellerSKU, "sellerSKU")
         else:
             self.sellerSKU: SellerSKU = None
         if "status" in data:
-            self.status: SmallAndLightEligibilityStatus = SmallAndLightEligibilityStatus(data["status"])
+            self.status: SmallAndLightEligibilityStatus = self._get_value(SmallAndLightEligibilityStatus, "status")
         else:
             self.status: SmallAndLightEligibilityStatus = None
 
 
-class SmallAndLightFeePreviewRequest(__BaseObject):
+class SmallAndLightFeePreviewRequest(__BaseDictObject):
     """
     Request schema for submitting items for which to retrieve fee estimates.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "marketplaceId" in data:
-            self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
+            self.marketplaceId: MarketplaceId = self._get_value(MarketplaceId, "marketplaceId")
         else:
             self.marketplaceId: MarketplaceId = None
         if "items" in data:
@@ -100,50 +95,47 @@ class SmallAndLightFeePreviewRequest(__BaseObject):
             self.items: _List[Item] = []
 
 
-class SmallAndLightFeePreviews(__BaseObject):
+class SmallAndLightFeePreviews(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "data" in data:
             self.data: _List[FeePreview] = [FeePreview(datum) for datum in data["data"]]
         else:
             self.data: _List[FeePreview] = []
 
 
-class Item(__BaseObject):
+class Item(__BaseDictObject):
     """
     An item to be sold.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "asin" in data:
-            self.asin: str = str(data["asin"])
+            self.asin: str = self._get_value(str, "asin")
         else:
             self.asin: str = None
         if "price" in data:
-            self.price: MoneyType = MoneyType(data["price"])
+            self.price: MoneyType = self._get_value(MoneyType, "price")
         else:
             self.price: MoneyType = None
 
 
-class FeePreview(__BaseObject):
+class FeePreview(__BaseDictObject):
     """
     The fee estimate for a specific item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "asin" in data:
-            self.asin: str = str(data["asin"])
+            self.asin: str = self._get_value(str, "asin")
         else:
             self.asin: str = None
         if "price" in data:
-            self.price: MoneyType = MoneyType(data["price"])
+            self.price: MoneyType = self._get_value(MoneyType, "price")
         else:
             self.price: MoneyType = None
         if "feeBreakdown" in data:
@@ -151,7 +143,7 @@ class FeePreview(__BaseObject):
         else:
             self.feeBreakdown: _List[FeeLineItem] = []
         if "totalFees" in data:
-            self.totalFees: MoneyType = MoneyType(data["totalFees"])
+            self.totalFees: MoneyType = self._get_value(MoneyType, "totalFees")
         else:
             self.totalFees: MoneyType = None
         if "errors" in data:
@@ -160,36 +152,34 @@ class FeePreview(__BaseObject):
             self.errors: _List[Error] = []
 
 
-class FeeLineItem(__BaseObject):
+class FeeLineItem(__BaseDictObject):
     """
     Fee details for a specific fee.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feeType" in data:
-            self.feeType: str = str(data["feeType"])
+            self.feeType: str = self._get_value(str, "feeType")
         else:
             self.feeType: str = None
         if "feeCharge" in data:
-            self.feeCharge: MoneyType = MoneyType(data["feeCharge"])
+            self.feeCharge: MoneyType = self._get_value(MoneyType, "feeCharge")
         else:
             self.feeCharge: MoneyType = None
 
 
-class MoneyType(__BaseObject):
+class MoneyType(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "currencyCode" in data:
-            self.currencyCode: str = str(data["currencyCode"])
+            self.currencyCode: str = self._get_value(str, "currencyCode")
         else:
             self.currencyCode: str = None
         if "amount" in data:
-            self.amount: float = float(data["amount"])
+            self.amount: float = self._get_value(float, "amount")
         else:
             self.amount: float = None
 

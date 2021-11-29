@@ -1,333 +1,317 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Subscription(__BaseObject):
+class Subscription(__BaseDictObject):
     """
     Represents a subscription to receive notifications.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "subscriptionId" in data:
-            self.subscriptionId: str = str(data["subscriptionId"])
+            self.subscriptionId: str = self._get_value(str, "subscriptionId")
         else:
             self.subscriptionId: str = None
         if "payloadVersion" in data:
-            self.payloadVersion: str = str(data["payloadVersion"])
+            self.payloadVersion: str = self._get_value(str, "payloadVersion")
         else:
             self.payloadVersion: str = None
         if "destinationId" in data:
-            self.destinationId: str = str(data["destinationId"])
+            self.destinationId: str = self._get_value(str, "destinationId")
         else:
             self.destinationId: str = None
 
 
-class CreateSubscriptionResponse(__BaseObject):
+class CreateSubscriptionResponse(__BaseDictObject):
     """
     The response schema for the createSubscription operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Subscription = Subscription(data["payload"])
+            self.payload: Subscription = self._get_value(Subscription, "payload")
         else:
             self.payload: Subscription = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateSubscriptionRequest(__BaseObject):
+class CreateSubscriptionRequest(__BaseDictObject):
     """
     The request schema for the createSubscription operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payloadVersion" in data:
-            self.payloadVersion: str = str(data["payloadVersion"])
+            self.payloadVersion: str = self._get_value(str, "payloadVersion")
         else:
             self.payloadVersion: str = None
         if "destinationId" in data:
-            self.destinationId: str = str(data["destinationId"])
+            self.destinationId: str = self._get_value(str, "destinationId")
         else:
             self.destinationId: str = None
 
 
-class GetSubscriptionByIdResponse(__BaseObject):
+class GetSubscriptionByIdResponse(__BaseDictObject):
     """
     The response schema for the getSubscriptionById operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Subscription = Subscription(data["payload"])
+            self.payload: Subscription = self._get_value(Subscription, "payload")
         else:
             self.payload: Subscription = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetSubscriptionResponse(__BaseObject):
+class GetSubscriptionResponse(__BaseDictObject):
     """
     The response schema for the getSubscription operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Subscription = Subscription(data["payload"])
+            self.payload: Subscription = self._get_value(Subscription, "payload")
         else:
             self.payload: Subscription = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class DeleteSubscriptionByIdResponse(__BaseObject):
+class DeleteSubscriptionByIdResponse(__BaseDictObject):
     """
     The response schema for the deleteSubscriptionById operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Destination(__BaseObject):
+class Destination(__BaseDictObject):
     """
     Represents a destination created when you call the createDestination operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
         if "destinationId" in data:
-            self.destinationId: str = str(data["destinationId"])
+            self.destinationId: str = self._get_value(str, "destinationId")
         else:
             self.destinationId: str = None
         if "resource" in data:
-            self.resource: DestinationResource = DestinationResource(data["resource"])
+            self.resource: DestinationResource = self._get_value(DestinationResource, "resource")
         else:
             self.resource: DestinationResource = None
 
 
-class DestinationResource(__BaseObject):
+class DestinationResource(__BaseDictObject):
     """
     The destination resource types.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "sqs" in data:
-            self.sqs: SqsResource = SqsResource(data["sqs"])
+            self.sqs: SqsResource = self._get_value(SqsResource, "sqs")
         else:
             self.sqs: SqsResource = None
         if "eventBridge" in data:
-            self.eventBridge: EventBridgeResource = EventBridgeResource(data["eventBridge"])
+            self.eventBridge: EventBridgeResource = self._get_value(EventBridgeResource, "eventBridge")
         else:
             self.eventBridge: EventBridgeResource = None
 
 
-class DestinationResourceSpecification(__BaseObject):
+class DestinationResourceSpecification(__BaseDictObject):
     """
     The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "sqs" in data:
-            self.sqs: SqsResource = SqsResource(data["sqs"])
+            self.sqs: SqsResource = self._get_value(SqsResource, "sqs")
         else:
             self.sqs: SqsResource = None
         if "eventBridge" in data:
-            self.eventBridge: EventBridgeResourceSpecification = EventBridgeResourceSpecification(data["eventBridge"])
+            self.eventBridge: EventBridgeResourceSpecification = self._get_value(
+                EventBridgeResourceSpecification, "eventBridge"
+            )
         else:
             self.eventBridge: EventBridgeResourceSpecification = None
 
 
-class SqsResource(__BaseObject):
+class SqsResource(__BaseDictObject):
     """
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "arn" in data:
-            self.arn: str = str(data["arn"])
+            self.arn: str = self._get_value(str, "arn")
         else:
             self.arn: str = None
 
 
-class EventBridgeResourceSpecification(__BaseObject):
+class EventBridgeResourceSpecification(__BaseDictObject):
     """
     The information required to create an Amazon EventBridge destination.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "region" in data:
-            self.region: str = str(data["region"])
+            self.region: str = self._get_value(str, "region")
         else:
             self.region: str = None
         if "accountId" in data:
-            self.accountId: str = str(data["accountId"])
+            self.accountId: str = self._get_value(str, "accountId")
         else:
             self.accountId: str = None
 
 
-class EventBridgeResource(__BaseObject):
+class EventBridgeResource(__BaseDictObject):
     """
     Represents an Amazon EventBridge destination.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
         if "region" in data:
-            self.region: str = str(data["region"])
+            self.region: str = self._get_value(str, "region")
         else:
             self.region: str = None
         if "accountId" in data:
-            self.accountId: str = str(data["accountId"])
+            self.accountId: str = self._get_value(str, "accountId")
         else:
             self.accountId: str = None
 
 
-class CreateDestinationRequest(__BaseObject):
+class CreateDestinationRequest(__BaseDictObject):
     """
     The request schema for the createDestination operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "resourceSpecification" in data:
-            self.resourceSpecification: DestinationResourceSpecification = DestinationResourceSpecification(
-                data["resourceSpecification"]
+            self.resourceSpecification: DestinationResourceSpecification = self._get_value(
+                DestinationResourceSpecification, "resourceSpecification"
             )
         else:
             self.resourceSpecification: DestinationResourceSpecification = None
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
 
 
-class CreateDestinationResponse(__BaseObject):
+class CreateDestinationResponse(__BaseDictObject):
     """
     The response schema for the createDestination operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Destination = Destination(data["payload"])
+            self.payload: Destination = self._get_value(Destination, "payload")
         else:
             self.payload: Destination = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetDestinationResponse(__BaseObject):
+class GetDestinationResponse(__BaseDictObject):
     """
     The response schema for the getDestination operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Destination = Destination(data["payload"])
+            self.payload: Destination = self._get_value(Destination, "payload")
         else:
             self.payload: Destination = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetDestinationsResponse(__BaseObject):
+class GetDestinationsResponse(__BaseDictObject):
     """
     The response schema for the getDestinations operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: DestinationList = DestinationList(data["payload"])
+            self.payload: DestinationList = self._get_value(DestinationList, "payload")
         else:
             self.payload: DestinationList = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class DeleteDestinationResponse(__BaseObject):
+class DeleteDestinationResponse(__BaseDictObject):
     """
     The response schema for the deleteDestination operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

@@ -1,71 +1,67 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ErrorList(__BaseObject):
+class ErrorList(__BaseDictObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
             self.errors: _List[Error] = []
 
 
-class CreateFeedResponse(__BaseObject):
+class CreateFeedResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedId" in data:
-            self.feedId: str = str(data["feedId"])
+            self.feedId: str = self._get_value(str, "feedId")
         else:
             self.feedId: str = None
 
 
-class Feed(__BaseObject):
+class Feed(__BaseDictObject):
     """
     Detailed information about the feed.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedId" in data:
-            self.feedId: str = str(data["feedId"])
+            self.feedId: str = self._get_value(str, "feedId")
         else:
             self.feedId: str = None
         if "feedType" in data:
-            self.feedType: str = str(data["feedType"])
+            self.feedType: str = self._get_value(str, "feedType")
         else:
             self.feedType: str = None
         if "marketplaceIds" in data:
@@ -73,87 +69,83 @@ class Feed(__BaseObject):
         else:
             self.marketplaceIds: _List[str] = []
         if "createdTime" in data:
-            self.createdTime: str = str(data["createdTime"])
+            self.createdTime: str = self._get_value(str, "createdTime")
         else:
             self.createdTime: str = None
         if "processingStatus" in data:
-            self.processingStatus: str = str(data["processingStatus"])
+            self.processingStatus: str = self._get_value(str, "processingStatus")
         else:
             self.processingStatus: str = None
         if "processingStartTime" in data:
-            self.processingStartTime: str = str(data["processingStartTime"])
+            self.processingStartTime: str = self._get_value(str, "processingStartTime")
         else:
             self.processingStartTime: str = None
         if "processingEndTime" in data:
-            self.processingEndTime: str = str(data["processingEndTime"])
+            self.processingEndTime: str = self._get_value(str, "processingEndTime")
         else:
             self.processingEndTime: str = None
         if "resultFeedDocumentId" in data:
-            self.resultFeedDocumentId: str = str(data["resultFeedDocumentId"])
+            self.resultFeedDocumentId: str = self._get_value(str, "resultFeedDocumentId")
         else:
             self.resultFeedDocumentId: str = None
 
 
-class GetFeedsResponse(__BaseObject):
+class GetFeedsResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feeds" in data:
-            self.feeds: FeedList = FeedList(data["feeds"])
+            self.feeds: FeedList = self._get_value(FeedList, "feeds")
         else:
             self.feeds: FeedList = None
         if "nextToken" in data:
-            self.nextToken: str = str(data["nextToken"])
+            self.nextToken: str = self._get_value(str, "nextToken")
         else:
             self.nextToken: str = None
 
 
-class FeedDocument(__BaseObject):
+class FeedDocument(__BaseDictObject):
     """
     Information required for the feed document.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedDocumentId" in data:
-            self.feedDocumentId: str = str(data["feedDocumentId"])
+            self.feedDocumentId: str = self._get_value(str, "feedDocumentId")
         else:
             self.feedDocumentId: str = None
         if "url" in data:
-            self.url: str = str(data["url"])
+            self.url: str = self._get_value(str, "url")
         else:
             self.url: str = None
         if "compressionAlgorithm" in data:
-            self.compressionAlgorithm: str = str(data["compressionAlgorithm"])
+            self.compressionAlgorithm: str = self._get_value(str, "compressionAlgorithm")
         else:
             self.compressionAlgorithm: str = None
 
 
-class FeedOptions(__BaseObject):
+class FeedOptions(__BaseDictObject):
     """
     Additional options to control the feed. These vary by feed type.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
 
 
-class CreateFeedSpecification(__BaseObject):
+class CreateFeedSpecification(__BaseDictObject):
     """
     Information required to create the feed.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedType" in data:
-            self.feedType: str = str(data["feedType"])
+            self.feedType: str = self._get_value(str, "feedType")
         else:
             self.feedType: str = None
         if "marketplaceIds" in data:
@@ -161,43 +153,41 @@ class CreateFeedSpecification(__BaseObject):
         else:
             self.marketplaceIds: _List[str] = []
         if "inputFeedDocumentId" in data:
-            self.inputFeedDocumentId: str = str(data["inputFeedDocumentId"])
+            self.inputFeedDocumentId: str = self._get_value(str, "inputFeedDocumentId")
         else:
             self.inputFeedDocumentId: str = None
         if "feedOptions" in data:
-            self.feedOptions: FeedOptions = FeedOptions(data["feedOptions"])
+            self.feedOptions: FeedOptions = self._get_value(FeedOptions, "feedOptions")
         else:
             self.feedOptions: FeedOptions = None
 
 
-class CreateFeedDocumentSpecification(__BaseObject):
+class CreateFeedDocumentSpecification(__BaseDictObject):
     """
     Specifies the content type for the createFeedDocument operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "contentType" in data:
-            self.contentType: str = str(data["contentType"])
+            self.contentType: str = self._get_value(str, "contentType")
         else:
             self.contentType: str = None
 
 
-class CreateFeedDocumentResponse(__BaseObject):
+class CreateFeedDocumentResponse(__BaseDictObject):
     """
     Information required to upload a feed document's contents.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedDocumentId" in data:
-            self.feedDocumentId: str = str(data["feedDocumentId"])
+            self.feedDocumentId: str = self._get_value(str, "feedDocumentId")
         else:
             self.feedDocumentId: str = None
         if "url" in data:
-            self.url: str = str(data["url"])
+            self.url: str = self._get_value(str, "url")
         else:
             self.url: str = None
 

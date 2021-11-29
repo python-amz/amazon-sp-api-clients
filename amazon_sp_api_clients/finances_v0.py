@@ -1,118 +1,115 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class AdjustmentEvent(__BaseObject):
+class AdjustmentEvent(__BaseDictObject):
     """
     An adjustment to the seller's account.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "AdjustmentType" in data:
-            self.AdjustmentType: str = str(data["AdjustmentType"])
+            self.AdjustmentType: str = self._get_value(str, "AdjustmentType")
         else:
             self.AdjustmentType: str = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "AdjustmentAmount" in data:
-            self.AdjustmentAmount: Currency = Currency(data["AdjustmentAmount"])
+            self.AdjustmentAmount: Currency = self._get_value(Currency, "AdjustmentAmount")
         else:
             self.AdjustmentAmount: Currency = None
         if "AdjustmentItemList" in data:
-            self.AdjustmentItemList: AdjustmentItemList = AdjustmentItemList(data["AdjustmentItemList"])
+            self.AdjustmentItemList: AdjustmentItemList = self._get_value(AdjustmentItemList, "AdjustmentItemList")
         else:
             self.AdjustmentItemList: AdjustmentItemList = None
 
 
-class AdjustmentItem(__BaseObject):
+class AdjustmentItem(__BaseDictObject):
     """
     An item in an adjustment to the seller's account.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Quantity" in data:
-            self.Quantity: str = str(data["Quantity"])
+            self.Quantity: str = self._get_value(str, "Quantity")
         else:
             self.Quantity: str = None
         if "PerUnitAmount" in data:
-            self.PerUnitAmount: Currency = Currency(data["PerUnitAmount"])
+            self.PerUnitAmount: Currency = self._get_value(Currency, "PerUnitAmount")
         else:
             self.PerUnitAmount: Currency = None
         if "TotalAmount" in data:
-            self.TotalAmount: Currency = Currency(data["TotalAmount"])
+            self.TotalAmount: Currency = self._get_value(Currency, "TotalAmount")
         else:
             self.TotalAmount: Currency = None
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "FnSKU" in data:
-            self.FnSKU: str = str(data["FnSKU"])
+            self.FnSKU: str = self._get_value(str, "FnSKU")
         else:
             self.FnSKU: str = None
         if "ProductDescription" in data:
-            self.ProductDescription: str = str(data["ProductDescription"])
+            self.ProductDescription: str = self._get_value(str, "ProductDescription")
         else:
             self.ProductDescription: str = None
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
 
 
-class AffordabilityExpenseEvent(__BaseObject):
+class AffordabilityExpenseEvent(__BaseDictObject):
     """
     An expense related to an affordability promotion.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "AmazonOrderId" in data:
-            self.AmazonOrderId: str = str(data["AmazonOrderId"])
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
         if "TransactionType" in data:
-            self.TransactionType: str = str(data["TransactionType"])
+            self.TransactionType: str = self._get_value(str, "TransactionType")
         else:
             self.TransactionType: str = None
         if "BaseExpense" in data:
-            self.BaseExpense: Currency = Currency(data["BaseExpense"])
+            self.BaseExpense: Currency = self._get_value(Currency, "BaseExpense")
         else:
             self.BaseExpense: Currency = None
         if "TaxTypeCGST" in data:
-            self.TaxTypeCGST: Currency = Currency(data["TaxTypeCGST"])
+            self.TaxTypeCGST: Currency = self._get_value(Currency, "TaxTypeCGST")
         else:
             self.TaxTypeCGST: Currency = None
         if "TaxTypeSGST" in data:
-            self.TaxTypeSGST: Currency = Currency(data["TaxTypeSGST"])
+            self.TaxTypeSGST: Currency = self._get_value(Currency, "TaxTypeSGST")
         else:
             self.TaxTypeSGST: Currency = None
         if "TaxTypeIGST" in data:
-            self.TaxTypeIGST: Currency = Currency(data["TaxTypeIGST"])
+            self.TaxTypeIGST: Currency = self._get_value(Currency, "TaxTypeIGST")
         else:
             self.TaxTypeIGST: Currency = None
         if "TotalExpense" in data:
-            self.TotalExpense: Currency = Currency(data["TotalExpense"])
+            self.TotalExpense: Currency = self._get_value(Currency, "TotalExpense")
         else:
             self.TotalExpense: Currency = None
 
 
-class ChargeComponent(__BaseObject):
+class ChargeComponent(__BaseDictObject):
     """
         A charge on the seller's account.
     Possible values:
@@ -151,760 +148,755 @@ class ChargeComponent(__BaseObject):
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ChargeType" in data:
-            self.ChargeType: str = str(data["ChargeType"])
+            self.ChargeType: str = self._get_value(str, "ChargeType")
         else:
             self.ChargeType: str = None
         if "ChargeAmount" in data:
-            self.ChargeAmount: Currency = Currency(data["ChargeAmount"])
+            self.ChargeAmount: Currency = self._get_value(Currency, "ChargeAmount")
         else:
             self.ChargeAmount: Currency = None
 
 
-class ChargeInstrument(__BaseObject):
+class ChargeInstrument(__BaseDictObject):
     """
     A payment instrument.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Description" in data:
-            self.Description: str = str(data["Description"])
+            self.Description: str = self._get_value(str, "Description")
         else:
             self.Description: str = None
         if "Tail" in data:
-            self.Tail: str = str(data["Tail"])
+            self.Tail: str = self._get_value(str, "Tail")
         else:
             self.Tail: str = None
         if "Amount" in data:
-            self.Amount: Currency = Currency(data["Amount"])
+            self.Amount: Currency = self._get_value(Currency, "Amount")
         else:
             self.Amount: Currency = None
 
 
-class CouponPaymentEvent(__BaseObject):
+class CouponPaymentEvent(__BaseDictObject):
     """
     An event related to coupon payments.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "CouponId" in data:
-            self.CouponId: str = str(data["CouponId"])
+            self.CouponId: str = self._get_value(str, "CouponId")
         else:
             self.CouponId: str = None
         if "SellerCouponDescription" in data:
-            self.SellerCouponDescription: str = str(data["SellerCouponDescription"])
+            self.SellerCouponDescription: str = self._get_value(str, "SellerCouponDescription")
         else:
             self.SellerCouponDescription: str = None
         if "ClipOrRedemptionCount" in data:
-            self.ClipOrRedemptionCount: int = int(data["ClipOrRedemptionCount"])
+            self.ClipOrRedemptionCount: int = self._get_value(int, "ClipOrRedemptionCount")
         else:
             self.ClipOrRedemptionCount: int = None
         if "PaymentEventId" in data:
-            self.PaymentEventId: str = str(data["PaymentEventId"])
+            self.PaymentEventId: str = self._get_value(str, "PaymentEventId")
         else:
             self.PaymentEventId: str = None
         if "FeeComponent" in data:
-            self.FeeComponent: FeeComponent = FeeComponent(data["FeeComponent"])
+            self.FeeComponent: FeeComponent = self._get_value(FeeComponent, "FeeComponent")
         else:
             self.FeeComponent: FeeComponent = None
         if "ChargeComponent" in data:
-            self.ChargeComponent: ChargeComponent = ChargeComponent(data["ChargeComponent"])
+            self.ChargeComponent: ChargeComponent = self._get_value(ChargeComponent, "ChargeComponent")
         else:
             self.ChargeComponent: ChargeComponent = None
         if "TotalAmount" in data:
-            self.TotalAmount: Currency = Currency(data["TotalAmount"])
+            self.TotalAmount: Currency = self._get_value(Currency, "TotalAmount")
         else:
             self.TotalAmount: Currency = None
 
 
-class Currency(__BaseObject):
+class Currency(__BaseDictObject):
     """
     A currency type and amount.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CurrencyCode" in data:
-            self.CurrencyCode: str = str(data["CurrencyCode"])
+            self.CurrencyCode: str = self._get_value(str, "CurrencyCode")
         else:
             self.CurrencyCode: str = None
         if "CurrencyAmount" in data:
-            self.CurrencyAmount: BigDecimal = BigDecimal(data["CurrencyAmount"])
+            self.CurrencyAmount: BigDecimal = self._get_value(BigDecimal, "CurrencyAmount")
         else:
             self.CurrencyAmount: BigDecimal = None
 
 
-class DebtRecoveryEvent(__BaseObject):
+class DebtRecoveryEvent(__BaseDictObject):
     """
     A debt payment or debt adjustment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "DebtRecoveryType" in data:
-            self.DebtRecoveryType: str = str(data["DebtRecoveryType"])
+            self.DebtRecoveryType: str = self._get_value(str, "DebtRecoveryType")
         else:
             self.DebtRecoveryType: str = None
         if "RecoveryAmount" in data:
-            self.RecoveryAmount: Currency = Currency(data["RecoveryAmount"])
+            self.RecoveryAmount: Currency = self._get_value(Currency, "RecoveryAmount")
         else:
             self.RecoveryAmount: Currency = None
         if "OverPaymentCredit" in data:
-            self.OverPaymentCredit: Currency = Currency(data["OverPaymentCredit"])
+            self.OverPaymentCredit: Currency = self._get_value(Currency, "OverPaymentCredit")
         else:
             self.OverPaymentCredit: Currency = None
         if "DebtRecoveryItemList" in data:
-            self.DebtRecoveryItemList: DebtRecoveryItemList = DebtRecoveryItemList(data["DebtRecoveryItemList"])
+            self.DebtRecoveryItemList: DebtRecoveryItemList = self._get_value(
+                DebtRecoveryItemList, "DebtRecoveryItemList"
+            )
         else:
             self.DebtRecoveryItemList: DebtRecoveryItemList = None
         if "ChargeInstrumentList" in data:
-            self.ChargeInstrumentList: ChargeInstrumentList = ChargeInstrumentList(data["ChargeInstrumentList"])
+            self.ChargeInstrumentList: ChargeInstrumentList = self._get_value(
+                ChargeInstrumentList, "ChargeInstrumentList"
+            )
         else:
             self.ChargeInstrumentList: ChargeInstrumentList = None
 
 
-class DebtRecoveryItem(__BaseObject):
+class DebtRecoveryItem(__BaseDictObject):
     """
     An item of a debt payment or debt adjustment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "RecoveryAmount" in data:
-            self.RecoveryAmount: Currency = Currency(data["RecoveryAmount"])
+            self.RecoveryAmount: Currency = self._get_value(Currency, "RecoveryAmount")
         else:
             self.RecoveryAmount: Currency = None
         if "OriginalAmount" in data:
-            self.OriginalAmount: Currency = Currency(data["OriginalAmount"])
+            self.OriginalAmount: Currency = self._get_value(Currency, "OriginalAmount")
         else:
             self.OriginalAmount: Currency = None
         if "GroupBeginDate" in data:
-            self.GroupBeginDate: Date = Date(data["GroupBeginDate"])
+            self.GroupBeginDate: Date = self._get_value(Date, "GroupBeginDate")
         else:
             self.GroupBeginDate: Date = None
         if "GroupEndDate" in data:
-            self.GroupEndDate: Date = Date(data["GroupEndDate"])
+            self.GroupEndDate: Date = self._get_value(Date, "GroupEndDate")
         else:
             self.GroupEndDate: Date = None
 
 
-class DirectPayment(__BaseObject):
+class DirectPayment(__BaseDictObject):
     """
     A payment made directly to a seller.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "DirectPaymentType" in data:
-            self.DirectPaymentType: str = str(data["DirectPaymentType"])
+            self.DirectPaymentType: str = self._get_value(str, "DirectPaymentType")
         else:
             self.DirectPaymentType: str = None
         if "DirectPaymentAmount" in data:
-            self.DirectPaymentAmount: Currency = Currency(data["DirectPaymentAmount"])
+            self.DirectPaymentAmount: Currency = self._get_value(Currency, "DirectPaymentAmount")
         else:
             self.DirectPaymentAmount: Currency = None
 
 
-class FBALiquidationEvent(__BaseObject):
+class FBALiquidationEvent(__BaseDictObject):
     """
     A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "OriginalRemovalOrderId" in data:
-            self.OriginalRemovalOrderId: str = str(data["OriginalRemovalOrderId"])
+            self.OriginalRemovalOrderId: str = self._get_value(str, "OriginalRemovalOrderId")
         else:
             self.OriginalRemovalOrderId: str = None
         if "LiquidationProceedsAmount" in data:
-            self.LiquidationProceedsAmount: Currency = Currency(data["LiquidationProceedsAmount"])
+            self.LiquidationProceedsAmount: Currency = self._get_value(Currency, "LiquidationProceedsAmount")
         else:
             self.LiquidationProceedsAmount: Currency = None
         if "LiquidationFeeAmount" in data:
-            self.LiquidationFeeAmount: Currency = Currency(data["LiquidationFeeAmount"])
+            self.LiquidationFeeAmount: Currency = self._get_value(Currency, "LiquidationFeeAmount")
         else:
             self.LiquidationFeeAmount: Currency = None
 
 
-class FeeComponent(__BaseObject):
+class FeeComponent(__BaseDictObject):
     """
     A fee associated with the event.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "FeeType" in data:
-            self.FeeType: str = str(data["FeeType"])
+            self.FeeType: str = self._get_value(str, "FeeType")
         else:
             self.FeeType: str = None
         if "FeeAmount" in data:
-            self.FeeAmount: Currency = Currency(data["FeeAmount"])
+            self.FeeAmount: Currency = self._get_value(Currency, "FeeAmount")
         else:
             self.FeeAmount: Currency = None
 
 
-class FinancialEventGroup(__BaseObject):
+class FinancialEventGroup(__BaseDictObject):
     """
     Information related to a financial event group.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "FinancialEventGroupId" in data:
-            self.FinancialEventGroupId: str = str(data["FinancialEventGroupId"])
+            self.FinancialEventGroupId: str = self._get_value(str, "FinancialEventGroupId")
         else:
             self.FinancialEventGroupId: str = None
         if "ProcessingStatus" in data:
-            self.ProcessingStatus: str = str(data["ProcessingStatus"])
+            self.ProcessingStatus: str = self._get_value(str, "ProcessingStatus")
         else:
             self.ProcessingStatus: str = None
         if "FundTransferStatus" in data:
-            self.FundTransferStatus: str = str(data["FundTransferStatus"])
+            self.FundTransferStatus: str = self._get_value(str, "FundTransferStatus")
         else:
             self.FundTransferStatus: str = None
         if "OriginalTotal" in data:
-            self.OriginalTotal: Currency = Currency(data["OriginalTotal"])
+            self.OriginalTotal: Currency = self._get_value(Currency, "OriginalTotal")
         else:
             self.OriginalTotal: Currency = None
         if "ConvertedTotal" in data:
-            self.ConvertedTotal: Currency = Currency(data["ConvertedTotal"])
+            self.ConvertedTotal: Currency = self._get_value(Currency, "ConvertedTotal")
         else:
             self.ConvertedTotal: Currency = None
         if "FundTransferDate" in data:
-            self.FundTransferDate: Date = Date(data["FundTransferDate"])
+            self.FundTransferDate: Date = self._get_value(Date, "FundTransferDate")
         else:
             self.FundTransferDate: Date = None
         if "TraceId" in data:
-            self.TraceId: str = str(data["TraceId"])
+            self.TraceId: str = self._get_value(str, "TraceId")
         else:
             self.TraceId: str = None
         if "AccountTail" in data:
-            self.AccountTail: str = str(data["AccountTail"])
+            self.AccountTail: str = self._get_value(str, "AccountTail")
         else:
             self.AccountTail: str = None
         if "BeginningBalance" in data:
-            self.BeginningBalance: Currency = Currency(data["BeginningBalance"])
+            self.BeginningBalance: Currency = self._get_value(Currency, "BeginningBalance")
         else:
             self.BeginningBalance: Currency = None
         if "FinancialEventGroupStart" in data:
-            self.FinancialEventGroupStart: Date = Date(data["FinancialEventGroupStart"])
+            self.FinancialEventGroupStart: Date = self._get_value(Date, "FinancialEventGroupStart")
         else:
             self.FinancialEventGroupStart: Date = None
         if "FinancialEventGroupEnd" in data:
-            self.FinancialEventGroupEnd: Date = Date(data["FinancialEventGroupEnd"])
+            self.FinancialEventGroupEnd: Date = self._get_value(Date, "FinancialEventGroupEnd")
         else:
             self.FinancialEventGroupEnd: Date = None
 
 
-class FinancialEvents(__BaseObject):
+class FinancialEvents(__BaseDictObject):
     """
     Contains all information related to a financial event.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ShipmentEventList" in data:
-            self.ShipmentEventList: ShipmentEventList = ShipmentEventList(data["ShipmentEventList"])
+            self.ShipmentEventList: ShipmentEventList = self._get_value(ShipmentEventList, "ShipmentEventList")
         else:
             self.ShipmentEventList: ShipmentEventList = None
         if "RefundEventList" in data:
-            self.RefundEventList: ShipmentEventList = ShipmentEventList(data["RefundEventList"])
+            self.RefundEventList: ShipmentEventList = self._get_value(ShipmentEventList, "RefundEventList")
         else:
             self.RefundEventList: ShipmentEventList = None
         if "GuaranteeClaimEventList" in data:
-            self.GuaranteeClaimEventList: ShipmentEventList = ShipmentEventList(data["GuaranteeClaimEventList"])
+            self.GuaranteeClaimEventList: ShipmentEventList = self._get_value(
+                ShipmentEventList, "GuaranteeClaimEventList"
+            )
         else:
             self.GuaranteeClaimEventList: ShipmentEventList = None
         if "ChargebackEventList" in data:
-            self.ChargebackEventList: ShipmentEventList = ShipmentEventList(data["ChargebackEventList"])
+            self.ChargebackEventList: ShipmentEventList = self._get_value(ShipmentEventList, "ChargebackEventList")
         else:
             self.ChargebackEventList: ShipmentEventList = None
         if "PayWithAmazonEventList" in data:
-            self.PayWithAmazonEventList: PayWithAmazonEventList = PayWithAmazonEventList(data["PayWithAmazonEventList"])
+            self.PayWithAmazonEventList: PayWithAmazonEventList = self._get_value(
+                PayWithAmazonEventList, "PayWithAmazonEventList"
+            )
         else:
             self.PayWithAmazonEventList: PayWithAmazonEventList = None
         if "ServiceProviderCreditEventList" in data:
-            self.ServiceProviderCreditEventList: SolutionProviderCreditEventList = SolutionProviderCreditEventList(
-                data["ServiceProviderCreditEventList"]
+            self.ServiceProviderCreditEventList: SolutionProviderCreditEventList = self._get_value(
+                SolutionProviderCreditEventList, "ServiceProviderCreditEventList"
             )
         else:
             self.ServiceProviderCreditEventList: SolutionProviderCreditEventList = None
         if "RetrochargeEventList" in data:
-            self.RetrochargeEventList: RetrochargeEventList = RetrochargeEventList(data["RetrochargeEventList"])
+            self.RetrochargeEventList: RetrochargeEventList = self._get_value(
+                RetrochargeEventList, "RetrochargeEventList"
+            )
         else:
             self.RetrochargeEventList: RetrochargeEventList = None
         if "RentalTransactionEventList" in data:
-            self.RentalTransactionEventList: RentalTransactionEventList = RentalTransactionEventList(
-                data["RentalTransactionEventList"]
+            self.RentalTransactionEventList: RentalTransactionEventList = self._get_value(
+                RentalTransactionEventList, "RentalTransactionEventList"
             )
         else:
             self.RentalTransactionEventList: RentalTransactionEventList = None
         if "ProductAdsPaymentEventList" in data:
-            self.ProductAdsPaymentEventList: ProductAdsPaymentEventList = ProductAdsPaymentEventList(
-                data["ProductAdsPaymentEventList"]
+            self.ProductAdsPaymentEventList: ProductAdsPaymentEventList = self._get_value(
+                ProductAdsPaymentEventList, "ProductAdsPaymentEventList"
             )
         else:
             self.ProductAdsPaymentEventList: ProductAdsPaymentEventList = None
         if "ServiceFeeEventList" in data:
-            self.ServiceFeeEventList: ServiceFeeEventList = ServiceFeeEventList(data["ServiceFeeEventList"])
+            self.ServiceFeeEventList: ServiceFeeEventList = self._get_value(ServiceFeeEventList, "ServiceFeeEventList")
         else:
             self.ServiceFeeEventList: ServiceFeeEventList = None
         if "SellerDealPaymentEventList" in data:
-            self.SellerDealPaymentEventList: SellerDealPaymentEventList = SellerDealPaymentEventList(
-                data["SellerDealPaymentEventList"]
+            self.SellerDealPaymentEventList: SellerDealPaymentEventList = self._get_value(
+                SellerDealPaymentEventList, "SellerDealPaymentEventList"
             )
         else:
             self.SellerDealPaymentEventList: SellerDealPaymentEventList = None
         if "DebtRecoveryEventList" in data:
-            self.DebtRecoveryEventList: DebtRecoveryEventList = DebtRecoveryEventList(data["DebtRecoveryEventList"])
+            self.DebtRecoveryEventList: DebtRecoveryEventList = self._get_value(
+                DebtRecoveryEventList, "DebtRecoveryEventList"
+            )
         else:
             self.DebtRecoveryEventList: DebtRecoveryEventList = None
         if "LoanServicingEventList" in data:
-            self.LoanServicingEventList: LoanServicingEventList = LoanServicingEventList(data["LoanServicingEventList"])
+            self.LoanServicingEventList: LoanServicingEventList = self._get_value(
+                LoanServicingEventList, "LoanServicingEventList"
+            )
         else:
             self.LoanServicingEventList: LoanServicingEventList = None
         if "AdjustmentEventList" in data:
-            self.AdjustmentEventList: AdjustmentEventList = AdjustmentEventList(data["AdjustmentEventList"])
+            self.AdjustmentEventList: AdjustmentEventList = self._get_value(AdjustmentEventList, "AdjustmentEventList")
         else:
             self.AdjustmentEventList: AdjustmentEventList = None
         if "SAFETReimbursementEventList" in data:
-            self.SAFETReimbursementEventList: SAFETReimbursementEventList = SAFETReimbursementEventList(
-                data["SAFETReimbursementEventList"]
+            self.SAFETReimbursementEventList: SAFETReimbursementEventList = self._get_value(
+                SAFETReimbursementEventList, "SAFETReimbursementEventList"
             )
         else:
             self.SAFETReimbursementEventList: SAFETReimbursementEventList = None
         if "SellerReviewEnrollmentPaymentEventList" in data:
-            self.SellerReviewEnrollmentPaymentEventList: SellerReviewEnrollmentPaymentEventList = (
-                SellerReviewEnrollmentPaymentEventList(data["SellerReviewEnrollmentPaymentEventList"])
+            self.SellerReviewEnrollmentPaymentEventList: SellerReviewEnrollmentPaymentEventList = self._get_value(
+                SellerReviewEnrollmentPaymentEventList, "SellerReviewEnrollmentPaymentEventList"
             )
         else:
             self.SellerReviewEnrollmentPaymentEventList: SellerReviewEnrollmentPaymentEventList = None
         if "FBALiquidationEventList" in data:
-            self.FBALiquidationEventList: FBALiquidationEventList = FBALiquidationEventList(
-                data["FBALiquidationEventList"]
+            self.FBALiquidationEventList: FBALiquidationEventList = self._get_value(
+                FBALiquidationEventList, "FBALiquidationEventList"
             )
         else:
             self.FBALiquidationEventList: FBALiquidationEventList = None
         if "CouponPaymentEventList" in data:
-            self.CouponPaymentEventList: CouponPaymentEventList = CouponPaymentEventList(data["CouponPaymentEventList"])
+            self.CouponPaymentEventList: CouponPaymentEventList = self._get_value(
+                CouponPaymentEventList, "CouponPaymentEventList"
+            )
         else:
             self.CouponPaymentEventList: CouponPaymentEventList = None
         if "ImagingServicesFeeEventList" in data:
-            self.ImagingServicesFeeEventList: ImagingServicesFeeEventList = ImagingServicesFeeEventList(
-                data["ImagingServicesFeeEventList"]
+            self.ImagingServicesFeeEventList: ImagingServicesFeeEventList = self._get_value(
+                ImagingServicesFeeEventList, "ImagingServicesFeeEventList"
             )
         else:
             self.ImagingServicesFeeEventList: ImagingServicesFeeEventList = None
         if "NetworkComminglingTransactionEventList" in data:
-            self.NetworkComminglingTransactionEventList: NetworkComminglingTransactionEventList = (
-                NetworkComminglingTransactionEventList(data["NetworkComminglingTransactionEventList"])
+            self.NetworkComminglingTransactionEventList: NetworkComminglingTransactionEventList = self._get_value(
+                NetworkComminglingTransactionEventList, "NetworkComminglingTransactionEventList"
             )
         else:
             self.NetworkComminglingTransactionEventList: NetworkComminglingTransactionEventList = None
         if "AffordabilityExpenseEventList" in data:
-            self.AffordabilityExpenseEventList: AffordabilityExpenseEventList = AffordabilityExpenseEventList(
-                data["AffordabilityExpenseEventList"]
+            self.AffordabilityExpenseEventList: AffordabilityExpenseEventList = self._get_value(
+                AffordabilityExpenseEventList, "AffordabilityExpenseEventList"
             )
         else:
             self.AffordabilityExpenseEventList: AffordabilityExpenseEventList = None
         if "AffordabilityExpenseReversalEventList" in data:
-            self.AffordabilityExpenseReversalEventList: AffordabilityExpenseEventList = AffordabilityExpenseEventList(
-                data["AffordabilityExpenseReversalEventList"]
+            self.AffordabilityExpenseReversalEventList: AffordabilityExpenseEventList = self._get_value(
+                AffordabilityExpenseEventList, "AffordabilityExpenseReversalEventList"
             )
         else:
             self.AffordabilityExpenseReversalEventList: AffordabilityExpenseEventList = None
         if "TrialShipmentEventList" in data:
-            self.TrialShipmentEventList: TrialShipmentEventList = TrialShipmentEventList(data["TrialShipmentEventList"])
+            self.TrialShipmentEventList: TrialShipmentEventList = self._get_value(
+                TrialShipmentEventList, "TrialShipmentEventList"
+            )
         else:
             self.TrialShipmentEventList: TrialShipmentEventList = None
         if "ShipmentSettleEventList" in data:
-            self.ShipmentSettleEventList: ShipmentSettleEventList = ShipmentSettleEventList(
-                data["ShipmentSettleEventList"]
+            self.ShipmentSettleEventList: ShipmentSettleEventList = self._get_value(
+                ShipmentSettleEventList, "ShipmentSettleEventList"
             )
         else:
             self.ShipmentSettleEventList: ShipmentSettleEventList = None
         if "TaxWithholdingEventList" in data:
-            self.TaxWithholdingEventList: TaxWithholdingEventList = TaxWithholdingEventList(
-                data["TaxWithholdingEventList"]
+            self.TaxWithholdingEventList: TaxWithholdingEventList = self._get_value(
+                TaxWithholdingEventList, "TaxWithholdingEventList"
             )
         else:
             self.TaxWithholdingEventList: TaxWithholdingEventList = None
         if "RemovalShipmentEventList" in data:
-            self.RemovalShipmentEventList: RemovalShipmentEventList = RemovalShipmentEventList(
-                data["RemovalShipmentEventList"]
+            self.RemovalShipmentEventList: RemovalShipmentEventList = self._get_value(
+                RemovalShipmentEventList, "RemovalShipmentEventList"
             )
         else:
             self.RemovalShipmentEventList: RemovalShipmentEventList = None
         if "RemovalShipmentAdjustmentEventList" in data:
-            self.RemovalShipmentAdjustmentEventList: RemovalShipmentAdjustmentEventList = (
-                RemovalShipmentAdjustmentEventList(data["RemovalShipmentAdjustmentEventList"])
+            self.RemovalShipmentAdjustmentEventList: RemovalShipmentAdjustmentEventList = self._get_value(
+                RemovalShipmentAdjustmentEventList, "RemovalShipmentAdjustmentEventList"
             )
         else:
             self.RemovalShipmentAdjustmentEventList: RemovalShipmentAdjustmentEventList = None
 
 
-class ImagingServicesFeeEvent(__BaseObject):
+class ImagingServicesFeeEvent(__BaseDictObject):
     """
     A fee event related to Amazon Imaging services.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ImagingRequestBillingItemID" in data:
-            self.ImagingRequestBillingItemID: str = str(data["ImagingRequestBillingItemID"])
+            self.ImagingRequestBillingItemID: str = self._get_value(str, "ImagingRequestBillingItemID")
         else:
             self.ImagingRequestBillingItemID: str = None
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "FeeList" in data:
-            self.FeeList: FeeComponentList = FeeComponentList(data["FeeList"])
+            self.FeeList: FeeComponentList = self._get_value(FeeComponentList, "FeeList")
         else:
             self.FeeList: FeeComponentList = None
 
 
-class ListFinancialEventGroupsPayload(__BaseObject):
+class ListFinancialEventGroupsPayload(__BaseDictObject):
     """
     The payload for the listFinancialEventGroups operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "NextToken" in data:
-            self.NextToken: str = str(data["NextToken"])
+            self.NextToken: str = self._get_value(str, "NextToken")
         else:
             self.NextToken: str = None
         if "FinancialEventGroupList" in data:
-            self.FinancialEventGroupList: FinancialEventGroupList = FinancialEventGroupList(
-                data["FinancialEventGroupList"]
+            self.FinancialEventGroupList: FinancialEventGroupList = self._get_value(
+                FinancialEventGroupList, "FinancialEventGroupList"
             )
         else:
             self.FinancialEventGroupList: FinancialEventGroupList = None
 
 
-class ListFinancialEventGroupsResponse(__BaseObject):
+class ListFinancialEventGroupsResponse(__BaseDictObject):
     """
     The response schema for the listFinancialEventGroups operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ListFinancialEventGroupsPayload = ListFinancialEventGroupsPayload(data["payload"])
+            self.payload: ListFinancialEventGroupsPayload = self._get_value(ListFinancialEventGroupsPayload, "payload")
         else:
             self.payload: ListFinancialEventGroupsPayload = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class ListFinancialEventsPayload(__BaseObject):
+class ListFinancialEventsPayload(__BaseDictObject):
     """
     The payload for the listFinancialEvents operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "NextToken" in data:
-            self.NextToken: str = str(data["NextToken"])
+            self.NextToken: str = self._get_value(str, "NextToken")
         else:
             self.NextToken: str = None
         if "FinancialEvents" in data:
-            self.FinancialEvents: FinancialEvents = FinancialEvents(data["FinancialEvents"])
+            self.FinancialEvents: FinancialEvents = self._get_value(FinancialEvents, "FinancialEvents")
         else:
             self.FinancialEvents: FinancialEvents = None
 
 
-class ListFinancialEventsResponse(__BaseObject):
+class ListFinancialEventsResponse(__BaseDictObject):
     """
     The response schema for the listFinancialEvents operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ListFinancialEventsPayload = ListFinancialEventsPayload(data["payload"])
+            self.payload: ListFinancialEventsPayload = self._get_value(ListFinancialEventsPayload, "payload")
         else:
             self.payload: ListFinancialEventsPayload = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class LoanServicingEvent(__BaseObject):
+class LoanServicingEvent(__BaseDictObject):
     """
     A loan advance, loan payment, or loan refund.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "LoanAmount" in data:
-            self.LoanAmount: Currency = Currency(data["LoanAmount"])
+            self.LoanAmount: Currency = self._get_value(Currency, "LoanAmount")
         else:
             self.LoanAmount: Currency = None
         if "SourceBusinessEventType" in data:
-            self.SourceBusinessEventType: str = str(data["SourceBusinessEventType"])
+            self.SourceBusinessEventType: str = self._get_value(str, "SourceBusinessEventType")
         else:
             self.SourceBusinessEventType: str = None
 
 
-class NetworkComminglingTransactionEvent(__BaseObject):
+class NetworkComminglingTransactionEvent(__BaseDictObject):
     """
     A network commingling transaction event.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TransactionType" in data:
-            self.TransactionType: str = str(data["TransactionType"])
+            self.TransactionType: str = self._get_value(str, "TransactionType")
         else:
             self.TransactionType: str = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "NetCoTransactionID" in data:
-            self.NetCoTransactionID: str = str(data["NetCoTransactionID"])
+            self.NetCoTransactionID: str = self._get_value(str, "NetCoTransactionID")
         else:
             self.NetCoTransactionID: str = None
         if "SwapReason" in data:
-            self.SwapReason: str = str(data["SwapReason"])
+            self.SwapReason: str = self._get_value(str, "SwapReason")
         else:
             self.SwapReason: str = None
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
         if "TaxExclusiveAmount" in data:
-            self.TaxExclusiveAmount: Currency = Currency(data["TaxExclusiveAmount"])
+            self.TaxExclusiveAmount: Currency = self._get_value(Currency, "TaxExclusiveAmount")
         else:
             self.TaxExclusiveAmount: Currency = None
         if "TaxAmount" in data:
-            self.TaxAmount: Currency = Currency(data["TaxAmount"])
+            self.TaxAmount: Currency = self._get_value(Currency, "TaxAmount")
         else:
             self.TaxAmount: Currency = None
 
 
-class PayWithAmazonEvent(__BaseObject):
+class PayWithAmazonEvent(__BaseDictObject):
     """
     An event related to the seller's Pay with Amazon account.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerOrderId" in data:
-            self.SellerOrderId: str = str(data["SellerOrderId"])
+            self.SellerOrderId: str = self._get_value(str, "SellerOrderId")
         else:
             self.SellerOrderId: str = None
         if "TransactionPostedDate" in data:
-            self.TransactionPostedDate: Date = Date(data["TransactionPostedDate"])
+            self.TransactionPostedDate: Date = self._get_value(Date, "TransactionPostedDate")
         else:
             self.TransactionPostedDate: Date = None
         if "BusinessObjectType" in data:
-            self.BusinessObjectType: str = str(data["BusinessObjectType"])
+            self.BusinessObjectType: str = self._get_value(str, "BusinessObjectType")
         else:
             self.BusinessObjectType: str = None
         if "SalesChannel" in data:
-            self.SalesChannel: str = str(data["SalesChannel"])
+            self.SalesChannel: str = self._get_value(str, "SalesChannel")
         else:
             self.SalesChannel: str = None
         if "Charge" in data:
-            self.Charge: ChargeComponent = ChargeComponent(data["Charge"])
+            self.Charge: ChargeComponent = self._get_value(ChargeComponent, "Charge")
         else:
             self.Charge: ChargeComponent = None
         if "FeeList" in data:
-            self.FeeList: FeeComponentList = FeeComponentList(data["FeeList"])
+            self.FeeList: FeeComponentList = self._get_value(FeeComponentList, "FeeList")
         else:
             self.FeeList: FeeComponentList = None
         if "PaymentAmountType" in data:
-            self.PaymentAmountType: str = str(data["PaymentAmountType"])
+            self.PaymentAmountType: str = self._get_value(str, "PaymentAmountType")
         else:
             self.PaymentAmountType: str = None
         if "AmountDescription" in data:
-            self.AmountDescription: str = str(data["AmountDescription"])
+            self.AmountDescription: str = self._get_value(str, "AmountDescription")
         else:
             self.AmountDescription: str = None
         if "FulfillmentChannel" in data:
-            self.FulfillmentChannel: str = str(data["FulfillmentChannel"])
+            self.FulfillmentChannel: str = self._get_value(str, "FulfillmentChannel")
         else:
             self.FulfillmentChannel: str = None
         if "StoreName" in data:
-            self.StoreName: str = str(data["StoreName"])
+            self.StoreName: str = self._get_value(str, "StoreName")
         else:
             self.StoreName: str = None
 
 
-class ProductAdsPaymentEvent(__BaseObject):
+class ProductAdsPaymentEvent(__BaseDictObject):
     """
     A Sponsored Products payment event.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "postedDate" in data:
-            self.postedDate: Date = Date(data["postedDate"])
+            self.postedDate: Date = self._get_value(Date, "postedDate")
         else:
             self.postedDate: Date = None
         if "transactionType" in data:
-            self.transactionType: str = str(data["transactionType"])
+            self.transactionType: str = self._get_value(str, "transactionType")
         else:
             self.transactionType: str = None
         if "invoiceId" in data:
-            self.invoiceId: str = str(data["invoiceId"])
+            self.invoiceId: str = self._get_value(str, "invoiceId")
         else:
             self.invoiceId: str = None
         if "baseValue" in data:
-            self.baseValue: Currency = Currency(data["baseValue"])
+            self.baseValue: Currency = self._get_value(Currency, "baseValue")
         else:
             self.baseValue: Currency = None
         if "taxValue" in data:
-            self.taxValue: Currency = Currency(data["taxValue"])
+            self.taxValue: Currency = self._get_value(Currency, "taxValue")
         else:
             self.taxValue: Currency = None
         if "transactionValue" in data:
-            self.transactionValue: Currency = Currency(data["transactionValue"])
+            self.transactionValue: Currency = self._get_value(Currency, "transactionValue")
         else:
             self.transactionValue: Currency = None
 
 
-class Promotion(__BaseObject):
+class Promotion(__BaseDictObject):
     """
     A promotion applied to an item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PromotionType" in data:
-            self.PromotionType: str = str(data["PromotionType"])
+            self.PromotionType: str = self._get_value(str, "PromotionType")
         else:
             self.PromotionType: str = None
         if "PromotionId" in data:
-            self.PromotionId: str = str(data["PromotionId"])
+            self.PromotionId: str = self._get_value(str, "PromotionId")
         else:
             self.PromotionId: str = None
         if "PromotionAmount" in data:
-            self.PromotionAmount: Currency = Currency(data["PromotionAmount"])
+            self.PromotionAmount: Currency = self._get_value(Currency, "PromotionAmount")
         else:
             self.PromotionAmount: Currency = None
 
 
-class RemovalShipmentEvent(__BaseObject):
+class RemovalShipmentEvent(__BaseDictObject):
     """
     A removal shipment event for a removal order.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "MerchantOrderId" in data:
-            self.MerchantOrderId: str = str(data["MerchantOrderId"])
+            self.MerchantOrderId: str = self._get_value(str, "MerchantOrderId")
         else:
             self.MerchantOrderId: str = None
         if "OrderId" in data:
-            self.OrderId: str = str(data["OrderId"])
+            self.OrderId: str = self._get_value(str, "OrderId")
         else:
             self.OrderId: str = None
         if "TransactionType" in data:
-            self.TransactionType: str = str(data["TransactionType"])
+            self.TransactionType: str = self._get_value(str, "TransactionType")
         else:
             self.TransactionType: str = None
         if "RemovalShipmentItemList" in data:
-            self.RemovalShipmentItemList: RemovalShipmentItemList = RemovalShipmentItemList(
-                data["RemovalShipmentItemList"]
+            self.RemovalShipmentItemList: RemovalShipmentItemList = self._get_value(
+                RemovalShipmentItemList, "RemovalShipmentItemList"
             )
         else:
             self.RemovalShipmentItemList: RemovalShipmentItemList = None
 
 
-class RemovalShipmentItem(__BaseObject):
+class RemovalShipmentItem(__BaseDictObject):
     """
     Item-level information for a removal shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "RemovalShipmentItemId" in data:
-            self.RemovalShipmentItemId: str = str(data["RemovalShipmentItemId"])
+            self.RemovalShipmentItemId: str = self._get_value(str, "RemovalShipmentItemId")
         else:
             self.RemovalShipmentItemId: str = None
         if "TaxCollectionModel" in data:
-            self.TaxCollectionModel: str = str(data["TaxCollectionModel"])
+            self.TaxCollectionModel: str = self._get_value(str, "TaxCollectionModel")
         else:
             self.TaxCollectionModel: str = None
         if "FulfillmentNetworkSKU" in data:
-            self.FulfillmentNetworkSKU: str = str(data["FulfillmentNetworkSKU"])
+            self.FulfillmentNetworkSKU: str = self._get_value(str, "FulfillmentNetworkSKU")
         else:
             self.FulfillmentNetworkSKU: str = None
         if "Quantity" in data:
-            self.Quantity: int = int(data["Quantity"])
+            self.Quantity: int = self._get_value(int, "Quantity")
         else:
             self.Quantity: int = None
         if "Revenue" in data:
-            self.Revenue: Currency = Currency(data["Revenue"])
+            self.Revenue: Currency = self._get_value(Currency, "Revenue")
         else:
             self.Revenue: Currency = None
         if "FeeAmount" in data:
-            self.FeeAmount: Currency = Currency(data["FeeAmount"])
+            self.FeeAmount: Currency = self._get_value(Currency, "FeeAmount")
         else:
             self.FeeAmount: Currency = None
         if "TaxAmount" in data:
-            self.TaxAmount: Currency = Currency(data["TaxAmount"])
+            self.TaxAmount: Currency = self._get_value(Currency, "TaxAmount")
         else:
             self.TaxAmount: Currency = None
         if "TaxWithheld" in data:
-            self.TaxWithheld: Currency = Currency(data["TaxWithheld"])
+            self.TaxWithheld: Currency = self._get_value(Currency, "TaxWithheld")
         else:
             self.TaxWithheld: Currency = None
 
 
-class RemovalShipmentAdjustmentEvent(__BaseObject):
+class RemovalShipmentAdjustmentEvent(__BaseDictObject):
     """
         A financial adjustment event for FBA liquidated inventory.
     Possible adjustment:
@@ -914,25 +906,24 @@ class RemovalShipmentAdjustmentEvent(__BaseObject):
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "AdjustmentEventId" in data:
-            self.AdjustmentEventId: str = str(data["AdjustmentEventId"])
+            self.AdjustmentEventId: str = self._get_value(str, "AdjustmentEventId")
         else:
             self.AdjustmentEventId: str = None
         if "MerchantOrderId" in data:
-            self.MerchantOrderId: str = str(data["MerchantOrderId"])
+            self.MerchantOrderId: str = self._get_value(str, "MerchantOrderId")
         else:
             self.MerchantOrderId: str = None
         if "OrderId" in data:
-            self.OrderId: str = str(data["OrderId"])
+            self.OrderId: str = self._get_value(str, "OrderId")
         else:
             self.OrderId: str = None
         if "TransactionType" in data:
-            self.TransactionType: str = str(data["TransactionType"])
+            self.TransactionType: str = self._get_value(str, "TransactionType")
         else:
             self.TransactionType: str = None
         if "RemovalShipmentItemAdjustmentList" in data:
@@ -943,588 +934,584 @@ class RemovalShipmentAdjustmentEvent(__BaseObject):
             self.RemovalShipmentItemAdjustmentList: _List[RemovalShipmentItemAdjustment] = []
 
 
-class RemovalShipmentItemAdjustment(__BaseObject):
+class RemovalShipmentItemAdjustment(__BaseDictObject):
     """
     Item-level information for a removal shipment item adjustment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "RemovalShipmentItemId" in data:
-            self.RemovalShipmentItemId: str = str(data["RemovalShipmentItemId"])
+            self.RemovalShipmentItemId: str = self._get_value(str, "RemovalShipmentItemId")
         else:
             self.RemovalShipmentItemId: str = None
         if "TaxCollectionModel" in data:
-            self.TaxCollectionModel: str = str(data["TaxCollectionModel"])
+            self.TaxCollectionModel: str = self._get_value(str, "TaxCollectionModel")
         else:
             self.TaxCollectionModel: str = None
         if "FulfillmentNetworkSKU" in data:
-            self.FulfillmentNetworkSKU: str = str(data["FulfillmentNetworkSKU"])
+            self.FulfillmentNetworkSKU: str = self._get_value(str, "FulfillmentNetworkSKU")
         else:
             self.FulfillmentNetworkSKU: str = None
         if "AdjustedQuantity" in data:
-            self.AdjustedQuantity: int = int(data["AdjustedQuantity"])
+            self.AdjustedQuantity: int = self._get_value(int, "AdjustedQuantity")
         else:
             self.AdjustedQuantity: int = None
         if "RevenueAdjustment" in data:
-            self.RevenueAdjustment: Currency = Currency(data["RevenueAdjustment"])
+            self.RevenueAdjustment: Currency = self._get_value(Currency, "RevenueAdjustment")
         else:
             self.RevenueAdjustment: Currency = None
         if "TaxAmountAdjustment" in data:
-            self.TaxAmountAdjustment: Currency = Currency(data["TaxAmountAdjustment"])
+            self.TaxAmountAdjustment: Currency = self._get_value(Currency, "TaxAmountAdjustment")
         else:
             self.TaxAmountAdjustment: Currency = None
         if "TaxWithheldAdjustment" in data:
-            self.TaxWithheldAdjustment: Currency = Currency(data["TaxWithheldAdjustment"])
+            self.TaxWithheldAdjustment: Currency = self._get_value(Currency, "TaxWithheldAdjustment")
         else:
             self.TaxWithheldAdjustment: Currency = None
 
 
-class RentalTransactionEvent(__BaseObject):
+class RentalTransactionEvent(__BaseDictObject):
     """
     An event related to a rental transaction.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "AmazonOrderId" in data:
-            self.AmazonOrderId: str = str(data["AmazonOrderId"])
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
         if "RentalEventType" in data:
-            self.RentalEventType: str = str(data["RentalEventType"])
+            self.RentalEventType: str = self._get_value(str, "RentalEventType")
         else:
             self.RentalEventType: str = None
         if "ExtensionLength" in data:
-            self.ExtensionLength: int = int(data["ExtensionLength"])
+            self.ExtensionLength: int = self._get_value(int, "ExtensionLength")
         else:
             self.ExtensionLength: int = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "RentalChargeList" in data:
-            self.RentalChargeList: ChargeComponentList = ChargeComponentList(data["RentalChargeList"])
+            self.RentalChargeList: ChargeComponentList = self._get_value(ChargeComponentList, "RentalChargeList")
         else:
             self.RentalChargeList: ChargeComponentList = None
         if "RentalFeeList" in data:
-            self.RentalFeeList: FeeComponentList = FeeComponentList(data["RentalFeeList"])
+            self.RentalFeeList: FeeComponentList = self._get_value(FeeComponentList, "RentalFeeList")
         else:
             self.RentalFeeList: FeeComponentList = None
         if "MarketplaceName" in data:
-            self.MarketplaceName: str = str(data["MarketplaceName"])
+            self.MarketplaceName: str = self._get_value(str, "MarketplaceName")
         else:
             self.MarketplaceName: str = None
         if "RentalInitialValue" in data:
-            self.RentalInitialValue: Currency = Currency(data["RentalInitialValue"])
+            self.RentalInitialValue: Currency = self._get_value(Currency, "RentalInitialValue")
         else:
             self.RentalInitialValue: Currency = None
         if "RentalReimbursement" in data:
-            self.RentalReimbursement: Currency = Currency(data["RentalReimbursement"])
+            self.RentalReimbursement: Currency = self._get_value(Currency, "RentalReimbursement")
         else:
             self.RentalReimbursement: Currency = None
         if "RentalTaxWithheldList" in data:
-            self.RentalTaxWithheldList: TaxWithheldComponentList = TaxWithheldComponentList(
-                data["RentalTaxWithheldList"]
+            self.RentalTaxWithheldList: TaxWithheldComponentList = self._get_value(
+                TaxWithheldComponentList, "RentalTaxWithheldList"
             )
         else:
             self.RentalTaxWithheldList: TaxWithheldComponentList = None
 
 
-class RetrochargeEvent(__BaseObject):
+class RetrochargeEvent(__BaseDictObject):
     """
     A retrocharge or retrocharge reversal.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "RetrochargeEventType" in data:
-            self.RetrochargeEventType: str = str(data["RetrochargeEventType"])
+            self.RetrochargeEventType: str = self._get_value(str, "RetrochargeEventType")
         else:
             self.RetrochargeEventType: str = None
         if "AmazonOrderId" in data:
-            self.AmazonOrderId: str = str(data["AmazonOrderId"])
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "BaseTax" in data:
-            self.BaseTax: Currency = Currency(data["BaseTax"])
+            self.BaseTax: Currency = self._get_value(Currency, "BaseTax")
         else:
             self.BaseTax: Currency = None
         if "ShippingTax" in data:
-            self.ShippingTax: Currency = Currency(data["ShippingTax"])
+            self.ShippingTax: Currency = self._get_value(Currency, "ShippingTax")
         else:
             self.ShippingTax: Currency = None
         if "MarketplaceName" in data:
-            self.MarketplaceName: str = str(data["MarketplaceName"])
+            self.MarketplaceName: str = self._get_value(str, "MarketplaceName")
         else:
             self.MarketplaceName: str = None
         if "RetrochargeTaxWithheldList" in data:
-            self.RetrochargeTaxWithheldList: TaxWithheldComponentList = TaxWithheldComponentList(
-                data["RetrochargeTaxWithheldList"]
+            self.RetrochargeTaxWithheldList: TaxWithheldComponentList = self._get_value(
+                TaxWithheldComponentList, "RetrochargeTaxWithheldList"
             )
         else:
             self.RetrochargeTaxWithheldList: TaxWithheldComponentList = None
 
 
-class SAFETReimbursementEvent(__BaseObject):
+class SAFETReimbursementEvent(__BaseDictObject):
     """
     A SAFE-T claim reimbursement on the seller's account.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "SAFETClaimId" in data:
-            self.SAFETClaimId: str = str(data["SAFETClaimId"])
+            self.SAFETClaimId: str = self._get_value(str, "SAFETClaimId")
         else:
             self.SAFETClaimId: str = None
         if "ReimbursedAmount" in data:
-            self.ReimbursedAmount: Currency = Currency(data["ReimbursedAmount"])
+            self.ReimbursedAmount: Currency = self._get_value(Currency, "ReimbursedAmount")
         else:
             self.ReimbursedAmount: Currency = None
         if "ReasonCode" in data:
-            self.ReasonCode: str = str(data["ReasonCode"])
+            self.ReasonCode: str = self._get_value(str, "ReasonCode")
         else:
             self.ReasonCode: str = None
         if "SAFETReimbursementItemList" in data:
-            self.SAFETReimbursementItemList: SAFETReimbursementItemList = SAFETReimbursementItemList(
-                data["SAFETReimbursementItemList"]
+            self.SAFETReimbursementItemList: SAFETReimbursementItemList = self._get_value(
+                SAFETReimbursementItemList, "SAFETReimbursementItemList"
             )
         else:
             self.SAFETReimbursementItemList: SAFETReimbursementItemList = None
 
 
-class SAFETReimbursementItem(__BaseObject):
+class SAFETReimbursementItem(__BaseDictObject):
     """
     An item from a SAFE-T claim reimbursement.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "itemChargeList" in data:
-            self.itemChargeList: ChargeComponentList = ChargeComponentList(data["itemChargeList"])
+            self.itemChargeList: ChargeComponentList = self._get_value(ChargeComponentList, "itemChargeList")
         else:
             self.itemChargeList: ChargeComponentList = None
         if "productDescription" in data:
-            self.productDescription: str = str(data["productDescription"])
+            self.productDescription: str = self._get_value(str, "productDescription")
         else:
             self.productDescription: str = None
         if "quantity" in data:
-            self.quantity: str = str(data["quantity"])
+            self.quantity: str = self._get_value(str, "quantity")
         else:
             self.quantity: str = None
 
 
-class SellerDealPaymentEvent(__BaseObject):
+class SellerDealPaymentEvent(__BaseDictObject):
     """
     An event linked to the payment of a fee related to the specified deal.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "postedDate" in data:
-            self.postedDate: Date = Date(data["postedDate"])
+            self.postedDate: Date = self._get_value(Date, "postedDate")
         else:
             self.postedDate: Date = None
         if "dealId" in data:
-            self.dealId: str = str(data["dealId"])
+            self.dealId: str = self._get_value(str, "dealId")
         else:
             self.dealId: str = None
         if "dealDescription" in data:
-            self.dealDescription: str = str(data["dealDescription"])
+            self.dealDescription: str = self._get_value(str, "dealDescription")
         else:
             self.dealDescription: str = None
         if "eventType" in data:
-            self.eventType: str = str(data["eventType"])
+            self.eventType: str = self._get_value(str, "eventType")
         else:
             self.eventType: str = None
         if "feeType" in data:
-            self.feeType: str = str(data["feeType"])
+            self.feeType: str = self._get_value(str, "feeType")
         else:
             self.feeType: str = None
         if "feeAmount" in data:
-            self.feeAmount: Currency = Currency(data["feeAmount"])
+            self.feeAmount: Currency = self._get_value(Currency, "feeAmount")
         else:
             self.feeAmount: Currency = None
         if "taxAmount" in data:
-            self.taxAmount: Currency = Currency(data["taxAmount"])
+            self.taxAmount: Currency = self._get_value(Currency, "taxAmount")
         else:
             self.taxAmount: Currency = None
         if "totalAmount" in data:
-            self.totalAmount: Currency = Currency(data["totalAmount"])
+            self.totalAmount: Currency = self._get_value(Currency, "totalAmount")
         else:
             self.totalAmount: Currency = None
 
 
-class SellerReviewEnrollmentPaymentEvent(__BaseObject):
+class SellerReviewEnrollmentPaymentEvent(__BaseDictObject):
     """
     A fee payment event for the Early Reviewer Program.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "EnrollmentId" in data:
-            self.EnrollmentId: str = str(data["EnrollmentId"])
+            self.EnrollmentId: str = self._get_value(str, "EnrollmentId")
         else:
             self.EnrollmentId: str = None
         if "ParentASIN" in data:
-            self.ParentASIN: str = str(data["ParentASIN"])
+            self.ParentASIN: str = self._get_value(str, "ParentASIN")
         else:
             self.ParentASIN: str = None
         if "FeeComponent" in data:
-            self.FeeComponent: FeeComponent = FeeComponent(data["FeeComponent"])
+            self.FeeComponent: FeeComponent = self._get_value(FeeComponent, "FeeComponent")
         else:
             self.FeeComponent: FeeComponent = None
         if "ChargeComponent" in data:
-            self.ChargeComponent: ChargeComponent = ChargeComponent(data["ChargeComponent"])
+            self.ChargeComponent: ChargeComponent = self._get_value(ChargeComponent, "ChargeComponent")
         else:
             self.ChargeComponent: ChargeComponent = None
         if "TotalAmount" in data:
-            self.TotalAmount: Currency = Currency(data["TotalAmount"])
+            self.TotalAmount: Currency = self._get_value(Currency, "TotalAmount")
         else:
             self.TotalAmount: Currency = None
 
 
-class ServiceFeeEvent(__BaseObject):
+class ServiceFeeEvent(__BaseDictObject):
     """
     A service fee on the seller's account.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "AmazonOrderId" in data:
-            self.AmazonOrderId: str = str(data["AmazonOrderId"])
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
         if "FeeReason" in data:
-            self.FeeReason: str = str(data["FeeReason"])
+            self.FeeReason: str = self._get_value(str, "FeeReason")
         else:
             self.FeeReason: str = None
         if "FeeList" in data:
-            self.FeeList: FeeComponentList = FeeComponentList(data["FeeList"])
+            self.FeeList: FeeComponentList = self._get_value(FeeComponentList, "FeeList")
         else:
             self.FeeList: FeeComponentList = None
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "FnSKU" in data:
-            self.FnSKU: str = str(data["FnSKU"])
+            self.FnSKU: str = self._get_value(str, "FnSKU")
         else:
             self.FnSKU: str = None
         if "FeeDescription" in data:
-            self.FeeDescription: str = str(data["FeeDescription"])
+            self.FeeDescription: str = self._get_value(str, "FeeDescription")
         else:
             self.FeeDescription: str = None
         if "ASIN" in data:
-            self.ASIN: str = str(data["ASIN"])
+            self.ASIN: str = self._get_value(str, "ASIN")
         else:
             self.ASIN: str = None
 
 
-class ShipmentEvent(__BaseObject):
+class ShipmentEvent(__BaseDictObject):
     """
     A shipment, refund, guarantee claim, or chargeback.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "AmazonOrderId" in data:
-            self.AmazonOrderId: str = str(data["AmazonOrderId"])
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
         if "SellerOrderId" in data:
-            self.SellerOrderId: str = str(data["SellerOrderId"])
+            self.SellerOrderId: str = self._get_value(str, "SellerOrderId")
         else:
             self.SellerOrderId: str = None
         if "MarketplaceName" in data:
-            self.MarketplaceName: str = str(data["MarketplaceName"])
+            self.MarketplaceName: str = self._get_value(str, "MarketplaceName")
         else:
             self.MarketplaceName: str = None
         if "OrderChargeList" in data:
-            self.OrderChargeList: ChargeComponentList = ChargeComponentList(data["OrderChargeList"])
+            self.OrderChargeList: ChargeComponentList = self._get_value(ChargeComponentList, "OrderChargeList")
         else:
             self.OrderChargeList: ChargeComponentList = None
         if "OrderChargeAdjustmentList" in data:
-            self.OrderChargeAdjustmentList: ChargeComponentList = ChargeComponentList(data["OrderChargeAdjustmentList"])
+            self.OrderChargeAdjustmentList: ChargeComponentList = self._get_value(
+                ChargeComponentList, "OrderChargeAdjustmentList"
+            )
         else:
             self.OrderChargeAdjustmentList: ChargeComponentList = None
         if "ShipmentFeeList" in data:
-            self.ShipmentFeeList: FeeComponentList = FeeComponentList(data["ShipmentFeeList"])
+            self.ShipmentFeeList: FeeComponentList = self._get_value(FeeComponentList, "ShipmentFeeList")
         else:
             self.ShipmentFeeList: FeeComponentList = None
         if "ShipmentFeeAdjustmentList" in data:
-            self.ShipmentFeeAdjustmentList: FeeComponentList = FeeComponentList(data["ShipmentFeeAdjustmentList"])
+            self.ShipmentFeeAdjustmentList: FeeComponentList = self._get_value(
+                FeeComponentList, "ShipmentFeeAdjustmentList"
+            )
         else:
             self.ShipmentFeeAdjustmentList: FeeComponentList = None
         if "OrderFeeList" in data:
-            self.OrderFeeList: FeeComponentList = FeeComponentList(data["OrderFeeList"])
+            self.OrderFeeList: FeeComponentList = self._get_value(FeeComponentList, "OrderFeeList")
         else:
             self.OrderFeeList: FeeComponentList = None
         if "OrderFeeAdjustmentList" in data:
-            self.OrderFeeAdjustmentList: FeeComponentList = FeeComponentList(data["OrderFeeAdjustmentList"])
+            self.OrderFeeAdjustmentList: FeeComponentList = self._get_value(FeeComponentList, "OrderFeeAdjustmentList")
         else:
             self.OrderFeeAdjustmentList: FeeComponentList = None
         if "DirectPaymentList" in data:
-            self.DirectPaymentList: DirectPaymentList = DirectPaymentList(data["DirectPaymentList"])
+            self.DirectPaymentList: DirectPaymentList = self._get_value(DirectPaymentList, "DirectPaymentList")
         else:
             self.DirectPaymentList: DirectPaymentList = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "ShipmentItemList" in data:
-            self.ShipmentItemList: ShipmentItemList = ShipmentItemList(data["ShipmentItemList"])
+            self.ShipmentItemList: ShipmentItemList = self._get_value(ShipmentItemList, "ShipmentItemList")
         else:
             self.ShipmentItemList: ShipmentItemList = None
         if "ShipmentItemAdjustmentList" in data:
-            self.ShipmentItemAdjustmentList: ShipmentItemList = ShipmentItemList(data["ShipmentItemAdjustmentList"])
+            self.ShipmentItemAdjustmentList: ShipmentItemList = self._get_value(
+                ShipmentItemList, "ShipmentItemAdjustmentList"
+            )
         else:
             self.ShipmentItemAdjustmentList: ShipmentItemList = None
 
 
-class ShipmentItem(__BaseObject):
+class ShipmentItem(__BaseDictObject):
     """
     An item of a shipment, refund, guarantee claim, or chargeback.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "SellerSKU" in data:
-            self.SellerSKU: str = str(data["SellerSKU"])
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
         else:
             self.SellerSKU: str = None
         if "OrderItemId" in data:
-            self.OrderItemId: str = str(data["OrderItemId"])
+            self.OrderItemId: str = self._get_value(str, "OrderItemId")
         else:
             self.OrderItemId: str = None
         if "OrderAdjustmentItemId" in data:
-            self.OrderAdjustmentItemId: str = str(data["OrderAdjustmentItemId"])
+            self.OrderAdjustmentItemId: str = self._get_value(str, "OrderAdjustmentItemId")
         else:
             self.OrderAdjustmentItemId: str = None
         if "QuantityShipped" in data:
-            self.QuantityShipped: int = int(data["QuantityShipped"])
+            self.QuantityShipped: int = self._get_value(int, "QuantityShipped")
         else:
             self.QuantityShipped: int = None
         if "ItemChargeList" in data:
-            self.ItemChargeList: ChargeComponentList = ChargeComponentList(data["ItemChargeList"])
+            self.ItemChargeList: ChargeComponentList = self._get_value(ChargeComponentList, "ItemChargeList")
         else:
             self.ItemChargeList: ChargeComponentList = None
         if "ItemChargeAdjustmentList" in data:
-            self.ItemChargeAdjustmentList: ChargeComponentList = ChargeComponentList(data["ItemChargeAdjustmentList"])
+            self.ItemChargeAdjustmentList: ChargeComponentList = self._get_value(
+                ChargeComponentList, "ItemChargeAdjustmentList"
+            )
         else:
             self.ItemChargeAdjustmentList: ChargeComponentList = None
         if "ItemFeeList" in data:
-            self.ItemFeeList: FeeComponentList = FeeComponentList(data["ItemFeeList"])
+            self.ItemFeeList: FeeComponentList = self._get_value(FeeComponentList, "ItemFeeList")
         else:
             self.ItemFeeList: FeeComponentList = None
         if "ItemFeeAdjustmentList" in data:
-            self.ItemFeeAdjustmentList: FeeComponentList = FeeComponentList(data["ItemFeeAdjustmentList"])
+            self.ItemFeeAdjustmentList: FeeComponentList = self._get_value(FeeComponentList, "ItemFeeAdjustmentList")
         else:
             self.ItemFeeAdjustmentList: FeeComponentList = None
         if "ItemTaxWithheldList" in data:
-            self.ItemTaxWithheldList: TaxWithheldComponentList = TaxWithheldComponentList(data["ItemTaxWithheldList"])
+            self.ItemTaxWithheldList: TaxWithheldComponentList = self._get_value(
+                TaxWithheldComponentList, "ItemTaxWithheldList"
+            )
         else:
             self.ItemTaxWithheldList: TaxWithheldComponentList = None
         if "PromotionList" in data:
-            self.PromotionList: PromotionList = PromotionList(data["PromotionList"])
+            self.PromotionList: PromotionList = self._get_value(PromotionList, "PromotionList")
         else:
             self.PromotionList: PromotionList = None
         if "PromotionAdjustmentList" in data:
-            self.PromotionAdjustmentList: PromotionList = PromotionList(data["PromotionAdjustmentList"])
+            self.PromotionAdjustmentList: PromotionList = self._get_value(PromotionList, "PromotionAdjustmentList")
         else:
             self.PromotionAdjustmentList: PromotionList = None
         if "CostOfPointsGranted" in data:
-            self.CostOfPointsGranted: Currency = Currency(data["CostOfPointsGranted"])
+            self.CostOfPointsGranted: Currency = self._get_value(Currency, "CostOfPointsGranted")
         else:
             self.CostOfPointsGranted: Currency = None
         if "CostOfPointsReturned" in data:
-            self.CostOfPointsReturned: Currency = Currency(data["CostOfPointsReturned"])
+            self.CostOfPointsReturned: Currency = self._get_value(Currency, "CostOfPointsReturned")
         else:
             self.CostOfPointsReturned: Currency = None
 
 
-class SolutionProviderCreditEvent(__BaseObject):
+class SolutionProviderCreditEvent(__BaseDictObject):
     """
     A credit given to a solution provider.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ProviderTransactionType" in data:
-            self.ProviderTransactionType: str = str(data["ProviderTransactionType"])
+            self.ProviderTransactionType: str = self._get_value(str, "ProviderTransactionType")
         else:
             self.ProviderTransactionType: str = None
         if "SellerOrderId" in data:
-            self.SellerOrderId: str = str(data["SellerOrderId"])
+            self.SellerOrderId: str = self._get_value(str, "SellerOrderId")
         else:
             self.SellerOrderId: str = None
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
         if "MarketplaceCountryCode" in data:
-            self.MarketplaceCountryCode: str = str(data["MarketplaceCountryCode"])
+            self.MarketplaceCountryCode: str = self._get_value(str, "MarketplaceCountryCode")
         else:
             self.MarketplaceCountryCode: str = None
         if "SellerId" in data:
-            self.SellerId: str = str(data["SellerId"])
+            self.SellerId: str = self._get_value(str, "SellerId")
         else:
             self.SellerId: str = None
         if "SellerStoreName" in data:
-            self.SellerStoreName: str = str(data["SellerStoreName"])
+            self.SellerStoreName: str = self._get_value(str, "SellerStoreName")
         else:
             self.SellerStoreName: str = None
         if "ProviderId" in data:
-            self.ProviderId: str = str(data["ProviderId"])
+            self.ProviderId: str = self._get_value(str, "ProviderId")
         else:
             self.ProviderId: str = None
         if "ProviderStoreName" in data:
-            self.ProviderStoreName: str = str(data["ProviderStoreName"])
+            self.ProviderStoreName: str = self._get_value(str, "ProviderStoreName")
         else:
             self.ProviderStoreName: str = None
         if "TransactionAmount" in data:
-            self.TransactionAmount: Currency = Currency(data["TransactionAmount"])
+            self.TransactionAmount: Currency = self._get_value(Currency, "TransactionAmount")
         else:
             self.TransactionAmount: Currency = None
         if "TransactionCreationDate" in data:
-            self.TransactionCreationDate: Date = Date(data["TransactionCreationDate"])
+            self.TransactionCreationDate: Date = self._get_value(Date, "TransactionCreationDate")
         else:
             self.TransactionCreationDate: Date = None
 
 
-class TaxWithholdingPeriod(__BaseObject):
+class TaxWithholdingPeriod(__BaseDictObject):
     """
     Period which taxwithholding on seller's account is calculated.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "StartDate" in data:
-            self.StartDate: Date = Date(data["StartDate"])
+            self.StartDate: Date = self._get_value(Date, "StartDate")
         else:
             self.StartDate: Date = None
         if "EndDate" in data:
-            self.EndDate: Date = Date(data["EndDate"])
+            self.EndDate: Date = self._get_value(Date, "EndDate")
         else:
             self.EndDate: Date = None
 
 
-class TaxWithholdingEvent(__BaseObject):
+class TaxWithholdingEvent(__BaseDictObject):
     """
     A TaxWithholding event on seller's account.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "BaseAmount" in data:
-            self.BaseAmount: Currency = Currency(data["BaseAmount"])
+            self.BaseAmount: Currency = self._get_value(Currency, "BaseAmount")
         else:
             self.BaseAmount: Currency = None
         if "WithheldAmount" in data:
-            self.WithheldAmount: Currency = Currency(data["WithheldAmount"])
+            self.WithheldAmount: Currency = self._get_value(Currency, "WithheldAmount")
         else:
             self.WithheldAmount: Currency = None
         if "TaxWithholdingPeriod" in data:
-            self.TaxWithholdingPeriod: TaxWithholdingPeriod = TaxWithholdingPeriod(data["TaxWithholdingPeriod"])
+            self.TaxWithholdingPeriod: TaxWithholdingPeriod = self._get_value(
+                TaxWithholdingPeriod, "TaxWithholdingPeriod"
+            )
         else:
             self.TaxWithholdingPeriod: TaxWithholdingPeriod = None
 
 
-class TaxWithheldComponent(__BaseObject):
+class TaxWithheldComponent(__BaseDictObject):
     """
     Information about the taxes withheld.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TaxCollectionModel" in data:
-            self.TaxCollectionModel: str = str(data["TaxCollectionModel"])
+            self.TaxCollectionModel: str = self._get_value(str, "TaxCollectionModel")
         else:
             self.TaxCollectionModel: str = None
         if "TaxesWithheld" in data:
-            self.TaxesWithheld: ChargeComponentList = ChargeComponentList(data["TaxesWithheld"])
+            self.TaxesWithheld: ChargeComponentList = self._get_value(ChargeComponentList, "TaxesWithheld")
         else:
             self.TaxesWithheld: ChargeComponentList = None
 
 
-class TrialShipmentEvent(__BaseObject):
+class TrialShipmentEvent(__BaseDictObject):
     """
     An event related to a trial shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "AmazonOrderId" in data:
-            self.AmazonOrderId: str = str(data["AmazonOrderId"])
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
         if "FinancialEventGroupId" in data:
-            self.FinancialEventGroupId: str = str(data["FinancialEventGroupId"])
+            self.FinancialEventGroupId: str = self._get_value(str, "FinancialEventGroupId")
         else:
             self.FinancialEventGroupId: str = None
         if "PostedDate" in data:
-            self.PostedDate: Date = Date(data["PostedDate"])
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
         else:
             self.PostedDate: Date = None
         if "SKU" in data:
-            self.SKU: str = str(data["SKU"])
+            self.SKU: str = self._get_value(str, "SKU")
         else:
             self.SKU: str = None
         if "FeeList" in data:
-            self.FeeList: FeeComponentList = FeeComponentList(data["FeeList"])
+            self.FeeList: FeeComponentList = self._get_value(FeeComponentList, "FeeList")
         else:
             self.FeeList: FeeComponentList = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

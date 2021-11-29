@@ -1,79 +1,75 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Granularity(__BaseObject):
+class Granularity(__BaseDictObject):
     """
     Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "granularityType" in data:
-            self.granularityType: str = str(data["granularityType"])
+            self.granularityType: str = self._get_value(str, "granularityType")
         else:
             self.granularityType: str = None
         if "granularityId" in data:
-            self.granularityId: str = str(data["granularityId"])
+            self.granularityId: str = self._get_value(str, "granularityId")
         else:
             self.granularityId: str = None
 
 
-class ReservedQuantity(__BaseObject):
+class ReservedQuantity(__BaseDictObject):
     """
     The quantity of reserved inventory.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "totalReservedQuantity" in data:
-            self.totalReservedQuantity: int = int(data["totalReservedQuantity"])
+            self.totalReservedQuantity: int = self._get_value(int, "totalReservedQuantity")
         else:
             self.totalReservedQuantity: int = None
         if "pendingCustomerOrderQuantity" in data:
-            self.pendingCustomerOrderQuantity: int = int(data["pendingCustomerOrderQuantity"])
+            self.pendingCustomerOrderQuantity: int = self._get_value(int, "pendingCustomerOrderQuantity")
         else:
             self.pendingCustomerOrderQuantity: int = None
         if "pendingTransshipmentQuantity" in data:
-            self.pendingTransshipmentQuantity: int = int(data["pendingTransshipmentQuantity"])
+            self.pendingTransshipmentQuantity: int = self._get_value(int, "pendingTransshipmentQuantity")
         else:
             self.pendingTransshipmentQuantity: int = None
         if "fcProcessingQuantity" in data:
-            self.fcProcessingQuantity: int = int(data["fcProcessingQuantity"])
+            self.fcProcessingQuantity: int = self._get_value(int, "fcProcessingQuantity")
         else:
             self.fcProcessingQuantity: int = None
 
 
-class ResearchingQuantityEntry(__BaseObject):
+class ResearchingQuantityEntry(__BaseDictObject):
     """
     The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
         if "quantity" in data:
-            self.quantity: int = int(data["quantity"])
+            self.quantity: int = self._get_value(int, "quantity")
         else:
             self.quantity: int = None
 
 
-class ResearchingQuantity(__BaseObject):
+class ResearchingQuantity(__BaseDictObject):
     """
     The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "totalResearchingQuantity" in data:
-            self.totalResearchingQuantity: int = int(data["totalResearchingQuantity"])
+            self.totalResearchingQuantity: int = self._get_value(int, "totalResearchingQuantity")
         else:
             self.totalResearchingQuantity: int = None
         if "researchingQuantityBreakdown" in data:
@@ -84,196 +80,191 @@ class ResearchingQuantity(__BaseObject):
             self.researchingQuantityBreakdown: _List[ResearchingQuantityEntry] = []
 
 
-class UnfulfillableQuantity(__BaseObject):
+class UnfulfillableQuantity(__BaseDictObject):
     """
     The quantity of unfulfillable inventory.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "totalUnfulfillableQuantity" in data:
-            self.totalUnfulfillableQuantity: int = int(data["totalUnfulfillableQuantity"])
+            self.totalUnfulfillableQuantity: int = self._get_value(int, "totalUnfulfillableQuantity")
         else:
             self.totalUnfulfillableQuantity: int = None
         if "customerDamagedQuantity" in data:
-            self.customerDamagedQuantity: int = int(data["customerDamagedQuantity"])
+            self.customerDamagedQuantity: int = self._get_value(int, "customerDamagedQuantity")
         else:
             self.customerDamagedQuantity: int = None
         if "warehouseDamagedQuantity" in data:
-            self.warehouseDamagedQuantity: int = int(data["warehouseDamagedQuantity"])
+            self.warehouseDamagedQuantity: int = self._get_value(int, "warehouseDamagedQuantity")
         else:
             self.warehouseDamagedQuantity: int = None
         if "distributorDamagedQuantity" in data:
-            self.distributorDamagedQuantity: int = int(data["distributorDamagedQuantity"])
+            self.distributorDamagedQuantity: int = self._get_value(int, "distributorDamagedQuantity")
         else:
             self.distributorDamagedQuantity: int = None
         if "carrierDamagedQuantity" in data:
-            self.carrierDamagedQuantity: int = int(data["carrierDamagedQuantity"])
+            self.carrierDamagedQuantity: int = self._get_value(int, "carrierDamagedQuantity")
         else:
             self.carrierDamagedQuantity: int = None
         if "defectiveQuantity" in data:
-            self.defectiveQuantity: int = int(data["defectiveQuantity"])
+            self.defectiveQuantity: int = self._get_value(int, "defectiveQuantity")
         else:
             self.defectiveQuantity: int = None
         if "expiredQuantity" in data:
-            self.expiredQuantity: int = int(data["expiredQuantity"])
+            self.expiredQuantity: int = self._get_value(int, "expiredQuantity")
         else:
             self.expiredQuantity: int = None
 
 
-class InventoryDetails(__BaseObject):
+class InventoryDetails(__BaseDictObject):
     """
     Summarized inventory details. This object will not appear if the details parameter in the request is false.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "fulfillableQuantity" in data:
-            self.fulfillableQuantity: int = int(data["fulfillableQuantity"])
+            self.fulfillableQuantity: int = self._get_value(int, "fulfillableQuantity")
         else:
             self.fulfillableQuantity: int = None
         if "inboundWorkingQuantity" in data:
-            self.inboundWorkingQuantity: int = int(data["inboundWorkingQuantity"])
+            self.inboundWorkingQuantity: int = self._get_value(int, "inboundWorkingQuantity")
         else:
             self.inboundWorkingQuantity: int = None
         if "inboundShippedQuantity" in data:
-            self.inboundShippedQuantity: int = int(data["inboundShippedQuantity"])
+            self.inboundShippedQuantity: int = self._get_value(int, "inboundShippedQuantity")
         else:
             self.inboundShippedQuantity: int = None
         if "inboundReceivingQuantity" in data:
-            self.inboundReceivingQuantity: int = int(data["inboundReceivingQuantity"])
+            self.inboundReceivingQuantity: int = self._get_value(int, "inboundReceivingQuantity")
         else:
             self.inboundReceivingQuantity: int = None
         if "reservedQuantity" in data:
-            self.reservedQuantity: ReservedQuantity = ReservedQuantity(data["reservedQuantity"])
+            self.reservedQuantity: ReservedQuantity = self._get_value(ReservedQuantity, "reservedQuantity")
         else:
             self.reservedQuantity: ReservedQuantity = None
         if "researchingQuantity" in data:
-            self.researchingQuantity: ResearchingQuantity = ResearchingQuantity(data["researchingQuantity"])
+            self.researchingQuantity: ResearchingQuantity = self._get_value(ResearchingQuantity, "researchingQuantity")
         else:
             self.researchingQuantity: ResearchingQuantity = None
         if "unfulfillableQuantity" in data:
-            self.unfulfillableQuantity: UnfulfillableQuantity = UnfulfillableQuantity(data["unfulfillableQuantity"])
+            self.unfulfillableQuantity: UnfulfillableQuantity = self._get_value(
+                UnfulfillableQuantity, "unfulfillableQuantity"
+            )
         else:
             self.unfulfillableQuantity: UnfulfillableQuantity = None
 
 
-class InventorySummary(__BaseObject):
+class InventorySummary(__BaseDictObject):
     """
     Inventory summary for a specific item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "asin" in data:
-            self.asin: str = str(data["asin"])
+            self.asin: str = self._get_value(str, "asin")
         else:
             self.asin: str = None
         if "fnSku" in data:
-            self.fnSku: str = str(data["fnSku"])
+            self.fnSku: str = self._get_value(str, "fnSku")
         else:
             self.fnSku: str = None
         if "sellerSku" in data:
-            self.sellerSku: str = str(data["sellerSku"])
+            self.sellerSku: str = self._get_value(str, "sellerSku")
         else:
             self.sellerSku: str = None
         if "condition" in data:
-            self.condition: str = str(data["condition"])
+            self.condition: str = self._get_value(str, "condition")
         else:
             self.condition: str = None
         if "inventoryDetails" in data:
-            self.inventoryDetails: InventoryDetails = InventoryDetails(data["inventoryDetails"])
+            self.inventoryDetails: InventoryDetails = self._get_value(InventoryDetails, "inventoryDetails")
         else:
             self.inventoryDetails: InventoryDetails = None
         if "lastUpdatedTime" in data:
-            self.lastUpdatedTime: str = str(data["lastUpdatedTime"])
+            self.lastUpdatedTime: str = self._get_value(str, "lastUpdatedTime")
         else:
             self.lastUpdatedTime: str = None
         if "productName" in data:
-            self.productName: str = str(data["productName"])
+            self.productName: str = self._get_value(str, "productName")
         else:
             self.productName: str = None
         if "totalQuantity" in data:
-            self.totalQuantity: int = int(data["totalQuantity"])
+            self.totalQuantity: int = self._get_value(int, "totalQuantity")
         else:
             self.totalQuantity: int = None
 
 
-class Pagination(__BaseObject):
+class Pagination(__BaseDictObject):
     """
     The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "nextToken" in data:
-            self.nextToken: str = str(data["nextToken"])
+            self.nextToken: str = self._get_value(str, "nextToken")
         else:
             self.nextToken: str = None
 
 
-class GetInventorySummariesResult(__BaseObject):
+class GetInventorySummariesResult(__BaseDictObject):
     """
     The payload schema for the getInventorySummaries operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "granularity" in data:
-            self.granularity: Granularity = Granularity(data["granularity"])
+            self.granularity: Granularity = self._get_value(Granularity, "granularity")
         else:
             self.granularity: Granularity = None
         if "inventorySummaries" in data:
-            self.inventorySummaries: InventorySummaries = InventorySummaries(data["inventorySummaries"])
+            self.inventorySummaries: InventorySummaries = self._get_value(InventorySummaries, "inventorySummaries")
         else:
             self.inventorySummaries: InventorySummaries = None
 
 
-class GetInventorySummariesResponse(__BaseObject):
+class GetInventorySummariesResponse(__BaseDictObject):
     """
     The Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetInventorySummariesResult = GetInventorySummariesResult(data["payload"])
+            self.payload: GetInventorySummariesResult = self._get_value(GetInventorySummariesResult, "payload")
         else:
             self.payload: GetInventorySummariesResult = None
         if "pagination" in data:
-            self.pagination: Pagination = Pagination(data["pagination"])
+            self.pagination: Pagination = self._get_value(Pagination, "pagination")
         else:
             self.pagination: Pagination = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

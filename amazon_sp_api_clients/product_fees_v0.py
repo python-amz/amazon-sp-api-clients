@@ -1,333 +1,323 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class GetMyFeesEstimateRequest(__BaseObject):
+class GetMyFeesEstimateRequest(__BaseDictObject):
     """
     Request schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "FeesEstimateRequest" in data:
-            self.FeesEstimateRequest: FeesEstimateRequest = FeesEstimateRequest(data["FeesEstimateRequest"])
+            self.FeesEstimateRequest: FeesEstimateRequest = self._get_value(FeesEstimateRequest, "FeesEstimateRequest")
         else:
             self.FeesEstimateRequest: FeesEstimateRequest = None
 
 
-class FeesEstimateRequest(__BaseObject):
+class FeesEstimateRequest(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
         if "IsAmazonFulfilled" in data:
-            self.IsAmazonFulfilled: bool = convert_bool(data["IsAmazonFulfilled"])
+            self.IsAmazonFulfilled: bool = self._get_value(convert_bool, "IsAmazonFulfilled")
         else:
             self.IsAmazonFulfilled: bool = None
         if "PriceToEstimateFees" in data:
-            self.PriceToEstimateFees: PriceToEstimateFees = PriceToEstimateFees(data["PriceToEstimateFees"])
+            self.PriceToEstimateFees: PriceToEstimateFees = self._get_value(PriceToEstimateFees, "PriceToEstimateFees")
         else:
             self.PriceToEstimateFees: PriceToEstimateFees = None
         if "Identifier" in data:
-            self.Identifier: str = str(data["Identifier"])
+            self.Identifier: str = self._get_value(str, "Identifier")
         else:
             self.Identifier: str = None
         if "OptionalFulfillmentProgram" in data:
-            self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = OptionalFulfillmentProgram(
-                data["OptionalFulfillmentProgram"]
+            self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = self._get_value(
+                OptionalFulfillmentProgram, "OptionalFulfillmentProgram"
             )
         else:
             self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = None
 
 
-class GetMyFeesEstimateResponse(__BaseObject):
+class GetMyFeesEstimateResponse(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: GetMyFeesEstimateResult = GetMyFeesEstimateResult(data["payload"])
+            self.payload: GetMyFeesEstimateResult = self._get_value(GetMyFeesEstimateResult, "payload")
         else:
             self.payload: GetMyFeesEstimateResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetMyFeesEstimateResult(__BaseObject):
+class GetMyFeesEstimateResult(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "FeesEstimateResult" in data:
-            self.FeesEstimateResult: FeesEstimateResult = FeesEstimateResult(data["FeesEstimateResult"])
+            self.FeesEstimateResult: FeesEstimateResult = self._get_value(FeesEstimateResult, "FeesEstimateResult")
         else:
             self.FeesEstimateResult: FeesEstimateResult = None
 
 
-class Points(__BaseObject):
+class Points(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "PointsNumber" in data:
-            self.PointsNumber: int = int(data["PointsNumber"])
+            self.PointsNumber: int = self._get_value(int, "PointsNumber")
         else:
             self.PointsNumber: int = None
         if "PointsMonetaryValue" in data:
-            self.PointsMonetaryValue: MoneyType = MoneyType(data["PointsMonetaryValue"])
+            self.PointsMonetaryValue: MoneyType = self._get_value(MoneyType, "PointsMonetaryValue")
         else:
             self.PointsMonetaryValue: MoneyType = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class FeesEstimateResult(__BaseObject):
+class FeesEstimateResult(__BaseDictObject):
     """
     An item identifier and the estimated fees for the item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Status" in data:
-            self.Status: str = str(data["Status"])
+            self.Status: str = self._get_value(str, "Status")
         else:
             self.Status: str = None
         if "FeesEstimateIdentifier" in data:
-            self.FeesEstimateIdentifier: FeesEstimateIdentifier = FeesEstimateIdentifier(data["FeesEstimateIdentifier"])
+            self.FeesEstimateIdentifier: FeesEstimateIdentifier = self._get_value(
+                FeesEstimateIdentifier, "FeesEstimateIdentifier"
+            )
         else:
             self.FeesEstimateIdentifier: FeesEstimateIdentifier = None
         if "FeesEstimate" in data:
-            self.FeesEstimate: FeesEstimate = FeesEstimate(data["FeesEstimate"])
+            self.FeesEstimate: FeesEstimate = self._get_value(FeesEstimate, "FeesEstimate")
         else:
             self.FeesEstimate: FeesEstimate = None
         if "Error" in data:
-            self.Error: FeesEstimateError = FeesEstimateError(data["Error"])
+            self.Error: FeesEstimateError = self._get_value(FeesEstimateError, "Error")
         else:
             self.Error: FeesEstimateError = None
 
 
-class FeesEstimateIdentifier(__BaseObject):
+class FeesEstimateIdentifier(__BaseDictObject):
     """
     An item identifier, marketplace, time of request, and other details that identify an estimate.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "MarketplaceId" in data:
-            self.MarketplaceId: str = str(data["MarketplaceId"])
+            self.MarketplaceId: str = self._get_value(str, "MarketplaceId")
         else:
             self.MarketplaceId: str = None
         if "SellerId" in data:
-            self.SellerId: str = str(data["SellerId"])
+            self.SellerId: str = self._get_value(str, "SellerId")
         else:
             self.SellerId: str = None
         if "IdType" in data:
-            self.IdType: str = str(data["IdType"])
+            self.IdType: str = self._get_value(str, "IdType")
         else:
             self.IdType: str = None
         if "IdValue" in data:
-            self.IdValue: str = str(data["IdValue"])
+            self.IdValue: str = self._get_value(str, "IdValue")
         else:
             self.IdValue: str = None
         if "IsAmazonFulfilled" in data:
-            self.IsAmazonFulfilled: bool = convert_bool(data["IsAmazonFulfilled"])
+            self.IsAmazonFulfilled: bool = self._get_value(convert_bool, "IsAmazonFulfilled")
         else:
             self.IsAmazonFulfilled: bool = None
         if "PriceToEstimateFees" in data:
-            self.PriceToEstimateFees: PriceToEstimateFees = PriceToEstimateFees(data["PriceToEstimateFees"])
+            self.PriceToEstimateFees: PriceToEstimateFees = self._get_value(PriceToEstimateFees, "PriceToEstimateFees")
         else:
             self.PriceToEstimateFees: PriceToEstimateFees = None
         if "SellerInputIdentifier" in data:
-            self.SellerInputIdentifier: str = str(data["SellerInputIdentifier"])
+            self.SellerInputIdentifier: str = self._get_value(str, "SellerInputIdentifier")
         else:
             self.SellerInputIdentifier: str = None
         if "OptionalFulfillmentProgram" in data:
-            self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = OptionalFulfillmentProgram(
-                data["OptionalFulfillmentProgram"]
+            self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = self._get_value(
+                OptionalFulfillmentProgram, "OptionalFulfillmentProgram"
             )
         else:
             self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = None
 
 
-class PriceToEstimateFees(__BaseObject):
+class PriceToEstimateFees(__BaseDictObject):
     """
     Price information for an item, used to estimate fees.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "ListingPrice" in data:
-            self.ListingPrice: MoneyType = MoneyType(data["ListingPrice"])
+            self.ListingPrice: MoneyType = self._get_value(MoneyType, "ListingPrice")
         else:
             self.ListingPrice: MoneyType = None
         if "Shipping" in data:
-            self.Shipping: MoneyType = MoneyType(data["Shipping"])
+            self.Shipping: MoneyType = self._get_value(MoneyType, "Shipping")
         else:
             self.Shipping: MoneyType = None
         if "Points" in data:
-            self.Points: Points = Points(data["Points"])
+            self.Points: Points = self._get_value(Points, "Points")
         else:
             self.Points: Points = None
 
 
-class FeesEstimate(__BaseObject):
+class FeesEstimate(__BaseDictObject):
     """
     The total estimated fees for an item and a list of details.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "TimeOfFeesEstimation" in data:
-            self.TimeOfFeesEstimation: str = str(data["TimeOfFeesEstimation"])
+            self.TimeOfFeesEstimation: str = self._get_value(str, "TimeOfFeesEstimation")
         else:
             self.TimeOfFeesEstimation: str = None
         if "TotalFeesEstimate" in data:
-            self.TotalFeesEstimate: MoneyType = MoneyType(data["TotalFeesEstimate"])
+            self.TotalFeesEstimate: MoneyType = self._get_value(MoneyType, "TotalFeesEstimate")
         else:
             self.TotalFeesEstimate: MoneyType = None
         if "FeeDetailList" in data:
-            self.FeeDetailList: FeeDetailList = FeeDetailList(data["FeeDetailList"])
+            self.FeeDetailList: FeeDetailList = self._get_value(FeeDetailList, "FeeDetailList")
         else:
             self.FeeDetailList: FeeDetailList = None
 
 
-class FeesEstimateError(__BaseObject):
+class FeesEstimateError(__BaseDictObject):
     """
     An unexpected error occurred during this operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "Type" in data:
-            self.Type: str = str(data["Type"])
+            self.Type: str = self._get_value(str, "Type")
         else:
             self.Type: str = None
         if "Code" in data:
-            self.Code: str = str(data["Code"])
+            self.Code: str = self._get_value(str, "Code")
         else:
             self.Code: str = None
         if "Message" in data:
-            self.Message: str = str(data["Message"])
+            self.Message: str = self._get_value(str, "Message")
         else:
             self.Message: str = None
         if "Detail" in data:
-            self.Detail: FeesEstimateErrorDetail = FeesEstimateErrorDetail(data["Detail"])
+            self.Detail: FeesEstimateErrorDetail = self._get_value(FeesEstimateErrorDetail, "Detail")
         else:
             self.Detail: FeesEstimateErrorDetail = None
 
 
-class FeeDetail(__BaseObject):
+class FeeDetail(__BaseDictObject):
     """
     The type of fee, fee amount, and other details.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "FeeType" in data:
-            self.FeeType: str = str(data["FeeType"])
+            self.FeeType: str = self._get_value(str, "FeeType")
         else:
             self.FeeType: str = None
         if "FeeAmount" in data:
-            self.FeeAmount: MoneyType = MoneyType(data["FeeAmount"])
+            self.FeeAmount: MoneyType = self._get_value(MoneyType, "FeeAmount")
         else:
             self.FeeAmount: MoneyType = None
         if "FeePromotion" in data:
-            self.FeePromotion: MoneyType = MoneyType(data["FeePromotion"])
+            self.FeePromotion: MoneyType = self._get_value(MoneyType, "FeePromotion")
         else:
             self.FeePromotion: MoneyType = None
         if "TaxAmount" in data:
-            self.TaxAmount: MoneyType = MoneyType(data["TaxAmount"])
+            self.TaxAmount: MoneyType = self._get_value(MoneyType, "TaxAmount")
         else:
             self.TaxAmount: MoneyType = None
         if "FinalFee" in data:
-            self.FinalFee: MoneyType = MoneyType(data["FinalFee"])
+            self.FinalFee: MoneyType = self._get_value(MoneyType, "FinalFee")
         else:
             self.FinalFee: MoneyType = None
         if "IncludedFeeDetailList" in data:
-            self.IncludedFeeDetailList: IncludedFeeDetailList = IncludedFeeDetailList(data["IncludedFeeDetailList"])
+            self.IncludedFeeDetailList: IncludedFeeDetailList = self._get_value(
+                IncludedFeeDetailList, "IncludedFeeDetailList"
+            )
         else:
             self.IncludedFeeDetailList: IncludedFeeDetailList = None
 
 
-class IncludedFeeDetail(__BaseObject):
+class IncludedFeeDetail(__BaseDictObject):
     """
     The type of fee, fee amount, and other details.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "FeeType" in data:
-            self.FeeType: str = str(data["FeeType"])
+            self.FeeType: str = self._get_value(str, "FeeType")
         else:
             self.FeeType: str = None
         if "FeeAmount" in data:
-            self.FeeAmount: MoneyType = MoneyType(data["FeeAmount"])
+            self.FeeAmount: MoneyType = self._get_value(MoneyType, "FeeAmount")
         else:
             self.FeeAmount: MoneyType = None
         if "FeePromotion" in data:
-            self.FeePromotion: MoneyType = MoneyType(data["FeePromotion"])
+            self.FeePromotion: MoneyType = self._get_value(MoneyType, "FeePromotion")
         else:
             self.FeePromotion: MoneyType = None
         if "TaxAmount" in data:
-            self.TaxAmount: MoneyType = MoneyType(data["TaxAmount"])
+            self.TaxAmount: MoneyType = self._get_value(MoneyType, "TaxAmount")
         else:
             self.TaxAmount: MoneyType = None
         if "FinalFee" in data:
-            self.FinalFee: MoneyType = MoneyType(data["FinalFee"])
+            self.FinalFee: MoneyType = self._get_value(MoneyType, "FinalFee")
         else:
             self.FinalFee: MoneyType = None
 
 
-class MoneyType(__BaseObject):
+class MoneyType(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "CurrencyCode" in data:
-            self.CurrencyCode: str = str(data["CurrencyCode"])
+            self.CurrencyCode: str = self._get_value(str, "CurrencyCode")
         else:
             self.CurrencyCode: str = None
         if "Amount" in data:
-            self.Amount: float = float(data["Amount"])
+            self.Amount: float = self._get_value(float, "Amount")
         else:
             self.Amount: float = None
 

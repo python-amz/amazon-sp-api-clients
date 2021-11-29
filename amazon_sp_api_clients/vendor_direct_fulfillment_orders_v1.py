@@ -1,51 +1,48 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class GetOrdersResponse(__BaseObject):
+class GetOrdersResponse(__BaseDictObject):
     """
     The response schema for the getOrders operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: OrderList = OrderList(data["payload"])
+            self.payload: OrderList = self._get_value(OrderList, "payload")
         else:
             self.payload: OrderList = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetOrderResponse(__BaseObject):
+class GetOrderResponse(__BaseDictObject):
     """
     The response schema for the getOrder operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Order = Order(data["payload"])
+            self.payload: Order = self._get_value(Order, "payload")
         else:
             self.payload: Order = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class OrderList(__BaseObject):
+class OrderList(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "pagination" in data:
-            self.pagination: Pagination = Pagination(data["pagination"])
+            self.pagination: Pagination = self._get_value(Pagination, "pagination")
         else:
             self.pagination: Pagination = None
         if "orders" in data:
@@ -54,76 +51,73 @@ class OrderList(__BaseObject):
             self.orders: _List[Order] = []
 
 
-class Pagination(__BaseObject):
+class Pagination(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "nextToken" in data:
-            self.nextToken: str = str(data["nextToken"])
+            self.nextToken: str = self._get_value(str, "nextToken")
         else:
             self.nextToken: str = None
 
 
-class Order(__BaseObject):
+class Order(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "purchaseOrderNumber" in data:
-            self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
+            self.purchaseOrderNumber: str = self._get_value(str, "purchaseOrderNumber")
         else:
             self.purchaseOrderNumber: str = None
         if "orderDetails" in data:
-            self.orderDetails: OrderDetails = OrderDetails(data["orderDetails"])
+            self.orderDetails: OrderDetails = self._get_value(OrderDetails, "orderDetails")
         else:
             self.orderDetails: OrderDetails = None
 
 
-class OrderDetails(__BaseObject):
+class OrderDetails(__BaseDictObject):
     """
     Details of an order.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "customerOrderNumber" in data:
-            self.customerOrderNumber: str = str(data["customerOrderNumber"])
+            self.customerOrderNumber: str = self._get_value(str, "customerOrderNumber")
         else:
             self.customerOrderNumber: str = None
         if "orderDate" in data:
-            self.orderDate: str = str(data["orderDate"])
+            self.orderDate: str = self._get_value(str, "orderDate")
         else:
             self.orderDate: str = None
         if "orderStatus" in data:
-            self.orderStatus: str = str(data["orderStatus"])
+            self.orderStatus: str = self._get_value(str, "orderStatus")
         else:
             self.orderStatus: str = None
         if "shipmentDetails" in data:
-            self.shipmentDetails: ShipmentDetails = ShipmentDetails(data["shipmentDetails"])
+            self.shipmentDetails: ShipmentDetails = self._get_value(ShipmentDetails, "shipmentDetails")
         else:
             self.shipmentDetails: ShipmentDetails = None
         if "taxTotal" in data:
-            self.taxTotal: dict = dict(data["taxTotal"])
+            self.taxTotal: dict = self._get_value(dict, "taxTotal")
         else:
             self.taxTotal: dict = None
         if "sellingParty" in data:
-            self.sellingParty: PartyIdentification = PartyIdentification(data["sellingParty"])
+            self.sellingParty: PartyIdentification = self._get_value(PartyIdentification, "sellingParty")
         else:
             self.sellingParty: PartyIdentification = None
         if "shipFromParty" in data:
-            self.shipFromParty: PartyIdentification = PartyIdentification(data["shipFromParty"])
+            self.shipFromParty: PartyIdentification = self._get_value(PartyIdentification, "shipFromParty")
         else:
             self.shipFromParty: PartyIdentification = None
         if "shipToParty" in data:
-            self.shipToParty: Address = Address(data["shipToParty"])
+            self.shipToParty: Address = self._get_value(Address, "shipToParty")
         else:
             self.shipToParty: Address = None
         if "billToParty" in data:
-            self.billToParty: PartyIdentification = PartyIdentification(data["billToParty"])
+            self.billToParty: PartyIdentification = self._get_value(PartyIdentification, "billToParty")
         else:
             self.billToParty: PartyIdentification = None
         if "items" in data:
@@ -132,216 +126,208 @@ class OrderDetails(__BaseObject):
             self.items: _List[OrderItem] = []
 
 
-class PartyIdentification(__BaseObject):
+class PartyIdentification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "partyId" in data:
-            self.partyId: str = str(data["partyId"])
+            self.partyId: str = self._get_value(str, "partyId")
         else:
             self.partyId: str = None
         if "address" in data:
-            self.address: Address = Address(data["address"])
+            self.address: Address = self._get_value(Address, "address")
         else:
             self.address: Address = None
         if "taxInfo" in data:
-            self.taxInfo: TaxRegistrationDetails = TaxRegistrationDetails(data["taxInfo"])
+            self.taxInfo: TaxRegistrationDetails = self._get_value(TaxRegistrationDetails, "taxInfo")
         else:
             self.taxInfo: TaxRegistrationDetails = None
 
 
-class TaxRegistrationDetails(__BaseObject):
+class TaxRegistrationDetails(__BaseDictObject):
     """
     Tax registration details of the entity.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "taxRegistrationType" in data:
-            self.taxRegistrationType: str = str(data["taxRegistrationType"])
+            self.taxRegistrationType: str = self._get_value(str, "taxRegistrationType")
         else:
             self.taxRegistrationType: str = None
         if "taxRegistrationNumber" in data:
-            self.taxRegistrationNumber: str = str(data["taxRegistrationNumber"])
+            self.taxRegistrationNumber: str = self._get_value(str, "taxRegistrationNumber")
         else:
             self.taxRegistrationNumber: str = None
         if "taxRegistrationAddress" in data:
-            self.taxRegistrationAddress: Address = Address(data["taxRegistrationAddress"])
+            self.taxRegistrationAddress: Address = self._get_value(Address, "taxRegistrationAddress")
         else:
             self.taxRegistrationAddress: Address = None
         if "taxRegistrationMessages" in data:
-            self.taxRegistrationMessages: str = str(data["taxRegistrationMessages"])
+            self.taxRegistrationMessages: str = self._get_value(str, "taxRegistrationMessages")
         else:
             self.taxRegistrationMessages: str = None
 
 
-class Address(__BaseObject):
+class Address(__BaseDictObject):
     """
     Address of the party.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
         if "attention" in data:
-            self.attention: str = str(data["attention"])
+            self.attention: str = self._get_value(str, "attention")
         else:
             self.attention: str = None
         if "addressLine1" in data:
-            self.addressLine1: str = str(data["addressLine1"])
+            self.addressLine1: str = self._get_value(str, "addressLine1")
         else:
             self.addressLine1: str = None
         if "addressLine2" in data:
-            self.addressLine2: str = str(data["addressLine2"])
+            self.addressLine2: str = self._get_value(str, "addressLine2")
         else:
             self.addressLine2: str = None
         if "addressLine3" in data:
-            self.addressLine3: str = str(data["addressLine3"])
+            self.addressLine3: str = self._get_value(str, "addressLine3")
         else:
             self.addressLine3: str = None
         if "city" in data:
-            self.city: str = str(data["city"])
+            self.city: str = self._get_value(str, "city")
         else:
             self.city: str = None
         if "county" in data:
-            self.county: str = str(data["county"])
+            self.county: str = self._get_value(str, "county")
         else:
             self.county: str = None
         if "district" in data:
-            self.district: str = str(data["district"])
+            self.district: str = self._get_value(str, "district")
         else:
             self.district: str = None
         if "stateOrRegion" in data:
-            self.stateOrRegion: str = str(data["stateOrRegion"])
+            self.stateOrRegion: str = self._get_value(str, "stateOrRegion")
         else:
             self.stateOrRegion: str = None
         if "postalCode" in data:
-            self.postalCode: str = str(data["postalCode"])
+            self.postalCode: str = self._get_value(str, "postalCode")
         else:
             self.postalCode: str = None
         if "countryCode" in data:
-            self.countryCode: str = str(data["countryCode"])
+            self.countryCode: str = self._get_value(str, "countryCode")
         else:
             self.countryCode: str = None
         if "phone" in data:
-            self.phone: str = str(data["phone"])
+            self.phone: str = self._get_value(str, "phone")
         else:
             self.phone: str = None
 
 
-class OrderItem(__BaseObject):
+class OrderItem(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "itemSequenceNumber" in data:
-            self.itemSequenceNumber: str = str(data["itemSequenceNumber"])
+            self.itemSequenceNumber: str = self._get_value(str, "itemSequenceNumber")
         else:
             self.itemSequenceNumber: str = None
         if "buyerProductIdentifier" in data:
-            self.buyerProductIdentifier: str = str(data["buyerProductIdentifier"])
+            self.buyerProductIdentifier: str = self._get_value(str, "buyerProductIdentifier")
         else:
             self.buyerProductIdentifier: str = None
         if "vendorProductIdentifier" in data:
-            self.vendorProductIdentifier: str = str(data["vendorProductIdentifier"])
+            self.vendorProductIdentifier: str = self._get_value(str, "vendorProductIdentifier")
         else:
             self.vendorProductIdentifier: str = None
         if "title" in data:
-            self.title: str = str(data["title"])
+            self.title: str = self._get_value(str, "title")
         else:
             self.title: str = None
         if "orderedQuantity" in data:
-            self.orderedQuantity: ItemQuantity = ItemQuantity(data["orderedQuantity"])
+            self.orderedQuantity: ItemQuantity = self._get_value(ItemQuantity, "orderedQuantity")
         else:
             self.orderedQuantity: ItemQuantity = None
         if "scheduledDeliveryShipment" in data:
-            self.scheduledDeliveryShipment: ScheduledDeliveryShipment = ScheduledDeliveryShipment(
-                data["scheduledDeliveryShipment"]
+            self.scheduledDeliveryShipment: ScheduledDeliveryShipment = self._get_value(
+                ScheduledDeliveryShipment, "scheduledDeliveryShipment"
             )
         else:
             self.scheduledDeliveryShipment: ScheduledDeliveryShipment = None
         if "giftDetails" in data:
-            self.giftDetails: GiftDetails = GiftDetails(data["giftDetails"])
+            self.giftDetails: GiftDetails = self._get_value(GiftDetails, "giftDetails")
         else:
             self.giftDetails: GiftDetails = None
         if "netPrice" in data:
-            self.netPrice: Money = Money(data["netPrice"])
+            self.netPrice: Money = self._get_value(Money, "netPrice")
         else:
             self.netPrice: Money = None
         if "taxDetails" in data:
-            self.taxDetails: dict = dict(data["taxDetails"])
+            self.taxDetails: dict = self._get_value(dict, "taxDetails")
         else:
             self.taxDetails: dict = None
         if "totalPrice" in data:
-            self.totalPrice: Money = Money(data["totalPrice"])
+            self.totalPrice: Money = self._get_value(Money, "totalPrice")
         else:
             self.totalPrice: Money = None
 
 
-class Money(__BaseObject):
+class Money(__BaseDictObject):
     """
     An amount of money, including units in the form of currency.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "currencyCode" in data:
-            self.currencyCode: str = str(data["currencyCode"])
+            self.currencyCode: str = self._get_value(str, "currencyCode")
         else:
             self.currencyCode: str = None
         if "amount" in data:
-            self.amount: Decimal = Decimal(data["amount"])
+            self.amount: Decimal = self._get_value(Decimal, "amount")
         else:
             self.amount: Decimal = None
 
 
-class SubmitAcknowledgementResponse(__BaseObject):
+class SubmitAcknowledgementResponse(__BaseDictObject):
     """
     The response schema for the submitAcknowledgement operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: TransactionId = TransactionId(data["payload"])
+            self.payload: TransactionId = self._get_value(TransactionId, "payload")
         else:
             self.payload: TransactionId = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class TransactionId(__BaseObject):
+class TransactionId(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "transactionId" in data:
-            self.transactionId: str = str(data["transactionId"])
+            self.transactionId: str = self._get_value(str, "transactionId")
         else:
             self.transactionId: str = None
 
 
-class SubmitAcknowledgementRequest(__BaseObject):
+class SubmitAcknowledgementRequest(__BaseDictObject):
     """
     The request schema for the submitAcknowledgement operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "orderAcknowledgements" in data:
             self.orderAcknowledgements: _List[OrderAcknowledgementItem] = [
                 OrderAcknowledgementItem(datum) for datum in data["orderAcknowledgements"]
@@ -350,36 +336,37 @@ class SubmitAcknowledgementRequest(__BaseObject):
             self.orderAcknowledgements: _List[OrderAcknowledgementItem] = []
 
 
-class OrderAcknowledgementItem(__BaseObject):
+class OrderAcknowledgementItem(__BaseDictObject):
     """
     Details of an individual order being acknowledged.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "purchaseOrderNumber" in data:
-            self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
+            self.purchaseOrderNumber: str = self._get_value(str, "purchaseOrderNumber")
         else:
             self.purchaseOrderNumber: str = None
         if "vendorOrderNumber" in data:
-            self.vendorOrderNumber: str = str(data["vendorOrderNumber"])
+            self.vendorOrderNumber: str = self._get_value(str, "vendorOrderNumber")
         else:
             self.vendorOrderNumber: str = None
         if "acknowledgementDate" in data:
-            self.acknowledgementDate: str = str(data["acknowledgementDate"])
+            self.acknowledgementDate: str = self._get_value(str, "acknowledgementDate")
         else:
             self.acknowledgementDate: str = None
         if "acknowledgementStatus" in data:
-            self.acknowledgementStatus: AcknowledgementStatus = AcknowledgementStatus(data["acknowledgementStatus"])
+            self.acknowledgementStatus: AcknowledgementStatus = self._get_value(
+                AcknowledgementStatus, "acknowledgementStatus"
+            )
         else:
             self.acknowledgementStatus: AcknowledgementStatus = None
         if "sellingParty" in data:
-            self.sellingParty: PartyIdentification = PartyIdentification(data["sellingParty"])
+            self.sellingParty: PartyIdentification = self._get_value(PartyIdentification, "sellingParty")
         else:
             self.sellingParty: PartyIdentification = None
         if "shipFromParty" in data:
-            self.shipFromParty: PartyIdentification = PartyIdentification(data["shipFromParty"])
+            self.shipFromParty: PartyIdentification = self._get_value(PartyIdentification, "shipFromParty")
         else:
             self.shipFromParty: PartyIdentification = None
         if "itemAcknowledgements" in data:
@@ -390,204 +377,195 @@ class OrderAcknowledgementItem(__BaseObject):
             self.itemAcknowledgements: _List[OrderItemAcknowledgement] = []
 
 
-class OrderItemAcknowledgement(__BaseObject):
+class OrderItemAcknowledgement(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "itemSequenceNumber" in data:
-            self.itemSequenceNumber: str = str(data["itemSequenceNumber"])
+            self.itemSequenceNumber: str = self._get_value(str, "itemSequenceNumber")
         else:
             self.itemSequenceNumber: str = None
         if "buyerProductIdentifier" in data:
-            self.buyerProductIdentifier: str = str(data["buyerProductIdentifier"])
+            self.buyerProductIdentifier: str = self._get_value(str, "buyerProductIdentifier")
         else:
             self.buyerProductIdentifier: str = None
         if "vendorProductIdentifier" in data:
-            self.vendorProductIdentifier: str = str(data["vendorProductIdentifier"])
+            self.vendorProductIdentifier: str = self._get_value(str, "vendorProductIdentifier")
         else:
             self.vendorProductIdentifier: str = None
         if "acknowledgedQuantity" in data:
-            self.acknowledgedQuantity: ItemQuantity = ItemQuantity(data["acknowledgedQuantity"])
+            self.acknowledgedQuantity: ItemQuantity = self._get_value(ItemQuantity, "acknowledgedQuantity")
         else:
             self.acknowledgedQuantity: ItemQuantity = None
 
 
-class ItemQuantity(__BaseObject):
+class ItemQuantity(__BaseDictObject):
     """
     Details of quantity ordered.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "amount" in data:
-            self.amount: int = int(data["amount"])
+            self.amount: int = self._get_value(int, "amount")
         else:
             self.amount: int = None
         if "unitOfMeasure" in data:
-            self.unitOfMeasure: str = str(data["unitOfMeasure"])
+            self.unitOfMeasure: str = self._get_value(str, "unitOfMeasure")
         else:
             self.unitOfMeasure: str = None
 
 
-class TaxDetails(__BaseObject):
+class TaxDetails(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "taxRate" in data:
-            self.taxRate: Decimal = Decimal(data["taxRate"])
+            self.taxRate: Decimal = self._get_value(Decimal, "taxRate")
         else:
             self.taxRate: Decimal = None
         if "taxAmount" in data:
-            self.taxAmount: Money = Money(data["taxAmount"])
+            self.taxAmount: Money = self._get_value(Money, "taxAmount")
         else:
             self.taxAmount: Money = None
         if "taxableAmount" in data:
-            self.taxableAmount: Money = Money(data["taxableAmount"])
+            self.taxableAmount: Money = self._get_value(Money, "taxableAmount")
         else:
             self.taxableAmount: Money = None
         if "type" in data:
-            self.type: str = str(data["type"])
+            self.type: str = self._get_value(str, "type")
         else:
             self.type: str = None
 
 
-class AcknowledgementStatus(__BaseObject):
+class AcknowledgementStatus(__BaseDictObject):
     """
     Status of acknowledgement.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "description" in data:
-            self.description: str = str(data["description"])
+            self.description: str = self._get_value(str, "description")
         else:
             self.description: str = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ShipmentDetails(__BaseObject):
+class ShipmentDetails(__BaseDictObject):
     """
     Shipment details required for the shipment.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "isPriorityShipment" in data:
-            self.isPriorityShipment: bool = convert_bool(data["isPriorityShipment"])
+            self.isPriorityShipment: bool = self._get_value(convert_bool, "isPriorityShipment")
         else:
             self.isPriorityShipment: bool = None
         if "isScheduledDeliveryShipment" in data:
-            self.isScheduledDeliveryShipment: bool = convert_bool(data["isScheduledDeliveryShipment"])
+            self.isScheduledDeliveryShipment: bool = self._get_value(convert_bool, "isScheduledDeliveryShipment")
         else:
             self.isScheduledDeliveryShipment: bool = None
         if "isPslipRequired" in data:
-            self.isPslipRequired: bool = convert_bool(data["isPslipRequired"])
+            self.isPslipRequired: bool = self._get_value(convert_bool, "isPslipRequired")
         else:
             self.isPslipRequired: bool = None
         if "isGift" in data:
-            self.isGift: bool = convert_bool(data["isGift"])
+            self.isGift: bool = self._get_value(convert_bool, "isGift")
         else:
             self.isGift: bool = None
         if "shipMethod" in data:
-            self.shipMethod: str = str(data["shipMethod"])
+            self.shipMethod: str = self._get_value(str, "shipMethod")
         else:
             self.shipMethod: str = None
         if "shipmentDates" in data:
-            self.shipmentDates: ShipmentDates = ShipmentDates(data["shipmentDates"])
+            self.shipmentDates: ShipmentDates = self._get_value(ShipmentDates, "shipmentDates")
         else:
             self.shipmentDates: ShipmentDates = None
         if "messageToCustomer" in data:
-            self.messageToCustomer: str = str(data["messageToCustomer"])
+            self.messageToCustomer: str = self._get_value(str, "messageToCustomer")
         else:
             self.messageToCustomer: str = None
 
 
-class ShipmentDates(__BaseObject):
+class ShipmentDates(__BaseDictObject):
     """
     Shipment dates.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "requiredShipDate" in data:
-            self.requiredShipDate: str = str(data["requiredShipDate"])
+            self.requiredShipDate: str = self._get_value(str, "requiredShipDate")
         else:
             self.requiredShipDate: str = None
         if "promisedDeliveryDate" in data:
-            self.promisedDeliveryDate: str = str(data["promisedDeliveryDate"])
+            self.promisedDeliveryDate: str = self._get_value(str, "promisedDeliveryDate")
         else:
             self.promisedDeliveryDate: str = None
 
 
-class ScheduledDeliveryShipment(__BaseObject):
+class ScheduledDeliveryShipment(__BaseDictObject):
     """
     Dates for the scheduled delivery shipments.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "scheduledDeliveryServiceType" in data:
-            self.scheduledDeliveryServiceType: str = str(data["scheduledDeliveryServiceType"])
+            self.scheduledDeliveryServiceType: str = self._get_value(str, "scheduledDeliveryServiceType")
         else:
             self.scheduledDeliveryServiceType: str = None
         if "earliestNominatedDeliveryDate" in data:
-            self.earliestNominatedDeliveryDate: str = str(data["earliestNominatedDeliveryDate"])
+            self.earliestNominatedDeliveryDate: str = self._get_value(str, "earliestNominatedDeliveryDate")
         else:
             self.earliestNominatedDeliveryDate: str = None
         if "latestNominatedDeliveryDate" in data:
-            self.latestNominatedDeliveryDate: str = str(data["latestNominatedDeliveryDate"])
+            self.latestNominatedDeliveryDate: str = self._get_value(str, "latestNominatedDeliveryDate")
         else:
             self.latestNominatedDeliveryDate: str = None
 
 
-class GiftDetails(__BaseObject):
+class GiftDetails(__BaseDictObject):
     """
     Gift details for the item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "giftMessage" in data:
-            self.giftMessage: str = str(data["giftMessage"])
+            self.giftMessage: str = self._get_value(str, "giftMessage")
         else:
             self.giftMessage: str = None
         if "giftWrapId" in data:
-            self.giftWrapId: str = str(data["giftWrapId"])
+            self.giftWrapId: str = self._get_value(str, "giftWrapId")
         else:
             self.giftWrapId: str = None
 

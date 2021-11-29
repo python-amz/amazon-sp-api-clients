@@ -1,14 +1,13 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 {% for component_name, component in dict_components.items() %}
-class {{ component_name }}(__BaseObject):
+class {{ component_name }}(__BaseDictObject):
     """
     {{component.source.description}}
     """
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
     {% for name, property in component.properties.items() %}
         if '{{ name }}' in data:
         {% set type = property.type %}
@@ -16,7 +15,7 @@ class {{ component_name }}(__BaseObject):
             {% set item_type = property.item_type %}
             self.{{ name }}: _List[{{ item_type }}] = [{{ item_type }}(datum) for datum in data['{{ name }}']]
         {% else %}
-            self.{{ name }}: {{ type }} = {{ property.converter }}(data['{{ name }}'])
+            self.{{ name }}: {{ type }} = self._get_value({{ property.converter }}, '{{ name }}')
         {% endif %}
         else:
         {% if type == 'list' %}

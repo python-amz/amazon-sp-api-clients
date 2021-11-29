@@ -1,79 +1,75 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class GetTransactionResponse(__BaseObject):
+class GetTransactionResponse(__BaseDictObject):
     """
     The response schema for the getTransactionStatus operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: TransactionStatus = TransactionStatus(data["payload"])
+            self.payload: TransactionStatus = self._get_value(TransactionStatus, "payload")
         else:
             self.payload: TransactionStatus = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class TransactionStatus(__BaseObject):
+class TransactionStatus(__BaseDictObject):
     """
     The payload for the getTransactionStatus operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "transactionStatus" in data:
-            self.transactionStatus: Transaction = Transaction(data["transactionStatus"])
+            self.transactionStatus: Transaction = self._get_value(Transaction, "transactionStatus")
         else:
             self.transactionStatus: Transaction = None
 
 
-class Transaction(__BaseObject):
+class Transaction(__BaseDictObject):
     """
     The transaction status details.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "transactionId" in data:
-            self.transactionId: str = str(data["transactionId"])
+            self.transactionId: str = self._get_value(str, "transactionId")
         else:
             self.transactionId: str = None
         if "status" in data:
-            self.status: str = str(data["status"])
+            self.status: str = self._get_value(str, "status")
         else:
             self.status: str = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

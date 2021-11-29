@@ -1,33 +1,31 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class SubmitInventoryUpdateRequest(__BaseObject):
+class SubmitInventoryUpdateRequest(__BaseDictObject):
     """
     The request body for the submitInventoryUpdate operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "inventory" in data:
-            self.inventory: InventoryUpdate = InventoryUpdate(data["inventory"])
+            self.inventory: InventoryUpdate = self._get_value(InventoryUpdate, "inventory")
         else:
             self.inventory: InventoryUpdate = None
 
 
-class InventoryUpdate(__BaseObject):
+class InventoryUpdate(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "sellingParty" in data:
-            self.sellingParty: PartyIdentification = PartyIdentification(data["sellingParty"])
+            self.sellingParty: PartyIdentification = self._get_value(PartyIdentification, "sellingParty")
         else:
             self.sellingParty: PartyIdentification = None
         if "isFullUpdate" in data:
-            self.isFullUpdate: bool = convert_bool(data["isFullUpdate"])
+            self.isFullUpdate: bool = self._get_value(convert_bool, "isFullUpdate")
         else:
             self.isFullUpdate: bool = None
         if "items" in data:
@@ -36,110 +34,104 @@ class InventoryUpdate(__BaseObject):
             self.items: _List[ItemDetails] = []
 
 
-class ItemDetails(__BaseObject):
+class ItemDetails(__BaseDictObject):
     """
     Updated inventory details for an item.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "buyerProductIdentifier" in data:
-            self.buyerProductIdentifier: str = str(data["buyerProductIdentifier"])
+            self.buyerProductIdentifier: str = self._get_value(str, "buyerProductIdentifier")
         else:
             self.buyerProductIdentifier: str = None
         if "vendorProductIdentifier" in data:
-            self.vendorProductIdentifier: str = str(data["vendorProductIdentifier"])
+            self.vendorProductIdentifier: str = self._get_value(str, "vendorProductIdentifier")
         else:
             self.vendorProductIdentifier: str = None
         if "availableQuantity" in data:
-            self.availableQuantity: ItemQuantity = ItemQuantity(data["availableQuantity"])
+            self.availableQuantity: ItemQuantity = self._get_value(ItemQuantity, "availableQuantity")
         else:
             self.availableQuantity: ItemQuantity = None
         if "isObsolete" in data:
-            self.isObsolete: bool = convert_bool(data["isObsolete"])
+            self.isObsolete: bool = self._get_value(convert_bool, "isObsolete")
         else:
             self.isObsolete: bool = None
 
 
-class PartyIdentification(__BaseObject):
+class PartyIdentification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "partyId" in data:
-            self.partyId: str = str(data["partyId"])
+            self.partyId: str = self._get_value(str, "partyId")
         else:
             self.partyId: str = None
 
 
-class ItemQuantity(__BaseObject):
+class ItemQuantity(__BaseDictObject):
     """
     Details of item quantity.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "amount" in data:
-            self.amount: int = int(data["amount"])
+            self.amount: int = self._get_value(int, "amount")
         else:
             self.amount: int = None
         if "unitOfMeasure" in data:
-            self.unitOfMeasure: str = str(data["unitOfMeasure"])
+            self.unitOfMeasure: str = self._get_value(str, "unitOfMeasure")
         else:
             self.unitOfMeasure: str = None
 
 
-class SubmitInventoryUpdateResponse(__BaseObject):
+class SubmitInventoryUpdateResponse(__BaseDictObject):
     """
     The response schema for the submitInventoryUpdate operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: TransactionReference = TransactionReference(data["payload"])
+            self.payload: TransactionReference = self._get_value(TransactionReference, "payload")
         else:
             self.payload: TransactionReference = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class TransactionReference(__BaseObject):
+class TransactionReference(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "transactionId" in data:
-            self.transactionId: str = str(data["transactionId"])
+            self.transactionId: str = self._get_value(str, "transactionId")
         else:
             self.transactionId: str = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

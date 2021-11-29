@@ -1,47 +1,45 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class GetItemEligibilityPreviewResponse(__BaseObject):
+class GetItemEligibilityPreviewResponse(__BaseDictObject):
     """
     The response schema for the getItemEligibilityPreview operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: ItemEligibilityPreview = ItemEligibilityPreview(data["payload"])
+            self.payload: ItemEligibilityPreview = self._get_value(ItemEligibilityPreview, "payload")
         else:
             self.payload: ItemEligibilityPreview = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class ItemEligibilityPreview(__BaseObject):
+class ItemEligibilityPreview(__BaseDictObject):
     """
     The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "asin" in data:
-            self.asin: str = str(data["asin"])
+            self.asin: str = self._get_value(str, "asin")
         else:
             self.asin: str = None
         if "marketplaceId" in data:
-            self.marketplaceId: str = str(data["marketplaceId"])
+            self.marketplaceId: str = self._get_value(str, "marketplaceId")
         else:
             self.marketplaceId: str = None
         if "program" in data:
-            self.program: str = str(data["program"])
+            self.program: str = self._get_value(str, "program")
         else:
             self.program: str = None
         if "isEligibleForProgram" in data:
-            self.isEligibleForProgram: bool = convert_bool(data["isEligibleForProgram"])
+            self.isEligibleForProgram: bool = self._get_value(convert_bool, "isEligibleForProgram")
         else:
             self.isEligibleForProgram: bool = None
         if "ineligibilityReasonList" in data:
@@ -50,24 +48,23 @@ class ItemEligibilityPreview(__BaseObject):
             self.ineligibilityReasonList: _List[str] = []
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

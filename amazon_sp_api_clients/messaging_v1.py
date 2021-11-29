@@ -1,145 +1,137 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Attachment(__BaseObject):
+class Attachment(__BaseDictObject):
     """
     Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "uploadDestinationId" in data:
-            self.uploadDestinationId: str = str(data["uploadDestinationId"])
+            self.uploadDestinationId: str = self._get_value(str, "uploadDestinationId")
         else:
             self.uploadDestinationId: str = None
         if "fileName" in data:
-            self.fileName: str = str(data["fileName"])
+            self.fileName: str = self._get_value(str, "fileName")
         else:
             self.fileName: str = None
 
 
-class LinkObject(__BaseObject):
+class LinkObject(__BaseDictObject):
     """
     A Link object.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "href" in data:
-            self.href: str = str(data["href"])
+            self.href: str = self._get_value(str, "href")
         else:
             self.href: str = None
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
 
 
-class MessagingAction(__BaseObject):
+class MessagingAction(__BaseDictObject):
     """
     A simple object containing the name of the template.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
 
 
-class Schema(__BaseObject):
+class Schema(__BaseDictObject):
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
 
 
-class GetMessagingActionsForOrderResponse(__BaseObject):
+class GetMessagingActionsForOrderResponse(__BaseDictObject):
     """
     The response schema for the getMessagingActionsForOrder operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "_links" in data:
-            self._links: dict = dict(data["_links"])
+            self._links: dict = self._get_value(dict, "_links")
         else:
             self._links: dict = None
         if "_embedded" in data:
-            self._embedded: dict = dict(data["_embedded"])
+            self._embedded: dict = self._get_value(dict, "_embedded")
         else:
             self._embedded: dict = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetMessagingActionResponse(__BaseObject):
+class GetMessagingActionResponse(__BaseDictObject):
     """
     Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "_links" in data:
-            self._links: dict = dict(data["_links"])
+            self._links: dict = self._get_value(dict, "_links")
         else:
             self._links: dict = None
         if "_embedded" in data:
-            self._embedded: dict = dict(data["_embedded"])
+            self._embedded: dict = self._get_value(dict, "_embedded")
         else:
             self._embedded: dict = None
         if "payload" in data:
-            self.payload: MessagingAction = MessagingAction(data["payload"])
+            self.payload: MessagingAction = self._get_value(MessagingAction, "payload")
         else:
             self.payload: MessagingAction = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetSchemaResponse(__BaseObject):
+class GetSchemaResponse(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "_links" in data:
-            self._links: dict = dict(data["_links"])
+            self._links: dict = self._get_value(dict, "_links")
         else:
             self._links: dict = None
         if "payload" in data:
-            self.payload: Schema = Schema(data["payload"])
+            self.payload: Schema = self._get_value(Schema, "payload")
         else:
             self.payload: Schema = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateConfirmCustomizationDetailsRequest(__BaseObject):
+class CreateConfirmCustomizationDetailsRequest(__BaseDictObject):
     """
     The request schema for the confirmCustomizationDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "text" in data:
-            self.text: str = str(data["text"])
+            self.text: str = self._get_value(str, "text")
         else:
             self.text: str = None
         if "attachments" in data:
@@ -148,238 +140,222 @@ class CreateConfirmCustomizationDetailsRequest(__BaseObject):
             self.attachments: _List[Attachment] = []
 
 
-class CreateConfirmCustomizationDetailsResponse(__BaseObject):
+class CreateConfirmCustomizationDetailsResponse(__BaseDictObject):
     """
     The response schema for the confirmCustomizationDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateConfirmDeliveryDetailsRequest(__BaseObject):
+class CreateConfirmDeliveryDetailsRequest(__BaseDictObject):
     """
     The request schema for the createConfirmDeliveryDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "text" in data:
-            self.text: str = str(data["text"])
+            self.text: str = self._get_value(str, "text")
         else:
             self.text: str = None
 
 
-class CreateConfirmDeliveryDetailsResponse(__BaseObject):
+class CreateConfirmDeliveryDetailsResponse(__BaseDictObject):
     """
     The response schema for the createConfirmDeliveryDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateNegativeFeedbackRemovalResponse(__BaseObject):
+class CreateNegativeFeedbackRemovalResponse(__BaseDictObject):
     """
     The response schema for the createNegativeFeedbackRemoval operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateLegalDisclosureRequest(__BaseObject):
+class CreateLegalDisclosureRequest(__BaseDictObject):
     """
     The request schema for the createLegalDisclosure operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "attachments" in data:
             self.attachments: _List[Attachment] = [Attachment(datum) for datum in data["attachments"]]
         else:
             self.attachments: _List[Attachment] = []
 
 
-class CreateLegalDisclosureResponse(__BaseObject):
+class CreateLegalDisclosureResponse(__BaseDictObject):
     """
     The response schema for the createLegalDisclosure operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateConfirmOrderDetailsRequest(__BaseObject):
+class CreateConfirmOrderDetailsRequest(__BaseDictObject):
     """
     The request schema for the createConfirmOrderDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "text" in data:
-            self.text: str = str(data["text"])
+            self.text: str = self._get_value(str, "text")
         else:
             self.text: str = None
 
 
-class CreateConfirmOrderDetailsResponse(__BaseObject):
+class CreateConfirmOrderDetailsResponse(__BaseDictObject):
     """
     The response schema for the createConfirmOrderDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateConfirmServiceDetailsRequest(__BaseObject):
+class CreateConfirmServiceDetailsRequest(__BaseDictObject):
     """
     The request schema for the createConfirmServiceDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "text" in data:
-            self.text: str = str(data["text"])
+            self.text: str = self._get_value(str, "text")
         else:
             self.text: str = None
 
 
-class CreateConfirmServiceDetailsResponse(__BaseObject):
+class CreateConfirmServiceDetailsResponse(__BaseDictObject):
     """
     The response schema for the createConfirmServiceDetails operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateAmazonMotorsRequest(__BaseObject):
+class CreateAmazonMotorsRequest(__BaseDictObject):
     """
     The request schema for the createAmazonMotors operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "attachments" in data:
             self.attachments: _List[Attachment] = [Attachment(datum) for datum in data["attachments"]]
         else:
             self.attachments: _List[Attachment] = []
 
 
-class CreateAmazonMotorsResponse(__BaseObject):
+class CreateAmazonMotorsResponse(__BaseDictObject):
     """
     The response schema for the createAmazonMotors operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateWarrantyRequest(__BaseObject):
+class CreateWarrantyRequest(__BaseDictObject):
     """
     The request schema for the createWarranty operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "attachments" in data:
             self.attachments: _List[Attachment] = [Attachment(datum) for datum in data["attachments"]]
         else:
             self.attachments: _List[Attachment] = []
         if "coverageStartDate" in data:
-            self.coverageStartDate: str = str(data["coverageStartDate"])
+            self.coverageStartDate: str = self._get_value(str, "coverageStartDate")
         else:
             self.coverageStartDate: str = None
         if "coverageEndDate" in data:
-            self.coverageEndDate: str = str(data["coverageEndDate"])
+            self.coverageEndDate: str = self._get_value(str, "coverageEndDate")
         else:
             self.coverageEndDate: str = None
 
 
-class CreateWarrantyResponse(__BaseObject):
+class CreateWarrantyResponse(__BaseDictObject):
     """
     The response schema for the createWarranty operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetAttributesResponse(__BaseObject):
+class GetAttributesResponse(__BaseDictObject):
     """
     The response schema for the GetAttributes operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "buyer" in data:
-            self.buyer: dict = dict(data["buyer"])
+            self.buyer: dict = self._get_value(dict, "buyer")
         else:
             self.buyer: dict = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateDigitalAccessKeyRequest(__BaseObject):
+class CreateDigitalAccessKeyRequest(__BaseDictObject):
     """
     The request schema for the createDigitalAccessKey operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "text" in data:
-            self.text: str = str(data["text"])
+            self.text: str = self._get_value(str, "text")
         else:
             self.text: str = None
         if "attachments" in data:
@@ -388,66 +364,62 @@ class CreateDigitalAccessKeyRequest(__BaseObject):
             self.attachments: _List[Attachment] = []
 
 
-class CreateDigitalAccessKeyResponse(__BaseObject):
+class CreateDigitalAccessKeyResponse(__BaseDictObject):
     """
     The response schema for the createDigitalAccessKey operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateUnexpectedProblemRequest(__BaseObject):
+class CreateUnexpectedProblemRequest(__BaseDictObject):
     """
     The request schema for the createUnexpectedProblem operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "text" in data:
-            self.text: str = str(data["text"])
+            self.text: str = self._get_value(str, "text")
         else:
             self.text: str = None
 
 
-class CreateUnexpectedProblemResponse(__BaseObject):
+class CreateUnexpectedProblemResponse(__BaseDictObject):
     """
     The response schema for the createUnexpectedProblem operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 

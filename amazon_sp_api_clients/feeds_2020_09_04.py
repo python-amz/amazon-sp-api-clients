@@ -1,67 +1,63 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class CancelFeedResponse(__BaseObject):
+class CancelFeedResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateFeedResult(__BaseObject):
+class CreateFeedResult(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedId" in data:
-            self.feedId: str = str(data["feedId"])
+            self.feedId: str = self._get_value(str, "feedId")
         else:
             self.feedId: str = None
 
 
-class Feed(__BaseObject):
+class Feed(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedId" in data:
-            self.feedId: str = str(data["feedId"])
+            self.feedId: str = self._get_value(str, "feedId")
         else:
             self.feedId: str = None
         if "feedType" in data:
-            self.feedType: str = str(data["feedType"])
+            self.feedType: str = self._get_value(str, "feedType")
         else:
             self.feedType: str = None
         if "marketplaceIds" in data:
@@ -69,169 +65,161 @@ class Feed(__BaseObject):
         else:
             self.marketplaceIds: _List[str] = []
         if "createdTime" in data:
-            self.createdTime: str = str(data["createdTime"])
+            self.createdTime: str = self._get_value(str, "createdTime")
         else:
             self.createdTime: str = None
         if "processingStatus" in data:
-            self.processingStatus: str = str(data["processingStatus"])
+            self.processingStatus: str = self._get_value(str, "processingStatus")
         else:
             self.processingStatus: str = None
         if "processingStartTime" in data:
-            self.processingStartTime: str = str(data["processingStartTime"])
+            self.processingStartTime: str = self._get_value(str, "processingStartTime")
         else:
             self.processingStartTime: str = None
         if "processingEndTime" in data:
-            self.processingEndTime: str = str(data["processingEndTime"])
+            self.processingEndTime: str = self._get_value(str, "processingEndTime")
         else:
             self.processingEndTime: str = None
         if "resultFeedDocumentId" in data:
-            self.resultFeedDocumentId: str = str(data["resultFeedDocumentId"])
+            self.resultFeedDocumentId: str = self._get_value(str, "resultFeedDocumentId")
         else:
             self.resultFeedDocumentId: str = None
 
 
-class GetFeedsResponse(__BaseObject):
+class GetFeedsResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: FeedList = FeedList(data["payload"])
+            self.payload: FeedList = self._get_value(FeedList, "payload")
         else:
             self.payload: FeedList = None
         if "nextToken" in data:
-            self.nextToken: str = str(data["nextToken"])
+            self.nextToken: str = self._get_value(str, "nextToken")
         else:
             self.nextToken: str = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class GetFeedResponse(__BaseObject):
+class GetFeedResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: Feed = Feed(data["payload"])
+            self.payload: Feed = self._get_value(Feed, "payload")
         else:
             self.payload: Feed = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class FeedDocumentEncryptionDetails(__BaseObject):
+class FeedDocumentEncryptionDetails(__BaseDictObject):
     """
     Encryption details for required client-side encryption and decryption of document contents.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "standard" in data:
-            self.standard: str = str(data["standard"])
+            self.standard: str = self._get_value(str, "standard")
         else:
             self.standard: str = None
         if "initializationVector" in data:
-            self.initializationVector: str = str(data["initializationVector"])
+            self.initializationVector: str = self._get_value(str, "initializationVector")
         else:
             self.initializationVector: str = None
         if "key" in data:
-            self.key: str = str(data["key"])
+            self.key: str = self._get_value(str, "key")
         else:
             self.key: str = None
 
 
-class FeedDocument(__BaseObject):
+class FeedDocument(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedDocumentId" in data:
-            self.feedDocumentId: str = str(data["feedDocumentId"])
+            self.feedDocumentId: str = self._get_value(str, "feedDocumentId")
         else:
             self.feedDocumentId: str = None
         if "url" in data:
-            self.url: str = str(data["url"])
+            self.url: str = self._get_value(str, "url")
         else:
             self.url: str = None
         if "encryptionDetails" in data:
-            self.encryptionDetails: FeedDocumentEncryptionDetails = FeedDocumentEncryptionDetails(
-                data["encryptionDetails"]
+            self.encryptionDetails: FeedDocumentEncryptionDetails = self._get_value(
+                FeedDocumentEncryptionDetails, "encryptionDetails"
             )
         else:
             self.encryptionDetails: FeedDocumentEncryptionDetails = None
         if "compressionAlgorithm" in data:
-            self.compressionAlgorithm: str = str(data["compressionAlgorithm"])
+            self.compressionAlgorithm: str = self._get_value(str, "compressionAlgorithm")
         else:
             self.compressionAlgorithm: str = None
 
 
-class GetFeedDocumentResponse(__BaseObject):
+class GetFeedDocumentResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: FeedDocument = FeedDocument(data["payload"])
+            self.payload: FeedDocument = self._get_value(FeedDocument, "payload")
         else:
             self.payload: FeedDocument = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateFeedResponse(__BaseObject):
+class CreateFeedResponse(__BaseDictObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CreateFeedResult = CreateFeedResult(data["payload"])
+            self.payload: CreateFeedResult = self._get_value(CreateFeedResult, "payload")
         else:
             self.payload: CreateFeedResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class FeedOptions(__BaseObject):
+class FeedOptions(__BaseDictObject):
     """
     Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](https://github.com/amzn/selling-partner-api-docs/blob/main/references/feeds-api/feedtype-values.md).
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
 
 
-class CreateFeedSpecification(__BaseObject):
+class CreateFeedSpecification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedType" in data:
-            self.feedType: str = str(data["feedType"])
+            self.feedType: str = self._get_value(str, "feedType")
         else:
             self.feedType: str = None
         if "marketplaceIds" in data:
@@ -239,64 +227,61 @@ class CreateFeedSpecification(__BaseObject):
         else:
             self.marketplaceIds: _List[str] = []
         if "inputFeedDocumentId" in data:
-            self.inputFeedDocumentId: str = str(data["inputFeedDocumentId"])
+            self.inputFeedDocumentId: str = self._get_value(str, "inputFeedDocumentId")
         else:
             self.inputFeedDocumentId: str = None
         if "feedOptions" in data:
-            self.feedOptions: FeedOptions = FeedOptions(data["feedOptions"])
+            self.feedOptions: FeedOptions = self._get_value(FeedOptions, "feedOptions")
         else:
             self.feedOptions: FeedOptions = None
 
 
-class CreateFeedDocumentSpecification(__BaseObject):
+class CreateFeedDocumentSpecification(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "contentType" in data:
-            self.contentType: str = str(data["contentType"])
+            self.contentType: str = self._get_value(str, "contentType")
         else:
             self.contentType: str = None
 
 
-class CreateFeedDocumentResponse(__BaseObject):
+class CreateFeedDocumentResponse(__BaseDictObject):
     """
     The response for the createFeedDocument operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "payload" in data:
-            self.payload: CreateFeedDocumentResult = CreateFeedDocumentResult(data["payload"])
+            self.payload: CreateFeedDocumentResult = self._get_value(CreateFeedDocumentResult, "payload")
         else:
             self.payload: CreateFeedDocumentResult = None
         if "errors" in data:
-            self.errors: ErrorList = ErrorList(data["errors"])
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
             self.errors: ErrorList = None
 
 
-class CreateFeedDocumentResult(__BaseObject):
+class CreateFeedDocumentResult(__BaseDictObject):
     """
     Information required to encrypt and upload a feed document's contents.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "feedDocumentId" in data:
-            self.feedDocumentId: str = str(data["feedDocumentId"])
+            self.feedDocumentId: str = self._get_value(str, "feedDocumentId")
         else:
             self.feedDocumentId: str = None
         if "url" in data:
-            self.url: str = str(data["url"])
+            self.url: str = self._get_value(str, "url")
         else:
             self.url: str = None
         if "encryptionDetails" in data:
-            self.encryptionDetails: FeedDocumentEncryptionDetails = FeedDocumentEncryptionDetails(
-                data["encryptionDetails"]
+            self.encryptionDetails: FeedDocumentEncryptionDetails = self._get_value(
+                FeedDocumentEncryptionDetails, "encryptionDetails"
             )
         else:
             self.encryptionDetails: FeedDocumentEncryptionDetails = None

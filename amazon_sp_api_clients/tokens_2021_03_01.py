@@ -1,17 +1,16 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class CreateRestrictedDataTokenRequest(__BaseObject):
+class CreateRestrictedDataTokenRequest(__BaseDictObject):
     """
     The request schema for the createRestrictedDataToken operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "targetApplication" in data:
-            self.targetApplication: str = str(data["targetApplication"])
+            self.targetApplication: str = self._get_value(str, "targetApplication")
         else:
             self.targetApplication: str = None
         if "restrictedResources" in data:
@@ -22,20 +21,19 @@ class CreateRestrictedDataTokenRequest(__BaseObject):
             self.restrictedResources: _List[RestrictedResource] = []
 
 
-class RestrictedResource(__BaseObject):
+class RestrictedResource(__BaseDictObject):
     """
     Model of a restricted resource.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "method" in data:
-            self.method: str = str(data["method"])
+            self.method: str = self._get_value(str, "method")
         else:
             self.method: str = None
         if "path" in data:
-            self.path: str = str(data["path"])
+            self.path: str = self._get_value(str, "path")
         else:
             self.path: str = None
         if "dataElements" in data:
@@ -44,54 +42,51 @@ class RestrictedResource(__BaseObject):
             self.dataElements: _List[str] = []
 
 
-class CreateRestrictedDataTokenResponse(__BaseObject):
+class CreateRestrictedDataTokenResponse(__BaseDictObject):
     """
     The response schema for the createRestrictedDataToken operation.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "restrictedDataToken" in data:
-            self.restrictedDataToken: str = str(data["restrictedDataToken"])
+            self.restrictedDataToken: str = self._get_value(str, "restrictedDataToken")
         else:
             self.restrictedDataToken: str = None
         if "expiresIn" in data:
-            self.expiresIn: int = int(data["expiresIn"])
+            self.expiresIn: int = self._get_value(int, "expiresIn")
         else:
             self.expiresIn: int = None
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ErrorList(__BaseObject):
+class ErrorList(__BaseDictObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:

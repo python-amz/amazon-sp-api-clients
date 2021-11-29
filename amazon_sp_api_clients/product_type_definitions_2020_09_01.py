@@ -1,89 +1,85 @@
-from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
+from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
 
 
-class Error(__BaseObject):
+class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "code" in data:
-            self.code: str = str(data["code"])
+            self.code: str = self._get_value(str, "code")
         else:
             self.code: str = None
         if "message" in data:
-            self.message: str = str(data["message"])
+            self.message: str = self._get_value(str, "message")
         else:
             self.message: str = None
         if "details" in data:
-            self.details: str = str(data["details"])
+            self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
 
 
-class ErrorList(__BaseObject):
+class ErrorList(__BaseDictObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
         else:
             self.errors: _List[Error] = []
 
 
-class SchemaLink(__BaseObject):
+class SchemaLink(__BaseDictObject):
     """ """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "link" in data:
-            self.link: dict = dict(data["link"])
+            self.link: dict = self._get_value(dict, "link")
         else:
             self.link: dict = None
         if "checksum" in data:
-            self.checksum: str = str(data["checksum"])
+            self.checksum: str = self._get_value(str, "checksum")
         else:
             self.checksum: str = None
 
 
-class ProductTypeDefinition(__BaseObject):
+class ProductTypeDefinition(__BaseDictObject):
     """
     A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "metaSchema" in data:
-            self.metaSchema: SchemaLink = SchemaLink(data["metaSchema"])
+            self.metaSchema: SchemaLink = self._get_value(SchemaLink, "metaSchema")
         else:
             self.metaSchema: SchemaLink = None
         if "schema" in data:
-            self.schema: SchemaLink = SchemaLink(data["schema"])
+            self.schema: SchemaLink = self._get_value(SchemaLink, "schema")
         else:
             self.schema: SchemaLink = None
         if "requirements" in data:
-            self.requirements: str = str(data["requirements"])
+            self.requirements: str = self._get_value(str, "requirements")
         else:
             self.requirements: str = None
         if "requirementsEnforced" in data:
-            self.requirementsEnforced: str = str(data["requirementsEnforced"])
+            self.requirementsEnforced: str = self._get_value(str, "requirementsEnforced")
         else:
             self.requirementsEnforced: str = None
         if "propertyGroups" in data:
-            self.propertyGroups: dict = dict(data["propertyGroups"])
+            self.propertyGroups: dict = self._get_value(dict, "propertyGroups")
         else:
             self.propertyGroups: dict = None
         if "locale" in data:
-            self.locale: str = str(data["locale"])
+            self.locale: str = self._get_value(str, "locale")
         else:
             self.locale: str = None
         if "marketplaceIds" in data:
@@ -91,29 +87,28 @@ class ProductTypeDefinition(__BaseObject):
         else:
             self.marketplaceIds: _List[str] = []
         if "productType" in data:
-            self.productType: str = str(data["productType"])
+            self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
         if "productTypeVersion" in data:
-            self.productTypeVersion: ProductTypeVersion = ProductTypeVersion(data["productTypeVersion"])
+            self.productTypeVersion: ProductTypeVersion = self._get_value(ProductTypeVersion, "productTypeVersion")
         else:
             self.productTypeVersion: ProductTypeVersion = None
 
 
-class PropertyGroup(__BaseObject):
+class PropertyGroup(__BaseDictObject):
     """
     A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "title" in data:
-            self.title: str = str(data["title"])
+            self.title: str = self._get_value(str, "title")
         else:
             self.title: str = None
         if "description" in data:
-            self.description: str = str(data["description"])
+            self.description: str = self._get_value(str, "description")
         else:
             self.description: str = None
         if "propertyNames" in data:
@@ -122,38 +117,36 @@ class PropertyGroup(__BaseObject):
             self.propertyNames: _List[str] = []
 
 
-class ProductTypeVersion(__BaseObject):
+class ProductTypeVersion(__BaseDictObject):
     """
     The version details for an Amazon product type.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "version" in data:
-            self.version: str = str(data["version"])
+            self.version: str = self._get_value(str, "version")
         else:
             self.version: str = None
         if "latest" in data:
-            self.latest: bool = convert_bool(data["latest"])
+            self.latest: bool = self._get_value(convert_bool, "latest")
         else:
             self.latest: bool = None
         if "releaseCandidate" in data:
-            self.releaseCandidate: bool = convert_bool(data["releaseCandidate"])
+            self.releaseCandidate: bool = self._get_value(convert_bool, "releaseCandidate")
         else:
             self.releaseCandidate: bool = None
 
 
-class ProductType(__BaseObject):
+class ProductType(__BaseDictObject):
     """
     An Amazon product type with a definition available.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "name" in data:
-            self.name: str = str(data["name"])
+            self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
         if "marketplaceIds" in data:
@@ -162,14 +155,13 @@ class ProductType(__BaseObject):
             self.marketplaceIds: _List[str] = []
 
 
-class ProductTypeList(__BaseObject):
+class ProductTypeList(__BaseDictObject):
     """
     A list of Amazon product types with definitions available.
     """
 
     def __init__(self, data):
         super().__init__(data)
-        self.data = data
         if "productTypes" in data:
             self.productTypes: _List[ProductType] = [ProductType(datum) for datum in data["productTypes"]]
         else:
