@@ -302,8 +302,6 @@ class BaseDictObject:
 
     def _get_value(self, klass: type, name: str):
         value = self.data.get(name, None)
-        try:
-            result = klass(value)
-        except KeyError:
-            result = None
-        return result
+        if value is None and klass is dict:
+            return None
+        return klass(value)
