@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class LabelFormatOptionRequest:
+class LabelFormatOptionRequest(__BaseObject):
     """
     Whether to include a packing slip.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "IncludePackingSlipWithLabel" in data:
             self.IncludePackingSlipWithLabel: bool = convert_bool(data["IncludePackingSlipWithLabel"])
@@ -38,13 +38,13 @@ class LabelFormatOptionRequest:
             self.IncludePackingSlipWithLabel: bool = None
 
 
-class LabelFormatOption:
+class LabelFormatOption(__BaseObject):
     """
     The label format details and whether to include a packing slip.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "IncludePackingSlipWithLabel" in data:
             self.IncludePackingSlipWithLabel: bool = convert_bool(data["IncludePackingSlipWithLabel"])
@@ -56,13 +56,13 @@ class LabelFormatOption:
             self.LabelFormat: LabelFormat = None
 
 
-class AvailableCarrierWillPickUpOption:
+class AvailableCarrierWillPickUpOption(__BaseObject):
     """
     Indicates whether the carrier will pick up the package, and what fee is charged, if any.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierWillPickUpOption" in data:
             self.CarrierWillPickUpOption: CarrierWillPickUpOption = CarrierWillPickUpOption(
@@ -76,13 +76,13 @@ class AvailableCarrierWillPickUpOption:
             self.Charge: CurrencyAmount = None
 
 
-class AvailableDeliveryExperienceOption:
+class AvailableDeliveryExperienceOption(__BaseObject):
     """
     The available delivery confirmation options, and the fee charged, if any.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "DeliveryExperienceOption" in data:
             self.DeliveryExperienceOption: DeliveryExperienceOption = DeliveryExperienceOption(
@@ -96,13 +96,13 @@ class AvailableDeliveryExperienceOption:
             self.Charge: CurrencyAmount = None
 
 
-class AvailableShippingServiceOptions:
+class AvailableShippingServiceOptions(__BaseObject):
     """
     The available shipping service options.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AvailableCarrierWillPickUpOptions" in data:
             self.AvailableCarrierWillPickUpOptions: AvailableCarrierWillPickUpOptionsList = (
@@ -118,13 +118,13 @@ class AvailableShippingServiceOptions:
             self.AvailableDeliveryExperienceOptions: AvailableDeliveryExperienceOptionsList = None
 
 
-class Constraint:
+class Constraint(__BaseObject):
     """
     A validation constraint.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ValidationRegEx" in data:
             self.ValidationRegEx: str = str(data["ValidationRegEx"])
@@ -136,13 +136,13 @@ class Constraint:
             self.ValidationString: str = None
 
 
-class AdditionalInputs:
+class AdditionalInputs(__BaseObject):
     """
     Maps the additional seller input to the definition. The key to the map is the field name.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AdditionalInputFieldName" in data:
             self.AdditionalInputFieldName: str = str(data["AdditionalInputFieldName"])
@@ -154,13 +154,13 @@ class AdditionalInputs:
             self.SellerInputDefinition: SellerInputDefinition = None
 
 
-class SellerInputDefinition:
+class SellerInputDefinition(__BaseObject):
     """
     Specifies characteristics that apply to a seller input.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "IsRequired" in data:
             self.IsRequired: bool = convert_bool(data["IsRequired"])
@@ -192,13 +192,13 @@ class SellerInputDefinition:
             self.RestrictedSetValues: RestrictedSetValues = None
 
 
-class AdditionalSellerInput:
+class AdditionalSellerInput(__BaseObject):
     """
     Additional information required to purchase shipping.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "DataType" in data:
             self.DataType: str = str(data["DataType"])
@@ -238,13 +238,13 @@ class AdditionalSellerInput:
             self.ValueAsCurrency: CurrencyAmount = None
 
 
-class AdditionalSellerInputs:
+class AdditionalSellerInputs(__BaseObject):
     """
     An additional set of seller inputs required to purchase shipping.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AdditionalInputFieldName" in data:
             self.AdditionalInputFieldName: str = str(data["AdditionalInputFieldName"])
@@ -256,13 +256,13 @@ class AdditionalSellerInputs:
             self.AdditionalSellerInput: AdditionalSellerInput = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     The postal address information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: AddressName = AddressName(data["Name"])
@@ -310,13 +310,13 @@ class Address:
             self.Phone: PhoneNumber = None
 
 
-class CancelShipmentResponse:
+class CancelShipmentResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
@@ -328,13 +328,13 @@ class CancelShipmentResponse:
             self.errors: ErrorList = None
 
 
-class CreateShipmentRequest:
+class CreateShipmentRequest(__BaseObject):
     """
     Request schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentRequestDetails" in data:
             self.ShipmentRequestDetails: ShipmentRequestDetails = ShipmentRequestDetails(data["ShipmentRequestDetails"])
@@ -364,13 +364,13 @@ class CreateShipmentRequest:
             self.ShipmentLevelSellerInputsList: AdditionalSellerInputsList = None
 
 
-class CreateShipmentResponse:
+class CreateShipmentResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
@@ -382,11 +382,11 @@ class CreateShipmentResponse:
             self.errors: ErrorList = None
 
 
-class ItemLevelFields:
+class ItemLevelFields(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Asin" in data:
             self.Asin: str = str(data["Asin"])
@@ -398,13 +398,13 @@ class ItemLevelFields:
             self.AdditionalInputs: AdditionalInputsList = None
 
 
-class GetAdditionalSellerInputsRequest:
+class GetAdditionalSellerInputsRequest(__BaseObject):
     """
     Request schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShippingServiceId" in data:
             self.ShippingServiceId: ShippingServiceIdentifier = ShippingServiceIdentifier(data["ShippingServiceId"])
@@ -420,13 +420,13 @@ class GetAdditionalSellerInputsRequest:
             self.OrderId: AmazonOrderId = None
 
 
-class GetAdditionalSellerInputsResult:
+class GetAdditionalSellerInputsResult(__BaseObject):
     """
     The payload for the getAdditionalSellerInputs operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentLevelFields" in data:
             self.ShipmentLevelFields: AdditionalInputsList = AdditionalInputsList(data["ShipmentLevelFields"])
@@ -438,13 +438,13 @@ class GetAdditionalSellerInputsResult:
             self.ItemLevelFieldsList: ItemLevelFieldsList = None
 
 
-class GetAdditionalSellerInputsResponse:
+class GetAdditionalSellerInputsResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetAdditionalSellerInputsResult = GetAdditionalSellerInputsResult(data["payload"])
@@ -456,13 +456,13 @@ class GetAdditionalSellerInputsResponse:
             self.errors: ErrorList = None
 
 
-class CurrencyAmount:
+class CurrencyAmount(__BaseObject):
     """
     Currency type and amount.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
@@ -474,13 +474,13 @@ class CurrencyAmount:
             self.Amount: float = None
 
 
-class FileContents:
+class FileContents(__BaseObject):
     """
     The document data and checksum.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Contents" in data:
             self.Contents: str = str(data["Contents"])
@@ -496,13 +496,13 @@ class FileContents:
             self.Checksum: str = None
 
 
-class GetEligibleShipmentServicesRequest:
+class GetEligibleShipmentServicesRequest(__BaseObject):
     """
     Request schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentRequestDetails" in data:
             self.ShipmentRequestDetails: ShipmentRequestDetails = ShipmentRequestDetails(data["ShipmentRequestDetails"])
@@ -514,13 +514,13 @@ class GetEligibleShipmentServicesRequest:
             self.ShippingOfferingFilter: ShippingOfferingFilter = None
 
 
-class GetEligibleShipmentServicesResponse:
+class GetEligibleShipmentServicesResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetEligibleShipmentServicesResult = GetEligibleShipmentServicesResult(data["payload"])
@@ -532,13 +532,13 @@ class GetEligibleShipmentServicesResponse:
             self.errors: ErrorList = None
 
 
-class GetEligibleShipmentServicesResult:
+class GetEligibleShipmentServicesResult(__BaseObject):
     """
     The payload for the getEligibleShipmentServices operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShippingServiceList" in data:
             self.ShippingServiceList: ShippingServiceList = ShippingServiceList(data["ShippingServiceList"])
@@ -564,13 +564,13 @@ class GetEligibleShipmentServicesResult:
             self.TermsAndConditionsNotAcceptedCarrierList: TermsAndConditionsNotAcceptedCarrierList = None
 
 
-class GetShipmentResponse:
+class GetShipmentResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
@@ -582,13 +582,13 @@ class GetShipmentResponse:
             self.errors: ErrorList = None
 
 
-class Item:
+class Item(__BaseObject):
     """
     An Amazon order item identifier and a quantity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "OrderItemId" in data:
             self.OrderItemId: OrderItemId = OrderItemId(data["OrderItemId"])
@@ -618,13 +618,13 @@ class Item:
             self.ItemLevelSellerInputsList: AdditionalSellerInputsList = None
 
 
-class Label:
+class Label(__BaseObject):
     """
     Data for creating a shipping label and dimensions for printing the label.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CustomTextForLabel" in data:
             self.CustomTextForLabel: CustomTextForLabel = CustomTextForLabel(data["CustomTextForLabel"])
@@ -648,13 +648,13 @@ class Label:
             self.StandardIdForLabel: StandardIdForLabel = None
 
 
-class LabelCustomization:
+class LabelCustomization(__BaseObject):
     """
     Custom text for shipping labels.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CustomTextForLabel" in data:
             self.CustomTextForLabel: CustomTextForLabel = CustomTextForLabel(data["CustomTextForLabel"])
@@ -666,13 +666,13 @@ class LabelCustomization:
             self.StandardIdForLabel: StandardIdForLabel = None
 
 
-class LabelDimensions:
+class LabelDimensions(__BaseObject):
     """
     Dimensions for printing a shipping label.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Length" in data:
             self.Length: LabelDimension = LabelDimension(data["Length"])
@@ -688,13 +688,13 @@ class LabelDimensions:
             self.Unit: UnitOfLength = None
 
 
-class Length:
+class Length(__BaseObject):
     """
     The length.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "value" in data:
             self.value: float = float(data["value"])
@@ -706,13 +706,13 @@ class Length:
             self.unit: UnitOfLength = None
 
 
-class PackageDimensions:
+class PackageDimensions(__BaseObject):
     """
     The dimensions of a package contained in a shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Length" in data:
             self.Length: PackageDimension = PackageDimension(data["Length"])
@@ -738,13 +738,13 @@ class PackageDimensions:
             self.PredefinedPackageDimensions: PredefinedPackageDimensions = None
 
 
-class Shipment:
+class Shipment(__BaseObject):
     """
     The details of a shipment, including the shipment status.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: ShipmentId = ShipmentId(data["ShipmentId"])
@@ -808,13 +808,13 @@ class Shipment:
             self.LastUpdatedDate: Timestamp = None
 
 
-class ShipmentRequestDetails:
+class ShipmentRequestDetails(__BaseObject):
     """
     Shipment information required for requesting shipping service offers or for creating a shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: AmazonOrderId = AmazonOrderId(data["AmazonOrderId"])
@@ -858,13 +858,13 @@ class ShipmentRequestDetails:
             self.LabelCustomization: LabelCustomization = None
 
 
-class ShippingOfferingFilter:
+class ShippingOfferingFilter(__BaseObject):
     """
     Filter for use when requesting eligible shipping services.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "IncludePackingSlipWithLabel" in data:
             self.IncludePackingSlipWithLabel: bool = convert_bool(data["IncludePackingSlipWithLabel"])
@@ -884,13 +884,13 @@ class ShippingOfferingFilter:
             self.DeliveryExperience: DeliveryExperienceOption = None
 
 
-class ShippingService:
+class ShippingService(__BaseObject):
     """
     A shipping service offer made by a carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShippingServiceName" in data:
             self.ShippingServiceName: str = str(data["ShippingServiceName"])
@@ -950,13 +950,13 @@ class ShippingService:
             self.RequiresAdditionalSellerInputs: bool = None
 
 
-class ShippingServiceOptions:
+class ShippingServiceOptions(__BaseObject):
     """
     Extra services provided by a carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "DeliveryExperience" in data:
             self.DeliveryExperience: DeliveryExperienceType = DeliveryExperienceType(data["DeliveryExperience"])
@@ -982,13 +982,13 @@ class ShippingServiceOptions:
             self.LabelFormat: LabelFormat = None
 
 
-class RejectedShippingService:
+class RejectedShippingService(__BaseObject):
     """
     Information about a rejected shipping service
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
@@ -1012,13 +1012,13 @@ class RejectedShippingService:
             self.RejectionReasonMessage: str = None
 
 
-class TemporarilyUnavailableCarrier:
+class TemporarilyUnavailableCarrier(__BaseObject):
     """
     A carrier who is temporarily unavailable, most likely due to a service outage experienced by the carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
@@ -1026,13 +1026,13 @@ class TemporarilyUnavailableCarrier:
             self.CarrierName: str = None
 
 
-class TermsAndConditionsNotAcceptedCarrier:
+class TermsAndConditionsNotAcceptedCarrier(__BaseObject):
     """
     A carrier whose terms and conditions have not been accepted by the seller.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
@@ -1040,13 +1040,13 @@ class TermsAndConditionsNotAcceptedCarrier:
             self.CarrierName: str = None
 
 
-class Weight:
+class Weight(__BaseObject):
     """
     The weight.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Value" in data:
             self.Value: WeightValue = WeightValue(data["Value"])

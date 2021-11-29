@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetOrdersResponse:
+class GetOrdersResponse(__BaseObject):
     """
     The response schema for the getOrders operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: OrderList = OrderList(data["payload"])
@@ -20,13 +20,13 @@ class GetOrdersResponse:
             self.errors: ErrorList = None
 
 
-class GetOrderResponse:
+class GetOrderResponse(__BaseObject):
     """
     The response schema for the getOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Order = Order(data["payload"])
@@ -38,11 +38,11 @@ class GetOrderResponse:
             self.errors: ErrorList = None
 
 
-class OrderList:
+class OrderList(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "pagination" in data:
             self.pagination: Pagination = Pagination(data["pagination"])
@@ -54,11 +54,11 @@ class OrderList:
             self.orders: _List[Order] = []
 
 
-class Pagination:
+class Pagination(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "nextToken" in data:
             self.nextToken: str = str(data["nextToken"])
@@ -66,11 +66,11 @@ class Pagination:
             self.nextToken: str = None
 
 
-class Order:
+class Order(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -82,13 +82,13 @@ class Order:
             self.orderDetails: OrderDetails = None
 
 
-class OrderDetails:
+class OrderDetails(__BaseObject):
     """
     Details of an order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "customerOrderNumber" in data:
             self.customerOrderNumber: str = str(data["customerOrderNumber"])
@@ -132,11 +132,11 @@ class OrderDetails:
             self.items: _List[OrderItem] = []
 
 
-class PartyIdentification:
+class PartyIdentification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "partyId" in data:
             self.partyId: str = str(data["partyId"])
@@ -152,13 +152,13 @@ class PartyIdentification:
             self.taxInfo: TaxRegistrationDetails = None
 
 
-class TaxRegistrationDetails:
+class TaxRegistrationDetails(__BaseObject):
     """
     Tax registration details of the entity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "taxRegistrationType" in data:
             self.taxRegistrationType: str = str(data["taxRegistrationType"])
@@ -178,13 +178,13 @@ class TaxRegistrationDetails:
             self.taxRegistrationMessages: str = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     Address of the party.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -236,11 +236,11 @@ class Address:
             self.phone: str = None
 
 
-class OrderItem:
+class OrderItem(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemSequenceNumber" in data:
             self.itemSequenceNumber: str = str(data["itemSequenceNumber"])
@@ -286,13 +286,13 @@ class OrderItem:
             self.totalPrice: Money = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     An amount of money, including units in the form of currency.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
@@ -304,13 +304,13 @@ class Money:
             self.amount: Decimal = None
 
 
-class SubmitAcknowledgementResponse:
+class SubmitAcknowledgementResponse(__BaseObject):
     """
     The response schema for the submitAcknowledgement operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionId = TransactionId(data["payload"])
@@ -322,11 +322,11 @@ class SubmitAcknowledgementResponse:
             self.errors: ErrorList = None
 
 
-class TransactionId:
+class TransactionId(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "transactionId" in data:
             self.transactionId: str = str(data["transactionId"])
@@ -334,13 +334,13 @@ class TransactionId:
             self.transactionId: str = None
 
 
-class SubmitAcknowledgementRequest:
+class SubmitAcknowledgementRequest(__BaseObject):
     """
     The request schema for the submitAcknowledgement operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "orderAcknowledgements" in data:
             self.orderAcknowledgements: _List[OrderAcknowledgementItem] = [
@@ -350,13 +350,13 @@ class SubmitAcknowledgementRequest:
             self.orderAcknowledgements: _List[OrderAcknowledgementItem] = []
 
 
-class OrderAcknowledgementItem:
+class OrderAcknowledgementItem(__BaseObject):
     """
     Details of an individual order being acknowledged.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -390,11 +390,11 @@ class OrderAcknowledgementItem:
             self.itemAcknowledgements: _List[OrderItemAcknowledgement] = []
 
 
-class OrderItemAcknowledgement:
+class OrderItemAcknowledgement(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemSequenceNumber" in data:
             self.itemSequenceNumber: str = str(data["itemSequenceNumber"])
@@ -414,13 +414,13 @@ class OrderItemAcknowledgement:
             self.acknowledgedQuantity: ItemQuantity = None
 
 
-class ItemQuantity:
+class ItemQuantity(__BaseObject):
     """
     Details of quantity ordered.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "amount" in data:
             self.amount: int = int(data["amount"])
@@ -432,11 +432,11 @@ class ItemQuantity:
             self.unitOfMeasure: str = None
 
 
-class TaxDetails:
+class TaxDetails(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "taxRate" in data:
             self.taxRate: Decimal = Decimal(data["taxRate"])
@@ -456,13 +456,13 @@ class TaxDetails:
             self.type: str = None
 
 
-class AcknowledgementStatus:
+class AcknowledgementStatus(__BaseObject):
     """
     Status of acknowledgement.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -474,13 +474,13 @@ class AcknowledgementStatus:
             self.description: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -496,13 +496,13 @@ class Error:
             self.details: str = None
 
 
-class ShipmentDetails:
+class ShipmentDetails(__BaseObject):
     """
     Shipment details required for the shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "isPriorityShipment" in data:
             self.isPriorityShipment: bool = convert_bool(data["isPriorityShipment"])
@@ -534,13 +534,13 @@ class ShipmentDetails:
             self.messageToCustomer: str = None
 
 
-class ShipmentDates:
+class ShipmentDates(__BaseObject):
     """
     Shipment dates.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "requiredShipDate" in data:
             self.requiredShipDate: str = str(data["requiredShipDate"])
@@ -552,13 +552,13 @@ class ShipmentDates:
             self.promisedDeliveryDate: str = None
 
 
-class ScheduledDeliveryShipment:
+class ScheduledDeliveryShipment(__BaseObject):
     """
     Dates for the scheduled delivery shipments.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "scheduledDeliveryServiceType" in data:
             self.scheduledDeliveryServiceType: str = str(data["scheduledDeliveryServiceType"])
@@ -574,13 +574,13 @@ class ScheduledDeliveryShipment:
             self.latestNominatedDeliveryDate: str = None
 
 
-class GiftDetails:
+class GiftDetails(__BaseObject):
     """
     Gift details for the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "giftMessage" in data:
             self.giftMessage: str = str(data["giftMessage"])

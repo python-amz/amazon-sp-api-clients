@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class CancelFeedResponse:
+class CancelFeedResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -38,11 +38,11 @@ class CancelFeedResponse:
             self.errors: ErrorList = None
 
 
-class CreateFeedResult:
+class CreateFeedResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedId" in data:
             self.feedId: str = str(data["feedId"])
@@ -50,11 +50,11 @@ class CreateFeedResult:
             self.feedId: str = None
 
 
-class Feed:
+class Feed(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedId" in data:
             self.feedId: str = str(data["feedId"])
@@ -90,13 +90,13 @@ class Feed:
             self.resultFeedDocumentId: str = None
 
 
-class GetFeedsResponse:
+class GetFeedsResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: FeedList = FeedList(data["payload"])
@@ -112,13 +112,13 @@ class GetFeedsResponse:
             self.errors: ErrorList = None
 
 
-class GetFeedResponse:
+class GetFeedResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Feed = Feed(data["payload"])
@@ -130,13 +130,13 @@ class GetFeedResponse:
             self.errors: ErrorList = None
 
 
-class FeedDocumentEncryptionDetails:
+class FeedDocumentEncryptionDetails(__BaseObject):
     """
     Encryption details for required client-side encryption and decryption of document contents.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "standard" in data:
             self.standard: str = str(data["standard"])
@@ -152,11 +152,11 @@ class FeedDocumentEncryptionDetails:
             self.key: str = None
 
 
-class FeedDocument:
+class FeedDocument(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedDocumentId" in data:
             self.feedDocumentId: str = str(data["feedDocumentId"])
@@ -178,13 +178,13 @@ class FeedDocument:
             self.compressionAlgorithm: str = None
 
 
-class GetFeedDocumentResponse:
+class GetFeedDocumentResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: FeedDocument = FeedDocument(data["payload"])
@@ -196,13 +196,13 @@ class GetFeedDocumentResponse:
             self.errors: ErrorList = None
 
 
-class CreateFeedResponse:
+class CreateFeedResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CreateFeedResult = CreateFeedResult(data["payload"])
@@ -214,21 +214,21 @@ class CreateFeedResponse:
             self.errors: ErrorList = None
 
 
-class FeedOptions:
+class FeedOptions(__BaseObject):
     """
     Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](https://github.com/amzn/selling-partner-api-docs/blob/main/references/feeds-api/feedtype-values.md).
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
 
 
-class CreateFeedSpecification:
+class CreateFeedSpecification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedType" in data:
             self.feedType: str = str(data["feedType"])
@@ -248,11 +248,11 @@ class CreateFeedSpecification:
             self.feedOptions: FeedOptions = None
 
 
-class CreateFeedDocumentSpecification:
+class CreateFeedDocumentSpecification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "contentType" in data:
             self.contentType: str = str(data["contentType"])
@@ -260,13 +260,13 @@ class CreateFeedDocumentSpecification:
             self.contentType: str = None
 
 
-class CreateFeedDocumentResponse:
+class CreateFeedDocumentResponse(__BaseObject):
     """
     The response for the createFeedDocument operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CreateFeedDocumentResult = CreateFeedDocumentResult(data["payload"])
@@ -278,13 +278,13 @@ class CreateFeedDocumentResponse:
             self.errors: ErrorList = None
 
 
-class CreateFeedDocumentResult:
+class CreateFeedDocumentResult(__BaseObject):
     """
     Information required to encrypt and upload a feed document's contents.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedDocumentId" in data:
             self.feedDocumentId: str = str(data["feedDocumentId"])

@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class RestrictionList:
+class RestrictionList(__BaseObject):
     """
     A list of restrictions for the specified Amazon catalog item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "restrictions" in data:
             self.restrictions: _List[Restriction] = [Restriction(datum) for datum in data["restrictions"]]
@@ -16,13 +16,13 @@ class RestrictionList:
             self.restrictions: _List[Restriction] = []
 
 
-class Restriction:
+class Restriction(__BaseObject):
     """
     A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -38,13 +38,13 @@ class Restriction:
             self.reasons: _List[Reason] = []
 
 
-class Reason:
+class Reason(__BaseObject):
     """
     A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "message" in data:
             self.message: str = str(data["message"])
@@ -60,13 +60,13 @@ class Reason:
             self.links: _List[Link] = []
 
 
-class Link:
+class Link(__BaseObject):
     """
     A link to resources related to a listing restriction.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "resource" in data:
             self.resource: str = str(data["resource"])
@@ -86,13 +86,13 @@ class Link:
             self.type: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

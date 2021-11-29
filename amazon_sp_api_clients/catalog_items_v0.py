@@ -1,12 +1,12 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class ListCatalogItemsResponse:
+class ListCatalogItemsResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ListMatchingItemsResponse = ListMatchingItemsResponse(data["payload"])
@@ -18,11 +18,11 @@ class ListCatalogItemsResponse:
             self.errors: ErrorList = None
 
 
-class ListMatchingItemsResponse:
+class ListMatchingItemsResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Items" in data:
             self.Items: ItemList = ItemList(data["Items"])
@@ -30,11 +30,11 @@ class ListMatchingItemsResponse:
             self.Items: ItemList = None
 
 
-class GetCatalogItemResponse:
+class GetCatalogItemResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Item = Item(data["payload"])
@@ -46,13 +46,13 @@ class GetCatalogItemResponse:
             self.errors: ErrorList = None
 
 
-class Item:
+class Item(__BaseObject):
     """
     An item in the Amazon catalog.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Identifiers" in data:
             self.Identifiers: IdentifierType = IdentifierType(data["Identifiers"])
@@ -72,11 +72,11 @@ class Item:
             self.SalesRankings: SalesRankList = None
 
 
-class IdentifierType:
+class IdentifierType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceASIN" in data:
             self.MarketplaceASIN: ASINIdentifier = ASINIdentifier(data["MarketplaceASIN"])
@@ -88,11 +88,11 @@ class IdentifierType:
             self.SKUIdentifier: SellerSKUIdentifier = None
 
 
-class ASINIdentifier:
+class ASINIdentifier(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
@@ -104,11 +104,11 @@ class ASINIdentifier:
             self.ASIN: str = None
 
 
-class SellerSKUIdentifier:
+class SellerSKUIdentifier(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
@@ -124,13 +124,13 @@ class SellerSKUIdentifier:
             self.SellerSKU: str = None
 
 
-class AttributeSetListType:
+class AttributeSetListType(__BaseObject):
     """
     The attributes of the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Actor" in data:
             self.Actor: _List[str] = [str(datum) for datum in data["Actor"]]
@@ -518,13 +518,13 @@ class AttributeSetListType:
             self.WeeeTaxValue: Price = None
 
 
-class DecimalWithUnits:
+class DecimalWithUnits(__BaseObject):
     """
     The decimal value and unit.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "value" in data:
             self.value: float = float(data["value"])
@@ -536,13 +536,13 @@ class DecimalWithUnits:
             self.Units: str = None
 
 
-class CreatorType:
+class CreatorType(__BaseObject):
     """
     The creator type attribute of an item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "value" in data:
             self.value: str = str(data["value"])
@@ -554,13 +554,13 @@ class CreatorType:
             self.Role: str = None
 
 
-class DimensionType:
+class DimensionType(__BaseObject):
     """
     The dimension type attribute of an item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Height" in data:
             self.Height: DecimalWithUnits = DecimalWithUnits(data["Height"])
@@ -580,13 +580,13 @@ class DimensionType:
             self.Weight: DecimalWithUnits = None
 
 
-class LanguageType:
+class LanguageType(__BaseObject):
     """
     The language type attribute of an item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
@@ -602,13 +602,13 @@ class LanguageType:
             self.AudioFormat: str = None
 
 
-class Image:
+class Image(__BaseObject):
     """
     The image attribute of the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "URL" in data:
             self.URL: str = str(data["URL"])
@@ -624,13 +624,13 @@ class Image:
             self.Width: DecimalWithUnits = None
 
 
-class Price:
+class Price(__BaseObject):
     """
     The price attribute of the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Amount" in data:
             self.Amount: float = float(data["Amount"])
@@ -642,13 +642,13 @@ class Price:
             self.CurrencyCode: str = None
 
 
-class RelationshipType:
+class RelationshipType(__BaseObject):
     """
     Specific variations of the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Identifiers" in data:
             self.Identifiers: IdentifierType = IdentifierType(data["Identifiers"])
@@ -744,11 +744,11 @@ class RelationshipType:
             self.ItemDimensions: DimensionType = None
 
 
-class SalesRankType:
+class SalesRankType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ProductCategoryId" in data:
             self.ProductCategoryId: str = str(data["ProductCategoryId"])
@@ -760,11 +760,11 @@ class SalesRankType:
             self.Rank: int = None
 
 
-class ListCatalogCategoriesResponse:
+class ListCatalogCategoriesResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ListOfCategories = ListOfCategories(data["payload"])
@@ -776,11 +776,11 @@ class ListCatalogCategoriesResponse:
             self.errors: ErrorList = None
 
 
-class Categories:
+class Categories(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ProductCategoryId" in data:
             self.ProductCategoryId: str = str(data["ProductCategoryId"])
@@ -796,13 +796,13 @@ class Categories:
             self.parent: dict = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

@@ -294,3 +294,8 @@ class BaseClient:
             self.request_cache[cache_keys] = response
 
         return response
+
+
+class BaseObject:
+    def __init__(self, data):
+        pass

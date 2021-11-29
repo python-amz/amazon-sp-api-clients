@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetShipmentDetailsResponse:
+class GetShipmentDetailsResponse(__BaseObject):
     """
     The response schema for the getShipmentDetails operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ShipmentDetail = ShipmentDetail(data["payload"])
@@ -20,13 +20,13 @@ class GetShipmentDetailsResponse:
             self.errors: ErrorList = None
 
 
-class ShipmentDetail:
+class ShipmentDetail(__BaseObject):
     """
     The information required by a selling partner to issue a shipment invoice.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "WarehouseId" in data:
             self.WarehouseId: str = str(data["WarehouseId"])
@@ -88,13 +88,13 @@ class ShipmentDetail:
             self.ShipmentItems: ShipmentItems = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     The shipping address details of the shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
@@ -146,13 +146,13 @@ class Address:
             self.AddressType: AddressTypeEnum = None
 
 
-class BuyerTaxInfo:
+class BuyerTaxInfo(__BaseObject):
     """
     Tax information about the buyer.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CompanyLegalName" in data:
             self.CompanyLegalName: str = str(data["CompanyLegalName"])
@@ -168,13 +168,13 @@ class BuyerTaxInfo:
             self.TaxClassifications: TaxClassificationList = None
 
 
-class MarketplaceTaxInfo:
+class MarketplaceTaxInfo(__BaseObject):
     """
     Tax information about the marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CompanyLegalName" in data:
             self.CompanyLegalName: str = str(data["CompanyLegalName"])
@@ -190,13 +190,13 @@ class MarketplaceTaxInfo:
             self.TaxClassifications: TaxClassificationList = None
 
 
-class TaxClassification:
+class TaxClassification(__BaseObject):
     """
     The tax classification for the entity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
@@ -208,13 +208,13 @@ class TaxClassification:
             self.Value: str = None
 
 
-class ShipmentItem:
+class ShipmentItem(__BaseObject):
     """
     The shipment item information required by a seller to issue a shipment invoice.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
@@ -262,13 +262,13 @@ class ShipmentItem:
             self.SerialNumbers: SerialNumbersList = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     The currency type and amount.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
@@ -280,13 +280,13 @@ class Money:
             self.Amount: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -302,13 +302,13 @@ class Error:
             self.details: str = None
 
 
-class SubmitInvoiceRequest:
+class SubmitInvoiceRequest(__BaseObject):
     """
     The request schema for the submitInvoice operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "InvoiceContent" in data:
             self.InvoiceContent: Blob = Blob(data["InvoiceContent"])
@@ -324,13 +324,13 @@ class SubmitInvoiceRequest:
             self.ContentMD5Value: str = None
 
 
-class SubmitInvoiceResponse:
+class SubmitInvoiceResponse(__BaseObject):
     """
     The response schema for the submitInvoice operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -338,13 +338,13 @@ class SubmitInvoiceResponse:
             self.errors: ErrorList = None
 
 
-class ShipmentInvoiceStatusInfo:
+class ShipmentInvoiceStatusInfo(__BaseObject):
     """
     The shipment invoice status information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonShipmentId" in data:
             self.AmazonShipmentId: str = str(data["AmazonShipmentId"])
@@ -356,13 +356,13 @@ class ShipmentInvoiceStatusInfo:
             self.InvoiceStatus: ShipmentInvoiceStatus = None
 
 
-class ShipmentInvoiceStatusResponse:
+class ShipmentInvoiceStatusResponse(__BaseObject):
     """
     The shipment invoice status response.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Shipments" in data:
             self.Shipments: ShipmentInvoiceStatusInfo = ShipmentInvoiceStatusInfo(data["Shipments"])
@@ -370,13 +370,13 @@ class ShipmentInvoiceStatusResponse:
             self.Shipments: ShipmentInvoiceStatusInfo = None
 
 
-class GetInvoiceStatusResponse:
+class GetInvoiceStatusResponse(__BaseObject):
     """
     The response schema for the getInvoiceStatus operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ShipmentInvoiceStatusResponse = ShipmentInvoiceStatusResponse(data["payload"])

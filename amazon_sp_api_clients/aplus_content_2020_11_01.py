@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class AplusResponse:
+class AplusResponse(__BaseObject):
     """
     The base response data for all A+ Content operations when a request is successful or partially successful. Individual operations may extend this with additional data.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "warnings" in data:
             self.warnings: MessageSet = MessageSet(data["warnings"])
@@ -16,13 +16,13 @@ class AplusResponse:
             self.warnings: MessageSet = None
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     The error response for when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
@@ -30,13 +30,13 @@ class ErrorList:
             self.errors: _List[Error] = []
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -52,13 +52,13 @@ class Error:
             self.details: str = None
 
 
-class ContentMetadataRecord:
+class ContentMetadataRecord(__BaseObject):
     """
     The metadata for an A+ Content document, with additional information for content management.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "contentReferenceKey" in data:
             self.contentReferenceKey: ContentReferenceKey = ContentReferenceKey(data["contentReferenceKey"])
@@ -70,13 +70,13 @@ class ContentMetadataRecord:
             self.contentMetadata: ContentMetadata = None
 
 
-class ContentMetadata:
+class ContentMetadata(__BaseObject):
     """
     The metadata of an A+ Content document.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -100,13 +100,13 @@ class ContentMetadata:
             self.updateTime: str = None
 
 
-class AsinMetadata:
+class AsinMetadata(__BaseObject):
     """
     The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the listContentDocumentAsinRelations operation, the related ASINs are returned without metadata.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: Asin = Asin(data["asin"])
@@ -134,13 +134,13 @@ class AsinMetadata:
             self.contentReferenceKeySet: ContentReferenceKeySet = None
 
 
-class PublishRecord:
+class PublishRecord(__BaseObject):
     """
     The full context for an A+ Content publishing event.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
@@ -168,13 +168,13 @@ class PublishRecord:
             self.contentReferenceKey: ContentReferenceKey = None
 
 
-class ImageCropSpecification:
+class ImageCropSpecification(__BaseObject):
     """
     The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "size" in data:
             self.size: ImageDimensions = ImageDimensions(data["size"])
@@ -186,13 +186,13 @@ class ImageCropSpecification:
             self.offset: ImageOffsets = None
 
 
-class ImageDimensions:
+class ImageDimensions(__BaseObject):
     """
     The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "width" in data:
             self.width: IntegerWithUnits = IntegerWithUnits(data["width"])
@@ -204,13 +204,13 @@ class ImageDimensions:
             self.height: IntegerWithUnits = None
 
 
-class ImageOffsets:
+class ImageOffsets(__BaseObject):
     """
     The top left corner of the cropped image, specified in the original image's coordinate space.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "x" in data:
             self.x: IntegerWithUnits = IntegerWithUnits(data["x"])
@@ -222,13 +222,13 @@ class ImageOffsets:
             self.y: IntegerWithUnits = None
 
 
-class IntegerWithUnits:
+class IntegerWithUnits(__BaseObject):
     """
     A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "value" in data:
             self.value: int = int(data["value"])
@@ -240,13 +240,13 @@ class IntegerWithUnits:
             self.units: str = None
 
 
-class ContentRecord:
+class ContentRecord(__BaseObject):
     """
     A content document with additional information for content management.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "contentReferenceKey" in data:
             self.contentReferenceKey: ContentReferenceKey = ContentReferenceKey(data["contentReferenceKey"])
@@ -262,13 +262,13 @@ class ContentRecord:
             self.contentDocument: ContentDocument = None
 
 
-class ContentDocument:
+class ContentDocument(__BaseObject):
     """
     The A+ Content document. This is the enhanced content that is published to product detail pages.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -292,13 +292,13 @@ class ContentDocument:
             self.contentModuleList: ContentModuleList = None
 
 
-class ContentModule:
+class ContentModule(__BaseObject):
     """
     An A+ Content module. An A+ Content document is composed of content modules. The contentModuleType property selects which content module types to use.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "contentModuleType" in data:
             self.contentModuleType: ContentModuleType = ContentModuleType(data["contentModuleType"])
@@ -390,13 +390,13 @@ class ContentModule:
             self.standardThreeImageText: StandardThreeImageTextModule = None
 
 
-class StandardCompanyLogoModule:
+class StandardCompanyLogoModule(__BaseObject):
     """
     The standard company logo image.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "companyLogo" in data:
             self.companyLogo: ImageComponent = ImageComponent(data["companyLogo"])
@@ -404,13 +404,13 @@ class StandardCompanyLogoModule:
             self.companyLogo: ImageComponent = None
 
 
-class StandardComparisonTableModule:
+class StandardComparisonTableModule(__BaseObject):
     """
     The standard product comparison table.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "productColumns" in data:
             self.productColumns: _List[StandardComparisonProductBlock] = [
@@ -424,13 +424,13 @@ class StandardComparisonTableModule:
             self.metricRowLabels: _List[PlainTextItem] = []
 
 
-class StandardFourImageTextModule:
+class StandardFourImageTextModule(__BaseObject):
     """
     Four standard images with text, presented across a single row.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -454,13 +454,13 @@ class StandardFourImageTextModule:
             self.block4: StandardImageTextBlock = None
 
 
-class StandardFourImageTextQuadrantModule:
+class StandardFourImageTextQuadrantModule(__BaseObject):
     """
     Four standard images with text, presented on a grid of four quadrants.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "block1" in data:
             self.block1: StandardImageTextBlock = StandardImageTextBlock(data["block1"])
@@ -480,13 +480,13 @@ class StandardFourImageTextQuadrantModule:
             self.block4: StandardImageTextBlock = None
 
 
-class StandardHeaderImageTextModule:
+class StandardHeaderImageTextModule(__BaseObject):
     """
     Standard headline text, an image, and body text.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -498,13 +498,13 @@ class StandardHeaderImageTextModule:
             self.block: StandardImageTextBlock = None
 
 
-class StandardImageSidebarModule:
+class StandardImageSidebarModule(__BaseObject):
     """
     Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -532,13 +532,13 @@ class StandardImageSidebarModule:
             self.sidebarListBlock: StandardTextListBlock = None
 
 
-class StandardImageTextOverlayModule:
+class StandardImageTextOverlayModule(__BaseObject):
     """
     A standard background image with a floating text box.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "overlayColorType" in data:
             self.overlayColorType: ColorType = ColorType(data["overlayColorType"])
@@ -550,13 +550,13 @@ class StandardImageTextOverlayModule:
             self.block: StandardImageTextBlock = None
 
 
-class StandardMultipleImageTextModule:
+class StandardMultipleImageTextModule(__BaseObject):
     """
     Standard images with text, presented one at a time. The user clicks on thumbnails to view each block.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "blocks" in data:
             self.blocks: _List[StandardImageTextCaptionBlock] = [
@@ -566,13 +566,13 @@ class StandardMultipleImageTextModule:
             self.blocks: _List[StandardImageTextCaptionBlock] = []
 
 
-class StandardProductDescriptionModule:
+class StandardProductDescriptionModule(__BaseObject):
     """
     Standard product description text.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "body" in data:
             self.body: ParagraphComponent = ParagraphComponent(data["body"])
@@ -580,13 +580,13 @@ class StandardProductDescriptionModule:
             self.body: ParagraphComponent = None
 
 
-class StandardSingleImageHighlightsModule:
+class StandardSingleImageHighlightsModule(__BaseObject):
     """
     A standard image with several paragraphs and a bulleted list.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "image" in data:
             self.image: ImageComponent = ImageComponent(data["image"])
@@ -614,13 +614,13 @@ class StandardSingleImageHighlightsModule:
             self.bulletedListBlock: StandardHeaderTextListBlock = None
 
 
-class StandardSingleImageSpecsDetailModule:
+class StandardSingleImageSpecsDetailModule(__BaseObject):
     """
     A standard image with paragraphs and a bulleted list, and extra space for technical details.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -658,13 +658,13 @@ class StandardSingleImageSpecsDetailModule:
             self.specificationTextBlock: StandardTextBlock = None
 
 
-class StandardSingleSideImageModule:
+class StandardSingleSideImageModule(__BaseObject):
     """
     A standard headline and body text with an image on the side.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "imagePositionType" in data:
             self.imagePositionType: PositionType = PositionType(data["imagePositionType"])
@@ -676,13 +676,13 @@ class StandardSingleSideImageModule:
             self.block: StandardImageTextBlock = None
 
 
-class StandardTechSpecsModule:
+class StandardTechSpecsModule(__BaseObject):
     """
     The standard table of technical feature names and definitions.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -700,13 +700,13 @@ class StandardTechSpecsModule:
             self.tableCount: int = None
 
 
-class StandardTextModule:
+class StandardTextModule(__BaseObject):
     """
     A standard headline and body text.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -718,13 +718,13 @@ class StandardTextModule:
             self.body: ParagraphComponent = None
 
 
-class StandardThreeImageTextModule:
+class StandardThreeImageTextModule(__BaseObject):
     """
     Three standard images with text, presented across a single row.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -744,13 +744,13 @@ class StandardThreeImageTextModule:
             self.block3: StandardImageTextBlock = None
 
 
-class StandardComparisonProductBlock:
+class StandardComparisonProductBlock(__BaseObject):
     """
     The A+ Content standard comparison product block.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "position" in data:
             self.position: int = int(data["position"])
@@ -778,13 +778,13 @@ class StandardComparisonProductBlock:
             self.metrics: _List[PlainTextItem] = []
 
 
-class StandardHeaderTextListBlock:
+class StandardHeaderTextListBlock(__BaseObject):
     """
     The A+ standard fixed-length list of text, with a related headline.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -796,13 +796,13 @@ class StandardHeaderTextListBlock:
             self.block: StandardTextListBlock = None
 
 
-class StandardTextListBlock:
+class StandardTextListBlock(__BaseObject):
     """
     The A+ Content standard fixed length list of text, usually presented as bullet points.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "textList" in data:
             self.textList: _List[TextItem] = [TextItem(datum) for datum in data["textList"]]
@@ -810,13 +810,13 @@ class StandardTextListBlock:
             self.textList: _List[TextItem] = []
 
 
-class StandardImageTextCaptionBlock:
+class StandardImageTextCaptionBlock(__BaseObject):
     """
     The A+ Content standard image and text block, with a related caption. The caption may not display on all devices.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "block" in data:
             self.block: StandardImageTextBlock = StandardImageTextBlock(data["block"])
@@ -828,13 +828,13 @@ class StandardImageTextCaptionBlock:
             self.caption: TextComponent = None
 
 
-class StandardImageCaptionBlock:
+class StandardImageCaptionBlock(__BaseObject):
     """
     The A+ Content standard image and caption block.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "image" in data:
             self.image: ImageComponent = ImageComponent(data["image"])
@@ -846,13 +846,13 @@ class StandardImageCaptionBlock:
             self.caption: TextComponent = None
 
 
-class StandardImageTextBlock:
+class StandardImageTextBlock(__BaseObject):
     """
     The A+ Content standard image and text box block.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "image" in data:
             self.image: ImageComponent = ImageComponent(data["image"])
@@ -868,13 +868,13 @@ class StandardImageTextBlock:
             self.body: ParagraphComponent = None
 
 
-class StandardTextBlock:
+class StandardTextBlock(__BaseObject):
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "headline" in data:
             self.headline: TextComponent = TextComponent(data["headline"])
@@ -886,13 +886,13 @@ class StandardTextBlock:
             self.body: ParagraphComponent = None
 
 
-class StandardTextPairBlock:
+class StandardTextPairBlock(__BaseObject):
     """
     The A+ Content standard label and description block, comprised of a pair of text components.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "label" in data:
             self.label: TextComponent = TextComponent(data["label"])
@@ -904,13 +904,13 @@ class StandardTextPairBlock:
             self.description: TextComponent = None
 
 
-class TextItem:
+class TextItem(__BaseObject):
     """
     Rich positional text, usually presented as a collection of bullet points.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "position" in data:
             self.position: int = int(data["position"])
@@ -922,13 +922,13 @@ class TextItem:
             self.text: TextComponent = None
 
 
-class PlainTextItem:
+class PlainTextItem(__BaseObject):
     """
     Plain positional text, used in collections of brief labels and descriptors.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "position" in data:
             self.position: int = int(data["position"])
@@ -940,13 +940,13 @@ class PlainTextItem:
             self.value: str = None
 
 
-class ImageComponent:
+class ImageComponent(__BaseObject):
     """
     A reference to an image, hosted in the A+ Content media library.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "uploadDestinationId" in data:
             self.uploadDestinationId: str = str(data["uploadDestinationId"])
@@ -962,13 +962,13 @@ class ImageComponent:
             self.altText: str = None
 
 
-class ParagraphComponent:
+class ParagraphComponent(__BaseObject):
     """
     A list of rich text content, usually presented in a text box.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "textList" in data:
             self.textList: _List[TextComponent] = [TextComponent(datum) for datum in data["textList"]]
@@ -976,13 +976,13 @@ class ParagraphComponent:
             self.textList: _List[TextComponent] = []
 
 
-class TextComponent:
+class TextComponent(__BaseObject):
     """
     Rich text content.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "value" in data:
             self.value: str = str(data["value"])
@@ -994,13 +994,13 @@ class TextComponent:
             self.decoratorSet: DecoratorSet = None
 
 
-class Decorator:
+class Decorator(__BaseObject):
     """
     A decorator applied to a content string value in order to create rich text.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "type" in data:
             self.type: DecoratorType = DecoratorType(data["type"])
@@ -1020,11 +1020,11 @@ class Decorator:
             self.depth: int = None
 
 
-class PostContentDocumentRequest:
+class PostContentDocumentRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "contentDocument" in data:
             self.contentDocument: ContentDocument = ContentDocument(data["contentDocument"])
@@ -1032,11 +1032,11 @@ class PostContentDocumentRequest:
             self.contentDocument: ContentDocument = None
 
 
-class PostContentDocumentAsinRelationsRequest:
+class PostContentDocumentAsinRelationsRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asinSet" in data:
             self.asinSet: AsinSet = AsinSet(data["asinSet"])

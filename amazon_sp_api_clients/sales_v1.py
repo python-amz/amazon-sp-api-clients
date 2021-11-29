@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetOrderMetricsResponse:
+class GetOrderMetricsResponse(__BaseObject):
     """
     The response schema for the getOrderMetrics operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: OrderMetricsList = OrderMetricsList(data["payload"])
@@ -20,13 +20,13 @@ class GetOrderMetricsResponse:
             self.errors: ErrorList = None
 
 
-class OrderMetricsInterval:
+class OrderMetricsInterval(__BaseObject):
     """
     Contains order metrics.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "interval" in data:
             self.interval: str = str(data["interval"])
@@ -54,13 +54,13 @@ class OrderMetricsInterval:
             self.totalSales: Money = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -76,13 +76,13 @@ class Error:
             self.details: str = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     The currency type and the amount.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])

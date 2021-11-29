@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class AdjustmentEvent:
+class AdjustmentEvent(__BaseObject):
     """
     An adjustment to the seller's account.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AdjustmentType" in data:
             self.AdjustmentType: str = str(data["AdjustmentType"])
@@ -28,13 +28,13 @@ class AdjustmentEvent:
             self.AdjustmentItemList: AdjustmentItemList = None
 
 
-class AdjustmentItem:
+class AdjustmentItem(__BaseObject):
     """
     An item in an adjustment to the seller's account.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Quantity" in data:
             self.Quantity: str = str(data["Quantity"])
@@ -66,13 +66,13 @@ class AdjustmentItem:
             self.ASIN: str = None
 
 
-class AffordabilityExpenseEvent:
+class AffordabilityExpenseEvent(__BaseObject):
     """
     An expense related to an affordability promotion.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -112,7 +112,7 @@ class AffordabilityExpenseEvent:
             self.TotalExpense: Currency = None
 
 
-class ChargeComponent:
+class ChargeComponent(__BaseObject):
     """
         A charge on the seller's account.
     Possible values:
@@ -150,7 +150,7 @@ class ChargeComponent:
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ChargeType" in data:
             self.ChargeType: str = str(data["ChargeType"])
@@ -162,13 +162,13 @@ class ChargeComponent:
             self.ChargeAmount: Currency = None
 
 
-class ChargeInstrument:
+class ChargeInstrument(__BaseObject):
     """
     A payment instrument.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Description" in data:
             self.Description: str = str(data["Description"])
@@ -184,13 +184,13 @@ class ChargeInstrument:
             self.Amount: Currency = None
 
 
-class CouponPaymentEvent:
+class CouponPaymentEvent(__BaseObject):
     """
     An event related to coupon payments.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
@@ -226,13 +226,13 @@ class CouponPaymentEvent:
             self.TotalAmount: Currency = None
 
 
-class Currency:
+class Currency(__BaseObject):
     """
     A currency type and amount.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
@@ -244,13 +244,13 @@ class Currency:
             self.CurrencyAmount: BigDecimal = None
 
 
-class DebtRecoveryEvent:
+class DebtRecoveryEvent(__BaseObject):
     """
     A debt payment or debt adjustment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "DebtRecoveryType" in data:
             self.DebtRecoveryType: str = str(data["DebtRecoveryType"])
@@ -274,13 +274,13 @@ class DebtRecoveryEvent:
             self.ChargeInstrumentList: ChargeInstrumentList = None
 
 
-class DebtRecoveryItem:
+class DebtRecoveryItem(__BaseObject):
     """
     An item of a debt payment or debt adjustment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "RecoveryAmount" in data:
             self.RecoveryAmount: Currency = Currency(data["RecoveryAmount"])
@@ -300,13 +300,13 @@ class DebtRecoveryItem:
             self.GroupEndDate: Date = None
 
 
-class DirectPayment:
+class DirectPayment(__BaseObject):
     """
     A payment made directly to a seller.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "DirectPaymentType" in data:
             self.DirectPaymentType: str = str(data["DirectPaymentType"])
@@ -318,13 +318,13 @@ class DirectPayment:
             self.DirectPaymentAmount: Currency = None
 
 
-class FBALiquidationEvent:
+class FBALiquidationEvent(__BaseObject):
     """
     A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
@@ -344,13 +344,13 @@ class FBALiquidationEvent:
             self.LiquidationFeeAmount: Currency = None
 
 
-class FeeComponent:
+class FeeComponent(__BaseObject):
     """
     A fee associated with the event.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "FeeType" in data:
             self.FeeType: str = str(data["FeeType"])
@@ -362,13 +362,13 @@ class FeeComponent:
             self.FeeAmount: Currency = None
 
 
-class FinancialEventGroup:
+class FinancialEventGroup(__BaseObject):
     """
     Information related to a financial event group.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "FinancialEventGroupId" in data:
             self.FinancialEventGroupId: str = str(data["FinancialEventGroupId"])
@@ -416,13 +416,13 @@ class FinancialEventGroup:
             self.FinancialEventGroupEnd: Date = None
 
 
-class FinancialEvents:
+class FinancialEvents(__BaseObject):
     """
     Contains all information related to a financial event.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentEventList" in data:
             self.ShipmentEventList: ShipmentEventList = ShipmentEventList(data["ShipmentEventList"])
@@ -564,13 +564,13 @@ class FinancialEvents:
             self.RemovalShipmentAdjustmentEventList: RemovalShipmentAdjustmentEventList = None
 
 
-class ImagingServicesFeeEvent:
+class ImagingServicesFeeEvent(__BaseObject):
     """
     A fee event related to Amazon Imaging services.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ImagingRequestBillingItemID" in data:
             self.ImagingRequestBillingItemID: str = str(data["ImagingRequestBillingItemID"])
@@ -590,13 +590,13 @@ class ImagingServicesFeeEvent:
             self.FeeList: FeeComponentList = None
 
 
-class ListFinancialEventGroupsPayload:
+class ListFinancialEventGroupsPayload(__BaseObject):
     """
     The payload for the listFinancialEventGroups operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "NextToken" in data:
             self.NextToken: str = str(data["NextToken"])
@@ -610,13 +610,13 @@ class ListFinancialEventGroupsPayload:
             self.FinancialEventGroupList: FinancialEventGroupList = None
 
 
-class ListFinancialEventGroupsResponse:
+class ListFinancialEventGroupsResponse(__BaseObject):
     """
     The response schema for the listFinancialEventGroups operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ListFinancialEventGroupsPayload = ListFinancialEventGroupsPayload(data["payload"])
@@ -628,13 +628,13 @@ class ListFinancialEventGroupsResponse:
             self.errors: ErrorList = None
 
 
-class ListFinancialEventsPayload:
+class ListFinancialEventsPayload(__BaseObject):
     """
     The payload for the listFinancialEvents operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "NextToken" in data:
             self.NextToken: str = str(data["NextToken"])
@@ -646,13 +646,13 @@ class ListFinancialEventsPayload:
             self.FinancialEvents: FinancialEvents = None
 
 
-class ListFinancialEventsResponse:
+class ListFinancialEventsResponse(__BaseObject):
     """
     The response schema for the listFinancialEvents operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ListFinancialEventsPayload = ListFinancialEventsPayload(data["payload"])
@@ -664,13 +664,13 @@ class ListFinancialEventsResponse:
             self.errors: ErrorList = None
 
 
-class LoanServicingEvent:
+class LoanServicingEvent(__BaseObject):
     """
     A loan advance, loan payment, or loan refund.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "LoanAmount" in data:
             self.LoanAmount: Currency = Currency(data["LoanAmount"])
@@ -682,13 +682,13 @@ class LoanServicingEvent:
             self.SourceBusinessEventType: str = None
 
 
-class NetworkComminglingTransactionEvent:
+class NetworkComminglingTransactionEvent(__BaseObject):
     """
     A network commingling transaction event.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TransactionType" in data:
             self.TransactionType: str = str(data["TransactionType"])
@@ -724,13 +724,13 @@ class NetworkComminglingTransactionEvent:
             self.TaxAmount: Currency = None
 
 
-class PayWithAmazonEvent:
+class PayWithAmazonEvent(__BaseObject):
     """
     An event related to the seller's Pay with Amazon account.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerOrderId" in data:
             self.SellerOrderId: str = str(data["SellerOrderId"])
@@ -774,13 +774,13 @@ class PayWithAmazonEvent:
             self.StoreName: str = None
 
 
-class ProductAdsPaymentEvent:
+class ProductAdsPaymentEvent(__BaseObject):
     """
     A Sponsored Products payment event.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "postedDate" in data:
             self.postedDate: Date = Date(data["postedDate"])
@@ -808,13 +808,13 @@ class ProductAdsPaymentEvent:
             self.transactionValue: Currency = None
 
 
-class Promotion:
+class Promotion(__BaseObject):
     """
     A promotion applied to an item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PromotionType" in data:
             self.PromotionType: str = str(data["PromotionType"])
@@ -830,13 +830,13 @@ class Promotion:
             self.PromotionAmount: Currency = None
 
 
-class RemovalShipmentEvent:
+class RemovalShipmentEvent(__BaseObject):
     """
     A removal shipment event for a removal order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
@@ -862,13 +862,13 @@ class RemovalShipmentEvent:
             self.RemovalShipmentItemList: RemovalShipmentItemList = None
 
 
-class RemovalShipmentItem:
+class RemovalShipmentItem(__BaseObject):
     """
     Item-level information for a removal shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "RemovalShipmentItemId" in data:
             self.RemovalShipmentItemId: str = str(data["RemovalShipmentItemId"])
@@ -904,7 +904,7 @@ class RemovalShipmentItem:
             self.TaxWithheld: Currency = None
 
 
-class RemovalShipmentAdjustmentEvent:
+class RemovalShipmentAdjustmentEvent(__BaseObject):
     """
         A financial adjustment event for FBA liquidated inventory.
     Possible adjustment:
@@ -913,7 +913,7 @@ class RemovalShipmentAdjustmentEvent:
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
@@ -943,13 +943,13 @@ class RemovalShipmentAdjustmentEvent:
             self.RemovalShipmentItemAdjustmentList: _List[RemovalShipmentItemAdjustment] = []
 
 
-class RemovalShipmentItemAdjustment:
+class RemovalShipmentItemAdjustment(__BaseObject):
     """
     Item-level information for a removal shipment item adjustment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "RemovalShipmentItemId" in data:
             self.RemovalShipmentItemId: str = str(data["RemovalShipmentItemId"])
@@ -981,13 +981,13 @@ class RemovalShipmentItemAdjustment:
             self.TaxWithheldAdjustment: Currency = None
 
 
-class RentalTransactionEvent:
+class RentalTransactionEvent(__BaseObject):
     """
     An event related to a rental transaction.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -1033,13 +1033,13 @@ class RentalTransactionEvent:
             self.RentalTaxWithheldList: TaxWithheldComponentList = None
 
 
-class RetrochargeEvent:
+class RetrochargeEvent(__BaseObject):
     """
     A retrocharge or retrocharge reversal.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "RetrochargeEventType" in data:
             self.RetrochargeEventType: str = str(data["RetrochargeEventType"])
@@ -1073,13 +1073,13 @@ class RetrochargeEvent:
             self.RetrochargeTaxWithheldList: TaxWithheldComponentList = None
 
 
-class SAFETReimbursementEvent:
+class SAFETReimbursementEvent(__BaseObject):
     """
     A SAFE-T claim reimbursement on the seller's account.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
@@ -1105,13 +1105,13 @@ class SAFETReimbursementEvent:
             self.SAFETReimbursementItemList: SAFETReimbursementItemList = None
 
 
-class SAFETReimbursementItem:
+class SAFETReimbursementItem(__BaseObject):
     """
     An item from a SAFE-T claim reimbursement.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemChargeList" in data:
             self.itemChargeList: ChargeComponentList = ChargeComponentList(data["itemChargeList"])
@@ -1127,13 +1127,13 @@ class SAFETReimbursementItem:
             self.quantity: str = None
 
 
-class SellerDealPaymentEvent:
+class SellerDealPaymentEvent(__BaseObject):
     """
     An event linked to the payment of a fee related to the specified deal.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "postedDate" in data:
             self.postedDate: Date = Date(data["postedDate"])
@@ -1169,13 +1169,13 @@ class SellerDealPaymentEvent:
             self.totalAmount: Currency = None
 
 
-class SellerReviewEnrollmentPaymentEvent:
+class SellerReviewEnrollmentPaymentEvent(__BaseObject):
     """
     A fee payment event for the Early Reviewer Program.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
@@ -1203,13 +1203,13 @@ class SellerReviewEnrollmentPaymentEvent:
             self.TotalAmount: Currency = None
 
 
-class ServiceFeeEvent:
+class ServiceFeeEvent(__BaseObject):
     """
     A service fee on the seller's account.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -1241,13 +1241,13 @@ class ServiceFeeEvent:
             self.ASIN: str = None
 
 
-class ShipmentEvent:
+class ShipmentEvent(__BaseObject):
     """
     A shipment, refund, guarantee claim, or chargeback.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -1303,13 +1303,13 @@ class ShipmentEvent:
             self.ShipmentItemAdjustmentList: ShipmentItemList = None
 
 
-class ShipmentItem:
+class ShipmentItem(__BaseObject):
     """
     An item of a shipment, refund, guarantee claim, or chargeback.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
@@ -1365,13 +1365,13 @@ class ShipmentItem:
             self.CostOfPointsReturned: Currency = None
 
 
-class SolutionProviderCreditEvent:
+class SolutionProviderCreditEvent(__BaseObject):
     """
     A credit given to a solution provider.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ProviderTransactionType" in data:
             self.ProviderTransactionType: str = str(data["ProviderTransactionType"])
@@ -1415,13 +1415,13 @@ class SolutionProviderCreditEvent:
             self.TransactionCreationDate: Date = None
 
 
-class TaxWithholdingPeriod:
+class TaxWithholdingPeriod(__BaseObject):
     """
     Period which taxwithholding on seller's account is calculated.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "StartDate" in data:
             self.StartDate: Date = Date(data["StartDate"])
@@ -1433,13 +1433,13 @@ class TaxWithholdingPeriod:
             self.EndDate: Date = None
 
 
-class TaxWithholdingEvent:
+class TaxWithholdingEvent(__BaseObject):
     """
     A TaxWithholding event on seller's account.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PostedDate" in data:
             self.PostedDate: Date = Date(data["PostedDate"])
@@ -1459,13 +1459,13 @@ class TaxWithholdingEvent:
             self.TaxWithholdingPeriod: TaxWithholdingPeriod = None
 
 
-class TaxWithheldComponent:
+class TaxWithheldComponent(__BaseObject):
     """
     Information about the taxes withheld.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TaxCollectionModel" in data:
             self.TaxCollectionModel: str = str(data["TaxCollectionModel"])
@@ -1477,13 +1477,13 @@ class TaxWithheldComponent:
             self.TaxesWithheld: ChargeComponentList = None
 
 
-class TrialShipmentEvent:
+class TrialShipmentEvent(__BaseObject):
     """
     An event related to a trial shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -1507,13 +1507,13 @@ class TrialShipmentEvent:
             self.FeeList: FeeComponentList = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

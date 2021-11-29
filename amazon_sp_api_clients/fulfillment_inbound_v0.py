@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class ASINInboundGuidance:
+class ASINInboundGuidance(__BaseObject):
     """
     Reasons why a given ASIN is not recommended for shipment to Amazon's fulfillment network.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
@@ -46,13 +46,13 @@ class ASINInboundGuidance:
             self.GuidanceReasonList: GuidanceReasonList = None
 
 
-class ASINPrepInstructions:
+class ASINPrepInstructions(__BaseObject):
     """
     Item preparation instructions to help with item sourcing decisions.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
@@ -72,11 +72,11 @@ class ASINPrepInstructions:
             self.PrepInstructionList: PrepInstructionList = None
 
 
-class Address:
+class Address(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
@@ -112,13 +112,13 @@ class Address:
             self.PostalCode: str = None
 
 
-class AmazonPrepFeesDetails:
+class AmazonPrepFeesDetails(__BaseObject):
     """
     The fees for Amazon to prep goods for shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PrepInstruction" in data:
             self.PrepInstruction: PrepInstruction = PrepInstruction(data["PrepInstruction"])
@@ -130,13 +130,13 @@ class AmazonPrepFeesDetails:
             self.FeePerUnit: Amount = None
 
 
-class Amount:
+class Amount(__BaseObject):
     """
     The monetary value.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: CurrencyCode = CurrencyCode(data["CurrencyCode"])
@@ -148,13 +148,13 @@ class Amount:
             self.Value: BigDecimalType = None
 
 
-class BoxContentsFeeDetails:
+class BoxContentsFeeDetails(__BaseObject):
     """
     The manual processing fee per unit and total fee for a shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TotalUnits" in data:
             self.TotalUnits: Quantity = Quantity(data["TotalUnits"])
@@ -170,11 +170,11 @@ class BoxContentsFeeDetails:
             self.TotalFee: Amount = None
 
 
-class ConfirmPreorderResult:
+class ConfirmPreorderResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ConfirmedNeedByDate" in data:
             self.ConfirmedNeedByDate: DateStringType = DateStringType(data["ConfirmedNeedByDate"])
@@ -186,13 +186,13 @@ class ConfirmPreorderResult:
             self.ConfirmedFulfillableDate: DateStringType = None
 
 
-class ConfirmPreorderResponse:
+class ConfirmPreorderResponse(__BaseObject):
     """
     The response schema for the confirmPreorder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ConfirmPreorderResult = ConfirmPreorderResult(data["payload"])
@@ -204,11 +204,11 @@ class ConfirmPreorderResponse:
             self.errors: ErrorList = None
 
 
-class CommonTransportResult:
+class CommonTransportResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TransportResult" in data:
             self.TransportResult: TransportResult = TransportResult(data["TransportResult"])
@@ -216,13 +216,13 @@ class CommonTransportResult:
             self.TransportResult: TransportResult = None
 
 
-class ConfirmTransportResponse:
+class ConfirmTransportResponse(__BaseObject):
     """
     The response schema for the confirmTransport operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
@@ -234,13 +234,13 @@ class ConfirmTransportResponse:
             self.errors: ErrorList = None
 
 
-class Contact:
+class Contact(__BaseObject):
     """
     Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
@@ -260,13 +260,13 @@ class Contact:
             self.Fax: str = None
 
 
-class CreateInboundShipmentPlanRequest:
+class CreateInboundShipmentPlanRequest(__BaseObject):
     """
     The request schema for the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipFromAddress" in data:
             self.ShipFromAddress: Address = Address(data["ShipFromAddress"])
@@ -292,11 +292,11 @@ class CreateInboundShipmentPlanRequest:
             self.InboundShipmentPlanRequestItems: InboundShipmentPlanRequestItemList = None
 
 
-class CreateInboundShipmentPlanResult:
+class CreateInboundShipmentPlanResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "InboundShipmentPlans" in data:
             self.InboundShipmentPlans: InboundShipmentPlanList = InboundShipmentPlanList(data["InboundShipmentPlans"])
@@ -304,13 +304,13 @@ class CreateInboundShipmentPlanResult:
             self.InboundShipmentPlans: InboundShipmentPlanList = None
 
 
-class CreateInboundShipmentPlanResponse:
+class CreateInboundShipmentPlanResponse(__BaseObject):
     """
     The response schema for the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CreateInboundShipmentPlanResult = CreateInboundShipmentPlanResult(data["payload"])
@@ -322,13 +322,13 @@ class CreateInboundShipmentPlanResponse:
             self.errors: ErrorList = None
 
 
-class InboundShipmentRequest:
+class InboundShipmentRequest(__BaseObject):
     """
     The request schema for an inbound shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "InboundShipmentHeader" in data:
             self.InboundShipmentHeader: InboundShipmentHeader = InboundShipmentHeader(data["InboundShipmentHeader"])
@@ -344,11 +344,11 @@ class InboundShipmentRequest:
             self.MarketplaceId: str = None
 
 
-class InboundShipmentResult:
+class InboundShipmentResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
@@ -356,13 +356,13 @@ class InboundShipmentResult:
             self.ShipmentId: str = None
 
 
-class InboundShipmentResponse:
+class InboundShipmentResponse(__BaseObject):
     """
     The response schema for this operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: InboundShipmentResult = InboundShipmentResult(data["payload"])
@@ -374,13 +374,13 @@ class InboundShipmentResponse:
             self.errors: ErrorList = None
 
 
-class Dimensions:
+class Dimensions(__BaseObject):
     """
     The dimension values and unit of measurement.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Length" in data:
             self.Length: BigDecimalType = BigDecimalType(data["Length"])
@@ -400,13 +400,13 @@ class Dimensions:
             self.Unit: UnitOfMeasurement = None
 
 
-class EstimateTransportResponse:
+class EstimateTransportResponse(__BaseObject):
     """
     The response schema for the estimateTransport operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
@@ -418,13 +418,13 @@ class EstimateTransportResponse:
             self.errors: ErrorList = None
 
 
-class GetBillOfLadingResponse:
+class GetBillOfLadingResponse(__BaseObject):
     """
     The response schema for the getBillOfLading operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: BillOfLadingDownloadURL = BillOfLadingDownloadURL(data["payload"])
@@ -436,11 +436,11 @@ class GetBillOfLadingResponse:
             self.errors: ErrorList = None
 
 
-class GetInboundGuidanceResult:
+class GetInboundGuidanceResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SKUInboundGuidanceList" in data:
             self.SKUInboundGuidanceList: SKUInboundGuidanceList = SKUInboundGuidanceList(data["SKUInboundGuidanceList"])
@@ -462,13 +462,13 @@ class GetInboundGuidanceResult:
             self.InvalidASINList: InvalidASINList = None
 
 
-class GetInboundGuidanceResponse:
+class GetInboundGuidanceResponse(__BaseObject):
     """
     The response schema for the getInboundGuidance operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetInboundGuidanceResult = GetInboundGuidanceResult(data["payload"])
@@ -480,11 +480,11 @@ class GetInboundGuidanceResponse:
             self.errors: ErrorList = None
 
 
-class LabelDownloadURL:
+class LabelDownloadURL(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "DownloadURL" in data:
             self.DownloadURL: str = str(data["DownloadURL"])
@@ -492,11 +492,11 @@ class LabelDownloadURL:
             self.DownloadURL: str = None
 
 
-class BillOfLadingDownloadURL:
+class BillOfLadingDownloadURL(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "DownloadURL" in data:
             self.DownloadURL: str = str(data["DownloadURL"])
@@ -504,13 +504,13 @@ class BillOfLadingDownloadURL:
             self.DownloadURL: str = None
 
 
-class GetLabelsResponse:
+class GetLabelsResponse(__BaseObject):
     """
     The response schema for the getLabels operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: LabelDownloadURL = LabelDownloadURL(data["payload"])
@@ -522,11 +522,11 @@ class GetLabelsResponse:
             self.errors: ErrorList = None
 
 
-class GetPreorderInfoResult:
+class GetPreorderInfoResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentContainsPreorderableItems" in data:
             self.ShipmentContainsPreorderableItems: bool = convert_bool(data["ShipmentContainsPreorderableItems"])
@@ -546,13 +546,13 @@ class GetPreorderInfoResult:
             self.ConfirmedFulfillableDate: DateStringType = None
 
 
-class GetPreorderInfoResponse:
+class GetPreorderInfoResponse(__BaseObject):
     """
     The response schema for the getPreorderInfo operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetPreorderInfoResult = GetPreorderInfoResult(data["payload"])
@@ -564,11 +564,11 @@ class GetPreorderInfoResponse:
             self.errors: ErrorList = None
 
 
-class GetPrepInstructionsResult:
+class GetPrepInstructionsResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SKUPrepInstructionsList" in data:
             self.SKUPrepInstructionsList: SKUPrepInstructionsList = SKUPrepInstructionsList(
@@ -592,13 +592,13 @@ class GetPrepInstructionsResult:
             self.InvalidASINList: InvalidASINList = None
 
 
-class GetPrepInstructionsResponse:
+class GetPrepInstructionsResponse(__BaseObject):
     """
     The response schema for the getPrepInstructions operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetPrepInstructionsResult = GetPrepInstructionsResult(data["payload"])
@@ -610,11 +610,11 @@ class GetPrepInstructionsResponse:
             self.errors: ErrorList = None
 
 
-class GetTransportDetailsResult:
+class GetTransportDetailsResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TransportContent" in data:
             self.TransportContent: TransportContent = TransportContent(data["TransportContent"])
@@ -622,13 +622,13 @@ class GetTransportDetailsResult:
             self.TransportContent: TransportContent = None
 
 
-class GetTransportDetailsResponse:
+class GetTransportDetailsResponse(__BaseObject):
     """
     The response schema for the getTransportDetails operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetTransportDetailsResult = GetTransportDetailsResult(data["payload"])
@@ -640,13 +640,13 @@ class GetTransportDetailsResponse:
             self.errors: ErrorList = None
 
 
-class InboundShipmentHeader:
+class InboundShipmentHeader(__BaseObject):
     """
     Inbound shipment information used to create and update inbound shipments.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentName" in data:
             self.ShipmentName: str = str(data["ShipmentName"])
@@ -680,13 +680,13 @@ class InboundShipmentHeader:
             self.IntendedBoxContentsSource: IntendedBoxContentsSource = None
 
 
-class InboundShipmentInfo:
+class InboundShipmentInfo(__BaseObject):
     """
     Information about the seller's inbound shipments. Returned by the listInboundShipments operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
@@ -730,13 +730,13 @@ class InboundShipmentInfo:
             self.EstimatedBoxContentsFee: BoxContentsFeeDetails = None
 
 
-class InboundShipmentItem:
+class InboundShipmentItem(__BaseObject):
     """
     Item information for an inbound shipment. Submitted with a call to the createInboundShipment or updateInboundShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
@@ -772,13 +772,13 @@ class InboundShipmentItem:
             self.PrepDetailsList: PrepDetailsList = None
 
 
-class InboundShipmentPlan:
+class InboundShipmentPlan(__BaseObject):
     """
     Inbound shipment information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentId" in data:
             self.ShipmentId: str = str(data["ShipmentId"])
@@ -806,13 +806,13 @@ class InboundShipmentPlan:
             self.EstimatedBoxContentsFee: BoxContentsFeeDetails = None
 
 
-class InboundShipmentPlanItem:
+class InboundShipmentPlanItem(__BaseObject):
     """
     Item information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
@@ -832,13 +832,13 @@ class InboundShipmentPlanItem:
             self.PrepDetailsList: PrepDetailsList = None
 
 
-class InboundShipmentPlanRequestItem:
+class InboundShipmentPlanRequestItem(__BaseObject):
     """
     Item information for creating an inbound shipment plan. Submitted with a call to the createInboundShipmentPlan operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
@@ -866,11 +866,11 @@ class InboundShipmentPlanRequestItem:
             self.PrepDetailsList: PrepDetailsList = None
 
 
-class InvalidASIN:
+class InvalidASIN(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
@@ -882,11 +882,11 @@ class InvalidASIN:
             self.ErrorReason: ErrorReason = None
 
 
-class InvalidSKU:
+class InvalidSKU(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
@@ -898,11 +898,11 @@ class InvalidSKU:
             self.ErrorReason: ErrorReason = None
 
 
-class GetShipmentItemsResult:
+class GetShipmentItemsResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ItemData" in data:
             self.ItemData: InboundShipmentItemList = InboundShipmentItemList(data["ItemData"])
@@ -914,13 +914,13 @@ class GetShipmentItemsResult:
             self.NextToken: str = None
 
 
-class GetShipmentItemsResponse:
+class GetShipmentItemsResponse(__BaseObject):
     """
     The response schema for the getShipmentItems operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetShipmentItemsResult = GetShipmentItemsResult(data["payload"])
@@ -932,11 +932,11 @@ class GetShipmentItemsResponse:
             self.errors: ErrorList = None
 
 
-class GetShipmentsResult:
+class GetShipmentsResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ShipmentData" in data:
             self.ShipmentData: InboundShipmentList = InboundShipmentList(data["ShipmentData"])
@@ -948,13 +948,13 @@ class GetShipmentsResult:
             self.NextToken: str = None
 
 
-class GetShipmentsResponse:
+class GetShipmentsResponse(__BaseObject):
     """
     The response schema for the getShipments operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetShipmentsResult = GetShipmentsResult(data["payload"])
@@ -966,13 +966,13 @@ class GetShipmentsResponse:
             self.errors: ErrorList = None
 
 
-class NonPartneredLtlDataInput:
+class NonPartneredLtlDataInput(__BaseObject):
     """
     Information that you provide to Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
@@ -984,13 +984,13 @@ class NonPartneredLtlDataInput:
             self.ProNumber: ProNumber = None
 
 
-class NonPartneredLtlDataOutput:
+class NonPartneredLtlDataOutput(__BaseObject):
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment shipped by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
@@ -1002,13 +1002,13 @@ class NonPartneredLtlDataOutput:
             self.ProNumber: ProNumber = None
 
 
-class NonPartneredSmallParcelDataInput:
+class NonPartneredSmallParcelDataInput(__BaseObject):
     """
     Information that you provide to Amazon about a Small Parcel shipment shipped by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
@@ -1022,13 +1022,13 @@ class NonPartneredSmallParcelDataInput:
             self.PackageList: NonPartneredSmallParcelPackageInputList = None
 
 
-class NonPartneredSmallParcelDataOutput:
+class NonPartneredSmallParcelDataOutput(__BaseObject):
     """
     Information returned by Amazon about a Small Parcel shipment by a carrier that has not partnered with Amazon.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PackageList" in data:
             self.PackageList: NonPartneredSmallParcelPackageOutputList = NonPartneredSmallParcelPackageOutputList(
@@ -1038,13 +1038,13 @@ class NonPartneredSmallParcelDataOutput:
             self.PackageList: NonPartneredSmallParcelPackageOutputList = None
 
 
-class NonPartneredSmallParcelPackageInput:
+class NonPartneredSmallParcelPackageInput(__BaseObject):
     """
     The tracking number of the package, provided by the carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TrackingId" in data:
             self.TrackingId: TrackingId = TrackingId(data["TrackingId"])
@@ -1052,13 +1052,13 @@ class NonPartneredSmallParcelPackageInput:
             self.TrackingId: TrackingId = None
 
 
-class NonPartneredSmallParcelPackageOutput:
+class NonPartneredSmallParcelPackageOutput(__BaseObject):
     """
     Carrier, tracking number, and status information for the package.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CarrierName" in data:
             self.CarrierName: str = str(data["CarrierName"])
@@ -1074,13 +1074,13 @@ class NonPartneredSmallParcelPackageOutput:
             self.PackageStatus: PackageStatus = None
 
 
-class Pallet:
+class Pallet(__BaseObject):
     """
     Pallet information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Dimensions" in data:
             self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
@@ -1096,13 +1096,13 @@ class Pallet:
             self.IsStacked: bool = None
 
 
-class PartneredEstimate:
+class PartneredEstimate(__BaseObject):
     """
     The estimated shipping cost for a shipment using an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Amount" in data:
             self.Amount: Amount = Amount(data["Amount"])
@@ -1118,13 +1118,13 @@ class PartneredEstimate:
             self.VoidDeadline: TimeStampStringType = None
 
 
-class PartneredLtlDataInput:
+class PartneredLtlDataInput(__BaseObject):
     """
     Information that is required by an Amazon-partnered carrier to ship a Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Contact" in data:
             self.Contact: Contact = Contact(data["Contact"])
@@ -1156,13 +1156,13 @@ class PartneredLtlDataInput:
             self.SellerDeclaredValue: Amount = None
 
 
-class PartneredLtlDataOutput:
+class PartneredLtlDataOutput(__BaseObject):
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Contact" in data:
             self.Contact: Contact = Contact(data["Contact"])
@@ -1226,13 +1226,13 @@ class PartneredLtlDataOutput:
             self.CarrierName: str = None
 
 
-class PartneredSmallParcelDataInput:
+class PartneredSmallParcelDataInput(__BaseObject):
     """
     Information that is required by an Amazon-partnered carrier to ship a Small Parcel inbound shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PackageList" in data:
             self.PackageList: PartneredSmallParcelPackageInputList = PartneredSmallParcelPackageInputList(
@@ -1246,13 +1246,13 @@ class PartneredSmallParcelDataInput:
             self.CarrierName: str = None
 
 
-class PartneredSmallParcelDataOutput:
+class PartneredSmallParcelDataOutput(__BaseObject):
     """
     Information returned by Amazon about a Small Parcel shipment by an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PackageList" in data:
             self.PackageList: PartneredSmallParcelPackageOutputList = PartneredSmallParcelPackageOutputList(
@@ -1266,13 +1266,13 @@ class PartneredSmallParcelDataOutput:
             self.PartneredEstimate: PartneredEstimate = None
 
 
-class PartneredSmallParcelPackageInput:
+class PartneredSmallParcelPackageInput(__BaseObject):
     """
     Dimension and weight information for the package.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Dimensions" in data:
             self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
@@ -1284,13 +1284,13 @@ class PartneredSmallParcelPackageInput:
             self.Weight: Weight = None
 
 
-class PartneredSmallParcelPackageOutput:
+class PartneredSmallParcelPackageOutput(__BaseObject):
     """
     Dimension, weight, and shipping information for the package.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Dimensions" in data:
             self.Dimensions: Dimensions = Dimensions(data["Dimensions"])
@@ -1314,13 +1314,13 @@ class PartneredSmallParcelPackageOutput:
             self.PackageStatus: PackageStatus = None
 
 
-class PrepDetails:
+class PrepDetails(__BaseObject):
     """
     Preparation instructions and who is responsible for the preparation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PrepInstruction" in data:
             self.PrepInstruction: PrepInstruction = PrepInstruction(data["PrepInstruction"])
@@ -1332,13 +1332,13 @@ class PrepDetails:
             self.PrepOwner: PrepOwner = None
 
 
-class PutTransportDetailsRequest:
+class PutTransportDetailsRequest(__BaseObject):
     """
     The request schema for a putTransportDetails operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "IsPartnered" in data:
             self.IsPartnered: bool = convert_bool(data["IsPartnered"])
@@ -1354,13 +1354,13 @@ class PutTransportDetailsRequest:
             self.TransportDetails: TransportDetailInput = None
 
 
-class PutTransportDetailsResponse:
+class PutTransportDetailsResponse(__BaseObject):
     """
     Workflow status for a shipment with an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
@@ -1372,13 +1372,13 @@ class PutTransportDetailsResponse:
             self.errors: ErrorList = None
 
 
-class SKUInboundGuidance:
+class SKUInboundGuidance(__BaseObject):
     """
     Reasons why a given seller SKU is not recommended for shipment to Amazon's fulfillment network.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
@@ -1398,13 +1398,13 @@ class SKUInboundGuidance:
             self.GuidanceReasonList: GuidanceReasonList = None
 
 
-class SKUPrepInstructions:
+class SKUPrepInstructions(__BaseObject):
     """
     Labeling requirements and item preparation instructions to help you prepare items for shipment to Amazon's fulfillment network.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerSKU" in data:
             self.SellerSKU: str = str(data["SellerSKU"])
@@ -1434,13 +1434,13 @@ class SKUPrepInstructions:
             self.AmazonPrepFeesDetailsList: AmazonPrepFeesDetailsList = None
 
 
-class TransportContent:
+class TransportContent(__BaseObject):
     """
     Inbound shipment information, including carrier details, shipment status, and the workflow status for a request for shipment with an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TransportHeader" in data:
             self.TransportHeader: TransportHeader = TransportHeader(data["TransportHeader"])
@@ -1456,13 +1456,13 @@ class TransportContent:
             self.TransportResult: TransportResult = None
 
 
-class TransportDetailInput:
+class TransportDetailInput(__BaseObject):
     """
     Information required to create an Amazon-partnered carrier shipping estimate, or to alert the Amazon fulfillment center to the arrival of an inbound shipment by a non-Amazon-partnered carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PartneredSmallParcelData" in data:
             self.PartneredSmallParcelData: PartneredSmallParcelDataInput = PartneredSmallParcelDataInput(
@@ -1486,13 +1486,13 @@ class TransportDetailInput:
             self.NonPartneredLtlData: NonPartneredLtlDataInput = None
 
 
-class TransportDetailOutput:
+class TransportDetailOutput(__BaseObject):
     """
     Inbound shipment information, including carrier details and shipment status.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PartneredSmallParcelData" in data:
             self.PartneredSmallParcelData: PartneredSmallParcelDataOutput = PartneredSmallParcelDataOutput(
@@ -1516,13 +1516,13 @@ class TransportDetailOutput:
             self.NonPartneredLtlData: NonPartneredLtlDataOutput = None
 
 
-class TransportHeader:
+class TransportHeader(__BaseObject):
     """
     The shipping identifier, information about whether the shipment is by an Amazon-partnered carrier, and information about whether the shipment is Small Parcel or Less Than Truckload/Full Truckload (LTL/FTL).
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerId" in data:
             self.SellerId: str = str(data["SellerId"])
@@ -1542,13 +1542,13 @@ class TransportHeader:
             self.ShipmentType: ShipmentType = None
 
 
-class TransportResult:
+class TransportResult(__BaseObject):
     """
     The workflow status for a shipment with an Amazon-partnered carrier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TransportStatus" in data:
             self.TransportStatus: TransportStatus = TransportStatus(data["TransportStatus"])
@@ -1564,13 +1564,13 @@ class TransportResult:
             self.ErrorDescription: str = None
 
 
-class VoidTransportResponse:
+class VoidTransportResponse(__BaseObject):
     """
     The response schema for the voidTransport operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CommonTransportResult = CommonTransportResult(data["payload"])
@@ -1582,13 +1582,13 @@ class VoidTransportResponse:
             self.errors: ErrorList = None
 
 
-class Weight:
+class Weight(__BaseObject):
     """
     The weight of the package.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Value" in data:
             self.Value: BigDecimalType = BigDecimalType(data["Value"])

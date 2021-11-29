@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetItemEligibilityPreviewResponse:
+class GetItemEligibilityPreviewResponse(__BaseObject):
     """
     The response schema for the getItemEligibilityPreview operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ItemEligibilityPreview = ItemEligibilityPreview(data["payload"])
@@ -20,13 +20,13 @@ class GetItemEligibilityPreviewResponse:
             self.errors: ErrorList = None
 
 
-class ItemEligibilityPreview:
+class ItemEligibilityPreview(__BaseObject):
     """
     The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
@@ -50,13 +50,13 @@ class ItemEligibilityPreview:
             self.ineligibilityReasonList: _List[str] = []
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

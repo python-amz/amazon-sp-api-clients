@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class ReportDocumentEncryptionDetails:
+class ReportDocumentEncryptionDetails(__BaseObject):
     """
     Encryption details required for decryption of a report document's contents.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "standard" in data:
             self.standard: str = str(data["standard"])
@@ -46,11 +46,11 @@ class ReportDocumentEncryptionDetails:
             self.key: str = None
 
 
-class Report:
+class Report(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceIds" in data:
             self.marketplaceIds: _List[str] = [str(datum) for datum in data["marketplaceIds"]]
@@ -98,11 +98,11 @@ class Report:
             self.reportDocumentId: str = None
 
 
-class CreateReportScheduleSpecification:
+class CreateReportScheduleSpecification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportType" in data:
             self.reportType: str = str(data["reportType"])
@@ -126,11 +126,11 @@ class CreateReportScheduleSpecification:
             self.nextReportCreationTime: str = None
 
 
-class CreateReportSpecification:
+class CreateReportSpecification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportOptions" in data:
             self.reportOptions: ReportOptions = ReportOptions(data["reportOptions"])
@@ -154,23 +154,23 @@ class CreateReportSpecification:
             self.marketplaceIds: _List[str] = []
 
 
-class ReportOptions:
+class ReportOptions(__BaseObject):
     """
     Additional information passed to reports. This varies by report type.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
 
 
-class ReportSchedule:
+class ReportSchedule(__BaseObject):
     """
     Detailed information about a report schedule.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportScheduleId" in data:
             self.reportScheduleId: str = str(data["reportScheduleId"])
@@ -198,11 +198,11 @@ class ReportSchedule:
             self.nextReportCreationTime: str = None
 
 
-class CreateReportResult:
+class CreateReportResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportId" in data:
             self.reportId: str = str(data["reportId"])
@@ -210,13 +210,13 @@ class CreateReportResult:
             self.reportId: str = None
 
 
-class GetReportsResponse:
+class GetReportsResponse(__BaseObject):
     """
     The response for the getReports operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ReportList = ReportList(data["payload"])
@@ -232,13 +232,13 @@ class GetReportsResponse:
             self.errors: ErrorList = None
 
 
-class CreateReportResponse:
+class CreateReportResponse(__BaseObject):
     """
     The response for the createReport operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CreateReportResult = CreateReportResult(data["payload"])
@@ -250,13 +250,13 @@ class CreateReportResponse:
             self.errors: ErrorList = None
 
 
-class CancelReportResponse:
+class CancelReportResponse(__BaseObject):
     """
     The response for the cancelReport operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -264,13 +264,13 @@ class CancelReportResponse:
             self.errors: ErrorList = None
 
 
-class CancelReportScheduleResponse:
+class CancelReportScheduleResponse(__BaseObject):
     """
     The response for the cancelReportSchedule operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -278,13 +278,13 @@ class CancelReportScheduleResponse:
             self.errors: ErrorList = None
 
 
-class GetReportResponse:
+class GetReportResponse(__BaseObject):
     """
     The response for the getReport operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Report = Report(data["payload"])
@@ -296,13 +296,13 @@ class GetReportResponse:
             self.errors: ErrorList = None
 
 
-class GetReportSchedulesResponse:
+class GetReportSchedulesResponse(__BaseObject):
     """
     The response for the getReportSchedules operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ReportScheduleList = ReportScheduleList(data["payload"])
@@ -314,13 +314,13 @@ class GetReportSchedulesResponse:
             self.errors: ErrorList = None
 
 
-class GetReportScheduleResponse:
+class GetReportScheduleResponse(__BaseObject):
     """
     The response for the getReportSchedule operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ReportSchedule = ReportSchedule(data["payload"])
@@ -332,11 +332,11 @@ class GetReportScheduleResponse:
             self.errors: ErrorList = None
 
 
-class CreateReportScheduleResult:
+class CreateReportScheduleResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportScheduleId" in data:
             self.reportScheduleId: str = str(data["reportScheduleId"])
@@ -344,13 +344,13 @@ class CreateReportScheduleResult:
             self.reportScheduleId: str = None
 
 
-class CreateReportScheduleResponse:
+class CreateReportScheduleResponse(__BaseObject):
     """
     The response for the createReportSchedule operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CreateReportScheduleResult = CreateReportScheduleResult(data["payload"])
@@ -362,11 +362,11 @@ class CreateReportScheduleResponse:
             self.errors: ErrorList = None
 
 
-class ReportDocument:
+class ReportDocument(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportDocumentId" in data:
             self.reportDocumentId: str = str(data["reportDocumentId"])
@@ -388,13 +388,13 @@ class ReportDocument:
             self.compressionAlgorithm: str = None
 
 
-class GetReportDocumentResponse:
+class GetReportDocumentResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ReportDocument = ReportDocument(data["payload"])

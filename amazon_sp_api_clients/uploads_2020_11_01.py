@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class CreateUploadDestinationResponse:
+class CreateUploadDestinationResponse(__BaseObject):
     """
     The response schema for the createUploadDestination operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: UploadDestination = UploadDestination(data["payload"])
@@ -20,13 +20,13 @@ class CreateUploadDestinationResponse:
             self.errors: ErrorList = None
 
 
-class UploadDestination:
+class UploadDestination(__BaseObject):
     """
     Information about an upload destination.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "uploadDestinationId" in data:
             self.uploadDestinationId: str = str(data["uploadDestinationId"])
@@ -42,13 +42,13 @@ class UploadDestination:
             self.headers: dict = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

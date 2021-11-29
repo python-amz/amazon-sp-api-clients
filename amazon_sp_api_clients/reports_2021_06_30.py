@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
@@ -16,13 +16,13 @@ class ErrorList:
             self.errors: _List[Error] = []
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -38,13 +38,13 @@ class Error:
             self.details: str = None
 
 
-class Report:
+class Report(__BaseObject):
     """
     Detailed information about the report.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceIds" in data:
             self.marketplaceIds: _List[str] = [str(datum) for datum in data["marketplaceIds"]]
@@ -92,11 +92,11 @@ class Report:
             self.reportDocumentId: str = None
 
 
-class CreateReportScheduleSpecification:
+class CreateReportScheduleSpecification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportType" in data:
             self.reportType: str = str(data["reportType"])
@@ -120,13 +120,13 @@ class CreateReportScheduleSpecification:
             self.nextReportCreationTime: str = None
 
 
-class CreateReportSpecification:
+class CreateReportSpecification(__BaseObject):
     """
     Information required to create the report.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportOptions" in data:
             self.reportOptions: ReportOptions = ReportOptions(data["reportOptions"])
@@ -150,23 +150,23 @@ class CreateReportSpecification:
             self.marketplaceIds: _List[str] = []
 
 
-class ReportOptions:
+class ReportOptions(__BaseObject):
     """
     Additional information passed to reports. This varies by report type.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
 
 
-class ReportSchedule:
+class ReportSchedule(__BaseObject):
     """
     Detailed information about a report schedule.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportScheduleId" in data:
             self.reportScheduleId: str = str(data["reportScheduleId"])
@@ -194,13 +194,13 @@ class ReportSchedule:
             self.nextReportCreationTime: str = None
 
 
-class ReportScheduleList:
+class ReportScheduleList(__BaseObject):
     """
     A list of report schedules.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportSchedules" in data:
             self.reportSchedules: _List[ReportSchedule] = [ReportSchedule(datum) for datum in data["reportSchedules"]]
@@ -208,13 +208,13 @@ class ReportScheduleList:
             self.reportSchedules: _List[ReportSchedule] = []
 
 
-class CreateReportResponse:
+class CreateReportResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportId" in data:
             self.reportId: str = str(data["reportId"])
@@ -222,13 +222,13 @@ class CreateReportResponse:
             self.reportId: str = None
 
 
-class GetReportsResponse:
+class GetReportsResponse(__BaseObject):
     """
     The response for the getReports operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reports" in data:
             self.reports: ReportList = ReportList(data["reports"])
@@ -240,13 +240,13 @@ class GetReportsResponse:
             self.nextToken: str = None
 
 
-class CreateReportScheduleResponse:
+class CreateReportScheduleResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportScheduleId" in data:
             self.reportScheduleId: str = str(data["reportScheduleId"])
@@ -254,13 +254,13 @@ class CreateReportScheduleResponse:
             self.reportScheduleId: str = None
 
 
-class ReportDocument:
+class ReportDocument(__BaseObject):
     """
     Information required for the report document.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reportDocumentId" in data:
             self.reportDocumentId: str = str(data["reportDocumentId"])

@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     A physical address.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -74,13 +74,13 @@ class Address:
             self.phone: str = None
 
 
-class CODSettings:
+class CODSettings(__BaseObject):
     """
     The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "isCodRequired" in data:
             self.isCodRequired: bool = convert_bool(data["isCodRequired"])
@@ -104,13 +104,13 @@ class CODSettings:
             self.shippingChargeTax: Money = None
 
 
-class CreateFulfillmentOrderItem:
+class CreateFulfillmentOrderItem(__BaseObject):
     """
     Item information for creating a fulfillment order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -150,13 +150,13 @@ class CreateFulfillmentOrderItem:
             self.perUnitTax: Money = None
 
 
-class CreateFulfillmentOrderRequest:
+class CreateFulfillmentOrderRequest(__BaseObject):
     """
     The request body schema for the createFulfillmentOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -222,13 +222,13 @@ class CreateFulfillmentOrderRequest:
             self.items: CreateFulfillmentOrderItemList = None
 
 
-class CreateFulfillmentReturnRequest:
+class CreateFulfillmentReturnRequest(__BaseObject):
     """
     The createFulfillmentReturn operation creates a fulfillment return for items that were fulfilled using the createFulfillmentOrder operation. For calls to createFulfillmentReturn, you must include ReturnReasonCode values returned by a previous call to the listReturnReasonCodes operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "items" in data:
             self.items: CreateReturnItemList = CreateReturnItemList(data["items"])
@@ -236,11 +236,11 @@ class CreateFulfillmentReturnRequest:
             self.items: CreateReturnItemList = None
 
 
-class CreateFulfillmentReturnResult:
+class CreateFulfillmentReturnResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "returnItems" in data:
             self.returnItems: ReturnItemList = ReturnItemList(data["returnItems"])
@@ -256,13 +256,13 @@ class CreateFulfillmentReturnResult:
             self.returnAuthorizations: ReturnAuthorizationList = None
 
 
-class CreateFulfillmentReturnResponse:
+class CreateFulfillmentReturnResponse(__BaseObject):
     """
     The response schema for the createFulfillmentReturn operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CreateFulfillmentReturnResult = CreateFulfillmentReturnResult(data["payload"])
@@ -274,13 +274,13 @@ class CreateFulfillmentReturnResponse:
             self.errors: ErrorList = None
 
 
-class CreateReturnItem:
+class CreateReturnItem(__BaseObject):
     """
     An item that Amazon accepted for return.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerReturnItemId" in data:
             self.sellerReturnItemId: str = str(data["sellerReturnItemId"])
@@ -304,13 +304,13 @@ class CreateReturnItem:
             self.returnComment: str = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     An amount of money, including units in the form of currency.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
@@ -322,13 +322,13 @@ class Money:
             self.value: Decimal = None
 
 
-class DeliveryWindow:
+class DeliveryWindow(__BaseObject):
     """
     The time range within which a Scheduled Delivery fulfillment order should be delivered.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "startDate" in data:
             self.startDate: Timestamp = Timestamp(data["startDate"])
@@ -340,13 +340,13 @@ class DeliveryWindow:
             self.endDate: Timestamp = None
 
 
-class Fee:
+class Fee(__BaseObject):
     """
     Fee type and cost.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -358,13 +358,13 @@ class Fee:
             self.amount: Money = None
 
 
-class FulfillmentOrder:
+class FulfillmentOrder(__BaseObject):
     """
     General information about a fulfillment order, including its status.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerFulfillmentOrderId" in data:
             self.sellerFulfillmentOrderId: str = str(data["sellerFulfillmentOrderId"])
@@ -434,13 +434,13 @@ class FulfillmentOrder:
             self.featureConstraints: _List[FeatureSettings] = []
 
 
-class FulfillmentOrderItem:
+class FulfillmentOrderItem(__BaseObject):
     """
     Item information for a fulfillment order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -500,13 +500,13 @@ class FulfillmentOrderItem:
             self.perUnitDeclaredValue: Money = None
 
 
-class FulfillmentPreview:
+class FulfillmentPreview(__BaseObject):
     """
     Information about a fulfillment order preview, including delivery and fee information based on shipping method.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shippingSpeedCategory" in data:
             self.shippingSpeedCategory: ShippingSpeedCategory = ShippingSpeedCategory(data["shippingSpeedCategory"])
@@ -560,13 +560,13 @@ class FulfillmentPreview:
             self.featureConstraints: _List[FeatureSettings] = []
 
 
-class FulfillmentPreviewItem:
+class FulfillmentPreviewItem(__BaseObject):
     """
     Item information for a shipment in a fulfillment order preview.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -590,13 +590,13 @@ class FulfillmentPreviewItem:
             self.shippingWeightCalculationMethod: str = None
 
 
-class FulfillmentPreviewShipment:
+class FulfillmentPreviewShipment(__BaseObject):
     """
     Delivery and item information for a shipment in a fulfillment order preview.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "earliestShipDate" in data:
             self.earliestShipDate: Timestamp = Timestamp(data["earliestShipDate"])
@@ -626,13 +626,13 @@ class FulfillmentPreviewShipment:
             self.fulfillmentPreviewItems: FulfillmentPreviewItemList = None
 
 
-class FulfillmentShipment:
+class FulfillmentShipment(__BaseObject):
     """
     Delivery and item information for a shipment in a fulfillment order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "amazonShipmentId" in data:
             self.amazonShipmentId: str = str(data["amazonShipmentId"])
@@ -672,13 +672,13 @@ class FulfillmentShipment:
             self.fulfillmentShipmentPackage: FulfillmentShipmentPackageList = None
 
 
-class FulfillmentShipmentItem:
+class FulfillmentShipmentItem(__BaseObject):
     """
     Item information for a shipment in a fulfillment order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -702,13 +702,13 @@ class FulfillmentShipmentItem:
             self.serialNumber: str = None
 
 
-class FulfillmentShipmentPackage:
+class FulfillmentShipmentPackage(__BaseObject):
     """
     Package information for a shipment in a fulfillment order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "packageNumber" in data:
             self.packageNumber: int = int(data["packageNumber"])
@@ -728,11 +728,11 @@ class FulfillmentShipmentPackage:
             self.estimatedArrivalDate: Timestamp = None
 
 
-class GetFulfillmentOrderResult:
+class GetFulfillmentOrderResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "fulfillmentOrder" in data:
             self.fulfillmentOrder: FulfillmentOrder = FulfillmentOrder(data["fulfillmentOrder"])
@@ -758,13 +758,13 @@ class GetFulfillmentOrderResult:
             self.returnAuthorizations: ReturnAuthorizationList = None
 
 
-class GetFulfillmentOrderResponse:
+class GetFulfillmentOrderResponse(__BaseObject):
     """
     The response schema for the getFulfillmentOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetFulfillmentOrderResult = GetFulfillmentOrderResult(data["payload"])
@@ -776,13 +776,13 @@ class GetFulfillmentOrderResponse:
             self.errors: ErrorList = None
 
 
-class GetFulfillmentPreviewItem:
+class GetFulfillmentPreviewItem(__BaseObject):
     """
     Item information for a fulfillment order preview.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -802,13 +802,13 @@ class GetFulfillmentPreviewItem:
             self.sellerFulfillmentOrderItemId: str = None
 
 
-class GetFulfillmentPreviewRequest:
+class GetFulfillmentPreviewRequest(__BaseObject):
     """
     The request body schema for the getFulfillmentPreview operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -844,13 +844,13 @@ class GetFulfillmentPreviewRequest:
             self.featureConstraints: _List[FeatureSettings] = []
 
 
-class GetFulfillmentPreviewResult:
+class GetFulfillmentPreviewResult(__BaseObject):
     """
     A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and estimated ship dates and arrival dates.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "fulfillmentPreviews" in data:
             self.fulfillmentPreviews: FulfillmentPreviewList = FulfillmentPreviewList(data["fulfillmentPreviews"])
@@ -858,13 +858,13 @@ class GetFulfillmentPreviewResult:
             self.fulfillmentPreviews: FulfillmentPreviewList = None
 
 
-class GetFulfillmentPreviewResponse:
+class GetFulfillmentPreviewResponse(__BaseObject):
     """
     The response schema for the getFulfillmentPreview operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetFulfillmentPreviewResult = GetFulfillmentPreviewResult(data["payload"])
@@ -876,13 +876,13 @@ class GetFulfillmentPreviewResponse:
             self.errors: ErrorList = None
 
 
-class InvalidItemReason:
+class InvalidItemReason(__BaseObject):
     """
     The reason that the item is invalid for return.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "invalidItemReasonCode" in data:
             self.invalidItemReasonCode: InvalidItemReasonCode = InvalidItemReasonCode(data["invalidItemReasonCode"])
@@ -894,13 +894,13 @@ class InvalidItemReason:
             self.description: str = None
 
 
-class InvalidReturnItem:
+class InvalidReturnItem(__BaseObject):
     """
     An item that is invalid for return.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerReturnItemId" in data:
             self.sellerReturnItemId: str = str(data["sellerReturnItemId"])
@@ -916,11 +916,11 @@ class InvalidReturnItem:
             self.invalidItemReason: InvalidItemReason = None
 
 
-class ListAllFulfillmentOrdersResult:
+class ListAllFulfillmentOrdersResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "nextToken" in data:
             self.nextToken: str = str(data["nextToken"])
@@ -934,13 +934,13 @@ class ListAllFulfillmentOrdersResult:
             self.fulfillmentOrders: _List[FulfillmentOrder] = []
 
 
-class ListAllFulfillmentOrdersResponse:
+class ListAllFulfillmentOrdersResponse(__BaseObject):
     """
     The response schema for the listAllFulfillmentOrders operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ListAllFulfillmentOrdersResult = ListAllFulfillmentOrdersResult(data["payload"])
@@ -952,11 +952,11 @@ class ListAllFulfillmentOrdersResponse:
             self.errors: ErrorList = None
 
 
-class ListReturnReasonCodesResult:
+class ListReturnReasonCodesResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "reasonCodeDetails" in data:
             self.reasonCodeDetails: ReasonCodeDetailsList = ReasonCodeDetailsList(data["reasonCodeDetails"])
@@ -964,13 +964,13 @@ class ListReturnReasonCodesResult:
             self.reasonCodeDetails: ReasonCodeDetailsList = None
 
 
-class ListReturnReasonCodesResponse:
+class ListReturnReasonCodesResponse(__BaseObject):
     """
     The response schema for the listReturnReasonCodes operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ListReturnReasonCodesResult = ListReturnReasonCodesResult(data["payload"])
@@ -982,11 +982,11 @@ class ListReturnReasonCodesResponse:
             self.errors: ErrorList = None
 
 
-class PackageTrackingDetails:
+class PackageTrackingDetails(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "packageNumber" in data:
             self.packageNumber: int = int(data["packageNumber"])
@@ -1046,13 +1046,13 @@ class PackageTrackingDetails:
             self.trackingEvents: TrackingEventList = None
 
 
-class GetPackageTrackingDetailsResponse:
+class GetPackageTrackingDetailsResponse(__BaseObject):
     """
     The response schema for the getPackageTrackingDetails operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: PackageTrackingDetails = PackageTrackingDetails(data["payload"])
@@ -1064,13 +1064,13 @@ class GetPackageTrackingDetailsResponse:
             self.errors: ErrorList = None
 
 
-class ReasonCodeDetails:
+class ReasonCodeDetails(__BaseObject):
     """
     A return reason code, a description, and an optional description translation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "returnReasonCode" in data:
             self.returnReasonCode: str = str(data["returnReasonCode"])
@@ -1086,13 +1086,13 @@ class ReasonCodeDetails:
             self.translatedDescription: str = None
 
 
-class ReturnAuthorization:
+class ReturnAuthorization(__BaseObject):
     """
     Return authorization information for items accepted for return.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "returnAuthorizationId" in data:
             self.returnAuthorizationId: str = str(data["returnAuthorizationId"])
@@ -1116,13 +1116,13 @@ class ReturnAuthorization:
             self.rmaPageURL: str = None
 
 
-class ReturnItem:
+class ReturnItem(__BaseObject):
     """
     An item that Amazon accepted for return.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerReturnItemId" in data:
             self.sellerReturnItemId: str = str(data["sellerReturnItemId"])
@@ -1170,13 +1170,13 @@ class ReturnItem:
             self.fulfillmentCenterId: str = None
 
 
-class ScheduledDeliveryInfo:
+class ScheduledDeliveryInfo(__BaseObject):
     """
     Delivery information for a scheduled delivery.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "deliveryTimeZone" in data:
             self.deliveryTimeZone: str = str(data["deliveryTimeZone"])
@@ -1188,13 +1188,13 @@ class ScheduledDeliveryInfo:
             self.deliveryWindows: DeliveryWindowList = None
 
 
-class TrackingAddress:
+class TrackingAddress(__BaseObject):
     """
     Address information for tracking the package.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "city" in data:
             self.city: str = str(data["city"])
@@ -1210,13 +1210,13 @@ class TrackingAddress:
             self.country: str = None
 
 
-class TrackingEvent:
+class TrackingEvent(__BaseObject):
     """
     Information for tracking package deliveries.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "eventDate" in data:
             self.eventDate: Timestamp = Timestamp(data["eventDate"])
@@ -1236,13 +1236,13 @@ class TrackingEvent:
             self.eventDescription: str = None
 
 
-class UnfulfillablePreviewItem:
+class UnfulfillablePreviewItem(__BaseObject):
     """
     Information about unfulfillable items in a fulfillment order preview.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -1262,13 +1262,13 @@ class UnfulfillablePreviewItem:
             self.itemUnfulfillableReasons: StringList = None
 
 
-class UpdateFulfillmentOrderItem:
+class UpdateFulfillmentOrderItem(__BaseObject):
     """
     Item information for updating a fulfillment order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -1312,11 +1312,11 @@ class UpdateFulfillmentOrderItem:
             self.perUnitTax: Money = None
 
 
-class UpdateFulfillmentOrderRequest:
+class UpdateFulfillmentOrderRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -1370,13 +1370,13 @@ class UpdateFulfillmentOrderRequest:
             self.items: UpdateFulfillmentOrderItemList = None
 
 
-class UpdateFulfillmentOrderResponse:
+class UpdateFulfillmentOrderResponse(__BaseObject):
     """
     The response schema for the updateFulfillmentOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -1384,13 +1384,13 @@ class UpdateFulfillmentOrderResponse:
             self.errors: ErrorList = None
 
 
-class CreateFulfillmentOrderResponse:
+class CreateFulfillmentOrderResponse(__BaseObject):
     """
     The response schema for the createFulfillmentOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -1398,13 +1398,13 @@ class CreateFulfillmentOrderResponse:
             self.errors: ErrorList = None
 
 
-class CancelFulfillmentOrderResponse:
+class CancelFulfillmentOrderResponse(__BaseObject):
     """
     The response schema for the cancelFulfillmentOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -1412,13 +1412,13 @@ class CancelFulfillmentOrderResponse:
             self.errors: ErrorList = None
 
 
-class Weight:
+class Weight(__BaseObject):
     """
     The weight.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "unit" in data:
             self.unit: str = str(data["unit"])
@@ -1430,13 +1430,13 @@ class Weight:
             self.value: str = None
 
 
-class GetFeatureInventoryResponse:
+class GetFeatureInventoryResponse(__BaseObject):
     """
     The breakdown of eligibility inventory by feature.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetFeatureInventoryResult = GetFeatureInventoryResult(data["payload"])
@@ -1448,13 +1448,13 @@ class GetFeatureInventoryResponse:
             self.errors: ErrorList = None
 
 
-class GetFeatureInventoryResult:
+class GetFeatureInventoryResult(__BaseObject):
     """
     The payload for the getEligibileInventory operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -1474,13 +1474,13 @@ class GetFeatureInventoryResult:
             self.featureSkus: _List[FeatureSku] = []
 
 
-class FeatureSku:
+class FeatureSku(__BaseObject):
     """
     Information about an SKU, including the count available, identifiers, and a list of overlapping SKUs that share the same inventory pool.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerSku" in data:
             self.sellerSku: str = str(data["sellerSku"])
@@ -1504,13 +1504,13 @@ class FeatureSku:
             self.overlappingSkus: _List[str] = []
 
 
-class GetFeaturesResponse:
+class GetFeaturesResponse(__BaseObject):
     """
     The response schema for the getFeatures operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetFeaturesResult = GetFeaturesResult(data["payload"])
@@ -1522,13 +1522,13 @@ class GetFeaturesResponse:
             self.errors: ErrorList = None
 
 
-class GetFeaturesResult:
+class GetFeaturesResult(__BaseObject):
     """
     The payload for the getFeatures operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "features" in data:
             self.features: Features = Features(data["features"])
@@ -1536,13 +1536,13 @@ class GetFeaturesResult:
             self.features: Features = None
 
 
-class Feature:
+class Feature(__BaseObject):
     """
     A Multi-Channel Fulfillment feature.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "featureName" in data:
             self.featureName: str = str(data["featureName"])
@@ -1558,13 +1558,13 @@ class Feature:
             self.sellerEligible: bool = None
 
 
-class GetFeatureSkuResponse:
+class GetFeatureSkuResponse(__BaseObject):
     """
     The response schema for the getFeatureSKU operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetFeatureSkuResult = GetFeatureSkuResult(data["payload"])
@@ -1576,13 +1576,13 @@ class GetFeatureSkuResponse:
             self.errors: ErrorList = None
 
 
-class GetFeatureSkuResult:
+class GetFeatureSkuResult(__BaseObject):
     """
     The payload for the getFeatureSKU operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -1606,13 +1606,13 @@ class GetFeatureSkuResult:
             self.skuInfo: FeatureSku = None
 
 
-class FeatureSettings:
+class FeatureSettings(__BaseObject):
     """
     FeatureSettings allows users to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, use featureName as BLOCK_AMZL and featureFulfillmentPolicy as Required. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using BLOCK_AMZL in an order request will take precedence over your Seller Central account setting.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "featureName" in data:
             self.featureName: str = str(data["featureName"])

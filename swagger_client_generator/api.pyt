@@ -1,13 +1,13 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 {% for component_name, component in dict_components.items() %}
-class {{ component_name }}:
+class {{ component_name }}(__BaseObject):
     """
     {{component.source.description}}
     """
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
     {% for name, property in component.properties.items() %}
         if '{{ name }}' in data:

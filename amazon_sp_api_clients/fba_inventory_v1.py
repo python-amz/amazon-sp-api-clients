@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Granularity:
+class Granularity(__BaseObject):
     """
     Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "granularityType" in data:
             self.granularityType: str = str(data["granularityType"])
@@ -20,13 +20,13 @@ class Granularity:
             self.granularityId: str = None
 
 
-class ReservedQuantity:
+class ReservedQuantity(__BaseObject):
     """
     The quantity of reserved inventory.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "totalReservedQuantity" in data:
             self.totalReservedQuantity: int = int(data["totalReservedQuantity"])
@@ -46,13 +46,13 @@ class ReservedQuantity:
             self.fcProcessingQuantity: int = None
 
 
-class ResearchingQuantityEntry:
+class ResearchingQuantityEntry(__BaseObject):
     """
     The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -64,13 +64,13 @@ class ResearchingQuantityEntry:
             self.quantity: int = None
 
 
-class ResearchingQuantity:
+class ResearchingQuantity(__BaseObject):
     """
     The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "totalResearchingQuantity" in data:
             self.totalResearchingQuantity: int = int(data["totalResearchingQuantity"])
@@ -84,13 +84,13 @@ class ResearchingQuantity:
             self.researchingQuantityBreakdown: _List[ResearchingQuantityEntry] = []
 
 
-class UnfulfillableQuantity:
+class UnfulfillableQuantity(__BaseObject):
     """
     The quantity of unfulfillable inventory.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "totalUnfulfillableQuantity" in data:
             self.totalUnfulfillableQuantity: int = int(data["totalUnfulfillableQuantity"])
@@ -122,13 +122,13 @@ class UnfulfillableQuantity:
             self.expiredQuantity: int = None
 
 
-class InventoryDetails:
+class InventoryDetails(__BaseObject):
     """
     Summarized inventory details. This object will not appear if the details parameter in the request is false.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "fulfillableQuantity" in data:
             self.fulfillableQuantity: int = int(data["fulfillableQuantity"])
@@ -160,13 +160,13 @@ class InventoryDetails:
             self.unfulfillableQuantity: UnfulfillableQuantity = None
 
 
-class InventorySummary:
+class InventorySummary(__BaseObject):
     """
     Inventory summary for a specific item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
@@ -202,13 +202,13 @@ class InventorySummary:
             self.totalQuantity: int = None
 
 
-class Pagination:
+class Pagination(__BaseObject):
     """
     The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "nextToken" in data:
             self.nextToken: str = str(data["nextToken"])
@@ -216,13 +216,13 @@ class Pagination:
             self.nextToken: str = None
 
 
-class GetInventorySummariesResult:
+class GetInventorySummariesResult(__BaseObject):
     """
     The payload schema for the getInventorySummaries operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "granularity" in data:
             self.granularity: Granularity = Granularity(data["granularity"])
@@ -234,13 +234,13 @@ class GetInventorySummariesResult:
             self.inventorySummaries: InventorySummaries = None
 
 
-class GetInventorySummariesResponse:
+class GetInventorySummariesResponse(__BaseObject):
     """
     The Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetInventorySummariesResult = GetInventorySummariesResult(data["payload"])
@@ -256,13 +256,13 @@ class GetInventorySummariesResponse:
             self.errors: ErrorList = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

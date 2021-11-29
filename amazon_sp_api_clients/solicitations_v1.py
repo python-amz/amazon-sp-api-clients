@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class LinkObject:
+class LinkObject(__BaseObject):
     """
     A Link object.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "href" in data:
             self.href: str = str(data["href"])
@@ -20,13 +20,13 @@ class LinkObject:
             self.name: str = None
 
 
-class SolicitationsAction:
+class SolicitationsAction(__BaseObject):
     """
     A simple object containing the name of the template.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -34,23 +34,23 @@ class SolicitationsAction:
             self.name: str = None
 
 
-class Schema:
+class Schema(__BaseObject):
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
 
 
-class GetSolicitationActionsForOrderResponse:
+class GetSolicitationActionsForOrderResponse(__BaseObject):
     """
     The response schema for the getSolicitationActionsForOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
@@ -66,13 +66,13 @@ class GetSolicitationActionsForOrderResponse:
             self.errors: ErrorList = None
 
 
-class GetSolicitationActionResponse:
+class GetSolicitationActionResponse(__BaseObject):
     """
     Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
@@ -92,11 +92,11 @@ class GetSolicitationActionResponse:
             self.errors: ErrorList = None
 
 
-class GetSchemaResponse:
+class GetSchemaResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "_links" in data:
             self._links: dict = dict(data["_links"])
@@ -112,13 +112,13 @@ class GetSchemaResponse:
             self.errors: ErrorList = None
 
 
-class CreateProductReviewAndSellerFeedbackSolicitationResponse:
+class CreateProductReviewAndSellerFeedbackSolicitationResponse(__BaseObject):
     """
     The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -126,13 +126,13 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
             self.errors: ErrorList = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

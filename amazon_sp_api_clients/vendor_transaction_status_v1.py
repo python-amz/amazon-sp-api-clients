@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetTransactionResponse:
+class GetTransactionResponse(__BaseObject):
     """
     The response schema for the getTransaction operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionStatus = TransactionStatus(data["payload"])
@@ -20,11 +20,11 @@ class GetTransactionResponse:
             self.errors: ErrorList = None
 
 
-class TransactionStatus:
+class TransactionStatus(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "transactionStatus" in data:
             self.transactionStatus: Transaction = Transaction(data["transactionStatus"])
@@ -32,13 +32,13 @@ class TransactionStatus:
             self.transactionStatus: Transaction = None
 
 
-class Transaction:
+class Transaction(__BaseObject):
     """
     The transaction status.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "transactionId" in data:
             self.transactionId: str = str(data["transactionId"])
@@ -54,13 +54,13 @@ class Transaction:
             self.errors: ErrorList = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

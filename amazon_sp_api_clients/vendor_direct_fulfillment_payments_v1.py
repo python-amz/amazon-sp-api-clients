@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class SubmitInvoiceRequest:
+class SubmitInvoiceRequest(__BaseObject):
     """
     The request schema for the submitInvoice operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "invoices" in data:
             self.invoices: _List[InvoiceDetail] = [InvoiceDetail(datum) for datum in data["invoices"]]
@@ -16,11 +16,11 @@ class SubmitInvoiceRequest:
             self.invoices: _List[InvoiceDetail] = []
 
 
-class InvoiceDetail:
+class InvoiceDetail(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "invoiceNumber" in data:
             self.invoiceNumber: str = str(data["invoiceNumber"])
@@ -78,11 +78,11 @@ class InvoiceDetail:
             self.items: _List[InvoiceItem] = []
 
 
-class InvoiceItem:
+class InvoiceItem(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemSequenceNumber" in data:
             self.itemSequenceNumber: str = str(data["itemSequenceNumber"])
@@ -126,11 +126,11 @@ class InvoiceItem:
             self.chargeDetails: _List[ChargeDetails] = []
 
 
-class PartyIdentification:
+class PartyIdentification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "partyId" in data:
             self.partyId: str = str(data["partyId"])
@@ -148,13 +148,13 @@ class PartyIdentification:
             self.taxRegistrationDetails: _List[TaxRegistrationDetail] = []
 
 
-class TaxRegistrationDetail:
+class TaxRegistrationDetail(__BaseObject):
     """
     Tax registration details of the entity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "taxRegistrationType" in data:
             self.taxRegistrationType: str = str(data["taxRegistrationType"])
@@ -174,13 +174,13 @@ class TaxRegistrationDetail:
             self.taxRegistrationMessage: str = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     Address of the party.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -228,13 +228,13 @@ class Address:
             self.phone: str = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     An amount of money, including units in the form of currency.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
@@ -246,13 +246,13 @@ class Money:
             self.amount: Decimal = None
 
 
-class TaxDetail:
+class TaxDetail(__BaseObject):
     """
     Details of tax amount applied.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "taxType" in data:
             self.taxType: str = str(data["taxType"])
@@ -272,13 +272,13 @@ class TaxDetail:
             self.taxableAmount: Money = None
 
 
-class ChargeDetails:
+class ChargeDetails(__BaseObject):
     """
     Monetary and tax details of the charge.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "type" in data:
             self.type: str = str(data["type"])
@@ -294,13 +294,13 @@ class ChargeDetails:
             self.taxDetails: _List[TaxDetail] = []
 
 
-class AdditionalDetails:
+class AdditionalDetails(__BaseObject):
     """
     A field where selling party can provide additional information for tax related or any other purposes.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "type" in data:
             self.type: str = str(data["type"])
@@ -316,13 +316,13 @@ class AdditionalDetails:
             self.languageCode: str = None
 
 
-class ItemQuantity:
+class ItemQuantity(__BaseObject):
     """
     Details of item quantity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "amount" in data:
             self.amount: int = int(data["amount"])
@@ -334,13 +334,13 @@ class ItemQuantity:
             self.unitOfMeasure: str = None
 
 
-class SubmitInvoiceResponse:
+class SubmitInvoiceResponse(__BaseObject):
     """
     The response schema for the submitInvoice operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionReference = TransactionReference(data["payload"])
@@ -352,11 +352,11 @@ class SubmitInvoiceResponse:
             self.errors: ErrorList = None
 
 
-class TransactionReference:
+class TransactionReference(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "transactionId" in data:
             self.transactionId: str = str(data["transactionId"])
@@ -364,13 +364,13 @@ class TransactionReference:
             self.transactionId: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

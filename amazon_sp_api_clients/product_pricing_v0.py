@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetPricingResponse:
+class GetPricingResponse(__BaseObject):
     """
     The response schema for the getPricing and getCompetitivePricing operations.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: PriceList = PriceList(data["payload"])
@@ -20,13 +20,13 @@ class GetPricingResponse:
             self.errors: ErrorList = None
 
 
-class GetOffersResponse:
+class GetOffersResponse(__BaseObject):
     """
     The response schema for the getListingOffers and getItemOffers operations.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetOffersResult = GetOffersResult(data["payload"])
@@ -38,11 +38,11 @@ class GetOffersResponse:
             self.errors: ErrorList = None
 
 
-class GetOffersResult:
+class GetOffersResult(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceID" in data:
             self.MarketplaceID: str = str(data["MarketplaceID"])
@@ -78,11 +78,11 @@ class GetOffersResult:
             self.Offers: OfferDetailList = None
 
 
-class Price:
+class Price(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "status" in data:
             self.status: str = str(data["status"])
@@ -102,13 +102,13 @@ class Price:
             self.Product: Product = None
 
 
-class Product:
+class Product(__BaseObject):
     """
     An item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Identifiers" in data:
             self.Identifiers: IdentifierType = IdentifierType(data["Identifiers"])
@@ -136,13 +136,13 @@ class Product:
             self.Offers: OffersList = None
 
 
-class IdentifierType:
+class IdentifierType(__BaseObject):
     """
     Specifies the identifiers used to uniquely identify an item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceASIN" in data:
             self.MarketplaceASIN: ASINIdentifier = ASINIdentifier(data["MarketplaceASIN"])
@@ -154,11 +154,11 @@ class IdentifierType:
             self.SKUIdentifier: SellerSKUIdentifier = None
 
 
-class ASINIdentifier:
+class ASINIdentifier(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
@@ -170,11 +170,11 @@ class ASINIdentifier:
             self.ASIN: str = None
 
 
-class SellerSKUIdentifier:
+class SellerSKUIdentifier(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
@@ -190,13 +190,13 @@ class SellerSKUIdentifier:
             self.SellerSKU: str = None
 
 
-class CompetitivePricingType:
+class CompetitivePricingType(__BaseObject):
     """
     Competitive pricing information for the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CompetitivePrices" in data:
             self.CompetitivePrices: CompetitivePriceList = CompetitivePriceList(data["CompetitivePrices"])
@@ -214,11 +214,11 @@ class CompetitivePricingType:
             self.TradeInValue: MoneyType = None
 
 
-class CompetitivePriceType:
+class CompetitivePriceType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CompetitivePriceId" in data:
             self.CompetitivePriceId: str = str(data["CompetitivePriceId"])
@@ -258,13 +258,13 @@ class CompetitivePriceType:
             self.belongsToRequester: bool = None
 
 
-class OfferListingCountType:
+class OfferListingCountType(__BaseObject):
     """
     The number of offer listings with the specified condition.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Count" in data:
             self.Count: int = int(data["Count"])
@@ -276,11 +276,11 @@ class OfferListingCountType:
             self.condition: str = None
 
 
-class MoneyType:
+class MoneyType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
@@ -292,11 +292,11 @@ class MoneyType:
             self.Amount: float = None
 
 
-class SalesRankType:
+class SalesRankType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ProductCategoryId" in data:
             self.ProductCategoryId: str = str(data["ProductCategoryId"])
@@ -308,11 +308,11 @@ class SalesRankType:
             self.Rank: int = None
 
 
-class PriceType:
+class PriceType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "LandedPrice" in data:
             self.LandedPrice: MoneyType = MoneyType(data["LandedPrice"])
@@ -332,11 +332,11 @@ class PriceType:
             self.Points: Points = None
 
 
-class OfferType:
+class OfferType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "offerType" in data:
             self.offerType: OfferCustomerType = OfferCustomerType(data["offerType"])
@@ -378,13 +378,13 @@ class OfferType:
             self.SellerSKU: str = None
 
 
-class QuantityDiscountPriceType:
+class QuantityDiscountPriceType(__BaseObject):
     """
     Contains pricing information that includes special pricing when buying in bulk.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "quantityTier" in data:
             self.quantityTier: int = int(data["quantityTier"])
@@ -400,11 +400,11 @@ class QuantityDiscountPriceType:
             self.listingPrice: MoneyType = None
 
 
-class Points:
+class Points(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PointsNumber" in data:
             self.PointsNumber: int = int(data["PointsNumber"])
@@ -416,13 +416,13 @@ class Points:
             self.PointsMonetaryValue: MoneyType = None
 
 
-class ItemIdentifier:
+class ItemIdentifier(__BaseObject):
     """
     Information that identifies an item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
@@ -442,13 +442,13 @@ class ItemIdentifier:
             self.ItemCondition: ConditionType = None
 
 
-class Summary:
+class Summary(__BaseObject):
     """
     Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TotalOfferCount" in data:
             self.TotalOfferCount: int = int(data["TotalOfferCount"])
@@ -492,13 +492,13 @@ class Summary:
             self.OffersAvailableTime: str = None
 
 
-class OfferCountType:
+class OfferCountType(__BaseObject):
     """
     The total number of offers for the specified condition and fulfillment channel.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "condition" in data:
             self.condition: str = str(data["condition"])
@@ -514,11 +514,11 @@ class OfferCountType:
             self.OfferCount: int = None
 
 
-class LowestPriceType:
+class LowestPriceType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "condition" in data:
             self.condition: str = str(data["condition"])
@@ -558,11 +558,11 @@ class LowestPriceType:
             self.Points: Points = None
 
 
-class BuyBoxPriceType:
+class BuyBoxPriceType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "condition" in data:
             self.condition: str = str(data["condition"])
@@ -602,11 +602,11 @@ class BuyBoxPriceType:
             self.sellerId: str = None
 
 
-class OfferDetail:
+class OfferDetail(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MyOffer" in data:
             self.MyOffer: bool = convert_bool(data["MyOffer"])
@@ -676,13 +676,13 @@ class OfferDetail:
             self.IsFeaturedMerchant: bool = None
 
 
-class PrimeInformationType:
+class PrimeInformationType(__BaseObject):
     """
     Amazon Prime information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "IsPrime" in data:
             self.IsPrime: bool = convert_bool(data["IsPrime"])
@@ -694,13 +694,13 @@ class PrimeInformationType:
             self.IsNationalPrime: bool = None
 
 
-class SellerFeedbackType:
+class SellerFeedbackType(__BaseObject):
     """
     Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "SellerPositiveFeedbackRating" in data:
             self.SellerPositiveFeedbackRating: float = float(data["SellerPositiveFeedbackRating"])
@@ -712,13 +712,13 @@ class SellerFeedbackType:
             self.FeedbackCount: int = None
 
 
-class DetailedShippingTimeType:
+class DetailedShippingTimeType(__BaseObject):
     """
     The time range in which an item will likely be shipped once an order has been placed.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "minimumHours" in data:
             self.minimumHours: int = int(data["minimumHours"])
@@ -738,13 +738,13 @@ class DetailedShippingTimeType:
             self.availabilityType: str = None
 
 
-class ShipsFromType:
+class ShipsFromType(__BaseObject):
     """
     The state and country from where the item is shipped.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "State" in data:
             self.State: str = str(data["State"])
@@ -756,13 +756,13 @@ class ShipsFromType:
             self.Country: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

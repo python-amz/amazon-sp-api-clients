@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class PackingSlip:
+class PackingSlip(__BaseObject):
     """
     Packing slip information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -24,13 +24,13 @@ class PackingSlip:
             self.contentType: str = None
 
 
-class PackingSlipList:
+class PackingSlipList(__BaseObject):
     """
     A list of packing slips.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "pagination" in data:
             self.pagination: Pagination = Pagination(data["pagination"])
@@ -42,11 +42,11 @@ class PackingSlipList:
             self.packingSlips: _List[PackingSlip] = []
 
 
-class GetPackingSlipListResponse:
+class GetPackingSlipListResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: PackingSlipList = PackingSlipList(data["payload"])
@@ -58,11 +58,11 @@ class GetPackingSlipListResponse:
             self.errors: ErrorList = None
 
 
-class GetPackingSlipResponse:
+class GetPackingSlipResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: PackingSlip = PackingSlip(data["payload"])
@@ -74,11 +74,11 @@ class GetPackingSlipResponse:
             self.errors: ErrorList = None
 
 
-class SubmitShippingLabelsRequest:
+class SubmitShippingLabelsRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shippingLabelRequests" in data:
             self.shippingLabelRequests: _List[ShippingLabelRequest] = [
@@ -88,11 +88,11 @@ class SubmitShippingLabelsRequest:
             self.shippingLabelRequests: _List[ShippingLabelRequest] = []
 
 
-class ShippingLabelRequest:
+class ShippingLabelRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -112,13 +112,13 @@ class ShippingLabelRequest:
             self.containers: _List[Container] = []
 
 
-class Item:
+class Item(__BaseObject):
     """
     Details of the item being shipped.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemSequenceNumber" in data:
             self.itemSequenceNumber: int = int(data["itemSequenceNumber"])
@@ -138,11 +138,11 @@ class Item:
             self.shippedQuantity: ItemQuantity = None
 
 
-class PackedItem:
+class PackedItem(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemSequenceNumber" in data:
             self.itemSequenceNumber: int = int(data["itemSequenceNumber"])
@@ -162,11 +162,11 @@ class PackedItem:
             self.packedQuantity: ItemQuantity = None
 
 
-class PartyIdentification:
+class PartyIdentification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "partyId" in data:
             self.partyId: str = str(data["partyId"])
@@ -184,13 +184,13 @@ class PartyIdentification:
             self.taxRegistrationDetails: _List[TaxRegistrationDetails] = []
 
 
-class ShipmentDetails:
+class ShipmentDetails(__BaseObject):
     """
     Details about a shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shippedDate" in data:
             self.shippedDate: str = str(data["shippedDate"])
@@ -214,13 +214,13 @@ class ShipmentDetails:
             self.estimatedDeliveryDate: str = None
 
 
-class StatusUpdateDetails:
+class StatusUpdateDetails(__BaseObject):
     """
     Details for the shipment status update given by the vendor for the specific package.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "trackingNumber" in data:
             self.trackingNumber: str = str(data["trackingNumber"])
@@ -248,13 +248,13 @@ class StatusUpdateDetails:
             self.shipmentSchedule: dict = None
 
 
-class TaxRegistrationDetails:
+class TaxRegistrationDetails(__BaseObject):
     """
     Tax registration details of the entity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "taxRegistrationType" in data:
             self.taxRegistrationType: str = str(data["taxRegistrationType"])
@@ -274,13 +274,13 @@ class TaxRegistrationDetails:
             self.taxRegistrationMessages: str = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     Address of the party.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -328,13 +328,13 @@ class Address:
             self.phone: str = None
 
 
-class Dimensions:
+class Dimensions(__BaseObject):
     """
     Physical dimensional measurements of a container.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "length" in data:
             self.length: Decimal = Decimal(data["length"])
@@ -354,13 +354,13 @@ class Dimensions:
             self.unitOfMeasure: str = None
 
 
-class Weight:
+class Weight(__BaseObject):
     """
     The weight.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "unitOfMeasure" in data:
             self.unitOfMeasure: str = str(data["unitOfMeasure"])
@@ -372,13 +372,13 @@ class Weight:
             self.value: Decimal = None
 
 
-class ItemQuantity:
+class ItemQuantity(__BaseObject):
     """
     Details of item quantity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "amount" in data:
             self.amount: int = int(data["amount"])
@@ -390,13 +390,13 @@ class ItemQuantity:
             self.unitOfMeasure: str = None
 
 
-class SubmitShipmentConfirmationsResponse:
+class SubmitShipmentConfirmationsResponse(__BaseObject):
     """
     The response schema for the submitShipmentConfirmations operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionReference = TransactionReference(data["payload"])
@@ -408,13 +408,13 @@ class SubmitShipmentConfirmationsResponse:
             self.errors: ErrorList = None
 
 
-class SubmitShipmentStatusUpdatesResponse:
+class SubmitShipmentStatusUpdatesResponse(__BaseObject):
     """
     The response schema for the submitShipmentStatusUpdates operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionReference = TransactionReference(data["payload"])
@@ -426,13 +426,13 @@ class SubmitShipmentStatusUpdatesResponse:
             self.errors: ErrorList = None
 
 
-class GetShippingLabelListResponse:
+class GetShippingLabelListResponse(__BaseObject):
     """
     The response schema for the getShippingLabels operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ShippingLabelList = ShippingLabelList(data["payload"])
@@ -444,13 +444,13 @@ class GetShippingLabelListResponse:
             self.errors: ErrorList = None
 
 
-class GetShippingLabelResponse:
+class GetShippingLabelResponse(__BaseObject):
     """
     The response schema for the getShippingLabel operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ShippingLabel = ShippingLabel(data["payload"])
@@ -462,11 +462,11 @@ class GetShippingLabelResponse:
             self.errors: ErrorList = None
 
 
-class ShippingLabelList:
+class ShippingLabelList(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "pagination" in data:
             self.pagination: Pagination = Pagination(data["pagination"])
@@ -478,13 +478,13 @@ class ShippingLabelList:
             self.shippingLabels: _List[ShippingLabel] = []
 
 
-class LabelData:
+class LabelData(__BaseObject):
     """
     Details of the shipment label.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "packageIdentifier" in data:
             self.packageIdentifier: str = str(data["packageIdentifier"])
@@ -508,11 +508,11 @@ class LabelData:
             self.content: str = None
 
 
-class ShippingLabel:
+class ShippingLabel(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -536,13 +536,13 @@ class ShippingLabel:
             self.labelData: _List[LabelData] = []
 
 
-class SubmitShippingLabelsResponse:
+class SubmitShippingLabelsResponse(__BaseObject):
     """
     The response schema for the submitShippingLabelRequest operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionReference = TransactionReference(data["payload"])
@@ -554,11 +554,11 @@ class SubmitShippingLabelsResponse:
             self.errors: ErrorList = None
 
 
-class SubmitShipmentConfirmationsRequest:
+class SubmitShipmentConfirmationsRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentConfirmations" in data:
             self.shipmentConfirmations: _List[ShipmentConfirmation] = [
@@ -568,11 +568,11 @@ class SubmitShipmentConfirmationsRequest:
             self.shipmentConfirmations: _List[ShipmentConfirmation] = []
 
 
-class ShipmentConfirmation:
+class ShipmentConfirmation(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -600,11 +600,11 @@ class ShipmentConfirmation:
             self.containers: _List[Container] = []
 
 
-class SubmitShipmentStatusUpdatesRequest:
+class SubmitShipmentStatusUpdatesRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentStatusUpdates" in data:
             self.shipmentStatusUpdates: _List[ShipmentStatusUpdate] = [
@@ -614,11 +614,11 @@ class SubmitShipmentStatusUpdatesRequest:
             self.shipmentStatusUpdates: _List[ShipmentStatusUpdate] = []
 
 
-class ShipmentStatusUpdate:
+class ShipmentStatusUpdate(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -638,13 +638,13 @@ class ShipmentStatusUpdate:
             self.statusUpdateDetails: StatusUpdateDetails = None
 
 
-class GetCustomerInvoicesResponse:
+class GetCustomerInvoicesResponse(__BaseObject):
     """
     The response schema for the getCustomerInvoices operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CustomerInvoiceList = CustomerInvoiceList(data["payload"])
@@ -656,13 +656,13 @@ class GetCustomerInvoicesResponse:
             self.errors: ErrorList = None
 
 
-class GetCustomerInvoiceResponse:
+class GetCustomerInvoiceResponse(__BaseObject):
     """
     The response schema for the getCustomerInvoice operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CustomerInvoice = CustomerInvoice(data["payload"])
@@ -674,11 +674,11 @@ class GetCustomerInvoiceResponse:
             self.errors: ErrorList = None
 
 
-class CustomerInvoiceList:
+class CustomerInvoiceList(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "pagination" in data:
             self.pagination: Pagination = Pagination(data["pagination"])
@@ -692,11 +692,11 @@ class CustomerInvoiceList:
             self.customerInvoices: _List[CustomerInvoice] = []
 
 
-class Pagination:
+class Pagination(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "nextToken" in data:
             self.nextToken: str = str(data["nextToken"])
@@ -704,11 +704,11 @@ class Pagination:
             self.nextToken: str = None
 
 
-class CustomerInvoice:
+class CustomerInvoice(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -720,11 +720,11 @@ class CustomerInvoice:
             self.content: str = None
 
 
-class TransactionReference:
+class TransactionReference(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "transactionId" in data:
             self.transactionId: str = str(data["transactionId"])
@@ -732,13 +732,13 @@ class TransactionReference:
             self.transactionId: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -754,11 +754,11 @@ class Error:
             self.details: str = None
 
 
-class Container:
+class Container(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "containerType" in data:
             self.containerType: str = str(data["containerType"])

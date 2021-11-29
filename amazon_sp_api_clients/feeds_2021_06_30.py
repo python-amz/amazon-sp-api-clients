@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
@@ -38,13 +38,13 @@ class ErrorList:
             self.errors: _List[Error] = []
 
 
-class CreateFeedResponse:
+class CreateFeedResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedId" in data:
             self.feedId: str = str(data["feedId"])
@@ -52,13 +52,13 @@ class CreateFeedResponse:
             self.feedId: str = None
 
 
-class Feed:
+class Feed(__BaseObject):
     """
     Detailed information about the feed.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedId" in data:
             self.feedId: str = str(data["feedId"])
@@ -94,13 +94,13 @@ class Feed:
             self.resultFeedDocumentId: str = None
 
 
-class GetFeedsResponse:
+class GetFeedsResponse(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feeds" in data:
             self.feeds: FeedList = FeedList(data["feeds"])
@@ -112,13 +112,13 @@ class GetFeedsResponse:
             self.nextToken: str = None
 
 
-class FeedDocument:
+class FeedDocument(__BaseObject):
     """
     Information required for the feed document.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedDocumentId" in data:
             self.feedDocumentId: str = str(data["feedDocumentId"])
@@ -134,23 +134,23 @@ class FeedDocument:
             self.compressionAlgorithm: str = None
 
 
-class FeedOptions:
+class FeedOptions(__BaseObject):
     """
     Additional options to control the feed. These vary by feed type.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
 
 
-class CreateFeedSpecification:
+class CreateFeedSpecification(__BaseObject):
     """
     Information required to create the feed.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedType" in data:
             self.feedType: str = str(data["feedType"])
@@ -170,13 +170,13 @@ class CreateFeedSpecification:
             self.feedOptions: FeedOptions = None
 
 
-class CreateFeedDocumentSpecification:
+class CreateFeedDocumentSpecification(__BaseObject):
     """
     Specifies the content type for the createFeedDocument operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "contentType" in data:
             self.contentType: str = str(data["contentType"])
@@ -184,13 +184,13 @@ class CreateFeedDocumentSpecification:
             self.contentType: str = None
 
 
-class CreateFeedDocumentResponse:
+class CreateFeedDocumentResponse(__BaseObject):
     """
     Information required to upload a feed document's contents.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feedDocumentId" in data:
             self.feedDocumentId: str = str(data["feedDocumentId"])

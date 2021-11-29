@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetAuthorizationCodeResponse:
+class GetAuthorizationCodeResponse(__BaseObject):
     """
     The response schema for the GetAuthorizationCode operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: AuthorizationCode = AuthorizationCode(data["payload"])
@@ -20,13 +20,13 @@ class GetAuthorizationCodeResponse:
             self.errors: ErrorList = None
 
 
-class AuthorizationCode:
+class AuthorizationCode(__BaseObject):
     """
     A Login with Amazon (LWA) authorization code.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "authorizationCode" in data:
             self.authorizationCode: str = str(data["authorizationCode"])
@@ -34,13 +34,13 @@ class AuthorizationCode:
             self.authorizationCode: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

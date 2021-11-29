@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class SubmitInventoryUpdateRequest:
+class SubmitInventoryUpdateRequest(__BaseObject):
     """
     The request body for the submitInventoryUpdate operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "inventory" in data:
             self.inventory: InventoryUpdate = InventoryUpdate(data["inventory"])
@@ -16,11 +16,11 @@ class SubmitInventoryUpdateRequest:
             self.inventory: InventoryUpdate = None
 
 
-class InventoryUpdate:
+class InventoryUpdate(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellingParty" in data:
             self.sellingParty: PartyIdentification = PartyIdentification(data["sellingParty"])
@@ -36,13 +36,13 @@ class InventoryUpdate:
             self.items: _List[ItemDetails] = []
 
 
-class ItemDetails:
+class ItemDetails(__BaseObject):
     """
     Updated inventory details for an item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "buyerProductIdentifier" in data:
             self.buyerProductIdentifier: str = str(data["buyerProductIdentifier"])
@@ -62,11 +62,11 @@ class ItemDetails:
             self.isObsolete: bool = None
 
 
-class PartyIdentification:
+class PartyIdentification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "partyId" in data:
             self.partyId: str = str(data["partyId"])
@@ -74,13 +74,13 @@ class PartyIdentification:
             self.partyId: str = None
 
 
-class ItemQuantity:
+class ItemQuantity(__BaseObject):
     """
     Details of item quantity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "amount" in data:
             self.amount: int = int(data["amount"])
@@ -92,13 +92,13 @@ class ItemQuantity:
             self.unitOfMeasure: str = None
 
 
-class SubmitInventoryUpdateResponse:
+class SubmitInventoryUpdateResponse(__BaseObject):
     """
     The response schema for the submitInventoryUpdate operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionReference = TransactionReference(data["payload"])
@@ -110,11 +110,11 @@ class SubmitInventoryUpdateResponse:
             self.errors: ErrorList = None
 
 
-class TransactionReference:
+class TransactionReference(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "transactionId" in data:
             self.transactionId: str = str(data["transactionId"])
@@ -122,13 +122,13 @@ class TransactionReference:
             self.transactionId: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

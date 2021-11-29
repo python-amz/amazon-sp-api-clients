@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class SubmitShipmentConfirmationsRequest:
+class SubmitShipmentConfirmationsRequest(__BaseObject):
     """
     The request schema for the SubmitShipmentConfirmations operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentConfirmations" in data:
             self.shipmentConfirmations: _List[ShipmentConfirmation] = [
@@ -18,11 +18,11 @@ class SubmitShipmentConfirmationsRequest:
             self.shipmentConfirmations: _List[ShipmentConfirmation] = []
 
 
-class ShipmentConfirmation:
+class ShipmentConfirmation(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentIdentifier" in data:
             self.shipmentIdentifier: str = str(data["shipmentIdentifier"])
@@ -94,13 +94,13 @@ class ShipmentConfirmation:
             self.pallets: _List[Pallet] = []
 
 
-class ShipmentMeasurements:
+class ShipmentMeasurements(__BaseObject):
     """
     Shipment measurement details.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "grossShipmentWeight" in data:
             self.grossShipmentWeight: Weight = Weight(data["grossShipmentWeight"])
@@ -120,11 +120,11 @@ class ShipmentMeasurements:
             self.palletCount: int = None
 
 
-class TransportationDetails:
+class TransportationDetails(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "carrierScac" in data:
             self.carrierScac: str = str(data["carrierScac"])
@@ -144,11 +144,11 @@ class TransportationDetails:
             self.billOfLadingNumber: str = None
 
 
-class ImportDetails:
+class ImportDetails(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "methodOfPayment" in data:
             self.methodOfPayment: str = str(data["methodOfPayment"])
@@ -176,13 +176,13 @@ class ImportDetails:
             self.estimatedShipByDate: str = None
 
 
-class Item:
+class Item(__BaseObject):
     """
     Details of the item being shipped.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemSequenceNumber" in data:
             self.itemSequenceNumber: str = str(data["itemSequenceNumber"])
@@ -206,13 +206,13 @@ class Item:
             self.itemDetails: ItemDetails = None
 
 
-class Carton:
+class Carton(__BaseObject):
     """
     Details of the carton/package being shipped.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "cartonIdentifiers" in data:
             self.cartonIdentifiers: _List[ContainerIdentification] = [
@@ -242,13 +242,13 @@ class Carton:
             self.items: _List[ContainerItem] = []
 
 
-class Pallet:
+class Pallet(__BaseObject):
     """
     Details of the Pallet/Tare being shipped.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "palletIdentifiers" in data:
             self.palletIdentifiers: _List[ContainerIdentification] = [
@@ -282,13 +282,13 @@ class Pallet:
             self.items: _List[ContainerItem] = []
 
 
-class ItemDetails:
+class ItemDetails(__BaseObject):
     """
     Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "purchaseOrderNumber" in data:
             self.purchaseOrderNumber: str = str(data["purchaseOrderNumber"])
@@ -312,11 +312,11 @@ class ItemDetails:
             self.handlingCode: str = None
 
 
-class ContainerIdentification:
+class ContainerIdentification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "containerIdentificationType" in data:
             self.containerIdentificationType: str = str(data["containerIdentificationType"])
@@ -328,13 +328,13 @@ class ContainerIdentification:
             self.containerIdentificationNumber: str = None
 
 
-class ContainerItem:
+class ContainerItem(__BaseObject):
     """
     Carton/Pallet level details for the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "itemReference" in data:
             self.itemReference: str = str(data["itemReference"])
@@ -350,11 +350,11 @@ class ContainerItem:
             self.itemDetails: ItemDetails = None
 
 
-class CartonReferenceDetails:
+class CartonReferenceDetails(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "cartonCount" in data:
             self.cartonCount: int = int(data["cartonCount"])
@@ -366,11 +366,11 @@ class CartonReferenceDetails:
             self.cartonReferenceNumbers: _List[str] = []
 
 
-class PartyIdentification:
+class PartyIdentification(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "address" in data:
             self.address: Address = Address(data["address"])
@@ -388,13 +388,13 @@ class PartyIdentification:
             self.taxRegistrationDetails: _List[TaxRegistrationDetails] = []
 
 
-class TaxRegistrationDetails:
+class TaxRegistrationDetails(__BaseObject):
     """
     Tax registration details of the entity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "taxRegistrationType" in data:
             self.taxRegistrationType: str = str(data["taxRegistrationType"])
@@ -406,13 +406,13 @@ class TaxRegistrationDetails:
             self.taxRegistrationNumber: str = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     Address of the party.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -460,13 +460,13 @@ class Address:
             self.phone: str = None
 
 
-class Route:
+class Route(__BaseObject):
     """
     This is used only for direct import shipment confirmations.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "stops" in data:
             self.stops: _List[Stop] = [Stop(datum) for datum in data["stops"]]
@@ -474,13 +474,13 @@ class Route:
             self.stops: _List[Stop] = []
 
 
-class Stop:
+class Stop(__BaseObject):
     """
     Contractual or operational port or point relevant to the movement of the cargo.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "functionCode" in data:
             self.functionCode: str = str(data["functionCode"])
@@ -500,13 +500,13 @@ class Stop:
             self.departureTime: str = None
 
 
-class Location:
+class Location(__BaseObject):
     """
     Location identifier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "type" in data:
             self.type: str = str(data["type"])
@@ -522,13 +522,13 @@ class Location:
             self.countryCode: str = None
 
 
-class Dimensions:
+class Dimensions(__BaseObject):
     """
     Physical dimensional measurements of a container.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "length" in data:
             self.length: Decimal = Decimal(data["length"])
@@ -548,13 +548,13 @@ class Dimensions:
             self.unitOfMeasure: str = None
 
 
-class Volume:
+class Volume(__BaseObject):
     """
     The volume of the container.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "unitOfMeasure" in data:
             self.unitOfMeasure: str = str(data["unitOfMeasure"])
@@ -566,13 +566,13 @@ class Volume:
             self.value: Decimal = None
 
 
-class Weight:
+class Weight(__BaseObject):
     """
     The weight.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "unitOfMeasure" in data:
             self.unitOfMeasure: str = str(data["unitOfMeasure"])
@@ -584,13 +584,13 @@ class Weight:
             self.value: Decimal = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     An amount of money, including units in the form of currency.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
@@ -602,13 +602,13 @@ class Money:
             self.amount: Decimal = None
 
 
-class ItemQuantity:
+class ItemQuantity(__BaseObject):
     """
     Details of item quantity.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "amount" in data:
             self.amount: int = int(data["amount"])
@@ -624,11 +624,11 @@ class ItemQuantity:
             self.unitSize: int = None
 
 
-class Expiry:
+class Expiry(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "manufacturerDate" in data:
             self.manufacturerDate: str = str(data["manufacturerDate"])
@@ -644,11 +644,11 @@ class Expiry:
             self.expiryAfterDuration: Duration = None
 
 
-class Duration:
+class Duration(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "durationUnit" in data:
             self.durationUnit: str = str(data["durationUnit"])
@@ -660,13 +660,13 @@ class Duration:
             self.durationValue: int = None
 
 
-class SubmitShipmentConfirmationsResponse:
+class SubmitShipmentConfirmationsResponse(__BaseObject):
     """
     The response schema for the SubmitShipmentConfirmations operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TransactionReference = TransactionReference(data["payload"])
@@ -678,11 +678,11 @@ class SubmitShipmentConfirmationsResponse:
             self.errors: ErrorList = None
 
 
-class TransactionReference:
+class TransactionReference(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "transactionId" in data:
             self.transactionId: str = str(data["transactionId"])
@@ -690,13 +690,13 @@ class TransactionReference:
             self.transactionId: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

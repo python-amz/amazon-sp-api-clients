@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,11 +24,11 @@ class Error:
             self.details: str = None
 
 
-class MarketplaceParticipation:
+class MarketplaceParticipation(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplace" in data:
             self.marketplace: Marketplace = Marketplace(data["marketplace"])
@@ -40,13 +40,13 @@ class MarketplaceParticipation:
             self.participation: Participation = None
 
 
-class GetMarketplaceParticipationsResponse:
+class GetMarketplaceParticipationsResponse(__BaseObject):
     """
     The response schema for the getMarketplaceParticipations operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: MarketplaceParticipationList = MarketplaceParticipationList(data["payload"])
@@ -58,13 +58,13 @@ class GetMarketplaceParticipationsResponse:
             self.errors: ErrorList = None
 
 
-class Marketplace:
+class Marketplace(__BaseObject):
     """
     Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "id" in data:
             self.id: str = str(data["id"])
@@ -92,13 +92,13 @@ class Marketplace:
             self.domainName: str = None
 
 
-class Participation:
+class Participation(__BaseObject):
     """
     Detailed information that is specific to a seller in a Marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "isParticipating" in data:
             self.isParticipating: bool = convert_bool(data["isParticipating"])

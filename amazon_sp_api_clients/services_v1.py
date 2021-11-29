@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetServiceJobByServiceJobIdResponse:
+class GetServiceJobByServiceJobIdResponse(__BaseObject):
     """
     The response schema for the GetServiceJobByServiceJobId operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: ServiceJob = ServiceJob(data["payload"])
@@ -20,13 +20,13 @@ class GetServiceJobByServiceJobIdResponse:
             self.errors: ErrorList = None
 
 
-class CancelServiceJobByServiceJobIdResponse:
+class CancelServiceJobByServiceJobIdResponse(__BaseObject):
     """
     Response schema for CancelServiceJobByServiceJobId operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -34,13 +34,13 @@ class CancelServiceJobByServiceJobIdResponse:
             self.errors: ErrorList = None
 
 
-class CompleteServiceJobByServiceJobIdResponse:
+class CompleteServiceJobByServiceJobIdResponse(__BaseObject):
     """
     Response schema for CompleteServiceJobByServiceJobId operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -48,13 +48,13 @@ class CompleteServiceJobByServiceJobIdResponse:
             self.errors: ErrorList = None
 
 
-class GetServiceJobsResponse:
+class GetServiceJobsResponse(__BaseObject):
     """
     Response schema for GetJobs operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: JobListing = JobListing(data["payload"])
@@ -66,13 +66,13 @@ class GetServiceJobsResponse:
             self.errors: ErrorList = None
 
 
-class SetAppointmentResponse:
+class SetAppointmentResponse(__BaseObject):
     """
     Response schema for add or reschedule appointment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "appointmentId" in data:
             self.appointmentId: AppointmentId = AppointmentId(data["appointmentId"])
@@ -88,13 +88,13 @@ class SetAppointmentResponse:
             self.errors: ErrorList = None
 
 
-class JobListing:
+class JobListing(__BaseObject):
     """
     The payload for the GetJobs operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "totalResultSize" in data:
             self.totalResultSize: int = int(data["totalResultSize"])
@@ -114,13 +114,13 @@ class JobListing:
             self.jobs: _List[ServiceJob] = []
 
 
-class ServiceJob:
+class ServiceJob(__BaseObject):
     """
     The job details of a service.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "createTime" in data:
             self.createTime: str = str(data["createTime"])
@@ -178,13 +178,13 @@ class ServiceJob:
             self.serviceLocation: ServiceLocation = None
 
 
-class ScopeOfWork:
+class ScopeOfWork(__BaseObject):
     """
     The scope of work for the order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
@@ -204,13 +204,13 @@ class ScopeOfWork:
             self.requiredSkills: _List[str] = []
 
 
-class Seller:
+class Seller(__BaseObject):
     """
     Information about the seller of the service job.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sellerId" in data:
             self.sellerId: str = str(data["sellerId"])
@@ -218,13 +218,13 @@ class Seller:
             self.sellerId: str = None
 
 
-class ServiceJobProvider:
+class ServiceJobProvider(__BaseObject):
     """
     Information about the service job provider.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "serviceJobProviderId" in data:
             self.serviceJobProviderId: str = str(data["serviceJobProviderId"])
@@ -232,13 +232,13 @@ class ServiceJobProvider:
             self.serviceJobProviderId: str = None
 
 
-class Buyer:
+class Buyer(__BaseObject):
     """
     Information about the buyer.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "buyerId" in data:
             self.buyerId: str = str(data["buyerId"])
@@ -258,13 +258,13 @@ class Buyer:
             self.isPrimeMember: bool = None
 
 
-class AppointmentTime:
+class AppointmentTime(__BaseObject):
     """
     The time of the appointment window.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "startTime" in data:
             self.startTime: str = str(data["startTime"])
@@ -276,13 +276,13 @@ class AppointmentTime:
             self.durationInMinutes: int = None
 
 
-class Appointment:
+class Appointment(__BaseObject):
     """
     The details of an appointment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "appointmentId" in data:
             self.appointmentId: AppointmentId = AppointmentId(data["appointmentId"])
@@ -310,13 +310,13 @@ class Appointment:
             self.poa: Poa = None
 
 
-class Technician:
+class Technician(__BaseObject):
     """
     A technician who is assigned to perform the service job in part or in full.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "technicianId" in data:
             self.technicianId: str = str(data["technicianId"])
@@ -328,13 +328,13 @@ class Technician:
             self.name: str = None
 
 
-class Poa:
+class Poa(__BaseObject):
     """
     Proof of Appointment (POA) details.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "appointmentTime" in data:
             self.appointmentTime: AppointmentTime = AppointmentTime(data["appointmentTime"])
@@ -358,13 +358,13 @@ class Poa:
             self.poaType: str = None
 
 
-class AssociatedItem:
+class AssociatedItem(__BaseObject):
     """
     Information about an item associated with the service job.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
@@ -396,13 +396,13 @@ class AssociatedItem:
             self.itemDelivery: ItemDelivery = None
 
 
-class ItemDelivery:
+class ItemDelivery(__BaseObject):
     """
     Delivery information for the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "estimatedDeliveryDate" in data:
             self.estimatedDeliveryDate: str = str(data["estimatedDeliveryDate"])
@@ -414,13 +414,13 @@ class ItemDelivery:
             self.itemDeliveryPromise: ItemDeliveryPromise = None
 
 
-class ItemDeliveryPromise:
+class ItemDeliveryPromise(__BaseObject):
     """
     Promised delivery information for the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "startTime" in data:
             self.startTime: str = str(data["startTime"])
@@ -432,13 +432,13 @@ class ItemDeliveryPromise:
             self.endTime: str = None
 
 
-class ServiceLocation:
+class ServiceLocation(__BaseObject):
     """
     Information about the location of the service job.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "serviceLocationType" in data:
             self.serviceLocationType: str = str(data["serviceLocationType"])
@@ -450,13 +450,13 @@ class ServiceLocation:
             self.address: Address = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     The shipping address for the service job.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -504,13 +504,13 @@ class Address:
             self.phone: str = None
 
 
-class AddAppointmentRequest:
+class AddAppointmentRequest(__BaseObject):
     """
     Input for add appointment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "appointmentTime" in data:
             self.appointmentTime: AppointmentTimeInput = AppointmentTimeInput(data["appointmentTime"])
@@ -518,13 +518,13 @@ class AddAppointmentRequest:
             self.appointmentTime: AppointmentTimeInput = None
 
 
-class RescheduleAppointmentRequest:
+class RescheduleAppointmentRequest(__BaseObject):
     """
     Input for rescheduled appointment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "appointmentTime" in data:
             self.appointmentTime: AppointmentTimeInput = AppointmentTimeInput(data["appointmentTime"])
@@ -536,13 +536,13 @@ class RescheduleAppointmentRequest:
             self.rescheduleReasonCode: RescheduleReasonCode = None
 
 
-class AppointmentTimeInput:
+class AppointmentTimeInput(__BaseObject):
     """
     The input appointment time details.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "startTime" in data:
             self.startTime: str = str(data["startTime"])
@@ -554,13 +554,13 @@ class AppointmentTimeInput:
             self.durationInMinutes: int = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -580,13 +580,13 @@ class Error:
             self.errorLevel: str = None
 
 
-class Warning:
+class Warning(__BaseObject):
     """
     Warning returned when the request is successful but execution have some important callouts on basis of which API clients should take defined actions.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

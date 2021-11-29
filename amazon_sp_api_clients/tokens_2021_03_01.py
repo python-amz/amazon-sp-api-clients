@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class CreateRestrictedDataTokenRequest:
+class CreateRestrictedDataTokenRequest(__BaseObject):
     """
     The request schema for the createRestrictedDataToken operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "targetApplication" in data:
             self.targetApplication: str = str(data["targetApplication"])
@@ -22,13 +22,13 @@ class CreateRestrictedDataTokenRequest:
             self.restrictedResources: _List[RestrictedResource] = []
 
 
-class RestrictedResource:
+class RestrictedResource(__BaseObject):
     """
     Model of a restricted resource.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "method" in data:
             self.method: str = str(data["method"])
@@ -44,13 +44,13 @@ class RestrictedResource:
             self.dataElements: _List[str] = []
 
 
-class CreateRestrictedDataTokenResponse:
+class CreateRestrictedDataTokenResponse(__BaseObject):
     """
     The response schema for the createRestrictedDataToken operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "restrictedDataToken" in data:
             self.restrictedDataToken: str = str(data["restrictedDataToken"])
@@ -62,13 +62,13 @@ class CreateRestrictedDataTokenResponse:
             self.expiresIn: int = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     An error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -84,13 +84,13 @@ class Error:
             self.details: str = None
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]

@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
@@ -38,13 +38,13 @@ class ErrorList:
             self.errors: _List[Error] = []
 
 
-class SmallAndLightEnrollment:
+class SmallAndLightEnrollment(__BaseObject):
     """
     The Small and Light enrollment status of the item indicated by the specified seller SKU.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
@@ -60,13 +60,13 @@ class SmallAndLightEnrollment:
             self.status: SmallAndLightEnrollmentStatus = None
 
 
-class SmallAndLightEligibility:
+class SmallAndLightEligibility(__BaseObject):
     """
     The Small and Light eligibility status of the item indicated by the specified seller SKU.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
@@ -82,13 +82,13 @@ class SmallAndLightEligibility:
             self.status: SmallAndLightEligibilityStatus = None
 
 
-class SmallAndLightFeePreviewRequest:
+class SmallAndLightFeePreviewRequest(__BaseObject):
     """
     Request schema for submitting items for which to retrieve fee estimates.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: MarketplaceId = MarketplaceId(data["marketplaceId"])
@@ -100,11 +100,11 @@ class SmallAndLightFeePreviewRequest:
             self.items: _List[Item] = []
 
 
-class SmallAndLightFeePreviews:
+class SmallAndLightFeePreviews(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "data" in data:
             self.data: _List[FeePreview] = [FeePreview(datum) for datum in data["data"]]
@@ -112,13 +112,13 @@ class SmallAndLightFeePreviews:
             self.data: _List[FeePreview] = []
 
 
-class Item:
+class Item(__BaseObject):
     """
     An item to be sold.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
@@ -130,13 +130,13 @@ class Item:
             self.price: MoneyType = None
 
 
-class FeePreview:
+class FeePreview(__BaseObject):
     """
     The fee estimate for a specific item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: str = str(data["asin"])
@@ -160,13 +160,13 @@ class FeePreview:
             self.errors: _List[Error] = []
 
 
-class FeeLineItem:
+class FeeLineItem(__BaseObject):
     """
     Fee details for a specific fee.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "feeType" in data:
             self.feeType: str = str(data["feeType"])
@@ -178,11 +178,11 @@ class FeeLineItem:
             self.feeCharge: MoneyType = None
 
 
-class MoneyType:
+class MoneyType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])

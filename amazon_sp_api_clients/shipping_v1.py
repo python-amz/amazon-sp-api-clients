@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class Location:
+class Location(__BaseObject):
     """
     The location where the person, business or institution is located.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "stateOrRegion" in data:
             self.stateOrRegion: StateOrRegion = StateOrRegion(data["stateOrRegion"])
@@ -50,13 +50,13 @@ class Location:
             self.postalCode: PostalCode = None
 
 
-class Event:
+class Event(__BaseObject):
     """
     An event of a shipment
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "eventCode" in data:
             self.eventCode: EventCode = EventCode(data["eventCode"])
@@ -72,13 +72,13 @@ class Event:
             self.location: Location = None
 
 
-class TrackingSummary:
+class TrackingSummary(__BaseObject):
     """
     The tracking summary.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "status" in data:
             self.status: str = str(data["status"])
@@ -86,13 +86,13 @@ class TrackingSummary:
             self.status: str = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     The address.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -140,13 +140,13 @@ class Address:
             self.phoneNumber: str = None
 
 
-class TimeRange:
+class TimeRange(__BaseObject):
     """
     The time range.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "start" in data:
             self.start: str = str(data["start"])
@@ -158,13 +158,13 @@ class TimeRange:
             self.end: str = None
 
 
-class ShippingPromiseSet:
+class ShippingPromiseSet(__BaseObject):
     """
     The promised delivery time and pickup time.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "deliveryWindow" in data:
             self.deliveryWindow: TimeRange = TimeRange(data["deliveryWindow"])
@@ -176,13 +176,13 @@ class ShippingPromiseSet:
             self.receiveWindow: TimeRange = None
 
 
-class Rate:
+class Rate(__BaseObject):
     """
     The available rate that can be used to send the shipment
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "rateId" in data:
             self.rateId: str = str(data["rateId"])
@@ -210,13 +210,13 @@ class Rate:
             self.promise: ShippingPromiseSet = None
 
 
-class AcceptedRate:
+class AcceptedRate(__BaseObject):
     """
     The specific rate purchased for the shipment, or null if unpurchased.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "totalCharge" in data:
             self.totalCharge: Currency = Currency(data["totalCharge"])
@@ -236,13 +236,13 @@ class AcceptedRate:
             self.promise: ShippingPromiseSet = None
 
 
-class ServiceRate:
+class ServiceRate(__BaseObject):
     """
     The specific rate for a shipping service, or null if no service available.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "totalCharge" in data:
             self.totalCharge: Currency = Currency(data["totalCharge"])
@@ -262,13 +262,13 @@ class ServiceRate:
             self.promise: ShippingPromiseSet = None
 
 
-class Party:
+class Party(__BaseObject):
     """
     The account related with the shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "accountId" in data:
             self.accountId: AccountId = AccountId(data["accountId"])
@@ -276,13 +276,13 @@ class Party:
             self.accountId: AccountId = None
 
 
-class Currency:
+class Currency(__BaseObject):
     """
     The total value of all items in the container.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "value" in data:
             self.value: float = float(data["value"])
@@ -294,13 +294,13 @@ class Currency:
             self.unit: str = None
 
 
-class Dimensions:
+class Dimensions(__BaseObject):
     """
     A set of measurements for a three-dimensional object.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "length" in data:
             self.length: float = float(data["length"])
@@ -320,13 +320,13 @@ class Dimensions:
             self.unit: str = None
 
 
-class Weight:
+class Weight(__BaseObject):
     """
     The weight.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "unit" in data:
             self.unit: str = str(data["unit"])
@@ -338,13 +338,13 @@ class Weight:
             self.value: float = None
 
 
-class ContainerItem:
+class ContainerItem(__BaseObject):
     """
     Item in the container.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "quantity" in data:
             self.quantity: float = float(data["quantity"])
@@ -364,13 +364,13 @@ class ContainerItem:
             self.title: str = None
 
 
-class Container:
+class Container(__BaseObject):
     """
     Container in the shipment.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "containerType" in data:
             self.containerType: str = str(data["containerType"])
@@ -398,13 +398,13 @@ class Container:
             self.weight: Weight = None
 
 
-class ContainerSpecification:
+class ContainerSpecification(__BaseObject):
     """
     Container specification for checking the service rate.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "dimensions" in data:
             self.dimensions: Dimensions = Dimensions(data["dimensions"])
@@ -416,13 +416,13 @@ class ContainerSpecification:
             self.weight: Weight = None
 
 
-class Label:
+class Label(__BaseObject):
     """
     The label details of the container.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "labelStream" in data:
             self.labelStream: LabelStream = LabelStream(data["labelStream"])
@@ -434,13 +434,13 @@ class Label:
             self.labelSpecification: LabelSpecification = None
 
 
-class LabelResult:
+class LabelResult(__BaseObject):
     """
     Label details including label stream, format, size.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "containerReferenceId" in data:
             self.containerReferenceId: ContainerReferenceId = ContainerReferenceId(data["containerReferenceId"])
@@ -456,13 +456,13 @@ class LabelResult:
             self.label: Label = None
 
 
-class LabelSpecification:
+class LabelSpecification(__BaseObject):
     """
     The label specification info.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "labelFormat" in data:
             self.labelFormat: str = str(data["labelFormat"])
@@ -474,13 +474,13 @@ class LabelSpecification:
             self.labelStockSize: str = None
 
 
-class CreateShipmentRequest:
+class CreateShipmentRequest(__BaseObject):
     """
     The request schema for the createShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "clientReferenceId" in data:
             self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
@@ -500,13 +500,13 @@ class CreateShipmentRequest:
             self.containers: ContainerList = None
 
 
-class PurchaseLabelsRequest:
+class PurchaseLabelsRequest(__BaseObject):
     """
     The request schema for the purchaseLabels operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "rateId" in data:
             self.rateId: RateId = RateId(data["rateId"])
@@ -518,13 +518,13 @@ class PurchaseLabelsRequest:
             self.labelSpecification: LabelSpecification = None
 
 
-class RetrieveShippingLabelRequest:
+class RetrieveShippingLabelRequest(__BaseObject):
     """
     The request schema for the retrieveShippingLabel operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "labelSpecification" in data:
             self.labelSpecification: LabelSpecification = LabelSpecification(data["labelSpecification"])
@@ -532,13 +532,13 @@ class RetrieveShippingLabelRequest:
             self.labelSpecification: LabelSpecification = None
 
 
-class GetRatesRequest:
+class GetRatesRequest(__BaseObject):
     """
     The payload schema for the getRates operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipTo" in data:
             self.shipTo: Address = Address(data["shipTo"])
@@ -564,13 +564,13 @@ class GetRatesRequest:
             self.containerSpecifications: ContainerSpecificationList = None
 
 
-class PurchaseShipmentRequest:
+class PurchaseShipmentRequest(__BaseObject):
     """
     The payload schema for the purchaseShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "clientReferenceId" in data:
             self.clientReferenceId: ClientReferenceId = ClientReferenceId(data["clientReferenceId"])
@@ -602,13 +602,13 @@ class PurchaseShipmentRequest:
             self.labelSpecification: LabelSpecification = None
 
 
-class CreateShipmentResult:
+class CreateShipmentResult(__BaseObject):
     """
     The payload schema for the createShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
@@ -620,13 +620,13 @@ class CreateShipmentResult:
             self.eligibleRates: RateList = None
 
 
-class Shipment:
+class Shipment(__BaseObject):
     """
     The shipment related data.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
@@ -658,13 +658,13 @@ class Shipment:
             self.containers: ContainerList = None
 
 
-class PurchaseLabelsResult:
+class PurchaseLabelsResult(__BaseObject):
     """
     The payload schema for the purchaseLabels operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
@@ -684,13 +684,13 @@ class PurchaseLabelsResult:
             self.labelResults: LabelResultList = None
 
 
-class RetrieveShippingLabelResult:
+class RetrieveShippingLabelResult(__BaseObject):
     """
     The payload schema for the retrieveShippingLabel operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "labelStream" in data:
             self.labelStream: LabelStream = LabelStream(data["labelStream"])
@@ -702,13 +702,13 @@ class RetrieveShippingLabelResult:
             self.labelSpecification: LabelSpecification = None
 
 
-class Account:
+class Account(__BaseObject):
     """
     The account related data.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "accountId" in data:
             self.accountId: AccountId = AccountId(data["accountId"])
@@ -716,13 +716,13 @@ class Account:
             self.accountId: AccountId = None
 
 
-class GetRatesResult:
+class GetRatesResult(__BaseObject):
     """
     The payload schema for the getRates operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "serviceRates" in data:
             self.serviceRates: ServiceRateList = ServiceRateList(data["serviceRates"])
@@ -730,13 +730,13 @@ class GetRatesResult:
             self.serviceRates: ServiceRateList = None
 
 
-class PurchaseShipmentResult:
+class PurchaseShipmentResult(__BaseObject):
     """
     The payload schema for the purchaseShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "shipmentId" in data:
             self.shipmentId: ShipmentId = ShipmentId(data["shipmentId"])
@@ -752,13 +752,13 @@ class PurchaseShipmentResult:
             self.labelResults: LabelResultList = None
 
 
-class TrackingInformation:
+class TrackingInformation(__BaseObject):
     """
     The payload schema for the getTrackingInformation operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "trackingId" in data:
             self.trackingId: TrackingId = TrackingId(data["trackingId"])
@@ -778,13 +778,13 @@ class TrackingInformation:
             self.eventHistory: EventList = None
 
 
-class CreateShipmentResponse:
+class CreateShipmentResponse(__BaseObject):
     """
     The response schema for the createShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: CreateShipmentResult = CreateShipmentResult(data["payload"])
@@ -796,13 +796,13 @@ class CreateShipmentResponse:
             self.errors: ErrorList = None
 
 
-class GetShipmentResponse:
+class GetShipmentResponse(__BaseObject):
     """
     The response schema for the getShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Shipment = Shipment(data["payload"])
@@ -814,13 +814,13 @@ class GetShipmentResponse:
             self.errors: ErrorList = None
 
 
-class GetRatesResponse:
+class GetRatesResponse(__BaseObject):
     """
     The response schema for the getRates operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetRatesResult = GetRatesResult(data["payload"])
@@ -832,13 +832,13 @@ class GetRatesResponse:
             self.errors: ErrorList = None
 
 
-class PurchaseShipmentResponse:
+class PurchaseShipmentResponse(__BaseObject):
     """
     The response schema for the purchaseShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: PurchaseShipmentResult = PurchaseShipmentResult(data["payload"])
@@ -850,13 +850,13 @@ class PurchaseShipmentResponse:
             self.errors: ErrorList = None
 
 
-class CancelShipmentResponse:
+class CancelShipmentResponse(__BaseObject):
     """
     The response schema for the cancelShipment operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -864,13 +864,13 @@ class CancelShipmentResponse:
             self.errors: ErrorList = None
 
 
-class PurchaseLabelsResponse:
+class PurchaseLabelsResponse(__BaseObject):
     """
     The response schema for the purchaseLabels operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: PurchaseLabelsResult = PurchaseLabelsResult(data["payload"])
@@ -882,13 +882,13 @@ class PurchaseLabelsResponse:
             self.errors: ErrorList = None
 
 
-class RetrieveShippingLabelResponse:
+class RetrieveShippingLabelResponse(__BaseObject):
     """
     The response schema for the retrieveShippingLabel operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: RetrieveShippingLabelResult = RetrieveShippingLabelResult(data["payload"])
@@ -900,13 +900,13 @@ class RetrieveShippingLabelResponse:
             self.errors: ErrorList = None
 
 
-class GetAccountResponse:
+class GetAccountResponse(__BaseObject):
     """
     The response schema for the getAccount operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Account = Account(data["payload"])
@@ -918,13 +918,13 @@ class GetAccountResponse:
             self.errors: ErrorList = None
 
 
-class GetTrackingInformationResponse:
+class GetTrackingInformationResponse(__BaseObject):
     """
     The response schema for the getTrackingInformation operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: TrackingInformation = TrackingInformation(data["payload"])

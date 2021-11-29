@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
@@ -38,13 +38,13 @@ class ErrorList:
             self.errors: _List[Error] = []
 
 
-class Item:
+class Item(__BaseObject):
     """
     An item in the Amazon catalog.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "asin" in data:
             self.asin: ItemAsin = ItemAsin(data["asin"])
@@ -84,23 +84,23 @@ class Item:
             self.vendorDetails: ItemVendorDetails = None
 
 
-class ItemAttributes:
+class ItemAttributes(__BaseObject):
     """
     A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
 
 
-class ItemIdentifiersByMarketplace:
+class ItemIdentifiersByMarketplace(__BaseObject):
     """
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -112,13 +112,13 @@ class ItemIdentifiersByMarketplace:
             self.identifiers: _List[ItemIdentifier] = []
 
 
-class ItemIdentifier:
+class ItemIdentifier(__BaseObject):
     """
     Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "identifierType" in data:
             self.identifierType: str = str(data["identifierType"])
@@ -130,13 +130,13 @@ class ItemIdentifier:
             self.identifier: str = None
 
 
-class ItemImagesByMarketplace:
+class ItemImagesByMarketplace(__BaseObject):
     """
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -148,13 +148,13 @@ class ItemImagesByMarketplace:
             self.images: _List[ItemImage] = []
 
 
-class ItemImage:
+class ItemImage(__BaseObject):
     """
     Image for an item in the Amazon catalog.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "variant" in data:
             self.variant: str = str(data["variant"])
@@ -174,13 +174,13 @@ class ItemImage:
             self.width: int = None
 
 
-class ItemProductTypeByMarketplace:
+class ItemProductTypeByMarketplace(__BaseObject):
     """
     Product type associated with the Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -192,13 +192,13 @@ class ItemProductTypeByMarketplace:
             self.productType: str = None
 
 
-class ItemSalesRanksByMarketplace:
+class ItemSalesRanksByMarketplace(__BaseObject):
     """
     Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -210,13 +210,13 @@ class ItemSalesRanksByMarketplace:
             self.ranks: _List[ItemSalesRank] = []
 
 
-class ItemSalesRank:
+class ItemSalesRank(__BaseObject):
     """
     Sales rank of an Amazon catalog item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "title" in data:
             self.title: str = str(data["title"])
@@ -232,13 +232,13 @@ class ItemSalesRank:
             self.rank: int = None
 
 
-class ItemSummaryByMarketplace:
+class ItemSummaryByMarketplace(__BaseObject):
     """
     Summary details of an Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -278,13 +278,13 @@ class ItemSummaryByMarketplace:
             self.styleName: str = None
 
 
-class ItemVariationsByMarketplace:
+class ItemVariationsByMarketplace(__BaseObject):
     """
     Variation details for the Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -300,13 +300,13 @@ class ItemVariationsByMarketplace:
             self.variationType: str = None
 
 
-class ItemVendorDetailsByMarketplace:
+class ItemVendorDetailsByMarketplace(__BaseObject):
     """
     Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -342,13 +342,13 @@ class ItemVendorDetailsByMarketplace:
             self.subcategoryCode: str = None
 
 
-class ItemSearchResults:
+class ItemSearchResults(__BaseObject):
     """
     Items in the Amazon catalog and search related metadata.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "numberOfResults" in data:
             self.numberOfResults: int = int(data["numberOfResults"])
@@ -368,13 +368,13 @@ class ItemSearchResults:
             self.items: _List[Item] = []
 
 
-class Pagination:
+class Pagination(__BaseObject):
     """
     When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "nextToken" in data:
             self.nextToken: str = str(data["nextToken"])
@@ -386,13 +386,13 @@ class Pagination:
             self.previousToken: str = None
 
 
-class Refinements:
+class Refinements(__BaseObject):
     """
     Search refinements.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "brands" in data:
             self.brands: _List[BrandRefinement] = [BrandRefinement(datum) for datum in data["brands"]]
@@ -406,13 +406,13 @@ class Refinements:
             self.classifications: _List[ClassificationRefinement] = []
 
 
-class BrandRefinement:
+class BrandRefinement(__BaseObject):
     """
     Description of a brand that can be used to get more fine-grained search results.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "numberOfResults" in data:
             self.numberOfResults: int = int(data["numberOfResults"])
@@ -424,13 +424,13 @@ class BrandRefinement:
             self.brandName: str = None
 
 
-class ClassificationRefinement:
+class ClassificationRefinement(__BaseObject):
     """
     Description of a classification that can be used to get more fine-grained search results.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "numberOfResults" in data:
             self.numberOfResults: int = int(data["numberOfResults"])

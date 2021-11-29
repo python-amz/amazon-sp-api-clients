@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Subscription:
+class Subscription(__BaseObject):
     """
     Represents a subscription to receive notifications.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "subscriptionId" in data:
             self.subscriptionId: str = str(data["subscriptionId"])
@@ -24,13 +24,13 @@ class Subscription:
             self.destinationId: str = None
 
 
-class CreateSubscriptionResponse:
+class CreateSubscriptionResponse(__BaseObject):
     """
     The response schema for the createSubscription operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Subscription = Subscription(data["payload"])
@@ -42,13 +42,13 @@ class CreateSubscriptionResponse:
             self.errors: ErrorList = None
 
 
-class CreateSubscriptionRequest:
+class CreateSubscriptionRequest(__BaseObject):
     """
     The request schema for the createSubscription operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payloadVersion" in data:
             self.payloadVersion: str = str(data["payloadVersion"])
@@ -60,13 +60,13 @@ class CreateSubscriptionRequest:
             self.destinationId: str = None
 
 
-class GetSubscriptionByIdResponse:
+class GetSubscriptionByIdResponse(__BaseObject):
     """
     The response schema for the getSubscriptionById operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Subscription = Subscription(data["payload"])
@@ -78,13 +78,13 @@ class GetSubscriptionByIdResponse:
             self.errors: ErrorList = None
 
 
-class GetSubscriptionResponse:
+class GetSubscriptionResponse(__BaseObject):
     """
     The response schema for the getSubscription operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Subscription = Subscription(data["payload"])
@@ -96,13 +96,13 @@ class GetSubscriptionResponse:
             self.errors: ErrorList = None
 
 
-class DeleteSubscriptionByIdResponse:
+class DeleteSubscriptionByIdResponse(__BaseObject):
     """
     The response schema for the deleteSubscriptionById operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -110,13 +110,13 @@ class DeleteSubscriptionByIdResponse:
             self.errors: ErrorList = None
 
 
-class Destination:
+class Destination(__BaseObject):
     """
     Represents a destination created when you call the createDestination operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -132,13 +132,13 @@ class Destination:
             self.resource: DestinationResource = None
 
 
-class DestinationResource:
+class DestinationResource(__BaseObject):
     """
     The destination resource types.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sqs" in data:
             self.sqs: SqsResource = SqsResource(data["sqs"])
@@ -150,13 +150,13 @@ class DestinationResource:
             self.eventBridge: EventBridgeResource = None
 
 
-class DestinationResourceSpecification:
+class DestinationResourceSpecification(__BaseObject):
     """
     The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sqs" in data:
             self.sqs: SqsResource = SqsResource(data["sqs"])
@@ -168,13 +168,13 @@ class DestinationResourceSpecification:
             self.eventBridge: EventBridgeResourceSpecification = None
 
 
-class SqsResource:
+class SqsResource(__BaseObject):
     """
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "arn" in data:
             self.arn: str = str(data["arn"])
@@ -182,13 +182,13 @@ class SqsResource:
             self.arn: str = None
 
 
-class EventBridgeResourceSpecification:
+class EventBridgeResourceSpecification(__BaseObject):
     """
     The information required to create an Amazon EventBridge destination.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "region" in data:
             self.region: str = str(data["region"])
@@ -200,13 +200,13 @@ class EventBridgeResourceSpecification:
             self.accountId: str = None
 
 
-class EventBridgeResource:
+class EventBridgeResource(__BaseObject):
     """
     Represents an Amazon EventBridge destination.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -222,13 +222,13 @@ class EventBridgeResource:
             self.accountId: str = None
 
 
-class CreateDestinationRequest:
+class CreateDestinationRequest(__BaseObject):
     """
     The request schema for the createDestination operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "resourceSpecification" in data:
             self.resourceSpecification: DestinationResourceSpecification = DestinationResourceSpecification(
@@ -242,13 +242,13 @@ class CreateDestinationRequest:
             self.name: str = None
 
 
-class CreateDestinationResponse:
+class CreateDestinationResponse(__BaseObject):
     """
     The response schema for the createDestination operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Destination = Destination(data["payload"])
@@ -260,13 +260,13 @@ class CreateDestinationResponse:
             self.errors: ErrorList = None
 
 
-class GetDestinationResponse:
+class GetDestinationResponse(__BaseObject):
     """
     The response schema for the getDestination operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Destination = Destination(data["payload"])
@@ -278,13 +278,13 @@ class GetDestinationResponse:
             self.errors: ErrorList = None
 
 
-class GetDestinationsResponse:
+class GetDestinationsResponse(__BaseObject):
     """
     The response schema for the getDestinations operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: DestinationList = DestinationList(data["payload"])
@@ -296,13 +296,13 @@ class GetDestinationsResponse:
             self.errors: ErrorList = None
 
 
-class DeleteDestinationResponse:
+class DeleteDestinationResponse(__BaseObject):
     """
     The response schema for the deleteDestination operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: ErrorList = ErrorList(data["errors"])
@@ -310,13 +310,13 @@ class DeleteDestinationResponse:
             self.errors: ErrorList = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])

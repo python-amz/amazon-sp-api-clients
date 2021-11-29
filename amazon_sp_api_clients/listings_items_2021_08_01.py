@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
@@ -38,13 +38,13 @@ class ErrorList:
             self.errors: _List[Error] = []
 
 
-class Item:
+class Item(__BaseObject):
     """
     A listings item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sku" in data:
             self.sku: str = str(data["sku"])
@@ -78,13 +78,13 @@ class Item:
             self.procurement: ItemProcurement = None
 
 
-class ItemSummaryByMarketplace:
+class ItemSummaryByMarketplace(__BaseObject):
     """
     Summary details of a listings item for an Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -128,13 +128,13 @@ class ItemSummaryByMarketplace:
             self.mainImage: ItemImage = None
 
 
-class ItemImage:
+class ItemImage(__BaseObject):
     """
     Image for the listings item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "link" in data:
             self.link: str = str(data["link"])
@@ -150,23 +150,23 @@ class ItemImage:
             self.width: int = None
 
 
-class ItemAttributes:
+class ItemAttributes(__BaseObject):
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
 
 
-class Issue:
+class Issue(__BaseObject):
     """
     An issue with a listings item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -186,13 +186,13 @@ class Issue:
             self.attributeNames: _List[str] = []
 
 
-class ItemOfferByMarketplace:
+class ItemOfferByMarketplace(__BaseObject):
     """
     Offer details of a listings item for an Amazon marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "marketplaceId" in data:
             self.marketplaceId: str = str(data["marketplaceId"])
@@ -212,13 +212,13 @@ class ItemOfferByMarketplace:
             self.points: Points = None
 
 
-class ItemProcurement:
+class ItemProcurement(__BaseObject):
     """
     Vendor procurement information for the listings item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "costPrice" in data:
             self.costPrice: Money = Money(data["costPrice"])
@@ -226,13 +226,13 @@ class ItemProcurement:
             self.costPrice: Money = None
 
 
-class FulfillmentAvailability:
+class FulfillmentAvailability(__BaseObject):
     """
     Fulfillment availability details for the listings item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "fulfillmentChannelCode" in data:
             self.fulfillmentChannelCode: str = str(data["fulfillmentChannelCode"])
@@ -244,13 +244,13 @@ class FulfillmentAvailability:
             self.quantity: int = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     The currency type and the amount.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "currencyCode" in data:
             self.currencyCode: str = str(data["currencyCode"])
@@ -262,13 +262,13 @@ class Money:
             self.amount: Decimal = None
 
 
-class Points:
+class Points(__BaseObject):
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "pointsNumber" in data:
             self.pointsNumber: int = int(data["pointsNumber"])
@@ -276,13 +276,13 @@ class Points:
             self.pointsNumber: int = None
 
 
-class PatchOperation:
+class PatchOperation(__BaseObject):
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "op" in data:
             self.op: str = str(data["op"])
@@ -298,13 +298,13 @@ class PatchOperation:
             self.value: _List[dict] = []
 
 
-class ListingsItemPatchRequest:
+class ListingsItemPatchRequest(__BaseObject):
     """
     The request body schema for the patchListingsItem operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "productType" in data:
             self.productType: str = str(data["productType"])
@@ -316,13 +316,13 @@ class ListingsItemPatchRequest:
             self.patches: _List[PatchOperation] = []
 
 
-class ListingsItemPutRequest:
+class ListingsItemPutRequest(__BaseObject):
     """
     The request body schema for the putListingsItem operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "productType" in data:
             self.productType: str = str(data["productType"])
@@ -338,13 +338,13 @@ class ListingsItemPutRequest:
             self.attributes: dict = None
 
 
-class ListingsItemSubmissionResponse:
+class ListingsItemSubmissionResponse(__BaseObject):
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "sku" in data:
             self.sku: str = str(data["sku"])

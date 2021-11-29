@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -24,13 +24,13 @@ class Error:
             self.details: str = None
 
 
-class ErrorList:
+class ErrorList(__BaseObject):
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "errors" in data:
             self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
@@ -38,11 +38,11 @@ class ErrorList:
             self.errors: _List[Error] = []
 
 
-class SchemaLink:
+class SchemaLink(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "link" in data:
             self.link: dict = dict(data["link"])
@@ -54,13 +54,13 @@ class SchemaLink:
             self.checksum: str = None
 
 
-class ProductTypeDefinition:
+class ProductTypeDefinition(__BaseObject):
     """
     A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "metaSchema" in data:
             self.metaSchema: SchemaLink = SchemaLink(data["metaSchema"])
@@ -100,13 +100,13 @@ class ProductTypeDefinition:
             self.productTypeVersion: ProductTypeVersion = None
 
 
-class PropertyGroup:
+class PropertyGroup(__BaseObject):
     """
     A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "title" in data:
             self.title: str = str(data["title"])
@@ -122,13 +122,13 @@ class PropertyGroup:
             self.propertyNames: _List[str] = []
 
 
-class ProductTypeVersion:
+class ProductTypeVersion(__BaseObject):
     """
     The version details for an Amazon product type.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "version" in data:
             self.version: str = str(data["version"])
@@ -144,13 +144,13 @@ class ProductTypeVersion:
             self.releaseCandidate: bool = None
 
 
-class ProductType:
+class ProductType(__BaseObject):
     """
     An Amazon product type with a definition available.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "name" in data:
             self.name: str = str(data["name"])
@@ -162,13 +162,13 @@ class ProductType:
             self.marketplaceIds: _List[str] = []
 
 
-class ProductTypeList:
+class ProductTypeList(__BaseObject):
     """
     A list of Amazon product types with definitions available.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "productTypes" in data:
             self.productTypes: _List[ProductType] = [ProductType(datum) for datum in data["productTypes"]]

@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetMyFeesEstimateRequest:
+class GetMyFeesEstimateRequest(__BaseObject):
     """
     Request schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "FeesEstimateRequest" in data:
             self.FeesEstimateRequest: FeesEstimateRequest = FeesEstimateRequest(data["FeesEstimateRequest"])
@@ -16,11 +16,11 @@ class GetMyFeesEstimateRequest:
             self.FeesEstimateRequest: FeesEstimateRequest = None
 
 
-class FeesEstimateRequest:
+class FeesEstimateRequest(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
@@ -46,11 +46,11 @@ class FeesEstimateRequest:
             self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = None
 
 
-class GetMyFeesEstimateResponse:
+class GetMyFeesEstimateResponse(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: GetMyFeesEstimateResult = GetMyFeesEstimateResult(data["payload"])
@@ -62,13 +62,13 @@ class GetMyFeesEstimateResponse:
             self.errors: ErrorList = None
 
 
-class GetMyFeesEstimateResult:
+class GetMyFeesEstimateResult(__BaseObject):
     """
     Response schema.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "FeesEstimateResult" in data:
             self.FeesEstimateResult: FeesEstimateResult = FeesEstimateResult(data["FeesEstimateResult"])
@@ -76,11 +76,11 @@ class GetMyFeesEstimateResult:
             self.FeesEstimateResult: FeesEstimateResult = None
 
 
-class Points:
+class Points(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PointsNumber" in data:
             self.PointsNumber: int = int(data["PointsNumber"])
@@ -92,11 +92,11 @@ class Points:
             self.PointsMonetaryValue: MoneyType = None
 
 
-class Error:
+class Error(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
@@ -112,13 +112,13 @@ class Error:
             self.details: str = None
 
 
-class FeesEstimateResult:
+class FeesEstimateResult(__BaseObject):
     """
     An item identifier and the estimated fees for the item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Status" in data:
             self.Status: str = str(data["Status"])
@@ -138,13 +138,13 @@ class FeesEstimateResult:
             self.Error: FeesEstimateError = None
 
 
-class FeesEstimateIdentifier:
+class FeesEstimateIdentifier(__BaseObject):
     """
     An item identifier, marketplace, time of request, and other details that identify an estimate.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "MarketplaceId" in data:
             self.MarketplaceId: str = str(data["MarketplaceId"])
@@ -182,13 +182,13 @@ class FeesEstimateIdentifier:
             self.OptionalFulfillmentProgram: OptionalFulfillmentProgram = None
 
 
-class PriceToEstimateFees:
+class PriceToEstimateFees(__BaseObject):
     """
     Price information for an item, used to estimate fees.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ListingPrice" in data:
             self.ListingPrice: MoneyType = MoneyType(data["ListingPrice"])
@@ -204,13 +204,13 @@ class PriceToEstimateFees:
             self.Points: Points = None
 
 
-class FeesEstimate:
+class FeesEstimate(__BaseObject):
     """
     The total estimated fees for an item and a list of details.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TimeOfFeesEstimation" in data:
             self.TimeOfFeesEstimation: str = str(data["TimeOfFeesEstimation"])
@@ -226,13 +226,13 @@ class FeesEstimate:
             self.FeeDetailList: FeeDetailList = None
 
 
-class FeesEstimateError:
+class FeesEstimateError(__BaseObject):
     """
     An unexpected error occurred during this operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Type" in data:
             self.Type: str = str(data["Type"])
@@ -252,13 +252,13 @@ class FeesEstimateError:
             self.Detail: FeesEstimateErrorDetail = None
 
 
-class FeeDetail:
+class FeeDetail(__BaseObject):
     """
     The type of fee, fee amount, and other details.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "FeeType" in data:
             self.FeeType: str = str(data["FeeType"])
@@ -286,13 +286,13 @@ class FeeDetail:
             self.IncludedFeeDetailList: IncludedFeeDetailList = None
 
 
-class IncludedFeeDetail:
+class IncludedFeeDetail(__BaseObject):
     """
     The type of fee, fee amount, and other details.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "FeeType" in data:
             self.FeeType: str = str(data["FeeType"])
@@ -316,11 +316,11 @@ class IncludedFeeDetail:
             self.FinalFee: MoneyType = None
 
 
-class MoneyType:
+class MoneyType(__BaseObject):
     """ """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])

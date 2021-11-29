@@ -1,14 +1,14 @@
-from .base import BaseClient as __BaseClient, convert_bool
+from .base import BaseClient as __BaseClient, convert_bool, BaseObject as __BaseObject
 from typing import List as _List
 
 
-class GetOrdersResponse:
+class GetOrdersResponse(__BaseObject):
     """
     The response schema for the getOrders operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: OrdersList = OrdersList(data["payload"])
@@ -20,13 +20,13 @@ class GetOrdersResponse:
             self.errors: ErrorList = None
 
 
-class GetOrderResponse:
+class GetOrderResponse(__BaseObject):
     """
     The response schema for the getOrder operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: Order = Order(data["payload"])
@@ -38,13 +38,13 @@ class GetOrderResponse:
             self.errors: ErrorList = None
 
 
-class GetOrderBuyerInfoResponse:
+class GetOrderBuyerInfoResponse(__BaseObject):
     """
     The response schema for the getOrderBuyerInfo operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: OrderBuyerInfo = OrderBuyerInfo(data["payload"])
@@ -56,13 +56,13 @@ class GetOrderBuyerInfoResponse:
             self.errors: ErrorList = None
 
 
-class GetOrderAddressResponse:
+class GetOrderAddressResponse(__BaseObject):
     """
     The response schema for the getOrderAddress operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: OrderAddress = OrderAddress(data["payload"])
@@ -74,13 +74,13 @@ class GetOrderAddressResponse:
             self.errors: ErrorList = None
 
 
-class GetOrderItemsResponse:
+class GetOrderItemsResponse(__BaseObject):
     """
     The response schema for the getOrderItems operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: OrderItemsList = OrderItemsList(data["payload"])
@@ -92,13 +92,13 @@ class GetOrderItemsResponse:
             self.errors: ErrorList = None
 
 
-class GetOrderItemsBuyerInfoResponse:
+class GetOrderItemsBuyerInfoResponse(__BaseObject):
     """
     The response schema for the getOrderItemsBuyerInfo operation.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "payload" in data:
             self.payload: OrderItemsBuyerInfoList = OrderItemsBuyerInfoList(data["payload"])
@@ -110,13 +110,13 @@ class GetOrderItemsBuyerInfoResponse:
             self.errors: ErrorList = None
 
 
-class OrdersList:
+class OrdersList(__BaseObject):
     """
     A list of orders along with additional information to make subsequent API calls.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Orders" in data:
             self.Orders: OrderList = OrderList(data["Orders"])
@@ -136,13 +136,13 @@ class OrdersList:
             self.CreatedBefore: str = None
 
 
-class Order:
+class Order(__BaseObject):
     """
     Order information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -310,13 +310,13 @@ class Order:
             self.BuyerInfo: BuyerInfo = None
 
 
-class OrderBuyerInfo:
+class OrderBuyerInfo(__BaseObject):
     """
     Buyer information for an order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -344,13 +344,13 @@ class OrderBuyerInfo:
             self.PurchaseOrderNumber: str = None
 
 
-class OrderAddress:
+class OrderAddress(__BaseObject):
     """
     The shipping address for the order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "AmazonOrderId" in data:
             self.AmazonOrderId: str = str(data["AmazonOrderId"])
@@ -362,13 +362,13 @@ class OrderAddress:
             self.ShippingAddress: Address = None
 
 
-class Address:
+class Address(__BaseObject):
     """
     The shipping address for the order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
@@ -424,13 +424,13 @@ class Address:
             self.AddressType: str = None
 
 
-class Money:
+class Money(__BaseObject):
     """
     The monetary value of the order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CurrencyCode" in data:
             self.CurrencyCode: str = str(data["CurrencyCode"])
@@ -442,13 +442,13 @@ class Money:
             self.Amount: str = None
 
 
-class PaymentExecutionDetailItem:
+class PaymentExecutionDetailItem(__BaseObject):
     """
     Information about a sub-payment method used to pay for a COD order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Payment" in data:
             self.Payment: Money = Money(data["Payment"])
@@ -460,13 +460,13 @@ class PaymentExecutionDetailItem:
             self.PaymentMethod: str = None
 
 
-class BuyerTaxInfo:
+class BuyerTaxInfo(__BaseObject):
     """
     Tax information about the buyer.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CompanyLegalName" in data:
             self.CompanyLegalName: str = str(data["CompanyLegalName"])
@@ -484,13 +484,13 @@ class BuyerTaxInfo:
             self.TaxClassifications: _List[TaxClassification] = []
 
 
-class MarketplaceTaxInfo:
+class MarketplaceTaxInfo(__BaseObject):
     """
     Tax information about the marketplace.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "TaxClassifications" in data:
             self.TaxClassifications: _List[TaxClassification] = [
@@ -500,13 +500,13 @@ class MarketplaceTaxInfo:
             self.TaxClassifications: _List[TaxClassification] = []
 
 
-class TaxClassification:
+class TaxClassification(__BaseObject):
     """
     The tax classification for the order.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Name" in data:
             self.Name: str = str(data["Name"])
@@ -518,13 +518,13 @@ class TaxClassification:
             self.Value: str = None
 
 
-class OrderItemsList:
+class OrderItemsList(__BaseObject):
     """
     The order items list along with the order ID.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "OrderItems" in data:
             self.OrderItems: OrderItemList = OrderItemList(data["OrderItems"])
@@ -540,13 +540,13 @@ class OrderItemsList:
             self.AmazonOrderId: str = None
 
 
-class OrderItem:
+class OrderItem(__BaseObject):
     """
     A single order item.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "ASIN" in data:
             self.ASIN: str = str(data["ASIN"])
@@ -682,13 +682,13 @@ class OrderItem:
             self.BuyerInfo: ItemBuyerInfo = None
 
 
-class OrderItemsBuyerInfoList:
+class OrderItemsBuyerInfoList(__BaseObject):
     """
     A single order item's buyer information list with the order ID.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "OrderItems" in data:
             self.OrderItems: OrderItemBuyerInfoList = OrderItemBuyerInfoList(data["OrderItems"])
@@ -704,13 +704,13 @@ class OrderItemsBuyerInfoList:
             self.AmazonOrderId: str = None
 
 
-class OrderItemBuyerInfo:
+class OrderItemBuyerInfo(__BaseObject):
     """
     A single order item's buyer information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "OrderItemId" in data:
             self.OrderItemId: str = str(data["OrderItemId"])
@@ -738,13 +738,13 @@ class OrderItemBuyerInfo:
             self.GiftWrapLevel: str = None
 
 
-class PointsGrantedDetail:
+class PointsGrantedDetail(__BaseObject):
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "PointsNumber" in data:
             self.PointsNumber: int = int(data["PointsNumber"])
@@ -756,13 +756,13 @@ class PointsGrantedDetail:
             self.PointsMonetaryValue: Money = None
 
 
-class ProductInfoDetail:
+class ProductInfoDetail(__BaseObject):
     """
     Product information on the number of items.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "NumberOfItems" in data:
             self.NumberOfItems: int = int(data["NumberOfItems"])
@@ -770,13 +770,13 @@ class ProductInfoDetail:
             self.NumberOfItems: int = None
 
 
-class BuyerCustomizedInfoDetail:
+class BuyerCustomizedInfoDetail(__BaseObject):
     """
     Buyer information for custom orders from the Amazon Custom program.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "CustomizedURL" in data:
             self.CustomizedURL: str = str(data["CustomizedURL"])
@@ -784,13 +784,13 @@ class BuyerCustomizedInfoDetail:
             self.CustomizedURL: str = None
 
 
-class TaxCollection:
+class TaxCollection(__BaseObject):
     """
     Information about withheld taxes.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "Model" in data:
             self.Model: str = str(data["Model"])
@@ -802,13 +802,13 @@ class TaxCollection:
             self.ResponsibleParty: str = None
 
 
-class FulfillmentInstruction:
+class FulfillmentInstruction(__BaseObject):
     """
     Contains the instructions about the fulfillment like where should it be fulfilled from.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "FulfillmentSupplySourceId" in data:
             self.FulfillmentSupplySourceId: str = str(data["FulfillmentSupplySourceId"])
@@ -816,13 +816,13 @@ class FulfillmentInstruction:
             self.FulfillmentSupplySourceId: str = None
 
 
-class BuyerInfo:
+class BuyerInfo(__BaseObject):
     """
     Buyer information
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "BuyerEmail" in data:
             self.BuyerEmail: str = str(data["BuyerEmail"])
@@ -846,13 +846,13 @@ class BuyerInfo:
             self.PurchaseOrderNumber: str = None
 
 
-class ItemBuyerInfo:
+class ItemBuyerInfo(__BaseObject):
     """
     A single item's buyer information.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "BuyerCustomizedInfo" in data:
             self.BuyerCustomizedInfo: BuyerCustomizedInfoDetail = BuyerCustomizedInfoDetail(data["BuyerCustomizedInfo"])
@@ -876,13 +876,13 @@ class ItemBuyerInfo:
             self.GiftWrapLevel: str = None
 
 
-class Error:
+class Error(__BaseObject):
     """
     Error response returned when the request is unsuccessful.
     """
 
     def __init__(self, data):
-        super().__init__()
+        super().__init__(data)
         self.data = data
         if "code" in data:
             self.code: str = str(data["code"])
