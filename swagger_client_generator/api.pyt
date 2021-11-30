@@ -62,7 +62,7 @@ class {{ component_name }}({{component.type}}):
 
 
 {% for component_name, component in ref_components.items() %}
-class {{ component_name }}({% for type in component.types %}{{ type }}, {% endfor %}):
+class {{ component_name }}({% for type in component.base_types %}{{ type }}, {% endfor %}):
     """
     {{component.source.description}}
     """

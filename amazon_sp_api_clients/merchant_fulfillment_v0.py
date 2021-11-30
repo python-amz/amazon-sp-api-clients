@@ -1434,7 +1434,9 @@ class WeightValue(float):
     """
 
 
-class AvailableFormatOptionsForLabel:
+class AvailableFormatOptionsForLabel(
+    AvailableFormatOptionsForLabelList,
+):
     """ """
 
     def __init__(self, data):

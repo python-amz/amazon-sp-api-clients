@@ -1244,7 +1244,9 @@ class listContentDocumentAsinRelationsIncludedDataSet(list):
     """
 
 
-class AplusPaginatedResponse:
+class AplusPaginatedResponse(
+    AplusResponse,
+):
     """
     The base response data for paginated A+ Content operations. Individual operations may extend this with additional data. If nextPageToken is not returned, there are no more pages to return.
     """
@@ -1258,7 +1260,9 @@ class AplusPaginatedResponse:
         super().__init__(data)
 
 
-class SearchContentDocumentsResponse:
+class SearchContentDocumentsResponse(
+    AplusPaginatedResponse,
+):
     """ """
 
     def __init__(self, data):
@@ -1272,7 +1276,9 @@ class SearchContentDocumentsResponse:
         super().__init__(data)
 
 
-class GetContentDocumentResponse:
+class GetContentDocumentResponse(
+    AplusResponse,
+):
     """ """
 
     def __init__(self, data):
@@ -1284,7 +1290,9 @@ class GetContentDocumentResponse:
         super().__init__(data)
 
 
-class PostContentDocumentResponse:
+class PostContentDocumentResponse(
+    AplusResponse,
+):
     """ """
 
     def __init__(self, data):
@@ -1296,7 +1304,9 @@ class PostContentDocumentResponse:
         super().__init__(data)
 
 
-class ListContentDocumentAsinRelationsResponse:
+class ListContentDocumentAsinRelationsResponse(
+    AplusPaginatedResponse,
+):
     """ """
 
     def __init__(self, data):
@@ -1308,7 +1318,9 @@ class ListContentDocumentAsinRelationsResponse:
         super().__init__(data)
 
 
-class PostContentDocumentAsinRelationsResponse:
+class PostContentDocumentAsinRelationsResponse(
+    AplusResponse,
+):
     """ """
 
     def __init__(self, data):
@@ -1316,7 +1328,10 @@ class PostContentDocumentAsinRelationsResponse:
         super().__init__(data)
 
 
-class ValidateContentDocumentAsinRelationsResponse:
+class ValidateContentDocumentAsinRelationsResponse(
+    AplusResponse,
+    ErrorList,
+):
     """ """
 
     def __init__(self, data):
@@ -1324,7 +1339,9 @@ class ValidateContentDocumentAsinRelationsResponse:
         super().__init__(data)
 
 
-class SearchContentPublishRecordsResponse:
+class SearchContentPublishRecordsResponse(
+    AplusPaginatedResponse,
+):
     """ """
 
     def __init__(self, data):
@@ -1336,7 +1353,9 @@ class SearchContentPublishRecordsResponse:
         super().__init__(data)
 
 
-class PostContentDocumentApprovalSubmissionResponse:
+class PostContentDocumentApprovalSubmissionResponse(
+    AplusResponse,
+):
     """ """
 
     def __init__(self, data):
@@ -1344,7 +1363,9 @@ class PostContentDocumentApprovalSubmissionResponse:
         super().__init__(data)
 
 
-class PostContentDocumentSuspendSubmissionResponse:
+class PostContentDocumentSuspendSubmissionResponse(
+    AplusResponse,
+):
     """ """
 
     def __init__(self, data):
