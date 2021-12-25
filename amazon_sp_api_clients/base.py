@@ -305,3 +305,69 @@ class BaseDictObject:
         if value is None and klass is dict:
             return None
         return klass(value)
+
+
+class BaseClients:
+    def __init__(self, *,
+                 role_arn: str = None,
+                 endpoint: str = None,
+                 region: str = None,
+                 marketplace_id: str = None,
+                 refresh_token: str = None,
+                 aws_access_key: str = None,
+                 aws_secret_key: str = None,
+                 lwa_client_key: str = None,
+                 lwa_client_secret: str = None,
+                 ):
+        """Create a base client.
+
+        Args:
+            role_arn: "arn:aws:iam::xxxxxxxxxxxx:role/sp_api_role"
+            endpoint: "https://sellingpartnerapi-eu.amazon.com"
+            marketplace_id: "A1F83G8C2ARO7P"
+            refresh_token:  "Atzr|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+                            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+                            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+                            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            aws_access_key: 'xxxxxxxxxxxxxxxxxxxx'
+            aws_secret_key: "xxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            use_cache: if True, check if cached and return cached response, or get new response and save
+        """
+        if role_arn is None:
+            role_arn = os.environ.get('SP_API_ROLE_ARN')
+        if endpoint is None:
+            endpoint = os.environ.get('SP_API_ENDPOINT')
+        if region is None:
+            region = os.environ.get('SP_API_REGION')
+        if marketplace_id is None:
+            marketplace_id = os.environ.get('SP_API_MARKETPLACE_ID')
+        if refresh_token is None:
+            refresh_token = os.environ.get('SP_API_REFRESH_TOKEN')
+        if aws_access_key is None:
+            aws_access_key = os.environ.get('SP_API_AWS_ACCESS_KEY')
+        if aws_secret_key is None:
+            aws_secret_key = os.environ.get('SP_API_AWS_SECRET_KEY')
+        if lwa_client_key is None:
+            lwa_client_key = os.environ.get('SP_API_LWA_CLIENT_KEY')
+        if lwa_client_secret is None:
+            lwa_client_secret = os.environ.get('SP_API_LWA_CLIENT_SECRET')
+        self._role_arn = role_arn
+        self._endpoint = endpoint
+        self._region = region
+        self._marketplace_id = marketplace_id
+        self._refresh_token = refresh_token
+        self._aws_access_key = aws_access_key
+        self._aws_secret_key = aws_secret_key
+        self._client_id = lwa_client_key
+        self._client_secret = lwa_client_secret
+        self._parameters = dict(
+            role_arn=role_arn,
+            endpoint=endpoint,
+            region=region,
+            marketplace_id=marketplace_id,
+            refresh_token=refresh_token,
+            aws_access_key=aws_access_key,
+            aws_secret_key=aws_secret_key,
+            lwa_client_key=lwa_client_key,
+            lwa_client_secret=lwa_client_secret,
+        )

@@ -6,7 +6,6 @@ import traceback
 from glob import glob
 from os import path
 from pathlib import Path
-from pprint import pprint
 
 import black
 import requests
@@ -107,14 +106,10 @@ def test_generate_clients():
 
     path.exists('amazon_sp_api_clients') and shutil.rmtree('amazon_sp_api_clients')
     shutil.copytree('amazon_sp_api_static', 'amazon_sp_api_clients')
-    with open('amazon_sp_api_clients/__init__.py', mode='r', encoding='utf-8') as f:
-        init_lines = f.readlines()
+
+    clients = []
     for src_path in map(Path, glob(str(base_dir / 'swagger3_apis/*.json'))):
         module_name = src_path.stem
-
-        # usually debug a single client, so skip others to speed up
-        # if 'feed' not in module_name:
-        #     continue
 
         dst_path = path.join('amazon_sp_api_clients', f'{module_name}.py')
         with open(src_path, 'r', encoding='utf-8') as f:
@@ -130,10 +125,17 @@ def test_generate_clients():
             traceback.print_tb(e.__traceback__)
             raise
         package_name = path.split(path.splitext(src_path)[0])[1]
-
-        init_lines.insert(0, f'from .{package_name} import {context["class_name"]}Client\n')
-    init_content = ''.join(init_lines)
+        clients.append({
+            'package': package_name,
+            'class_name': context["class_name"],
+        })
+    template_path = Path(__file__).parent / r'swagger_client_generator/init.pyt'
+    with open(template_path, 'r', encoding='utf-8') as f:
+        template = Template(f.read())
+    init_content = template.render(clients=clients)
+    init_content = re.sub(r'\n+', '\n', init_content)
     init_content = black.format_str(init_content, mode=black.Mode(line_length=120))
+
     with open('amazon_sp_api_clients/__init__.py', mode='w', encoding='utf-8') as f:
         f.write(init_content)
 
