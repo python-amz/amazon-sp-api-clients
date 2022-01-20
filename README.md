@@ -2,7 +2,7 @@
 
 This is a package generated from amazon selling partner open api models.
 
-This package is for my personal usage, and may not be a good package, but enough for myself.
+The package is tested in many situations, with fully type hint supported. Enjoy it! 
 
 ![typehint 1](./docs/source/typehint1.png)
 
