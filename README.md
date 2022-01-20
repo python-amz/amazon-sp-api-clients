@@ -26,13 +26,9 @@ V1.0.0 changes many api, compared with v0.x.x!
 
 ## Note
 
-Because that this repo currently do not need community contribution, and is mainly for my personal usage, so I made this
-repo private. You can download the client from pypi and use it free. But if you want to generate a new client lib to
-support your business, please contact and pay me and I will provide technical support.
-
 For technical support, please contact [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com).
 
-Previously this lib is only open access but not open source, and now it's time to make it public to serve more people.
+Previously this lib is only open access but not open source, and now it's time to make it public to serve more developers.
 
 If there's any bug, please fell free to open an issue or send a pr.
 
