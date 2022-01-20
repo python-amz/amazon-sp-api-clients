@@ -20,7 +20,8 @@ V1.0.0 changes many api, compared with v0.x.x!
 
 * ready to use;
 * provide code to generate clients, in case that amazon update models;
-* type hint.
+* type hint;
+* orders api, feed api, report api, and all other apis.
 
 ## Note
 
