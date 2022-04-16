@@ -5,7 +5,13 @@ from .{{ client.package }} import {{ client.class_name }}Client
 from .marketplaces import MarketPlaces
 from .report_types import ReportType, ReportTypeGroup
 from .base import BaseClients
-from functools import cached_property
+try:
+    from functools import cached_property
+except ImportError:
+    try:
+        from cached_property import cached_property
+    except ImportError:
+        raise 'Please install cached_property for python < 3.8'
 
 class AmazonSpApiClients(BaseClients):
     {% for client in clients %}
@@ -15,7 +21,7 @@ class AmazonSpApiClients(BaseClients):
     {% endfor %}
 
 
-version = '1.7.9'
+version = '1.7.10'
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"

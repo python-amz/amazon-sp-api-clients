@@ -46,7 +46,14 @@ from .vendor_transaction_status_v1 import VendorTransactionStatusV1Client
 from .marketplaces import MarketPlaces
 from .report_types import ReportType, ReportTypeGroup
 from .base import BaseClients
-from functools import cached_property
+
+try:
+    from functools import cached_property
+except ImportError:
+    try:
+        from cached_property import cached_property
+    except ImportError:
+        raise "Please install cached_property for python < 3.8"
 
 
 class AmazonSpApiClients(BaseClients):
@@ -231,7 +238,7 @@ class AmazonSpApiClients(BaseClients):
         return VendorTransactionStatusV1Client(**self._parameters)
 
 
-version = "1.7.9"
+version = "1.7.10"
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"
