@@ -339,7 +339,7 @@ class ErrorList(list, _List["Error"]):
 class NotificationType(str):
     """
        The type of notification.
-    For more information about notification types, see [the Notifications API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/notifications-api-use-case-guide/notifications-use-case-guide-v1.md).
+    For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
     """
 
 

@@ -10,7 +10,6 @@ twine
 pycryptodome
 beautifulsoup4
 markdown
-demjson
 sphinx
 recommonmark
 sphinx-inplace

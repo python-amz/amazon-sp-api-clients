@@ -1486,7 +1486,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
-        | 1 | 1 |
+        | 5 | 10 |
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
         """
         url = f"/mfn/v0/eligibleShippingServices"

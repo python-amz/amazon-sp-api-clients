@@ -21,7 +21,6 @@ setuptools.setup(
         'requests',
         'boto3',
         'pycryptodome',
-        'demjson',
         'chardet',
     ],
     classifiers=[

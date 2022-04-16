@@ -31,9 +31,13 @@ from .solicitations_v1 import SolicitationsV1Client
 from .tokens_2021_03_01 import Tokens20210301Client
 from .uploads_2020_11_01 import Uploads20201101Client
 from .vendor_direct_fulfillment_inventory_v1 import VendorDirectFulfillmentInventoryV1Client
+from .vendor_direct_fulfillment_orders_2021_12_28 import VendorDirectFulfillmentOrders20211228Client
 from .vendor_direct_fulfillment_orders_v1 import VendorDirectFulfillmentOrdersV1Client
 from .vendor_direct_fulfillment_payments_v1 import VendorDirectFulfillmentPaymentsV1Client
+from .vendor_direct_fulfillment_sandbox_test_data_2021_10_28 import VendorDirectFulfillmentSandboxTestData20211028Client
+from .vendor_direct_fulfillment_shipping_2021_12_28 import VendorDirectFulfillmentShipping20211228Client
 from .vendor_direct_fulfillment_shipping_v1 import VendorDirectFulfillmentShippingV1Client
+from .vendor_direct_fulfillment_transactions_2021_12_28 import VendorDirectFulfillmentTransactions20211228Client
 from .vendor_direct_fulfillment_transactions_v1 import VendorDirectFulfillmentTransactionsV1Client
 from .vendor_invoices_v1 import VendorInvoicesV1Client
 from .vendor_orders_v1 import VendorOrdersV1Client
@@ -179,6 +183,10 @@ class AmazonSpApiClients(BaseClients):
         return VendorDirectFulfillmentInventoryV1Client(**self._parameters)
 
     @cached_property
+    def vendor_direct_fulfillment_orders_2021_12_28(self):
+        return VendorDirectFulfillmentOrders20211228Client(**self._parameters)
+
+    @cached_property
     def vendor_direct_fulfillment_orders_v1(self):
         return VendorDirectFulfillmentOrdersV1Client(**self._parameters)
 
@@ -187,8 +195,20 @@ class AmazonSpApiClients(BaseClients):
         return VendorDirectFulfillmentPaymentsV1Client(**self._parameters)
 
     @cached_property
+    def vendor_direct_fulfillment_sandbox_test_data_2021_10_28(self):
+        return VendorDirectFulfillmentSandboxTestData20211028Client(**self._parameters)
+
+    @cached_property
+    def vendor_direct_fulfillment_shipping_2021_12_28(self):
+        return VendorDirectFulfillmentShipping20211228Client(**self._parameters)
+
+    @cached_property
     def vendor_direct_fulfillment_shipping_v1(self):
         return VendorDirectFulfillmentShippingV1Client(**self._parameters)
+
+    @cached_property
+    def vendor_direct_fulfillment_transactions_2021_12_28(self):
+        return VendorDirectFulfillmentTransactions20211228Client(**self._parameters)
 
     @cached_property
     def vendor_direct_fulfillment_transactions_v1(self):

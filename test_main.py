@@ -19,6 +19,7 @@ base_dir = Path(__file__).absolute().parent
 
 
 def test_move_to_swagger_2_apis_directory():
+    # git clone git@github.com:amzn/selling-partner-api-models
     dst_dir = base_dir / 'swagger2_apis'
     dst_dir.exists() and shutil.rmtree(dst_dir)
     os.makedirs(dst_dir)

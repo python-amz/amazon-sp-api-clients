@@ -75,7 +75,7 @@
                     {
                         "name": "MarketplaceIds",
                         "in": "query",
-                        "description": "A list of MarketplaceId values. Used to select orders that were placed in the specified marketplaces.",
+                        "description": "A list of MarketplaceId values. Used to select orders that were placed in the specified marketplaces.\n\nSee the [Selling Partner API Developer Guide](doc:marketplace-ids) for a complete list of marketplaceId values.",
                         "required": true,
                         "style": "form",
                         "explode": false,
@@ -90,7 +90,7 @@
                     {
                         "name": "FulfillmentChannels",
                         "in": "query",
-                        "description": "A list that indicates how an order was fulfilled. Filters the results by fulfillment channel. Possible values: FBA (Fulfillment by Amazon); SellerFulfilled (Fulfilled by the seller).",
+                        "description": "A list that indicates how an order was fulfilled. Filters the results by fulfillment channel. Possible values: AFN (Fulfillment by Amazon); MFN (Fulfilled by the seller).",
                         "style": "form",
                         "explode": false,
                         "schema": {
@@ -246,6 +246,7 @@
                                                 "IsGlobalExpressEnabled": false,
                                                 "IsPremiumOrder": false,
                                                 "IsSoldByAB": false,
+                                                "IsIBA": false,
                                                 "ShippingAddress": {
                                                     "Name": "Michigan address",
                                                     "AddressLine1": "1 Cross St.",
@@ -318,6 +319,7 @@
                                                     "IsGlobalExpressEnabled": false,
                                                     "IsPremiumOrder": false,
                                                     "IsSoldByAB": false,
+                                                    "IsIBA": false,
                                                     "DefaultShipFromLocationAddress": {
                                                         "Name": "MFNIntegrationTestMerchant",
                                                         "AddressLine1": "2201 WESTLAKE AVE",
@@ -331,7 +333,10 @@
                                                     "FulfillmentInstruction": {
                                                         "FulfillmentSupplySourceId": "sampleSupplySourceId"
                                                     },
-                                                    "IsISPU": false
+                                                    "IsISPU": false,
+                                                    "AutomatedShippingSettings": {
+                                                        "HasAutomatedShippingSettings": false
+                                                    }
                                                 },
                                                 {
                                                     "AmazonOrderId": "902-8745147-1934268",
@@ -363,7 +368,8 @@
                                                     "IsPrime": false,
                                                     "IsGlobalExpressEnabled": false,
                                                     "IsPremiumOrder": false,
-                                                    "IsSoldByAB": false
+                                                    "IsSoldByAB": false,
+                                                    "IsIBA": false
                                                 }
                                             ]
                                         }
@@ -408,7 +414,8 @@
                                                     "IsPrime": false,
                                                     "IsGlobalExpressEnabled": false,
                                                     "IsPremiumOrder": false,
-                                                    "IsSoldByAB": false
+                                                    "IsSoldByAB": false,
+                                                    "IsIBA": false
                                                 }
                                             ]
                                         }
@@ -455,7 +462,8 @@
                                                     "IsPrime": false,
                                                     "IsGlobalExpressEnabled": false,
                                                     "IsPremiumOrder": false,
-                                                    "IsSoldByAB": false
+                                                    "IsSoldByAB": false,
+                                                    "IsIBA": false
                                                 }
                                             ]
                                         }
@@ -690,6 +698,7 @@
                                         "IsGlobalExpressEnabled": false,
                                         "IsPremiumOrder": false,
                                         "IsSoldByAB": false,
+                                        "IsIBA": false,
                                         "DefaultShipFromLocationAddress": {
                                             "Name": "MFNIntegrationTestMerchant",
                                             "AddressLine1": "2201 WESTLAKE AVE",
@@ -719,6 +728,9 @@
                                                 "CompanyLegalName": "A Company Name"
                                             },
                                             "PurchaseOrderNumber": "1234567890123"
+                                        },
+                                        "AutomatedShippingSettings": {
+                                            "HasAutomatedShippingSettings": false
                                         }
                                     }
                                 }
@@ -766,6 +778,7 @@
                                             "IsGlobalExpressEnabled": false,
                                             "IsPremiumOrder": false,
                                             "IsSoldByAB": false,
+                                            "IsIBA": false,
                                             "DefaultShipFromLocationAddress": {
                                                 "Name": "MFNIntegrationTestMerchant",
                                                 "AddressLine1": "2201 WESTLAKE AVE",
@@ -779,7 +792,10 @@
                                             "FulfillmentInstruction": {
                                                 "FulfillmentSupplySourceId": "sampleSupplySourceId"
                                             },
-                                            "IsISPU": false
+                                            "IsISPU": false,
+                                            "AutomatedShippingSettings": {
+                                                "HasAutomatedShippingSettings": false
+                                            }
                                         }
                                     }
                                 },
@@ -823,6 +839,7 @@
                                             "IsGlobalExpressEnabled": false,
                                             "IsPremiumOrder": false,
                                             "IsSoldByAB": true,
+                                            "IsIBA": true,
                                             "DefaultShipFromLocationAddress": {
                                                 "Name": "MFNIntegrationTestMerchant",
                                                 "AddressLine1": "2201 WESTLAKE AVE",
@@ -836,7 +853,10 @@
                                             "FulfillmentInstruction": {
                                                 "FulfillmentSupplySourceId": "sampleSupplySourceId"
                                             },
-                                            "IsISPU": false
+                                            "IsISPU": false,
+                                            "AutomatedShippingSettings": {
+                                                "HasAutomatedShippingSettings": false
+                                            }
                                         }
                                     }
                                 }
@@ -1010,7 +1030,7 @@
                 "tags": [
                     "ordersV0"
                 ],
-                "description": "Returns buyer information for the specified order.\n\n**Important.** We recommend using the getOrders operation to get buyer information for an order, as the getOrderBuyerInfo operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns buyer information for the specified order.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "getOrderBuyerInfo",
                 "parameters": [
                     {
@@ -1246,7 +1266,7 @@
                 "tags": [
                     "ordersV0"
                 ],
-                "description": "Returns the shipping address for the specified order.\n\n**Important.** We recommend using the getOrders operation to get shipping address information for an order, as the getOrderAddress operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns the shipping address for the specified order.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "getOrderAddress",
                 "parameters": [
                     {
@@ -1583,6 +1603,10 @@
                                                         "Amount": "41.99"
                                                     },
                                                     "GiftWrapLevel": "Classic"
+                                                },
+                                                "BuyerRequestedCancel": {
+                                                    "IsBuyerRequestedCancel": true,
+                                                    "BuyerCancelReason": "Found cheaper somewhere else."
                                                 }
                                             },
                                             {
@@ -1612,6 +1636,10 @@
                                                         "Amount": "1.99"
                                                     },
                                                     "GiftWrapLevel": "Classic"
+                                                },
+                                                "BuyerRequestedCancel": {
+                                                    "IsBuyerRequestedCancel": true,
+                                                    "BuyerCancelReason": "Found cheaper somewhere else."
                                                 }
                                             }
                                         ]
@@ -1662,7 +1690,11 @@
                                                     "SerialNumberRequired": false,
                                                     "IossNumber": "",
                                                     "DeemedResellerCategory": "IOSS",
-                                                    "StoreChainStoreId": "ISPU_StoreId"
+                                                    "StoreChainStoreId": "ISPU_StoreId",
+                                                    "BuyerRequestedCancel": {
+                                                        "IsBuyerRequestedCancel": true,
+                                                        "BuyerCancelReason": "Found cheaper somewhere else."
+                                                    }
                                                 }
                                             ]
                                         }
@@ -1838,7 +1870,7 @@
                 "tags": [
                     "ordersV0"
                 ],
-                "description": "Returns buyer information for the order items in the specified order.\n\n**Important.** We recommend using the getOrderItems operation to get buyer information for the order items in an order, as the getOrderItemsBuyerInfo operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns buyer information for the order items in the specified order.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
                 "operationId": "getOrderItemsBuyerInfo",
                 "parameters": [
                     {
@@ -2090,10 +2122,1020 @@
                     }
                 }
             }
+        },
+        "/orders/v0/orders/{orderId}/shipment": {
+            "post": {
+                "tags": [
+                    "shipment"
+                ],
+                "description": "Update the shipment status.",
+                "operationId": "updateShipmentStatus",
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "An Amazon-defined order identifier, in 3-7-7 format.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request to update the shipment status.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateShipmentStatusRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {},
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {}
+                                    },
+                                    "response": {}
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "body": {
+                                                "value": {
+                                                    "marketplaceId": "1",
+                                                    "shipmentStatus": "ReadyForPickup"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Marketplace id is not defined",
+                                                "details": "1001"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateShipmentStatusErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "payload"
+            }
+        },
+        "/orders/v0/orders/{orderId}/regulatedInfo": {
+            "get": {
+                "tags": [
+                    "ordersV0"
+                ],
+                "description": "Returns regulated information for the order indicated by the specified order ID.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "getOrderRegulatedInfo",
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "An orderId is an Amazon-defined order identifier, in 3-7-7 format.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderRegulatedInfoResponse"
+                                }
+                            },
+                            "PendingOrder": {
+                                "example": {
+                                    "payload": {
+                                        "AmazonOrderId": "902-3159896-1390916",
+                                        "RequiresDosageLabel": false,
+                                        "RegulatedInformation": {
+                                            "Fields": [
+                                                {
+                                                    "FieldId": "pet_prescription_name",
+                                                    "FieldLabel": "Name",
+                                                    "FieldType": "Text",
+                                                    "FieldValue": "Ruffus"
+                                                },
+                                                {
+                                                    "FieldId": "pet_prescription_species",
+                                                    "FieldLabel": "Species",
+                                                    "FieldType": "Text",
+                                                    "FieldValue": "Dog"
+                                                }
+                                            ]
+                                        },
+                                        "RegulatedOrderVerificationStatus": {
+                                            "Status": "Pending",
+                                            "RequiresMerchantAction": true,
+                                            "ValidRejectionReasons": [
+                                                {
+                                                    "RejectionReasonId": "shield_pom_vps_reject_product",
+                                                    "RejectionReasonDescription": "This medicine is not suitable for your pet."
+                                                },
+                                                {
+                                                    "RejectionReasonId": "shield_pom_vps_reject_age",
+                                                    "RejectionReasonDescription": "Your pet is too young for this medicine."
+                                                },
+                                                {
+                                                    "RejectionReasonId": "shield_pom_vps_reject_incorrect_weight",
+                                                    "RejectionReasonDescription": "Your pet's weight does not match ordered size."
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "ApprovedOrder": {
+                                "example": {
+                                    "payload": {
+                                        "AmazonOrderId": "902-3159896-1390916",
+                                        "RequiresDosageLabel": false,
+                                        "RegulatedInformation": {
+                                            "Fields": [
+                                                {
+                                                    "FieldId": "pet_prescription_name",
+                                                    "FieldLabel": "Name",
+                                                    "FieldType": "Text",
+                                                    "FieldValue": "Ruffus"
+                                                },
+                                                {
+                                                    "FieldId": "pet_prescription_species",
+                                                    "FieldLabel": "Species",
+                                                    "FieldType": "Text",
+                                                    "FieldValue": "Dog"
+                                                }
+                                            ]
+                                        },
+                                        "RegulatedOrderVerificationStatus": {
+                                            "Status": "Approved",
+                                            "RequiresMerchantAction": false,
+                                            "ValidRejectionReasons": [],
+                                            "ExternalReviewerId": "externalId",
+                                            "ReviewDate": "1970-01-19T03:59:27Z"
+                                        }
+                                    }
+                                }
+                            },
+                            "RejectedOrder": {
+                                "example": {
+                                    "payload": {
+                                        "AmazonOrderId": "902-3159896-1390916",
+                                        "RequiresDosageLabel": false,
+                                        "RegulatedInformation": {
+                                            "Fields": [
+                                                {
+                                                    "FieldId": "pet_prescription_name",
+                                                    "FieldLabel": "Name",
+                                                    "FieldType": "Text",
+                                                    "FieldValue": "Ruffus"
+                                                },
+                                                {
+                                                    "FieldId": "pet_prescription_species",
+                                                    "FieldLabel": "Species",
+                                                    "FieldType": "Text",
+                                                    "FieldValue": "Dog"
+                                                }
+                                            ]
+                                        },
+                                        "RegulatedOrderVerificationStatus": {
+                                            "Status": "Rejected",
+                                            "RequiresMerchantAction": false,
+                                            "RejectionReason": {
+                                                "RejectionReasonId": "shield_pom_vps_reject_species",
+                                                "RejectionReasonDescription": "This medicine is not suitable for this type of pet."
+                                            },
+                                            "ValidRejectionReasons": [],
+                                            "ExternalReviewerId": "externalId",
+                                            "ReviewDate": "1970-01-19T03:59:27Z"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "902-3159896-1390916"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "payload": {
+                                            "AmazonOrderId": "902-3159896-1390916",
+                                            "RequiresDosageLabel": false,
+                                            "RegulatedInformation": {
+                                                "Fields": [
+                                                    {
+                                                        "FieldId": "pet_prescription_name",
+                                                        "FieldLabel": "Name",
+                                                        "FieldType": "Text",
+                                                        "FieldValue": "Ruffus"
+                                                    },
+                                                    {
+                                                        "FieldId": "pet_prescription_species",
+                                                        "FieldLabel": "Species",
+                                                        "FieldType": "Text",
+                                                        "FieldValue": "Dog"
+                                                    }
+                                                ]
+                                            },
+                                            "RegulatedOrderVerificationStatus": {
+                                                "Status": "Pending",
+                                                "RequiresMerchantAction": true,
+                                                "ValidRejectionReasons": [
+                                                    {
+                                                        "RejectionReasonId": "shield_pom_vps_reject_product",
+                                                        "RejectionReasonDescription": "This medicine is not suitable for your pet."
+                                                    },
+                                                    {
+                                                        "RejectionReasonId": "shield_pom_vps_reject_age",
+                                                        "RejectionReasonDescription": "Your pet is too young for this medicine."
+                                                    },
+                                                    {
+                                                        "RejectionReasonId": "shield_pom_vps_reject_incorrect_weight",
+                                                        "RejectionReasonDescription": "Your pet's weight does not match ordered size."
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderRegulatedInfoResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "TEST_CASE_400"
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid Input"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderRegulatedInfoResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderRegulatedInfoResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderRegulatedInfoResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderRegulatedInfoResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOrderRegulatedInfoResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "ordersV0"
+                ],
+                "description": "Updates (approves or rejects) the verification status of an order containing regulated products.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 0.0055 | 20 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "operationId": "updateVerificationStatus",
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "An orderId is an Amazon-defined order identifier, in 3-7-7 format.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request to update the verification status of an order containing regulated products.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateVerificationStatusRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "Success.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {},
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "902-3159896-1390916"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "regulatedOrderVerificationStatus": {
+                                                        "status": "Rejected",
+                                                        "externalReviewerId": "reviewer1234",
+                                                        "rejectionReasonId": "shield_pom_vps_reject_incorrect_weight"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {}
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Request has missing or invalid parameters and cannot be parsed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        },
+                        "x-amzn-api-sandbox": {
+                            "static": [
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "902-3159896-1390916"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "regulatedOrderVerificationStatus": {
+                                                        "status": "Rejected"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Missing request parameter: rejectionReasonId."
+                                            },
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Missing request parameter: externalReviewerId."
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "request": {
+                                        "parameters": {
+                                            "orderId": {
+                                                "value": "902-3159896-1390916"
+                                            },
+                                            "body": {
+                                                "value": {
+                                                    "regulatedOrderVerificationStatus": {
+                                                        "status": "Cancelled",
+                                                        "externalReviewerId": "reviewer1234"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "response": {
+                                        "errors": [
+                                            {
+                                                "code": "InvalidInput",
+                                                "message": "Invalid request parameter `status`. Must be one of [Approved, Rejected]."
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "403": {
+                        "description": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The resource specified does not exist.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RateLimit-Limit": {
+                                "description": "Your rate limit (requests per second) for this operation.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "413": {
+                        "description": "The request size exceeded the maximum accepted size.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "The request payload is in an unsupported format.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "The frequency of requests was greater than allowed.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Temporary overloading or maintenance of the server.",
+                        "headers": {
+                            "x-amzn-RequestId": {
+                                "description": "Unique request reference ID.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateVerificationStatusErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "payload"
+            }
         }
     },
     "components": {
         "schemas": {
+            "UpdateShipmentStatusRequest": {
+                "required": [
+                    "marketplaceId",
+                    "shipmentStatus"
+                ],
+                "type": "object",
+                "properties": {
+                    "marketplaceId": {
+                        "$ref": "#/components/schemas/MarketplaceId"
+                    },
+                    "shipmentStatus": {
+                        "$ref": "#/components/schemas/ShipmentStatus"
+                    },
+                    "orderItems": {
+                        "$ref": "#/components/schemas/OrderItems"
+                    }
+                },
+                "description": "Request to update the status of shipment of an order."
+            },
+            "UpdateVerificationStatusRequest": {
+                "required": [
+                    "regulatedOrderVerificationStatus"
+                ],
+                "type": "object",
+                "properties": {
+                    "regulatedOrderVerificationStatus": {
+                        "$ref": "#/components/schemas/UpdateVerificationStatusRequestBody"
+                    }
+                },
+                "description": "Request to update the verification status of an order containing regulated products."
+            },
+            "UpdateVerificationStatusRequestBody": {
+                "required": [
+                    "externalReviewerId",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The new verification status of the order.",
+                        "enum": [
+                            "Approved",
+                            "Rejected"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "Approved",
+                                "description": "The order's regulated information has been reviewed and approved."
+                            },
+                            {
+                                "value": "Rejected",
+                                "description": "The order's regulated information has been reviewed and rejected."
+                            }
+                        ]
+                    },
+                    "externalReviewerId": {
+                        "type": "string",
+                        "description": "The identifier for the order's regulated information reviewer."
+                    },
+                    "rejectionReasonId": {
+                        "type": "string",
+                        "description": "The unique identifier for the rejection reason used for rejecting the order's regulated information. Only required if the new status is rejected."
+                    }
+                },
+                "description": "The updated values of the VerificationStatus field."
+            },
+            "MarketplaceId": {
+                "type": "string",
+                "description": "the unobfuscated marketplace ID"
+            },
+            "ShipmentStatus": {
+                "type": "string",
+                "description": "the status of the shipment of the order to be updated",
+                "enum": [
+                    "ReadyForPickup",
+                    "PickedUp",
+                    "RefusedPickup"
+                ]
+            },
+            "OrderItems": {
+                "type": "array",
+                "description": "the list of order items and quantities when the seller wants to partially update the shipment status of the order",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "orderItemId": {
+                            "type": "string",
+                            "description": "the unique identifier for the order item"
+                        },
+                        "quantity": {
+                            "type": "integer",
+                            "description": "the quantity of items that needs an update of the shipment status"
+                        }
+                    }
+                }
+            },
+            "UpdateShipmentStatusErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "The error response schema for the UpdateShipmentStatus operation."
+            },
+            "UpdateVerificationStatusErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "The error response schema for the UpdateVerificationStatus operation."
+            },
             "GetOrdersResponse": {
                 "type": "object",
                 "properties": {
@@ -2129,6 +3171,18 @@
                     }
                 },
                 "description": "The response schema for the getOrderBuyerInfo operation."
+            },
+            "GetOrderRegulatedInfoResponse": {
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "$ref": "#/components/schemas/OrderRegulatedInfo"
+                    },
+                    "errors": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                },
+                "description": "The response schema for the getOrderRegulatedInfo operation."
             },
             "GetOrderAddressResponse": {
                 "type": "object",
@@ -2441,8 +3495,33 @@
                         "type": "boolean",
                         "description": "When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller."
                     },
+                    "IsIBA": {
+                        "type": "boolean",
+                        "description": "When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller."
+                    },
                     "DefaultShipFromLocationAddress": {
                         "$ref": "#/components/schemas/Address"
+                    },
+                    "BuyerInvoicePreference": {
+                        "type": "string",
+                        "description": "The buyer's invoicing preference. Available only in the TR marketplace.",
+                        "enum": [
+                            "INDIVIDUAL",
+                            "BUSINESS"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "INDIVIDUAL",
+                                "description": "Buyer should be issued an individual invoice."
+                            },
+                            {
+                                "value": "BUSINESS",
+                                "description": "Buyer should be issued a business invoice. Tax information is available in BuyerTaxInformation structure."
+                            }
+                        ]
+                    },
+                    "BuyerTaxInformation": {
+                        "$ref": "#/components/schemas/BuyerTaxInformation"
                     },
                     "FulfillmentInstruction": {
                         "$ref": "#/components/schemas/FulfillmentInstruction"
@@ -2463,6 +3542,13 @@
                     },
                     "BuyerInfo": {
                         "$ref": "#/components/schemas/BuyerInfo"
+                    },
+                    "AutomatedShippingSettings": {
+                        "$ref": "#/components/schemas/AutomatedShippingSettings"
+                    },
+                    "HasRegulatedItems": {
+                        "type": "boolean",
+                        "description": "Whether the order contains regulated items which may require additional approval steps before being fulfilled."
                     }
                 },
                 "description": "Order information."
@@ -2498,6 +3584,174 @@
                     }
                 },
                 "description": "Buyer information for an order."
+            },
+            "OrderRegulatedInfo": {
+                "required": [
+                    "AmazonOrderId",
+                    "RegulatedInformation",
+                    "RegulatedOrderVerificationStatus",
+                    "RequiresDosageLabel"
+                ],
+                "type": "object",
+                "properties": {
+                    "AmazonOrderId": {
+                        "type": "string",
+                        "description": "An Amazon-defined order identifier, in 3-7-7 format."
+                    },
+                    "RegulatedInformation": {
+                        "$ref": "#/components/schemas/RegulatedInformation"
+                    },
+                    "RequiresDosageLabel": {
+                        "type": "boolean",
+                        "description": "Whether the order requires attaching a dosage information label when shipped."
+                    },
+                    "RegulatedOrderVerificationStatus": {
+                        "$ref": "#/components/schemas/RegulatedOrderVerificationStatus"
+                    }
+                },
+                "description": "The order's regulated information along with its verification status."
+            },
+            "RegulatedOrderVerificationStatus": {
+                "required": [
+                    "RequiresMerchantAction",
+                    "Status",
+                    "ValidRejectionReasons"
+                ],
+                "type": "object",
+                "properties": {
+                    "Status": {
+                        "type": "string",
+                        "description": "The verification status of the order.",
+                        "enum": [
+                            "Pending",
+                            "Approved",
+                            "Rejected",
+                            "Expired",
+                            "Cancelled"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "Pending",
+                                "description": "The order is pending approval. Note the approval might be needed from someone other than the merchant as determined by the RequiresMerchantAction field."
+                            },
+                            {
+                                "value": "Approved",
+                                "description": "The order's regulated information has been reviewed and approved."
+                            },
+                            {
+                                "value": "Rejected",
+                                "description": "The order's regulated information has been reviewed and rejected."
+                            },
+                            {
+                                "value": "Expired",
+                                "description": "The time to review the order's regulated information has expired."
+                            },
+                            {
+                                "value": "Cancelled",
+                                "description": "The order was cancelled by the purchaser."
+                            }
+                        ]
+                    },
+                    "RequiresMerchantAction": {
+                        "type": "boolean",
+                        "description": "Whether the regulated information provided in the order requires a review by the merchant."
+                    },
+                    "ValidRejectionReasons": {
+                        "type": "array",
+                        "description": "A list of valid rejection reasons that may be used to reject the order's regulated information.",
+                        "items": {
+                            "$ref": "#/components/schemas/RejectionReason"
+                        }
+                    },
+                    "RejectionReason": {
+                        "$ref": "#/components/schemas/RejectionReason"
+                    },
+                    "ReviewDate": {
+                        "type": "string",
+                        "description": "The date the order was reviewed. In ISO 8601 date time format."
+                    },
+                    "ExternalReviewerId": {
+                        "type": "string",
+                        "description": "The identifier for the order's regulated information reviewer."
+                    }
+                },
+                "description": "The verification status of the order along with associated approval or rejection metadata."
+            },
+            "RejectionReason": {
+                "required": [
+                    "RejectionReasonDescription",
+                    "RejectionReasonId"
+                ],
+                "type": "object",
+                "properties": {
+                    "RejectionReasonId": {
+                        "type": "string",
+                        "description": "The unique identifier for the rejection reason."
+                    },
+                    "RejectionReasonDescription": {
+                        "type": "string",
+                        "description": "The human-readable description of this rejection reason."
+                    }
+                },
+                "description": "The reason for rejecting the order's regulated information. Not present if the order isn't rejected."
+            },
+            "RegulatedInformation": {
+                "required": [
+                    "Fields"
+                ],
+                "type": "object",
+                "properties": {
+                    "Fields": {
+                        "type": "array",
+                        "description": "A list of regulated information fields as collected from the regulatory form.",
+                        "items": {
+                            "$ref": "#/components/schemas/RegulatedInformationField"
+                        }
+                    }
+                },
+                "description": "The regulated information collected during purchase and used to verify the order."
+            },
+            "RegulatedInformationField": {
+                "required": [
+                    "FieldId",
+                    "FieldLabel",
+                    "FieldType",
+                    "FieldValue"
+                ],
+                "type": "object",
+                "properties": {
+                    "FieldId": {
+                        "type": "string",
+                        "description": "The unique identifier for the field."
+                    },
+                    "FieldLabel": {
+                        "type": "string",
+                        "description": "The human-readable name for the field."
+                    },
+                    "FieldType": {
+                        "type": "string",
+                        "description": "The type of field the field.",
+                        "enum": [
+                            "Text",
+                            "FileAttachment"
+                        ],
+                        "x-docgen-enum-table-extension": [
+                            {
+                                "value": "Text",
+                                "description": "This field is a text representation of a response collected from the regulatory form."
+                            },
+                            {
+                                "value": "FileAttachment",
+                                "description": "This field contains the link to an attachment collected from the regulatory form."
+                            }
+                        ]
+                    },
+                    "FieldValue": {
+                        "type": "string",
+                        "description": "The content of the field as collected in regulatory form. Note that FileAttachment type fields will contain an URL to download the attachment here."
+                    }
+                },
+                "description": "A field collected from the regulatory form."
             },
             "OrderAddress": {
                 "required": [
@@ -2849,6 +4103,9 @@
                     },
                     "BuyerInfo": {
                         "$ref": "#/components/schemas/ItemBuyerInfo"
+                    },
+                    "BuyerRequestedCancel": {
+                        "$ref": "#/components/schemas/BuyerRequestedCancel"
                     }
                 },
                 "description": "A single order item."
@@ -2983,6 +4240,28 @@
                 },
                 "description": "Information about withheld taxes."
             },
+            "BuyerTaxInformation": {
+                "type": "object",
+                "properties": {
+                    "BuyerLegalCompanyName": {
+                        "type": "string",
+                        "description": "Business buyer's company legal name."
+                    },
+                    "BuyerBusinessAddress": {
+                        "type": "string",
+                        "description": "Business buyer's address."
+                    },
+                    "BuyerTaxRegistrationId": {
+                        "type": "string",
+                        "description": "Business buyer's tax registration ID."
+                    },
+                    "BuyerTaxOffice": {
+                        "type": "string",
+                        "description": "Business buyer's tax office."
+                    }
+                },
+                "description": "Contains the business invoice tax information. Available only in the TR marketplace."
+            },
             "FulfillmentInstruction": {
                 "type": "object",
                 "properties": {
@@ -3040,6 +4319,38 @@
                     }
                 },
                 "description": "A single item's buyer information."
+            },
+            "AutomatedShippingSettings": {
+                "type": "object",
+                "properties": {
+                    "HasAutomatedShippingSettings": {
+                        "type": "boolean",
+                        "description": "If true, this order has automated shipping settings generated by Amazon. This order could be identified as an SSA order."
+                    },
+                    "AutomatedCarrier": {
+                        "type": "string",
+                        "description": "Auto-generated carrier for SSA orders."
+                    },
+                    "AutomatedShipMethod": {
+                        "type": "string",
+                        "description": "Auto-generated ship method for SSA orders."
+                    }
+                },
+                "description": "Contains information regarding the Shipping Settings Automation program, such as whether the order's shipping settings were generated automatically, and what those settings are."
+            },
+            "BuyerRequestedCancel": {
+                "type": "object",
+                "properties": {
+                    "IsBuyerRequestedCancel": {
+                        "type": "boolean",
+                        "description": "When true, the buyer has requested cancellation."
+                    },
+                    "BuyerCancelReason": {
+                        "type": "string",
+                        "description": "Reason for buyer requesting cancel"
+                    }
+                },
+                "description": "Information about whether or not a buyer requested cancellation."
             },
             "ErrorList": {
                 "type": "array",

@@ -206,7 +206,7 @@ class CreateFeedResponse(__BaseDictObject):
 
 class FeedOptions(__BaseDictObject):
     """
-    Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](https://github.com/amzn/selling-partner-api-docs/blob/main/references/feeds-api/feedtype-values.md).
+    Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
     """
 
     def __init__(self, data):

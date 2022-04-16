@@ -2,6 +2,89 @@ from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __
 from typing import List as _List
 
 
+class UpdateShipmentStatusRequest(__BaseDictObject):
+    """
+    Request to update the status of shipment of an order.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "marketplaceId" in data:
+            self.marketplaceId: MarketplaceId = self._get_value(MarketplaceId, "marketplaceId")
+        else:
+            self.marketplaceId: MarketplaceId = None
+        if "shipmentStatus" in data:
+            self.shipmentStatus: ShipmentStatus = self._get_value(ShipmentStatus, "shipmentStatus")
+        else:
+            self.shipmentStatus: ShipmentStatus = None
+        if "orderItems" in data:
+            self.orderItems: OrderItems = self._get_value(OrderItems, "orderItems")
+        else:
+            self.orderItems: OrderItems = None
+
+
+class UpdateVerificationStatusRequest(__BaseDictObject):
+    """
+    Request to update the verification status of an order containing regulated products.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "regulatedOrderVerificationStatus" in data:
+            self.regulatedOrderVerificationStatus: UpdateVerificationStatusRequestBody = self._get_value(
+                UpdateVerificationStatusRequestBody, "regulatedOrderVerificationStatus"
+            )
+        else:
+            self.regulatedOrderVerificationStatus: UpdateVerificationStatusRequestBody = None
+
+
+class UpdateVerificationStatusRequestBody(__BaseDictObject):
+    """
+    The updated values of the VerificationStatus field.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "status" in data:
+            self.status: str = self._get_value(str, "status")
+        else:
+            self.status: str = None
+        if "externalReviewerId" in data:
+            self.externalReviewerId: str = self._get_value(str, "externalReviewerId")
+        else:
+            self.externalReviewerId: str = None
+        if "rejectionReasonId" in data:
+            self.rejectionReasonId: str = self._get_value(str, "rejectionReasonId")
+        else:
+            self.rejectionReasonId: str = None
+
+
+class UpdateShipmentStatusErrorResponse(__BaseDictObject):
+    """
+    The error response schema for the UpdateShipmentStatus operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "errors" in data:
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+        else:
+            self.errors: ErrorList = None
+
+
+class UpdateVerificationStatusErrorResponse(__BaseDictObject):
+    """
+    The error response schema for the UpdateVerificationStatus operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "errors" in data:
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+        else:
+            self.errors: ErrorList = None
+
+
 class GetOrdersResponse(__BaseDictObject):
     """
     The response schema for the getOrders operation.
@@ -47,6 +130,23 @@ class GetOrderBuyerInfoResponse(__BaseDictObject):
             self.payload: OrderBuyerInfo = self._get_value(OrderBuyerInfo, "payload")
         else:
             self.payload: OrderBuyerInfo = None
+        if "errors" in data:
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+        else:
+            self.errors: ErrorList = None
+
+
+class GetOrderRegulatedInfoResponse(__BaseDictObject):
+    """
+    The response schema for the getOrderRegulatedInfo operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "payload" in data:
+            self.payload: OrderRegulatedInfo = self._get_value(OrderRegulatedInfo, "payload")
+        else:
+            self.payload: OrderRegulatedInfo = None
         if "errors" in data:
             self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
@@ -272,10 +372,22 @@ class Order(__BaseDictObject):
             self.IsSoldByAB: bool = self._get_value(convert_bool, "IsSoldByAB")
         else:
             self.IsSoldByAB: bool = None
+        if "IsIBA" in data:
+            self.IsIBA: bool = self._get_value(convert_bool, "IsIBA")
+        else:
+            self.IsIBA: bool = None
         if "DefaultShipFromLocationAddress" in data:
             self.DefaultShipFromLocationAddress: Address = self._get_value(Address, "DefaultShipFromLocationAddress")
         else:
             self.DefaultShipFromLocationAddress: Address = None
+        if "BuyerInvoicePreference" in data:
+            self.BuyerInvoicePreference: str = self._get_value(str, "BuyerInvoicePreference")
+        else:
+            self.BuyerInvoicePreference: str = None
+        if "BuyerTaxInformation" in data:
+            self.BuyerTaxInformation: BuyerTaxInformation = self._get_value(BuyerTaxInformation, "BuyerTaxInformation")
+        else:
+            self.BuyerTaxInformation: BuyerTaxInformation = None
         if "FulfillmentInstruction" in data:
             self.FulfillmentInstruction: FulfillmentInstruction = self._get_value(
                 FulfillmentInstruction, "FulfillmentInstruction"
@@ -302,6 +414,16 @@ class Order(__BaseDictObject):
             self.BuyerInfo: BuyerInfo = self._get_value(BuyerInfo, "BuyerInfo")
         else:
             self.BuyerInfo: BuyerInfo = None
+        if "AutomatedShippingSettings" in data:
+            self.AutomatedShippingSettings: AutomatedShippingSettings = self._get_value(
+                AutomatedShippingSettings, "AutomatedShippingSettings"
+            )
+        else:
+            self.AutomatedShippingSettings: AutomatedShippingSettings = None
+        if "HasRegulatedItems" in data:
+            self.HasRegulatedItems: bool = self._get_value(convert_bool, "HasRegulatedItems")
+        else:
+            self.HasRegulatedItems: bool = None
 
 
 class OrderBuyerInfo(__BaseDictObject):
@@ -335,6 +457,127 @@ class OrderBuyerInfo(__BaseDictObject):
             self.PurchaseOrderNumber: str = self._get_value(str, "PurchaseOrderNumber")
         else:
             self.PurchaseOrderNumber: str = None
+
+
+class OrderRegulatedInfo(__BaseDictObject):
+    """
+    The order's regulated information along with its verification status.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "AmazonOrderId" in data:
+            self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
+        else:
+            self.AmazonOrderId: str = None
+        if "RegulatedInformation" in data:
+            self.RegulatedInformation: RegulatedInformation = self._get_value(
+                RegulatedInformation, "RegulatedInformation"
+            )
+        else:
+            self.RegulatedInformation: RegulatedInformation = None
+        if "RequiresDosageLabel" in data:
+            self.RequiresDosageLabel: bool = self._get_value(convert_bool, "RequiresDosageLabel")
+        else:
+            self.RequiresDosageLabel: bool = None
+        if "RegulatedOrderVerificationStatus" in data:
+            self.RegulatedOrderVerificationStatus: RegulatedOrderVerificationStatus = self._get_value(
+                RegulatedOrderVerificationStatus, "RegulatedOrderVerificationStatus"
+            )
+        else:
+            self.RegulatedOrderVerificationStatus: RegulatedOrderVerificationStatus = None
+
+
+class RegulatedOrderVerificationStatus(__BaseDictObject):
+    """
+    The verification status of the order along with associated approval or rejection metadata.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "Status" in data:
+            self.Status: str = self._get_value(str, "Status")
+        else:
+            self.Status: str = None
+        if "RequiresMerchantAction" in data:
+            self.RequiresMerchantAction: bool = self._get_value(convert_bool, "RequiresMerchantAction")
+        else:
+            self.RequiresMerchantAction: bool = None
+        if "ValidRejectionReasons" in data:
+            self.ValidRejectionReasons: _List[RejectionReason] = [
+                RejectionReason(datum) for datum in data["ValidRejectionReasons"]
+            ]
+        else:
+            self.ValidRejectionReasons: _List[RejectionReason] = []
+        if "RejectionReason" in data:
+            self.RejectionReason: RejectionReason = self._get_value(RejectionReason, "RejectionReason")
+        else:
+            self.RejectionReason: RejectionReason = None
+        if "ReviewDate" in data:
+            self.ReviewDate: str = self._get_value(str, "ReviewDate")
+        else:
+            self.ReviewDate: str = None
+        if "ExternalReviewerId" in data:
+            self.ExternalReviewerId: str = self._get_value(str, "ExternalReviewerId")
+        else:
+            self.ExternalReviewerId: str = None
+
+
+class RejectionReason(__BaseDictObject):
+    """
+    The reason for rejecting the order's regulated information. Not present if the order isn't rejected.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "RejectionReasonId" in data:
+            self.RejectionReasonId: str = self._get_value(str, "RejectionReasonId")
+        else:
+            self.RejectionReasonId: str = None
+        if "RejectionReasonDescription" in data:
+            self.RejectionReasonDescription: str = self._get_value(str, "RejectionReasonDescription")
+        else:
+            self.RejectionReasonDescription: str = None
+
+
+class RegulatedInformation(__BaseDictObject):
+    """
+    The regulated information collected during purchase and used to verify the order.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "Fields" in data:
+            self.Fields: _List[RegulatedInformationField] = [
+                RegulatedInformationField(datum) for datum in data["Fields"]
+            ]
+        else:
+            self.Fields: _List[RegulatedInformationField] = []
+
+
+class RegulatedInformationField(__BaseDictObject):
+    """
+    A field collected from the regulatory form.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "FieldId" in data:
+            self.FieldId: str = self._get_value(str, "FieldId")
+        else:
+            self.FieldId: str = None
+        if "FieldLabel" in data:
+            self.FieldLabel: str = self._get_value(str, "FieldLabel")
+        else:
+            self.FieldLabel: str = None
+        if "FieldType" in data:
+            self.FieldType: str = self._get_value(str, "FieldType")
+        else:
+            self.FieldType: str = None
+        if "FieldValue" in data:
+            self.FieldValue: str = self._get_value(str, "FieldValue")
+        else:
+            self.FieldValue: str = None
 
 
 class OrderAddress(__BaseDictObject):
@@ -664,6 +907,12 @@ class OrderItem(__BaseDictObject):
             self.BuyerInfo: ItemBuyerInfo = self._get_value(ItemBuyerInfo, "BuyerInfo")
         else:
             self.BuyerInfo: ItemBuyerInfo = None
+        if "BuyerRequestedCancel" in data:
+            self.BuyerRequestedCancel: BuyerRequestedCancel = self._get_value(
+                BuyerRequestedCancel, "BuyerRequestedCancel"
+            )
+        else:
+            self.BuyerRequestedCancel: BuyerRequestedCancel = None
 
 
 class OrderItemsBuyerInfoList(__BaseDictObject):
@@ -782,6 +1031,31 @@ class TaxCollection(__BaseDictObject):
             self.ResponsibleParty: str = None
 
 
+class BuyerTaxInformation(__BaseDictObject):
+    """
+    Contains the business invoice tax information. Available only in the TR marketplace.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "BuyerLegalCompanyName" in data:
+            self.BuyerLegalCompanyName: str = self._get_value(str, "BuyerLegalCompanyName")
+        else:
+            self.BuyerLegalCompanyName: str = None
+        if "BuyerBusinessAddress" in data:
+            self.BuyerBusinessAddress: str = self._get_value(str, "BuyerBusinessAddress")
+        else:
+            self.BuyerBusinessAddress: str = None
+        if "BuyerTaxRegistrationId" in data:
+            self.BuyerTaxRegistrationId: str = self._get_value(str, "BuyerTaxRegistrationId")
+        else:
+            self.BuyerTaxRegistrationId: str = None
+        if "BuyerTaxOffice" in data:
+            self.BuyerTaxOffice: str = self._get_value(str, "BuyerTaxOffice")
+        else:
+            self.BuyerTaxOffice: str = None
+
+
 class FulfillmentInstruction(__BaseDictObject):
     """
     Contains the instructions about the fulfillment like where should it be fulfilled from.
@@ -855,6 +1129,44 @@ class ItemBuyerInfo(__BaseDictObject):
             self.GiftWrapLevel: str = None
 
 
+class AutomatedShippingSettings(__BaseDictObject):
+    """
+    Contains information regarding the Shipping Settings Automation program, such as whether the order's shipping settings were generated automatically, and what those settings are.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "HasAutomatedShippingSettings" in data:
+            self.HasAutomatedShippingSettings: bool = self._get_value(convert_bool, "HasAutomatedShippingSettings")
+        else:
+            self.HasAutomatedShippingSettings: bool = None
+        if "AutomatedCarrier" in data:
+            self.AutomatedCarrier: str = self._get_value(str, "AutomatedCarrier")
+        else:
+            self.AutomatedCarrier: str = None
+        if "AutomatedShipMethod" in data:
+            self.AutomatedShipMethod: str = self._get_value(str, "AutomatedShipMethod")
+        else:
+            self.AutomatedShipMethod: str = None
+
+
+class BuyerRequestedCancel(__BaseDictObject):
+    """
+    Information about whether or not a buyer requested cancellation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "IsBuyerRequestedCancel" in data:
+            self.IsBuyerRequestedCancel: bool = self._get_value(convert_bool, "IsBuyerRequestedCancel")
+        else:
+            self.IsBuyerRequestedCancel: bool = None
+        if "BuyerCancelReason" in data:
+            self.BuyerCancelReason: str = self._get_value(str, "BuyerCancelReason")
+        else:
+            self.BuyerCancelReason: str = None
+
+
 class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
@@ -874,6 +1186,16 @@ class Error(__BaseDictObject):
             self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
+
+
+class OrderItems(list, _List["dict"]):
+    """
+    the list of order items and quantities when the seller wants to partially update the shipment status of the order
+    """
+
+    def __init__(self, data):
+        super().__init__([dict(datum) for datum in data])
+        self.data = data
 
 
 class OrderList(list, _List["Order"]):
@@ -944,6 +1266,18 @@ class ErrorList(list, _List["Error"]):
     def __init__(self, data):
         super().__init__([Error(datum) for datum in data])
         self.data = data
+
+
+class MarketplaceId(str):
+    """
+    the unobfuscated marketplace ID
+    """
+
+
+class ShipmentStatus(str):
+    """
+    the status of the shipment of the order to be updated
+    """
 
 
 class OrdersV0Client(__BaseClient):
@@ -1065,7 +1399,6 @@ class OrdersV0Client(__BaseClient):
     ):
         """
                 Returns buyer information for the specified order.
-        **Important.** We recommend using the getOrders operation to get buyer information for an order, as the getOrderBuyerInfo operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).
         **Usage Plans:**
         | Plan type | Rate (requests per second) | Burst |
         | ---- | ---- | ---- |
@@ -1097,7 +1430,6 @@ class OrdersV0Client(__BaseClient):
     ):
         """
                 Returns the shipping address for the specified order.
-        **Important.** We recommend using the getOrders operation to get shipping address information for an order, as the getOrderAddress operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).
         **Usage Plans:**
         | Plan type | Rate (requests per second) | Burst |
         | ---- | ---- | ---- |
@@ -1165,7 +1497,6 @@ class OrdersV0Client(__BaseClient):
     ):
         """
                 Returns buyer information for the order items in the specified order.
-        **Important.** We recommend using the getOrderItems operation to get buyer information for the order items in an order, as the getOrderItemsBuyerInfo operation is scheduled for deprecation on January 12, 2022. For more information, see the [Tokens API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/tokens-api-use-case-guide/tokens-API-use-case-guide-2021-03-01.md).
         **Usage Plans:**
         | Plan type | Rate (requests per second) | Burst |
         | ---- | ---- | ---- |
@@ -1190,5 +1521,100 @@ class OrdersV0Client(__BaseClient):
             429: GetOrderItemsBuyerInfoResponse,
             500: GetOrderItemsBuyerInfoResponse,
             503: GetOrderItemsBuyerInfoResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def updateShipmentStatus(
+        self,
+        data: UpdateShipmentStatusRequest,
+        orderId: str,
+    ):
+        """
+        Update the shipment status.
+        """
+        url = f"/orders/v0/orders/{orderId}/shipment"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            204: None,
+            400: UpdateShipmentStatusErrorResponse,
+            403: UpdateShipmentStatusErrorResponse,
+            404: UpdateShipmentStatusErrorResponse,
+            413: UpdateShipmentStatusErrorResponse,
+            415: UpdateShipmentStatusErrorResponse,
+            429: UpdateShipmentStatusErrorResponse,
+            500: UpdateShipmentStatusErrorResponse,
+            503: UpdateShipmentStatusErrorResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getOrderRegulatedInfo(
+        self,
+        orderId: str,
+    ):
+        """
+                Returns regulated information for the order indicated by the specified order ID.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 0.0055 | 20 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
+        url = f"/orders/v0/orders/{orderId}/regulatedInfo"
+        params = {}
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
+        response_type = {
+            200: GetOrderRegulatedInfoResponse,
+            400: GetOrderRegulatedInfoResponse,
+            403: GetOrderRegulatedInfoResponse,
+            404: GetOrderRegulatedInfoResponse,
+            429: GetOrderRegulatedInfoResponse,
+            500: GetOrderRegulatedInfoResponse,
+            503: GetOrderRegulatedInfoResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def updateVerificationStatus(
+        self,
+        data: UpdateVerificationStatusRequest,
+        orderId: str,
+    ):
+        """
+                Updates (approves or rejects) the verification status of an order containing regulated products.
+        **Usage Plans:**
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 0.0055 | 20 |
+        |Selling partner specific| Variable | Variable |
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        """
+        url = f"/orders/v0/orders/{orderId}/regulatedInfo"
+        params = {}
+        response = self.request(
+            path=url,
+            method="PATCH",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            204: None,
+            400: UpdateVerificationStatusErrorResponse,
+            403: UpdateVerificationStatusErrorResponse,
+            404: UpdateVerificationStatusErrorResponse,
+            413: UpdateVerificationStatusErrorResponse,
+            415: UpdateVerificationStatusErrorResponse,
+            429: UpdateVerificationStatusErrorResponse,
+            500: UpdateVerificationStatusErrorResponse,
+            503: UpdateVerificationStatusErrorResponse,
         }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

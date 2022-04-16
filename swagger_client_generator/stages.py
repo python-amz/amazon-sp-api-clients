@@ -311,7 +311,7 @@ def stage_6_operations(data: dict) -> dict[str, Operation]:
             source=method_data,
         )
         for url, url_data in paths.items()
-        for method, method_data in url_data.items()
+        for method, method_data in url_data.items() if method not in ['x-amzn-api-sandbox']
     }
     return parsed_operations
 

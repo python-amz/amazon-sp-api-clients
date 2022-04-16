@@ -10,7 +10,6 @@ from typing import Union
 from urllib.parse import urlparse
 
 import boto3
-import demjson
 import requests
 from cachetools import TTLCache
 from requests import Response
@@ -219,6 +218,10 @@ class BaseClient:
         try:
             return response.json()
         except json.JSONDecodeError:
+            try:
+                import demjson
+            except ImportError:
+                raise SellingApiException('Could not parse response, please try to install demjson')
             return demjson.decode(response.text)
 
     def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
