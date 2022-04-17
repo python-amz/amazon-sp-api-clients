@@ -66,7 +66,7 @@ class Server(Base):
 def assert_only(data: dict, key: str):
     assert isinstance(data, dict)
     assert len(data) == 1, data.keys()
-    assert list(data.keys())[0] == key
+    assert list(data.keys())[0] == key, data.keys()
     return list(data.values())[0]
 
 
@@ -79,8 +79,14 @@ class Parameter(Base):
     schema_items_type: Optional[str]
     style: Optional[str]
     explode: Optional[bool]
+    min_items: Optional[int]
     max_items: Optional[int]
+    unique_items: Optional[int]
     required: Optional[bool]
+    min_length: int | None
+    enum: list[str]
+    docgen_table: list
+    item_min_length: int | None
 
     @classmethod
     def parse(cls, data: dict):
@@ -101,17 +107,34 @@ class Parameter(Base):
         assert isinstance(schema, dict)
         schema_type = schema.pop('type')
         assert isinstance(schema_type, str)
+
         schema_items = schema.pop('items', {})
         assert isinstance(schema_items, dict)
         schema_items_type = schema_items.pop('type', None)
         assert isinstance(schema_items_type, str | None)
+        enum = schema_items.pop('enum', [])
+        assert isinstance(enum, list)
+        for i in enum:
+            assert isinstance(i, str)
+        docgen_table = schema_items.pop('x-docgen-enum-table-extension', [])
+        assert isinstance(docgen_table, list), docgen_table
+        item_min_length = schema_items.pop('minLength', None)
+        assert isinstance(item_min_length, int | None)
         assert not schema_items, schema_items
+
+        min_items = schema.pop('minItems', None)
+        assert isinstance(min_items, int | None)
         max_items = schema.pop('maxItems', None)
         assert isinstance(max_items, int | None)
+        min_length = schema.pop('minLength', None)
+        assert isinstance(min_length, int | None)
+        unique_items = schema.pop('uniqueItems', None)
+        assert isinstance(unique_items, int | None)
         assert not schema, schema
 
         assert not data, data
-        return cls(name, location, description, schema_type, schema_items_type, style, explode, max_items, required)
+        return cls(name, location, description, schema_type, schema_items_type, style, explode, min_items, max_items,
+                   unique_items, required, min_length, enum, docgen_table, item_min_length)
 
 
 @dataclass
@@ -312,7 +335,7 @@ class ComponentProperty(Base):
 class Component(Base):
     name: str
     required: list[str]
-    type_name: str
+    type_name: str | None
     properties: list[ComponentProperty]
     description: str
     enum: list[str]
@@ -330,8 +353,8 @@ class Component(Base):
         for i in required:
             assert isinstance(i, str)
 
-        type_name = data.pop('type')
-        assert isinstance(type_name, str)
+        type_name = data.pop('type', None)
+        assert isinstance(type_name, str | None)
 
         properties = data.pop('properties', {})
         assert isinstance(properties, dict)
@@ -373,6 +396,7 @@ class OpenApi(Base):
     servers: list[Server]
     paths: list[Path]
     components: list[Component]
+    parameters: list[Parameter]
 
     @classmethod
     def parse(cls, data: dict):
@@ -389,16 +413,22 @@ class OpenApi(Base):
         assert isinstance(paths, dict)
         paths = [Path.parse(k, method, data) for k, p in paths.items() for method, data in p.items()]
 
-        components = data.pop('components')
-        components = assert_only(components, 'schemas')
+        components_and_parameters = data.pop('components')
+        assert isinstance(components_and_parameters, dict)
+        components = components_and_parameters.pop('schemas')
         assert isinstance(components, dict), components
         components = [Component.parse(n, c) for n, c in components.items()]
+        parameters = components_and_parameters.pop('parameters', [])
+        assert isinstance(parameters, list), parameters
+        parameters = [Parameter.parse(data) for data in parameters]
+        assert not components_and_parameters, components_and_parameters
 
         assert not data
-        return cls(openapi, info, servers, paths, components)
+        return cls(openapi, info, servers, paths, components, parameters)
 
 
 if __name__ == '__main__':
-    with open(pathlib.Path(__file__).parent.parent / 'swagger3_apis' / 'orders_v0.json') as f:
-        api = OpenApi.parse(json.load(f))
+    for f in (pathlib.Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'):
+        with open(f) as fp:
+            api = OpenApi.parse(json.load(fp))
     print('done')
