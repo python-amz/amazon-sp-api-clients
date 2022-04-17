@@ -16,3 +16,4 @@ sphinx-inplace
 pydata_sphinx_theme
 chardet
 cached_property
+openapi-schema-pydantic
