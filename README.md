@@ -32,8 +32,6 @@ Previously this lib is only open access but not open source, and now it's time t
 
 If there's any bug, please fell free to open an issue or send a pr.
 
-商业合作请联系 [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com)。
-
 ## Usage
 
 For saving time, I just paste part of my test code here as a demo.
@@ -120,5 +118,3 @@ The auth method is partially from
 If this library helps you, please give me a star, thanks!
 
 如果这个库对您有用，请为我点亮Star，谢谢！
-
-商业合作请联系 [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com)。
