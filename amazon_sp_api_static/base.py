@@ -3,6 +3,7 @@ import hmac
 import json
 import os
 import urllib
+import warnings
 from collections import OrderedDict
 from datetime import datetime
 from time import sleep
@@ -193,6 +194,7 @@ class BaseClient:
         self._client_secret = lwa_client_secret
         self.use_cache = use_cache
         if self.use_cache:
+            warnings.warn('Caching by peewee will be removed in version 2. Please do not use this method.')
             self.request_cache = RequestCache(
                 self._endpoint, self._marketplace_id, self._refresh_token, self._aws_access_key)
 

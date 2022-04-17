@@ -1,12 +1,15 @@
 from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __BaseDictObject
 from typing import List as _List
+import warnings
 
 {% for component_name, component in dict_components.items() %}
 class {{ component_name }}(__BaseDictObject):
     """
     {{component.source.description}}
     """
-    def __init__(self, data):
+    def __init__(self, data=None):
+        if data is not None:
+            warnings.warn('Please do not use data argument, instead, use the keyword parameters')
         super().__init__(data)
     {% for name, property in component.properties.items() %}
         if '{{ name }}' in data:
