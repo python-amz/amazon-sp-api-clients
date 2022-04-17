@@ -24,6 +24,12 @@ V1.0.0 changes many api, compared with v0.x.x!
 * orders api, feed api, report api, and all other apis;
 * automatically manage tokens.
 
+## Installation
+
+```shell
+pip install amazon-sp-api-clients
+```
+
 ## Note
 
 For technical support, please contact [panhaoyu.china@outlook.com](mailto:panhaoyu.china@outlook.com).
