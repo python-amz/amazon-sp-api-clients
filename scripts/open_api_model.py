@@ -237,8 +237,8 @@ class Path(Base):
     def parse(cls, path, method, data: dict):
         assert isinstance(path, str)
 
-        operationId = data.pop('operationId')
-        assert isinstance(operationId, str)
+        operation_id = data.pop('operationId')
+        assert isinstance(operation_id, str)
 
         description = data.pop('description')
         assert isinstance(description, str)
@@ -263,21 +263,49 @@ class Path(Base):
         assert isinstance(codegen_request_body_name, str | None)
 
         assert not data, data
-        return cls(path, method, operationId, description, tags, parameters, responses, request_body,
+        return cls(path, method, operation_id, description, tags, parameters, responses, request_body,
                    codegen_request_body_name)
 
 
 @dataclass
 class ComponentProperty(Base):
-    name: str
+    ref: str | None
+    type_name: str | None
+    description: str
+    enum: list[str]
+    docgen_table: list  # not processed
+    items_ref: str | None
 
     @classmethod
     def parse(cls, name: str, data: dict):
         assert isinstance(name, str)
         assert isinstance(data, dict)
 
+        ref = data.pop('$ref', None)
+        assert isinstance(ref, str | None)
+
+        type_name = data.pop('type', None)
+        assert isinstance(type_name, str | None)
+
+        description = data.pop('description', '')
+        assert isinstance(description, str)
+
+        enum = data.pop('enum', [])
+        assert isinstance(enum, list)
+        for i in enum:
+            assert isinstance(i, str)
+
+        docgen_table = data.pop('x-docgen-enum-table-extension', [])
+        assert isinstance(docgen_table, list), docgen_table
+
+        items = data.pop('items', {})
+        assert isinstance(items, dict)
+        items_ref = items.pop('$ref', None)
+        assert isinstance(items_ref, str | None)
+        assert not items
+
         assert not data, data
-        return cls()
+        return cls(ref, type_name, description, enum, docgen_table, items_ref)
 
 
 @dataclass
@@ -285,15 +313,19 @@ class Component(Base):
     name: str
     required: list[str]
     type_name: str
-    properties: dict[str, str]
+    properties: list[ComponentProperty]
     description: str
+    enum: list[str]
+    items_type: str | None
+    items_properties: list[ComponentProperty]
+    items_ref: str | None
 
     @classmethod
     def parse(cls, name: str, data: dict):
         assert isinstance(name, str)
         assert isinstance(data, dict)
 
-        required = data.pop('required')
+        required = data.pop('required', [])
         assert isinstance(required, list)
         for i in required:
             assert isinstance(i, str)
@@ -301,18 +333,37 @@ class Component(Base):
         type_name = data.pop('type')
         assert isinstance(type_name, str)
 
-        properties = data.pop('properties')
+        properties = data.pop('properties', {})
         assert isinstance(properties, dict)
-        for k, v in properties.items():
-            assert isinstance(k, str)
-            assert_only(v, '$ref')
-        properties = {k: v['$ref'] for k, v in properties.items()}
+        properties = [ComponentProperty.parse(k, v) for k, v in properties.items()]
 
         description = data.pop('description', '')
         assert isinstance(description, str)
 
+        enum = data.pop('enum', [])
+        assert isinstance(enum, list)
+        for i in enum:
+            assert isinstance(i, str)
+
+        if data:
+            assert_only(data, 'items')
+            items = data.pop('items')
+            assert isinstance(items, dict)
+            items_type = items.pop('type', None)
+            assert isinstance(items_type, str | None)
+            items_properties_src: dict = items.pop('properties', {})
+            assert isinstance(items_properties_src, dict)
+            items_properties = [ComponentProperty.parse(k, v) for k, v in items_properties_src.items()]
+            items_ref = items.pop('$ref', None)
+            assert isinstance(items_ref, str | None)
+            assert not items, items
+        else:
+            items_type = None
+            items_properties = []
+            items_ref = None
+
         assert not data, data
-        return cls(name, required, type_name, properties, description)
+        return cls(name, required, type_name, properties, description, enum, items_type, items_properties, items_ref)
 
 
 @dataclass
