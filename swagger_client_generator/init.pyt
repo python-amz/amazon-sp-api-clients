@@ -21,7 +21,7 @@ class AmazonSpApiClients(BaseClients):
     {% endfor %}
 
 
-version = '1.7.10'
+version = '1.8.1'
 name = "amazon-sp-api-clients"
 author = "Haoyu Pan"
 author_email = "panhaoyu.china@outlook.com"
