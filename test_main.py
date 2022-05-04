@@ -98,7 +98,7 @@ def test_parse_reports():
     content = black.format_str(content, mode=black.Mode(line_length=120))
     with open('amazon_sp_api_static/report_types.py', 'w', encoding='utf-8') as f:
         f.write(content)
-    with open('amazon_sp_api_clients/report_types.py', 'w', encoding='utf-8') as f:
+    with open('amazon_sp_api_clients/utils/report_types.py', 'w', encoding='utf-8') as f:
         f.write(content)
 
 

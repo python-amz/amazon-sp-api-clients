@@ -3,7 +3,6 @@ import hmac
 import json
 import os
 import urllib
-import warnings
 from collections import OrderedDict
 from datetime import datetime
 from time import sleep
@@ -16,8 +15,6 @@ from cachetools import TTLCache
 from requests import Response
 from requests.api import request
 from requests.auth import AuthBase
-
-from .cache import RequestCache
 
 TRUE_VALUES = (True, 'true', 't', 'yes', 'y')
 FALSE_VALUES = (False, 'false', 'f', 'no', 'n')
@@ -131,7 +128,6 @@ class SellingApiError(Exception):
 class BaseClient:
     _role_cache = TTLCache(maxsize=10, ttl=3000)
     _access_token_cache = TTLCache(maxsize=1000, ttl=3000)
-    request_cache: RequestCache = None
 
     # Sometime the response are required, however, current architecture is not able to return the response.
     # So, the last response is recorded here. Usually, the client will not request multiple requests. So, it will not
@@ -148,7 +144,6 @@ class BaseClient:
                  aws_secret_key: str = None,
                  lwa_client_key: str = None,
                  lwa_client_secret: str = None,
-                 use_cache=False,
                  ):
         """Create a base client.
 
@@ -192,11 +187,6 @@ class BaseClient:
         self._aws_secret_key = aws_secret_key
         self._client_id = lwa_client_key
         self._client_secret = lwa_client_secret
-        self.use_cache = use_cache
-        if self.use_cache:
-            warnings.warn('Caching by peewee will be removed in version 2. Please do not use this method.')
-            self.request_cache = RequestCache(
-                self._endpoint, self._marketplace_id, self._refresh_token, self._aws_access_key)
 
     def __get_access_token(self, refresh_token):
         if refresh_token not in self._access_token_cache:
@@ -244,13 +234,6 @@ class BaseClient:
         else:
             raise TypeError('data should be a dict or bytes')
 
-        # process cache, will be removed in next main version
-        if self.use_cache:
-            cache_keys: RequestCache.KEYS_TYPE = (path, method, params, data, headers)
-            response = self.request_cache[cache_keys]
-            if response is not None:
-                return response
-
         # process headers
         parsed_headers = {
             'host': self._endpoint[8:],
@@ -292,11 +275,6 @@ class BaseClient:
                     raise SellingApiError(e)
             else:
                 break
-
-        # process cache, will be removed in the next main version
-        if self.use_cache:
-            cache_keys: RequestCache.KEYS_TYPE = (path, method, params, data, headers)
-            self.request_cache[cache_keys] = response
 
         return response
 
