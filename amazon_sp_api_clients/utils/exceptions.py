@@ -1,0 +1,2 @@
+class SellingApiError(Exception):
+    pass

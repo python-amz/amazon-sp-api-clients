@@ -16,6 +16,8 @@ from requests import Response
 from requests.api import request
 from requests.auth import AuthBase
 
+from amazon_sp_api_clients.utils.exceptions import SellingApiError
+
 TRUE_VALUES = (True, 'true', 't', 'yes', 'y')
 FALSE_VALUES = (False, 'false', 'f', 'no', 'n')
 
@@ -34,8 +36,8 @@ def convert_bool(value):
 class AWSSigV4(AuthBase):
 
     @staticmethod
-    def sign_msg(key, msg):
-        return hmac.new(key, msg.encode('utf-8'), hashlib.sha256).digest()
+    def sign_message(key: bytes, message: str):
+        return hmac.new(key, message.encode('utf-8'), hashlib.sha256).digest()
 
     def __init__(self, service, **kwargs):
         # Set Service
@@ -60,7 +62,7 @@ class AWSSigV4(AuthBase):
     def __call__(self, r):
         # Create a date for headers and the credential string
         t = datetime.utcnow()
-        self.amzdate = t.strftime('%Y%m%dT%H%M%SZ')
+        self.amazon_date = t.strftime('%Y%m%dT%H%M%SZ')
         self.datestamp = t.strftime('%Y%m%d')
 
         # Parse request to get URL parts
@@ -75,7 +77,7 @@ class AWSSigV4(AuthBase):
             qs = dict()
 
         canonical_querystring = "&".join(map(lambda x: '='.join(x), sorted(qs.items())))
-        headers_to_sign = {'host': host, 'x-amz-date': self.amzdate}
+        headers_to_sign = {'host': host, 'x-amz-date': self.amazon_date}
         if self.aws_session_token is not None:
             headers_to_sign['x-amz-security-token'] = self.aws_session_token
 
@@ -101,31 +103,27 @@ class AWSSigV4(AuthBase):
                                        canonical_headers, signed_headers, payload_hash])
 
         credential_scope = '/'.join([self.datestamp, self.region, self.service, 'aws4_request'])
-        string_to_sign = '\n'.join(['AWS4-HMAC-SHA256', self.amzdate,
+        string_to_sign = '\n'.join(['AWS4-HMAC-SHA256', self.amazon_date,
                                     credential_scope, hashlib.sha256(canonical_request.encode('utf-8')).hexdigest()])
 
-        kDate = self.sign_msg(('AWS4' + self.aws_secret_access_key).encode('utf-8'), self.datestamp)
-        kRegion = self.sign_msg(kDate, self.region)
-        kService = self.sign_msg(kRegion, self.service)
-        kSigning = self.sign_msg(kService, 'aws4_request')
+        kDate = self.sign_message(('AWS4' + self.aws_secret_access_key).encode('utf-8'), self.datestamp)
+        kRegion = self.sign_message(kDate, self.region)
+        kService = self.sign_message(kRegion, self.service)
+        kSigning = self.sign_message(kService, 'aws4_request')
         signature = hmac.new(kSigning, string_to_sign.encode('utf-8'), hashlib.sha256).hexdigest()
 
         authorization_header = "AWS4-HMAC-SHA256 Credential={}/{}, SignedHeaders={}, Signature={}".format(
             self.aws_access_key_id, credential_scope, signed_headers, signature)
         r.headers.update({
             'host': host,
-            'x-amz-date': self.amzdate,
+            'x-amz-date': self.amazon_date,
             'Authorization': authorization_header,
             'x-amz-security-token': self.aws_session_token
         })
         return r
 
 
-class SellingApiError(Exception):
-    pass
-
-
-class BaseClient:
+class BaseSyncClient:
     _role_cache = TTLCache(maxsize=10, ttl=3000)
     _access_token_cache = TTLCache(maxsize=1000, ttl=3000)
 

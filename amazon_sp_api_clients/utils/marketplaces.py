@@ -4,9 +4,10 @@ from typing import Dict, List
 
 class MarketPlaces:
     """
-    定义了亚马逊的所有渠道。
-    
-    不提供任何数据实例，所有操作均通过四个接口完成。
+    Define all amazon fulfillment channels.
+
+    The usage like ``MarketPlaces.united_states_of_america`` is not supported,
+    please use the class methods like ``MarketPlaces.get_by_country('United States of America')``.
     """
 
     @dataclass
@@ -37,7 +38,7 @@ class MarketPlaces:
     # Pay attention that the index will write to database and should not be edited!
     # The five digits:
     # 1:   amazon endpoint
-    # 2-3: amazon market place
+    # 2-3: amazon marketplace
     # 4:   not set
     __data = {}
     for index, country, endpoint, market_place, oauth_endpoint, country_code in [
@@ -93,7 +94,7 @@ class MarketPlaces:
     (lambda m, d: [m.setdefault(place.endpoint, []).append(place) for place in d.values()])(__endpoint_map, __data)
 
     def __init__(self):
-        raise ValueError('这个类不可以实例化')
+        raise ValueError('MarketPlace is not instantiable.')
 
     @classmethod
     def all(cls):
