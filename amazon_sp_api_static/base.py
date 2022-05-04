@@ -124,7 +124,7 @@ class AWSSigV4(AuthBase):
         return r
 
 
-class SellingApiException(BaseException):
+class SellingApiError(Exception):
     pass
 
 
@@ -223,7 +223,7 @@ class BaseClient:
             try:
                 import demjson
             except ImportError:
-                raise SellingApiException('Could not parse response, please try to install demjson')
+                raise SellingApiError('Could not parse response, please try to install demjson')
             return demjson.decode(response.text)
 
     def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
@@ -289,7 +289,7 @@ class BaseClient:
                     sleep(0.1)
                     continue
                 else:
-                    raise SellingApiException(e)
+                    raise SellingApiError(e)
             else:
                 break
 
