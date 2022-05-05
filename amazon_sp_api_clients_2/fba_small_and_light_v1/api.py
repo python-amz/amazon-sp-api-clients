@@ -11,6 +11,37 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class FbaSmallAndLightV1Client(BaseClient):
+    def put_small_and_light_enrollment_by_seller_sku(
+        self,
+        seller_sku: str,
+        marketplace_ids: list[str],
+    ):
+        """
+        Enrolls the item indicated by the specified seller SKU in the Small and Light program in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            seller_sku: The seller SKU that identifies the item.
+            marketplace_ids: The marketplace in which to enroll the item. Note: Accepts a single marketplace only.
+        """
+        url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}"
+        values = (
+            seller_sku,
+            marketplace_ids,
+        )
+
+    _put_small_and_light_enrollment_by_seller_sku_params = (  # name, param in, required
+        ("sellerSKU", "path", True),
+        ("marketplaceIds", "query", True),
+    )
+
     def get_small_and_light_enrollment_by_seller_sku(
         self,
         seller_sku: str,
@@ -31,12 +62,16 @@ class FbaSmallAndLightV1Client(BaseClient):
             seller_sku: The seller SKU that identifies the item.
             marketplace_ids: The marketplace for which the enrollment status is retrieved. Note: Accepts a single marketplace only.
         """
-        path_parameters = {}
         url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}"
-        params = (  # name, param in, value, required
-            ("sellerSKU", "path", seller_sku, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            seller_sku,
+            marketplace_ids,
         )
+
+    _get_small_and_light_enrollment_by_seller_sku_params = (  # name, param in, required
+        ("sellerSKU", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def delete_small_and_light_enrollment_by_seller_sku(
         self,
@@ -58,39 +93,16 @@ class FbaSmallAndLightV1Client(BaseClient):
             seller_sku: The seller SKU that identifies the item.
             marketplace_ids: The marketplace in which to remove the item from the Small and Light program. Note: Accepts a single marketplace only.
         """
-        path_parameters = {}
         url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}"
-        params = (  # name, param in, value, required
-            ("sellerSKU", "path", seller_sku, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            seller_sku,
+            marketplace_ids,
         )
 
-    def put_small_and_light_enrollment_by_seller_sku(
-        self,
-        seller_sku: str,
-        marketplace_ids: list[str],
-    ):
-        """
-        Enrolls the item indicated by the specified seller SKU in the Small and Light program in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            seller_sku: The seller SKU that identifies the item.
-            marketplace_ids: The marketplace in which to enroll the item. Note: Accepts a single marketplace only.
-        """
-        path_parameters = {}
-        url = "/fba/smallAndLight/v1/enrollments/{sellerSKU}"
-        params = (  # name, param in, value, required
-            ("sellerSKU", "path", seller_sku, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
-        )
+    _delete_small_and_light_enrollment_by_seller_sku_params = (  # name, param in, required
+        ("sellerSKU", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def get_small_and_light_eligibility_by_seller_sku(
         self,
@@ -112,12 +124,16 @@ class FbaSmallAndLightV1Client(BaseClient):
             seller_sku: The seller SKU that identifies the item.
             marketplace_ids: The marketplace for which the eligibility status is retrieved. NOTE: Accepts a single marketplace only.
         """
-        path_parameters = {}
         url = "/fba/smallAndLight/v1/eligibilities/{sellerSKU}"
-        params = (  # name, param in, value, required
-            ("sellerSKU", "path", seller_sku, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            seller_sku,
+            marketplace_ids,
         )
+
+    _get_small_and_light_eligibility_by_seller_sku_params = (  # name, param in, required
+        ("sellerSKU", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def get_small_and_light_fee_preview(
         self,
@@ -135,6 +151,7 @@ class FbaSmallAndLightV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/fba/smallAndLight/v1/feePreviews"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_small_and_light_fee_preview_params = ()  # name, param in, required

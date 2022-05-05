@@ -32,12 +32,16 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
             page_token: A page token from the nextPageToken response element returned by your previous call to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any other parameter will cause the request to fail. When no nextPageToken value is returned there are no more pages to return. A pageToken value is not usable across different operations.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments"
-        params = (  # name, param in, value, required
-            ("marketplaceId", "query", marketplace_id, True),
-            ("pageToken", "query", page_token, False),
+        values = (
+            marketplace_id,
+            page_token,
         )
+
+    _search_content_documents_params = (  # name, param in, required
+        ("marketplaceId", "query", True),
+        ("pageToken", "query", False),
+    )
 
     def create_content_document(
         self,
@@ -58,9 +62,10 @@ class AplusContent20201101Client(BaseClient):
         Args:
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments"
-        params = (("marketplaceId", "query", marketplace_id, True),)  # name, param in, value, required
+        values = (marketplace_id,)
+
+    _create_content_document_params = (("marketplaceId", "query", True),)  # name, param in, required
 
     def get_content_document(
         self,
@@ -85,13 +90,18 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
             included_data_set: The set of A+ Content data types to include in the response.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}"
-        params = (  # name, param in, value, required
-            ("contentReferenceKey", "path", content_reference_key, True),
-            ("marketplaceId", "query", marketplace_id, True),
-            ("includedDataSet", "query", included_data_set, True),
+        values = (
+            content_reference_key,
+            marketplace_id,
+            included_data_set,
         )
+
+    _get_content_document_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
+        ("marketplaceId", "query", True),
+        ("includedDataSet", "query", True),
+    )
 
     def update_content_document(
         self,
@@ -114,12 +124,16 @@ class AplusContent20201101Client(BaseClient):
             content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}"
-        params = (  # name, param in, value, required
-            ("contentReferenceKey", "path", content_reference_key, True),
-            ("marketplaceId", "query", marketplace_id, True),
+        values = (
+            content_reference_key,
+            marketplace_id,
         )
+
+    _update_content_document_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
+        ("marketplaceId", "query", True),
+    )
 
     def list_content_document_asin_relations(
         self,
@@ -148,15 +162,22 @@ class AplusContent20201101Client(BaseClient):
             asin_set: The set of ASINs.
             page_token: A page token from the nextPageToken response element returned by your previous call to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any other parameter will cause the request to fail. When no nextPageToken value is returned there are no more pages to return. A pageToken value is not usable across different operations.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins"
-        params = (  # name, param in, value, required
-            ("contentReferenceKey", "path", content_reference_key, True),
-            ("marketplaceId", "query", marketplace_id, True),
-            ("includedDataSet", "query", included_data_set, False),
-            ("asinSet", "query", asin_set, False),
-            ("pageToken", "query", page_token, False),
+        values = (
+            content_reference_key,
+            marketplace_id,
+            included_data_set,
+            asin_set,
+            page_token,
         )
+
+    _list_content_document_asin_relations_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
+        ("marketplaceId", "query", True),
+        ("includedDataSet", "query", False),
+        ("asinSet", "query", False),
+        ("pageToken", "query", False),
+    )
 
     def post_content_document_asin_relations(
         self,
@@ -179,12 +200,16 @@ class AplusContent20201101Client(BaseClient):
             content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins"
-        params = (  # name, param in, value, required
-            ("contentReferenceKey", "path", content_reference_key, True),
-            ("marketplaceId", "query", marketplace_id, True),
+        values = (
+            content_reference_key,
+            marketplace_id,
         )
+
+    _post_content_document_asin_relations_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
+        ("marketplaceId", "query", True),
+    )
 
     def validate_content_document_asin_relations(
         self,
@@ -207,12 +232,16 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
             asin_set: The set of ASINs.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentAsinValidations"
-        params = (  # name, param in, value, required
-            ("marketplaceId", "query", marketplace_id, True),
-            ("asinSet", "query", asin_set, False),
+        values = (
+            marketplace_id,
+            asin_set,
         )
+
+    _validate_content_document_asin_relations_params = (  # name, param in, required
+        ("marketplaceId", "query", True),
+        ("asinSet", "query", False),
+    )
 
     def search_content_publish_records(
         self,
@@ -237,13 +266,18 @@ class AplusContent20201101Client(BaseClient):
             asin: The Amazon Standard Identification Number (ASIN).
             page_token: A page token from the nextPageToken response element returned by your previous call to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any other parameter will cause the request to fail. When no nextPageToken value is returned there are no more pages to return. A pageToken value is not usable across different operations.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentPublishRecords"
-        params = (  # name, param in, value, required
-            ("marketplaceId", "query", marketplace_id, True),
-            ("asin", "query", asin, True),
-            ("pageToken", "query", page_token, False),
+        values = (
+            marketplace_id,
+            asin,
+            page_token,
         )
+
+    _search_content_publish_records_params = (  # name, param in, required
+        ("marketplaceId", "query", True),
+        ("asin", "query", True),
+        ("pageToken", "query", False),
+    )
 
     def post_content_document_approval_submission(
         self,
@@ -266,12 +300,16 @@ class AplusContent20201101Client(BaseClient):
             content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions"
-        params = (  # name, param in, value, required
-            ("contentReferenceKey", "path", content_reference_key, True),
-            ("marketplaceId", "query", marketplace_id, True),
+        values = (
+            content_reference_key,
+            marketplace_id,
         )
+
+    _post_content_document_approval_submission_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
+        ("marketplaceId", "query", True),
+    )
 
     def post_content_document_suspend_submission(
         self,
@@ -294,9 +332,13 @@ class AplusContent20201101Client(BaseClient):
             content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
-        path_parameters = {}
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions"
-        params = (  # name, param in, value, required
-            ("contentReferenceKey", "path", content_reference_key, True),
-            ("marketplaceId", "query", marketplace_id, True),
+        values = (
+            content_reference_key,
+            marketplace_id,
         )
+
+    _post_content_document_suspend_submission_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
+        ("marketplaceId", "query", True),
+    )

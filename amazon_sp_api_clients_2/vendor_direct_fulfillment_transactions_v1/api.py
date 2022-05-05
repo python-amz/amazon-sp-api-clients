@@ -30,6 +30,7 @@ class VendorDirectFulfillmentTransactionsV1Client(BaseClient):
         Args:
             transaction_id: Previously returned in the response to the POST request of a specific transaction.
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/transactions/v1/transactions/{transactionId}"
-        params = (("transactionId", "path", transaction_id, True),)  # name, param in, value, required
+        values = (transaction_id,)
+
+    _get_transaction_status_params = (("transactionId", "path", True),)  # name, param in, required

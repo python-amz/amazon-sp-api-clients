@@ -33,10 +33,15 @@ class AuthorizationV1Client(BaseClient):
             developer_id: Your developer ID. This must be one of the developer ID values that you provided when you registered your application in Developer Central.
             mws_auth_token: The MWS Auth Token that was generated when the seller authorized your application on the Marketplace Appstore.
         """
-        path_parameters = {}
         url = "/authorization/v1/authorizationCode"
-        params = (  # name, param in, value, required
-            ("sellingPartnerId", "query", selling_partner_id, True),
-            ("developerId", "query", developer_id, True),
-            ("mwsAuthToken", "query", mws_auth_token, True),
+        values = (
+            selling_partner_id,
+            developer_id,
+            mws_auth_token,
         )
+
+    _get_authorization_code_params = (  # name, param in, required
+        ("sellingPartnerId", "query", True),
+        ("developerId", "query", True),
+        ("mwsAuthToken", "query", True),
+    )

@@ -30,12 +30,12 @@ class NotificationsV1Client(BaseClient):
 
         Args:
             notification_type: The type of notification.
-
-         For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
+                For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        path_parameters = {}
         url = "/notifications/v1/subscriptions/{notificationType}"
-        params = (("notificationType", "path", notification_type, True),)  # name, param in, value, required
+        values = (notification_type,)
+
+    _get_subscription_params = (("notificationType", "path", True),)  # name, param in, required
 
     def create_subscription(
         self,
@@ -54,41 +54,12 @@ class NotificationsV1Client(BaseClient):
 
         Args:
             notification_type: The type of notification.
-
-         For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
+                For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        path_parameters = {}
         url = "/notifications/v1/subscriptions/{notificationType}"
-        params = (("notificationType", "path", notification_type, True),)  # name, param in, value, required
+        values = (notification_type,)
 
-    def get_subscription_by_id(
-        self,
-        subscription_id: str,
-        notification_type: str,
-    ):
-        """
-        Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            subscription_id: The identifier for the subscription that you want to get.
-            notification_type: The type of notification.
-
-         For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
-        """
-        path_parameters = {}
-        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
-        params = (  # name, param in, value, required
-            ("subscriptionId", "path", subscription_id, True),
-            ("notificationType", "path", notification_type, True),
-        )
+    _create_subscription_params = (("notificationType", "path", True),)  # name, param in, required
 
     def delete_subscription_by_id(
         self,
@@ -109,15 +80,50 @@ class NotificationsV1Client(BaseClient):
         Args:
             subscription_id: The identifier for the subscription that you want to delete.
             notification_type: The type of notification.
-
-         For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
+                For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        path_parameters = {}
         url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
-        params = (  # name, param in, value, required
-            ("subscriptionId", "path", subscription_id, True),
-            ("notificationType", "path", notification_type, True),
+        values = (
+            subscription_id,
+            notification_type,
         )
+
+    _delete_subscription_by_id_params = (  # name, param in, required
+        ("subscriptionId", "path", True),
+        ("notificationType", "path", True),
+    )
+
+    def get_subscription_by_id(
+        self,
+        subscription_id: str,
+        notification_type: str,
+    ):
+        """
+        Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            subscription_id: The identifier for the subscription that you want to get.
+            notification_type: The type of notification.
+                For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
+        """
+        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
+        values = (
+            subscription_id,
+            notification_type,
+        )
+
+    _get_subscription_by_id_params = (  # name, param in, required
+        ("subscriptionId", "path", True),
+        ("notificationType", "path", True),
+    )
 
     def get_destinations(
         self,
@@ -135,9 +141,10 @@ class NotificationsV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/notifications/v1/destinations"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_destinations_params = ()  # name, param in, required
 
     def create_destination(
         self,
@@ -155,31 +162,10 @@ class NotificationsV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/notifications/v1/destinations"
-        params = ()  # name, param in, value, required
+        values = ()
 
-    def get_destination(
-        self,
-        destination_id: str,
-    ):
-        """
-        Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            destination_id: The identifier generated when you created the destination.
-        """
-        path_parameters = {}
-        url = "/notifications/v1/destinations/{destinationId}"
-        params = (("destinationId", "path", destination_id, True),)  # name, param in, value, required
+    _create_destination_params = ()  # name, param in, required
 
     def delete_destination(
         self,
@@ -199,6 +185,30 @@ class NotificationsV1Client(BaseClient):
         Args:
             destination_id: The identifier for the destination that you want to delete.
         """
-        path_parameters = {}
         url = "/notifications/v1/destinations/{destinationId}"
-        params = (("destinationId", "path", destination_id, True),)  # name, param in, value, required
+        values = (destination_id,)
+
+    _delete_destination_params = (("destinationId", "path", True),)  # name, param in, required
+
+    def get_destination(
+        self,
+        destination_id: str,
+    ):
+        """
+        Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            destination_id: The identifier generated when you created the destination.
+        """
+        url = "/notifications/v1/destinations/{destinationId}"
+        values = (destination_id,)
+
+    _get_destination_params = (("destinationId", "path", True),)  # name, param in, required

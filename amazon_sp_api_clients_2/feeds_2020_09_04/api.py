@@ -43,17 +43,26 @@ class Feeds20200904Client(BaseClient):
             created_until: The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.
             next_token: A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
         """
-        path_parameters = {}
         url = "/feeds/2020-09-04/feeds"
-        params = (  # name, param in, value, required
-            ("feedTypes", "query", feed_types, False),
-            ("marketplaceIds", "query", marketplace_ids, False),
-            ("pageSize", "query", page_size, False),
-            ("processingStatuses", "query", processing_statuses, False),
-            ("createdSince", "query", created_since, False),
-            ("createdUntil", "query", created_until, False),
-            ("nextToken", "query", next_token, False),
+        values = (
+            feed_types,
+            marketplace_ids,
+            page_size,
+            processing_statuses,
+            created_since,
+            created_until,
+            next_token,
         )
+
+    _get_feeds_params = (  # name, param in, required
+        ("feedTypes", "query", False),
+        ("marketplaceIds", "query", False),
+        ("pageSize", "query", False),
+        ("processingStatuses", "query", False),
+        ("createdSince", "query", False),
+        ("createdUntil", "query", False),
+        ("nextToken", "query", False),
+    )
 
     def create_feed(
         self,
@@ -71,31 +80,10 @@ class Feeds20200904Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/feeds/2020-09-04/feeds"
-        params = ()  # name, param in, value, required
+        values = ()
 
-    def get_feed(
-        self,
-        feed_id: str,
-    ):
-        """
-        Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2.0 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
-        """
-        path_parameters = {}
-        url = "/feeds/2020-09-04/feeds/{feedId}"
-        params = (("feedId", "path", feed_id, True),)  # name, param in, value, required
+    _create_feed_params = ()  # name, param in, required
 
     def cancel_feed(
         self,
@@ -115,9 +103,33 @@ class Feeds20200904Client(BaseClient):
         Args:
             feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
         """
-        path_parameters = {}
         url = "/feeds/2020-09-04/feeds/{feedId}"
-        params = (("feedId", "path", feed_id, True),)  # name, param in, value, required
+        values = (feed_id,)
+
+    _cancel_feed_params = (("feedId", "path", True),)  # name, param in, required
+
+    def get_feed(
+        self,
+        feed_id: str,
+    ):
+        """
+        Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2.0 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+        """
+        url = "/feeds/2020-09-04/feeds/{feedId}"
+        values = (feed_id,)
+
+    _get_feed_params = (("feedId", "path", True),)  # name, param in, required
 
     def create_feed_document(
         self,
@@ -135,9 +147,10 @@ class Feeds20200904Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/feeds/2020-09-04/documents"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _create_feed_document_params = ()  # name, param in, required
 
     def get_feed_document(
         self,
@@ -157,6 +170,7 @@ class Feeds20200904Client(BaseClient):
         Args:
             feed_document_id: The identifier of the feed document.
         """
-        path_parameters = {}
         url = "/feeds/2020-09-04/documents/{feedDocumentId}"
-        params = (("feedDocumentId", "path", feed_document_id, True),)  # name, param in, value, required
+        values = (feed_document_id,)
+
+    _get_feed_document_params = (("feedDocumentId", "path", True),)  # name, param in, required

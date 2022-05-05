@@ -28,6 +28,7 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/payments/v1/invoices"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _submit_invoice_params = ()  # name, param in, required

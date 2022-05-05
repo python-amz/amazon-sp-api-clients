@@ -31,12 +31,16 @@ class SolicitationsV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which you want a list of available solicitation types.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/solicitations/v1/orders/{amazonOrderId}"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _get_solicitation_actions_for_order_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_product_review_and_seller_feedback_solicitation(
         self,
@@ -58,9 +62,13 @@ class SolicitationsV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a solicitation is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/solicitations/v1/orders/{amazonOrderId}/solicitations/productReviewAndSellerFeedback"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_product_review_and_seller_feedback_solicitation_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )

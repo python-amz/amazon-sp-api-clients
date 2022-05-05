@@ -28,6 +28,7 @@ class VendorInvoicesV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/vendor/payments/v1/invoices"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _submit_invoices_params = ()  # name, param in, required

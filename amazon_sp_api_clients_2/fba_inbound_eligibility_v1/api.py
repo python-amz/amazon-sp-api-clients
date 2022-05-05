@@ -13,9 +13,9 @@ from typing import Any, List, Dict, Union, Literal
 class FbaInboundEligibilityV1Client(BaseClient):
     def get_item_eligibility_preview(
         self,
-        marketplace_ids: list[str] = None,
         asin: str,
         program: str,
+        marketplace_ids: list[str] = None,
     ):
         """
         This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
@@ -33,10 +33,15 @@ class FbaInboundEligibilityV1Client(BaseClient):
             asin: The ASIN of the item for which you want an eligibility preview.
             program: The program that you want to check eligibility against.
         """
-        path_parameters = {}
         url = "/fba/inbound/v1/eligibility/itemPreview"
-        params = (  # name, param in, value, required
-            ("marketplaceIds", "query", marketplace_ids, False),
-            ("asin", "query", asin, True),
-            ("program", "query", program, True),
+        values = (
+            marketplace_ids,
+            asin,
+            program,
         )
+
+    _get_item_eligibility_preview_params = (  # name, param in, required
+        ("marketplaceIds", "query", False),
+        ("asin", "query", True),
+        ("program", "query", True),
+    )

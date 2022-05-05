@@ -31,12 +31,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which you want a list of available message types.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _get_messaging_actions_for_order_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def confirm_customization_details(
         self,
@@ -58,12 +62,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _confirm_customization_details_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_confirm_delivery_details(
         self,
@@ -85,12 +93,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_confirm_delivery_details_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_legal_disclosure(
         self,
@@ -112,12 +124,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_legal_disclosure_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_negative_feedback_removal(
         self,
@@ -139,12 +155,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_negative_feedback_removal_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_confirm_order_details(
         self,
@@ -166,12 +186,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_confirm_order_details_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_confirm_service_details(
         self,
@@ -193,12 +217,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_confirm_service_details_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_amazon_motors(
         self,
@@ -220,12 +248,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_amazon_motors_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_warranty(
         self,
@@ -247,12 +279,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_warranty_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def get_attributes(
         self,
@@ -272,12 +308,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/attributes"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _get_attributes_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_digital_access_key(
         self,
@@ -299,12 +339,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_digital_access_key_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
 
     def create_unexpected_problem(
         self,
@@ -326,9 +370,13 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        path_parameters = {}
         url = "/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem"
-        params = (  # name, param in, value, required
-            ("amazonOrderId", "path", amazon_order_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            amazon_order_id,
+            marketplace_ids,
         )
+
+    _create_unexpected_problem_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )

@@ -33,13 +33,18 @@ class FulfillmentInboundV0Client(BaseClient):
             seller_skulist: A list of SellerSKU values. Used to identify items for which you want inbound guidance for shipment to Amazon's fulfillment network. Note: SellerSKU is qualified by the SellerId, which is included with every Selling Partner API operation that you submit. If you specify a SellerSKU that identifies a variation parent ASIN, this operation returns an error. A variation parent ASIN represents a generic product that cannot be sold. Variation child ASINs represent products that have specific characteristics (such as size and color) and can be sold.
             asinlist: A list of ASIN values. Used to identify items for which you want inbound guidance for shipment to Amazon's fulfillment network. Note: If you specify a ASIN that identifies a variation parent ASIN, this operation returns an error. A variation parent ASIN represents a generic product that cannot be sold. Variation child ASINs represent products that have specific characteristics (such as size and color) and can be sold.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/itemsGuidance"
-        params = (  # name, param in, value, required
-            ("MarketplaceId", "query", marketplace_id, True),
-            ("SellerSKUList", "query", seller_skulist, False),
-            ("ASINList", "query", asinlist, False),
+        values = (
+            marketplace_id,
+            seller_skulist,
+            asinlist,
         )
+
+    _get_inbound_guidance_params = (  # name, param in, required
+        ("MarketplaceId", "query", True),
+        ("SellerSKUList", "query", False),
+        ("ASINList", "query", False),
+    )
 
     def create_inbound_shipment_plan(
         self,
@@ -57,31 +62,10 @@ class FulfillmentInboundV0Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/plans"
-        params = ()  # name, param in, value, required
+        values = ()
 
-    def create_inbound_shipment(
-        self,
-        shipment_id: str,
-    ):
-        """
-        Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
-        """
-        path_parameters = {}
-        url = "/fba/inbound/v0/shipments/{shipmentId}"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+    _create_inbound_shipment_plan_params = ()  # name, param in, required
 
     def update_inbound_shipment(
         self,
@@ -101,9 +85,33 @@ class FulfillmentInboundV0Client(BaseClient):
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _update_inbound_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
+
+    def create_inbound_shipment(
+        self,
+        shipment_id: str,
+    ):
+        """
+        Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
+        """
+        url = "/fba/inbound/v0/shipments/{shipmentId}"
+        values = (shipment_id,)
+
+    _create_inbound_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def get_preorder_info(
         self,
@@ -125,12 +133,16 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
             marketplace_id: A marketplace identifier. Specifies the marketplace the shipment is tied to.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/preorder"
-        params = (  # name, param in, value, required
-            ("shipmentId", "path", shipment_id, True),
-            ("MarketplaceId", "query", marketplace_id, True),
+        values = (
+            shipment_id,
+            marketplace_id,
         )
+
+    _get_preorder_info_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("MarketplaceId", "query", True),
+    )
 
     def confirm_preorder(
         self,
@@ -154,13 +166,18 @@ class FulfillmentInboundV0Client(BaseClient):
             need_by_date: Date that the shipment must arrive at the Amazon fulfillment center to avoid delivery promise breaks for pre-ordered items. Must be in YYYY-MM-DD format. The response to the getPreorderInfo operation returns this value.
             marketplace_id: A marketplace identifier. Specifies the marketplace the shipment is tied to.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/preorder/confirm"
-        params = (  # name, param in, value, required
-            ("shipmentId", "path", shipment_id, True),
-            ("NeedByDate", "query", need_by_date, True),
-            ("MarketplaceId", "query", marketplace_id, True),
+        values = (
+            shipment_id,
+            need_by_date,
+            marketplace_id,
         )
+
+    _confirm_preorder_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("NeedByDate", "query", True),
+        ("MarketplaceId", "query", True),
+    )
 
     def get_prep_instructions(
         self,
@@ -182,41 +199,22 @@ class FulfillmentInboundV0Client(BaseClient):
         Args:
             ship_to_country_code: The country code of the country to which the items will be shipped. Note that labeling requirements and item preparation instructions can vary by country.
             seller_skulist: A list of SellerSKU values. Used to identify items for which you want labeling requirements and item preparation instructions for shipment to Amazon's fulfillment network. The SellerSKU is qualified by the Seller ID, which is included with every call to the Seller Partner API.
-
-        Note: Include seller SKUs that you have used to list items on Amazon's retail website. If you include a seller SKU that you have never used to list an item on Amazon's retail website, the seller SKU is returned in the InvalidSKUList property in the response.
+                Note: Include seller SKUs that you have used to list items on Amazon's retail website. If you include a seller SKU that you have never used to list an item on Amazon's retail website, the seller SKU is returned in the InvalidSKUList property in the response.
             asinlist: A list of ASIN values. Used to identify items for which you want item preparation instructions to help with item sourcing decisions.
-
-        Note: ASINs must be included in the product catalog for at least one of the marketplaces that the seller  participates in. Any ASIN that is not included in the product catalog for at least one of the marketplaces that the seller participates in is returned in the InvalidASINList property in the response. You can find out which marketplaces a seller participates in by calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.
+                Note: ASINs must be included in the product catalog for at least one of the marketplaces that the seller  participates in. Any ASIN that is not included in the product catalog for at least one of the marketplaces that the seller participates in is returned in the InvalidASINList property in the response. You can find out which marketplaces a seller participates in by calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/prepInstructions"
-        params = (  # name, param in, value, required
-            ("ShipToCountryCode", "query", ship_to_country_code, True),
-            ("SellerSKUList", "query", seller_skulist, False),
-            ("ASINList", "query", asinlist, False),
+        values = (
+            ship_to_country_code,
+            seller_skulist,
+            asinlist,
         )
 
-    def get_transport_details(
-        self,
-        shipment_id: str,
-    ):
-        """
-        Returns current transportation information about an inbound shipment.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
-        """
-        path_parameters = {}
-        url = "/fba/inbound/v0/shipments/{shipmentId}/transport"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+    _get_prep_instructions_params = (  # name, param in, required
+        ("ShipToCountryCode", "query", True),
+        ("SellerSKUList", "query", False),
+        ("ASINList", "query", False),
+    )
 
     def put_transport_details(
         self,
@@ -236,9 +234,33 @@ class FulfillmentInboundV0Client(BaseClient):
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _put_transport_details_params = (("shipmentId", "path", True),)  # name, param in, required
+
+    def get_transport_details(
+        self,
+        shipment_id: str,
+    ):
+        """
+        Returns current transportation information about an inbound shipment.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
+        """
+        url = "/fba/inbound/v0/shipments/{shipmentId}/transport"
+        values = (shipment_id,)
+
+    _get_transport_details_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def void_transport(
         self,
@@ -262,9 +284,10 @@ class FulfillmentInboundV0Client(BaseClient):
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/void"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _void_transport_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def estimate_transport(
         self,
@@ -286,9 +309,10 @@ class FulfillmentInboundV0Client(BaseClient):
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/estimate"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _estimate_transport_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def confirm_transport(
         self,
@@ -312,9 +336,10 @@ class FulfillmentInboundV0Client(BaseClient):
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/confirm"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _confirm_transport_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def get_labels(
         self,
@@ -344,24 +369,33 @@ class FulfillmentInboundV0Client(BaseClient):
             label_type: The type of labels requested.
             number_of_packages: The number of packages in the shipment.
             package_labels_to_print: A list of identifiers that specify packages for which you want package labels printed.
-
-        Must match CartonId values previously passed using the FBA Inbound Shipment Carton Information Feed. If not, the operation returns the IncorrectPackageIdentifier error code.
+                Must match CartonId values previously passed using the FBA Inbound Shipment Carton Information Feed. If not, the operation returns the IncorrectPackageIdentifier error code.
             number_of_pallets: The number of pallets in the shipment. This returns four identical labels for each pallet.
             page_size: The page size for paginating through the total packages' labels. This is a required parameter for Non-Partnered LTL Shipments. Max value:1000.
             page_start_index: The page start index for paginating through the total packages' labels. This is a required parameter for Non-Partnered LTL Shipments.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/labels"
-        params = (  # name, param in, value, required
-            ("shipmentId", "path", shipment_id, True),
-            ("PageType", "query", page_type, True),
-            ("LabelType", "query", label_type, True),
-            ("NumberOfPackages", "query", number_of_packages, False),
-            ("PackageLabelsToPrint", "query", package_labels_to_print, False),
-            ("NumberOfPallets", "query", number_of_pallets, False),
-            ("PageSize", "query", page_size, False),
-            ("PageStartIndex", "query", page_start_index, False),
+        values = (
+            shipment_id,
+            page_type,
+            label_type,
+            number_of_packages,
+            package_labels_to_print,
+            number_of_pallets,
+            page_size,
+            page_start_index,
         )
+
+    _get_labels_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("PageType", "query", True),
+        ("LabelType", "query", True),
+        ("NumberOfPackages", "query", False),
+        ("PackageLabelsToPrint", "query", False),
+        ("NumberOfPallets", "query", False),
+        ("PageSize", "query", False),
+        ("PageStartIndex", "query", False),
+    )
 
     def get_bill_of_lading(
         self,
@@ -381,12 +415,15 @@ class FulfillmentInboundV0Client(BaseClient):
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/billOfLading"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _get_bill_of_lading_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def get_shipments(
         self,
+        query_type: str,
+        marketplace_id: str,
         shipment_status_list: list[
             Union[
                 Literal["WORKING"],
@@ -404,9 +441,7 @@ class FulfillmentInboundV0Client(BaseClient):
         shipment_id_list: list[str] = None,
         last_updated_after: str = None,
         last_updated_before: str = None,
-        query_type: str,
         next_token: str = None,
-        marketplace_id: str,
     ):
         """
         Returns a list of inbound shipments based on criteria that you specify.
@@ -428,17 +463,26 @@ class FulfillmentInboundV0Client(BaseClient):
             next_token: A string token returned in the response to your previous request.
             marketplace_id: A marketplace identifier. Specifies the marketplace where the product would be stored.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments"
-        params = (  # name, param in, value, required
-            ("ShipmentStatusList", "query", shipment_status_list, False),
-            ("ShipmentIdList", "query", shipment_id_list, False),
-            ("LastUpdatedAfter", "query", last_updated_after, False),
-            ("LastUpdatedBefore", "query", last_updated_before, False),
-            ("QueryType", "query", query_type, True),
-            ("NextToken", "query", next_token, False),
-            ("MarketplaceId", "query", marketplace_id, True),
+        values = (
+            shipment_status_list,
+            shipment_id_list,
+            last_updated_after,
+            last_updated_before,
+            query_type,
+            next_token,
+            marketplace_id,
         )
+
+    _get_shipments_params = (  # name, param in, required
+        ("ShipmentStatusList", "query", False),
+        ("ShipmentIdList", "query", False),
+        ("LastUpdatedAfter", "query", False),
+        ("LastUpdatedBefore", "query", False),
+        ("QueryType", "query", True),
+        ("NextToken", "query", False),
+        ("MarketplaceId", "query", True),
+    )
 
     def get_shipment_items_by_shipment_id(
         self,
@@ -460,20 +504,24 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_id: A shipment identifier used for selecting items in a specific inbound shipment.
             marketplace_id: A marketplace identifier. Specifies the marketplace where the product would be stored.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipments/{shipmentId}/items"
-        params = (  # name, param in, value, required
-            ("shipmentId", "path", shipment_id, True),
-            ("MarketplaceId", "query", marketplace_id, True),
+        values = (
+            shipment_id,
+            marketplace_id,
         )
+
+    _get_shipment_items_by_shipment_id_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("MarketplaceId", "query", True),
+    )
 
     def get_shipment_items(
         self,
+        query_type: str,
+        marketplace_id: str,
         last_updated_after: str = None,
         last_updated_before: str = None,
-        query_type: str,
         next_token: str = None,
-        marketplace_id: str,
     ):
         """
         Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
@@ -493,12 +541,19 @@ class FulfillmentInboundV0Client(BaseClient):
             next_token: A string token returned in the response to your previous request.
             marketplace_id: A marketplace identifier. Specifies the marketplace where the product would be stored.
         """
-        path_parameters = {}
         url = "/fba/inbound/v0/shipmentItems"
-        params = (  # name, param in, value, required
-            ("LastUpdatedAfter", "query", last_updated_after, False),
-            ("LastUpdatedBefore", "query", last_updated_before, False),
-            ("QueryType", "query", query_type, True),
-            ("NextToken", "query", next_token, False),
-            ("MarketplaceId", "query", marketplace_id, True),
+        values = (
+            last_updated_after,
+            last_updated_before,
+            query_type,
+            next_token,
+            marketplace_id,
         )
+
+    _get_shipment_items_params = (  # name, param in, required
+        ("LastUpdatedAfter", "query", False),
+        ("LastUpdatedBefore", "query", False),
+        ("QueryType", "query", True),
+        ("NextToken", "query", False),
+        ("MarketplaceId", "query", True),
+    )

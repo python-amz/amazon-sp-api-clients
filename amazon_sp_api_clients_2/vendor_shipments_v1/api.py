@@ -28,6 +28,7 @@ class VendorShipmentsV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/vendor/shipping/v1/shipmentConfirmations"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _submit_shipment_confirmations_params = ()  # name, param in, required

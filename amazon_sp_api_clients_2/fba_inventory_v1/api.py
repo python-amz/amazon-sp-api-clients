@@ -13,13 +13,13 @@ from typing import Any, List, Dict, Union, Literal
 class FbaInventoryV1Client(BaseClient):
     def get_inventory_summaries(
         self,
-        details: bool = None,
         granularity_type: str,
         granularity_id: str,
+        marketplace_ids: list[str],
+        details: bool = None,
         start_date_time: str = None,
         seller_skus: list[str] = None,
         next_token: str = None,
-        marketplace_ids: list[str],
     ):
         """
         Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:
@@ -45,14 +45,23 @@ class FbaInventoryV1Client(BaseClient):
             next_token: String token returned in the response of your previous request.
             marketplace_ids: The marketplace ID for the marketplace for which to return inventory summaries.
         """
-        path_parameters = {}
         url = "/fba/inventory/v1/summaries"
-        params = (  # name, param in, value, required
-            ("details", "query", details, False),
-            ("granularityType", "query", granularity_type, True),
-            ("granularityId", "query", granularity_id, True),
-            ("startDateTime", "query", start_date_time, False),
-            ("sellerSkus", "query", seller_skus, False),
-            ("nextToken", "query", next_token, False),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            details,
+            granularity_type,
+            granularity_id,
+            start_date_time,
+            seller_skus,
+            next_token,
+            marketplace_ids,
         )
+
+    _get_inventory_summaries_params = (  # name, param in, required
+        ("details", "query", False),
+        ("granularityType", "query", True),
+        ("granularityId", "query", True),
+        ("startDateTime", "query", False),
+        ("sellerSkus", "query", False),
+        ("nextToken", "query", False),
+        ("marketplaceIds", "query", True),
+    )

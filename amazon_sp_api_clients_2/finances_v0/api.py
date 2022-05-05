@@ -35,19 +35,25 @@ class FinancesV0Client(BaseClient):
             financial_event_group_started_after: A date used for selecting financial event groups that opened after (or at) a specified date and time, in ISO 8601 format. The date-time must be no later than two minutes before the request was submitted.
             next_token: A string token returned in the response of your previous request.
         """
-        path_parameters = {}
         url = "/finances/v0/financialEventGroups"
-        params = (  # name, param in, value, required
-            ("MaxResultsPerPage", "query", max_results_per_page, False),
-            ("FinancialEventGroupStartedBefore", "query", financial_event_group_started_before, False),
-            ("FinancialEventGroupStartedAfter", "query", financial_event_group_started_after, False),
-            ("NextToken", "query", next_token, False),
+        values = (
+            max_results_per_page,
+            financial_event_group_started_before,
+            financial_event_group_started_after,
+            next_token,
         )
+
+    _list_financial_event_groups_params = (  # name, param in, required
+        ("MaxResultsPerPage", "query", False),
+        ("FinancialEventGroupStartedBefore", "query", False),
+        ("FinancialEventGroupStartedAfter", "query", False),
+        ("NextToken", "query", False),
+    )
 
     def list_financial_events_by_group_id(
         self,
-        max_results_per_page: int = None,
         event_group_id: str,
+        max_results_per_page: int = None,
         next_token: str = None,
     ):
         """
@@ -66,13 +72,18 @@ class FinancesV0Client(BaseClient):
             event_group_id: The identifier of the financial event group to which the events belong.
             next_token: A string token returned in the response of your previous request.
         """
-        path_parameters = {}
         url = "/finances/v0/financialEventGroups/{eventGroupId}/financialEvents"
-        params = (  # name, param in, value, required
-            ("MaxResultsPerPage", "query", max_results_per_page, False),
-            ("eventGroupId", "path", event_group_id, True),
-            ("NextToken", "query", next_token, False),
+        values = (
+            max_results_per_page,
+            event_group_id,
+            next_token,
         )
+
+    _list_financial_events_by_group_id_params = (  # name, param in, required
+        ("MaxResultsPerPage", "query", False),
+        ("eventGroupId", "path", True),
+        ("NextToken", "query", False),
+    )
 
     def list_financial_events_by_order_id(
         self,
@@ -96,13 +107,18 @@ class FinancesV0Client(BaseClient):
             max_results_per_page: The maximum number of results to return per page.
             next_token: A string token returned in the response of your previous request.
         """
-        path_parameters = {}
         url = "/finances/v0/orders/{orderId}/financialEvents"
-        params = (  # name, param in, value, required
-            ("orderId", "path", order_id, True),
-            ("MaxResultsPerPage", "query", max_results_per_page, False),
-            ("NextToken", "query", next_token, False),
+        values = (
+            order_id,
+            max_results_per_page,
+            next_token,
         )
+
+    _list_financial_events_by_order_id_params = (  # name, param in, required
+        ("orderId", "path", True),
+        ("MaxResultsPerPage", "query", False),
+        ("NextToken", "query", False),
+    )
 
     def list_financial_events(
         self,
@@ -128,11 +144,17 @@ class FinancesV0Client(BaseClient):
             posted_before: A date used for selecting financial events posted before (but not at) a specified time. The date-time must be later than PostedAfter and no later than two minutes before the request was submitted, in ISO 8601 date time format. If PostedAfter and PostedBefore are more than 180 days apart, no financial events are returned. You must specify the PostedAfter parameter if you specify the PostedBefore parameter. Default: Now minus two minutes.
             next_token: A string token returned in the response of your previous request.
         """
-        path_parameters = {}
         url = "/finances/v0/financialEvents"
-        params = (  # name, param in, value, required
-            ("MaxResultsPerPage", "query", max_results_per_page, False),
-            ("PostedAfter", "query", posted_after, False),
-            ("PostedBefore", "query", posted_before, False),
-            ("NextToken", "query", next_token, False),
+        values = (
+            max_results_per_page,
+            posted_after,
+            posted_before,
+            next_token,
         )
+
+    _list_financial_events_params = (  # name, param in, required
+        ("MaxResultsPerPage", "query", False),
+        ("PostedAfter", "query", False),
+        ("PostedBefore", "query", False),
+        ("NextToken", "query", False),
+    )

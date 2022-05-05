@@ -27,9 +27,10 @@ class ShippingV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/shipping/v1/shipments"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _create_shipment_params = ()  # name, param in, required
 
     def get_shipment(
         self,
@@ -47,11 +48,12 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            shipment_id: None
+            shipment_id: no description.
         """
-        path_parameters = {}
         url = "/shipping/v1/shipments/{shipmentId}"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _get_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def cancel_shipment(
         self,
@@ -69,11 +71,12 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            shipment_id: None
+            shipment_id: no description.
         """
-        path_parameters = {}
         url = "/shipping/v1/shipments/{shipmentId}/cancel"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _cancel_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def purchase_labels(
         self,
@@ -91,11 +94,12 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            shipment_id: None
+            shipment_id: no description.
         """
-        path_parameters = {}
         url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _purchase_labels_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def retrieve_shipping_label(
         self,
@@ -114,15 +118,19 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            shipment_id: None
-            tracking_id: None
+            shipment_id: no description.
+            tracking_id: no description.
         """
-        path_parameters = {}
         url = "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label"
-        params = (  # name, param in, value, required
-            ("shipmentId", "path", shipment_id, True),
-            ("trackingId", "path", tracking_id, True),
+        values = (
+            shipment_id,
+            tracking_id,
         )
+
+    _retrieve_shipping_label_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("trackingId", "path", True),
+    )
 
     def purchase_shipment(
         self,
@@ -140,9 +148,10 @@ class ShippingV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/shipping/v1/purchaseShipment"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _purchase_shipment_params = ()  # name, param in, required
 
     def get_rates(
         self,
@@ -160,9 +169,10 @@ class ShippingV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/shipping/v1/rates"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_rates_params = ()  # name, param in, required
 
     def get_account(
         self,
@@ -180,9 +190,10 @@ class ShippingV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/shipping/v1/account"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_account_params = ()  # name, param in, required
 
     def get_tracking_information(
         self,
@@ -200,8 +211,9 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            tracking_id: None
+            tracking_id: no description.
         """
-        path_parameters = {}
         url = "/shipping/v1/tracking/{trackingId}"
-        params = (("trackingId", "path", tracking_id, True),)  # name, param in, value, required
+        values = (tracking_id,)
+
+    _get_tracking_information_params = (("trackingId", "path", True),)  # name, param in, required

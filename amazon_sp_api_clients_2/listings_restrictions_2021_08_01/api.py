@@ -16,9 +16,9 @@ class ListingsRestrictions20210801Client(BaseClient):
     def get_listings_restrictions(
         self,
         asin: str,
-        condition_type: str = None,
         seller_id: str,
         marketplace_ids: list[str],
+        condition_type: str = None,
         reason_locale: str = None,
     ):
         """
@@ -39,12 +39,19 @@ class ListingsRestrictions20210801Client(BaseClient):
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
             reason_locale: A locale for reason text localization. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
         """
-        path_parameters = {}
         url = "/listings/2021-08-01/restrictions"
-        params = (  # name, param in, value, required
-            ("asin", "query", asin, True),
-            ("conditionType", "query", condition_type, False),
-            ("sellerId", "query", seller_id, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("reasonLocale", "query", reason_locale, False),
+        values = (
+            asin,
+            condition_type,
+            seller_id,
+            marketplace_ids,
+            reason_locale,
         )
+
+    _get_listings_restrictions_params = (  # name, param in, required
+        ("asin", "query", True),
+        ("conditionType", "query", False),
+        ("sellerId", "query", True),
+        ("marketplaceIds", "query", True),
+        ("reasonLocale", "query", False),
+    )

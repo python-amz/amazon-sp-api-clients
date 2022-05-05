@@ -29,9 +29,10 @@ class ServicesV1Client(BaseClient):
         Args:
             service_job_id: A service job identifier.
         """
-        path_parameters = {}
         url = "/service/v1/serviceJobs/{serviceJobId}"
-        params = (("serviceJobId", "path", service_job_id, True),)  # name, param in, value, required
+        values = (service_job_id,)
+
+    _get_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required
 
     def cancel_service_job_by_service_job_id(
         self,
@@ -53,12 +54,16 @@ class ServicesV1Client(BaseClient):
             service_job_id: An Amazon defined service job identifier.
             cancellation_reason_code: A cancel reason code that specifies the reason for cancelling a service job.
         """
-        path_parameters = {}
         url = "/service/v1/serviceJobs/{serviceJobId}/cancellations"
-        params = (  # name, param in, value, required
-            ("serviceJobId", "path", service_job_id, True),
-            ("cancellationReasonCode", "query", cancellation_reason_code, True),
+        values = (
+            service_job_id,
+            cancellation_reason_code,
         )
+
+    _cancel_service_job_by_service_job_id_params = (  # name, param in, required
+        ("serviceJobId", "path", True),
+        ("cancellationReasonCode", "query", True),
+    )
 
     def complete_service_job_by_service_job_id(
         self,
@@ -78,12 +83,14 @@ class ServicesV1Client(BaseClient):
         Args:
             service_job_id: An Amazon defined service job identifier.
         """
-        path_parameters = {}
         url = "/service/v1/serviceJobs/{serviceJobId}/completions"
-        params = (("serviceJobId", "path", service_job_id, True),)  # name, param in, value, required
+        values = (service_job_id,)
+
+    _complete_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required
 
     def get_service_jobs(
         self,
+        marketplace_ids: list[str],
         service_order_ids: list[str] = None,
         service_job_status: list[
             Union[
@@ -106,7 +113,6 @@ class ServicesV1Client(BaseClient):
         last_updated_before: str = None,
         schedule_start_date: str = None,
         schedule_end_date: str = None,
-        marketplace_ids: list[str],
     ):
         """
         Gets service job details for the specified filter query.
@@ -134,23 +140,38 @@ class ServicesV1Client(BaseClient):
             schedule_end_date: A date used for filtering jobs schedule before (or at) a specified time must be in ISO 8601 format. schedule end date should not be earlier than schedule start date.
             marketplace_ids: Used to select jobs that were placed in the specified marketplaces.
         """
-        path_parameters = {}
         url = "/service/v1/serviceJobs"
-        params = (  # name, param in, value, required
-            ("serviceOrderIds", "query", service_order_ids, False),
-            ("serviceJobStatus", "query", service_job_status, False),
-            ("pageToken", "query", page_token, False),
-            ("pageSize", "query", page_size, False),
-            ("sortField", "query", sort_field, False),
-            ("sortOrder", "query", sort_order, False),
-            ("createdAfter", "query", created_after, False),
-            ("createdBefore", "query", created_before, False),
-            ("lastUpdatedAfter", "query", last_updated_after, False),
-            ("lastUpdatedBefore", "query", last_updated_before, False),
-            ("scheduleStartDate", "query", schedule_start_date, False),
-            ("scheduleEndDate", "query", schedule_end_date, False),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            service_order_ids,
+            service_job_status,
+            page_token,
+            page_size,
+            sort_field,
+            sort_order,
+            created_after,
+            created_before,
+            last_updated_after,
+            last_updated_before,
+            schedule_start_date,
+            schedule_end_date,
+            marketplace_ids,
         )
+
+    _get_service_jobs_params = (  # name, param in, required
+        ("serviceOrderIds", "query", False),
+        ("serviceJobStatus", "query", False),
+        ("pageToken", "query", False),
+        ("pageSize", "query", False),
+        ("sortField", "query", False),
+        ("sortOrder", "query", False),
+        ("createdAfter", "query", False),
+        ("createdBefore", "query", False),
+        ("lastUpdatedAfter", "query", False),
+        ("lastUpdatedBefore", "query", False),
+        ("scheduleStartDate", "query", False),
+        ("scheduleEndDate", "query", False),
+        ("marketplaceIds", "query", True),
+    )
 
     def add_appointment_for_service_job_by_service_job_id(
         self,
@@ -170,9 +191,12 @@ class ServicesV1Client(BaseClient):
         Args:
             service_job_id: An Amazon defined service job identifier.
         """
-        path_parameters = {}
         url = "/service/v1/serviceJobs/{serviceJobId}/appointments"
-        params = (("serviceJobId", "path", service_job_id, True),)  # name, param in, value, required
+        values = (service_job_id,)
+
+    _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in, required
+        ("serviceJobId", "path", True),
+    )
 
     def reschedule_appointment_for_service_job_by_service_job_id(
         self,
@@ -194,9 +218,13 @@ class ServicesV1Client(BaseClient):
             service_job_id: An Amazon defined service job identifier.
             appointment_id: An existing appointment identifier for the Service Job.
         """
-        path_parameters = {}
         url = "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}"
-        params = (  # name, param in, value, required
-            ("serviceJobId", "path", service_job_id, True),
-            ("appointmentId", "path", appointment_id, True),
+        values = (
+            service_job_id,
+            appointment_id,
         )
+
+    _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in, required
+        ("serviceJobId", "path", True),
+        ("appointmentId", "path", True),
+    )

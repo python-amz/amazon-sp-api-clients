@@ -27,9 +27,10 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/mfn/v0/eligibleServices"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_eligible_shipment_services_old_params = ()  # name, param in, required
 
     def get_eligible_shipment_services(
         self,
@@ -47,31 +48,10 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/mfn/v0/eligibleShippingServices"
-        params = ()  # name, param in, value, required
+        values = ()
 
-    def get_shipment(
-        self,
-        shipment_id: str,
-    ):
-        """
-        Returns the shipment information for an existing shipment.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 1 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            shipment_id: The Amazon-defined shipment identifier for the shipment.
-        """
-        path_parameters = {}
-        url = "/mfn/v0/shipments/{shipmentId}"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+    _get_eligible_shipment_services_params = ()  # name, param in, required
 
     def cancel_shipment(
         self,
@@ -91,9 +71,33 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
             shipment_id: The Amazon-defined shipment identifier for the shipment to cancel.
         """
-        path_parameters = {}
         url = "/mfn/v0/shipments/{shipmentId}"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _cancel_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
+
+    def get_shipment(
+        self,
+        shipment_id: str,
+    ):
+        """
+        Returns the shipment information for an existing shipment.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            shipment_id: The Amazon-defined shipment identifier for the shipment.
+        """
+        url = "/mfn/v0/shipments/{shipmentId}"
+        values = (shipment_id,)
+
+    _get_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def cancel_shipment_old(
         self,
@@ -113,9 +117,10 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
             shipment_id: The Amazon-defined shipment identifier for the shipment to cancel.
         """
-        path_parameters = {}
         url = "/mfn/v0/shipments/{shipmentId}/cancel"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _cancel_shipment_old_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def create_shipment(
         self,
@@ -133,9 +138,10 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/mfn/v0/shipments"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _create_shipment_params = ()  # name, param in, required
 
     def get_additional_seller_inputs_old(
         self,
@@ -153,9 +159,10 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/mfn/v0/sellerInputs"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_additional_seller_inputs_old_params = ()  # name, param in, required
 
     def get_additional_seller_inputs(
         self,
@@ -173,6 +180,7 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/mfn/v0/additionalSellerInputs"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_additional_seller_inputs_params = ()  # name, param in, required

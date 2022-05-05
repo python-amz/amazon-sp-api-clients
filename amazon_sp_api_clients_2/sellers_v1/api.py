@@ -27,6 +27,7 @@ class SellersV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/sellers/v1/marketplaceParticipations"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _get_marketplace_participations_params = ()  # name, param in, required

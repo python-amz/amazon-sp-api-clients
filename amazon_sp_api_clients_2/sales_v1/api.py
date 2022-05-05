@@ -15,8 +15,8 @@ class SalesV1Client(BaseClient):
         self,
         marketplace_ids: list[str],
         interval: str,
-        granularity_time_zone: str = None,
         granularity: str,
+        granularity_time_zone: str = None,
         buyer_type: str = None,
         fulfillment_network: str = None,
         first_day_of_week: str = None,
@@ -45,16 +45,27 @@ class SalesV1Client(BaseClient):
             asin: Filters the results by the ASIN that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all ASINs. Example: B0792R1RSN, if you want the response to include order metrics for only ASIN B0792R1RSN.
             sku: Filters the results by the SKU that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all SKUs. Example: TestSKU, if you want the response to include order metrics for only SKU TestSKU.
         """
-        path_parameters = {}
         url = "/sales/v1/orderMetrics"
-        params = (  # name, param in, value, required
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("interval", "query", interval, True),
-            ("granularityTimeZone", "query", granularity_time_zone, False),
-            ("granularity", "query", granularity, True),
-            ("buyerType", "query", buyer_type, False),
-            ("fulfillmentNetwork", "query", fulfillment_network, False),
-            ("firstDayOfWeek", "query", first_day_of_week, False),
-            ("asin", "query", asin, False),
-            ("sku", "query", sku, False),
+        values = (
+            marketplace_ids,
+            interval,
+            granularity_time_zone,
+            granularity,
+            buyer_type,
+            fulfillment_network,
+            first_day_of_week,
+            asin,
+            sku,
         )
+
+    _get_order_metrics_params = (  # name, param in, required
+        ("marketplaceIds", "query", True),
+        ("interval", "query", True),
+        ("granularityTimeZone", "query", False),
+        ("granularity", "query", True),
+        ("buyerType", "query", False),
+        ("fulfillmentNetwork", "query", False),
+        ("firstDayOfWeek", "query", False),
+        ("asin", "query", False),
+        ("sku", "query", False),
+    )

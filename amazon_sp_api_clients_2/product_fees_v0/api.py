@@ -34,9 +34,10 @@ class ProductFeesV0Client(BaseClient):
         Args:
             seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
         """
-        path_parameters = {}
         url = "/products/fees/v0/listings/{SellerSKU}/feesEstimate"
-        params = (("SellerSKU", "path", seller_sku, True),)  # name, param in, value, required
+        values = (seller_sku,)
+
+    _get_my_fees_estimate_for_sku_params = (("SellerSKU", "path", True),)  # name, param in, required
 
     def get_my_fees_estimate_for_asin(
         self,
@@ -61,6 +62,7 @@ class ProductFeesV0Client(BaseClient):
         Args:
             asin: The Amazon Standard Identification Number (ASIN) of the item.
         """
-        path_parameters = {}
         url = "/products/fees/v0/items/{Asin}/feesEstimate"
-        params = (("Asin", "path", asin, True),)  # name, param in, value, required
+        values = (asin,)
+
+    _get_my_fees_estimate_for_asin_params = (("Asin", "path", True),)  # name, param in, required

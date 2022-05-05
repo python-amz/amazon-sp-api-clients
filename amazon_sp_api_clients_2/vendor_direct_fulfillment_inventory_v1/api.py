@@ -30,6 +30,7 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
         Args:
             warehouse_id: Identifier for the warehouse for which to update inventory.
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/inventory/v1/warehouses/{warehouseId}/items"
-        params = (("warehouseId", "path", warehouse_id, True),)  # name, param in, value, required
+        values = (warehouse_id,)
+
+    _submit_inventory_update_params = (("warehouseId", "path", True),)  # name, param in, required

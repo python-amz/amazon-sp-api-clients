@@ -30,9 +30,10 @@ class ShipmentInvoicingV0Client(BaseClient):
         Args:
             shipment_id: The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus notification. For information about subscribing to notifications, see the [Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        path_parameters = {}
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _get_shipment_details_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def submit_invoice(
         self,
@@ -53,9 +54,10 @@ class ShipmentInvoicingV0Client(BaseClient):
         Args:
             shipment_id: The identifier for the shipment.
         """
-        path_parameters = {}
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _submit_invoice_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def get_invoice_status(
         self,
@@ -76,6 +78,7 @@ class ShipmentInvoicingV0Client(BaseClient):
         Args:
             shipment_id: The shipment identifier for the shipment.
         """
-        path_parameters = {}
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status"
-        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
+        values = (shipment_id,)
+
+    _get_invoice_status_params = (("shipmentId", "path", True),)  # name, param in, required

@@ -15,8 +15,8 @@ from typing import Any, List, Dict, Union, Literal
 class ProductTypeDefinitions20200901Client(BaseClient):
     def search_definitions_product_types(
         self,
-        keywords: list[str] = None,
         marketplace_ids: list[str],
+        keywords: list[str] = None,
     ):
         """
         Search for and return a list of Amazon product types that have definitions available.
@@ -34,18 +34,22 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             keywords: A comma-delimited list of keywords to search product types by.
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
         """
-        path_parameters = {}
         url = "/definitions/2020-09-01/productTypes"
-        params = (  # name, param in, value, required
-            ("keywords", "query", keywords, False),
-            ("marketplaceIds", "query", marketplace_ids, True),
+        values = (
+            keywords,
+            marketplace_ids,
         )
+
+    _search_definitions_product_types_params = (  # name, param in, required
+        ("keywords", "query", False),
+        ("marketplaceIds", "query", True),
+    )
 
     def get_definitions_product_type(
         self,
         product_type: str,
-        seller_id: str = None,
         marketplace_ids: list[str],
+        seller_id: str = None,
         product_type_version: str = None,
         requirements: str = None,
         requirements_enforced: str = None,
@@ -67,20 +71,29 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             product_type: The Amazon product type name.
             seller_id: A selling partner identifier. When provided, seller-specific requirements and values are populated within the product type definition schema, such as brand names associated with the selling partner.
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
-        Note: This parameter is limited to one marketplaceId at this time.
+                Note: This parameter is limited to one marketplaceId at this time.
             product_type_version: The version of the Amazon product type to retrieve. Defaults to "LATEST",. Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease version is currently available, the "LATEST" live version will be provided.
             requirements: The name of the requirements set to retrieve requirements for.
             requirements_enforced: Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all the required attributes being present (such as for partial updates).
             locale: Locale for retrieving display labels and other presentation details. Defaults to the default language of the first marketplace in the request.
         """
-        path_parameters = {}
         url = "/definitions/2020-09-01/productTypes/{productType}"
-        params = (  # name, param in, value, required
-            ("productType", "path", product_type, True),
-            ("sellerId", "query", seller_id, False),
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("productTypeVersion", "query", product_type_version, False),
-            ("requirements", "query", requirements, False),
-            ("requirementsEnforced", "query", requirements_enforced, False),
-            ("locale", "query", locale, False),
+        values = (
+            product_type,
+            seller_id,
+            marketplace_ids,
+            product_type_version,
+            requirements,
+            requirements_enforced,
+            locale,
         )
+
+    _get_definitions_product_type_params = (  # name, param in, required
+        ("productType", "path", True),
+        ("sellerId", "query", False),
+        ("marketplaceIds", "query", True),
+        ("productTypeVersion", "query", False),
+        ("requirements", "query", False),
+        ("requirementsEnforced", "query", False),
+        ("locale", "query", False),
+    )

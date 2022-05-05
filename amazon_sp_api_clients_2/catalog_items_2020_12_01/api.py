@@ -58,19 +58,30 @@ class CatalogItems20201201Client(BaseClient):
             keywords_locale: The language the keywords are provided in. Defaults to the primary locale of the marketplace.
             locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
         """
-        path_parameters = {}
         url = "/catalog/2020-12-01/items"
-        params = (  # name, param in, value, required
-            ("keywords", "query", keywords, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("includedData", "query", included_data, False),
-            ("brandNames", "query", brand_names, False),
-            ("classificationIds", "query", classification_ids, False),
-            ("pageSize", "query", page_size, False),
-            ("pageToken", "query", page_token, False),
-            ("keywordsLocale", "query", keywords_locale, False),
-            ("locale", "query", locale, False),
+        values = (
+            keywords,
+            marketplace_ids,
+            included_data,
+            brand_names,
+            classification_ids,
+            page_size,
+            page_token,
+            keywords_locale,
+            locale,
         )
+
+    _search_catalog_items_params = (  # name, param in, required
+        ("keywords", "query", True),
+        ("marketplaceIds", "query", True),
+        ("includedData", "query", False),
+        ("brandNames", "query", False),
+        ("classificationIds", "query", False),
+        ("pageSize", "query", False),
+        ("pageToken", "query", False),
+        ("keywordsLocale", "query", False),
+        ("locale", "query", False),
+    )
 
     def get_catalog_item(
         self,
@@ -108,11 +119,17 @@ class CatalogItems20201201Client(BaseClient):
             included_data: A comma-delimited list of data sets to include in the response. Default: summaries.
             locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
         """
-        path_parameters = {}
         url = "/catalog/2020-12-01/items/{asin}"
-        params = (  # name, param in, value, required
-            ("asin", "path", asin, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("includedData", "query", included_data, False),
-            ("locale", "query", locale, False),
+        values = (
+            asin,
+            marketplace_ids,
+            included_data,
+            locale,
         )
+
+    _get_catalog_item_params = (  # name, param in, required
+        ("asin", "path", True),
+        ("marketplaceIds", "query", True),
+        ("includedData", "query", False),
+        ("locale", "query", False),
+    )

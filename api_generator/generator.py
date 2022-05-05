@@ -42,7 +42,8 @@ class ParsedParameter(Parameter):
 
     @property
     def parsed_description(self):
-        result = self.description.splitlines()
+        result = 'no description.' if self.description is None else self.description
+        result = result.splitlines()
         result = [line.strip() for line in result]
         result = [line for line in result if line]
         return '\n        '.join(result)
@@ -147,8 +148,8 @@ class Generator:
 
 def main():
     for json_file in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'):
-        if 'order' not in json_file.stem:
-            continue
+        # if 'order' not in json_file.stem:
+        #     continue
         Generator(json_file).generate()
 
 

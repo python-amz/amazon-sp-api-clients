@@ -48,18 +48,28 @@ class CatalogItemsV0Client(BaseClient):
             isbn: The unique commercial book identifier used to identify books internationally.
             jan: A Japanese article number that uniquely identifies the product, manufacturer, and its attributes.
         """
-        path_parameters = {}
         url = "/catalog/v0/items"
-        params = (  # name, param in, value, required
-            ("MarketplaceId", "query", marketplace_id, True),
-            ("Query", "query", query, False),
-            ("QueryContextId", "query", query_context_id, False),
-            ("SellerSKU", "query", seller_sku, False),
-            ("UPC", "query", upc, False),
-            ("EAN", "query", ean, False),
-            ("ISBN", "query", isbn, False),
-            ("JAN", "query", jan, False),
+        values = (
+            marketplace_id,
+            query,
+            query_context_id,
+            seller_sku,
+            upc,
+            ean,
+            isbn,
+            jan,
         )
+
+    _list_catalog_items_params = (  # name, param in, required
+        ("MarketplaceId", "query", True),
+        ("Query", "query", False),
+        ("QueryContextId", "query", False),
+        ("SellerSKU", "query", False),
+        ("UPC", "query", False),
+        ("EAN", "query", False),
+        ("ISBN", "query", False),
+        ("JAN", "query", False),
+    )
 
     def get_catalog_item(
         self,
@@ -82,12 +92,16 @@ class CatalogItemsV0Client(BaseClient):
             marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
             asin: The Amazon Standard Identification Number (ASIN) of the item.
         """
-        path_parameters = {}
         url = "/catalog/v0/items/{asin}"
-        params = (  # name, param in, value, required
-            ("MarketplaceId", "query", marketplace_id, True),
-            ("asin", "path", asin, True),
+        values = (
+            marketplace_id,
+            asin,
         )
+
+    _get_catalog_item_params = (  # name, param in, required
+        ("MarketplaceId", "query", True),
+        ("asin", "path", True),
+    )
 
     def list_catalog_categories(
         self,
@@ -112,10 +126,15 @@ class CatalogItemsV0Client(BaseClient):
             asin: The Amazon Standard Identification Number (ASIN) of the item.
             seller_sku: Used to identify items in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
         """
-        path_parameters = {}
         url = "/catalog/v0/categories"
-        params = (  # name, param in, value, required
-            ("MarketplaceId", "query", marketplace_id, True),
-            ("ASIN", "query", asin, False),
-            ("SellerSKU", "query", seller_sku, False),
+        values = (
+            marketplace_id,
+            asin,
+            seller_sku,
         )
+
+    _list_catalog_categories_params = (  # name, param in, required
+        ("MarketplaceId", "query", True),
+        ("ASIN", "query", False),
+        ("SellerSKU", "query", False),
+    )

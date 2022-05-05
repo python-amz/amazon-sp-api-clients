@@ -13,7 +13,7 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class ListingsItems20200901Client(BaseClient):
-    def delete_listings_item(
+    def put_listings_item(
         self,
         seller_id: str,
         sku: str,
@@ -21,7 +21,7 @@ class ListingsItems20200901Client(BaseClient):
         issue_locale: str = None,
     ):
         """
-        Delete a listings item for a selling partner.
+        Creates a new or fully-updates an existing listings item for a selling partner.
 
         **Usage Plans:**
 
@@ -38,14 +38,20 @@ class ListingsItems20200901Client(BaseClient):
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
             issue_locale: A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
         """
-        path_parameters = {}
         url = "/listings/2020-09-01/items/{sellerId}/{sku}"
-        params = (  # name, param in, value, required
-            ("sellerId", "path", seller_id, True),
-            ("sku", "path", sku, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("issueLocale", "query", issue_locale, False),
+        values = (
+            seller_id,
+            sku,
+            marketplace_ids,
+            issue_locale,
         )
+
+    _put_listings_item_params = (  # name, param in, required
+        ("sellerId", "path", True),
+        ("sku", "path", True),
+        ("marketplaceIds", "query", True),
+        ("issueLocale", "query", False),
+    )
 
     def patch_listings_item(
         self,
@@ -72,16 +78,22 @@ class ListingsItems20200901Client(BaseClient):
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
             issue_locale: A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
         """
-        path_parameters = {}
         url = "/listings/2020-09-01/items/{sellerId}/{sku}"
-        params = (  # name, param in, value, required
-            ("sellerId", "path", seller_id, True),
-            ("sku", "path", sku, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("issueLocale", "query", issue_locale, False),
+        values = (
+            seller_id,
+            sku,
+            marketplace_ids,
+            issue_locale,
         )
 
-    def put_listings_item(
+    _patch_listings_item_params = (  # name, param in, required
+        ("sellerId", "path", True),
+        ("sku", "path", True),
+        ("marketplaceIds", "query", True),
+        ("issueLocale", "query", False),
+    )
+
+    def delete_listings_item(
         self,
         seller_id: str,
         sku: str,
@@ -89,7 +101,7 @@ class ListingsItems20200901Client(BaseClient):
         issue_locale: str = None,
     ):
         """
-        Creates a new or fully-updates an existing listings item for a selling partner.
+        Delete a listings item for a selling partner.
 
         **Usage Plans:**
 
@@ -106,11 +118,17 @@ class ListingsItems20200901Client(BaseClient):
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
             issue_locale: A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
         """
-        path_parameters = {}
         url = "/listings/2020-09-01/items/{sellerId}/{sku}"
-        params = (  # name, param in, value, required
-            ("sellerId", "path", seller_id, True),
-            ("sku", "path", sku, True),
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("issueLocale", "query", issue_locale, False),
+        values = (
+            seller_id,
+            sku,
+            marketplace_ids,
+            issue_locale,
         )
+
+    _delete_listings_item_params = (  # name, param in, required
+        ("sellerId", "path", True),
+        ("sku", "path", True),
+        ("marketplaceIds", "query", True),
+        ("issueLocale", "query", False),
+    )

@@ -35,11 +35,17 @@ class Uploads20201101Client(BaseClient):
             resource: The resource for the upload destination that you are creating. For example, if you are creating an upload destination for the createLegalDisclosure operation of the Messaging API, the {resource} would be /messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure, and the entire path would be /uploads/2020-11-01/uploadDestinations/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure.
             content_type: The content type of the file to be uploaded.
         """
-        path_parameters = {}
         url = "/uploads/2020-11-01/uploadDestinations/{resource}"
-        params = (  # name, param in, value, required
-            ("marketplaceIds", "query", marketplace_ids, True),
-            ("contentMD5", "query", content_md5, True),
-            ("resource", "path", resource, True),
-            ("contentType", "query", content_type, False),
+        values = (
+            marketplace_ids,
+            content_md5,
+            resource,
+            content_type,
         )
+
+    _create_upload_destination_for_resource_params = (  # name, param in, required
+        ("marketplaceIds", "query", True),
+        ("contentMD5", "query", True),
+        ("resource", "path", True),
+        ("contentType", "query", False),
+    )

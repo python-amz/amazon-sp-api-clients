@@ -13,10 +13,10 @@ from typing import Any, List, Dict, Union, Literal
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     def get_shipping_labels(
         self,
-        ship_from_party_id: str = None,
-        limit: int = None,
         created_after: str,
         created_before: str,
+        ship_from_party_id: str = None,
+        limit: int = None,
         sort_order: str = None,
         next_token: str = None,
     ):
@@ -39,16 +39,24 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             sort_order: Sort ASC or DESC by order creation date.
             next_token: Used for pagination when there are more ship labels than the specified result size limit. The token value is returned in the previous API call.
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
-        params = (  # name, param in, value, required
-            ("shipFromPartyId", "query", ship_from_party_id, False),
-            ("limit", "query", limit, False),
-            ("createdAfter", "query", created_after, True),
-            ("createdBefore", "query", created_before, True),
-            ("sortOrder", "query", sort_order, False),
-            ("nextToken", "query", next_token, False),
+        values = (
+            ship_from_party_id,
+            limit,
+            created_after,
+            created_before,
+            sort_order,
+            next_token,
         )
+
+    _get_shipping_labels_params = (  # name, param in, required
+        ("shipFromPartyId", "query", False),
+        ("limit", "query", False),
+        ("createdAfter", "query", True),
+        ("createdBefore", "query", True),
+        ("sortOrder", "query", False),
+        ("nextToken", "query", False),
+    )
 
     def submit_shipping_label_request(
         self,
@@ -66,9 +74,10 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _submit_shipping_label_request_params = ()  # name, param in, required
 
     def get_shipping_label(
         self,
@@ -88,6 +97,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         Args:
             purchase_order_number: The purchase order number for which you want to return the shipping label. It should be the same purchaseOrderNumber as received in the order.
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}"
-        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
+        values = (purchase_order_number,)
+
+    _get_shipping_label_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
