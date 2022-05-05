@@ -72,10 +72,7 @@ class AwsSignV4(AuthBase):
         return request
 
 
-class BaseSyncClient:
-    # Sometimes the response are required, however, current architecture is not able to return the response.
-    # So, the last response is recorded here. Usually, the client will not request multiple requests. So, it will not
-    # cause the data conflict.
+class BaseClient:
     ENVIRON_VARIABLES = (
         ('role_arn', 'SP_API_ROLE_ARN'),
         ('endpoint', 'SP_API_ENDPOINT'),
@@ -175,6 +172,9 @@ class BaseSyncClient:
                 raise SellingApiError('Could not parse response, please try to install demjson')
             return demjson.decode(response.text)
 
+    # Sometimes the response are required, however, current architecture is not able to return the response.
+    # So, the last response is recorded here.
+    # Pay attention: in multi thread program, this may cause data conflict.
     last_response: Response = None
 
     def request(self, path: str, *, method='GET',
