@@ -16,7 +16,7 @@ import os
 import urllib
 from datetime import datetime
 from functools import reduce
-from typing import Union
+from typing import Union, Type, TYPE_CHECKING
 from urllib.parse import urlparse
 
 import boto3
@@ -25,6 +25,10 @@ from cachetools import TTLCache
 from requests import Response, Request
 from requests.api import request
 from requests.auth import AuthBase
+
+if TYPE_CHECKING:
+    from amazon_sp_api_clients_2.utils.report_types import ReportType
+    from amazon_sp_api_clients_2.utils.parser import Parser
 
 
 class AwsSignV4(AuthBase):
@@ -232,3 +236,13 @@ class BaseAmazonSpApiClients(BaseClient):
     def marketplaces(self):
         from .marketplaces import MarketPlaces
         return MarketPlaces
+
+    @cached_property
+    def report_types(self) -> Type['ReportType']:
+        from .report_types import ReportType
+        return ReportType
+
+    @cached_property
+    def parser(self) -> 'Parser':
+        from .parser import Parser
+        return Parser()
