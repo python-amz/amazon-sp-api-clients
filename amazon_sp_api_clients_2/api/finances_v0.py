@@ -16,14 +16,10 @@ from typing import Any, List, Dict, Union, Literal
 class AdjustmentEvent:
 
     adjustment_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    adjustment_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    adjustment_item_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/AdjustmentItemList'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    adjustment_amount: "Currency"
+    adjustment_item_list: "AdjustmentItemList"
+    posted_date: "Date"
     pass
 
 
@@ -37,20 +33,13 @@ class AdjustmentEventList:
 class AdjustmentItem:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     fn_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     product_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     quantity: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    per_unit_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    total_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    per_unit_amount: "Currency"
+    total_amount: "Currency"
     pass
 
 
@@ -64,24 +53,15 @@ class AdjustmentItemList:
 class AffordabilityExpenseEvent:
 
     amazon_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     transaction_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    base_expense: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    tax_type_cgst: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    tax_type_igst: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    tax_type_sgst: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    total_expense: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    base_expense: "Currency"
+    posted_date: "Date"
+    tax_type_cgst: "Currency"
+    tax_type_igst: "Currency"
+    tax_type_sgst: "Currency"
+    total_expense: "Currency"
     pass
 
 
@@ -101,10 +81,8 @@ class BigDecimal:
 class ChargeComponent:
 
     charge_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    charge_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    charge_amount: "Currency"
     pass
 
 
@@ -118,12 +96,9 @@ class ChargeComponentList:
 class ChargeInstrument:
 
     description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     tail: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    amount: "Currency"
     pass
 
 
@@ -137,22 +112,15 @@ class ChargeInstrumentList:
 class CouponPaymentEvent:
 
     clip_or_redemption_count: int
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'integer', 'schema_format': 'int64'}
+    # {'schema_format': 'int64'}
     coupon_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     payment_event_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_coupon_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    charge_component: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponent'}
-    fee_component: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponent'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    total_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    charge_component: "ChargeComponent"
+    fee_component: "FeeComponent"
+    posted_date: "Date"
+    total_amount: "Currency"
     pass
 
 
@@ -166,10 +134,8 @@ class CouponPaymentEventList:
 class Currency:
 
     currency_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    currency_amount: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/BigDecimal'}
+    currency_amount: "BigDecimal"
     pass
 
 
@@ -183,16 +149,11 @@ class Date:
 class DebtRecoveryEvent:
 
     debt_recovery_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    charge_instrument_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeInstrumentList'}
-    debt_recovery_item_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/DebtRecoveryItemList'}
-    over_payment_credit: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    recovery_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    charge_instrument_list: "ChargeInstrumentList"
+    debt_recovery_item_list: "DebtRecoveryItemList"
+    over_payment_credit: "Currency"
+    recovery_amount: "Currency"
     pass
 
 
@@ -205,14 +166,10 @@ class DebtRecoveryEventList:
 @attrs.define
 class DebtRecoveryItem:
 
-    group_begin_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    group_end_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    original_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    recovery_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    group_begin_date: "Date"
+    group_end_date: "Date"
+    original_amount: "Currency"
+    recovery_amount: "Currency"
     pass
 
 
@@ -226,10 +183,8 @@ class DebtRecoveryItemList:
 class DirectPayment:
 
     direct_payment_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    direct_payment_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    direct_payment_amount: "Currency"
     pass
 
 
@@ -243,11 +198,8 @@ class DirectPaymentList:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
     pass
 
@@ -262,14 +214,10 @@ class ErrorList:
 class FBALiquidationEvent:
 
     original_removal_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    liquidation_fee_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    liquidation_proceeds_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    liquidation_fee_amount: "Currency"
+    liquidation_proceeds_amount: "Currency"
+    posted_date: "Date"
     pass
 
 
@@ -283,10 +231,8 @@ class FBALiquidationEventList:
 class FeeComponent:
 
     fee_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    fee_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    fee_amount: "Currency"
     pass
 
 
@@ -300,28 +246,17 @@ class FeeComponentList:
 class FinancialEventGroup:
 
     account_tail: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     financial_event_group_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     fund_transfer_status: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     processing_status: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     trace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    beginning_balance: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    converted_total: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    financial_event_group_end: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    financial_event_group_start: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    fund_transfer_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    original_total: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    beginning_balance: "Currency"
+    converted_total: "Currency"
+    financial_event_group_end: "Date"
+    financial_event_group_start: "Date"
+    fund_transfer_date: "Date"
+    original_total: "Currency"
     pass
 
 
@@ -334,60 +269,33 @@ class FinancialEventGroupList:
 @attrs.define
 class FinancialEvents:
 
-    adjustment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/AdjustmentEventList'}
-    affordability_expense_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/AffordabilityExpenseEventList'}
-    affordability_expense_reversal_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/AffordabilityExpenseEventList'}
-    chargeback_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ShipmentEventList'}
-    coupon_payment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/CouponPaymentEventList'}
-    debt_recovery_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/DebtRecoveryEventList'}
-    fbaliquidation_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FBALiquidationEventList'}
-    guarantee_claim_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ShipmentEventList'}
-    imaging_services_fee_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ImagingServicesFeeEventList'}
-    loan_servicing_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/LoanServicingEventList'}
-    network_commingling_transaction_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/NetworkComminglingTransactionEventList'}
-    pay_with_amazon_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/PayWithAmazonEventList'}
-    product_ads_payment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ProductAdsPaymentEventList'}
-    refund_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ShipmentEventList'}
-    removal_shipment_adjustment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/RemovalShipmentAdjustmentEventList'}
-    removal_shipment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/RemovalShipmentEventList'}
-    rental_transaction_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/RentalTransactionEventList'}
-    retrocharge_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/RetrochargeEventList'}
-    safetreimbursement_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/SAFETReimbursementEventList'}
-    seller_deal_payment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/SellerDealPaymentEventList'}
-    seller_review_enrollment_payment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/SellerReviewEnrollmentPaymentEventList'}
-    service_fee_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ServiceFeeEventList'}
-    service_provider_credit_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/SolutionProviderCreditEventList'}
-    shipment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ShipmentEventList'}
-    shipment_settle_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ShipmentSettleEventList'}
-    tax_withholding_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/TaxWithholdingEventList'}
-    trial_shipment_event_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/TrialShipmentEventList'}
+    adjustment_event_list: "AdjustmentEventList"
+    affordability_expense_event_list: "AffordabilityExpenseEventList"
+    affordability_expense_reversal_event_list: "AffordabilityExpenseEventList"
+    chargeback_event_list: "ShipmentEventList"
+    coupon_payment_event_list: "CouponPaymentEventList"
+    debt_recovery_event_list: "DebtRecoveryEventList"
+    fbaliquidation_event_list: "FBALiquidationEventList"
+    guarantee_claim_event_list: "ShipmentEventList"
+    imaging_services_fee_event_list: "ImagingServicesFeeEventList"
+    loan_servicing_event_list: "LoanServicingEventList"
+    network_commingling_transaction_event_list: "NetworkComminglingTransactionEventList"
+    pay_with_amazon_event_list: "PayWithAmazonEventList"
+    product_ads_payment_event_list: "ProductAdsPaymentEventList"
+    refund_event_list: "ShipmentEventList"
+    removal_shipment_adjustment_event_list: "RemovalShipmentAdjustmentEventList"
+    removal_shipment_event_list: "RemovalShipmentEventList"
+    rental_transaction_event_list: "RentalTransactionEventList"
+    retrocharge_event_list: "RetrochargeEventList"
+    safetreimbursement_event_list: "SAFETReimbursementEventList"
+    seller_deal_payment_event_list: "SellerDealPaymentEventList"
+    seller_review_enrollment_payment_event_list: "SellerReviewEnrollmentPaymentEventList"
+    service_fee_event_list: "ServiceFeeEventList"
+    service_provider_credit_event_list: "SolutionProviderCreditEventList"
+    shipment_event_list: "ShipmentEventList"
+    shipment_settle_event_list: "ShipmentSettleEventList"
+    tax_withholding_event_list: "TaxWithholdingEventList"
+    trial_shipment_event_list: "TrialShipmentEventList"
     pass
 
 
@@ -395,14 +303,10 @@ class FinancialEvents:
 class ImagingServicesFeeEvent:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     imaging_request_billing_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    fee_list: "FeeComponentList"
+    posted_date: "Date"
     pass
 
 
@@ -416,20 +320,16 @@ class ImagingServicesFeeEventList:
 class ListFinancialEventGroupsPayload:
 
     next_token: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    financial_event_group_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FinancialEventGroupList'}
+    financial_event_group_list: "FinancialEventGroupList"
     pass
 
 
 @attrs.define
 class ListFinancialEventGroupsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ListFinancialEventGroupsPayload'}
+    errors: "ErrorList"
+    payload: "ListFinancialEventGroupsPayload"
     pass
 
 
@@ -437,20 +337,16 @@ class ListFinancialEventGroupsResponse:
 class ListFinancialEventsPayload:
 
     next_token: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    financial_events: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FinancialEvents'}
+    financial_events: "FinancialEvents"
     pass
 
 
 @attrs.define
 class ListFinancialEventsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ListFinancialEventsPayload'}
+    errors: "ErrorList"
+    payload: "ListFinancialEventsPayload"
     pass
 
 
@@ -458,10 +354,8 @@ class ListFinancialEventsResponse:
 class LoanServicingEvent:
 
     source_business_event_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    loan_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    loan_amount: "Currency"
     pass
 
 
@@ -475,22 +369,14 @@ class LoanServicingEventList:
 class NetworkComminglingTransactionEvent:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     net_co_transaction_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     swap_reason: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     transaction_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    tax_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    tax_exclusive_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    posted_date: "Date"
+    tax_amount: "Currency"
+    tax_exclusive_amount: "Currency"
     pass
 
 
@@ -504,26 +390,16 @@ class NetworkComminglingTransactionEventList:
 class PayWithAmazonEvent:
 
     amount_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     business_object_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     fulfillment_channel: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     payment_amount_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     sales_channel: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     store_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    charge: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponent'}
-    fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    transaction_posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    charge: "ChargeComponent"
+    fee_list: "FeeComponentList"
+    transaction_posted_date: "Date"
     pass
 
 
@@ -537,18 +413,12 @@ class PayWithAmazonEventList:
 class ProductAdsPaymentEvent:
 
     invoice_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     transaction_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    base_value: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    tax_value: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    transaction_value: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    base_value: "Currency"
+    posted_date: "Date"
+    tax_value: "Currency"
+    transaction_value: "Currency"
     pass
 
 
@@ -562,12 +432,9 @@ class ProductAdsPaymentEventList:
 class Promotion:
 
     promotion_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     promotion_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    promotion_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    promotion_amount: "Currency"
     pass
 
 
@@ -581,18 +448,12 @@ class PromotionList:
 class RemovalShipmentAdjustmentEvent:
 
     adjustment_event_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     merchant_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
-    removal_shipment_item_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/RemovalShipmentItemAdjustment')}
+    removal_shipment_item_adjustment_list: list["RemovalShipmentItemAdjustment"]
     transaction_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    posted_date: "Date"
     pass
 
 
@@ -606,16 +467,11 @@ class RemovalShipmentAdjustmentEventList:
 class RemovalShipmentEvent:
 
     merchant_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     transaction_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    removal_shipment_item_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/RemovalShipmentItemList'}
+    posted_date: "Date"
+    removal_shipment_item_list: "RemovalShipmentItemList"
     pass
 
 
@@ -629,22 +485,15 @@ class RemovalShipmentEventList:
 class RemovalShipmentItem:
 
     fulfillment_network_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     quantity: int
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'integer', 'schema_format': 'int32'}
+    # {'schema_format': 'int32'}
     removal_shipment_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     tax_collection_model: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    fee_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    revenue: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    tax_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    tax_withheld: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    fee_amount: "Currency"
+    revenue: "Currency"
+    tax_amount: "Currency"
+    tax_withheld: "Currency"
     pass
 
 
@@ -652,20 +501,14 @@ class RemovalShipmentItem:
 class RemovalShipmentItemAdjustment:
 
     adjusted_quantity: int
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'integer', 'schema_format': 'int32'}
+    # {'schema_format': 'int32'}
     fulfillment_network_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     removal_shipment_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     tax_collection_model: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    revenue_adjustment: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    tax_amount_adjustment: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    tax_withheld_adjustment: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    revenue_adjustment: "Currency"
+    tax_amount_adjustment: "Currency"
+    tax_withheld_adjustment: "Currency"
     pass
 
 
@@ -679,26 +522,17 @@ class RemovalShipmentItemList:
 class RentalTransactionEvent:
 
     amazon_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     extension_length: int
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'integer', 'schema_format': 'int32'}
+    # {'schema_format': 'int32'}
     marketplace_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     rental_event_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    rental_charge_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponentList'}
-    rental_fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    rental_initial_value: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    rental_reimbursement: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    rental_tax_withheld_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/TaxWithheldComponentList'}
+    posted_date: "Date"
+    rental_charge_list: "ChargeComponentList"
+    rental_fee_list: "FeeComponentList"
+    rental_initial_value: "Currency"
+    rental_reimbursement: "Currency"
+    rental_tax_withheld_list: "TaxWithheldComponentList"
     pass
 
 
@@ -712,20 +546,13 @@ class RentalTransactionEventList:
 class RetrochargeEvent:
 
     amazon_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     marketplace_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     retrocharge_event_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    base_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    retrocharge_tax_withheld_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/TaxWithheldComponentList'}
-    shipping_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    base_tax: "Currency"
+    posted_date: "Date"
+    retrocharge_tax_withheld_list: "TaxWithheldComponentList"
+    shipping_tax: "Currency"
     pass
 
 
@@ -739,16 +566,11 @@ class RetrochargeEventList:
 class SAFETReimbursementEvent:
 
     reason_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     safetclaim_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    reimbursed_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    safetreimbursement_item_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/SAFETReimbursementItemList'}
+    posted_date: "Date"
+    reimbursed_amount: "Currency"
+    safetreimbursement_item_list: "SAFETReimbursementItemList"
     pass
 
 
@@ -762,12 +584,9 @@ class SAFETReimbursementEventList:
 class SAFETReimbursementItem:
 
     product_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     quantity: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    item_charge_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponentList'}
+    item_charge_list: "ChargeComponentList"
     pass
 
 
@@ -781,22 +600,14 @@ class SAFETReimbursementItemList:
 class SellerDealPaymentEvent:
 
     deal_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     deal_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     event_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     fee_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    fee_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    tax_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    total_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    fee_amount: "Currency"
+    posted_date: "Date"
+    tax_amount: "Currency"
+    total_amount: "Currency"
     pass
 
 
@@ -810,18 +621,12 @@ class SellerDealPaymentEventList:
 class SellerReviewEnrollmentPaymentEvent:
 
     enrollment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     parent_asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    charge_component: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponent'}
-    fee_component: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponent'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    total_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    charge_component: "ChargeComponent"
+    fee_component: "FeeComponent"
+    posted_date: "Date"
+    total_amount: "Currency"
     pass
 
 
@@ -835,20 +640,13 @@ class SellerReviewEnrollmentPaymentEventList:
 class ServiceFeeEvent:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     amazon_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     fee_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     fee_reason: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     fn_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
+    fee_list: "FeeComponentList"
     pass
 
 
@@ -862,32 +660,19 @@ class ServiceFeeEventList:
 class ShipmentEvent:
 
     amazon_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     marketplace_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    direct_payment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/DirectPaymentList'}
-    order_charge_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponentList'}
-    order_charge_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponentList'}
-    order_fee_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    order_fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    shipment_fee_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    shipment_fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    shipment_item_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ShipmentItemList'}
-    shipment_item_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ShipmentItemList'}
+    direct_payment_list: "DirectPaymentList"
+    order_charge_adjustment_list: "ChargeComponentList"
+    order_charge_list: "ChargeComponentList"
+    order_fee_adjustment_list: "FeeComponentList"
+    order_fee_list: "FeeComponentList"
+    posted_date: "Date"
+    shipment_fee_adjustment_list: "FeeComponentList"
+    shipment_fee_list: "FeeComponentList"
+    shipment_item_adjustment_list: "ShipmentItemList"
+    shipment_item_list: "ShipmentItemList"
     pass
 
 
@@ -901,32 +686,20 @@ class ShipmentEventList:
 class ShipmentItem:
 
     order_adjustment_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     quantity_shipped: int
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'integer', 'schema_format': 'int32'}
+    # {'schema_format': 'int32'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    cost_of_points_granted: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    cost_of_points_returned: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    item_charge_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponentList'}
-    item_charge_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponentList'}
-    item_fee_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    item_fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    item_tax_withheld_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/TaxWithheldComponentList'}
-    promotion_adjustment_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/PromotionList'}
-    promotion_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/PromotionList'}
+    cost_of_points_granted: "Currency"
+    cost_of_points_returned: "Currency"
+    item_charge_adjustment_list: "ChargeComponentList"
+    item_charge_list: "ChargeComponentList"
+    item_fee_adjustment_list: "FeeComponentList"
+    item_fee_list: "FeeComponentList"
+    item_tax_withheld_list: "TaxWithheldComponentList"
+    promotion_adjustment_list: "PromotionList"
+    promotion_list: "PromotionList"
     pass
 
 
@@ -946,26 +719,16 @@ class ShipmentSettleEventList:
 class SolutionProviderCreditEvent:
 
     marketplace_country_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     provider_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     provider_store_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     provider_transaction_type: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     seller_store_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    transaction_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    transaction_creation_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    transaction_amount: "Currency"
+    transaction_creation_date: "Date"
     pass
 
 
@@ -979,10 +742,8 @@ class SolutionProviderCreditEventList:
 class TaxWithheldComponent:
 
     tax_collection_model: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    taxes_withheld: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/ChargeComponentList'}
+    taxes_withheld: "ChargeComponentList"
     pass
 
 
@@ -995,14 +756,10 @@ class TaxWithheldComponentList:
 @attrs.define
 class TaxWithholdingEvent:
 
-    base_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    tax_withholding_period: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/TaxWithholdingPeriod'}
-    withheld_amount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Currency'}
+    base_amount: "Currency"
+    posted_date: "Date"
+    tax_withholding_period: "TaxWithholdingPeriod"
+    withheld_amount: "Currency"
     pass
 
 
@@ -1015,10 +772,8 @@ class TaxWithholdingEventList:
 @attrs.define
 class TaxWithholdingPeriod:
 
-    end_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
-    start_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    end_date: "Date"
+    start_date: "Date"
     pass
 
 
@@ -1026,16 +781,11 @@ class TaxWithholdingPeriod:
 class TrialShipmentEvent:
 
     amazon_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     financial_event_group_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
     sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'type': 'string'}
 
-    fee_list: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/FeeComponentList'}
-    posted_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000020F15EEB310>, 'ref': '#/components/schemas/Date'}
+    fee_list: "FeeComponentList"
+    posted_date: "Date"
     pass
 
 

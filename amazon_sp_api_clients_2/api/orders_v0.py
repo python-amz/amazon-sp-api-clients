@@ -16,31 +16,18 @@ from typing import Any, List, Dict, Union, Literal
 class Address:
 
     address_line1: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     address_line2: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     address_line3: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     address_type: Union[Literal["Residential"], Literal["Commercial"]]
-    # {'enum': ['Residential', 'Commercial'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     city: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     country_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     county: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     district: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     municipality: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     phone: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     postal_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     state_or_region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -49,11 +36,8 @@ class Address:
 class AutomatedShippingSettings:
 
     automated_carrier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     automated_ship_method: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     has_automated_shipping_settings: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -62,7 +46,6 @@ class AutomatedShippingSettings:
 class BuyerCustomizedInfoDetail:
 
     customized_url: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -71,16 +54,11 @@ class BuyerCustomizedInfoDetail:
 class BuyerInfo:
 
     buyer_county: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_email: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    buyer_tax_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/BuyerTaxInfo'}
+    buyer_tax_info: "BuyerTaxInfo"
     pass
 
 
@@ -88,9 +66,7 @@ class BuyerInfo:
 class BuyerRequestedCancel:
 
     buyer_cancel_reason: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_buyer_requested_cancel: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -99,11 +75,8 @@ class BuyerRequestedCancel:
 class BuyerTaxInfo:
 
     company_legal_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
-    tax_classifications: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/TaxClassification'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
+    tax_classifications: list["TaxClassification"]
     taxing_region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -112,13 +85,9 @@ class BuyerTaxInfo:
 class BuyerTaxInformation:
 
     buyer_business_address: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_legal_company_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_tax_office: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_tax_registration_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -127,11 +96,8 @@ class BuyerTaxInformation:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -146,7 +112,6 @@ class ErrorList:
 class FulfillmentInstruction:
 
     fulfillment_supply_source_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -154,70 +119,56 @@ class FulfillmentInstruction:
 @attrs.define
 class GetOrderAddressResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderAddress'}
+    errors: "ErrorList"
+    payload: "OrderAddress"
     pass
 
 
 @attrs.define
 class GetOrderBuyerInfoResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderBuyerInfo'}
+    errors: "ErrorList"
+    payload: "OrderBuyerInfo"
     pass
 
 
 @attrs.define
 class GetOrderItemsBuyerInfoResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderItemsBuyerInfoList'}
+    errors: "ErrorList"
+    payload: "OrderItemsBuyerInfoList"
     pass
 
 
 @attrs.define
 class GetOrderItemsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderItemsList'}
+    errors: "ErrorList"
+    payload: "OrderItemsList"
     pass
 
 
 @attrs.define
 class GetOrderRegulatedInfoResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderRegulatedInfo'}
+    errors: "ErrorList"
+    payload: "OrderRegulatedInfo"
     pass
 
 
 @attrs.define
 class GetOrderResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Order'}
+    errors: "ErrorList"
+    payload: "Order"
     pass
 
 
 @attrs.define
 class GetOrdersResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrdersList'}
+    errors: "ErrorList"
+    payload: "OrdersList"
     pass
 
 
@@ -225,16 +176,11 @@ class GetOrdersResponse:
 class ItemBuyerInfo:
 
     gift_message_text: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     gift_wrap_level: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    buyer_customized_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/BuyerCustomizedInfoDetail'}
-    gift_wrap_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    gift_wrap_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
+    buyer_customized_info: "BuyerCustomizedInfoDetail"
+    gift_wrap_price: "Money"
+    gift_wrap_tax: "Money"
     pass
 
 
@@ -247,8 +193,7 @@ class MarketplaceId:
 @attrs.define
 class MarketplaceTaxInfo:
 
-    tax_classifications: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/TaxClassification'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
+    tax_classifications: list["TaxClassification"]
 
     pass
 
@@ -257,9 +202,7 @@ class MarketplaceTaxInfo:
 class Money:
 
     amount: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     currency_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -268,53 +211,29 @@ class Money:
 class Order:
 
     amazon_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_invoice_preference: Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]]
-    # {'enum': ['INDIVIDUAL', 'BUSINESS'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     cba_displayable_shipping_label: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     earliest_delivery_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     earliest_ship_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     easy_ship_shipment_status: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     fulfillment_channel: Union[Literal["MFN"], Literal["AFN"]]
-    # {'enum': ['MFN', 'AFN'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     has_regulated_items: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_business_order: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_estimated_ship_date_set: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_global_express_enabled: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_iba: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_ispu: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_premium_order: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_prime: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_replacement_order: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_sold_by_ab: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     last_update_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     latest_delivery_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     latest_ship_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     number_of_items_shipped: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     number_of_items_unshipped: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     order_channel: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     order_status: Union[
         Literal["Pending"],
         Literal["Unshipped"],
@@ -325,7 +244,6 @@ class Order:
         Literal["InvoiceUnconfirmed"],
         Literal["PendingAvailability"],
     ]
-    # {'enum': ['Pending', 'Unshipped', 'PartiallyShipped', 'Shipped', 'Canceled', 'Unfulfillable', 'InvoiceUnconfirmed', 'PendingAvailability'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     order_type: Union[
         Literal["StandardOrder"],
         Literal["LongLeadTimeOrder"],
@@ -333,46 +251,26 @@ class Order:
         Literal["BackOrder"],
         Literal["SourcingOnDemandOrder"],
     ]
-    # {'enum': ['StandardOrder', 'LongLeadTimeOrder', 'Preorder', 'BackOrder', 'SourcingOnDemandOrder'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     payment_method: Union[Literal["COD"], Literal["CVS"], Literal["Other"]]
-    # {'enum': ['COD', 'CVS', 'Other'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     promise_response_due_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     purchase_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     replaced_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     sales_channel: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     seller_display_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     seller_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     ship_service_level: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     shipment_service_level_category: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    automated_shipping_settings: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/AutomatedShippingSettings'}
-    buyer_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/BuyerInfo'}
-    buyer_tax_information: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/BuyerTaxInformation'}
-    default_ship_from_location_address: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Address'}
-    fulfillment_instruction: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/FulfillmentInstruction'}
-    marketplace_tax_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/MarketplaceTaxInfo'}
-    order_total: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    payment_execution_detail: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/PaymentExecutionDetailItemList'}
-    payment_method_details: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/PaymentMethodDetailItemList'}
-    shipping_address: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Address'}
+    automated_shipping_settings: "AutomatedShippingSettings"
+    buyer_info: "BuyerInfo"
+    buyer_tax_information: "BuyerTaxInformation"
+    default_ship_from_location_address: "Address"
+    fulfillment_instruction: "FulfillmentInstruction"
+    marketplace_tax_info: "MarketplaceTaxInfo"
+    order_total: "Money"
+    payment_execution_detail: "PaymentExecutionDetailItemList"
+    payment_method_details: "PaymentMethodDetailItemList"
+    shipping_address: "Address"
     pass
 
 
@@ -380,10 +278,8 @@ class Order:
 class OrderAddress:
 
     amazon_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    shipping_address: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Address'}
+    shipping_address: "Address"
     pass
 
 
@@ -391,18 +287,12 @@ class OrderAddress:
 class OrderBuyerInfo:
 
     amazon_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_county: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_email: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     buyer_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    buyer_tax_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/BuyerTaxInfo'}
+    buyer_tax_info: "BuyerTaxInfo"
     pass
 
 
@@ -410,74 +300,40 @@ class OrderBuyerInfo:
 class OrderItem:
 
     asin: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     condition_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     condition_note: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     condition_subtype_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     deemed_reseller_category: Union[Literal["IOSS"], Literal["UOSS"]]
-    # {'enum': ['IOSS', 'UOSS'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     ioss_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_gift: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     is_transparency: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     order_item_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     price_designation: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     quantity_ordered: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     quantity_shipped: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     scheduled_delivery_end_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     scheduled_delivery_start_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     seller_sku: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     serial_number_required: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     store_chain_store_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     title: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    buyer_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ItemBuyerInfo'}
-    buyer_requested_cancel: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/BuyerRequestedCancel'}
-    codfee: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    codfee_discount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    item_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    item_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    points_granted: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/PointsGrantedDetail'}
-    product_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ProductInfoDetail'}
-    promotion_discount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    promotion_discount_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    promotion_ids: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/PromotionIdList'}
-    shipping_discount: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    shipping_discount_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    shipping_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    shipping_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    tax_collection: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/TaxCollection'}
+    buyer_info: "ItemBuyerInfo"
+    buyer_requested_cancel: "BuyerRequestedCancel"
+    codfee: "Money"
+    codfee_discount: "Money"
+    item_price: "Money"
+    item_tax: "Money"
+    points_granted: "PointsGrantedDetail"
+    product_info: "ProductInfoDetail"
+    promotion_discount: "Money"
+    promotion_discount_tax: "Money"
+    promotion_ids: "PromotionIdList"
+    shipping_discount: "Money"
+    shipping_discount_tax: "Money"
+    shipping_price: "Money"
+    shipping_tax: "Money"
+    tax_collection: "TaxCollection"
     pass
 
 
@@ -485,18 +341,12 @@ class OrderItem:
 class OrderItemBuyerInfo:
 
     gift_message_text: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     gift_wrap_level: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     order_item_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    buyer_customized_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/BuyerCustomizedInfoDetail'}
-    gift_wrap_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
-    gift_wrap_tax: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
+    buyer_customized_info: "BuyerCustomizedInfoDetail"
+    gift_wrap_price: "Money"
+    gift_wrap_tax: "Money"
     pass
 
 
@@ -522,12 +372,9 @@ class OrderItems:
 class OrderItemsBuyerInfoList:
 
     amazon_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    order_items: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderItemBuyerInfoList'}
+    order_items: "OrderItemBuyerInfoList"
     pass
 
 
@@ -535,12 +382,9 @@ class OrderItemsBuyerInfoList:
 class OrderItemsList:
 
     amazon_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    order_items: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderItemList'}
+    order_items: "OrderItemList"
     pass
 
 
@@ -554,14 +398,10 @@ class OrderList:
 class OrderRegulatedInfo:
 
     amazon_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     requires_dosage_label: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    regulated_information: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/RegulatedInformation'}
-    regulated_order_verification_status: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/RegulatedOrderVerificationStatus'}
+    regulated_information: "RegulatedInformation"
+    regulated_order_verification_status: "RegulatedOrderVerificationStatus"
     pass
 
 
@@ -569,14 +409,10 @@ class OrderRegulatedInfo:
 class OrdersList:
 
     created_before: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     last_updated_before: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    orders: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderList'}
+    orders: "OrderList"
     pass
 
 
@@ -584,10 +420,8 @@ class OrdersList:
 class PaymentExecutionDetailItem:
 
     payment_method: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    payment: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
+    payment: "Money"
     pass
 
 
@@ -607,10 +441,8 @@ class PaymentMethodDetailItemList:
 class PointsGrantedDetail:
 
     points_number: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
-    points_monetary_value: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/Money'}
+    points_monetary_value: "Money"
     pass
 
 
@@ -618,7 +450,6 @@ class PointsGrantedDetail:
 class ProductInfoDetail:
 
     number_of_items: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -632,8 +463,7 @@ class PromotionIdList:
 @attrs.define
 class RegulatedInformation:
 
-    fields: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/RegulatedInformationField'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
+    fields: list["RegulatedInformationField"]
 
     pass
 
@@ -642,13 +472,9 @@ class RegulatedInformation:
 class RegulatedInformationField:
 
     field_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     field_label: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     field_type: Union[Literal["Text"], Literal["FileAttachment"]]
-    # {'enum': ['Text', 'FileAttachment'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     field_value: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -657,20 +483,14 @@ class RegulatedInformationField:
 class RegulatedOrderVerificationStatus:
 
     external_reviewer_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     requires_merchant_action: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     review_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     status: Union[
         Literal["Pending"], Literal["Approved"], Literal["Rejected"], Literal["Expired"], Literal["Cancelled"]
     ]
-    # {'enum': ['Pending', 'Approved', 'Rejected', 'Expired', 'Cancelled'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
-    valid_rejection_reasons: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/RejectionReason'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
+    valid_rejection_reasons: list["RejectionReason"]
 
-    rejection_reason: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/RejectionReason'}
+    rejection_reason: "RejectionReason"
     pass
 
 
@@ -678,9 +498,7 @@ class RegulatedOrderVerificationStatus:
 class RejectionReason:
 
     rejection_reason_description: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     rejection_reason_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -695,9 +513,7 @@ class ShipmentStatus:
 class TaxClassification:
 
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     value: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -706,9 +522,7 @@ class TaxClassification:
 class TaxCollection:
 
     model: Union[Literal["MarketplaceFacilitator"]]
-    # {'enum': ['MarketplaceFacilitator'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     responsible_party: Union[Literal["Amazon Services, Inc."]]
-    # {'enum': ['Amazon Services, Inc.'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 
@@ -716,36 +530,30 @@ class TaxCollection:
 @attrs.define
 class UpdateShipmentStatusErrorResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class UpdateShipmentStatusRequest:
 
-    marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/MarketplaceId'}
-    order_items: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/OrderItems'}
-    shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ShipmentStatus'}
+    marketplace_id: "MarketplaceId"
+    order_items: "OrderItems"
+    shipment_status: "ShipmentStatus"
     pass
 
 
 @attrs.define
 class UpdateVerificationStatusErrorResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class UpdateVerificationStatusRequest:
 
-    regulated_order_verification_status: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>, 'ref': '#/components/schemas/UpdateVerificationStatusRequestBody'}
+    regulated_order_verification_status: "UpdateVerificationStatusRequestBody"
     pass
 
 
@@ -753,11 +561,8 @@ class UpdateVerificationStatusRequest:
 class UpdateVerificationStatusRequestBody:
 
     external_reviewer_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     rejection_reason_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
     status: Union[Literal["Approved"], Literal["Rejected"]]
-    # {'enum': ['Approved', 'Rejected'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB700>}
 
     pass
 

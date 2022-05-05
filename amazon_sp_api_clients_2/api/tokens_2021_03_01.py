@@ -17,10 +17,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CreateRestrictedDataTokenRequest:
 
-    restricted_resources: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'array', 'items': Reference(ref='#/components/schemas/RestrictedResource')}
+    restricted_resources: list["RestrictedResource"]
     target_application: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'string'}
 
     pass
 
@@ -29,9 +27,7 @@ class CreateRestrictedDataTokenRequest:
 class CreateRestrictedDataTokenResponse:
 
     expires_in: int
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'integer'}
     restricted_data_token: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'string'}
 
     pass
 
@@ -40,11 +36,8 @@ class CreateRestrictedDataTokenResponse:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'string'}
 
     pass
 
@@ -52,8 +45,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'array', 'items': Reference(ref='#/components/schemas/Error')}
+    errors: list["Error"]
 
     pass
 
@@ -62,11 +54,8 @@ class ErrorList:
 class RestrictedResource:
 
     data_elements: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
     method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]]
-    # {'enum': ['GET', 'PUT', 'POST', 'DELETE'], 'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'string'}
     path: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B160>, 'type': 'string'}
 
     pass
 

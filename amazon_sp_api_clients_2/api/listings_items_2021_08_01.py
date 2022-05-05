@@ -24,11 +24,8 @@ class Decimal:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -36,8 +33,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/Error')}
+    errors: list["Error"]
 
     pass
 
@@ -46,9 +42,8 @@ class ErrorList:
 class FulfillmentAvailability:
 
     fulfillment_channel_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     quantity: int
-    # {'minimum': 0.0, 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
+    # {'minimum': 0.0}
 
     pass
 
@@ -57,13 +52,9 @@ class FulfillmentAvailability:
 class Issue:
 
     attribute_names: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]
-    # {'enum': ['ERROR', 'WARNING', 'INFO'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -71,21 +62,14 @@ class Issue:
 @attrs.define
 class Item:
 
-    fulfillment_availability: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FulfillmentAvailability')}
+    fulfillment_availability: list["FulfillmentAvailability"]
     sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
-    attributes: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemAttributes'}
-    issues: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemIssues'}
-    offers: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemOffers'}
-    procurement: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemProcurement'}
-    summaries: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemSummaries'}
+    attributes: "ItemAttributes"
+    issues: "ItemIssues"
+    offers: "ItemOffers"
+    procurement: "ItemProcurement"
+    summaries: "ItemSummaries"
     pass
 
 
@@ -99,11 +83,8 @@ class ItemAttributes:
 class ItemImage:
 
     height: int
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
     link: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     width: int
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
 
     pass
 
@@ -118,14 +99,10 @@ class ItemIssues:
 class ItemOfferByMarketplace:
 
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     offer_type: Union[Literal["B2C"], Literal["B2B"]]
-    # {'enum': ['B2C', 'B2B'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
-    points: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Points'}
-    price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Money'}
+    points: "Points"
+    price: "Money"
     pass
 
 
@@ -138,8 +115,7 @@ class ItemOffers:
 @attrs.define
 class ItemProcurement:
 
-    cost_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Money'}
+    cost_price: "Money"
     pass
 
 
@@ -153,7 +129,6 @@ class ItemSummaries:
 class ItemSummaryByMarketplace:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     condition_type: Union[
         Literal["new_new"],
         Literal["new_open_box"],
@@ -169,34 +144,26 @@ class ItemSummaryByMarketplace:
         Literal["collectible_acceptable"],
         Literal["club_club"],
     ]
-    # {'enum': ['new_new', 'new_open_box', 'new_oem', 'refurbished_refurbished', 'used_like_new', 'used_very_good', 'used_good', 'used_acceptable', 'collectible_like_new', 'collectible_very_good', 'collectible_good', 'collectible_acceptable', 'club_club'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     created_date: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string', 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     fn_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     item_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     last_updated_date: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string', 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     product_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     status: list[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['BUYABLE', 'DISCOVERABLE'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
 
-    main_image: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemImage'}
+    main_image: "ItemImage"
     pass
 
 
 @attrs.define
 class ListingsItemPatchRequest:
 
-    patches: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/PatchOperation'), 'minItems': 1}
+    patches: list["PatchOperation"]
+    # {'minItems': 1}
     product_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -205,11 +172,9 @@ class ListingsItemPatchRequest:
 class ListingsItemPutRequest:
 
     attributes: dict[str, Any]
-    # {'properties': {}, 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'object'}
+    # {'properties': {}}
     product_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
-    # {'enum': ['LISTING', 'LISTING_PRODUCT_ONLY', 'LISTING_OFFER_ONLY'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -217,14 +182,10 @@ class ListingsItemPutRequest:
 @attrs.define
 class ListingsItemSubmissionResponse:
 
-    issues: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/Issue')}
+    issues: list["Issue"]
     sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     status: Union[Literal["ACCEPTED"], Literal["INVALID"]]
-    # {'enum': ['ACCEPTED', 'INVALID'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     submission_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -233,10 +194,8 @@ class ListingsItemSubmissionResponse:
 class Money:
 
     currency_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
-    amount: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Decimal'}
+    amount: "Decimal"
     pass
 
 
@@ -244,11 +203,8 @@ class Money:
 class PatchOperation:
 
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]]
-    # {'enum': ['add', 'replace', 'delete'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     path: str
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     value: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='object', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties={}, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
 
     pass
 
@@ -257,7 +213,6 @@ class PatchOperation:
 class Points:
 
     points_number: int
-    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
 
     pass
 
@@ -364,7 +319,7 @@ class ListingsItems20210801Client(BaseClient):
         sku: str,
         marketplace_ids: list[str],
         product_type: str,
-        patches: list[dict[str, Any]],
+        patches: list["PatchOperation"],
         issue_locale: str = None,
     ):
         """

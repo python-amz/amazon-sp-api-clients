@@ -16,9 +16,7 @@ from typing import Any, List, Dict, Union, Literal
 class Attachment:
 
     file_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
     upload_destination_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
 
     pass
 
@@ -26,8 +24,7 @@ class Attachment:
 @attrs.define
 class CreateAmazonMotorsRequest:
 
-    attachments: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array'}
+    attachments: list["Attachment"]
 
     pass
 
@@ -35,18 +32,16 @@ class CreateAmazonMotorsRequest:
 @attrs.define
 class CreateAmazonMotorsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class CreateConfirmCustomizationDetailsRequest:
 
-    attachments: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array'}
+    attachments: list["Attachment"]
     text: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'maxLength': 800, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1, 'maxLength': 800}
 
     pass
 
@@ -54,8 +49,7 @@ class CreateConfirmCustomizationDetailsRequest:
 @attrs.define
 class CreateConfirmCustomizationDetailsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
@@ -63,7 +57,7 @@ class CreateConfirmCustomizationDetailsResponse:
 class CreateConfirmDeliveryDetailsRequest:
 
     text: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'maxLength': 2000, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1, 'maxLength': 2000}
 
     pass
 
@@ -71,8 +65,7 @@ class CreateConfirmDeliveryDetailsRequest:
 @attrs.define
 class CreateConfirmDeliveryDetailsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
@@ -80,7 +73,7 @@ class CreateConfirmDeliveryDetailsResponse:
 class CreateConfirmOrderDetailsRequest:
 
     text: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'maxLength': 2000, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1, 'maxLength': 2000}
 
     pass
 
@@ -88,8 +81,7 @@ class CreateConfirmOrderDetailsRequest:
 @attrs.define
 class CreateConfirmOrderDetailsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
@@ -97,7 +89,7 @@ class CreateConfirmOrderDetailsResponse:
 class CreateConfirmServiceDetailsRequest:
 
     text: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'maxLength': 2000, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1, 'maxLength': 2000}
 
     pass
 
@@ -105,18 +97,16 @@ class CreateConfirmServiceDetailsRequest:
 @attrs.define
 class CreateConfirmServiceDetailsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class CreateDigitalAccessKeyRequest:
 
-    attachments: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array'}
+    attachments: list["Attachment"]
     text: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'maxLength': 400, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1, 'maxLength': 400}
 
     pass
 
@@ -124,16 +114,14 @@ class CreateDigitalAccessKeyRequest:
 @attrs.define
 class CreateDigitalAccessKeyResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class CreateLegalDisclosureRequest:
 
-    attachments: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array'}
+    attachments: list["Attachment"]
 
     pass
 
@@ -141,16 +129,14 @@ class CreateLegalDisclosureRequest:
 @attrs.define
 class CreateLegalDisclosureResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class CreateNegativeFeedbackRemovalResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
@@ -158,7 +144,7 @@ class CreateNegativeFeedbackRemovalResponse:
 class CreateUnexpectedProblemRequest:
 
     text: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'maxLength': 2000, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1, 'maxLength': 2000}
 
     pass
 
@@ -166,20 +152,18 @@ class CreateUnexpectedProblemRequest:
 @attrs.define
 class CreateUnexpectedProblemResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class CreateWarrantyRequest:
 
-    attachments: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array'}
+    attachments: list["Attachment"]
     coverage_end_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time'}
     coverage_start_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time'}
 
     pass
 
@@ -187,8 +171,7 @@ class CreateWarrantyRequest:
 @attrs.define
 class CreateWarrantyResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
@@ -196,11 +179,8 @@ class CreateWarrantyResponse:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
 
     pass
 
@@ -215,10 +195,9 @@ class ErrorList:
 class GetAttributesResponse:
 
     buyer: dict[str, Any]
-    # {'properties': {'locale': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='The buyer\'s language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'object'}
+    # {'properties': {'locale': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='The buyer\'s language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
@@ -226,14 +205,12 @@ class GetAttributesResponse:
 class GetMessagingActionResponse:
 
     _embedded: dict[str, Any]
-    # {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}, 'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'object'}
+    # {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
     _links: dict[str, Any]
-    # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'required': ['schema', 'self'], 'type': 'object'}
+    # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['schema', 'self']}
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/MessagingAction'}
+    errors: "ErrorList"
+    payload: "MessagingAction"
     pass
 
 
@@ -241,12 +218,11 @@ class GetMessagingActionResponse:
 class GetMessagingActionsForOrderResponse:
 
     _embedded: dict[str, Any]
-    # {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetMessagingActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'required': ['actions'], 'type': 'object'}
+    # {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetMessagingActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
     _links: dict[str, Any]
-    # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'required': ['actions', 'self'], 'type': 'object'}
+    # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions', 'self']}
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
@@ -254,12 +230,10 @@ class GetMessagingActionsForOrderResponse:
 class GetSchemaResponse:
 
     _links: dict[str, Any]
-    # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'required': ['self'], 'type': 'object'}
+    # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['self']}
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'ref': '#/components/schemas/Schema'}
+    errors: "ErrorList"
+    payload: "Schema"
     pass
 
 
@@ -267,9 +241,7 @@ class GetSchemaResponse:
 class LinkObject:
 
     href: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
 
     pass
 
@@ -278,7 +250,6 @@ class LinkObject:
 class MessagingAction:
 
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000016408A7B310>, 'type': 'string'}
 
     pass
 
@@ -294,7 +265,7 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
-        attachments: list[dict[str, Any]] = None,
+        attachments: list["Attachment"] = None,
     ):
         """
         Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
@@ -331,7 +302,7 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
-        attachments: list[dict[str, Any]] = None,
+        attachments: list["Attachment"] = None,
         coverage_start_date: str = None,
         coverage_end_date: str = None,
     ):
@@ -408,7 +379,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: list[str],
         text: str = None,
-        attachments: list[dict[str, Any]] = None,
+        attachments: list["Attachment"] = None,
     ):
         """
         Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
@@ -560,7 +531,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: list[str],
         text: str = None,
-        attachments: list[dict[str, Any]] = None,
+        attachments: list["Attachment"] = None,
     ):
         """
         Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
@@ -600,7 +571,7 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
-        attachments: list[dict[str, Any]] = None,
+        attachments: list["Attachment"] = None,
     ):
         """
         Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.

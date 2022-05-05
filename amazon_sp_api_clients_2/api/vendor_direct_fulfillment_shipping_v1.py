@@ -16,27 +16,16 @@ from typing import Any, List, Dict, Union, Literal
 class Address:
 
     address_line1: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     address_line2: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     address_line3: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     city: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     country_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     county: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     district: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     phone: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     postal_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     state_or_region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
     pass
 
@@ -45,30 +34,18 @@ class Address:
 class Container:
 
     carrier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     container_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     container_sequence_number: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     container_type: Union[Literal["carton"], Literal["pallet"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'enum': ['carton', 'pallet']}
     manifest_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     manifest_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
-    packed_items: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/PackedItem')}
+    packed_items: list["PackedItem"]
     scac_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     ship_method: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     tracking_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
-    dimensions: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Dimensions'}
-    weight: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Weight'}
+    dimensions: "Dimensions"
+    weight: "Weight"
     pass
 
 
@@ -76,9 +53,8 @@ class Container:
 class CustomerInvoice:
 
     content: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'pattern': '^[a-zA-Z0-9]+$'}
+    # {'pattern': '^[a-zA-Z0-9]+$'}
 
     pass
 
@@ -86,11 +62,9 @@ class CustomerInvoice:
 @attrs.define
 class CustomerInvoiceList:
 
-    customer_invoices: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/CustomerInvoice')}
+    customer_invoices: list["CustomerInvoice"]
 
-    pagination: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Pagination'}
+    pagination: "Pagination"
     pass
 
 
@@ -104,14 +78,10 @@ class Decimal:
 class Dimensions:
 
     unit_of_measure: Union[Literal["IN"], Literal["CM"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'enum': ['IN', 'CM']}
 
-    height: str
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Decimal'}
-    length: str
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Decimal'}
-    width: str
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Decimal'}
+    height: "Decimal"
+    length: "Decimal"
+    width: "Decimal"
     pass
 
 
@@ -119,11 +89,8 @@ class Dimensions:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
     pass
 
@@ -137,60 +104,48 @@ class ErrorList:
 @attrs.define
 class GetCustomerInvoiceResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/CustomerInvoice'}
+    errors: "ErrorList"
+    payload: "CustomerInvoice"
     pass
 
 
 @attrs.define
 class GetCustomerInvoicesResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/CustomerInvoiceList'}
+    errors: "ErrorList"
+    payload: "CustomerInvoiceList"
     pass
 
 
 @attrs.define
 class GetPackingSlipListResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PackingSlipList'}
+    errors: "ErrorList"
+    payload: "PackingSlipList"
     pass
 
 
 @attrs.define
 class GetPackingSlipResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PackingSlip'}
+    errors: "ErrorList"
+    payload: "PackingSlip"
     pass
 
 
 @attrs.define
 class GetShippingLabelListResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ShippingLabelList'}
+    errors: "ErrorList"
+    payload: "ShippingLabelList"
     pass
 
 
 @attrs.define
 class GetShippingLabelResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ShippingLabel'}
+    errors: "ErrorList"
+    payload: "ShippingLabel"
     pass
 
 
@@ -198,14 +153,10 @@ class GetShippingLabelResponse:
 class Item:
 
     buyer_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     item_sequence_number: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     vendor_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
-    shipped_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ItemQuantity'}
+    shipped_quantity: "ItemQuantity"
     pass
 
 
@@ -213,9 +164,7 @@ class Item:
 class ItemQuantity:
 
     amount: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     unit_of_measure: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
     pass
 
@@ -224,15 +173,10 @@ class ItemQuantity:
 class LabelData:
 
     content: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     package_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     ship_method: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     ship_method_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     tracking_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
     pass
 
@@ -241,14 +185,10 @@ class LabelData:
 class PackedItem:
 
     buyer_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     item_sequence_number: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     vendor_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
-    packed_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ItemQuantity'}
+    packed_quantity: "ItemQuantity"
     pass
 
 
@@ -256,11 +196,9 @@ class PackedItem:
 class PackingSlip:
 
     content: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     content_type: Union[Literal["application/pdf"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'enum': ['application/pdf']}
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'pattern': '^[a-zA-Z0-9]+$'}
+    # {'pattern': '^[a-zA-Z0-9]+$'}
 
     pass
 
@@ -268,11 +206,9 @@ class PackingSlip:
 @attrs.define
 class PackingSlipList:
 
-    packing_slips: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/PackingSlip')}
+    packing_slips: list["PackingSlip"]
 
-    pagination: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Pagination'}
+    pagination: "Pagination"
     pass
 
 
@@ -280,7 +216,6 @@ class PackingSlipList:
 class Pagination:
 
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
     pass
 
@@ -289,31 +224,23 @@ class Pagination:
 class PartyIdentification:
 
     party_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
-    tax_registration_details: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/TaxRegistrationDetails')}
+    tax_registration_details: list["TaxRegistrationDetails"]
 
-    address: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Address'}
+    address: "Address"
     pass
 
 
 @attrs.define
 class ShipmentConfirmation:
 
-    containers: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/Container')}
-    items: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/Item')}
+    containers: list["Container"]
+    items: list["Item"]
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'pattern': '^[a-zA-Z0-9]+$'}
+    # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
-    ship_from_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
-    shipment_details: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ShipmentDetails'}
+    selling_party: "PartyIdentification"
+    ship_from_party: "PartyIdentification"
+    shipment_details: "ShipmentDetails"
     pass
 
 
@@ -321,15 +248,12 @@ class ShipmentConfirmation:
 class ShipmentDetails:
 
     estimated_delivery_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     is_priority_shipment: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     shipment_status: Union[Literal["SHIPPED"], Literal["FLOOR_DENIAL"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'enum': ['SHIPPED', 'FLOOR_DENIAL']}
     shipped_date: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     vendor_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
     pass
 
@@ -338,57 +262,45 @@ class ShipmentDetails:
 class ShipmentStatusUpdate:
 
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'pattern': '^[a-zA-Z0-9]+$'}
+    # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
-    ship_from_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
-    status_update_details: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/StatusUpdateDetails'}
+    selling_party: "PartyIdentification"
+    ship_from_party: "PartyIdentification"
+    status_update_details: "StatusUpdateDetails"
     pass
 
 
 @attrs.define
 class ShippingLabel:
 
-    label_data: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/LabelData')}
+    label_data: list["LabelData"]
     label_format: Union[Literal["PNG"], Literal["ZPL"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'enum': ['PNG', 'ZPL']}
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'pattern': '^[a-zA-Z0-9]+$'}
+    # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
-    ship_from_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
+    selling_party: "PartyIdentification"
+    ship_from_party: "PartyIdentification"
     pass
 
 
 @attrs.define
 class ShippingLabelList:
 
-    shipping_labels: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/ShippingLabel')}
+    shipping_labels: list["ShippingLabel"]
 
-    pagination: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Pagination'}
+    pagination: "Pagination"
     pass
 
 
 @attrs.define
 class ShippingLabelRequest:
 
-    containers: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/Container')}
+    containers: list["Container"]
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'pattern': '^[a-zA-Z0-9]+$'}
+    # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
-    ship_from_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/PartyIdentification'}
+    selling_party: "PartyIdentification"
+    ship_from_party: "PartyIdentification"
     pass
 
 
@@ -396,26 +308,21 @@ class ShippingLabelRequest:
 class StatusUpdateDetails:
 
     reason_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     shipment_schedule: dict[str, Any]
-    # {'properties': {'estimatedDeliveryDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Date on which the shipment is expected to reach the customer delivery location. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowStartDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the start of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowEndDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the end of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
+    # {'properties': {'estimatedDeliveryDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Date on which the shipment is expected to reach the customer delivery location. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowStartDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the start of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowEndDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the end of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
     status_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     status_date_time: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     tracking_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
-    status_location_address: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Address'}
+    status_location_address: "Address"
     pass
 
 
 @attrs.define
 class SubmitShipmentConfirmationsRequest:
 
-    shipment_confirmations: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/ShipmentConfirmation')}
+    shipment_confirmations: list["ShipmentConfirmation"]
 
     pass
 
@@ -423,18 +330,16 @@ class SubmitShipmentConfirmationsRequest:
 @attrs.define
 class SubmitShipmentConfirmationsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/TransactionReference'}
+    errors: "ErrorList"
+    payload: "TransactionReference"
     pass
 
 
 @attrs.define
 class SubmitShipmentStatusUpdatesRequest:
 
-    shipment_status_updates: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'minItems': 1, 'items': Reference(ref='#/components/schemas/ShipmentStatusUpdate')}
+    shipment_status_updates: list["ShipmentStatusUpdate"]
+    # {'minItems': 1}
 
     pass
 
@@ -442,18 +347,15 @@ class SubmitShipmentStatusUpdatesRequest:
 @attrs.define
 class SubmitShipmentStatusUpdatesResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/TransactionReference'}
+    errors: "ErrorList"
+    payload: "TransactionReference"
     pass
 
 
 @attrs.define
 class SubmitShippingLabelsRequest:
 
-    shipping_label_requests: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'items': Reference(ref='#/components/schemas/ShippingLabelRequest')}
+    shipping_label_requests: list["ShippingLabelRequest"]
 
     pass
 
@@ -461,10 +363,8 @@ class SubmitShippingLabelsRequest:
 @attrs.define
 class SubmitShippingLabelsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/TransactionReference'}
+    errors: "ErrorList"
+    payload: "TransactionReference"
     pass
 
 
@@ -472,14 +372,10 @@ class SubmitShippingLabelsResponse:
 class TaxRegistrationDetails:
 
     tax_registration_messages: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     tax_registration_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'enum': ['VAT', 'GST']}
 
-    tax_registration_address: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Address'}
+    tax_registration_address: "Address"
     pass
 
 
@@ -487,7 +383,6 @@ class TaxRegistrationDetails:
 class TransactionReference:
 
     transaction_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>}
 
     pass
 
@@ -496,10 +391,8 @@ class TransactionReference:
 class Weight:
 
     unit_of_measure: Union[Literal["KG"], Literal["LB"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'enum': ['KG', 'LB']}
 
-    value: str
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DF645B0>, 'ref': '#/components/schemas/Decimal'}
+    value: "Decimal"
     pass
 
 

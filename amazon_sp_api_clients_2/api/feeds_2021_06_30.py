@@ -16,9 +16,7 @@ from typing import Any, List, Dict, Union, Literal
 class CreateFeedDocumentResponse:
 
     feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     url: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
 
     pass
 
@@ -27,7 +25,6 @@ class CreateFeedDocumentResponse:
 class CreateFeedDocumentSpecification:
 
     content_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
 
     pass
 
@@ -36,7 +33,6 @@ class CreateFeedDocumentSpecification:
 class CreateFeedResponse:
 
     feed_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
 
     pass
 
@@ -45,14 +41,11 @@ class CreateFeedResponse:
 class CreateFeedSpecification:
 
     feed_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     input_feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     marketplace_ids: list[str]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'minItems': 1, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'maxItems': 25}
+    # {'minItems': 1, 'maxItems': 25}
 
-    feed_options: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'ref': '#/components/schemas/FeedOptions'}
+    feed_options: "FeedOptions"
     pass
 
 
@@ -60,11 +53,8 @@ class CreateFeedSpecification:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
 
     pass
 
@@ -72,8 +62,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list[dict[str, Any]]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'items': Reference(ref='#/components/schemas/Error')}
+    errors: list["Error"]
 
     pass
 
@@ -82,23 +71,18 @@ class ErrorList:
 class Feed:
 
     created_time: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     feed_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     feed_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     marketplace_ids: list[str]
-    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
     processing_end_time: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     processing_start_time: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time'}
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
     ]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'enum': ['CANCELLED', 'DONE', 'FATAL', 'IN_PROGRESS', 'IN_QUEUE']}
     result_feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
 
     pass
 
@@ -107,11 +91,8 @@ class Feed:
 class FeedDocument:
 
     compression_algorithm: Union[Literal["GZIP"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'enum': ['GZIP']}
     feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
     url: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
 
     pass
 
@@ -132,10 +113,8 @@ class FeedOptions:
 class GetFeedsResponse:
 
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>}
 
-    feeds: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000022B7DDAB310>, 'ref': '#/components/schemas/FeedList'}
+    feeds: "FeedList"
     pass
 
 

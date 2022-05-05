@@ -16,7 +16,6 @@ from typing import Any, List, Dict, Union, Literal
 class CreateReportResponse:
 
     report_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
     pass
 
@@ -25,7 +24,6 @@ class CreateReportResponse:
 class CreateReportScheduleResponse:
 
     report_schedule_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
     pass
 
@@ -34,9 +32,9 @@ class CreateReportScheduleResponse:
 class CreateReportScheduleSpecification:
 
     marketplace_ids: list[str]
-    # {'maxItems': 25, 'minItems': 1, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'array'}
+    # {'minItems': 1, 'maxItems': 25}
     next_report_creation_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     period: Union[
         Literal["PT5M"],
         Literal["PT15M"],
@@ -57,12 +55,9 @@ class CreateReportScheduleSpecification:
         Literal["P30D"],
         Literal["P1M"],
     ]
-    # {'enum': ['PT5M', 'PT15M', 'PT30M', 'PT1H', 'PT2H', 'PT4H', 'PT8H', 'PT12H', 'P1D', 'P2D', 'P3D', 'PT84H', 'P7D', 'P14D', 'P15D', 'P18D', 'P30D', 'P1M'], 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
-    report_options: dict[str, Any]
-    # {'ref': '#/components/schemas/ReportOptions', 'generator': <__mp_main__.Generator object at 0x000002E488812470>}
+    report_options: "ReportOptions"
     pass
 
 
@@ -70,16 +65,14 @@ class CreateReportScheduleSpecification:
 class CreateReportSpecification:
 
     data_end_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     data_start_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     marketplace_ids: list[str]
-    # {'maxItems': 25, 'minItems': 1, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'array'}
+    # {'minItems': 1, 'maxItems': 25}
     report_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
-    report_options: dict[str, Any]
-    # {'ref': '#/components/schemas/ReportOptions', 'generator': <__mp_main__.Generator object at 0x000002E488812470>}
+    report_options: "ReportOptions"
     pass
 
 
@@ -87,11 +80,8 @@ class CreateReportSpecification:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
     pass
 
@@ -99,8 +89,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'array'}
+    errors: list["Error"]
 
     pass
 
@@ -109,10 +98,8 @@ class ErrorList:
 class GetReportsResponse:
 
     next_token: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
-    reports: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ReportList', 'generator': <__mp_main__.Generator object at 0x000002E488812470>}
+    reports: "ReportList"
     pass
 
 
@@ -120,29 +107,23 @@ class GetReportsResponse:
 class Report:
 
     created_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     data_end_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     data_start_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     marketplace_ids: list[str]
-    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'array'}
     processing_end_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     processing_start_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
     ]
-    # {'enum': ['CANCELLED', 'DONE', 'FATAL', 'IN_PROGRESS', 'IN_QUEUE'], 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_document_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_schedule_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
     pass
 
@@ -151,11 +132,8 @@ class Report:
 class ReportDocument:
 
     compression_algorithm: Union[Literal["GZIP"]]
-    # {'enum': ['GZIP'], 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_document_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     url: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
     pass
 
@@ -176,26 +154,20 @@ class ReportOptions:
 class ReportSchedule:
 
     marketplace_ids: list[str]
-    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'array'}
     next_report_creation_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     period: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_schedule_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
     report_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'string'}
 
-    report_options: dict[str, Any]
-    # {'ref': '#/components/schemas/ReportOptions', 'generator': <__mp_main__.Generator object at 0x000002E488812470>}
+    report_options: "ReportOptions"
     pass
 
 
 @attrs.define
 class ReportScheduleList:
 
-    report_schedules: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/ReportSchedule'), 'generator': <__mp_main__.Generator object at 0x000002E488812470>, 'type': 'array'}
+    report_schedules: list["ReportSchedule"]
 
     pass
 

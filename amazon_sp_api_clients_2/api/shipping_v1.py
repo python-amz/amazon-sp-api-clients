@@ -15,24 +15,17 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AcceptedRate:
 
-    billed_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    promise: dict[str, Any]
-    # {'ref': '#/components/schemas/ShippingPromiseSet', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    service_type: Union[
-        Literal["Amazon Shipping Ground"], Literal["Amazon Shipping Standard"], Literal["Amazon Shipping Premium"]
-    ]
-    # {'ref': '#/components/schemas/ServiceType', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    total_charge: dict[str, Any]
-    # {'ref': '#/components/schemas/Currency', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    billed_weight: "Weight"
+    promise: "ShippingPromiseSet"
+    service_type: "ServiceType"
+    total_charge: "Currency"
     pass
 
 
 @attrs.define
 class Account:
 
-    account_id: str
-    # {'ref': '#/components/schemas/AccountId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    account_id: "AccountId"
     pass
 
 
@@ -46,36 +39,31 @@ class AccountId:
 class Address:
 
     address_line1: str
-    # {'maxLength': 60, 'minLength': 1, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 60, 'minLength': 1}
     address_line2: str
-    # {'maxLength': 60, 'minLength': 1, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 60, 'minLength': 1}
     address_line3: str
-    # {'maxLength': 60, 'minLength': 1, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 60, 'minLength': 1}
     copy_emails: list[str]
-    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=64, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'array', 'maxItems': 2}
+    # {'maxItems': 2}
     email: str
-    # {'maxLength': 64, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 64}
     name: str
-    # {'maxLength': 50, 'minLength': 1, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 50, 'minLength': 1}
     phone_number: str
-    # {'maxLength': 20, 'minLength': 1, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 20, 'minLength': 1}
 
-    city: str
-    # {'ref': '#/components/schemas/City', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    country_code: str
-    # {'ref': '#/components/schemas/CountryCode', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    postal_code: str
-    # {'ref': '#/components/schemas/PostalCode', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    state_or_region: str
-    # {'ref': '#/components/schemas/StateOrRegion', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    city: "City"
+    country_code: "CountryCode"
+    postal_code: "PostalCode"
+    state_or_region: "StateOrRegion"
     pass
 
 
 @attrs.define
 class CancelShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
     pass
 
 
@@ -95,18 +83,12 @@ class ClientReferenceId:
 class Container:
 
     container_type: Union[Literal["PACKAGE"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string', 'enum': ['PACKAGE']}
-    items: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/ContainerItem'), 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'array'}
+    items: list["ContainerItem"]
 
-    container_reference_id: str
-    # {'ref': '#/components/schemas/ContainerReferenceId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/Dimensions', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    value: dict[str, Any]
-    # {'ref': '#/components/schemas/Currency', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    container_reference_id: "ContainerReferenceId"
+    dimensions: "Dimensions"
+    value: "Currency"
+    weight: "Weight"
     pass
 
 
@@ -114,14 +96,11 @@ class Container:
 class ContainerItem:
 
     quantity: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'number'}
     title: str
-    # {'maxLength': 30, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 30}
 
-    unit_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Currency', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    unit_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    unit_price: "Currency"
+    unit_weight: "Weight"
     pass
 
 
@@ -140,10 +119,8 @@ class ContainerReferenceId:
 @attrs.define
 class ContainerSpecification:
 
-    dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/Dimensions', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    dimensions: "Dimensions"
+    weight: "Weight"
     pass
 
 
@@ -162,34 +139,26 @@ class CountryCode:
 @attrs.define
 class CreateShipmentRequest:
 
-    client_reference_id: str
-    # {'ref': '#/components/schemas/ClientReferenceId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    containers: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ContainerList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_from: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_to: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    client_reference_id: "ClientReferenceId"
+    containers: "ContainerList"
+    ship_from: "Address"
+    ship_to: "Address"
     pass
 
 
 @attrs.define
 class CreateShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/CreateShipmentResult', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "CreateShipmentResult"
     pass
 
 
 @attrs.define
 class CreateShipmentResult:
 
-    eligible_rates: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/RateList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    shipment_id: str
-    # {'ref': '#/components/schemas/ShipmentId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    eligible_rates: "RateList"
+    shipment_id: "ShipmentId"
     pass
 
 
@@ -197,9 +166,8 @@ class CreateShipmentResult:
 class Currency:
 
     unit: str
-    # {'maxLength': 3, 'minLength': 3, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 3, 'minLength': 3}
     value: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'number'}
 
     pass
 
@@ -208,13 +176,9 @@ class Currency:
 class Dimensions:
 
     height: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'number'}
     length: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'number'}
     unit: Union[Literal["IN"], Literal["CM"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string', 'enum': ['IN', 'CM']}
     width: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'number'}
 
     pass
 
@@ -223,11 +187,8 @@ class Dimensions:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
 
     pass
 
@@ -242,12 +203,10 @@ class ErrorList:
 class Event:
 
     event_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
 
-    event_code: str
-    # {'ref': '#/components/schemas/EventCode', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    location: dict[str, Any]
-    # {'ref': '#/components/schemas/Location', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    event_code: "EventCode"
+    location: "Location"
     pass
 
 
@@ -266,10 +225,8 @@ class EventList:
 @attrs.define
 class GetAccountResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/Account', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "Account"
     pass
 
 
@@ -277,68 +234,51 @@ class GetAccountResponse:
 class GetRatesRequest:
 
     ship_date: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
 
-    container_specifications: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ContainerSpecificationList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    service_types: list[
-        Union[
-            Literal["Amazon Shipping Ground"], Literal["Amazon Shipping Standard"], Literal["Amazon Shipping Premium"]
-        ]
-    ]
-    # {'ref': '#/components/schemas/ServiceTypeList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_from: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_to: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    container_specifications: "ContainerSpecificationList"
+    service_types: "ServiceTypeList"
+    ship_from: "Address"
+    ship_to: "Address"
     pass
 
 
 @attrs.define
 class GetRatesResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetRatesResult', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "GetRatesResult"
     pass
 
 
 @attrs.define
 class GetRatesResult:
 
-    service_rates: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ServiceRateList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    service_rates: "ServiceRateList"
     pass
 
 
 @attrs.define
 class GetShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/Shipment', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "Shipment"
     pass
 
 
 @attrs.define
 class GetTrackingInformationResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/TrackingInformation', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "TrackingInformation"
     pass
 
 
 @attrs.define
 class Label:
 
-    label_specification: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelSpecification', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    label_stream: str
-    # {'ref': '#/components/schemas/LabelStream', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    label_specification: "LabelSpecification"
+    label_stream: "LabelStream"
     pass
 
 
@@ -346,12 +286,9 @@ class Label:
 class LabelResult:
 
     tracking_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
 
-    container_reference_id: str
-    # {'ref': '#/components/schemas/ContainerReferenceId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    label: dict[str, Any]
-    # {'ref': '#/components/schemas/Label', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    container_reference_id: "ContainerReferenceId"
+    label: "Label"
     pass
 
 
@@ -365,9 +302,7 @@ class LabelResultList:
 class LabelSpecification:
 
     label_format: Union[Literal["PNG"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string', 'enum': ['PNG']}
     label_stock_size: Union[Literal["4x6"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string', 'enum': ['4x6']}
 
     pass
 
@@ -381,22 +316,17 @@ class LabelStream:
 @attrs.define
 class Location:
 
-    city: str
-    # {'ref': '#/components/schemas/City', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    country_code: str
-    # {'ref': '#/components/schemas/CountryCode', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    postal_code: str
-    # {'ref': '#/components/schemas/PostalCode', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    state_or_region: str
-    # {'ref': '#/components/schemas/StateOrRegion', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    city: "City"
+    country_code: "CountryCode"
+    postal_code: "PostalCode"
+    state_or_region: "StateOrRegion"
     pass
 
 
 @attrs.define
 class Party:
 
-    account_id: str
-    # {'ref': '#/components/schemas/AccountId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    account_id: "AccountId"
     pass
 
 
@@ -415,34 +345,26 @@ class PromisedDeliveryDate:
 @attrs.define
 class PurchaseLabelsRequest:
 
-    label_specification: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelSpecification', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    rate_id: str
-    # {'ref': '#/components/schemas/RateId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    label_specification: "LabelSpecification"
+    rate_id: "RateId"
     pass
 
 
 @attrs.define
 class PurchaseLabelsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/PurchaseLabelsResult', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "PurchaseLabelsResult"
     pass
 
 
 @attrs.define
 class PurchaseLabelsResult:
 
-    accepted_rate: dict[str, Any]
-    # {'ref': '#/components/schemas/AcceptedRate', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    client_reference_id: str
-    # {'ref': '#/components/schemas/ClientReferenceId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    label_results: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/LabelResultList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    shipment_id: str
-    # {'ref': '#/components/schemas/ShipmentId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    accepted_rate: "AcceptedRate"
+    client_reference_id: "ClientReferenceId"
+    label_results: "LabelResultList"
+    shipment_id: "ShipmentId"
     pass
 
 
@@ -450,44 +372,31 @@ class PurchaseLabelsResult:
 class PurchaseShipmentRequest:
 
     ship_date: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
 
-    client_reference_id: str
-    # {'ref': '#/components/schemas/ClientReferenceId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    containers: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ContainerList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    label_specification: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelSpecification', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    service_type: Union[
-        Literal["Amazon Shipping Ground"], Literal["Amazon Shipping Standard"], Literal["Amazon Shipping Premium"]
-    ]
-    # {'ref': '#/components/schemas/ServiceType', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_from: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_to: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    client_reference_id: "ClientReferenceId"
+    containers: "ContainerList"
+    label_specification: "LabelSpecification"
+    service_type: "ServiceType"
+    ship_from: "Address"
+    ship_to: "Address"
     pass
 
 
 @attrs.define
 class PurchaseShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/PurchaseShipmentResult', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "PurchaseShipmentResult"
     pass
 
 
 @attrs.define
 class PurchaseShipmentResult:
 
-    label_results: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/LabelResultList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    service_rate: dict[str, Any]
-    # {'ref': '#/components/schemas/ServiceRate', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    shipment_id: str
-    # {'ref': '#/components/schemas/ShipmentId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    label_results: "LabelResultList"
+    service_rate: "ServiceRate"
+    shipment_id: "ShipmentId"
     pass
 
 
@@ -495,20 +404,13 @@ class PurchaseShipmentResult:
 class Rate:
 
     expiration_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     rate_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
 
-    billed_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    promise: dict[str, Any]
-    # {'ref': '#/components/schemas/ShippingPromiseSet', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    service_type: Union[
-        Literal["Amazon Shipping Ground"], Literal["Amazon Shipping Standard"], Literal["Amazon Shipping Premium"]
-    ]
-    # {'ref': '#/components/schemas/ServiceType', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    total_charge: dict[str, Any]
-    # {'ref': '#/components/schemas/Currency', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    billed_weight: "Weight"
+    promise: "ShippingPromiseSet"
+    service_type: "ServiceType"
+    total_charge: "Currency"
     pass
 
 
@@ -527,44 +429,33 @@ class RateList:
 @attrs.define
 class RetrieveShippingLabelRequest:
 
-    label_specification: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelSpecification', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    label_specification: "LabelSpecification"
     pass
 
 
 @attrs.define
 class RetrieveShippingLabelResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/RetrieveShippingLabelResult', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    errors: "ErrorList"
+    payload: "RetrieveShippingLabelResult"
     pass
 
 
 @attrs.define
 class RetrieveShippingLabelResult:
 
-    label_specification: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelSpecification', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    label_stream: str
-    # {'ref': '#/components/schemas/LabelStream', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    label_specification: "LabelSpecification"
+    label_stream: "LabelStream"
     pass
 
 
 @attrs.define
 class ServiceRate:
 
-    billable_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    promise: dict[str, Any]
-    # {'ref': '#/components/schemas/ShippingPromiseSet', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    service_type: Union[
-        Literal["Amazon Shipping Ground"], Literal["Amazon Shipping Standard"], Literal["Amazon Shipping Premium"]
-    ]
-    # {'ref': '#/components/schemas/ServiceType', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    total_charge: dict[str, Any]
-    # {'ref': '#/components/schemas/Currency', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    billable_weight: "Weight"
+    promise: "ShippingPromiseSet"
+    service_type: "ServiceType"
+    total_charge: "Currency"
     pass
 
 
@@ -589,20 +480,13 @@ class ServiceTypeList:
 @attrs.define
 class Shipment:
 
-    accepted_rate: dict[str, Any]
-    # {'ref': '#/components/schemas/AcceptedRate', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    client_reference_id: str
-    # {'ref': '#/components/schemas/ClientReferenceId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    containers: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ContainerList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_from: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    ship_to: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    shipment_id: str
-    # {'ref': '#/components/schemas/ShipmentId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    shipper: dict[str, Any]
-    # {'ref': '#/components/schemas/Party', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    accepted_rate: "AcceptedRate"
+    client_reference_id: "ClientReferenceId"
+    containers: "ContainerList"
+    ship_from: "Address"
+    ship_to: "Address"
+    shipment_id: "ShipmentId"
+    shipper: "Party"
     pass
 
 
@@ -615,10 +499,8 @@ class ShipmentId:
 @attrs.define
 class ShippingPromiseSet:
 
-    delivery_window: dict[str, Any]
-    # {'ref': '#/components/schemas/TimeRange', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    receive_window: dict[str, Any]
-    # {'ref': '#/components/schemas/TimeRange', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    delivery_window: "TimeRange"
+    receive_window: "TimeRange"
     pass
 
 
@@ -632,9 +514,9 @@ class StateOrRegion:
 class TimeRange:
 
     end: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
     start: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
 
     pass
 
@@ -648,14 +530,10 @@ class TrackingId:
 @attrs.define
 class TrackingInformation:
 
-    event_history: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/EventList', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    promised_delivery_date: str
-    # {'ref': '#/components/schemas/PromisedDeliveryDate', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    summary: dict[str, Any]
-    # {'ref': '#/components/schemas/TrackingSummary', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
-    tracking_id: str
-    # {'ref': '#/components/schemas/TrackingId', 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>}
+    event_history: "EventList"
+    promised_delivery_date: "PromisedDeliveryDate"
+    summary: "TrackingSummary"
+    tracking_id: "TrackingId"
     pass
 
 
@@ -663,7 +541,7 @@ class TrackingInformation:
 class TrackingSummary:
 
     status: str
-    # {'maxLength': 60, 'minLength': 1, 'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string'}
+    # {'maxLength': 60, 'minLength': 1}
 
     pass
 
@@ -672,9 +550,7 @@ class TrackingSummary:
 class Weight:
 
     unit: Union[Literal["g"], Literal["kg"], Literal["oz"], Literal["lb"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'string', 'enum': ['g', 'kg', 'oz', 'lb']}
     value: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x000001F3D53DB310>, 'type': 'number'}
 
     pass
 

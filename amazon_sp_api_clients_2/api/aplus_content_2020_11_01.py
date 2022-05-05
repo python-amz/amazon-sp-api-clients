@@ -21,8 +21,7 @@ class AplusPaginatedResponse:
 @attrs.define
 class AplusResponse:
 
-    warnings: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/MessageSet', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    warnings: "MessageSet"
     pass
 
 
@@ -48,25 +47,14 @@ class AsinBadgeSet:
 class AsinMetadata:
 
     image_url: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1}
     title: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1}
 
-    asin: str
-    # {'ref': '#/components/schemas/Asin', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    badge_set: list[
-        Union[
-            Literal["BRAND_NOT_ELIGIBLE"],
-            Literal["CATALOG_NOT_FOUND"],
-            Literal["CONTENT_NOT_PUBLISHED"],
-            Literal["CONTENT_PUBLISHED"],
-        ]
-    ]
-    # {'ref': '#/components/schemas/AsinBadgeSet', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_reference_key_set: list[str]
-    # {'ref': '#/components/schemas/ContentReferenceKeySet', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    parent: str
-    # {'ref': '#/components/schemas/Asin', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    asin: "Asin"
+    badge_set: "AsinBadgeSet"
+    content_reference_key_set: "ContentReferenceKeySet"
+    parent: "Asin"
     pass
 
 
@@ -104,16 +92,12 @@ class ContentBadgeSet:
 class ContentDocument:
 
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1, 'maxLength': 100}
+    # {'minLength': 1, 'maxLength': 100}
 
-    content_module_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ContentModuleList', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_sub_type: str
-    # {'ref': '#/components/schemas/ContentSubType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_type: Union[Literal["EBC"], Literal["EMC"]]
-    # {'ref': '#/components/schemas/ContentType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    locale: str
-    # {'ref': '#/components/schemas/LanguageTag', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    content_module_list: "ContentModuleList"
+    content_sub_type: "ContentSubType"
+    content_type: "ContentType"
+    locale: "LanguageTag"
     pass
 
 
@@ -121,28 +105,21 @@ class ContentDocument:
 class ContentMetadata:
 
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1, 'maxLength': 100}
+    # {'minLength': 1, 'maxLength': 100}
     update_time: str
-    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string'}
+    # {'schema_format': 'date-time'}
 
-    badge_set: list[
-        Union[Literal["BULK"], Literal["GENERATED"], Literal["LAUNCHPAD"], Literal["PREMIUM"], Literal["STANDARD"]]
-    ]
-    # {'ref': '#/components/schemas/ContentBadgeSet', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    marketplace_id: str
-    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    status: Union[Literal["APPROVED"], Literal["DRAFT"], Literal["REJECTED"], Literal["SUBMITTED"]]
-    # {'ref': '#/components/schemas/ContentStatus', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    badge_set: "ContentBadgeSet"
+    marketplace_id: "MarketplaceId"
+    status: "ContentStatus"
     pass
 
 
 @attrs.define
 class ContentMetadataRecord:
 
-    content_metadata: dict[str, Any]
-    # {'ref': '#/components/schemas/ContentMetadata', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_reference_key: str
-    # {'ref': '#/components/schemas/ContentReferenceKey', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    content_metadata: "ContentMetadata"
+    content_reference_key: "ContentReferenceKey"
     pass
 
 
@@ -155,54 +132,22 @@ class ContentMetadataRecordList:
 @attrs.define
 class ContentModule:
 
-    content_module_type: Union[
-        Literal["STANDARD_COMPANY_LOGO"],
-        Literal["STANDARD_COMPARISON_TABLE"],
-        Literal["STANDARD_FOUR_IMAGE_TEXT"],
-        Literal["STANDARD_FOUR_IMAGE_TEXT_QUADRANT"],
-        Literal["STANDARD_HEADER_IMAGE_TEXT"],
-        Literal["STANDARD_IMAGE_SIDEBAR"],
-        Literal["STANDARD_IMAGE_TEXT_OVERLAY"],
-        Literal["STANDARD_MULTIPLE_IMAGE_TEXT"],
-        Literal["STANDARD_PRODUCT_DESCRIPTION"],
-        Literal["STANDARD_SINGLE_IMAGE_HIGHLIGHTS"],
-        Literal["STANDARD_SINGLE_IMAGE_SPECS_DETAIL"],
-        Literal["STANDARD_SINGLE_SIDE_IMAGE"],
-        Literal["STANDARD_TECH_SPECS"],
-        Literal["STANDARD_TEXT"],
-        Literal["STANDARD_THREE_IMAGE_TEXT"],
-    ]
-    # {'ref': '#/components/schemas/ContentModuleType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_company_logo: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardCompanyLogoModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_comparison_table: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardComparisonTableModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_four_image_text: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardFourImageTextModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_four_image_text_quadrant: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardFourImageTextQuadrantModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_header_image_text: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardHeaderImageTextModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_image_sidebar: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageSidebarModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_image_text_overlay: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextOverlayModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_multiple_image_text: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardMultipleImageTextModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_product_description: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardProductDescriptionModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_single_image_highlights: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardSingleImageHighlightsModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_single_image_specs_detail: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardSingleImageSpecsDetailModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_single_side_image: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardSingleSideImageModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_tech_specs: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTechSpecsModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_text: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    standard_three_image_text: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardThreeImageTextModule', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    content_module_type: "ContentModuleType"
+    standard_company_logo: "StandardCompanyLogoModule"
+    standard_comparison_table: "StandardComparisonTableModule"
+    standard_four_image_text: "StandardFourImageTextModule"
+    standard_four_image_text_quadrant: "StandardFourImageTextQuadrantModule"
+    standard_header_image_text: "StandardHeaderImageTextModule"
+    standard_image_sidebar: "StandardImageSidebarModule"
+    standard_image_text_overlay: "StandardImageTextOverlayModule"
+    standard_multiple_image_text: "StandardMultipleImageTextModule"
+    standard_product_description: "StandardProductDescriptionModule"
+    standard_single_image_highlights: "StandardSingleImageHighlightsModule"
+    standard_single_image_specs_detail: "StandardSingleImageSpecsDetailModule"
+    standard_single_side_image: "StandardSingleSideImageModule"
+    standard_tech_specs: "StandardTechSpecsModule"
+    standard_text: "StandardTextModule"
+    standard_three_image_text: "StandardThreeImageTextModule"
     pass
 
 
@@ -221,12 +166,9 @@ class ContentModuleType:
 @attrs.define
 class ContentRecord:
 
-    content_document: dict[str, Any]
-    # {'ref': '#/components/schemas/ContentDocument', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_metadata: dict[str, Any]
-    # {'ref': '#/components/schemas/ContentMetadata', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_reference_key: str
-    # {'ref': '#/components/schemas/ContentReferenceKey', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    content_document: "ContentDocument"
+    content_metadata: "ContentMetadata"
+    content_reference_key: "ContentReferenceKey"
     pass
 
 
@@ -264,23 +206,13 @@ class ContentType:
 class Decorator:
 
     depth: int
-    # {'maximum': 100.0, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer', 'minimum': 0.0}
+    # {'maximum': 100.0, 'minimum': 0.0}
     length: int
-    # {'maximum': 10000.0, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer', 'minimum': 0.0}
+    # {'maximum': 10000.0, 'minimum': 0.0}
     offset: int
-    # {'maximum': 10000.0, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer', 'minimum': 0.0}
+    # {'maximum': 10000.0, 'minimum': 0.0}
 
-    type: Union[
-        Literal["LIST_ITEM"],
-        Literal["LIST_ORDERED"],
-        Literal["LIST_UNORDERED"],
-        Literal["STYLE_BOLD"],
-        Literal["STYLE_ITALIC"],
-        Literal["STYLE_LINEBREAK"],
-        Literal["STYLE_PARAGRAPH"],
-        Literal["STYLE_UNDERLINE"],
-    ]
-    # {'ref': '#/components/schemas/DecoratorType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    type: "DecoratorType"
     pass
 
 
@@ -300,11 +232,11 @@ class DecoratorType:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1}
 
     pass
 
@@ -312,8 +244,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'array'}
+    errors: list["Error"]
 
     pass
 
@@ -328,42 +259,35 @@ class GetContentDocumentResponse:
 class ImageComponent:
 
     alt_text: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1, 'maxLength': 100}
+    # {'minLength': 1, 'maxLength': 100}
     upload_destination_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1}
+    # {'minLength': 1}
 
-    image_crop_specification: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageCropSpecification', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    image_crop_specification: "ImageCropSpecification"
     pass
 
 
 @attrs.define
 class ImageCropSpecification:
 
-    offset: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageOffsets', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    size: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageDimensions', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    offset: "ImageOffsets"
+    size: "ImageDimensions"
     pass
 
 
 @attrs.define
 class ImageDimensions:
 
-    height: dict[str, Any]
-    # {'ref': '#/components/schemas/IntegerWithUnits', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    width: dict[str, Any]
-    # {'ref': '#/components/schemas/IntegerWithUnits', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    height: "IntegerWithUnits"
+    width: "IntegerWithUnits"
     pass
 
 
 @attrs.define
 class ImageOffsets:
 
-    x: dict[str, Any]
-    # {'ref': '#/components/schemas/IntegerWithUnits', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    y: dict[str, Any]
-    # {'ref': '#/components/schemas/IntegerWithUnits', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    x: "IntegerWithUnits"
+    y: "IntegerWithUnits"
     pass
 
 
@@ -371,9 +295,7 @@ class ImageOffsets:
 class IntegerWithUnits:
 
     units: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string'}
     value: int
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer'}
 
     pass
 
@@ -411,8 +333,8 @@ class PageToken:
 @attrs.define
 class ParagraphComponent:
 
-    text_list: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/TextComponent'), 'maxItems': 100, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'minItems': 1, 'type': 'array'}
+    text_list: list["TextComponent"]
+    # {'maxItems': 100, 'minItems': 1}
 
     pass
 
@@ -421,9 +343,9 @@ class ParagraphComponent:
 class PlainTextItem:
 
     position: int
-    # {'maximum': 100.0, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer', 'minimum': 1.0}
+    # {'maximum': 100.0, 'minimum': 1.0}
     value: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1, 'maxLength': 250}
+    # {'minLength': 1, 'maxLength': 250}
 
     pass
 
@@ -443,8 +365,7 @@ class PostContentDocumentApprovalSubmissionResponse:
 @attrs.define
 class PostContentDocumentAsinRelationsRequest:
 
-    asin_set: list[str]
-    # {'ref': '#/components/schemas/AsinSet', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    asin_set: "AsinSet"
     pass
 
 
@@ -457,8 +378,7 @@ class PostContentDocumentAsinRelationsResponse:
 @attrs.define
 class PostContentDocumentRequest:
 
-    content_document: dict[str, Any]
-    # {'ref': '#/components/schemas/ContentDocument', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    content_document: "ContentDocument"
     pass
 
 
@@ -477,18 +397,12 @@ class PostContentDocumentSuspendSubmissionResponse:
 @attrs.define
 class PublishRecord:
 
-    asin: str
-    # {'ref': '#/components/schemas/Asin', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_reference_key: str
-    # {'ref': '#/components/schemas/ContentReferenceKey', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_sub_type: str
-    # {'ref': '#/components/schemas/ContentSubType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    content_type: Union[Literal["EBC"], Literal["EMC"]]
-    # {'ref': '#/components/schemas/ContentType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    locale: str
-    # {'ref': '#/components/schemas/LanguageTag', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    marketplace_id: str
-    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    asin: "Asin"
+    content_reference_key: "ContentReferenceKey"
+    content_sub_type: "ContentSubType"
+    content_type: "ContentType"
+    locale: "LanguageTag"
+    marketplace_id: "MarketplaceId"
     pass
 
 
@@ -513,8 +427,7 @@ class SearchContentPublishRecordsResponse:
 @attrs.define
 class StandardCompanyLogoModule:
 
-    company_logo: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    company_logo: "ImageComponent"
     pass
 
 
@@ -522,28 +435,25 @@ class StandardCompanyLogoModule:
 class StandardComparisonProductBlock:
 
     highlight: bool
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'boolean'}
-    metrics: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/PlainTextItem'), 'maxItems': 10, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'minItems': 0, 'type': 'array'}
+    metrics: list["PlainTextItem"]
+    # {'maxItems': 10, 'minItems': 0}
     position: int
-    # {'maximum': 6.0, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer', 'minimum': 1.0}
+    # {'maximum': 6.0, 'minimum': 1.0}
     title: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1, 'maxLength': 80}
+    # {'minLength': 1, 'maxLength': 80}
 
-    asin: str
-    # {'ref': '#/components/schemas/Asin', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    image: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    asin: "Asin"
+    image: "ImageComponent"
     pass
 
 
 @attrs.define
 class StandardComparisonTableModule:
 
-    metric_row_labels: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/PlainTextItem'), 'maxItems': 10, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'minItems': 0, 'type': 'array'}
-    product_columns: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/StandardComparisonProductBlock'), 'maxItems': 6, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'minItems': 0, 'type': 'array'}
+    metric_row_labels: list["PlainTextItem"]
+    # {'maxItems': 10, 'minItems': 0}
+    product_columns: list["StandardComparisonProductBlock"]
+    # {'maxItems': 6, 'minItems': 0}
 
     pass
 
@@ -551,118 +461,89 @@ class StandardComparisonTableModule:
 @attrs.define
 class StandardFourImageTextModule:
 
-    block1: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block2: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block3: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block4: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block1: "StandardImageTextBlock"
+    block2: "StandardImageTextBlock"
+    block3: "StandardImageTextBlock"
+    block4: "StandardImageTextBlock"
+    headline: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardFourImageTextQuadrantModule:
 
-    block1: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block2: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block3: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block4: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block1: "StandardImageTextBlock"
+    block2: "StandardImageTextBlock"
+    block3: "StandardImageTextBlock"
+    block4: "StandardImageTextBlock"
     pass
 
 
 @attrs.define
 class StandardHeaderImageTextModule:
 
-    block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block: "StandardImageTextBlock"
+    headline: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardHeaderTextListBlock:
 
-    block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextListBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block: "StandardTextListBlock"
+    headline: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardImageCaptionBlock:
 
-    caption: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    image: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    caption: "TextComponent"
+    image: "ImageComponent"
     pass
 
 
 @attrs.define
 class StandardImageSidebarModule:
 
-    description_list_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextListBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    description_text_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    image_caption_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageCaptionBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    sidebar_image_text_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    sidebar_list_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextListBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    description_list_block: "StandardTextListBlock"
+    description_text_block: "StandardTextBlock"
+    headline: "TextComponent"
+    image_caption_block: "StandardImageCaptionBlock"
+    sidebar_image_text_block: "StandardImageTextBlock"
+    sidebar_list_block: "StandardTextListBlock"
     pass
 
 
 @attrs.define
 class StandardImageTextBlock:
 
-    body: dict[str, Any]
-    # {'ref': '#/components/schemas/ParagraphComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    image: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    body: "ParagraphComponent"
+    headline: "TextComponent"
+    image: "ImageComponent"
     pass
 
 
 @attrs.define
 class StandardImageTextCaptionBlock:
 
-    block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    caption: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block: "StandardImageTextBlock"
+    caption: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardImageTextOverlayModule:
 
-    block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    overlay_color_type: Union[Literal["DARK"], Literal["LIGHT"]]
-    # {'ref': '#/components/schemas/ColorType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block: "StandardImageTextBlock"
+    overlay_color_type: "ColorType"
     pass
 
 
 @attrs.define
 class StandardMultipleImageTextModule:
 
-    blocks: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/StandardImageTextCaptionBlock'), 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'array'}
+    blocks: list["StandardImageTextCaptionBlock"]
 
     pass
 
@@ -670,89 +551,69 @@ class StandardMultipleImageTextModule:
 @attrs.define
 class StandardProductDescriptionModule:
 
-    body: dict[str, Any]
-    # {'ref': '#/components/schemas/ParagraphComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    body: "ParagraphComponent"
     pass
 
 
 @attrs.define
 class StandardSingleImageHighlightsModule:
 
-    bulleted_list_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardHeaderTextListBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    image: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    text_block1: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    text_block2: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    text_block3: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    bulleted_list_block: "StandardHeaderTextListBlock"
+    headline: "TextComponent"
+    image: "ImageComponent"
+    text_block1: "StandardTextBlock"
+    text_block2: "StandardTextBlock"
+    text_block3: "StandardTextBlock"
     pass
 
 
 @attrs.define
 class StandardSingleImageSpecsDetailModule:
 
-    description_block1: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    description_block2: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    description_headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    image: dict[str, Any]
-    # {'ref': '#/components/schemas/ImageComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    specification_headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    specification_list_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardHeaderTextListBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    specification_text_block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    description_block1: "StandardTextBlock"
+    description_block2: "StandardTextBlock"
+    description_headline: "TextComponent"
+    headline: "TextComponent"
+    image: "ImageComponent"
+    specification_headline: "TextComponent"
+    specification_list_block: "StandardHeaderTextListBlock"
+    specification_text_block: "StandardTextBlock"
     pass
 
 
 @attrs.define
 class StandardSingleSideImageModule:
 
-    block: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    image_position_type: Union[Literal["LEFT"], Literal["RIGHT"]]
-    # {'ref': '#/components/schemas/PositionType', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block: "StandardImageTextBlock"
+    image_position_type: "PositionType"
     pass
 
 
 @attrs.define
 class StandardTechSpecsModule:
 
-    specification_list: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/StandardTextPairBlock'), 'maxItems': 16, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'minItems': 4, 'type': 'array'}
+    specification_list: list["StandardTextPairBlock"]
+    # {'maxItems': 16, 'minItems': 4}
     table_count: int
-    # {'maximum': 2.0, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer', 'minimum': 1.0}
+    # {'maximum': 2.0, 'minimum': 1.0}
 
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    headline: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardTextBlock:
 
-    body: dict[str, Any]
-    # {'ref': '#/components/schemas/ParagraphComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    body: "ParagraphComponent"
+    headline: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardTextListBlock:
 
-    text_list: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/TextItem'), 'maxItems': 8, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'minItems': 0, 'type': 'array'}
+    text_list: list["TextItem"]
+    # {'maxItems': 8, 'minItems': 0}
 
     pass
 
@@ -760,34 +621,26 @@ class StandardTextListBlock:
 @attrs.define
 class StandardTextModule:
 
-    body: dict[str, Any]
-    # {'ref': '#/components/schemas/ParagraphComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    body: "ParagraphComponent"
+    headline: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardTextPairBlock:
 
-    description: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    label: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    description: "TextComponent"
+    label: "TextComponent"
     pass
 
 
 @attrs.define
 class StandardThreeImageTextModule:
 
-    block1: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block2: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    block3: dict[str, Any]
-    # {'ref': '#/components/schemas/StandardImageTextBlock', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
-    headline: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    block1: "StandardImageTextBlock"
+    block2: "StandardImageTextBlock"
+    block3: "StandardImageTextBlock"
+    headline: "TextComponent"
     pass
 
 
@@ -795,10 +648,9 @@ class StandardThreeImageTextModule:
 class TextComponent:
 
     value: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'string', 'minLength': 1, 'maxLength': 10000}
+    # {'minLength': 1, 'maxLength': 10000}
 
-    decorator_set: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/DecoratorSet', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    decorator_set: "DecoratorSet"
     pass
 
 
@@ -806,10 +658,9 @@ class TextComponent:
 class TextItem:
 
     position: int
-    # {'maximum': 100.0, 'generator': <__mp_main__.Generator object at 0x000001FB33337310>, 'type': 'integer', 'minimum': 1.0}
+    # {'maximum': 100.0, 'minimum': 1.0}
 
-    text: dict[str, Any]
-    # {'ref': '#/components/schemas/TextComponent', 'generator': <__mp_main__.Generator object at 0x000001FB33337310>}
+    text: "TextComponent"
     pass
 
 
@@ -978,7 +829,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
-        asin_set: list[str],
+        asin_set: list["Asin"],
     ):
         """
         Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.

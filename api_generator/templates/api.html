@@ -16,11 +16,11 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class {{ schema.name }}:
     {% for property in schema.schema_properties %}
-    {{ property.variable_name }}: {{ property.type_hint }}
-    # {{ property.fields }}{% endfor %}
+    {{ property.variable_name }}: {{ property.type_hint }}{% if property.fields %}
+    # {{ property.fields }}{% endif %}{% endfor %}
     {% for property in schema.reference_properties %}
-    {{ property.variable_name }}: {{ property.type_hint }}
-    # {{ property.fields }}{% endfor %}
+    {{ property.variable_name }}: {{ property.type_hint }}{% if property.fields %}
+    # {{ property.fields }}{% endif %}{% endfor %}
     pass
 {% endfor %}
 

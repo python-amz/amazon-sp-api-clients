@@ -16,12 +16,9 @@ from typing import Any, List, Dict, Union, Literal
 class ASINInboundGuidance:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    guidance_reason_list: list[Union[Literal["SlowMovingASIN"], Literal["NoApplicableGuidance"]]]
-    # {'ref': '#/components/schemas/GuidanceReasonList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    inbound_guidance: Union[Literal["InboundNotRecommended"], Literal["InboundOK"]]
-    # {'ref': '#/components/schemas/InboundGuidance', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    guidance_reason_list: "GuidanceReasonList"
+    inbound_guidance: "InboundGuidance"
     pass
 
 
@@ -35,27 +32,10 @@ class ASINInboundGuidanceList:
 class ASINPrepInstructions:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    barcode_instruction: Union[
-        Literal["RequiresFNSKULabel"], Literal["CanUseOriginalBarcode"], Literal["MustProvideSellerSKU"]
-    ]
-    # {'ref': '#/components/schemas/BarcodeInstruction', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    prep_guidance: Union[
-        Literal["ConsultHelpDocuments"], Literal["NoAdditionalPrepRequired"], Literal["SeePrepInstructionsList"]
-    ]
-    # {'ref': '#/components/schemas/PrepGuidance', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    prep_instruction_list: list[
-        Union[
-            Literal["Polybagging"],
-            Literal["BubbleWrapping"],
-            Literal["Taping"],
-            Literal["BlackShrinkWrapping"],
-            Literal["Labeling"],
-            Literal["HangGarment"],
-        ]
-    ]
-    # {'ref': '#/components/schemas/PrepInstructionList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    barcode_instruction: "BarcodeInstruction"
+    prep_guidance: "PrepGuidance"
+    prep_instruction_list: "PrepInstructionList"
     pass
 
 
@@ -69,21 +49,19 @@ class ASINPrepInstructionsList:
 class Address:
 
     address_line1: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 180}
+    # {'maxLength': 180}
     address_line2: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 60}
+    # {'maxLength': 60}
     city: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 30}
+    # {'maxLength': 30}
     country_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     district_or_county: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 25}
+    # {'maxLength': 25}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 50}
+    # {'maxLength': 50}
     postal_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 30}
+    # {'maxLength': 30}
     state_or_province_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
     pass
 
@@ -91,17 +69,8 @@ class Address:
 @attrs.define
 class AmazonPrepFeesDetails:
 
-    fee_per_unit: dict[str, Any]
-    # {'ref': '#/components/schemas/Amount', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    prep_instruction: Union[
-        Literal["Polybagging"],
-        Literal["BubbleWrapping"],
-        Literal["Taping"],
-        Literal["BlackShrinkWrapping"],
-        Literal["Labeling"],
-        Literal["HangGarment"],
-    ]
-    # {'ref': '#/components/schemas/PrepInstruction', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    fee_per_unit: "Amount"
+    prep_instruction: "PrepInstruction"
     pass
 
 
@@ -114,10 +83,8 @@ class AmazonPrepFeesDetailsList:
 @attrs.define
 class Amount:
 
-    currency_code: Union[Literal["USD"], Literal["GBP"]]
-    # {'ref': '#/components/schemas/CurrencyCode', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    value: Union[float, int]
-    # {'ref': '#/components/schemas/BigDecimalType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    currency_code: "CurrencyCode"
+    value: "BigDecimalType"
     pass
 
 
@@ -137,7 +104,6 @@ class BigDecimalType:
 class BillOfLadingDownloadURL:
 
     download_url: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
     pass
 
@@ -145,12 +111,9 @@ class BillOfLadingDownloadURL:
 @attrs.define
 class BoxContentsFeeDetails:
 
-    fee_per_unit: dict[str, Any]
-    # {'ref': '#/components/schemas/Amount', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    total_fee: dict[str, Any]
-    # {'ref': '#/components/schemas/Amount', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    total_units: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    fee_per_unit: "Amount"
+    total_fee: "Amount"
+    total_units: "Quantity"
     pass
 
 
@@ -163,8 +126,7 @@ class BoxContentsSource:
 @attrs.define
 class CommonTransportResult:
 
-    transport_result: dict[str, Any]
-    # {'ref': '#/components/schemas/TransportResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    transport_result: "TransportResult"
     pass
 
 
@@ -177,30 +139,24 @@ class Condition:
 @attrs.define
 class ConfirmPreorderResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/ConfirmPreorderResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "ConfirmPreorderResult"
     pass
 
 
 @attrs.define
 class ConfirmPreorderResult:
 
-    confirmed_fulfillable_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    confirmed_need_by_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    confirmed_fulfillable_date: "DateStringType"
+    confirmed_need_by_date: "DateStringType"
     pass
 
 
 @attrs.define
 class ConfirmTransportResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/CommonTransportResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "CommonTransportResult"
     pass
 
 
@@ -208,13 +164,13 @@ class ConfirmTransportResponse:
 class Contact:
 
     email: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 50}
+    # {'maxLength': 50}
     fax: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 20}
+    # {'maxLength': 20}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 50}
+    # {'maxLength': 50}
     phone: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string', 'maxLength': 20}
+    # {'maxLength': 20}
 
     pass
 
@@ -223,36 +179,26 @@ class Contact:
 class CreateInboundShipmentPlanRequest:
 
     ship_to_country_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     ship_to_country_subdivision_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    inbound_shipment_plan_request_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InboundShipmentPlanRequestItemList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    label_prep_preference: Union[
-        Literal["SELLER_LABEL"], Literal["AMAZON_LABEL_ONLY"], Literal["AMAZON_LABEL_PREFERRED"]
-    ]
-    # {'ref': '#/components/schemas/LabelPrepPreference', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    ship_from_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    inbound_shipment_plan_request_items: "InboundShipmentPlanRequestItemList"
+    label_prep_preference: "LabelPrepPreference"
+    ship_from_address: "Address"
     pass
 
 
 @attrs.define
 class CreateInboundShipmentPlanResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/CreateInboundShipmentPlanResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "CreateInboundShipmentPlanResult"
     pass
 
 
 @attrs.define
 class CreateInboundShipmentPlanResult:
 
-    inbound_shipment_plans: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InboundShipmentPlanList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    inbound_shipment_plans: "InboundShipmentPlanList"
     pass
 
 
@@ -271,14 +217,10 @@ class DateStringType:
 @attrs.define
 class Dimensions:
 
-    height: Union[float, int]
-    # {'ref': '#/components/schemas/BigDecimalType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    length: Union[float, int]
-    # {'ref': '#/components/schemas/BigDecimalType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    unit: Union[Literal["inches"], Literal["centimeters"]]
-    # {'ref': '#/components/schemas/UnitOfMeasurement', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    width: Union[float, int]
-    # {'ref': '#/components/schemas/BigDecimalType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    height: "BigDecimalType"
+    length: "BigDecimalType"
+    unit: "UnitOfMeasurement"
+    width: "BigDecimalType"
     pass
 
 
@@ -286,11 +228,8 @@ class Dimensions:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
     pass
 
@@ -310,64 +249,50 @@ class ErrorReason:
 @attrs.define
 class EstimateTransportResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/CommonTransportResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "CommonTransportResult"
     pass
 
 
 @attrs.define
 class GetBillOfLadingResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/BillOfLadingDownloadURL', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "BillOfLadingDownloadURL"
     pass
 
 
 @attrs.define
 class GetInboundGuidanceResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetInboundGuidanceResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "GetInboundGuidanceResult"
     pass
 
 
 @attrs.define
 class GetInboundGuidanceResult:
 
-    asininbound_guidance_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ASINInboundGuidanceList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    invalid_asinlist: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InvalidASINList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    invalid_skulist: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InvalidSKUList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    skuinbound_guidance_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/SKUInboundGuidanceList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    asininbound_guidance_list: "ASINInboundGuidanceList"
+    invalid_asinlist: "InvalidASINList"
+    invalid_skulist: "InvalidSKUList"
+    skuinbound_guidance_list: "SKUInboundGuidanceList"
     pass
 
 
 @attrs.define
 class GetLabelsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelDownloadURL', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "LabelDownloadURL"
     pass
 
 
 @attrs.define
 class GetPreorderInfoResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetPreorderInfoResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "GetPreorderInfoResult"
     pass
 
 
@@ -375,48 +300,36 @@ class GetPreorderInfoResponse:
 class GetPreorderInfoResult:
 
     shipment_confirmed_for_preorder: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
     shipment_contains_preorderable_items: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
 
-    confirmed_fulfillable_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    need_by_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    confirmed_fulfillable_date: "DateStringType"
+    need_by_date: "DateStringType"
     pass
 
 
 @attrs.define
 class GetPrepInstructionsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetPrepInstructionsResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "GetPrepInstructionsResult"
     pass
 
 
 @attrs.define
 class GetPrepInstructionsResult:
 
-    asinprep_instructions_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ASINPrepInstructionsList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    invalid_asinlist: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InvalidASINList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    invalid_skulist: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InvalidSKUList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    skuprep_instructions_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/SKUPrepInstructionsList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    asinprep_instructions_list: "ASINPrepInstructionsList"
+    invalid_asinlist: "InvalidASINList"
+    invalid_skulist: "InvalidSKUList"
+    skuprep_instructions_list: "SKUPrepInstructionsList"
     pass
 
 
 @attrs.define
 class GetShipmentItemsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetShipmentItemsResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "GetShipmentItemsResult"
     pass
 
 
@@ -424,20 +337,16 @@ class GetShipmentItemsResponse:
 class GetShipmentItemsResult:
 
     next_token: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    item_data: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InboundShipmentItemList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    item_data: "InboundShipmentItemList"
     pass
 
 
 @attrs.define
 class GetShipmentsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetShipmentsResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "GetShipmentsResult"
     pass
 
 
@@ -445,28 +354,23 @@ class GetShipmentsResponse:
 class GetShipmentsResult:
 
     next_token: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    shipment_data: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InboundShipmentList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    shipment_data: "InboundShipmentList"
     pass
 
 
 @attrs.define
 class GetTransportDetailsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetTransportDetailsResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "GetTransportDetailsResult"
     pass
 
 
 @attrs.define
 class GetTransportDetailsResult:
 
-    transport_content: dict[str, Any]
-    # {'ref': '#/components/schemas/TransportContent', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    transport_content: "TransportContent"
     pass
 
 
@@ -492,33 +396,13 @@ class InboundGuidance:
 class InboundShipmentHeader:
 
     are_cases_required: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
     destination_fulfillment_center_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     shipment_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    intended_box_contents_source: Union[Literal["NONE"], Literal["FEED"], Literal["2D_BARCODE"]]
-    # {'ref': '#/components/schemas/IntendedBoxContentsSource', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    label_prep_preference: Union[
-        Literal["SELLER_LABEL"], Literal["AMAZON_LABEL_ONLY"], Literal["AMAZON_LABEL_PREFERRED"]
-    ]
-    # {'ref': '#/components/schemas/LabelPrepPreference', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    ship_from_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    shipment_status: Union[
-        Literal["WORKING"],
-        Literal["SHIPPED"],
-        Literal["RECEIVING"],
-        Literal["CANCELLED"],
-        Literal["DELETED"],
-        Literal["CLOSED"],
-        Literal["ERROR"],
-        Literal["IN_TRANSIT"],
-        Literal["DELIVERED"],
-        Literal["CHECKED_IN"],
-    ]
-    # {'ref': '#/components/schemas/ShipmentStatus', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    intended_box_contents_source: "IntendedBoxContentsSource"
+    label_prep_preference: "LabelPrepPreference"
+    ship_from_address: "Address"
+    shipment_status: "ShipmentStatus"
     pass
 
 
@@ -526,37 +410,16 @@ class InboundShipmentHeader:
 class InboundShipmentInfo:
 
     are_cases_required: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
     destination_fulfillment_center_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     shipment_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    box_contents_source: Union[Literal["NONE"], Literal["FEED"], Literal["2D_BARCODE"], Literal["INTERACTIVE"]]
-    # {'ref': '#/components/schemas/BoxContentsSource', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    confirmed_need_by_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    estimated_box_contents_fee: dict[str, Any]
-    # {'ref': '#/components/schemas/BoxContentsFeeDetails', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    label_prep_type: Union[Literal["NO_LABEL"], Literal["SELLER_LABEL"], Literal["AMAZON_LABEL"]]
-    # {'ref': '#/components/schemas/LabelPrepType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    ship_from_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    shipment_status: Union[
-        Literal["WORKING"],
-        Literal["SHIPPED"],
-        Literal["RECEIVING"],
-        Literal["CANCELLED"],
-        Literal["DELETED"],
-        Literal["CLOSED"],
-        Literal["ERROR"],
-        Literal["IN_TRANSIT"],
-        Literal["DELIVERED"],
-        Literal["CHECKED_IN"],
-    ]
-    # {'ref': '#/components/schemas/ShipmentStatus', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    box_contents_source: "BoxContentsSource"
+    confirmed_need_by_date: "DateStringType"
+    estimated_box_contents_fee: "BoxContentsFeeDetails"
+    label_prep_type: "LabelPrepType"
+    ship_from_address: "Address"
+    shipment_status: "ShipmentStatus"
     pass
 
 
@@ -564,22 +427,14 @@ class InboundShipmentInfo:
 class InboundShipmentItem:
 
     fulfillment_network_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    prep_details_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/PrepDetailsList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    quantity_in_case: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    quantity_received: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    quantity_shipped: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    release_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    prep_details_list: "PrepDetailsList"
+    quantity_in_case: "Quantity"
+    quantity_received: "Quantity"
+    quantity_shipped: "Quantity"
+    release_date: "DateStringType"
     pass
 
 
@@ -599,18 +454,12 @@ class InboundShipmentList:
 class InboundShipmentPlan:
 
     destination_fulfillment_center_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    estimated_box_contents_fee: dict[str, Any]
-    # {'ref': '#/components/schemas/BoxContentsFeeDetails', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InboundShipmentPlanItemList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    label_prep_type: Union[Literal["NO_LABEL"], Literal["SELLER_LABEL"], Literal["AMAZON_LABEL"]]
-    # {'ref': '#/components/schemas/LabelPrepType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    ship_to_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    estimated_box_contents_fee: "BoxContentsFeeDetails"
+    items: "InboundShipmentPlanItemList"
+    label_prep_type: "LabelPrepType"
+    ship_to_address: "Address"
     pass
 
 
@@ -618,14 +467,10 @@ class InboundShipmentPlan:
 class InboundShipmentPlanItem:
 
     fulfillment_network_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    prep_details_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/PrepDetailsList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    prep_details_list: "PrepDetailsList"
+    quantity: "Quantity"
     pass
 
 
@@ -645,37 +490,12 @@ class InboundShipmentPlanList:
 class InboundShipmentPlanRequestItem:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    condition: Union[
-        Literal["NewItem"],
-        Literal["NewWithWarranty"],
-        Literal["NewOEM"],
-        Literal["NewOpenBox"],
-        Literal["UsedLikeNew"],
-        Literal["UsedVeryGood"],
-        Literal["UsedGood"],
-        Literal["UsedAcceptable"],
-        Literal["UsedPoor"],
-        Literal["UsedRefurbished"],
-        Literal["CollectibleLikeNew"],
-        Literal["CollectibleVeryGood"],
-        Literal["CollectibleGood"],
-        Literal["CollectibleAcceptable"],
-        Literal["CollectiblePoor"],
-        Literal["RefurbishedWithWarranty"],
-        Literal["Refurbished"],
-        Literal["Club"],
-    ]
-    # {'ref': '#/components/schemas/Condition', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    prep_details_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/PrepDetailsList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    quantity_in_case: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    condition: "Condition"
+    prep_details_list: "PrepDetailsList"
+    quantity: "Quantity"
+    quantity_in_case: "Quantity"
     pass
 
 
@@ -689,22 +509,17 @@ class InboundShipmentPlanRequestItemList:
 class InboundShipmentRequest:
 
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    inbound_shipment_header: dict[str, Any]
-    # {'ref': '#/components/schemas/InboundShipmentHeader', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    inbound_shipment_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InboundShipmentItemList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    inbound_shipment_header: "InboundShipmentHeader"
+    inbound_shipment_items: "InboundShipmentItemList"
     pass
 
 
 @attrs.define
 class InboundShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/InboundShipmentResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "InboundShipmentResult"
     pass
 
 
@@ -712,7 +527,6 @@ class InboundShipmentResponse:
 class InboundShipmentResult:
 
     shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
     pass
 
@@ -727,10 +541,8 @@ class IntendedBoxContentsSource:
 class InvalidASIN:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    error_reason: Union[Literal["DoesNotExist"], Literal["InvalidASIN"]]
-    # {'ref': '#/components/schemas/ErrorReason', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    error_reason: "ErrorReason"
     pass
 
 
@@ -744,10 +556,8 @@ class InvalidASINList:
 class InvalidSKU:
 
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    error_reason: Union[Literal["DoesNotExist"], Literal["InvalidASIN"]]
-    # {'ref': '#/components/schemas/ErrorReason', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    error_reason: "ErrorReason"
     pass
 
 
@@ -761,7 +571,6 @@ class InvalidSKUList:
 class LabelDownloadURL:
 
     download_url: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
     pass
 
@@ -782,10 +591,8 @@ class LabelPrepType:
 class NonPartneredLtlDataInput:
 
     carrier_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    pro_number: str
-    # {'ref': '#/components/schemas/ProNumber', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    pro_number: "ProNumber"
     pass
 
 
@@ -793,10 +600,8 @@ class NonPartneredLtlDataInput:
 class NonPartneredLtlDataOutput:
 
     carrier_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    pro_number: str
-    # {'ref': '#/components/schemas/ProNumber', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    pro_number: "ProNumber"
     pass
 
 
@@ -804,26 +609,22 @@ class NonPartneredLtlDataOutput:
 class NonPartneredSmallParcelDataInput:
 
     carrier_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    package_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/NonPartneredSmallParcelPackageInputList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    package_list: "NonPartneredSmallParcelPackageInputList"
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelDataOutput:
 
-    package_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/NonPartneredSmallParcelPackageOutputList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    package_list: "NonPartneredSmallParcelPackageOutputList"
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelPackageInput:
 
-    tracking_id: str
-    # {'ref': '#/components/schemas/TrackingId', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    tracking_id: "TrackingId"
     pass
 
 
@@ -837,20 +638,9 @@ class NonPartneredSmallParcelPackageInputList:
 class NonPartneredSmallParcelPackageOutput:
 
     carrier_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    package_status: Union[
-        Literal["SHIPPED"],
-        Literal["IN_TRANSIT"],
-        Literal["DELIVERED"],
-        Literal["CHECKED_IN"],
-        Literal["RECEIVING"],
-        Literal["CLOSED"],
-        Literal["DELETED"],
-    ]
-    # {'ref': '#/components/schemas/PackageStatus', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    tracking_id: str
-    # {'ref': '#/components/schemas/TrackingId', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    package_status: "PackageStatus"
+    tracking_id: "TrackingId"
     pass
 
 
@@ -870,12 +660,9 @@ class PackageStatus:
 class Pallet:
 
     is_stacked: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
 
-    dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/Dimensions', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    dimensions: "Dimensions"
+    weight: "Weight"
     pass
 
 
@@ -888,51 +675,22 @@ class PalletList:
 @attrs.define
 class PartneredEstimate:
 
-    amount: dict[str, Any]
-    # {'ref': '#/components/schemas/Amount', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    confirm_deadline: str
-    # {'ref': '#/components/schemas/TimeStampStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    void_deadline: str
-    # {'ref': '#/components/schemas/TimeStampStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    amount: "Amount"
+    confirm_deadline: "TimeStampStringType"
+    void_deadline: "TimeStampStringType"
     pass
 
 
 @attrs.define
 class PartneredLtlDataInput:
 
-    box_count: int
-    # {'ref': '#/components/schemas/UnsignedIntType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    contact: dict[str, Any]
-    # {'ref': '#/components/schemas/Contact', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    freight_ready_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    pallet_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/PalletList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    seller_declared_value: dict[str, Any]
-    # {'ref': '#/components/schemas/Amount', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    seller_freight_class: Union[
-        Literal["50"],
-        Literal["55"],
-        Literal["60"],
-        Literal["65"],
-        Literal["70"],
-        Literal["77.5"],
-        Literal["85"],
-        Literal["92.5"],
-        Literal["100"],
-        Literal["110"],
-        Literal["125"],
-        Literal["150"],
-        Literal["175"],
-        Literal["200"],
-        Literal["250"],
-        Literal["300"],
-        Literal["400"],
-        Literal["500"],
-    ]
-    # {'ref': '#/components/schemas/SellerFreightClass', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    total_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    box_count: "UnsignedIntType"
+    contact: "Contact"
+    freight_ready_date: "DateStringType"
+    pallet_list: "PalletList"
+    seller_declared_value: "Amount"
+    seller_freight_class: "SellerFreightClass"
+    total_weight: "Weight"
     pass
 
 
@@ -940,74 +698,21 @@ class PartneredLtlDataInput:
 class PartneredLtlDataOutput:
 
     amazon_reference_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     carrier_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     is_bill_of_lading_available: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
 
-    amazon_calculated_value: dict[str, Any]
-    # {'ref': '#/components/schemas/Amount', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    box_count: int
-    # {'ref': '#/components/schemas/UnsignedIntType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    contact: dict[str, Any]
-    # {'ref': '#/components/schemas/Contact', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    freight_ready_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    pallet_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/PalletList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    partnered_estimate: dict[str, Any]
-    # {'ref': '#/components/schemas/PartneredEstimate', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    preview_delivery_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    preview_freight_class: Union[
-        Literal["50"],
-        Literal["55"],
-        Literal["60"],
-        Literal["65"],
-        Literal["70"],
-        Literal["77.5"],
-        Literal["85"],
-        Literal["92.5"],
-        Literal["100"],
-        Literal["110"],
-        Literal["125"],
-        Literal["150"],
-        Literal["175"],
-        Literal["200"],
-        Literal["250"],
-        Literal["300"],
-        Literal["400"],
-        Literal["500"],
-    ]
-    # {'ref': '#/components/schemas/SellerFreightClass', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    preview_pickup_date: str
-    # {'ref': '#/components/schemas/DateStringType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    seller_declared_value: dict[str, Any]
-    # {'ref': '#/components/schemas/Amount', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    seller_freight_class: Union[
-        Literal["50"],
-        Literal["55"],
-        Literal["60"],
-        Literal["65"],
-        Literal["70"],
-        Literal["77.5"],
-        Literal["85"],
-        Literal["92.5"],
-        Literal["100"],
-        Literal["110"],
-        Literal["125"],
-        Literal["150"],
-        Literal["175"],
-        Literal["200"],
-        Literal["250"],
-        Literal["300"],
-        Literal["400"],
-        Literal["500"],
-    ]
-    # {'ref': '#/components/schemas/SellerFreightClass', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    total_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    amazon_calculated_value: "Amount"
+    box_count: "UnsignedIntType"
+    contact: "Contact"
+    freight_ready_date: "DateStringType"
+    pallet_list: "PalletList"
+    partnered_estimate: "PartneredEstimate"
+    preview_delivery_date: "DateStringType"
+    preview_freight_class: "SellerFreightClass"
+    preview_pickup_date: "DateStringType"
+    seller_declared_value: "Amount"
+    seller_freight_class: "SellerFreightClass"
+    total_weight: "Weight"
     pass
 
 
@@ -1015,30 +720,24 @@ class PartneredLtlDataOutput:
 class PartneredSmallParcelDataInput:
 
     carrier_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    package_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/PartneredSmallParcelPackageInputList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    package_list: "PartneredSmallParcelPackageInputList"
     pass
 
 
 @attrs.define
 class PartneredSmallParcelDataOutput:
 
-    package_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/PartneredSmallParcelPackageOutputList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    partnered_estimate: dict[str, Any]
-    # {'ref': '#/components/schemas/PartneredEstimate', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    package_list: "PartneredSmallParcelPackageOutputList"
+    partnered_estimate: "PartneredEstimate"
     pass
 
 
 @attrs.define
 class PartneredSmallParcelPackageInput:
 
-    dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/Dimensions', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    dimensions: "Dimensions"
+    weight: "Weight"
     pass
 
 
@@ -1052,24 +751,11 @@ class PartneredSmallParcelPackageInputList:
 class PartneredSmallParcelPackageOutput:
 
     carrier_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/Dimensions', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    package_status: Union[
-        Literal["SHIPPED"],
-        Literal["IN_TRANSIT"],
-        Literal["DELIVERED"],
-        Literal["CHECKED_IN"],
-        Literal["RECEIVING"],
-        Literal["CLOSED"],
-        Literal["DELETED"],
-    ]
-    # {'ref': '#/components/schemas/PackageStatus', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    tracking_id: str
-    # {'ref': '#/components/schemas/TrackingId', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    dimensions: "Dimensions"
+    package_status: "PackageStatus"
+    tracking_id: "TrackingId"
+    weight: "Weight"
     pass
 
 
@@ -1082,17 +768,8 @@ class PartneredSmallParcelPackageOutputList:
 @attrs.define
 class PrepDetails:
 
-    prep_instruction: Union[
-        Literal["Polybagging"],
-        Literal["BubbleWrapping"],
-        Literal["Taping"],
-        Literal["BlackShrinkWrapping"],
-        Literal["Labeling"],
-        Literal["HangGarment"],
-    ]
-    # {'ref': '#/components/schemas/PrepInstruction', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    prep_owner: Union[Literal["AMAZON"], Literal["SELLER"]]
-    # {'ref': '#/components/schemas/PrepOwner', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    prep_instruction: "PrepInstruction"
+    prep_owner: "PrepOwner"
     pass
 
 
@@ -1136,22 +813,17 @@ class ProNumber:
 class PutTransportDetailsRequest:
 
     is_partnered: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
 
-    shipment_type: Union[Literal["SP"], Literal["LTL"]]
-    # {'ref': '#/components/schemas/ShipmentType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    transport_details: dict[str, Any]
-    # {'ref': '#/components/schemas/TransportDetailInput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    shipment_type: "ShipmentType"
+    transport_details: "TransportDetailInput"
     pass
 
 
 @attrs.define
 class PutTransportDetailsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/CommonTransportResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "CommonTransportResult"
     pass
 
 
@@ -1165,14 +837,10 @@ class Quantity:
 class SKUInboundGuidance:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    guidance_reason_list: list[Union[Literal["SlowMovingASIN"], Literal["NoApplicableGuidance"]]]
-    # {'ref': '#/components/schemas/GuidanceReasonList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    inbound_guidance: Union[Literal["InboundNotRecommended"], Literal["InboundOK"]]
-    # {'ref': '#/components/schemas/InboundGuidance', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    guidance_reason_list: "GuidanceReasonList"
+    inbound_guidance: "InboundGuidance"
     pass
 
 
@@ -1186,31 +854,12 @@ class SKUInboundGuidanceList:
 class SKUPrepInstructions:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    amazon_prep_fees_details_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AmazonPrepFeesDetailsList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    barcode_instruction: Union[
-        Literal["RequiresFNSKULabel"], Literal["CanUseOriginalBarcode"], Literal["MustProvideSellerSKU"]
-    ]
-    # {'ref': '#/components/schemas/BarcodeInstruction', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    prep_guidance: Union[
-        Literal["ConsultHelpDocuments"], Literal["NoAdditionalPrepRequired"], Literal["SeePrepInstructionsList"]
-    ]
-    # {'ref': '#/components/schemas/PrepGuidance', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    prep_instruction_list: list[
-        Union[
-            Literal["Polybagging"],
-            Literal["BubbleWrapping"],
-            Literal["Taping"],
-            Literal["BlackShrinkWrapping"],
-            Literal["Labeling"],
-            Literal["HangGarment"],
-        ]
-    ]
-    # {'ref': '#/components/schemas/PrepInstructionList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    amazon_prep_fees_details_list: "AmazonPrepFeesDetailsList"
+    barcode_instruction: "BarcodeInstruction"
+    prep_guidance: "PrepGuidance"
+    prep_instruction_list: "PrepInstructionList"
     pass
 
 
@@ -1253,40 +902,29 @@ class TrackingId:
 @attrs.define
 class TransportContent:
 
-    transport_details: dict[str, Any]
-    # {'ref': '#/components/schemas/TransportDetailOutput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    transport_header: dict[str, Any]
-    # {'ref': '#/components/schemas/TransportHeader', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    transport_result: dict[str, Any]
-    # {'ref': '#/components/schemas/TransportResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    transport_details: "TransportDetailOutput"
+    transport_header: "TransportHeader"
+    transport_result: "TransportResult"
     pass
 
 
 @attrs.define
 class TransportDetailInput:
 
-    non_partnered_ltl_data: dict[str, Any]
-    # {'ref': '#/components/schemas/NonPartneredLtlDataInput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    non_partnered_small_parcel_data: dict[str, Any]
-    # {'ref': '#/components/schemas/NonPartneredSmallParcelDataInput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    partnered_ltl_data: dict[str, Any]
-    # {'ref': '#/components/schemas/PartneredLtlDataInput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    partnered_small_parcel_data: dict[str, Any]
-    # {'ref': '#/components/schemas/PartneredSmallParcelDataInput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    non_partnered_ltl_data: "NonPartneredLtlDataInput"
+    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataInput"
+    partnered_ltl_data: "PartneredLtlDataInput"
+    partnered_small_parcel_data: "PartneredSmallParcelDataInput"
     pass
 
 
 @attrs.define
 class TransportDetailOutput:
 
-    non_partnered_ltl_data: dict[str, Any]
-    # {'ref': '#/components/schemas/NonPartneredLtlDataOutput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    non_partnered_small_parcel_data: dict[str, Any]
-    # {'ref': '#/components/schemas/NonPartneredSmallParcelDataOutput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    partnered_ltl_data: dict[str, Any]
-    # {'ref': '#/components/schemas/PartneredLtlDataOutput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    partnered_small_parcel_data: dict[str, Any]
-    # {'ref': '#/components/schemas/PartneredSmallParcelDataOutput', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    non_partnered_ltl_data: "NonPartneredLtlDataOutput"
+    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataOutput"
+    partnered_ltl_data: "PartneredLtlDataOutput"
+    partnered_small_parcel_data: "PartneredSmallParcelDataOutput"
     pass
 
 
@@ -1294,14 +932,10 @@ class TransportDetailOutput:
 class TransportHeader:
 
     is_partnered: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'boolean'}
     seller_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    shipment_type: Union[Literal["SP"], Literal["LTL"]]
-    # {'ref': '#/components/schemas/ShipmentType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    shipment_type: "ShipmentType"
     pass
 
 
@@ -1309,24 +943,9 @@ class TransportHeader:
 class TransportResult:
 
     error_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
     error_description: str
-    # {'generator': <__mp_main__.Generator object at 0x000002409D977700>, 'type': 'string'}
 
-    transport_status: Union[
-        Literal["WORKING"],
-        Literal["ESTIMATING"],
-        Literal["ESTIMATED"],
-        Literal["ERROR_ON_ESTIMATING"],
-        Literal["CONFIRMING"],
-        Literal["CONFIRMED"],
-        Literal["ERROR_ON_CONFIRMING"],
-        Literal["VOIDING"],
-        Literal["VOIDED"],
-        Literal["ERROR_IN_VOIDING"],
-        Literal["ERROR"],
-    ]
-    # {'ref': '#/components/schemas/TransportStatus', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    transport_status: "TransportStatus"
     pass
 
 
@@ -1357,20 +976,16 @@ class UnsignedIntType:
 @attrs.define
 class VoidTransportResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/CommonTransportResult', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    errors: "ErrorList"
+    payload: "CommonTransportResult"
     pass
 
 
 @attrs.define
 class Weight:
 
-    unit: Union[Literal["pounds"], Literal["kilograms"]]
-    # {'ref': '#/components/schemas/UnitOfWeight', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
-    value: Union[float, int]
-    # {'ref': '#/components/schemas/BigDecimalType', 'generator': <__mp_main__.Generator object at 0x000002409D977700>}
+    unit: "UnitOfWeight"
+    value: "BigDecimalType"
     pass
 
 
@@ -1445,7 +1060,7 @@ class FulfillmentInboundV0Client(BaseClient):
         self,
         shipment_id: str,
         inbound_shipment_header: dict[str, Any],
-        inbound_shipment_items: list[dict[str, Any]],
+        inbound_shipment_items: list["InboundShipmentItem"],
         marketplace_id: str,
     ):
         """
@@ -1951,7 +1566,7 @@ class FulfillmentInboundV0Client(BaseClient):
         self,
         shipment_id: str,
         inbound_shipment_header: dict[str, Any],
-        inbound_shipment_items: list[dict[str, Any]],
+        inbound_shipment_items: list["InboundShipmentItem"],
         marketplace_id: str,
     ):
         """

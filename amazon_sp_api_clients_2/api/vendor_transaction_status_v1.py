@@ -16,11 +16,8 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>, 'type': 'string'}
 
     pass
 
@@ -34,10 +31,8 @@ class ErrorList:
 @attrs.define
 class GetTransactionResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/TransactionStatus', 'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>}
+    errors: "ErrorList"
+    payload: "TransactionStatus"
     pass
 
 
@@ -45,20 +40,16 @@ class GetTransactionResponse:
 class Transaction:
 
     status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]]
-    # {'enum': ['Failure', 'Processing', 'Success'], 'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>, 'type': 'string'}
     transaction_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>, 'type': 'string'}
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class TransactionStatus:
 
-    transaction_status: dict[str, Any]
-    # {'ref': '#/components/schemas/Transaction', 'generator': <__mp_main__.Generator object at 0x000001FB33390AF0>}
+    transaction_status: "Transaction"
     pass
 
 

@@ -16,11 +16,8 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
 
     pass
 
@@ -34,10 +31,8 @@ class ErrorList:
 @attrs.define
 class GetMarketplaceParticipationsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000023E8F207880>}
-    payload: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/MarketplaceParticipationList', 'generator': <__mp_main__.Generator object at 0x0000023E8F207880>}
+    errors: "ErrorList"
+    payload: "MarketplaceParticipationList"
     pass
 
 
@@ -45,17 +40,12 @@ class GetMarketplaceParticipationsResponse:
 class Marketplace:
 
     country_code: str
-    # {'pattern': '^([A-Z]{2})$', 'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
+    # {'pattern': '^([A-Z]{2})$'}
     default_currency_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
     default_language_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
     domain_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
     id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'string'}
 
     pass
 
@@ -63,10 +53,8 @@ class Marketplace:
 @attrs.define
 class MarketplaceParticipation:
 
-    marketplace: dict[str, Any]
-    # {'ref': '#/components/schemas/Marketplace', 'generator': <__mp_main__.Generator object at 0x0000023E8F207880>}
-    participation: dict[str, Any]
-    # {'ref': '#/components/schemas/Participation', 'generator': <__mp_main__.Generator object at 0x0000023E8F207880>}
+    marketplace: "Marketplace"
+    participation: "Participation"
     pass
 
 
@@ -80,9 +68,7 @@ class MarketplaceParticipationList:
 class Participation:
 
     has_suspended_listings: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'boolean'}
     is_participating: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207880>, 'type': 'boolean'}
 
     pass
 

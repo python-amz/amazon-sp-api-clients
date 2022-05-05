@@ -16,10 +16,8 @@ from typing import Any, List, Dict, Union, Literal
 class AdditionalInputs:
 
     additional_input_field_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    seller_input_definition: dict[str, Any]
-    # {'ref': '#/components/schemas/SellerInputDefinition', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    seller_input_definition: "SellerInputDefinition"
     pass
 
 
@@ -33,24 +31,15 @@ class AdditionalInputsList:
 class AdditionalSellerInput:
 
     data_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     value_as_boolean: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     value_as_integer: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     value_as_string: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    value_as_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    value_as_currency: dict[str, Any]
-    # {'ref': '#/components/schemas/CurrencyAmount', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    value_as_dimension: dict[str, Any]
-    # {'ref': '#/components/schemas/Length', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    value_as_timestamp: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    value_as_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    value_as_address: "Address"
+    value_as_currency: "CurrencyAmount"
+    value_as_dimension: "Length"
+    value_as_timestamp: "Timestamp"
+    value_as_weight: "Weight"
     pass
 
 
@@ -58,10 +47,8 @@ class AdditionalSellerInput:
 class AdditionalSellerInputs:
 
     additional_input_field_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    additional_seller_input: dict[str, Any]
-    # {'ref': '#/components/schemas/AdditionalSellerInput', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    additional_seller_input: "AdditionalSellerInput"
     pass
 
 
@@ -74,28 +61,17 @@ class AdditionalSellerInputsList:
 @attrs.define
 class Address:
 
-    address_line1: str
-    # {'ref': '#/components/schemas/AddressLine1', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    address_line2: str
-    # {'ref': '#/components/schemas/AddressLine2', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    address_line3: str
-    # {'ref': '#/components/schemas/AddressLine3', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    city: str
-    # {'ref': '#/components/schemas/City', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    country_code: str
-    # {'ref': '#/components/schemas/CountryCode', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    district_or_county: str
-    # {'ref': '#/components/schemas/DistrictOrCounty', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    email: str
-    # {'ref': '#/components/schemas/EmailAddress', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    name: str
-    # {'ref': '#/components/schemas/AddressName', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    phone: str
-    # {'ref': '#/components/schemas/PhoneNumber', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    postal_code: str
-    # {'ref': '#/components/schemas/PostalCode', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    state_or_province_code: str
-    # {'ref': '#/components/schemas/StateOrProvinceCode', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    address_line1: "AddressLine1"
+    address_line2: "AddressLine2"
+    address_line3: "AddressLine3"
+    city: "City"
+    country_code: "CountryCode"
+    district_or_county: "DistrictOrCounty"
+    email: "EmailAddress"
+    name: "AddressName"
+    phone: "PhoneNumber"
+    postal_code: "PostalCode"
+    state_or_province_code: "StateOrProvinceCode"
     pass
 
 
@@ -132,12 +108,8 @@ class AmazonOrderId:
 @attrs.define
 class AvailableCarrierWillPickUpOption:
 
-    carrier_will_pick_up_option: Union[
-        Literal["CarrierWillPickUp"], Literal["ShipperWillDropOff"], Literal["NoPreference"]
-    ]
-    # {'ref': '#/components/schemas/CarrierWillPickUpOption', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    charge: dict[str, Any]
-    # {'ref': '#/components/schemas/CurrencyAmount', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    carrier_will_pick_up_option: "CarrierWillPickUpOption"
+    charge: "CurrencyAmount"
     pass
 
 
@@ -150,16 +122,8 @@ class AvailableCarrierWillPickUpOptionsList:
 @attrs.define
 class AvailableDeliveryExperienceOption:
 
-    charge: dict[str, Any]
-    # {'ref': '#/components/schemas/CurrencyAmount', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    delivery_experience_option: Union[
-        Literal["DeliveryConfirmationWithAdultSignature"],
-        Literal["DeliveryConfirmationWithSignature"],
-        Literal["DeliveryConfirmationWithoutSignature"],
-        Literal["NoTracking"],
-        Literal["NoPreference"],
-    ]
-    # {'ref': '#/components/schemas/DeliveryExperienceOption', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    charge: "CurrencyAmount"
+    delivery_experience_option: "DeliveryExperienceOption"
     pass
 
 
@@ -178,20 +142,16 @@ class AvailableFormatOptionsForLabelList:
 @attrs.define
 class AvailableShippingServiceOptions:
 
-    available_carrier_will_pick_up_options: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AvailableCarrierWillPickUpOptionsList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    available_delivery_experience_options: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AvailableDeliveryExperienceOptionsList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    available_carrier_will_pick_up_options: "AvailableCarrierWillPickUpOptionsList"
+    available_delivery_experience_options: "AvailableDeliveryExperienceOptionsList"
     pass
 
 
 @attrs.define
 class CancelShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/Shipment', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    errors: "ErrorList"
+    payload: "Shipment"
     pass
 
 
@@ -211,9 +171,7 @@ class City:
 class Constraint:
 
     validation_reg_ex: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     validation_string: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
     pass
 
@@ -234,28 +192,20 @@ class CountryCode:
 class CreateShipmentRequest:
 
     shipping_service_offer_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    hazmat_type: Union[Literal["None"], Literal["LQHazmat"]]
-    # {'ref': '#/components/schemas/HazmatType', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    label_format_option: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelFormatOptionRequest', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipment_level_seller_inputs_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AdditionalSellerInputsList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipment_request_details: dict[str, Any]
-    # {'ref': '#/components/schemas/ShipmentRequestDetails', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_service_id: str
-    # {'ref': '#/components/schemas/ShippingServiceIdentifier', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    hazmat_type: "HazmatType"
+    label_format_option: "LabelFormatOptionRequest"
+    shipment_level_seller_inputs_list: "AdditionalSellerInputsList"
+    shipment_request_details: "ShipmentRequestDetails"
+    shipping_service_id: "ShippingServiceIdentifier"
     pass
 
 
 @attrs.define
 class CreateShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/Shipment', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    errors: "ErrorList"
+    payload: "Shipment"
     pass
 
 
@@ -263,9 +213,9 @@ class CreateShipmentResponse:
 class CurrencyAmount:
 
     amount: Union[float, int]
-    # {'schema_format': 'double', 'type': 'number', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    # {'schema_format': 'double'}
     currency_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>, 'maxLength': 3}
+    # {'maxLength': 3}
 
     pass
 
@@ -304,11 +254,8 @@ class EmailAddress:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
     pass
 
@@ -323,12 +270,9 @@ class ErrorList:
 class FileContents:
 
     checksum: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     contents: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    file_type: Union[Literal["application/pdf"], Literal["application/zpl"], Literal["image/png"]]
-    # {'ref': '#/components/schemas/FileType', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    file_type: "FileType"
     pass
 
 
@@ -341,76 +285,59 @@ class FileType:
 @attrs.define
 class GetAdditionalSellerInputsRequest:
 
-    order_id: str
-    # {'ref': '#/components/schemas/AmazonOrderId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    ship_from_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_service_id: str
-    # {'ref': '#/components/schemas/ShippingServiceIdentifier', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    order_id: "AmazonOrderId"
+    ship_from_address: "Address"
+    shipping_service_id: "ShippingServiceIdentifier"
     pass
 
 
 @attrs.define
 class GetAdditionalSellerInputsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetAdditionalSellerInputsResult', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    errors: "ErrorList"
+    payload: "GetAdditionalSellerInputsResult"
     pass
 
 
 @attrs.define
 class GetAdditionalSellerInputsResult:
 
-    item_level_fields_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ItemLevelFieldsList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipment_level_fields: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AdditionalInputsList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    item_level_fields_list: "ItemLevelFieldsList"
+    shipment_level_fields: "AdditionalInputsList"
     pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesRequest:
 
-    shipment_request_details: dict[str, Any]
-    # {'ref': '#/components/schemas/ShipmentRequestDetails', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_offering_filter: dict[str, Any]
-    # {'ref': '#/components/schemas/ShippingOfferingFilter', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    shipment_request_details: "ShipmentRequestDetails"
+    shipping_offering_filter: "ShippingOfferingFilter"
     pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetEligibleShipmentServicesResult', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    errors: "ErrorList"
+    payload: "GetEligibleShipmentServicesResult"
     pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesResult:
 
-    rejected_shipping_service_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/RejectedShippingServiceList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_service_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ShippingServiceList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    temporarily_unavailable_carrier_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/TemporarilyUnavailableCarrierList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    terms_and_conditions_not_accepted_carrier_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/TermsAndConditionsNotAcceptedCarrierList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    rejected_shipping_service_list: "RejectedShippingServiceList"
+    shipping_service_list: "ShippingServiceList"
+    temporarily_unavailable_carrier_list: "TemporarilyUnavailableCarrierList"
+    terms_and_conditions_not_accepted_carrier_list: "TermsAndConditionsNotAcceptedCarrierList"
     pass
 
 
 @attrs.define
 class GetShipmentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/Shipment', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    errors: "ErrorList"
+    payload: "Shipment"
     pass
 
 
@@ -429,18 +356,12 @@ class InputTargetType:
 @attrs.define
 class Item:
 
-    item_description: str
-    # {'ref': '#/components/schemas/ItemDescription', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    item_level_seller_inputs_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AdditionalSellerInputsList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    item_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    order_item_id: str
-    # {'ref': '#/components/schemas/OrderItemId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    quantity: int
-    # {'ref': '#/components/schemas/ItemQuantity', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    transparency_code_list: list[str]
-    # {'ref': '#/components/schemas/TransparencyCodeList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    item_description: "ItemDescription"
+    item_level_seller_inputs_list: "AdditionalSellerInputsList"
+    item_weight: "Weight"
+    order_item_id: "OrderItemId"
+    quantity: "ItemQuantity"
+    transparency_code_list: "TransparencyCodeList"
     pass
 
 
@@ -454,10 +375,8 @@ class ItemDescription:
 class ItemLevelFields:
 
     asin: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    additional_inputs: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AdditionalInputsList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    additional_inputs: "AdditionalInputsList"
     pass
 
 
@@ -482,28 +401,19 @@ class ItemQuantity:
 @attrs.define
 class Label:
 
-    custom_text_for_label: str
-    # {'ref': '#/components/schemas/CustomTextForLabel', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelDimensions', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    file_contents: dict[str, Any]
-    # {'ref': '#/components/schemas/FileContents', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    label_format: Union[
-        Literal["PDF"], Literal["PNG"], Literal["ZPL203"], Literal["ZPL300"], Literal["ShippingServiceDefault"]
-    ]
-    # {'ref': '#/components/schemas/LabelFormat', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    standard_id_for_label: Union[Literal["AmazonOrderId"]]
-    # {'ref': '#/components/schemas/StandardIdForLabel', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    custom_text_for_label: "CustomTextForLabel"
+    dimensions: "LabelDimensions"
+    file_contents: "FileContents"
+    label_format: "LabelFormat"
+    standard_id_for_label: "StandardIdForLabel"
     pass
 
 
 @attrs.define
 class LabelCustomization:
 
-    custom_text_for_label: str
-    # {'ref': '#/components/schemas/CustomTextForLabel', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    standard_id_for_label: Union[Literal["AmazonOrderId"]]
-    # {'ref': '#/components/schemas/StandardIdForLabel', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    custom_text_for_label: "CustomTextForLabel"
+    standard_id_for_label: "StandardIdForLabel"
     pass
 
 
@@ -516,12 +426,9 @@ class LabelDimension:
 @attrs.define
 class LabelDimensions:
 
-    length: Union[float, int]
-    # {'ref': '#/components/schemas/LabelDimension', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    unit: Union[Literal["inches"], Literal["centimeters"]]
-    # {'ref': '#/components/schemas/UnitOfLength', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    width: Union[float, int]
-    # {'ref': '#/components/schemas/LabelDimension', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    length: "LabelDimension"
+    unit: "UnitOfLength"
+    width: "LabelDimension"
     pass
 
 
@@ -541,12 +448,8 @@ class LabelFormatList:
 class LabelFormatOption:
 
     include_packing_slip_with_label: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    label_format: Union[
-        Literal["PDF"], Literal["PNG"], Literal["ZPL203"], Literal["ZPL300"], Literal["ShippingServiceDefault"]
-    ]
-    # {'ref': '#/components/schemas/LabelFormat', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    label_format: "LabelFormat"
     pass
 
 
@@ -554,7 +457,6 @@ class LabelFormatOption:
 class LabelFormatOptionRequest:
 
     include_packing_slip_with_label: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
     pass
 
@@ -563,10 +465,8 @@ class LabelFormatOptionRequest:
 class Length:
 
     value: Union[float, int]
-    # {'type': 'number', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    unit: Union[Literal["inches"], Literal["centimeters"]]
-    # {'ref': '#/components/schemas/UnitOfLength', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    unit: "UnitOfLength"
     pass
 
 
@@ -585,67 +485,11 @@ class PackageDimension:
 @attrs.define
 class PackageDimensions:
 
-    height: Union[float, int]
-    # {'ref': '#/components/schemas/PackageDimension', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    length: Union[float, int]
-    # {'ref': '#/components/schemas/PackageDimension', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    predefined_package_dimensions: Union[
-        Literal["FedEx_Box_10kg"],
-        Literal["FedEx_Box_25kg"],
-        Literal["FedEx_Box_Extra_Large_1"],
-        Literal["FedEx_Box_Extra_Large_2"],
-        Literal["FedEx_Box_Large_1"],
-        Literal["FedEx_Box_Large_2"],
-        Literal["FedEx_Box_Medium_1"],
-        Literal["FedEx_Box_Medium_2"],
-        Literal["FedEx_Box_Small_1"],
-        Literal["FedEx_Box_Small_2"],
-        Literal["FedEx_Envelope"],
-        Literal["FedEx_Padded_Pak"],
-        Literal["FedEx_Pak_1"],
-        Literal["FedEx_Pak_2"],
-        Literal["FedEx_Tube"],
-        Literal["FedEx_XL_Pak"],
-        Literal["UPS_Box_10kg"],
-        Literal["UPS_Box_25kg"],
-        Literal["UPS_Express_Box"],
-        Literal["UPS_Express_Box_Large"],
-        Literal["UPS_Express_Box_Medium"],
-        Literal["UPS_Express_Box_Small"],
-        Literal["UPS_Express_Envelope"],
-        Literal["UPS_Express_Hard_Pak"],
-        Literal["UPS_Express_Legal_Envelope"],
-        Literal["UPS_Express_Pak"],
-        Literal["UPS_Express_Tube"],
-        Literal["UPS_Laboratory_Pak"],
-        Literal["UPS_Pad_Pak"],
-        Literal["UPS_Pallet"],
-        Literal["USPS_Card"],
-        Literal["USPS_Flat"],
-        Literal["USPS_FlatRateCardboardEnvelope"],
-        Literal["USPS_FlatRateEnvelope"],
-        Literal["USPS_FlatRateGiftCardEnvelope"],
-        Literal["USPS_FlatRateLegalEnvelope"],
-        Literal["USPS_FlatRatePaddedEnvelope"],
-        Literal["USPS_FlatRateWindowEnvelope"],
-        Literal["USPS_LargeFlatRateBoardGameBox"],
-        Literal["USPS_LargeFlatRateBox"],
-        Literal["USPS_Letter"],
-        Literal["USPS_MediumFlatRateBox1"],
-        Literal["USPS_MediumFlatRateBox2"],
-        Literal["USPS_RegionalRateBoxA1"],
-        Literal["USPS_RegionalRateBoxA2"],
-        Literal["USPS_RegionalRateBoxB1"],
-        Literal["USPS_RegionalRateBoxB2"],
-        Literal["USPS_RegionalRateBoxC"],
-        Literal["USPS_SmallFlatRateBox"],
-        Literal["USPS_SmallFlatRateEnvelope"],
-    ]
-    # {'ref': '#/components/schemas/PredefinedPackageDimensions', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    unit: Union[Literal["inches"], Literal["centimeters"]]
-    # {'ref': '#/components/schemas/UnitOfLength', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    width: Union[float, int]
-    # {'ref': '#/components/schemas/PackageDimension', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    height: "PackageDimension"
+    length: "PackageDimension"
+    predefined_package_dimensions: "PredefinedPackageDimensions"
+    unit: "UnitOfLength"
+    width: "PackageDimension"
     pass
 
 
@@ -671,16 +515,11 @@ class PredefinedPackageDimensions:
 class RejectedShippingService:
 
     carrier_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     rejection_reason_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     rejection_reason_message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     shipping_service_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    shipping_service_id: str
-    # {'ref': '#/components/schemas/ShippingServiceIdentifier', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    shipping_service_id: "ShippingServiceIdentifier"
     pass
 
 
@@ -700,20 +539,13 @@ class RestrictedSetValues:
 class SellerInputDefinition:
 
     data_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     input_display_text: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     is_required: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    constraints: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/Constraints', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    input_target: Union[Literal["SHIPMENT_LEVEL"], Literal["ITEM_LEVEL"]]
-    # {'ref': '#/components/schemas/InputTargetType', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    restricted_set_values: list[str]
-    # {'ref': '#/components/schemas/RestrictedSetValues', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    stored_value: dict[str, Any]
-    # {'ref': '#/components/schemas/AdditionalSellerInput', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    constraints: "Constraints"
+    input_target: "InputTargetType"
+    restricted_set_values: "RestrictedSetValues"
+    stored_value: "AdditionalSellerInput"
     pass
 
 
@@ -726,36 +558,21 @@ class SellerOrderId:
 @attrs.define
 class Shipment:
 
-    amazon_order_id: str
-    # {'ref': '#/components/schemas/AmazonOrderId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    created_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    insurance: dict[str, Any]
-    # {'ref': '#/components/schemas/CurrencyAmount', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    item_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ItemList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    label: dict[str, Any]
-    # {'ref': '#/components/schemas/Label', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    last_updated_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    package_dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/PackageDimensions', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    seller_order_id: str
-    # {'ref': '#/components/schemas/SellerOrderId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    ship_from_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    ship_to_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipment_id: str
-    # {'ref': '#/components/schemas/ShipmentId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_service: dict[str, Any]
-    # {'ref': '#/components/schemas/ShippingService', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    status: Union[Literal["Purchased"], Literal["RefundPending"], Literal["RefundRejected"], Literal["RefundApplied"]]
-    # {'ref': '#/components/schemas/ShipmentStatus', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    tracking_id: str
-    # {'ref': '#/components/schemas/TrackingId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    amazon_order_id: "AmazonOrderId"
+    created_date: "Timestamp"
+    insurance: "CurrencyAmount"
+    item_list: "ItemList"
+    label: "Label"
+    last_updated_date: "Timestamp"
+    package_dimensions: "PackageDimensions"
+    seller_order_id: "SellerOrderId"
+    ship_from_address: "Address"
+    ship_to_address: "Address"
+    shipment_id: "ShipmentId"
+    shipping_service: "ShippingService"
+    status: "ShipmentStatus"
+    tracking_id: "TrackingId"
+    weight: "Weight"
     pass
 
 
@@ -768,26 +585,16 @@ class ShipmentId:
 @attrs.define
 class ShipmentRequestDetails:
 
-    amazon_order_id: str
-    # {'ref': '#/components/schemas/AmazonOrderId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    item_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ItemList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    label_customization: dict[str, Any]
-    # {'ref': '#/components/schemas/LabelCustomization', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    must_arrive_by_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    package_dimensions: dict[str, Any]
-    # {'ref': '#/components/schemas/PackageDimensions', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    seller_order_id: str
-    # {'ref': '#/components/schemas/SellerOrderId', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    ship_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    ship_from_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_service_options: dict[str, Any]
-    # {'ref': '#/components/schemas/ShippingServiceOptions', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    amazon_order_id: "AmazonOrderId"
+    item_list: "ItemList"
+    label_customization: "LabelCustomization"
+    must_arrive_by_date: "Timestamp"
+    package_dimensions: "PackageDimensions"
+    seller_order_id: "SellerOrderId"
+    ship_date: "Timestamp"
+    ship_from_address: "Address"
+    shipping_service_options: "ShippingServiceOptions"
+    weight: "Weight"
     pass
 
 
@@ -801,20 +608,10 @@ class ShipmentStatus:
 class ShippingOfferingFilter:
 
     include_complex_shipping_options: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     include_packing_slip_with_label: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    carrier_will_pick_up: Union[Literal["CarrierWillPickUp"], Literal["ShipperWillDropOff"], Literal["NoPreference"]]
-    # {'ref': '#/components/schemas/CarrierWillPickUpOption', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    delivery_experience: Union[
-        Literal["DeliveryConfirmationWithAdultSignature"],
-        Literal["DeliveryConfirmationWithSignature"],
-        Literal["DeliveryConfirmationWithoutSignature"],
-        Literal["NoTracking"],
-        Literal["NoPreference"],
-    ]
-    # {'ref': '#/components/schemas/DeliveryExperienceOption', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    carrier_will_pick_up: "CarrierWillPickUpOption"
+    delivery_experience: "DeliveryExperienceOption"
     pass
 
 
@@ -822,34 +619,19 @@ class ShippingOfferingFilter:
 class ShippingService:
 
     carrier_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     requires_additional_seller_inputs: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     shipping_service_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
     shipping_service_offer_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    available_format_options_for_label: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/AvailableFormatOptionsForLabelList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    available_label_formats: list[
-        Union[Literal["PDF"], Literal["PNG"], Literal["ZPL203"], Literal["ZPL300"], Literal["ShippingServiceDefault"]]
-    ]
-    # {'ref': '#/components/schemas/LabelFormatList', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    available_shipping_service_options: dict[str, Any]
-    # {'ref': '#/components/schemas/AvailableShippingServiceOptions', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    earliest_estimated_delivery_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    latest_estimated_delivery_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    rate: dict[str, Any]
-    # {'ref': '#/components/schemas/CurrencyAmount', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    ship_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_service_id: str
-    # {'ref': '#/components/schemas/ShippingServiceIdentifier', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    shipping_service_options: dict[str, Any]
-    # {'ref': '#/components/schemas/ShippingServiceOptions', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    available_format_options_for_label: "AvailableFormatOptionsForLabelList"
+    available_label_formats: "LabelFormatList"
+    available_shipping_service_options: "AvailableShippingServiceOptions"
+    earliest_estimated_delivery_date: "Timestamp"
+    latest_estimated_delivery_date: "Timestamp"
+    rate: "CurrencyAmount"
+    ship_date: "Timestamp"
+    shipping_service_id: "ShippingServiceIdentifier"
+    shipping_service_options: "ShippingServiceOptions"
     pass
 
 
@@ -869,25 +651,11 @@ class ShippingServiceList:
 class ShippingServiceOptions:
 
     carrier_will_pick_up: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
-    carrier_will_pick_up_option: Union[
-        Literal["CarrierWillPickUp"], Literal["ShipperWillDropOff"], Literal["NoPreference"]
-    ]
-    # {'ref': '#/components/schemas/CarrierWillPickUpOption', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    declared_value: dict[str, Any]
-    # {'ref': '#/components/schemas/CurrencyAmount', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    delivery_experience: Union[
-        Literal["DeliveryConfirmationWithAdultSignature"],
-        Literal["DeliveryConfirmationWithSignature"],
-        Literal["DeliveryConfirmationWithoutSignature"],
-        Literal["NoTracking"],
-    ]
-    # {'ref': '#/components/schemas/DeliveryExperienceType', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    label_format: Union[
-        Literal["PDF"], Literal["PNG"], Literal["ZPL203"], Literal["ZPL300"], Literal["ShippingServiceDefault"]
-    ]
-    # {'ref': '#/components/schemas/LabelFormat', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    carrier_will_pick_up_option: "CarrierWillPickUpOption"
+    declared_value: "CurrencyAmount"
+    delivery_experience: "DeliveryExperienceType"
+    label_format: "LabelFormat"
     pass
 
 
@@ -907,7 +675,6 @@ class StateOrProvinceCode:
 class TemporarilyUnavailableCarrier:
 
     carrier_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
     pass
 
@@ -922,7 +689,6 @@ class TemporarilyUnavailableCarrierList:
 class TermsAndConditionsNotAcceptedCarrier:
 
     carrier_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
 
     pass
 
@@ -972,10 +738,8 @@ class UnitOfWeight:
 @attrs.define
 class Weight:
 
-    unit: Union[Literal["oz"], Literal["g"]]
-    # {'ref': '#/components/schemas/UnitOfWeight', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
-    value: Union[float, int]
-    # {'ref': '#/components/schemas/WeightValue', 'generator': <__mp_main__.Generator object at 0x0000029E9F1DB310>}
+    unit: "UnitOfWeight"
+    value: "WeightValue"
     pass
 
 

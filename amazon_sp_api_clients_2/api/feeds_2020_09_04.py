@@ -15,18 +15,15 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CancelFeedResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/ErrorList'}
+    errors: "ErrorList"
     pass
 
 
 @attrs.define
 class CreateFeedDocumentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/CreateFeedDocumentResult'}
+    errors: "ErrorList"
+    payload: "CreateFeedDocumentResult"
     pass
 
 
@@ -34,12 +31,9 @@ class CreateFeedDocumentResponse:
 class CreateFeedDocumentResult:
 
     feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     url: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
 
-    encryption_details: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/FeedDocumentEncryptionDetails'}
+    encryption_details: "FeedDocumentEncryptionDetails"
     pass
 
 
@@ -47,7 +41,6 @@ class CreateFeedDocumentResult:
 class CreateFeedDocumentSpecification:
 
     content_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
 
     pass
 
@@ -55,10 +48,8 @@ class CreateFeedDocumentSpecification:
 @attrs.define
 class CreateFeedResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/CreateFeedResult'}
+    errors: "ErrorList"
+    payload: "CreateFeedResult"
     pass
 
 
@@ -66,7 +57,6 @@ class CreateFeedResponse:
 class CreateFeedResult:
 
     feed_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
 
     pass
 
@@ -75,14 +65,11 @@ class CreateFeedResult:
 class CreateFeedSpecification:
 
     feed_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     input_feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     marketplace_ids: list[str]
-    # {'type': 'array', 'maxItems': 25, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'minItems': 1, 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
+    # {'maxItems': 25, 'minItems': 1}
 
-    feed_options: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/FeedOptions'}
+    feed_options: "FeedOptions"
     pass
 
 
@@ -90,11 +77,8 @@ class CreateFeedSpecification:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
 
     pass
 
@@ -109,23 +93,18 @@ class ErrorList:
 class Feed:
 
     created_time: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
+    # {'schema_format': 'date-time'}
     feed_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     feed_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     marketplace_ids: list[str]
-    # {'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     processing_end_time: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
+    # {'schema_format': 'date-time'}
     processing_start_time: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
+    # {'schema_format': 'date-time'}
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
     ]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'enum': ['CANCELLED', 'DONE', 'FATAL', 'IN_PROGRESS', 'IN_QUEUE']}
     result_feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
 
     pass
 
@@ -134,14 +113,10 @@ class Feed:
 class FeedDocument:
 
     compression_algorithm: Union[Literal["GZIP"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'enum': ['GZIP']}
     feed_document_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     url: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
 
-    encryption_details: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/FeedDocumentEncryptionDetails'}
+    encryption_details: "FeedDocumentEncryptionDetails"
     pass
 
 
@@ -149,11 +124,8 @@ class FeedDocument:
 class FeedDocumentEncryptionDetails:
 
     initialization_vector: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     key: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
     standard: Union[Literal["AES"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'enum': ['AES']}
 
     pass
 
@@ -173,20 +145,16 @@ class FeedOptions:
 @attrs.define
 class GetFeedDocumentResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/FeedDocument'}
+    errors: "ErrorList"
+    payload: "FeedDocument"
     pass
 
 
 @attrs.define
 class GetFeedResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/Feed'}
+    errors: "ErrorList"
+    payload: "Feed"
     pass
 
 
@@ -194,12 +162,9 @@ class GetFeedResponse:
 class GetFeedsResponse:
 
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A9792B310>}
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/ErrorList'}
-    payload: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A9792B310>, 'ref': '#/components/schemas/FeedList'}
+    errors: "ErrorList"
+    payload: "FeedList"
     pass
 
 

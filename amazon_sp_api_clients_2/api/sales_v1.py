@@ -22,11 +22,8 @@ class Decimal:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
 
     pass
 
@@ -40,10 +37,8 @@ class ErrorList:
 @attrs.define
 class GetOrderMetricsResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
-    payload: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/OrderMetricsList', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
+    errors: "ErrorList"
+    payload: "OrderMetricsList"
     pass
 
 
@@ -51,10 +46,8 @@ class GetOrderMetricsResponse:
 class Money:
 
     currency_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
 
-    amount: str
-    # {'ref': '#/components/schemas/Decimal', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
+    amount: "Decimal"
     pass
 
 
@@ -62,18 +55,12 @@ class Money:
 class OrderMetricsInterval:
 
     interval: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
     order_count: int
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'integer'}
     order_item_count: int
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'integer'}
     unit_count: int
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'integer'}
 
-    average_unit_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
-    total_sales: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
+    average_unit_price: "Money"
+    total_sales: "Money"
     pass
 
 

@@ -21,48 +21,50 @@ settings.configure(TEMPLATES=[{
 django.setup()
 
 
-class ParsedReferenceProperty(Reference):
+class SchemaBase(Schema):
     name: str
     generator: Any
 
     @property
     def fields(self):
-        fields = {k: getattr(self, k) for k in self.__fields_set__ - {'description', 'name'}}
+        known = {'description', 'name', 'generator', 'type', 'ref', 'enum', 'items'}
+        fields = {k: getattr(self, k) for k in self.__fields_set__ - known}
         fields = {k: v for k, v in fields.items() if v is not None}
+        # assert set(fields).issubset(known), fields
+        if fields:
+            print(fields)
         return fields
 
     @property
+    def schema_obj(self) -> Schema:
+        return self
+
+    @property
     def type_hint(self):
-        return self.generator.get_type_hint_of_schema(self)
+        return self.generator.get_type_hint_of_schema(self.schema_obj)
 
     @property
     def variable_name(self):
         return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
 
-
-class ParsedSchemaProperty(Schema):
-    name: str
-    generator: Any
-
     @property
-    def fields(self):
-        fields = {k: getattr(self, k) for k in self.__fields_set__ - {'description', 'name'}}
-        fields = {k: v for k, v in fields.items() if v is not None}
-        return fields
-
-    @property
-    def type_hint(self):
-        return self.generator.get_type_hint_of_schema(self)
-
-    @property
-    def variable_name(self):
-        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
+    def parsed_description(self):
+        result = 'no description.' if self.description is None else self.description
+        result = result.splitlines()
+        result = [line.strip() for line in result]
+        result = [line for line in result if line]
+        return '\n        '.join(result)
 
 
-class ParsedSchema(Schema):
-    name: str
-    generator: Any
+class ParsedReferenceProperty(SchemaBase, Reference):
+    pass
 
+
+class ParsedSchemaProperty(SchemaBase, Schema):
+    pass
+
+
+class ParsedSchema(SchemaBase, Schema):
     @property
     def parsed_properties(self):
         dst = self.properties
@@ -162,6 +164,10 @@ class Generator:
 
     def get_type_hint_of_schema(self, schema: Schema):
         # recursively get inline type hint of a schema
+        if isinstance(schema, Reference):
+            assert (match := re.match(r'^#/components/(.*?)/(.*?)$', schema.ref))
+            name = match.group(2)
+            return f"'{name}'"
         schema = self.resolve_ref(schema) if isinstance(schema, Reference) else schema
         if schema is None or (schema.type is None and schema.items is None):
             return 'Any'

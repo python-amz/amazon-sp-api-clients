@@ -16,11 +16,8 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
 
     pass
 
@@ -35,12 +32,9 @@ class ErrorList:
 class InventoryUpdate:
 
     is_full_update: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'boolean'}
-    items: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'array', 'items': Reference(ref='#/components/schemas/ItemDetails')}
+    items: list["ItemDetails"]
 
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'ref': '#/components/schemas/PartyIdentification'}
+    selling_party: "PartyIdentification"
     pass
 
 
@@ -48,14 +42,10 @@ class InventoryUpdate:
 class ItemDetails:
 
     buyer_product_identifier: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
     is_obsolete: bool
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'boolean'}
     vendor_product_identifier: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
 
-    available_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'ref': '#/components/schemas/ItemQuantity'}
+    available_quantity: "ItemQuantity"
     pass
 
 
@@ -63,9 +53,7 @@ class ItemDetails:
 class ItemQuantity:
 
     amount: int
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'integer'}
     unit_of_measure: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
 
     pass
 
@@ -74,7 +62,6 @@ class ItemQuantity:
 class PartyIdentification:
 
     party_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
 
     pass
 
@@ -82,18 +69,15 @@ class PartyIdentification:
 @attrs.define
 class SubmitInventoryUpdateRequest:
 
-    inventory: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'ref': '#/components/schemas/InventoryUpdate'}
+    inventory: "InventoryUpdate"
     pass
 
 
 @attrs.define
 class SubmitInventoryUpdateResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'ref': '#/components/schemas/TransactionReference'}
+    errors: "ErrorList"
+    payload: "TransactionReference"
     pass
 
 
@@ -101,7 +85,6 @@ class SubmitInventoryUpdateResponse:
 class TransactionReference:
 
     transaction_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002161E6FB700>, 'type': 'string'}
 
     pass
 

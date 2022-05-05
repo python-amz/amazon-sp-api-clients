@@ -16,12 +16,10 @@ from typing import Any, List, Dict, Union, Literal
 class AcknowledgementStatusDetails:
 
     acknowledgement_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
 
-    accepted_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemQuantity'}
-    rejected_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemQuantity'}
+    accepted_quantity: "ItemQuantity"
+    rejected_quantity: "ItemQuantity"
     pass
 
 
@@ -29,27 +27,17 @@ class AcknowledgementStatusDetails:
 class Address:
 
     address_line1: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     address_line2: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     address_line3: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     city: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     country_code: str
-    # {'type': 'string', 'maxLength': 2, 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'maxLength': 2}
     county: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     district: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     phone: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     postal_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     state_or_region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
     pass
 
@@ -70,11 +58,8 @@ class Decimal:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
     pass
 
@@ -88,30 +73,24 @@ class ErrorList:
 @attrs.define
 class GetPurchaseOrderResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Order'}
+    errors: "ErrorList"
+    payload: "Order"
     pass
 
 
 @attrs.define
 class GetPurchaseOrdersResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/OrderList'}
+    errors: "ErrorList"
+    payload: "OrderList"
     pass
 
 
 @attrs.define
 class GetPurchaseOrdersStatusResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/OrderListStatus'}
+    errors: "ErrorList"
+    payload: "OrderListStatus"
     pass
 
 
@@ -119,7 +98,7 @@ class GetPurchaseOrdersStatusResponse:
 class ImportDetails:
 
     import_containers: str
-    # {'type': 'string', 'maxLength': 64, 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'maxLength': 64}
     international_commercial_terms: Union[
         Literal["ExWorks"],
         Literal["FreeCarrier"],
@@ -133,7 +112,6 @@ class ImportDetails:
         Literal["DeliveredAtPlace"],
         Literal["DeliverDutyPaid"],
     ]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['ExWorks', 'FreeCarrier', 'FreeOnBoard', 'FreeAlongSideShip', 'CarriagePaidTo', 'CostAndFreight', 'CarriageAndInsurancePaidTo', 'CostInsuranceAndFreight', 'DeliveredAtTerminal', 'DeliveredAtPlace', 'DeliverDutyPaid']}
     method_of_payment: Union[
         Literal["PaidByBuyer"],
         Literal["CollectOnDelivery"],
@@ -142,11 +120,9 @@ class ImportDetails:
         Literal["PrepaidBySeller"],
         Literal["PaidBySeller"],
     ]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['PaidByBuyer', 'CollectOnDelivery', 'DefinedByBuyerAndSeller', 'FOBPortOfCall', 'PrepaidBySeller', 'PaidBySeller']}
     port_of_delivery: str
-    # {'type': 'string', 'maxLength': 64, 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'maxLength': 64}
     shipping_instructions: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
     pass
 
@@ -155,11 +131,8 @@ class ImportDetails:
 class ItemQuantity:
 
     amount: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['Cases', 'Eaches']}
     unit_size: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
     pass
 
@@ -174,10 +147,9 @@ class ItemStatus:
 class Money:
 
     currency_code: str
-    # {'type': 'string', 'maxLength': 3, 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'maxLength': 3}
 
-    amount: str
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Decimal'}
+    amount: "Decimal"
     pass
 
 
@@ -185,12 +157,9 @@ class Money:
 class Order:
 
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['New', 'Acknowledged', 'Closed']}
 
-    order_details: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/OrderDetails'}
+    order_details: "OrderDetails"
     pass
 
 
@@ -198,14 +167,11 @@ class Order:
 class OrderAcknowledgement:
 
     acknowledgement_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
-    items: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/OrderAcknowledgementItem'), 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
+    items: list["OrderAcknowledgementItem"]
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/PartyIdentification'}
+    selling_party: "PartyIdentification"
     pass
 
 
@@ -213,22 +179,14 @@ class OrderAcknowledgement:
 class OrderAcknowledgementItem:
 
     amazon_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     discount_multiplier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
-    item_acknowledgements: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/OrderItemAcknowledgement'), 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    item_acknowledgements: list["OrderItemAcknowledgement"]
     item_sequence_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     vendor_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
-    list_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Money'}
-    net_cost: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Money'}
-    ordered_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemQuantity'}
+    list_price: "Money"
+    net_cost: "Money"
+    ordered_quantity: "ItemQuantity"
     pass
 
 
@@ -236,36 +194,25 @@ class OrderAcknowledgementItem:
 class OrderDetails:
 
     deal_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
-    items: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/OrderItem'), 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    items: list["OrderItem"]
     payment_method: Union[Literal["Invoice"], Literal["Consignment"], Literal["CreditCard"], Literal["Prepaid"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['Invoice', 'Consignment', 'CreditCard', 'Prepaid']}
     purchase_order_changed_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
     purchase_order_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
     purchase_order_state_changed_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
     purchase_order_type: Union[
         Literal["RegularOrder"], Literal["ConsignedOrder"], Literal["NewProductIntroduction"], Literal["RushOrder"]
     ]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['RegularOrder', 'ConsignedOrder', 'NewProductIntroduction', 'RushOrder']}
 
-    bill_to_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/PartyIdentification'}
-    buying_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/PartyIdentification'}
-    delivery_window: str
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/DateTimeInterval'}
-    import_details: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ImportDetails'}
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/PartyIdentification'}
-    ship_to_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/PartyIdentification'}
-    ship_window: str
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/DateTimeInterval'}
+    bill_to_party: "PartyIdentification"
+    buying_party: "PartyIdentification"
+    delivery_window: "DateTimeInterval"
+    import_details: "ImportDetails"
+    selling_party: "PartyIdentification"
+    ship_to_party: "PartyIdentification"
+    ship_window: "DateTimeInterval"
     pass
 
 
@@ -273,20 +220,13 @@ class OrderDetails:
 class OrderItem:
 
     amazon_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     is_back_order_allowed: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     item_sequence_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     vendor_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
-    list_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Money'}
-    net_cost: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Money'}
-    ordered_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemQuantity'}
+    list_price: "Money"
+    net_cost: "Money"
+    ordered_quantity: "ItemQuantity"
     pass
 
 
@@ -294,18 +234,15 @@ class OrderItem:
 class OrderItemAcknowledgement:
 
     acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['Accepted', 'Backordered', 'Rejected']}
     rejection_reason: Union[
         Literal["TemporarilyUnavailable"], Literal["InvalidProductIdentifier"], Literal["ObsoleteProduct"]
     ]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['TemporarilyUnavailable', 'InvalidProductIdentifier', 'ObsoleteProduct']}
     scheduled_delivery_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
     scheduled_ship_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
 
-    acknowledged_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemQuantity'}
+    acknowledged_quantity: "ItemQuantity"
     pass
 
 
@@ -313,44 +250,35 @@ class OrderItemAcknowledgement:
 class OrderItemStatus:
 
     acknowledgement_status: dict[str, Any]
-    # {'type': 'object', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'properties': {'confirmationStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['ACCEPTED', 'PARTIALLY_ACCEPTED', 'REJECTED', 'UNCONFIRMED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Confirmation status of line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'acceptedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'rejectedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'acknowledgementStatusDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/AcknowledgementStatusDetails'), properties=None, additionalProperties=None, description='Details of item quantity confirmed.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+    # {'properties': {'confirmationStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['ACCEPTED', 'PARTIALLY_ACCEPTED', 'REJECTED', 'UNCONFIRMED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Confirmation status of line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'acceptedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'rejectedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'acknowledgementStatusDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/AcknowledgementStatusDetails'), properties=None, additionalProperties=None, description='Details of item quantity confirmed.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
     buyer_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     item_sequence_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     ordered_quantity: dict[str, Any]
-    # {'type': 'object', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'properties': {'orderedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'orderedQuantityDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/OrderedQuantityDetails'), properties=None, additionalProperties=None, description='Details of item quantity ordered.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+    # {'properties': {'orderedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'orderedQuantityDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/OrderedQuantityDetails'), properties=None, additionalProperties=None, description='Details of item quantity ordered.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
     receiving_status: dict[str, Any]
-    # {'type': 'object', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'properties': {'receiveStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['NOT_RECEIVED', 'PARTIALLY_RECEIVED', 'RECEIVED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Receive status of the line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'receivedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'lastReceiveDate': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description="The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.", schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+    # {'properties': {'receiveStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['NOT_RECEIVED', 'PARTIALLY_RECEIVED', 'RECEIVED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Receive status of the line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'receivedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'lastReceiveDate': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description="The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.", schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
     vendor_product_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
-    list_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Money'}
-    net_cost: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Money'}
+    list_price: "Money"
+    net_cost: "Money"
     pass
 
 
 @attrs.define
 class OrderList:
 
-    orders: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Order'), 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    orders: list["Order"]
 
-    pagination: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Pagination'}
+    pagination: "Pagination"
     pass
 
 
 @attrs.define
 class OrderListStatus:
 
-    orders_status: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/OrderStatus'), 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    orders_status: list["OrderStatus"]
 
-    pagination: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Pagination'}
+    pagination: "Pagination"
     pass
 
 
@@ -358,20 +286,15 @@ class OrderListStatus:
 class OrderStatus:
 
     last_updated_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
     purchase_order_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
     purchase_order_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['OPEN', 'CLOSED']}
 
-    item_status: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemStatus'}
-    selling_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/PartyIdentification'}
-    ship_to_party: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/PartyIdentification'}
+    item_status: "ItemStatus"
+    selling_party: "PartyIdentification"
+    ship_to_party: "PartyIdentification"
     pass
 
 
@@ -379,12 +302,10 @@ class OrderStatus:
 class OrderedQuantityDetails:
 
     updated_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    # {'schema_format': 'date-time'}
 
-    cancelled_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemQuantity'}
-    ordered_quantity: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ItemQuantity'}
+    cancelled_quantity: "ItemQuantity"
+    ordered_quantity: "ItemQuantity"
     pass
 
 
@@ -392,7 +313,6 @@ class OrderedQuantityDetails:
 class Pagination:
 
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
     pass
 
@@ -401,20 +321,16 @@ class Pagination:
 class PartyIdentification:
 
     party_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
-    address: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/Address'}
-    tax_info: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/TaxRegistrationDetails'}
+    address: "Address"
+    tax_info: "TaxRegistrationDetails"
     pass
 
 
 @attrs.define
 class SubmitAcknowledgementRequest:
 
-    acknowledgements: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/OrderAcknowledgement'), 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
+    acknowledgements: list["OrderAcknowledgement"]
 
     pass
 
@@ -422,10 +338,8 @@ class SubmitAcknowledgementRequest:
 @attrs.define
 class SubmitAcknowledgementResponse:
 
-    errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/ErrorList'}
-    payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'ref': '#/components/schemas/TransactionId'}
+    errors: "ErrorList"
+    payload: "TransactionId"
     pass
 
 
@@ -433,9 +347,7 @@ class SubmitAcknowledgementResponse:
 class TaxRegistrationDetails:
 
     tax_registration_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>, 'enum': ['VAT', 'GST']}
 
     pass
 
@@ -444,7 +356,6 @@ class TaxRegistrationDetails:
 class TransactionId:
 
     transaction_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000014A97980AF0>}
 
     pass
 

@@ -16,11 +16,8 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
 
     pass
 
@@ -28,8 +25,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
+    errors: list["Error"]
 
     pass
 
@@ -43,10 +39,8 @@ class FeeLineItem:
         Literal["FBAPerUnitFulfillmentFee"],
         Literal["Commission"],
     ]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string', 'enum': ['FBAWeightBasedFee', 'FBAPerOrderFulfillmentFee', 'FBAPerUnitFulfillmentFee', 'Commission']}
 
-    fee_charge: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
+    fee_charge: "MoneyType"
     pass
 
 
@@ -54,16 +48,11 @@ class FeeLineItem:
 class FeePreview:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
-    errors: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
-    fee_breakdown: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/FeeLineItem'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
+    errors: list["Error"]
+    fee_breakdown: list["FeeLineItem"]
 
-    price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
-    total_fees: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
+    price: "MoneyType"
+    total_fees: "MoneyType"
     pass
 
 
@@ -71,10 +60,8 @@ class FeePreview:
 class Item:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
 
-    price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
+    price: "MoneyType"
     pass
 
 
@@ -88,9 +75,7 @@ class MarketplaceId:
 class MoneyType:
 
     amount: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'number'}
     currency_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
 
     pass
 
@@ -104,12 +89,9 @@ class SellerSKU:
 @attrs.define
 class SmallAndLightEligibility:
 
-    marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MarketplaceId'}
-    seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SellerSKU'}
-    status: Union[Literal["ELIGIBLE"], Literal["NOT_ELIGIBLE"]]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SmallAndLightEligibilityStatus'}
+    marketplace_id: "MarketplaceId"
+    seller_sku: "SellerSKU"
+    status: "SmallAndLightEligibilityStatus"
     pass
 
 
@@ -122,12 +104,9 @@ class SmallAndLightEligibilityStatus:
 @attrs.define
 class SmallAndLightEnrollment:
 
-    marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MarketplaceId'}
-    seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SellerSKU'}
-    status: Union[Literal["ENROLLED"], Literal["NOT_ENROLLED"]]
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SmallAndLightEnrollmentStatus'}
+    marketplace_id: "MarketplaceId"
+    seller_sku: "SellerSKU"
+    status: "SmallAndLightEnrollmentStatus"
     pass
 
 
@@ -140,19 +119,17 @@ class SmallAndLightEnrollmentStatus:
 @attrs.define
 class SmallAndLightFeePreviewRequest:
 
-    items: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Item'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'maxItems': 25, 'type': 'array'}
+    items: list["Item"]
+    # {'maxItems': 25}
 
-    marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MarketplaceId'}
+    marketplace_id: "MarketplaceId"
     pass
 
 
 @attrs.define
 class SmallAndLightFeePreviews:
 
-    data: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/FeePreview'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
+    data: list["FeePreview"]
 
     pass
 

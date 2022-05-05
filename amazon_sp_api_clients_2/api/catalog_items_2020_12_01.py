@@ -18,9 +18,7 @@ from typing import Any, List, Dict, Union, Literal
 class BrandRefinement:
 
     brand_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     number_of_results: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -29,11 +27,8 @@ class BrandRefinement:
 class ClassificationRefinement:
 
     classification_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     display_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     number_of_results: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -42,11 +37,8 @@ class ClassificationRefinement:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -54,8 +46,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Error'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    errors: list["Error"]
 
     pass
 
@@ -63,24 +54,15 @@ class ErrorList:
 @attrs.define
 class Item:
 
-    asin: str
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemAsin'}
-    attributes: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemAttributes'}
-    identifiers: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemIdentifiers'}
-    images: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemImages'}
-    product_types: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemProductTypes'}
-    sales_ranks: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemSalesRanks'}
-    summaries: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemSummaries'}
-    variations: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemVariations'}
-    vendor_details: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/ItemVendorDetails'}
+    asin: "ItemAsin"
+    attributes: "ItemAttributes"
+    identifiers: "ItemIdentifiers"
+    images: "ItemImages"
+    product_types: "ItemProductTypes"
+    sales_ranks: "ItemSalesRanks"
+    summaries: "ItemSummaries"
+    variations: "ItemVariations"
+    vendor_details: "ItemVendorDetails"
     pass
 
 
@@ -100,9 +82,7 @@ class ItemAttributes:
 class ItemIdentifier:
 
     identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     identifier_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -116,10 +96,8 @@ class ItemIdentifiers:
 @attrs.define
 class ItemIdentifiersByMarketplace:
 
-    identifiers: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/ItemIdentifier'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    identifiers: list["ItemIdentifier"]
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -128,9 +106,7 @@ class ItemIdentifiersByMarketplace:
 class ItemImage:
 
     height: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     link: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     variant: Union[
         Literal["MAIN"],
         Literal["PT01"],
@@ -143,9 +119,8 @@ class ItemImage:
         Literal["PT08"],
         Literal["SWCH"],
     ]
-    # {'example': 'MAIN', 'enum': ['MAIN', 'PT01', 'PT02', 'PT03', 'PT04', 'PT05', 'PT06', 'PT07', 'PT08', 'SWCH'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    # {'example': 'MAIN'}
     width: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -159,10 +134,8 @@ class ItemImages:
 @attrs.define
 class ItemImagesByMarketplace:
 
-    images: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/ItemImage'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    images: list["ItemImage"]
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -171,9 +144,8 @@ class ItemImagesByMarketplace:
 class ItemProductTypeByMarketplace:
 
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     product_type: str
-    # {'example': 'LUGGAGE', 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    # {'example': 'LUGGAGE'}
 
     pass
 
@@ -188,11 +160,8 @@ class ItemProductTypes:
 class ItemSalesRank:
 
     link: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     rank: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     title: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -207,9 +176,7 @@ class ItemSalesRanks:
 class ItemSalesRanksByMarketplace:
 
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
-    ranks: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/ItemSalesRank'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    ranks: list["ItemSalesRank"]
 
     pass
 
@@ -217,15 +184,11 @@ class ItemSalesRanksByMarketplace:
 @attrs.define
 class ItemSearchResults:
 
-    items: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Item'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    items: list["Item"]
     number_of_results: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
-    pagination: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/Pagination'}
-    refinements: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>, 'ref': '#/components/schemas/Refinements'}
+    pagination: "Pagination"
+    refinements: "Refinements"
     pass
 
 
@@ -239,23 +202,14 @@ class ItemSummaries:
 class ItemSummaryByMarketplace:
 
     brand_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     browse_node: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     color_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     item_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     manufacturer: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     model_number: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     size_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     style_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -270,11 +224,9 @@ class ItemVariations:
 class ItemVariationsByMarketplace:
 
     asins: list[str]
-    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     variation_type: Union[Literal["PARENT"], Literal["CHILD"]]
-    # {'example': 'PARENT', 'enum': ['PARENT', 'CHILD'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    # {'example': 'PARENT'}
 
     pass
 
@@ -289,17 +241,11 @@ class ItemVendorDetails:
 class ItemVendorDetailsByMarketplace:
 
     brand_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     category_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     manufacturer_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     manufacturer_code_parent: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     product_group: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     replenishment_category: Union[
         Literal["ALLOCATED"],
         Literal["BASIC_REPLENISHMENT"],
@@ -312,9 +258,7 @@ class ItemVendorDetailsByMarketplace:
         Literal["OBSOLETE"],
         Literal["PLANNED_REPLENISHMENT"],
     ]
-    # {'enum': ['ALLOCATED', 'BASIC_REPLENISHMENT', 'IN_SEASON', 'LIMITED_REPLENISHMENT', 'MANUFACTURER_OUT_OF_STOCK', 'NEW_PRODUCT', 'NON_REPLENISHABLE', 'NON_STOCKUPABLE', 'OBSOLETE', 'PLANNED_REPLENISHMENT'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     subcategory_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -323,9 +267,7 @@ class ItemVendorDetailsByMarketplace:
 class Pagination:
 
     next_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
     previous_token: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
 
     pass
 
@@ -333,10 +275,8 @@ class Pagination:
 @attrs.define
 class Refinements:
 
-    brands: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/BrandRefinement'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
-    classifications: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/ClassificationRefinement'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001C2EE8CB310>}
+    brands: list["BrandRefinement"]
+    classifications: list["ClassificationRefinement"]
 
     pass
 

@@ -16,7 +16,6 @@ from typing import Any, List, Dict, Union, Literal
 class AuthorizationCode:
 
     authorization_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E4886EB310>, 'type': 'string'}
 
     pass
 
@@ -25,11 +24,8 @@ class AuthorizationCode:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E4886EB310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E4886EB310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002E4886EB310>, 'type': 'string'}
 
     pass
 
@@ -43,10 +39,8 @@ class ErrorList:
 @attrs.define
 class GetAuthorizationCodeResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002E4886EB310>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/AuthorizationCode', 'generator': <__mp_main__.Generator object at 0x000002E4886EB310>}
+    errors: "ErrorList"
+    payload: "AuthorizationCode"
     pass
 
 

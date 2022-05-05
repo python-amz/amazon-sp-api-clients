@@ -15,10 +15,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CreateUploadDestinationResponse:
 
-    errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>}
-    payload: dict[str, Any]
-    # {'ref': '#/components/schemas/UploadDestination', 'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>}
+    errors: "ErrorList"
+    payload: "UploadDestination"
     pass
 
 
@@ -26,11 +24,8 @@ class CreateUploadDestinationResponse:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
 
     pass
 
@@ -45,11 +40,9 @@ class ErrorList:
 class UploadDestination:
 
     headers: dict[str, Any]
-    # {'properties': {}, 'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'object'}
+    # {'properties': {}}
     upload_destination_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
     url: str
-    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
 
     pass
 

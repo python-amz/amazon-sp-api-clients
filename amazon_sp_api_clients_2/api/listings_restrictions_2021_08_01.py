@@ -18,11 +18,8 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'type': 'string'}
 
     pass
 
@@ -37,13 +34,10 @@ class ErrorList:
 class Link:
 
     resource: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'schema_format': 'uri', 'type': 'string'}
+    # {'schema_format': 'uri'}
     title: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'type': 'string'}
     type: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'type': 'string'}
     verb: Union[Literal["GET"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'enum': ['GET'], 'type': 'string'}
 
     pass
 
@@ -51,12 +45,9 @@ class Link:
 @attrs.define
 class Reason:
 
-    links: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'items': Reference(ref='#/components/schemas/Link'), 'type': 'array'}
+    links: list["Link"]
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'type': 'string'}
     reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'enum': ['APPROVAL_REQUIRED', 'ASIN_NOT_FOUND', 'NOT_ELIGIBLE'], 'type': 'string'}
 
     pass
 
@@ -79,11 +70,8 @@ class Restriction:
         Literal["collectible_acceptable"],
         Literal["club_club"],
     ]
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'enum': ['new_new', 'new_open_box', 'new_oem', 'refurbished_refurbished', 'used_like_new', 'used_very_good', 'used_good', 'used_acceptable', 'collectible_like_new', 'collectible_very_good', 'collectible_good', 'collectible_acceptable', 'club_club'], 'type': 'string'}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'type': 'string'}
-    reasons: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'items': Reference(ref='#/components/schemas/Reason'), 'type': 'array'}
+    reasons: list["Reason"]
 
     pass
 
@@ -91,8 +79,7 @@ class Restriction:
 @attrs.define
 class RestrictionList:
 
-    restrictions: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB310>, 'items': Reference(ref='#/components/schemas/Restriction'), 'type': 'array'}
+    restrictions: list["Restriction"]
 
     pass
 
