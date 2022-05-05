@@ -172,10 +172,8 @@ class Generator:
 
 
 def main():
-    for json_file in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'):
-        # if 'order' not in json_file.stem:
-        #     continue
-        Generator(json_file).generate()
+    generators = [Generator(f) for f in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json')]
+    [g.generate() for g in generators]
 
 
 if __name__ == '__main__':
