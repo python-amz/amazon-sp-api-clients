@@ -31,9 +31,9 @@ Args:
 """
         url = "{{ operation.path }}"
         values = ({% for p in operation.parsed_parameters %}{{ p.variable_name }},{% endfor %})
-    _{{ operation.method_name }}_params = ( # name, param in, required
+    _{{ operation.method_name }}_params = ( # name, param in
         {% for p in operation.parsed_parameters %}
-            ("{{ p.name }}", "{{ p.param_in }}", {{ p.required }}),{% endfor %}
+            ("{{ p.name }}", "{{ p.param_in }}"),{% endfor %}
     )
 
 {% endfor %}

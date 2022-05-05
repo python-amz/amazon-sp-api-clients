@@ -32,7 +32,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}"
         values = (purchase_order_number,)
 
-    _get_shipping_label_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+    _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_shipping_labels(
         self,
@@ -72,13 +72,13 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             next_token,
         )
 
-    _get_shipping_labels_params = (  # name, param in, required
-        ("shipFromPartyId", "query", False),
-        ("limit", "query", False),
-        ("createdAfter", "query", True),
-        ("createdBefore", "query", True),
-        ("sortOrder", "query", False),
-        ("nextToken", "query", False),
+    _get_shipping_labels_params = (  # name, param in
+        ("shipFromPartyId", "query"),
+        ("limit", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("sortOrder", "query"),
+        ("nextToken", "query"),
     )
 
     def submit_shipping_label_request(
@@ -100,4 +100,4 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
         values = ()
 
-    _submit_shipping_label_request_params = ()  # name, param in, required
+    _submit_shipping_label_request_params = ()  # name, param in

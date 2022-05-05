@@ -32,7 +32,7 @@ class Feeds20200904Client(BaseClient):
         url = "/feeds/2020-09-04/feeds/{feedId}"
         values = (feed_id,)
 
-    _cancel_feed_params = (("feedId", "path", True),)  # name, param in, required
+    _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
     def create_feed(
         self,
@@ -53,7 +53,7 @@ class Feeds20200904Client(BaseClient):
         url = "/feeds/2020-09-04/feeds"
         values = ()
 
-    _create_feed_params = ()  # name, param in, required
+    _create_feed_params = ()  # name, param in
 
     def create_feed_document(
         self,
@@ -74,7 +74,7 @@ class Feeds20200904Client(BaseClient):
         url = "/feeds/2020-09-04/documents"
         values = ()
 
-    _create_feed_document_params = ()  # name, param in, required
+    _create_feed_document_params = ()  # name, param in
 
     def get_feed(
         self,
@@ -97,7 +97,7 @@ class Feeds20200904Client(BaseClient):
         url = "/feeds/2020-09-04/feeds/{feedId}"
         values = (feed_id,)
 
-    _get_feed_params = (("feedId", "path", True),)  # name, param in, required
+    _get_feed_params = (("feedId", "path"),)  # name, param in
 
     def get_feed_document(
         self,
@@ -120,7 +120,7 @@ class Feeds20200904Client(BaseClient):
         url = "/feeds/2020-09-04/documents/{feedDocumentId}"
         values = (feed_document_id,)
 
-    _get_feed_document_params = (("feedDocumentId", "path", True),)  # name, param in, required
+    _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
     def get_feeds(
         self,
@@ -165,12 +165,12 @@ class Feeds20200904Client(BaseClient):
             next_token,
         )
 
-    _get_feeds_params = (  # name, param in, required
-        ("feedTypes", "query", False),
-        ("marketplaceIds", "query", False),
-        ("pageSize", "query", False),
-        ("processingStatuses", "query", False),
-        ("createdSince", "query", False),
-        ("createdUntil", "query", False),
-        ("nextToken", "query", False),
+    _get_feeds_params = (  # name, param in
+        ("feedTypes", "query"),
+        ("marketplaceIds", "query"),
+        ("pageSize", "query"),
+        ("processingStatuses", "query"),
+        ("createdSince", "query"),
+        ("createdUntil", "query"),
+        ("nextToken", "query"),
     )

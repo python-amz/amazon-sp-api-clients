@@ -40,10 +40,10 @@ class MessagingV1Client(BaseClient):
             attachments,
         )
 
-    _create_amazon_motors_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("attachments", "body", False),
+    _create_amazon_motors_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("attachments", "body"),
     )
 
     def create_warranty(
@@ -81,12 +81,12 @@ class MessagingV1Client(BaseClient):
             coverage_end_date,
         )
 
-    _create_warranty_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("attachments", "body", False),
-        ("coverageStartDate", "body", False),
-        ("coverageEndDate", "body", False),
+    _create_warranty_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("attachments", "body"),
+        ("coverageStartDate", "body"),
+        ("coverageEndDate", "body"),
     )
 
     def get_attributes(
@@ -113,9 +113,9 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _get_attributes_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
+    _get_attributes_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
     )
 
     def confirm_customization_details(
@@ -150,11 +150,11 @@ class MessagingV1Client(BaseClient):
             attachments,
         )
 
-    _confirm_customization_details_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("text", "body", False),
-        ("attachments", "body", False),
+    _confirm_customization_details_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("text", "body"),
+        ("attachments", "body"),
     )
 
     def create_confirm_delivery_details(
@@ -186,10 +186,10 @@ class MessagingV1Client(BaseClient):
             text,
         )
 
-    _create_confirm_delivery_details_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("text", "body", False),
+    _create_confirm_delivery_details_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("text", "body"),
     )
 
     def create_confirm_order_details(
@@ -221,10 +221,10 @@ class MessagingV1Client(BaseClient):
             text,
         )
 
-    _create_confirm_order_details_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("text", "body", False),
+    _create_confirm_order_details_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("text", "body"),
     )
 
     def create_confirm_service_details(
@@ -256,10 +256,10 @@ class MessagingV1Client(BaseClient):
             text,
         )
 
-    _create_confirm_service_details_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("text", "body", False),
+    _create_confirm_service_details_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("text", "body"),
     )
 
     def create_digital_access_key(
@@ -294,11 +294,11 @@ class MessagingV1Client(BaseClient):
             attachments,
         )
 
-    _create_digital_access_key_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("text", "body", False),
-        ("attachments", "body", False),
+    _create_digital_access_key_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("text", "body"),
+        ("attachments", "body"),
     )
 
     def create_legal_disclosure(
@@ -330,10 +330,10 @@ class MessagingV1Client(BaseClient):
             attachments,
         )
 
-    _create_legal_disclosure_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("attachments", "body", False),
+    _create_legal_disclosure_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("attachments", "body"),
     )
 
     def create_negative_feedback_removal(
@@ -362,9 +362,9 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _create_negative_feedback_removal_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
+    _create_negative_feedback_removal_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
     )
 
     def create_unexpected_problem(
@@ -396,10 +396,10 @@ class MessagingV1Client(BaseClient):
             text,
         )
 
-    _create_unexpected_problem_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-        ("text", "body", False),
+    _create_unexpected_problem_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
+        ("text", "body"),
     )
 
     def get_messaging_actions_for_order(
@@ -428,7 +428,7 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _get_messaging_actions_for_order_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
+    _get_messaging_actions_for_order_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
     )

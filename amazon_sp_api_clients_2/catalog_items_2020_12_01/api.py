@@ -57,11 +57,11 @@ class CatalogItems20201201Client(BaseClient):
             locale,
         )
 
-    _get_catalog_item_params = (  # name, param in, required
-        ("asin", "path", True),
-        ("marketplaceIds", "query", True),
-        ("includedData", "query", False),
-        ("locale", "query", False),
+    _get_catalog_item_params = (  # name, param in
+        ("asin", "path"),
+        ("marketplaceIds", "query"),
+        ("includedData", "query"),
+        ("locale", "query"),
     )
 
     def search_catalog_items(
@@ -122,14 +122,14 @@ class CatalogItems20201201Client(BaseClient):
             locale,
         )
 
-    _search_catalog_items_params = (  # name, param in, required
-        ("keywords", "query", True),
-        ("marketplaceIds", "query", True),
-        ("includedData", "query", False),
-        ("brandNames", "query", False),
-        ("classificationIds", "query", False),
-        ("pageSize", "query", False),
-        ("pageToken", "query", False),
-        ("keywordsLocale", "query", False),
-        ("locale", "query", False),
+    _search_catalog_items_params = (  # name, param in
+        ("keywords", "query"),
+        ("marketplaceIds", "query"),
+        ("includedData", "query"),
+        ("brandNames", "query"),
+        ("classificationIds", "query"),
+        ("pageSize", "query"),
+        ("pageToken", "query"),
+        ("keywordsLocale", "query"),
+        ("locale", "query"),
     )

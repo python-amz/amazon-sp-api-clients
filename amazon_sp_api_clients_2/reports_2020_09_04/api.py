@@ -32,7 +32,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/reports/{reportId}"
         values = (report_id,)
 
-    _cancel_report_params = (("reportId", "path", True),)  # name, param in, required
+    _cancel_report_params = (("reportId", "path"),)  # name, param in
 
     def cancel_report_schedule(
         self,
@@ -55,7 +55,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
 
-    _cancel_report_schedule_params = (("reportScheduleId", "path", True),)  # name, param in, required
+    _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     def create_report(
         self,
@@ -76,7 +76,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/reports"
         values = ()
 
-    _create_report_params = ()  # name, param in, required
+    _create_report_params = ()  # name, param in
 
     def create_report_schedule(
         self,
@@ -97,7 +97,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/schedules"
         values = ()
 
-    _create_report_schedule_params = ()  # name, param in, required
+    _create_report_schedule_params = ()  # name, param in
 
     def get_report(
         self,
@@ -120,7 +120,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/reports/{reportId}"
         values = (report_id,)
 
-    _get_report_params = (("reportId", "path", True),)  # name, param in, required
+    _get_report_params = (("reportId", "path"),)  # name, param in
 
     def get_report_document(
         self,
@@ -143,7 +143,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/documents/{reportDocumentId}"
         values = (report_document_id,)
 
-    _get_report_document_params = (("reportDocumentId", "path", True),)  # name, param in, required
+    _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
     def get_report_schedule(
         self,
@@ -166,7 +166,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
 
-    _get_report_schedule_params = (("reportScheduleId", "path", True),)  # name, param in, required
+    _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     def get_report_schedules(
         self,
@@ -189,7 +189,7 @@ class Reports20200904Client(BaseClient):
         url = "/reports/2020-09-04/schedules"
         values = (report_types,)
 
-    _get_report_schedules_params = (("reportTypes", "query", True),)  # name, param in, required
+    _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
     def get_reports(
         self,
@@ -234,12 +234,12 @@ class Reports20200904Client(BaseClient):
             next_token,
         )
 
-    _get_reports_params = (  # name, param in, required
-        ("reportTypes", "query", False),
-        ("processingStatuses", "query", False),
-        ("marketplaceIds", "query", False),
-        ("pageSize", "query", False),
-        ("createdSince", "query", False),
-        ("createdUntil", "query", False),
-        ("nextToken", "query", False),
+    _get_reports_params = (  # name, param in
+        ("reportTypes", "query"),
+        ("processingStatuses", "query"),
+        ("marketplaceIds", "query"),
+        ("pageSize", "query"),
+        ("createdSince", "query"),
+        ("createdUntil", "query"),
+        ("nextToken", "query"),
     )

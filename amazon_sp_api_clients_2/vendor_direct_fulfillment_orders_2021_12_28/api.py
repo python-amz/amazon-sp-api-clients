@@ -32,7 +32,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/{purchaseOrderNumber}"
         values = (purchase_order_number,)
 
-    _get_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+    _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_orders(
         self,
@@ -78,15 +78,15 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             include_details,
         )
 
-    _get_orders_params = (  # name, param in, required
-        ("shipFromPartyId", "query", False),
-        ("status", "query", False),
-        ("limit", "query", False),
-        ("createdAfter", "query", True),
-        ("createdBefore", "query", True),
-        ("sortOrder", "query", False),
-        ("nextToken", "query", False),
-        ("includeDetails", "query", False),
+    _get_orders_params = (  # name, param in
+        ("shipFromPartyId", "query"),
+        ("status", "query"),
+        ("limit", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("sortOrder", "query"),
+        ("nextToken", "query"),
+        ("includeDetails", "query"),
     )
 
     def submit_acknowledgement(
@@ -108,4 +108,4 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
         values = ()
 
-    _submit_acknowledgement_params = ()  # name, param in, required
+    _submit_acknowledgement_params = ()  # name, param in

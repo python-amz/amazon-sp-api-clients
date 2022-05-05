@@ -37,9 +37,9 @@ class ServicesV1Client(BaseClient):
             appointment_time,
         )
 
-    _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in, required
-        ("serviceJobId", "path", True),
-        ("appointmentTime", "body", True),
+    _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in
+        ("serviceJobId", "path"),
+        ("appointmentTime", "body"),
     )
 
     def cancel_service_job_by_service_job_id(
@@ -68,9 +68,9 @@ class ServicesV1Client(BaseClient):
             cancellation_reason_code,
         )
 
-    _cancel_service_job_by_service_job_id_params = (  # name, param in, required
-        ("serviceJobId", "path", True),
-        ("cancellationReasonCode", "query", True),
+    _cancel_service_job_by_service_job_id_params = (  # name, param in
+        ("serviceJobId", "path"),
+        ("cancellationReasonCode", "query"),
     )
 
     def complete_service_job_by_service_job_id(
@@ -94,7 +94,7 @@ class ServicesV1Client(BaseClient):
         url = "/service/v1/serviceJobs/{serviceJobId}/completions"
         values = (service_job_id,)
 
-    _complete_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required
+    _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     def get_service_job_by_service_job_id(
         self,
@@ -117,7 +117,7 @@ class ServicesV1Client(BaseClient):
         url = "/service/v1/serviceJobs/{serviceJobId}"
         values = (service_job_id,)
 
-    _get_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required
+    _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     def get_service_jobs(
         self,
@@ -188,20 +188,20 @@ class ServicesV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _get_service_jobs_params = (  # name, param in, required
-        ("serviceOrderIds", "query", False),
-        ("serviceJobStatus", "query", False),
-        ("pageToken", "query", False),
-        ("pageSize", "query", False),
-        ("sortField", "query", False),
-        ("sortOrder", "query", False),
-        ("createdAfter", "query", False),
-        ("createdBefore", "query", False),
-        ("lastUpdatedAfter", "query", False),
-        ("lastUpdatedBefore", "query", False),
-        ("scheduleStartDate", "query", False),
-        ("scheduleEndDate", "query", False),
-        ("marketplaceIds", "query", True),
+    _get_service_jobs_params = (  # name, param in
+        ("serviceOrderIds", "query"),
+        ("serviceJobStatus", "query"),
+        ("pageToken", "query"),
+        ("pageSize", "query"),
+        ("sortField", "query"),
+        ("sortOrder", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("lastUpdatedAfter", "query"),
+        ("lastUpdatedBefore", "query"),
+        ("scheduleStartDate", "query"),
+        ("scheduleEndDate", "query"),
+        ("marketplaceIds", "query"),
     )
 
     def reschedule_appointment_for_service_job_by_service_job_id(
@@ -236,9 +236,9 @@ class ServicesV1Client(BaseClient):
             reschedule_reason_code,
         )
 
-    _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in, required
-        ("serviceJobId", "path", True),
-        ("appointmentId", "path", True),
-        ("appointmentTime", "body", True),
-        ("rescheduleReasonCode", "body", True),
+    _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in
+        ("serviceJobId", "path"),
+        ("appointmentId", "path"),
+        ("appointmentTime", "body"),
+        ("rescheduleReasonCode", "body"),
     )

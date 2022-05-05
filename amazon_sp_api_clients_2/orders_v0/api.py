@@ -33,7 +33,7 @@ class OrdersV0Client(BaseClient):
         url = "/orders/v0/orders/{orderId}"
         values = (order_id,)
 
-    _get_order_params = (("orderId", "path", True),)  # name, param in, required
+    _get_order_params = (("orderId", "path"),)  # name, param in
 
     def get_order_address(
         self,
@@ -57,7 +57,7 @@ class OrdersV0Client(BaseClient):
         url = "/orders/v0/orders/{orderId}/address"
         values = (order_id,)
 
-    _get_order_address_params = (("orderId", "path", True),)  # name, param in, required
+    _get_order_address_params = (("orderId", "path"),)  # name, param in
 
     def get_order_buyer_info(
         self,
@@ -81,7 +81,7 @@ class OrdersV0Client(BaseClient):
         url = "/orders/v0/orders/{orderId}/buyerInfo"
         values = (order_id,)
 
-    _get_order_buyer_info_params = (("orderId", "path", True),)  # name, param in, required
+    _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
 
     def get_order_items(
         self,
@@ -112,9 +112,9 @@ class OrdersV0Client(BaseClient):
             next_token,
         )
 
-    _get_order_items_params = (  # name, param in, required
-        ("orderId", "path", True),
-        ("NextToken", "query", False),
+    _get_order_items_params = (  # name, param in
+        ("orderId", "path"),
+        ("NextToken", "query"),
     )
 
     def get_order_items_buyer_info(
@@ -144,9 +144,9 @@ class OrdersV0Client(BaseClient):
             next_token,
         )
 
-    _get_order_items_buyer_info_params = (  # name, param in, required
-        ("orderId", "path", True),
-        ("NextToken", "query", False),
+    _get_order_items_buyer_info_params = (  # name, param in
+        ("orderId", "path"),
+        ("NextToken", "query"),
     )
 
     def get_order_regulated_info(
@@ -171,7 +171,7 @@ class OrdersV0Client(BaseClient):
         url = "/orders/v0/orders/{orderId}/regulatedInfo"
         values = (order_id,)
 
-    _get_order_regulated_info_params = (("orderId", "path", True),)  # name, param in, required
+    _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
 
     def get_orders(
         self,
@@ -246,24 +246,24 @@ class OrdersV0Client(BaseClient):
             store_chain_store_id,
         )
 
-    _get_orders_params = (  # name, param in, required
-        ("CreatedAfter", "query", False),
-        ("CreatedBefore", "query", False),
-        ("LastUpdatedAfter", "query", False),
-        ("LastUpdatedBefore", "query", False),
-        ("OrderStatuses", "query", False),
-        ("MarketplaceIds", "query", True),
-        ("FulfillmentChannels", "query", False),
-        ("PaymentMethods", "query", False),
-        ("BuyerEmail", "query", False),
-        ("SellerOrderId", "query", False),
-        ("MaxResultsPerPage", "query", False),
-        ("EasyShipShipmentStatuses", "query", False),
-        ("NextToken", "query", False),
-        ("AmazonOrderIds", "query", False),
-        ("ActualFulfillmentSupplySourceId", "query", False),
-        ("IsISPU", "query", False),
-        ("StoreChainStoreId", "query", False),
+    _get_orders_params = (  # name, param in
+        ("CreatedAfter", "query"),
+        ("CreatedBefore", "query"),
+        ("LastUpdatedAfter", "query"),
+        ("LastUpdatedBefore", "query"),
+        ("OrderStatuses", "query"),
+        ("MarketplaceIds", "query"),
+        ("FulfillmentChannels", "query"),
+        ("PaymentMethods", "query"),
+        ("BuyerEmail", "query"),
+        ("SellerOrderId", "query"),
+        ("MaxResultsPerPage", "query"),
+        ("EasyShipShipmentStatuses", "query"),
+        ("NextToken", "query"),
+        ("AmazonOrderIds", "query"),
+        ("ActualFulfillmentSupplySourceId", "query"),
+        ("IsISPU", "query"),
+        ("StoreChainStoreId", "query"),
     )
 
     def update_shipment_status(
@@ -290,11 +290,11 @@ class OrdersV0Client(BaseClient):
             order_items,
         )
 
-    _update_shipment_status_params = (  # name, param in, required
-        ("orderId", "path", True),
-        ("marketplaceId", "body", True),
-        ("shipmentStatus", "body", True),
-        ("orderItems", "body", False),
+    _update_shipment_status_params = (  # name, param in
+        ("orderId", "path"),
+        ("marketplaceId", "body"),
+        ("shipmentStatus", "body"),
+        ("orderItems", "body"),
     )
 
     def update_verification_status(
@@ -324,7 +324,7 @@ class OrdersV0Client(BaseClient):
             regulated_order_verification_status,
         )
 
-    _update_verification_status_params = (  # name, param in, required
-        ("orderId", "path", True),
-        ("regulatedOrderVerificationStatus", "body", True),
+    _update_verification_status_params = (  # name, param in
+        ("orderId", "path"),
+        ("regulatedOrderVerificationStatus", "body"),
     )

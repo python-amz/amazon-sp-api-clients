@@ -32,7 +32,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/shipments/{shipmentId}"
         values = (shipment_id,)
 
-    _cancel_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
+    _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     def cancel_shipment_old(
         self,
@@ -55,7 +55,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/shipments/{shipmentId}/cancel"
         values = (shipment_id,)
 
-    _cancel_shipment_old_params = (("shipmentId", "path", True),)  # name, param in, required
+    _cancel_shipment_old_params = (("shipmentId", "path"),)  # name, param in
 
     def create_shipment(
         self,
@@ -76,7 +76,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/shipments"
         values = ()
 
-    _create_shipment_params = ()  # name, param in, required
+    _create_shipment_params = ()  # name, param in
 
     def get_additional_seller_inputs(
         self,
@@ -97,7 +97,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/additionalSellerInputs"
         values = ()
 
-    _get_additional_seller_inputs_params = ()  # name, param in, required
+    _get_additional_seller_inputs_params = ()  # name, param in
 
     def get_additional_seller_inputs_old(
         self,
@@ -118,7 +118,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/sellerInputs"
         values = ()
 
-    _get_additional_seller_inputs_old_params = ()  # name, param in, required
+    _get_additional_seller_inputs_old_params = ()  # name, param in
 
     def get_eligible_shipment_services(
         self,
@@ -139,7 +139,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/eligibleShippingServices"
         values = ()
 
-    _get_eligible_shipment_services_params = ()  # name, param in, required
+    _get_eligible_shipment_services_params = ()  # name, param in
 
     def get_eligible_shipment_services_old(
         self,
@@ -160,7 +160,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/eligibleServices"
         values = ()
 
-    _get_eligible_shipment_services_old_params = ()  # name, param in, required
+    _get_eligible_shipment_services_old_params = ()  # name, param in
 
     def get_shipment(
         self,
@@ -183,4 +183,4 @@ class MerchantFulfillmentV0Client(BaseClient):
         url = "/mfn/v0/shipments/{shipmentId}"
         values = (shipment_id,)
 
-    _get_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
+    _get_shipment_params = (("shipmentId", "path"),)  # name, param in

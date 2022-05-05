@@ -95,14 +95,14 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             locale,
         )
 
-    _get_definitions_product_type_params = (  # name, param in, required
-        ("productType", "path", True),
-        ("sellerId", "query", False),
-        ("marketplaceIds", "query", True),
-        ("productTypeVersion", "query", False),
-        ("requirements", "query", False),
-        ("requirementsEnforced", "query", False),
-        ("locale", "query", False),
+    _get_definitions_product_type_params = (  # name, param in
+        ("productType", "path"),
+        ("sellerId", "query"),
+        ("marketplaceIds", "query"),
+        ("productTypeVersion", "query"),
+        ("requirements", "query"),
+        ("requirementsEnforced", "query"),
+        ("locale", "query"),
     )
 
     def search_definitions_product_types(
@@ -132,7 +132,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             marketplace_ids,
         )
 
-    _search_definitions_product_types_params = (  # name, param in, required
-        ("keywords", "query", False),
-        ("marketplaceIds", "query", True),
+    _search_definitions_product_types_params = (  # name, param in
+        ("keywords", "query"),
+        ("marketplaceIds", "query"),
     )

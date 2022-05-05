@@ -30,4 +30,4 @@ class SellersV1Client(BaseClient):
         url = "/sellers/v1/marketplaceParticipations"
         values = ()
 
-    _get_marketplace_participations_params = ()  # name, param in, required
+    _get_marketplace_participations_params = ()  # name, param in

@@ -32,7 +32,7 @@ class NotificationsV1Client(BaseClient):
         url = "/notifications/v1/destinations"
         values = ()
 
-    _create_destination_params = ()  # name, param in, required
+    _create_destination_params = ()  # name, param in
 
     def create_subscription(
         self,
@@ -64,10 +64,10 @@ class NotificationsV1Client(BaseClient):
             destination_id,
         )
 
-    _create_subscription_params = (  # name, param in, required
-        ("notificationType", "path", True),
-        ("payloadVersion", "body", False),
-        ("destinationId", "body", False),
+    _create_subscription_params = (  # name, param in
+        ("notificationType", "path"),
+        ("payloadVersion", "body"),
+        ("destinationId", "body"),
     )
 
     def delete_destination(
@@ -91,7 +91,7 @@ class NotificationsV1Client(BaseClient):
         url = "/notifications/v1/destinations/{destinationId}"
         values = (destination_id,)
 
-    _delete_destination_params = (("destinationId", "path", True),)  # name, param in, required
+    _delete_destination_params = (("destinationId", "path"),)  # name, param in
 
     def delete_subscription_by_id(
         self,
@@ -120,9 +120,9 @@ class NotificationsV1Client(BaseClient):
             notification_type,
         )
 
-    _delete_subscription_by_id_params = (  # name, param in, required
-        ("subscriptionId", "path", True),
-        ("notificationType", "path", True),
+    _delete_subscription_by_id_params = (  # name, param in
+        ("subscriptionId", "path"),
+        ("notificationType", "path"),
     )
 
     def get_destination(
@@ -146,7 +146,7 @@ class NotificationsV1Client(BaseClient):
         url = "/notifications/v1/destinations/{destinationId}"
         values = (destination_id,)
 
-    _get_destination_params = (("destinationId", "path", True),)  # name, param in, required
+    _get_destination_params = (("destinationId", "path"),)  # name, param in
 
     def get_destinations(
         self,
@@ -167,7 +167,7 @@ class NotificationsV1Client(BaseClient):
         url = "/notifications/v1/destinations"
         values = ()
 
-    _get_destinations_params = ()  # name, param in, required
+    _get_destinations_params = ()  # name, param in
 
     def get_subscription(
         self,
@@ -191,7 +191,7 @@ class NotificationsV1Client(BaseClient):
         url = "/notifications/v1/subscriptions/{notificationType}"
         values = (notification_type,)
 
-    _get_subscription_params = (("notificationType", "path", True),)  # name, param in, required
+    _get_subscription_params = (("notificationType", "path"),)  # name, param in
 
     def get_subscription_by_id(
         self,
@@ -220,7 +220,7 @@ class NotificationsV1Client(BaseClient):
             notification_type,
         )
 
-    _get_subscription_by_id_params = (  # name, param in, required
-        ("subscriptionId", "path", True),
-        ("notificationType", "path", True),
+    _get_subscription_by_id_params = (  # name, param in
+        ("subscriptionId", "path"),
+        ("notificationType", "path"),
     )

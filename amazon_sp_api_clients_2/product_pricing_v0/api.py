@@ -47,12 +47,12 @@ class ProductPricingV0Client(BaseClient):
             customer_type,
         )
 
-    _get_competitive_pricing_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("Asins", "query", False),
-        ("Skus", "query", False),
-        ("ItemType", "query", True),
-        ("CustomerType", "query", False),
+    _get_competitive_pricing_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("Asins", "query"),
+        ("Skus", "query"),
+        ("ItemType", "query"),
+        ("CustomerType", "query"),
     )
 
     def get_item_offers(
@@ -90,11 +90,11 @@ class ProductPricingV0Client(BaseClient):
             customer_type,
         )
 
-    _get_item_offers_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("ItemCondition", "query", True),
-        ("Asin", "path", True),
-        ("CustomerType", "query", False),
+    _get_item_offers_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("ItemCondition", "query"),
+        ("Asin", "path"),
+        ("CustomerType", "query"),
     )
 
     def get_listing_offers(
@@ -132,11 +132,11 @@ class ProductPricingV0Client(BaseClient):
             customer_type,
         )
 
-    _get_listing_offers_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("ItemCondition", "query", True),
-        ("SellerSKU", "path", True),
-        ("CustomerType", "query", False),
+    _get_listing_offers_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("ItemCondition", "query"),
+        ("SellerSKU", "path"),
+        ("CustomerType", "query"),
     )
 
     def get_pricing(
@@ -180,11 +180,11 @@ class ProductPricingV0Client(BaseClient):
             offer_type,
         )
 
-    _get_pricing_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("Asins", "query", False),
-        ("Skus", "query", False),
-        ("ItemType", "query", True),
-        ("ItemCondition", "query", False),
-        ("OfferType", "query", False),
+    _get_pricing_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("Asins", "query"),
+        ("Skus", "query"),
+        ("ItemType", "query"),
+        ("ItemCondition", "query"),
+        ("OfferType", "query"),
     )

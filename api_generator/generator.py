@@ -114,6 +114,7 @@ class Generator:
         operations.sort(key=lambda k: k.operationId)
         for operation in [o for o in operations if o.parameters is not None]:
 
+            # convert post object to parameter objects
             if (body := operation.requestBody) is not None:
                 assert isinstance(body, RequestBody)
                 assert body.required is True

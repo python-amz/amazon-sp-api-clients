@@ -38,9 +38,9 @@ class CatalogItemsV0Client(BaseClient):
             asin,
         )
 
-    _get_catalog_item_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("asin", "path", True),
+    _get_catalog_item_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("asin", "path"),
     )
 
     def list_catalog_categories(
@@ -73,10 +73,10 @@ class CatalogItemsV0Client(BaseClient):
             seller_sku,
         )
 
-    _list_catalog_categories_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("ASIN", "query", False),
-        ("SellerSKU", "query", False),
+    _list_catalog_categories_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("ASIN", "query"),
+        ("SellerSKU", "query"),
     )
 
     def list_catalog_items(
@@ -128,13 +128,13 @@ class CatalogItemsV0Client(BaseClient):
             jan,
         )
 
-    _list_catalog_items_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("Query", "query", False),
-        ("QueryContextId", "query", False),
-        ("SellerSKU", "query", False),
-        ("UPC", "query", False),
-        ("EAN", "query", False),
-        ("ISBN", "query", False),
-        ("JAN", "query", False),
+    _list_catalog_items_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("Query", "query"),
+        ("QueryContextId", "query"),
+        ("SellerSKU", "query"),
+        ("UPC", "query"),
+        ("EAN", "query"),
+        ("ISBN", "query"),
+        ("JAN", "query"),
     )

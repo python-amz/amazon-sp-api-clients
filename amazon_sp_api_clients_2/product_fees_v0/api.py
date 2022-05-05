@@ -42,9 +42,9 @@ class ProductFeesV0Client(BaseClient):
             fees_estimate_request,
         )
 
-    _get_my_fees_estimate_for_asin_params = (  # name, param in, required
-        ("Asin", "path", True),
-        ("FeesEstimateRequest", "body", False),
+    _get_my_fees_estimate_for_asin_params = (  # name, param in
+        ("Asin", "path"),
+        ("FeesEstimateRequest", "body"),
     )
 
     def get_my_fees_estimate_for_sku(
@@ -78,7 +78,7 @@ class ProductFeesV0Client(BaseClient):
             fees_estimate_request,
         )
 
-    _get_my_fees_estimate_for_sku_params = (  # name, param in, required
-        ("SellerSKU", "path", True),
-        ("FeesEstimateRequest", "body", False),
+    _get_my_fees_estimate_for_sku_params = (  # name, param in
+        ("SellerSKU", "path"),
+        ("FeesEstimateRequest", "body"),
     )

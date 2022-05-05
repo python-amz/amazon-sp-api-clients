@@ -38,7 +38,7 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
             inventory,
         )
 
-    _submit_inventory_update_params = (  # name, param in, required
-        ("warehouseId", "path", True),
-        ("inventory", "body", False),
+    _submit_inventory_update_params = (  # name, param in
+        ("warehouseId", "path"),
+        ("inventory", "body"),
     )

@@ -33,7 +33,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}"
         values = (purchase_order_number,)
 
-    _get_customer_invoice_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+    _get_customer_invoice_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_customer_invoices(
         self,
@@ -74,13 +74,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             next_token,
         )
 
-    _get_customer_invoices_params = (  # name, param in, required
-        ("shipFromPartyId", "query", False),
-        ("limit", "query", False),
-        ("createdAfter", "query", True),
-        ("createdBefore", "query", True),
-        ("sortOrder", "query", False),
-        ("nextToken", "query", False),
+    _get_customer_invoices_params = (  # name, param in
+        ("shipFromPartyId", "query"),
+        ("limit", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("sortOrder", "query"),
+        ("nextToken", "query"),
     )
 
     def get_packing_slip(
@@ -105,7 +105,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}"
         values = (purchase_order_number,)
 
-    _get_packing_slip_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+    _get_packing_slip_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_packing_slips(
         self,
@@ -146,13 +146,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             next_token,
         )
 
-    _get_packing_slips_params = (  # name, param in, required
-        ("shipFromPartyId", "query", False),
-        ("limit", "query", False),
-        ("createdAfter", "query", True),
-        ("createdBefore", "query", True),
-        ("sortOrder", "query", False),
-        ("nextToken", "query", False),
+    _get_packing_slips_params = (  # name, param in
+        ("shipFromPartyId", "query"),
+        ("limit", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("sortOrder", "query"),
+        ("nextToken", "query"),
     )
 
     def get_shipping_label(
@@ -177,7 +177,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}"
         values = (purchase_order_number,)
 
-    _get_shipping_label_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+    _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_shipping_labels(
         self,
@@ -218,13 +218,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             next_token,
         )
 
-    _get_shipping_labels_params = (  # name, param in, required
-        ("shipFromPartyId", "query", False),
-        ("limit", "query", False),
-        ("createdAfter", "query", True),
-        ("createdBefore", "query", True),
-        ("sortOrder", "query", False),
-        ("nextToken", "query", False),
+    _get_shipping_labels_params = (  # name, param in
+        ("shipFromPartyId", "query"),
+        ("limit", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("sortOrder", "query"),
+        ("nextToken", "query"),
     )
 
     def submit_shipment_confirmations(
@@ -247,7 +247,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
         values = ()
 
-    _submit_shipment_confirmations_params = ()  # name, param in, required
+    _submit_shipment_confirmations_params = ()  # name, param in
 
     def submit_shipment_status_updates(
         self,
@@ -269,7 +269,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
         values = ()
 
-    _submit_shipment_status_updates_params = ()  # name, param in, required
+    _submit_shipment_status_updates_params = ()  # name, param in
 
     def submit_shipping_label_request(
         self,
@@ -291,4 +291,4 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
         values = ()
 
-    _submit_shipping_label_request_params = ()  # name, param in, required
+    _submit_shipping_label_request_params = ()  # name, param in

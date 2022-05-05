@@ -40,8 +40,8 @@ class AuthorizationV1Client(BaseClient):
             mws_auth_token,
         )
 
-    _get_authorization_code_params = (  # name, param in, required
-        ("sellingPartnerId", "query", True),
-        ("developerId", "query", True),
-        ("mwsAuthToken", "query", True),
+    _get_authorization_code_params = (  # name, param in
+        ("sellingPartnerId", "query"),
+        ("developerId", "query"),
+        ("mwsAuthToken", "query"),
     )

@@ -56,12 +56,12 @@ class FbaInventoryV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _get_inventory_summaries_params = (  # name, param in, required
-        ("details", "query", False),
-        ("granularityType", "query", True),
-        ("granularityId", "query", True),
-        ("startDateTime", "query", False),
-        ("sellerSkus", "query", False),
-        ("nextToken", "query", False),
-        ("marketplaceIds", "query", True),
+    _get_inventory_summaries_params = (  # name, param in
+        ("details", "query"),
+        ("granularityType", "query"),
+        ("granularityId", "query"),
+        ("startDateTime", "query"),
+        ("sellerSkus", "query"),
+        ("nextToken", "query"),
+        ("marketplaceIds", "query"),
     )

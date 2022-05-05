@@ -33,4 +33,4 @@ class VendorDirectFulfillmentTransactionsV1Client(BaseClient):
         url = "/vendor/directFulfillment/transactions/v1/transactions/{transactionId}"
         values = (transaction_id,)
 
-    _get_transaction_status_params = (("transactionId", "path", True),)  # name, param in, required
+    _get_transaction_status_params = (("transactionId", "path"),)  # name, param in

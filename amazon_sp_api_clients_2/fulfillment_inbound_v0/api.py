@@ -40,10 +40,10 @@ class FulfillmentInboundV0Client(BaseClient):
             marketplace_id,
         )
 
-    _confirm_preorder_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("NeedByDate", "query", True),
-        ("MarketplaceId", "query", True),
+    _confirm_preorder_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("NeedByDate", "query"),
+        ("MarketplaceId", "query"),
     )
 
     def confirm_transport(
@@ -71,7 +71,7 @@ class FulfillmentInboundV0Client(BaseClient):
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/confirm"
         values = (shipment_id,)
 
-    _confirm_transport_params = (("shipmentId", "path", True),)  # name, param in, required
+    _confirm_transport_params = (("shipmentId", "path"),)  # name, param in
 
     def create_inbound_shipment(
         self,
@@ -105,11 +105,11 @@ class FulfillmentInboundV0Client(BaseClient):
             marketplace_id,
         )
 
-    _create_inbound_shipment_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("InboundShipmentHeader", "body", True),
-        ("InboundShipmentItems", "body", True),
-        ("MarketplaceId", "body", True),
+    _create_inbound_shipment_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("InboundShipmentHeader", "body"),
+        ("InboundShipmentItems", "body"),
+        ("MarketplaceId", "body"),
     )
 
     def create_inbound_shipment_plan(
@@ -131,7 +131,7 @@ class FulfillmentInboundV0Client(BaseClient):
         url = "/fba/inbound/v0/plans"
         values = ()
 
-    _create_inbound_shipment_plan_params = ()  # name, param in, required
+    _create_inbound_shipment_plan_params = ()  # name, param in
 
     def estimate_transport(
         self,
@@ -156,7 +156,7 @@ class FulfillmentInboundV0Client(BaseClient):
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/estimate"
         values = (shipment_id,)
 
-    _estimate_transport_params = (("shipmentId", "path", True),)  # name, param in, required
+    _estimate_transport_params = (("shipmentId", "path"),)  # name, param in
 
     def get_bill_of_lading(
         self,
@@ -179,7 +179,7 @@ class FulfillmentInboundV0Client(BaseClient):
         url = "/fba/inbound/v0/shipments/{shipmentId}/billOfLading"
         values = (shipment_id,)
 
-    _get_bill_of_lading_params = (("shipmentId", "path", True),)  # name, param in, required
+    _get_bill_of_lading_params = (("shipmentId", "path"),)  # name, param in
 
     def get_inbound_guidance(
         self,
@@ -210,10 +210,10 @@ class FulfillmentInboundV0Client(BaseClient):
             asinlist,
         )
 
-    _get_inbound_guidance_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("SellerSKUList", "query", False),
-        ("ASINList", "query", False),
+    _get_inbound_guidance_params = (  # name, param in
+        ("MarketplaceId", "query"),
+        ("SellerSKUList", "query"),
+        ("ASINList", "query"),
     )
 
     def get_labels(
@@ -274,15 +274,15 @@ class FulfillmentInboundV0Client(BaseClient):
             page_start_index,
         )
 
-    _get_labels_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("PageType", "query", True),
-        ("LabelType", "query", True),
-        ("NumberOfPackages", "query", False),
-        ("PackageLabelsToPrint", "query", False),
-        ("NumberOfPallets", "query", False),
-        ("PageSize", "query", False),
-        ("PageStartIndex", "query", False),
+    _get_labels_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("PageType", "query"),
+        ("LabelType", "query"),
+        ("NumberOfPackages", "query"),
+        ("PackageLabelsToPrint", "query"),
+        ("NumberOfPallets", "query"),
+        ("PageSize", "query"),
+        ("PageStartIndex", "query"),
     )
 
     def get_preorder_info(
@@ -311,9 +311,9 @@ class FulfillmentInboundV0Client(BaseClient):
             marketplace_id,
         )
 
-    _get_preorder_info_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("MarketplaceId", "query", True),
+    _get_preorder_info_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("MarketplaceId", "query"),
     )
 
     def get_prep_instructions(
@@ -347,10 +347,10 @@ class FulfillmentInboundV0Client(BaseClient):
             asinlist,
         )
 
-    _get_prep_instructions_params = (  # name, param in, required
-        ("ShipToCountryCode", "query", True),
-        ("SellerSKUList", "query", False),
-        ("ASINList", "query", False),
+    _get_prep_instructions_params = (  # name, param in
+        ("ShipToCountryCode", "query"),
+        ("SellerSKUList", "query"),
+        ("ASINList", "query"),
     )
 
     def get_shipment_items(
@@ -388,12 +388,12 @@ class FulfillmentInboundV0Client(BaseClient):
             marketplace_id,
         )
 
-    _get_shipment_items_params = (  # name, param in, required
-        ("LastUpdatedAfter", "query", False),
-        ("LastUpdatedBefore", "query", False),
-        ("QueryType", "query", True),
-        ("NextToken", "query", False),
-        ("MarketplaceId", "query", True),
+    _get_shipment_items_params = (  # name, param in
+        ("LastUpdatedAfter", "query"),
+        ("LastUpdatedBefore", "query"),
+        ("QueryType", "query"),
+        ("NextToken", "query"),
+        ("MarketplaceId", "query"),
     )
 
     def get_shipment_items_by_shipment_id(
@@ -422,9 +422,9 @@ class FulfillmentInboundV0Client(BaseClient):
             marketplace_id,
         )
 
-    _get_shipment_items_by_shipment_id_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("MarketplaceId", "query", True),
+    _get_shipment_items_by_shipment_id_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("MarketplaceId", "query"),
     )
 
     def get_shipments(
@@ -481,14 +481,14 @@ class FulfillmentInboundV0Client(BaseClient):
             marketplace_id,
         )
 
-    _get_shipments_params = (  # name, param in, required
-        ("ShipmentStatusList", "query", False),
-        ("ShipmentIdList", "query", False),
-        ("LastUpdatedAfter", "query", False),
-        ("LastUpdatedBefore", "query", False),
-        ("QueryType", "query", True),
-        ("NextToken", "query", False),
-        ("MarketplaceId", "query", True),
+    _get_shipments_params = (  # name, param in
+        ("ShipmentStatusList", "query"),
+        ("ShipmentIdList", "query"),
+        ("LastUpdatedAfter", "query"),
+        ("LastUpdatedBefore", "query"),
+        ("QueryType", "query"),
+        ("NextToken", "query"),
+        ("MarketplaceId", "query"),
     )
 
     def get_transport_details(
@@ -512,7 +512,7 @@ class FulfillmentInboundV0Client(BaseClient):
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport"
         values = (shipment_id,)
 
-    _get_transport_details_params = (("shipmentId", "path", True),)  # name, param in, required
+    _get_transport_details_params = (("shipmentId", "path"),)  # name, param in
 
     def put_transport_details(
         self,
@@ -546,11 +546,11 @@ class FulfillmentInboundV0Client(BaseClient):
             transport_details,
         )
 
-    _put_transport_details_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("IsPartnered", "body", True),
-        ("ShipmentType", "body", True),
-        ("TransportDetails", "body", True),
+    _put_transport_details_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("IsPartnered", "body"),
+        ("ShipmentType", "body"),
+        ("TransportDetails", "body"),
     )
 
     def update_inbound_shipment(
@@ -585,11 +585,11 @@ class FulfillmentInboundV0Client(BaseClient):
             marketplace_id,
         )
 
-    _update_inbound_shipment_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("InboundShipmentHeader", "body", True),
-        ("InboundShipmentItems", "body", True),
-        ("MarketplaceId", "body", True),
+    _update_inbound_shipment_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("InboundShipmentHeader", "body"),
+        ("InboundShipmentItems", "body"),
+        ("MarketplaceId", "body"),
     )
 
     def void_transport(
@@ -617,4 +617,4 @@ class FulfillmentInboundV0Client(BaseClient):
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/void"
         values = (shipment_id,)
 
-    _void_transport_params = (("shipmentId", "path", True),)  # name, param in, required
+    _void_transport_params = (("shipmentId", "path"),)  # name, param in

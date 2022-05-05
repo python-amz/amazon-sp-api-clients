@@ -43,9 +43,9 @@ class Uploads20201101Client(BaseClient):
             content_type,
         )
 
-    _create_upload_destination_for_resource_params = (  # name, param in, required
-        ("marketplaceIds", "query", True),
-        ("contentMD5", "query", True),
-        ("resource", "path", True),
-        ("contentType", "query", False),
+    _create_upload_destination_for_resource_params = (  # name, param in
+        ("marketplaceIds", "query"),
+        ("contentMD5", "query"),
+        ("resource", "path"),
+        ("contentType", "query"),
     )

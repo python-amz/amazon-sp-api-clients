@@ -60,14 +60,14 @@ class SalesV1Client(BaseClient):
             sku,
         )
 
-    _get_order_metrics_params = (  # name, param in, required
-        ("marketplaceIds", "query", True),
-        ("interval", "query", True),
-        ("granularityTimeZone", "query", False),
-        ("granularity", "query", True),
-        ("buyerType", "query", False),
-        ("fulfillmentNetwork", "query", False),
-        ("firstDayOfWeek", "query", False),
-        ("asin", "query", False),
-        ("sku", "query", False),
+    _get_order_metrics_params = (  # name, param in
+        ("marketplaceIds", "query"),
+        ("interval", "query"),
+        ("granularityTimeZone", "query"),
+        ("granularity", "query"),
+        ("buyerType", "query"),
+        ("fulfillmentNetwork", "query"),
+        ("firstDayOfWeek", "query"),
+        ("asin", "query"),
+        ("sku", "query"),
     )

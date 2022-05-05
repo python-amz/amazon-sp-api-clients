@@ -62,10 +62,10 @@ class ListingsRestrictions20210801Client(BaseClient):
             reason_locale,
         )
 
-    _get_listings_restrictions_params = (  # name, param in, required
-        ("asin", "query", True),
-        ("conditionType", "query", False),
-        ("sellerId", "query", True),
-        ("marketplaceIds", "query", True),
-        ("reasonLocale", "query", False),
+    _get_listings_restrictions_params = (  # name, param in
+        ("asin", "query"),
+        ("conditionType", "query"),
+        ("sellerId", "query"),
+        ("marketplaceIds", "query"),
+        ("reasonLocale", "query"),
     )

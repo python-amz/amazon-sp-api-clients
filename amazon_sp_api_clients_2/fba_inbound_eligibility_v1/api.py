@@ -40,8 +40,8 @@ class FbaInboundEligibilityV1Client(BaseClient):
             program,
         )
 
-    _get_item_eligibility_preview_params = (  # name, param in, required
-        ("marketplaceIds", "query", False),
-        ("asin", "query", True),
-        ("program", "query", True),
+    _get_item_eligibility_preview_params = (  # name, param in
+        ("marketplaceIds", "query"),
+        ("asin", "query"),
+        ("program", "query"),
     )

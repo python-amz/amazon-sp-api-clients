@@ -38,9 +38,9 @@ class AplusContent20201101Client(BaseClient):
             content_document,
         )
 
-    _create_content_document_params = (  # name, param in, required
-        ("marketplaceId", "query", True),
-        ("contentDocument", "body", True),
+    _create_content_document_params = (  # name, param in
+        ("marketplaceId", "query"),
+        ("contentDocument", "body"),
     )
 
     def get_content_document(
@@ -73,10 +73,10 @@ class AplusContent20201101Client(BaseClient):
             included_data_set,
         )
 
-    _get_content_document_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
-        ("includedDataSet", "query", True),
+    _get_content_document_params = (  # name, param in
+        ("contentReferenceKey", "path"),
+        ("marketplaceId", "query"),
+        ("includedDataSet", "query"),
     )
 
     def list_content_document_asin_relations(
@@ -115,12 +115,12 @@ class AplusContent20201101Client(BaseClient):
             page_token,
         )
 
-    _list_content_document_asin_relations_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
-        ("includedDataSet", "query", False),
-        ("asinSet", "query", False),
-        ("pageToken", "query", False),
+    _list_content_document_asin_relations_params = (  # name, param in
+        ("contentReferenceKey", "path"),
+        ("marketplaceId", "query"),
+        ("includedDataSet", "query"),
+        ("asinSet", "query"),
+        ("pageToken", "query"),
     )
 
     def post_content_document_approval_submission(
@@ -150,9 +150,9 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
         )
 
-    _post_content_document_approval_submission_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
+    _post_content_document_approval_submission_params = (  # name, param in
+        ("contentReferenceKey", "path"),
+        ("marketplaceId", "query"),
     )
 
     def post_content_document_asin_relations(
@@ -185,10 +185,10 @@ class AplusContent20201101Client(BaseClient):
             asin_set,
         )
 
-    _post_content_document_asin_relations_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
-        ("asinSet", "body", True),
+    _post_content_document_asin_relations_params = (  # name, param in
+        ("contentReferenceKey", "path"),
+        ("marketplaceId", "query"),
+        ("asinSet", "body"),
     )
 
     def post_content_document_suspend_submission(
@@ -218,9 +218,9 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
         )
 
-    _post_content_document_suspend_submission_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
+    _post_content_document_suspend_submission_params = (  # name, param in
+        ("contentReferenceKey", "path"),
+        ("marketplaceId", "query"),
     )
 
     def search_content_documents(
@@ -250,9 +250,9 @@ class AplusContent20201101Client(BaseClient):
             page_token,
         )
 
-    _search_content_documents_params = (  # name, param in, required
-        ("marketplaceId", "query", True),
-        ("pageToken", "query", False),
+    _search_content_documents_params = (  # name, param in
+        ("marketplaceId", "query"),
+        ("pageToken", "query"),
     )
 
     def search_content_publish_records(
@@ -285,10 +285,10 @@ class AplusContent20201101Client(BaseClient):
             page_token,
         )
 
-    _search_content_publish_records_params = (  # name, param in, required
-        ("marketplaceId", "query", True),
-        ("asin", "query", True),
-        ("pageToken", "query", False),
+    _search_content_publish_records_params = (  # name, param in
+        ("marketplaceId", "query"),
+        ("asin", "query"),
+        ("pageToken", "query"),
     )
 
     def update_content_document(
@@ -321,10 +321,10 @@ class AplusContent20201101Client(BaseClient):
             content_document,
         )
 
-    _update_content_document_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
-        ("contentDocument", "body", True),
+    _update_content_document_params = (  # name, param in
+        ("contentReferenceKey", "path"),
+        ("marketplaceId", "query"),
+        ("contentDocument", "body"),
     )
 
     def validate_content_document_asin_relations(
@@ -357,8 +357,8 @@ class AplusContent20201101Client(BaseClient):
             content_document,
         )
 
-    _validate_content_document_asin_relations_params = (  # name, param in, required
-        ("marketplaceId", "query", True),
-        ("asinSet", "query", False),
-        ("contentDocument", "body", True),
+    _validate_content_document_asin_relations_params = (  # name, param in
+        ("marketplaceId", "query"),
+        ("asinSet", "query"),
+        ("contentDocument", "body"),
     )

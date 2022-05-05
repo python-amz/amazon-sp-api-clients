@@ -22,7 +22,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         url = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
         values = ()
 
-    _generate_order_scenarios_params = ()  # name, param in, required
+    _generate_order_scenarios_params = ()  # name, param in
 
     def get_order_scenarios(
         self,
@@ -37,4 +37,4 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         url = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}"
         values = (transaction_id,)
 
-    _get_order_scenarios_params = (("transactionId", "path", True),)  # name, param in, required
+    _get_order_scenarios_params = (("transactionId", "path"),)  # name, param in

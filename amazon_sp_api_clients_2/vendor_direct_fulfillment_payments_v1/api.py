@@ -31,4 +31,4 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
         url = "/vendor/directFulfillment/payments/v1/invoices"
         values = ()
 
-    _submit_invoice_params = ()  # name, param in, required
+    _submit_invoice_params = ()  # name, param in

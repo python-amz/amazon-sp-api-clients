@@ -33,4 +33,4 @@ class Tokens20210301Client(BaseClient):
         url = "/tokens/2021-03-01/restrictedDataToken"
         values = ()
 
-    _create_restricted_data_token_params = ()  # name, param in, required
+    _create_restricted_data_token_params = ()  # name, param in

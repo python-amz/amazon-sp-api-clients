@@ -37,9 +37,9 @@ class SolicitationsV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _create_product_review_and_seller_feedback_solicitation_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
+    _create_product_review_and_seller_feedback_solicitation_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
     )
 
     def get_solicitation_actions_for_order(
@@ -68,7 +68,7 @@ class SolicitationsV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _get_solicitation_actions_for_order_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
+    _get_solicitation_actions_for_order_params = (  # name, param in
+        ("amazonOrderId", "path"),
+        ("marketplaceIds", "query"),
     )

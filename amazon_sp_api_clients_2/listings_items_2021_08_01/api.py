@@ -45,11 +45,11 @@ class ListingsItems20210801Client(BaseClient):
             issue_locale,
         )
 
-    _delete_listings_item_params = (  # name, param in, required
-        ("sellerId", "path", True),
-        ("sku", "path", True),
-        ("marketplaceIds", "query", True),
-        ("issueLocale", "query", False),
+    _delete_listings_item_params = (  # name, param in
+        ("sellerId", "path"),
+        ("sku", "path"),
+        ("marketplaceIds", "query"),
+        ("issueLocale", "query"),
     )
 
     def get_listings_item(
@@ -96,12 +96,12 @@ class ListingsItems20210801Client(BaseClient):
             included_data,
         )
 
-    _get_listings_item_params = (  # name, param in, required
-        ("sellerId", "path", True),
-        ("sku", "path", True),
-        ("marketplaceIds", "query", True),
-        ("issueLocale", "query", False),
-        ("includedData", "query", False),
+    _get_listings_item_params = (  # name, param in
+        ("sellerId", "path"),
+        ("sku", "path"),
+        ("marketplaceIds", "query"),
+        ("issueLocale", "query"),
+        ("includedData", "query"),
     )
 
     def patch_listings_item(
@@ -142,13 +142,13 @@ class ListingsItems20210801Client(BaseClient):
             patches,
         )
 
-    _patch_listings_item_params = (  # name, param in, required
-        ("sellerId", "path", True),
-        ("sku", "path", True),
-        ("marketplaceIds", "query", True),
-        ("issueLocale", "query", False),
-        ("productType", "body", True),
-        ("patches", "body", True),
+    _patch_listings_item_params = (  # name, param in
+        ("sellerId", "path"),
+        ("sku", "path"),
+        ("marketplaceIds", "query"),
+        ("issueLocale", "query"),
+        ("productType", "body"),
+        ("patches", "body"),
     )
 
     def put_listings_item(
@@ -192,12 +192,12 @@ class ListingsItems20210801Client(BaseClient):
             attributes,
         )
 
-    _put_listings_item_params = (  # name, param in, required
-        ("sellerId", "path", True),
-        ("sku", "path", True),
-        ("marketplaceIds", "query", True),
-        ("issueLocale", "query", False),
-        ("productType", "body", True),
-        ("requirements", "body", False),
-        ("attributes", "body", True),
+    _put_listings_item_params = (  # name, param in
+        ("sellerId", "path"),
+        ("sku", "path"),
+        ("marketplaceIds", "query"),
+        ("issueLocale", "query"),
+        ("productType", "body"),
+        ("requirements", "body"),
+        ("attributes", "body"),
     )

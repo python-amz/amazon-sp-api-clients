@@ -32,7 +32,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
         values = (seller_fulfillment_order_id,)
 
-    _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
+    _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
     def create_fulfillment_order(
         self,
@@ -53,7 +53,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         url = "/fba/outbound/2020-07-01/fulfillmentOrders"
         values = ()
 
-    _create_fulfillment_order_params = ()  # name, param in, required
+    _create_fulfillment_order_params = ()  # name, param in
 
     def create_fulfillment_return(
         self,
@@ -81,9 +81,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             items,
         )
 
-    _create_fulfillment_return_params = (  # name, param in, required
-        ("sellerFulfillmentOrderId", "path", True),
-        ("items", "body", True),
+    _create_fulfillment_return_params = (  # name, param in
+        ("sellerFulfillmentOrderId", "path"),
+        ("items", "body"),
     )
 
     def get_feature_inventory(
@@ -115,10 +115,10 @@ class FulfillmentOutbound20200701Client(BaseClient):
             next_token,
         )
 
-    _get_feature_inventory_params = (  # name, param in, required
-        ("marketplaceId", "query", True),
-        ("featureName", "path", True),
-        ("nextToken", "query", False),
+    _get_feature_inventory_params = (  # name, param in
+        ("marketplaceId", "query"),
+        ("featureName", "path"),
+        ("nextToken", "query"),
     )
 
     def get_feature_sku(
@@ -150,10 +150,10 @@ class FulfillmentOutbound20200701Client(BaseClient):
             seller_sku,
         )
 
-    _get_feature_sku_params = (  # name, param in, required
-        ("marketplaceId", "query", True),
-        ("featureName", "path", True),
-        ("sellerSku", "path", True),
+    _get_feature_sku_params = (  # name, param in
+        ("marketplaceId", "query"),
+        ("featureName", "path"),
+        ("sellerSku", "path"),
     )
 
     def get_features(
@@ -177,7 +177,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         url = "/fba/outbound/2020-07-01/features"
         values = (marketplace_id,)
 
-    _get_features_params = (("marketplaceId", "query", True),)  # name, param in, required
+    _get_features_params = (("marketplaceId", "query"),)  # name, param in
 
     def get_fulfillment_order(
         self,
@@ -200,7 +200,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         values = (seller_fulfillment_order_id,)
 
-    _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
+    _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
     def get_fulfillment_preview(
         self,
@@ -221,7 +221,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
         values = ()
 
-    _get_fulfillment_preview_params = ()  # name, param in, required
+    _get_fulfillment_preview_params = ()  # name, param in
 
     def get_package_tracking_details(
         self,
@@ -244,7 +244,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         url = "/fba/outbound/2020-07-01/tracking"
         values = (package_number,)
 
-    _get_package_tracking_details_params = (("packageNumber", "query", True),)  # name, param in, required
+    _get_package_tracking_details_params = (("packageNumber", "query"),)  # name, param in
 
     def list_all_fulfillment_orders(
         self,
@@ -272,9 +272,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             next_token,
         )
 
-    _list_all_fulfillment_orders_params = (  # name, param in, required
-        ("queryStartDate", "query", False),
-        ("nextToken", "query", False),
+    _list_all_fulfillment_orders_params = (  # name, param in
+        ("queryStartDate", "query"),
+        ("nextToken", "query"),
     )
 
     def list_return_reason_codes(
@@ -309,11 +309,11 @@ class FulfillmentOutbound20200701Client(BaseClient):
             language,
         )
 
-    _list_return_reason_codes_params = (  # name, param in, required
-        ("sellerSku", "query", True),
-        ("marketplaceId", "query", False),
-        ("sellerFulfillmentOrderId", "query", False),
-        ("language", "query", True),
+    _list_return_reason_codes_params = (  # name, param in
+        ("sellerSku", "query"),
+        ("marketplaceId", "query"),
+        ("sellerFulfillmentOrderId", "query"),
+        ("language", "query"),
     )
 
     def update_fulfillment_order(
@@ -377,18 +377,18 @@ class FulfillmentOutbound20200701Client(BaseClient):
             items,
         )
 
-    _update_fulfillment_order_params = (  # name, param in, required
-        ("sellerFulfillmentOrderId", "path", True),
-        ("marketplaceId", "body", False),
-        ("displayableOrderId", "body", False),
-        ("displayableOrderDate", "body", False),
-        ("displayableOrderComment", "body", False),
-        ("shippingSpeedCategory", "body", False),
-        ("destinationAddress", "body", False),
-        ("fulfillmentAction", "body", False),
-        ("fulfillmentPolicy", "body", False),
-        ("shipFromCountryCode", "body", False),
-        ("notificationEmails", "body", False),
-        ("featureConstraints", "body", False),
-        ("items", "body", False),
+    _update_fulfillment_order_params = (  # name, param in
+        ("sellerFulfillmentOrderId", "path"),
+        ("marketplaceId", "body"),
+        ("displayableOrderId", "body"),
+        ("displayableOrderDate", "body"),
+        ("displayableOrderComment", "body"),
+        ("shippingSpeedCategory", "body"),
+        ("destinationAddress", "body"),
+        ("fulfillmentAction", "body"),
+        ("fulfillmentPolicy", "body"),
+        ("shipFromCountryCode", "body"),
+        ("notificationEmails", "body"),
+        ("featureConstraints", "body"),
+        ("items", "body"),
     )

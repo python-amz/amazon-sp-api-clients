@@ -33,7 +33,7 @@ class ShipmentInvoicingV0Client(BaseClient):
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status"
         values = (shipment_id,)
 
-    _get_invoice_status_params = (("shipmentId", "path", True),)  # name, param in, required
+    _get_invoice_status_params = (("shipmentId", "path"),)  # name, param in
 
     def get_shipment_details(
         self,
@@ -57,7 +57,7 @@ class ShipmentInvoicingV0Client(BaseClient):
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}"
         values = (shipment_id,)
 
-    _get_shipment_details_params = (("shipmentId", "path", True),)  # name, param in, required
+    _get_shipment_details_params = (("shipmentId", "path"),)  # name, param in
 
     def submit_invoice(
         self,
@@ -92,9 +92,9 @@ class ShipmentInvoicingV0Client(BaseClient):
             content_md5value,
         )
 
-    _submit_invoice_params = (  # name, param in, required
-        ("shipmentId", "path", True),
-        ("InvoiceContent", "body", True),
-        ("MarketplaceId", "body", False),
-        ("ContentMD5Value", "body", True),
+    _submit_invoice_params = (  # name, param in
+        ("shipmentId", "path"),
+        ("InvoiceContent", "body"),
+        ("MarketplaceId", "body"),
+        ("ContentMD5Value", "body"),
     )

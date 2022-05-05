@@ -33,7 +33,7 @@ class VendorOrdersV1Client(BaseClient):
         url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}"
         values = (purchase_order_number,)
 
-    _get_purchase_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+    _get_purchase_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_purchase_orders(
         self,
@@ -92,19 +92,19 @@ class VendorOrdersV1Client(BaseClient):
             ordering_vendor_code,
         )
 
-    _get_purchase_orders_params = (  # name, param in, required
-        ("limit", "query", False),
-        ("createdAfter", "query", False),
-        ("createdBefore", "query", False),
-        ("sortOrder", "query", False),
-        ("nextToken", "query", False),
-        ("includeDetails", "query", False),
-        ("changedAfter", "query", False),
-        ("changedBefore", "query", False),
-        ("poItemState", "query", False),
-        ("isPOChanged", "query", False),
-        ("purchaseOrderState", "query", False),
-        ("orderingVendorCode", "query", False),
+    _get_purchase_orders_params = (  # name, param in
+        ("limit", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("sortOrder", "query"),
+        ("nextToken", "query"),
+        ("includeDetails", "query"),
+        ("changedAfter", "query"),
+        ("changedBefore", "query"),
+        ("poItemState", "query"),
+        ("isPOChanged", "query"),
+        ("purchaseOrderState", "query"),
+        ("orderingVendorCode", "query"),
     )
 
     def get_purchase_orders_status(
@@ -169,20 +169,20 @@ class VendorOrdersV1Client(BaseClient):
             ship_to_party_id,
         )
 
-    _get_purchase_orders_status_params = (  # name, param in, required
-        ("limit", "query", False),
-        ("sortOrder", "query", False),
-        ("nextToken", "query", False),
-        ("createdAfter", "query", False),
-        ("createdBefore", "query", False),
-        ("updatedAfter", "query", False),
-        ("updatedBefore", "query", False),
-        ("purchaseOrderNumber", "query", False),
-        ("purchaseOrderStatus", "query", False),
-        ("itemConfirmationStatus", "query", False),
-        ("itemReceiveStatus", "query", False),
-        ("orderingVendorCode", "query", False),
-        ("shipToPartyId", "query", False),
+    _get_purchase_orders_status_params = (  # name, param in
+        ("limit", "query"),
+        ("sortOrder", "query"),
+        ("nextToken", "query"),
+        ("createdAfter", "query"),
+        ("createdBefore", "query"),
+        ("updatedAfter", "query"),
+        ("updatedBefore", "query"),
+        ("purchaseOrderNumber", "query"),
+        ("purchaseOrderStatus", "query"),
+        ("itemConfirmationStatus", "query"),
+        ("itemReceiveStatus", "query"),
+        ("orderingVendorCode", "query"),
+        ("shipToPartyId", "query"),
     )
 
     def submit_acknowledgement(
@@ -205,4 +205,4 @@ class VendorOrdersV1Client(BaseClient):
         url = "/vendor/orders/v1/acknowledgements"
         values = ()
 
-    _submit_acknowledgement_params = ()  # name, param in, required
+    _submit_acknowledgement_params = ()  # name, param in

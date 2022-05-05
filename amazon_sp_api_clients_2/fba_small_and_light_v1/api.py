@@ -37,9 +37,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _delete_small_and_light_enrollment_by_seller_sku_params = (  # name, param in, required
-        ("sellerSKU", "path", True),
-        ("marketplaceIds", "query", True),
+    _delete_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
+        ("sellerSKU", "path"),
+        ("marketplaceIds", "query"),
     )
 
     def get_small_and_light_eligibility_by_seller_sku(
@@ -68,9 +68,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _get_small_and_light_eligibility_by_seller_sku_params = (  # name, param in, required
-        ("sellerSKU", "path", True),
-        ("marketplaceIds", "query", True),
+    _get_small_and_light_eligibility_by_seller_sku_params = (  # name, param in
+        ("sellerSKU", "path"),
+        ("marketplaceIds", "query"),
     )
 
     def get_small_and_light_enrollment_by_seller_sku(
@@ -99,9 +99,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _get_small_and_light_enrollment_by_seller_sku_params = (  # name, param in, required
-        ("sellerSKU", "path", True),
-        ("marketplaceIds", "query", True),
+    _get_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
+        ("sellerSKU", "path"),
+        ("marketplaceIds", "query"),
     )
 
     def get_small_and_light_fee_preview(
@@ -123,7 +123,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         url = "/fba/smallAndLight/v1/feePreviews"
         values = ()
 
-    _get_small_and_light_fee_preview_params = ()  # name, param in, required
+    _get_small_and_light_fee_preview_params = ()  # name, param in
 
     def put_small_and_light_enrollment_by_seller_sku(
         self,
@@ -151,7 +151,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
 
-    _put_small_and_light_enrollment_by_seller_sku_params = (  # name, param in, required
-        ("sellerSKU", "path", True),
-        ("marketplaceIds", "query", True),
+    _put_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
+        ("sellerSKU", "path"),
+        ("marketplaceIds", "query"),
     )

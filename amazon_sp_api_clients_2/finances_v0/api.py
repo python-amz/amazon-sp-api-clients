@@ -43,11 +43,11 @@ class FinancesV0Client(BaseClient):
             next_token,
         )
 
-    _list_financial_event_groups_params = (  # name, param in, required
-        ("MaxResultsPerPage", "query", False),
-        ("FinancialEventGroupStartedBefore", "query", False),
-        ("FinancialEventGroupStartedAfter", "query", False),
-        ("NextToken", "query", False),
+    _list_financial_event_groups_params = (  # name, param in
+        ("MaxResultsPerPage", "query"),
+        ("FinancialEventGroupStartedBefore", "query"),
+        ("FinancialEventGroupStartedAfter", "query"),
+        ("NextToken", "query"),
     )
 
     def list_financial_events(
@@ -82,11 +82,11 @@ class FinancesV0Client(BaseClient):
             next_token,
         )
 
-    _list_financial_events_params = (  # name, param in, required
-        ("MaxResultsPerPage", "query", False),
-        ("PostedAfter", "query", False),
-        ("PostedBefore", "query", False),
-        ("NextToken", "query", False),
+    _list_financial_events_params = (  # name, param in
+        ("MaxResultsPerPage", "query"),
+        ("PostedAfter", "query"),
+        ("PostedBefore", "query"),
+        ("NextToken", "query"),
     )
 
     def list_financial_events_by_group_id(
@@ -118,10 +118,10 @@ class FinancesV0Client(BaseClient):
             next_token,
         )
 
-    _list_financial_events_by_group_id_params = (  # name, param in, required
-        ("MaxResultsPerPage", "query", False),
-        ("eventGroupId", "path", True),
-        ("NextToken", "query", False),
+    _list_financial_events_by_group_id_params = (  # name, param in
+        ("MaxResultsPerPage", "query"),
+        ("eventGroupId", "path"),
+        ("NextToken", "query"),
     )
 
     def list_financial_events_by_order_id(
@@ -153,8 +153,8 @@ class FinancesV0Client(BaseClient):
             next_token,
         )
 
-    _list_financial_events_by_order_id_params = (  # name, param in, required
-        ("orderId", "path", True),
-        ("MaxResultsPerPage", "query", False),
-        ("NextToken", "query", False),
+    _list_financial_events_by_order_id_params = (  # name, param in
+        ("orderId", "path"),
+        ("MaxResultsPerPage", "query"),
+        ("NextToken", "query"),
     )

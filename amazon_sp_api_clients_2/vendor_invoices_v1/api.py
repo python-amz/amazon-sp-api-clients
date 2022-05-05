@@ -31,4 +31,4 @@ class VendorInvoicesV1Client(BaseClient):
         url = "/vendor/payments/v1/invoices"
         values = ()
 
-    _submit_invoices_params = ()  # name, param in, required
+    _submit_invoices_params = ()  # name, param in
