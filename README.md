@@ -123,4 +123,9 @@ The auth method is partially from
 
 If this library helps you, please give me a star, thanks!
 
+# Contribution
+
+The project use django template for rendering.
+Thanks to the type hint in the template.
+
 如果这个库对您有用，请为我点亮Star，谢谢！
