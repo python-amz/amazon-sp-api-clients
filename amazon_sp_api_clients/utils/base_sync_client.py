@@ -20,7 +20,7 @@ from amazon_sp_api_clients.utils.exceptions import SellingApiError
 
 
 class AwsSignV4(AuthBase):
-    def __init__(self, /, service, aws_key, aws_secret, region, aws_session_token=None):
+    def __init__(self, *, service, aws_key, aws_secret, region, aws_session_token=None):
         self.service = service
         self.aws_key, self.aws_secret = aws_key, aws_secret
         self.aws_session_token = aws_session_token
@@ -84,7 +84,7 @@ class BaseSyncClient:
     # cause the data conflict.
     last_response: Response = None
 
-    def __init__(self, /, refresh_token: str = None,
+    def __init__(self, *, refresh_token: str = None,
                  role_arn: str = None, endpoint: str = None, region: str = None, marketplace: str = None,
                  aws_key: str = None, aws_secret: str = None, lwa_key: str = None, lwa_secret: str = None,
                  ignore_quota_exceed: bool = True,
@@ -107,15 +107,15 @@ class BaseSyncClient:
                            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             ignore_quota_exceed: if True, when caught quota exceeded exception, wait 0.1s and resend
         """
-        self._aws_key = os.environ.get('SP_API_AWS_ACCESS_KEY') if aws_key is None else aws_key
-        self._aws_secret = os.environ.get('SP_API_AWS_SECRET_KEY') if aws_secret is None else aws_secret
+        self._aws_key = os.environ.get('SP_API_AWS_KEY') if aws_key is None else aws_key
+        self._aws_secret = os.environ.get('SP_API_AWS_SECRET') if aws_secret is None else aws_secret
         self._role_arn = os.environ.get('SP_API_ROLE_ARN') if role_arn is None else role_arn
         self._endpoint = os.environ.get('SP_API_ENDPOINT') if endpoint is None else endpoint
         self._region = os.environ.get('SP_API_REGION') if region is None else region
-        self._marketplace = os.environ.get('SP_API_MARKETPLACE_ID') if marketplace is None else marketplace
+        self._marketplace = os.environ.get('SP_API_MARKETPLACE') if marketplace is None else marketplace
         self._refresh_token = os.environ.get('SP_API_REFRESH_TOKEN') if refresh_token is None else refresh_token
-        self._lwa_key = os.environ.get('SP_API_LWA_CLIENT_KEY') if lwa_key is None else lwa_key
-        self._lwa_secret = os.environ.get('SP_API_LWA_CLIENT_SECRET') if lwa_secret is None else lwa_secret
+        self._lwa_key = os.environ.get('SP_API_LWA_KEY') if lwa_key is None else lwa_key
+        self._lwa_secret = os.environ.get('SP_API_LWA_SECRET') if lwa_secret is None else lwa_secret
         self._client = boto3.client('sts', aws_access_key_id=self._aws_key, aws_secret_access_key=self._aws_secret)
         self._ignore_quota_exceeded = ignore_quota_exceed
         if any(i is None for i in (aws_key, aws_secret, self._role_arn, self._endpoint, self._region,
@@ -125,15 +125,9 @@ class BaseSyncClient:
     @cached_property
     def _parameters(self):
         return dict(
+            role_arn=self._role_arn, endpoint=self._endpoint, region=self._region, marketplace=self._marketplace,
             refresh_token=self._refresh_token,
-            role_arn=self._role_arn,
-            endpoint=self._endpoint,
-            region=self._region,
-            marketplace=self._marketplace,
-            aws_key=self._aws_key,
-            aws_secret=self._aws_secret,
-            lwa_key=self._lwa_key,
-            lwa_secret=self._lwa_secret,
+            aws_key=self._aws_key, aws_secret=self._aws_secret, lwa_key=self._lwa_key, lwa_secret=self._lwa_secret,
         )
 
     def __get_access_token(self, refresh_token):
@@ -189,7 +183,8 @@ class BaseSyncClient:
             role = self._client.assume_role(RoleArn=self._role_arn, RoleSessionName='guid').get('Credentials')
             self._role_cache['role'] = role
         role = self._role_cache['role']
-        auth = AwsSignV4('execute-api',
+        self._client
+        auth = AwsSignV4(service='execute-api',
                          aws_key=role.get('AccessKeyId'),
                          aws_secret=role.get('SecretAccessKey'),
                          region=self._region,
