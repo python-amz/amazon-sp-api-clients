@@ -140,16 +140,15 @@ class Generator:
     @cached_property
     def content(self):
         content = render(RequestFactory(), 'api.html', {'data': self}).content.decode('utf-8')
-        for _ in range(5):
-            # content = re.sub(r'\n+', '\n', content)
-            content = html.unescape(content)
-            try:
-                content = black.format_str(content, mode=black.Mode(line_length=120))
-            except black.parsing.InvalidInput:
-                content_with_line_number = '\n'.join(
-                    [f'{index + 1:>3} {line}' for index, line in enumerate(content.splitlines())])
-                print(content_with_line_number)
-                raise
+        # content = re.sub(r'\n+', '\n', content)
+        content = html.unescape(content)
+        try:
+            content = black.format_str(content, mode=black.Mode(line_length=120))
+        except black.parsing.InvalidInput:
+            content_with_line_number = '\n'.join(
+                [f'{index + 1:>3} {line}' for index, line in enumerate(content.splitlines())])
+            print(content_with_line_number)
+            raise
         return content
 
     @cached_property
