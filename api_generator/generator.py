@@ -178,6 +178,10 @@ class Generator:
     def main(cls):
         generators = [cls(f) for f in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json')]
         [g.generate() for g in generators]
+        content = render(RequestFactory(), 'init.html', {'data': generators}).content.decode('utf-8')
+        content = cls.format_python_file(content)
+        with open(Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / '__init__.py', 'w') as f:
+            f.write(content)
 
 
 def main():

@@ -9,5 +9,9 @@ from django.shortcuts import render
 from api_generator.generator import Generator
 
 
-def generate(request, file: Path):
+def generate_api(request, file: Path):
     return render(request, 'api.html', {'data': Generator(file)})
+
+
+def generate_init(request, file: Path):
+    return render(request, 'init.html', {'data': [Generator(file)]})

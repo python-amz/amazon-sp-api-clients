@@ -1,3 +1,14 @@
+from amazon_sp_api_clients_2.utils.exceptions import SellingApiError
+
+try:
+    from functools import cached_property
+except ImportError:
+    try:
+        from cached_property import cached_property
+    except ImportError:
+        print('Please install cached_property for python < 3.8')
+        raise
+
 import hashlib
 import hmac
 import json
@@ -14,8 +25,6 @@ from cachetools import TTLCache
 from requests import Response, Request
 from requests.api import request
 from requests.auth import AuthBase
-
-from amazon_sp_api_clients.utils.exceptions import SellingApiError
 
 
 class AwsSignV4(AuthBase):
@@ -214,3 +223,12 @@ class BaseClient:
         #         raise SellingApiError(errors)
 
         return response
+
+
+class BaseAmazonSpApiClients(BaseClient):
+    selling_api_error = SellingApiError
+
+    @cached_property
+    def marketplaces(self):
+        from .marketplaces import MarketPlaces
+        return MarketPlaces

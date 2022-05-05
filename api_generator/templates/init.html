@@ -1,0 +1,9 @@
+from .utils.base_client import BaseAmazonSpApiClients, cached_property
+
+class AmazonSpApiClients(BaseAmazonSpApiClients):
+{% for datum in data %}
+    @cached_property
+    def {{ datum.package_name }}(self):
+        from .{{ datum.package_name }}.api import {{ datum.class_name }}Client
+        return {{ datum.class_name }}Client(**self._parameters)
+{% endfor %}
