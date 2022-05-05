@@ -130,7 +130,7 @@ class BaseSyncClient:
             aws_key=self._aws_key, aws_secret=self._aws_secret, lwa_key=self._lwa_key, lwa_secret=self._lwa_secret,
         )
 
-    def __get_access_token(self, refresh_token):
+    def __get_access_token(self, refresh_token: str):
         if refresh_token not in self._access_token_cache:
             data = {'grant_type': 'refresh_token', 'refresh_token': refresh_token,
                     'client_id': self._lwa_key, 'client_secret': self._lwa_secret}
