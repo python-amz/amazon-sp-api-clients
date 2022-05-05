@@ -11,6 +11,214 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class UpdateShipmentStatusRequest:
+    pass
+
+
+class UpdateVerificationStatusRequest:
+    pass
+
+
+class UpdateVerificationStatusRequestBody:
+    pass
+
+
+class MarketplaceId:
+    pass
+
+
+class ShipmentStatus:
+    pass
+
+
+class OrderItems:
+    pass
+
+
+class UpdateShipmentStatusErrorResponse:
+    pass
+
+
+class UpdateVerificationStatusErrorResponse:
+    pass
+
+
+class GetOrdersResponse:
+    pass
+
+
+class GetOrderResponse:
+    pass
+
+
+class GetOrderBuyerInfoResponse:
+    pass
+
+
+class GetOrderRegulatedInfoResponse:
+    pass
+
+
+class GetOrderAddressResponse:
+    pass
+
+
+class GetOrderItemsResponse:
+    pass
+
+
+class GetOrderItemsBuyerInfoResponse:
+    pass
+
+
+class OrdersList:
+    pass
+
+
+class OrderList:
+    pass
+
+
+class Order:
+    pass
+
+
+class OrderBuyerInfo:
+    pass
+
+
+class OrderRegulatedInfo:
+    pass
+
+
+class RegulatedOrderVerificationStatus:
+    pass
+
+
+class RejectionReason:
+    pass
+
+
+class RegulatedInformation:
+    pass
+
+
+class RegulatedInformationField:
+    pass
+
+
+class OrderAddress:
+    pass
+
+
+class Address:
+    pass
+
+
+class Money:
+    pass
+
+
+class PaymentMethodDetailItemList:
+    pass
+
+
+class PaymentExecutionDetailItemList:
+    pass
+
+
+class PaymentExecutionDetailItem:
+    pass
+
+
+class BuyerTaxInfo:
+    pass
+
+
+class MarketplaceTaxInfo:
+    pass
+
+
+class TaxClassification:
+    pass
+
+
+class OrderItemsList:
+    pass
+
+
+class OrderItemList:
+    pass
+
+
+class OrderItem:
+    pass
+
+
+class OrderItemsBuyerInfoList:
+    pass
+
+
+class OrderItemBuyerInfoList:
+    pass
+
+
+class OrderItemBuyerInfo:
+    pass
+
+
+class PointsGrantedDetail:
+    pass
+
+
+class ProductInfoDetail:
+    pass
+
+
+class PromotionIdList:
+    pass
+
+
+class BuyerCustomizedInfoDetail:
+    pass
+
+
+class TaxCollection:
+    pass
+
+
+class BuyerTaxInformation:
+    pass
+
+
+class FulfillmentInstruction:
+    pass
+
+
+class BuyerInfo:
+    pass
+
+
+class ItemBuyerInfo:
+    pass
+
+
+class AutomatedShippingSettings:
+    pass
+
+
+class BuyerRequestedCancel:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class OrdersV0Client(BaseClient):
     def get_order(
         self,

@@ -11,6 +11,26 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetTransactionResponse:
+    pass
+
+
+class TransactionStatus:
+    pass
+
+
+class Transaction:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class VendorTransactionStatusV1Client(BaseClient):
     def get_transaction(
         self,

@@ -9,6 +9,13 @@ License for the OpenAPI file: {{ data.data.info.license.name }} {{ data.data.inf
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+
+
+{% for schema in data.components.schemas %}
+class {{ schema }}:
+    pass
+{% endfor %}
+
 class {{ data.class_name }}Client(BaseClient):
 {% for operation in data.operations %}
     def {{ operation.method_name }}(self,

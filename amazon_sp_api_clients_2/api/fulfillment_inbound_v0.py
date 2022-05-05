@@ -11,6 +11,478 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class ASINInboundGuidance:
+    pass
+
+
+class ASINInboundGuidanceList:
+    pass
+
+
+class ASINPrepInstructions:
+    pass
+
+
+class ASINPrepInstructionsList:
+    pass
+
+
+class Address:
+    pass
+
+
+class AmazonPrepFeesDetails:
+    pass
+
+
+class AmazonPrepFeesDetailsList:
+    pass
+
+
+class Amount:
+    pass
+
+
+class BarcodeInstruction:
+    pass
+
+
+class BigDecimalType:
+    pass
+
+
+class BoxContentsFeeDetails:
+    pass
+
+
+class BoxContentsSource:
+    pass
+
+
+class Condition:
+    pass
+
+
+class ConfirmPreorderResult:
+    pass
+
+
+class ConfirmPreorderResponse:
+    pass
+
+
+class CommonTransportResult:
+    pass
+
+
+class ConfirmTransportResponse:
+    pass
+
+
+class Contact:
+    pass
+
+
+class CreateInboundShipmentPlanRequest:
+    pass
+
+
+class CreateInboundShipmentPlanResult:
+    pass
+
+
+class CreateInboundShipmentPlanResponse:
+    pass
+
+
+class InboundShipmentRequest:
+    pass
+
+
+class InboundShipmentResult:
+    pass
+
+
+class InboundShipmentResponse:
+    pass
+
+
+class CurrencyCode:
+    pass
+
+
+class DateStringType:
+    pass
+
+
+class Dimensions:
+    pass
+
+
+class ErrorReason:
+    pass
+
+
+class EstimateTransportResponse:
+    pass
+
+
+class GetBillOfLadingResponse:
+    pass
+
+
+class GetInboundGuidanceResult:
+    pass
+
+
+class GetInboundGuidanceResponse:
+    pass
+
+
+class LabelDownloadURL:
+    pass
+
+
+class BillOfLadingDownloadURL:
+    pass
+
+
+class GetLabelsResponse:
+    pass
+
+
+class GetPreorderInfoResult:
+    pass
+
+
+class GetPreorderInfoResponse:
+    pass
+
+
+class GetPrepInstructionsResult:
+    pass
+
+
+class GetPrepInstructionsResponse:
+    pass
+
+
+class GetTransportDetailsResult:
+    pass
+
+
+class GetTransportDetailsResponse:
+    pass
+
+
+class GuidanceReason:
+    pass
+
+
+class GuidanceReasonList:
+    pass
+
+
+class InboundGuidance:
+    pass
+
+
+class InboundShipmentHeader:
+    pass
+
+
+class InboundShipmentInfo:
+    pass
+
+
+class InboundShipmentItem:
+    pass
+
+
+class InboundShipmentItemList:
+    pass
+
+
+class InboundShipmentList:
+    pass
+
+
+class InboundShipmentPlan:
+    pass
+
+
+class InboundShipmentPlanItem:
+    pass
+
+
+class InboundShipmentPlanItemList:
+    pass
+
+
+class InboundShipmentPlanList:
+    pass
+
+
+class InboundShipmentPlanRequestItem:
+    pass
+
+
+class InboundShipmentPlanRequestItemList:
+    pass
+
+
+class IntendedBoxContentsSource:
+    pass
+
+
+class InvalidASIN:
+    pass
+
+
+class InvalidASINList:
+    pass
+
+
+class InvalidSKU:
+    pass
+
+
+class InvalidSKUList:
+    pass
+
+
+class LabelPrepPreference:
+    pass
+
+
+class LabelPrepType:
+    pass
+
+
+class GetShipmentItemsResult:
+    pass
+
+
+class GetShipmentItemsResponse:
+    pass
+
+
+class GetShipmentsResult:
+    pass
+
+
+class GetShipmentsResponse:
+    pass
+
+
+class NonPartneredLtlDataInput:
+    pass
+
+
+class NonPartneredLtlDataOutput:
+    pass
+
+
+class NonPartneredSmallParcelDataInput:
+    pass
+
+
+class NonPartneredSmallParcelDataOutput:
+    pass
+
+
+class NonPartneredSmallParcelPackageInput:
+    pass
+
+
+class NonPartneredSmallParcelPackageInputList:
+    pass
+
+
+class NonPartneredSmallParcelPackageOutput:
+    pass
+
+
+class NonPartneredSmallParcelPackageOutputList:
+    pass
+
+
+class PackageStatus:
+    pass
+
+
+class Pallet:
+    pass
+
+
+class PalletList:
+    pass
+
+
+class PartneredEstimate:
+    pass
+
+
+class PartneredLtlDataInput:
+    pass
+
+
+class PartneredLtlDataOutput:
+    pass
+
+
+class PartneredSmallParcelDataInput:
+    pass
+
+
+class PartneredSmallParcelDataOutput:
+    pass
+
+
+class PartneredSmallParcelPackageInput:
+    pass
+
+
+class PartneredSmallParcelPackageInputList:
+    pass
+
+
+class PartneredSmallParcelPackageOutput:
+    pass
+
+
+class PartneredSmallParcelPackageOutputList:
+    pass
+
+
+class PrepDetails:
+    pass
+
+
+class PrepDetailsList:
+    pass
+
+
+class PrepGuidance:
+    pass
+
+
+class PrepInstruction:
+    pass
+
+
+class PrepInstructionList:
+    pass
+
+
+class PrepOwner:
+    pass
+
+
+class ProNumber:
+    pass
+
+
+class PutTransportDetailsRequest:
+    pass
+
+
+class PutTransportDetailsResponse:
+    pass
+
+
+class Quantity:
+    pass
+
+
+class SKUInboundGuidance:
+    pass
+
+
+class SKUInboundGuidanceList:
+    pass
+
+
+class SKUPrepInstructions:
+    pass
+
+
+class SKUPrepInstructionsList:
+    pass
+
+
+class SellerFreightClass:
+    pass
+
+
+class ShipmentStatus:
+    pass
+
+
+class ShipmentType:
+    pass
+
+
+class TimeStampStringType:
+    pass
+
+
+class TrackingId:
+    pass
+
+
+class TransportContent:
+    pass
+
+
+class TransportDetailInput:
+    pass
+
+
+class TransportDetailOutput:
+    pass
+
+
+class TransportHeader:
+    pass
+
+
+class TransportResult:
+    pass
+
+
+class TransportStatus:
+    pass
+
+
+class UnitOfMeasurement:
+    pass
+
+
+class UnitOfWeight:
+    pass
+
+
+class UnsignedIntType:
+    pass
+
+
+class VoidTransportResponse:
+    pass
+
+
+class Weight:
+    pass
+
+
 class FulfillmentInboundV0Client(BaseClient):
     def confirm_preorder(
         self,

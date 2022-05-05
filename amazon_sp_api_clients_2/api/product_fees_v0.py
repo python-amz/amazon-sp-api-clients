@@ -11,6 +11,82 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetMyFeesEstimateRequest:
+    pass
+
+
+class FeesEstimateRequest:
+    pass
+
+
+class GetMyFeesEstimateResponse:
+    pass
+
+
+class GetMyFeesEstimateResult:
+    pass
+
+
+class Points:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
+class FeesEstimateResult:
+    pass
+
+
+class FeesEstimateIdentifier:
+    pass
+
+
+class PriceToEstimateFees:
+    pass
+
+
+class FeesEstimate:
+    pass
+
+
+class FeeDetailList:
+    pass
+
+
+class FeesEstimateError:
+    pass
+
+
+class FeesEstimateErrorDetail:
+    pass
+
+
+class FeeDetail:
+    pass
+
+
+class IncludedFeeDetailList:
+    pass
+
+
+class IncludedFeeDetail:
+    pass
+
+
+class MoneyType:
+    pass
+
+
+class OptionalFulfillmentProgram:
+    pass
+
+
 class ProductFeesV0Client(BaseClient):
     def get_my_fees_estimate_for_asin(
         self,

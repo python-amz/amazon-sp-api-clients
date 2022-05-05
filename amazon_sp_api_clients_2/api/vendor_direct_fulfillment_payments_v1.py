@@ -11,6 +11,70 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class SubmitInvoiceRequest:
+    pass
+
+
+class InvoiceDetail:
+    pass
+
+
+class InvoiceItem:
+    pass
+
+
+class PartyIdentification:
+    pass
+
+
+class TaxRegistrationDetail:
+    pass
+
+
+class Address:
+    pass
+
+
+class Money:
+    pass
+
+
+class Decimal:
+    pass
+
+
+class TaxDetail:
+    pass
+
+
+class ChargeDetails:
+    pass
+
+
+class AdditionalDetails:
+    pass
+
+
+class ItemQuantity:
+    pass
+
+
+class SubmitInvoiceResponse:
+    pass
+
+
+class TransactionReference:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
     def submit_invoice(
         self,

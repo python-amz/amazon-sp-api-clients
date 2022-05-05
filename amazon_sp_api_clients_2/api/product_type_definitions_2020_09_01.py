@@ -13,6 +13,38 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class SchemaLink:
+    pass
+
+
+class ProductTypeDefinition:
+    pass
+
+
+class PropertyGroup:
+    pass
+
+
+class ProductTypeVersion:
+    pass
+
+
+class ProductType:
+    pass
+
+
+class ProductTypeList:
+    pass
+
+
 class ProductTypeDefinitions20200901Client(BaseClient):
     def get_definitions_product_type(
         self,

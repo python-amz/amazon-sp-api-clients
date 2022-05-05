@@ -13,6 +13,34 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Issue:
+    pass
+
+
+class PatchOperation:
+    pass
+
+
+class ListingsItemPatchRequest:
+    pass
+
+
+class ListingsItemPutRequest:
+    pass
+
+
+class ListingsItemSubmissionResponse:
+    pass
+
+
 class ListingsItems20200901Client(BaseClient):
     def delete_listings_item(
         self,

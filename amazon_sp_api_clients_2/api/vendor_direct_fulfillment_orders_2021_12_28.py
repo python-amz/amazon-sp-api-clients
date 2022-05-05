@@ -11,6 +11,110 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class OrderList:
+    pass
+
+
+class Pagination:
+    pass
+
+
+class Order:
+    pass
+
+
+class OrderDetails:
+    pass
+
+
+class PartyIdentification:
+    pass
+
+
+class TaxRegistrationDetails:
+    pass
+
+
+class Address:
+    pass
+
+
+class OrderItem:
+    pass
+
+
+class Money:
+    pass
+
+
+class Decimal:
+    pass
+
+
+class SubmitAcknowledgementResponse:
+    pass
+
+
+class TransactionId:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class SubmitAcknowledgementRequest:
+    pass
+
+
+class OrderAcknowledgementItem:
+    pass
+
+
+class OrderItemAcknowledgement:
+    pass
+
+
+class ItemQuantity:
+    pass
+
+
+class TaxLineItem:
+    pass
+
+
+class TaxDetails:
+    pass
+
+
+class AcknowledgementStatus:
+    pass
+
+
+class Error:
+    pass
+
+
+class ShipmentDetails:
+    pass
+
+
+class ShipmentDates:
+    pass
+
+
+class ScheduledDeliveryShipment:
+    pass
+
+
+class GiftDetails:
+    pass
+
+
+class TaxItemDetails:
+    pass
+
+
 class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     def get_order(
         self,

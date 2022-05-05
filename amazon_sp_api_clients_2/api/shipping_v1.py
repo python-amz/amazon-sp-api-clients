@@ -11,6 +11,262 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class AccountId:
+    pass
+
+
+class ShipmentId:
+    pass
+
+
+class ClientReferenceId:
+    pass
+
+
+class ContainerReferenceId:
+    pass
+
+
+class EventCode:
+    pass
+
+
+class StateOrRegion:
+    pass
+
+
+class City:
+    pass
+
+
+class CountryCode:
+    pass
+
+
+class PostalCode:
+    pass
+
+
+class Location:
+    pass
+
+
+class Event:
+    pass
+
+
+class EventList:
+    pass
+
+
+class TrackingId:
+    pass
+
+
+class TrackingSummary:
+    pass
+
+
+class PromisedDeliveryDate:
+    pass
+
+
+class Address:
+    pass
+
+
+class TimeRange:
+    pass
+
+
+class ShippingPromiseSet:
+    pass
+
+
+class ServiceType:
+    pass
+
+
+class ServiceTypeList:
+    pass
+
+
+class Rate:
+    pass
+
+
+class RateList:
+    pass
+
+
+class RateId:
+    pass
+
+
+class AcceptedRate:
+    pass
+
+
+class ServiceRate:
+    pass
+
+
+class ServiceRateList:
+    pass
+
+
+class Party:
+    pass
+
+
+class Currency:
+    pass
+
+
+class Dimensions:
+    pass
+
+
+class Weight:
+    pass
+
+
+class ContainerItem:
+    pass
+
+
+class Container:
+    pass
+
+
+class ContainerList:
+    pass
+
+
+class ContainerSpecification:
+    pass
+
+
+class ContainerSpecificationList:
+    pass
+
+
+class Label:
+    pass
+
+
+class LabelResult:
+    pass
+
+
+class LabelResultList:
+    pass
+
+
+class LabelStream:
+    pass
+
+
+class LabelSpecification:
+    pass
+
+
+class CreateShipmentRequest:
+    pass
+
+
+class PurchaseLabelsRequest:
+    pass
+
+
+class RetrieveShippingLabelRequest:
+    pass
+
+
+class GetRatesRequest:
+    pass
+
+
+class PurchaseShipmentRequest:
+    pass
+
+
+class CreateShipmentResult:
+    pass
+
+
+class Shipment:
+    pass
+
+
+class PurchaseLabelsResult:
+    pass
+
+
+class RetrieveShippingLabelResult:
+    pass
+
+
+class Account:
+    pass
+
+
+class GetRatesResult:
+    pass
+
+
+class PurchaseShipmentResult:
+    pass
+
+
+class TrackingInformation:
+    pass
+
+
+class CreateShipmentResponse:
+    pass
+
+
+class GetShipmentResponse:
+    pass
+
+
+class GetRatesResponse:
+    pass
+
+
+class PurchaseShipmentResponse:
+    pass
+
+
+class CancelShipmentResponse:
+    pass
+
+
+class PurchaseLabelsResponse:
+    pass
+
+
+class RetrieveShippingLabelResponse:
+    pass
+
+
+class GetAccountResponse:
+    pass
+
+
+class GetTrackingInformationResponse:
+    pass
+
+
 class ShippingV1Client(BaseClient):
     def cancel_shipment(
         self,

@@ -11,6 +11,330 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class AdjustmentEvent:
+    pass
+
+
+class AdjustmentEventList:
+    pass
+
+
+class AdjustmentItem:
+    pass
+
+
+class AdjustmentItemList:
+    pass
+
+
+class AffordabilityExpenseEvent:
+    pass
+
+
+class AffordabilityExpenseEventList:
+    pass
+
+
+class BigDecimal:
+    pass
+
+
+class ChargeComponent:
+    pass
+
+
+class ChargeComponentList:
+    pass
+
+
+class ChargeInstrument:
+    pass
+
+
+class ChargeInstrumentList:
+    pass
+
+
+class CouponPaymentEvent:
+    pass
+
+
+class CouponPaymentEventList:
+    pass
+
+
+class Currency:
+    pass
+
+
+class Date:
+    pass
+
+
+class DebtRecoveryEvent:
+    pass
+
+
+class DebtRecoveryEventList:
+    pass
+
+
+class DebtRecoveryItem:
+    pass
+
+
+class DebtRecoveryItemList:
+    pass
+
+
+class DirectPayment:
+    pass
+
+
+class DirectPaymentList:
+    pass
+
+
+class FBALiquidationEvent:
+    pass
+
+
+class FBALiquidationEventList:
+    pass
+
+
+class FeeComponent:
+    pass
+
+
+class FeeComponentList:
+    pass
+
+
+class FinancialEventGroup:
+    pass
+
+
+class FinancialEventGroupList:
+    pass
+
+
+class FinancialEvents:
+    pass
+
+
+class ImagingServicesFeeEvent:
+    pass
+
+
+class ImagingServicesFeeEventList:
+    pass
+
+
+class ListFinancialEventGroupsPayload:
+    pass
+
+
+class ListFinancialEventGroupsResponse:
+    pass
+
+
+class ListFinancialEventsPayload:
+    pass
+
+
+class ListFinancialEventsResponse:
+    pass
+
+
+class LoanServicingEvent:
+    pass
+
+
+class LoanServicingEventList:
+    pass
+
+
+class NetworkComminglingTransactionEvent:
+    pass
+
+
+class NetworkComminglingTransactionEventList:
+    pass
+
+
+class PayWithAmazonEvent:
+    pass
+
+
+class PayWithAmazonEventList:
+    pass
+
+
+class ProductAdsPaymentEvent:
+    pass
+
+
+class ProductAdsPaymentEventList:
+    pass
+
+
+class Promotion:
+    pass
+
+
+class PromotionList:
+    pass
+
+
+class RemovalShipmentEvent:
+    pass
+
+
+class RemovalShipmentEventList:
+    pass
+
+
+class RemovalShipmentItem:
+    pass
+
+
+class RemovalShipmentItemList:
+    pass
+
+
+class RemovalShipmentAdjustmentEvent:
+    pass
+
+
+class RemovalShipmentAdjustmentEventList:
+    pass
+
+
+class RemovalShipmentItemAdjustment:
+    pass
+
+
+class RentalTransactionEvent:
+    pass
+
+
+class RentalTransactionEventList:
+    pass
+
+
+class RetrochargeEvent:
+    pass
+
+
+class RetrochargeEventList:
+    pass
+
+
+class SAFETReimbursementEvent:
+    pass
+
+
+class SAFETReimbursementEventList:
+    pass
+
+
+class SAFETReimbursementItem:
+    pass
+
+
+class SAFETReimbursementItemList:
+    pass
+
+
+class SellerDealPaymentEvent:
+    pass
+
+
+class SellerDealPaymentEventList:
+    pass
+
+
+class SellerReviewEnrollmentPaymentEvent:
+    pass
+
+
+class SellerReviewEnrollmentPaymentEventList:
+    pass
+
+
+class ServiceFeeEvent:
+    pass
+
+
+class ServiceFeeEventList:
+    pass
+
+
+class ShipmentEvent:
+    pass
+
+
+class ShipmentEventList:
+    pass
+
+
+class ShipmentItem:
+    pass
+
+
+class ShipmentItemList:
+    pass
+
+
+class SolutionProviderCreditEvent:
+    pass
+
+
+class SolutionProviderCreditEventList:
+    pass
+
+
+class TaxWithholdingPeriod:
+    pass
+
+
+class TaxWithholdingEvent:
+    pass
+
+
+class TaxWithholdingEventList:
+    pass
+
+
+class TaxWithheldComponent:
+    pass
+
+
+class TaxWithheldComponentList:
+    pass
+
+
+class TrialShipmentEvent:
+    pass
+
+
+class TrialShipmentEventList:
+    pass
+
+
+class ShipmentSettleEventList:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class FinancesV0Client(BaseClient):
     def list_financial_event_groups(
         self,

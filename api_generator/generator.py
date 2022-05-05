@@ -1,5 +1,6 @@
 import html
 import json
+import multiprocessing
 import re
 from functools import cached_property
 from itertools import chain
@@ -175,8 +176,15 @@ class Generator:
             f.write(self.content)
 
     @classmethod
+    def worker(cls, path: Path):
+        obj = cls(path)
+        obj.generate()
+        return obj
+
+    @classmethod
     def main(cls):
-        generators = [cls(f) for f in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json')]
+        with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
+            generators = pool.map(cls.worker, (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'))
         [g.generate() for g in generators]
         content = render(RequestFactory(), 'init.html', {'data': generators}).content.decode('utf-8')
         content = cls.format_python_file(content)

@@ -11,6 +11,122 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Attachment:
+    pass
+
+
+class LinkObject:
+    pass
+
+
+class MessagingAction:
+    pass
+
+
+class Schema:
+    pass
+
+
+class GetMessagingActionsForOrderResponse:
+    pass
+
+
+class GetMessagingActionResponse:
+    pass
+
+
+class GetSchemaResponse:
+    pass
+
+
+class CreateConfirmCustomizationDetailsRequest:
+    pass
+
+
+class CreateConfirmCustomizationDetailsResponse:
+    pass
+
+
+class CreateConfirmDeliveryDetailsRequest:
+    pass
+
+
+class CreateConfirmDeliveryDetailsResponse:
+    pass
+
+
+class CreateNegativeFeedbackRemovalResponse:
+    pass
+
+
+class CreateLegalDisclosureRequest:
+    pass
+
+
+class CreateLegalDisclosureResponse:
+    pass
+
+
+class CreateConfirmOrderDetailsRequest:
+    pass
+
+
+class CreateConfirmOrderDetailsResponse:
+    pass
+
+
+class CreateConfirmServiceDetailsRequest:
+    pass
+
+
+class CreateConfirmServiceDetailsResponse:
+    pass
+
+
+class CreateAmazonMotorsRequest:
+    pass
+
+
+class CreateAmazonMotorsResponse:
+    pass
+
+
+class CreateWarrantyRequest:
+    pass
+
+
+class CreateWarrantyResponse:
+    pass
+
+
+class GetAttributesResponse:
+    pass
+
+
+class CreateDigitalAccessKeyRequest:
+    pass
+
+
+class CreateDigitalAccessKeyResponse:
+    pass
+
+
+class CreateUnexpectedProblemRequest:
+    pass
+
+
+class CreateUnexpectedProblemResponse:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class MessagingV1Client(BaseClient):
     def create_amazon_motors(
         self,

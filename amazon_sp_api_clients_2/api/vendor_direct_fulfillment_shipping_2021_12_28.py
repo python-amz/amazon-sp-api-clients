@@ -11,6 +11,110 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class SubmitShippingLabelsRequest:
+    pass
+
+
+class ShippingLabelRequest:
+    pass
+
+
+class Item:
+    pass
+
+
+class PackedItem:
+    pass
+
+
+class PartyIdentification:
+    pass
+
+
+class TaxRegistrationDetails:
+    pass
+
+
+class Address:
+    pass
+
+
+class Dimensions:
+    pass
+
+
+class Weight:
+    pass
+
+
+class Decimal:
+    pass
+
+
+class ItemQuantity:
+    pass
+
+
+class GetShippingLabelListResponse:
+    pass
+
+
+class GetShippingLabelResponse:
+    pass
+
+
+class ShippingLabelList:
+    pass
+
+
+class LabelData:
+    pass
+
+
+class ShippingLabel:
+    pass
+
+
+class SubmitShippingLabelsResponse:
+    pass
+
+
+class GetCustomerInvoicesResponse:
+    pass
+
+
+class GetCustomerInvoiceResponse:
+    pass
+
+
+class CustomerInvoiceList:
+    pass
+
+
+class Pagination:
+    pass
+
+
+class CustomerInvoice:
+    pass
+
+
+class TransactionReference:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
+class Container:
+    pass
+
+
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     def get_shipping_label(
         self,

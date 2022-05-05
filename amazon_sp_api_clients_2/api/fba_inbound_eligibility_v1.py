@@ -11,6 +11,22 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetItemEligibilityPreviewResponse:
+    pass
+
+
+class ItemEligibilityPreview:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class FbaInboundEligibilityV1Client(BaseClient):
     def get_item_eligibility_preview(
         self,

@@ -11,6 +11,106 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class ListCatalogItemsResponse:
+    pass
+
+
+class ListMatchingItemsResponse:
+    pass
+
+
+class ItemList:
+    pass
+
+
+class GetCatalogItemResponse:
+    pass
+
+
+class Item:
+    pass
+
+
+class IdentifierType:
+    pass
+
+
+class ASINIdentifier:
+    pass
+
+
+class SellerSKUIdentifier:
+    pass
+
+
+class AttributeSetList:
+    pass
+
+
+class AttributeSetListType:
+    pass
+
+
+class DecimalWithUnits:
+    pass
+
+
+class CreatorType:
+    pass
+
+
+class DimensionType:
+    pass
+
+
+class LanguageType:
+    pass
+
+
+class Image:
+    pass
+
+
+class Price:
+    pass
+
+
+class RelationshipList:
+    pass
+
+
+class RelationshipType:
+    pass
+
+
+class SalesRankList:
+    pass
+
+
+class SalesRankType:
+    pass
+
+
+class ListCatalogCategoriesResponse:
+    pass
+
+
+class ListOfCategories:
+    pass
+
+
+class Categories:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class CatalogItemsV0Client(BaseClient):
     def get_catalog_item(
         self,

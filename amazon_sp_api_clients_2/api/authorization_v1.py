@@ -11,6 +11,22 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetAuthorizationCodeResponse:
+    pass
+
+
+class AuthorizationCode:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class AuthorizationV1Client(BaseClient):
     def get_authorization_code(
         self,

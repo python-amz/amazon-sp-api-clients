@@ -11,6 +11,58 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Granularity:
+    pass
+
+
+class ReservedQuantity:
+    pass
+
+
+class ResearchingQuantityEntry:
+    pass
+
+
+class ResearchingQuantity:
+    pass
+
+
+class UnfulfillableQuantity:
+    pass
+
+
+class InventoryDetails:
+    pass
+
+
+class InventorySummary:
+    pass
+
+
+class InventorySummaries:
+    pass
+
+
+class Pagination:
+    pass
+
+
+class GetInventorySummariesResult:
+    pass
+
+
+class GetInventorySummariesResponse:
+    pass
+
+
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
 class FbaInventoryV1Client(BaseClient):
     def get_inventory_summaries(
         self,

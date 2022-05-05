@@ -11,6 +11,62 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class MarketplaceId:
+    pass
+
+
+class SellerSKU:
+    pass
+
+
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class SmallAndLightEnrollmentStatus:
+    pass
+
+
+class SmallAndLightEligibilityStatus:
+    pass
+
+
+class SmallAndLightEnrollment:
+    pass
+
+
+class SmallAndLightEligibility:
+    pass
+
+
+class SmallAndLightFeePreviewRequest:
+    pass
+
+
+class SmallAndLightFeePreviews:
+    pass
+
+
+class Item:
+    pass
+
+
+class FeePreview:
+    pass
+
+
+class FeeLineItem:
+    pass
+
+
+class MoneyType:
+    pass
+
+
 class FbaSmallAndLightV1Client(BaseClient):
     def delete_small_and_light_enrollment_by_seller_sku(
         self,

@@ -11,6 +11,34 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetOrderMetricsResponse:
+    pass
+
+
+class OrderMetricsList:
+    pass
+
+
+class OrderMetricsInterval:
+    pass
+
+
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Money:
+    pass
+
+
+class Decimal:
+    pass
+
+
 class SalesV1Client(BaseClient):
     def get_order_metrics(
         self,

@@ -11,6 +11,126 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class SubmitShipmentConfirmationsRequest:
+    pass
+
+
+class ShipmentConfirmation:
+    pass
+
+
+class ShipmentMeasurements:
+    pass
+
+
+class TransportationDetails:
+    pass
+
+
+class ImportDetails:
+    pass
+
+
+class Item:
+    pass
+
+
+class Carton:
+    pass
+
+
+class Pallet:
+    pass
+
+
+class ItemDetails:
+    pass
+
+
+class ContainerIdentification:
+    pass
+
+
+class ContainerItem:
+    pass
+
+
+class CartonReferenceDetails:
+    pass
+
+
+class PartyIdentification:
+    pass
+
+
+class TaxRegistrationDetails:
+    pass
+
+
+class Address:
+    pass
+
+
+class Route:
+    pass
+
+
+class Stop:
+    pass
+
+
+class Location:
+    pass
+
+
+class Dimensions:
+    pass
+
+
+class Volume:
+    pass
+
+
+class Weight:
+    pass
+
+
+class Money:
+    pass
+
+
+class Decimal:
+    pass
+
+
+class ItemQuantity:
+    pass
+
+
+class Expiry:
+    pass
+
+
+class Duration:
+    pass
+
+
+class SubmitShipmentConfirmationsResponse:
+    pass
+
+
+class TransactionReference:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class VendorShipmentsV1Client(BaseClient):
     def submit_shipment_confirmations(
         self,

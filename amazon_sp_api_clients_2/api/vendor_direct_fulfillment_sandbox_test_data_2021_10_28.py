@@ -11,6 +11,54 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GenerateOrderScenarioRequest:
+    pass
+
+
+class OrderScenarioRequest:
+    pass
+
+
+class PartyIdentification:
+    pass
+
+
+class Pagination:
+    pass
+
+
+class TransactionReference:
+    pass
+
+
+class TransactionStatus:
+    pass
+
+
+class Transaction:
+    pass
+
+
+class TestCaseData:
+    pass
+
+
+class Scenario:
+    pass
+
+
+class TestOrder:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
     def generate_order_scenarios(
         self,

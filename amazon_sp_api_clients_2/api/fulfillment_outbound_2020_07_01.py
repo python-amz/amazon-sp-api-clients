@@ -11,6 +11,378 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Address:
+    pass
+
+
+class CODSettings:
+    pass
+
+
+class CreateFulfillmentOrderItem:
+    pass
+
+
+class CreateFulfillmentOrderItemList:
+    pass
+
+
+class FulfillmentPolicy:
+    pass
+
+
+class FulfillmentOrderStatus:
+    pass
+
+
+class CreateFulfillmentOrderRequest:
+    pass
+
+
+class CreateFulfillmentReturnRequest:
+    pass
+
+
+class CreateFulfillmentReturnResult:
+    pass
+
+
+class CreateFulfillmentReturnResponse:
+    pass
+
+
+class CreateReturnItem:
+    pass
+
+
+class CreateReturnItemList:
+    pass
+
+
+class Money:
+    pass
+
+
+class Decimal:
+    pass
+
+
+class DeliveryWindow:
+    pass
+
+
+class DeliveryWindowList:
+    pass
+
+
+class Fee:
+    pass
+
+
+class FeeList:
+    pass
+
+
+class FulfillmentAction:
+    pass
+
+
+class FulfillmentOrder:
+    pass
+
+
+class FulfillmentOrderItem:
+    pass
+
+
+class FulfillmentOrderItemList:
+    pass
+
+
+class FulfillmentPreview:
+    pass
+
+
+class FulfillmentPreviewItem:
+    pass
+
+
+class FulfillmentPreviewItemList:
+    pass
+
+
+class FulfillmentPreviewList:
+    pass
+
+
+class FulfillmentPreviewShipment:
+    pass
+
+
+class FulfillmentPreviewShipmentList:
+    pass
+
+
+class FulfillmentReturnItemStatus:
+    pass
+
+
+class FulfillmentShipment:
+    pass
+
+
+class FulfillmentShipmentItem:
+    pass
+
+
+class FulfillmentShipmentItemList:
+    pass
+
+
+class FulfillmentShipmentList:
+    pass
+
+
+class FulfillmentShipmentPackage:
+    pass
+
+
+class FulfillmentShipmentPackageList:
+    pass
+
+
+class GetFulfillmentOrderResult:
+    pass
+
+
+class GetFulfillmentOrderResponse:
+    pass
+
+
+class GetFulfillmentPreviewItem:
+    pass
+
+
+class GetFulfillmentPreviewItemList:
+    pass
+
+
+class GetFulfillmentPreviewRequest:
+    pass
+
+
+class GetFulfillmentPreviewResult:
+    pass
+
+
+class GetFulfillmentPreviewResponse:
+    pass
+
+
+class InvalidItemReasonCode:
+    pass
+
+
+class InvalidItemReason:
+    pass
+
+
+class InvalidReturnItem:
+    pass
+
+
+class InvalidReturnItemList:
+    pass
+
+
+class ListAllFulfillmentOrdersResult:
+    pass
+
+
+class ListAllFulfillmentOrdersResponse:
+    pass
+
+
+class ListReturnReasonCodesResult:
+    pass
+
+
+class ListReturnReasonCodesResponse:
+    pass
+
+
+class NotificationEmailList:
+    pass
+
+
+class CurrentStatus:
+    pass
+
+
+class AdditionalLocationInfo:
+    pass
+
+
+class PackageTrackingDetails:
+    pass
+
+
+class GetPackageTrackingDetailsResponse:
+    pass
+
+
+class ReasonCodeDetails:
+    pass
+
+
+class ReasonCodeDetailsList:
+    pass
+
+
+class ReturnAuthorization:
+    pass
+
+
+class ReturnAuthorizationList:
+    pass
+
+
+class ReturnItem:
+    pass
+
+
+class ReturnItemDisposition:
+    pass
+
+
+class ReturnItemList:
+    pass
+
+
+class ScheduledDeliveryInfo:
+    pass
+
+
+class ShippingSpeedCategoryList:
+    pass
+
+
+class StringList:
+    pass
+
+
+class Timestamp:
+    pass
+
+
+class TrackingAddress:
+    pass
+
+
+class EventCode:
+    pass
+
+
+class TrackingEvent:
+    pass
+
+
+class TrackingEventList:
+    pass
+
+
+class UnfulfillablePreviewItem:
+    pass
+
+
+class UnfulfillablePreviewItemList:
+    pass
+
+
+class UpdateFulfillmentOrderItem:
+    pass
+
+
+class UpdateFulfillmentOrderItemList:
+    pass
+
+
+class UpdateFulfillmentOrderRequest:
+    pass
+
+
+class UpdateFulfillmentOrderResponse:
+    pass
+
+
+class CreateFulfillmentOrderResponse:
+    pass
+
+
+class CancelFulfillmentOrderResponse:
+    pass
+
+
+class Weight:
+    pass
+
+
+class Quantity:
+    pass
+
+
+class ShippingSpeedCategory:
+    pass
+
+
+class GetFeatureInventoryResponse:
+    pass
+
+
+class GetFeatureInventoryResult:
+    pass
+
+
+class FeatureSku:
+    pass
+
+
+class GetFeaturesResponse:
+    pass
+
+
+class GetFeaturesResult:
+    pass
+
+
+class Features:
+    pass
+
+
+class Feature:
+    pass
+
+
+class GetFeatureSkuResponse:
+    pass
+
+
+class GetFeatureSkuResult:
+    pass
+
+
+class FeatureSettings:
+    pass
+
+
 class FulfillmentOutbound20200701Client(BaseClient):
     def cancel_fulfillment_order(
         self,

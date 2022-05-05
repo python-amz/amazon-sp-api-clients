@@ -11,6 +11,34 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class MarketplaceParticipation:
+    pass
+
+
+class MarketplaceParticipationList:
+    pass
+
+
+class GetMarketplaceParticipationsResponse:
+    pass
+
+
+class Marketplace:
+    pass
+
+
+class Participation:
+    pass
+
+
 class SellersV1Client(BaseClient):
     def get_marketplace_participations(
         self,

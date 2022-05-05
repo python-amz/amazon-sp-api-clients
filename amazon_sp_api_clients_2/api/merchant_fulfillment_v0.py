@@ -11,6 +11,382 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class LabelFormatOptionRequest:
+    pass
+
+
+class LabelFormatOption:
+    pass
+
+
+class AvailableCarrierWillPickUpOption:
+    pass
+
+
+class AvailableCarrierWillPickUpOptionsList:
+    pass
+
+
+class AvailableDeliveryExperienceOption:
+    pass
+
+
+class AvailableDeliveryExperienceOptionsList:
+    pass
+
+
+class AvailableShippingServiceOptions:
+    pass
+
+
+class AvailableFormatOptionsForLabel:
+    pass
+
+
+class AvailableFormatOptionsForLabelList:
+    pass
+
+
+class Constraint:
+    pass
+
+
+class Constraints:
+    pass
+
+
+class AdditionalInputs:
+    pass
+
+
+class SellerInputDefinition:
+    pass
+
+
+class InputTargetType:
+    pass
+
+
+class AdditionalInputsList:
+    pass
+
+
+class AdditionalSellerInput:
+    pass
+
+
+class AdditionalSellerInputs:
+    pass
+
+
+class AdditionalSellerInputsList:
+    pass
+
+
+class Address:
+    pass
+
+
+class AddressLine1:
+    pass
+
+
+class AddressLine2:
+    pass
+
+
+class AddressLine3:
+    pass
+
+
+class AddressName:
+    pass
+
+
+class AmazonOrderId:
+    pass
+
+
+class CancelShipmentResponse:
+    pass
+
+
+class City:
+    pass
+
+
+class CountryCode:
+    pass
+
+
+class CreateShipmentRequest:
+    pass
+
+
+class CreateShipmentResponse:
+    pass
+
+
+class ItemLevelFields:
+    pass
+
+
+class ItemLevelFieldsList:
+    pass
+
+
+class GetAdditionalSellerInputsRequest:
+    pass
+
+
+class GetAdditionalSellerInputsResult:
+    pass
+
+
+class GetAdditionalSellerInputsResponse:
+    pass
+
+
+class CurrencyAmount:
+    pass
+
+
+class CustomTextForLabel:
+    pass
+
+
+class DeliveryExperienceType:
+    pass
+
+
+class DistrictOrCounty:
+    pass
+
+
+class EmailAddress:
+    pass
+
+
+class FileContents:
+    pass
+
+
+class FileType:
+    pass
+
+
+class GetEligibleShipmentServicesRequest:
+    pass
+
+
+class GetEligibleShipmentServicesResponse:
+    pass
+
+
+class GetEligibleShipmentServicesResult:
+    pass
+
+
+class GetShipmentResponse:
+    pass
+
+
+class HazmatType:
+    pass
+
+
+class Item:
+    pass
+
+
+class ItemList:
+    pass
+
+
+class ItemQuantity:
+    pass
+
+
+class ItemDescription:
+    pass
+
+
+class Label:
+    pass
+
+
+class LabelCustomization:
+    pass
+
+
+class LabelDimension:
+    pass
+
+
+class LabelDimensions:
+    pass
+
+
+class LabelFormat:
+    pass
+
+
+class LabelFormatList:
+    pass
+
+
+class Length:
+    pass
+
+
+class OrderItemId:
+    pass
+
+
+class PackageDimension:
+    pass
+
+
+class PackageDimensions:
+    pass
+
+
+class PhoneNumber:
+    pass
+
+
+class PostalCode:
+    pass
+
+
+class PredefinedPackageDimensions:
+    pass
+
+
+class RestrictedSetValues:
+    pass
+
+
+class SellerOrderId:
+    pass
+
+
+class Shipment:
+    pass
+
+
+class ShipmentId:
+    pass
+
+
+class ShipmentRequestDetails:
+    pass
+
+
+class ShipmentStatus:
+    pass
+
+
+class DeliveryExperienceOption:
+    pass
+
+
+class ShippingOfferingFilter:
+    pass
+
+
+class ShippingService:
+    pass
+
+
+class ShippingServiceIdentifier:
+    pass
+
+
+class ShippingServiceList:
+    pass
+
+
+class ShippingServiceOptions:
+    pass
+
+
+class CarrierWillPickUpOption:
+    pass
+
+
+class StandardIdForLabel:
+    pass
+
+
+class StateOrProvinceCode:
+    pass
+
+
+class RejectedShippingService:
+    pass
+
+
+class RejectedShippingServiceList:
+    pass
+
+
+class TemporarilyUnavailableCarrier:
+    pass
+
+
+class TemporarilyUnavailableCarrierList:
+    pass
+
+
+class TermsAndConditionsNotAcceptedCarrier:
+    pass
+
+
+class TermsAndConditionsNotAcceptedCarrierList:
+    pass
+
+
+class Timestamp:
+    pass
+
+
+class TrackingId:
+    pass
+
+
+class TransparencyCode:
+    pass
+
+
+class TransparencyCodeList:
+    pass
+
+
+class UnitOfLength:
+    pass
+
+
+class UnitOfWeight:
+    pass
+
+
+class Weight:
+    pass
+
+
+class WeightValue:
+    pass
+
+
 class MerchantFulfillmentV0Client(BaseClient):
     def cancel_shipment(
         self,

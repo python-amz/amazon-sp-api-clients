@@ -11,6 +11,42 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class SubmitInventoryUpdateRequest:
+    pass
+
+
+class InventoryUpdate:
+    pass
+
+
+class ItemDetails:
+    pass
+
+
+class PartyIdentification:
+    pass
+
+
+class ItemQuantity:
+    pass
+
+
+class SubmitInventoryUpdateResponse:
+    pass
+
+
+class TransactionReference:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     def submit_inventory_update(
         self,

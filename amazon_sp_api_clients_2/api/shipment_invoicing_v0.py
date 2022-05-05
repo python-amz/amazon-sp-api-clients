@@ -11,6 +11,94 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetShipmentDetailsResponse:
+    pass
+
+
+class ShipmentDetail:
+    pass
+
+
+class Address:
+    pass
+
+
+class AddressTypeEnum:
+    pass
+
+
+class PaymentMethodDetailItemList:
+    pass
+
+
+class BuyerTaxInfo:
+    pass
+
+
+class MarketplaceTaxInfo:
+    pass
+
+
+class TaxClassificationList:
+    pass
+
+
+class TaxClassification:
+    pass
+
+
+class ShipmentItems:
+    pass
+
+
+class ShipmentItem:
+    pass
+
+
+class Money:
+    pass
+
+
+class SerialNumbersList:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
+class SubmitInvoiceRequest:
+    pass
+
+
+class Blob:
+    pass
+
+
+class SubmitInvoiceResponse:
+    pass
+
+
+class ShipmentInvoiceStatusInfo:
+    pass
+
+
+class ShipmentInvoiceStatus:
+    pass
+
+
+class ShipmentInvoiceStatusResponse:
+    pass
+
+
+class GetInvoiceStatusResponse:
+    pass
+
+
 class ShipmentInvoicingV0Client(BaseClient):
     def get_invoice_status(
         self,

@@ -11,6 +11,126 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetPurchaseOrdersResponse:
+    pass
+
+
+class GetPurchaseOrderResponse:
+    pass
+
+
+class OrderList:
+    pass
+
+
+class Pagination:
+    pass
+
+
+class Order:
+    pass
+
+
+class OrderDetails:
+    pass
+
+
+class ImportDetails:
+    pass
+
+
+class DateTimeInterval:
+    pass
+
+
+class PartyIdentification:
+    pass
+
+
+class TaxRegistrationDetails:
+    pass
+
+
+class Address:
+    pass
+
+
+class OrderItem:
+    pass
+
+
+class Money:
+    pass
+
+
+class Decimal:
+    pass
+
+
+class SubmitAcknowledgementResponse:
+    pass
+
+
+class TransactionId:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class SubmitAcknowledgementRequest:
+    pass
+
+
+class OrderAcknowledgement:
+    pass
+
+
+class OrderAcknowledgementItem:
+    pass
+
+
+class OrderItemAcknowledgement:
+    pass
+
+
+class ItemQuantity:
+    pass
+
+
+class GetPurchaseOrdersStatusResponse:
+    pass
+
+
+class OrderListStatus:
+    pass
+
+
+class OrderStatus:
+    pass
+
+
+class ItemStatus:
+    pass
+
+
+class OrderItemStatus:
+    pass
+
+
+class OrderedQuantityDetails:
+    pass
+
+
+class AcknowledgementStatusDetails:
+    pass
+
+
+class Error:
+    pass
+
+
 class VendorOrdersV1Client(BaseClient):
     def get_purchase_order(
         self,

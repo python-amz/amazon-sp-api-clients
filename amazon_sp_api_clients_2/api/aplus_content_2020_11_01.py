@@ -11,6 +11,322 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class AplusResponse:
+    pass
+
+
+class AplusPaginatedResponse:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class MessageSet:
+    pass
+
+
+class Error:
+    pass
+
+
+class ContentMetadataRecordList:
+    pass
+
+
+class ContentMetadataRecord:
+    pass
+
+
+class ContentMetadata:
+    pass
+
+
+class ContentType:
+    pass
+
+
+class ContentSubType:
+    pass
+
+
+class ContentStatus:
+    pass
+
+
+class ContentBadgeSet:
+    pass
+
+
+class ContentBadge:
+    pass
+
+
+class AsinBadgeSet:
+    pass
+
+
+class AsinBadge:
+    pass
+
+
+class MarketplaceId:
+    pass
+
+
+class LanguageTag:
+    pass
+
+
+class AsinSet:
+    pass
+
+
+class Asin:
+    pass
+
+
+class AsinMetadataSet:
+    pass
+
+
+class AsinMetadata:
+    pass
+
+
+class PublishRecordList:
+    pass
+
+
+class PublishRecord:
+    pass
+
+
+class ContentReferenceKeySet:
+    pass
+
+
+class ContentReferenceKey:
+    pass
+
+
+class PageToken:
+    pass
+
+
+class ImageCropSpecification:
+    pass
+
+
+class ImageDimensions:
+    pass
+
+
+class ImageOffsets:
+    pass
+
+
+class IntegerWithUnits:
+    pass
+
+
+class ContentRecord:
+    pass
+
+
+class ContentDocument:
+    pass
+
+
+class ContentModuleList:
+    pass
+
+
+class ContentModule:
+    pass
+
+
+class ContentModuleType:
+    pass
+
+
+class StandardCompanyLogoModule:
+    pass
+
+
+class StandardComparisonTableModule:
+    pass
+
+
+class StandardFourImageTextModule:
+    pass
+
+
+class StandardFourImageTextQuadrantModule:
+    pass
+
+
+class StandardHeaderImageTextModule:
+    pass
+
+
+class StandardImageSidebarModule:
+    pass
+
+
+class StandardImageTextOverlayModule:
+    pass
+
+
+class StandardMultipleImageTextModule:
+    pass
+
+
+class StandardProductDescriptionModule:
+    pass
+
+
+class StandardSingleImageHighlightsModule:
+    pass
+
+
+class StandardSingleImageSpecsDetailModule:
+    pass
+
+
+class StandardSingleSideImageModule:
+    pass
+
+
+class StandardTechSpecsModule:
+    pass
+
+
+class StandardTextModule:
+    pass
+
+
+class StandardThreeImageTextModule:
+    pass
+
+
+class StandardComparisonProductBlock:
+    pass
+
+
+class StandardHeaderTextListBlock:
+    pass
+
+
+class StandardTextListBlock:
+    pass
+
+
+class StandardImageTextCaptionBlock:
+    pass
+
+
+class StandardImageCaptionBlock:
+    pass
+
+
+class StandardImageTextBlock:
+    pass
+
+
+class StandardTextBlock:
+    pass
+
+
+class StandardTextPairBlock:
+    pass
+
+
+class TextItem:
+    pass
+
+
+class PlainTextItem:
+    pass
+
+
+class ImageComponent:
+    pass
+
+
+class ParagraphComponent:
+    pass
+
+
+class TextComponent:
+    pass
+
+
+class ColorType:
+    pass
+
+
+class PositionType:
+    pass
+
+
+class DecoratorSet:
+    pass
+
+
+class Decorator:
+    pass
+
+
+class DecoratorType:
+    pass
+
+
+class SearchContentDocumentsResponse:
+    pass
+
+
+class GetContentDocumentResponse:
+    pass
+
+
+class PostContentDocumentRequest:
+    pass
+
+
+class PostContentDocumentResponse:
+    pass
+
+
+class ListContentDocumentAsinRelationsResponse:
+    pass
+
+
+class PostContentDocumentAsinRelationsRequest:
+    pass
+
+
+class PostContentDocumentAsinRelationsResponse:
+    pass
+
+
+class ValidateContentDocumentAsinRelationsResponse:
+    pass
+
+
+class SearchContentPublishRecordsResponse:
+    pass
+
+
+class PostContentDocumentApprovalSubmissionResponse:
+    pass
+
+
+class PostContentDocumentSuspendSubmissionResponse:
+    pass
+
+
 class AplusContent20201101Client(BaseClient):
     def create_content_document(
         self,

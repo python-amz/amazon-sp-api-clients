@@ -11,6 +11,186 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetPricingResponse:
+    pass
+
+
+class GetOffersResponse:
+    pass
+
+
+class PriceList:
+    pass
+
+
+class GetOffersResult:
+    pass
+
+
+class Price:
+    pass
+
+
+class Product:
+    pass
+
+
+class IdentifierType:
+    pass
+
+
+class ASINIdentifier:
+    pass
+
+
+class SellerSKUIdentifier:
+    pass
+
+
+class AttributeSetList:
+    pass
+
+
+class RelationshipList:
+    pass
+
+
+class CompetitivePricingType:
+    pass
+
+
+class CompetitivePriceList:
+    pass
+
+
+class CompetitivePriceType:
+    pass
+
+
+class NumberOfOfferListingsList:
+    pass
+
+
+class OfferListingCountType:
+    pass
+
+
+class MoneyType:
+    pass
+
+
+class SalesRankList:
+    pass
+
+
+class SalesRankType:
+    pass
+
+
+class PriceType:
+    pass
+
+
+class OffersList:
+    pass
+
+
+class OfferType:
+    pass
+
+
+class OfferCustomerType:
+    pass
+
+
+class QuantityDiscountPriceType:
+    pass
+
+
+class QuantityDiscountType:
+    pass
+
+
+class Points:
+    pass
+
+
+class ConditionType:
+    pass
+
+
+class ItemIdentifier:
+    pass
+
+
+class Summary:
+    pass
+
+
+class BuyBoxEligibleOffers:
+    pass
+
+
+class BuyBoxPrices:
+    pass
+
+
+class LowestPrices:
+    pass
+
+
+class NumberOfOffers:
+    pass
+
+
+class OfferCountType:
+    pass
+
+
+class FulfillmentChannelType:
+    pass
+
+
+class LowestPriceType:
+    pass
+
+
+class BuyBoxPriceType:
+    pass
+
+
+class OfferDetailList:
+    pass
+
+
+class OfferDetail:
+    pass
+
+
+class PrimeInformationType:
+    pass
+
+
+class SellerFeedbackType:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class DetailedShippingTimeType:
+    pass
+
+
+class ShipsFromType:
+    pass
+
+
+class Error:
+    pass
+
+
 class ProductPricingV0Client(BaseClient):
     def get_competitive_pricing(
         self,

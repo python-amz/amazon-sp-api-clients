@@ -11,6 +11,50 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class CreateFeedResponse:
+    pass
+
+
+class Feed:
+    pass
+
+
+class FeedList:
+    pass
+
+
+class GetFeedsResponse:
+    pass
+
+
+class FeedDocument:
+    pass
+
+
+class FeedOptions:
+    pass
+
+
+class CreateFeedSpecification:
+    pass
+
+
+class CreateFeedDocumentSpecification:
+    pass
+
+
+class CreateFeedDocumentResponse:
+    pass
+
+
 class Feeds20210630Client(BaseClient):
     def cancel_feed(
         self,

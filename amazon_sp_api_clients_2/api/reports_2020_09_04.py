@@ -11,6 +11,94 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
+class ReportDocumentEncryptionDetails:
+    pass
+
+
+class Report:
+    pass
+
+
+class ReportList:
+    pass
+
+
+class CreateReportScheduleSpecification:
+    pass
+
+
+class CreateReportSpecification:
+    pass
+
+
+class ReportOptions:
+    pass
+
+
+class ReportSchedule:
+    pass
+
+
+class ReportScheduleList:
+    pass
+
+
+class CreateReportResult:
+    pass
+
+
+class GetReportsResponse:
+    pass
+
+
+class CreateReportResponse:
+    pass
+
+
+class CancelReportResponse:
+    pass
+
+
+class CancelReportScheduleResponse:
+    pass
+
+
+class GetReportResponse:
+    pass
+
+
+class GetReportSchedulesResponse:
+    pass
+
+
+class GetReportScheduleResponse:
+    pass
+
+
+class CreateReportScheduleResult:
+    pass
+
+
+class CreateReportScheduleResponse:
+    pass
+
+
+class ReportDocument:
+    pass
+
+
+class GetReportDocumentResponse:
+    pass
+
+
 class Reports20200904Client(BaseClient):
     def cancel_report(
         self,

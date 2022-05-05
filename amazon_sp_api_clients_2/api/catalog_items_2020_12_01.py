@@ -13,6 +13,114 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Item:
+    pass
+
+
+class ItemAsin:
+    pass
+
+
+class ItemAttributes:
+    pass
+
+
+class ItemIdentifiers:
+    pass
+
+
+class ItemIdentifiersByMarketplace:
+    pass
+
+
+class ItemIdentifier:
+    pass
+
+
+class ItemImages:
+    pass
+
+
+class ItemImagesByMarketplace:
+    pass
+
+
+class ItemImage:
+    pass
+
+
+class ItemProductTypes:
+    pass
+
+
+class ItemProductTypeByMarketplace:
+    pass
+
+
+class ItemSalesRanks:
+    pass
+
+
+class ItemSalesRanksByMarketplace:
+    pass
+
+
+class ItemSalesRank:
+    pass
+
+
+class ItemSummaries:
+    pass
+
+
+class ItemSummaryByMarketplace:
+    pass
+
+
+class ItemVariations:
+    pass
+
+
+class ItemVariationsByMarketplace:
+    pass
+
+
+class ItemVendorDetails:
+    pass
+
+
+class ItemVendorDetailsByMarketplace:
+    pass
+
+
+class ItemSearchResults:
+    pass
+
+
+class Pagination:
+    pass
+
+
+class Refinements:
+    pass
+
+
+class BrandRefinement:
+    pass
+
+
+class ClassificationRefinement:
+    pass
+
+
 class CatalogItems20201201Client(BaseClient):
     def get_catalog_item(
         self,

@@ -11,6 +11,22 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class CreateUploadDestinationResponse:
+    pass
+
+
+class UploadDestination:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class Uploads20201101Client(BaseClient):
     def create_upload_destination_for_resource(
         self,

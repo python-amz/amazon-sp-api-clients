@@ -13,6 +13,86 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class Subscription:
+    pass
+
+
+class CreateSubscriptionResponse:
+    pass
+
+
+class CreateSubscriptionRequest:
+    pass
+
+
+class GetSubscriptionByIdResponse:
+    pass
+
+
+class GetSubscriptionResponse:
+    pass
+
+
+class DeleteSubscriptionByIdResponse:
+    pass
+
+
+class DestinationList:
+    pass
+
+
+class Destination:
+    pass
+
+
+class DestinationResource:
+    pass
+
+
+class DestinationResourceSpecification:
+    pass
+
+
+class SqsResource:
+    pass
+
+
+class EventBridgeResourceSpecification:
+    pass
+
+
+class EventBridgeResource:
+    pass
+
+
+class CreateDestinationRequest:
+    pass
+
+
+class CreateDestinationResponse:
+    pass
+
+
+class GetDestinationResponse:
+    pass
+
+
+class GetDestinationsResponse:
+    pass
+
+
+class DeleteDestinationResponse:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class NotificationsV1Client(BaseClient):
     def create_destination(
         self,

@@ -11,6 +11,130 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class GetServiceJobByServiceJobIdResponse:
+    pass
+
+
+class CancelServiceJobByServiceJobIdResponse:
+    pass
+
+
+class CompleteServiceJobByServiceJobIdResponse:
+    pass
+
+
+class GetServiceJobsResponse:
+    pass
+
+
+class SetAppointmentResponse:
+    pass
+
+
+class JobListing:
+    pass
+
+
+class ServiceJob:
+    pass
+
+
+class ServiceJobId:
+    pass
+
+
+class OrderId:
+    pass
+
+
+class ScopeOfWork:
+    pass
+
+
+class Seller:
+    pass
+
+
+class ServiceJobProvider:
+    pass
+
+
+class Buyer:
+    pass
+
+
+class AppointmentTime:
+    pass
+
+
+class AppointmentId:
+    pass
+
+
+class Appointment:
+    pass
+
+
+class Technician:
+    pass
+
+
+class Poa:
+    pass
+
+
+class AssociatedItem:
+    pass
+
+
+class ItemDelivery:
+    pass
+
+
+class ItemDeliveryPromise:
+    pass
+
+
+class ServiceLocation:
+    pass
+
+
+class Address:
+    pass
+
+
+class AddAppointmentRequest:
+    pass
+
+
+class RescheduleAppointmentRequest:
+    pass
+
+
+class AppointmentTimeInput:
+    pass
+
+
+class RescheduleReasonCode:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
+class WarningList:
+    pass
+
+
+class Warning:
+    pass
+
+
 class ServicesV1Client(BaseClient):
     def add_appointment_for_service_job_by_service_job_id(
         self,

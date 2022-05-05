@@ -11,6 +11,42 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class LinkObject:
+    pass
+
+
+class SolicitationsAction:
+    pass
+
+
+class Schema:
+    pass
+
+
+class GetSolicitationActionsForOrderResponse:
+    pass
+
+
+class GetSolicitationActionResponse:
+    pass
+
+
+class GetSchemaResponse:
+    pass
+
+
+class CreateProductReviewAndSellerFeedbackSolicitationResponse:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class SolicitationsV1Client(BaseClient):
     def create_product_review_and_seller_feedback_solicitation(
         self,

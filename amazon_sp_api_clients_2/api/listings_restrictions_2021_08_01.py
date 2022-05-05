@@ -13,6 +13,30 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class RestrictionList:
+    pass
+
+
+class Restriction:
+    pass
+
+
+class Reason:
+    pass
+
+
+class Link:
+    pass
+
+
+class ErrorList:
+    pass
+
+
+class Error:
+    pass
+
+
 class ListingsRestrictions20210801Client(BaseClient):
     def get_listings_restrictions(
         self,

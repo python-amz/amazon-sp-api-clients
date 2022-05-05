@@ -13,6 +13,26 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+class CreateRestrictedDataTokenRequest:
+    pass
+
+
+class RestrictedResource:
+    pass
+
+
+class CreateRestrictedDataTokenResponse:
+    pass
+
+
+class Error:
+    pass
+
+
+class ErrorList:
+    pass
+
+
 class Tokens20210301Client(BaseClient):
     def create_restricted_data_token(
         self,
