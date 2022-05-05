@@ -3,13 +3,14 @@ import json
 import re
 from functools import cached_property
 from pathlib import Path
+from typing import Optional
 
 import black
 import django.template
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody
+from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema
 
 settings.configure(TEMPLATES=[{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -19,29 +20,14 @@ django.setup()
 
 
 class ParsedParameter(Parameter):
+    type_hint: Optional[str] = None
+
+    def set_parent(self, generator: 'Generator'):
+        self.type_hint = generator.get_type_hint_of_schema(self.param_schema)
+
     @property
     def variable_name(self):
         return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
-
-    @property
-    def type_hint(self):
-        schema = self.param_schema
-        if schema.type is None:
-            return 'Any'
-        base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
-        if schema.type in ('object', 'array'):
-            child = base_type_convert[schema.items.type]
-            if child == 'str' and schema.items.enum is not None:
-                child = ', '.join(f'Literal["{v}"]' for v in schema.items.enum)
-                child = f'Union[{child}]'
-        else:
-            child = ''
-        type_convert = {**base_type_convert, 'array': f'list[{child}]', 'object': f'dict[str, {child}]'}
-        type_hint = type_convert[schema.type]
-        if type_hint == 'str' and schema.enum is not None:
-            type_hint = ', '.join(f'Literal["{v}"]' for v in schema.enum)
-            type_hint = f'Union[{type_hint}]'
-        return type_hint
 
     @property
     def parsed_description(self):
@@ -73,6 +59,18 @@ class Generator:
         """
         self.path = path
 
+    def resolve_ref(self, ref: Reference):
+        if not isinstance(ref, Reference):
+            return ref
+        match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
+        category, name = match.group(1), match.group(2)
+        if category == 'schemas':
+            return self.data.components.schemas.get(name)
+        elif category == 'parameters':
+            return self.data.components.parameters.get(name)
+        else:
+            raise ValueError(category)
+
     @cached_property
     def data(self) -> OpenAPI:
         with open(self.path) as f:
@@ -88,6 +86,25 @@ class Generator:
     @cached_property
     def components(self):
         return self.data.components
+
+    def get_type_hint_of_schema(self, schema: Schema):
+        if isinstance(schema, Reference):
+            schema = self.resolve_ref(schema)
+        if schema is None:
+            return 'Any'
+        if schema.type is None:
+            return 'Any'
+        base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
+        if schema.type in ('object', 'array'):
+            child = self.get_type_hint_of_schema(schema.items)
+        else:
+            child = ''
+        type_convert = {**base_type_convert, 'array': f'list[{child}]', 'object': f'dict[str, {child}]'}
+        type_hint = type_convert[schema.type]
+        if type_hint == 'str' and schema.enum is not None:
+            type_hint = ', '.join(f'Literal["{v}"]' for v in schema.enum)
+            type_hint = f'Union[{type_hint}]'
+        return type_hint
 
     @cached_property
     def operations(self) -> list[OperationWithName]:
@@ -105,8 +122,7 @@ class Generator:
                     assert media_type == 'application/json'
                     item = item.media_type_schema
                     assert isinstance(item, Reference), item
-                    item_name = re.match(r'^#/components/schemas/(.*?)$', item.ref).group(1)
-                    item = self.data.components.schemas.get(item_name)
+                    item = self.resolve_ref(item)
                     assert item.type == 'object'
                     fields = {k: getattr(item, k) for k in item.__fields_set__}
                     assert all(field in ('required', 'properties', 'type', 'description')
@@ -114,27 +130,29 @@ class Generator:
                     required_fields = item.required
                     for property_name, property_obj in item.properties.items():
                         if isinstance(property_obj, Reference):
-                            match = re.match(r'^#/components/schemas/(.*?)$', property_obj.ref).group(1)
-                            property_obj = self.data.components.schemas.get(match)
-                        fields = {k: getattr(property_obj, k) for k in property_obj.__fields_set__}
-                        print(property_name, fields)
+                            property_obj = self.resolve_ref(property_obj)
+                        type_hint = self.get_type_hint_of_schema(property_obj)
+                        print(property_name, type_hint)
                     # print(item_name, tuple(fields.keys()), fields)
                 # ParsedParameter(name='body')
 
             if not any(isinstance(p, Reference) for p in operation.parameters):
-                operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in operation.parameters]
+                parsed_parameters: list[ParsedParameter] = \
+                    [ParsedParameter.parse_obj(p.dict()) for p in operation.parameters]
+                [p.set_parent(self) for p in parsed_parameters]
+                operation.parsed_parameters = parsed_parameters
                 continue
             result = []
             for parameter in operation.parameters:
                 if not isinstance(parameter, Reference):
                     result.append(parameter)
                     continue
-                ref = parameter.ref
-                if not (match := re.match('^#/components/parameters/(.*?)$', ref)):
-                    raise ValueError(ref)
-                name = match.group(1)
-                result.append(self.data.components.parameters[name])
-            operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in result]
+                obj = self.resolve_ref(parameter)
+                result.append(obj)
+
+            parsed_parameters: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in result]
+            [p.set_parent(self) for p in parsed_parameters]
+            operation.parsed_parameters = parsed_parameters
 
         # Currently, there is no parameter in header or cookie
         assert all(p.param_in in ('query', 'path') for o in operations for p in o.parsed_parameters)
