@@ -62,6 +62,9 @@ class ShipmentInvoicingV0Client(BaseClient):
     def submit_invoice(
         self,
         shipment_id: str,
+        invoice_content: str,
+        content_md5value: str,
+        marketplace_id: str = None,
     ):
         """
         Submits a shipment invoice document for a given shipment.
@@ -77,8 +80,21 @@ class ShipmentInvoicingV0Client(BaseClient):
 
         Args:
             shipment_id: The identifier for the shipment.
+            invoice_content: Shipment invoice document content.
+            marketplace_id: An Amazon marketplace identifier.
+            content_md5value: MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
         """
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice"
-        values = (shipment_id,)
+        values = (
+            shipment_id,
+            invoice_content,
+            marketplace_id,
+            content_md5value,
+        )
 
-    _submit_invoice_params = (("shipmentId", "path", True),)  # name, param in, required
+    _submit_invoice_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("InvoiceContent", "body", True),
+        ("MarketplaceId", "body", False),
+        ("ContentMD5Value", "body", True),
+    )

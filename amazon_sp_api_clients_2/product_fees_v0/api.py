@@ -14,6 +14,7 @@ class ProductFeesV0Client(BaseClient):
     def get_my_fees_estimate_for_asin(
         self,
         asin: str,
+        fees_estimate_request: dict[str, Any] = None,
     ):
         """
         Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
@@ -33,15 +34,23 @@ class ProductFeesV0Client(BaseClient):
 
         Args:
             asin: The Amazon Standard Identification Number (ASIN) of the item.
+            fees_estimate_request: no description.
         """
         url = "/products/fees/v0/items/{Asin}/feesEstimate"
-        values = (asin,)
+        values = (
+            asin,
+            fees_estimate_request,
+        )
 
-    _get_my_fees_estimate_for_asin_params = (("Asin", "path", True),)  # name, param in, required
+    _get_my_fees_estimate_for_asin_params = (  # name, param in, required
+        ("Asin", "path", True),
+        ("FeesEstimateRequest", "body", False),
+    )
 
     def get_my_fees_estimate_for_sku(
         self,
         seller_sku: str,
+        fees_estimate_request: dict[str, Any] = None,
     ):
         """
         Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.
@@ -61,8 +70,15 @@ class ProductFeesV0Client(BaseClient):
 
         Args:
             seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+            fees_estimate_request: no description.
         """
         url = "/products/fees/v0/listings/{SellerSKU}/feesEstimate"
-        values = (seller_sku,)
+        values = (
+            seller_sku,
+            fees_estimate_request,
+        )
 
-    _get_my_fees_estimate_for_sku_params = (("SellerSKU", "path", True),)  # name, param in, required
+    _get_my_fees_estimate_for_sku_params = (  # name, param in, required
+        ("SellerSKU", "path", True),
+        ("FeesEstimateRequest", "body", False),
+    )

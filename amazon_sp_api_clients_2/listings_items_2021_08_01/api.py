@@ -109,6 +109,8 @@ class ListingsItems20210801Client(BaseClient):
         seller_id: str,
         sku: str,
         marketplace_ids: list[str],
+        product_type: str,
+        patches: list[dict[str, Any]],
         issue_locale: str = None,
     ):
         """
@@ -127,6 +129,8 @@ class ListingsItems20210801Client(BaseClient):
             sku: A selling partner provided identifier for an Amazon listing.
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
             issue_locale: A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
+            product_type: The Amazon product type of the listings item.
+            patches: One or more JSON Patch operations to perform on the listings item.
         """
         url = "/listings/2021-08-01/items/{sellerId}/{sku}"
         values = (
@@ -134,6 +138,8 @@ class ListingsItems20210801Client(BaseClient):
             sku,
             marketplace_ids,
             issue_locale,
+            product_type,
+            patches,
         )
 
     _patch_listings_item_params = (  # name, param in, required
@@ -141,6 +147,8 @@ class ListingsItems20210801Client(BaseClient):
         ("sku", "path", True),
         ("marketplaceIds", "query", True),
         ("issueLocale", "query", False),
+        ("productType", "body", True),
+        ("patches", "body", True),
     )
 
     def put_listings_item(
@@ -148,7 +156,10 @@ class ListingsItems20210801Client(BaseClient):
         seller_id: str,
         sku: str,
         marketplace_ids: list[str],
+        product_type: str,
+        attributes: dict[str, Any],
         issue_locale: str = None,
+        requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
     ):
         """
         Creates a new or fully-updates an existing listings item for a selling partner.
@@ -166,6 +177,9 @@ class ListingsItems20210801Client(BaseClient):
             sku: A selling partner provided identifier for an Amazon listing.
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
             issue_locale: A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
+            product_type: The Amazon product type of the listings item.
+            requirements: The name of the requirements set for the provided data.
+            attributes: JSON object containing structured listings item attribute data keyed by attribute name.
         """
         url = "/listings/2021-08-01/items/{sellerId}/{sku}"
         values = (
@@ -173,6 +187,9 @@ class ListingsItems20210801Client(BaseClient):
             sku,
             marketplace_ids,
             issue_locale,
+            product_type,
+            requirements,
+            attributes,
         )
 
     _put_listings_item_params = (  # name, param in, required
@@ -180,4 +197,7 @@ class ListingsItems20210801Client(BaseClient):
         ("sku", "path", True),
         ("marketplaceIds", "query", True),
         ("issueLocale", "query", False),
+        ("productType", "body", True),
+        ("requirements", "body", False),
+        ("attributes", "body", True),
     )

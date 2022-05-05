@@ -269,21 +269,38 @@ class OrdersV0Client(BaseClient):
     def update_shipment_status(
         self,
         order_id: str,
+        marketplace_id: str,
+        shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]],
+        order_items: list[dict[str, Any]] = None,
     ):
         """
         Update the shipment status.
 
         Args:
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
+            marketplace_id: the unobfuscated marketplace ID
+            shipment_status: the status of the shipment of the order to be updated
+            order_items: the list of order items and quantities when the seller wants to partially update the shipment status of the order
         """
         url = "/orders/v0/orders/{orderId}/shipment"
-        values = (order_id,)
+        values = (
+            order_id,
+            marketplace_id,
+            shipment_status,
+            order_items,
+        )
 
-    _update_shipment_status_params = (("orderId", "path", True),)  # name, param in, required
+    _update_shipment_status_params = (  # name, param in, required
+        ("orderId", "path", True),
+        ("marketplaceId", "body", True),
+        ("shipmentStatus", "body", True),
+        ("orderItems", "body", False),
+    )
 
     def update_verification_status(
         self,
         order_id: str,
+        regulated_order_verification_status: dict[str, Any],
     ):
         """
         Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -299,8 +316,15 @@ class OrdersV0Client(BaseClient):
 
         Args:
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
+            regulated_order_verification_status: The updated values of the VerificationStatus field.
         """
         url = "/orders/v0/orders/{orderId}/regulatedInfo"
-        values = (order_id,)
+        values = (
+            order_id,
+            regulated_order_verification_status,
+        )
 
-    _update_verification_status_params = (("orderId", "path", True),)  # name, param in, required
+    _update_verification_status_params = (  # name, param in, required
+        ("orderId", "path", True),
+        ("regulatedOrderVerificationStatus", "body", True),
+    )

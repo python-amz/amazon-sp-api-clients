@@ -58,6 +58,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def create_fulfillment_return(
         self,
         seller_fulfillment_order_id: str,
+        items: list[dict[str, Any]],
     ):
         """
         Creates a fulfillment return.
@@ -72,11 +73,18 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
         Args:
             seller_fulfillment_order_id: An identifier assigned by the seller to the fulfillment order at the time it was created. The seller uses their own records to find the correct SellerFulfillmentOrderId value based on the buyer's request to return items.
+            items: An array of items to be returned.
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return"
-        values = (seller_fulfillment_order_id,)
+        values = (
+            seller_fulfillment_order_id,
+            items,
+        )
 
-    _create_fulfillment_return_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
+    _create_fulfillment_return_params = (  # name, param in, required
+        ("sellerFulfillmentOrderId", "path", True),
+        ("items", "body", True),
+    )
 
     def get_feature_inventory(
         self,
@@ -311,6 +319,20 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def update_fulfillment_order(
         self,
         seller_fulfillment_order_id: str,
+        marketplace_id: str = None,
+        displayable_order_id: str = None,
+        displayable_order_date: str = None,
+        displayable_order_comment: str = None,
+        shipping_speed_category: Union[
+            Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
+        ] = None,
+        destination_address: dict[str, Any] = None,
+        fulfillment_action: Union[Literal["Ship"], Literal["Hold"]] = None,
+        fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]] = None,
+        ship_from_country_code: str = None,
+        notification_emails: list[str] = None,
+        feature_constraints: list[dict[str, Any]] = None,
+        items: list[dict[str, Any]] = None,
     ):
         """
         Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -325,8 +347,48 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
         Args:
             seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
+            marketplace_id: The marketplace the fulfillment order is placed against.
+            displayable_order_id: A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
+            displayable_order_date: no description.
+            displayable_order_comment: Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
+            shipping_speed_category: The shipping method used for the fulfillment order.
+            destination_address: A physical address.
+            fulfillment_action: Specifies whether the fulfillment order should ship now or have an order hold put on it.
+            fulfillment_policy: The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
+            ship_from_country_code: The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
+            notification_emails: A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+            feature_constraints: A list of features and their fulfillment policies to apply to the order.
+            items: An array of fulfillment order item information for updating a fulfillment order.
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
-        values = (seller_fulfillment_order_id,)
+        values = (
+            seller_fulfillment_order_id,
+            marketplace_id,
+            displayable_order_id,
+            displayable_order_date,
+            displayable_order_comment,
+            shipping_speed_category,
+            destination_address,
+            fulfillment_action,
+            fulfillment_policy,
+            ship_from_country_code,
+            notification_emails,
+            feature_constraints,
+            items,
+        )
 
-    _update_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
+    _update_fulfillment_order_params = (  # name, param in, required
+        ("sellerFulfillmentOrderId", "path", True),
+        ("marketplaceId", "body", False),
+        ("displayableOrderId", "body", False),
+        ("displayableOrderDate", "body", False),
+        ("displayableOrderComment", "body", False),
+        ("shippingSpeedCategory", "body", False),
+        ("destinationAddress", "body", False),
+        ("fulfillmentAction", "body", False),
+        ("fulfillmentPolicy", "body", False),
+        ("shipFromCountryCode", "body", False),
+        ("notificationEmails", "body", False),
+        ("featureConstraints", "body", False),
+        ("items", "body", False),
+    )

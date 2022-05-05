@@ -146,6 +146,8 @@ class ShippingV1Client(BaseClient):
     def purchase_labels(
         self,
         shipment_id: str,
+        rate_id: str,
+        label_specification: dict[str, Any],
     ):
         """
         Purchase shipping labels based on a given rate.
@@ -160,11 +162,21 @@ class ShippingV1Client(BaseClient):
 
         Args:
             shipment_id: no description.
+            rate_id: An identifier for the rating.
+            label_specification: The label specification info.
         """
         url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels"
-        values = (shipment_id,)
+        values = (
+            shipment_id,
+            rate_id,
+            label_specification,
+        )
 
-    _purchase_labels_params = (("shipmentId", "path", True),)  # name, param in, required
+    _purchase_labels_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("rateId", "body", True),
+        ("labelSpecification", "body", True),
+    )
 
     def purchase_shipment(
         self,
@@ -191,6 +203,7 @@ class ShippingV1Client(BaseClient):
         self,
         shipment_id: str,
         tracking_id: str,
+        label_specification: dict[str, Any],
     ):
         """
         Retrieve shipping label based on the shipment id and tracking id.
@@ -206,14 +219,17 @@ class ShippingV1Client(BaseClient):
         Args:
             shipment_id: no description.
             tracking_id: no description.
+            label_specification: The label specification info.
         """
         url = "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label"
         values = (
             shipment_id,
             tracking_id,
+            label_specification,
         )
 
     _retrieve_shipping_label_params = (  # name, param in, required
         ("shipmentId", "path", True),
         ("trackingId", "path", True),
+        ("labelSpecification", "body", True),
     )

@@ -37,6 +37,8 @@ class NotificationsV1Client(BaseClient):
     def create_subscription(
         self,
         notification_type: str,
+        payload_version: str = None,
+        destination_id: str = None,
     ):
         """
         Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
@@ -52,11 +54,21 @@ class NotificationsV1Client(BaseClient):
         Args:
             notification_type: The type of notification.
                 For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
+            payload_version: The version of the payload object to be used in the notification.
+            destination_id: The identifier for the destination where notifications will be delivered.
         """
         url = "/notifications/v1/subscriptions/{notificationType}"
-        values = (notification_type,)
+        values = (
+            notification_type,
+            payload_version,
+            destination_id,
+        )
 
-    _create_subscription_params = (("notificationType", "path", True),)  # name, param in, required
+    _create_subscription_params = (  # name, param in, required
+        ("notificationType", "path", True),
+        ("payloadVersion", "body", False),
+        ("destinationId", "body", False),
+    )
 
     def delete_destination(
         self,

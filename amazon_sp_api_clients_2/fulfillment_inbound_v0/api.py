@@ -76,6 +76,9 @@ class FulfillmentInboundV0Client(BaseClient):
     def create_inbound_shipment(
         self,
         shipment_id: str,
+        inbound_shipment_header: dict[str, Any],
+        inbound_shipment_items: list[dict[str, Any]],
+        marketplace_id: str,
     ):
         """
         Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
@@ -90,11 +93,24 @@ class FulfillmentInboundV0Client(BaseClient):
 
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
+            inbound_shipment_header: Inbound shipment information used to create and update inbound shipments.
+            inbound_shipment_items: A list of inbound shipment item information.
+            marketplace_id: A marketplace identifier. Specifies the marketplace where the product would be stored.
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}"
-        values = (shipment_id,)
+        values = (
+            shipment_id,
+            inbound_shipment_header,
+            inbound_shipment_items,
+            marketplace_id,
+        )
 
-    _create_inbound_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
+    _create_inbound_shipment_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("InboundShipmentHeader", "body", True),
+        ("InboundShipmentItems", "body", True),
+        ("MarketplaceId", "body", True),
+    )
 
     def create_inbound_shipment_plan(
         self,
@@ -501,6 +517,9 @@ class FulfillmentInboundV0Client(BaseClient):
     def put_transport_details(
         self,
         shipment_id: str,
+        is_partnered: bool,
+        shipment_type: Union[Literal["SP"], Literal["LTL"]],
+        transport_details: dict[str, Any],
     ):
         """
         Sends transportation information to Amazon about an inbound shipment.
@@ -515,15 +534,31 @@ class FulfillmentInboundV0Client(BaseClient):
 
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
+            is_partnered: Indicates whether a putTransportDetails request is for an Amazon-partnered carrier.
+            shipment_type: Specifies the carrier shipment type in a putTransportDetails request.
+            transport_details: Information required to create an Amazon-partnered carrier shipping estimate, or to alert the Amazon fulfillment center to the arrival of an inbound shipment by a non-Amazon-partnered carrier.
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport"
-        values = (shipment_id,)
+        values = (
+            shipment_id,
+            is_partnered,
+            shipment_type,
+            transport_details,
+        )
 
-    _put_transport_details_params = (("shipmentId", "path", True),)  # name, param in, required
+    _put_transport_details_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("IsPartnered", "body", True),
+        ("ShipmentType", "body", True),
+        ("TransportDetails", "body", True),
+    )
 
     def update_inbound_shipment(
         self,
         shipment_id: str,
+        inbound_shipment_header: dict[str, Any],
+        inbound_shipment_items: list[dict[str, Any]],
+        marketplace_id: str,
     ):
         """
         Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported.
@@ -538,11 +573,24 @@ class FulfillmentInboundV0Client(BaseClient):
 
         Args:
             shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
+            inbound_shipment_header: Inbound shipment information used to create and update inbound shipments.
+            inbound_shipment_items: A list of inbound shipment item information.
+            marketplace_id: A marketplace identifier. Specifies the marketplace where the product would be stored.
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}"
-        values = (shipment_id,)
+        values = (
+            shipment_id,
+            inbound_shipment_header,
+            inbound_shipment_items,
+            marketplace_id,
+        )
 
-    _update_inbound_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
+    _update_inbound_shipment_params = (  # name, param in, required
+        ("shipmentId", "path", True),
+        ("InboundShipmentHeader", "body", True),
+        ("InboundShipmentItems", "body", True),
+        ("MarketplaceId", "body", True),
+    )
 
     def void_transport(
         self,

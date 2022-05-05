@@ -128,13 +128,16 @@ class Generator:
                     assert all(field in ('required', 'properties', 'type', 'description')
                                for field in item.__fields_set__), fields.keys()
                     required_fields = item.required
+                    required_fields = () if required_fields is None else required_fields
                     for property_name, property_obj in item.properties.items():
                         if isinstance(property_obj, Reference):
                             property_obj = self.resolve_ref(property_obj)
                         type_hint = self.get_type_hint_of_schema(property_obj)
-                        print(property_name, type_hint)
-                    # print(item_name, tuple(fields.keys()), fields)
-                # ParsedParameter(name='body')
+                        parameter = ParsedParameter(type_hint=type_hint, name=property_name, param_in='body',
+                                                    description=property_obj.description,
+                                                    required=property_name in required_fields,
+                                                    param_schema=property_obj)
+                        operation.parameters.append(parameter)
 
             if not any(isinstance(p, Reference) for p in operation.parameters):
                 parsed_parameters: list[ParsedParameter] = \
@@ -155,7 +158,7 @@ class Generator:
             operation.parsed_parameters = parsed_parameters
 
         # Currently, there is no parameter in header or cookie
-        assert all(p.param_in in ('query', 'path') for o in operations for p in o.parsed_parameters)
+        assert all(p.param_in in ('query', 'path', 'body') for o in operations for p in o.parsed_parameters)
         return operations
 
     @cached_property

@@ -14,6 +14,7 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     def submit_inventory_update(
         self,
         warehouse_id: str,
+        inventory: dict[str, Any] = None,
     ):
         """
         Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
@@ -29,8 +30,15 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
 
         Args:
             warehouse_id: Identifier for the warehouse for which to update inventory.
+            inventory: no description.
         """
         url = "/vendor/directFulfillment/inventory/v1/warehouses/{warehouseId}/items"
-        values = (warehouse_id,)
+        values = (
+            warehouse_id,
+            inventory,
+        )
 
-    _submit_inventory_update_params = (("warehouseId", "path", True),)  # name, param in, required
+    _submit_inventory_update_params = (  # name, param in, required
+        ("warehouseId", "path", True),
+        ("inventory", "body", False),
+    )

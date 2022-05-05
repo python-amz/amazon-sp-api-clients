@@ -14,6 +14,7 @@ class ServicesV1Client(BaseClient):
     def add_appointment_for_service_job_by_service_job_id(
         self,
         service_job_id: str,
+        appointment_time: dict[str, Any],
     ):
         """
         Adds an appointment to the service job indicated by the service job identifier you specify.
@@ -28,12 +29,17 @@ class ServicesV1Client(BaseClient):
 
         Args:
             service_job_id: An Amazon defined service job identifier.
+            appointment_time: The input appointment time details.
         """
         url = "/service/v1/serviceJobs/{serviceJobId}/appointments"
-        values = (service_job_id,)
+        values = (
+            service_job_id,
+            appointment_time,
+        )
 
     _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in, required
         ("serviceJobId", "path", True),
+        ("appointmentTime", "body", True),
     )
 
     def cancel_service_job_by_service_job_id(
@@ -202,6 +208,8 @@ class ServicesV1Client(BaseClient):
         self,
         service_job_id: str,
         appointment_id: str,
+        appointment_time: dict[str, Any],
+        reschedule_reason_code: str,
     ):
         """
         Reschedules an appointment for the service job indicated by the service job identifier you specify.
@@ -217,14 +225,20 @@ class ServicesV1Client(BaseClient):
         Args:
             service_job_id: An Amazon defined service job identifier.
             appointment_id: An existing appointment identifier for the Service Job.
+            appointment_time: The input appointment time details.
+            reschedule_reason_code: Appointment reschedule reason code.
         """
         url = "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}"
         values = (
             service_job_id,
             appointment_id,
+            appointment_time,
+            reschedule_reason_code,
         )
 
     _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in, required
         ("serviceJobId", "path", True),
         ("appointmentId", "path", True),
+        ("appointmentTime", "body", True),
+        ("rescheduleReasonCode", "body", True),
     )

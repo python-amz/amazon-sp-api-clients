@@ -14,6 +14,7 @@ class AplusContent20201101Client(BaseClient):
     def create_content_document(
         self,
         marketplace_id: str,
+        content_document: dict[str, Any],
     ):
         """
         Creates a new A+ Content document.
@@ -29,11 +30,18 @@ class AplusContent20201101Client(BaseClient):
 
         Args:
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
+            content_document: The A+ Content document. This is the enhanced content that is published to product detail pages.
         """
         url = "/aplus/2020-11-01/contentDocuments"
-        values = (marketplace_id,)
+        values = (
+            marketplace_id,
+            content_document,
+        )
 
-    _create_content_document_params = (("marketplaceId", "query", True),)  # name, param in, required
+    _create_content_document_params = (  # name, param in, required
+        ("marketplaceId", "query", True),
+        ("contentDocument", "body", True),
+    )
 
     def get_content_document(
         self,
@@ -151,6 +159,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
+        asin_set: list[str],
     ):
         """
         Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
@@ -167,16 +176,19 @@ class AplusContent20201101Client(BaseClient):
         Args:
             content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
+            asin_set: The set of ASINs.
         """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins"
         values = (
             content_reference_key,
             marketplace_id,
+            asin_set,
         )
 
     _post_content_document_asin_relations_params = (  # name, param in, required
         ("contentReferenceKey", "path", True),
         ("marketplaceId", "query", True),
+        ("asinSet", "body", True),
     )
 
     def post_content_document_suspend_submission(
@@ -283,6 +295,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
+        content_document: dict[str, Any],
     ):
         """
         Updates an existing A+ Content document.
@@ -299,21 +312,25 @@ class AplusContent20201101Client(BaseClient):
         Args:
             content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
+            content_document: The A+ Content document. This is the enhanced content that is published to product detail pages.
         """
         url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}"
         values = (
             content_reference_key,
             marketplace_id,
+            content_document,
         )
 
     _update_content_document_params = (  # name, param in, required
         ("contentReferenceKey", "path", True),
         ("marketplaceId", "query", True),
+        ("contentDocument", "body", True),
     )
 
     def validate_content_document_asin_relations(
         self,
         marketplace_id: str,
+        content_document: dict[str, Any],
         asin_set: list[str] = None,
     ):
         """
@@ -331,14 +348,17 @@ class AplusContent20201101Client(BaseClient):
         Args:
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
             asin_set: The set of ASINs.
+            content_document: The A+ Content document. This is the enhanced content that is published to product detail pages.
         """
         url = "/aplus/2020-11-01/contentAsinValidations"
         values = (
             marketplace_id,
             asin_set,
+            content_document,
         )
 
     _validate_content_document_asin_relations_params = (  # name, param in, required
         ("marketplaceId", "query", True),
         ("asinSet", "query", False),
+        ("contentDocument", "body", True),
     )
