@@ -125,30 +125,21 @@ class Generator:
                     assert isinstance(item, Reference), item
                     item = self.resolve_ref(item)
                     assert item.type == 'object'
-                    fields = {k: getattr(item, k) for k in item.__fields_set__}
                     assert all(field in ('required', 'properties', 'type', 'description')
-                               for field in item.__fields_set__), fields.keys()
+                               for field in item.__fields_set__), item.__fields_set__
                     required_fields = item.required
                     required_fields = () if required_fields is None else required_fields
                     for property_name, property_obj in item.properties.items():
                         if isinstance(property_obj, Reference):
                             property_obj = self.resolve_ref(property_obj)
-                        type_hint = self.get_type_hint_of_schema(property_obj)
-                        parameter = ParsedParameter(type_hint=type_hint, name=property_name, param_in='body',
-                                                    description=property_obj.description,
-                                                    required=property_name in required_fields,
-                                                    param_schema=property_obj)
+                        parameter = Parameter(name=property_name, param_in='body',
+                                              description=property_obj.description,
+                                              required=property_name in required_fields,
+                                              param_schema=property_obj)
                         operation.parameters.append(parameter)
 
-            result = []
-            for parameter in operation.parameters:
-                if not isinstance(parameter, Reference):
-                    result.append(parameter)
-                    continue
-                obj = self.resolve_ref(parameter)
-                result.append(obj)
-
-            parsed_parameters: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in result]
+            parameters = [self.resolve_ref(p) if isinstance(p, Reference) else p for p in operation.parameters]
+            parsed_parameters: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in parameters]
             [p.set_parent(self) for p in parsed_parameters]
             operation.parsed_parameters = parsed_parameters
 
