@@ -140,12 +140,6 @@ class Generator:
                                                     param_schema=property_obj)
                         operation.parameters.append(parameter)
 
-            if not any(isinstance(p, Reference) for p in operation.parameters):
-                parsed_parameters: list[ParsedParameter] = \
-                    [ParsedParameter.parse_obj(p.dict()) for p in operation.parameters]
-                [p.set_parent(self) for p in parsed_parameters]
-                operation.parsed_parameters = parsed_parameters
-                continue
             result = []
             for parameter in operation.parameters:
                 if not isinstance(parameter, Reference):
