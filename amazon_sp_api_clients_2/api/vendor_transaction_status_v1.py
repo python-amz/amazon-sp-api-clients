@@ -13,27 +13,52 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class GetTransactionResponse:
-    pass
+class Error:
 
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>, 'type': 'string'}
 
-@attrs.define
-class TransactionStatus:
-    pass
-
-
-@attrs.define
-class Transaction:
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
-class Error:
+class GetTransactionResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/TransactionStatus', 'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>}
+    pass
+
+
+@attrs.define
+class Transaction:
+
+    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]]
+    # {'enum': ['Failure', 'Processing', 'Success'], 'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>, 'type': 'string'}
+    transaction_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>, 'type': 'string'}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>}
+    pass
+
+
+@attrs.define
+class TransactionStatus:
+
+    transaction_status: dict[str, Any]
+    # {'ref': '#/components/schemas/Transaction', 'generator': <__mp_main__.Generator object at 0x0000017DF3D13190>}
     pass
 
 

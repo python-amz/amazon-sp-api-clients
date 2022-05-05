@@ -14,21 +14,43 @@ from typing import Any, List, Dict, Union, Literal
 
 @attrs.define
 class CreateUploadDestinationResponse:
-    pass
 
-
-@attrs.define
-class UploadDestination:
-    pass
-
-
-@attrs.define
-class ErrorList:
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>, 'ref': '#/components/schemas/UploadDestination'}
     pass
 
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    details: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+
+    pass
+
+
+@attrs.define
+class ErrorList:
+
+    pass
+
+
+@attrs.define
+class UploadDestination:
+
+    headers: dict[str, Any]
+    # {'type': 'object', 'properties': {}, 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    upload_destination_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    url: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+
     pass
 
 

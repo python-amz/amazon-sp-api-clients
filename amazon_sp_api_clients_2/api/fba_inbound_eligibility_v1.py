@@ -13,22 +13,90 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class GetItemEligibilityPreviewResponse:
-    pass
+class Error:
 
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'type': 'string'}
 
-@attrs.define
-class ItemEligibilityPreview:
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
-class Error:
+class GetItemEligibilityPreviewResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002365F44B700>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/ItemEligibilityPreview', 'generator': <__mp_main__.Generator object at 0x000002365F44B700>}
+    pass
+
+
+@attrs.define
+class ItemEligibilityPreview:
+
+    asin: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'type': 'string'}
+    ineligibility_reason_list: list[
+        Union[
+            Literal["FBA_INB_0004"],
+            Literal["FBA_INB_0006"],
+            Literal["FBA_INB_0007"],
+            Literal["FBA_INB_0008"],
+            Literal["FBA_INB_0009"],
+            Literal["FBA_INB_0010"],
+            Literal["FBA_INB_0011"],
+            Literal["FBA_INB_0012"],
+            Literal["FBA_INB_0013"],
+            Literal["FBA_INB_0014"],
+            Literal["FBA_INB_0015"],
+            Literal["FBA_INB_0016"],
+            Literal["FBA_INB_0017"],
+            Literal["FBA_INB_0018"],
+            Literal["FBA_INB_0019"],
+            Literal["FBA_INB_0034"],
+            Literal["FBA_INB_0035"],
+            Literal["FBA_INB_0036"],
+            Literal["FBA_INB_0037"],
+            Literal["FBA_INB_0038"],
+            Literal["FBA_INB_0050"],
+            Literal["FBA_INB_0051"],
+            Literal["FBA_INB_0053"],
+            Literal["FBA_INB_0055"],
+            Literal["FBA_INB_0056"],
+            Literal["FBA_INB_0059"],
+            Literal["FBA_INB_0065"],
+            Literal["FBA_INB_0066"],
+            Literal["FBA_INB_0067"],
+            Literal["FBA_INB_0068"],
+            Literal["FBA_INB_0095"],
+            Literal["FBA_INB_0097"],
+            Literal["FBA_INB_0098"],
+            Literal["FBA_INB_0099"],
+            Literal["FBA_INB_0100"],
+            Literal["FBA_INB_0103"],
+            Literal["FBA_INB_0104"],
+            Literal["FBA_INB_0197"],
+            Literal["UNKNOWN_INB_ERROR_CODE"],
+        ]
+    ]
+    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['FBA_INB_0004', 'FBA_INB_0006', 'FBA_INB_0007', 'FBA_INB_0008', 'FBA_INB_0009', 'FBA_INB_0010', 'FBA_INB_0011', 'FBA_INB_0012', 'FBA_INB_0013', 'FBA_INB_0014', 'FBA_INB_0015', 'FBA_INB_0016', 'FBA_INB_0017', 'FBA_INB_0018', 'FBA_INB_0019', 'FBA_INB_0034', 'FBA_INB_0035', 'FBA_INB_0036', 'FBA_INB_0037', 'FBA_INB_0038', 'FBA_INB_0050', 'FBA_INB_0051', 'FBA_INB_0053', 'FBA_INB_0055', 'FBA_INB_0056', 'FBA_INB_0059', 'FBA_INB_0065', 'FBA_INB_0066', 'FBA_INB_0067', 'FBA_INB_0068', 'FBA_INB_0095', 'FBA_INB_0097', 'FBA_INB_0098', 'FBA_INB_0099', 'FBA_INB_0100', 'FBA_INB_0103', 'FBA_INB_0104', 'FBA_INB_0197', 'UNKNOWN_INB_ERROR_CODE'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Potential Ineligibility Reason Codes.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'type': 'array'}
+    is_eligible_for_program: bool
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'type': 'boolean'}
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'type': 'string'}
+    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]]
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B700>, 'enum': ['INBOUND', 'COMMINGLING'], 'type': 'string'}
+
     pass
 
 

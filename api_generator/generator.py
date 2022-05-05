@@ -5,14 +5,14 @@ import re
 from functools import cached_property
 from itertools import chain
 from pathlib import Path
-from typing import Optional
+from typing import Any
 
 import black
 import django.template
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema
+from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Components
 
 settings.configure(TEMPLATES=[{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -21,11 +21,72 @@ settings.configure(TEMPLATES=[{
 django.setup()
 
 
-class ParsedParameter(Parameter):
-    type_hint: Optional[str] = None
+class ParsedReferenceProperty(Reference):
+    name: str
+    generator: Any
 
-    def set_parent(self, generator: 'Generator'):
-        self.type_hint = generator.get_type_hint_of_schema(self.param_schema)
+    @property
+    def fields(self):
+        fields = {k: getattr(self, k) for k in self.__fields_set__ - {'description', 'name'}}
+        fields = {k: v for k, v in fields.items() if v is not None}
+        return fields
+
+    @property
+    def type_hint(self):
+        return self.generator.get_type_hint_of_schema(self)
+
+    @property
+    def variable_name(self):
+        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
+
+
+class ParsedSchemaProperty(Schema):
+    name: str
+    generator: Any
+
+    @property
+    def fields(self):
+        fields = {k: getattr(self, k) for k in self.__fields_set__ - {'description', 'name'}}
+        fields = {k: v for k, v in fields.items() if v is not None}
+        return fields
+
+    @property
+    def type_hint(self):
+        return self.generator.get_type_hint_of_schema(self)
+
+    @property
+    def variable_name(self):
+        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
+
+
+class ParsedSchema(Schema):
+    name: str
+    generator: Any
+
+    @property
+    def parsed_properties(self):
+        dst = self.properties
+        dst = dst.items() if dst else ()
+        dst = list(sorted(dst, key=lambda i: i[0]))
+        return dst
+
+    @property
+    def reference_properties(self) -> list[ParsedReferenceProperty]:
+        return [ParsedReferenceProperty.parse_obj({**v.dict(), 'name': k, 'generator': self.generator})
+                for k, v in self.parsed_properties if isinstance(v, Reference)]
+
+    @property
+    def schema_properties(self) -> list[ParsedSchemaProperty]:
+        return [ParsedSchemaProperty.parse_obj({**v.dict(), 'name': k, 'generator': self.generator})
+                for k, v in self.parsed_properties if isinstance(v, Schema)]
+
+
+class ParsedParameter(Parameter):
+    generator: Any
+
+    @property
+    def type_hint(self):
+        return self.generator.get_type_hint_of_schema(self.param_schema)
 
     @property
     def variable_name(self):
@@ -81,13 +142,30 @@ class Generator:
         return data
 
     @cached_property
-    def components(self):
+    def components(self) -> Components:
         return self.data.components
+
+    @cached_property
+    def schemas(self) -> list[ParsedSchema]:
+        src = self.components.schemas
+        src = {k: v for k, v in src.items() if isinstance(v, Schema)}
+        dst: list[ParsedSchema] = [ParsedSchema.parse_obj({**v.dict(), 'name': k, 'generator': self})
+                                   for k, v in src.items()]
+        dst.sort(key=lambda i: i.name)
+        return dst
+
+    @cached_property
+    def references(self) -> dict[str, Reference]:
+        src = self.components.schemas
+        dst = {k: v for k, v in src.items() if isinstance(v, Reference)}
+        return dst
 
     def get_type_hint_of_schema(self, schema: Schema):
         # recursively get inline type hint of a schema
         schema = self.resolve_ref(schema) if isinstance(schema, Reference) else schema
-        if schema is None or schema.type is None:
+        if schema is None:
+            return 'Any'
+        if schema.type is None and schema.items is None:
             return 'Any'
         base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
         child = self.get_type_hint_of_schema(schema.items) if schema.type in ('object', 'array') else 'Any'
@@ -127,8 +205,8 @@ class Generator:
                 operation.parameters.extend(post_parameters)
 
             params = tuple(self.resolve_ref(p) if isinstance(p, Reference) else p for p in operation.parameters)
-            parsed_params: tuple[ParsedParameter, ...] = tuple(ParsedParameter.parse_obj(p.dict()) for p in params)
-            [p.set_parent(self) for p in parsed_params]
+            parsed_params: tuple[ParsedParameter, ...] = tuple(ParsedParameter.parse_obj(
+                {**p.dict(), 'generator': self}) for p in params)
             operation.parsed_parameters = parsed_params
 
             # Ensure that post parameters do not conflict with path and query parameters
@@ -170,9 +248,9 @@ class Generator:
 
     def generate(self):
         self.directory.mkdir(parents=True, exist_ok=True)
-        with open(self.directory / '__init__.py', 'w') as f:
+        with open(self.directory / '__init__.py', 'w', encoding='utf-8') as f:
             f.write('')
-        with open(self.directory / f'{self.package_name}.py', 'w') as f:
+        with open(self.directory / f'{self.package_name}.py', 'w', encoding='utf-8') as f:
             f.write(self.content)
 
     @classmethod

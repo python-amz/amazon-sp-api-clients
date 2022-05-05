@@ -16,36 +16,90 @@ from typing import Any, List, Dict, Union, Literal
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+
     pass
 
 
 @attrs.define
 class ErrorList:
+
+    errors: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array'}
+
     pass
 
 
 @attrs.define
 class Issue:
-    pass
 
+    attribute_name: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['ERROR', 'WARNING', 'INFO'], 'type': 'string'}
 
-@attrs.define
-class PatchOperation:
     pass
 
 
 @attrs.define
 class ListingsItemPatchRequest:
+
+    patches: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/PatchOperation'), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array', 'minItems': 1}
+    product_type: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+
     pass
 
 
 @attrs.define
 class ListingsItemPutRequest:
+
+    attributes: dict[str, Any]
+    # {'properties': {}, 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'object'}
+    product_type: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['LISTING', 'LISTING_PRODUCT_ONLY', 'LISTING_OFFER_ONLY'], 'type': 'string'}
+
     pass
 
 
 @attrs.define
 class ListingsItemSubmissionResponse:
+
+    issues: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Issue'), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array'}
+    sku: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]]
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['ACCEPTED', 'INVALID'], 'type': 'string'}
+    submission_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class PatchOperation:
+
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]]
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['add', 'replace', 'delete'], 'type': 'string'}
+    path: str
+    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    value: list[dict[str, Any]]
+    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='object', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties={}, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array'}
+
     pass
 
 

@@ -13,112 +13,277 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class ErrorList:
-    pass
-
-
-@attrs.define
-class Error:
-    pass
-
-
-@attrs.define
-class ReportDocumentEncryptionDetails:
-    pass
-
-
-@attrs.define
-class Report:
-    pass
-
-
-@attrs.define
-class ReportList:
-    pass
-
-
-@attrs.define
-class CreateReportScheduleSpecification:
-    pass
-
-
-@attrs.define
-class CreateReportSpecification:
-    pass
-
-
-@attrs.define
-class ReportOptions:
-    pass
-
-
-@attrs.define
-class ReportSchedule:
-    pass
-
-
-@attrs.define
-class ReportScheduleList:
-    pass
-
-
-@attrs.define
-class CreateReportResult:
-    pass
-
-
-@attrs.define
-class GetReportsResponse:
-    pass
-
-
-@attrs.define
-class CreateReportResponse:
-    pass
-
-
-@attrs.define
 class CancelReportResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
 @attrs.define
 class CancelReportScheduleResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
 @attrs.define
-class GetReportResponse:
+class CreateReportResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/CreateReportResult'}
     pass
 
 
 @attrs.define
-class GetReportSchedulesResponse:
-    pass
+class CreateReportResult:
 
+    report_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
 
-@attrs.define
-class GetReportScheduleResponse:
-    pass
-
-
-@attrs.define
-class CreateReportScheduleResult:
     pass
 
 
 @attrs.define
 class CreateReportScheduleResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/CreateReportScheduleResult'}
     pass
 
 
 @attrs.define
-class ReportDocument:
+class CreateReportScheduleResult:
+
+    report_schedule_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class CreateReportScheduleSpecification:
+
+    marketplace_ids: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'maxItems': 25, 'type': 'array', 'minItems': 1, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    next_report_creation_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    period: Union[
+        Literal["PT5M"],
+        Literal["PT15M"],
+        Literal["PT30M"],
+        Literal["PT1H"],
+        Literal["PT2H"],
+        Literal["PT4H"],
+        Literal["PT8H"],
+        Literal["PT12H"],
+        Literal["P1D"],
+        Literal["P2D"],
+        Literal["P3D"],
+        Literal["PT84H"],
+        Literal["P7D"],
+        Literal["P14D"],
+        Literal["P15D"],
+        Literal["P18D"],
+        Literal["P30D"],
+        Literal["P1M"],
+    ]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'enum': ['PT5M', 'PT15M', 'PT30M', 'PT1H', 'PT2H', 'PT4H', 'PT8H', 'PT12H', 'P1D', 'P2D', 'P3D', 'PT84H', 'P7D', 'P14D', 'P15D', 'P18D', 'P30D', 'P1M'], 'type': 'string'}
+    report_type: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    report_options: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportOptions'}
+    pass
+
+
+@attrs.define
+class CreateReportSpecification:
+
+    data_end_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    data_start_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    marketplace_ids: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'maxItems': 25, 'type': 'array', 'minItems': 1, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    report_type: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    report_options: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportOptions'}
+    pass
+
+
+@attrs.define
+class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetReportDocumentResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportDocument'}
+    pass
+
+
+@attrs.define
+class GetReportResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/Report'}
+    pass
+
+
+@attrs.define
+class GetReportScheduleResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportSchedule'}
+    pass
+
+
+@attrs.define
+class GetReportSchedulesResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportScheduleList'}
+    pass
+
+
+@attrs.define
+class GetReportsResponse:
+
+    next_token: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ErrorList'}
+    payload: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportList'}
+    pass
+
+
+@attrs.define
+class Report:
+
+    created_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    data_end_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    data_start_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    marketplace_ids: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    processing_end_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    processing_start_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    processing_status: Union[
+        Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
+    ]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'enum': ['CANCELLED', 'DONE', 'FATAL', 'IN_PROGRESS', 'IN_QUEUE'], 'type': 'string'}
+    report_document_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    report_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    report_schedule_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    report_type: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ReportDocument:
+
+    compression_algorithm: Union[Literal["GZIP"]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'enum': ['GZIP'], 'type': 'string'}
+    report_document_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    url: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    encryption_details: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportDocumentEncryptionDetails'}
+    pass
+
+
+@attrs.define
+class ReportDocumentEncryptionDetails:
+
+    initialization_vector: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    key: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    standard: Union[Literal["AES"]]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'enum': ['AES'], 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ReportList:
+
+    pass
+
+
+@attrs.define
+class ReportOptions:
+
+    pass
+
+
+@attrs.define
+class ReportSchedule:
+
+    marketplace_ids: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    next_report_creation_time: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string', 'schema_format': 'date-time'}
+    period: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    report_schedule_id: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+    report_type: str
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'type': 'string'}
+
+    report_options: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001644F0AB310>, 'ref': '#/components/schemas/ReportOptions'}
+    pass
+
+
+@attrs.define
+class ReportScheduleList:
+
     pass
 
 

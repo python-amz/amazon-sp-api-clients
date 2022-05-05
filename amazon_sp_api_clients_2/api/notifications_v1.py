@@ -15,102 +15,204 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class Subscription:
-    pass
-
-
-@attrs.define
-class CreateSubscriptionResponse:
-    pass
-
-
-@attrs.define
-class CreateSubscriptionRequest:
-    pass
-
-
-@attrs.define
-class GetSubscriptionByIdResponse:
-    pass
-
-
-@attrs.define
-class GetSubscriptionResponse:
-    pass
-
-
-@attrs.define
-class DeleteSubscriptionByIdResponse:
-    pass
-
-
-@attrs.define
-class DestinationList:
-    pass
-
-
-@attrs.define
-class Destination:
-    pass
-
-
-@attrs.define
-class DestinationResource:
-    pass
-
-
-@attrs.define
-class DestinationResourceSpecification:
-    pass
-
-
-@attrs.define
-class SqsResource:
-    pass
-
-
-@attrs.define
-class EventBridgeResourceSpecification:
-    pass
-
-
-@attrs.define
-class EventBridgeResource:
-    pass
-
-
-@attrs.define
 class CreateDestinationRequest:
+
+    name: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+
+    resource_specification: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/DestinationResourceSpecification'}
     pass
 
 
 @attrs.define
 class CreateDestinationResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Destination'}
     pass
 
 
 @attrs.define
-class GetDestinationResponse:
+class CreateSubscriptionRequest:
+
+    destination_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    payload_version: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+
     pass
 
 
 @attrs.define
-class GetDestinationsResponse:
+class CreateSubscriptionResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Subscription'}
     pass
 
 
 @attrs.define
 class DeleteDestinationResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
 @attrs.define
-class ErrorList:
+class DeleteSubscriptionByIdResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    pass
+
+
+@attrs.define
+class Destination:
+
+    destination_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    name: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'maxLength': 256}
+
+    resource: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/DestinationResource'}
+    pass
+
+
+@attrs.define
+class DestinationList:
+
+    pass
+
+
+@attrs.define
+class DestinationResource:
+
+    event_bridge: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/EventBridgeResource'}
+    sqs: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/SqsResource'}
+    pass
+
+
+@attrs.define
+class DestinationResourceSpecification:
+
+    event_bridge: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/EventBridgeResourceSpecification'}
+    sqs: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/SqsResource'}
     pass
 
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    details: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+
+    pass
+
+
+@attrs.define
+class ErrorList:
+
+    pass
+
+
+@attrs.define
+class EventBridgeResource:
+
+    account_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    name: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'maxLength': 256}
+    region: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+
+    pass
+
+
+@attrs.define
+class EventBridgeResourceSpecification:
+
+    account_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    region: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+
+    pass
+
+
+@attrs.define
+class GetDestinationResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Destination'}
+    pass
+
+
+@attrs.define
+class GetDestinationsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    payload: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/DestinationList'}
+    pass
+
+
+@attrs.define
+class GetSubscriptionByIdResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Subscription'}
+    pass
+
+
+@attrs.define
+class GetSubscriptionResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Subscription'}
+    pass
+
+
+@attrs.define
+class SqsResource:
+
+    arn: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'maxLength': 1000, 'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+'}
+
+    pass
+
+
+@attrs.define
+class Subscription:
+
+    destination_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    payload_version: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    subscription_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+
     pass
 
 

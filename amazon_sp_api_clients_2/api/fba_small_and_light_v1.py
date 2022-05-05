@@ -13,72 +13,147 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class MarketplaceId:
-    pass
-
-
-@attrs.define
-class SellerSKU:
-    pass
-
-
-@attrs.define
 class Error:
+
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    details: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+
     pass
 
 
 @attrs.define
 class ErrorList:
-    pass
 
+    errors: list[dict[str, Any]]
+    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
 
-@attrs.define
-class SmallAndLightEnrollmentStatus:
-    pass
-
-
-@attrs.define
-class SmallAndLightEligibilityStatus:
-    pass
-
-
-@attrs.define
-class SmallAndLightEnrollment:
-    pass
-
-
-@attrs.define
-class SmallAndLightEligibility:
-    pass
-
-
-@attrs.define
-class SmallAndLightFeePreviewRequest:
-    pass
-
-
-@attrs.define
-class SmallAndLightFeePreviews:
-    pass
-
-
-@attrs.define
-class Item:
-    pass
-
-
-@attrs.define
-class FeePreview:
     pass
 
 
 @attrs.define
 class FeeLineItem:
+
+    fee_type: Union[
+        Literal["FBAWeightBasedFee"],
+        Literal["FBAPerOrderFulfillmentFee"],
+        Literal["FBAPerUnitFulfillmentFee"],
+        Literal["Commission"],
+    ]
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>, 'enum': ['FBAWeightBasedFee', 'FBAPerOrderFulfillmentFee', 'FBAPerUnitFulfillmentFee', 'Commission']}
+
+    fee_charge: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    pass
+
+
+@attrs.define
+class FeePreview:
+
+    asin: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    errors: list[dict[str, Any]]
+    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    fee_breakdown: list[dict[str, Any]]
+    # {'type': 'array', 'items': Reference(ref='#/components/schemas/FeeLineItem'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+
+    price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    total_fees: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    pass
+
+
+@attrs.define
+class Item:
+
+    asin: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+
+    price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    pass
+
+
+@attrs.define
+class MarketplaceId:
+
     pass
 
 
 @attrs.define
 class MoneyType:
+
+    amount: Union[float, int]
+    # {'type': 'number', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    currency_code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+
+    pass
+
+
+@attrs.define
+class SellerSKU:
+
+    pass
+
+
+@attrs.define
+class SmallAndLightEligibility:
+
+    marketplace_id: str
+    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    seller_sku: str
+    # {'ref': '#/components/schemas/SellerSKU', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    status: Union[Literal["ELIGIBLE"], Literal["NOT_ELIGIBLE"]]
+    # {'ref': '#/components/schemas/SmallAndLightEligibilityStatus', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    pass
+
+
+@attrs.define
+class SmallAndLightEligibilityStatus:
+
+    pass
+
+
+@attrs.define
+class SmallAndLightEnrollment:
+
+    marketplace_id: str
+    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    seller_sku: str
+    # {'ref': '#/components/schemas/SellerSKU', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    status: Union[Literal["ENROLLED"], Literal["NOT_ENROLLED"]]
+    # {'ref': '#/components/schemas/SmallAndLightEnrollmentStatus', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    pass
+
+
+@attrs.define
+class SmallAndLightEnrollmentStatus:
+
+    pass
+
+
+@attrs.define
+class SmallAndLightFeePreviewRequest:
+
+    items: list[dict[str, Any]]
+    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Item'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>, 'maxItems': 25}
+
+    marketplace_id: str
+    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    pass
+
+
+@attrs.define
+class SmallAndLightFeePreviews:
+
+    data: list[dict[str, Any]]
+    # {'type': 'array', 'items': Reference(ref='#/components/schemas/FeePreview'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+
     pass
 
 

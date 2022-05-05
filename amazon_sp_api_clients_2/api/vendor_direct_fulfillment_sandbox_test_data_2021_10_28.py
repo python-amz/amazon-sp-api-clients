@@ -13,62 +13,120 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class GenerateOrderScenarioRequest:
-    pass
+class Error:
 
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+    details: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+    message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
 
-@attrs.define
-class OrderScenarioRequest:
-    pass
-
-
-@attrs.define
-class PartyIdentification:
-    pass
-
-
-@attrs.define
-class Pagination:
-    pass
-
-
-@attrs.define
-class TransactionReference:
-    pass
-
-
-@attrs.define
-class TransactionStatus:
-    pass
-
-
-@attrs.define
-class Transaction:
-    pass
-
-
-@attrs.define
-class TestCaseData:
-    pass
-
-
-@attrs.define
-class Scenario:
-    pass
-
-
-@attrs.define
-class TestOrder:
     pass
 
 
 @attrs.define
 class ErrorList:
+
+    errors: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'items': Reference(ref='#/components/schemas/Error')}
+
     pass
 
 
 @attrs.define
-class Error:
+class GenerateOrderScenarioRequest:
+
+    orders: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'items': Reference(ref='#/components/schemas/OrderScenarioRequest')}
+
+    pass
+
+
+@attrs.define
+class OrderScenarioRequest:
+
+    selling_party: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'ref': '#/components/schemas/PartyIdentification'}
+    ship_from_party: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'ref': '#/components/schemas/PartyIdentification'}
+    pass
+
+
+@attrs.define
+class Pagination:
+
+    next_token: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+
+    pass
+
+
+@attrs.define
+class PartyIdentification:
+
+    party_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+
+    pass
+
+
+@attrs.define
+class Scenario:
+
+    orders: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'items': Reference(ref='#/components/schemas/TestOrder')}
+    scenario_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+
+    pass
+
+
+@attrs.define
+class TestCaseData:
+
+    scenarios: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'items': Reference(ref='#/components/schemas/Scenario')}
+
+    pass
+
+
+@attrs.define
+class TestOrder:
+
+    order_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+
+    pass
+
+
+@attrs.define
+class Transaction:
+
+    status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]]
+    # {'enum': ['FAILURE', 'PROCESSING', 'SUCCESS'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+    transaction_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+
+    test_case_data: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'ref': '#/components/schemas/TestCaseData'}
+    pass
+
+
+@attrs.define
+class TransactionReference:
+
+    transaction_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>}
+
+    pass
+
+
+@attrs.define
+class TransactionStatus:
+
+    transaction_status: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B9379B14E0>, 'ref': '#/components/schemas/Transaction'}
     pass
 
 

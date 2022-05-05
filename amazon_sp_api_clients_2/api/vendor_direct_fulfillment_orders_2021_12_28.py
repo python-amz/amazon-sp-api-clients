@@ -13,132 +13,364 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class OrderList:
-    pass
+class AcknowledgementStatus:
 
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    description: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
 
-@attrs.define
-class Pagination:
-    pass
-
-
-@attrs.define
-class Order:
-    pass
-
-
-@attrs.define
-class OrderDetails:
-    pass
-
-
-@attrs.define
-class PartyIdentification:
-    pass
-
-
-@attrs.define
-class TaxRegistrationDetails:
     pass
 
 
 @attrs.define
 class Address:
-    pass
 
+    address_line1: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    address_line2: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    address_line3: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    attention: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    city: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    country_code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    county: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    district: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    name: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    phone: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    postal_code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    state_or_region: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
 
-@attrs.define
-class OrderItem:
-    pass
-
-
-@attrs.define
-class Money:
     pass
 
 
 @attrs.define
 class Decimal:
-    pass
 
-
-@attrs.define
-class SubmitAcknowledgementResponse:
-    pass
-
-
-@attrs.define
-class TransactionId:
-    pass
-
-
-@attrs.define
-class ErrorList:
-    pass
-
-
-@attrs.define
-class SubmitAcknowledgementRequest:
-    pass
-
-
-@attrs.define
-class OrderAcknowledgementItem:
-    pass
-
-
-@attrs.define
-class OrderItemAcknowledgement:
-    pass
-
-
-@attrs.define
-class ItemQuantity:
-    pass
-
-
-@attrs.define
-class TaxLineItem:
-    pass
-
-
-@attrs.define
-class TaxDetails:
-    pass
-
-
-@attrs.define
-class AcknowledgementStatus:
     pass
 
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    details: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
     pass
 
 
 @attrs.define
-class ShipmentDetails:
-    pass
+class ErrorList:
 
+    errors: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'items': Reference(ref='#/components/schemas/Error')}
 
-@attrs.define
-class ShipmentDates:
-    pass
-
-
-@attrs.define
-class ScheduledDeliveryShipment:
     pass
 
 
 @attrs.define
 class GiftDetails:
+
+    gift_message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    gift_wrap_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    pass
+
+
+@attrs.define
+class ItemQuantity:
+
+    amount: int
+    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    unit_of_measure: Union[Literal["Each"]]
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'enum': ['Each']}
+
+    pass
+
+
+@attrs.define
+class Money:
+
+    currency_code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    amount: str
+    # {'ref': '#/components/schemas/Decimal', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class Order:
+
+    purchase_order_number: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    order_details: dict[str, Any]
+    # {'ref': '#/components/schemas/OrderDetails', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class OrderAcknowledgementItem:
+
+    acknowledgement_date: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'schema_format': 'date-time'}
+    item_acknowledgements: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'items': Reference(ref='#/components/schemas/OrderItemAcknowledgement')}
+    purchase_order_number: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    vendor_order_number: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    acknowledgement_status: dict[str, Any]
+    # {'ref': '#/components/schemas/AcknowledgementStatus', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    selling_party: dict[str, Any]
+    # {'ref': '#/components/schemas/PartyIdentification', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    ship_from_party: dict[str, Any]
+    # {'ref': '#/components/schemas/PartyIdentification', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class OrderDetails:
+
+    customer_order_number: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    items: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'items': Reference(ref='#/components/schemas/OrderItem')}
+    order_date: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'schema_format': 'date-time'}
+    order_status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]]
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'enum': ['NEW', 'SHIPPED', 'ACCEPTED', 'CANCELLED']}
+
+    bill_to_party: dict[str, Any]
+    # {'ref': '#/components/schemas/PartyIdentification', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    selling_party: dict[str, Any]
+    # {'ref': '#/components/schemas/PartyIdentification', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    ship_from_party: dict[str, Any]
+    # {'ref': '#/components/schemas/PartyIdentification', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    ship_to_party: dict[str, Any]
+    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    shipment_details: dict[str, Any]
+    # {'ref': '#/components/schemas/ShipmentDetails', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    tax_total: dict[str, Any]
+    # {'ref': '#/components/schemas/TaxItemDetails', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class OrderItem:
+
+    buyer_product_identifier: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    item_sequence_number: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    title: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    vendor_product_identifier: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    gift_details: dict[str, Any]
+    # {'ref': '#/components/schemas/GiftDetails', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    net_price: dict[str, Any]
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    ordered_quantity: dict[str, Any]
+    # {'ref': '#/components/schemas/ItemQuantity', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    scheduled_delivery_shipment: dict[str, Any]
+    # {'ref': '#/components/schemas/ScheduledDeliveryShipment', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    tax_details: dict[str, Any]
+    # {'ref': '#/components/schemas/TaxItemDetails', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    total_price: dict[str, Any]
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class OrderItemAcknowledgement:
+
+    buyer_product_identifier: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    item_sequence_number: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    vendor_product_identifier: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    acknowledged_quantity: dict[str, Any]
+    # {'ref': '#/components/schemas/ItemQuantity', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class OrderList:
+
+    orders: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'items': Reference(ref='#/components/schemas/Order')}
+
+    pagination: dict[str, Any]
+    # {'ref': '#/components/schemas/Pagination', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class Pagination:
+
+    next_token: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    pass
+
+
+@attrs.define
+class PartyIdentification:
+
+    party_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    address: dict[str, Any]
+    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    tax_info: dict[str, Any]
+    # {'ref': '#/components/schemas/TaxRegistrationDetails', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class ScheduledDeliveryShipment:
+
+    earliest_nominated_delivery_date: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'schema_format': 'date-time'}
+    latest_nominated_delivery_date: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'schema_format': 'date-time'}
+    scheduled_delivery_service_type: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    pass
+
+
+@attrs.define
+class ShipmentDates:
+
+    promised_delivery_date: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'schema_format': 'date-time'}
+    required_ship_date: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'schema_format': 'date-time'}
+
+    pass
+
+
+@attrs.define
+class ShipmentDetails:
+
+    is_gift: bool
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    is_priority_shipment: bool
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    is_pslip_required: bool
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    is_scheduled_delivery_shipment: bool
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    message_to_customer: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    ship_method: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
+    shipment_dates: dict[str, Any]
+    # {'ref': '#/components/schemas/ShipmentDates', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class SubmitAcknowledgementRequest:
+
+    order_acknowledgements: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'items': Reference(ref='#/components/schemas/OrderAcknowledgementItem')}
+
+    pass
+
+
+@attrs.define
+class SubmitAcknowledgementResponse:
+
+    errors: dict[str, Any]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/TransactionId', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class TaxDetails:
+
+    type: Union[
+        Literal["CONSUMPTION"],
+        Literal["GST"],
+        Literal["MwSt."],
+        Literal["PST"],
+        Literal["TOTAL"],
+        Literal["TVA"],
+        Literal["VAT"],
+    ]
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'enum': ['CONSUMPTION', 'GST', 'MwSt.', 'PST', 'TOTAL', 'TVA', 'VAT']}
+
+    tax_amount: dict[str, Any]
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    tax_rate: str
+    # {'ref': '#/components/schemas/Decimal', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    taxable_amount: dict[str, Any]
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
     pass
 
 
 @attrs.define
 class TaxItemDetails:
+
+    tax_line_item: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/TaxLineItem', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class TaxLineItem:
+
+    pass
+
+
+@attrs.define
+class TaxRegistrationDetails:
+
+    tax_registration_messages: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    tax_registration_number: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]]
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>, 'enum': ['VAT', 'GST']}
+
+    tax_registration_address: dict[str, Any]
+    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+    pass
+
+
+@attrs.define
+class TransactionId:
+
+    transaction_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000002A885150AF0>}
+
     pass
 
 

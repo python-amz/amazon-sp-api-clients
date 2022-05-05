@@ -16,41 +16,105 @@ from typing import Any, List, Dict, Union, Literal
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+
     pass
 
 
 @attrs.define
 class ErrorList:
-    pass
 
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'items': Reference(ref='#/components/schemas/Error'), 'type': 'array'}
 
-@attrs.define
-class SchemaLink:
-    pass
-
-
-@attrs.define
-class ProductTypeDefinition:
-    pass
-
-
-@attrs.define
-class PropertyGroup:
-    pass
-
-
-@attrs.define
-class ProductTypeVersion:
     pass
 
 
 @attrs.define
 class ProductType:
+
+    marketplace_ids: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ProductTypeDefinition:
+
+    locale: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+    marketplace_ids: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    product_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+    property_groups: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'additionalProperties': Reference(ref='#/components/schemas/PropertyGroup'), 'type': 'object'}
+    requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'enum': ['LISTING', 'LISTING_PRODUCT_ONLY', 'LISTING_OFFER_ONLY'], 'type': 'string'}
+    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'enum': ['ENFORCED', 'NOT_ENFORCED'], 'type': 'string'}
+
+    meta_schema: dict[str, Any]
+    # {'ref': '#/components/schemas/SchemaLink', 'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>}
+    product_type_version: dict[str, Any]
+    # {'ref': '#/components/schemas/ProductTypeVersion', 'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>}
+    schema: dict[str, Any]
+    # {'ref': '#/components/schemas/SchemaLink', 'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>}
     pass
 
 
 @attrs.define
 class ProductTypeList:
+
+    product_types: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'items': Reference(ref='#/components/schemas/ProductType'), 'type': 'array'}
+
+    pass
+
+
+@attrs.define
+class ProductTypeVersion:
+
+    latest: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'boolean'}
+    release_candidate: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'boolean'}
+    version: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class PropertyGroup:
+
+    description: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+    property_names: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    title: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class SchemaLink:
+
+    checksum: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'type': 'string'}
+    link: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C7E53F0>, 'properties': {'resource': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='URI resource for the link.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'verb': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['GET'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='HTTP method for the link operation.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object', 'required': ['resource', 'verb']}
+
     pass
 
 

@@ -13,47 +13,96 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class LinkObject:
-    pass
-
-
-@attrs.define
-class SolicitationsAction:
-    pass
-
-
-@attrs.define
-class Schema:
-    pass
-
-
-@attrs.define
-class GetSolicitationActionsForOrderResponse:
-    pass
-
-
-@attrs.define
-class GetSolicitationActionResponse:
-    pass
-
-
-@attrs.define
-class GetSchemaResponse:
-    pass
-
-
-@attrs.define
 class CreateProductReviewAndSellerFeedbackSolicitationResponse:
-    pass
 
-
-@attrs.define
-class ErrorList:
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
     pass
 
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ErrorList:
+
+    pass
+
+
+@attrs.define
+class GetSchemaResponse:
+
+    _links: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'type': 'object', 'required': ['self']}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/Schema', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    pass
+
+
+@attrs.define
+class GetSolicitationActionResponse:
+
+    _embedded: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}, 'type': 'object'}
+    _links: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'type': 'object', 'required': ['schema', 'self']}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/SolicitationsAction', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    pass
+
+
+@attrs.define
+class GetSolicitationActionsForOrderResponse:
+
+    _embedded: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetSolicitationActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object', 'required': ['actions']}
+    _links: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object', 'required': ['actions', 'self']}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    pass
+
+
+@attrs.define
+class LinkObject:
+
+    href: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class Schema:
+
+    pass
+
+
+@attrs.define
+class SolicitationsAction:
+
+    name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+
     pass
 
 

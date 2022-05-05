@@ -13,47 +13,96 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class SubmitInventoryUpdateRequest:
-    pass
+class Error:
 
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+    details: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+    message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
 
-@attrs.define
-class InventoryUpdate:
-    pass
-
-
-@attrs.define
-class ItemDetails:
-    pass
-
-
-@attrs.define
-class PartyIdentification:
-    pass
-
-
-@attrs.define
-class ItemQuantity:
-    pass
-
-
-@attrs.define
-class SubmitInventoryUpdateResponse:
-    pass
-
-
-@attrs.define
-class TransactionReference:
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
-class Error:
+class InventoryUpdate:
+
+    is_full_update: bool
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+    items: list[dict[str, Any]]
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>, 'items': Reference(ref='#/components/schemas/ItemDetails')}
+
+    selling_party: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B880>, 'ref': '#/components/schemas/PartyIdentification'}
+    pass
+
+
+@attrs.define
+class ItemDetails:
+
+    buyer_product_identifier: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+    is_obsolete: bool
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+    vendor_product_identifier: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+
+    available_quantity: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B880>, 'ref': '#/components/schemas/ItemQuantity'}
+    pass
+
+
+@attrs.define
+class ItemQuantity:
+
+    amount: int
+    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+    unit_of_measure: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+
+    pass
+
+
+@attrs.define
+class PartyIdentification:
+
+    party_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+
+    pass
+
+
+@attrs.define
+class SubmitInventoryUpdateRequest:
+
+    inventory: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B880>, 'ref': '#/components/schemas/InventoryUpdate'}
+    pass
+
+
+@attrs.define
+class SubmitInventoryUpdateResponse:
+
+    errors: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B880>, 'ref': '#/components/schemas/ErrorList'}
+    payload: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x000001B93797B880>, 'ref': '#/components/schemas/TransactionReference'}
+    pass
+
+
+@attrs.define
+class TransactionReference:
+
+    transaction_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B880>}
+
     pass
 
 

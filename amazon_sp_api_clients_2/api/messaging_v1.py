@@ -14,146 +14,278 @@ from typing import Any, List, Dict, Union, Literal
 
 @attrs.define
 class Attachment:
-    pass
 
+    file_name: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    upload_destination_id: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
 
-@attrs.define
-class LinkObject:
-    pass
-
-
-@attrs.define
-class MessagingAction:
-    pass
-
-
-@attrs.define
-class Schema:
-    pass
-
-
-@attrs.define
-class GetMessagingActionsForOrderResponse:
-    pass
-
-
-@attrs.define
-class GetMessagingActionResponse:
-    pass
-
-
-@attrs.define
-class GetSchemaResponse:
-    pass
-
-
-@attrs.define
-class CreateConfirmCustomizationDetailsRequest:
-    pass
-
-
-@attrs.define
-class CreateConfirmCustomizationDetailsResponse:
-    pass
-
-
-@attrs.define
-class CreateConfirmDeliveryDetailsRequest:
-    pass
-
-
-@attrs.define
-class CreateConfirmDeliveryDetailsResponse:
-    pass
-
-
-@attrs.define
-class CreateNegativeFeedbackRemovalResponse:
-    pass
-
-
-@attrs.define
-class CreateLegalDisclosureRequest:
-    pass
-
-
-@attrs.define
-class CreateLegalDisclosureResponse:
-    pass
-
-
-@attrs.define
-class CreateConfirmOrderDetailsRequest:
-    pass
-
-
-@attrs.define
-class CreateConfirmOrderDetailsResponse:
-    pass
-
-
-@attrs.define
-class CreateConfirmServiceDetailsRequest:
-    pass
-
-
-@attrs.define
-class CreateConfirmServiceDetailsResponse:
     pass
 
 
 @attrs.define
 class CreateAmazonMotorsRequest:
+
+    attachments: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
     pass
 
 
 @attrs.define
 class CreateAmazonMotorsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
     pass
 
 
 @attrs.define
-class CreateWarrantyRequest:
+class CreateConfirmCustomizationDetailsRequest:
+
+    attachments: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    text: str
+    # {'minLength': 1, 'maxLength': 800, 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
     pass
 
 
 @attrs.define
-class CreateWarrantyResponse:
+class CreateConfirmCustomizationDetailsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
     pass
 
 
 @attrs.define
-class GetAttributesResponse:
+class CreateConfirmDeliveryDetailsRequest:
+
+    text: str
+    # {'minLength': 1, 'maxLength': 2000, 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class CreateConfirmDeliveryDetailsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class CreateConfirmOrderDetailsRequest:
+
+    text: str
+    # {'minLength': 1, 'maxLength': 2000, 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class CreateConfirmOrderDetailsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class CreateConfirmServiceDetailsRequest:
+
+    text: str
+    # {'minLength': 1, 'maxLength': 2000, 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class CreateConfirmServiceDetailsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
     pass
 
 
 @attrs.define
 class CreateDigitalAccessKeyRequest:
+
+    attachments: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    text: str
+    # {'minLength': 1, 'maxLength': 400, 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
     pass
 
 
 @attrs.define
 class CreateDigitalAccessKeyResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class CreateLegalDisclosureRequest:
+
+    attachments: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class CreateLegalDisclosureResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class CreateNegativeFeedbackRemovalResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
     pass
 
 
 @attrs.define
 class CreateUnexpectedProblemRequest:
+
+    text: str
+    # {'minLength': 1, 'maxLength': 2000, 'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
     pass
 
 
 @attrs.define
 class CreateUnexpectedProblemResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
     pass
 
 
 @attrs.define
-class ErrorList:
+class CreateWarrantyRequest:
+
+    attachments: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Attachment'), 'type': 'array', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    coverage_end_date: str
+    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    coverage_start_date: str
+    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class CreateWarrantyResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
     pass
 
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    details: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    message: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class ErrorList:
+
+    pass
+
+
+@attrs.define
+class GetAttributesResponse:
+
+    buyer: dict[str, Any]
+    # {'type': 'object', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>, 'properties': {'locale': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='The buyer\'s language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class GetMessagingActionResponse:
+
+    _embedded: dict[str, Any]
+    # {'type': 'object', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>, 'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
+    _links: dict[str, Any]
+    # {'required': ['schema', 'self'], 'type': 'object', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/MessagingAction', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class GetMessagingActionsForOrderResponse:
+
+    _embedded: dict[str, Any]
+    # {'required': ['actions'], 'type': 'object', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>, 'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetMessagingActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+    _links: dict[str, Any]
+    # {'required': ['actions', 'self'], 'type': 'object', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class GetSchemaResponse:
+
+    _links: dict[str, Any]
+    # {'required': ['self'], 'type': 'object', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}}
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/Schema', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    pass
+
+
+@attrs.define
+class LinkObject:
+
+    href: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+    name: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class MessagingAction:
+
+    name: str
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001822D13B310>}
+
+    pass
+
+
+@attrs.define
+class Schema:
+
     pass
 
 

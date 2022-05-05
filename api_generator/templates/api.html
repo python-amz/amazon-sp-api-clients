@@ -12,9 +12,15 @@ from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
-{% for schema in data.components.schemas %}
+{% for schema in data.schemas %}
 @attrs.define
-class {{ schema }}:
+class {{ schema.name }}:
+    {% for property in schema.schema_properties %}
+    {{ property.variable_name }}: {{ property.type_hint }}
+    # {{ property.fields }}{% endfor %}
+    {% for property in schema.reference_properties %}
+    {{ property.variable_name }}: {{ property.type_hint }}
+    # {{ property.fields }}{% endfor %}
     pass
 {% endfor %}
 

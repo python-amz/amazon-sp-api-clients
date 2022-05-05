@@ -13,227 +13,556 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class GetPricingResponse:
-    pass
-
-
-@attrs.define
-class GetOffersResponse:
-    pass
-
-
-@attrs.define
-class PriceList:
-    pass
-
-
-@attrs.define
-class GetOffersResult:
-    pass
-
-
-@attrs.define
-class Price:
-    pass
-
-
-@attrs.define
-class Product:
-    pass
-
-
-@attrs.define
-class IdentifierType:
-    pass
-
-
-@attrs.define
 class ASINIdentifier:
-    pass
 
+    asin: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
 
-@attrs.define
-class SellerSKUIdentifier:
     pass
 
 
 @attrs.define
 class AttributeSetList:
-    pass
 
-
-@attrs.define
-class RelationshipList:
-    pass
-
-
-@attrs.define
-class CompetitivePricingType:
-    pass
-
-
-@attrs.define
-class CompetitivePriceList:
-    pass
-
-
-@attrs.define
-class CompetitivePriceType:
-    pass
-
-
-@attrs.define
-class NumberOfOfferListingsList:
-    pass
-
-
-@attrs.define
-class OfferListingCountType:
-    pass
-
-
-@attrs.define
-class MoneyType:
-    pass
-
-
-@attrs.define
-class SalesRankList:
-    pass
-
-
-@attrs.define
-class SalesRankType:
-    pass
-
-
-@attrs.define
-class PriceType:
-    pass
-
-
-@attrs.define
-class OffersList:
-    pass
-
-
-@attrs.define
-class OfferType:
-    pass
-
-
-@attrs.define
-class OfferCustomerType:
-    pass
-
-
-@attrs.define
-class QuantityDiscountPriceType:
-    pass
-
-
-@attrs.define
-class QuantityDiscountType:
-    pass
-
-
-@attrs.define
-class Points:
-    pass
-
-
-@attrs.define
-class ConditionType:
-    pass
-
-
-@attrs.define
-class ItemIdentifier:
-    pass
-
-
-@attrs.define
-class Summary:
     pass
 
 
 @attrs.define
 class BuyBoxEligibleOffers:
-    pass
 
-
-@attrs.define
-class BuyBoxPrices:
-    pass
-
-
-@attrs.define
-class LowestPrices:
-    pass
-
-
-@attrs.define
-class NumberOfOffers:
-    pass
-
-
-@attrs.define
-class OfferCountType:
-    pass
-
-
-@attrs.define
-class FulfillmentChannelType:
-    pass
-
-
-@attrs.define
-class LowestPriceType:
     pass
 
 
 @attrs.define
 class BuyBoxPriceType:
+
+    condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    quantity_tier: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+    seller_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    landed_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    listing_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    points: dict[str, Any]
+    # {'ref': '#/components/schemas/Points', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    shipping: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    offer_type: Union[Literal["B2C"], Literal["B2B"]]
+    # {'ref': '#/components/schemas/OfferCustomerType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    quantity_discount_type: Union[Literal["QUANTITY_DISCOUNT"]]
+    # {'ref': '#/components/schemas/QuantityDiscountType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
     pass
 
 
 @attrs.define
-class OfferDetailList:
+class BuyBoxPrices:
+
     pass
 
 
 @attrs.define
-class OfferDetail:
+class CompetitivePriceList:
+
     pass
 
 
 @attrs.define
-class PrimeInformationType:
+class CompetitivePriceType:
+
+    competitive_price_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    belongs_to_requester: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'boolean'}
+    condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    quantity_tier: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+    seller_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    subcondition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    price: dict[str, Any]
+    # {'ref': '#/components/schemas/PriceType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    offer_type: Union[Literal["B2C"], Literal["B2B"]]
+    # {'ref': '#/components/schemas/OfferCustomerType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    quantity_discount_type: Union[Literal["QUANTITY_DISCOUNT"]]
+    # {'ref': '#/components/schemas/QuantityDiscountType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
     pass
 
 
 @attrs.define
-class SellerFeedbackType:
+class CompetitivePricingType:
+
+    competitive_prices: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/CompetitivePriceList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    number_of_offer_listings: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/NumberOfOfferListingsList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    trade_in_value: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
     pass
 
 
 @attrs.define
-class ErrorList:
+class ConditionType:
+
     pass
 
 
 @attrs.define
 class DetailedShippingTimeType:
-    pass
 
+    availability_type: Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]]
+    # {'enum': ['NOW', 'FUTURE_WITHOUT_DATE', 'FUTURE_WITH_DATE'], 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    available_date: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    maximum_hours: int
+    # {'schema_format': 'int64', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+    minimum_hours: int
+    # {'schema_format': 'int64', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
 
-@attrs.define
-class ShipsFromType:
     pass
 
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ErrorList:
+
+    pass
+
+
+@attrs.define
+class FulfillmentChannelType:
+
+    pass
+
+
+@attrs.define
+class GetOffersResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/GetOffersResult', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class GetOffersResult:
+
+    asin: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    status: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    identifier: dict[str, Any]
+    # {'ref': '#/components/schemas/ItemIdentifier', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    item_condition: Union[
+        Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+    ]
+    # {'ref': '#/components/schemas/ConditionType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    offers: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/OfferDetailList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    summary: dict[str, Any]
+    # {'ref': '#/components/schemas/Summary', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class GetPricingResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    payload: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/PriceList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class IdentifierType:
+
+    marketplace_asin: dict[str, Any]
+    # {'ref': '#/components/schemas/ASINIdentifier', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    skuidentifier: dict[str, Any]
+    # {'ref': '#/components/schemas/SellerSKUIdentifier', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class ItemIdentifier:
+
+    asin: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    seller_sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    item_condition: Union[
+        Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+    ]
+    # {'ref': '#/components/schemas/ConditionType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class LowestPriceType:
+
+    condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    fulfillment_channel: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    quantity_tier: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+
+    landed_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    listing_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    points: dict[str, Any]
+    # {'ref': '#/components/schemas/Points', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    shipping: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    offer_type: Union[Literal["B2C"], Literal["B2B"]]
+    # {'ref': '#/components/schemas/OfferCustomerType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    quantity_discount_type: Union[Literal["QUANTITY_DISCOUNT"]]
+    # {'ref': '#/components/schemas/QuantityDiscountType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class LowestPrices:
+
+    pass
+
+
+@attrs.define
+class MoneyType:
+
+    amount: Union[float, int]
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'number'}
+    currency_code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class NumberOfOfferListingsList:
+
+    pass
+
+
+@attrs.define
+class NumberOfOffers:
+
+    pass
+
+
+@attrs.define
+class OfferCountType:
+
+    offer_count: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+    condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    fulfillment_channel: Union[Literal["Amazon"], Literal["Merchant"]]
+    # {'ref': '#/components/schemas/FulfillmentChannelType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class OfferCustomerType:
+
+    pass
+
+
+@attrs.define
+class OfferDetail:
+
+    condition_notes: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    is_buy_box_winner: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'boolean'}
+    is_featured_merchant: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'boolean'}
+    is_fulfilled_by_amazon: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'boolean'}
+    my_offer: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'boolean'}
+    seller_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    sub_condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    quantity_discount_prices: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/QuantityDiscountPriceType'), 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'array'}
+
+    listing_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    points: dict[str, Any]
+    # {'ref': '#/components/schemas/Points', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    prime_information: dict[str, Any]
+    # {'ref': '#/components/schemas/PrimeInformationType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    seller_feedback_rating: dict[str, Any]
+    # {'ref': '#/components/schemas/SellerFeedbackType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    shipping: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    shipping_time: dict[str, Any]
+    # {'ref': '#/components/schemas/DetailedShippingTimeType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    ships_from: dict[str, Any]
+    # {'ref': '#/components/schemas/ShipsFromType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    offer_type: Union[Literal["B2C"], Literal["B2B"]]
+    # {'ref': '#/components/schemas/OfferCustomerType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class OfferDetailList:
+
+    pass
+
+
+@attrs.define
+class OfferListingCountType:
+
+    count: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+    condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class OfferType:
+
+    fulfillment_channel: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    item_condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    item_sub_condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    seller_sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    quantity_discount_prices: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/QuantityDiscountPriceType'), 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'array'}
+
+    buying_price: dict[str, Any]
+    # {'ref': '#/components/schemas/PriceType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    regular_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    business_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    offer_type: Union[Literal["B2C"], Literal["B2B"]]
+    # {'ref': '#/components/schemas/OfferCustomerType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class OffersList:
+
+    pass
+
+
+@attrs.define
+class Points:
+
+    points_number: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+
+    points_monetary_value: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class Price:
+
+    asin: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    seller_sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    status: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    product: dict[str, Any]
+    # {'ref': '#/components/schemas/Product', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class PriceList:
+
+    pass
+
+
+@attrs.define
+class PriceType:
+
+    landed_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    listing_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    points: dict[str, Any]
+    # {'ref': '#/components/schemas/Points', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    shipping: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class PrimeInformationType:
+
+    is_national_prime: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'boolean'}
+    is_prime: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'boolean'}
+
+    pass
+
+
+@attrs.define
+class Product:
+
+    attribute_sets: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/AttributeSetList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    competitive_pricing: dict[str, Any]
+    # {'ref': '#/components/schemas/CompetitivePricingType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    identifiers: dict[str, Any]
+    # {'ref': '#/components/schemas/IdentifierType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    offers: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/OffersList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    relationships: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/RelationshipList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    sales_rankings: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/SalesRankList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class QuantityDiscountPriceType:
+
+    quantity_tier: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+
+    listing_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    quantity_discount_type: Union[Literal["QUANTITY_DISCOUNT"]]
+    # {'ref': '#/components/schemas/QuantityDiscountType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    pass
+
+
+@attrs.define
+class QuantityDiscountType:
+
+    pass
+
+
+@attrs.define
+class RelationshipList:
+
+    pass
+
+
+@attrs.define
+class SalesRankList:
+
+    pass
+
+
+@attrs.define
+class SalesRankType:
+
+    product_category_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    rank: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+
+    pass
+
+
+@attrs.define
+class SellerFeedbackType:
+
+    feedback_count: int
+    # {'schema_format': 'int64', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+    seller_positive_feedback_rating: Union[float, int]
+    # {'schema_format': 'double', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'number'}
+
+    pass
+
+
+@attrs.define
+class SellerSKUIdentifier:
+
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    seller_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    seller_sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ShipsFromType:
+
+    country: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    state: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class Summary:
+
+    offers_available_time: str
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'string'}
+    total_offer_count: int
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>, 'type': 'integer'}
+
+    buy_box_eligible_offers: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/BuyBoxEligibleOffers', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    buy_box_prices: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/BuyBoxPrices', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    competitive_price_threshold: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    list_price: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    lowest_prices: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/LowestPrices', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    number_of_offers: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/NumberOfOffers', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    sales_rankings: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/SalesRankList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
+    suggested_lower_price_plus_shipping: dict[str, Any]
+    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB880>}
     pass
 
 

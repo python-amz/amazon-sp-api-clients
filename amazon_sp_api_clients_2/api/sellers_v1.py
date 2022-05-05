@@ -14,36 +14,76 @@ from typing import Any, List, Dict, Union, Literal
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+
     pass
 
 
 @attrs.define
 class ErrorList:
-    pass
 
-
-@attrs.define
-class MarketplaceParticipation:
-    pass
-
-
-@attrs.define
-class MarketplaceParticipationList:
     pass
 
 
 @attrs.define
 class GetMarketplaceParticipationsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>}
+    payload: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/MarketplaceParticipationList', 'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>}
     pass
 
 
 @attrs.define
 class Marketplace:
+
+    country_code: str
+    # {'pattern': '^([A-Z]{2})$', 'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+    default_currency_code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+    default_language_code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+    domain_name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+    id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+    name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class MarketplaceParticipation:
+
+    marketplace: dict[str, Any]
+    # {'ref': '#/components/schemas/Marketplace', 'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>}
+    participation: dict[str, Any]
+    # {'ref': '#/components/schemas/Participation', 'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>}
+    pass
+
+
+@attrs.define
+class MarketplaceParticipationList:
+
     pass
 
 
 @attrs.define
 class Participation:
+
+    has_suspended_listings: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'boolean'}
+    is_participating: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000019E57FCB310>, 'type': 'boolean'}
+
     pass
 
 

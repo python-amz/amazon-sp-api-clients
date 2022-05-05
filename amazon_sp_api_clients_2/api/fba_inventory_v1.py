@@ -13,67 +13,175 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class Granularity:
-    pass
-
-
-@attrs.define
-class ReservedQuantity:
-    pass
-
-
-@attrs.define
-class ResearchingQuantityEntry:
-    pass
-
-
-@attrs.define
-class ResearchingQuantity:
-    pass
-
-
-@attrs.define
-class UnfulfillableQuantity:
-    pass
-
-
-@attrs.define
-class InventoryDetails:
-    pass
-
-
-@attrs.define
-class InventorySummary:
-    pass
-
-
-@attrs.define
-class InventorySummaries:
-    pass
-
-
-@attrs.define
-class Pagination:
-    pass
-
-
-@attrs.define
-class GetInventorySummariesResult:
-    pass
-
-
-@attrs.define
-class GetInventorySummariesResponse:
-    pass
-
-
-@attrs.define
 class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+
     pass
 
 
 @attrs.define
 class ErrorList:
+
+    pass
+
+
+@attrs.define
+class GetInventorySummariesResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    pagination: dict[str, Any]
+    # {'ref': '#/components/schemas/Pagination', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/GetInventorySummariesResult', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    pass
+
+
+@attrs.define
+class GetInventorySummariesResult:
+
+    granularity: dict[str, Any]
+    # {'ref': '#/components/schemas/Granularity', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    inventory_summaries: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/InventorySummaries', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    pass
+
+
+@attrs.define
+class Granularity:
+
+    granularity_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    granularity_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class InventoryDetails:
+
+    fulfillable_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    inbound_receiving_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    inbound_shipped_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    inbound_working_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+
+    researching_quantity: dict[str, Any]
+    # {'ref': '#/components/schemas/ResearchingQuantity', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    reserved_quantity: dict[str, Any]
+    # {'ref': '#/components/schemas/ReservedQuantity', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    unfulfillable_quantity: dict[str, Any]
+    # {'ref': '#/components/schemas/UnfulfillableQuantity', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    pass
+
+
+@attrs.define
+class InventorySummaries:
+
+    pass
+
+
+@attrs.define
+class InventorySummary:
+
+    asin: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    condition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    fn_sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    last_updated_time: str
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    product_name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    seller_sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    total_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+
+    inventory_details: dict[str, Any]
+    # {'ref': '#/components/schemas/InventoryDetails', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>}
+    pass
+
+
+@attrs.define
+class Pagination:
+
+    next_token: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ResearchingQuantity:
+
+    researching_quantity_breakdown: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/ResearchingQuantityEntry'), 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'array'}
+    total_researching_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+
+    pass
+
+
+@attrs.define
+class ResearchingQuantityEntry:
+
+    name: Union[
+        Literal["researchingQuantityInShortTerm"],
+        Literal["researchingQuantityInMidTerm"],
+        Literal["researchingQuantityInLongTerm"],
+    ]
+    # {'enum': ['researchingQuantityInShortTerm', 'researchingQuantityInMidTerm', 'researchingQuantityInLongTerm'], 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'string'}
+    quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+
+    pass
+
+
+@attrs.define
+class ReservedQuantity:
+
+    fc_processing_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    pending_customer_order_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    pending_transshipment_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    total_reserved_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+
+    pass
+
+
+@attrs.define
+class UnfulfillableQuantity:
+
+    carrier_damaged_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    customer_damaged_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    defective_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    distributor_damaged_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    expired_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    total_unfulfillable_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+    warehouse_damaged_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB310>, 'type': 'integer'}
+
     pass
 
 

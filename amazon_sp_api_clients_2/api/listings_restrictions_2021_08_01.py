@@ -15,32 +15,85 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class RestrictionList:
-    pass
+class Error:
 
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
 
-@attrs.define
-class Restriction:
-    pass
-
-
-@attrs.define
-class Reason:
-    pass
-
-
-@attrs.define
-class Link:
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
-class Error:
+class Link:
+
+    resource: str
+    # {'schema_format': 'uri', 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    title: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    verb: Union[Literal["GET"]]
+    # {'enum': ['GET'], 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class Reason:
+
+    links: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Link'), 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'array'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]]
+    # {'enum': ['APPROVAL_REQUIRED', 'ASIN_NOT_FOUND', 'NOT_ELIGIBLE'], 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class Restriction:
+
+    condition_type: Union[
+        Literal["new_new"],
+        Literal["new_open_box"],
+        Literal["new_oem"],
+        Literal["refurbished_refurbished"],
+        Literal["used_like_new"],
+        Literal["used_very_good"],
+        Literal["used_good"],
+        Literal["used_acceptable"],
+        Literal["collectible_like_new"],
+        Literal["collectible_very_good"],
+        Literal["collectible_good"],
+        Literal["collectible_acceptable"],
+        Literal["club_club"],
+    ]
+    # {'enum': ['new_new', 'new_open_box', 'new_oem', 'refurbished_refurbished', 'used_like_new', 'used_very_good', 'used_good', 'used_acceptable', 'collectible_like_new', 'collectible_very_good', 'collectible_good', 'collectible_acceptable', 'club_club'], 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'string'}
+    reasons: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Reason'), 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'array'}
+
+    pass
+
+
+@attrs.define
+class RestrictionList:
+
+    restrictions: list[dict[str, Any]]
+    # {'items': Reference(ref='#/components/schemas/Restriction'), 'generator': <__mp_main__.Generator object at 0x0000017DF3CDB700>, 'type': 'array'}
+
     pass
 
 

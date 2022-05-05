@@ -13,127 +13,486 @@ from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
-class ListCatalogItemsResponse:
-    pass
-
-
-@attrs.define
-class ListMatchingItemsResponse:
-    pass
-
-
-@attrs.define
-class ItemList:
-    pass
-
-
-@attrs.define
-class GetCatalogItemResponse:
-    pass
-
-
-@attrs.define
-class Item:
-    pass
-
-
-@attrs.define
-class IdentifierType:
-    pass
-
-
-@attrs.define
 class ASINIdentifier:
-    pass
 
+    asin: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
 
-@attrs.define
-class SellerSKUIdentifier:
     pass
 
 
 @attrs.define
 class AttributeSetList:
+
     pass
 
 
 @attrs.define
 class AttributeSetListType:
-    pass
 
+    actor: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    artist: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    aspect_ratio: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    audience_rating: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    author: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    back_finding: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    band_material_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    binding: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    bluray_region: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    brand: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    cero_age_rating: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    chain_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    clasp_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    color: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    cpu_manufacturer: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    cpu_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    creator: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Reference(ref='#/components/schemas/CreatorType'), 'type': 'array'}
+    department: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    director: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    edition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    episode_sequence: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    esrb_age_rating: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    feature: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    flavor: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    format: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    gem_type: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    genre: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    golf_club_flex: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    hand_orientation: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    hard_disk_interface: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    hardware_platform: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    hazardous_material_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    is_adult_product: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'boolean'}
+    is_autographed: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'boolean'}
+    is_eligible_for_trade_in: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'boolean'}
+    is_memorabilia: bool
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'boolean'}
+    issues_per_year: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    item_part_number: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    label: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    languages: list[dict[str, Any]]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Reference(ref='#/components/schemas/LanguageType'), 'type': 'array'}
+    legal_disclaimer: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    manufacturer: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    manufacturer_parts_warranty_description: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    material_type: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    media_type: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    metal_stamp: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    metal_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    model: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    number_of_discs: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    number_of_issues: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    number_of_items: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    number_of_pages: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    number_of_tracks: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    operating_system: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    package_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    part_number: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    pegi_rating: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    platform: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    processor_count: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    product_group: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    product_type_name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    product_type_subcategory: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    publication_date: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    publisher: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    region_code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    release_date: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    ring_size: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    scent: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    season_sequence: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    seikodo_product_code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    shaft_material: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    size: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    size_per_pearl: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    studio: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    system_memory_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    theatrical_release_date: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    title: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    warranty: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
 
-@attrs.define
-class DecimalWithUnits:
-    pass
-
-
-@attrs.define
-class CreatorType:
-    pass
-
-
-@attrs.define
-class DimensionType:
-    pass
-
-
-@attrs.define
-class LanguageType:
-    pass
-
-
-@attrs.define
-class Image:
-    pass
-
-
-@attrs.define
-class Price:
-    pass
-
-
-@attrs.define
-class RelationshipList:
-    pass
-
-
-@attrs.define
-class RelationshipType:
-    pass
-
-
-@attrs.define
-class SalesRankList:
-    pass
-
-
-@attrs.define
-class SalesRankType:
-    pass
-
-
-@attrs.define
-class ListCatalogCategoriesResponse:
-    pass
-
-
-@attrs.define
-class ListOfCategories:
+    cpu_speed: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    display_size: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    golf_club_loft: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    hard_disk_size: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    item_dimensions: dict[str, Any]
+    # {'ref': '#/components/schemas/DimensionType', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    list_price: dict[str, Any]
+    # {'ref': '#/components/schemas/Price', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    manufacturer_maximum_age: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    manufacturer_minimum_age: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    maximum_resolution: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    optical_zoom: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    package_dimensions: dict[str, Any]
+    # {'ref': '#/components/schemas/DimensionType', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    running_time: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    small_image: dict[str, Any]
+    # {'ref': '#/components/schemas/Image', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    subscription_length: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    system_memory_size: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    total_diamond_weight: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    total_gem_weight: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    weee_tax_value: dict[str, Any]
+    # {'ref': '#/components/schemas/Price', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
     pass
 
 
 @attrs.define
 class Categories:
+
+    product_category_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    product_category_name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    parent: dict[str, Any]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'properties': {}, 'type': 'object'}
+
     pass
 
 
 @attrs.define
-class ErrorList:
+class CreatorType:
+
+    role: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    value: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class DecimalWithUnits:
+
+    units: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    value: Union[float, int]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'number'}
+
+    pass
+
+
+@attrs.define
+class DimensionType:
+
+    height: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    length: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    weight: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    width: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
     pass
 
 
 @attrs.define
 class Error:
+
+    code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    details: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    message: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ErrorList:
+
+    pass
+
+
+@attrs.define
+class GetCatalogItemResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/Item', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class IdentifierType:
+
+    marketplace_asin: dict[str, Any]
+    # {'ref': '#/components/schemas/ASINIdentifier', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    skuidentifier: dict[str, Any]
+    # {'ref': '#/components/schemas/SellerSKUIdentifier', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class Image:
+
+    url: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+
+    height: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    width: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class Item:
+
+    attribute_sets: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/AttributeSetList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    identifiers: dict[str, Any]
+    # {'ref': '#/components/schemas/IdentifierType', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    relationships: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/RelationshipList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    sales_rankings: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/SalesRankList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class ItemList:
+
+    pass
+
+
+@attrs.define
+class LanguageType:
+
+    audio_format: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    name: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class ListCatalogCategoriesResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    payload: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ListOfCategories', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class ListCatalogItemsResponse:
+
+    errors: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    payload: dict[str, Any]
+    # {'ref': '#/components/schemas/ListMatchingItemsResponse', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class ListMatchingItemsResponse:
+
+    items: list[dict[str, Any]]
+    # {'ref': '#/components/schemas/ItemList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class ListOfCategories:
+
+    pass
+
+
+@attrs.define
+class Price:
+
+    amount: Union[float, int]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'number'}
+    currency_code: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+
+    pass
+
+
+@attrs.define
+class RelationshipList:
+
+    pass
+
+
+@attrs.define
+class RelationshipType:
+
+    color: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    edition: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    flavor: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    gem_type: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    golf_club_flex: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    hand_orientation: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    hardware_platform: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    material_type: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    metal_type: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    model: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    operating_system: list[str]
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    package_quantity: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'integer'}
+    product_type_subcategory: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    ring_size: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    scent: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    shaft_material: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    size: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    size_per_pearl: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+
+    golf_club_loft: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    identifiers: dict[str, Any]
+    # {'ref': '#/components/schemas/IdentifierType', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    item_dimensions: dict[str, Any]
+    # {'ref': '#/components/schemas/DimensionType', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    total_diamond_weight: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    total_gem_weight: dict[str, Any]
+    # {'ref': '#/components/schemas/DecimalWithUnits', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>}
+    pass
+
+
+@attrs.define
+class SalesRankList:
+
+    pass
+
+
+@attrs.define
+class SalesRankType:
+
+    product_category_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    rank: int
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'schema_format': 'int32', 'type': 'integer'}
+
+    pass
+
+
+@attrs.define
+class SellerSKUIdentifier:
+
+    marketplace_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    seller_id: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+    seller_sku: str
+    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB310>, 'type': 'string'}
+
     pass
 
 
