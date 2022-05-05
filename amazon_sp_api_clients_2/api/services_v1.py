@@ -16,7 +16,7 @@ from typing import Any, List, Dict, Union, Literal
 class AddAppointmentRequest:
 
     appointment_time: dict[str, Any]
-    # {'ref': '#/components/schemas/AppointmentTimeInput', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/AppointmentTimeInput', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -24,27 +24,27 @@ class AddAppointmentRequest:
 class Address:
 
     address_line1: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     address_line2: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     address_line3: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     city: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     country_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     county: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     district: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     phone: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     postal_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     state_or_region: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 
@@ -53,18 +53,18 @@ class Address:
 class Appointment:
 
     appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]]
-    # {'enum': ['ACTIVE', 'CANCELLED', 'COMPLETED'], 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'enum': ['ACTIVE', 'CANCELLED', 'COMPLETED'], 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     assigned_technicians: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'items': Reference(ref='#/components/schemas/Technician'), 'minItems': 1, 'type': 'array'}
+    # {'minItems': 1, 'items': Reference(ref='#/components/schemas/Technician'), 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'array'}
 
     appointment_id: str
-    # {'ref': '#/components/schemas/AppointmentId', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/AppointmentId', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     appointment_time: dict[str, Any]
-    # {'ref': '#/components/schemas/AppointmentTime', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/AppointmentTime', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     poa: dict[str, Any]
-    # {'ref': '#/components/schemas/Poa', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/Poa', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     rescheduled_appointment_id: str
-    # {'ref': '#/components/schemas/AppointmentId', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/AppointmentId', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -78,9 +78,9 @@ class AppointmentId:
 class AppointmentTime:
 
     duration_in_minutes: int
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'minimum': 1.0, 'type': 'integer'}
+    # {'minimum': 1.0, 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'integer'}
     start_time: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 
@@ -89,9 +89,9 @@ class AppointmentTime:
 class AppointmentTimeInput:
 
     duration_in_minutes: int
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'integer'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'integer'}
     start_time: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 
@@ -100,20 +100,20 @@ class AppointmentTimeInput:
 class AssociatedItem:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     brand_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     item_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]]
-    # {'enum': ['ACTIVE', 'CANCELLED', 'SHIPPED', 'DELIVERED'], 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'enum': ['ACTIVE', 'CANCELLED', 'SHIPPED', 'DELIVERED'], 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     quantity: int
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'integer'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'integer'}
     title: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     item_delivery: dict[str, Any]
-    # {'ref': '#/components/schemas/ItemDelivery', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ItemDelivery', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     order_id: str
-    # {'ref': '#/components/schemas/OrderId', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/OrderId', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -121,13 +121,13 @@ class AssociatedItem:
 class Buyer:
 
     buyer_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
     is_prime_member: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'boolean'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'boolean'}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     phone: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 
@@ -136,7 +136,7 @@ class Buyer:
 class CancelServiceJobByServiceJobIdResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -144,7 +144,7 @@ class CancelServiceJobByServiceJobIdResponse:
 class CompleteServiceJobByServiceJobIdResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -152,13 +152,13 @@ class CompleteServiceJobByServiceJobIdResponse:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     error_level: Union[Literal["ERROR"], Literal["WARNING"]]
-    # {'enum': ['ERROR', 'WARNING'], 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'enum': ['ERROR', 'WARNING'], 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 
@@ -173,9 +173,9 @@ class ErrorList:
 class GetServiceJobByServiceJobIdResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/ServiceJob', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ServiceJob', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -183,9 +183,9 @@ class GetServiceJobByServiceJobIdResponse:
 class GetServiceJobsResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/JobListing', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/JobListing', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -193,10 +193,10 @@ class GetServiceJobsResponse:
 class ItemDelivery:
 
     estimated_delivery_date: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     item_delivery_promise: dict[str, Any]
-    # {'ref': '#/components/schemas/ItemDeliveryPromise', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ItemDeliveryPromise', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -204,9 +204,9 @@ class ItemDelivery:
 class ItemDeliveryPromise:
 
     end_time: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     start_time: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 
@@ -215,13 +215,13 @@ class ItemDeliveryPromise:
 class JobListing:
 
     jobs: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'items': Reference(ref='#/components/schemas/ServiceJob'), 'type': 'array'}
+    # {'items': Reference(ref='#/components/schemas/ServiceJob'), 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'array'}
     next_page_token: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     previous_page_token: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     total_result_size: int
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'integer'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'integer'}
 
     pass
 
@@ -241,16 +241,16 @@ class Poa:
         Literal["DUMMY_RECEIPT"],
         Literal["POA_RECEIPT"],
     ]
-    # {'enum': ['NO_SIGNATURE_DUMMY_POS', 'CUSTOMER_SIGNATURE', 'DUMMY_RECEIPT', 'POA_RECEIPT'], 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'enum': ['NO_SIGNATURE_DUMMY_POS', 'CUSTOMER_SIGNATURE', 'DUMMY_RECEIPT', 'POA_RECEIPT'], 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     technicians: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'items': Reference(ref='#/components/schemas/Technician'), 'minItems': 1, 'type': 'array'}
+    # {'minItems': 1, 'items': Reference(ref='#/components/schemas/Technician'), 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'array'}
     upload_time: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     uploading_technician: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
 
     appointment_time: dict[str, Any]
-    # {'ref': '#/components/schemas/AppointmentTime', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/AppointmentTime', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -258,9 +258,9 @@ class Poa:
 class RescheduleAppointmentRequest:
 
     appointment_time: dict[str, Any]
-    # {'ref': '#/components/schemas/AppointmentTimeInput', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/AppointmentTimeInput', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     reschedule_reason_code: str
-    # {'ref': '#/components/schemas/RescheduleReasonCode', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/RescheduleReasonCode', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -274,13 +274,13 @@ class RescheduleReasonCode:
 class ScopeOfWork:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     quantity: int
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'integer'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'integer'}
     required_skills: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'type': 'array'}
+    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'array'}
     title: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 
@@ -289,7 +289,7 @@ class ScopeOfWork:
 class Seller:
 
     seller_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
 
     pass
 
@@ -298,15 +298,15 @@ class Seller:
 class ServiceJob:
 
     appointments: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'items': Reference(ref='#/components/schemas/Appointment'), 'type': 'array'}
+    # {'items': Reference(ref='#/components/schemas/Appointment'), 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'array'}
     associated_items: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'items': Reference(ref='#/components/schemas/AssociatedItem'), 'type': 'array'}
+    # {'items': Reference(ref='#/components/schemas/AssociatedItem'), 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'array'}
     create_time: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'schema_format': 'date-time', 'type': 'string'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
     preferred_appointment_times: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'items': Reference(ref='#/components/schemas/AppointmentTime'), 'type': 'array'}
+    # {'items': Reference(ref='#/components/schemas/AppointmentTime'), 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'array'}
     service_job_status: Union[
         Literal["NOT_SERVICED"],
         Literal["CANCELLED"],
@@ -316,22 +316,22 @@ class ServiceJob:
         Literal["HOLD"],
         Literal["PAYMENT_DECLINED"],
     ]
-    # {'enum': ['NOT_SERVICED', 'CANCELLED', 'COMPLETED', 'PENDING_SCHEDULE', 'NOT_FULFILLABLE', 'HOLD', 'PAYMENT_DECLINED'], 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'enum': ['NOT_SERVICED', 'CANCELLED', 'COMPLETED', 'PENDING_SCHEDULE', 'NOT_FULFILLABLE', 'HOLD', 'PAYMENT_DECLINED'], 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     buyer: dict[str, Any]
-    # {'ref': '#/components/schemas/Buyer', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/Buyer', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     scope_of_work: dict[str, Any]
-    # {'ref': '#/components/schemas/ScopeOfWork', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ScopeOfWork', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     seller: dict[str, Any]
-    # {'ref': '#/components/schemas/Seller', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/Seller', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     service_job_id: str
-    # {'ref': '#/components/schemas/ServiceJobId', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ServiceJobId', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     service_job_provider: dict[str, Any]
-    # {'ref': '#/components/schemas/ServiceJobProvider', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ServiceJobProvider', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     service_location: dict[str, Any]
-    # {'ref': '#/components/schemas/ServiceLocation', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ServiceLocation', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     service_order_id: str
-    # {'ref': '#/components/schemas/OrderId', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/OrderId', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -345,7 +345,7 @@ class ServiceJobId:
 class ServiceJobProvider:
 
     service_job_provider_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'pattern': '^[A-Z0-9]*$', 'type': 'string'}
 
     pass
 
@@ -354,10 +354,10 @@ class ServiceJobProvider:
 class ServiceLocation:
 
     service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]]
-    # {'enum': ['IN_HOME', 'IN_STORE', 'ONLINE'], 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'enum': ['IN_HOME', 'IN_STORE', 'ONLINE'], 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -365,11 +365,11 @@ class ServiceLocation:
 class SetAppointmentResponse:
 
     appointment_id: str
-    # {'ref': '#/components/schemas/AppointmentId', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/AppointmentId', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     warnings: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/WarningList', 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>}
+    # {'ref': '#/components/schemas/WarningList', 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>}
     pass
 
 
@@ -377,9 +377,9 @@ class SetAppointmentResponse:
 class Technician:
 
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     technician_id: str
-    # {'minLength': 1, 'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'maxLength': 50, 'type': 'string'}
+    # {'minLength': 1, 'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string', 'maxLength': 50}
 
     pass
 
@@ -388,11 +388,11 @@ class Technician:
 class Warning:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000015D7D8AB160>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000002D43C32B310>, 'type': 'string'}
 
     pass
 

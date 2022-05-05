@@ -24,11 +24,11 @@ class Decimal:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -37,7 +37,7 @@ class Error:
 class ErrorList:
 
     errors: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/Error')}
 
     pass
 
@@ -46,9 +46,9 @@ class ErrorList:
 class FulfillmentAvailability:
 
     fulfillment_channel_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     quantity: int
-    # {'minimum': 0.0, 'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'minimum': 0.0, 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
 
     pass
 
@@ -57,13 +57,13 @@ class FulfillmentAvailability:
 class Issue:
 
     attribute_names: list[str]
-    # {'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]
-    # {'type': 'string', 'enum': ['ERROR', 'WARNING', 'INFO'], 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'enum': ['ERROR', 'WARNING', 'INFO'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -72,20 +72,20 @@ class Issue:
 class Item:
 
     fulfillment_availability: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/FulfillmentAvailability'), 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FulfillmentAvailability')}
     sku: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     attributes: dict[str, Any]
-    # {'ref': '#/components/schemas/ItemAttributes', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemAttributes'}
     issues: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ItemIssues', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemIssues'}
     offers: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ItemOffers', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemOffers'}
     procurement: dict[str, Any]
-    # {'ref': '#/components/schemas/ItemProcurement', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemProcurement'}
     summaries: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ItemSummaries', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemSummaries'}
     pass
 
 
@@ -99,11 +99,11 @@ class ItemAttributes:
 class ItemImage:
 
     height: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
     link: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     width: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
 
     pass
 
@@ -118,14 +118,14 @@ class ItemIssues:
 class ItemOfferByMarketplace:
 
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     offer_type: Union[Literal["B2C"], Literal["B2B"]]
-    # {'type': 'string', 'enum': ['B2C', 'B2B'], 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'enum': ['B2C', 'B2B'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     points: dict[str, Any]
-    # {'ref': '#/components/schemas/Points', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Points'}
     price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Money'}
     pass
 
 
@@ -139,7 +139,7 @@ class ItemOffers:
 class ItemProcurement:
 
     cost_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Money'}
     pass
 
 
@@ -153,7 +153,7 @@ class ItemSummaries:
 class ItemSummaryByMarketplace:
 
     asin: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     condition_type: Union[
         Literal["new_new"],
         Literal["new_open_box"],
@@ -169,24 +169,24 @@ class ItemSummaryByMarketplace:
         Literal["collectible_acceptable"],
         Literal["club_club"],
     ]
-    # {'type': 'string', 'enum': ['new_new', 'new_open_box', 'new_oem', 'refurbished_refurbished', 'used_like_new', 'used_very_good', 'used_good', 'used_acceptable', 'collectible_like_new', 'collectible_very_good', 'collectible_good', 'collectible_acceptable', 'club_club'], 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'enum': ['new_new', 'new_open_box', 'new_oem', 'refurbished_refurbished', 'used_like_new', 'used_very_good', 'used_good', 'used_acceptable', 'collectible_like_new', 'collectible_very_good', 'collectible_good', 'collectible_acceptable', 'club_club'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     created_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string', 'schema_format': 'date-time'}
     fn_sku: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     item_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     last_updated_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string', 'schema_format': 'date-time'}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     product_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     status: list[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]]
-    # {'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['BUYABLE', 'DISCOVERABLE'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['BUYABLE', 'DISCOVERABLE'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
 
     main_image: dict[str, Any]
-    # {'ref': '#/components/schemas/ItemImage', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/ItemImage'}
     pass
 
 
@@ -194,9 +194,9 @@ class ItemSummaryByMarketplace:
 class ListingsItemPatchRequest:
 
     patches: list[dict[str, Any]]
-    # {'minItems': 1, 'type': 'array', 'items': Reference(ref='#/components/schemas/PatchOperation'), 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/PatchOperation'), 'minItems': 1}
     product_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -205,11 +205,11 @@ class ListingsItemPatchRequest:
 class ListingsItemPutRequest:
 
     attributes: dict[str, Any]
-    # {'properties': {}, 'type': 'object', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'properties': {}, 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'object'}
     product_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
-    # {'type': 'string', 'enum': ['LISTING', 'LISTING_PRODUCT_ONLY', 'LISTING_OFFER_ONLY'], 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'enum': ['LISTING', 'LISTING_PRODUCT_ONLY', 'LISTING_OFFER_ONLY'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -218,13 +218,13 @@ class ListingsItemPutRequest:
 class ListingsItemSubmissionResponse:
 
     issues: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Issue'), 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/Issue')}
     sku: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     status: Union[Literal["ACCEPTED"], Literal["INVALID"]]
-    # {'type': 'string', 'enum': ['ACCEPTED', 'INVALID'], 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'enum': ['ACCEPTED', 'INVALID'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     submission_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     pass
 
@@ -233,10 +233,10 @@ class ListingsItemSubmissionResponse:
 class Money:
 
     currency_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
 
     amount: str
-    # {'ref': '#/components/schemas/Decimal', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'ref': '#/components/schemas/Decimal'}
     pass
 
 
@@ -244,11 +244,11 @@ class Money:
 class PatchOperation:
 
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]]
-    # {'type': 'string', 'enum': ['add', 'replace', 'delete'], 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'enum': ['add', 'replace', 'delete'], 'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     path: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'string'}
     value: list[dict[str, Any]]
-    # {'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='object', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties={}, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='object', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties={}, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
 
     pass
 
@@ -257,7 +257,7 @@ class PatchOperation:
 class Points:
 
     points_number: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x000001B562A2B310>}
+    # {'generator': <__mp_main__.Generator object at 0x000002544D19B310>, 'type': 'integer'}
 
     pass
 

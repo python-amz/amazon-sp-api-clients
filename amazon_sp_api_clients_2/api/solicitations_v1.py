@@ -16,7 +16,7 @@ from typing import Any, List, Dict, Union, Literal
 class CreateProductReviewAndSellerFeedbackSolicitationResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
@@ -24,11 +24,11 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'type': 'string'}
 
     pass
 
@@ -43,12 +43,12 @@ class ErrorList:
 class GetSchemaResponse:
 
     _links: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'type': 'object', 'required': ['self']}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'required': ['self'], 'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'type': 'object'}
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/Schema', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'ref': '#/components/schemas/Schema'}
     pass
 
 
@@ -56,14 +56,14 @@ class GetSchemaResponse:
 class GetSolicitationActionResponse:
 
     _embedded: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}, 'type': 'object'}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}, 'type': 'object'}
     _links: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'type': 'object', 'required': ['schema', 'self']}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'required': ['schema', 'self'], 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'type': 'object'}
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/SolicitationsAction', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'ref': '#/components/schemas/SolicitationsAction'}
     pass
 
 
@@ -71,12 +71,12 @@ class GetSolicitationActionResponse:
 class GetSolicitationActionsForOrderResponse:
 
     _embedded: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetSolicitationActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object', 'required': ['actions']}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'required': ['actions'], 'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetSolicitationActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object'}
     _links: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object', 'required': ['actions', 'self']}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'required': ['actions', 'self'], 'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'type': 'object'}
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
@@ -84,9 +84,9 @@ class GetSolicitationActionsForOrderResponse:
 class LinkObject:
 
     href: str
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'type': 'string'}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'type': 'string'}
 
     pass
 
@@ -101,7 +101,7 @@ class Schema:
 class SolicitationsAction:
 
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000021B3C6FB5B0>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D732A2F20>, 'type': 'string'}
 
     pass
 

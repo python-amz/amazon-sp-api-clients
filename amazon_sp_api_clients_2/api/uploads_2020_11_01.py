@@ -16,9 +16,9 @@ from typing import Any, List, Dict, Union, Literal
 class CreateUploadDestinationResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>}
     payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>, 'ref': '#/components/schemas/UploadDestination'}
+    # {'ref': '#/components/schemas/UploadDestination', 'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>}
     pass
 
 
@@ -26,11 +26,11 @@ class CreateUploadDestinationResponse:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
 
     pass
 
@@ -45,11 +45,11 @@ class ErrorList:
 class UploadDestination:
 
     headers: dict[str, Any]
-    # {'type': 'object', 'properties': {}, 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    # {'properties': {}, 'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'object'}
     upload_destination_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
     url: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000024D5CC7B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F2075B0>, 'type': 'string'}
 
     pass
 

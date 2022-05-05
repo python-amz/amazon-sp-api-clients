@@ -16,11 +16,11 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     pass
 
@@ -35,18 +35,18 @@ class ErrorList:
 class FeeDetail:
 
     fee_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     fee_amount: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     fee_promotion: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     final_fee: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     included_fee_detail_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/IncludedFeeDetailList', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/IncludedFeeDetailList'}
     tax_amount: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 
@@ -60,12 +60,12 @@ class FeeDetailList:
 class FeesEstimate:
 
     time_of_fees_estimation: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>, 'schema_format': 'date-time'}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     fee_detail_list: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FeeDetailList', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/FeeDetailList'}
     total_fees_estimate: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 
@@ -73,14 +73,14 @@ class FeesEstimate:
 class FeesEstimateError:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     detail: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FeesEstimateErrorDetail', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/FeesEstimateErrorDetail'}
     pass
 
 
@@ -94,22 +94,22 @@ class FeesEstimateErrorDetail:
 class FeesEstimateIdentifier:
 
     id_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     id_value: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     is_amazon_fulfilled: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'boolean'}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     seller_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     seller_input_identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     optional_fulfillment_program: Union[Literal["FBA_CORE"], Literal["FBA_SNL"], Literal["FBA_EFN"]]
-    # {'ref': '#/components/schemas/OptionalFulfillmentProgram', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/OptionalFulfillmentProgram'}
     price_to_estimate_fees: dict[str, Any]
-    # {'ref': '#/components/schemas/PriceToEstimateFees', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/PriceToEstimateFees'}
     pass
 
 
@@ -117,16 +117,16 @@ class FeesEstimateIdentifier:
 class FeesEstimateRequest:
 
     identifier: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
     is_amazon_fulfilled: bool
-    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'boolean'}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     optional_fulfillment_program: Union[Literal["FBA_CORE"], Literal["FBA_SNL"], Literal["FBA_EFN"]]
-    # {'ref': '#/components/schemas/OptionalFulfillmentProgram', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/OptionalFulfillmentProgram'}
     price_to_estimate_fees: dict[str, Any]
-    # {'ref': '#/components/schemas/PriceToEstimateFees', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/PriceToEstimateFees'}
     pass
 
 
@@ -134,14 +134,14 @@ class FeesEstimateRequest:
 class FeesEstimateResult:
 
     status: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     error: dict[str, Any]
-    # {'ref': '#/components/schemas/FeesEstimateError', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/FeesEstimateError'}
     fees_estimate: dict[str, Any]
-    # {'ref': '#/components/schemas/FeesEstimate', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/FeesEstimate'}
     fees_estimate_identifier: dict[str, Any]
-    # {'ref': '#/components/schemas/FeesEstimateIdentifier', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/FeesEstimateIdentifier'}
     pass
 
 
@@ -149,7 +149,7 @@ class FeesEstimateResult:
 class GetMyFeesEstimateRequest:
 
     fees_estimate_request: dict[str, Any]
-    # {'ref': '#/components/schemas/FeesEstimateRequest', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/FeesEstimateRequest'}
     pass
 
 
@@ -157,9 +157,9 @@ class GetMyFeesEstimateRequest:
 class GetMyFeesEstimateResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetMyFeesEstimateResult', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/GetMyFeesEstimateResult'}
     pass
 
 
@@ -167,7 +167,7 @@ class GetMyFeesEstimateResponse:
 class GetMyFeesEstimateResult:
 
     fees_estimate_result: dict[str, Any]
-    # {'ref': '#/components/schemas/FeesEstimateResult', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/FeesEstimateResult'}
     pass
 
 
@@ -175,16 +175,16 @@ class GetMyFeesEstimateResult:
 class IncludedFeeDetail:
 
     fee_type: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     fee_amount: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     fee_promotion: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     final_fee: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     tax_amount: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 
@@ -198,9 +198,9 @@ class IncludedFeeDetailList:
 class MoneyType:
 
     amount: Union[float, int]
-    # {'type': 'number', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'number'}
     currency_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'string'}
 
     pass
 
@@ -215,10 +215,10 @@ class OptionalFulfillmentProgram:
 class Points:
 
     points_number: int
-    # {'type': 'integer', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>, 'schema_format': 'int32'}
+    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'type': 'integer'}
 
     points_monetary_value: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 
@@ -226,11 +226,11 @@ class Points:
 class PriceToEstimateFees:
 
     listing_price: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     points: dict[str, Any]
-    # {'ref': '#/components/schemas/Points', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/Points'}
     shipping: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x00000259A761B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D733230A0>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 

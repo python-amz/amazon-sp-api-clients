@@ -18,11 +18,11 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
 
     pass
 
@@ -31,7 +31,7 @@ class Error:
 class ErrorList:
 
     errors: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array'}
+    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'array'}
 
     pass
 
@@ -40,13 +40,13 @@ class ErrorList:
 class Issue:
 
     attribute_name: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['ERROR', 'WARNING', 'INFO'], 'type': 'string'}
+    # {'enum': ['ERROR', 'WARNING', 'INFO'], 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
 
     pass
 
@@ -55,9 +55,9 @@ class Issue:
 class ListingsItemPatchRequest:
 
     patches: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/PatchOperation'), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array', 'minItems': 1}
+    # {'items': Reference(ref='#/components/schemas/PatchOperation'), 'minItems': 1, 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'array'}
     product_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
 
     pass
 
@@ -66,11 +66,11 @@ class ListingsItemPatchRequest:
 class ListingsItemPutRequest:
 
     attributes: dict[str, Any]
-    # {'properties': {}, 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'object'}
+    # {'properties': {}, 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'object'}
     product_type: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['LISTING', 'LISTING_PRODUCT_ONLY', 'LISTING_OFFER_ONLY'], 'type': 'string'}
+    # {'enum': ['LISTING', 'LISTING_PRODUCT_ONLY', 'LISTING_OFFER_ONLY'], 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
 
     pass
 
@@ -79,13 +79,13 @@ class ListingsItemPutRequest:
 class ListingsItemSubmissionResponse:
 
     issues: list[dict[str, Any]]
-    # {'items': Reference(ref='#/components/schemas/Issue'), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array'}
+    # {'items': Reference(ref='#/components/schemas/Issue'), 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'array'}
     sku: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     status: Union[Literal["ACCEPTED"], Literal["INVALID"]]
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['ACCEPTED', 'INVALID'], 'type': 'string'}
+    # {'enum': ['ACCEPTED', 'INVALID'], 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     submission_id: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
 
     pass
 
@@ -94,11 +94,11 @@ class ListingsItemSubmissionResponse:
 class PatchOperation:
 
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]]
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'enum': ['add', 'replace', 'delete'], 'type': 'string'}
+    # {'enum': ['add', 'replace', 'delete'], 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     path: str
-    # {'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'string'}
     value: list[dict[str, Any]]
-    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='object', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties={}, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x000002365F44B880>, 'type': 'array'}
+    # {'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='object', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties={}, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'generator': <__mp_main__.Generator object at 0x0000023E8F207700>, 'type': 'array'}
 
     pass
 

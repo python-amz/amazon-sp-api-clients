@@ -16,30 +16,30 @@ from typing import Any, List, Dict, Union, Literal
 class Address:
 
     address_line1: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     address_line2: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     address_line3: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     city: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     country_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     county: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     district: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     phone: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     postal_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     state_or_region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     address_type: Union[Literal["Residential"], Literal["Commercial"]]
-    # {'ref': '#/components/schemas/AddressTypeEnum', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/AddressTypeEnum', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -59,12 +59,12 @@ class Blob:
 class BuyerTaxInfo:
 
     company_legal_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     taxing_region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     tax_classifications: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/TaxClassificationList', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/TaxClassificationList', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -72,11 +72,11 @@ class BuyerTaxInfo:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     pass
 
@@ -91,9 +91,9 @@ class ErrorList:
 class GetInvoiceStatusResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/ShipmentInvoiceStatusResponse', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ShipmentInvoiceStatusResponse', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -101,9 +101,9 @@ class GetInvoiceStatusResponse:
 class GetShipmentDetailsResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/ShipmentDetail', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ShipmentDetail', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -111,12 +111,12 @@ class GetShipmentDetailsResponse:
 class MarketplaceTaxInfo:
 
     company_legal_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     taxing_region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     tax_classifications: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/TaxClassificationList', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/TaxClassificationList', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -124,9 +124,9 @@ class MarketplaceTaxInfo:
 class Money:
 
     amount: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     currency_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     pass
 
@@ -147,34 +147,34 @@ class SerialNumbersList:
 class ShipmentDetail:
 
     amazon_order_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     amazon_shipment_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     buyer_county: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     buyer_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     purchase_date: str
-    # {'type': 'string', 'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'schema_format': 'date-time', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     seller_display_name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     seller_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     warehouse_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     buyer_tax_info: dict[str, Any]
-    # {'ref': '#/components/schemas/BuyerTaxInfo', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/BuyerTaxInfo', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     marketplace_tax_info: dict[str, Any]
-    # {'ref': '#/components/schemas/MarketplaceTaxInfo', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/MarketplaceTaxInfo', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     payment_method_details: list[str]
-    # {'ref': '#/components/schemas/PaymentMethodDetailItemList', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/PaymentMethodDetailItemList', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     shipment_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ShipmentItems', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ShipmentItems', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     shipping_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -188,10 +188,10 @@ class ShipmentInvoiceStatus:
 class ShipmentInvoiceStatusInfo:
 
     amazon_shipment_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     invoice_status: Union[Literal["Processing"], Literal["Accepted"], Literal["Errored"], Literal["NotFound"]]
-    # {'ref': '#/components/schemas/ShipmentInvoiceStatus', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ShipmentInvoiceStatus', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -199,7 +199,7 @@ class ShipmentInvoiceStatusInfo:
 class ShipmentInvoiceStatusResponse:
 
     shipments: dict[str, Any]
-    # {'ref': '#/components/schemas/ShipmentInvoiceStatusInfo', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ShipmentInvoiceStatusInfo', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -207,28 +207,28 @@ class ShipmentInvoiceStatusResponse:
 class ShipmentItem:
 
     asin: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     order_item_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     quantity_ordered: Union[float, int]
-    # {'type': 'number', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'number'}
     seller_sku: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     title: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     gift_wrap_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     item_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     promotion_discount: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     serial_numbers: list[str]
-    # {'ref': '#/components/schemas/SerialNumbersList', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/SerialNumbersList', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     shipping_discount: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     shipping_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -242,12 +242,12 @@ class ShipmentItems:
 class SubmitInvoiceRequest:
 
     content_md5value: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     marketplace_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     invoice_content: str
-    # {'ref': '#/components/schemas/Blob', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/Blob', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -255,7 +255,7 @@ class SubmitInvoiceRequest:
 class SubmitInvoiceResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001FB33337160>}
     pass
 
 
@@ -263,9 +263,9 @@ class SubmitInvoiceResponse:
 class TaxClassification:
 
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
     value: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B562A2B160>}
+    # {'generator': <__mp_main__.Generator object at 0x000001FB33337160>, 'type': 'string'}
 
     pass
 

@@ -16,11 +16,11 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'type': 'string'}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'type': 'string'}
 
     pass
 
@@ -35,9 +35,9 @@ class ErrorList:
 class GetTransactionResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/TransactionStatus', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'ref': '#/components/schemas/TransactionStatus'}
     pass
 
 
@@ -45,12 +45,12 @@ class GetTransactionResponse:
 class Transaction:
 
     status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]]
-    # {'enum': ['Failure', 'Processing', 'Success'], 'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'enum': ['Failure', 'Processing', 'Success'], 'type': 'string'}
     transaction_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'type': 'string'}
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
@@ -58,7 +58,7 @@ class Transaction:
 class TransactionStatus:
 
     transaction_status: dict[str, Any]
-    # {'ref': '#/components/schemas/Transaction', 'generator': <__mp_main__.Generator object at 0x0000020CF228B700>}
+    # {'generator': <__mp_main__.Generator object at 0x000001D278BAB310>, 'ref': '#/components/schemas/Transaction'}
     pass
 
 

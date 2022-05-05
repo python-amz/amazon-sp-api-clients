@@ -163,9 +163,7 @@ class Generator:
     def get_type_hint_of_schema(self, schema: Schema):
         # recursively get inline type hint of a schema
         schema = self.resolve_ref(schema) if isinstance(schema, Reference) else schema
-        if schema is None:
-            return 'Any'
-        if schema.type is None and schema.items is None:
+        if schema is None or (schema.type is None and schema.items is None):
             return 'Any'
         base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
         child = self.get_type_hint_of_schema(schema.items) if schema.type in ('object', 'array') else 'Any'

@@ -18,10 +18,10 @@ from typing import Any, List, Dict, Union, Literal
 class CreateDestinationRequest:
 
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
 
     resource_specification: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/DestinationResourceSpecification'}
+    # {'ref': '#/components/schemas/DestinationResourceSpecification', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -29,9 +29,9 @@ class CreateDestinationRequest:
 class CreateDestinationResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Destination'}
+    # {'ref': '#/components/schemas/Destination', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -39,9 +39,9 @@ class CreateDestinationResponse:
 class CreateSubscriptionRequest:
 
     destination_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     payload_version: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
 
     pass
 
@@ -50,9 +50,9 @@ class CreateSubscriptionRequest:
 class CreateSubscriptionResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Subscription'}
+    # {'ref': '#/components/schemas/Subscription', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -60,7 +60,7 @@ class CreateSubscriptionResponse:
 class DeleteDestinationResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -68,7 +68,7 @@ class DeleteDestinationResponse:
 class DeleteSubscriptionByIdResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -76,12 +76,12 @@ class DeleteSubscriptionByIdResponse:
 class Destination:
 
     destination_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'maxLength': 256}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string', 'maxLength': 256}
 
     resource: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/DestinationResource'}
+    # {'ref': '#/components/schemas/DestinationResource', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -95,9 +95,9 @@ class DestinationList:
 class DestinationResource:
 
     event_bridge: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/EventBridgeResource'}
+    # {'ref': '#/components/schemas/EventBridgeResource', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     sqs: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/SqsResource'}
+    # {'ref': '#/components/schemas/SqsResource', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -105,9 +105,9 @@ class DestinationResource:
 class DestinationResourceSpecification:
 
     event_bridge: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/EventBridgeResourceSpecification'}
+    # {'ref': '#/components/schemas/EventBridgeResourceSpecification', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     sqs: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/SqsResource'}
+    # {'ref': '#/components/schemas/SqsResource', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -115,11 +115,11 @@ class DestinationResourceSpecification:
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
 
     pass
 
@@ -134,11 +134,11 @@ class ErrorList:
 class EventBridgeResource:
 
     account_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     name: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'maxLength': 256}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string', 'maxLength': 256}
     region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
 
     pass
 
@@ -147,9 +147,9 @@ class EventBridgeResource:
 class EventBridgeResourceSpecification:
 
     account_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     region: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
 
     pass
 
@@ -158,9 +158,9 @@ class EventBridgeResourceSpecification:
 class GetDestinationResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Destination'}
+    # {'ref': '#/components/schemas/Destination', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -168,9 +168,9 @@ class GetDestinationResponse:
 class GetDestinationsResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     payload: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/DestinationList'}
+    # {'ref': '#/components/schemas/DestinationList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -178,9 +178,9 @@ class GetDestinationsResponse:
 class GetSubscriptionByIdResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Subscription'}
+    # {'ref': '#/components/schemas/Subscription', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -188,9 +188,9 @@ class GetSubscriptionByIdResponse:
 class GetSubscriptionResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     payload: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'ref': '#/components/schemas/Subscription'}
+    # {'ref': '#/components/schemas/Subscription', 'generator': <__mp_main__.Generator object at 0x0000019021EBB310>}
     pass
 
 
@@ -198,7 +198,7 @@ class GetSubscriptionResponse:
 class SqsResource:
 
     arn: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>, 'maxLength': 1000, 'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+'}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+', 'type': 'string', 'maxLength': 1000}
 
     pass
 
@@ -207,11 +207,11 @@ class SqsResource:
 class Subscription:
 
     destination_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     payload_version: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
     subscription_id: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001B93797B700>}
+    # {'generator': <__mp_main__.Generator object at 0x0000019021EBB310>, 'type': 'string'}
 
     pass
 

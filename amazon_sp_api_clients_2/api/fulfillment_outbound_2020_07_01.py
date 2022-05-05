@@ -22,25 +22,25 @@ class AdditionalLocationInfo:
 class Address:
 
     address_line1: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     address_line2: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     address_line3: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     city: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     country_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     district_or_county: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     phone: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     postal_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     state_or_region: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -49,16 +49,16 @@ class Address:
 class CODSettings:
 
     is_cod_required: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'boolean'}
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     cod_charge: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     cod_charge_tax: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     shipping_charge: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     shipping_charge_tax: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     pass
 
 
@@ -66,7 +66,7 @@ class CODSettings:
 class CancelFulfillmentOrderResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
@@ -74,24 +74,24 @@ class CancelFulfillmentOrderResponse:
 class CreateFulfillmentOrderItem:
 
     displayable_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 250}
+    # {'type': 'string', 'maxLength': 250, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fulfillment_network_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     gift_message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 512}
+    # {'type': 'string', 'maxLength': 512, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 50}
+    # {'type': 'string', 'maxLength': 50, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 50}
+    # {'type': 'string', 'maxLength': 50, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     per_unit_declared_value: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     per_unit_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     per_unit_tax: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     pass
 
 
@@ -105,38 +105,38 @@ class CreateFulfillmentOrderItemList:
 class CreateFulfillmentOrderRequest:
 
     displayable_order_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 1000}
+    # {'type': 'string', 'maxLength': 1000, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     displayable_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 40}
+    # {'type': 'string', 'maxLength': 40, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     feature_constraints: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FeatureSettings')}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Reference(ref='#/components/schemas/FeatureSettings')}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 40}
+    # {'type': 'string', 'maxLength': 40, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     ship_from_country_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     cod_settings: dict[str, Any]
-    # {'ref': '#/components/schemas/CODSettings', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/CODSettings'}
     delivery_window: dict[str, Any]
-    # {'ref': '#/components/schemas/DeliveryWindow', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/DeliveryWindow'}
     destination_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Address'}
     displayable_order_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     fulfillment_action: Union[Literal["Ship"], Literal["Hold"]]
-    # {'ref': '#/components/schemas/FulfillmentAction', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentAction'}
     fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]]
-    # {'ref': '#/components/schemas/FulfillmentPolicy', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentPolicy'}
     items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/CreateFulfillmentOrderItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/CreateFulfillmentOrderItemList'}
     notification_emails: list[str]
-    # {'ref': '#/components/schemas/NotificationEmailList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/NotificationEmailList'}
     shipping_speed_category: Union[
         Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
     ]
-    # {'ref': '#/components/schemas/ShippingSpeedCategory', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ShippingSpeedCategory'}
     pass
 
 
@@ -144,7 +144,7 @@ class CreateFulfillmentOrderRequest:
 class CreateFulfillmentOrderResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
@@ -152,7 +152,7 @@ class CreateFulfillmentOrderResponse:
 class CreateFulfillmentReturnRequest:
 
     items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/CreateReturnItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/CreateReturnItemList'}
     pass
 
 
@@ -160,9 +160,9 @@ class CreateFulfillmentReturnRequest:
 class CreateFulfillmentReturnResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/CreateFulfillmentReturnResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/CreateFulfillmentReturnResult'}
     pass
 
 
@@ -170,11 +170,11 @@ class CreateFulfillmentReturnResponse:
 class CreateFulfillmentReturnResult:
 
     invalid_return_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/InvalidReturnItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/InvalidReturnItemList'}
     return_authorizations: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ReturnAuthorizationList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ReturnAuthorizationList'}
     return_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ReturnItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ReturnItemList'}
     pass
 
 
@@ -182,15 +182,15 @@ class CreateFulfillmentReturnResult:
 class CreateReturnItem:
 
     amazon_shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     return_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 1000}
+    # {'type': 'string', 'maxLength': 1000, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     return_reason_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_return_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 80}
+    # {'type': 'string', 'maxLength': 80, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -217,9 +217,9 @@ class Decimal:
 class DeliveryWindow:
 
     end_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     start_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     pass
 
 
@@ -233,11 +233,11 @@ class DeliveryWindowList:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -258,11 +258,11 @@ class EventCode:
 class Feature:
 
     feature_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     feature_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_eligible: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'boolean'}
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -271,9 +271,9 @@ class Feature:
 class FeatureSettings:
 
     feature_fulfillment_policy: Union[Literal["Required"], Literal["NotRequired"]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'enum': ['Required', 'NotRequired']}
+    # {'type': 'string', 'enum': ['Required', 'NotRequired'], 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     feature_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -282,15 +282,15 @@ class FeatureSettings:
 class FeatureSku:
 
     asin: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fn_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     overlapping_skus: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     sku_count: Union[float, int]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'number'}
+    # {'type': 'number', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -310,10 +310,10 @@ class Fee:
         Literal["FBATransportationFee"],
         Literal["FBAFulfillmentCODFee"],
     ]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'enum': ['FBAPerUnitFulfillmentFee', 'FBAPerOrderFulfillmentFee', 'FBATransportationFee', 'FBAFulfillmentCODFee']}
+    # {'type': 'string', 'enum': ['FBAPerUnitFulfillmentFee', 'FBAPerOrderFulfillmentFee', 'FBATransportationFee', 'FBAFulfillmentCODFee'], 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     amount: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     pass
 
 
@@ -333,26 +333,26 @@ class FulfillmentAction:
 class FulfillmentOrder:
 
     displayable_order_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     displayable_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     feature_constraints: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FeatureSettings')}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Reference(ref='#/components/schemas/FeatureSettings')}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     cod_settings: dict[str, Any]
-    # {'ref': '#/components/schemas/CODSettings', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/CODSettings'}
     delivery_window: dict[str, Any]
-    # {'ref': '#/components/schemas/DeliveryWindow', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/DeliveryWindow'}
     destination_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Address'}
     displayable_order_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     fulfillment_action: Union[Literal["Ship"], Literal["Hold"]]
-    # {'ref': '#/components/schemas/FulfillmentAction', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentAction'}
     fulfillment_order_status: Union[
         Literal["New"],
         Literal["Received"],
@@ -364,19 +364,19 @@ class FulfillmentOrder:
         Literal["Unfulfillable"],
         Literal["Invalid"],
     ]
-    # {'ref': '#/components/schemas/FulfillmentOrderStatus', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentOrderStatus'}
     fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]]
-    # {'ref': '#/components/schemas/FulfillmentPolicy', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentPolicy'}
     notification_emails: list[str]
-    # {'ref': '#/components/schemas/NotificationEmailList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/NotificationEmailList'}
     received_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     shipping_speed_category: Union[
         Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
     ]
-    # {'ref': '#/components/schemas/ShippingSpeedCategory', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ShippingSpeedCategory'}
     status_updated_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     pass
 
 
@@ -384,34 +384,34 @@ class FulfillmentOrder:
 class FulfillmentOrderItem:
 
     displayable_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fulfillment_network_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     gift_message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     order_item_disposition: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     cancelled_quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     estimated_arrival_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     estimated_ship_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     per_unit_declared_value: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     per_unit_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     per_unit_tax: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     unfulfillable_quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     pass
 
 
@@ -437,30 +437,30 @@ class FulfillmentPolicy:
 class FulfillmentPreview:
 
     feature_constraints: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FeatureSettings')}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Reference(ref='#/components/schemas/FeatureSettings')}
     is_codcapable: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'boolean'}
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     is_fulfillable: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'boolean'}
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     estimated_fees: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FeeList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FeeList'}
     estimated_shipping_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Weight'}
     fulfillment_preview_shipments: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FulfillmentPreviewShipmentList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentPreviewShipmentList'}
     order_unfulfillable_reasons: list[str]
-    # {'ref': '#/components/schemas/StringList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/StringList'}
     scheduled_delivery_info: dict[str, Any]
-    # {'ref': '#/components/schemas/ScheduledDeliveryInfo', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ScheduledDeliveryInfo'}
     shipping_speed_category: Union[
         Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
     ]
-    # {'ref': '#/components/schemas/ShippingSpeedCategory', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ShippingSpeedCategory'}
     unfulfillable_preview_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/UnfulfillablePreviewItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/UnfulfillablePreviewItemList'}
     pass
 
 
@@ -468,16 +468,16 @@ class FulfillmentPreview:
 class FulfillmentPreviewItem:
 
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     shipping_weight_calculation_method: Union[Literal["Package"], Literal["Dimensional"]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'enum': ['Package', 'Dimensional']}
+    # {'type': 'string', 'enum': ['Package', 'Dimensional'], 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     estimated_shipping_weight: dict[str, Any]
-    # {'ref': '#/components/schemas/Weight', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Weight'}
     quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     pass
 
 
@@ -497,18 +497,18 @@ class FulfillmentPreviewList:
 class FulfillmentPreviewShipment:
 
     shipping_notes: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
 
     earliest_arrival_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     earliest_ship_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     fulfillment_preview_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FulfillmentPreviewItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentPreviewItemList'}
     latest_arrival_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     latest_ship_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     pass
 
 
@@ -528,24 +528,24 @@ class FulfillmentReturnItemStatus:
 class FulfillmentShipment:
 
     amazon_shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fulfillment_center_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fulfillment_shipment_status: Union[
         Literal["PENDING"], Literal["SHIPPED"], Literal["CANCELLED_BY_FULFILLER"], Literal["CANCELLED_BY_SELLER"]
     ]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'enum': ['PENDING', 'SHIPPED', 'CANCELLED_BY_FULFILLER', 'CANCELLED_BY_SELLER']}
+    # {'type': 'string', 'enum': ['PENDING', 'SHIPPED', 'CANCELLED_BY_FULFILLER', 'CANCELLED_BY_SELLER'], 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     shipping_notes: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
 
     estimated_arrival_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     fulfillment_shipment_item: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FulfillmentShipmentItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentShipmentItemList'}
     fulfillment_shipment_package: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FulfillmentShipmentPackageList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentShipmentPackageList'}
     shipping_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     pass
 
 
@@ -553,16 +553,16 @@ class FulfillmentShipment:
 class FulfillmentShipmentItem:
 
     package_number: int
-    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'integer'}
+    # {'schema_format': 'int32', 'type': 'integer', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     serial_number: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     pass
 
 
@@ -582,14 +582,14 @@ class FulfillmentShipmentList:
 class FulfillmentShipmentPackage:
 
     carrier_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     package_number: int
-    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'integer'}
+    # {'schema_format': 'int32', 'type': 'integer', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     tracking_number: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     estimated_arrival_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     pass
 
 
@@ -603,9 +603,9 @@ class FulfillmentShipmentPackageList:
 class GetFeatureInventoryResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetFeatureInventoryResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/GetFeatureInventoryResult'}
     pass
 
 
@@ -613,13 +613,13 @@ class GetFeatureInventoryResponse:
 class GetFeatureInventoryResult:
 
     feature_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     feature_skus: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FeatureSku')}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Reference(ref='#/components/schemas/FeatureSku')}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     next_token: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -628,9 +628,9 @@ class GetFeatureInventoryResult:
 class GetFeatureSkuResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetFeatureSkuResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/GetFeatureSkuResult'}
     pass
 
 
@@ -638,16 +638,16 @@ class GetFeatureSkuResponse:
 class GetFeatureSkuResult:
 
     feature_name: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     ineligible_reasons: list[str]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}
     is_eligible: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'boolean'}
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     sku_info: dict[str, Any]
-    # {'ref': '#/components/schemas/FeatureSku', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FeatureSku'}
     pass
 
 
@@ -655,9 +655,9 @@ class GetFeatureSkuResult:
 class GetFeaturesResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetFeaturesResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/GetFeaturesResult'}
     pass
 
 
@@ -665,7 +665,7 @@ class GetFeaturesResponse:
 class GetFeaturesResult:
 
     features: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/Features', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Features'}
     pass
 
 
@@ -673,9 +673,9 @@ class GetFeaturesResult:
 class GetFulfillmentOrderResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetFulfillmentOrderResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/GetFulfillmentOrderResult'}
     pass
 
 
@@ -683,15 +683,15 @@ class GetFulfillmentOrderResponse:
 class GetFulfillmentOrderResult:
 
     fulfillment_order: dict[str, Any]
-    # {'ref': '#/components/schemas/FulfillmentOrder', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentOrder'}
     fulfillment_order_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FulfillmentOrderItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentOrderItemList'}
     fulfillment_shipments: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FulfillmentShipmentList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentShipmentList'}
     return_authorizations: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ReturnAuthorizationList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ReturnAuthorizationList'}
     return_items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ReturnItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ReturnItemList'}
     pass
 
 
@@ -699,14 +699,14 @@ class GetFulfillmentOrderResult:
 class GetFulfillmentPreviewItem:
 
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 50}
+    # {'type': 'string', 'maxLength': 50, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 50}
+    # {'type': 'string', 'maxLength': 50, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     per_unit_declared_value: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     pass
 
 
@@ -720,22 +720,22 @@ class GetFulfillmentPreviewItemList:
 class GetFulfillmentPreviewRequest:
 
     feature_constraints: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FeatureSettings')}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Reference(ref='#/components/schemas/FeatureSettings')}
     include_codfulfillment_preview: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'boolean'}
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     include_delivery_windows: bool
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'boolean'}
+    # {'type': 'boolean', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Address'}
     items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/GetFulfillmentPreviewItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/GetFulfillmentPreviewItemList'}
     shipping_speed_categories: list[
         Union[Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]]
     ]
-    # {'ref': '#/components/schemas/ShippingSpeedCategoryList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ShippingSpeedCategoryList'}
     pass
 
 
@@ -743,9 +743,9 @@ class GetFulfillmentPreviewRequest:
 class GetFulfillmentPreviewResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/GetFulfillmentPreviewResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/GetFulfillmentPreviewResult'}
     pass
 
 
@@ -753,7 +753,7 @@ class GetFulfillmentPreviewResponse:
 class GetFulfillmentPreviewResult:
 
     fulfillment_previews: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/FulfillmentPreviewList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentPreviewList'}
     pass
 
 
@@ -761,9 +761,9 @@ class GetFulfillmentPreviewResult:
 class GetPackageTrackingDetailsResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/PackageTrackingDetails', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/PackageTrackingDetails'}
     pass
 
 
@@ -771,7 +771,7 @@ class GetPackageTrackingDetailsResponse:
 class InvalidItemReason:
 
     description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     invalid_item_reason_code: Union[
         Literal["InvalidValues"],
@@ -779,7 +779,7 @@ class InvalidItemReason:
         Literal["NoCompletedShipItems"],
         Literal["NoReturnableQuantity"],
     ]
-    # {'ref': '#/components/schemas/InvalidItemReasonCode', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/InvalidItemReasonCode'}
     pass
 
 
@@ -793,12 +793,12 @@ class InvalidItemReasonCode:
 class InvalidReturnItem:
 
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_return_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     invalid_item_reason: dict[str, Any]
-    # {'ref': '#/components/schemas/InvalidItemReason', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/InvalidItemReason'}
     pass
 
 
@@ -812,9 +812,9 @@ class InvalidReturnItemList:
 class ListAllFulfillmentOrdersResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/ListAllFulfillmentOrdersResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ListAllFulfillmentOrdersResult'}
     pass
 
 
@@ -822,9 +822,9 @@ class ListAllFulfillmentOrdersResponse:
 class ListAllFulfillmentOrdersResult:
 
     fulfillment_orders: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FulfillmentOrder')}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Reference(ref='#/components/schemas/FulfillmentOrder')}
     next_token: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -833,9 +833,9 @@ class ListAllFulfillmentOrdersResult:
 class ListReturnReasonCodesResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     payload: dict[str, Any]
-    # {'ref': '#/components/schemas/ListReturnReasonCodesResult', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ListReturnReasonCodesResult'}
     pass
 
 
@@ -843,7 +843,7 @@ class ListReturnReasonCodesResponse:
 class ListReturnReasonCodesResult:
 
     reason_code_details: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ReasonCodeDetailsList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ReasonCodeDetailsList'}
     pass
 
 
@@ -851,10 +851,10 @@ class ListReturnReasonCodesResult:
 class Money:
 
     currency_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     value: str
-    # {'ref': '#/components/schemas/Decimal', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Decimal'}
     pass
 
 
@@ -868,21 +868,21 @@ class NotificationEmailList:
 class PackageTrackingDetails:
 
     carrier_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     carrier_phone_number: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     carrier_url: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     current_status_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     customer_tracking_link: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     package_number: int
-    # {'schema_format': 'int32', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'integer'}
+    # {'schema_format': 'int32', 'type': 'integer', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     signed_for_by: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     tracking_number: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     additional_location_info: Union[
         Literal["AS_INSTRUCTED"],
@@ -912,7 +912,7 @@ class PackageTrackingDetails:
         Literal["SECURE_LOCATION"],
         Literal["SIDE_DOOR"],
     ]
-    # {'ref': '#/components/schemas/AdditionalLocationInfo', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/AdditionalLocationInfo'}
     current_status: Union[
         Literal["IN_TRANSIT"],
         Literal["DELIVERED"],
@@ -933,15 +933,15 @@ class PackageTrackingDetails:
         Literal["REFUND_ISSUED"],
         Literal["RETURN_RECEIVED_IN_FC"],
     ]
-    # {'ref': '#/components/schemas/CurrentStatus', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/CurrentStatus'}
     estimated_arrival_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     ship_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     ship_to_address: dict[str, Any]
-    # {'ref': '#/components/schemas/TrackingAddress', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/TrackingAddress'}
     tracking_events: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/TrackingEventList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/TrackingEventList'}
     pass
 
 
@@ -955,11 +955,11 @@ class Quantity:
 class ReasonCodeDetails:
 
     description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     return_reason_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     translated_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -974,16 +974,16 @@ class ReasonCodeDetailsList:
 class ReturnAuthorization:
 
     amazon_rma_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fulfillment_center_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     return_authorization_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     rma_page_url: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     return_to_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Address'}
     pass
 
 
@@ -997,21 +997,21 @@ class ReturnAuthorizationList:
 class ReturnItem:
 
     amazon_return_reason_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     amazon_shipment_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fulfillment_center_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     return_authorization_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     return_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_return_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_return_reason_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     return_received_condition: Union[
         Literal["Sellable"],
@@ -1020,11 +1020,11 @@ class ReturnItem:
         Literal["CarrierDamaged"],
         Literal["FulfillerDamaged"],
     ]
-    # {'ref': '#/components/schemas/ReturnItemDisposition', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ReturnItemDisposition'}
     status: Union[Literal["New"], Literal["Processed"]]
-    # {'ref': '#/components/schemas/FulfillmentReturnItemStatus', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentReturnItemStatus'}
     status_changed_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     pass
 
 
@@ -1044,10 +1044,10 @@ class ReturnItemList:
 class ScheduledDeliveryInfo:
 
     delivery_time_zone: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     delivery_windows: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/DeliveryWindowList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/DeliveryWindowList'}
     pass
 
 
@@ -1079,11 +1079,11 @@ class Timestamp:
 class TrackingAddress:
 
     city: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 150}
+    # {'type': 'string', 'maxLength': 150, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     country: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 6}
+    # {'type': 'string', 'maxLength': 6, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     state: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 150}
+    # {'type': 'string', 'maxLength': 150, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 
@@ -1092,10 +1092,10 @@ class TrackingAddress:
 class TrackingEvent:
 
     event_description: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     event_address: dict[str, Any]
-    # {'ref': '#/components/schemas/TrackingAddress', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/TrackingAddress'}
     event_code: Union[
         Literal["EVENT_101"],
         Literal["EVENT_102"],
@@ -1131,9 +1131,9 @@ class TrackingEvent:
         Literal["EVENT_418"],
         Literal["EVENT_419"],
     ]
-    # {'ref': '#/components/schemas/EventCode', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/EventCode'}
     event_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     pass
 
 
@@ -1147,14 +1147,14 @@ class TrackingEventList:
 class UnfulfillablePreviewItem:
 
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 50}
+    # {'type': 'string', 'maxLength': 50, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 50}
+    # {'type': 'string', 'maxLength': 50, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     item_unfulfillable_reasons: list[str]
-    # {'ref': '#/components/schemas/StringList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/StringList'}
     quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     pass
 
 
@@ -1168,26 +1168,26 @@ class UnfulfillablePreviewItemList:
 class UpdateFulfillmentOrderItem:
 
     displayable_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 250}
+    # {'type': 'string', 'maxLength': 250, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     fulfillment_network_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     gift_message: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 512}
+    # {'type': 'string', 'maxLength': 512, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     order_item_disposition: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_fulfillment_order_item_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 50}
+    # {'type': 'string', 'maxLength': 50, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     seller_sku: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     per_unit_declared_value: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     per_unit_price: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     per_unit_tax: dict[str, Any]
-    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Money'}
     quantity: int
-    # {'ref': '#/components/schemas/Quantity', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Quantity'}
     pass
 
 
@@ -1201,32 +1201,32 @@ class UpdateFulfillmentOrderItemList:
 class UpdateFulfillmentOrderRequest:
 
     displayable_order_comment: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 1000}
+    # {'type': 'string', 'maxLength': 1000, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     displayable_order_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'maxLength': 40}
+    # {'type': 'string', 'maxLength': 40, 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     feature_constraints: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'array', 'items': Reference(ref='#/components/schemas/FeatureSettings')}
+    # {'type': 'array', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'items': Reference(ref='#/components/schemas/FeatureSettings')}
     marketplace_id: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     ship_from_country_code: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     destination_address: dict[str, Any]
-    # {'ref': '#/components/schemas/Address', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Address'}
     displayable_order_date: str
-    # {'ref': '#/components/schemas/Timestamp', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/Timestamp'}
     fulfillment_action: Union[Literal["Ship"], Literal["Hold"]]
-    # {'ref': '#/components/schemas/FulfillmentAction', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentAction'}
     fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]]
-    # {'ref': '#/components/schemas/FulfillmentPolicy', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/FulfillmentPolicy'}
     items: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/UpdateFulfillmentOrderItemList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/UpdateFulfillmentOrderItemList'}
     notification_emails: list[str]
-    # {'ref': '#/components/schemas/NotificationEmailList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/NotificationEmailList'}
     shipping_speed_category: Union[
         Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
     ]
-    # {'ref': '#/components/schemas/ShippingSpeedCategory', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ShippingSpeedCategory'}
     pass
 
 
@@ -1234,7 +1234,7 @@ class UpdateFulfillmentOrderRequest:
 class UpdateFulfillmentOrderResponse:
 
     errors: list[dict[str, Any]]
-    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>}
+    # {'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>, 'ref': '#/components/schemas/ErrorList'}
     pass
 
 
@@ -1242,9 +1242,9 @@ class UpdateFulfillmentOrderResponse:
 class Weight:
 
     unit: Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]]
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string', 'enum': ['KG', 'KILOGRAMS', 'LB', 'POUNDS']}
+    # {'type': 'string', 'enum': ['KG', 'KILOGRAMS', 'LB', 'POUNDS'], 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
     value: str
-    # {'generator': <__mp_main__.Generator object at 0x0000013BEBEBB310>, 'type': 'string'}
+    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x00000181BEC6B310>}
 
     pass
 

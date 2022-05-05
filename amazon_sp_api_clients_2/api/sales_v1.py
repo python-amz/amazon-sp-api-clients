@@ -22,11 +22,11 @@ class Decimal:
 class Error:
 
     code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
     details: str
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
     message: str
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
 
     pass
 
@@ -41,9 +41,9 @@ class ErrorList:
 class GetOrderMetricsResponse:
 
     errors: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'ref': '#/components/schemas/ErrorList'}
+    # {'ref': '#/components/schemas/ErrorList', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
     payload: list[dict[str, Any]]
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'ref': '#/components/schemas/OrderMetricsList'}
+    # {'ref': '#/components/schemas/OrderMetricsList', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
     pass
 
 
@@ -51,10 +51,10 @@ class GetOrderMetricsResponse:
 class Money:
 
     currency_code: str
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
 
     amount: str
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'ref': '#/components/schemas/Decimal'}
+    # {'ref': '#/components/schemas/Decimal', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
     pass
 
 
@@ -62,18 +62,18 @@ class Money:
 class OrderMetricsInterval:
 
     interval: str
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'string'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'string'}
     order_count: int
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'integer'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'integer'}
     order_item_count: int
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'integer'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'integer'}
     unit_count: int
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'type': 'integer'}
+    # {'generator': <__mp_main__.Generator object at 0x000001B2839AB700>, 'type': 'integer'}
 
     average_unit_price: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'ref': '#/components/schemas/Money'}
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
     total_sales: dict[str, Any]
-    # {'generator': <__mp_main__.Generator object at 0x000002166D12B310>, 'ref': '#/components/schemas/Money'}
+    # {'ref': '#/components/schemas/Money', 'generator': <__mp_main__.Generator object at 0x000001B2839AB700>}
     pass
 
 

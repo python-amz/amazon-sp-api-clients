@@ -16,11 +16,11 @@ from typing import Any, List, Dict, Union, Literal
 class Error:
 
     code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
     details: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
     message: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
 
     pass
 
@@ -29,7 +29,7 @@ class Error:
 class ErrorList:
 
     errors: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
 
     pass
 
@@ -43,10 +43,10 @@ class FeeLineItem:
         Literal["FBAPerUnitFulfillmentFee"],
         Literal["Commission"],
     ]
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>, 'enum': ['FBAWeightBasedFee', 'FBAPerOrderFulfillmentFee', 'FBAPerUnitFulfillmentFee', 'Commission']}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string', 'enum': ['FBAWeightBasedFee', 'FBAPerOrderFulfillmentFee', 'FBAPerUnitFulfillmentFee', 'Commission']}
 
     fee_charge: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 
@@ -54,16 +54,16 @@ class FeeLineItem:
 class FeePreview:
 
     asin: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
     errors: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'items': Reference(ref='#/components/schemas/Error'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
     fee_breakdown: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/FeeLineItem'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'items': Reference(ref='#/components/schemas/FeeLineItem'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
 
     price: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
     total_fees: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 
@@ -71,10 +71,10 @@ class FeePreview:
 class Item:
 
     asin: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
 
     price: dict[str, Any]
-    # {'ref': '#/components/schemas/MoneyType', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MoneyType'}
     pass
 
 
@@ -88,9 +88,9 @@ class MarketplaceId:
 class MoneyType:
 
     amount: Union[float, int]
-    # {'type': 'number', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'number'}
     currency_code: str
-    # {'type': 'string', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'string'}
 
     pass
 
@@ -105,11 +105,11 @@ class SellerSKU:
 class SmallAndLightEligibility:
 
     marketplace_id: str
-    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MarketplaceId'}
     seller_sku: str
-    # {'ref': '#/components/schemas/SellerSKU', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SellerSKU'}
     status: Union[Literal["ELIGIBLE"], Literal["NOT_ELIGIBLE"]]
-    # {'ref': '#/components/schemas/SmallAndLightEligibilityStatus', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SmallAndLightEligibilityStatus'}
     pass
 
 
@@ -123,11 +123,11 @@ class SmallAndLightEligibilityStatus:
 class SmallAndLightEnrollment:
 
     marketplace_id: str
-    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MarketplaceId'}
     seller_sku: str
-    # {'ref': '#/components/schemas/SellerSKU', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SellerSKU'}
     status: Union[Literal["ENROLLED"], Literal["NOT_ENROLLED"]]
-    # {'ref': '#/components/schemas/SmallAndLightEnrollmentStatus', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/SmallAndLightEnrollmentStatus'}
     pass
 
 
@@ -141,10 +141,10 @@ class SmallAndLightEnrollmentStatus:
 class SmallAndLightFeePreviewRequest:
 
     items: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/Item'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>, 'maxItems': 25}
+    # {'items': Reference(ref='#/components/schemas/Item'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'maxItems': 25, 'type': 'array'}
 
     marketplace_id: str
-    # {'ref': '#/components/schemas/MarketplaceId', 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'ref': '#/components/schemas/MarketplaceId'}
     pass
 
 
@@ -152,7 +152,7 @@ class SmallAndLightFeePreviewRequest:
 class SmallAndLightFeePreviews:
 
     data: list[dict[str, Any]]
-    # {'type': 'array', 'items': Reference(ref='#/components/schemas/FeePreview'), 'generator': <__mp_main__.Generator object at 0x000001E78613B310>}
+    # {'items': Reference(ref='#/components/schemas/FeePreview'), 'generator': <__mp_main__.Generator object at 0x0000028D7324B310>, 'type': 'array'}
 
     pass
 
