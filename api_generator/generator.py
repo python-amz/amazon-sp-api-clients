@@ -158,6 +158,9 @@ class Generator:
             [p.set_parent(self) for p in parsed_parameters]
             operation.parsed_parameters = parsed_parameters
 
+            # Ensure that post parameters do not conflict with path and query parameters
+            assert len(operation.parsed_parameters) == len({p.name for p in operation.parsed_parameters})
+
         # Currently, there is no parameter in header or cookie
         assert all(p.param_in in ('query', 'path', 'body') for o in operations for p in o.parsed_parameters)
         return operations
