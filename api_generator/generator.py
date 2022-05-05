@@ -89,22 +89,16 @@ class Generator:
         return self.data.components
 
     def get_type_hint_of_schema(self, schema: Schema):
-        if isinstance(schema, Reference):
-            schema = self.resolve_ref(schema)
-        if schema is None:
-            return 'Any'
-        if schema.type is None:
+        # recursively get inline type hint of a schema
+        schema = self.resolve_ref(schema) if isinstance(schema, Reference) else schema
+        if schema is None or schema.type is None:
             return 'Any'
         base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
-        if schema.type in ('object', 'array'):
-            child = self.get_type_hint_of_schema(schema.items)
-        else:
-            child = ''
+        child = self.get_type_hint_of_schema(schema.items) if schema.type in ('object', 'array') else 'Any'
         type_convert = {**base_type_convert, 'array': f'list[{child}]', 'object': f'dict[str, {child}]'}
         type_hint = type_convert[schema.type]
-        if type_hint == 'str' and schema.enum is not None:
-            type_hint = ', '.join(f'Literal["{v}"]' for v in schema.enum)
-            type_hint = f'Union[{type_hint}]'
+        choices = ', '.join(f'Literal["{v}"]' for v in schema.enum) if schema.enum is not None else None
+        type_hint = f'Union[{choices}]' if type_hint == 'str' and choices is not None else type_hint
         return type_hint
 
     @cached_property
