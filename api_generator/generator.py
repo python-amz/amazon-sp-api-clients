@@ -9,7 +9,7 @@ import django.template
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic import Operation, Reference
+from openapi_schema_pydantic import Operation, Reference, Parameter
 from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI
 
 settings.configure(TEMPLATES=[{
@@ -19,9 +19,16 @@ settings.configure(TEMPLATES=[{
 django.setup()
 
 
+class ParsedParameter(Parameter):
+    @property
+    def variable_name(self):
+        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name)
+
+
 class OperationWithName(Operation):
     path: str
     method: str
+    parsed_parameters: list[ParsedParameter] = []
 
     @property
     def method_name(self):
@@ -62,6 +69,7 @@ class Generator:
                       for method in path_item.__fields_set__]
         for operation in [o for o in operations if o.parameters is not None]:
             if not any(isinstance(p, Reference) for p in operation.parameters):
+                operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in operation.parameters]
                 continue
             parameters = operation.parameters
             result = []
@@ -74,14 +82,15 @@ class Generator:
                     raise ValueError(ref)
                 name = match.group(1)
                 result.append(self.data.components.parameters[name])
-            operation.parameters = parameters
+            operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in result]
         return operations
 
     @cached_property
     def content(self):
         content = render(RequestFactory(), 'api.html', {'data': self}).content.decode('utf-8')
         for _ in range(5):
-            content = html.unescape(re.sub(r'\n+', '\n', content))
+            # content = re.sub(r'\n+', '\n', content)
+            content = html.unescape(content)
             try:
                 content = black.format_str(content, mode=black.Mode(line_length=120))
             except black.parsing.InvalidInput:

@@ -10,9 +10,16 @@ from ..utils.base_client import BaseClient
 class {{ data.class_name }}Client(BaseClient):
 {% for operation in data.operations %}
     def {{ operation.method_name }}(self,
-        {% for param in operation.parameters %}
-            # {{ param }}
+        {% for param in operation.parsed_parameters %}
+            {{ param.variable_name }}{% if not param.required %}=None{% endif %},
         {% endfor %}
     ):
+        """
+{{ operation.description }}
+
+Args:
+    {% for param in operation.parsed_parameters %}{{ param.variable_name }}: {{ param.description }}
+    {% endfor %}
+"""
         url = "{{ operation.path }}"
 {% endfor %}
