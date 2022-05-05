@@ -11,14 +11,35 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentOrders20211228Client(BaseClient):
+    def submit_acknowledgement(
+        self,
+    ):
+        """
+        Submits acknowledgements for one or more purchase orders.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+
+        Args:
+        """
+        url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
+        values = ()
+
+    _submit_acknowledgement_params = ()  # name, param in, required
+
     def get_orders(
         self,
         created_after: str,
         created_before: str,
         ship_from_party_id: str = None,
-        status: str = None,
+        status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = None,
         limit: int = None,
-        sort_order: str = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
         include_details: str = None,
     ):
@@ -88,24 +109,3 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         values = (purchase_order_number,)
 
     _get_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
-
-    def submit_acknowledgement(
-        self,
-    ):
-        """
-        Submits acknowledgements for one or more purchase orders.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 10 | 10 |
-
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
-
-        Args:
-        """
-        url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
-        values = ()
-
-    _submit_acknowledgement_params = ()  # name, param in, required

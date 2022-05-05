@@ -11,6 +11,27 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class MerchantFulfillmentV0Client(BaseClient):
+    def get_additional_seller_inputs(
+        self,
+    ):
+        """
+        Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/mfn/v0/additionalSellerInputs"
+        values = ()
+
+    _get_additional_seller_inputs_params = ()  # name, param in, required
+
     def get_eligible_shipment_services_old(
         self,
     ):
@@ -52,6 +73,48 @@ class MerchantFulfillmentV0Client(BaseClient):
         values = ()
 
     _get_eligible_shipment_services_params = ()  # name, param in, required
+
+    def get_additional_seller_inputs_old(
+        self,
+    ):
+        """
+        Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/mfn/v0/sellerInputs"
+        values = ()
+
+    _get_additional_seller_inputs_old_params = ()  # name, param in, required
+
+    def create_shipment(
+        self,
+    ):
+        """
+        Create a shipment with the information provided.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 1 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/mfn/v0/shipments"
+        values = ()
+
+    _create_shipment_params = ()  # name, param in, required
 
     def cancel_shipment(
         self,
@@ -121,66 +184,3 @@ class MerchantFulfillmentV0Client(BaseClient):
         values = (shipment_id,)
 
     _cancel_shipment_old_params = (("shipmentId", "path", True),)  # name, param in, required
-
-    def create_shipment(
-        self,
-    ):
-        """
-        Create a shipment with the information provided.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 1 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/mfn/v0/shipments"
-        values = ()
-
-    _create_shipment_params = ()  # name, param in, required
-
-    def get_additional_seller_inputs_old(
-        self,
-    ):
-        """
-        Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 1 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/mfn/v0/sellerInputs"
-        values = ()
-
-    _get_additional_seller_inputs_old_params = ()  # name, param in, required
-
-    def get_additional_seller_inputs(
-        self,
-    ):
-        """
-        Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 1 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/mfn/v0/additionalSellerInputs"
-        values = ()
-
-    _get_additional_seller_inputs_params = ()  # name, param in, required

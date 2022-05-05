@@ -38,7 +38,11 @@ class ParsedParameter(Parameter):
         else:
             child = ''
         type_convert = {**base_type_convert, 'array': f'list[{child}]', 'object': f'dict[str, {child}]'}
-        return type_convert[schema.type]
+        type_hint = type_convert[schema.type]
+        if type_hint == 'str' and schema.enum is not None:
+            type_hint = ', '.join(f'Literal["{v}"]' for v in schema.enum)
+            type_hint = f'Union[{type_hint}]'
+        return type_hint
 
     @property
     def parsed_description(self):
@@ -91,6 +95,7 @@ class Generator:
         operations = [OperationWithName(**{'path': path, 'method': method, **getattr(path_item, method).dict()})
                       for path, path_item in self.data.paths.items()
                       for method in path_item.__fields_set__]
+        operations.sort(key=lambda k: k.path)
         for operation in [o for o in operations if o.parameters is not None]:
             if not any(isinstance(p, Reference) for p in operation.parameters):
                 operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in operation.parameters]

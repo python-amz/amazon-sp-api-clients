@@ -11,19 +11,41 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class VendorOrdersV1Client(BaseClient):
+    def submit_acknowledgement(
+        self,
+    ):
+        """
+        Submits acknowledgements for one or more purchase orders.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/vendor/orders/v1/acknowledgements"
+        values = ()
+
+    _submit_acknowledgement_params = ()  # name, param in, required
+
     def get_purchase_orders(
         self,
         limit: int = None,
         created_after: str = None,
         created_before: str = None,
-        sort_order: str = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
         include_details: str = None,
         changed_after: str = None,
         changed_before: str = None,
-        po_item_state: str = None,
+        po_item_state: Union[Literal["Cancelled"]] = None,
         is_pochanged: str = None,
-        purchase_order_state: str = None,
+        purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = None,
         ordering_vendor_code: str = None,
     ):
         """
@@ -107,41 +129,21 @@ class VendorOrdersV1Client(BaseClient):
 
     _get_purchase_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
 
-    def submit_acknowledgement(
-        self,
-    ):
-        """
-        Submits acknowledgements for one or more purchase orders.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 10 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/vendor/orders/v1/acknowledgements"
-        values = ()
-
-    _submit_acknowledgement_params = ()  # name, param in, required
-
     def get_purchase_orders_status(
         self,
         limit: int = None,
-        sort_order: str = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
         created_after: str = None,
         created_before: str = None,
         updated_after: str = None,
         updated_before: str = None,
         purchase_order_number: str = None,
-        purchase_order_status: str = None,
-        item_confirmation_status: str = None,
-        item_receive_status: str = None,
+        purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = None,
+        item_confirmation_status: Union[
+            Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]
+        ] = None,
+        item_receive_status: Union[Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = None,
         ordering_vendor_code: str = None,
         ship_to_party_id: str = None,
     ):

@@ -11,6 +11,42 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class CatalogItemsV0Client(BaseClient):
+    def list_catalog_categories(
+        self,
+        marketplace_id: str,
+        asin: str = None,
+        seller_sku: str = None,
+    ):
+        """
+        Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 1 | 40 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
+            asin: The Amazon Standard Identification Number (ASIN) of the item.
+            seller_sku: Used to identify items in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+        """
+        url = "/catalog/v0/categories"
+        values = (
+            marketplace_id,
+            asin,
+            seller_sku,
+        )
+
+    _list_catalog_categories_params = (  # name, param in, required
+        ("MarketplaceId", "query", True),
+        ("ASIN", "query", False),
+        ("SellerSKU", "query", False),
+    )
+
     def list_catalog_items(
         self,
         marketplace_id: str,
@@ -101,40 +137,4 @@ class CatalogItemsV0Client(BaseClient):
     _get_catalog_item_params = (  # name, param in, required
         ("MarketplaceId", "query", True),
         ("asin", "path", True),
-    )
-
-    def list_catalog_categories(
-        self,
-        marketplace_id: str,
-        asin: str = None,
-        seller_sku: str = None,
-    ):
-        """
-        Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 1 | 40 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
-            asin: The Amazon Standard Identification Number (ASIN) of the item.
-            seller_sku: Used to identify items in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
-        """
-        url = "/catalog/v0/categories"
-        values = (
-            marketplace_id,
-            asin,
-            seller_sku,
-        )
-
-    _list_catalog_categories_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("ASIN", "query", False),
-        ("SellerSKU", "query", False),
     )

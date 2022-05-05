@@ -13,46 +13,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class ListingsItems20200901Client(BaseClient):
-    def put_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        issue_locale: str = None,
-    ):
-        """
-        Creates a new or fully-updates an existing listings item for a selling partner.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 5 | 10 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
-
-        Args:
-            seller_id: A selling partner identifier, such as a merchant account or vendor code.
-            sku: A selling partner provided identifier for an Amazon listing.
-            marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
-            issue_locale: A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
-        """
-        url = "/listings/2020-09-01/items/{sellerId}/{sku}"
-        values = (
-            seller_id,
-            sku,
-            marketplace_ids,
-            issue_locale,
-        )
-
-    _put_listings_item_params = (  # name, param in, required
-        ("sellerId", "path", True),
-        ("sku", "path", True),
-        ("marketplaceIds", "query", True),
-        ("issueLocale", "query", False),
-    )
-
     def patch_listings_item(
         self,
         seller_id: str,
@@ -127,6 +87,46 @@ class ListingsItems20200901Client(BaseClient):
         )
 
     _delete_listings_item_params = (  # name, param in, required
+        ("sellerId", "path", True),
+        ("sku", "path", True),
+        ("marketplaceIds", "query", True),
+        ("issueLocale", "query", False),
+    )
+
+    def put_listings_item(
+        self,
+        seller_id: str,
+        sku: str,
+        marketplace_ids: list[str],
+        issue_locale: str = None,
+    ):
+        """
+        Creates a new or fully-updates an existing listings item for a selling partner.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+
+        Args:
+            seller_id: A selling partner identifier, such as a merchant account or vendor code.
+            sku: A selling partner provided identifier for an Amazon listing.
+            marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
+            issue_locale: A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
+        """
+        url = "/listings/2020-09-01/items/{sellerId}/{sku}"
+        values = (
+            seller_id,
+            sku,
+            marketplace_ids,
+            issue_locale,
+        )
+
+    _put_listings_item_params = (  # name, param in, required
         ("sellerId", "path", True),
         ("sku", "path", True),
         ("marketplaceIds", "query", True),

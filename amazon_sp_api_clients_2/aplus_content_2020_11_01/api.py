@@ -11,6 +11,38 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class AplusContent20201101Client(BaseClient):
+    def validate_content_document_asin_relations(
+        self,
+        marketplace_id: str,
+        asin_set: list[str] = None,
+    ):
+        """
+        Checks if the A+ Content document is valid for use on a set of ASINs.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            marketplace_id: The identifier for the marketplace where the A+ Content is published.
+            asin_set: The set of ASINs.
+        """
+        url = "/aplus/2020-11-01/contentAsinValidations"
+        values = (
+            marketplace_id,
+            asin_set,
+        )
+
+    _validate_content_document_asin_relations_params = (  # name, param in, required
+        ("marketplaceId", "query", True),
+        ("asinSet", "query", False),
+    )
+
     def search_content_documents(
         self,
         marketplace_id: str,
@@ -135,6 +167,38 @@ class AplusContent20201101Client(BaseClient):
         ("marketplaceId", "query", True),
     )
 
+    def post_content_document_approval_submission(
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
+    ):
+        """
+        Submits an A+ Content document for review, approval, and publishing.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+            marketplace_id: The identifier for the marketplace where the A+ Content is published.
+        """
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions"
+        values = (
+            content_reference_key,
+            marketplace_id,
+        )
+
+    _post_content_document_approval_submission_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
+        ("marketplaceId", "query", True),
+    )
+
     def list_content_document_asin_relations(
         self,
         content_reference_key: str,
@@ -211,13 +275,13 @@ class AplusContent20201101Client(BaseClient):
         ("marketplaceId", "query", True),
     )
 
-    def validate_content_document_asin_relations(
+    def post_content_document_suspend_submission(
         self,
+        content_reference_key: str,
         marketplace_id: str,
-        asin_set: list[str] = None,
     ):
         """
-        Checks if the A+ Content document is valid for use on a set of ASINs.
+        Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
 
         **Usage Plans:**
 
@@ -229,18 +293,18 @@ class AplusContent20201101Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
-            asin_set: The set of ASINs.
         """
-        url = "/aplus/2020-11-01/contentAsinValidations"
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions"
         values = (
+            content_reference_key,
             marketplace_id,
-            asin_set,
         )
 
-    _validate_content_document_asin_relations_params = (  # name, param in, required
+    _post_content_document_suspend_submission_params = (  # name, param in, required
+        ("contentReferenceKey", "path", True),
         ("marketplaceId", "query", True),
-        ("asinSet", "query", False),
     )
 
     def search_content_publish_records(
@@ -277,68 +341,4 @@ class AplusContent20201101Client(BaseClient):
         ("marketplaceId", "query", True),
         ("asin", "query", True),
         ("pageToken", "query", False),
-    )
-
-    def post_content_document_approval_submission(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
-    ):
-        """
-        Submits an A+ Content document for review, approval, and publishing.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 10 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
-            marketplace_id: The identifier for the marketplace where the A+ Content is published.
-        """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions"
-        values = (
-            content_reference_key,
-            marketplace_id,
-        )
-
-    _post_content_document_approval_submission_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
-    )
-
-    def post_content_document_suspend_submission(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
-    ):
-        """
-        Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 10 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
-            marketplace_id: The identifier for the marketplace where the A+ Content is published.
-        """
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions"
-        values = (
-            content_reference_key,
-            marketplace_id,
-        )
-
-    _post_content_document_suspend_submission_params = (  # name, param in, required
-        ("contentReferenceKey", "path", True),
-        ("marketplaceId", "query", True),
     )

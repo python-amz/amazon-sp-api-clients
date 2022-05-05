@@ -11,83 +11,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class ServicesV1Client(BaseClient):
-    def get_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
-    ):
-        """
-        Gets service job details for the service job indicated by the service job identifier you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 20 | 40 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            service_job_id: A service job identifier.
-        """
-        url = "/service/v1/serviceJobs/{serviceJobId}"
-        values = (service_job_id,)
-
-    _get_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required
-
-    def cancel_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
-        cancellation_reason_code: str,
-    ):
-        """
-        Cancels the service job indicated by the service job identifier you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 5 | 20 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            service_job_id: An Amazon defined service job identifier.
-            cancellation_reason_code: A cancel reason code that specifies the reason for cancelling a service job.
-        """
-        url = "/service/v1/serviceJobs/{serviceJobId}/cancellations"
-        values = (
-            service_job_id,
-            cancellation_reason_code,
-        )
-
-    _cancel_service_job_by_service_job_id_params = (  # name, param in, required
-        ("serviceJobId", "path", True),
-        ("cancellationReasonCode", "query", True),
-    )
-
-    def complete_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
-    ):
-        """
-        Completes the service job indicated by the service job identifier you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 5 | 20 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            service_job_id: An Amazon defined service job identifier.
-        """
-        url = "/service/v1/serviceJobs/{serviceJobId}/completions"
-        values = (service_job_id,)
-
-    _complete_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required
-
     def get_service_jobs(
         self,
         marketplace_ids: list[str],
@@ -105,8 +28,8 @@ class ServicesV1Client(BaseClient):
         ] = None,
         page_token: str = None,
         page_size: int = None,
-        sort_field: str = None,
-        sort_order: str = None,
+        sort_field: Union[Literal["JOB_DATE"], Literal["JOB_STATUS"]] = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         created_after: str = None,
         created_before: str = None,
         last_updated_after: str = None,
@@ -173,6 +96,29 @@ class ServicesV1Client(BaseClient):
         ("marketplaceIds", "query", True),
     )
 
+    def get_service_job_by_service_job_id(
+        self,
+        service_job_id: str,
+    ):
+        """
+        Gets service job details for the service job indicated by the service job identifier you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 20 | 40 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            service_job_id: A service job identifier.
+        """
+        url = "/service/v1/serviceJobs/{serviceJobId}"
+        values = (service_job_id,)
+
+    _get_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required
+
     def add_appointment_for_service_job_by_service_job_id(
         self,
         service_job_id: str,
@@ -228,3 +174,57 @@ class ServicesV1Client(BaseClient):
         ("serviceJobId", "path", True),
         ("appointmentId", "path", True),
     )
+
+    def cancel_service_job_by_service_job_id(
+        self,
+        service_job_id: str,
+        cancellation_reason_code: str,
+    ):
+        """
+        Cancels the service job indicated by the service job identifier you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 20 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            service_job_id: An Amazon defined service job identifier.
+            cancellation_reason_code: A cancel reason code that specifies the reason for cancelling a service job.
+        """
+        url = "/service/v1/serviceJobs/{serviceJobId}/cancellations"
+        values = (
+            service_job_id,
+            cancellation_reason_code,
+        )
+
+    _cancel_service_job_by_service_job_id_params = (  # name, param in, required
+        ("serviceJobId", "path", True),
+        ("cancellationReasonCode", "query", True),
+    )
+
+    def complete_service_job_by_service_job_id(
+        self,
+        service_job_id: str,
+    ):
+        """
+        Completes the service job indicated by the service job identifier you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 20 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            service_job_id: An Amazon defined service job identifier.
+        """
+        url = "/service/v1/serviceJobs/{serviceJobId}/completions"
+        values = (service_job_id,)
+
+    _complete_service_job_by_service_job_id_params = (("serviceJobId", "path", True),)  # name, param in, required

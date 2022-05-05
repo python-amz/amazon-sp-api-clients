@@ -17,7 +17,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         created_before: str,
         ship_from_party_id: str = None,
         limit: int = None,
-        sort_order: str = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
     ):
         """

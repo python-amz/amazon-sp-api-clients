@@ -85,41 +85,6 @@ class FinancesV0Client(BaseClient):
         ("NextToken", "query", False),
     )
 
-    def list_financial_events_by_order_id(
-        self,
-        order_id: str,
-        max_results_per_page: int = None,
-        next_token: str = None,
-    ):
-        """
-        Returns all financial events for the specified order.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.5 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            order_id: An Amazon-defined order identifier, in 3-7-7 format.
-            max_results_per_page: The maximum number of results to return per page.
-            next_token: A string token returned in the response of your previous request.
-        """
-        url = "/finances/v0/orders/{orderId}/financialEvents"
-        values = (
-            order_id,
-            max_results_per_page,
-            next_token,
-        )
-
-    _list_financial_events_by_order_id_params = (  # name, param in, required
-        ("orderId", "path", True),
-        ("MaxResultsPerPage", "query", False),
-        ("NextToken", "query", False),
-    )
-
     def list_financial_events(
         self,
         max_results_per_page: int = None,
@@ -156,5 +121,40 @@ class FinancesV0Client(BaseClient):
         ("MaxResultsPerPage", "query", False),
         ("PostedAfter", "query", False),
         ("PostedBefore", "query", False),
+        ("NextToken", "query", False),
+    )
+
+    def list_financial_events_by_order_id(
+        self,
+        order_id: str,
+        max_results_per_page: int = None,
+        next_token: str = None,
+    ):
+        """
+        Returns all financial events for the specified order.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            order_id: An Amazon-defined order identifier, in 3-7-7 format.
+            max_results_per_page: The maximum number of results to return per page.
+            next_token: A string token returned in the response of your previous request.
+        """
+        url = "/finances/v0/orders/{orderId}/financialEvents"
+        values = (
+            order_id,
+            max_results_per_page,
+            next_token,
+        )
+
+    _list_financial_events_by_order_id_params = (  # name, param in, required
+        ("orderId", "path", True),
+        ("MaxResultsPerPage", "query", False),
         ("NextToken", "query", False),
     )

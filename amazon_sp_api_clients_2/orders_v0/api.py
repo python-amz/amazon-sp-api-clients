@@ -128,30 +128,6 @@ class OrdersV0Client(BaseClient):
 
     _get_order_params = (("orderId", "path", True),)  # name, param in, required
 
-    def get_order_buyer_info(
-        self,
-        order_id: str,
-    ):
-        """
-        Returns buyer information for the specified order.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
-        """
-        url = "/orders/v0/orders/{orderId}/buyerInfo"
-        values = (order_id,)
-
-    _get_order_buyer_info_params = (("orderId", "path", True),)  # name, param in, required
-
     def get_order_address(
         self,
         order_id: str,
@@ -175,6 +151,30 @@ class OrdersV0Client(BaseClient):
         values = (order_id,)
 
     _get_order_address_params = (("orderId", "path", True),)  # name, param in, required
+
+    def get_order_buyer_info(
+        self,
+        order_id: str,
+    ):
+        """
+        Returns buyer information for the specified order.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 0.0055 | 20 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
+        """
+        url = "/orders/v0/orders/{orderId}/buyerInfo"
+        values = (order_id,)
+
+    _get_order_buyer_info_params = (("orderId", "path", True),)  # name, param in, required
 
     def get_order_items(
         self,
@@ -242,21 +242,6 @@ class OrdersV0Client(BaseClient):
         ("NextToken", "query", False),
     )
 
-    def update_shipment_status(
-        self,
-        order_id: str,
-    ):
-        """
-        Update the shipment status.
-
-        Args:
-            order_id: An Amazon-defined order identifier, in 3-7-7 format.
-        """
-        url = "/orders/v0/orders/{orderId}/shipment"
-        values = (order_id,)
-
-    _update_shipment_status_params = (("orderId", "path", True),)  # name, param in, required
-
     def update_verification_status(
         self,
         order_id: str,
@@ -304,3 +289,18 @@ class OrdersV0Client(BaseClient):
         values = (order_id,)
 
     _get_order_regulated_info_params = (("orderId", "path", True),)  # name, param in, required
+
+    def update_shipment_status(
+        self,
+        order_id: str,
+    ):
+        """
+        Update the shipment status.
+
+        Args:
+            order_id: An Amazon-defined order identifier, in 3-7-7 format.
+        """
+        url = "/orders/v0/orders/{orderId}/shipment"
+        values = (order_id,)
+
+    _update_shipment_status_params = (("orderId", "path", True),)  # name, param in, required

@@ -13,6 +13,94 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class NotificationsV1Client(BaseClient):
+    def get_destinations(
+        self,
+    ):
+        """
+        Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/notifications/v1/destinations"
+        values = ()
+
+    _get_destinations_params = ()  # name, param in, required
+
+    def create_destination(
+        self,
+    ):
+        """
+        Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/notifications/v1/destinations"
+        values = ()
+
+    _create_destination_params = ()  # name, param in, required
+
+    def delete_destination(
+        self,
+        destination_id: str,
+    ):
+        """
+        Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            destination_id: The identifier for the destination that you want to delete.
+        """
+        url = "/notifications/v1/destinations/{destinationId}"
+        values = (destination_id,)
+
+    _delete_destination_params = (("destinationId", "path", True),)  # name, param in, required
+
+    def get_destination(
+        self,
+        destination_id: str,
+    ):
+        """
+        Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            destination_id: The identifier generated when you created the destination.
+        """
+        url = "/notifications/v1/destinations/{destinationId}"
+        values = (destination_id,)
+
+    _get_destination_params = (("destinationId", "path", True),)  # name, param in, required
+
     def get_subscription(
         self,
         notification_type: str,
@@ -124,91 +212,3 @@ class NotificationsV1Client(BaseClient):
         ("subscriptionId", "path", True),
         ("notificationType", "path", True),
     )
-
-    def get_destinations(
-        self,
-    ):
-        """
-        Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/notifications/v1/destinations"
-        values = ()
-
-    _get_destinations_params = ()  # name, param in, required
-
-    def create_destination(
-        self,
-    ):
-        """
-        Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/notifications/v1/destinations"
-        values = ()
-
-    _create_destination_params = ()  # name, param in, required
-
-    def delete_destination(
-        self,
-        destination_id: str,
-    ):
-        """
-        Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            destination_id: The identifier for the destination that you want to delete.
-        """
-        url = "/notifications/v1/destinations/{destinationId}"
-        values = (destination_id,)
-
-    _delete_destination_params = (("destinationId", "path", True),)  # name, param in, required
-
-    def get_destination(
-        self,
-        destination_id: str,
-    ):
-        """
-        Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            destination_id: The identifier generated when you created the destination.
-        """
-        url = "/notifications/v1/destinations/{destinationId}"
-        values = (destination_id,)
-
-    _get_destination_params = (("destinationId", "path", True),)  # name, param in, required

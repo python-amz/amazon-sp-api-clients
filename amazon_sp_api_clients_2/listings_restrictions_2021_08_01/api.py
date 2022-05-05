@@ -18,7 +18,21 @@ class ListingsRestrictions20210801Client(BaseClient):
         asin: str,
         seller_id: str,
         marketplace_ids: list[str],
-        condition_type: str = None,
+        condition_type: Union[
+            Literal["new_new"],
+            Literal["new_open_box"],
+            Literal["new_oem"],
+            Literal["refurbished_refurbished"],
+            Literal["used_like_new"],
+            Literal["used_very_good"],
+            Literal["used_good"],
+            Literal["used_acceptable"],
+            Literal["collectible_like_new"],
+            Literal["collectible_very_good"],
+            Literal["collectible_good"],
+            Literal["collectible_acceptable"],
+            Literal["club_club"],
+        ] = None,
         reason_locale: str = None,
     ):
         """

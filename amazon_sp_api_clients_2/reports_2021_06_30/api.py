@@ -11,6 +11,29 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class Reports20210630Client(BaseClient):
+    def get_report_document(
+        self,
+        report_document_id: str,
+    ):
+        """
+        Returns the information required for retrieving a report document's contents.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            report_document_id: The identifier for the report document.
+        """
+        url = "/reports/2021-06-30/documents/{reportDocumentId}"
+        values = (report_document_id,)
+
+    _get_report_document_params = (("reportDocumentId", "path", True),)  # name, param in, required
+
     def get_reports(
         self,
         report_types: list[str] = None,
@@ -220,26 +243,3 @@ class Reports20210630Client(BaseClient):
         values = (report_schedule_id,)
 
     _get_report_schedule_params = (("reportScheduleId", "path", True),)  # name, param in, required
-
-    def get_report_document(
-        self,
-        report_document_id: str,
-    ):
-        """
-        Returns the information required for retrieving a report document's contents.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0167 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            report_document_id: The identifier for the report document.
-        """
-        url = "/reports/2021-06-30/documents/{reportDocumentId}"
-        values = (report_document_id,)
-
-    _get_report_document_params = (("reportDocumentId", "path", True),)  # name, param in, required

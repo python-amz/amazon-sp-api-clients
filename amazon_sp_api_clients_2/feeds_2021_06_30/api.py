@@ -11,6 +11,50 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class Feeds20210630Client(BaseClient):
+    def create_feed_document(
+        self,
+    ):
+        """
+        Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0083 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/feeds/2021-06-30/documents"
+        values = ()
+
+    _create_feed_document_params = ()  # name, param in, required
+
+    def get_feed_document(
+        self,
+        feed_document_id: str,
+    ):
+        """
+        Returns the information required for retrieving a feed document's contents.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            feed_document_id: The identifier of the feed document.
+        """
+        url = "/feeds/2021-06-30/documents/{feedDocumentId}"
+        values = (feed_document_id,)
+
+    _get_feed_document_params = (("feedDocumentId", "path", True),)  # name, param in, required
+
     def get_feeds(
         self,
         feed_types: list[str] = None,
@@ -130,47 +174,3 @@ class Feeds20210630Client(BaseClient):
         values = (feed_id,)
 
     _get_feed_params = (("feedId", "path", True),)  # name, param in, required
-
-    def create_feed_document(
-        self,
-    ):
-        """
-        Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0083 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/feeds/2021-06-30/documents"
-        values = ()
-
-    _create_feed_document_params = ()  # name, param in, required
-
-    def get_feed_document(
-        self,
-        feed_document_id: str,
-    ):
-        """
-        Returns the information required for retrieving a feed document's contents.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            feed_document_id: The identifier of the feed document.
-        """
-        url = "/feeds/2021-06-30/documents/{feedDocumentId}"
-        values = (feed_document_id,)
-
-    _get_feed_document_params = (("feedDocumentId", "path", True),)  # name, param in, required

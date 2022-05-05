@@ -13,7 +13,7 @@ from typing import Any, List, Dict, Union, Literal
 class FbaInventoryV1Client(BaseClient):
     def get_inventory_summaries(
         self,
-        granularity_type: str,
+        granularity_type: Union[Literal["Marketplace"]],
         granularity_id: str,
         marketplace_ids: list[str],
         details: bool = None,

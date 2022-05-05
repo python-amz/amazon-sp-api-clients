@@ -15,11 +15,13 @@ class SalesV1Client(BaseClient):
         self,
         marketplace_ids: list[str],
         interval: str,
-        granularity: str,
+        granularity: Union[
+            Literal["Hour"], Literal["Day"], Literal["Week"], Literal["Month"], Literal["Year"], Literal["Total"]
+        ],
         granularity_time_zone: str = None,
-        buyer_type: str = None,
+        buyer_type: Union[Literal["B2B"], Literal["B2C"], Literal["All"]] = None,
         fulfillment_network: str = None,
-        first_day_of_week: str = None,
+        first_day_of_week: Union[Literal["Monday"], Literal["Sunday"]] = None,
         asin: str = None,
         sku: str = None,
     ):

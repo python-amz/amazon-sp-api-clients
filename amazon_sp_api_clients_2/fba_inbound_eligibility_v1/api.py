@@ -14,7 +14,7 @@ class FbaInboundEligibilityV1Client(BaseClient):
     def get_item_eligibility_preview(
         self,
         asin: str,
-        program: str,
+        program: Union[Literal["INBOUND"], Literal["COMMINGLING"]],
         marketplace_ids: list[str] = None,
     ):
         """

@@ -11,6 +11,69 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class ShippingV1Client(BaseClient):
+    def get_account(
+        self,
+    ):
+        """
+        Verify if the current account is valid.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/shipping/v1/account"
+        values = ()
+
+    _get_account_params = ()  # name, param in, required
+
+    def purchase_shipment(
+        self,
+    ):
+        """
+        Purchase shipping labels.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/shipping/v1/purchaseShipment"
+        values = ()
+
+    _purchase_shipment_params = ()  # name, param in, required
+
+    def get_rates(
+        self,
+    ):
+        """
+        Get service rates.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/shipping/v1/rates"
+        values = ()
+
+    _get_rates_params = ()  # name, param in, required
+
     def create_shipment(
         self,
     ):
@@ -78,29 +141,6 @@ class ShippingV1Client(BaseClient):
 
     _cancel_shipment_params = (("shipmentId", "path", True),)  # name, param in, required
 
-    def purchase_labels(
-        self,
-        shipment_id: str,
-    ):
-        """
-        Purchase shipping labels based on a given rate.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 5 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            shipment_id: no description.
-        """
-        url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels"
-        values = (shipment_id,)
-
-    _purchase_labels_params = (("shipmentId", "path", True),)  # name, param in, required
-
     def retrieve_shipping_label(
         self,
         shipment_id: str,
@@ -132,11 +172,12 @@ class ShippingV1Client(BaseClient):
         ("trackingId", "path", True),
     )
 
-    def purchase_shipment(
+    def purchase_labels(
         self,
+        shipment_id: str,
     ):
         """
-        Purchase shipping labels.
+        Purchase shipping labels based on a given rate.
 
         **Usage Plan:**
 
@@ -147,53 +188,12 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipment_id: no description.
         """
-        url = "/shipping/v1/purchaseShipment"
-        values = ()
+        url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels"
+        values = (shipment_id,)
 
-    _purchase_shipment_params = ()  # name, param in, required
-
-    def get_rates(
-        self,
-    ):
-        """
-        Get service rates.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 5 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/shipping/v1/rates"
-        values = ()
-
-    _get_rates_params = ()  # name, param in, required
-
-    def get_account(
-        self,
-    ):
-        """
-        Verify if the current account is valid.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 5 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/shipping/v1/account"
-        values = ()
-
-    _get_account_params = ()  # name, param in, required
+    _purchase_labels_params = (("shipmentId", "path", True),)  # name, param in, required
 
     def get_tracking_information(
         self,

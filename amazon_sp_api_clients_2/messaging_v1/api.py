@@ -42,6 +42,66 @@ class MessagingV1Client(BaseClient):
         ("marketplaceIds", "query", True),
     )
 
+    def get_attributes(
+        self,
+        amazon_order_id: str,
+        marketplace_ids: list[str],
+    ):
+        """
+        Returns a response containing attributes related to an order. This includes buyer preferences.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        Args:
+            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
+            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+        """
+        url = "/messaging/v1/orders/{amazonOrderId}/attributes"
+        values = (
+            amazon_order_id,
+            marketplace_ids,
+        )
+
+    _get_attributes_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
+
+    def create_amazon_motors(
+        self,
+        amazon_order_id: str,
+        marketplace_ids: list[str],
+    ):
+        """
+        Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
+            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+        """
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
+        values = (
+            amazon_order_id,
+            marketplace_ids,
+        )
+
+    _create_amazon_motors_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
+
     def confirm_customization_details(
         self,
         amazon_order_id: str,
@@ -100,68 +160,6 @@ class MessagingV1Client(BaseClient):
         )
 
     _create_confirm_delivery_details_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-    )
-
-    def create_legal_disclosure(
-        self,
-        amazon_order_id: str,
-        marketplace_ids: list[str],
-    ):
-        """
-        Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
-            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-        """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure"
-        values = (
-            amazon_order_id,
-            marketplace_ids,
-        )
-
-    _create_legal_disclosure_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-    )
-
-    def create_negative_feedback_removal(
-        self,
-        amazon_order_id: str,
-        marketplace_ids: list[str],
-    ):
-        """
-        Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be sent after the seller has resolved the buyer's problem.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
-            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-        """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval"
-        values = (
-            amazon_order_id,
-            marketplace_ids,
-        )
-
-    _create_negative_feedback_removal_params = (  # name, param in, required
         ("amazonOrderId", "path", True),
         ("marketplaceIds", "query", True),
     )
@@ -228,97 +226,6 @@ class MessagingV1Client(BaseClient):
         ("marketplaceIds", "query", True),
     )
 
-    def create_amazon_motors(
-        self,
-        amazon_order_id: str,
-        marketplace_ids: list[str],
-    ):
-        """
-        Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
-            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-        """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
-        values = (
-            amazon_order_id,
-            marketplace_ids,
-        )
-
-    _create_amazon_motors_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-    )
-
-    def create_warranty(
-        self,
-        amazon_order_id: str,
-        marketplace_ids: list[str],
-    ):
-        """
-        Sends a message to a buyer to provide details about warranty information on a purchase in their order.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
-            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-        """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty"
-        values = (
-            amazon_order_id,
-            marketplace_ids,
-        )
-
-    _create_warranty_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-    )
-
-    def get_attributes(
-        self,
-        amazon_order_id: str,
-        marketplace_ids: list[str],
-    ):
-        """
-        Returns a response containing attributes related to an order. This includes buyer preferences.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
-            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-        """
-        url = "/messaging/v1/orders/{amazonOrderId}/attributes"
-        values = (
-            amazon_order_id,
-            marketplace_ids,
-        )
-
-    _get_attributes_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-    )
-
     def create_digital_access_key(
         self,
         amazon_order_id: str,
@@ -350,6 +257,68 @@ class MessagingV1Client(BaseClient):
         ("marketplaceIds", "query", True),
     )
 
+    def create_legal_disclosure(
+        self,
+        amazon_order_id: str,
+        marketplace_ids: list[str],
+    ):
+        """
+        Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
+            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+        """
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure"
+        values = (
+            amazon_order_id,
+            marketplace_ids,
+        )
+
+    _create_legal_disclosure_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
+
+    def create_negative_feedback_removal(
+        self,
+        amazon_order_id: str,
+        marketplace_ids: list[str],
+    ):
+        """
+        Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be sent after the seller has resolved the buyer's problem.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
+            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+        """
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval"
+        values = (
+            amazon_order_id,
+            marketplace_ids,
+        )
+
+    _create_negative_feedback_removal_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
+
     def create_unexpected_problem(
         self,
         amazon_order_id: str,
@@ -377,6 +346,37 @@ class MessagingV1Client(BaseClient):
         )
 
     _create_unexpected_problem_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
+
+    def create_warranty(
+        self,
+        amazon_order_id: str,
+        marketplace_ids: list[str],
+    ):
+        """
+        Sends a message to a buyer to provide details about warranty information on a purchase in their order.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
+            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+        """
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty"
+        values = (
+            amazon_order_id,
+            marketplace_ids,
+        )
+
+    _create_warranty_params = (  # name, param in, required
         ("amazonOrderId", "path", True),
         ("marketplaceIds", "query", True),
     )
