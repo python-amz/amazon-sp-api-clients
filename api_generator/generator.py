@@ -39,7 +39,7 @@ class ParsedParameter(Parameter):
         return '\n        '.join(result)
 
 
-class OperationWithName(Operation):
+class ParsedOperation(Operation):
     path: str
     method: str
     parsed_parameters: list[ParsedParameter] = []
@@ -97,8 +97,8 @@ class Generator:
         return type_hint
 
     @cached_property
-    def operations(self) -> list[OperationWithName]:
-        operations = tuple(OperationWithName(**{'path': path, 'method': method, **getattr(path_item, method).dict()})
+    def operations(self) -> tuple[ParsedOperation, ...]:
+        operations = tuple(ParsedOperation(**{'path': path, 'method': method, **getattr(path_item, method).dict()})
                            for path, path_item in self.data.paths.items()
                            for method in path_item.__fields_set__)
         operations = tuple(sorted(operations, key=lambda k: k.operationId))
@@ -125,10 +125,10 @@ class Generator:
                                                   required=k in required, param_schema=v) for k, v in properties)
                 operation.parameters.extend(post_parameters)
 
-            parameters = [self.resolve_ref(p) if isinstance(p, Reference) else p for p in operation.parameters]
-            parsed_parameters: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in parameters]
-            [p.set_parent(self) for p in parsed_parameters]
-            operation.parsed_parameters = parsed_parameters
+            params = tuple(self.resolve_ref(p) if isinstance(p, Reference) else p for p in operation.parameters)
+            parsed_params: tuple[ParsedParameter, ...] = tuple(ParsedParameter.parse_obj(p.dict()) for p in params)
+            [p.set_parent(self) for p in parsed_params]
+            operation.parsed_parameters = parsed_params
 
             # Ensure that post parameters do not conflict with path and query parameters
             assert len(operation.parsed_parameters) == len({p.name for p in operation.parsed_parameters})
