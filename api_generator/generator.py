@@ -115,7 +115,7 @@ class Generator:
         operations.sort(key=lambda k: k.operationId)
         for operation in [o for o in operations if o.parameters is not None]:
 
-            # convert post object to parameter objects
+            # convert post object to parameter objects, the main work of following code is data validation
             if (body := operation.requestBody) is not None:
                 assert isinstance(body, RequestBody)
                 assert body.required is True
@@ -130,15 +130,11 @@ class Generator:
                 assert set(chain(*(s.__fields_set__ for s in schemas))).issubset(fields)
                 required = tuple(chain(*(s.required for s in schemas if s.required)))
                 assert len(set(required)) == len(required)
-                for item in schemas:
-                    for property_name, property_obj in item.properties.items():
-                        if isinstance(property_obj, Reference):
-                            property_obj = self.resolve_ref(property_obj)
-                        parameter = Parameter(name=property_name, param_in='body',
-                                              description=property_obj.description,
-                                              required=property_name in required,
-                                              param_schema=property_obj)
-                        operation.parameters.append(parameter)
+                properties = [(name, obj) for s in schemas for name, obj in s.properties.items()]
+                properties = [(k, self.resolve_ref(v) if isinstance(v, Reference) else v) for k, v in properties]
+                post_parameters = [Parameter(name=k, param_in='body', description=v.description, required=k in required,
+                                             param_schema=v) for k, v in properties]
+                operation.parameters.extend(post_parameters)
 
             parameters = [self.resolve_ref(p) if isinstance(p, Reference) else p for p in operation.parameters]
             parsed_parameters: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in parameters]
