@@ -13,38 +13,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class ProductTypeDefinitions20200901Client(BaseClient):
-    def search_definitions_product_types(
-        self,
-        marketplace_ids: list[str],
-        keywords: list[str] = None,
-    ):
-        """
-        Search for and return a list of Amazon product types that have definitions available.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 5 | 10 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
-
-        Args:
-            keywords: A comma-delimited list of keywords to search product types by.
-            marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
-        """
-        url = "/definitions/2020-09-01/productTypes"
-        values = (
-            keywords,
-            marketplace_ids,
-        )
-
-    _search_definitions_product_types_params = (  # name, param in, required
-        ("keywords", "query", False),
-        ("marketplaceIds", "query", True),
-    )
-
     def get_definitions_product_type(
         self,
         product_type: str,
@@ -135,4 +103,36 @@ class ProductTypeDefinitions20200901Client(BaseClient):
         ("requirements", "query", False),
         ("requirementsEnforced", "query", False),
         ("locale", "query", False),
+    )
+
+    def search_definitions_product_types(
+        self,
+        marketplace_ids: list[str],
+        keywords: list[str] = None,
+    ):
+        """
+        Search for and return a list of Amazon product types that have definitions available.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 10 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+
+        Args:
+            keywords: A comma-delimited list of keywords to search product types by.
+            marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
+        """
+        url = "/definitions/2020-09-01/productTypes"
+        values = (
+            keywords,
+            marketplace_ids,
+        )
+
+    _search_definitions_product_types_params = (  # name, param in, required
+        ("keywords", "query", False),
+        ("marketplaceIds", "query", True),
     )

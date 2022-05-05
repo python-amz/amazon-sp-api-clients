@@ -11,11 +11,12 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentOrdersV1Client(BaseClient):
-    def submit_acknowledgement(
+    def get_order(
         self,
+        purchase_order_number: str,
     ):
         """
-        Submits acknowledgements for one or more purchase orders.
+        Returns purchase order information for the purchaseOrderNumber that you specify.
 
         **Usage Plans:**
 
@@ -27,11 +28,12 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            purchase_order_number: The order identifier for the purchase order that you want. Formatting Notes: alpha-numeric code.
         """
-        url = "/vendor/directFulfillment/orders/v1/acknowledgements"
-        values = ()
+        url = "/vendor/directFulfillment/orders/v1/purchaseOrders/{purchaseOrderNumber}"
+        values = (purchase_order_number,)
 
-    _submit_acknowledgement_params = ()  # name, param in, required
+    _get_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
 
     def get_orders(
         self,
@@ -89,12 +91,11 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         ("includeDetails", "query", False),
     )
 
-    def get_order(
+    def submit_acknowledgement(
         self,
-        purchase_order_number: str,
     ):
         """
-        Returns purchase order information for the purchaseOrderNumber that you specify.
+        Submits acknowledgements for one or more purchase orders.
 
         **Usage Plans:**
 
@@ -106,9 +107,8 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            purchase_order_number: The order identifier for the purchase order that you want. Formatting Notes: alpha-numeric code.
         """
-        url = "/vendor/directFulfillment/orders/v1/purchaseOrders/{purchaseOrderNumber}"
-        values = (purchase_order_number,)
+        url = "/vendor/directFulfillment/orders/v1/acknowledgements"
+        values = ()
 
-    _get_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+    _submit_acknowledgement_params = ()  # name, param in, required

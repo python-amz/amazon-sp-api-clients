@@ -11,6 +11,38 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class CatalogItemsV0Client(BaseClient):
+    def get_catalog_item(
+        self,
+        marketplace_id: str,
+        asin: str,
+    ):
+        """
+        Returns a specified item and its attributes.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 2 | 20 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
+            asin: The Amazon Standard Identification Number (ASIN) of the item.
+        """
+        url = "/catalog/v0/items/{asin}"
+        values = (
+            marketplace_id,
+            asin,
+        )
+
+    _get_catalog_item_params = (  # name, param in, required
+        ("MarketplaceId", "query", True),
+        ("asin", "path", True),
+    )
+
     def list_catalog_categories(
         self,
         marketplace_id: str,
@@ -105,36 +137,4 @@ class CatalogItemsV0Client(BaseClient):
         ("EAN", "query", False),
         ("ISBN", "query", False),
         ("JAN", "query", False),
-    )
-
-    def get_catalog_item(
-        self,
-        marketplace_id: str,
-        asin: str,
-    ):
-        """
-        Returns a specified item and its attributes.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 2 | 20 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
-            asin: The Amazon Standard Identification Number (ASIN) of the item.
-        """
-        url = "/catalog/v0/items/{asin}"
-        values = (
-            marketplace_id,
-            asin,
-        )
-
-    _get_catalog_item_params = (  # name, param in, required
-        ("MarketplaceId", "query", True),
-        ("asin", "path", True),
     )

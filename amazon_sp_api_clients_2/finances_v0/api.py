@@ -50,41 +50,6 @@ class FinancesV0Client(BaseClient):
         ("NextToken", "query", False),
     )
 
-    def list_financial_events_by_group_id(
-        self,
-        event_group_id: str,
-        max_results_per_page: int = None,
-        next_token: str = None,
-    ):
-        """
-        Returns all financial events for the specified financial event group.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.5 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            max_results_per_page: The maximum number of results to return per page.
-            event_group_id: The identifier of the financial event group to which the events belong.
-            next_token: A string token returned in the response of your previous request.
-        """
-        url = "/finances/v0/financialEventGroups/{eventGroupId}/financialEvents"
-        values = (
-            max_results_per_page,
-            event_group_id,
-            next_token,
-        )
-
-    _list_financial_events_by_group_id_params = (  # name, param in, required
-        ("MaxResultsPerPage", "query", False),
-        ("eventGroupId", "path", True),
-        ("NextToken", "query", False),
-    )
-
     def list_financial_events(
         self,
         max_results_per_page: int = None,
@@ -121,6 +86,41 @@ class FinancesV0Client(BaseClient):
         ("MaxResultsPerPage", "query", False),
         ("PostedAfter", "query", False),
         ("PostedBefore", "query", False),
+        ("NextToken", "query", False),
+    )
+
+    def list_financial_events_by_group_id(
+        self,
+        event_group_id: str,
+        max_results_per_page: int = None,
+        next_token: str = None,
+    ):
+        """
+        Returns all financial events for the specified financial event group.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            max_results_per_page: The maximum number of results to return per page.
+            event_group_id: The identifier of the financial event group to which the events belong.
+            next_token: A string token returned in the response of your previous request.
+        """
+        url = "/finances/v0/financialEventGroups/{eventGroupId}/financialEvents"
+        values = (
+            max_results_per_page,
+            event_group_id,
+            next_token,
+        )
+
+    _list_financial_events_by_group_id_params = (  # name, param in, required
+        ("MaxResultsPerPage", "query", False),
+        ("eventGroupId", "path", True),
         ("NextToken", "query", False),
     )
 

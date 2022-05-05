@@ -11,6 +11,50 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class Feeds20210630Client(BaseClient):
+    def cancel_feed(
+        self,
+        feed_id: str,
+    ):
+        """
+        Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+        """
+        url = "/feeds/2021-06-30/feeds/{feedId}"
+        values = (feed_id,)
+
+    _cancel_feed_params = (("feedId", "path", True),)  # name, param in, required
+
+    def create_feed(
+        self,
+    ):
+        """
+        Creates a feed. Upload the contents of the feed document before calling this operation.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0083 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/feeds/2021-06-30/feeds"
+        values = ()
+
+    _create_feed_params = ()  # name, param in, required
+
     def create_feed_document(
         self,
     ):
@@ -31,6 +75,29 @@ class Feeds20210630Client(BaseClient):
         values = ()
 
     _create_feed_document_params = ()  # name, param in, required
+
+    def get_feed(
+        self,
+        feed_id: str,
+    ):
+        """
+        Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2.0 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+        """
+        url = "/feeds/2021-06-30/feeds/{feedId}"
+        values = (feed_id,)
+
+    _get_feed_params = (("feedId", "path", True),)  # name, param in, required
 
     def get_feed_document(
         self,
@@ -107,70 +174,3 @@ class Feeds20210630Client(BaseClient):
         ("createdUntil", "query", False),
         ("nextToken", "query", False),
     )
-
-    def create_feed(
-        self,
-    ):
-        """
-        Creates a feed. Upload the contents of the feed document before calling this operation.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0083 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/feeds/2021-06-30/feeds"
-        values = ()
-
-    _create_feed_params = ()  # name, param in, required
-
-    def cancel_feed(
-        self,
-        feed_id: str,
-    ):
-        """
-        Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
-        """
-        url = "/feeds/2021-06-30/feeds/{feedId}"
-        values = (feed_id,)
-
-    _cancel_feed_params = (("feedId", "path", True),)  # name, param in, required
-
-    def get_feed(
-        self,
-        feed_id: str,
-    ):
-        """
-        Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2.0 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
-        """
-        url = "/feeds/2021-06-30/feeds/{feedId}"
-        values = (feed_id,)
-
-    _get_feed_params = (("feedId", "path", True),)  # name, param in, required

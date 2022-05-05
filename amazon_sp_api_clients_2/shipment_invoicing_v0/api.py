@@ -11,6 +11,30 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class ShipmentInvoicingV0Client(BaseClient):
+    def get_invoice_status(
+        self,
+        shipment_id: str,
+    ):
+        """
+        Returns the invoice status for the shipment you specify.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 1.133 | 25 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            shipment_id: The shipment identifier for the shipment.
+        """
+        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status"
+        values = (shipment_id,)
+
+    _get_invoice_status_params = (("shipmentId", "path", True),)  # name, param in, required
+
     def get_shipment_details(
         self,
         shipment_id: str,
@@ -58,27 +82,3 @@ class ShipmentInvoicingV0Client(BaseClient):
         values = (shipment_id,)
 
     _submit_invoice_params = (("shipmentId", "path", True),)  # name, param in, required
-
-    def get_invoice_status(
-        self,
-        shipment_id: str,
-    ):
-        """
-        Returns the invoice status for the shipment you specify.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 1.133 | 25 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            shipment_id: The shipment identifier for the shipment.
-        """
-        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status"
-        values = (shipment_id,)
-
-    _get_invoice_status_params = (("shipmentId", "path", True),)  # name, param in, required

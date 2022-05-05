@@ -13,6 +13,57 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class CatalogItems20201201Client(BaseClient):
+    def get_catalog_item(
+        self,
+        asin: str,
+        marketplace_ids: list[str],
+        included_data: list[
+            Union[
+                Literal["attributes"],
+                Literal["identifiers"],
+                Literal["images"],
+                Literal["productTypes"],
+                Literal["salesRanks"],
+                Literal["summaries"],
+                Literal["variations"],
+                Literal["vendorDetails"],
+            ]
+        ] = None,
+        locale: str = None,
+    ):
+        """
+        Retrieves details for an item in the Amazon catalog.
+
+        **Usage Plans:**
+
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 5 | 5 |
+        |Selling partner specific| Variable | Variable |
+
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+
+        Args:
+            asin: The Amazon Standard Identification Number (ASIN) of the item.
+            marketplace_ids: A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces.
+            included_data: A comma-delimited list of data sets to include in the response. Default: summaries.
+            locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
+        """
+        url = "/catalog/2020-12-01/items/{asin}"
+        values = (
+            asin,
+            marketplace_ids,
+            included_data,
+            locale,
+        )
+
+    _get_catalog_item_params = (  # name, param in, required
+        ("asin", "path", True),
+        ("marketplaceIds", "query", True),
+        ("includedData", "query", False),
+        ("locale", "query", False),
+    )
+
     def search_catalog_items(
         self,
         keywords: list[str],
@@ -80,56 +131,5 @@ class CatalogItems20201201Client(BaseClient):
         ("pageSize", "query", False),
         ("pageToken", "query", False),
         ("keywordsLocale", "query", False),
-        ("locale", "query", False),
-    )
-
-    def get_catalog_item(
-        self,
-        asin: str,
-        marketplace_ids: list[str],
-        included_data: list[
-            Union[
-                Literal["attributes"],
-                Literal["identifiers"],
-                Literal["images"],
-                Literal["productTypes"],
-                Literal["salesRanks"],
-                Literal["summaries"],
-                Literal["variations"],
-                Literal["vendorDetails"],
-            ]
-        ] = None,
-        locale: str = None,
-    ):
-        """
-        Retrieves details for an item in the Amazon catalog.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 5 | 5 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
-
-        Args:
-            asin: The Amazon Standard Identification Number (ASIN) of the item.
-            marketplace_ids: A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces.
-            included_data: A comma-delimited list of data sets to include in the response. Default: summaries.
-            locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
-        """
-        url = "/catalog/2020-12-01/items/{asin}"
-        values = (
-            asin,
-            marketplace_ids,
-            included_data,
-            locale,
-        )
-
-    _get_catalog_item_params = (  # name, param in, required
-        ("asin", "path", True),
-        ("marketplaceIds", "query", True),
-        ("includedData", "query", False),
         ("locale", "query", False),
     )

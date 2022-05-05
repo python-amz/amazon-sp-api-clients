@@ -11,6 +11,29 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):
+    def get_shipping_label(
+        self,
+        purchase_order_number: str,
+    ):
+        """
+        Returns a shipping label for the purchaseOrderNumber that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+
+        Args:
+            purchase_order_number: The purchase order number for which you want to return the shipping label. It should be the same purchaseOrderNumber as received in the order.
+        """
+        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}"
+        values = (purchase_order_number,)
+
+    _get_shipping_label_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
+
     def get_shipping_labels(
         self,
         created_after: str,
@@ -78,26 +101,3 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         values = ()
 
     _submit_shipping_label_request_params = ()  # name, param in, required
-
-    def get_shipping_label(
-        self,
-        purchase_order_number: str,
-    ):
-        """
-        Returns a shipping label for the purchaseOrderNumber that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 10 | 10 |
-
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
-
-        Args:
-            purchase_order_number: The purchase order number for which you want to return the shipping label. It should be the same purchaseOrderNumber as received in the order.
-        """
-        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}"
-        values = (purchase_order_number,)
-
-    _get_shipping_label_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required

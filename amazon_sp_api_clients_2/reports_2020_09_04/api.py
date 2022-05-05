@@ -11,6 +11,117 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class Reports20200904Client(BaseClient):
+    def cancel_report(
+        self,
+        report_id: str,
+    ):
+        """
+        Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
+        """
+        url = "/reports/2020-09-04/reports/{reportId}"
+        values = (report_id,)
+
+    _cancel_report_params = (("reportId", "path", True),)  # name, param in, required
+
+    def cancel_report_schedule(
+        self,
+        report_schedule_id: str,
+    ):
+        """
+        Cancels the report schedule that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+        """
+        url = "/reports/2020-09-04/schedules/{reportScheduleId}"
+        values = (report_schedule_id,)
+
+    _cancel_report_schedule_params = (("reportScheduleId", "path", True),)  # name, param in, required
+
+    def create_report(
+        self,
+    ):
+        """
+        Creates a report.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/reports/2020-09-04/reports"
+        values = ()
+
+    _create_report_params = ()  # name, param in, required
+
+    def create_report_schedule(
+        self,
+    ):
+        """
+        Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/reports/2020-09-04/schedules"
+        values = ()
+
+    _create_report_schedule_params = ()  # name, param in, required
+
+    def get_report(
+        self,
+        report_id: str,
+    ):
+        """
+        Returns report details (including the reportDocumentId, if available) for the report that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2.0 | 15 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
+        """
+        url = "/reports/2020-09-04/reports/{reportId}"
+        values = (report_id,)
+
+    _get_report_params = (("reportId", "path", True),)  # name, param in, required
+
     def get_report_document(
         self,
         report_document_id: str,
@@ -33,6 +144,52 @@ class Reports20200904Client(BaseClient):
         values = (report_document_id,)
 
     _get_report_document_params = (("reportDocumentId", "path", True),)  # name, param in, required
+
+    def get_report_schedule(
+        self,
+        report_schedule_id: str,
+    ):
+        """
+        Returns report schedule details for the report schedule that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+        """
+        url = "/reports/2020-09-04/schedules/{reportScheduleId}"
+        values = (report_schedule_id,)
+
+    _get_report_schedule_params = (("reportScheduleId", "path", True),)  # name, param in, required
+
+    def get_report_schedules(
+        self,
+        report_types: list[str],
+    ):
+        """
+        Returns report schedule details that match the filters that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            report_types: A list of report types used to filter report schedules.
+        """
+        url = "/reports/2020-09-04/schedules"
+        values = (report_types,)
+
+    _get_report_schedules_params = (("reportTypes", "query", True),)  # name, param in, required
 
     def get_reports(
         self,
@@ -86,160 +243,3 @@ class Reports20200904Client(BaseClient):
         ("createdUntil", "query", False),
         ("nextToken", "query", False),
     )
-
-    def create_report(
-        self,
-    ):
-        """
-        Creates a report.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0167 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/reports/2020-09-04/reports"
-        values = ()
-
-    _create_report_params = ()  # name, param in, required
-
-    def cancel_report(
-        self,
-        report_id: str,
-    ):
-        """
-        Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
-        """
-        url = "/reports/2020-09-04/reports/{reportId}"
-        values = (report_id,)
-
-    _cancel_report_params = (("reportId", "path", True),)  # name, param in, required
-
-    def get_report(
-        self,
-        report_id: str,
-    ):
-        """
-        Returns report details (including the reportDocumentId, if available) for the report that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2.0 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
-        """
-        url = "/reports/2020-09-04/reports/{reportId}"
-        values = (report_id,)
-
-    _get_report_params = (("reportId", "path", True),)  # name, param in, required
-
-    def get_report_schedules(
-        self,
-        report_types: list[str],
-    ):
-        """
-        Returns report schedule details that match the filters that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            report_types: A list of report types used to filter report schedules.
-        """
-        url = "/reports/2020-09-04/schedules"
-        values = (report_types,)
-
-    _get_report_schedules_params = (("reportTypes", "query", True),)  # name, param in, required
-
-    def create_report_schedule(
-        self,
-    ):
-        """
-        Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/reports/2020-09-04/schedules"
-        values = ()
-
-    _create_report_schedule_params = ()  # name, param in, required
-
-    def cancel_report_schedule(
-        self,
-        report_schedule_id: str,
-    ):
-        """
-        Cancels the report schedule that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
-        """
-        url = "/reports/2020-09-04/schedules/{reportScheduleId}"
-        values = (report_schedule_id,)
-
-    _cancel_report_schedule_params = (("reportScheduleId", "path", True),)  # name, param in, required
-
-    def get_report_schedule(
-        self,
-        report_schedule_id: str,
-    ):
-        """
-        Returns report schedule details for the report schedule that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
-        """
-        url = "/reports/2020-09-04/schedules/{reportScheduleId}"
-        values = (report_schedule_id,)
-
-    _get_report_schedule_params = (("reportScheduleId", "path", True),)  # name, param in, required

@@ -11,13 +11,13 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class MessagingV1Client(BaseClient):
-    def get_messaging_actions_for_order(
+    def create_amazon_motors(
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
     ):
         """
-        Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.
+        Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
 
         **Usage Plan:**
 
@@ -28,16 +28,47 @@ class MessagingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which you want a list of available message types.
+            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}"
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
         values = (
             amazon_order_id,
             marketplace_ids,
         )
 
-    _get_messaging_actions_for_order_params = (  # name, param in, required
+    _create_amazon_motors_params = (  # name, param in, required
+        ("amazonOrderId", "path", True),
+        ("marketplaceIds", "query", True),
+    )
+
+    def create_warranty(
+        self,
+        amazon_order_id: str,
+        marketplace_ids: list[str],
+    ):
+        """
+        Sends a message to a buyer to provide details about warranty information on a purchase in their order.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
+            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
+        """
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty"
+        values = (
+            amazon_order_id,
+            marketplace_ids,
+        )
+
+    _create_warranty_params = (  # name, param in, required
         ("amazonOrderId", "path", True),
         ("marketplaceIds", "query", True),
     )
@@ -67,37 +98,6 @@ class MessagingV1Client(BaseClient):
         )
 
     _get_attributes_params = (  # name, param in, required
-        ("amazonOrderId", "path", True),
-        ("marketplaceIds", "query", True),
-    )
-
-    def create_amazon_motors(
-        self,
-        amazon_order_id: str,
-        marketplace_ids: list[str],
-    ):
-        """
-        Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
-            marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-        """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
-        values = (
-            amazon_order_id,
-            marketplace_ids,
-        )
-
-    _create_amazon_motors_params = (  # name, param in, required
         ("amazonOrderId", "path", True),
         ("marketplaceIds", "query", True),
     )
@@ -350,13 +350,13 @@ class MessagingV1Client(BaseClient):
         ("marketplaceIds", "query", True),
     )
 
-    def create_warranty(
+    def get_messaging_actions_for_order(
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
     ):
         """
-        Sends a message to a buyer to provide details about warranty information on a purchase in their order.
+        Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.
 
         **Usage Plan:**
 
@@ -367,16 +367,16 @@ class MessagingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
+            amazon_order_id: An Amazon order identifier. This specifies the order for which you want a list of available message types.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty"
+        url = "/messaging/v1/orders/{amazonOrderId}"
         values = (
             amazon_order_id,
             marketplace_ids,
         )
 
-    _create_warranty_params = (  # name, param in, required
+    _get_messaging_actions_for_order_params = (  # name, param in, required
         ("amazonOrderId", "path", True),
         ("marketplaceIds", "query", True),
     )

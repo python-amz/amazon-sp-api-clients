@@ -11,12 +11,12 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class FulfillmentOutbound20200701Client(BaseClient):
-    def get_features(
+    def cancel_fulfillment_order(
         self,
-        marketplace_id: str,
+        seller_fulfillment_order_id: str,
     ):
         """
-        Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
+        Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
 
         **Usage Plan:**
 
@@ -27,12 +27,56 @@ class FulfillmentOutbound20200701Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            marketplace_id: The marketplace for which to return the list of features.
+            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
         """
-        url = "/fba/outbound/2020-07-01/features"
-        values = (marketplace_id,)
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
+        values = (seller_fulfillment_order_id,)
 
-    _get_features_params = (("marketplaceId", "query", True),)  # name, param in, required
+    _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
+
+    def create_fulfillment_order(
+        self,
+    ):
+        """
+        Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders"
+        values = ()
+
+    _create_fulfillment_order_params = ()  # name, param in, required
+
+    def create_fulfillment_return(
+        self,
+        seller_fulfillment_order_id: str,
+    ):
+        """
+        Creates a fulfillment return.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            seller_fulfillment_order_id: An identifier assigned by the seller to the fulfillment order at the time it was created. The seller uses their own records to find the correct SellerFulfillmentOrderId value based on the buyer's request to return items.
+        """
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return"
+        values = (seller_fulfillment_order_id,)
+
+    _create_fulfillment_return_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
 
     def get_feature_inventory(
         self,
@@ -104,6 +148,96 @@ class FulfillmentOutbound20200701Client(BaseClient):
         ("sellerSku", "path", True),
     )
 
+    def get_features(
+        self,
+        marketplace_id: str,
+    ):
+        """
+        Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            marketplace_id: The marketplace for which to return the list of features.
+        """
+        url = "/fba/outbound/2020-07-01/features"
+        values = (marketplace_id,)
+
+    _get_features_params = (("marketplaceId", "query", True),)  # name, param in, required
+
+    def get_fulfillment_order(
+        self,
+        seller_fulfillment_order_id: str,
+    ):
+        """
+        Returns the fulfillment order indicated by the specified order identifier.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
+        """
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
+        values = (seller_fulfillment_order_id,)
+
+    _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
+
+    def get_fulfillment_preview(
+        self,
+    ):
+        """
+        Returns a list of fulfillment order previews based on shipping criteria that you specify.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
+        values = ()
+
+    _get_fulfillment_preview_params = ()  # name, param in, required
+
+    def get_package_tracking_details(
+        self,
+        package_number: int,
+    ):
+        """
+        Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            package_number: The unencrypted package identifier returned by the getFulfillmentOrder operation.
+        """
+        url = "/fba/outbound/2020-07-01/tracking"
+        values = (package_number,)
+
+    _get_package_tracking_details_params = (("packageNumber", "query", True),)  # name, param in, required
+
     def list_all_fulfillment_orders(
         self,
         query_start_date: str = None,
@@ -134,140 +268,6 @@ class FulfillmentOutbound20200701Client(BaseClient):
         ("queryStartDate", "query", False),
         ("nextToken", "query", False),
     )
-
-    def create_fulfillment_order(
-        self,
-    ):
-        """
-        Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders"
-        values = ()
-
-    _create_fulfillment_order_params = ()  # name, param in, required
-
-    def get_fulfillment_preview(
-        self,
-    ):
-        """
-        Returns a list of fulfillment order previews based on shipping criteria that you specify.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
-        values = ()
-
-    _get_fulfillment_preview_params = ()  # name, param in, required
-
-    def get_fulfillment_order(
-        self,
-        seller_fulfillment_order_id: str,
-    ):
-        """
-        Returns the fulfillment order indicated by the specified order identifier.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
-        """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
-        values = (seller_fulfillment_order_id,)
-
-    _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
-
-    def update_fulfillment_order(
-        self,
-        seller_fulfillment_order_id: str,
-    ):
-        """
-        Updates and/or requests shipment for a fulfillment order with an order hold on it.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
-        """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
-        values = (seller_fulfillment_order_id,)
-
-    _update_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
-
-    def cancel_fulfillment_order(
-        self,
-        seller_fulfillment_order_id: str,
-    ):
-        """
-        Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
-        """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
-        values = (seller_fulfillment_order_id,)
-
-    _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
-
-    def create_fulfillment_return(
-        self,
-        seller_fulfillment_order_id: str,
-    ):
-        """
-        Creates a fulfillment return.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            seller_fulfillment_order_id: An identifier assigned by the seller to the fulfillment order at the time it was created. The seller uses their own records to find the correct SellerFulfillmentOrderId value based on the buyer's request to return items.
-        """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return"
-        values = (seller_fulfillment_order_id,)
-
-    _create_fulfillment_return_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required
 
     def list_return_reason_codes(
         self,
@@ -308,12 +308,12 @@ class FulfillmentOutbound20200701Client(BaseClient):
         ("language", "query", True),
     )
 
-    def get_package_tracking_details(
+    def update_fulfillment_order(
         self,
-        package_number: int,
+        seller_fulfillment_order_id: str,
     ):
         """
-        Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
+        Updates and/or requests shipment for a fulfillment order with an order hold on it.
 
         **Usage Plan:**
 
@@ -324,9 +324,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            package_number: The unencrypted package identifier returned by the getFulfillmentOrder operation.
+            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
         """
-        url = "/fba/outbound/2020-07-01/tracking"
-        values = (package_number,)
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
+        values = (seller_fulfillment_order_id,)
 
-    _get_package_tracking_details_params = (("packageNumber", "query", True),)  # name, param in, required
+    _update_fulfillment_order_params = (("sellerFulfillmentOrderId", "path", True),)  # name, param in, required

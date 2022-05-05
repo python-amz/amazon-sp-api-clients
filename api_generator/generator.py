@@ -9,7 +9,7 @@ import django.template
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic import Operation, Reference, Parameter
+from openapi_schema_pydantic import Operation, Reference, Parameter, RequestBody
 from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI
 
 settings.configure(TEMPLATES=[{
@@ -95,12 +95,16 @@ class Generator:
         operations = [OperationWithName(**{'path': path, 'method': method, **getattr(path_item, method).dict()})
                       for path, path_item in self.data.paths.items()
                       for method in path_item.__fields_set__]
-        operations.sort(key=lambda k: k.path)
+        operations.sort(key=lambda k: k.operationId)
         for operation in [o for o in operations if o.parameters is not None]:
+
+            if (body := operation.requestBody) is not None:
+                assert isinstance(body, RequestBody)
+                # ParsedParameter()
+
             if not any(isinstance(p, Reference) for p in operation.parameters):
                 operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in operation.parameters]
                 continue
-            parameters = operation.parameters
             result = []
             for parameter in operation.parameters:
                 if not isinstance(parameter, Reference):
@@ -112,6 +116,7 @@ class Generator:
                 name = match.group(1)
                 result.append(self.data.components.parameters[name])
             operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in result]
+
         # Currently, there is no parameter in header or cookie
         assert all(p.param_in in ('query', 'path') for o in operations for p in o.parsed_parameters)
         return operations
