@@ -7,12 +7,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v0
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class ShipmentInvoicingV0Client(BaseClient):
     def get_shipment_details(
         self,
-        shipment_id,
+        shipment_id: str,
     ):
         """
         Returns the shipment details required to issue an invoice for the specified shipment.
@@ -29,11 +30,17 @@ class ShipmentInvoicingV0Client(BaseClient):
         Args:
             shipment_id: The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus notification. For information about subscribing to notifications, see the [Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}"
+        path_parameters = {}
+
+        path_parameters["shipmentId"] = shipment_id
+
+        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def submit_invoice(
         self,
-        shipment_id,
+        shipment_id: str,
     ):
         """
         Submits a shipment invoice document for a given shipment.
@@ -50,11 +57,17 @@ class ShipmentInvoicingV0Client(BaseClient):
         Args:
             shipment_id: The identifier for the shipment.
         """
-        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice"
+        path_parameters = {}
+
+        path_parameters["shipmentId"] = shipment_id
+
+        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_invoice_status(
         self,
-        shipment_id,
+        shipment_id: str,
     ):
         """
         Returns the invoice status for the shipment you specify.
@@ -71,4 +84,10 @@ class ShipmentInvoicingV0Client(BaseClient):
         Args:
             shipment_id: The shipment identifier for the shipment.
         """
-        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status"
+        path_parameters = {}
+
+        path_parameters["shipmentId"] = shipment_id
+
+        url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status".format(**path_parameters)
+
+        query_parameters = {}

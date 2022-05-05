@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2021-06-30
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class Reports20210630Client(BaseClient):
@@ -26,17 +27,23 @@ class Reports20210630Client(BaseClient):
 
         Args:
         """
-        url = "/reports/2021-06-30/reports"
+        path_parameters = {}
+
+        url = "/reports/2021-06-30/reports".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_reports(
         self,
-        report_types=None,
-        processing_statuses=None,
-        marketplace_ids=None,
-        page_size=None,
-        created_since=None,
-        created_until=None,
-        next_token=None,
+        report_types: list[str] = None,
+        processing_statuses: list[
+            Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+        ] = None,
+        marketplace_ids: list[str] = None,
+        page_size: int = None,
+        created_since: str = None,
+        created_until: str = None,
+        next_token: str = None,
     ):
         """
         Returns report details for the reports that match the filters that you specify.
@@ -58,11 +65,36 @@ class Reports20210630Client(BaseClient):
             created_until: The latest report creation date and time for reports to include in the response, in ISO 8601 date time format. The default is now.
             next_token: A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getReports operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
         """
-        url = "/reports/2021-06-30/reports"
+        path_parameters = {}
+
+        url = "/reports/2021-06-30/reports".format(**path_parameters)
+
+        query_parameters = {}
+
+        if report_types is not None:
+            query_parameters["reportTypes"] = report_types
+
+        if processing_statuses is not None:
+            query_parameters["processingStatuses"] = processing_statuses
+
+        if marketplace_ids is not None:
+            query_parameters["marketplaceIds"] = marketplace_ids
+
+        if page_size is not None:
+            query_parameters["pageSize"] = page_size
+
+        if created_since is not None:
+            query_parameters["createdSince"] = created_since
+
+        if created_until is not None:
+            query_parameters["createdUntil"] = created_until
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
 
     def get_report(
         self,
-        report_id,
+        report_id: str,
     ):
         """
         Returns report details (including the reportDocumentId, if available) for the report that you specify.
@@ -78,11 +110,17 @@ class Reports20210630Client(BaseClient):
         Args:
             report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
         """
-        url = "/reports/2021-06-30/reports/{reportId}"
+        path_parameters = {}
+
+        path_parameters["reportId"] = report_id
+
+        url = "/reports/2021-06-30/reports/{reportId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def cancel_report(
         self,
-        report_id,
+        report_id: str,
     ):
         """
         Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
@@ -98,7 +136,13 @@ class Reports20210630Client(BaseClient):
         Args:
             report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
         """
-        url = "/reports/2021-06-30/reports/{reportId}"
+        path_parameters = {}
+
+        path_parameters["reportId"] = report_id
+
+        url = "/reports/2021-06-30/reports/{reportId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def create_report_schedule(
         self,
@@ -116,11 +160,15 @@ class Reports20210630Client(BaseClient):
 
         Args:
         """
-        url = "/reports/2021-06-30/schedules"
+        path_parameters = {}
+
+        url = "/reports/2021-06-30/schedules".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_report_schedules(
         self,
-        report_types,
+        report_types: list[str],
     ):
         """
         Returns report schedule details that match the filters that you specify.
@@ -136,11 +184,17 @@ class Reports20210630Client(BaseClient):
         Args:
             report_types: A list of report types used to filter report schedules.
         """
-        url = "/reports/2021-06-30/schedules"
+        path_parameters = {}
+
+        url = "/reports/2021-06-30/schedules".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["reportTypes"] = report_types
 
     def get_report_schedule(
         self,
-        report_schedule_id,
+        report_schedule_id: str,
     ):
         """
         Returns report schedule details for the report schedule that you specify.
@@ -156,11 +210,17 @@ class Reports20210630Client(BaseClient):
         Args:
             report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
         """
-        url = "/reports/2021-06-30/schedules/{reportScheduleId}"
+        path_parameters = {}
+
+        path_parameters["reportScheduleId"] = report_schedule_id
+
+        url = "/reports/2021-06-30/schedules/{reportScheduleId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def cancel_report_schedule(
         self,
-        report_schedule_id,
+        report_schedule_id: str,
     ):
         """
         Cancels the report schedule that you specify.
@@ -176,11 +236,17 @@ class Reports20210630Client(BaseClient):
         Args:
             report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
         """
-        url = "/reports/2021-06-30/schedules/{reportScheduleId}"
+        path_parameters = {}
+
+        path_parameters["reportScheduleId"] = report_schedule_id
+
+        url = "/reports/2021-06-30/schedules/{reportScheduleId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_report_document(
         self,
-        report_document_id,
+        report_document_id: str,
     ):
         """
         Returns the information required for retrieving a report document's contents.
@@ -196,4 +262,10 @@ class Reports20210630Client(BaseClient):
         Args:
             report_document_id: The identifier for the report document.
         """
-        url = "/reports/2021-06-30/documents/{reportDocumentId}"
+        path_parameters = {}
+
+        path_parameters["reportDocumentId"] = report_document_id
+
+        url = "/reports/2021-06-30/documents/{reportDocumentId}".format(**path_parameters)
+
+        query_parameters = {}

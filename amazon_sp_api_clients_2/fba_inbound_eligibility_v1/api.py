@@ -7,14 +7,15 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class FbaInboundEligibilityV1Client(BaseClient):
     def get_item_eligibility_preview(
         self,
-        marketplace_ids=None,
-        asin,
-        program,
+        marketplace_ids: list[str] = None,
+        asin: str,
+        program: str,
     ):
         """
         This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
@@ -32,4 +33,15 @@ class FbaInboundEligibilityV1Client(BaseClient):
             asin: The ASIN of the item for which you want an eligibility preview.
             program: The program that you want to check eligibility against.
         """
-        url = "/fba/inbound/v1/eligibility/itemPreview"
+        path_parameters = {}
+
+        url = "/fba/inbound/v1/eligibility/itemPreview".format(**path_parameters)
+
+        query_parameters = {}
+
+        if marketplace_ids is not None:
+            query_parameters["marketplaceIds"] = marketplace_ids
+
+        query_parameters["asin"] = asin
+
+        query_parameters["program"] = program

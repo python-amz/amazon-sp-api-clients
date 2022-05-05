@@ -7,20 +7,21 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class SalesV1Client(BaseClient):
     def get_order_metrics(
         self,
-        marketplace_ids,
-        interval,
-        granularity_time_zone=None,
-        granularity,
-        buyer_type=None,
-        fulfillment_network=None,
-        first_day_of_week=None,
-        asin=None,
-        sku=None,
+        marketplace_ids: list[str],
+        interval: str,
+        granularity_time_zone: str = None,
+        granularity: str,
+        buyer_type: str = None,
+        fulfillment_network: str = None,
+        first_day_of_week: str = None,
+        asin: str = None,
+        sku: str = None,
     ):
         """
         Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
@@ -44,4 +45,32 @@ class SalesV1Client(BaseClient):
             asin: Filters the results by the ASIN that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all ASINs. Example: B0792R1RSN, if you want the response to include order metrics for only ASIN B0792R1RSN.
             sku: Filters the results by the SKU that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all SKUs. Example: TestSKU, if you want the response to include order metrics for only SKU TestSKU.
         """
-        url = "/sales/v1/orderMetrics"
+        path_parameters = {}
+
+        url = "/sales/v1/orderMetrics".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["marketplaceIds"] = marketplace_ids
+
+        query_parameters["interval"] = interval
+
+        if granularity_time_zone is not None:
+            query_parameters["granularityTimeZone"] = granularity_time_zone
+
+        query_parameters["granularity"] = granularity
+
+        if buyer_type is not None:
+            query_parameters["buyerType"] = buyer_type
+
+        if fulfillment_network is not None:
+            query_parameters["fulfillmentNetwork"] = fulfillment_network
+
+        if first_day_of_week is not None:
+            query_parameters["firstDayOfWeek"] = first_day_of_week
+
+        if asin is not None:
+            query_parameters["asin"] = asin
+
+        if sku is not None:
+            query_parameters["sku"] = sku

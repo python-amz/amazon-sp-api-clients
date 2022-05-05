@@ -7,12 +7,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v0
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class ProductFeesV0Client(BaseClient):
     def get_my_fees_estimate_for_sku(
         self,
-        Seller_sku,
+        Seller_sku: str,
     ):
         """
         Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.
@@ -33,11 +34,17 @@ class ProductFeesV0Client(BaseClient):
         Args:
             Seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
         """
-        url = "/products/fees/v0/listings/{SellerSKU}/feesEstimate"
+        path_parameters = {}
+
+        path_parameters["SellerSKU"] = Seller_sku
+
+        url = "/products/fees/v0/listings/{SellerSKU}/feesEstimate".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_my_fees_estimate_for_asin(
         self,
-        Asin,
+        Asin: str,
     ):
         """
         Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
@@ -58,4 +65,10 @@ class ProductFeesV0Client(BaseClient):
         Args:
             Asin: The Amazon Standard Identification Number (ASIN) of the item.
         """
-        url = "/products/fees/v0/items/{Asin}/feesEstimate"
+        path_parameters = {}
+
+        path_parameters["Asin"] = Asin
+
+        url = "/products/fees/v0/items/{Asin}/feesEstimate".format(**path_parameters)
+
+        query_parameters = {}

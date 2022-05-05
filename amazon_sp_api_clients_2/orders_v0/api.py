@@ -7,28 +7,29 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v0
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class OrdersV0Client(BaseClient):
     def get_orders(
         self,
-        Created_after=None,
-        Created_before=None,
-        Last_updated_after=None,
-        Last_updated_before=None,
-        Order_statuses=None,
-        Marketplace_ids,
-        Fulfillment_channels=None,
-        Payment_methods=None,
-        Buyer_email=None,
-        Seller_order_id=None,
-        Max_results_per_page=None,
-        Easy_ship_shipment_statuses=None,
-        Next_token=None,
-        Amazon_order_ids=None,
-        Actual_fulfillment_supply_source_id=None,
-        Is_ispu=None,
-        Store_chain_store_id=None,
+        Created_after: str = None,
+        Created_before: str = None,
+        Last_updated_after: str = None,
+        Last_updated_before: str = None,
+        Order_statuses: list[str] = None,
+        Marketplace_ids: list[str],
+        Fulfillment_channels: list[str] = None,
+        Payment_methods: list[str] = None,
+        Buyer_email: str = None,
+        Seller_order_id: str = None,
+        Max_results_per_page: int = None,
+        Easy_ship_shipment_statuses: list[str] = None,
+        Next_token: str = None,
+        Amazon_order_ids: list[str] = None,
+        Actual_fulfillment_supply_source_id: str = None,
+        Is_ispu: bool = None,
+        Store_chain_store_id: str = None,
     ):
         """
         Returns orders created or updated during the time frame indicated by the specified parameters. You can also apply a range of filtering criteria to narrow the list of orders returned. If NextToken is present, that will be used to retrieve the orders instead of other criteria.
@@ -63,11 +64,65 @@ class OrdersV0Client(BaseClient):
             Is_ispu: When true, this order is marked to be picked up from a store rather than delivered.
             Store_chain_store_id: The store chain store identifier. Linked to a specific store in a store chain.
         """
-        url = "/orders/v0/orders"
+        path_parameters = {}
+
+        url = "/orders/v0/orders".format(**path_parameters)
+
+        query_parameters = {}
+
+        if Created_after is not None:
+            query_parameters["CreatedAfter"] = Created_after
+
+        if Created_before is not None:
+            query_parameters["CreatedBefore"] = Created_before
+
+        if Last_updated_after is not None:
+            query_parameters["LastUpdatedAfter"] = Last_updated_after
+
+        if Last_updated_before is not None:
+            query_parameters["LastUpdatedBefore"] = Last_updated_before
+
+        if Order_statuses is not None:
+            query_parameters["OrderStatuses"] = Order_statuses
+
+        query_parameters["MarketplaceIds"] = Marketplace_ids
+
+        if Fulfillment_channels is not None:
+            query_parameters["FulfillmentChannels"] = Fulfillment_channels
+
+        if Payment_methods is not None:
+            query_parameters["PaymentMethods"] = Payment_methods
+
+        if Buyer_email is not None:
+            query_parameters["BuyerEmail"] = Buyer_email
+
+        if Seller_order_id is not None:
+            query_parameters["SellerOrderId"] = Seller_order_id
+
+        if Max_results_per_page is not None:
+            query_parameters["MaxResultsPerPage"] = Max_results_per_page
+
+        if Easy_ship_shipment_statuses is not None:
+            query_parameters["EasyShipShipmentStatuses"] = Easy_ship_shipment_statuses
+
+        if Next_token is not None:
+            query_parameters["NextToken"] = Next_token
+
+        if Amazon_order_ids is not None:
+            query_parameters["AmazonOrderIds"] = Amazon_order_ids
+
+        if Actual_fulfillment_supply_source_id is not None:
+            query_parameters["ActualFulfillmentSupplySourceId"] = Actual_fulfillment_supply_source_id
+
+        if Is_ispu is not None:
+            query_parameters["IsISPU"] = Is_ispu
+
+        if Store_chain_store_id is not None:
+            query_parameters["StoreChainStoreId"] = Store_chain_store_id
 
     def get_order(
         self,
-        order_id,
+        order_id: str,
     ):
         """
         Returns the order indicated by the specified order ID.
@@ -84,11 +139,17 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
         """
-        url = "/orders/v0/orders/{orderId}"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_order_buyer_info(
         self,
-        order_id,
+        order_id: str,
     ):
         """
         Returns buyer information for the specified order.
@@ -105,11 +166,17 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
-        url = "/orders/v0/orders/{orderId}/buyerInfo"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}/buyerInfo".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_order_address(
         self,
-        order_id,
+        order_id: str,
     ):
         """
         Returns the shipping address for the specified order.
@@ -126,12 +193,18 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
-        url = "/orders/v0/orders/{orderId}/address"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}/address".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_order_items(
         self,
-        order_id,
-        Next_token=None,
+        order_id: str,
+        Next_token: str = None,
     ):
         """
         Returns detailed order item information for the order indicated by the specified order ID. If NextToken is provided, it's used to retrieve the next page of order items.
@@ -151,12 +224,21 @@ class OrdersV0Client(BaseClient):
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
             Next_token: A string token returned in the response of your previous request.
         """
-        url = "/orders/v0/orders/{orderId}/orderItems"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}/orderItems".format(**path_parameters)
+
+        query_parameters = {}
+
+        if Next_token is not None:
+            query_parameters["NextToken"] = Next_token
 
     def get_order_items_buyer_info(
         self,
-        order_id,
-        Next_token=None,
+        order_id: str,
+        Next_token: str = None,
     ):
         """
         Returns buyer information for the order items in the specified order.
@@ -174,11 +256,20 @@ class OrdersV0Client(BaseClient):
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
             Next_token: A string token returned in the response of your previous request.
         """
-        url = "/orders/v0/orders/{orderId}/orderItems/buyerInfo"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}/orderItems/buyerInfo".format(**path_parameters)
+
+        query_parameters = {}
+
+        if Next_token is not None:
+            query_parameters["NextToken"] = Next_token
 
     def update_shipment_status(
         self,
-        order_id,
+        order_id: str,
     ):
         """
         Update the shipment status.
@@ -186,11 +277,17 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
         """
-        url = "/orders/v0/orders/{orderId}/shipment"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}/shipment".format(**path_parameters)
+
+        query_parameters = {}
 
     def update_verification_status(
         self,
-        order_id,
+        order_id: str,
     ):
         """
         Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -207,11 +304,17 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
-        url = "/orders/v0/orders/{orderId}/regulatedInfo"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}/regulatedInfo".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_order_regulated_info(
         self,
-        order_id,
+        order_id: str,
     ):
         """
         Returns regulated information for the order indicated by the specified order ID.
@@ -228,4 +331,10 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
-        url = "/orders/v0/orders/{orderId}/regulatedInfo"
+        path_parameters = {}
+
+        path_parameters["orderId"] = order_id
+
+        url = "/orders/v0/orders/{orderId}/regulatedInfo".format(**path_parameters)
+
+        query_parameters = {}

@@ -9,20 +9,31 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2020-12-01
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class CatalogItems20201201Client(BaseClient):
     def search_catalog_items(
         self,
-        keywords,
-        marketplace_ids,
-        included_data=None,
-        brand_names=None,
-        classification_ids=None,
-        page_size=None,
-        page_token=None,
-        keywords_locale=None,
-        locale=None,
+        keywords: list[str],
+        marketplace_ids: list[str],
+        included_data: list[
+            Union[
+                Literal["identifiers"],
+                Literal["images"],
+                Literal["productTypes"],
+                Literal["salesRanks"],
+                Literal["summaries"],
+                Literal["variations"],
+                Literal["vendorDetails"],
+            ]
+        ] = None,
+        brand_names: list[str] = None,
+        classification_ids: list[str] = None,
+        page_size: int = None,
+        page_token: str = None,
+        keywords_locale: str = None,
+        locale: str = None,
     ):
         """
         Search for and return a list of Amazon catalog items and associated information.
@@ -47,14 +58,54 @@ class CatalogItems20201201Client(BaseClient):
             keywords_locale: The language the keywords are provided in. Defaults to the primary locale of the marketplace.
             locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
         """
-        url = "/catalog/2020-12-01/items"
+        path_parameters = {}
+
+        url = "/catalog/2020-12-01/items".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["keywords"] = keywords
+
+        query_parameters["marketplaceIds"] = marketplace_ids
+
+        if included_data is not None:
+            query_parameters["includedData"] = included_data
+
+        if brand_names is not None:
+            query_parameters["brandNames"] = brand_names
+
+        if classification_ids is not None:
+            query_parameters["classificationIds"] = classification_ids
+
+        if page_size is not None:
+            query_parameters["pageSize"] = page_size
+
+        if page_token is not None:
+            query_parameters["pageToken"] = page_token
+
+        if keywords_locale is not None:
+            query_parameters["keywordsLocale"] = keywords_locale
+
+        if locale is not None:
+            query_parameters["locale"] = locale
 
     def get_catalog_item(
         self,
-        asin,
-        marketplace_ids,
-        included_data=None,
-        locale=None,
+        asin: str,
+        marketplace_ids: list[str],
+        included_data: list[
+            Union[
+                Literal["attributes"],
+                Literal["identifiers"],
+                Literal["images"],
+                Literal["productTypes"],
+                Literal["salesRanks"],
+                Literal["summaries"],
+                Literal["variations"],
+                Literal["vendorDetails"],
+            ]
+        ] = None,
+        locale: str = None,
     ):
         """
         Retrieves details for an item in the Amazon catalog.
@@ -74,4 +125,18 @@ class CatalogItems20201201Client(BaseClient):
             included_data: A comma-delimited list of data sets to include in the response. Default: summaries.
             locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
         """
-        url = "/catalog/2020-12-01/items/{asin}"
+        path_parameters = {}
+
+        path_parameters["asin"] = asin
+
+        url = "/catalog/2020-12-01/items/{asin}".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["marketplaceIds"] = marketplace_ids
+
+        if included_data is not None:
+            query_parameters["includedData"] = included_data
+
+        if locale is not None:
+            query_parameters["locale"] = locale

@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentShippingV1Client(BaseClient):
@@ -27,16 +28,20 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
         Args:
         """
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_shipping_labels(
         self,
-        ship_from_party_id=None,
-        limit=None,
-        created_after,
-        created_before,
-        sort_order=None,
-        next_token=None,
+        ship_from_party_id: str = None,
+        limit: int = None,
+        created_after: str,
+        created_before: str,
+        sort_order: str = None,
+        next_token: str = None,
     ):
         """
         Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
@@ -58,11 +63,31 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order: Sort ASC or DESC by order creation date.
             next_token: Used for pagination when there are more ship labels than the specified result size limit. The token value is returned in the previous API call.
         """
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format(**path_parameters)
+
+        query_parameters = {}
+
+        if ship_from_party_id is not None:
+            query_parameters["shipFromPartyId"] = ship_from_party_id
+
+        if limit is not None:
+            query_parameters["limit"] = limit
+
+        query_parameters["createdAfter"] = created_after
+
+        query_parameters["createdBefore"] = created_before
+
+        if sort_order is not None:
+            query_parameters["sortOrder"] = sort_order
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
 
     def get_shipping_label(
         self,
-        purchase_order_number,
+        purchase_order_number: str,
     ):
         """
         Returns a shipping label for the purchaseOrderNumber that you specify.
@@ -79,7 +104,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         Args:
             purchase_order_number: The purchase order number for which you want to return the shipping label. It should be the same purchaseOrderNumber as received in the order.
         """
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}"
+        path_parameters = {}
+
+        path_parameters["purchaseOrderNumber"] = purchase_order_number
+
+        url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}".format(**path_parameters)
+
+        query_parameters = {}
 
     def submit_shipment_confirmations(
         self,
@@ -98,7 +129,11 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
         Args:
         """
-        url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations".format(**path_parameters)
+
+        query_parameters = {}
 
     def submit_shipment_status_updates(
         self,
@@ -117,16 +152,20 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
         Args:
         """
-        url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_customer_invoices(
         self,
-        ship_from_party_id=None,
-        limit=None,
-        created_after,
-        created_before,
-        sort_order=None,
-        next_token=None,
+        ship_from_party_id: str = None,
+        limit: int = None,
+        created_after: str,
+        created_before: str,
+        sort_order: str = None,
+        next_token: str = None,
     ):
         """
         Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
@@ -148,11 +187,31 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order: Sort ASC or DESC by order creation date.
             next_token: Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
         """
-        url = "/vendor/directFulfillment/shipping/v1/customerInvoices"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/shipping/v1/customerInvoices".format(**path_parameters)
+
+        query_parameters = {}
+
+        if ship_from_party_id is not None:
+            query_parameters["shipFromPartyId"] = ship_from_party_id
+
+        if limit is not None:
+            query_parameters["limit"] = limit
+
+        query_parameters["createdAfter"] = created_after
+
+        query_parameters["createdBefore"] = created_before
+
+        if sort_order is not None:
+            query_parameters["sortOrder"] = sort_order
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
 
     def get_customer_invoice(
         self,
-        purchase_order_number,
+        purchase_order_number: str,
     ):
         """
         Returns a customer invoice based on the purchaseOrderNumber that you specify.
@@ -169,16 +228,22 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         Args:
             purchase_order_number: Purchase order number of the shipment for which to return the invoice.
         """
-        url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}"
+        path_parameters = {}
+
+        path_parameters["purchaseOrderNumber"] = purchase_order_number
+
+        url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_packing_slips(
         self,
-        ship_from_party_id=None,
-        limit=None,
-        created_after,
-        created_before,
-        sort_order=None,
-        next_token=None,
+        ship_from_party_id: str = None,
+        limit: int = None,
+        created_after: str,
+        created_before: str,
+        sort_order: str = None,
+        next_token: str = None,
     ):
         """
         Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
@@ -200,11 +265,31 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order: Sort ASC or DESC by packing slip creation date.
             next_token: Used for pagination when there are more packing slips than the specified result size limit. The token value is returned in the previous API call.
         """
-        url = "/vendor/directFulfillment/shipping/v1/packingSlips"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/shipping/v1/packingSlips".format(**path_parameters)
+
+        query_parameters = {}
+
+        if ship_from_party_id is not None:
+            query_parameters["shipFromPartyId"] = ship_from_party_id
+
+        if limit is not None:
+            query_parameters["limit"] = limit
+
+        query_parameters["createdAfter"] = created_after
+
+        query_parameters["createdBefore"] = created_before
+
+        if sort_order is not None:
+            query_parameters["sortOrder"] = sort_order
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
 
     def get_packing_slip(
         self,
-        purchase_order_number,
+        purchase_order_number: str,
     ):
         """
         Returns a packing slip based on the purchaseOrderNumber that you specify.
@@ -221,4 +306,10 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         Args:
             purchase_order_number: The purchaseOrderNumber for the packing slip you want.
         """
-        url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}"
+        path_parameters = {}
+
+        path_parameters["purchaseOrderNumber"] = purchase_order_number
+
+        url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}".format(**path_parameters)
+
+        query_parameters = {}

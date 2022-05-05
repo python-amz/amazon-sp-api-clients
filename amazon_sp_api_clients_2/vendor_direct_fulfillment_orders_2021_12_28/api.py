@@ -7,19 +7,20 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2021-12-28
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     def get_orders(
         self,
-        ship_from_party_id=None,
-        status=None,
-        limit=None,
-        created_after,
-        created_before,
-        sort_order=None,
-        next_token=None,
-        include_details=None,
+        ship_from_party_id: str = None,
+        status: str = None,
+        limit: int = None,
+        created_after: str,
+        created_before: str,
+        sort_order: str = None,
+        next_token: str = None,
+        include_details: str = None,
     ):
         """
         Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
@@ -42,11 +43,37 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             next_token: Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
             include_details: When true, returns the complete purchase order details. Otherwise, only purchase order numbers are returned.
         """
-        url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders".format(**path_parameters)
+
+        query_parameters = {}
+
+        if ship_from_party_id is not None:
+            query_parameters["shipFromPartyId"] = ship_from_party_id
+
+        if status is not None:
+            query_parameters["status"] = status
+
+        if limit is not None:
+            query_parameters["limit"] = limit
+
+        query_parameters["createdAfter"] = created_after
+
+        query_parameters["createdBefore"] = created_before
+
+        if sort_order is not None:
+            query_parameters["sortOrder"] = sort_order
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
+
+        if include_details is not None:
+            query_parameters["includeDetails"] = include_details
 
     def get_order(
         self,
-        purchase_order_number,
+        purchase_order_number: str,
     ):
         """
         Returns purchase order information for the purchaseOrderNumber that you specify.
@@ -62,7 +89,15 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         Args:
             purchase_order_number: The order identifier for the purchase order that you want. Formatting Notes: alpha-numeric code.
         """
-        url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/{purchaseOrderNumber}"
+        path_parameters = {}
+
+        path_parameters["purchaseOrderNumber"] = purchase_order_number
+
+        url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/{purchaseOrderNumber}".format(
+            **path_parameters
+        )
+
+        query_parameters = {}
 
     def submit_acknowledgement(
         self,
@@ -80,4 +115,8 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
 
         Args:
         """
-        url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements".format(**path_parameters)
+
+        query_parameters = {}

@@ -7,12 +7,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class ServicesV1Client(BaseClient):
     def get_service_job_by_service_job_id(
         self,
-        service_job_id,
+        service_job_id: str,
     ):
         """
         Gets service job details for the service job indicated by the service job identifier you specify.
@@ -28,12 +29,18 @@ class ServicesV1Client(BaseClient):
         Args:
             service_job_id: A service job identifier.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}"
+        path_parameters = {}
+
+        path_parameters["serviceJobId"] = service_job_id
+
+        url = "/service/v1/serviceJobs/{serviceJobId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def cancel_service_job_by_service_job_id(
         self,
-        service_job_id,
-        cancellation_reason_code,
+        service_job_id: str,
+        cancellation_reason_code: str,
     ):
         """
         Cancels the service job indicated by the service job identifier you specify.
@@ -50,11 +57,19 @@ class ServicesV1Client(BaseClient):
             service_job_id: An Amazon defined service job identifier.
             cancellation_reason_code: A cancel reason code that specifies the reason for cancelling a service job.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/cancellations"
+        path_parameters = {}
+
+        path_parameters["serviceJobId"] = service_job_id
+
+        url = "/service/v1/serviceJobs/{serviceJobId}/cancellations".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["cancellationReasonCode"] = cancellation_reason_code
 
     def complete_service_job_by_service_job_id(
         self,
-        service_job_id,
+        service_job_id: str,
     ):
         """
         Completes the service job indicated by the service job identifier you specify.
@@ -70,23 +85,39 @@ class ServicesV1Client(BaseClient):
         Args:
             service_job_id: An Amazon defined service job identifier.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/completions"
+        path_parameters = {}
+
+        path_parameters["serviceJobId"] = service_job_id
+
+        url = "/service/v1/serviceJobs/{serviceJobId}/completions".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_service_jobs(
         self,
-        service_order_ids=None,
-        service_job_status=None,
-        page_token=None,
-        page_size=None,
-        sort_field=None,
-        sort_order=None,
-        created_after=None,
-        created_before=None,
-        last_updated_after=None,
-        last_updated_before=None,
-        schedule_start_date=None,
-        schedule_end_date=None,
-        marketplace_ids,
+        service_order_ids: list[str] = None,
+        service_job_status: list[
+            Union[
+                Literal["NOT_SERVICED"],
+                Literal["CANCELLED"],
+                Literal["COMPLETED"],
+                Literal["PENDING_SCHEDULE"],
+                Literal["NOT_FULFILLABLE"],
+                Literal["HOLD"],
+                Literal["PAYMENT_DECLINED"],
+            ]
+        ] = None,
+        page_token: str = None,
+        page_size: int = None,
+        sort_field: str = None,
+        sort_order: str = None,
+        created_after: str = None,
+        created_before: str = None,
+        last_updated_after: str = None,
+        last_updated_before: str = None,
+        schedule_start_date: str = None,
+        schedule_end_date: str = None,
+        marketplace_ids: list[str],
     ):
         """
         Gets service job details for the specified filter query.
@@ -114,11 +145,53 @@ class ServicesV1Client(BaseClient):
             schedule_end_date: A date used for filtering jobs schedule before (or at) a specified time must be in ISO 8601 format. schedule end date should not be earlier than schedule start date.
             marketplace_ids: Used to select jobs that were placed in the specified marketplaces.
         """
-        url = "/service/v1/serviceJobs"
+        path_parameters = {}
+
+        url = "/service/v1/serviceJobs".format(**path_parameters)
+
+        query_parameters = {}
+
+        if service_order_ids is not None:
+            query_parameters["serviceOrderIds"] = service_order_ids
+
+        if service_job_status is not None:
+            query_parameters["serviceJobStatus"] = service_job_status
+
+        if page_token is not None:
+            query_parameters["pageToken"] = page_token
+
+        if page_size is not None:
+            query_parameters["pageSize"] = page_size
+
+        if sort_field is not None:
+            query_parameters["sortField"] = sort_field
+
+        if sort_order is not None:
+            query_parameters["sortOrder"] = sort_order
+
+        if created_after is not None:
+            query_parameters["createdAfter"] = created_after
+
+        if created_before is not None:
+            query_parameters["createdBefore"] = created_before
+
+        if last_updated_after is not None:
+            query_parameters["lastUpdatedAfter"] = last_updated_after
+
+        if last_updated_before is not None:
+            query_parameters["lastUpdatedBefore"] = last_updated_before
+
+        if schedule_start_date is not None:
+            query_parameters["scheduleStartDate"] = schedule_start_date
+
+        if schedule_end_date is not None:
+            query_parameters["scheduleEndDate"] = schedule_end_date
+
+        query_parameters["marketplaceIds"] = marketplace_ids
 
     def add_appointment_for_service_job_by_service_job_id(
         self,
-        service_job_id,
+        service_job_id: str,
     ):
         """
         Adds an appointment to the service job indicated by the service job identifier you specify.
@@ -134,12 +207,18 @@ class ServicesV1Client(BaseClient):
         Args:
             service_job_id: An Amazon defined service job identifier.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/appointments"
+        path_parameters = {}
+
+        path_parameters["serviceJobId"] = service_job_id
+
+        url = "/service/v1/serviceJobs/{serviceJobId}/appointments".format(**path_parameters)
+
+        query_parameters = {}
 
     def reschedule_appointment_for_service_job_by_service_job_id(
         self,
-        service_job_id,
-        appointment_id,
+        service_job_id: str,
+        appointment_id: str,
     ):
         """
         Reschedules an appointment for the service job indicated by the service job identifier you specify.
@@ -156,4 +235,12 @@ class ServicesV1Client(BaseClient):
             service_job_id: An Amazon defined service job identifier.
             appointment_id: An existing appointment identifier for the Service Job.
         """
-        url = "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}"
+        path_parameters = {}
+
+        path_parameters["serviceJobId"] = service_job_id
+
+        path_parameters["appointmentId"] = appointment_id
+
+        url = "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}".format(**path_parameters)
+
+        query_parameters = {}

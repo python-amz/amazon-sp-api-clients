@@ -9,6 +9,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2021-03-01
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class Tokens20210301Client(BaseClient):
@@ -29,4 +30,8 @@ class Tokens20210301Client(BaseClient):
 
         Args:
         """
-        url = "/tokens/2021-03-01/restrictedDataToken"
+        path_parameters = {}
+
+        url = "/tokens/2021-03-01/restrictedDataToken".format(**path_parameters)
+
+        query_parameters = {}

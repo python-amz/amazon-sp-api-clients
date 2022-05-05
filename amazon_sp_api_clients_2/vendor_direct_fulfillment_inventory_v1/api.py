@@ -7,12 +7,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     def submit_inventory_update(
         self,
-        warehouse_id,
+        warehouse_id: str,
     ):
         """
         Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
@@ -29,4 +30,10 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
         Args:
             warehouse_id: Identifier for the warehouse for which to update inventory.
         """
-        url = "/vendor/directFulfillment/inventory/v1/warehouses/{warehouseId}/items"
+        path_parameters = {}
+
+        path_parameters["warehouseId"] = warehouse_id
+
+        url = "/vendor/directFulfillment/inventory/v1/warehouses/{warehouseId}/items".format(**path_parameters)
+
+        query_parameters = {}

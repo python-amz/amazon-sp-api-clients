@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
@@ -27,4 +28,8 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
 
         Args:
         """
-        url = "/vendor/directFulfillment/payments/v1/invoices"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/payments/v1/invoices".format(**path_parameters)
+
+        query_parameters = {}

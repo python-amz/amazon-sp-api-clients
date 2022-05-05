@@ -7,14 +7,15 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class AuthorizationV1Client(BaseClient):
     def get_authorization_code(
         self,
-        selling_partner_id,
-        developer_id,
-        mws_auth_token,
+        selling_partner_id: str,
+        developer_id: str,
+        mws_auth_token: str,
     ):
         """
         With the getAuthorizationCode operation, you can request a Login With Amazon (LWA) authorization code that will allow you to call a Selling Partner API on behalf of a seller who has already authorized you to call Amazon Marketplace Web Service (Amazon MWS). You specify a developer ID, an MWS auth token, and a seller ID. Taken together, these represent the Amazon MWS authorization that the seller previously granted you. The operation returns an LWA authorization code that can be exchanged for a refresh token and access token representing authorization to call the Selling Partner API on the seller's behalf. By using this API, sellers who have already authorized you for Amazon MWS do not need to re-authorize you for the Selling Partner API.
@@ -32,4 +33,14 @@ class AuthorizationV1Client(BaseClient):
             developer_id: Your developer ID. This must be one of the developer ID values that you provided when you registered your application in Developer Central.
             mws_auth_token: The MWS Auth Token that was generated when the seller authorized your application on the Marketplace Appstore.
         """
-        url = "/authorization/v1/authorizationCode"
+        path_parameters = {}
+
+        url = "/authorization/v1/authorizationCode".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["sellingPartnerId"] = selling_partner_id
+
+        query_parameters["developerId"] = developer_id
+
+        query_parameters["mwsAuthToken"] = mws_auth_token

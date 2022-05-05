@@ -9,16 +9,17 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2021-08-01
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class ListingsRestrictions20210801Client(BaseClient):
     def get_listings_restrictions(
         self,
-        asin,
-        condition_type=None,
-        seller_id,
-        marketplace_ids,
-        reason_locale=None,
+        asin: str,
+        condition_type: str = None,
+        seller_id: str,
+        marketplace_ids: list[str],
+        reason_locale: str = None,
     ):
         """
         Returns listing restrictions for an item in the Amazon Catalog.
@@ -38,4 +39,20 @@ class ListingsRestrictions20210801Client(BaseClient):
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
             reason_locale: A locale for reason text localization. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
         """
-        url = "/listings/2021-08-01/restrictions"
+        path_parameters = {}
+
+        url = "/listings/2021-08-01/restrictions".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["asin"] = asin
+
+        if condition_type is not None:
+            query_parameters["conditionType"] = condition_type
+
+        query_parameters["sellerId"] = seller_id
+
+        query_parameters["marketplaceIds"] = marketplace_ids
+
+        if reason_locale is not None:
+            query_parameters["reasonLocale"] = reason_locale

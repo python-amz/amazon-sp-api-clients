@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class SellersV1Client(BaseClient):
@@ -26,4 +27,8 @@ class SellersV1Client(BaseClient):
 
         Args:
         """
-        url = "/sellers/v1/marketplaceParticipations"
+        path_parameters = {}
+
+        url = "/sellers/v1/marketplaceParticipations".format(**path_parameters)
+
+        query_parameters = {}

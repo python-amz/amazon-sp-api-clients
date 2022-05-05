@@ -9,12 +9,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class NotificationsV1Client(BaseClient):
     def create_subscription(
         self,
-        notification_type,
+        notification_type: str,
     ):
         """
         Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
@@ -32,11 +33,17 @@ class NotificationsV1Client(BaseClient):
 
          For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        url = "/notifications/v1/subscriptions/{notificationType}"
+        path_parameters = {}
+
+        path_parameters["notificationType"] = notification_type
+
+        url = "/notifications/v1/subscriptions/{notificationType}".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_subscription(
         self,
-        notification_type,
+        notification_type: str,
     ):
         """
         Returns information about subscriptions of the specified notification type. You can use this API to get subscription information when you do not have a subscription identifier.
@@ -54,12 +61,18 @@ class NotificationsV1Client(BaseClient):
 
          For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        url = "/notifications/v1/subscriptions/{notificationType}"
+        path_parameters = {}
+
+        path_parameters["notificationType"] = notification_type
+
+        url = "/notifications/v1/subscriptions/{notificationType}".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_subscription_by_id(
         self,
-        subscription_id,
-        notification_type,
+        subscription_id: str,
+        notification_type: str,
     ):
         """
         Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -78,12 +91,20 @@ class NotificationsV1Client(BaseClient):
 
          For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
+        path_parameters = {}
+
+        path_parameters["subscriptionId"] = subscription_id
+
+        path_parameters["notificationType"] = notification_type
+
+        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def delete_subscription_by_id(
         self,
-        subscription_id,
-        notification_type,
+        subscription_id: str,
+        notification_type: str,
     ):
         """
         Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -102,7 +123,15 @@ class NotificationsV1Client(BaseClient):
 
          For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
-        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
+        path_parameters = {}
+
+        path_parameters["subscriptionId"] = subscription_id
+
+        path_parameters["notificationType"] = notification_type
+
+        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def create_destination(
         self,
@@ -120,7 +149,11 @@ class NotificationsV1Client(BaseClient):
 
         Args:
         """
-        url = "/notifications/v1/destinations"
+        path_parameters = {}
+
+        url = "/notifications/v1/destinations".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_destinations(
         self,
@@ -138,11 +171,15 @@ class NotificationsV1Client(BaseClient):
 
         Args:
         """
-        url = "/notifications/v1/destinations"
+        path_parameters = {}
+
+        url = "/notifications/v1/destinations".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_destination(
         self,
-        destination_id,
+        destination_id: str,
     ):
         """
         Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -158,11 +195,17 @@ class NotificationsV1Client(BaseClient):
         Args:
             destination_id: The identifier generated when you created the destination.
         """
-        url = "/notifications/v1/destinations/{destinationId}"
+        path_parameters = {}
+
+        path_parameters["destinationId"] = destination_id
+
+        url = "/notifications/v1/destinations/{destinationId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def delete_destination(
         self,
-        destination_id,
+        destination_id: str,
     ):
         """
         Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -178,4 +221,10 @@ class NotificationsV1Client(BaseClient):
         Args:
             destination_id: The identifier for the destination that you want to delete.
         """
-        url = "/notifications/v1/destinations/{destinationId}"
+        path_parameters = {}
+
+        path_parameters["destinationId"] = destination_id
+
+        url = "/notifications/v1/destinations/{destinationId}".format(**path_parameters)
+
+        query_parameters = {}

@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v0
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class MerchantFulfillmentV0Client(BaseClient):
@@ -26,7 +27,11 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        url = "/mfn/v0/eligibleServices"
+        path_parameters = {}
+
+        url = "/mfn/v0/eligibleServices".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_eligible_shipment_services(
         self,
@@ -44,11 +49,15 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        url = "/mfn/v0/eligibleShippingServices"
+        path_parameters = {}
+
+        url = "/mfn/v0/eligibleShippingServices".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_shipment(
         self,
-        shipment_id,
+        shipment_id: str,
     ):
         """
         Returns the shipment information for an existing shipment.
@@ -64,11 +73,17 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
             shipment_id: The Amazon-defined shipment identifier for the shipment.
         """
-        url = "/mfn/v0/shipments/{shipmentId}"
+        path_parameters = {}
+
+        path_parameters["shipmentId"] = shipment_id
+
+        url = "/mfn/v0/shipments/{shipmentId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def cancel_shipment(
         self,
-        shipment_id,
+        shipment_id: str,
     ):
         """
         Cancel the shipment indicated by the specified shipment identifier.
@@ -84,11 +99,17 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
             shipment_id: The Amazon-defined shipment identifier for the shipment to cancel.
         """
-        url = "/mfn/v0/shipments/{shipmentId}"
+        path_parameters = {}
+
+        path_parameters["shipmentId"] = shipment_id
+
+        url = "/mfn/v0/shipments/{shipmentId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def cancel_shipment_old(
         self,
-        shipment_id,
+        shipment_id: str,
     ):
         """
         Cancel the shipment indicated by the specified shipment identifer.
@@ -104,7 +125,13 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
             shipment_id: The Amazon-defined shipment identifier for the shipment to cancel.
         """
-        url = "/mfn/v0/shipments/{shipmentId}/cancel"
+        path_parameters = {}
+
+        path_parameters["shipmentId"] = shipment_id
+
+        url = "/mfn/v0/shipments/{shipmentId}/cancel".format(**path_parameters)
+
+        query_parameters = {}
 
     def create_shipment(
         self,
@@ -122,7 +149,11 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        url = "/mfn/v0/shipments"
+        path_parameters = {}
+
+        url = "/mfn/v0/shipments".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_additional_seller_inputs_old(
         self,
@@ -140,7 +171,11 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        url = "/mfn/v0/sellerInputs"
+        path_parameters = {}
+
+        url = "/mfn/v0/sellerInputs".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_additional_seller_inputs(
         self,
@@ -158,4 +193,8 @@ class MerchantFulfillmentV0Client(BaseClient):
 
         Args:
         """
-        url = "/mfn/v0/additionalSellerInputs"
+        path_parameters = {}
+
+        url = "/mfn/v0/additionalSellerInputs".format(**path_parameters)
+
+        query_parameters = {}

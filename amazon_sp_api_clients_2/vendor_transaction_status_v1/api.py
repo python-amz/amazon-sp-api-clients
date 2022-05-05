@@ -7,12 +7,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class VendorTransactionStatusV1Client(BaseClient):
     def get_transaction(
         self,
-        transaction_id,
+        transaction_id: str,
     ):
         """
         Returns the status of the transaction that you specify.
@@ -29,4 +30,10 @@ class VendorTransactionStatusV1Client(BaseClient):
         Args:
             transaction_id: The GUID provided by Amazon in the 'transactionId' field in response to the post request of a specific transaction.
         """
-        url = "/vendor/transactions/v1/transactions/{transactionId}"
+        path_parameters = {}
+
+        path_parameters["transactionId"] = transaction_id
+
+        url = "/vendor/transactions/v1/transactions/{transactionId}".format(**path_parameters)
+
+        query_parameters = {}

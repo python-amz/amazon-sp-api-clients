@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2020-07-01
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class FulfillmentOutbound20200701Client(BaseClient):
@@ -26,7 +27,11 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
         Args:
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
+        path_parameters = {}
+
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview".format(**path_parameters)
+
+        query_parameters = {}
 
     def create_fulfillment_order(
         self,
@@ -44,12 +49,16 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
         Args:
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders"
+        path_parameters = {}
+
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders".format(**path_parameters)
+
+        query_parameters = {}
 
     def list_all_fulfillment_orders(
         self,
-        query_start_date=None,
-        next_token=None,
+        query_start_date: str = None,
+        next_token: str = None,
     ):
         """
         Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next token parameter.
@@ -66,11 +75,21 @@ class FulfillmentOutbound20200701Client(BaseClient):
             query_start_date: A date used to select fulfillment orders that were last updated after (or at) a specified time. An update is defined as any change in fulfillment order status, including the creation of a new fulfillment order.
             next_token: A string token returned in the response to your previous request.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders"
+        path_parameters = {}
+
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders".format(**path_parameters)
+
+        query_parameters = {}
+
+        if query_start_date is not None:
+            query_parameters["queryStartDate"] = query_start_date
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
 
     def get_package_tracking_details(
         self,
-        package_number,
+        package_number: int,
     ):
         """
         Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
@@ -86,14 +105,20 @@ class FulfillmentOutbound20200701Client(BaseClient):
         Args:
             package_number: The unencrypted package identifier returned by the getFulfillmentOrder operation.
         """
-        url = "/fba/outbound/2020-07-01/tracking"
+        path_parameters = {}
+
+        url = "/fba/outbound/2020-07-01/tracking".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["packageNumber"] = package_number
 
     def list_return_reason_codes(
         self,
-        seller_sku,
-        marketplace_id=None,
-        seller_fulfillment_order_id=None,
-        language,
+        seller_sku: str,
+        marketplace_id: str = None,
+        seller_fulfillment_order_id: str = None,
+        language: str,
     ):
         """
         Returns a list of return reason codes for a seller SKU in a given marketplace.
@@ -112,11 +137,25 @@ class FulfillmentOutbound20200701Client(BaseClient):
             seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created. The service uses this value to determine the marketplace for which the seller wants return reason codes.
             language: The language that the TranslatedDescription property of the ReasonCodeDetails response object should be translated into.
         """
-        url = "/fba/outbound/2020-07-01/returnReasonCodes"
+        path_parameters = {}
+
+        url = "/fba/outbound/2020-07-01/returnReasonCodes".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["sellerSku"] = seller_sku
+
+        if marketplace_id is not None:
+            query_parameters["marketplaceId"] = marketplace_id
+
+        if seller_fulfillment_order_id is not None:
+            query_parameters["sellerFulfillmentOrderId"] = seller_fulfillment_order_id
+
+        query_parameters["language"] = language
 
     def create_fulfillment_return(
         self,
-        seller_fulfillment_order_id,
+        seller_fulfillment_order_id: str,
     ):
         """
         Creates a fulfillment return.
@@ -132,31 +171,17 @@ class FulfillmentOutbound20200701Client(BaseClient):
         Args:
             seller_fulfillment_order_id: An identifier assigned by the seller to the fulfillment order at the time it was created. The seller uses their own records to find the correct SellerFulfillmentOrderId value based on the buyer's request to return items.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return"
+        path_parameters = {}
 
-    def update_fulfillment_order(
-        self,
-        seller_fulfillment_order_id,
-    ):
-        """
-        Updates and/or requests shipment for a fulfillment order with an order hold on it.
+        path_parameters["sellerFulfillmentOrderId"] = seller_fulfillment_order_id
 
-        **Usage Plan:**
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return".format(**path_parameters)
 
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2 | 30 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
-        """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
+        query_parameters = {}
 
     def get_fulfillment_order(
         self,
-        seller_fulfillment_order_id,
+        seller_fulfillment_order_id: str,
     ):
         """
         Returns the fulfillment order indicated by the specified order identifier.
@@ -172,11 +197,43 @@ class FulfillmentOutbound20200701Client(BaseClient):
         Args:
             seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
+        path_parameters = {}
+
+        path_parameters["sellerFulfillmentOrderId"] = seller_fulfillment_order_id
+
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}".format(**path_parameters)
+
+        query_parameters = {}
+
+    def update_fulfillment_order(
+        self,
+        seller_fulfillment_order_id: str,
+    ):
+        """
+        Updates and/or requests shipment for a fulfillment order with an order hold on it.
+
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 30 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
+        """
+        path_parameters = {}
+
+        path_parameters["sellerFulfillmentOrderId"] = seller_fulfillment_order_id
+
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def cancel_fulfillment_order(
         self,
-        seller_fulfillment_order_id,
+        seller_fulfillment_order_id: str,
     ):
         """
         Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
@@ -192,11 +249,17 @@ class FulfillmentOutbound20200701Client(BaseClient):
         Args:
             seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
         """
-        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
+        path_parameters = {}
+
+        path_parameters["sellerFulfillmentOrderId"] = seller_fulfillment_order_id
+
+        url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_features(
         self,
-        marketplace_id,
+        marketplace_id: str,
     ):
         """
         Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
@@ -212,13 +275,19 @@ class FulfillmentOutbound20200701Client(BaseClient):
         Args:
             marketplace_id: The marketplace for which to return the list of features.
         """
-        url = "/fba/outbound/2020-07-01/features"
+        path_parameters = {}
+
+        url = "/fba/outbound/2020-07-01/features".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["marketplaceId"] = marketplace_id
 
     def get_feature_inventory(
         self,
-        marketplace_id,
-        feature_name,
-        next_token=None,
+        marketplace_id: str,
+        feature_name: str,
+        next_token: str = None,
     ):
         """
         Returns a list of inventory items that are eligible for the fulfillment feature you specify.
@@ -236,13 +305,24 @@ class FulfillmentOutbound20200701Client(BaseClient):
             feature_name: The name of the feature for which to return a list of eligible inventory.
             next_token: A string token returned in the response to your previous request that is used to return the next response page. A value of null will return the first page.
         """
-        url = "/fba/outbound/2020-07-01/features/inventory/{featureName}"
+        path_parameters = {}
+
+        path_parameters["featureName"] = feature_name
+
+        url = "/fba/outbound/2020-07-01/features/inventory/{featureName}".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["marketplaceId"] = marketplace_id
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
 
     def get_feature_sku(
         self,
-        marketplace_id,
-        feature_name,
-        seller_sku,
+        marketplace_id: str,
+        feature_name: str,
+        seller_sku: str,
     ):
         """
         Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object.
@@ -260,4 +340,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
             feature_name: The name of the feature.
             seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
         """
-        url = "/fba/outbound/2020-07-01/features/inventory/{featureName}/{sellerSku}"
+        path_parameters = {}
+
+        path_parameters["featureName"] = feature_name
+
+        path_parameters["sellerSku"] = seller_sku
+
+        url = "/fba/outbound/2020-07-01/features/inventory/{featureName}/{sellerSku}".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["marketplaceId"] = marketplace_id

@@ -24,6 +24,22 @@ class ParsedParameter(Parameter):
     def variable_name(self):
         return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name)
 
+    @property
+    def type_hint(self):
+        schema = self.param_schema
+        if schema.type is None:
+            return 'Any'
+        base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
+        if schema.type in ('object', 'array'):
+            child = base_type_convert[schema.items.type]
+            if child == 'str' and schema.items.enum is not None:
+                child = ', '.join(f'Literal["{v}"]' for v in schema.items.enum)
+                child = f'Union[{child}]'
+        else:
+            child = ''
+        type_convert = {**base_type_convert, 'array': f'list[{child}]', 'object': f'dict[str, {child}]'}
+        return type_convert[schema.type]
+
 
 class OperationWithName(Operation):
     path: str
@@ -83,6 +99,8 @@ class Generator:
                 name = match.group(1)
                 result.append(self.data.components.parameters[name])
             operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in result]
+        # Currently, there is no parameter in header or cookie
+        assert all(p.param_in in ('query', 'path') for o in operations for p in o.parsed_parameters)
         return operations
 
     @cached_property

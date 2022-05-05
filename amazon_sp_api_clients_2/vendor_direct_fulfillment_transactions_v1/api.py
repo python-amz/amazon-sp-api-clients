@@ -7,12 +7,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentTransactionsV1Client(BaseClient):
     def get_transaction_status(
         self,
-        transaction_id,
+        transaction_id: str,
     ):
         """
         Returns the status of the transaction indicated by the specified transactionId.
@@ -29,4 +30,10 @@ class VendorDirectFulfillmentTransactionsV1Client(BaseClient):
         Args:
             transaction_id: Previously returned in the response to the POST request of a specific transaction.
         """
-        url = "/vendor/directFulfillment/transactions/v1/transactions/{transactionId}"
+        path_parameters = {}
+
+        path_parameters["transactionId"] = transaction_id
+
+        url = "/vendor/directFulfillment/transactions/v1/transactions/{transactionId}".format(**path_parameters)
+
+        query_parameters = {}

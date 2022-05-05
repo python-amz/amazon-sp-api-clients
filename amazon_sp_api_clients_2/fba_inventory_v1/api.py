@@ -7,18 +7,19 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v1
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class FbaInventoryV1Client(BaseClient):
     def get_inventory_summaries(
         self,
-        details=None,
-        granularity_type,
-        granularity_id,
-        start_date_time=None,
-        seller_skus=None,
-        next_token=None,
-        marketplace_ids,
+        details: bool = None,
+        granularity_type: str,
+        granularity_id: str,
+        start_date_time: str = None,
+        seller_skus: list[str] = None,
+        next_token: str = None,
+        marketplace_ids: list[str],
     ):
         """
         Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:
@@ -44,4 +45,26 @@ class FbaInventoryV1Client(BaseClient):
             next_token: String token returned in the response of your previous request.
             marketplace_ids: The marketplace ID for the marketplace for which to return inventory summaries.
         """
-        url = "/fba/inventory/v1/summaries"
+        path_parameters = {}
+
+        url = "/fba/inventory/v1/summaries".format(**path_parameters)
+
+        query_parameters = {}
+
+        if details is not None:
+            query_parameters["details"] = details
+
+        query_parameters["granularityType"] = granularity_type
+
+        query_parameters["granularityId"] = granularity_id
+
+        if start_date_time is not None:
+            query_parameters["startDateTime"] = start_date_time
+
+        if seller_skus is not None:
+            query_parameters["sellerSkus"] = seller_skus
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
+
+        query_parameters["marketplaceIds"] = marketplace_ids

@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2021-10-28
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
@@ -18,11 +19,15 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
 
         Args:
         """
-        url = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
+        path_parameters = {}
+
+        url = "/vendor/directFulfillment/sandbox/2021-10-28/orders".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_order_scenarios(
         self,
-        transaction_id,
+        transaction_id: str,
     ):
         """
         Returns the status of the transaction indicated by the specified transactionId. If the transaction was successful, also returns the requested test order data.
@@ -30,4 +35,10 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         Args:
             transaction_id: The transaction identifier returned in the response to the generateOrderScenarios operation.
         """
-        url = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}"
+        path_parameters = {}
+
+        path_parameters["transactionId"] = transaction_id
+
+        url = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}".format(**path_parameters)
+
+        query_parameters = {}

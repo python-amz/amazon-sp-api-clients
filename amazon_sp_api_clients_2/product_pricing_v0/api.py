@@ -7,17 +7,18 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: v0
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class ProductPricingV0Client(BaseClient):
     def get_pricing(
         self,
-        Marketplace_id,
-        Asins=None,
-        Skus=None,
-        Item_type,
-        Item_condition=None,
-        Offer_type=None,
+        Marketplace_id: str,
+        Asins: list[str] = None,
+        Skus: list[str] = None,
+        Item_type: str,
+        Item_condition: str = None,
+        Offer_type: str = None,
     ):
         """
         Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -39,15 +40,35 @@ class ProductPricingV0Client(BaseClient):
             Item_condition: Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
             Offer_type: Indicates whether to request pricing information for the seller's B2C or B2B offers. Default is B2C.
         """
-        url = "/products/pricing/v0/price"
+        path_parameters = {}
+
+        url = "/products/pricing/v0/price".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["MarketplaceId"] = Marketplace_id
+
+        if Asins is not None:
+            query_parameters["Asins"] = Asins
+
+        if Skus is not None:
+            query_parameters["Skus"] = Skus
+
+        query_parameters["ItemType"] = Item_type
+
+        if Item_condition is not None:
+            query_parameters["ItemCondition"] = Item_condition
+
+        if Offer_type is not None:
+            query_parameters["OfferType"] = Offer_type
 
     def get_competitive_pricing(
         self,
-        Marketplace_id,
-        Asins=None,
-        Skus=None,
-        Item_type,
-        Customer_type=None,
+        Marketplace_id: str,
+        Asins: list[str] = None,
+        Skus: list[str] = None,
+        Item_type: str,
+        Customer_type: str = None,
     ):
         """
         Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -68,14 +89,31 @@ class ProductPricingV0Client(BaseClient):
             Item_type: Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter. Possible values: Asin, Sku.
             Customer_type: Indicates whether to request pricing information from the point of view of Consumer or Business buyers. Default is Consumer.
         """
-        url = "/products/pricing/v0/competitivePrice"
+        path_parameters = {}
+
+        url = "/products/pricing/v0/competitivePrice".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["MarketplaceId"] = Marketplace_id
+
+        if Asins is not None:
+            query_parameters["Asins"] = Asins
+
+        if Skus is not None:
+            query_parameters["Skus"] = Skus
+
+        query_parameters["ItemType"] = Item_type
+
+        if Customer_type is not None:
+            query_parameters["CustomerType"] = Customer_type
 
     def get_listing_offers(
         self,
-        Marketplace_id,
-        Item_condition,
-        Seller_sku,
-        Customer_type=None,
+        Marketplace_id: str,
+        Item_condition: str,
+        Seller_sku: str,
+        Customer_type: str = None,
     ):
         """
         Returns the lowest priced offers for a single SKU listing.
@@ -95,14 +133,27 @@ class ProductPricingV0Client(BaseClient):
             Seller_sku: Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
             Customer_type: Indicates whether to request Consumer or Business offers. Default is Consumer.
         """
-        url = "/products/pricing/v0/listings/{SellerSKU}/offers"
+        path_parameters = {}
+
+        path_parameters["SellerSKU"] = Seller_sku
+
+        url = "/products/pricing/v0/listings/{SellerSKU}/offers".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["MarketplaceId"] = Marketplace_id
+
+        query_parameters["ItemCondition"] = Item_condition
+
+        if Customer_type is not None:
+            query_parameters["CustomerType"] = Customer_type
 
     def get_item_offers(
         self,
-        Marketplace_id,
-        Item_condition,
-        Asin,
-        Customer_type=None,
+        Marketplace_id: str,
+        Item_condition: str,
+        Asin: str,
+        Customer_type: str = None,
     ):
         """
         Returns the lowest priced offers for a single item based on ASIN.
@@ -122,4 +173,17 @@ class ProductPricingV0Client(BaseClient):
             Asin: The Amazon Standard Identification Number (ASIN) of the item.
             Customer_type: Indicates whether to request Consumer or Business offers. Default is Consumer.
         """
-        url = "/products/pricing/v0/items/{Asin}/offers"
+        path_parameters = {}
+
+        path_parameters["Asin"] = Asin
+
+        url = "/products/pricing/v0/items/{Asin}/offers".format(**path_parameters)
+
+        query_parameters = {}
+
+        query_parameters["MarketplaceId"] = Marketplace_id
+
+        query_parameters["ItemCondition"] = Item_condition
+
+        if Customer_type is not None:
+            query_parameters["CustomerType"] = Customer_type

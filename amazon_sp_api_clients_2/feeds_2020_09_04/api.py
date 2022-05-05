@@ -7,6 +7,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 API Version: 2020-09-04
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 class Feeds20200904Client(BaseClient):
@@ -26,17 +27,23 @@ class Feeds20200904Client(BaseClient):
 
         Args:
         """
-        url = "/feeds/2020-09-04/feeds"
+        path_parameters = {}
+
+        url = "/feeds/2020-09-04/feeds".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_feeds(
         self,
-        feed_types=None,
-        marketplace_ids=None,
-        page_size=None,
-        processing_statuses=None,
-        created_since=None,
-        created_until=None,
-        next_token=None,
+        feed_types: list[str] = None,
+        marketplace_ids: list[str] = None,
+        page_size: int = None,
+        processing_statuses: list[
+            Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+        ] = None,
+        created_since: str = None,
+        created_until: str = None,
+        next_token: str = None,
     ):
         """
         Returns feed details for the feeds that match the filters that you specify.
@@ -58,11 +65,36 @@ class Feeds20200904Client(BaseClient):
             created_until: The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.
             next_token: A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
         """
-        url = "/feeds/2020-09-04/feeds"
+        path_parameters = {}
+
+        url = "/feeds/2020-09-04/feeds".format(**path_parameters)
+
+        query_parameters = {}
+
+        if feed_types is not None:
+            query_parameters["feedTypes"] = feed_types
+
+        if marketplace_ids is not None:
+            query_parameters["marketplaceIds"] = marketplace_ids
+
+        if page_size is not None:
+            query_parameters["pageSize"] = page_size
+
+        if processing_statuses is not None:
+            query_parameters["processingStatuses"] = processing_statuses
+
+        if created_since is not None:
+            query_parameters["createdSince"] = created_since
+
+        if created_until is not None:
+            query_parameters["createdUntil"] = created_until
+
+        if next_token is not None:
+            query_parameters["nextToken"] = next_token
 
     def get_feed(
         self,
-        feed_id,
+        feed_id: str,
     ):
         """
         Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
@@ -78,11 +110,17 @@ class Feeds20200904Client(BaseClient):
         Args:
             feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
         """
-        url = "/feeds/2020-09-04/feeds/{feedId}"
+        path_parameters = {}
+
+        path_parameters["feedId"] = feed_id
+
+        url = "/feeds/2020-09-04/feeds/{feedId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def cancel_feed(
         self,
-        feed_id,
+        feed_id: str,
     ):
         """
         Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
@@ -98,7 +136,13 @@ class Feeds20200904Client(BaseClient):
         Args:
             feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
         """
-        url = "/feeds/2020-09-04/feeds/{feedId}"
+        path_parameters = {}
+
+        path_parameters["feedId"] = feed_id
+
+        url = "/feeds/2020-09-04/feeds/{feedId}".format(**path_parameters)
+
+        query_parameters = {}
 
     def create_feed_document(
         self,
@@ -116,11 +160,15 @@ class Feeds20200904Client(BaseClient):
 
         Args:
         """
-        url = "/feeds/2020-09-04/documents"
+        path_parameters = {}
+
+        url = "/feeds/2020-09-04/documents".format(**path_parameters)
+
+        query_parameters = {}
 
     def get_feed_document(
         self,
-        feed_document_id,
+        feed_document_id: str,
     ):
         """
         Returns the information required for retrieving a feed document's contents. This includes a presigned URL for the feed document as well as the information required to decrypt the document's contents.
@@ -136,4 +184,10 @@ class Feeds20200904Client(BaseClient):
         Args:
             feed_document_id: The identifier of the feed document.
         """
-        url = "/feeds/2020-09-04/documents/{feedDocumentId}"
+        path_parameters = {}
+
+        path_parameters["feedDocumentId"] = feed_document_id
+
+        url = "/feeds/2020-09-04/documents/{feedDocumentId}".format(**path_parameters)
+
+        query_parameters = {}

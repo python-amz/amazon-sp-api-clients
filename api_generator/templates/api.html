@@ -7,11 +7,12 @@ License for the OpenAPI file: {{ data.data.info.license.name }} {{ data.data.inf
 API Version: {{ data.data.info.version }}
 """
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 class {{ data.class_name }}Client(BaseClient):
 {% for operation in data.operations %}
     def {{ operation.method_name }}(self,
         {% for param in operation.parsed_parameters %}
-            {{ param.variable_name }}{% if not param.required %}=None{% endif %},
+            {{ param.variable_name }}: {{ param.type_hint }}{% if not param.required %}=None{% endif %},
         {% endfor %}
     ):
         """
@@ -21,5 +22,28 @@ Args:
     {% for param in operation.parsed_parameters %}{{ param.variable_name }}: {{ param.description }}
     {% endfor %}
 """
-        url = "{{ operation.path }}"
+        path_parameters = {}
+        {% for parameter in operation.parsed_parameters %}
+        {% if parameter.param_in == 'path' %}
+            {% if parameter.required %}
+        path_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
+            {% else %}
+        if {{ parameter.variable_name }} is not None:
+            path_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+        url = "{{ operation.path }}".format(**path_parameters)
+
+        query_parameters = {}
+            {% for parameter in operation.parsed_parameters %}
+        {% if parameter.param_in == 'query' %}
+            {% if parameter.required %}
+        query_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
+            {% else %}
+        if {{ parameter.variable_name }} is not None:
+            query_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
+            {% endif %}
+        {% endif %}
+        {% endfor %}
 {% endfor %}
