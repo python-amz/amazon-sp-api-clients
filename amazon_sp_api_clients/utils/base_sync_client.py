@@ -184,7 +184,6 @@ class BaseSyncClient:
             role = self._client.assume_role(RoleArn=self._role_arn, RoleSessionName='guid').get('Credentials')
             self._role_cache['role'] = role
         role = self._role_cache['role']
-        self._client
         auth = AwsSignV4(service='execute-api',
                          aws_key=role.get('AccessKeyId'),
                          aws_secret=role.get('SecretAccessKey'),
