@@ -13,7 +13,7 @@ from typing import Any, List, Dict, Union, Literal
 class ProductFeesV0Client(BaseClient):
     def get_my_fees_estimate_for_sku(
         self,
-        Seller_sku: str,
+        seller_sku: str,
     ):
         """
         Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.
@@ -32,19 +32,15 @@ class ProductFeesV0Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            Seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+            seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
         """
         path_parameters = {}
-
-        path_parameters["SellerSKU"] = Seller_sku
-
-        url = "/products/fees/v0/listings/{SellerSKU}/feesEstimate".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/products/fees/v0/listings/{SellerSKU}/feesEstimate"
+        params = (("SellerSKU", "path", seller_sku, True),)  # name, param in, value, required
 
     def get_my_fees_estimate_for_asin(
         self,
-        Asin: str,
+        asin: str,
     ):
         """
         Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
@@ -63,12 +59,8 @@ class ProductFeesV0Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            Asin: The Amazon Standard Identification Number (ASIN) of the item.
+            asin: The Amazon Standard Identification Number (ASIN) of the item.
         """
         path_parameters = {}
-
-        path_parameters["Asin"] = Asin
-
-        url = "/products/fees/v0/items/{Asin}/feesEstimate".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/products/fees/v0/items/{Asin}/feesEstimate"
+        params = (("Asin", "path", asin, True),)  # name, param in, value, required

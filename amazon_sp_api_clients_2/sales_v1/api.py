@@ -46,31 +46,15 @@ class SalesV1Client(BaseClient):
             sku: Filters the results by the SKU that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all SKUs. Example: TestSKU, if you want the response to include order metrics for only SKU TestSKU.
         """
         path_parameters = {}
-
-        url = "/sales/v1/orderMetrics".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-        query_parameters["interval"] = interval
-
-        if granularity_time_zone is not None:
-            query_parameters["granularityTimeZone"] = granularity_time_zone
-
-        query_parameters["granularity"] = granularity
-
-        if buyer_type is not None:
-            query_parameters["buyerType"] = buyer_type
-
-        if fulfillment_network is not None:
-            query_parameters["fulfillmentNetwork"] = fulfillment_network
-
-        if first_day_of_week is not None:
-            query_parameters["firstDayOfWeek"] = first_day_of_week
-
-        if asin is not None:
-            query_parameters["asin"] = asin
-
-        if sku is not None:
-            query_parameters["sku"] = sku
+        url = "/sales/v1/orderMetrics"
+        params = (  # name, param in, value, required
+            ("marketplaceIds", "query", marketplace_ids, True),
+            ("interval", "query", interval, True),
+            ("granularityTimeZone", "query", granularity_time_zone, False),
+            ("granularity", "query", granularity, True),
+            ("buyerType", "query", buyer_type, False),
+            ("fulfillmentNetwork", "query", fulfillment_network, False),
+            ("firstDayOfWeek", "query", first_day_of_week, False),
+            ("asin", "query", asin, False),
+            ("sku", "query", sku, False),
+        )

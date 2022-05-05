@@ -34,14 +34,9 @@ class FbaInboundEligibilityV1Client(BaseClient):
             program: The program that you want to check eligibility against.
         """
         path_parameters = {}
-
-        url = "/fba/inbound/v1/eligibility/itemPreview".format(**path_parameters)
-
-        query_parameters = {}
-
-        if marketplace_ids is not None:
-            query_parameters["marketplaceIds"] = marketplace_ids
-
-        query_parameters["asin"] = asin
-
-        query_parameters["program"] = program
+        url = "/fba/inbound/v1/eligibility/itemPreview"
+        params = (  # name, param in, value, required
+            ("marketplaceIds", "query", marketplace_ids, False),
+            ("asin", "query", asin, True),
+            ("program", "query", program, True),
+        )

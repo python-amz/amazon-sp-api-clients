@@ -32,14 +32,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def confirm_customization_details(
         self,
@@ -62,14 +59,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_confirm_delivery_details(
         self,
@@ -92,14 +86,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_legal_disclosure(
         self,
@@ -122,14 +113,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_negative_feedback_removal(
         self,
@@ -152,14 +140,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_confirm_order_details(
         self,
@@ -182,14 +167,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_confirm_service_details(
         self,
@@ -212,16 +194,13 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-    def Create_amazon_motors(
+    def create_amazon_motors(
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
@@ -242,16 +221,13 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-    def Create_warranty(
+    def create_warranty(
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
@@ -272,16 +248,13 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-    def Get_attributes(
+    def get_attributes(
         self,
         amazon_order_id: str,
         marketplace_ids: list[str],
@@ -300,14 +273,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/attributes".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/attributes"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_digital_access_key(
         self,
@@ -330,14 +300,11 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_unexpected_problem(
         self,
@@ -360,11 +327,8 @@ class MessagingV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )

@@ -40,19 +40,11 @@ class ListingsRestrictions20210801Client(BaseClient):
             reason_locale: A locale for reason text localization. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
         """
         path_parameters = {}
-
-        url = "/listings/2021-08-01/restrictions".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["asin"] = asin
-
-        if condition_type is not None:
-            query_parameters["conditionType"] = condition_type
-
-        query_parameters["sellerId"] = seller_id
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-        if reason_locale is not None:
-            query_parameters["reasonLocale"] = reason_locale
+        url = "/listings/2021-08-01/restrictions"
+        params = (  # name, param in, value, required
+            ("asin", "query", asin, True),
+            ("conditionType", "query", condition_type, False),
+            ("sellerId", "query", seller_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+            ("reasonLocale", "query", reason_locale, False),
+        )

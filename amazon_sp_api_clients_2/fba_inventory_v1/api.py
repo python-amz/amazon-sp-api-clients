@@ -46,25 +46,13 @@ class FbaInventoryV1Client(BaseClient):
             marketplace_ids: The marketplace ID for the marketplace for which to return inventory summaries.
         """
         path_parameters = {}
-
-        url = "/fba/inventory/v1/summaries".format(**path_parameters)
-
-        query_parameters = {}
-
-        if details is not None:
-            query_parameters["details"] = details
-
-        query_parameters["granularityType"] = granularity_type
-
-        query_parameters["granularityId"] = granularity_id
-
-        if start_date_time is not None:
-            query_parameters["startDateTime"] = start_date_time
-
-        if seller_skus is not None:
-            query_parameters["sellerSkus"] = seller_skus
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/fba/inventory/v1/summaries"
+        params = (  # name, param in, value, required
+            ("details", "query", details, False),
+            ("granularityType", "query", granularity_type, True),
+            ("granularityId", "query", granularity_id, True),
+            ("startDateTime", "query", start_date_time, False),
+            ("sellerSkus", "query", seller_skus, False),
+            ("nextToken", "query", next_token, False),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )

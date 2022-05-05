@@ -32,14 +32,11 @@ class SolicitationsV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/solicitations/v1/orders/{amazonOrderId}".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/solicitations/v1/orders/{amazonOrderId}"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def create_product_review_and_seller_feedback_solicitation(
         self,
@@ -62,13 +59,8 @@ class SolicitationsV1Client(BaseClient):
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
         """
         path_parameters = {}
-
-        path_parameters["amazonOrderId"] = amazon_order_id
-
-        url = "/solicitations/v1/orders/{amazonOrderId}/solicitations/productReviewAndSellerFeedback".format(
-            **path_parameters
+        url = "/solicitations/v1/orders/{amazonOrderId}/solicitations/productReviewAndSellerFeedback"
+        params = (  # name, param in, value, required
+            ("amazonOrderId", "path", amazon_order_id, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
         )
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids

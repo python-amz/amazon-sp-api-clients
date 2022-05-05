@@ -11,28 +11,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):
-    def submit_shipping_label_request(
-        self,
-    ):
-        """
-        Creates a shipping label for a purchase order and returns a transactionId for reference.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 10 | 10 |
-
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
-
-        Args:
-        """
-        path_parameters = {}
-
-        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels".format(**path_parameters)
-
-        query_parameters = {}
-
     def get_shipping_labels(
         self,
         ship_from_party_id: str = None,
@@ -62,26 +40,35 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             next_token: Used for pagination when there are more ship labels than the specified result size limit. The token value is returned in the previous API call.
         """
         path_parameters = {}
+        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
+        params = (  # name, param in, value, required
+            ("shipFromPartyId", "query", ship_from_party_id, False),
+            ("limit", "query", limit, False),
+            ("createdAfter", "query", created_after, True),
+            ("createdBefore", "query", created_before, True),
+            ("sortOrder", "query", sort_order, False),
+            ("nextToken", "query", next_token, False),
+        )
 
-        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels".format(**path_parameters)
+    def submit_shipping_label_request(
+        self,
+    ):
+        """
+        Creates a shipping label for a purchase order and returns a transactionId for reference.
 
-        query_parameters = {}
+        **Usage Plan:**
 
-        if ship_from_party_id is not None:
-            query_parameters["shipFromPartyId"] = ship_from_party_id
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
 
-        if limit is not None:
-            query_parameters["limit"] = limit
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
 
-        query_parameters["createdAfter"] = created_after
-
-        query_parameters["createdBefore"] = created_before
-
-        if sort_order is not None:
-            query_parameters["sortOrder"] = sort_order
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
+        Args:
+        """
+        path_parameters = {}
+        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
+        params = ()  # name, param in, value, required
 
     def get_shipping_label(
         self,
@@ -102,11 +89,5 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             purchase_order_number: The purchase order number for which you want to return the shipping label. It should be the same purchaseOrderNumber as received in the order.
         """
         path_parameters = {}
-
-        path_parameters["purchaseOrderNumber"] = purchase_order_number
-
-        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}".format(
-            **path_parameters
-        )
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}"
+        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required

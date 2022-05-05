@@ -31,7 +31,5 @@ class Tokens20210301Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/tokens/2021-03-01/restrictedDataToken".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/tokens/2021-03-01/restrictedDataToken"
+        params = ()  # name, param in, value, required

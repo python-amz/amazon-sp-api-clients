@@ -34,13 +34,9 @@ class AuthorizationV1Client(BaseClient):
             mws_auth_token: The MWS Auth Token that was generated when the seller authorized your application on the Marketplace Appstore.
         """
         path_parameters = {}
-
-        url = "/authorization/v1/authorizationCode".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["sellingPartnerId"] = selling_partner_id
-
-        query_parameters["developerId"] = developer_id
-
-        query_parameters["mwsAuthToken"] = mws_auth_token
+        url = "/authorization/v1/authorizationCode"
+        params = (  # name, param in, value, required
+            ("sellingPartnerId", "query", selling_partner_id, True),
+            ("developerId", "query", developer_id, True),
+            ("mwsAuthToken", "query", mws_auth_token, True),
+        )

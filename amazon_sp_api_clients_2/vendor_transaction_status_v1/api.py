@@ -31,9 +31,5 @@ class VendorTransactionStatusV1Client(BaseClient):
             transaction_id: The GUID provided by Amazon in the 'transactionId' field in response to the post request of a specific transaction.
         """
         path_parameters = {}
-
-        path_parameters["transactionId"] = transaction_id
-
-        url = "/vendor/transactions/v1/transactions/{transactionId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/transactions/v1/transactions/{transactionId}"
+        params = (("transactionId", "path", transaction_id, True),)  # name, param in, value, required

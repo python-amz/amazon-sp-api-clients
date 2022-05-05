@@ -28,10 +28,8 @@ class ShippingV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/shipping/v1/shipments".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/shipments"
+        params = ()  # name, param in, value, required
 
     def get_shipment(
         self,
@@ -52,12 +50,8 @@ class ShippingV1Client(BaseClient):
             shipment_id: None
         """
         path_parameters = {}
-
-        path_parameters["shipmentId"] = shipment_id
-
-        url = "/shipping/v1/shipments/{shipmentId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/shipments/{shipmentId}"
+        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
 
     def cancel_shipment(
         self,
@@ -78,12 +72,8 @@ class ShippingV1Client(BaseClient):
             shipment_id: None
         """
         path_parameters = {}
-
-        path_parameters["shipmentId"] = shipment_id
-
-        url = "/shipping/v1/shipments/{shipmentId}/cancel".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/shipments/{shipmentId}/cancel"
+        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
 
     def purchase_labels(
         self,
@@ -104,12 +94,8 @@ class ShippingV1Client(BaseClient):
             shipment_id: None
         """
         path_parameters = {}
-
-        path_parameters["shipmentId"] = shipment_id
-
-        url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/shipments/{shipmentId}/purchaseLabels"
+        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
 
     def retrieve_shipping_label(
         self,
@@ -132,14 +118,11 @@ class ShippingV1Client(BaseClient):
             tracking_id: None
         """
         path_parameters = {}
-
-        path_parameters["shipmentId"] = shipment_id
-
-        path_parameters["trackingId"] = tracking_id
-
-        url = "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label"
+        params = (  # name, param in, value, required
+            ("shipmentId", "path", shipment_id, True),
+            ("trackingId", "path", tracking_id, True),
+        )
 
     def purchase_shipment(
         self,
@@ -158,10 +141,8 @@ class ShippingV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/shipping/v1/purchaseShipment".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/purchaseShipment"
+        params = ()  # name, param in, value, required
 
     def get_rates(
         self,
@@ -180,10 +161,8 @@ class ShippingV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/shipping/v1/rates".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/rates"
+        params = ()  # name, param in, value, required
 
     def get_account(
         self,
@@ -202,10 +181,8 @@ class ShippingV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/shipping/v1/account".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/account"
+        params = ()  # name, param in, value, required
 
     def get_tracking_information(
         self,
@@ -226,9 +203,5 @@ class ShippingV1Client(BaseClient):
             tracking_id: None
         """
         path_parameters = {}
-
-        path_parameters["trackingId"] = tracking_id
-
-        url = "/shipping/v1/tracking/{trackingId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/shipping/v1/tracking/{trackingId}"
+        params = (("trackingId", "path", tracking_id, True),)  # name, param in, value, required

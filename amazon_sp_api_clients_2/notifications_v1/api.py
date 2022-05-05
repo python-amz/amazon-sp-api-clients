@@ -13,34 +13,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class NotificationsV1Client(BaseClient):
-    def create_subscription(
-        self,
-        notification_type: str,
-    ):
-        """
-        Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            notification_type: The type of notification.
-
-         For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
-        """
-        path_parameters = {}
-
-        path_parameters["notificationType"] = notification_type
-
-        url = "/notifications/v1/subscriptions/{notificationType}".format(**path_parameters)
-
-        query_parameters = {}
-
     def get_subscription(
         self,
         notification_type: str,
@@ -62,12 +34,32 @@ class NotificationsV1Client(BaseClient):
          For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
         path_parameters = {}
+        url = "/notifications/v1/subscriptions/{notificationType}"
+        params = (("notificationType", "path", notification_type, True),)  # name, param in, value, required
 
-        path_parameters["notificationType"] = notification_type
+    def create_subscription(
+        self,
+        notification_type: str,
+    ):
+        """
+        Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
 
-        url = "/notifications/v1/subscriptions/{notificationType}".format(**path_parameters)
+        **Usage Plan:**
 
-        query_parameters = {}
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+            notification_type: The type of notification.
+
+         For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
+        """
+        path_parameters = {}
+        url = "/notifications/v1/subscriptions/{notificationType}"
+        params = (("notificationType", "path", notification_type, True),)  # name, param in, value, required
 
     def get_subscription_by_id(
         self,
@@ -92,14 +84,11 @@ class NotificationsV1Client(BaseClient):
          For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
         path_parameters = {}
-
-        path_parameters["subscriptionId"] = subscription_id
-
-        path_parameters["notificationType"] = notification_type
-
-        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
+        params = (  # name, param in, value, required
+            ("subscriptionId", "path", subscription_id, True),
+            ("notificationType", "path", notification_type, True),
+        )
 
     def delete_subscription_by_id(
         self,
@@ -124,36 +113,11 @@ class NotificationsV1Client(BaseClient):
          For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
         """
         path_parameters = {}
-
-        path_parameters["subscriptionId"] = subscription_id
-
-        path_parameters["notificationType"] = notification_type
-
-        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}".format(**path_parameters)
-
-        query_parameters = {}
-
-    def create_destination(
-        self,
-    ):
-        """
-        Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 1 | 5 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        path_parameters = {}
-
-        url = "/notifications/v1/destinations".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
+        params = (  # name, param in, value, required
+            ("subscriptionId", "path", subscription_id, True),
+            ("notificationType", "path", notification_type, True),
+        )
 
     def get_destinations(
         self,
@@ -172,10 +136,28 @@ class NotificationsV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
+        url = "/notifications/v1/destinations"
+        params = ()  # name, param in, value, required
 
-        url = "/notifications/v1/destinations".format(**path_parameters)
+    def create_destination(
+        self,
+    ):
+        """
+        Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 
-        query_parameters = {}
+        **Usage Plan:**
+
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 5 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        path_parameters = {}
+        url = "/notifications/v1/destinations"
+        params = ()  # name, param in, value, required
 
     def get_destination(
         self,
@@ -196,12 +178,8 @@ class NotificationsV1Client(BaseClient):
             destination_id: The identifier generated when you created the destination.
         """
         path_parameters = {}
-
-        path_parameters["destinationId"] = destination_id
-
-        url = "/notifications/v1/destinations/{destinationId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/notifications/v1/destinations/{destinationId}"
+        params = (("destinationId", "path", destination_id, True),)  # name, param in, value, required
 
     def delete_destination(
         self,
@@ -222,9 +200,5 @@ class NotificationsV1Client(BaseClient):
             destination_id: The identifier for the destination that you want to delete.
         """
         path_parameters = {}
-
-        path_parameters["destinationId"] = destination_id
-
-        url = "/notifications/v1/destinations/{destinationId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/notifications/v1/destinations/{destinationId}"
+        params = (("destinationId", "path", destination_id, True),)  # name, param in, value, required

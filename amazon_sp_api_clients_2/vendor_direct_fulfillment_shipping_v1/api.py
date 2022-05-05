@@ -11,29 +11,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class VendorDirectFulfillmentShippingV1Client(BaseClient):
-    def submit_shipping_label_request(
-        self,
-    ):
-        """
-        Creates a shipping label for a purchase order and returns a transactionId for reference.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 10 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        path_parameters = {}
-
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format(**path_parameters)
-
-        query_parameters = {}
-
     def get_shipping_labels(
         self,
         ship_from_party_id: str = None,
@@ -64,26 +41,36 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             next_token: Used for pagination when there are more ship labels than the specified result size limit. The token value is returned in the previous API call.
         """
         path_parameters = {}
+        url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
+        params = (  # name, param in, value, required
+            ("shipFromPartyId", "query", ship_from_party_id, False),
+            ("limit", "query", limit, False),
+            ("createdAfter", "query", created_after, True),
+            ("createdBefore", "query", created_before, True),
+            ("sortOrder", "query", sort_order, False),
+            ("nextToken", "query", next_token, False),
+        )
 
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels".format(**path_parameters)
+    def submit_shipping_label_request(
+        self,
+    ):
+        """
+        Creates a shipping label for a purchase order and returns a transactionId for reference.
 
-        query_parameters = {}
+        **Usage Plans:**
 
-        if ship_from_party_id is not None:
-            query_parameters["shipFromPartyId"] = ship_from_party_id
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
 
-        if limit is not None:
-            query_parameters["limit"] = limit
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
-        query_parameters["createdAfter"] = created_after
-
-        query_parameters["createdBefore"] = created_before
-
-        if sort_order is not None:
-            query_parameters["sortOrder"] = sort_order
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
+        Args:
+        """
+        path_parameters = {}
+        url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
+        params = ()  # name, param in, value, required
 
     def get_shipping_label(
         self,
@@ -105,12 +92,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             purchase_order_number: The purchase order number for which you want to return the shipping label. It should be the same purchaseOrderNumber as received in the order.
         """
         path_parameters = {}
-
-        path_parameters["purchaseOrderNumber"] = purchase_order_number
-
-        url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}"
+        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
 
     def submit_shipment_confirmations(
         self,
@@ -130,10 +113,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
+        params = ()  # name, param in, value, required
 
     def submit_shipment_status_updates(
         self,
@@ -153,10 +134,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
+        params = ()  # name, param in, value, required
 
     def get_customer_invoices(
         self,
@@ -188,26 +167,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             next_token: Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
         """
         path_parameters = {}
-
-        url = "/vendor/directFulfillment/shipping/v1/customerInvoices".format(**path_parameters)
-
-        query_parameters = {}
-
-        if ship_from_party_id is not None:
-            query_parameters["shipFromPartyId"] = ship_from_party_id
-
-        if limit is not None:
-            query_parameters["limit"] = limit
-
-        query_parameters["createdAfter"] = created_after
-
-        query_parameters["createdBefore"] = created_before
-
-        if sort_order is not None:
-            query_parameters["sortOrder"] = sort_order
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
+        url = "/vendor/directFulfillment/shipping/v1/customerInvoices"
+        params = (  # name, param in, value, required
+            ("shipFromPartyId", "query", ship_from_party_id, False),
+            ("limit", "query", limit, False),
+            ("createdAfter", "query", created_after, True),
+            ("createdBefore", "query", created_before, True),
+            ("sortOrder", "query", sort_order, False),
+            ("nextToken", "query", next_token, False),
+        )
 
     def get_customer_invoice(
         self,
@@ -229,12 +197,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             purchase_order_number: Purchase order number of the shipment for which to return the invoice.
         """
         path_parameters = {}
-
-        path_parameters["purchaseOrderNumber"] = purchase_order_number
-
-        url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}"
+        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
 
     def get_packing_slips(
         self,
@@ -266,26 +230,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             next_token: Used for pagination when there are more packing slips than the specified result size limit. The token value is returned in the previous API call.
         """
         path_parameters = {}
-
-        url = "/vendor/directFulfillment/shipping/v1/packingSlips".format(**path_parameters)
-
-        query_parameters = {}
-
-        if ship_from_party_id is not None:
-            query_parameters["shipFromPartyId"] = ship_from_party_id
-
-        if limit is not None:
-            query_parameters["limit"] = limit
-
-        query_parameters["createdAfter"] = created_after
-
-        query_parameters["createdBefore"] = created_before
-
-        if sort_order is not None:
-            query_parameters["sortOrder"] = sort_order
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
+        url = "/vendor/directFulfillment/shipping/v1/packingSlips"
+        params = (  # name, param in, value, required
+            ("shipFromPartyId", "query", ship_from_party_id, False),
+            ("limit", "query", limit, False),
+            ("createdAfter", "query", created_after, True),
+            ("createdBefore", "query", created_before, True),
+            ("sortOrder", "query", sort_order, False),
+            ("nextToken", "query", next_token, False),
+        )
 
     def get_packing_slip(
         self,
@@ -307,9 +260,5 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             purchase_order_number: The purchaseOrderNumber for the packing slip you want.
         """
         path_parameters = {}
-
-        path_parameters["purchaseOrderNumber"] = purchase_order_number
-
-        url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}"
+        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required

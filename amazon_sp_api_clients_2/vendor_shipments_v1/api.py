@@ -11,7 +11,7 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class VendorShipmentsV1Client(BaseClient):
-    def Submit_shipment_confirmations(
+    def submit_shipment_confirmations(
         self,
     ):
         """
@@ -29,7 +29,5 @@ class VendorShipmentsV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/vendor/shipping/v1/shipmentConfirmations".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/shipping/v1/shipmentConfirmations"
+        params = ()  # name, param in, value, required

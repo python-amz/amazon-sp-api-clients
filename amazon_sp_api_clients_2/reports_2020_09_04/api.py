@@ -11,28 +11,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class Reports20200904Client(BaseClient):
-    def create_report(
-        self,
-    ):
-        """
-        Creates a report.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0167 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        path_parameters = {}
-
-        url = "/reports/2020-09-04/reports".format(**path_parameters)
-
-        query_parameters = {}
-
     def get_reports(
         self,
         report_types: list[str] = None,
@@ -66,31 +44,36 @@ class Reports20200904Client(BaseClient):
             next_token: A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getReports operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
         """
         path_parameters = {}
+        url = "/reports/2020-09-04/reports"
+        params = (  # name, param in, value, required
+            ("reportTypes", "query", report_types, False),
+            ("processingStatuses", "query", processing_statuses, False),
+            ("marketplaceIds", "query", marketplace_ids, False),
+            ("pageSize", "query", page_size, False),
+            ("createdSince", "query", created_since, False),
+            ("createdUntil", "query", created_until, False),
+            ("nextToken", "query", next_token, False),
+        )
 
-        url = "/reports/2020-09-04/reports".format(**path_parameters)
+    def create_report(
+        self,
+    ):
+        """
+        Creates a report.
 
-        query_parameters = {}
+        **Usage Plan:**
 
-        if report_types is not None:
-            query_parameters["reportTypes"] = report_types
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 15 |
 
-        if processing_statuses is not None:
-            query_parameters["processingStatuses"] = processing_statuses
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
-        if marketplace_ids is not None:
-            query_parameters["marketplaceIds"] = marketplace_ids
-
-        if page_size is not None:
-            query_parameters["pageSize"] = page_size
-
-        if created_since is not None:
-            query_parameters["createdSince"] = created_since
-
-        if created_until is not None:
-            query_parameters["createdUntil"] = created_until
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
+        Args:
+        """
+        path_parameters = {}
+        url = "/reports/2020-09-04/reports"
+        params = ()  # name, param in, value, required
 
     def get_report(
         self,
@@ -111,12 +94,8 @@ class Reports20200904Client(BaseClient):
             report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
         """
         path_parameters = {}
-
-        path_parameters["reportId"] = report_id
-
-        url = "/reports/2020-09-04/reports/{reportId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/reports/2020-09-04/reports/{reportId}"
+        params = (("reportId", "path", report_id, True),)  # name, param in, value, required
 
     def cancel_report(
         self,
@@ -137,34 +116,8 @@ class Reports20200904Client(BaseClient):
             report_id: The identifier for the report. This identifier is unique only in combination with a seller ID.
         """
         path_parameters = {}
-
-        path_parameters["reportId"] = report_id
-
-        url = "/reports/2020-09-04/reports/{reportId}".format(**path_parameters)
-
-        query_parameters = {}
-
-    def create_report_schedule(
-        self,
-    ):
-        """
-        Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        path_parameters = {}
-
-        url = "/reports/2020-09-04/schedules".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/reports/2020-09-04/reports/{reportId}"
+        params = (("reportId", "path", report_id, True),)  # name, param in, value, required
 
     def get_report_schedules(
         self,
@@ -185,12 +138,28 @@ class Reports20200904Client(BaseClient):
             report_types: A list of report types used to filter report schedules.
         """
         path_parameters = {}
+        url = "/reports/2020-09-04/schedules"
+        params = (("reportTypes", "query", report_types, True),)  # name, param in, value, required
 
-        url = "/reports/2020-09-04/schedules".format(**path_parameters)
+    def create_report_schedule(
+        self,
+    ):
+        """
+        Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
 
-        query_parameters = {}
+        **Usage Plan:**
 
-        query_parameters["reportTypes"] = report_types
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0222 | 10 |
+
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+
+        Args:
+        """
+        path_parameters = {}
+        url = "/reports/2020-09-04/schedules"
+        params = ()  # name, param in, value, required
 
     def get_report_schedule(
         self,
@@ -211,12 +180,8 @@ class Reports20200904Client(BaseClient):
             report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
         """
         path_parameters = {}
-
-        path_parameters["reportScheduleId"] = report_schedule_id
-
-        url = "/reports/2020-09-04/schedules/{reportScheduleId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/reports/2020-09-04/schedules/{reportScheduleId}"
+        params = (("reportScheduleId", "path", report_schedule_id, True),)  # name, param in, value, required
 
     def cancel_report_schedule(
         self,
@@ -237,12 +202,8 @@ class Reports20200904Client(BaseClient):
             report_schedule_id: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
         """
         path_parameters = {}
-
-        path_parameters["reportScheduleId"] = report_schedule_id
-
-        url = "/reports/2020-09-04/schedules/{reportScheduleId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/reports/2020-09-04/schedules/{reportScheduleId}"
+        params = (("reportScheduleId", "path", report_schedule_id, True),)  # name, param in, value, required
 
     def get_report_document(
         self,
@@ -263,9 +224,5 @@ class Reports20200904Client(BaseClient):
             report_document_id: The identifier for the report document.
         """
         path_parameters = {}
-
-        path_parameters["reportDocumentId"] = report_document_id
-
-        url = "/reports/2020-09-04/documents/{reportDocumentId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/reports/2020-09-04/documents/{reportDocumentId}"
+        params = (("reportDocumentId", "path", report_document_id, True),)  # name, param in, value, required

@@ -53,46 +53,21 @@ class VendorOrdersV1Client(BaseClient):
             ordering_vendor_code: Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client application are returned.
         """
         path_parameters = {}
-
-        url = "/vendor/orders/v1/purchaseOrders".format(**path_parameters)
-
-        query_parameters = {}
-
-        if limit is not None:
-            query_parameters["limit"] = limit
-
-        if created_after is not None:
-            query_parameters["createdAfter"] = created_after
-
-        if created_before is not None:
-            query_parameters["createdBefore"] = created_before
-
-        if sort_order is not None:
-            query_parameters["sortOrder"] = sort_order
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
-
-        if include_details is not None:
-            query_parameters["includeDetails"] = include_details
-
-        if changed_after is not None:
-            query_parameters["changedAfter"] = changed_after
-
-        if changed_before is not None:
-            query_parameters["changedBefore"] = changed_before
-
-        if po_item_state is not None:
-            query_parameters["poItemState"] = po_item_state
-
-        if is_pochanged is not None:
-            query_parameters["isPOChanged"] = is_pochanged
-
-        if purchase_order_state is not None:
-            query_parameters["purchaseOrderState"] = purchase_order_state
-
-        if ordering_vendor_code is not None:
-            query_parameters["orderingVendorCode"] = ordering_vendor_code
+        url = "/vendor/orders/v1/purchaseOrders"
+        params = (  # name, param in, value, required
+            ("limit", "query", limit, False),
+            ("createdAfter", "query", created_after, False),
+            ("createdBefore", "query", created_before, False),
+            ("sortOrder", "query", sort_order, False),
+            ("nextToken", "query", next_token, False),
+            ("includeDetails", "query", include_details, False),
+            ("changedAfter", "query", changed_after, False),
+            ("changedBefore", "query", changed_before, False),
+            ("poItemState", "query", po_item_state, False),
+            ("isPOChanged", "query", is_pochanged, False),
+            ("purchaseOrderState", "query", purchase_order_state, False),
+            ("orderingVendorCode", "query", ordering_vendor_code, False),
+        )
 
     def get_purchase_order(
         self,
@@ -114,12 +89,8 @@ class VendorOrdersV1Client(BaseClient):
             purchase_order_number: The purchase order identifier for the order that you want. Formatting Notes: 8-character alpha-numeric code.
         """
         path_parameters = {}
-
-        path_parameters["purchaseOrderNumber"] = purchase_order_number
-
-        url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}"
+        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
 
     def submit_acknowledgement(
         self,
@@ -139,10 +110,8 @@ class VendorOrdersV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/vendor/orders/v1/acknowledgements".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/orders/v1/acknowledgements"
+        params = ()  # name, param in, value, required
 
     def get_purchase_orders_status(
         self,
@@ -188,46 +157,19 @@ class VendorOrdersV1Client(BaseClient):
             ship_to_party_id: Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order. If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor group purchase orders.
         """
         path_parameters = {}
-
-        url = "/vendor/orders/v1/purchaseOrdersStatus".format(**path_parameters)
-
-        query_parameters = {}
-
-        if limit is not None:
-            query_parameters["limit"] = limit
-
-        if sort_order is not None:
-            query_parameters["sortOrder"] = sort_order
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
-
-        if created_after is not None:
-            query_parameters["createdAfter"] = created_after
-
-        if created_before is not None:
-            query_parameters["createdBefore"] = created_before
-
-        if updated_after is not None:
-            query_parameters["updatedAfter"] = updated_after
-
-        if updated_before is not None:
-            query_parameters["updatedBefore"] = updated_before
-
-        if purchase_order_number is not None:
-            query_parameters["purchaseOrderNumber"] = purchase_order_number
-
-        if purchase_order_status is not None:
-            query_parameters["purchaseOrderStatus"] = purchase_order_status
-
-        if item_confirmation_status is not None:
-            query_parameters["itemConfirmationStatus"] = item_confirmation_status
-
-        if item_receive_status is not None:
-            query_parameters["itemReceiveStatus"] = item_receive_status
-
-        if ordering_vendor_code is not None:
-            query_parameters["orderingVendorCode"] = ordering_vendor_code
-
-        if ship_to_party_id is not None:
-            query_parameters["shipToPartyId"] = ship_to_party_id
+        url = "/vendor/orders/v1/purchaseOrdersStatus"
+        params = (  # name, param in, value, required
+            ("limit", "query", limit, False),
+            ("sortOrder", "query", sort_order, False),
+            ("nextToken", "query", next_token, False),
+            ("createdAfter", "query", created_after, False),
+            ("createdBefore", "query", created_before, False),
+            ("updatedAfter", "query", updated_after, False),
+            ("updatedBefore", "query", updated_before, False),
+            ("purchaseOrderNumber", "query", purchase_order_number, False),
+            ("purchaseOrderStatus", "query", purchase_order_status, False),
+            ("itemConfirmationStatus", "query", item_confirmation_status, False),
+            ("itemReceiveStatus", "query", item_receive_status, False),
+            ("orderingVendorCode", "query", ordering_vendor_code, False),
+            ("shipToPartyId", "query", ship_to_party_id, False),
+        )

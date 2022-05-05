@@ -11,33 +11,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class AplusContent20201101Client(BaseClient):
-    def create_content_document(
-        self,
-        marketplace_id: str,
-    ):
-        """
-        Creates a new A+ Content document.
-
-        **Usage Plans:**
-
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 10 |
-        |Selling partner specific| Variable | Variable |
-
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-            marketplace_id: The identifier for the marketplace where the A+ Content is published.
-        """
-        path_parameters = {}
-
-        url = "/aplus/2020-11-01/contentDocuments".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
-
     def search_content_documents(
         self,
         marketplace_id: str,
@@ -60,23 +33,18 @@ class AplusContent20201101Client(BaseClient):
             page_token: A page token from the nextPageToken response element returned by your previous call to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any other parameter will cause the request to fail. When no nextPageToken value is returned there are no more pages to return. A pageToken value is not usable across different operations.
         """
         path_parameters = {}
+        url = "/aplus/2020-11-01/contentDocuments"
+        params = (  # name, param in, value, required
+            ("marketplaceId", "query", marketplace_id, True),
+            ("pageToken", "query", page_token, False),
+        )
 
-        url = "/aplus/2020-11-01/contentDocuments".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
-
-        if page_token is not None:
-            query_parameters["pageToken"] = page_token
-
-    def update_content_document(
+    def create_content_document(
         self,
-        content_reference_key: str,
         marketplace_id: str,
     ):
         """
-        Updates an existing A+ Content document.
+        Creates a new A+ Content document.
 
         **Usage Plans:**
 
@@ -88,18 +56,11 @@ class AplusContent20201101Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
         path_parameters = {}
-
-        path_parameters["contentReferenceKey"] = content_reference_key
-
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
+        url = "/aplus/2020-11-01/contentDocuments"
+        params = (("marketplaceId", "query", marketplace_id, True),)  # name, param in, value, required
 
     def get_content_document(
         self,
@@ -125,24 +86,20 @@ class AplusContent20201101Client(BaseClient):
             included_data_set: The set of A+ Content data types to include in the response.
         """
         path_parameters = {}
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}"
+        params = (  # name, param in, value, required
+            ("contentReferenceKey", "path", content_reference_key, True),
+            ("marketplaceId", "query", marketplace_id, True),
+            ("includedDataSet", "query", included_data_set, True),
+        )
 
-        path_parameters["contentReferenceKey"] = content_reference_key
-
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
-
-        query_parameters["includedDataSet"] = included_data_set
-
-    def post_content_document_asin_relations(
+    def update_content_document(
         self,
         content_reference_key: str,
         marketplace_id: str,
     ):
         """
-        Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
+        Updates an existing A+ Content document.
 
         **Usage Plans:**
 
@@ -154,18 +111,15 @@ class AplusContent20201101Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
         path_parameters = {}
-
-        path_parameters["contentReferenceKey"] = content_reference_key
-
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}"
+        params = (  # name, param in, value, required
+            ("contentReferenceKey", "path", content_reference_key, True),
+            ("marketplaceId", "query", marketplace_id, True),
+        )
 
     def list_content_document_asin_relations(
         self,
@@ -195,23 +149,42 @@ class AplusContent20201101Client(BaseClient):
             page_token: A page token from the nextPageToken response element returned by your previous call to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any other parameter will cause the request to fail. When no nextPageToken value is returned there are no more pages to return. A pageToken value is not usable across different operations.
         """
         path_parameters = {}
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins"
+        params = (  # name, param in, value, required
+            ("contentReferenceKey", "path", content_reference_key, True),
+            ("marketplaceId", "query", marketplace_id, True),
+            ("includedDataSet", "query", included_data_set, False),
+            ("asinSet", "query", asin_set, False),
+            ("pageToken", "query", page_token, False),
+        )
 
-        path_parameters["contentReferenceKey"] = content_reference_key
+    def post_content_document_asin_relations(
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
+    ):
+        """
+        Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
 
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins".format(**path_parameters)
+        **Usage Plans:**
 
-        query_parameters = {}
+        | Plan type | Rate (requests per second) | Burst |
+        | ---- | ---- | ---- |
+        |Default| 10 | 10 |
+        |Selling partner specific| Variable | Variable |
 
-        query_parameters["marketplaceId"] = marketplace_id
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
-        if included_data_set is not None:
-            query_parameters["includedDataSet"] = included_data_set
-
-        if asin_set is not None:
-            query_parameters["asinSet"] = asin_set
-
-        if page_token is not None:
-            query_parameters["pageToken"] = page_token
+        Args:
+            content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+            marketplace_id: The identifier for the marketplace where the A+ Content is published.
+        """
+        path_parameters = {}
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins"
+        params = (  # name, param in, value, required
+            ("contentReferenceKey", "path", content_reference_key, True),
+            ("marketplaceId", "query", marketplace_id, True),
+        )
 
     def validate_content_document_asin_relations(
         self,
@@ -235,15 +208,11 @@ class AplusContent20201101Client(BaseClient):
             asin_set: The set of ASINs.
         """
         path_parameters = {}
-
-        url = "/aplus/2020-11-01/contentAsinValidations".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
-
-        if asin_set is not None:
-            query_parameters["asinSet"] = asin_set
+        url = "/aplus/2020-11-01/contentAsinValidations"
+        params = (  # name, param in, value, required
+            ("marketplaceId", "query", marketplace_id, True),
+            ("asinSet", "query", asin_set, False),
+        )
 
     def search_content_publish_records(
         self,
@@ -269,17 +238,12 @@ class AplusContent20201101Client(BaseClient):
             page_token: A page token from the nextPageToken response element returned by your previous call to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any other parameter will cause the request to fail. When no nextPageToken value is returned there are no more pages to return. A pageToken value is not usable across different operations.
         """
         path_parameters = {}
-
-        url = "/aplus/2020-11-01/contentPublishRecords".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
-
-        query_parameters["asin"] = asin
-
-        if page_token is not None:
-            query_parameters["pageToken"] = page_token
+        url = "/aplus/2020-11-01/contentPublishRecords"
+        params = (  # name, param in, value, required
+            ("marketplaceId", "query", marketplace_id, True),
+            ("asin", "query", asin, True),
+            ("pageToken", "query", page_token, False),
+        )
 
     def post_content_document_approval_submission(
         self,
@@ -303,14 +267,11 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
         path_parameters = {}
-
-        path_parameters["contentReferenceKey"] = content_reference_key
-
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions"
+        params = (  # name, param in, value, required
+            ("contentReferenceKey", "path", content_reference_key, True),
+            ("marketplaceId", "query", marketplace_id, True),
+        )
 
     def post_content_document_suspend_submission(
         self,
@@ -334,11 +295,8 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id: The identifier for the marketplace where the A+ Content is published.
         """
         path_parameters = {}
-
-        path_parameters["contentReferenceKey"] = content_reference_key
-
-        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceId"] = marketplace_id
+        url = "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions"
+        params = (  # name, param in, value, required
+            ("contentReferenceKey", "path", content_reference_key, True),
+            ("marketplaceId", "query", marketplace_id, True),
+        )

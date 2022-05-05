@@ -20,10 +20,8 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/vendor/directFulfillment/sandbox/2021-10-28/orders".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
+        params = ()  # name, param in, value, required
 
     def get_order_scenarios(
         self,
@@ -36,9 +34,5 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
             transaction_id: The transaction identifier returned in the response to the generateOrderScenarios operation.
         """
         path_parameters = {}
-
-        path_parameters["transactionId"] = transaction_id
-
-        url = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}"
+        params = (("transactionId", "path", transaction_id, True),)  # name, param in, value, required

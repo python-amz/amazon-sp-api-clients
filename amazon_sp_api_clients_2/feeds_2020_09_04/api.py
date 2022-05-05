@@ -11,28 +11,6 @@ from typing import Any, List, Dict, Union, Literal
 
 
 class Feeds20200904Client(BaseClient):
-    def create_feed(
-        self,
-    ):
-        """
-        Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
-
-        **Usage Plan:**
-
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0083 | 15 |
-
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
-
-        Args:
-        """
-        path_parameters = {}
-
-        url = "/feeds/2020-09-04/feeds".format(**path_parameters)
-
-        query_parameters = {}
-
     def get_feeds(
         self,
         feed_types: list[str] = None,
@@ -66,31 +44,36 @@ class Feeds20200904Client(BaseClient):
             next_token: A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
         """
         path_parameters = {}
+        url = "/feeds/2020-09-04/feeds"
+        params = (  # name, param in, value, required
+            ("feedTypes", "query", feed_types, False),
+            ("marketplaceIds", "query", marketplace_ids, False),
+            ("pageSize", "query", page_size, False),
+            ("processingStatuses", "query", processing_statuses, False),
+            ("createdSince", "query", created_since, False),
+            ("createdUntil", "query", created_until, False),
+            ("nextToken", "query", next_token, False),
+        )
 
-        url = "/feeds/2020-09-04/feeds".format(**path_parameters)
+    def create_feed(
+        self,
+    ):
+        """
+        Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
 
-        query_parameters = {}
+        **Usage Plan:**
 
-        if feed_types is not None:
-            query_parameters["feedTypes"] = feed_types
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0083 | 15 |
 
-        if marketplace_ids is not None:
-            query_parameters["marketplaceIds"] = marketplace_ids
+        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
-        if page_size is not None:
-            query_parameters["pageSize"] = page_size
-
-        if processing_statuses is not None:
-            query_parameters["processingStatuses"] = processing_statuses
-
-        if created_since is not None:
-            query_parameters["createdSince"] = created_since
-
-        if created_until is not None:
-            query_parameters["createdUntil"] = created_until
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
+        Args:
+        """
+        path_parameters = {}
+        url = "/feeds/2020-09-04/feeds"
+        params = ()  # name, param in, value, required
 
     def get_feed(
         self,
@@ -111,12 +94,8 @@ class Feeds20200904Client(BaseClient):
             feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
         """
         path_parameters = {}
-
-        path_parameters["feedId"] = feed_id
-
-        url = "/feeds/2020-09-04/feeds/{feedId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/feeds/2020-09-04/feeds/{feedId}"
+        params = (("feedId", "path", feed_id, True),)  # name, param in, value, required
 
     def cancel_feed(
         self,
@@ -137,12 +116,8 @@ class Feeds20200904Client(BaseClient):
             feed_id: The identifier for the feed. This identifier is unique only in combination with a seller ID.
         """
         path_parameters = {}
-
-        path_parameters["feedId"] = feed_id
-
-        url = "/feeds/2020-09-04/feeds/{feedId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/feeds/2020-09-04/feeds/{feedId}"
+        params = (("feedId", "path", feed_id, True),)  # name, param in, value, required
 
     def create_feed_document(
         self,
@@ -161,10 +136,8 @@ class Feeds20200904Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/feeds/2020-09-04/documents".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/feeds/2020-09-04/documents"
+        params = ()  # name, param in, value, required
 
     def get_feed_document(
         self,
@@ -185,9 +158,5 @@ class Feeds20200904Client(BaseClient):
             feed_document_id: The identifier of the feed document.
         """
         path_parameters = {}
-
-        path_parameters["feedDocumentId"] = feed_document_id
-
-        url = "/feeds/2020-09-04/documents/{feedDocumentId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/feeds/2020-09-04/documents/{feedDocumentId}"
+        params = (("feedDocumentId", "path", feed_document_id, True),)  # name, param in, value, required

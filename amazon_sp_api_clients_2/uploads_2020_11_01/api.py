@@ -36,16 +36,10 @@ class Uploads20201101Client(BaseClient):
             content_type: The content type of the file to be uploaded.
         """
         path_parameters = {}
-
-        path_parameters["resource"] = resource
-
-        url = "/uploads/2020-11-01/uploadDestinations/{resource}".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-        query_parameters["contentMD5"] = content_md5
-
-        if content_type is not None:
-            query_parameters["contentType"] = content_type
+        url = "/uploads/2020-11-01/uploadDestinations/{resource}"
+        params = (  # name, param in, value, required
+            ("marketplaceIds", "query", marketplace_ids, True),
+            ("contentMD5", "query", content_md5, True),
+            ("resource", "path", resource, True),
+            ("contentType", "query", content_type, False),
+        )

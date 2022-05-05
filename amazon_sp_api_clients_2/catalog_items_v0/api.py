@@ -13,14 +13,14 @@ from typing import Any, List, Dict, Union, Literal
 class CatalogItemsV0Client(BaseClient):
     def list_catalog_items(
         self,
-        Marketplace_id: str,
-        Query: str = None,
-        Query_context_id: str = None,
-        Seller_sku: str = None,
-        UPC: str = None,
-        EAN: str = None,
-        ISBN: str = None,
-        JAN: str = None,
+        marketplace_id: str,
+        query: str = None,
+        query_context_id: str = None,
+        seller_sku: str = None,
+        upc: str = None,
+        ean: str = None,
+        isbn: str = None,
+        jan: str = None,
     ):
         """
         Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value.
@@ -39,47 +39,31 @@ class CatalogItemsV0Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            Marketplace_id: A marketplace identifier. Specifies the marketplace for which items are returned.
-            Query: Keyword(s) to use to search for items in the catalog. Example: 'harry potter books'.
-            Query_context_id: An identifier for the context within which the given search will be performed. A marketplace might provide mechanisms for constraining a search to a subset of potential items. For example, the retail marketplace allows queries to be constrained to a specific category. The QueryContextId parameter specifies such a subset. If it is omitted, the search will be performed using the default context for the marketplace, which will typically contain the largest set of items.
-            Seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
-            UPC: A 12-digit bar code used for retail packaging.
-            EAN: A European article number that uniquely identifies the catalog item, manufacturer, and its attributes.
-            ISBN: The unique commercial book identifier used to identify books internationally.
-            JAN: A Japanese article number that uniquely identifies the product, manufacturer, and its attributes.
+            marketplace_id: A marketplace identifier. Specifies the marketplace for which items are returned.
+            query: Keyword(s) to use to search for items in the catalog. Example: 'harry potter books'.
+            query_context_id: An identifier for the context within which the given search will be performed. A marketplace might provide mechanisms for constraining a search to a subset of potential items. For example, the retail marketplace allows queries to be constrained to a specific category. The QueryContextId parameter specifies such a subset. If it is omitted, the search will be performed using the default context for the marketplace, which will typically contain the largest set of items.
+            seller_sku: Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+            upc: A 12-digit bar code used for retail packaging.
+            ean: A European article number that uniquely identifies the catalog item, manufacturer, and its attributes.
+            isbn: The unique commercial book identifier used to identify books internationally.
+            jan: A Japanese article number that uniquely identifies the product, manufacturer, and its attributes.
         """
         path_parameters = {}
-
-        url = "/catalog/v0/items".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["MarketplaceId"] = Marketplace_id
-
-        if Query is not None:
-            query_parameters["Query"] = Query
-
-        if Query_context_id is not None:
-            query_parameters["QueryContextId"] = Query_context_id
-
-        if Seller_sku is not None:
-            query_parameters["SellerSKU"] = Seller_sku
-
-        if UPC is not None:
-            query_parameters["UPC"] = UPC
-
-        if EAN is not None:
-            query_parameters["EAN"] = EAN
-
-        if ISBN is not None:
-            query_parameters["ISBN"] = ISBN
-
-        if JAN is not None:
-            query_parameters["JAN"] = JAN
+        url = "/catalog/v0/items"
+        params = (  # name, param in, value, required
+            ("MarketplaceId", "query", marketplace_id, True),
+            ("Query", "query", query, False),
+            ("QueryContextId", "query", query_context_id, False),
+            ("SellerSKU", "query", seller_sku, False),
+            ("UPC", "query", upc, False),
+            ("EAN", "query", ean, False),
+            ("ISBN", "query", isbn, False),
+            ("JAN", "query", jan, False),
+        )
 
     def get_catalog_item(
         self,
-        Marketplace_id: str,
+        marketplace_id: str,
         asin: str,
     ):
         """
@@ -95,24 +79,21 @@ class CatalogItemsV0Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            Marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
+            marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
             asin: The Amazon Standard Identification Number (ASIN) of the item.
         """
         path_parameters = {}
-
-        path_parameters["asin"] = asin
-
-        url = "/catalog/v0/items/{asin}".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["MarketplaceId"] = Marketplace_id
+        url = "/catalog/v0/items/{asin}"
+        params = (  # name, param in, value, required
+            ("MarketplaceId", "query", marketplace_id, True),
+            ("asin", "path", asin, True),
+        )
 
     def list_catalog_categories(
         self,
-        Marketplace_id: str,
-        ASIN: str = None,
-        Seller_sku: str = None,
+        marketplace_id: str,
+        asin: str = None,
+        seller_sku: str = None,
     ):
         """
         Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
@@ -127,20 +108,14 @@ class CatalogItemsV0Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            Marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
-            ASIN: The Amazon Standard Identification Number (ASIN) of the item.
-            Seller_sku: Used to identify items in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+            marketplace_id: A marketplace identifier. Specifies the marketplace for the item.
+            asin: The Amazon Standard Identification Number (ASIN) of the item.
+            seller_sku: Used to identify items in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
         """
         path_parameters = {}
-
-        url = "/catalog/v0/categories".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["MarketplaceId"] = Marketplace_id
-
-        if ASIN is not None:
-            query_parameters["ASIN"] = ASIN
-
-        if Seller_sku is not None:
-            query_parameters["SellerSKU"] = Seller_sku
+        url = "/catalog/v0/categories"
+        params = (  # name, param in, value, required
+            ("MarketplaceId", "query", marketplace_id, True),
+            ("ASIN", "query", asin, False),
+            ("SellerSKU", "query", seller_sku, False),
+        )

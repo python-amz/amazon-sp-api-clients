@@ -35,15 +35,11 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
         """
         path_parameters = {}
-
-        url = "/definitions/2020-09-01/productTypes".format(**path_parameters)
-
-        query_parameters = {}
-
-        if keywords is not None:
-            query_parameters["keywords"] = keywords
-
-        query_parameters["marketplaceIds"] = marketplace_ids
+        url = "/definitions/2020-09-01/productTypes"
+        params = (  # name, param in, value, required
+            ("keywords", "query", keywords, False),
+            ("marketplaceIds", "query", marketplace_ids, True),
+        )
 
     def get_definitions_product_type(
         self,
@@ -78,26 +74,13 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             locale: Locale for retrieving display labels and other presentation details. Defaults to the default language of the first marketplace in the request.
         """
         path_parameters = {}
-
-        path_parameters["productType"] = product_type
-
-        url = "/definitions/2020-09-01/productTypes/{productType}".format(**path_parameters)
-
-        query_parameters = {}
-
-        if seller_id is not None:
-            query_parameters["sellerId"] = seller_id
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-        if product_type_version is not None:
-            query_parameters["productTypeVersion"] = product_type_version
-
-        if requirements is not None:
-            query_parameters["requirements"] = requirements
-
-        if requirements_enforced is not None:
-            query_parameters["requirementsEnforced"] = requirements_enforced
-
-        if locale is not None:
-            query_parameters["locale"] = locale
+        url = "/definitions/2020-09-01/productTypes/{productType}"
+        params = (  # name, param in, value, required
+            ("productType", "path", product_type, True),
+            ("sellerId", "query", seller_id, False),
+            ("marketplaceIds", "query", marketplace_ids, True),
+            ("productTypeVersion", "query", product_type_version, False),
+            ("requirements", "query", requirements, False),
+            ("requirementsEnforced", "query", requirements_enforced, False),
+            ("locale", "query", locale, False),
+        )

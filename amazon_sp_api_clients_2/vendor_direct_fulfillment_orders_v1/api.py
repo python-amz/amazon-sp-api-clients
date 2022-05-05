@@ -45,32 +45,17 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
             include_details: When true, returns the complete purchase order details. Otherwise, only purchase order numbers are returned.
         """
         path_parameters = {}
-
-        url = "/vendor/directFulfillment/orders/v1/purchaseOrders".format(**path_parameters)
-
-        query_parameters = {}
-
-        if ship_from_party_id is not None:
-            query_parameters["shipFromPartyId"] = ship_from_party_id
-
-        if status is not None:
-            query_parameters["status"] = status
-
-        if limit is not None:
-            query_parameters["limit"] = limit
-
-        query_parameters["createdAfter"] = created_after
-
-        query_parameters["createdBefore"] = created_before
-
-        if sort_order is not None:
-            query_parameters["sortOrder"] = sort_order
-
-        if next_token is not None:
-            query_parameters["nextToken"] = next_token
-
-        if include_details is not None:
-            query_parameters["includeDetails"] = include_details
+        url = "/vendor/directFulfillment/orders/v1/purchaseOrders"
+        params = (  # name, param in, value, required
+            ("shipFromPartyId", "query", ship_from_party_id, False),
+            ("status", "query", status, False),
+            ("limit", "query", limit, False),
+            ("createdAfter", "query", created_after, True),
+            ("createdBefore", "query", created_before, True),
+            ("sortOrder", "query", sort_order, False),
+            ("nextToken", "query", next_token, False),
+            ("includeDetails", "query", include_details, False),
+        )
 
     def get_order(
         self,
@@ -92,12 +77,8 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
             purchase_order_number: The order identifier for the purchase order that you want. Formatting Notes: alpha-numeric code.
         """
         path_parameters = {}
-
-        path_parameters["purchaseOrderNumber"] = purchase_order_number
-
-        url = "/vendor/directFulfillment/orders/v1/purchaseOrders/{purchaseOrderNumber}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/orders/v1/purchaseOrders/{purchaseOrderNumber}"
+        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
 
     def submit_acknowledgement(
         self,
@@ -117,7 +98,5 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/vendor/directFulfillment/orders/v1/acknowledgements".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/vendor/directFulfillment/orders/v1/acknowledgements"
+        params = ()  # name, param in, value, required

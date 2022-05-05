@@ -22,7 +22,7 @@ django.setup()
 class ParsedParameter(Parameter):
     @property
     def variable_name(self):
-        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name)
+        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
 
     @property
     def type_hint(self):
@@ -48,7 +48,7 @@ class OperationWithName(Operation):
 
     @property
     def method_name(self):
-        name = re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.operationId)
+        name = re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.operationId).lower()
         # print(f'{self.operationId:>40} | {name}')
         return name
 

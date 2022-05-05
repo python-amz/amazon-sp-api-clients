@@ -23,27 +23,10 @@ Args:
     {% endfor %}
 """
         path_parameters = {}
-        {% for parameter in operation.parsed_parameters %}
-        {% if parameter.param_in == 'path' %}
-            {% if parameter.required %}
-        path_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
-            {% else %}
-        if {{ parameter.variable_name }} is not None:
-            path_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
-            {% endif %}
-        {% endif %}
-        {% endfor %}
-        url = "{{ operation.path }}".format(**path_parameters)
+        url = "{{ operation.path }}"
+        params = ( # name, param in, value, required
+            {% for p in operation.parsed_parameters %}
+                ("{{ p.name }}", "{{ p.param_in }}", {{ p.variable_name }}, {{ p.required }}),{% endfor %}
+        )
 
-        query_parameters = {}
-            {% for parameter in operation.parsed_parameters %}
-        {% if parameter.param_in == 'query' %}
-            {% if parameter.required %}
-        query_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
-            {% else %}
-        if {{ parameter.variable_name }} is not None:
-            query_parameters['{{ parameter.name }}'] = {{ parameter.variable_name }}
-            {% endif %}
-        {% endif %}
-        {% endfor %}
 {% endfor %}

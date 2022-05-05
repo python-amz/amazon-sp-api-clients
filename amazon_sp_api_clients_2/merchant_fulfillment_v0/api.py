@@ -28,10 +28,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/mfn/v0/eligibleServices".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/eligibleServices"
+        params = ()  # name, param in, value, required
 
     def get_eligible_shipment_services(
         self,
@@ -50,10 +48,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/mfn/v0/eligibleShippingServices".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/eligibleShippingServices"
+        params = ()  # name, param in, value, required
 
     def get_shipment(
         self,
@@ -74,12 +70,8 @@ class MerchantFulfillmentV0Client(BaseClient):
             shipment_id: The Amazon-defined shipment identifier for the shipment.
         """
         path_parameters = {}
-
-        path_parameters["shipmentId"] = shipment_id
-
-        url = "/mfn/v0/shipments/{shipmentId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/shipments/{shipmentId}"
+        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
 
     def cancel_shipment(
         self,
@@ -100,12 +92,8 @@ class MerchantFulfillmentV0Client(BaseClient):
             shipment_id: The Amazon-defined shipment identifier for the shipment to cancel.
         """
         path_parameters = {}
-
-        path_parameters["shipmentId"] = shipment_id
-
-        url = "/mfn/v0/shipments/{shipmentId}".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/shipments/{shipmentId}"
+        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
 
     def cancel_shipment_old(
         self,
@@ -126,12 +114,8 @@ class MerchantFulfillmentV0Client(BaseClient):
             shipment_id: The Amazon-defined shipment identifier for the shipment to cancel.
         """
         path_parameters = {}
-
-        path_parameters["shipmentId"] = shipment_id
-
-        url = "/mfn/v0/shipments/{shipmentId}/cancel".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/shipments/{shipmentId}/cancel"
+        params = (("shipmentId", "path", shipment_id, True),)  # name, param in, value, required
 
     def create_shipment(
         self,
@@ -150,10 +134,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/mfn/v0/shipments".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/shipments"
+        params = ()  # name, param in, value, required
 
     def get_additional_seller_inputs_old(
         self,
@@ -172,10 +154,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/mfn/v0/sellerInputs".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/sellerInputs"
+        params = ()  # name, param in, value, required
 
     def get_additional_seller_inputs(
         self,
@@ -194,7 +174,5 @@ class MerchantFulfillmentV0Client(BaseClient):
         Args:
         """
         path_parameters = {}
-
-        url = "/mfn/v0/additionalSellerInputs".format(**path_parameters)
-
-        query_parameters = {}
+        url = "/mfn/v0/additionalSellerInputs"
+        params = ()  # name, param in, value, required

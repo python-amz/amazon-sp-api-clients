@@ -59,35 +59,18 @@ class CatalogItems20201201Client(BaseClient):
             locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
         """
         path_parameters = {}
-
-        url = "/catalog/2020-12-01/items".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["keywords"] = keywords
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-        if included_data is not None:
-            query_parameters["includedData"] = included_data
-
-        if brand_names is not None:
-            query_parameters["brandNames"] = brand_names
-
-        if classification_ids is not None:
-            query_parameters["classificationIds"] = classification_ids
-
-        if page_size is not None:
-            query_parameters["pageSize"] = page_size
-
-        if page_token is not None:
-            query_parameters["pageToken"] = page_token
-
-        if keywords_locale is not None:
-            query_parameters["keywordsLocale"] = keywords_locale
-
-        if locale is not None:
-            query_parameters["locale"] = locale
+        url = "/catalog/2020-12-01/items"
+        params = (  # name, param in, value, required
+            ("keywords", "query", keywords, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+            ("includedData", "query", included_data, False),
+            ("brandNames", "query", brand_names, False),
+            ("classificationIds", "query", classification_ids, False),
+            ("pageSize", "query", page_size, False),
+            ("pageToken", "query", page_token, False),
+            ("keywordsLocale", "query", keywords_locale, False),
+            ("locale", "query", locale, False),
+        )
 
     def get_catalog_item(
         self,
@@ -126,17 +109,10 @@ class CatalogItems20201201Client(BaseClient):
             locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
         """
         path_parameters = {}
-
-        path_parameters["asin"] = asin
-
-        url = "/catalog/2020-12-01/items/{asin}".format(**path_parameters)
-
-        query_parameters = {}
-
-        query_parameters["marketplaceIds"] = marketplace_ids
-
-        if included_data is not None:
-            query_parameters["includedData"] = included_data
-
-        if locale is not None:
-            query_parameters["locale"] = locale
+        url = "/catalog/2020-12-01/items/{asin}"
+        params = (  # name, param in, value, required
+            ("asin", "path", asin, True),
+            ("marketplaceIds", "query", marketplace_ids, True),
+            ("includedData", "query", included_data, False),
+            ("locale", "query", locale, False),
+        )
