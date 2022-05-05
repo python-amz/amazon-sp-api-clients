@@ -1,12 +1,13 @@
 """
 Selling Partner API for Listings Restrictions
 =============================================================================================
+
 The Selling Partner API for Listings Restrictions provides programmatic access to restrictions on Amazon catalog listings.
 
 For more information, see the [Listings Restrictions API Use Case Guide](doc:listings-restrictions-api-v2021-08-01-use-case-guide).
+API Version: 2021-08-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: 2021-08-01
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

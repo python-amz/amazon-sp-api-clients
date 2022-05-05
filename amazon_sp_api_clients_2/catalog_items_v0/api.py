@@ -1,10 +1,11 @@
 """
 Selling Partner API for Catalog Items
 =============================================================================================
+
 The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the catalog.
+API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: v0
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

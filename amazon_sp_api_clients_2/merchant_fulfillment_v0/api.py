@@ -1,10 +1,11 @@
 """
 Selling Partner API for Merchant Fulfillment
 =============================================================================================
+
 The Selling Partner API for Merchant Fulfillment helps you build applications that let sellers purchase shipping for non-Prime and Prime orders using Amazon¡¯s Buy Shipping Services.
+API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: v0
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

@@ -1,10 +1,11 @@
 """
 Selling Partner API for Retail Procurement Transaction Status
 =============================================================================================
+
 The Selling Partner API for Retail Procurement Transaction Status provides programmatic access to status information on specific asynchronous POST transactions for vendors.
+API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: v1
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

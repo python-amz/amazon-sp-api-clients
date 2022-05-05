@@ -1,10 +1,11 @@
 """
 Selling Partner API for A+ Content Management
 =============================================================================================
+
 With the A+ Content API, you can build applications that help selling partners add rich marketing content to their Amazon product detail pages. A+ content helps selling partners share their brand and product story, which helps buyers make informed purchasing decisions. Selling partners assemble content by choosing from content modules and adding images and text.
+API Version: 2020-11-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: 2020-11-01
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

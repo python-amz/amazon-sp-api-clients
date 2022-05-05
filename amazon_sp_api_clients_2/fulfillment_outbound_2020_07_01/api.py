@@ -1,10 +1,11 @@
 """
 Selling Partner APIs for Fulfillment Outbound
 =============================================================================================
+
 The Selling Partner API for Fulfillment Outbound lets you create applications that help a seller fulfill Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on both potential and existing fulfillment orders.
+API Version: 2020-07-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: 2020-07-01
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

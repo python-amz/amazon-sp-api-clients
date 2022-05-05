@@ -1,10 +1,11 @@
 """
 Selling Partner API for Finances
 =============================================================================================
+
 The Selling Partner API for Finances helps you obtain financial information relevant to a seller's business. You can obtain financial events for a given order, financial event group, or date range without having to wait until a statement period closes. You can also obtain financial event groups for a given date range.
+API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: v0
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

@@ -1,10 +1,11 @@
 """
 Selling Partner API for Fulfillment Inbound
 =============================================================================================
+
 The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound shipments of inventory to Amazon's fulfillment network.
+API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: v0
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

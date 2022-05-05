@@ -1,10 +1,11 @@
 """
 Selling Partner API for Uploads
 =============================================================================================
+
 The Uploads API lets you upload files that you can programmatically access using other Selling Partner APIs, such as the A+ Content API and the Messaging API.
+API Version: 2020-11-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: 2020-11-01
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

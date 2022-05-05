@@ -1,10 +1,11 @@
 """
 Selling Partner API for Reports
 =============================================================================================
+
 The Selling Partner API for Reports lets you retrieve and manage a variety of reports that can help selling partners manage their businesses.
+API Version: 2021-06-30
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: 2021-06-30
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

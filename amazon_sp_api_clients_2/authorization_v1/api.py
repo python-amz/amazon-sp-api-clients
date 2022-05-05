@@ -1,10 +1,11 @@
 """
 Selling Partner API for Authorization
 =============================================================================================
+
 The Selling Partner API for Authorization helps developers manage authorizations and check the specific permissions associated with a given authorization.
+API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: v1
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal

@@ -1,10 +1,11 @@
 """
 Selling Partner API for Feeds
 =============================================================================================
+
 The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
+API Version: 2020-09-04
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
-API Version: 2020-09-04
 """
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
