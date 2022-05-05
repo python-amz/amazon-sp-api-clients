@@ -1,4 +1,5 @@
 from amazon_sp_api_clients_2.utils.exceptions import SellingApiError
+from amazon_sp_api_clients_2.utils.marketplaces import MarketPlaces
 
 try:
     from functools import cached_property
@@ -211,7 +212,6 @@ class BaseAmazonSpApiClients(BaseClient):
 
     @cached_property
     def marketplaces(self):
-        from .marketplaces import MarketPlaces
         return MarketPlaces
 
     @cached_property

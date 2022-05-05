@@ -1,9 +1,12 @@
-from .utils.base_client import BaseAmazonSpApiClients, cached_property
+from .utils.base_client import BaseAmazonSpApiClients as _Base, cached_property, MarketPlaces
+from typing import TYPE_CHECKING as _TYPE_CHECKING
+if _TYPE_CHECKING:{% for datum in data %}
+    from .{{ datum.package_name }}.api import {{ datum.class_name }}Client{% endfor %}
 
-class AmazonSpApiClients(BaseAmazonSpApiClients):
+class AmazonSpApiClients(_Base):
 {% for datum in data %}
     @cached_property
-    def {{ datum.package_name }}(self):
+    def {{ datum.package_name    }}(self) -> '{{ datum.class_name }}Client':
         from .{{ datum.package_name }}.api import {{ datum.class_name }}Client
         return {{ datum.class_name }}Client(**self._parameters)
 {% endfor %}
