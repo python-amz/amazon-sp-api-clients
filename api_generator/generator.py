@@ -130,10 +130,10 @@ class Generator:
                 assert set(chain(*(s.__fields_set__ for s in schemas))).issubset(fields)
                 required = tuple(chain(*(s.required for s in schemas if s.required)))
                 assert len(set(required)) == len(required)
-                properties = [(name, obj) for s in schemas for name, obj in s.properties.items()]
-                properties = [(k, self.resolve_ref(v) if isinstance(v, Reference) else v) for k, v in properties]
-                post_parameters = [Parameter(name=k, param_in='body', description=v.description, required=k in required,
-                                             param_schema=v) for k, v in properties]
+                properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
+                properties = tuple((k, self.resolve_ref(v) if isinstance(v, Reference) else v) for k, v in properties)
+                post_parameters = tuple(Parameter(name=k, param_in='body', description=v.description,
+                                                  required=k in required, param_schema=v) for k, v in properties)
                 operation.parameters.extend(post_parameters)
 
             parameters = [self.resolve_ref(p) if isinstance(p, Reference) else p for p in operation.parameters]
