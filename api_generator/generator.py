@@ -9,8 +9,7 @@ import django.template
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic import Operation, Reference, Parameter, RequestBody
-from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI
+from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody
 
 settings.configure(TEMPLATES=[{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -100,7 +99,27 @@ class Generator:
 
             if (body := operation.requestBody) is not None:
                 assert isinstance(body, RequestBody)
-                # ParsedParameter()
+                assert body.required is True
+                _ = body.description  # Useless, do not process
+                for media_type, item in body.content.items():
+                    assert media_type == 'application/json'
+                    item = item.media_type_schema
+                    assert isinstance(item, Reference), item
+                    item_name = re.match(r'^#/components/schemas/(.*?)$', item.ref).group(1)
+                    item = self.data.components.schemas.get(item_name)
+                    assert item.type == 'object'
+                    fields = {k: getattr(item, k) for k in item.__fields_set__}
+                    assert all(field in ('required', 'properties', 'type', 'description')
+                               for field in item.__fields_set__), fields.keys()
+                    required_fields = item.required
+                    for property_name, property_obj in item.properties.items():
+                        if isinstance(property_obj, Reference):
+                            match = re.match(r'^#/components/schemas/(.*?)$', property_obj.ref).group(1)
+                            property_obj = self.data.components.schemas.get(match)
+                        fields = {k: getattr(property_obj, k) for k in property_obj.__fields_set__}
+                        print(property_name, fields)
+                    # print(item_name, tuple(fields.keys()), fields)
+                # ParsedParameter(name='body')
 
             if not any(isinstance(p, Reference) for p in operation.parameters):
                 operation.parsed_parameters = [ParsedParameter.parse_obj(p.dict()) for p in operation.parameters]
