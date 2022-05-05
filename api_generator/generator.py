@@ -2,6 +2,7 @@ import html
 import json
 import re
 from functools import cached_property
+from itertools import chain
 from pathlib import Path
 from typing import Optional
 
@@ -119,22 +120,23 @@ class Generator:
                 assert isinstance(body, RequestBody)
                 assert body.required is True
                 _ = body.description  # Useless, do not process
-                for media_type, item in body.content.items():
-                    assert media_type == 'application/json'
-                    item = item.media_type_schema
-                    assert isinstance(item, Reference), item
-                    item = self.resolve_ref(item)
-                    assert item.type == 'object'
-                    assert all(field in ('required', 'properties', 'type', 'description')
-                               for field in item.__fields_set__), item.__fields_set__
-                    required_fields = item.required
-                    required_fields = () if required_fields is None else required_fields
+                content = body.content
+                assert all(k == 'application/json' for k in content.keys())
+                schemas = tuple(i.media_type_schema for i in content.values())
+                assert all(isinstance(i, Reference) for i in schemas)
+                schemas = tuple(self.resolve_ref(schema) for schema in schemas)
+                assert all(s.type == 'object' for s in schemas)
+                fields = {'required', 'properties', 'type', 'description'}
+                assert set(chain(*(s.__fields_set__ for s in schemas))).issubset(fields)
+                required = tuple(chain(*(s.required for s in schemas if s.required)))
+                assert len(set(required)) == len(required)
+                for item in schemas:
                     for property_name, property_obj in item.properties.items():
                         if isinstance(property_obj, Reference):
                             property_obj = self.resolve_ref(property_obj)
                         parameter = Parameter(name=property_name, param_in='body',
                                               description=property_obj.description,
-                                              required=property_name in required_fields,
+                                              required=property_name in required,
                                               param_schema=property_obj)
                         operation.parameters.append(parameter)
 
