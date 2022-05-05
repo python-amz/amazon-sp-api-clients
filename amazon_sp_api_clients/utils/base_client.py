@@ -5,7 +5,6 @@ import os
 import urllib
 from datetime import datetime
 from functools import reduce
-from time import sleep
 from typing import Union
 from urllib.parse import urlparse
 
@@ -20,13 +19,13 @@ from amazon_sp_api_clients.utils.exceptions import SellingApiError
 
 
 class AwsSignV4(AuthBase):
-    def __init__(self, *, service, aws_key, aws_secret, region, aws_session_token=None):
+    def __init__(self, *, service, aws_key, aws_secret, region, aws_session_token):
         self.service = service
         self.aws_key, self.aws_secret = aws_key, aws_secret
         self.aws_session_token = aws_session_token
         self.region = region
 
-    def __call__(self, request: Request):
+    def __call__(self, req: Request):
         # load data from instance
         region, service, aws_key, aws_secret, session = \
             self.region, self.service, self.aws_key, self.aws_secret, self.aws_session_token
@@ -37,15 +36,15 @@ class AwsSignV4(AuthBase):
         date_str = now.strftime('%Y%m%d')
 
         # Parse request to get URL parts
-        parsed_url = urlparse(request.url)
+        parsed_url = urlparse(req.url)
         host, uri, query = parsed_url.hostname, urllib.parse.quote(parsed_url.path), parsed_url.query
+        # noinspection PyTypeChecker
+        query = '&'.join(sorted(query.split('&')))  # the param should be sorted before sign
+        headers = {'host': host, 'x-amz-date': time_str, 'x-amz-security-token': session}
+        header_str = ''.join((f'{k}:{v}\n' for k, v in headers.items()))
+        header_names = ';'.join(headers)
 
-        headers = (('host', host), ('x-amz-date', time_str))
-        headers = headers if session is None else (*headers, ('x-amz-security-token', session))
-        header_str = ''.join((f'{k}:{v}\n' for k, v in headers))
-        header_names = ';'.join((k for k, v in headers))
-
-        body = request.body  # TODO Check if can change to request.data
+        body = req.body  # TODO Check if can change to request.data
         if body:
             if isinstance(body, str):
                 payload = body.encode('utf-8')
@@ -56,20 +55,19 @@ class AwsSignV4(AuthBase):
         else:
             payload = b''
         payload_hash = hashlib.sha256(payload).hexdigest()
-        request_str = f'{request.method}\n{uri}\n{query}\n{header_str}\n{header_names}\n{payload_hash}'
+        request_str = f'{req.method}\n{uri}\n{query}\n{header_str}\n{header_names}\n{payload_hash}'
         action = 'aws4_request'
-        scope_path = (date_str, region, service, action)
-        scope_str = '/'.join(scope_path)
+        scopes = (date_str, region, service, action)
+        scope_str = '/'.join(scopes)
         request_hash = hashlib.sha256(request_str.encode('utf-8')).hexdigest()
-        before_sign = f'AWS4-HMAC-SHA256\n{time_str}\n{scope_str}\n{request_hash}'
+        string_to_sign = f'AWS4-HMAC-SHA256\n{time_str}\n{scope_str}\n{request_hash}'
         secret_str = f'AWS4{self.aws_secret}'
-        messages = tuple(message.encode('utf-8') for message in (secret_str, *scope_path, before_sign))
+        messages = tuple(message.encode('utf-8') for message in (secret_str, *scopes, string_to_sign))
         # TODO check if the HMAC can be reused
-        signature = reduce(lambda v1, v2: hmac.new(v1, v2, hashlib.sha256).digest(), messages)
+        signature = reduce(lambda v1, v2: hmac.new(v1, v2, hashlib.sha256).digest(), messages).hex()
         auth = f"AWS4-HMAC-SHA256 Credential={aws_key}/{scope_str}, SignedHeaders={header_names}, Signature={signature}"
-        request.headers.update({'host': host, 'x-amz-date': time_str,
-                                'Authorization': auth, 'x-amz-security-token': session})
-        return request
+        req.headers = {**headers, 'Authorization': auth, **req.headers}
+        return req
 
 
 class BaseClient:
@@ -152,7 +150,7 @@ class BaseClient:
     # By assume role, a token will be received
     _aws_auth_cache = TTLCache(maxsize=1, ttl=3000)
 
-    def _get_auth(self):
+    def _get_aws_auth(self):
         # TODO should set waiting flag for multi thread support
         if 'auth' not in self._aws_auth_cache:
             role = self._client.assume_role(RoleArn=self._role_arn, RoleSessionName='guid').get('Credentials')
@@ -184,39 +182,35 @@ class BaseClient:
                 ) -> Response:
 
         # process params
-        parsed_params = {}
-        params is None or parsed_params.update(params)
+        params = {} if params is None else params
         data = b'' if data is None else data
         data = json.dumps(data) if isinstance(data, dict) else data
         data = data.encode('utf-8') if isinstance(data, str) else data
-
         headers = {} if headers is None else headers
         headers = {
-            'host': urlparse(self._endpoint).hostname,
-            'user-agent': 'python-sp-api',
-            'x-amz-access-token': self._get_access_token(self._refresh_token),
-            'x-amz-date': datetime.utcnow().strftime('%Y%m%dT%H%M%SZ'),
             'content-type': 'application/json',
+            'x-amz-access-token': self._get_access_token(self._refresh_token),
             **headers,
         }
-        auth = self._get_auth()
+        auth = self._get_aws_auth()
         url = f'{self._endpoint}{path}'
-
-        # process quota exceeded exception
         response = request(method=method, url=url, data=data, headers=headers, auth=auth, params=params)
         self.last_response = response
 
-        if not self._check_errors:
-            return response
+        # TODO check errors and quota exceeded should be processed later, in case to avoid decode twice
+
+        # process quota exceeded exception
+        # if not self._check_errors:
+        #     return response
 
         # If found error, and the error is QuotaExceed, just resend the request
-        errors = self._get_response_json(response).get('errors', None)
-        if errors:
-            if self._ignore_quota_exceeded and len(errors) == 1 \
-                    and 'code' in errors[0] and errors[0]['code'] == 'QuotaExceeded':
-                sleep(0.1)
-                return self.request(path, data=data, params=params, headers=headers, method=method)
-            else:
-                raise SellingApiError(errors)
+        # errors = self._get_response_json(response).get('errors', None)
+        # if errors:
+        #     if self._ignore_quota_exceeded and len(errors) == 1 \
+        #             and 'code' in errors[0] and errors[0]['code'] == 'QuotaExceeded':
+        #         sleep(0.1)
+        #         return self.request(path, data=data, params=params, headers=headers, method=method)
+        #     else:
+        #         raise SellingApiError(errors)
 
         return response
