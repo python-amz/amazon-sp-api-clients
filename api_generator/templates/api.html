@@ -30,9 +30,10 @@ Args:
     {% endfor %}
 """
         url = "{{ operation.path }}"
-        params = ( # name, param in, value, required
-            {% for p in operation.parsed_parameters %}
-                ("{{ p.name }}", "{{ p.param_in }}", {{ p.variable_name }}, {{ p.required }}),{% endfor %}
-        )
+        values = ({% for p in operation.parsed_parameters %}{{ p.variable_name }},{% endfor %})
+    _{{ operation.method_name }}_params = ( # name, param in, required
+        {% for p in operation.parsed_parameters %}
+            ("{{ p.name }}", "{{ p.param_in }}", {{ p.required }}),{% endfor %}
+    )
 
 {% endfor %}

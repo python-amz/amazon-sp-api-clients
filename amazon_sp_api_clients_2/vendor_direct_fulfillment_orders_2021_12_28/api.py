@@ -44,16 +44,27 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             include_details: When true, returns the complete purchase order details. Otherwise, only purchase order numbers are returned.
         """
         url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders"
-        params = (  # name, param in, value, required
-            ("shipFromPartyId", "query", ship_from_party_id, False),
-            ("status", "query", status, False),
-            ("limit", "query", limit, False),
-            ("createdAfter", "query", created_after, True),
-            ("createdBefore", "query", created_before, True),
-            ("sortOrder", "query", sort_order, False),
-            ("nextToken", "query", next_token, False),
-            ("includeDetails", "query", include_details, False),
+        values = (
+            ship_from_party_id,
+            status,
+            limit,
+            created_after,
+            created_before,
+            sort_order,
+            next_token,
+            include_details,
         )
+
+    _get_orders_params = (  # name, param in, required
+        ("shipFromPartyId", "query", False),
+        ("status", "query", False),
+        ("limit", "query", False),
+        ("createdAfter", "query", True),
+        ("createdBefore", "query", True),
+        ("sortOrder", "query", False),
+        ("nextToken", "query", False),
+        ("includeDetails", "query", False),
+    )
 
     def get_order(
         self,
@@ -74,7 +85,9 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             purchase_order_number: The order identifier for the purchase order that you want. Formatting Notes: alpha-numeric code.
         """
         url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/{purchaseOrderNumber}"
-        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
+        values = (purchase_order_number,)
+
+    _get_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
 
     def submit_acknowledgement(
         self,
@@ -93,4 +106,6 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         Args:
         """
         url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _submit_acknowledgement_params = ()  # name, param in, required

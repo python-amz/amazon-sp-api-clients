@@ -64,25 +64,45 @@ class OrdersV0Client(BaseClient):
             store_chain_store_id: The store chain store identifier. Linked to a specific store in a store chain.
         """
         url = "/orders/v0/orders"
-        params = (  # name, param in, value, required
-            ("CreatedAfter", "query", created_after, False),
-            ("CreatedBefore", "query", created_before, False),
-            ("LastUpdatedAfter", "query", last_updated_after, False),
-            ("LastUpdatedBefore", "query", last_updated_before, False),
-            ("OrderStatuses", "query", order_statuses, False),
-            ("MarketplaceIds", "query", marketplace_ids, True),
-            ("FulfillmentChannels", "query", fulfillment_channels, False),
-            ("PaymentMethods", "query", payment_methods, False),
-            ("BuyerEmail", "query", buyer_email, False),
-            ("SellerOrderId", "query", seller_order_id, False),
-            ("MaxResultsPerPage", "query", max_results_per_page, False),
-            ("EasyShipShipmentStatuses", "query", easy_ship_shipment_statuses, False),
-            ("NextToken", "query", next_token, False),
-            ("AmazonOrderIds", "query", amazon_order_ids, False),
-            ("ActualFulfillmentSupplySourceId", "query", actual_fulfillment_supply_source_id, False),
-            ("IsISPU", "query", is_ispu, False),
-            ("StoreChainStoreId", "query", store_chain_store_id, False),
+        values = (
+            created_after,
+            created_before,
+            last_updated_after,
+            last_updated_before,
+            order_statuses,
+            marketplace_ids,
+            fulfillment_channels,
+            payment_methods,
+            buyer_email,
+            seller_order_id,
+            max_results_per_page,
+            easy_ship_shipment_statuses,
+            next_token,
+            amazon_order_ids,
+            actual_fulfillment_supply_source_id,
+            is_ispu,
+            store_chain_store_id,
         )
+
+    _get_orders_params = (  # name, param in, required
+        ("CreatedAfter", "query", False),
+        ("CreatedBefore", "query", False),
+        ("LastUpdatedAfter", "query", False),
+        ("LastUpdatedBefore", "query", False),
+        ("OrderStatuses", "query", False),
+        ("MarketplaceIds", "query", True),
+        ("FulfillmentChannels", "query", False),
+        ("PaymentMethods", "query", False),
+        ("BuyerEmail", "query", False),
+        ("SellerOrderId", "query", False),
+        ("MaxResultsPerPage", "query", False),
+        ("EasyShipShipmentStatuses", "query", False),
+        ("NextToken", "query", False),
+        ("AmazonOrderIds", "query", False),
+        ("ActualFulfillmentSupplySourceId", "query", False),
+        ("IsISPU", "query", False),
+        ("StoreChainStoreId", "query", False),
+    )
 
     def get_order(
         self,
@@ -104,7 +124,9 @@ class OrdersV0Client(BaseClient):
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/orders/v0/orders/{orderId}"
-        params = (("orderId", "path", order_id, True),)  # name, param in, value, required
+        values = (order_id,)
+
+    _get_order_params = (("orderId", "path", True),)  # name, param in, required
 
     def get_order_buyer_info(
         self,
@@ -126,7 +148,9 @@ class OrdersV0Client(BaseClient):
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/orders/v0/orders/{orderId}/buyerInfo"
-        params = (("orderId", "path", order_id, True),)  # name, param in, value, required
+        values = (order_id,)
+
+    _get_order_buyer_info_params = (("orderId", "path", True),)  # name, param in, required
 
     def get_order_address(
         self,
@@ -148,7 +172,9 @@ class OrdersV0Client(BaseClient):
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/orders/v0/orders/{orderId}/address"
-        params = (("orderId", "path", order_id, True),)  # name, param in, value, required
+        values = (order_id,)
+
+    _get_order_address_params = (("orderId", "path", True),)  # name, param in, required
 
     def get_order_items(
         self,
@@ -174,10 +200,15 @@ class OrdersV0Client(BaseClient):
             next_token: A string token returned in the response of your previous request.
         """
         url = "/orders/v0/orders/{orderId}/orderItems"
-        params = (  # name, param in, value, required
-            ("orderId", "path", order_id, True),
-            ("NextToken", "query", next_token, False),
+        values = (
+            order_id,
+            next_token,
         )
+
+    _get_order_items_params = (  # name, param in, required
+        ("orderId", "path", True),
+        ("NextToken", "query", False),
+    )
 
     def get_order_items_buyer_info(
         self,
@@ -201,10 +232,15 @@ class OrdersV0Client(BaseClient):
             next_token: A string token returned in the response of your previous request.
         """
         url = "/orders/v0/orders/{orderId}/orderItems/buyerInfo"
-        params = (  # name, param in, value, required
-            ("orderId", "path", order_id, True),
-            ("NextToken", "query", next_token, False),
+        values = (
+            order_id,
+            next_token,
         )
+
+    _get_order_items_buyer_info_params = (  # name, param in, required
+        ("orderId", "path", True),
+        ("NextToken", "query", False),
+    )
 
     def update_shipment_status(
         self,
@@ -217,7 +253,9 @@ class OrdersV0Client(BaseClient):
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/orders/v0/orders/{orderId}/shipment"
-        params = (("orderId", "path", order_id, True),)  # name, param in, value, required
+        values = (order_id,)
+
+    _update_shipment_status_params = (("orderId", "path", True),)  # name, param in, required
 
     def update_verification_status(
         self,
@@ -239,7 +277,9 @@ class OrdersV0Client(BaseClient):
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/orders/v0/orders/{orderId}/regulatedInfo"
-        params = (("orderId", "path", order_id, True),)  # name, param in, value, required
+        values = (order_id,)
+
+    _update_verification_status_params = (("orderId", "path", True),)  # name, param in, required
 
     def get_order_regulated_info(
         self,
@@ -261,4 +301,6 @@ class OrdersV0Client(BaseClient):
             order_id: An orderId is an Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/orders/v0/orders/{orderId}/regulatedInfo"
-        params = (("orderId", "path", order_id, True),)  # name, param in, value, required
+        values = (order_id,)
+
+    _get_order_regulated_info_params = (("orderId", "path", True),)  # name, param in, required

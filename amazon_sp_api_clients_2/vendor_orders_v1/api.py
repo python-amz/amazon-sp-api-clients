@@ -53,20 +53,35 @@ class VendorOrdersV1Client(BaseClient):
             ordering_vendor_code: Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client application are returned.
         """
         url = "/vendor/orders/v1/purchaseOrders"
-        params = (  # name, param in, value, required
-            ("limit", "query", limit, False),
-            ("createdAfter", "query", created_after, False),
-            ("createdBefore", "query", created_before, False),
-            ("sortOrder", "query", sort_order, False),
-            ("nextToken", "query", next_token, False),
-            ("includeDetails", "query", include_details, False),
-            ("changedAfter", "query", changed_after, False),
-            ("changedBefore", "query", changed_before, False),
-            ("poItemState", "query", po_item_state, False),
-            ("isPOChanged", "query", is_pochanged, False),
-            ("purchaseOrderState", "query", purchase_order_state, False),
-            ("orderingVendorCode", "query", ordering_vendor_code, False),
+        values = (
+            limit,
+            created_after,
+            created_before,
+            sort_order,
+            next_token,
+            include_details,
+            changed_after,
+            changed_before,
+            po_item_state,
+            is_pochanged,
+            purchase_order_state,
+            ordering_vendor_code,
         )
+
+    _get_purchase_orders_params = (  # name, param in, required
+        ("limit", "query", False),
+        ("createdAfter", "query", False),
+        ("createdBefore", "query", False),
+        ("sortOrder", "query", False),
+        ("nextToken", "query", False),
+        ("includeDetails", "query", False),
+        ("changedAfter", "query", False),
+        ("changedBefore", "query", False),
+        ("poItemState", "query", False),
+        ("isPOChanged", "query", False),
+        ("purchaseOrderState", "query", False),
+        ("orderingVendorCode", "query", False),
+    )
 
     def get_purchase_order(
         self,
@@ -88,7 +103,9 @@ class VendorOrdersV1Client(BaseClient):
             purchase_order_number: The purchase order identifier for the order that you want. Formatting Notes: 8-character alpha-numeric code.
         """
         url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}"
-        params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
+        values = (purchase_order_number,)
+
+    _get_purchase_order_params = (("purchaseOrderNumber", "path", True),)  # name, param in, required
 
     def submit_acknowledgement(
         self,
@@ -108,7 +125,9 @@ class VendorOrdersV1Client(BaseClient):
         Args:
         """
         url = "/vendor/orders/v1/acknowledgements"
-        params = ()  # name, param in, value, required
+        values = ()
+
+    _submit_acknowledgement_params = ()  # name, param in, required
 
     def get_purchase_orders_status(
         self,
@@ -154,18 +173,34 @@ class VendorOrdersV1Client(BaseClient):
             ship_to_party_id: Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order. If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor group purchase orders.
         """
         url = "/vendor/orders/v1/purchaseOrdersStatus"
-        params = (  # name, param in, value, required
-            ("limit", "query", limit, False),
-            ("sortOrder", "query", sort_order, False),
-            ("nextToken", "query", next_token, False),
-            ("createdAfter", "query", created_after, False),
-            ("createdBefore", "query", created_before, False),
-            ("updatedAfter", "query", updated_after, False),
-            ("updatedBefore", "query", updated_before, False),
-            ("purchaseOrderNumber", "query", purchase_order_number, False),
-            ("purchaseOrderStatus", "query", purchase_order_status, False),
-            ("itemConfirmationStatus", "query", item_confirmation_status, False),
-            ("itemReceiveStatus", "query", item_receive_status, False),
-            ("orderingVendorCode", "query", ordering_vendor_code, False),
-            ("shipToPartyId", "query", ship_to_party_id, False),
+        values = (
+            limit,
+            sort_order,
+            next_token,
+            created_after,
+            created_before,
+            updated_after,
+            updated_before,
+            purchase_order_number,
+            purchase_order_status,
+            item_confirmation_status,
+            item_receive_status,
+            ordering_vendor_code,
+            ship_to_party_id,
         )
+
+    _get_purchase_orders_status_params = (  # name, param in, required
+        ("limit", "query", False),
+        ("sortOrder", "query", False),
+        ("nextToken", "query", False),
+        ("createdAfter", "query", False),
+        ("createdBefore", "query", False),
+        ("updatedAfter", "query", False),
+        ("updatedBefore", "query", False),
+        ("purchaseOrderNumber", "query", False),
+        ("purchaseOrderStatus", "query", False),
+        ("itemConfirmationStatus", "query", False),
+        ("itemReceiveStatus", "query", False),
+        ("orderingVendorCode", "query", False),
+        ("shipToPartyId", "query", False),
+    )
