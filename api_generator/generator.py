@@ -140,8 +140,12 @@ class Generator:
     @cached_property
     def content(self):
         content = render(RequestFactory(), 'api.html', {'data': self}).content.decode('utf-8')
-        # content = re.sub(r'\n+', '\n', content)
+        return self.format_python_file(content)
+
+    @staticmethod
+    def format_python_file(content: str):
         content = html.unescape(content)
+        # content = re.sub(r'\n+', '\n', content)
         try:
             content = black.format_str(content, mode=black.Mode(line_length=120))
         except black.parsing.InvalidInput:
