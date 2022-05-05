@@ -109,10 +109,10 @@ class Generator:
 
     @cached_property
     def operations(self) -> list[OperationWithName]:
-        operations = [OperationWithName(**{'path': path, 'method': method, **getattr(path_item, method).dict()})
-                      for path, path_item in self.data.paths.items()
-                      for method in path_item.__fields_set__]
-        operations.sort(key=lambda k: k.operationId)
+        operations = tuple(OperationWithName(**{'path': path, 'method': method, **getattr(path_item, method).dict()})
+                           for path, path_item in self.data.paths.items()
+                           for method in path_item.__fields_set__)
+        operations = tuple(sorted(operations, key=lambda k: k.operationId))
         for operation in [o for o in operations if o.parameters is not None]:
 
             # convert post object to parameter objects, the main work of following code is data validation
