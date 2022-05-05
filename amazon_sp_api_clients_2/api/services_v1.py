@@ -7,21 +7,21 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AddAppointmentRequest:
-
     appointment_time: "AppointmentTimeInput" = attrs.field()
     pass
 
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -39,7 +39,6 @@ class Address:
 
 @attrs.define
 class Appointment:
-
     appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]] = attrs.field()
     assigned_technicians: list["Technician"] = attrs.field()
     # {'minItems': 1}
@@ -53,13 +52,11 @@ class Appointment:
 
 @attrs.define
 class AppointmentId:
-
     pass
 
 
 @attrs.define
 class AppointmentTime:
-
     duration_in_minutes: int = attrs.field()
     # {'minimum': 1.0}
     start_time: str = attrs.field()
@@ -70,7 +67,6 @@ class AppointmentTime:
 
 @attrs.define
 class AppointmentTimeInput:
-
     duration_in_minutes: int = attrs.field()
     start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
@@ -80,7 +76,6 @@ class AppointmentTimeInput:
 
 @attrs.define
 class AssociatedItem:
-
     asin: str = attrs.field()
     brand_name: str = attrs.field()
     item_status: Union[
@@ -96,7 +91,6 @@ class AssociatedItem:
 
 @attrs.define
 class Buyer:
-
     buyer_id: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
     is_prime_member: bool = attrs.field()
@@ -108,21 +102,18 @@ class Buyer:
 
 @attrs.define
 class CancelServiceJobByServiceJobIdResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CompleteServiceJobByServiceJobIdResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     error_level: Union[Literal["ERROR"], Literal["WARNING"]] = attrs.field()
@@ -133,13 +124,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetServiceJobByServiceJobIdResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ServiceJob" = attrs.field()
     pass
@@ -147,7 +136,6 @@ class GetServiceJobByServiceJobIdResponse:
 
 @attrs.define
 class GetServiceJobsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "JobListing" = attrs.field()
     pass
@@ -155,7 +143,6 @@ class GetServiceJobsResponse:
 
 @attrs.define
 class ItemDelivery:
-
     estimated_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
@@ -165,7 +152,6 @@ class ItemDelivery:
 
 @attrs.define
 class ItemDeliveryPromise:
-
     end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     start_time: str = attrs.field()
@@ -176,7 +162,6 @@ class ItemDeliveryPromise:
 
 @attrs.define
 class JobListing:
-
     jobs: list["ServiceJob"] = attrs.field()
     next_page_token: str = attrs.field()
     previous_page_token: str = attrs.field()
@@ -187,13 +172,11 @@ class JobListing:
 
 @attrs.define
 class OrderId:
-
     pass
 
 
 @attrs.define
 class Poa:
-
     poa_type: Union[
         Literal["NO_SIGNATURE_DUMMY_POS"],
         Literal["CUSTOMER_SIGNATURE"],
@@ -213,7 +196,6 @@ class Poa:
 
 @attrs.define
 class RescheduleAppointmentRequest:
-
     appointment_time: "AppointmentTimeInput" = attrs.field()
     reschedule_reason_code: "RescheduleReasonCode" = attrs.field()
     pass
@@ -221,13 +203,11 @@ class RescheduleAppointmentRequest:
 
 @attrs.define
 class RescheduleReasonCode:
-
     pass
 
 
 @attrs.define
 class ScopeOfWork:
-
     asin: str = attrs.field()
     quantity: int = attrs.field()
     required_skills: list[str] = attrs.field()
@@ -238,7 +218,6 @@ class ScopeOfWork:
 
 @attrs.define
 class Seller:
-
     seller_id: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
 
@@ -247,7 +226,6 @@ class Seller:
 
 @attrs.define
 class ServiceJob:
-
     appointments: list["Appointment"] = attrs.field()
     associated_items: list["AssociatedItem"] = attrs.field()
     create_time: str = attrs.field()
@@ -277,13 +255,11 @@ class ServiceJob:
 
 @attrs.define
 class ServiceJobId:
-
     pass
 
 
 @attrs.define
 class ServiceJobProvider:
-
     service_job_provider_id: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
 
@@ -292,7 +268,6 @@ class ServiceJobProvider:
 
 @attrs.define
 class ServiceLocation:
-
     service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]] = attrs.field()
 
     address: "Address" = attrs.field()
@@ -301,7 +276,6 @@ class ServiceLocation:
 
 @attrs.define
 class SetAppointmentResponse:
-
     appointment_id: "AppointmentId" = attrs.field()
     errors: "ErrorList" = attrs.field()
     warnings: "WarningList" = attrs.field()
@@ -310,7 +284,6 @@ class SetAppointmentResponse:
 
 @attrs.define
 class Technician:
-
     name: str = attrs.field()
     technician_id: str = attrs.field()
     # {'minLength': 1, 'maxLength': 50}
@@ -320,7 +293,6 @@ class Technician:
 
 @attrs.define
 class Warning:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -330,15 +302,14 @@ class Warning:
 
 @attrs.define
 class WarningList:
-
     pass
 
 
 class ServicesV1Client(BaseClient):
     def add_appointment_for_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
-        appointment_time: dict[str, Any],
+            self,
+            service_job_id: str,
+            appointment_time: dict[str, Any],
     ):
         """
         Adds an appointment to the service job indicated by the service job identifier you specify.
@@ -371,9 +342,9 @@ class ServicesV1Client(BaseClient):
     )
 
     def cancel_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
-        cancellation_reason_code: str,
+            self,
+            service_job_id: str,
+            cancellation_reason_code: str,
     ):
         """
         Cancels the service job indicated by the service job identifier you specify.
@@ -404,8 +375,8 @@ class ServicesV1Client(BaseClient):
     )
 
     def complete_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
+            self,
+            service_job_id: str,
     ):
         """
         Completes the service job indicated by the service job identifier you specify.
@@ -429,8 +400,8 @@ class ServicesV1Client(BaseClient):
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     def get_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
+            self,
+            service_job_id: str,
     ):
         """
         Gets service job details for the service job indicated by the service job identifier you specify.
@@ -454,30 +425,30 @@ class ServicesV1Client(BaseClient):
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     def get_service_jobs(
-        self,
-        marketplace_ids: list[str],
-        service_order_ids: list[str] = None,
-        service_job_status: list[
-            Union[
-                Literal["NOT_SERVICED"],
-                Literal["CANCELLED"],
-                Literal["COMPLETED"],
-                Literal["PENDING_SCHEDULE"],
-                Literal["NOT_FULFILLABLE"],
-                Literal["HOLD"],
-                Literal["PAYMENT_DECLINED"],
-            ]
-        ] = None,
-        page_token: str = None,
-        page_size: int = None,
-        sort_field: Union[Literal["JOB_DATE"], Literal["JOB_STATUS"]] = None,
-        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-        created_after: str = None,
-        created_before: str = None,
-        last_updated_after: str = None,
-        last_updated_before: str = None,
-        schedule_start_date: str = None,
-        schedule_end_date: str = None,
+            self,
+            marketplace_ids: list[str],
+            service_order_ids: list[str] = None,
+            service_job_status: list[
+                Union[
+                    Literal["NOT_SERVICED"],
+                    Literal["CANCELLED"],
+                    Literal["COMPLETED"],
+                    Literal["PENDING_SCHEDULE"],
+                    Literal["NOT_FULFILLABLE"],
+                    Literal["HOLD"],
+                    Literal["PAYMENT_DECLINED"],
+                ]
+            ] = None,
+            page_token: str = None,
+            page_size: int = None,
+            sort_field: Union[Literal["JOB_DATE"], Literal["JOB_STATUS"]] = None,
+            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+            created_after: str = None,
+            created_before: str = None,
+            last_updated_after: str = None,
+            last_updated_before: str = None,
+            schedule_start_date: str = None,
+            schedule_end_date: str = None,
     ):
         """
         Gets service job details for the specified filter query.
@@ -541,11 +512,11 @@ class ServicesV1Client(BaseClient):
     )
 
     def reschedule_appointment_for_service_job_by_service_job_id(
-        self,
-        service_job_id: str,
-        appointment_id: str,
-        appointment_time: dict[str, Any],
-        reschedule_reason_code: str,
+            self,
+            service_job_id: str,
+            appointment_id: str,
+            appointment_time: dict[str, Any],
+            reschedule_reason_code: str,
     ):
         """
         Reschedules an appointment for the service job indicated by the service job identifier you specify.

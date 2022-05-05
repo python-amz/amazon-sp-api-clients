@@ -7,28 +7,27 @@ API Version: 2020-09-04
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class CancelReportResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CancelReportScheduleResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateReportResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CreateReportResult" = attrs.field()
     pass
@@ -36,7 +35,6 @@ class CreateReportResponse:
 
 @attrs.define
 class CreateReportResult:
-
     report_id: str = attrs.field()
 
     pass
@@ -44,7 +42,6 @@ class CreateReportResult:
 
 @attrs.define
 class CreateReportScheduleResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CreateReportScheduleResult" = attrs.field()
     pass
@@ -52,7 +49,6 @@ class CreateReportScheduleResponse:
 
 @attrs.define
 class CreateReportScheduleResult:
-
     report_schedule_id: str = attrs.field()
 
     pass
@@ -60,7 +56,6 @@ class CreateReportScheduleResult:
 
 @attrs.define
 class CreateReportScheduleSpecification:
-
     marketplace_ids: list[str] = attrs.field()
     # {'maxItems': 25, 'minItems': 1}
     next_report_creation_time: str = attrs.field()
@@ -93,7 +88,6 @@ class CreateReportScheduleSpecification:
 
 @attrs.define
 class CreateReportSpecification:
-
     data_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     data_start_time: str = attrs.field()
@@ -108,7 +102,6 @@ class CreateReportSpecification:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -118,13 +111,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetReportDocumentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ReportDocument" = attrs.field()
     pass
@@ -132,7 +123,6 @@ class GetReportDocumentResponse:
 
 @attrs.define
 class GetReportResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Report" = attrs.field()
     pass
@@ -140,7 +130,6 @@ class GetReportResponse:
 
 @attrs.define
 class GetReportScheduleResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ReportSchedule" = attrs.field()
     pass
@@ -148,7 +137,6 @@ class GetReportScheduleResponse:
 
 @attrs.define
 class GetReportSchedulesResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ReportScheduleList" = attrs.field()
     pass
@@ -156,7 +144,6 @@ class GetReportSchedulesResponse:
 
 @attrs.define
 class GetReportsResponse:
-
     next_token: str = attrs.field()
 
     errors: "ErrorList" = attrs.field()
@@ -166,7 +153,6 @@ class GetReportsResponse:
 
 @attrs.define
 class Report:
-
     created_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     data_end_time: str = attrs.field()
@@ -191,7 +177,6 @@ class Report:
 
 @attrs.define
 class ReportDocument:
-
     compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
     report_document_id: str = attrs.field()
     url: str = attrs.field()
@@ -202,7 +187,6 @@ class ReportDocument:
 
 @attrs.define
 class ReportDocumentEncryptionDetails:
-
     initialization_vector: str = attrs.field()
     key: str = attrs.field()
     standard: Union[Literal["AES"]] = attrs.field()
@@ -212,19 +196,16 @@ class ReportDocumentEncryptionDetails:
 
 @attrs.define
 class ReportList:
-
     pass
 
 
 @attrs.define
 class ReportOptions:
-
     pass
 
 
 @attrs.define
 class ReportSchedule:
-
     marketplace_ids: list[str] = attrs.field()
     next_report_creation_time: str = attrs.field()
     # {'schema_format': 'date-time'}
@@ -238,14 +219,13 @@ class ReportSchedule:
 
 @attrs.define
 class ReportScheduleList:
-
     pass
 
 
 class Reports20200904Client(BaseClient):
     def cancel_report(
-        self,
-        report_id: str,
+            self,
+            report_id: str,
     ):
         """
         Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
@@ -269,8 +249,8 @@ class Reports20200904Client(BaseClient):
     _cancel_report_params = (("reportId", "path"),)  # name, param in
 
     def cancel_report_schedule(
-        self,
-        report_schedule_id: str,
+            self,
+            report_schedule_id: str,
     ):
         """
         Cancels the report schedule that you specify.
@@ -294,7 +274,7 @@ class Reports20200904Client(BaseClient):
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     def create_report(
-        self,
+            self,
     ):
         """
         Creates a report.
@@ -317,7 +297,7 @@ class Reports20200904Client(BaseClient):
     _create_report_params = ()  # name, param in
 
     def create_report_schedule(
-        self,
+            self,
     ):
         """
         Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
@@ -340,8 +320,8 @@ class Reports20200904Client(BaseClient):
     _create_report_schedule_params = ()  # name, param in
 
     def get_report(
-        self,
-        report_id: str,
+            self,
+            report_id: str,
     ):
         """
         Returns report details (including the reportDocumentId, if available) for the report that you specify.
@@ -365,8 +345,8 @@ class Reports20200904Client(BaseClient):
     _get_report_params = (("reportId", "path"),)  # name, param in
 
     def get_report_document(
-        self,
-        report_document_id: str,
+            self,
+            report_document_id: str,
     ):
         """
         Returns the information required for retrieving a report document's contents. This includes a presigned URL for the report document as well as the information required to decrypt the document's contents.
@@ -390,8 +370,8 @@ class Reports20200904Client(BaseClient):
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
     def get_report_schedule(
-        self,
-        report_schedule_id: str,
+            self,
+            report_schedule_id: str,
     ):
         """
         Returns report schedule details for the report schedule that you specify.
@@ -415,8 +395,8 @@ class Reports20200904Client(BaseClient):
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     def get_report_schedules(
-        self,
-        report_types: list[str],
+            self,
+            report_types: list[str],
     ):
         """
         Returns report schedule details that match the filters that you specify.
@@ -440,16 +420,17 @@ class Reports20200904Client(BaseClient):
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
     def get_reports(
-        self,
-        report_types: list[str] = None,
-        processing_statuses: list[
-            Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
-        ] = None,
-        marketplace_ids: list[str] = None,
-        page_size: int = None,
-        created_since: str = None,
-        created_until: str = None,
-        next_token: str = None,
+            self,
+            report_types: list[str] = None,
+            processing_statuses: list[
+                Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal[
+                    "IN_QUEUE"]]
+            ] = None,
+            marketplace_ids: list[str] = None,
+            page_size: int = None,
+            created_since: str = None,
+            created_until: str = None,
+            next_token: str = None,
     ):
         """
         Returns report details for the reports that match the filters that you specify.

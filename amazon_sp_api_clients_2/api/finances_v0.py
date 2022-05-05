@@ -8,13 +8,12 @@ Contact Amazon: Selling Partner API Developer Support https://sellercentral.amaz
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AdjustmentEvent:
-
     adjustment_type: str = attrs.field()
 
     adjustment_amount: "Currency" = attrs.field()
@@ -25,13 +24,11 @@ class AdjustmentEvent:
 
 @attrs.define
 class AdjustmentEventList:
-
     pass
 
 
 @attrs.define
 class AdjustmentItem:
-
     asin: str = attrs.field()
     fn_sku: str = attrs.field()
     product_description: str = attrs.field()
@@ -45,13 +42,11 @@ class AdjustmentItem:
 
 @attrs.define
 class AdjustmentItemList:
-
     pass
 
 
 @attrs.define
 class AffordabilityExpenseEvent:
-
     amazon_order_id: str = attrs.field()
     marketplace_id: str = attrs.field()
     transaction_type: str = attrs.field()
@@ -67,19 +62,16 @@ class AffordabilityExpenseEvent:
 
 @attrs.define
 class AffordabilityExpenseEventList:
-
     pass
 
 
 @attrs.define
 class BigDecimal:
-
     pass
 
 
 @attrs.define
 class ChargeComponent:
-
     charge_type: str = attrs.field()
 
     charge_amount: "Currency" = attrs.field()
@@ -88,13 +80,11 @@ class ChargeComponent:
 
 @attrs.define
 class ChargeComponentList:
-
     pass
 
 
 @attrs.define
 class ChargeInstrument:
-
     description: str = attrs.field()
     tail: str = attrs.field()
 
@@ -104,13 +94,11 @@ class ChargeInstrument:
 
 @attrs.define
 class ChargeInstrumentList:
-
     pass
 
 
 @attrs.define
 class CouponPaymentEvent:
-
     clip_or_redemption_count: int = attrs.field()
     # {'schema_format': 'int64'}
     coupon_id: str = attrs.field()
@@ -126,13 +114,11 @@ class CouponPaymentEvent:
 
 @attrs.define
 class CouponPaymentEventList:
-
     pass
 
 
 @attrs.define
 class Currency:
-
     currency_code: str = attrs.field()
 
     currency_amount: "BigDecimal" = attrs.field()
@@ -141,13 +127,11 @@ class Currency:
 
 @attrs.define
 class Date:
-
     pass
 
 
 @attrs.define
 class DebtRecoveryEvent:
-
     debt_recovery_type: str = attrs.field()
 
     charge_instrument_list: "ChargeInstrumentList" = attrs.field()
@@ -159,13 +143,11 @@ class DebtRecoveryEvent:
 
 @attrs.define
 class DebtRecoveryEventList:
-
     pass
 
 
 @attrs.define
 class DebtRecoveryItem:
-
     group_begin_date: "Date" = attrs.field()
     group_end_date: "Date" = attrs.field()
     original_amount: "Currency" = attrs.field()
@@ -175,13 +157,11 @@ class DebtRecoveryItem:
 
 @attrs.define
 class DebtRecoveryItemList:
-
     pass
 
 
 @attrs.define
 class DirectPayment:
-
     direct_payment_type: str = attrs.field()
 
     direct_payment_amount: "Currency" = attrs.field()
@@ -190,13 +170,11 @@ class DirectPayment:
 
 @attrs.define
 class DirectPaymentList:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -206,13 +184,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class FBALiquidationEvent:
-
     original_removal_order_id: str = attrs.field()
 
     liquidation_fee_amount: "Currency" = attrs.field()
@@ -223,13 +199,11 @@ class FBALiquidationEvent:
 
 @attrs.define
 class FBALiquidationEventList:
-
     pass
 
 
 @attrs.define
 class FeeComponent:
-
     fee_type: str = attrs.field()
 
     fee_amount: "Currency" = attrs.field()
@@ -238,13 +212,11 @@ class FeeComponent:
 
 @attrs.define
 class FeeComponentList:
-
     pass
 
 
 @attrs.define
 class FinancialEventGroup:
-
     account_tail: str = attrs.field()
     financial_event_group_id: str = attrs.field()
     fund_transfer_status: str = attrs.field()
@@ -262,13 +234,11 @@ class FinancialEventGroup:
 
 @attrs.define
 class FinancialEventGroupList:
-
     pass
 
 
 @attrs.define
 class FinancialEvents:
-
     adjustment_event_list: "AdjustmentEventList" = attrs.field()
     affordability_expense_event_list: "AffordabilityExpenseEventList" = attrs.field()
     affordability_expense_reversal_event_list: "AffordabilityExpenseEventList" = attrs.field()
@@ -301,7 +271,6 @@ class FinancialEvents:
 
 @attrs.define
 class ImagingServicesFeeEvent:
-
     asin: str = attrs.field()
     imaging_request_billing_item_id: str = attrs.field()
 
@@ -312,13 +281,11 @@ class ImagingServicesFeeEvent:
 
 @attrs.define
 class ImagingServicesFeeEventList:
-
     pass
 
 
 @attrs.define
 class ListFinancialEventGroupsPayload:
-
     next_token: str = attrs.field()
 
     financial_event_group_list: "FinancialEventGroupList" = attrs.field()
@@ -327,7 +294,6 @@ class ListFinancialEventGroupsPayload:
 
 @attrs.define
 class ListFinancialEventGroupsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ListFinancialEventGroupsPayload" = attrs.field()
     pass
@@ -335,7 +301,6 @@ class ListFinancialEventGroupsResponse:
 
 @attrs.define
 class ListFinancialEventsPayload:
-
     next_token: str = attrs.field()
 
     financial_events: "FinancialEvents" = attrs.field()
@@ -344,7 +309,6 @@ class ListFinancialEventsPayload:
 
 @attrs.define
 class ListFinancialEventsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ListFinancialEventsPayload" = attrs.field()
     pass
@@ -352,7 +316,6 @@ class ListFinancialEventsResponse:
 
 @attrs.define
 class LoanServicingEvent:
-
     source_business_event_type: str = attrs.field()
 
     loan_amount: "Currency" = attrs.field()
@@ -361,13 +324,11 @@ class LoanServicingEvent:
 
 @attrs.define
 class LoanServicingEventList:
-
     pass
 
 
 @attrs.define
 class NetworkComminglingTransactionEvent:
-
     asin: str = attrs.field()
     marketplace_id: str = attrs.field()
     net_co_transaction_id: str = attrs.field()
@@ -382,13 +343,11 @@ class NetworkComminglingTransactionEvent:
 
 @attrs.define
 class NetworkComminglingTransactionEventList:
-
     pass
 
 
 @attrs.define
 class PayWithAmazonEvent:
-
     amount_description: str = attrs.field()
     business_object_type: str = attrs.field()
     fulfillment_channel: str = attrs.field()
@@ -405,13 +364,11 @@ class PayWithAmazonEvent:
 
 @attrs.define
 class PayWithAmazonEventList:
-
     pass
 
 
 @attrs.define
 class ProductAdsPaymentEvent:
-
     invoice_id: str = attrs.field()
     transaction_type: str = attrs.field()
 
@@ -424,13 +381,11 @@ class ProductAdsPaymentEvent:
 
 @attrs.define
 class ProductAdsPaymentEventList:
-
     pass
 
 
 @attrs.define
 class Promotion:
-
     promotion_id: str = attrs.field()
     promotion_type: str = attrs.field()
 
@@ -440,13 +395,11 @@ class Promotion:
 
 @attrs.define
 class PromotionList:
-
     pass
 
 
 @attrs.define
 class RemovalShipmentAdjustmentEvent:
-
     adjustment_event_id: str = attrs.field()
     merchant_order_id: str = attrs.field()
     order_id: str = attrs.field()
@@ -459,13 +412,11 @@ class RemovalShipmentAdjustmentEvent:
 
 @attrs.define
 class RemovalShipmentAdjustmentEventList:
-
     pass
 
 
 @attrs.define
 class RemovalShipmentEvent:
-
     merchant_order_id: str = attrs.field()
     order_id: str = attrs.field()
     transaction_type: str = attrs.field()
@@ -477,13 +428,11 @@ class RemovalShipmentEvent:
 
 @attrs.define
 class RemovalShipmentEventList:
-
     pass
 
 
 @attrs.define
 class RemovalShipmentItem:
-
     fulfillment_network_sku: str = attrs.field()
     quantity: int = attrs.field()
     # {'schema_format': 'int32'}
@@ -499,7 +448,6 @@ class RemovalShipmentItem:
 
 @attrs.define
 class RemovalShipmentItemAdjustment:
-
     adjusted_quantity: int = attrs.field()
     # {'schema_format': 'int32'}
     fulfillment_network_sku: str = attrs.field()
@@ -514,13 +462,11 @@ class RemovalShipmentItemAdjustment:
 
 @attrs.define
 class RemovalShipmentItemList:
-
     pass
 
 
 @attrs.define
 class RentalTransactionEvent:
-
     amazon_order_id: str = attrs.field()
     extension_length: int = attrs.field()
     # {'schema_format': 'int32'}
@@ -538,13 +484,11 @@ class RentalTransactionEvent:
 
 @attrs.define
 class RentalTransactionEventList:
-
     pass
 
 
 @attrs.define
 class RetrochargeEvent:
-
     amazon_order_id: str = attrs.field()
     marketplace_name: str = attrs.field()
     retrocharge_event_type: str = attrs.field()
@@ -558,13 +502,11 @@ class RetrochargeEvent:
 
 @attrs.define
 class RetrochargeEventList:
-
     pass
 
 
 @attrs.define
 class SAFETReimbursementEvent:
-
     reason_code: str = attrs.field()
     safetclaim_id: str = attrs.field()
 
@@ -576,13 +518,11 @@ class SAFETReimbursementEvent:
 
 @attrs.define
 class SAFETReimbursementEventList:
-
     pass
 
 
 @attrs.define
 class SAFETReimbursementItem:
-
     product_description: str = attrs.field()
     quantity: str = attrs.field()
 
@@ -592,13 +532,11 @@ class SAFETReimbursementItem:
 
 @attrs.define
 class SAFETReimbursementItemList:
-
     pass
 
 
 @attrs.define
 class SellerDealPaymentEvent:
-
     deal_description: str = attrs.field()
     deal_id: str = attrs.field()
     event_type: str = attrs.field()
@@ -613,13 +551,11 @@ class SellerDealPaymentEvent:
 
 @attrs.define
 class SellerDealPaymentEventList:
-
     pass
 
 
 @attrs.define
 class SellerReviewEnrollmentPaymentEvent:
-
     enrollment_id: str = attrs.field()
     parent_asin: str = attrs.field()
 
@@ -632,13 +568,11 @@ class SellerReviewEnrollmentPaymentEvent:
 
 @attrs.define
 class SellerReviewEnrollmentPaymentEventList:
-
     pass
 
 
 @attrs.define
 class ServiceFeeEvent:
-
     asin: str = attrs.field()
     amazon_order_id: str = attrs.field()
     fee_description: str = attrs.field()
@@ -652,13 +586,11 @@ class ServiceFeeEvent:
 
 @attrs.define
 class ServiceFeeEventList:
-
     pass
 
 
 @attrs.define
 class ShipmentEvent:
-
     amazon_order_id: str = attrs.field()
     marketplace_name: str = attrs.field()
     seller_order_id: str = attrs.field()
@@ -678,13 +610,11 @@ class ShipmentEvent:
 
 @attrs.define
 class ShipmentEventList:
-
     pass
 
 
 @attrs.define
 class ShipmentItem:
-
     order_adjustment_item_id: str = attrs.field()
     order_item_id: str = attrs.field()
     quantity_shipped: int = attrs.field()
@@ -705,19 +635,16 @@ class ShipmentItem:
 
 @attrs.define
 class ShipmentItemList:
-
     pass
 
 
 @attrs.define
 class ShipmentSettleEventList:
-
     pass
 
 
 @attrs.define
 class SolutionProviderCreditEvent:
-
     marketplace_country_code: str = attrs.field()
     marketplace_id: str = attrs.field()
     provider_id: str = attrs.field()
@@ -734,13 +661,11 @@ class SolutionProviderCreditEvent:
 
 @attrs.define
 class SolutionProviderCreditEventList:
-
     pass
 
 
 @attrs.define
 class TaxWithheldComponent:
-
     tax_collection_model: str = attrs.field()
 
     taxes_withheld: "ChargeComponentList" = attrs.field()
@@ -749,13 +674,11 @@ class TaxWithheldComponent:
 
 @attrs.define
 class TaxWithheldComponentList:
-
     pass
 
 
 @attrs.define
 class TaxWithholdingEvent:
-
     base_amount: "Currency" = attrs.field()
     posted_date: "Date" = attrs.field()
     tax_withholding_period: "TaxWithholdingPeriod" = attrs.field()
@@ -765,13 +688,11 @@ class TaxWithholdingEvent:
 
 @attrs.define
 class TaxWithholdingEventList:
-
     pass
 
 
 @attrs.define
 class TaxWithholdingPeriod:
-
     end_date: "Date" = attrs.field()
     start_date: "Date" = attrs.field()
     pass
@@ -779,7 +700,6 @@ class TaxWithholdingPeriod:
 
 @attrs.define
 class TrialShipmentEvent:
-
     amazon_order_id: str = attrs.field()
     financial_event_group_id: str = attrs.field()
     sku: str = attrs.field()
@@ -791,17 +711,16 @@ class TrialShipmentEvent:
 
 @attrs.define
 class TrialShipmentEventList:
-
     pass
 
 
 class FinancesV0Client(BaseClient):
     def list_financial_event_groups(
-        self,
-        max_results_per_page: int = None,
-        financial_event_group_started_before: str = None,
-        financial_event_group_started_after: str = None,
-        next_token: str = None,
+            self,
+            max_results_per_page: int = None,
+            financial_event_group_started_before: str = None,
+            financial_event_group_started_after: str = None,
+            next_token: str = None,
     ):
         """
         Returns financial event groups for a given date range.
@@ -838,11 +757,11 @@ class FinancesV0Client(BaseClient):
     )
 
     def list_financial_events(
-        self,
-        max_results_per_page: int = None,
-        posted_after: str = None,
-        posted_before: str = None,
-        next_token: str = None,
+            self,
+            max_results_per_page: int = None,
+            posted_after: str = None,
+            posted_before: str = None,
+            next_token: str = None,
     ):
         """
         Returns financial events for the specified data range.
@@ -879,10 +798,10 @@ class FinancesV0Client(BaseClient):
     )
 
     def list_financial_events_by_group_id(
-        self,
-        event_group_id: str,
-        max_results_per_page: int = None,
-        next_token: str = None,
+            self,
+            event_group_id: str,
+            max_results_per_page: int = None,
+            next_token: str = None,
     ):
         """
         Returns all financial events for the specified financial event group.
@@ -916,10 +835,10 @@ class FinancesV0Client(BaseClient):
     )
 
     def list_financial_events_by_order_id(
-        self,
-        order_id: str,
-        max_results_per_page: int = None,
-        next_token: str = None,
+            self,
+            order_id: str,
+            max_results_per_page: int = None,
+            next_token: str = None,
     ):
         """
         Returns all financial events for the specified order.

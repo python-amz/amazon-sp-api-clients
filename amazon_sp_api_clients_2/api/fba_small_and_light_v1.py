@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -24,7 +25,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -32,7 +32,6 @@ class ErrorList:
 
 @attrs.define
 class FeeLineItem:
-
     fee_type: Union[
         Literal["FBAWeightBasedFee"],
         Literal["FBAPerOrderFulfillmentFee"],
@@ -46,7 +45,6 @@ class FeeLineItem:
 
 @attrs.define
 class FeePreview:
-
     asin: str = attrs.field()
     errors: list["Error"] = attrs.field()
     fee_breakdown: list["FeeLineItem"] = attrs.field()
@@ -58,7 +56,6 @@ class FeePreview:
 
 @attrs.define
 class Item:
-
     asin: str = attrs.field()
 
     price: "MoneyType" = attrs.field()
@@ -67,13 +64,11 @@ class Item:
 
 @attrs.define
 class MarketplaceId:
-
     pass
 
 
 @attrs.define
 class MoneyType:
-
     amount: Union[float, int] = attrs.field()
     currency_code: str = attrs.field()
 
@@ -82,13 +77,11 @@ class MoneyType:
 
 @attrs.define
 class SellerSKU:
-
     pass
 
 
 @attrs.define
 class SmallAndLightEligibility:
-
     marketplace_id: "MarketplaceId" = attrs.field()
     seller_sku: "SellerSKU" = attrs.field()
     status: "SmallAndLightEligibilityStatus" = attrs.field()
@@ -97,13 +90,11 @@ class SmallAndLightEligibility:
 
 @attrs.define
 class SmallAndLightEligibilityStatus:
-
     pass
 
 
 @attrs.define
 class SmallAndLightEnrollment:
-
     marketplace_id: "MarketplaceId" = attrs.field()
     seller_sku: "SellerSKU" = attrs.field()
     status: "SmallAndLightEnrollmentStatus" = attrs.field()
@@ -112,13 +103,11 @@ class SmallAndLightEnrollment:
 
 @attrs.define
 class SmallAndLightEnrollmentStatus:
-
     pass
 
 
 @attrs.define
 class SmallAndLightFeePreviewRequest:
-
     items: list["Item"] = attrs.field()
     # {'maxItems': 25}
 
@@ -128,7 +117,6 @@ class SmallAndLightFeePreviewRequest:
 
 @attrs.define
 class SmallAndLightFeePreviews:
-
     data: list["FeePreview"] = attrs.field()
 
     pass
@@ -136,9 +124,9 @@ class SmallAndLightFeePreviews:
 
 class FbaSmallAndLightV1Client(BaseClient):
     def delete_small_and_light_enrollment_by_seller_sku(
-        self,
-        seller_sku: str,
-        marketplace_ids: list[str],
+            self,
+            seller_sku: str,
+            marketplace_ids: list[str],
     ):
         """
         Removes the item indicated by the specified seller SKU from the Small and Light program in the specified marketplace. If the item is not eligible for disenrollment, the ineligibility reasons are returned.
@@ -171,9 +159,9 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     def get_small_and_light_eligibility_by_seller_sku(
-        self,
-        seller_sku: str,
-        marketplace_ids: list[str],
+            self,
+            seller_sku: str,
+            marketplace_ids: list[str],
     ):
         """
         Returns the Small and Light program eligibility status of the item indicated by the specified seller SKU in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
@@ -206,9 +194,9 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     def get_small_and_light_enrollment_by_seller_sku(
-        self,
-        seller_sku: str,
-        marketplace_ids: list[str],
+            self,
+            seller_sku: str,
+            marketplace_ids: list[str],
     ):
         """
         Returns the Small and Light enrollment status for the item indicated by the specified seller SKU in the specified marketplace.
@@ -241,7 +229,7 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     def get_small_and_light_fee_preview(
-        self,
+            self,
     ):
         """
         Returns the Small and Light fee estimates for the specified items. You must include a marketplaceId parameter to retrieve the proper fee estimates for items to be sold in that marketplace. The ordering of items in the response will mirror the order of the items in the request. Duplicate ASIN/price combinations are removed.
@@ -264,9 +252,9 @@ class FbaSmallAndLightV1Client(BaseClient):
     _get_small_and_light_fee_preview_params = ()  # name, param in
 
     def put_small_and_light_enrollment_by_seller_sku(
-        self,
-        seller_sku: str,
-        marketplace_ids: list[str],
+            self,
+            seller_sku: str,
+            marketplace_ids: list[str],
     ):
         """
         Enrolls the item indicated by the specified seller SKU in the Small and Light program in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.

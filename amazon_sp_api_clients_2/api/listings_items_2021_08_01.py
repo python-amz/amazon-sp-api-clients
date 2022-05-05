@@ -9,20 +9,20 @@ API Version: 2021-08-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -32,7 +32,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -40,7 +39,6 @@ class ErrorList:
 
 @attrs.define
 class FulfillmentAvailability:
-
     fulfillment_channel_code: str = attrs.field()
     quantity: int = attrs.field()
     # {'minimum': 0.0}
@@ -50,7 +48,6 @@ class FulfillmentAvailability:
 
 @attrs.define
 class Issue:
-
     attribute_names: list[str] = attrs.field()
     code: str = attrs.field()
     message: str = attrs.field()
@@ -61,7 +58,6 @@ class Issue:
 
 @attrs.define
 class Item:
-
     fulfillment_availability: list["FulfillmentAvailability"] = attrs.field()
     sku: str = attrs.field()
 
@@ -75,13 +71,11 @@ class Item:
 
 @attrs.define
 class ItemAttributes:
-
     pass
 
 
 @attrs.define
 class ItemImage:
-
     height: int = attrs.field()
     link: str = attrs.field()
     width: int = attrs.field()
@@ -91,13 +85,11 @@ class ItemImage:
 
 @attrs.define
 class ItemIssues:
-
     pass
 
 
 @attrs.define
 class ItemOfferByMarketplace:
-
     marketplace_id: str = attrs.field()
     offer_type: Union[Literal["B2C"], Literal["B2B"]] = attrs.field()
 
@@ -108,26 +100,22 @@ class ItemOfferByMarketplace:
 
 @attrs.define
 class ItemOffers:
-
     pass
 
 
 @attrs.define
 class ItemProcurement:
-
     cost_price: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemSummaries:
-
     pass
 
 
 @attrs.define
 class ItemSummaryByMarketplace:
-
     asin: str = attrs.field()
     condition_type: Union[
         Literal["new_new"],
@@ -160,7 +148,6 @@ class ItemSummaryByMarketplace:
 
 @attrs.define
 class ListingsItemPatchRequest:
-
     patches: list["PatchOperation"] = attrs.field()
     # {'minItems': 1}
     product_type: str = attrs.field()
@@ -170,7 +157,6 @@ class ListingsItemPatchRequest:
 
 @attrs.define
 class ListingsItemPutRequest:
-
     attributes: dict[str, Any] = attrs.field()
     # {'properties': {}}
     product_type: str = attrs.field()
@@ -183,7 +169,6 @@ class ListingsItemPutRequest:
 
 @attrs.define
 class ListingsItemSubmissionResponse:
-
     issues: list["Issue"] = attrs.field()
     sku: str = attrs.field()
     status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
@@ -194,7 +179,6 @@ class ListingsItemSubmissionResponse:
 
 @attrs.define
 class Money:
-
     currency_code: str = attrs.field()
 
     amount: "Decimal" = attrs.field()
@@ -203,7 +187,6 @@ class Money:
 
 @attrs.define
 class PatchOperation:
-
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
     path: str = attrs.field()
     value: list[dict[str, Any]] = attrs.field()
@@ -213,7 +196,6 @@ class PatchOperation:
 
 @attrs.define
 class Points:
-
     points_number: int = attrs.field()
 
     pass
@@ -221,11 +203,11 @@ class Points:
 
 class ListingsItems20210801Client(BaseClient):
     def delete_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        issue_locale: str = None,
+            self,
+            seller_id: str,
+            sku: str,
+            marketplace_ids: list[str],
+            issue_locale: str = None,
     ):
         """
         Delete a listings item for a selling partner.
@@ -262,21 +244,21 @@ class ListingsItems20210801Client(BaseClient):
     )
 
     def get_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        issue_locale: str = None,
-        included_data: list[
-            Union[
-                Literal["summaries"],
-                Literal["attributes"],
-                Literal["issues"],
-                Literal["offers"],
-                Literal["fulfillmentAvailability"],
-                Literal["procurement"],
-            ]
-        ] = None,
+            self,
+            seller_id: str,
+            sku: str,
+            marketplace_ids: list[str],
+            issue_locale: str = None,
+            included_data: list[
+                Union[
+                    Literal["summaries"],
+                    Literal["attributes"],
+                    Literal["issues"],
+                    Literal["offers"],
+                    Literal["fulfillmentAvailability"],
+                    Literal["procurement"],
+                ]
+            ] = None,
     ):
         """
         Returns details about a listings item for a selling partner.
@@ -316,13 +298,13 @@ class ListingsItems20210801Client(BaseClient):
     )
 
     def patch_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        product_type: str,
-        patches: list["PatchOperation"],
-        issue_locale: str = None,
+            self,
+            seller_id: str,
+            sku: str,
+            marketplace_ids: list[str],
+            product_type: str,
+            patches: list["PatchOperation"],
+            issue_locale: str = None,
     ):
         """
         Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
@@ -365,14 +347,15 @@ class ListingsItems20210801Client(BaseClient):
     )
 
     def put_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        product_type: str,
-        attributes: dict[str, Any],
-        issue_locale: str = None,
-        requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
+            self,
+            seller_id: str,
+            sku: str,
+            marketplace_ids: list[str],
+            product_type: str,
+            attributes: dict[str, Any],
+            issue_locale: str = None,
+            requirements: Union[
+                Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
     ):
         """
         Creates a new or fully-updates an existing listings item for a selling partner.

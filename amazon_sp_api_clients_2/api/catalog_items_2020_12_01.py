@@ -9,14 +9,15 @@ API Version: 2020-12-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class BrandRefinement:
-
     brand_name: str = attrs.field()
     number_of_results: int = attrs.field()
 
@@ -25,7 +26,6 @@ class BrandRefinement:
 
 @attrs.define
 class ClassificationRefinement:
-
     classification_id: str = attrs.field()
     display_name: str = attrs.field()
     number_of_results: int = attrs.field()
@@ -35,7 +35,6 @@ class ClassificationRefinement:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -45,7 +44,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -53,7 +51,6 @@ class ErrorList:
 
 @attrs.define
 class Item:
-
     asin: "ItemAsin" = attrs.field()
     attributes: "ItemAttributes" = attrs.field()
     identifiers: "ItemIdentifiers" = attrs.field()
@@ -68,19 +65,16 @@ class Item:
 
 @attrs.define
 class ItemAsin:
-
     pass
 
 
 @attrs.define
 class ItemAttributes:
-
     pass
 
 
 @attrs.define
 class ItemIdentifier:
-
     identifier: str = attrs.field()
     identifier_type: str = attrs.field()
 
@@ -89,13 +83,11 @@ class ItemIdentifier:
 
 @attrs.define
 class ItemIdentifiers:
-
     pass
 
 
 @attrs.define
 class ItemIdentifiersByMarketplace:
-
     identifiers: list["ItemIdentifier"] = attrs.field()
     marketplace_id: str = attrs.field()
 
@@ -104,7 +96,6 @@ class ItemIdentifiersByMarketplace:
 
 @attrs.define
 class ItemImage:
-
     height: int = attrs.field()
     link: str = attrs.field()
     variant: Union[
@@ -127,13 +118,11 @@ class ItemImage:
 
 @attrs.define
 class ItemImages:
-
     pass
 
 
 @attrs.define
 class ItemImagesByMarketplace:
-
     images: list["ItemImage"] = attrs.field()
     marketplace_id: str = attrs.field()
 
@@ -142,7 +131,6 @@ class ItemImagesByMarketplace:
 
 @attrs.define
 class ItemProductTypeByMarketplace:
-
     marketplace_id: str = attrs.field()
     product_type: str = attrs.field()
     # {'example': 'LUGGAGE'}
@@ -152,13 +140,11 @@ class ItemProductTypeByMarketplace:
 
 @attrs.define
 class ItemProductTypes:
-
     pass
 
 
 @attrs.define
 class ItemSalesRank:
-
     link: str = attrs.field()
     rank: int = attrs.field()
     title: str = attrs.field()
@@ -168,13 +154,11 @@ class ItemSalesRank:
 
 @attrs.define
 class ItemSalesRanks:
-
     pass
 
 
 @attrs.define
 class ItemSalesRanksByMarketplace:
-
     marketplace_id: str = attrs.field()
     ranks: list["ItemSalesRank"] = attrs.field()
 
@@ -183,7 +167,6 @@ class ItemSalesRanksByMarketplace:
 
 @attrs.define
 class ItemSearchResults:
-
     items: list["Item"] = attrs.field()
     number_of_results: int = attrs.field()
 
@@ -194,13 +177,11 @@ class ItemSearchResults:
 
 @attrs.define
 class ItemSummaries:
-
     pass
 
 
 @attrs.define
 class ItemSummaryByMarketplace:
-
     brand_name: str = attrs.field()
     browse_node: str = attrs.field()
     color_name: str = attrs.field()
@@ -216,13 +197,11 @@ class ItemSummaryByMarketplace:
 
 @attrs.define
 class ItemVariations:
-
     pass
 
 
 @attrs.define
 class ItemVariationsByMarketplace:
-
     asins: list[str] = attrs.field()
     marketplace_id: str = attrs.field()
     variation_type: Union[Literal["PARENT"], Literal["CHILD"]] = attrs.field()
@@ -233,13 +212,11 @@ class ItemVariationsByMarketplace:
 
 @attrs.define
 class ItemVendorDetails:
-
     pass
 
 
 @attrs.define
 class ItemVendorDetailsByMarketplace:
-
     brand_code: str = attrs.field()
     category_code: str = attrs.field()
     manufacturer_code: str = attrs.field()
@@ -265,7 +242,6 @@ class ItemVendorDetailsByMarketplace:
 
 @attrs.define
 class Pagination:
-
     next_token: str = attrs.field()
     previous_token: str = attrs.field()
 
@@ -274,7 +250,6 @@ class Pagination:
 
 @attrs.define
 class Refinements:
-
     brands: list["BrandRefinement"] = attrs.field()
     classifications: list["ClassificationRefinement"] = attrs.field()
 
@@ -283,22 +258,22 @@ class Refinements:
 
 class CatalogItems20201201Client(BaseClient):
     def get_catalog_item(
-        self,
-        asin: str,
-        marketplace_ids: list[str],
-        included_data: list[
-            Union[
-                Literal["attributes"],
-                Literal["identifiers"],
-                Literal["images"],
-                Literal["productTypes"],
-                Literal["salesRanks"],
-                Literal["summaries"],
-                Literal["variations"],
-                Literal["vendorDetails"],
-            ]
-        ] = None,
-        locale: str = None,
+            self,
+            asin: str,
+            marketplace_ids: list[str],
+            included_data: list[
+                Union[
+                    Literal["attributes"],
+                    Literal["identifiers"],
+                    Literal["images"],
+                    Literal["productTypes"],
+                    Literal["salesRanks"],
+                    Literal["summaries"],
+                    Literal["variations"],
+                    Literal["vendorDetails"],
+                ]
+            ] = None,
+            locale: str = None,
     ):
         """
         Retrieves details for an item in the Amazon catalog.
@@ -336,26 +311,26 @@ class CatalogItems20201201Client(BaseClient):
     )
 
     def search_catalog_items(
-        self,
-        keywords: list[str],
-        marketplace_ids: list[str],
-        included_data: list[
-            Union[
-                Literal["identifiers"],
-                Literal["images"],
-                Literal["productTypes"],
-                Literal["salesRanks"],
-                Literal["summaries"],
-                Literal["variations"],
-                Literal["vendorDetails"],
-            ]
-        ] = None,
-        brand_names: list[str] = None,
-        classification_ids: list[str] = None,
-        page_size: int = None,
-        page_token: str = None,
-        keywords_locale: str = None,
-        locale: str = None,
+            self,
+            keywords: list[str],
+            marketplace_ids: list[str],
+            included_data: list[
+                Union[
+                    Literal["identifiers"],
+                    Literal["images"],
+                    Literal["productTypes"],
+                    Literal["salesRanks"],
+                    Literal["summaries"],
+                    Literal["variations"],
+                    Literal["vendorDetails"],
+                ]
+            ] = None,
+            brand_names: list[str] = None,
+            classification_ids: list[str] = None,
+            page_size: int = None,
+            page_token: str = None,
+            keywords_locale: str = None,
+            locale: str = None,
     ):
         """
         Search for and return a list of Amazon catalog items and associated information.

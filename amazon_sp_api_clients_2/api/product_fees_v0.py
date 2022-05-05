@@ -7,14 +7,15 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -24,13 +25,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class FeeDetail:
-
     fee_type: str = attrs.field()
 
     fee_amount: "MoneyType" = attrs.field()
@@ -43,13 +42,11 @@ class FeeDetail:
 
 @attrs.define
 class FeeDetailList:
-
     pass
 
 
 @attrs.define
 class FeesEstimate:
-
     time_of_fees_estimation: str = attrs.field()
     # {'schema_format': 'date-time'}
 
@@ -60,7 +57,6 @@ class FeesEstimate:
 
 @attrs.define
 class FeesEstimateError:
-
     code: str = attrs.field()
     message: str = attrs.field()
     type: str = attrs.field()
@@ -71,13 +67,11 @@ class FeesEstimateError:
 
 @attrs.define
 class FeesEstimateErrorDetail:
-
     pass
 
 
 @attrs.define
 class FeesEstimateIdentifier:
-
     id_type: str = attrs.field()
     id_value: str = attrs.field()
     is_amazon_fulfilled: bool = attrs.field()
@@ -92,7 +86,6 @@ class FeesEstimateIdentifier:
 
 @attrs.define
 class FeesEstimateRequest:
-
     identifier: str = attrs.field()
     is_amazon_fulfilled: bool = attrs.field()
     marketplace_id: str = attrs.field()
@@ -104,7 +97,6 @@ class FeesEstimateRequest:
 
 @attrs.define
 class FeesEstimateResult:
-
     status: str = attrs.field()
 
     error: "FeesEstimateError" = attrs.field()
@@ -115,14 +107,12 @@ class FeesEstimateResult:
 
 @attrs.define
 class GetMyFeesEstimateRequest:
-
     fees_estimate_request: "FeesEstimateRequest" = attrs.field()
     pass
 
 
 @attrs.define
 class GetMyFeesEstimateResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetMyFeesEstimateResult" = attrs.field()
     pass
@@ -130,14 +120,12 @@ class GetMyFeesEstimateResponse:
 
 @attrs.define
 class GetMyFeesEstimateResult:
-
     fees_estimate_result: "FeesEstimateResult" = attrs.field()
     pass
 
 
 @attrs.define
 class IncludedFeeDetail:
-
     fee_type: str = attrs.field()
 
     fee_amount: "MoneyType" = attrs.field()
@@ -149,13 +137,11 @@ class IncludedFeeDetail:
 
 @attrs.define
 class IncludedFeeDetailList:
-
     pass
 
 
 @attrs.define
 class MoneyType:
-
     amount: Union[float, int] = attrs.field()
     currency_code: str = attrs.field()
 
@@ -164,13 +150,11 @@ class MoneyType:
 
 @attrs.define
 class OptionalFulfillmentProgram:
-
     pass
 
 
 @attrs.define
 class Points:
-
     points_number: int = attrs.field()
     # {'schema_format': 'int32'}
 
@@ -180,7 +164,6 @@ class Points:
 
 @attrs.define
 class PriceToEstimateFees:
-
     listing_price: "MoneyType" = attrs.field()
     points: "Points" = attrs.field()
     shipping: "MoneyType" = attrs.field()
@@ -189,9 +172,9 @@ class PriceToEstimateFees:
 
 class ProductFeesV0Client(BaseClient):
     def get_my_fees_estimate_for_asin(
-        self,
-        asin: str,
-        fees_estimate_request: dict[str, Any] = None,
+            self,
+            asin: str,
+            fees_estimate_request: dict[str, Any] = None,
     ):
         """
         Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
@@ -227,9 +210,9 @@ class ProductFeesV0Client(BaseClient):
     )
 
     def get_my_fees_estimate_for_sku(
-        self,
-        seller_sku: str,
-        fees_estimate_request: dict[str, Any] = None,
+            self,
+            seller_sku: str,
+            fees_estimate_request: dict[str, Any] = None,
     ):
         """
         Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.

@@ -7,21 +7,21 @@ API Version: 2020-09-04
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class CancelFeedResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFeedDocumentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CreateFeedDocumentResult" = attrs.field()
     pass
@@ -29,7 +29,6 @@ class CreateFeedDocumentResponse:
 
 @attrs.define
 class CreateFeedDocumentResult:
-
     feed_document_id: str = attrs.field()
     url: str = attrs.field()
 
@@ -39,7 +38,6 @@ class CreateFeedDocumentResult:
 
 @attrs.define
 class CreateFeedDocumentSpecification:
-
     content_type: str = attrs.field()
 
     pass
@@ -47,7 +45,6 @@ class CreateFeedDocumentSpecification:
 
 @attrs.define
 class CreateFeedResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CreateFeedResult" = attrs.field()
     pass
@@ -55,7 +52,6 @@ class CreateFeedResponse:
 
 @attrs.define
 class CreateFeedResult:
-
     feed_id: str = attrs.field()
 
     pass
@@ -63,7 +59,6 @@ class CreateFeedResult:
 
 @attrs.define
 class CreateFeedSpecification:
-
     feed_type: str = attrs.field()
     input_feed_document_id: str = attrs.field()
     marketplace_ids: list[str] = attrs.field()
@@ -75,7 +70,6 @@ class CreateFeedSpecification:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -85,13 +79,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class Feed:
-
     created_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     feed_id: str = attrs.field()
@@ -111,7 +103,6 @@ class Feed:
 
 @attrs.define
 class FeedDocument:
-
     compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
     feed_document_id: str = attrs.field()
     url: str = attrs.field()
@@ -122,7 +113,6 @@ class FeedDocument:
 
 @attrs.define
 class FeedDocumentEncryptionDetails:
-
     initialization_vector: str = attrs.field()
     key: str = attrs.field()
     standard: Union[Literal["AES"]] = attrs.field()
@@ -132,19 +122,16 @@ class FeedDocumentEncryptionDetails:
 
 @attrs.define
 class FeedList:
-
     pass
 
 
 @attrs.define
 class FeedOptions:
-
     pass
 
 
 @attrs.define
 class GetFeedDocumentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "FeedDocument" = attrs.field()
     pass
@@ -152,7 +139,6 @@ class GetFeedDocumentResponse:
 
 @attrs.define
 class GetFeedResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Feed" = attrs.field()
     pass
@@ -160,7 +146,6 @@ class GetFeedResponse:
 
 @attrs.define
 class GetFeedsResponse:
-
     next_token: str = attrs.field()
 
     errors: "ErrorList" = attrs.field()
@@ -170,8 +155,8 @@ class GetFeedsResponse:
 
 class Feeds20200904Client(BaseClient):
     def cancel_feed(
-        self,
-        feed_id: str,
+            self,
+            feed_id: str,
     ):
         """
         Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
@@ -195,7 +180,7 @@ class Feeds20200904Client(BaseClient):
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
     def create_feed(
-        self,
+            self,
     ):
         """
         Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
@@ -218,7 +203,7 @@ class Feeds20200904Client(BaseClient):
     _create_feed_params = ()  # name, param in
 
     def create_feed_document(
-        self,
+            self,
     ):
         """
         Creates a feed document for the feed type that you specify. This operation returns encryption details for encrypting the contents of the document, as well as a presigned URL for uploading the encrypted feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
@@ -241,8 +226,8 @@ class Feeds20200904Client(BaseClient):
     _create_feed_document_params = ()  # name, param in
 
     def get_feed(
-        self,
-        feed_id: str,
+            self,
+            feed_id: str,
     ):
         """
         Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
@@ -266,8 +251,8 @@ class Feeds20200904Client(BaseClient):
     _get_feed_params = (("feedId", "path"),)  # name, param in
 
     def get_feed_document(
-        self,
-        feed_document_id: str,
+            self,
+            feed_document_id: str,
     ):
         """
         Returns the information required for retrieving a feed document's contents. This includes a presigned URL for the feed document as well as the information required to decrypt the document's contents.
@@ -291,16 +276,17 @@ class Feeds20200904Client(BaseClient):
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
     def get_feeds(
-        self,
-        feed_types: list[str] = None,
-        marketplace_ids: list[str] = None,
-        page_size: int = None,
-        processing_statuses: list[
-            Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
-        ] = None,
-        created_since: str = None,
-        created_until: str = None,
-        next_token: str = None,
+            self,
+            feed_types: list[str] = None,
+            marketplace_ids: list[str] = None,
+            page_size: int = None,
+            processing_statuses: list[
+                Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal[
+                    "IN_QUEUE"]]
+            ] = None,
+            created_since: str = None,
+            created_until: str = None,
+            next_token: str = None,
     ):
         """
         Returns feed details for the feeds that match the filters that you specify.

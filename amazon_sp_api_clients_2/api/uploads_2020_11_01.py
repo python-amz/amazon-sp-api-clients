@@ -7,14 +7,15 @@ API Version: 2020-11-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class CreateUploadDestinationResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "UploadDestination" = attrs.field()
     pass
@@ -22,7 +23,6 @@ class CreateUploadDestinationResponse:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -32,13 +32,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class UploadDestination:
-
     headers: dict[str, Any] = attrs.field()
     # {'properties': {}}
     upload_destination_id: str = attrs.field()
@@ -49,11 +47,11 @@ class UploadDestination:
 
 class Uploads20201101Client(BaseClient):
     def create_upload_destination_for_resource(
-        self,
-        marketplace_ids: list[str],
-        content_md5: str,
-        resource: str,
-        content_type: str = None,
+            self,
+            marketplace_ids: list[str],
+            content_md5: str,
+            resource: str,
+            content_type: str = None,
     ):
         """
         Creates an upload destination, returning the information required to upload a file to the destination and to programmatically access the file.

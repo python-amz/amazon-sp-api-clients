@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AcceptedRate:
-
     billed_weight: "Weight" = attrs.field()
     promise: "ShippingPromiseSet" = attrs.field()
     service_type: "ServiceType" = attrs.field()
@@ -24,20 +25,17 @@ class AcceptedRate:
 
 @attrs.define
 class Account:
-
     account_id: "AccountId" = attrs.field()
     pass
 
 
 @attrs.define
 class AccountId:
-
     pass
 
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     # {'maxLength': 60, 'minLength': 1}
     address_line2: str = attrs.field()
@@ -62,26 +60,22 @@ class Address:
 
 @attrs.define
 class CancelShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class City:
-
     pass
 
 
 @attrs.define
 class ClientReferenceId:
-
     pass
 
 
 @attrs.define
 class Container:
-
     container_type: Union[Literal["PACKAGE"]] = attrs.field()
     items: list["ContainerItem"] = attrs.field()
 
@@ -94,7 +88,6 @@ class Container:
 
 @attrs.define
 class ContainerItem:
-
     quantity: Union[float, int] = attrs.field()
     title: str = attrs.field()
     # {'maxLength': 30}
@@ -106,19 +99,16 @@ class ContainerItem:
 
 @attrs.define
 class ContainerList:
-
     pass
 
 
 @attrs.define
 class ContainerReferenceId:
-
     pass
 
 
 @attrs.define
 class ContainerSpecification:
-
     dimensions: "Dimensions" = attrs.field()
     weight: "Weight" = attrs.field()
     pass
@@ -126,19 +116,16 @@ class ContainerSpecification:
 
 @attrs.define
 class ContainerSpecificationList:
-
     pass
 
 
 @attrs.define
 class CountryCode:
-
     pass
 
 
 @attrs.define
 class CreateShipmentRequest:
-
     client_reference_id: "ClientReferenceId" = attrs.field()
     containers: "ContainerList" = attrs.field()
     ship_from: "Address" = attrs.field()
@@ -148,7 +135,6 @@ class CreateShipmentRequest:
 
 @attrs.define
 class CreateShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CreateShipmentResult" = attrs.field()
     pass
@@ -156,7 +142,6 @@ class CreateShipmentResponse:
 
 @attrs.define
 class CreateShipmentResult:
-
     eligible_rates: "RateList" = attrs.field()
     shipment_id: "ShipmentId" = attrs.field()
     pass
@@ -164,7 +149,6 @@ class CreateShipmentResult:
 
 @attrs.define
 class Currency:
-
     unit: str = attrs.field()
     # {'maxLength': 3, 'minLength': 3}
     value: Union[float, int] = attrs.field()
@@ -174,7 +158,6 @@ class Currency:
 
 @attrs.define
 class Dimensions:
-
     height: Union[float, int] = attrs.field()
     length: Union[float, int] = attrs.field()
     unit: Union[Literal["IN"], Literal["CM"]] = attrs.field()
@@ -185,7 +168,6 @@ class Dimensions:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -195,13 +177,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class Event:
-
     event_time: str = attrs.field()
     # {'schema_format': 'date-time'}
 
@@ -212,19 +192,16 @@ class Event:
 
 @attrs.define
 class EventCode:
-
     pass
 
 
 @attrs.define
 class EventList:
-
     pass
 
 
 @attrs.define
 class GetAccountResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Account" = attrs.field()
     pass
@@ -232,7 +209,6 @@ class GetAccountResponse:
 
 @attrs.define
 class GetRatesRequest:
-
     ship_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
@@ -245,7 +221,6 @@ class GetRatesRequest:
 
 @attrs.define
 class GetRatesResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetRatesResult" = attrs.field()
     pass
@@ -253,14 +228,12 @@ class GetRatesResponse:
 
 @attrs.define
 class GetRatesResult:
-
     service_rates: "ServiceRateList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Shipment" = attrs.field()
     pass
@@ -268,7 +241,6 @@ class GetShipmentResponse:
 
 @attrs.define
 class GetTrackingInformationResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TrackingInformation" = attrs.field()
     pass
@@ -276,7 +248,6 @@ class GetTrackingInformationResponse:
 
 @attrs.define
 class Label:
-
     label_specification: "LabelSpecification" = attrs.field()
     label_stream: "LabelStream" = attrs.field()
     pass
@@ -284,7 +255,6 @@ class Label:
 
 @attrs.define
 class LabelResult:
-
     tracking_id: str = attrs.field()
 
     container_reference_id: "ContainerReferenceId" = attrs.field()
@@ -294,13 +264,11 @@ class LabelResult:
 
 @attrs.define
 class LabelResultList:
-
     pass
 
 
 @attrs.define
 class LabelSpecification:
-
     label_format: Union[Literal["PNG"]] = attrs.field()
     label_stock_size: Union[Literal["4x6"]] = attrs.field()
 
@@ -309,13 +277,11 @@ class LabelSpecification:
 
 @attrs.define
 class LabelStream:
-
     pass
 
 
 @attrs.define
 class Location:
-
     city: "City" = attrs.field()
     country_code: "CountryCode" = attrs.field()
     postal_code: "PostalCode" = attrs.field()
@@ -325,26 +291,22 @@ class Location:
 
 @attrs.define
 class Party:
-
     account_id: "AccountId" = attrs.field()
     pass
 
 
 @attrs.define
 class PostalCode:
-
     pass
 
 
 @attrs.define
 class PromisedDeliveryDate:
-
     pass
 
 
 @attrs.define
 class PurchaseLabelsRequest:
-
     label_specification: "LabelSpecification" = attrs.field()
     rate_id: "RateId" = attrs.field()
     pass
@@ -352,7 +314,6 @@ class PurchaseLabelsRequest:
 
 @attrs.define
 class PurchaseLabelsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "PurchaseLabelsResult" = attrs.field()
     pass
@@ -360,7 +321,6 @@ class PurchaseLabelsResponse:
 
 @attrs.define
 class PurchaseLabelsResult:
-
     accepted_rate: "AcceptedRate" = attrs.field()
     client_reference_id: "ClientReferenceId" = attrs.field()
     label_results: "LabelResultList" = attrs.field()
@@ -370,7 +330,6 @@ class PurchaseLabelsResult:
 
 @attrs.define
 class PurchaseShipmentRequest:
-
     ship_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
@@ -385,7 +344,6 @@ class PurchaseShipmentRequest:
 
 @attrs.define
 class PurchaseShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "PurchaseShipmentResult" = attrs.field()
     pass
@@ -393,7 +351,6 @@ class PurchaseShipmentResponse:
 
 @attrs.define
 class PurchaseShipmentResult:
-
     label_results: "LabelResultList" = attrs.field()
     service_rate: "ServiceRate" = attrs.field()
     shipment_id: "ShipmentId" = attrs.field()
@@ -402,7 +359,6 @@ class PurchaseShipmentResult:
 
 @attrs.define
 class Rate:
-
     expiration_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     rate_id: str = attrs.field()
@@ -416,26 +372,22 @@ class Rate:
 
 @attrs.define
 class RateId:
-
     pass
 
 
 @attrs.define
 class RateList:
-
     pass
 
 
 @attrs.define
 class RetrieveShippingLabelRequest:
-
     label_specification: "LabelSpecification" = attrs.field()
     pass
 
 
 @attrs.define
 class RetrieveShippingLabelResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "RetrieveShippingLabelResult" = attrs.field()
     pass
@@ -443,7 +395,6 @@ class RetrieveShippingLabelResponse:
 
 @attrs.define
 class RetrieveShippingLabelResult:
-
     label_specification: "LabelSpecification" = attrs.field()
     label_stream: "LabelStream" = attrs.field()
     pass
@@ -451,7 +402,6 @@ class RetrieveShippingLabelResult:
 
 @attrs.define
 class ServiceRate:
-
     billable_weight: "Weight" = attrs.field()
     promise: "ShippingPromiseSet" = attrs.field()
     service_type: "ServiceType" = attrs.field()
@@ -461,25 +411,21 @@ class ServiceRate:
 
 @attrs.define
 class ServiceRateList:
-
     pass
 
 
 @attrs.define
 class ServiceType:
-
     pass
 
 
 @attrs.define
 class ServiceTypeList:
-
     pass
 
 
 @attrs.define
 class Shipment:
-
     accepted_rate: "AcceptedRate" = attrs.field()
     client_reference_id: "ClientReferenceId" = attrs.field()
     containers: "ContainerList" = attrs.field()
@@ -492,13 +438,11 @@ class Shipment:
 
 @attrs.define
 class ShipmentId:
-
     pass
 
 
 @attrs.define
 class ShippingPromiseSet:
-
     delivery_window: "TimeRange" = attrs.field()
     receive_window: "TimeRange" = attrs.field()
     pass
@@ -506,13 +450,11 @@ class ShippingPromiseSet:
 
 @attrs.define
 class StateOrRegion:
-
     pass
 
 
 @attrs.define
 class TimeRange:
-
     end: str = attrs.field()
     # {'schema_format': 'date-time'}
     start: str = attrs.field()
@@ -523,13 +465,11 @@ class TimeRange:
 
 @attrs.define
 class TrackingId:
-
     pass
 
 
 @attrs.define
 class TrackingInformation:
-
     event_history: "EventList" = attrs.field()
     promised_delivery_date: "PromisedDeliveryDate" = attrs.field()
     summary: "TrackingSummary" = attrs.field()
@@ -539,7 +479,6 @@ class TrackingInformation:
 
 @attrs.define
 class TrackingSummary:
-
     status: str = attrs.field()
     # {'maxLength': 60, 'minLength': 1}
 
@@ -548,7 +487,6 @@ class TrackingSummary:
 
 @attrs.define
 class Weight:
-
     unit: Union[Literal["g"], Literal["kg"], Literal["oz"], Literal["lb"]] = attrs.field()
     value: Union[float, int] = attrs.field()
 
@@ -557,8 +495,8 @@ class Weight:
 
 class ShippingV1Client(BaseClient):
     def cancel_shipment(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Cancel a shipment by the given shipmentId.
@@ -582,7 +520,7 @@ class ShippingV1Client(BaseClient):
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     def create_shipment(
-        self,
+            self,
     ):
         """
         Create a new shipment.
@@ -605,7 +543,7 @@ class ShippingV1Client(BaseClient):
     _create_shipment_params = ()  # name, param in
 
     def get_account(
-        self,
+            self,
     ):
         """
         Verify if the current account is valid.
@@ -628,7 +566,7 @@ class ShippingV1Client(BaseClient):
     _get_account_params = ()  # name, param in
 
     def get_rates(
-        self,
+            self,
     ):
         """
         Get service rates.
@@ -651,8 +589,8 @@ class ShippingV1Client(BaseClient):
     _get_rates_params = ()  # name, param in
 
     def get_shipment(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Return the entire shipment object for the shipmentId.
@@ -676,8 +614,8 @@ class ShippingV1Client(BaseClient):
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     def get_tracking_information(
-        self,
-        tracking_id: str,
+            self,
+            tracking_id: str,
     ):
         """
         Return the tracking information of a shipment.
@@ -701,10 +639,10 @@ class ShippingV1Client(BaseClient):
     _get_tracking_information_params = (("trackingId", "path"),)  # name, param in
 
     def purchase_labels(
-        self,
-        shipment_id: str,
-        rate_id: str,
-        label_specification: dict[str, Any],
+            self,
+            shipment_id: str,
+            rate_id: str,
+            label_specification: dict[str, Any],
     ):
         """
         Purchase shipping labels based on a given rate.
@@ -738,7 +676,7 @@ class ShippingV1Client(BaseClient):
     )
 
     def purchase_shipment(
-        self,
+            self,
     ):
         """
         Purchase shipping labels.
@@ -761,10 +699,10 @@ class ShippingV1Client(BaseClient):
     _purchase_shipment_params = ()  # name, param in
 
     def retrieve_shipping_label(
-        self,
-        shipment_id: str,
-        tracking_id: str,
-        label_specification: dict[str, Any],
+            self,
+            shipment_id: str,
+            tracking_id: str,
+            label_specification: dict[str, Any],
     ):
         """
         Retrieve shipping label based on the shipment id and tracking id.

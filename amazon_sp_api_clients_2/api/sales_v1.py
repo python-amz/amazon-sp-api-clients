@@ -7,20 +7,20 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -30,13 +30,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetOrderMetricsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderMetricsList" = attrs.field()
     pass
@@ -44,7 +42,6 @@ class GetOrderMetricsResponse:
 
 @attrs.define
 class Money:
-
     currency_code: str = attrs.field()
 
     amount: "Decimal" = attrs.field()
@@ -53,7 +50,6 @@ class Money:
 
 @attrs.define
 class OrderMetricsInterval:
-
     interval: str = attrs.field()
     order_count: int = attrs.field()
     order_item_count: int = attrs.field()
@@ -66,24 +62,23 @@ class OrderMetricsInterval:
 
 @attrs.define
 class OrderMetricsList:
-
     pass
 
 
 class SalesV1Client(BaseClient):
     def get_order_metrics(
-        self,
-        marketplace_ids: list[str],
-        interval: str,
-        granularity: Union[
-            Literal["Hour"], Literal["Day"], Literal["Week"], Literal["Month"], Literal["Year"], Literal["Total"]
-        ],
-        granularity_time_zone: str = None,
-        buyer_type: Union[Literal["B2B"], Literal["B2C"], Literal["All"]] = None,
-        fulfillment_network: str = None,
-        first_day_of_week: Union[Literal["Monday"], Literal["Sunday"]] = None,
-        asin: str = None,
-        sku: str = None,
+            self,
+            marketplace_ids: list[str],
+            interval: str,
+            granularity: Union[
+                Literal["Hour"], Literal["Day"], Literal["Week"], Literal["Month"], Literal["Year"], Literal["Total"]
+            ],
+            granularity_time_zone: str = None,
+            buyer_type: Union[Literal["B2B"], Literal["B2C"], Literal["All"]] = None,
+            fulfillment_network: str = None,
+            first_day_of_week: Union[Literal["Monday"], Literal["Sunday"]] = None,
+            asin: str = None,
+            sku: str = None,
     ):
         """
         Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.

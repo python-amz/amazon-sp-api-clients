@@ -7,14 +7,15 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class ASINIdentifier:
-
     asin: str = attrs.field()
     marketplace_id: str = attrs.field()
 
@@ -23,19 +24,16 @@ class ASINIdentifier:
 
 @attrs.define
 class AttributeSetList:
-
     pass
 
 
 @attrs.define
 class BuyBoxEligibleOffers:
-
     pass
 
 
 @attrs.define
 class BuyBoxPriceType:
-
     condition: str = attrs.field()
     quantity_tier: int = attrs.field()
     # {'schema_format': 'int32'}
@@ -52,19 +50,16 @@ class BuyBoxPriceType:
 
 @attrs.define
 class BuyBoxPrices:
-
     pass
 
 
 @attrs.define
 class CompetitivePriceList:
-
     pass
 
 
 @attrs.define
 class CompetitivePriceType:
-
     competitive_price_id: str = attrs.field()
     belongs_to_requester: bool = attrs.field()
     condition: str = attrs.field()
@@ -81,7 +76,6 @@ class CompetitivePriceType:
 
 @attrs.define
 class CompetitivePricingType:
-
     competitive_prices: "CompetitivePriceList" = attrs.field()
     number_of_offer_listings: "NumberOfOfferListingsList" = attrs.field()
     trade_in_value: "MoneyType" = attrs.field()
@@ -90,13 +84,11 @@ class CompetitivePricingType:
 
 @attrs.define
 class ConditionType:
-
     pass
 
 
 @attrs.define
 class DetailedShippingTimeType:
-
     availability_type: Union[
         Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]
     ] = attrs.field()
@@ -111,7 +103,6 @@ class DetailedShippingTimeType:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -121,19 +112,16 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class FulfillmentChannelType:
-
     pass
 
 
 @attrs.define
 class GetOffersResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetOffersResult" = attrs.field()
     pass
@@ -141,7 +129,6 @@ class GetOffersResponse:
 
 @attrs.define
 class GetOffersResult:
-
     asin: str = attrs.field()
     marketplace_id: str = attrs.field()
     sku: str = attrs.field()
@@ -156,7 +143,6 @@ class GetOffersResult:
 
 @attrs.define
 class GetPricingResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "PriceList" = attrs.field()
     pass
@@ -164,7 +150,6 @@ class GetPricingResponse:
 
 @attrs.define
 class IdentifierType:
-
     marketplace_asin: "ASINIdentifier" = attrs.field()
     skuidentifier: "SellerSKUIdentifier" = attrs.field()
     pass
@@ -172,7 +157,6 @@ class IdentifierType:
 
 @attrs.define
 class ItemIdentifier:
-
     asin: str = attrs.field()
     marketplace_id: str = attrs.field()
     seller_sku: str = attrs.field()
@@ -183,7 +167,6 @@ class ItemIdentifier:
 
 @attrs.define
 class LowestPriceType:
-
     condition: str = attrs.field()
     fulfillment_channel: str = attrs.field()
     quantity_tier: int = attrs.field()
@@ -200,13 +183,11 @@ class LowestPriceType:
 
 @attrs.define
 class LowestPrices:
-
     pass
 
 
 @attrs.define
 class MoneyType:
-
     amount: Union[float, int] = attrs.field()
     currency_code: str = attrs.field()
 
@@ -215,19 +196,16 @@ class MoneyType:
 
 @attrs.define
 class NumberOfOfferListingsList:
-
     pass
 
 
 @attrs.define
 class NumberOfOffers:
-
     pass
 
 
 @attrs.define
 class OfferCountType:
-
     offer_count: int = attrs.field()
     # {'schema_format': 'int32'}
     condition: str = attrs.field()
@@ -238,13 +216,11 @@ class OfferCountType:
 
 @attrs.define
 class OfferCustomerType:
-
     pass
 
 
 @attrs.define
 class OfferDetail:
-
     condition_notes: str = attrs.field()
     is_buy_box_winner: bool = attrs.field()
     is_featured_merchant: bool = attrs.field()
@@ -267,13 +243,11 @@ class OfferDetail:
 
 @attrs.define
 class OfferDetailList:
-
     pass
 
 
 @attrs.define
 class OfferListingCountType:
-
     count: int = attrs.field()
     # {'schema_format': 'int32'}
     condition: str = attrs.field()
@@ -283,7 +257,6 @@ class OfferListingCountType:
 
 @attrs.define
 class OfferType:
-
     fulfillment_channel: str = attrs.field()
     item_condition: str = attrs.field()
     item_sub_condition: str = attrs.field()
@@ -299,13 +272,11 @@ class OfferType:
 
 @attrs.define
 class OffersList:
-
     pass
 
 
 @attrs.define
 class Points:
-
     points_number: int = attrs.field()
     # {'schema_format': 'int32'}
 
@@ -315,7 +286,6 @@ class Points:
 
 @attrs.define
 class Price:
-
     asin: str = attrs.field()
     seller_sku: str = attrs.field()
     status: str = attrs.field()
@@ -326,13 +296,11 @@ class Price:
 
 @attrs.define
 class PriceList:
-
     pass
 
 
 @attrs.define
 class PriceType:
-
     landed_price: "MoneyType" = attrs.field()
     listing_price: "MoneyType" = attrs.field()
     points: "Points" = attrs.field()
@@ -342,7 +310,6 @@ class PriceType:
 
 @attrs.define
 class PrimeInformationType:
-
     is_national_prime: bool = attrs.field()
     is_prime: bool = attrs.field()
 
@@ -351,7 +318,6 @@ class PrimeInformationType:
 
 @attrs.define
 class Product:
-
     attribute_sets: "AttributeSetList" = attrs.field()
     competitive_pricing: "CompetitivePricingType" = attrs.field()
     identifiers: "IdentifierType" = attrs.field()
@@ -363,7 +329,6 @@ class Product:
 
 @attrs.define
 class QuantityDiscountPriceType:
-
     quantity_tier: int = attrs.field()
     # {'schema_format': 'int32'}
 
@@ -374,25 +339,21 @@ class QuantityDiscountPriceType:
 
 @attrs.define
 class QuantityDiscountType:
-
     pass
 
 
 @attrs.define
 class RelationshipList:
-
     pass
 
 
 @attrs.define
 class SalesRankList:
-
     pass
 
 
 @attrs.define
 class SalesRankType:
-
     product_category_id: str = attrs.field()
     rank: int = attrs.field()
     # {'schema_format': 'int32'}
@@ -402,7 +363,6 @@ class SalesRankType:
 
 @attrs.define
 class SellerFeedbackType:
-
     feedback_count: int = attrs.field()
     # {'schema_format': 'int64'}
     seller_positive_feedback_rating: Union[float, int] = attrs.field()
@@ -413,7 +373,6 @@ class SellerFeedbackType:
 
 @attrs.define
 class SellerSKUIdentifier:
-
     marketplace_id: str = attrs.field()
     seller_id: str = attrs.field()
     seller_sku: str = attrs.field()
@@ -423,7 +382,6 @@ class SellerSKUIdentifier:
 
 @attrs.define
 class ShipsFromType:
-
     country: str = attrs.field()
     state: str = attrs.field()
 
@@ -432,7 +390,6 @@ class ShipsFromType:
 
 @attrs.define
 class Summary:
-
     offers_available_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     total_offer_count: int = attrs.field()
@@ -451,12 +408,12 @@ class Summary:
 
 class ProductPricingV0Client(BaseClient):
     def get_competitive_pricing(
-        self,
-        marketplace_id: str,
-        item_type: Union[Literal["Asin"], Literal["Sku"]],
-        asins: list[str] = None,
-        skus: list[str] = None,
-        customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
+            self,
+            marketplace_id: str,
+            item_type: Union[Literal["Asin"], Literal["Sku"]],
+            asins: list[str] = None,
+            skus: list[str] = None,
+            customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
     ):
         """
         Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -497,13 +454,13 @@ class ProductPricingV0Client(BaseClient):
     )
 
     def get_item_offers(
-        self,
-        marketplace_id: str,
-        item_condition: Union[
-            Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
-        ],
-        asin: str,
-        customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
+            self,
+            marketplace_id: str,
+            item_condition: Union[
+                Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+            ],
+            asin: str,
+            customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
     ):
         """
         Returns the lowest priced offers for a single item based on ASIN.
@@ -541,13 +498,13 @@ class ProductPricingV0Client(BaseClient):
     )
 
     def get_listing_offers(
-        self,
-        marketplace_id: str,
-        item_condition: Union[
-            Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
-        ],
-        seller_sku: str,
-        customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
+            self,
+            marketplace_id: str,
+            item_condition: Union[
+                Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+            ],
+            seller_sku: str,
+            customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
     ):
         """
         Returns the lowest priced offers for a single SKU listing.
@@ -585,15 +542,15 @@ class ProductPricingV0Client(BaseClient):
     )
 
     def get_pricing(
-        self,
-        marketplace_id: str,
-        item_type: Union[Literal["Asin"], Literal["Sku"]],
-        asins: list[str] = None,
-        skus: list[str] = None,
-        item_condition: Union[
-            Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
-        ] = None,
-        offer_type: Union[Literal["B2C"], Literal["B2B"]] = None,
+            self,
+            marketplace_id: str,
+            item_type: Union[Literal["Asin"], Literal["Sku"]],
+            asins: list[str] = None,
+            skus: list[str] = None,
+            item_condition: Union[
+                Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+            ] = None,
+            offer_type: Union[Literal["B2C"], Literal["B2B"]] = None,
     ):
         """
         Returns pricing information for a seller's offer listings based on seller SKU or ASIN.

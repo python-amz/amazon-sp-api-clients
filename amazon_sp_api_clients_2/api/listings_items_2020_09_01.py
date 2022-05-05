@@ -9,14 +9,15 @@ API Version: 2020-09-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -26,7 +27,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -34,7 +34,6 @@ class ErrorList:
 
 @attrs.define
 class Issue:
-
     attribute_name: str = attrs.field()
     code: str = attrs.field()
     message: str = attrs.field()
@@ -45,7 +44,6 @@ class Issue:
 
 @attrs.define
 class ListingsItemPatchRequest:
-
     patches: list["PatchOperation"] = attrs.field()
     # {'minItems': 1}
     product_type: str = attrs.field()
@@ -55,7 +53,6 @@ class ListingsItemPatchRequest:
 
 @attrs.define
 class ListingsItemPutRequest:
-
     attributes: dict[str, Any] = attrs.field()
     # {'properties': {}}
     product_type: str = attrs.field()
@@ -68,7 +65,6 @@ class ListingsItemPutRequest:
 
 @attrs.define
 class ListingsItemSubmissionResponse:
-
     issues: list["Issue"] = attrs.field()
     sku: str = attrs.field()
     status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
@@ -79,7 +75,6 @@ class ListingsItemSubmissionResponse:
 
 @attrs.define
 class PatchOperation:
-
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
     path: str = attrs.field()
     value: list[dict[str, Any]] = attrs.field()
@@ -89,11 +84,11 @@ class PatchOperation:
 
 class ListingsItems20200901Client(BaseClient):
     def delete_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        issue_locale: str = None,
+            self,
+            seller_id: str,
+            sku: str,
+            marketplace_ids: list[str],
+            issue_locale: str = None,
     ):
         """
         Delete a listings item for a selling partner.
@@ -131,13 +126,13 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     def patch_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        product_type: str,
-        patches: list["PatchOperation"],
-        issue_locale: str = None,
+            self,
+            seller_id: str,
+            sku: str,
+            marketplace_ids: list[str],
+            product_type: str,
+            patches: list["PatchOperation"],
+            issue_locale: str = None,
     ):
         """
         Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
@@ -181,14 +176,15 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     def put_listings_item(
-        self,
-        seller_id: str,
-        sku: str,
-        marketplace_ids: list[str],
-        product_type: str,
-        attributes: dict[str, Any],
-        issue_locale: str = None,
-        requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
+            self,
+            seller_id: str,
+            sku: str,
+            marketplace_ids: list[str],
+            product_type: str,
+            attributes: dict[str, Any],
+            issue_locale: str = None,
+            requirements: Union[
+                Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
     ):
         """
         Creates a new or fully-updates an existing listings item for a selling partner.

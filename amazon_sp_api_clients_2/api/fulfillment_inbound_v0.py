@@ -7,14 +7,15 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class ASINInboundGuidance:
-
     asin: str = attrs.field()
 
     guidance_reason_list: "GuidanceReasonList" = attrs.field()
@@ -24,13 +25,11 @@ class ASINInboundGuidance:
 
 @attrs.define
 class ASINInboundGuidanceList:
-
     pass
 
 
 @attrs.define
 class ASINPrepInstructions:
-
     asin: str = attrs.field()
 
     barcode_instruction: "BarcodeInstruction" = attrs.field()
@@ -41,13 +40,11 @@ class ASINPrepInstructions:
 
 @attrs.define
 class ASINPrepInstructionsList:
-
     pass
 
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     # {'maxLength': 180}
     address_line2: str = attrs.field()
@@ -68,7 +65,6 @@ class Address:
 
 @attrs.define
 class AmazonPrepFeesDetails:
-
     fee_per_unit: "Amount" = attrs.field()
     prep_instruction: "PrepInstruction" = attrs.field()
     pass
@@ -76,13 +72,11 @@ class AmazonPrepFeesDetails:
 
 @attrs.define
 class AmazonPrepFeesDetailsList:
-
     pass
 
 
 @attrs.define
 class Amount:
-
     currency_code: "CurrencyCode" = attrs.field()
     value: "BigDecimalType" = attrs.field()
     pass
@@ -90,19 +84,16 @@ class Amount:
 
 @attrs.define
 class BarcodeInstruction:
-
     pass
 
 
 @attrs.define
 class BigDecimalType:
-
     pass
 
 
 @attrs.define
 class BillOfLadingDownloadURL:
-
     download_url: str = attrs.field()
 
     pass
@@ -110,7 +101,6 @@ class BillOfLadingDownloadURL:
 
 @attrs.define
 class BoxContentsFeeDetails:
-
     fee_per_unit: "Amount" = attrs.field()
     total_fee: "Amount" = attrs.field()
     total_units: "Quantity" = attrs.field()
@@ -119,26 +109,22 @@ class BoxContentsFeeDetails:
 
 @attrs.define
 class BoxContentsSource:
-
     pass
 
 
 @attrs.define
 class CommonTransportResult:
-
     transport_result: "TransportResult" = attrs.field()
     pass
 
 
 @attrs.define
 class Condition:
-
     pass
 
 
 @attrs.define
 class ConfirmPreorderResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ConfirmPreorderResult" = attrs.field()
     pass
@@ -146,7 +132,6 @@ class ConfirmPreorderResponse:
 
 @attrs.define
 class ConfirmPreorderResult:
-
     confirmed_fulfillable_date: "DateStringType" = attrs.field()
     confirmed_need_by_date: "DateStringType" = attrs.field()
     pass
@@ -154,7 +139,6 @@ class ConfirmPreorderResult:
 
 @attrs.define
 class ConfirmTransportResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CommonTransportResult" = attrs.field()
     pass
@@ -162,7 +146,6 @@ class ConfirmTransportResponse:
 
 @attrs.define
 class Contact:
-
     email: str = attrs.field()
     # {'maxLength': 50}
     fax: str = attrs.field()
@@ -177,7 +160,6 @@ class Contact:
 
 @attrs.define
 class CreateInboundShipmentPlanRequest:
-
     ship_to_country_code: str = attrs.field()
     ship_to_country_subdivision_code: str = attrs.field()
 
@@ -189,7 +171,6 @@ class CreateInboundShipmentPlanRequest:
 
 @attrs.define
 class CreateInboundShipmentPlanResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CreateInboundShipmentPlanResult" = attrs.field()
     pass
@@ -197,26 +178,22 @@ class CreateInboundShipmentPlanResponse:
 
 @attrs.define
 class CreateInboundShipmentPlanResult:
-
     inbound_shipment_plans: "InboundShipmentPlanList" = attrs.field()
     pass
 
 
 @attrs.define
 class CurrencyCode:
-
     pass
 
 
 @attrs.define
 class DateStringType:
-
     pass
 
 
 @attrs.define
 class Dimensions:
-
     height: "BigDecimalType" = attrs.field()
     length: "BigDecimalType" = attrs.field()
     unit: "UnitOfMeasurement" = attrs.field()
@@ -226,7 +203,6 @@ class Dimensions:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -236,19 +212,16 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class ErrorReason:
-
     pass
 
 
 @attrs.define
 class EstimateTransportResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CommonTransportResult" = attrs.field()
     pass
@@ -256,7 +229,6 @@ class EstimateTransportResponse:
 
 @attrs.define
 class GetBillOfLadingResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "BillOfLadingDownloadURL" = attrs.field()
     pass
@@ -264,7 +236,6 @@ class GetBillOfLadingResponse:
 
 @attrs.define
 class GetInboundGuidanceResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetInboundGuidanceResult" = attrs.field()
     pass
@@ -272,7 +243,6 @@ class GetInboundGuidanceResponse:
 
 @attrs.define
 class GetInboundGuidanceResult:
-
     asininbound_guidance_list: "ASINInboundGuidanceList" = attrs.field()
     invalid_asinlist: "InvalidASINList" = attrs.field()
     invalid_skulist: "InvalidSKUList" = attrs.field()
@@ -282,7 +252,6 @@ class GetInboundGuidanceResult:
 
 @attrs.define
 class GetLabelsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "LabelDownloadURL" = attrs.field()
     pass
@@ -290,7 +259,6 @@ class GetLabelsResponse:
 
 @attrs.define
 class GetPreorderInfoResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetPreorderInfoResult" = attrs.field()
     pass
@@ -298,7 +266,6 @@ class GetPreorderInfoResponse:
 
 @attrs.define
 class GetPreorderInfoResult:
-
     shipment_confirmed_for_preorder: bool = attrs.field()
     shipment_contains_preorderable_items: bool = attrs.field()
 
@@ -309,7 +276,6 @@ class GetPreorderInfoResult:
 
 @attrs.define
 class GetPrepInstructionsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetPrepInstructionsResult" = attrs.field()
     pass
@@ -317,7 +283,6 @@ class GetPrepInstructionsResponse:
 
 @attrs.define
 class GetPrepInstructionsResult:
-
     asinprep_instructions_list: "ASINPrepInstructionsList" = attrs.field()
     invalid_asinlist: "InvalidASINList" = attrs.field()
     invalid_skulist: "InvalidSKUList" = attrs.field()
@@ -327,7 +292,6 @@ class GetPrepInstructionsResult:
 
 @attrs.define
 class GetShipmentItemsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetShipmentItemsResult" = attrs.field()
     pass
@@ -335,7 +299,6 @@ class GetShipmentItemsResponse:
 
 @attrs.define
 class GetShipmentItemsResult:
-
     next_token: str = attrs.field()
 
     item_data: "InboundShipmentItemList" = attrs.field()
@@ -344,7 +307,6 @@ class GetShipmentItemsResult:
 
 @attrs.define
 class GetShipmentsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetShipmentsResult" = attrs.field()
     pass
@@ -352,7 +314,6 @@ class GetShipmentsResponse:
 
 @attrs.define
 class GetShipmentsResult:
-
     next_token: str = attrs.field()
 
     shipment_data: "InboundShipmentList" = attrs.field()
@@ -361,7 +322,6 @@ class GetShipmentsResult:
 
 @attrs.define
 class GetTransportDetailsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetTransportDetailsResult" = attrs.field()
     pass
@@ -369,32 +329,27 @@ class GetTransportDetailsResponse:
 
 @attrs.define
 class GetTransportDetailsResult:
-
     transport_content: "TransportContent" = attrs.field()
     pass
 
 
 @attrs.define
 class GuidanceReason:
-
     pass
 
 
 @attrs.define
 class GuidanceReasonList:
-
     pass
 
 
 @attrs.define
 class InboundGuidance:
-
     pass
 
 
 @attrs.define
 class InboundShipmentHeader:
-
     are_cases_required: bool = attrs.field()
     destination_fulfillment_center_id: str = attrs.field()
     shipment_name: str = attrs.field()
@@ -408,7 +363,6 @@ class InboundShipmentHeader:
 
 @attrs.define
 class InboundShipmentInfo:
-
     are_cases_required: bool = attrs.field()
     destination_fulfillment_center_id: str = attrs.field()
     shipment_id: str = attrs.field()
@@ -425,7 +379,6 @@ class InboundShipmentInfo:
 
 @attrs.define
 class InboundShipmentItem:
-
     fulfillment_network_sku: str = attrs.field()
     seller_sku: str = attrs.field()
     shipment_id: str = attrs.field()
@@ -440,19 +393,16 @@ class InboundShipmentItem:
 
 @attrs.define
 class InboundShipmentItemList:
-
     pass
 
 
 @attrs.define
 class InboundShipmentList:
-
     pass
 
 
 @attrs.define
 class InboundShipmentPlan:
-
     destination_fulfillment_center_id: str = attrs.field()
     shipment_id: str = attrs.field()
 
@@ -465,7 +415,6 @@ class InboundShipmentPlan:
 
 @attrs.define
 class InboundShipmentPlanItem:
-
     fulfillment_network_sku: str = attrs.field()
     seller_sku: str = attrs.field()
 
@@ -476,19 +425,16 @@ class InboundShipmentPlanItem:
 
 @attrs.define
 class InboundShipmentPlanItemList:
-
     pass
 
 
 @attrs.define
 class InboundShipmentPlanList:
-
     pass
 
 
 @attrs.define
 class InboundShipmentPlanRequestItem:
-
     asin: str = attrs.field()
     seller_sku: str = attrs.field()
 
@@ -501,13 +447,11 @@ class InboundShipmentPlanRequestItem:
 
 @attrs.define
 class InboundShipmentPlanRequestItemList:
-
     pass
 
 
 @attrs.define
 class InboundShipmentRequest:
-
     marketplace_id: str = attrs.field()
 
     inbound_shipment_header: "InboundShipmentHeader" = attrs.field()
@@ -517,7 +461,6 @@ class InboundShipmentRequest:
 
 @attrs.define
 class InboundShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "InboundShipmentResult" = attrs.field()
     pass
@@ -525,7 +468,6 @@ class InboundShipmentResponse:
 
 @attrs.define
 class InboundShipmentResult:
-
     shipment_id: str = attrs.field()
 
     pass
@@ -533,13 +475,11 @@ class InboundShipmentResult:
 
 @attrs.define
 class IntendedBoxContentsSource:
-
     pass
 
 
 @attrs.define
 class InvalidASIN:
-
     asin: str = attrs.field()
 
     error_reason: "ErrorReason" = attrs.field()
@@ -548,13 +488,11 @@ class InvalidASIN:
 
 @attrs.define
 class InvalidASINList:
-
     pass
 
 
 @attrs.define
 class InvalidSKU:
-
     seller_sku: str = attrs.field()
 
     error_reason: "ErrorReason" = attrs.field()
@@ -563,13 +501,11 @@ class InvalidSKU:
 
 @attrs.define
 class InvalidSKUList:
-
     pass
 
 
 @attrs.define
 class LabelDownloadURL:
-
     download_url: str = attrs.field()
 
     pass
@@ -577,19 +513,16 @@ class LabelDownloadURL:
 
 @attrs.define
 class LabelPrepPreference:
-
     pass
 
 
 @attrs.define
 class LabelPrepType:
-
     pass
 
 
 @attrs.define
 class NonPartneredLtlDataInput:
-
     carrier_name: str = attrs.field()
 
     pro_number: "ProNumber" = attrs.field()
@@ -598,7 +531,6 @@ class NonPartneredLtlDataInput:
 
 @attrs.define
 class NonPartneredLtlDataOutput:
-
     carrier_name: str = attrs.field()
 
     pro_number: "ProNumber" = attrs.field()
@@ -607,7 +539,6 @@ class NonPartneredLtlDataOutput:
 
 @attrs.define
 class NonPartneredSmallParcelDataInput:
-
     carrier_name: str = attrs.field()
 
     package_list: "NonPartneredSmallParcelPackageInputList" = attrs.field()
@@ -616,27 +547,23 @@ class NonPartneredSmallParcelDataInput:
 
 @attrs.define
 class NonPartneredSmallParcelDataOutput:
-
     package_list: "NonPartneredSmallParcelPackageOutputList" = attrs.field()
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelPackageInput:
-
     tracking_id: "TrackingId" = attrs.field()
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelPackageInputList:
-
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelPackageOutput:
-
     carrier_name: str = attrs.field()
 
     package_status: "PackageStatus" = attrs.field()
@@ -646,19 +573,16 @@ class NonPartneredSmallParcelPackageOutput:
 
 @attrs.define
 class NonPartneredSmallParcelPackageOutputList:
-
     pass
 
 
 @attrs.define
 class PackageStatus:
-
     pass
 
 
 @attrs.define
 class Pallet:
-
     is_stacked: bool = attrs.field()
 
     dimensions: "Dimensions" = attrs.field()
@@ -668,13 +592,11 @@ class Pallet:
 
 @attrs.define
 class PalletList:
-
     pass
 
 
 @attrs.define
 class PartneredEstimate:
-
     amount: "Amount" = attrs.field()
     confirm_deadline: "TimeStampStringType" = attrs.field()
     void_deadline: "TimeStampStringType" = attrs.field()
@@ -683,7 +605,6 @@ class PartneredEstimate:
 
 @attrs.define
 class PartneredLtlDataInput:
-
     box_count: "UnsignedIntType" = attrs.field()
     contact: "Contact" = attrs.field()
     freight_ready_date: "DateStringType" = attrs.field()
@@ -696,7 +617,6 @@ class PartneredLtlDataInput:
 
 @attrs.define
 class PartneredLtlDataOutput:
-
     amazon_reference_id: str = attrs.field()
     carrier_name: str = attrs.field()
     is_bill_of_lading_available: bool = attrs.field()
@@ -718,7 +638,6 @@ class PartneredLtlDataOutput:
 
 @attrs.define
 class PartneredSmallParcelDataInput:
-
     carrier_name: str = attrs.field()
 
     package_list: "PartneredSmallParcelPackageInputList" = attrs.field()
@@ -727,7 +646,6 @@ class PartneredSmallParcelDataInput:
 
 @attrs.define
 class PartneredSmallParcelDataOutput:
-
     package_list: "PartneredSmallParcelPackageOutputList" = attrs.field()
     partnered_estimate: "PartneredEstimate" = attrs.field()
     pass
@@ -735,7 +653,6 @@ class PartneredSmallParcelDataOutput:
 
 @attrs.define
 class PartneredSmallParcelPackageInput:
-
     dimensions: "Dimensions" = attrs.field()
     weight: "Weight" = attrs.field()
     pass
@@ -743,13 +660,11 @@ class PartneredSmallParcelPackageInput:
 
 @attrs.define
 class PartneredSmallParcelPackageInputList:
-
     pass
 
 
 @attrs.define
 class PartneredSmallParcelPackageOutput:
-
     carrier_name: str = attrs.field()
 
     dimensions: "Dimensions" = attrs.field()
@@ -761,13 +676,11 @@ class PartneredSmallParcelPackageOutput:
 
 @attrs.define
 class PartneredSmallParcelPackageOutputList:
-
     pass
 
 
 @attrs.define
 class PrepDetails:
-
     prep_instruction: "PrepInstruction" = attrs.field()
     prep_owner: "PrepOwner" = attrs.field()
     pass
@@ -775,43 +688,36 @@ class PrepDetails:
 
 @attrs.define
 class PrepDetailsList:
-
     pass
 
 
 @attrs.define
 class PrepGuidance:
-
     pass
 
 
 @attrs.define
 class PrepInstruction:
-
     pass
 
 
 @attrs.define
 class PrepInstructionList:
-
     pass
 
 
 @attrs.define
 class PrepOwner:
-
     pass
 
 
 @attrs.define
 class ProNumber:
-
     pass
 
 
 @attrs.define
 class PutTransportDetailsRequest:
-
     is_partnered: bool = attrs.field()
 
     shipment_type: "ShipmentType" = attrs.field()
@@ -821,7 +727,6 @@ class PutTransportDetailsRequest:
 
 @attrs.define
 class PutTransportDetailsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CommonTransportResult" = attrs.field()
     pass
@@ -829,13 +734,11 @@ class PutTransportDetailsResponse:
 
 @attrs.define
 class Quantity:
-
     pass
 
 
 @attrs.define
 class SKUInboundGuidance:
-
     asin: str = attrs.field()
     seller_sku: str = attrs.field()
 
@@ -846,13 +749,11 @@ class SKUInboundGuidance:
 
 @attrs.define
 class SKUInboundGuidanceList:
-
     pass
 
 
 @attrs.define
 class SKUPrepInstructions:
-
     asin: str = attrs.field()
     seller_sku: str = attrs.field()
 
@@ -865,43 +766,36 @@ class SKUPrepInstructions:
 
 @attrs.define
 class SKUPrepInstructionsList:
-
     pass
 
 
 @attrs.define
 class SellerFreightClass:
-
     pass
 
 
 @attrs.define
 class ShipmentStatus:
-
     pass
 
 
 @attrs.define
 class ShipmentType:
-
     pass
 
 
 @attrs.define
 class TimeStampStringType:
-
     pass
 
 
 @attrs.define
 class TrackingId:
-
     pass
 
 
 @attrs.define
 class TransportContent:
-
     transport_details: "TransportDetailOutput" = attrs.field()
     transport_header: "TransportHeader" = attrs.field()
     transport_result: "TransportResult" = attrs.field()
@@ -910,7 +804,6 @@ class TransportContent:
 
 @attrs.define
 class TransportDetailInput:
-
     non_partnered_ltl_data: "NonPartneredLtlDataInput" = attrs.field()
     non_partnered_small_parcel_data: "NonPartneredSmallParcelDataInput" = attrs.field()
     partnered_ltl_data: "PartneredLtlDataInput" = attrs.field()
@@ -920,7 +813,6 @@ class TransportDetailInput:
 
 @attrs.define
 class TransportDetailOutput:
-
     non_partnered_ltl_data: "NonPartneredLtlDataOutput" = attrs.field()
     non_partnered_small_parcel_data: "NonPartneredSmallParcelDataOutput" = attrs.field()
     partnered_ltl_data: "PartneredLtlDataOutput" = attrs.field()
@@ -930,7 +822,6 @@ class TransportDetailOutput:
 
 @attrs.define
 class TransportHeader:
-
     is_partnered: bool = attrs.field()
     seller_id: str = attrs.field()
     shipment_id: str = attrs.field()
@@ -941,7 +832,6 @@ class TransportHeader:
 
 @attrs.define
 class TransportResult:
-
     error_code: str = attrs.field()
     error_description: str = attrs.field()
 
@@ -951,31 +841,26 @@ class TransportResult:
 
 @attrs.define
 class TransportStatus:
-
     pass
 
 
 @attrs.define
 class UnitOfMeasurement:
-
     pass
 
 
 @attrs.define
 class UnitOfWeight:
-
     pass
 
 
 @attrs.define
 class UnsignedIntType:
-
     pass
 
 
 @attrs.define
 class VoidTransportResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CommonTransportResult" = attrs.field()
     pass
@@ -983,7 +868,6 @@ class VoidTransportResponse:
 
 @attrs.define
 class Weight:
-
     unit: "UnitOfWeight" = attrs.field()
     value: "BigDecimalType" = attrs.field()
     pass
@@ -991,10 +875,10 @@ class Weight:
 
 class FulfillmentInboundV0Client(BaseClient):
     def confirm_preorder(
-        self,
-        shipment_id: str,
-        need_by_date: str,
-        marketplace_id: str,
+            self,
+            shipment_id: str,
+            need_by_date: str,
+            marketplace_id: str,
     ):
         """
         Returns information needed to confirm a shipment for pre-order. Call this operation after calling the getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment.
@@ -1028,8 +912,8 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def confirm_transport(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment.
@@ -1057,11 +941,11 @@ class FulfillmentInboundV0Client(BaseClient):
     _confirm_transport_params = (("shipmentId", "path"),)  # name, param in
 
     def create_inbound_shipment(
-        self,
-        shipment_id: str,
-        inbound_shipment_header: dict[str, Any],
-        inbound_shipment_items: list["InboundShipmentItem"],
-        marketplace_id: str,
+            self,
+            shipment_id: str,
+            inbound_shipment_header: dict[str, Any],
+            inbound_shipment_items: list["InboundShipmentItem"],
+            marketplace_id: str,
     ):
         """
         Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
@@ -1098,7 +982,7 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def create_inbound_shipment_plan(
-        self,
+            self,
     ):
         """
         Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory.
@@ -1121,8 +1005,8 @@ class FulfillmentInboundV0Client(BaseClient):
     _create_inbound_shipment_plan_params = ()  # name, param in
 
     def estimate_transport(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
@@ -1148,8 +1032,8 @@ class FulfillmentInboundV0Client(BaseClient):
     _estimate_transport_params = (("shipmentId", "path"),)  # name, param in
 
     def get_bill_of_lading(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
@@ -1173,10 +1057,10 @@ class FulfillmentInboundV0Client(BaseClient):
     _get_bill_of_lading_params = (("shipmentId", "path"),)  # name, param in
 
     def get_inbound_guidance(
-        self,
-        marketplace_id: str,
-        seller_skulist: list[str] = None,
-        asinlist: list[str] = None,
+            self,
+            marketplace_id: str,
+            seller_skulist: list[str] = None,
+            asinlist: list[str] = None,
     ):
         """
         Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion.
@@ -1210,28 +1094,28 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def get_labels(
-        self,
-        shipment_id: str,
-        page_type: Union[
-            Literal["PackageLabel_Letter_2"],
-            Literal["PackageLabel_Letter_4"],
-            Literal["PackageLabel_Letter_6"],
-            Literal["PackageLabel_Letter_6_CarrierLeft"],
-            Literal["PackageLabel_A4_2"],
-            Literal["PackageLabel_A4_4"],
-            Literal["PackageLabel_Plain_Paper"],
-            Literal["PackageLabel_Plain_Paper_CarrierBottom"],
-            Literal["PackageLabel_Thermal"],
-            Literal["PackageLabel_Thermal_Unified"],
-            Literal["PackageLabel_Thermal_NonPCP"],
-            Literal["PackageLabel_Thermal_No_Carrier_Rotation"],
-        ],
-        label_type: Union[Literal["BARCODE_2D"], Literal["UNIQUE"], Literal["PALLET"]],
-        number_of_packages: int = None,
-        package_labels_to_print: list[str] = None,
-        number_of_pallets: int = None,
-        page_size: int = None,
-        page_start_index: int = None,
+            self,
+            shipment_id: str,
+            page_type: Union[
+                Literal["PackageLabel_Letter_2"],
+                Literal["PackageLabel_Letter_4"],
+                Literal["PackageLabel_Letter_6"],
+                Literal["PackageLabel_Letter_6_CarrierLeft"],
+                Literal["PackageLabel_A4_2"],
+                Literal["PackageLabel_A4_4"],
+                Literal["PackageLabel_Plain_Paper"],
+                Literal["PackageLabel_Plain_Paper_CarrierBottom"],
+                Literal["PackageLabel_Thermal"],
+                Literal["PackageLabel_Thermal_Unified"],
+                Literal["PackageLabel_Thermal_NonPCP"],
+                Literal["PackageLabel_Thermal_No_Carrier_Rotation"],
+            ],
+            label_type: Union[Literal["BARCODE_2D"], Literal["UNIQUE"], Literal["PALLET"]],
+            number_of_packages: int = None,
+            package_labels_to_print: list[str] = None,
+            number_of_pallets: int = None,
+            page_size: int = None,
+            page_start_index: int = None,
     ):
         """
         Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -1281,9 +1165,9 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def get_preorder_info(
-        self,
-        shipment_id: str,
-        marketplace_id: str,
+            self,
+            shipment_id: str,
+            marketplace_id: str,
     ):
         """
         Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order.
@@ -1314,10 +1198,10 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def get_prep_instructions(
-        self,
-        ship_to_country_code: str,
-        seller_skulist: list[str] = None,
-        asinlist: list[str] = None,
+            self,
+            ship_to_country_code: str,
+            seller_skulist: list[str] = None,
+            asinlist: list[str] = None,
     ):
         """
         Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network.
@@ -1353,12 +1237,12 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def get_shipment_items(
-        self,
-        query_type: Union[Literal["DATE_RANGE"], Literal["NEXT_TOKEN"]],
-        marketplace_id: str,
-        last_updated_after: str = None,
-        last_updated_before: str = None,
-        next_token: str = None,
+            self,
+            query_type: Union[Literal["DATE_RANGE"], Literal["NEXT_TOKEN"]],
+            marketplace_id: str,
+            last_updated_after: str = None,
+            last_updated_before: str = None,
+            next_token: str = None,
     ):
         """
         Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
@@ -1398,9 +1282,9 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def get_shipment_items_by_shipment_id(
-        self,
-        shipment_id: str,
-        marketplace_id: str,
+            self,
+            shipment_id: str,
+            marketplace_id: str,
     ):
         """
         Returns a list of items in a specified inbound shipment.
@@ -1431,27 +1315,27 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def get_shipments(
-        self,
-        query_type: Union[Literal["SHIPMENT"], Literal["DATE_RANGE"], Literal["NEXT_TOKEN"]],
-        marketplace_id: str,
-        shipment_status_list: list[
-            Union[
-                Literal["WORKING"],
-                Literal["SHIPPED"],
-                Literal["RECEIVING"],
-                Literal["CANCELLED"],
-                Literal["DELETED"],
-                Literal["CLOSED"],
-                Literal["ERROR"],
-                Literal["IN_TRANSIT"],
-                Literal["DELIVERED"],
-                Literal["CHECKED_IN"],
-            ]
-        ] = None,
-        shipment_id_list: list[str] = None,
-        last_updated_after: str = None,
-        last_updated_before: str = None,
-        next_token: str = None,
+            self,
+            query_type: Union[Literal["SHIPMENT"], Literal["DATE_RANGE"], Literal["NEXT_TOKEN"]],
+            marketplace_id: str,
+            shipment_status_list: list[
+                Union[
+                    Literal["WORKING"],
+                    Literal["SHIPPED"],
+                    Literal["RECEIVING"],
+                    Literal["CANCELLED"],
+                    Literal["DELETED"],
+                    Literal["CLOSED"],
+                    Literal["ERROR"],
+                    Literal["IN_TRANSIT"],
+                    Literal["DELIVERED"],
+                    Literal["CHECKED_IN"],
+                ]
+            ] = None,
+            shipment_id_list: list[str] = None,
+            last_updated_after: str = None,
+            last_updated_before: str = None,
+            next_token: str = None,
     ):
         """
         Returns a list of inbound shipments based on criteria that you specify.
@@ -1497,8 +1381,8 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def get_transport_details(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Returns current transportation information about an inbound shipment.
@@ -1522,11 +1406,11 @@ class FulfillmentInboundV0Client(BaseClient):
     _get_transport_details_params = (("shipmentId", "path"),)  # name, param in
 
     def put_transport_details(
-        self,
-        shipment_id: str,
-        is_partnered: bool,
-        shipment_type: Union[Literal["SP"], Literal["LTL"]],
-        transport_details: dict[str, Any],
+            self,
+            shipment_id: str,
+            is_partnered: bool,
+            shipment_type: Union[Literal["SP"], Literal["LTL"]],
+            transport_details: dict[str, Any],
     ):
         """
         Sends transportation information to Amazon about an inbound shipment.
@@ -1563,11 +1447,11 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def update_inbound_shipment(
-        self,
-        shipment_id: str,
-        inbound_shipment_header: dict[str, Any],
-        inbound_shipment_items: list["InboundShipmentItem"],
-        marketplace_id: str,
+            self,
+            shipment_id: str,
+            inbound_shipment_header: dict[str, Any],
+            inbound_shipment_items: list["InboundShipmentItem"],
+            marketplace_id: str,
     ):
         """
         Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported.
@@ -1604,8 +1488,8 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     def void_transport(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier.

@@ -7,14 +7,15 @@ API Version: 2021-12-28
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AcknowledgementStatus:
-
     code: str = attrs.field()
     description: str = attrs.field()
 
@@ -23,7 +24,6 @@ class AcknowledgementStatus:
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -42,13 +42,11 @@ class Address:
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -58,7 +56,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -66,7 +63,6 @@ class ErrorList:
 
 @attrs.define
 class GiftDetails:
-
     gift_message: str = attrs.field()
     gift_wrap_id: str = attrs.field()
 
@@ -75,7 +71,6 @@ class GiftDetails:
 
 @attrs.define
 class ItemQuantity:
-
     amount: int = attrs.field()
     unit_of_measure: Union[Literal["Each"]] = attrs.field()
 
@@ -84,7 +79,6 @@ class ItemQuantity:
 
 @attrs.define
 class Money:
-
     currency_code: str = attrs.field()
 
     amount: "Decimal" = attrs.field()
@@ -93,7 +87,6 @@ class Money:
 
 @attrs.define
 class Order:
-
     purchase_order_number: str = attrs.field()
 
     order_details: "OrderDetails" = attrs.field()
@@ -102,7 +95,6 @@ class Order:
 
 @attrs.define
 class OrderAcknowledgementItem:
-
     acknowledgement_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field()
@@ -117,7 +109,6 @@ class OrderAcknowledgementItem:
 
 @attrs.define
 class OrderDetails:
-
     customer_order_number: str = attrs.field()
     items: list["OrderItem"] = attrs.field()
     order_date: str = attrs.field()
@@ -135,7 +126,6 @@ class OrderDetails:
 
 @attrs.define
 class OrderItem:
-
     buyer_product_identifier: str = attrs.field()
     item_sequence_number: str = attrs.field()
     title: str = attrs.field()
@@ -152,7 +142,6 @@ class OrderItem:
 
 @attrs.define
 class OrderItemAcknowledgement:
-
     buyer_product_identifier: str = attrs.field()
     item_sequence_number: str = attrs.field()
     vendor_product_identifier: str = attrs.field()
@@ -163,7 +152,6 @@ class OrderItemAcknowledgement:
 
 @attrs.define
 class OrderList:
-
     orders: list["Order"] = attrs.field()
 
     pagination: "Pagination" = attrs.field()
@@ -172,7 +160,6 @@ class OrderList:
 
 @attrs.define
 class Pagination:
-
     next_token: str = attrs.field()
 
     pass
@@ -180,7 +167,6 @@ class Pagination:
 
 @attrs.define
 class PartyIdentification:
-
     party_id: str = attrs.field()
 
     address: "Address" = attrs.field()
@@ -190,7 +176,6 @@ class PartyIdentification:
 
 @attrs.define
 class ScheduledDeliveryShipment:
-
     earliest_nominated_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     latest_nominated_delivery_date: str = attrs.field()
@@ -202,7 +187,6 @@ class ScheduledDeliveryShipment:
 
 @attrs.define
 class ShipmentDates:
-
     promised_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     required_ship_date: str = attrs.field()
@@ -213,7 +197,6 @@ class ShipmentDates:
 
 @attrs.define
 class ShipmentDetails:
-
     is_gift: bool = attrs.field()
     is_priority_shipment: bool = attrs.field()
     is_pslip_required: bool = attrs.field()
@@ -227,7 +210,6 @@ class ShipmentDetails:
 
 @attrs.define
 class SubmitAcknowledgementRequest:
-
     order_acknowledgements: list["OrderAcknowledgementItem"] = attrs.field()
 
     pass
@@ -235,7 +217,6 @@ class SubmitAcknowledgementRequest:
 
 @attrs.define
 class SubmitAcknowledgementResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionId" = attrs.field()
     pass
@@ -243,7 +224,6 @@ class SubmitAcknowledgementResponse:
 
 @attrs.define
 class TaxDetails:
-
     type: Union[
         Literal["CONSUMPTION"],
         Literal["GST"],
@@ -262,20 +242,17 @@ class TaxDetails:
 
 @attrs.define
 class TaxItemDetails:
-
     tax_line_item: "TaxLineItem" = attrs.field()
     pass
 
 
 @attrs.define
 class TaxLineItem:
-
     pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
-
     tax_registration_messages: str = attrs.field()
     tax_registration_number: str = attrs.field()
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
@@ -286,7 +263,6 @@ class TaxRegistrationDetails:
 
 @attrs.define
 class TransactionId:
-
     transaction_id: str = attrs.field()
 
     pass
@@ -294,8 +270,8 @@ class TransactionId:
 
 class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     def get_order(
-        self,
-        purchase_order_number: str,
+            self,
+            purchase_order_number: str,
     ):
         """
         Returns purchase order information for the purchaseOrderNumber that you specify.
@@ -319,15 +295,15 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_orders(
-        self,
-        created_after: str,
-        created_before: str,
-        ship_from_party_id: str = None,
-        status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = None,
-        limit: int = None,
-        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-        next_token: str = None,
-        include_details: str = None,
+            self,
+            created_after: str,
+            created_before: str,
+            ship_from_party_id: str = None,
+            status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = None,
+            limit: int = None,
+            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+            next_token: str = None,
+            include_details: str = None,
     ):
         """
         Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
@@ -376,7 +352,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     )
 
     def submit_acknowledgement(
-        self,
+            self,
     ):
         """
         Submits acknowledgements for one or more purchase orders.

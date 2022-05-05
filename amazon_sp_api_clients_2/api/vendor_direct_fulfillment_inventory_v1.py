@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -24,13 +25,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class InventoryUpdate:
-
     is_full_update: bool = attrs.field()
     items: list["ItemDetails"] = attrs.field()
 
@@ -40,7 +39,6 @@ class InventoryUpdate:
 
 @attrs.define
 class ItemDetails:
-
     buyer_product_identifier: str = attrs.field()
     is_obsolete: bool = attrs.field()
     vendor_product_identifier: str = attrs.field()
@@ -51,7 +49,6 @@ class ItemDetails:
 
 @attrs.define
 class ItemQuantity:
-
     amount: int = attrs.field()
     unit_of_measure: str = attrs.field()
 
@@ -60,7 +57,6 @@ class ItemQuantity:
 
 @attrs.define
 class PartyIdentification:
-
     party_id: str = attrs.field()
 
     pass
@@ -68,14 +64,12 @@ class PartyIdentification:
 
 @attrs.define
 class SubmitInventoryUpdateRequest:
-
     inventory: "InventoryUpdate" = attrs.field()
     pass
 
 
 @attrs.define
 class SubmitInventoryUpdateResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionReference" = attrs.field()
     pass
@@ -83,7 +77,6 @@ class SubmitInventoryUpdateResponse:
 
 @attrs.define
 class TransactionReference:
-
     transaction_id: str = attrs.field()
 
     pass
@@ -91,9 +84,9 @@ class TransactionReference:
 
 class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     def submit_inventory_update(
-        self,
-        warehouse_id: str,
-        inventory: dict[str, Any] = None,
+            self,
+            warehouse_id: str,
+            inventory: dict[str, Any] = None,
     ):
         """
         Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.

@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AcknowledgementStatusDetails:
-
     acknowledgement_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
@@ -25,7 +26,6 @@ class AcknowledgementStatusDetails:
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -44,19 +44,16 @@ class Address:
 
 @attrs.define
 class DateTimeInterval:
-
     pass
 
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -66,13 +63,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetPurchaseOrderResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Order" = attrs.field()
     pass
@@ -80,7 +75,6 @@ class GetPurchaseOrderResponse:
 
 @attrs.define
 class GetPurchaseOrdersResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderList" = attrs.field()
     pass
@@ -88,7 +82,6 @@ class GetPurchaseOrdersResponse:
 
 @attrs.define
 class GetPurchaseOrdersStatusResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderListStatus" = attrs.field()
     pass
@@ -96,7 +89,6 @@ class GetPurchaseOrdersStatusResponse:
 
 @attrs.define
 class ImportDetails:
-
     import_containers: str = attrs.field()
     # {'maxLength': 64}
     international_commercial_terms: Union[
@@ -129,7 +121,6 @@ class ImportDetails:
 
 @attrs.define
 class ItemQuantity:
-
     amount: int = attrs.field()
     unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field()
     unit_size: int = attrs.field()
@@ -139,13 +130,11 @@ class ItemQuantity:
 
 @attrs.define
 class ItemStatus:
-
     pass
 
 
 @attrs.define
 class Money:
-
     currency_code: str = attrs.field()
     # {'maxLength': 3}
 
@@ -155,7 +144,6 @@ class Money:
 
 @attrs.define
 class Order:
-
     purchase_order_number: str = attrs.field()
     purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = attrs.field()
 
@@ -165,7 +153,6 @@ class Order:
 
 @attrs.define
 class OrderAcknowledgement:
-
     acknowledgement_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     items: list["OrderAcknowledgementItem"] = attrs.field()
@@ -177,7 +164,6 @@ class OrderAcknowledgement:
 
 @attrs.define
 class OrderAcknowledgementItem:
-
     amazon_product_identifier: str = attrs.field()
     discount_multiplier: str = attrs.field()
     item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field()
@@ -192,7 +178,6 @@ class OrderAcknowledgementItem:
 
 @attrs.define
 class OrderDetails:
-
     deal_code: str = attrs.field()
     items: list["OrderItem"] = attrs.field()
     payment_method: Union[
@@ -220,7 +205,6 @@ class OrderDetails:
 
 @attrs.define
 class OrderItem:
-
     amazon_product_identifier: str = attrs.field()
     is_back_order_allowed: bool = attrs.field()
     item_sequence_number: str = attrs.field()
@@ -234,7 +218,6 @@ class OrderItem:
 
 @attrs.define
 class OrderItemAcknowledgement:
-
     acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field()
     rejection_reason: Union[
         Literal["TemporarilyUnavailable"], Literal["InvalidProductIdentifier"], Literal["ObsoleteProduct"]
@@ -250,7 +233,6 @@ class OrderItemAcknowledgement:
 
 @attrs.define
 class OrderItemStatus:
-
     acknowledgement_status: dict[str, Any] = attrs.field()
     # {'properties': {'confirmationStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['ACCEPTED', 'PARTIALLY_ACCEPTED', 'REJECTED', 'UNCONFIRMED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Confirmation status of line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'acceptedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'rejectedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'acknowledgementStatusDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/AcknowledgementStatusDetails'), properties=None, additionalProperties=None, description='Details of item quantity confirmed.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
     buyer_product_identifier: str = attrs.field()
@@ -268,7 +250,6 @@ class OrderItemStatus:
 
 @attrs.define
 class OrderList:
-
     orders: list["Order"] = attrs.field()
 
     pagination: "Pagination" = attrs.field()
@@ -277,7 +258,6 @@ class OrderList:
 
 @attrs.define
 class OrderListStatus:
-
     orders_status: list["OrderStatus"] = attrs.field()
 
     pagination: "Pagination" = attrs.field()
@@ -286,7 +266,6 @@ class OrderListStatus:
 
 @attrs.define
 class OrderStatus:
-
     last_updated_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     purchase_order_date: str = attrs.field()
@@ -302,7 +281,6 @@ class OrderStatus:
 
 @attrs.define
 class OrderedQuantityDetails:
-
     updated_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
@@ -313,7 +291,6 @@ class OrderedQuantityDetails:
 
 @attrs.define
 class Pagination:
-
     next_token: str = attrs.field()
 
     pass
@@ -321,7 +298,6 @@ class Pagination:
 
 @attrs.define
 class PartyIdentification:
-
     party_id: str = attrs.field()
 
     address: "Address" = attrs.field()
@@ -331,7 +307,6 @@ class PartyIdentification:
 
 @attrs.define
 class SubmitAcknowledgementRequest:
-
     acknowledgements: list["OrderAcknowledgement"] = attrs.field()
 
     pass
@@ -339,7 +314,6 @@ class SubmitAcknowledgementRequest:
 
 @attrs.define
 class SubmitAcknowledgementResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionId" = attrs.field()
     pass
@@ -347,7 +321,6 @@ class SubmitAcknowledgementResponse:
 
 @attrs.define
 class TaxRegistrationDetails:
-
     tax_registration_number: str = attrs.field()
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
@@ -356,7 +329,6 @@ class TaxRegistrationDetails:
 
 @attrs.define
 class TransactionId:
-
     transaction_id: str = attrs.field()
 
     pass
@@ -364,8 +336,8 @@ class TransactionId:
 
 class VendorOrdersV1Client(BaseClient):
     def get_purchase_order(
-        self,
-        purchase_order_number: str,
+            self,
+            purchase_order_number: str,
     ):
         """
         Returns a purchase order based on the purchaseOrderNumber value that you specify.
@@ -390,19 +362,19 @@ class VendorOrdersV1Client(BaseClient):
     _get_purchase_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_purchase_orders(
-        self,
-        limit: int = None,
-        created_after: str = None,
-        created_before: str = None,
-        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-        next_token: str = None,
-        include_details: str = None,
-        changed_after: str = None,
-        changed_before: str = None,
-        po_item_state: Union[Literal["Cancelled"]] = None,
-        is_pochanged: str = None,
-        purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = None,
-        ordering_vendor_code: str = None,
+            self,
+            limit: int = None,
+            created_after: str = None,
+            created_before: str = None,
+            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+            next_token: str = None,
+            include_details: str = None,
+            changed_after: str = None,
+            changed_before: str = None,
+            po_item_state: Union[Literal["Cancelled"]] = None,
+            is_pochanged: str = None,
+            purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = None,
+            ordering_vendor_code: str = None,
     ):
         """
         Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the createdAfter, createdBefore, changedAfter and changedBefore parameters. The date range to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting includeDetails to false. You can then use the getPurchaseOrder operation to receive details for a specific purchase order.
@@ -464,22 +436,23 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     def get_purchase_orders_status(
-        self,
-        limit: int = None,
-        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-        next_token: str = None,
-        created_after: str = None,
-        created_before: str = None,
-        updated_after: str = None,
-        updated_before: str = None,
-        purchase_order_number: str = None,
-        purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = None,
-        item_confirmation_status: Union[
-            Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]
-        ] = None,
-        item_receive_status: Union[Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = None,
-        ordering_vendor_code: str = None,
-        ship_to_party_id: str = None,
+            self,
+            limit: int = None,
+            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+            next_token: str = None,
+            created_after: str = None,
+            created_before: str = None,
+            updated_after: str = None,
+            updated_before: str = None,
+            purchase_order_number: str = None,
+            purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = None,
+            item_confirmation_status: Union[
+                Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]
+            ] = None,
+            item_receive_status: Union[
+                Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = None,
+            ordering_vendor_code: str = None,
+            ship_to_party_id: str = None,
     ):
         """
         Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
@@ -544,7 +517,7 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     def submit_acknowledgement(
-        self,
+            self,
     ):
         """
         Submits acknowledgements for one or more purchase orders.

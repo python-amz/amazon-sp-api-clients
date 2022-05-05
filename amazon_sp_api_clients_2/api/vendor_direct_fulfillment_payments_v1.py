@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AdditionalDetails:
-
     detail: str = attrs.field()
     language_code: str = attrs.field()
     type: Union[Literal["SUR"], Literal["OCR"]] = attrs.field()
@@ -24,7 +25,6 @@ class AdditionalDetails:
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -42,7 +42,6 @@ class Address:
 
 @attrs.define
 class ChargeDetails:
-
     tax_details: list["TaxDetail"] = attrs.field()
     type: Union[
         Literal["GIFTWRAP"],
@@ -60,13 +59,11 @@ class ChargeDetails:
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -76,13 +73,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class InvoiceDetail:
-
     additional_details: list["AdditionalDetails"] = attrs.field()
     charge_details: list["ChargeDetails"] = attrs.field()
     invoice_date: str = attrs.field()
@@ -103,7 +98,6 @@ class InvoiceDetail:
 
 @attrs.define
 class InvoiceItem:
-
     buyer_product_identifier: str = attrs.field()
     charge_details: list["ChargeDetails"] = attrs.field()
     hsn_code: str = attrs.field()
@@ -120,7 +114,6 @@ class InvoiceItem:
 
 @attrs.define
 class ItemQuantity:
-
     amount: int = attrs.field()
     unit_of_measure: str = attrs.field()
 
@@ -129,7 +122,6 @@ class ItemQuantity:
 
 @attrs.define
 class Money:
-
     currency_code: str = attrs.field()
 
     amount: "Decimal" = attrs.field()
@@ -138,7 +130,6 @@ class Money:
 
 @attrs.define
 class PartyIdentification:
-
     party_id: str = attrs.field()
     tax_registration_details: list["TaxRegistrationDetail"] = attrs.field()
 
@@ -148,7 +139,6 @@ class PartyIdentification:
 
 @attrs.define
 class SubmitInvoiceRequest:
-
     invoices: list["InvoiceDetail"] = attrs.field()
 
     pass
@@ -156,7 +146,6 @@ class SubmitInvoiceRequest:
 
 @attrs.define
 class SubmitInvoiceResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionReference" = attrs.field()
     pass
@@ -164,7 +153,6 @@ class SubmitInvoiceResponse:
 
 @attrs.define
 class TaxDetail:
-
     tax_type: Union[
         Literal["CGST"],
         Literal["SGST"],
@@ -190,7 +178,6 @@ class TaxDetail:
 
 @attrs.define
 class TaxRegistrationDetail:
-
     tax_registration_message: str = attrs.field()
     tax_registration_number: str = attrs.field()
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
@@ -201,7 +188,6 @@ class TaxRegistrationDetail:
 
 @attrs.define
 class TransactionReference:
-
     transaction_id: str = attrs.field()
 
     pass
@@ -209,7 +195,7 @@ class TransactionReference:
 
 class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
     def submit_invoice(
-        self,
+            self,
     ):
         """
         Submits one or more invoices for a vendor's direct fulfillment orders.

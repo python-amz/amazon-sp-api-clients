@@ -7,14 +7,15 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -33,19 +34,16 @@ class Address:
 
 @attrs.define
 class AddressTypeEnum:
-
     pass
 
 
 @attrs.define
 class Blob:
-
     pass
 
 
 @attrs.define
 class BuyerTaxInfo:
-
     company_legal_name: str = attrs.field()
     taxing_region: str = attrs.field()
 
@@ -55,7 +53,6 @@ class BuyerTaxInfo:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -65,13 +62,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetInvoiceStatusResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ShipmentInvoiceStatusResponse" = attrs.field()
     pass
@@ -79,7 +74,6 @@ class GetInvoiceStatusResponse:
 
 @attrs.define
 class GetShipmentDetailsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ShipmentDetail" = attrs.field()
     pass
@@ -87,7 +81,6 @@ class GetShipmentDetailsResponse:
 
 @attrs.define
 class MarketplaceTaxInfo:
-
     company_legal_name: str = attrs.field()
     taxing_region: str = attrs.field()
 
@@ -97,7 +90,6 @@ class MarketplaceTaxInfo:
 
 @attrs.define
 class Money:
-
     amount: str = attrs.field()
     currency_code: str = attrs.field()
 
@@ -106,19 +98,16 @@ class Money:
 
 @attrs.define
 class PaymentMethodDetailItemList:
-
     pass
 
 
 @attrs.define
 class SerialNumbersList:
-
     pass
 
 
 @attrs.define
 class ShipmentDetail:
-
     amazon_order_id: str = attrs.field()
     amazon_shipment_id: str = attrs.field()
     buyer_county: str = attrs.field()
@@ -140,13 +129,11 @@ class ShipmentDetail:
 
 @attrs.define
 class ShipmentInvoiceStatus:
-
     pass
 
 
 @attrs.define
 class ShipmentInvoiceStatusInfo:
-
     amazon_shipment_id: str = attrs.field()
 
     invoice_status: "ShipmentInvoiceStatus" = attrs.field()
@@ -155,14 +142,12 @@ class ShipmentInvoiceStatusInfo:
 
 @attrs.define
 class ShipmentInvoiceStatusResponse:
-
     shipments: "ShipmentInvoiceStatusInfo" = attrs.field()
     pass
 
 
 @attrs.define
 class ShipmentItem:
-
     asin: str = attrs.field()
     order_item_id: str = attrs.field()
     quantity_ordered: Union[float, int] = attrs.field()
@@ -180,13 +165,11 @@ class ShipmentItem:
 
 @attrs.define
 class ShipmentItems:
-
     pass
 
 
 @attrs.define
 class SubmitInvoiceRequest:
-
     content_md5value: str = attrs.field()
     marketplace_id: str = attrs.field()
 
@@ -196,14 +179,12 @@ class SubmitInvoiceRequest:
 
 @attrs.define
 class SubmitInvoiceResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class TaxClassification:
-
     name: str = attrs.field()
     value: str = attrs.field()
 
@@ -212,14 +193,13 @@ class TaxClassification:
 
 @attrs.define
 class TaxClassificationList:
-
     pass
 
 
 class ShipmentInvoicingV0Client(BaseClient):
     def get_invoice_status(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Returns the invoice status for the shipment you specify.
@@ -244,8 +224,8 @@ class ShipmentInvoicingV0Client(BaseClient):
     _get_invoice_status_params = (("shipmentId", "path"),)  # name, param in
 
     def get_shipment_details(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Returns the shipment details required to issue an invoice for the specified shipment.
@@ -270,11 +250,11 @@ class ShipmentInvoicingV0Client(BaseClient):
     _get_shipment_details_params = (("shipmentId", "path"),)  # name, param in
 
     def submit_invoice(
-        self,
-        shipment_id: str,
-        invoice_content: str,
-        content_md5value: str,
-        marketplace_id: str = None,
+            self,
+            shipment_id: str,
+            invoice_content: str,
+            content_md5value: str,
+            marketplace_id: str = None,
     ):
         """
         Submits a shipment invoice document for a given shipment.

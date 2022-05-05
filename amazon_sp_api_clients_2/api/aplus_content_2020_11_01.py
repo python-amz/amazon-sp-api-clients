@@ -7,45 +7,41 @@ API Version: 2020-11-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AplusPaginatedResponse:
-
     pass
 
 
 @attrs.define
 class AplusResponse:
-
     warnings: "MessageSet" = attrs.field()
     pass
 
 
 @attrs.define
 class Asin:
-
     pass
 
 
 @attrs.define
 class AsinBadge:
-
     pass
 
 
 @attrs.define
 class AsinBadgeSet:
-
     pass
 
 
 @attrs.define
 class AsinMetadata:
-
     image_url: str = attrs.field()
     # {'minLength': 1}
     title: str = attrs.field()
@@ -60,37 +56,31 @@ class AsinMetadata:
 
 @attrs.define
 class AsinMetadataSet:
-
     pass
 
 
 @attrs.define
 class AsinSet:
-
     pass
 
 
 @attrs.define
 class ColorType:
-
     pass
 
 
 @attrs.define
 class ContentBadge:
-
     pass
 
 
 @attrs.define
 class ContentBadgeSet:
-
     pass
 
 
 @attrs.define
 class ContentDocument:
-
     name: str = attrs.field()
     # {'minLength': 1, 'maxLength': 100}
 
@@ -103,7 +93,6 @@ class ContentDocument:
 
 @attrs.define
 class ContentMetadata:
-
     name: str = attrs.field()
     # {'minLength': 1, 'maxLength': 100}
     update_time: str = attrs.field()
@@ -117,7 +106,6 @@ class ContentMetadata:
 
 @attrs.define
 class ContentMetadataRecord:
-
     content_metadata: "ContentMetadata" = attrs.field()
     content_reference_key: "ContentReferenceKey" = attrs.field()
     pass
@@ -125,13 +113,11 @@ class ContentMetadataRecord:
 
 @attrs.define
 class ContentMetadataRecordList:
-
     pass
 
 
 @attrs.define
 class ContentModule:
-
     content_module_type: "ContentModuleType" = attrs.field()
     standard_company_logo: "StandardCompanyLogoModule" = attrs.field()
     standard_comparison_table: "StandardComparisonTableModule" = attrs.field()
@@ -153,19 +139,16 @@ class ContentModule:
 
 @attrs.define
 class ContentModuleList:
-
     pass
 
 
 @attrs.define
 class ContentModuleType:
-
     pass
 
 
 @attrs.define
 class ContentRecord:
-
     content_document: "ContentDocument" = attrs.field()
     content_metadata: "ContentMetadata" = attrs.field()
     content_reference_key: "ContentReferenceKey" = attrs.field()
@@ -174,37 +157,31 @@ class ContentRecord:
 
 @attrs.define
 class ContentReferenceKey:
-
     pass
 
 
 @attrs.define
 class ContentReferenceKeySet:
-
     pass
 
 
 @attrs.define
 class ContentStatus:
-
     pass
 
 
 @attrs.define
 class ContentSubType:
-
     pass
 
 
 @attrs.define
 class ContentType:
-
     pass
 
 
 @attrs.define
 class Decorator:
-
     depth: int = attrs.field()
     # {'maximum': 100.0, 'minimum': 0.0}
     length: int = attrs.field()
@@ -218,19 +195,16 @@ class Decorator:
 
 @attrs.define
 class DecoratorSet:
-
     pass
 
 
 @attrs.define
 class DecoratorType:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     # {'minLength': 1}
     details: str = attrs.field()
@@ -243,7 +217,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -251,13 +224,11 @@ class ErrorList:
 
 @attrs.define
 class GetContentDocumentResponse:
-
     pass
 
 
 @attrs.define
 class ImageComponent:
-
     alt_text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 100}
     upload_destination_id: str = attrs.field()
@@ -269,7 +240,6 @@ class ImageComponent:
 
 @attrs.define
 class ImageCropSpecification:
-
     offset: "ImageOffsets" = attrs.field()
     size: "ImageDimensions" = attrs.field()
     pass
@@ -277,7 +247,6 @@ class ImageCropSpecification:
 
 @attrs.define
 class ImageDimensions:
-
     height: "IntegerWithUnits" = attrs.field()
     width: "IntegerWithUnits" = attrs.field()
     pass
@@ -285,7 +254,6 @@ class ImageDimensions:
 
 @attrs.define
 class ImageOffsets:
-
     x: "IntegerWithUnits" = attrs.field()
     y: "IntegerWithUnits" = attrs.field()
     pass
@@ -293,7 +261,6 @@ class ImageOffsets:
 
 @attrs.define
 class IntegerWithUnits:
-
     units: str = attrs.field()
     value: int = attrs.field()
 
@@ -302,37 +269,31 @@ class IntegerWithUnits:
 
 @attrs.define
 class LanguageTag:
-
     pass
 
 
 @attrs.define
 class ListContentDocumentAsinRelationsResponse:
-
     pass
 
 
 @attrs.define
 class MarketplaceId:
-
     pass
 
 
 @attrs.define
 class MessageSet:
-
     pass
 
 
 @attrs.define
 class PageToken:
-
     pass
 
 
 @attrs.define
 class ParagraphComponent:
-
     text_list: list["TextComponent"] = attrs.field()
     # {'maxItems': 100, 'minItems': 1}
 
@@ -341,7 +302,6 @@ class ParagraphComponent:
 
 @attrs.define
 class PlainTextItem:
-
     position: int = attrs.field()
     # {'maximum': 100.0, 'minimum': 1.0}
     value: str = attrs.field()
@@ -352,51 +312,43 @@ class PlainTextItem:
 
 @attrs.define
 class PositionType:
-
     pass
 
 
 @attrs.define
 class PostContentDocumentApprovalSubmissionResponse:
-
     pass
 
 
 @attrs.define
 class PostContentDocumentAsinRelationsRequest:
-
     asin_set: "AsinSet" = attrs.field()
     pass
 
 
 @attrs.define
 class PostContentDocumentAsinRelationsResponse:
-
     pass
 
 
 @attrs.define
 class PostContentDocumentRequest:
-
     content_document: "ContentDocument" = attrs.field()
     pass
 
 
 @attrs.define
 class PostContentDocumentResponse:
-
     pass
 
 
 @attrs.define
 class PostContentDocumentSuspendSubmissionResponse:
-
     pass
 
 
 @attrs.define
 class PublishRecord:
-
     asin: "Asin" = attrs.field()
     content_reference_key: "ContentReferenceKey" = attrs.field()
     content_sub_type: "ContentSubType" = attrs.field()
@@ -408,32 +360,27 @@ class PublishRecord:
 
 @attrs.define
 class PublishRecordList:
-
     pass
 
 
 @attrs.define
 class SearchContentDocumentsResponse:
-
     pass
 
 
 @attrs.define
 class SearchContentPublishRecordsResponse:
-
     pass
 
 
 @attrs.define
 class StandardCompanyLogoModule:
-
     company_logo: "ImageComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardComparisonProductBlock:
-
     highlight: bool = attrs.field()
     metrics: list["PlainTextItem"] = attrs.field()
     # {'maxItems': 10, 'minItems': 0}
@@ -449,7 +396,6 @@ class StandardComparisonProductBlock:
 
 @attrs.define
 class StandardComparisonTableModule:
-
     metric_row_labels: list["PlainTextItem"] = attrs.field()
     # {'maxItems': 10, 'minItems': 0}
     product_columns: list["StandardComparisonProductBlock"] = attrs.field()
@@ -460,7 +406,6 @@ class StandardComparisonTableModule:
 
 @attrs.define
 class StandardFourImageTextModule:
-
     block1: "StandardImageTextBlock" = attrs.field()
     block2: "StandardImageTextBlock" = attrs.field()
     block3: "StandardImageTextBlock" = attrs.field()
@@ -471,7 +416,6 @@ class StandardFourImageTextModule:
 
 @attrs.define
 class StandardFourImageTextQuadrantModule:
-
     block1: "StandardImageTextBlock" = attrs.field()
     block2: "StandardImageTextBlock" = attrs.field()
     block3: "StandardImageTextBlock" = attrs.field()
@@ -481,7 +425,6 @@ class StandardFourImageTextQuadrantModule:
 
 @attrs.define
 class StandardHeaderImageTextModule:
-
     block: "StandardImageTextBlock" = attrs.field()
     headline: "TextComponent" = attrs.field()
     pass
@@ -489,7 +432,6 @@ class StandardHeaderImageTextModule:
 
 @attrs.define
 class StandardHeaderTextListBlock:
-
     block: "StandardTextListBlock" = attrs.field()
     headline: "TextComponent" = attrs.field()
     pass
@@ -497,7 +439,6 @@ class StandardHeaderTextListBlock:
 
 @attrs.define
 class StandardImageCaptionBlock:
-
     caption: "TextComponent" = attrs.field()
     image: "ImageComponent" = attrs.field()
     pass
@@ -505,7 +446,6 @@ class StandardImageCaptionBlock:
 
 @attrs.define
 class StandardImageSidebarModule:
-
     description_list_block: "StandardTextListBlock" = attrs.field()
     description_text_block: "StandardTextBlock" = attrs.field()
     headline: "TextComponent" = attrs.field()
@@ -517,7 +457,6 @@ class StandardImageSidebarModule:
 
 @attrs.define
 class StandardImageTextBlock:
-
     body: "ParagraphComponent" = attrs.field()
     headline: "TextComponent" = attrs.field()
     image: "ImageComponent" = attrs.field()
@@ -526,7 +465,6 @@ class StandardImageTextBlock:
 
 @attrs.define
 class StandardImageTextCaptionBlock:
-
     block: "StandardImageTextBlock" = attrs.field()
     caption: "TextComponent" = attrs.field()
     pass
@@ -534,7 +472,6 @@ class StandardImageTextCaptionBlock:
 
 @attrs.define
 class StandardImageTextOverlayModule:
-
     block: "StandardImageTextBlock" = attrs.field()
     overlay_color_type: "ColorType" = attrs.field()
     pass
@@ -542,7 +479,6 @@ class StandardImageTextOverlayModule:
 
 @attrs.define
 class StandardMultipleImageTextModule:
-
     blocks: list["StandardImageTextCaptionBlock"] = attrs.field()
 
     pass
@@ -550,14 +486,12 @@ class StandardMultipleImageTextModule:
 
 @attrs.define
 class StandardProductDescriptionModule:
-
     body: "ParagraphComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardSingleImageHighlightsModule:
-
     bulleted_list_block: "StandardHeaderTextListBlock" = attrs.field()
     headline: "TextComponent" = attrs.field()
     image: "ImageComponent" = attrs.field()
@@ -569,7 +503,6 @@ class StandardSingleImageHighlightsModule:
 
 @attrs.define
 class StandardSingleImageSpecsDetailModule:
-
     description_block1: "StandardTextBlock" = attrs.field()
     description_block2: "StandardTextBlock" = attrs.field()
     description_headline: "TextComponent" = attrs.field()
@@ -583,7 +516,6 @@ class StandardSingleImageSpecsDetailModule:
 
 @attrs.define
 class StandardSingleSideImageModule:
-
     block: "StandardImageTextBlock" = attrs.field()
     image_position_type: "PositionType" = attrs.field()
     pass
@@ -591,7 +523,6 @@ class StandardSingleSideImageModule:
 
 @attrs.define
 class StandardTechSpecsModule:
-
     specification_list: list["StandardTextPairBlock"] = attrs.field()
     # {'maxItems': 16, 'minItems': 4}
     table_count: int = attrs.field()
@@ -603,7 +534,6 @@ class StandardTechSpecsModule:
 
 @attrs.define
 class StandardTextBlock:
-
     body: "ParagraphComponent" = attrs.field()
     headline: "TextComponent" = attrs.field()
     pass
@@ -611,7 +541,6 @@ class StandardTextBlock:
 
 @attrs.define
 class StandardTextListBlock:
-
     text_list: list["TextItem"] = attrs.field()
     # {'maxItems': 8, 'minItems': 0}
 
@@ -620,7 +549,6 @@ class StandardTextListBlock:
 
 @attrs.define
 class StandardTextModule:
-
     body: "ParagraphComponent" = attrs.field()
     headline: "TextComponent" = attrs.field()
     pass
@@ -628,7 +556,6 @@ class StandardTextModule:
 
 @attrs.define
 class StandardTextPairBlock:
-
     description: "TextComponent" = attrs.field()
     label: "TextComponent" = attrs.field()
     pass
@@ -636,7 +563,6 @@ class StandardTextPairBlock:
 
 @attrs.define
 class StandardThreeImageTextModule:
-
     block1: "StandardImageTextBlock" = attrs.field()
     block2: "StandardImageTextBlock" = attrs.field()
     block3: "StandardImageTextBlock" = attrs.field()
@@ -646,7 +572,6 @@ class StandardThreeImageTextModule:
 
 @attrs.define
 class TextComponent:
-
     value: str = attrs.field()
     # {'minLength': 1, 'maxLength': 10000}
 
@@ -656,7 +581,6 @@ class TextComponent:
 
 @attrs.define
 class TextItem:
-
     position: int = attrs.field()
     # {'maximum': 100.0, 'minimum': 1.0}
 
@@ -666,15 +590,14 @@ class TextItem:
 
 @attrs.define
 class ValidateContentDocumentAsinRelationsResponse:
-
     pass
 
 
 class AplusContent20201101Client(BaseClient):
     def create_content_document(
-        self,
-        marketplace_id: str,
-        content_document: dict[str, Any],
+            self,
+            marketplace_id: str,
+            content_document: dict[str, Any],
     ):
         """
         Creates a new A+ Content document.
@@ -706,10 +629,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def get_content_document(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
-        included_data_set: list[Union[Literal["CONTENTS"], Literal["METADATA"]]],
+            self,
+            content_reference_key: str,
+            marketplace_id: str,
+            included_data_set: list[Union[Literal["CONTENTS"], Literal["METADATA"]]],
     ):
         """
         Returns an A+ Content document, if available.
@@ -744,12 +667,12 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def list_content_document_asin_relations(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
-        included_data_set: list[Union[Literal["METADATA"]]] = None,
-        asin_set: list[str] = None,
-        page_token: str = None,
+            self,
+            content_reference_key: str,
+            marketplace_id: str,
+            included_data_set: list[Union[Literal["METADATA"]]] = None,
+            asin_set: list[str] = None,
+            page_token: str = None,
     ):
         """
         Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the asinSet parameter, the operation returns all ASINs related to the content document.
@@ -790,9 +713,9 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def post_content_document_approval_submission(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
+            self,
+            content_reference_key: str,
+            marketplace_id: str,
     ):
         """
         Submits an A+ Content document for review, approval, and publishing.
@@ -826,10 +749,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def post_content_document_asin_relations(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
-        asin_set: list["Asin"],
+            self,
+            content_reference_key: str,
+            marketplace_id: str,
+            asin_set: list["Asin"],
     ):
         """
         Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
@@ -864,9 +787,9 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def post_content_document_suspend_submission(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
+            self,
+            content_reference_key: str,
+            marketplace_id: str,
     ):
         """
         Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
@@ -900,9 +823,9 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def search_content_documents(
-        self,
-        marketplace_id: str,
-        page_token: str = None,
+            self,
+            marketplace_id: str,
+            page_token: str = None,
     ):
         """
         Returns a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the getContentDocument operation to get the actual contents of the A+ Content documents.
@@ -934,10 +857,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def search_content_publish_records(
-        self,
-        marketplace_id: str,
-        asin: str,
-        page_token: str = None,
+            self,
+            marketplace_id: str,
+            asin: str,
+            page_token: str = None,
     ):
         """
         Searches for A+ Content publishing records, if available.
@@ -972,10 +895,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def update_content_document(
-        self,
-        content_reference_key: str,
-        marketplace_id: str,
-        content_document: dict[str, Any],
+            self,
+            content_reference_key: str,
+            marketplace_id: str,
+            content_document: dict[str, Any],
     ):
         """
         Updates an existing A+ Content document.
@@ -1010,10 +933,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def validate_content_document_asin_relations(
-        self,
-        marketplace_id: str,
-        content_document: dict[str, Any],
-        asin_set: list[str] = None,
+            self,
+            marketplace_id: str,
+            content_document: dict[str, Any],
+            asin_set: list[str] = None,
     ):
         """
         Checks if the A+ Content document is valid for use on a set of ASINs.

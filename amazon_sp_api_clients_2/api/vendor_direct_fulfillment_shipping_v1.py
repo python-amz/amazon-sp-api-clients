@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -32,7 +33,6 @@ class Address:
 
 @attrs.define
 class Container:
-
     carrier: str = attrs.field()
     container_identifier: str = attrs.field()
     container_sequence_number: int = attrs.field()
@@ -51,7 +51,6 @@ class Container:
 
 @attrs.define
 class CustomerInvoice:
-
     content: str = attrs.field()
     purchase_order_number: str = attrs.field()
     # {'pattern': '^[a-zA-Z0-9]+$'}
@@ -61,7 +60,6 @@ class CustomerInvoice:
 
 @attrs.define
 class CustomerInvoiceList:
-
     customer_invoices: list["CustomerInvoice"] = attrs.field()
 
     pagination: "Pagination" = attrs.field()
@@ -70,13 +68,11 @@ class CustomerInvoiceList:
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Dimensions:
-
     unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field()
 
     height: "Decimal" = attrs.field()
@@ -87,7 +83,6 @@ class Dimensions:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -97,13 +92,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetCustomerInvoiceResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CustomerInvoice" = attrs.field()
     pass
@@ -111,7 +104,6 @@ class GetCustomerInvoiceResponse:
 
 @attrs.define
 class GetCustomerInvoicesResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "CustomerInvoiceList" = attrs.field()
     pass
@@ -119,7 +111,6 @@ class GetCustomerInvoicesResponse:
 
 @attrs.define
 class GetPackingSlipListResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "PackingSlipList" = attrs.field()
     pass
@@ -127,7 +118,6 @@ class GetPackingSlipListResponse:
 
 @attrs.define
 class GetPackingSlipResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "PackingSlip" = attrs.field()
     pass
@@ -135,7 +125,6 @@ class GetPackingSlipResponse:
 
 @attrs.define
 class GetShippingLabelListResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ShippingLabelList" = attrs.field()
     pass
@@ -143,7 +132,6 @@ class GetShippingLabelListResponse:
 
 @attrs.define
 class GetShippingLabelResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ShippingLabel" = attrs.field()
     pass
@@ -151,7 +139,6 @@ class GetShippingLabelResponse:
 
 @attrs.define
 class Item:
-
     buyer_product_identifier: str = attrs.field()
     item_sequence_number: int = attrs.field()
     vendor_product_identifier: str = attrs.field()
@@ -162,7 +149,6 @@ class Item:
 
 @attrs.define
 class ItemQuantity:
-
     amount: int = attrs.field()
     unit_of_measure: str = attrs.field()
 
@@ -171,7 +157,6 @@ class ItemQuantity:
 
 @attrs.define
 class LabelData:
-
     content: str = attrs.field()
     package_identifier: str = attrs.field()
     ship_method: str = attrs.field()
@@ -183,7 +168,6 @@ class LabelData:
 
 @attrs.define
 class PackedItem:
-
     buyer_product_identifier: str = attrs.field()
     item_sequence_number: int = attrs.field()
     vendor_product_identifier: str = attrs.field()
@@ -194,7 +178,6 @@ class PackedItem:
 
 @attrs.define
 class PackingSlip:
-
     content: str = attrs.field()
     content_type: Union[Literal["application/pdf"]] = attrs.field()
     purchase_order_number: str = attrs.field()
@@ -205,7 +188,6 @@ class PackingSlip:
 
 @attrs.define
 class PackingSlipList:
-
     packing_slips: list["PackingSlip"] = attrs.field()
 
     pagination: "Pagination" = attrs.field()
@@ -214,7 +196,6 @@ class PackingSlipList:
 
 @attrs.define
 class Pagination:
-
     next_token: str = attrs.field()
 
     pass
@@ -222,7 +203,6 @@ class Pagination:
 
 @attrs.define
 class PartyIdentification:
-
     party_id: str = attrs.field()
     tax_registration_details: list["TaxRegistrationDetails"] = attrs.field()
 
@@ -232,7 +212,6 @@ class PartyIdentification:
 
 @attrs.define
 class ShipmentConfirmation:
-
     containers: list["Container"] = attrs.field()
     items: list["Item"] = attrs.field()
     purchase_order_number: str = attrs.field()
@@ -246,7 +225,6 @@ class ShipmentConfirmation:
 
 @attrs.define
 class ShipmentDetails:
-
     estimated_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     is_priority_shipment: bool = attrs.field()
@@ -260,7 +238,6 @@ class ShipmentDetails:
 
 @attrs.define
 class ShipmentStatusUpdate:
-
     purchase_order_number: str = attrs.field()
     # {'pattern': '^[a-zA-Z0-9]+$'}
 
@@ -272,7 +249,6 @@ class ShipmentStatusUpdate:
 
 @attrs.define
 class ShippingLabel:
-
     label_data: list["LabelData"] = attrs.field()
     label_format: Union[Literal["PNG"], Literal["ZPL"]] = attrs.field()
     purchase_order_number: str = attrs.field()
@@ -285,7 +261,6 @@ class ShippingLabel:
 
 @attrs.define
 class ShippingLabelList:
-
     shipping_labels: list["ShippingLabel"] = attrs.field()
 
     pagination: "Pagination" = attrs.field()
@@ -294,7 +269,6 @@ class ShippingLabelList:
 
 @attrs.define
 class ShippingLabelRequest:
-
     containers: list["Container"] = attrs.field()
     purchase_order_number: str = attrs.field()
     # {'pattern': '^[a-zA-Z0-9]+$'}
@@ -306,7 +280,6 @@ class ShippingLabelRequest:
 
 @attrs.define
 class StatusUpdateDetails:
-
     reason_code: str = attrs.field()
     shipment_schedule: dict[str, Any] = attrs.field()
     # {'properties': {'estimatedDeliveryDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Date on which the shipment is expected to reach the customer delivery location. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowStartDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the start of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowEndDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the end of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
@@ -321,7 +294,6 @@ class StatusUpdateDetails:
 
 @attrs.define
 class SubmitShipmentConfirmationsRequest:
-
     shipment_confirmations: list["ShipmentConfirmation"] = attrs.field()
 
     pass
@@ -329,7 +301,6 @@ class SubmitShipmentConfirmationsRequest:
 
 @attrs.define
 class SubmitShipmentConfirmationsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionReference" = attrs.field()
     pass
@@ -337,7 +308,6 @@ class SubmitShipmentConfirmationsResponse:
 
 @attrs.define
 class SubmitShipmentStatusUpdatesRequest:
-
     shipment_status_updates: list["ShipmentStatusUpdate"] = attrs.field()
     # {'minItems': 1}
 
@@ -346,7 +316,6 @@ class SubmitShipmentStatusUpdatesRequest:
 
 @attrs.define
 class SubmitShipmentStatusUpdatesResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionReference" = attrs.field()
     pass
@@ -354,7 +323,6 @@ class SubmitShipmentStatusUpdatesResponse:
 
 @attrs.define
 class SubmitShippingLabelsRequest:
-
     shipping_label_requests: list["ShippingLabelRequest"] = attrs.field()
 
     pass
@@ -362,7 +330,6 @@ class SubmitShippingLabelsRequest:
 
 @attrs.define
 class SubmitShippingLabelsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionReference" = attrs.field()
     pass
@@ -370,7 +337,6 @@ class SubmitShippingLabelsResponse:
 
 @attrs.define
 class TaxRegistrationDetails:
-
     tax_registration_messages: str = attrs.field()
     tax_registration_number: str = attrs.field()
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
@@ -381,7 +347,6 @@ class TaxRegistrationDetails:
 
 @attrs.define
 class TransactionReference:
-
     transaction_id: str = attrs.field()
 
     pass
@@ -389,7 +354,6 @@ class TransactionReference:
 
 @attrs.define
 class Weight:
-
     unit_of_measure: Union[Literal["KG"], Literal["LB"]] = attrs.field()
 
     value: "Decimal" = attrs.field()
@@ -398,8 +362,8 @@ class Weight:
 
 class VendorDirectFulfillmentShippingV1Client(BaseClient):
     def get_customer_invoice(
-        self,
-        purchase_order_number: str,
+            self,
+            purchase_order_number: str,
     ):
         """
         Returns a customer invoice based on the purchaseOrderNumber that you specify.
@@ -424,13 +388,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_customer_invoice_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_customer_invoices(
-        self,
-        created_after: str,
-        created_before: str,
-        ship_from_party_id: str = None,
-        limit: int = None,
-        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-        next_token: str = None,
+            self,
+            created_after: str,
+            created_before: str,
+            ship_from_party_id: str = None,
+            limit: int = None,
+            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+            next_token: str = None,
     ):
         """
         Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
@@ -474,8 +438,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     def get_packing_slip(
-        self,
-        purchase_order_number: str,
+            self,
+            purchase_order_number: str,
     ):
         """
         Returns a packing slip based on the purchaseOrderNumber that you specify.
@@ -500,13 +464,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_packing_slip_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_packing_slips(
-        self,
-        created_after: str,
-        created_before: str,
-        ship_from_party_id: str = None,
-        limit: int = None,
-        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-        next_token: str = None,
+            self,
+            created_after: str,
+            created_before: str,
+            ship_from_party_id: str = None,
+            limit: int = None,
+            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+            next_token: str = None,
     ):
         """
         Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
@@ -550,8 +514,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     def get_shipping_label(
-        self,
-        purchase_order_number: str,
+            self,
+            purchase_order_number: str,
     ):
         """
         Returns a shipping label for the purchaseOrderNumber that you specify.
@@ -576,13 +540,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_shipping_labels(
-        self,
-        created_after: str,
-        created_before: str,
-        ship_from_party_id: str = None,
-        limit: int = None,
-        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-        next_token: str = None,
+            self,
+            created_after: str,
+            created_before: str,
+            ship_from_party_id: str = None,
+            limit: int = None,
+            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+            next_token: str = None,
     ):
         """
         Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
@@ -626,7 +590,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     def submit_shipment_confirmations(
-        self,
+            self,
     ):
         """
         Submits one or more shipment confirmations for vendor orders.
@@ -650,7 +614,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipment_confirmations_params = ()  # name, param in
 
     def submit_shipment_status_updates(
-        self,
+            self,
     ):
         """
         This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
@@ -674,7 +638,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipment_status_updates_params = ()  # name, param in
 
     def submit_shipping_label_request(
-        self,
+            self,
     ):
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.

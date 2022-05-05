@@ -7,14 +7,15 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -34,7 +35,6 @@ class Address:
 
 @attrs.define
 class AutomatedShippingSettings:
-
     automated_carrier: str = attrs.field()
     automated_ship_method: str = attrs.field()
     has_automated_shipping_settings: bool = attrs.field()
@@ -44,7 +44,6 @@ class AutomatedShippingSettings:
 
 @attrs.define
 class BuyerCustomizedInfoDetail:
-
     customized_url: str = attrs.field()
 
     pass
@@ -52,7 +51,6 @@ class BuyerCustomizedInfoDetail:
 
 @attrs.define
 class BuyerInfo:
-
     buyer_county: str = attrs.field()
     buyer_email: str = attrs.field()
     buyer_name: str = attrs.field()
@@ -64,7 +62,6 @@ class BuyerInfo:
 
 @attrs.define
 class BuyerRequestedCancel:
-
     buyer_cancel_reason: str = attrs.field()
     is_buyer_requested_cancel: bool = attrs.field()
 
@@ -73,7 +70,6 @@ class BuyerRequestedCancel:
 
 @attrs.define
 class BuyerTaxInfo:
-
     company_legal_name: str = attrs.field()
     tax_classifications: list["TaxClassification"] = attrs.field()
     taxing_region: str = attrs.field()
@@ -83,7 +79,6 @@ class BuyerTaxInfo:
 
 @attrs.define
 class BuyerTaxInformation:
-
     buyer_business_address: str = attrs.field()
     buyer_legal_company_name: str = attrs.field()
     buyer_tax_office: str = attrs.field()
@@ -94,7 +89,6 @@ class BuyerTaxInformation:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -104,13 +98,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class FulfillmentInstruction:
-
     fulfillment_supply_source_id: str = attrs.field()
 
     pass
@@ -118,7 +110,6 @@ class FulfillmentInstruction:
 
 @attrs.define
 class GetOrderAddressResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderAddress" = attrs.field()
     pass
@@ -126,7 +117,6 @@ class GetOrderAddressResponse:
 
 @attrs.define
 class GetOrderBuyerInfoResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderBuyerInfo" = attrs.field()
     pass
@@ -134,7 +124,6 @@ class GetOrderBuyerInfoResponse:
 
 @attrs.define
 class GetOrderItemsBuyerInfoResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderItemsBuyerInfoList" = attrs.field()
     pass
@@ -142,7 +131,6 @@ class GetOrderItemsBuyerInfoResponse:
 
 @attrs.define
 class GetOrderItemsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderItemsList" = attrs.field()
     pass
@@ -150,7 +138,6 @@ class GetOrderItemsResponse:
 
 @attrs.define
 class GetOrderRegulatedInfoResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrderRegulatedInfo" = attrs.field()
     pass
@@ -158,7 +145,6 @@ class GetOrderRegulatedInfoResponse:
 
 @attrs.define
 class GetOrderResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Order" = attrs.field()
     pass
@@ -166,7 +152,6 @@ class GetOrderResponse:
 
 @attrs.define
 class GetOrdersResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "OrdersList" = attrs.field()
     pass
@@ -174,7 +159,6 @@ class GetOrdersResponse:
 
 @attrs.define
 class ItemBuyerInfo:
-
     gift_message_text: str = attrs.field()
     gift_wrap_level: str = attrs.field()
 
@@ -186,13 +170,11 @@ class ItemBuyerInfo:
 
 @attrs.define
 class MarketplaceId:
-
     pass
 
 
 @attrs.define
 class MarketplaceTaxInfo:
-
     tax_classifications: list["TaxClassification"] = attrs.field()
 
     pass
@@ -200,7 +182,6 @@ class MarketplaceTaxInfo:
 
 @attrs.define
 class Money:
-
     amount: str = attrs.field()
     currency_code: str = attrs.field()
 
@@ -209,7 +190,6 @@ class Money:
 
 @attrs.define
 class Order:
-
     amazon_order_id: str = attrs.field()
     buyer_invoice_preference: Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]] = attrs.field()
     cba_displayable_shipping_label: str = attrs.field()
@@ -276,7 +256,6 @@ class Order:
 
 @attrs.define
 class OrderAddress:
-
     amazon_order_id: str = attrs.field()
 
     shipping_address: "Address" = attrs.field()
@@ -285,7 +264,6 @@ class OrderAddress:
 
 @attrs.define
 class OrderBuyerInfo:
-
     amazon_order_id: str = attrs.field()
     buyer_county: str = attrs.field()
     buyer_email: str = attrs.field()
@@ -298,7 +276,6 @@ class OrderBuyerInfo:
 
 @attrs.define
 class OrderItem:
-
     asin: str = attrs.field()
     condition_id: str = attrs.field()
     condition_note: str = attrs.field()
@@ -339,7 +316,6 @@ class OrderItem:
 
 @attrs.define
 class OrderItemBuyerInfo:
-
     gift_message_text: str = attrs.field()
     gift_wrap_level: str = attrs.field()
     order_item_id: str = attrs.field()
@@ -352,25 +328,21 @@ class OrderItemBuyerInfo:
 
 @attrs.define
 class OrderItemBuyerInfoList:
-
     pass
 
 
 @attrs.define
 class OrderItemList:
-
     pass
 
 
 @attrs.define
 class OrderItems:
-
     pass
 
 
 @attrs.define
 class OrderItemsBuyerInfoList:
-
     amazon_order_id: str = attrs.field()
     next_token: str = attrs.field()
 
@@ -380,7 +352,6 @@ class OrderItemsBuyerInfoList:
 
 @attrs.define
 class OrderItemsList:
-
     amazon_order_id: str = attrs.field()
     next_token: str = attrs.field()
 
@@ -390,13 +361,11 @@ class OrderItemsList:
 
 @attrs.define
 class OrderList:
-
     pass
 
 
 @attrs.define
 class OrderRegulatedInfo:
-
     amazon_order_id: str = attrs.field()
     requires_dosage_label: bool = attrs.field()
 
@@ -407,7 +376,6 @@ class OrderRegulatedInfo:
 
 @attrs.define
 class OrdersList:
-
     created_before: str = attrs.field()
     last_updated_before: str = attrs.field()
     next_token: str = attrs.field()
@@ -418,7 +386,6 @@ class OrdersList:
 
 @attrs.define
 class PaymentExecutionDetailItem:
-
     payment_method: str = attrs.field()
 
     payment: "Money" = attrs.field()
@@ -427,19 +394,16 @@ class PaymentExecutionDetailItem:
 
 @attrs.define
 class PaymentExecutionDetailItemList:
-
     pass
 
 
 @attrs.define
 class PaymentMethodDetailItemList:
-
     pass
 
 
 @attrs.define
 class PointsGrantedDetail:
-
     points_number: int = attrs.field()
 
     points_monetary_value: "Money" = attrs.field()
@@ -448,7 +412,6 @@ class PointsGrantedDetail:
 
 @attrs.define
 class ProductInfoDetail:
-
     number_of_items: int = attrs.field()
 
     pass
@@ -456,13 +419,11 @@ class ProductInfoDetail:
 
 @attrs.define
 class PromotionIdList:
-
     pass
 
 
 @attrs.define
 class RegulatedInformation:
-
     fields: list["RegulatedInformationField"] = attrs.field()
 
     pass
@@ -470,7 +431,6 @@ class RegulatedInformation:
 
 @attrs.define
 class RegulatedInformationField:
-
     field_id: str = attrs.field()
     field_label: str = attrs.field()
     field_type: Union[Literal["Text"], Literal["FileAttachment"]] = attrs.field()
@@ -481,7 +441,6 @@ class RegulatedInformationField:
 
 @attrs.define
 class RegulatedOrderVerificationStatus:
-
     external_reviewer_id: str = attrs.field()
     requires_merchant_action: bool = attrs.field()
     review_date: str = attrs.field()
@@ -496,7 +455,6 @@ class RegulatedOrderVerificationStatus:
 
 @attrs.define
 class RejectionReason:
-
     rejection_reason_description: str = attrs.field()
     rejection_reason_id: str = attrs.field()
 
@@ -505,13 +463,11 @@ class RejectionReason:
 
 @attrs.define
 class ShipmentStatus:
-
     pass
 
 
 @attrs.define
 class TaxClassification:
-
     name: str = attrs.field()
     value: str = attrs.field()
 
@@ -520,7 +476,6 @@ class TaxClassification:
 
 @attrs.define
 class TaxCollection:
-
     model: Union[Literal["MarketplaceFacilitator"]] = attrs.field()
     responsible_party: Union[Literal["Amazon Services, Inc."]] = attrs.field()
 
@@ -529,14 +484,12 @@ class TaxCollection:
 
 @attrs.define
 class UpdateShipmentStatusErrorResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateShipmentStatusRequest:
-
     marketplace_id: "MarketplaceId" = attrs.field()
     order_items: "OrderItems" = attrs.field()
     shipment_status: "ShipmentStatus" = attrs.field()
@@ -545,21 +498,18 @@ class UpdateShipmentStatusRequest:
 
 @attrs.define
 class UpdateVerificationStatusErrorResponse:
-
     errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateVerificationStatusRequest:
-
     regulated_order_verification_status: "UpdateVerificationStatusRequestBody" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateVerificationStatusRequestBody:
-
     external_reviewer_id: str = attrs.field()
     rejection_reason_id: str = attrs.field()
     status: Union[Literal["Approved"], Literal["Rejected"]] = attrs.field()
@@ -569,8 +519,8 @@ class UpdateVerificationStatusRequestBody:
 
 class OrdersV0Client(BaseClient):
     def get_order(
-        self,
-        order_id: str,
+            self,
+            order_id: str,
     ):
         """
         Returns the order indicated by the specified order ID.
@@ -595,8 +545,8 @@ class OrdersV0Client(BaseClient):
     _get_order_params = (("orderId", "path"),)  # name, param in
 
     def get_order_address(
-        self,
-        order_id: str,
+            self,
+            order_id: str,
     ):
         """
         Returns the shipping address for the specified order.
@@ -621,8 +571,8 @@ class OrdersV0Client(BaseClient):
     _get_order_address_params = (("orderId", "path"),)  # name, param in
 
     def get_order_buyer_info(
-        self,
-        order_id: str,
+            self,
+            order_id: str,
     ):
         """
         Returns buyer information for the specified order.
@@ -647,9 +597,9 @@ class OrdersV0Client(BaseClient):
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
 
     def get_order_items(
-        self,
-        order_id: str,
-        next_token: str = None,
+            self,
+            order_id: str,
+            next_token: str = None,
     ):
         """
         Returns detailed order item information for the order indicated by the specified order ID. If NextToken is provided, it's used to retrieve the next page of order items.
@@ -683,9 +633,9 @@ class OrdersV0Client(BaseClient):
     )
 
     def get_order_items_buyer_info(
-        self,
-        order_id: str,
-        next_token: str = None,
+            self,
+            order_id: str,
+            next_token: str = None,
     ):
         """
         Returns buyer information for the order items in the specified order.
@@ -717,8 +667,8 @@ class OrdersV0Client(BaseClient):
     )
 
     def get_order_regulated_info(
-        self,
-        order_id: str,
+            self,
+            order_id: str,
     ):
         """
         Returns regulated information for the order indicated by the specified order ID.
@@ -743,24 +693,24 @@ class OrdersV0Client(BaseClient):
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
 
     def get_orders(
-        self,
-        marketplace_ids: list[str],
-        created_after: str = None,
-        created_before: str = None,
-        last_updated_after: str = None,
-        last_updated_before: str = None,
-        order_statuses: list[str] = None,
-        fulfillment_channels: list[str] = None,
-        payment_methods: list[str] = None,
-        buyer_email: str = None,
-        seller_order_id: str = None,
-        max_results_per_page: int = None,
-        easy_ship_shipment_statuses: list[str] = None,
-        next_token: str = None,
-        amazon_order_ids: list[str] = None,
-        actual_fulfillment_supply_source_id: str = None,
-        is_ispu: bool = None,
-        store_chain_store_id: str = None,
+            self,
+            marketplace_ids: list[str],
+            created_after: str = None,
+            created_before: str = None,
+            last_updated_after: str = None,
+            last_updated_before: str = None,
+            order_statuses: list[str] = None,
+            fulfillment_channels: list[str] = None,
+            payment_methods: list[str] = None,
+            buyer_email: str = None,
+            seller_order_id: str = None,
+            max_results_per_page: int = None,
+            easy_ship_shipment_statuses: list[str] = None,
+            next_token: str = None,
+            amazon_order_ids: list[str] = None,
+            actual_fulfillment_supply_source_id: str = None,
+            is_ispu: bool = None,
+            store_chain_store_id: str = None,
     ):
         """
         Returns orders created or updated during the time frame indicated by the specified parameters. You can also apply a range of filtering criteria to narrow the list of orders returned. If NextToken is present, that will be used to retrieve the orders instead of other criteria.
@@ -838,11 +788,11 @@ class OrdersV0Client(BaseClient):
     )
 
     def update_shipment_status(
-        self,
-        order_id: str,
-        marketplace_id: str,
-        shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]],
-        order_items: list[dict[str, Any]] = None,
+            self,
+            order_id: str,
+            marketplace_id: str,
+            shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]],
+            order_items: list[dict[str, Any]] = None,
     ):
         """
         Update the shipment status.
@@ -871,9 +821,9 @@ class OrdersV0Client(BaseClient):
     )
 
     def update_verification_status(
-        self,
-        order_id: str,
-        regulated_order_verification_status: dict[str, Any],
+            self,
+            order_id: str,
+            regulated_order_verification_status: dict[str, Any],
     ):
         """
         Updates (approves or rejects) the verification status of an order containing regulated products.

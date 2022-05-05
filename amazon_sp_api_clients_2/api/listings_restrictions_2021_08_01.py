@@ -9,14 +9,15 @@ API Version: 2021-08-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -26,13 +27,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class Link:
-
     resource: str = attrs.field()
     # {'schema_format': 'uri'}
     title: str = attrs.field()
@@ -44,7 +43,6 @@ class Link:
 
 @attrs.define
 class Reason:
-
     links: list["Link"] = attrs.field()
     message: str = attrs.field()
     reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]] = attrs.field()
@@ -54,7 +52,6 @@ class Reason:
 
 @attrs.define
 class Restriction:
-
     condition_type: Union[
         Literal["new_new"],
         Literal["new_open_box"],
@@ -78,7 +75,6 @@ class Restriction:
 
 @attrs.define
 class RestrictionList:
-
     restrictions: list["Restriction"] = attrs.field()
 
     pass
@@ -86,26 +82,26 @@ class RestrictionList:
 
 class ListingsRestrictions20210801Client(BaseClient):
     def get_listings_restrictions(
-        self,
-        asin: str,
-        seller_id: str,
-        marketplace_ids: list[str],
-        condition_type: Union[
-            Literal["new_new"],
-            Literal["new_open_box"],
-            Literal["new_oem"],
-            Literal["refurbished_refurbished"],
-            Literal["used_like_new"],
-            Literal["used_very_good"],
-            Literal["used_good"],
-            Literal["used_acceptable"],
-            Literal["collectible_like_new"],
-            Literal["collectible_very_good"],
-            Literal["collectible_good"],
-            Literal["collectible_acceptable"],
-            Literal["club_club"],
-        ] = None,
-        reason_locale: str = None,
+            self,
+            asin: str,
+            seller_id: str,
+            marketplace_ids: list[str],
+            condition_type: Union[
+                Literal["new_new"],
+                Literal["new_open_box"],
+                Literal["new_oem"],
+                Literal["refurbished_refurbished"],
+                Literal["used_like_new"],
+                Literal["used_very_good"],
+                Literal["used_good"],
+                Literal["used_acceptable"],
+                Literal["collectible_like_new"],
+                Literal["collectible_very_good"],
+                Literal["collectible_good"],
+                Literal["collectible_acceptable"],
+                Literal["club_club"],
+            ] = None,
+            reason_locale: str = None,
     ):
         """
         Returns listing restrictions for an item in the Amazon Catalog.

@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -32,7 +33,6 @@ class Address:
 
 @attrs.define
 class Carton:
-
     carton_identifiers: list["ContainerIdentification"] = attrs.field()
     carton_sequence_number: str = attrs.field()
     items: list["ContainerItem"] = attrs.field()
@@ -45,7 +45,6 @@ class Carton:
 
 @attrs.define
 class CartonReferenceDetails:
-
     carton_count: int = attrs.field()
     carton_reference_numbers: list[str] = attrs.field()
 
@@ -54,7 +53,6 @@ class CartonReferenceDetails:
 
 @attrs.define
 class ContainerIdentification:
-
     container_identification_number: str = attrs.field()
     container_identification_type: Union[
         Literal["SSCC"], Literal["AMZNCC"], Literal["GTIN"], Literal["BPS"], Literal["CID"]
@@ -65,7 +63,6 @@ class ContainerIdentification:
 
 @attrs.define
 class ContainerItem:
-
     item_reference: str = attrs.field()
 
     item_details: "ItemDetails" = attrs.field()
@@ -75,13 +72,11 @@ class ContainerItem:
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Dimensions:
-
     unit_of_measure: Union[Literal["In"], Literal["Ft"], Literal["Meter"], Literal["Yard"]] = attrs.field()
 
     height: "Decimal" = attrs.field()
@@ -92,7 +87,6 @@ class Dimensions:
 
 @attrs.define
 class Duration:
-
     duration_unit: Union[Literal["Days"], Literal["Months"]] = attrs.field()
     duration_value: int = attrs.field()
 
@@ -101,7 +95,6 @@ class Duration:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -111,13 +104,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class Expiry:
-
     expiry_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     manufacturer_date: str = attrs.field()
@@ -129,7 +120,6 @@ class Expiry:
 
 @attrs.define
 class ImportDetails:
-
     estimated_ship_by_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     import_containers: str = attrs.field()
@@ -151,7 +141,6 @@ class ImportDetails:
 
 @attrs.define
 class Item:
-
     amazon_product_identifier: str = attrs.field()
     item_sequence_number: str = attrs.field()
     vendor_product_identifier: str = attrs.field()
@@ -163,7 +152,6 @@ class Item:
 
 @attrs.define
 class ItemDetails:
-
     handling_code: Union[
         Literal["Oversized"], Literal["Fragile"], Literal["Food"], Literal["HandleWithCare"]
     ] = attrs.field()
@@ -177,7 +165,6 @@ class ItemDetails:
 
 @attrs.define
 class ItemQuantity:
-
     amount: int = attrs.field()
     unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field()
     unit_size: int = attrs.field()
@@ -187,7 +174,6 @@ class ItemQuantity:
 
 @attrs.define
 class Location:
-
     country_code: str = attrs.field()
     location_code: str = attrs.field()
     type: str = attrs.field()
@@ -197,7 +183,6 @@ class Location:
 
 @attrs.define
 class Money:
-
     currency_code: str = attrs.field()
 
     amount: "Decimal" = attrs.field()
@@ -206,7 +191,6 @@ class Money:
 
 @attrs.define
 class Pallet:
-
     block: int = attrs.field()
     items: list["ContainerItem"] = attrs.field()
     pallet_identifiers: list["ContainerIdentification"] = attrs.field()
@@ -220,7 +204,6 @@ class Pallet:
 
 @attrs.define
 class PartyIdentification:
-
     party_id: str = attrs.field()
     tax_registration_details: list["TaxRegistrationDetails"] = attrs.field()
 
@@ -230,7 +213,6 @@ class PartyIdentification:
 
 @attrs.define
 class Route:
-
     stops: list["Stop"] = attrs.field()
 
     pass
@@ -238,7 +220,6 @@ class Route:
 
 @attrs.define
 class ShipmentConfirmation:
-
     amazon_reference_number: str = attrs.field()
     cartons: list["Carton"] = attrs.field()
     estimated_delivery_date: str = attrs.field()
@@ -273,7 +254,6 @@ class ShipmentConfirmation:
 
 @attrs.define
 class ShipmentMeasurements:
-
     carton_count: int = attrs.field()
     pallet_count: int = attrs.field()
 
@@ -284,7 +264,6 @@ class ShipmentMeasurements:
 
 @attrs.define
 class Stop:
-
     arrival_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     departure_time: str = attrs.field()
@@ -299,7 +278,6 @@ class Stop:
 
 @attrs.define
 class SubmitShipmentConfirmationsRequest:
-
     shipment_confirmations: list["ShipmentConfirmation"] = attrs.field()
 
     pass
@@ -307,7 +285,6 @@ class SubmitShipmentConfirmationsRequest:
 
 @attrs.define
 class SubmitShipmentConfirmationsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionReference" = attrs.field()
     pass
@@ -315,7 +292,6 @@ class SubmitShipmentConfirmationsResponse:
 
 @attrs.define
 class TaxRegistrationDetails:
-
     tax_registration_number: str = attrs.field()
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
@@ -324,7 +300,6 @@ class TaxRegistrationDetails:
 
 @attrs.define
 class TransactionReference:
-
     transaction_id: str = attrs.field()
 
     pass
@@ -332,7 +307,6 @@ class TransactionReference:
 
 @attrs.define
 class TransportationDetails:
-
     bill_of_lading_number: str = attrs.field()
     carrier_scac: str = attrs.field()
     carrier_shipment_reference_number: str = attrs.field()
@@ -343,7 +317,6 @@ class TransportationDetails:
 
 @attrs.define
 class Volume:
-
     unit_of_measure: Union[Literal["CuFt"], Literal["CuIn"], Literal["CuM"], Literal["CuY"]] = attrs.field()
 
     value: "Decimal" = attrs.field()
@@ -352,7 +325,6 @@ class Volume:
 
 @attrs.define
 class Weight:
-
     unit_of_measure: Union[Literal["G"], Literal["Kg"], Literal["Oz"], Literal["Lb"]] = attrs.field()
 
     value: "Decimal" = attrs.field()
@@ -361,7 +333,7 @@ class Weight:
 
 class VendorShipmentsV1Client(BaseClient):
     def submit_shipment_confirmations(
-        self,
+            self,
     ):
         """
         Submits one or more shipment confirmations for vendor orders.

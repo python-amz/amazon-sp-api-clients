@@ -9,14 +9,15 @@ API Version: 2020-09-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -26,7 +27,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -34,7 +34,6 @@ class ErrorList:
 
 @attrs.define
 class ProductType:
-
     marketplace_ids: list[str] = attrs.field()
     name: str = attrs.field()
 
@@ -43,7 +42,6 @@ class ProductType:
 
 @attrs.define
 class ProductTypeDefinition:
-
     locale: str = attrs.field()
     marketplace_ids: list[str] = attrs.field()
     product_type: str = attrs.field()
@@ -62,7 +60,6 @@ class ProductTypeDefinition:
 
 @attrs.define
 class ProductTypeList:
-
     product_types: list["ProductType"] = attrs.field()
 
     pass
@@ -70,7 +67,6 @@ class ProductTypeList:
 
 @attrs.define
 class ProductTypeVersion:
-
     latest: bool = attrs.field()
     release_candidate: bool = attrs.field()
     version: str = attrs.field()
@@ -80,7 +76,6 @@ class ProductTypeVersion:
 
 @attrs.define
 class PropertyGroup:
-
     description: str = attrs.field()
     property_names: list[str] = attrs.field()
     title: str = attrs.field()
@@ -90,7 +85,6 @@ class PropertyGroup:
 
 @attrs.define
 class SchemaLink:
-
     checksum: str = attrs.field()
     link: dict[str, Any] = attrs.field()
     # {'required': ['resource', 'verb'], 'properties': {'resource': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='URI resource for the link.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'verb': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['GET'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='HTTP method for the link operation.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
@@ -100,53 +94,54 @@ class SchemaLink:
 
 class ProductTypeDefinitions20200901Client(BaseClient):
     def get_definitions_product_type(
-        self,
-        product_type: str,
-        marketplace_ids: list[str],
-        seller_id: str = None,
-        product_type_version: str = None,
-        requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
-        requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = None,
-        locale: Union[
-            Literal["DEFAULT"],
-            Literal["ar"],
-            Literal["ar_AE"],
-            Literal["de"],
-            Literal["de_DE"],
-            Literal["en"],
-            Literal["en_AE"],
-            Literal["en_AU"],
-            Literal["en_CA"],
-            Literal["en_GB"],
-            Literal["en_IN"],
-            Literal["en_SG"],
-            Literal["en_US"],
-            Literal["es"],
-            Literal["es_ES"],
-            Literal["es_MX"],
-            Literal["es_US"],
-            Literal["fr"],
-            Literal["fr_CA"],
-            Literal["fr_FR"],
-            Literal["it"],
-            Literal["it_IT"],
-            Literal["ja"],
-            Literal["ja_JP"],
-            Literal["nl"],
-            Literal["nl_NL"],
-            Literal["pl"],
-            Literal["pl_PL"],
-            Literal["pt"],
-            Literal["pt_BR"],
-            Literal["pt_PT"],
-            Literal["sv"],
-            Literal["sv_SE"],
-            Literal["tr"],
-            Literal["tr_TR"],
-            Literal["zh"],
-            Literal["zh_CN"],
-            Literal["zh_TW"],
-        ] = None,
+            self,
+            product_type: str,
+            marketplace_ids: list[str],
+            seller_id: str = None,
+            product_type_version: str = None,
+            requirements: Union[
+                Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
+            requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = None,
+            locale: Union[
+                Literal["DEFAULT"],
+                Literal["ar"],
+                Literal["ar_AE"],
+                Literal["de"],
+                Literal["de_DE"],
+                Literal["en"],
+                Literal["en_AE"],
+                Literal["en_AU"],
+                Literal["en_CA"],
+                Literal["en_GB"],
+                Literal["en_IN"],
+                Literal["en_SG"],
+                Literal["en_US"],
+                Literal["es"],
+                Literal["es_ES"],
+                Literal["es_MX"],
+                Literal["es_US"],
+                Literal["fr"],
+                Literal["fr_CA"],
+                Literal["fr_FR"],
+                Literal["it"],
+                Literal["it_IT"],
+                Literal["ja"],
+                Literal["ja_JP"],
+                Literal["nl"],
+                Literal["nl_NL"],
+                Literal["pl"],
+                Literal["pl_PL"],
+                Literal["pt"],
+                Literal["pt_BR"],
+                Literal["pt_PT"],
+                Literal["sv"],
+                Literal["sv_SE"],
+                Literal["tr"],
+                Literal["tr_TR"],
+                Literal["zh"],
+                Literal["zh_CN"],
+                Literal["zh_TW"],
+            ] = None,
     ):
         """
         Retrieve an Amazon product type definition.
@@ -194,9 +189,9 @@ class ProductTypeDefinitions20200901Client(BaseClient):
     )
 
     def search_definitions_product_types(
-        self,
-        marketplace_ids: list[str],
-        keywords: list[str] = None,
+            self,
+            marketplace_ids: list[str],
+            keywords: list[str] = None,
     ):
         """
         Search for and return a list of Amazon product types that have definitions available.

@@ -7,14 +7,15 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AdditionalInputs:
-
     additional_input_field_name: str = attrs.field()
 
     seller_input_definition: "SellerInputDefinition" = attrs.field()
@@ -23,13 +24,11 @@ class AdditionalInputs:
 
 @attrs.define
 class AdditionalInputsList:
-
     pass
 
 
 @attrs.define
 class AdditionalSellerInput:
-
     data_type: str = attrs.field()
     value_as_boolean: bool = attrs.field()
     value_as_integer: int = attrs.field()
@@ -45,7 +44,6 @@ class AdditionalSellerInput:
 
 @attrs.define
 class AdditionalSellerInputs:
-
     additional_input_field_name: str = attrs.field()
 
     additional_seller_input: "AdditionalSellerInput" = attrs.field()
@@ -54,13 +52,11 @@ class AdditionalSellerInputs:
 
 @attrs.define
 class AdditionalSellerInputsList:
-
     pass
 
 
 @attrs.define
 class Address:
-
     address_line1: "AddressLine1" = attrs.field()
     address_line2: "AddressLine2" = attrs.field()
     address_line3: "AddressLine3" = attrs.field()
@@ -77,37 +73,31 @@ class Address:
 
 @attrs.define
 class AddressLine1:
-
     pass
 
 
 @attrs.define
 class AddressLine2:
-
     pass
 
 
 @attrs.define
 class AddressLine3:
-
     pass
 
 
 @attrs.define
 class AddressName:
-
     pass
 
 
 @attrs.define
 class AmazonOrderId:
-
     pass
 
 
 @attrs.define
 class AvailableCarrierWillPickUpOption:
-
     carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field()
     charge: "CurrencyAmount" = attrs.field()
     pass
@@ -115,13 +105,11 @@ class AvailableCarrierWillPickUpOption:
 
 @attrs.define
 class AvailableCarrierWillPickUpOptionsList:
-
     pass
 
 
 @attrs.define
 class AvailableDeliveryExperienceOption:
-
     charge: "CurrencyAmount" = attrs.field()
     delivery_experience_option: "DeliveryExperienceOption" = attrs.field()
     pass
@@ -129,19 +117,16 @@ class AvailableDeliveryExperienceOption:
 
 @attrs.define
 class AvailableDeliveryExperienceOptionsList:
-
     pass
 
 
 @attrs.define
 class AvailableFormatOptionsForLabelList:
-
     pass
 
 
 @attrs.define
 class AvailableShippingServiceOptions:
-
     available_carrier_will_pick_up_options: "AvailableCarrierWillPickUpOptionsList" = attrs.field()
     available_delivery_experience_options: "AvailableDeliveryExperienceOptionsList" = attrs.field()
     pass
@@ -149,7 +134,6 @@ class AvailableShippingServiceOptions:
 
 @attrs.define
 class CancelShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Shipment" = attrs.field()
     pass
@@ -157,19 +141,16 @@ class CancelShipmentResponse:
 
 @attrs.define
 class CarrierWillPickUpOption:
-
     pass
 
 
 @attrs.define
 class City:
-
     pass
 
 
 @attrs.define
 class Constraint:
-
     validation_reg_ex: str = attrs.field()
     validation_string: str = attrs.field()
 
@@ -178,19 +159,16 @@ class Constraint:
 
 @attrs.define
 class Constraints:
-
     pass
 
 
 @attrs.define
 class CountryCode:
-
     pass
 
 
 @attrs.define
 class CreateShipmentRequest:
-
     shipping_service_offer_id: str = attrs.field()
 
     hazmat_type: "HazmatType" = attrs.field()
@@ -203,7 +181,6 @@ class CreateShipmentRequest:
 
 @attrs.define
 class CreateShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Shipment" = attrs.field()
     pass
@@ -211,7 +188,6 @@ class CreateShipmentResponse:
 
 @attrs.define
 class CurrencyAmount:
-
     amount: Union[float, int] = attrs.field()
     # {'schema_format': 'double'}
     currency_code: str = attrs.field()
@@ -222,37 +198,31 @@ class CurrencyAmount:
 
 @attrs.define
 class CustomTextForLabel:
-
     pass
 
 
 @attrs.define
 class DeliveryExperienceOption:
-
     pass
 
 
 @attrs.define
 class DeliveryExperienceType:
-
     pass
 
 
 @attrs.define
 class DistrictOrCounty:
-
     pass
 
 
 @attrs.define
 class EmailAddress:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -262,13 +232,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class FileContents:
-
     checksum: str = attrs.field()
     contents: str = attrs.field()
 
@@ -278,13 +246,11 @@ class FileContents:
 
 @attrs.define
 class FileType:
-
     pass
 
 
 @attrs.define
 class GetAdditionalSellerInputsRequest:
-
     order_id: "AmazonOrderId" = attrs.field()
     ship_from_address: "Address" = attrs.field()
     shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
@@ -293,7 +259,6 @@ class GetAdditionalSellerInputsRequest:
 
 @attrs.define
 class GetAdditionalSellerInputsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetAdditionalSellerInputsResult" = attrs.field()
     pass
@@ -301,7 +266,6 @@ class GetAdditionalSellerInputsResponse:
 
 @attrs.define
 class GetAdditionalSellerInputsResult:
-
     item_level_fields_list: "ItemLevelFieldsList" = attrs.field()
     shipment_level_fields: "AdditionalInputsList" = attrs.field()
     pass
@@ -309,7 +273,6 @@ class GetAdditionalSellerInputsResult:
 
 @attrs.define
 class GetEligibleShipmentServicesRequest:
-
     shipment_request_details: "ShipmentRequestDetails" = attrs.field()
     shipping_offering_filter: "ShippingOfferingFilter" = attrs.field()
     pass
@@ -317,7 +280,6 @@ class GetEligibleShipmentServicesRequest:
 
 @attrs.define
 class GetEligibleShipmentServicesResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "GetEligibleShipmentServicesResult" = attrs.field()
     pass
@@ -325,7 +287,6 @@ class GetEligibleShipmentServicesResponse:
 
 @attrs.define
 class GetEligibleShipmentServicesResult:
-
     rejected_shipping_service_list: "RejectedShippingServiceList" = attrs.field()
     shipping_service_list: "ShippingServiceList" = attrs.field()
     temporarily_unavailable_carrier_list: "TemporarilyUnavailableCarrierList" = attrs.field()
@@ -335,7 +296,6 @@ class GetEligibleShipmentServicesResult:
 
 @attrs.define
 class GetShipmentResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Shipment" = attrs.field()
     pass
@@ -343,19 +303,16 @@ class GetShipmentResponse:
 
 @attrs.define
 class HazmatType:
-
     pass
 
 
 @attrs.define
 class InputTargetType:
-
     pass
 
 
 @attrs.define
 class Item:
-
     item_description: "ItemDescription" = attrs.field()
     item_level_seller_inputs_list: "AdditionalSellerInputsList" = attrs.field()
     item_weight: "Weight" = attrs.field()
@@ -367,13 +324,11 @@ class Item:
 
 @attrs.define
 class ItemDescription:
-
     pass
 
 
 @attrs.define
 class ItemLevelFields:
-
     asin: str = attrs.field()
 
     additional_inputs: "AdditionalInputsList" = attrs.field()
@@ -382,25 +337,21 @@ class ItemLevelFields:
 
 @attrs.define
 class ItemLevelFieldsList:
-
     pass
 
 
 @attrs.define
 class ItemList:
-
     pass
 
 
 @attrs.define
 class ItemQuantity:
-
     pass
 
 
 @attrs.define
 class Label:
-
     custom_text_for_label: "CustomTextForLabel" = attrs.field()
     dimensions: "LabelDimensions" = attrs.field()
     file_contents: "FileContents" = attrs.field()
@@ -411,7 +362,6 @@ class Label:
 
 @attrs.define
 class LabelCustomization:
-
     custom_text_for_label: "CustomTextForLabel" = attrs.field()
     standard_id_for_label: "StandardIdForLabel" = attrs.field()
     pass
@@ -419,13 +369,11 @@ class LabelCustomization:
 
 @attrs.define
 class LabelDimension:
-
     pass
 
 
 @attrs.define
 class LabelDimensions:
-
     length: "LabelDimension" = attrs.field()
     unit: "UnitOfLength" = attrs.field()
     width: "LabelDimension" = attrs.field()
@@ -434,19 +382,16 @@ class LabelDimensions:
 
 @attrs.define
 class LabelFormat:
-
     pass
 
 
 @attrs.define
 class LabelFormatList:
-
     pass
 
 
 @attrs.define
 class LabelFormatOption:
-
     include_packing_slip_with_label: bool = attrs.field()
 
     label_format: "LabelFormat" = attrs.field()
@@ -455,7 +400,6 @@ class LabelFormatOption:
 
 @attrs.define
 class LabelFormatOptionRequest:
-
     include_packing_slip_with_label: bool = attrs.field()
 
     pass
@@ -463,7 +407,6 @@ class LabelFormatOptionRequest:
 
 @attrs.define
 class Length:
-
     value: Union[float, int] = attrs.field()
 
     unit: "UnitOfLength" = attrs.field()
@@ -472,19 +415,16 @@ class Length:
 
 @attrs.define
 class OrderItemId:
-
     pass
 
 
 @attrs.define
 class PackageDimension:
-
     pass
 
 
 @attrs.define
 class PackageDimensions:
-
     height: "PackageDimension" = attrs.field()
     length: "PackageDimension" = attrs.field()
     predefined_package_dimensions: "PredefinedPackageDimensions" = attrs.field()
@@ -495,25 +435,21 @@ class PackageDimensions:
 
 @attrs.define
 class PhoneNumber:
-
     pass
 
 
 @attrs.define
 class PostalCode:
-
     pass
 
 
 @attrs.define
 class PredefinedPackageDimensions:
-
     pass
 
 
 @attrs.define
 class RejectedShippingService:
-
     carrier_name: str = attrs.field()
     rejection_reason_code: str = attrs.field()
     rejection_reason_message: str = attrs.field()
@@ -525,19 +461,16 @@ class RejectedShippingService:
 
 @attrs.define
 class RejectedShippingServiceList:
-
     pass
 
 
 @attrs.define
 class RestrictedSetValues:
-
     pass
 
 
 @attrs.define
 class SellerInputDefinition:
-
     data_type: str = attrs.field()
     input_display_text: str = attrs.field()
     is_required: bool = attrs.field()
@@ -551,13 +484,11 @@ class SellerInputDefinition:
 
 @attrs.define
 class SellerOrderId:
-
     pass
 
 
 @attrs.define
 class Shipment:
-
     amazon_order_id: "AmazonOrderId" = attrs.field()
     created_date: "Timestamp" = attrs.field()
     insurance: "CurrencyAmount" = attrs.field()
@@ -578,13 +509,11 @@ class Shipment:
 
 @attrs.define
 class ShipmentId:
-
     pass
 
 
 @attrs.define
 class ShipmentRequestDetails:
-
     amazon_order_id: "AmazonOrderId" = attrs.field()
     item_list: "ItemList" = attrs.field()
     label_customization: "LabelCustomization" = attrs.field()
@@ -600,13 +529,11 @@ class ShipmentRequestDetails:
 
 @attrs.define
 class ShipmentStatus:
-
     pass
 
 
 @attrs.define
 class ShippingOfferingFilter:
-
     include_complex_shipping_options: bool = attrs.field()
     include_packing_slip_with_label: bool = attrs.field()
 
@@ -617,7 +544,6 @@ class ShippingOfferingFilter:
 
 @attrs.define
 class ShippingService:
-
     carrier_name: str = attrs.field()
     requires_additional_seller_inputs: bool = attrs.field()
     shipping_service_name: str = attrs.field()
@@ -637,19 +563,16 @@ class ShippingService:
 
 @attrs.define
 class ShippingServiceIdentifier:
-
     pass
 
 
 @attrs.define
 class ShippingServiceList:
-
     pass
 
 
 @attrs.define
 class ShippingServiceOptions:
-
     carrier_will_pick_up: bool = attrs.field()
 
     carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field()
@@ -661,19 +584,16 @@ class ShippingServiceOptions:
 
 @attrs.define
 class StandardIdForLabel:
-
     pass
 
 
 @attrs.define
 class StateOrProvinceCode:
-
     pass
 
 
 @attrs.define
 class TemporarilyUnavailableCarrier:
-
     carrier_name: str = attrs.field()
 
     pass
@@ -681,13 +601,11 @@ class TemporarilyUnavailableCarrier:
 
 @attrs.define
 class TemporarilyUnavailableCarrierList:
-
     pass
 
 
 @attrs.define
 class TermsAndConditionsNotAcceptedCarrier:
-
     carrier_name: str = attrs.field()
 
     pass
@@ -695,49 +613,41 @@ class TermsAndConditionsNotAcceptedCarrier:
 
 @attrs.define
 class TermsAndConditionsNotAcceptedCarrierList:
-
     pass
 
 
 @attrs.define
 class Timestamp:
-
     pass
 
 
 @attrs.define
 class TrackingId:
-
     pass
 
 
 @attrs.define
 class TransparencyCode:
-
     pass
 
 
 @attrs.define
 class TransparencyCodeList:
-
     pass
 
 
 @attrs.define
 class UnitOfLength:
-
     pass
 
 
 @attrs.define
 class UnitOfWeight:
-
     pass
 
 
 @attrs.define
 class Weight:
-
     unit: "UnitOfWeight" = attrs.field()
     value: "WeightValue" = attrs.field()
     pass
@@ -745,14 +655,13 @@ class Weight:
 
 @attrs.define
 class WeightValue:
-
     pass
 
 
 class MerchantFulfillmentV0Client(BaseClient):
     def cancel_shipment(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Cancel the shipment indicated by the specified shipment identifier.
@@ -776,8 +685,8 @@ class MerchantFulfillmentV0Client(BaseClient):
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     def cancel_shipment_old(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Cancel the shipment indicated by the specified shipment identifer.
@@ -801,7 +710,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     _cancel_shipment_old_params = (("shipmentId", "path"),)  # name, param in
 
     def create_shipment(
-        self,
+            self,
     ):
         """
         Create a shipment with the information provided.
@@ -824,7 +733,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     _create_shipment_params = ()  # name, param in
 
     def get_additional_seller_inputs(
-        self,
+            self,
     ):
         """
         Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
@@ -847,7 +756,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     _get_additional_seller_inputs_params = ()  # name, param in
 
     def get_additional_seller_inputs_old(
-        self,
+            self,
     ):
         """
         Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
@@ -870,7 +779,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     _get_additional_seller_inputs_old_params = ()  # name, param in
 
     def get_eligible_shipment_services(
-        self,
+            self,
     ):
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.
@@ -893,7 +802,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     _get_eligible_shipment_services_params = ()  # name, param in
 
     def get_eligible_shipment_services_old(
-        self,
+            self,
     ):
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.
@@ -916,8 +825,8 @@ class MerchantFulfillmentV0Client(BaseClient):
     _get_eligible_shipment_services_old_params = ()  # name, param in
 
     def get_shipment(
-        self,
-        shipment_id: str,
+            self,
+            shipment_id: str,
     ):
         """
         Returns the shipment information for an existing shipment.

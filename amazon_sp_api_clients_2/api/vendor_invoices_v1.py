@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AdditionalDetails:
-
     detail: str = attrs.field()
     language_code: str = attrs.field()
     type: Union[Literal["SUR"], Literal["OCR"], Literal["CartonCount"]] = attrs.field()
@@ -24,7 +25,6 @@ class AdditionalDetails:
 
 @attrs.define
 class Address:
-
     address_line1: str = attrs.field()
     address_line2: str = attrs.field()
     address_line3: str = attrs.field()
@@ -43,7 +43,6 @@ class Address:
 
 @attrs.define
 class AllowanceDetails:
-
     description: str = attrs.field()
     tax_details: list["TaxDetails"] = attrs.field()
     type: Union[
@@ -61,7 +60,6 @@ class AllowanceDetails:
 
 @attrs.define
 class ChargeDetails:
-
     description: str = attrs.field()
     tax_details: list["TaxDetails"] = attrs.field()
     type: Union[
@@ -84,7 +82,6 @@ class ChargeDetails:
 
 @attrs.define
 class CreditNoteDetails:
-
     consignors_reference_number: str = attrs.field()
     coop_reference_number: str = attrs.field()
     debit_note_number: str = attrs.field()
@@ -98,19 +95,16 @@ class CreditNoteDetails:
 
 @attrs.define
 class DateTime:
-
     pass
 
 
 @attrs.define
 class Decimal:
-
     pass
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -120,13 +114,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class Invoice:
-
     additional_details: list["AdditionalDetails"] = attrs.field()
     allowance_details: list["AllowanceDetails"] = attrs.field()
     charge_details: list["ChargeDetails"] = attrs.field()
@@ -148,7 +140,6 @@ class Invoice:
 
 @attrs.define
 class InvoiceItem:
-
     allowance_details: list["AllowanceDetails"] = attrs.field()
     amazon_product_identifier: str = attrs.field()
     charge_details: list["ChargeDetails"] = attrs.field()
@@ -166,7 +157,6 @@ class InvoiceItem:
 
 @attrs.define
 class ItemQuantity:
-
     amount: int = attrs.field()
     unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field()
     unit_size: int = attrs.field()
@@ -176,7 +166,6 @@ class ItemQuantity:
 
 @attrs.define
 class Money:
-
     currency_code: str = attrs.field()
 
     amount: "Decimal" = attrs.field()
@@ -185,7 +174,6 @@ class Money:
 
 @attrs.define
 class PartyIdentification:
-
     party_id: str = attrs.field()
     tax_registration_details: list["TaxRegistrationDetails"] = attrs.field()
 
@@ -195,7 +183,6 @@ class PartyIdentification:
 
 @attrs.define
 class PaymentTerms:
-
     discount_due_days: Union[float, int] = attrs.field()
     net_due_days: Union[float, int] = attrs.field()
     type: Union[
@@ -213,7 +200,6 @@ class PaymentTerms:
 
 @attrs.define
 class SubmitInvoicesRequest:
-
     invoices: list["Invoice"] = attrs.field()
 
     pass
@@ -221,7 +207,6 @@ class SubmitInvoicesRequest:
 
 @attrs.define
 class SubmitInvoicesResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "TransactionId" = attrs.field()
     pass
@@ -229,7 +214,6 @@ class SubmitInvoicesResponse:
 
 @attrs.define
 class TaxDetails:
-
     tax_type: Union[
         Literal["CGST"],
         Literal["SGST"],
@@ -255,7 +239,6 @@ class TaxDetails:
 
 @attrs.define
 class TaxRegistrationDetails:
-
     tax_registration_number: str = attrs.field()
     tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
@@ -264,7 +247,6 @@ class TaxRegistrationDetails:
 
 @attrs.define
 class TransactionId:
-
     transaction_id: str = attrs.field()
 
     pass
@@ -272,7 +254,7 @@ class TransactionId:
 
 class VendorInvoicesV1Client(BaseClient):
     def submit_invoices(
-        self,
+            self,
     ):
         """
         Submit new invoices to Amazon.

@@ -7,14 +7,15 @@ API Version: 2021-12-28
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -24,7 +25,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -32,7 +32,6 @@ class ErrorList:
 
 @attrs.define
 class Transaction:
-
     status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field()
     transaction_id: str = attrs.field()
 
@@ -42,15 +41,14 @@ class Transaction:
 
 @attrs.define
 class TransactionStatus:
-
     transaction_status: "Transaction" = attrs.field()
     pass
 
 
 class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
     def get_transaction_status(
-        self,
-        transaction_id: str,
+            self,
+            transaction_id: str,
     ):
         """
         Returns the status of the transaction indicated by the specified transactionId.

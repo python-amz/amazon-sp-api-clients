@@ -9,14 +9,15 @@ API Version: 2021-03-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class CreateRestrictedDataTokenRequest:
-
     restricted_resources: list["RestrictedResource"] = attrs.field()
     target_application: str = attrs.field()
 
@@ -25,7 +26,6 @@ class CreateRestrictedDataTokenRequest:
 
 @attrs.define
 class CreateRestrictedDataTokenResponse:
-
     expires_in: int = attrs.field()
     restricted_data_token: str = attrs.field()
 
@@ -34,7 +34,6 @@ class CreateRestrictedDataTokenResponse:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -44,7 +43,6 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     errors: list["Error"] = attrs.field()
 
     pass
@@ -52,7 +50,6 @@ class ErrorList:
 
 @attrs.define
 class RestrictedResource:
-
     data_elements: list[str] = attrs.field()
     method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]] = attrs.field()
     path: str = attrs.field()
@@ -62,7 +59,7 @@ class RestrictedResource:
 
 class Tokens20210301Client(BaseClient):
     def create_restricted_data_token(
-        self,
+            self,
     ):
         """
         Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.

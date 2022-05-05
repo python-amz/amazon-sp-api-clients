@@ -7,14 +7,15 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Any, Union
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class ASINIdentifier:
-
     asin: str = attrs.field()
     marketplace_id: str = attrs.field()
 
@@ -23,13 +24,11 @@ class ASINIdentifier:
 
 @attrs.define
 class AttributeSetList:
-
     pass
 
 
 @attrs.define
 class AttributeSetListType:
-
     actor: list[str] = attrs.field()
     artist: list[str] = attrs.field()
     aspect_ratio: str = attrs.field()
@@ -132,7 +131,6 @@ class AttributeSetListType:
 
 @attrs.define
 class Categories:
-
     product_category_id: str = attrs.field()
     product_category_name: str = attrs.field()
     parent: dict[str, Any] = attrs.field()
@@ -143,7 +141,6 @@ class Categories:
 
 @attrs.define
 class CreatorType:
-
     role: str = attrs.field()
     value: str = attrs.field()
 
@@ -152,7 +149,6 @@ class CreatorType:
 
 @attrs.define
 class DecimalWithUnits:
-
     units: str = attrs.field()
     value: Union[float, int] = attrs.field()
 
@@ -161,7 +157,6 @@ class DecimalWithUnits:
 
 @attrs.define
 class DimensionType:
-
     height: "DecimalWithUnits" = attrs.field()
     length: "DecimalWithUnits" = attrs.field()
     weight: "DecimalWithUnits" = attrs.field()
@@ -171,7 +166,6 @@ class DimensionType:
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -181,13 +175,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetCatalogItemResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "Item" = attrs.field()
     pass
@@ -195,7 +187,6 @@ class GetCatalogItemResponse:
 
 @attrs.define
 class IdentifierType:
-
     marketplace_asin: "ASINIdentifier" = attrs.field()
     skuidentifier: "SellerSKUIdentifier" = attrs.field()
     pass
@@ -203,7 +194,6 @@ class IdentifierType:
 
 @attrs.define
 class Image:
-
     url: str = attrs.field()
 
     height: "DecimalWithUnits" = attrs.field()
@@ -213,7 +203,6 @@ class Image:
 
 @attrs.define
 class Item:
-
     attribute_sets: "AttributeSetList" = attrs.field()
     identifiers: "IdentifierType" = attrs.field()
     relationships: "RelationshipList" = attrs.field()
@@ -223,13 +212,11 @@ class Item:
 
 @attrs.define
 class ItemList:
-
     pass
 
 
 @attrs.define
 class LanguageType:
-
     audio_format: str = attrs.field()
     name: str = attrs.field()
     type: str = attrs.field()
@@ -239,7 +226,6 @@ class LanguageType:
 
 @attrs.define
 class ListCatalogCategoriesResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ListOfCategories" = attrs.field()
     pass
@@ -247,7 +233,6 @@ class ListCatalogCategoriesResponse:
 
 @attrs.define
 class ListCatalogItemsResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ListMatchingItemsResponse" = attrs.field()
     pass
@@ -255,20 +240,17 @@ class ListCatalogItemsResponse:
 
 @attrs.define
 class ListMatchingItemsResponse:
-
     items: "ItemList" = attrs.field()
     pass
 
 
 @attrs.define
 class ListOfCategories:
-
     pass
 
 
 @attrs.define
 class Price:
-
     amount: Union[float, int] = attrs.field()
     currency_code: str = attrs.field()
 
@@ -277,13 +259,11 @@ class Price:
 
 @attrs.define
 class RelationshipList:
-
     pass
 
 
 @attrs.define
 class RelationshipType:
-
     color: str = attrs.field()
     edition: str = attrs.field()
     flavor: str = attrs.field()
@@ -313,13 +293,11 @@ class RelationshipType:
 
 @attrs.define
 class SalesRankList:
-
     pass
 
 
 @attrs.define
 class SalesRankType:
-
     product_category_id: str = attrs.field()
     rank: int = attrs.field()
     # {'schema_format': 'int32'}
@@ -329,7 +307,6 @@ class SalesRankType:
 
 @attrs.define
 class SellerSKUIdentifier:
-
     marketplace_id: str = attrs.field()
     seller_id: str = attrs.field()
     seller_sku: str = attrs.field()
@@ -339,9 +316,9 @@ class SellerSKUIdentifier:
 
 class CatalogItemsV0Client(BaseClient):
     def get_catalog_item(
-        self,
-        marketplace_id: str,
-        asin: str,
+            self,
+            marketplace_id: str,
+            asin: str,
     ):
         """
         Returns a specified item and its attributes.
@@ -373,10 +350,10 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     def list_catalog_categories(
-        self,
-        marketplace_id: str,
-        asin: str = None,
-        seller_sku: str = None,
+            self,
+            marketplace_id: str,
+            asin: str = None,
+            seller_sku: str = None,
     ):
         """
         Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
@@ -411,15 +388,15 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     def list_catalog_items(
-        self,
-        marketplace_id: str,
-        query: str = None,
-        query_context_id: str = None,
-        seller_sku: str = None,
-        upc: str = None,
-        ean: str = None,
-        isbn: str = None,
-        jan: str = None,
+            self,
+            marketplace_id: str,
+            query: str = None,
+            query_context_id: str = None,
+            seller_sku: str = None,
+            upc: str = None,
+            ean: str = None,
+            isbn: str = None,
+            jan: str = None,
     ):
         """
         Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value.

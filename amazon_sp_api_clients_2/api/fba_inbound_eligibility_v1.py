@@ -7,14 +7,15 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+from typing import Union, Literal
+
 import attrs
+
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-
     code: str = attrs.field()
     details: str = attrs.field()
     message: str = attrs.field()
@@ -24,13 +25,11 @@ class Error:
 
 @attrs.define
 class ErrorList:
-
     pass
 
 
 @attrs.define
 class GetItemEligibilityPreviewResponse:
-
     errors: "ErrorList" = attrs.field()
     payload: "ItemEligibilityPreview" = attrs.field()
     pass
@@ -38,7 +37,6 @@ class GetItemEligibilityPreviewResponse:
 
 @attrs.define
 class ItemEligibilityPreview:
-
     asin: str = attrs.field()
     ineligibility_reason_list: list[
         Union[
@@ -92,10 +90,10 @@ class ItemEligibilityPreview:
 
 class FbaInboundEligibilityV1Client(BaseClient):
     def get_item_eligibility_preview(
-        self,
-        asin: str,
-        program: Union[Literal["INBOUND"], Literal["COMMINGLING"]],
-        marketplace_ids: list[str] = None,
+            self,
+            asin: str,
+            program: Union[Literal["INBOUND"], Literal["COMMINGLING"]],
+            marketplace_ids: list[str] = None,
     ):
         """
         This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
