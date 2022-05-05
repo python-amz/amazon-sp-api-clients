@@ -250,3 +250,10 @@ class BaseAmazonSpApiClients(BaseClient):
     def parser(self) -> 'Parser':
         from .parser import Parser
         return Parser()
+
+
+version = '2.0.0'
+author = 'Haoyu Pan'
+author_email = 'panhaoyu.china@outlook.com'
+description = 'Amazon Selling Partner API request SDK'
+url = 'https://github.com/panhaoyu/amazon-sp-api-clients'

@@ -19,3 +19,4 @@ cached_property
 openapi-schema-pydantic
 demjson
 django
+attrs

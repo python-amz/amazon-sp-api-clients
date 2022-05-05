@@ -1,4 +1,14 @@
-from .utils.base_client import BaseAmazonSpApiClients as _Base, cached_property, MarketPlaces
+from .utils.base_client import (
+    BaseAmazonSpApiClients as _Base,
+    cached_property,
+    MarketPlaces,
+    version,
+    author,
+    author_email,
+    description,
+    url,
+)
+
 from typing import TYPE_CHECKING as _TYPE_CHECKING
 
 if _TYPE_CHECKING:
