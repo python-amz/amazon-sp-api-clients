@@ -15,17 +15,17 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CreateUploadDestinationResponse:
 
-    errors: "ErrorList"
-    payload: "UploadDestination"
+    errors: "ErrorList" = attrs.field()
+    payload: "UploadDestination" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -39,10 +39,10 @@ class ErrorList:
 @attrs.define
 class UploadDestination:
 
-    headers: dict[str, Any]
+    headers: dict[str, Any] = attrs.field()
     # {'properties': {}}
-    upload_destination_id: str
-    url: str
+    upload_destination_id: str = attrs.field()
+    url: str = attrs.field()
 
     pass
 

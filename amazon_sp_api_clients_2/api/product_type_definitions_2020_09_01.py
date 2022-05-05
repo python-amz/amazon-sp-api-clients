@@ -17,9 +17,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -27,7 +27,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -35,8 +35,8 @@ class ErrorList:
 @attrs.define
 class ProductType:
 
-    marketplace_ids: list[str]
-    name: str
+    marketplace_ids: list[str] = attrs.field()
+    name: str = attrs.field()
 
     pass
 
@@ -44,24 +44,26 @@ class ProductType:
 @attrs.define
 class ProductTypeDefinition:
 
-    locale: str
-    marketplace_ids: list[str]
-    product_type: str
-    property_groups: dict[str, Any]
+    locale: str = attrs.field()
+    marketplace_ids: list[str] = attrs.field()
+    product_type: str = attrs.field()
+    property_groups: dict[str, Any] = attrs.field()
     # {'additionalProperties': Reference(ref='#/components/schemas/PropertyGroup')}
-    requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
-    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]]
+    requirements: Union[
+        Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
+    ] = attrs.field()
+    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = attrs.field()
 
-    meta_schema: "SchemaLink"
-    product_type_version: "ProductTypeVersion"
-    schema: "SchemaLink"
+    meta_schema: "SchemaLink" = attrs.field()
+    product_type_version: "ProductTypeVersion" = attrs.field()
+    schema: "SchemaLink" = attrs.field()
     pass
 
 
 @attrs.define
 class ProductTypeList:
 
-    product_types: list["ProductType"]
+    product_types: list["ProductType"] = attrs.field()
 
     pass
 
@@ -69,9 +71,9 @@ class ProductTypeList:
 @attrs.define
 class ProductTypeVersion:
 
-    latest: bool
-    release_candidate: bool
-    version: str
+    latest: bool = attrs.field()
+    release_candidate: bool = attrs.field()
+    version: str = attrs.field()
 
     pass
 
@@ -79,9 +81,9 @@ class ProductTypeVersion:
 @attrs.define
 class PropertyGroup:
 
-    description: str
-    property_names: list[str]
-    title: str
+    description: str = attrs.field()
+    property_names: list[str] = attrs.field()
+    title: str = attrs.field()
 
     pass
 
@@ -89,8 +91,8 @@ class PropertyGroup:
 @attrs.define
 class SchemaLink:
 
-    checksum: str
-    link: dict[str, Any]
+    checksum: str = attrs.field()
+    link: dict[str, Any] = attrs.field()
     # {'required': ['resource', 'verb'], 'properties': {'resource': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='URI resource for the link.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'verb': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['GET'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='HTTP method for the link operation.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
 
     pass

@@ -15,8 +15,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AcknowledgementStatus:
 
-    code: str
-    description: str
+    code: str = attrs.field()
+    description: str = attrs.field()
 
     pass
 
@@ -24,18 +24,18 @@ class AcknowledgementStatus:
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    attention: str
-    city: str
-    country_code: str
-    county: str
-    district: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    attention: str = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
+    county: str = attrs.field()
+    district: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
     pass
 
@@ -49,9 +49,9 @@ class Decimal:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -59,7 +59,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -67,8 +67,8 @@ class ErrorList:
 @attrs.define
 class GiftDetails:
 
-    gift_message: str
-    gift_wrap_id: str
+    gift_message: str = attrs.field()
+    gift_wrap_id: str = attrs.field()
 
     pass
 
@@ -76,8 +76,8 @@ class GiftDetails:
 @attrs.define
 class ItemQuantity:
 
-    amount: int
-    unit_of_measure: Union[Literal["Each"]]
+    amount: int = attrs.field()
+    unit_of_measure: Union[Literal["Each"]] = attrs.field()
 
     pass
 
@@ -85,95 +85,95 @@ class ItemQuantity:
 @attrs.define
 class Money:
 
-    currency_code: str
+    currency_code: str = attrs.field()
 
-    amount: "Decimal"
+    amount: "Decimal" = attrs.field()
     pass
 
 
 @attrs.define
 class Order:
 
-    purchase_order_number: str
+    purchase_order_number: str = attrs.field()
 
-    order_details: "OrderDetails"
+    order_details: "OrderDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderAcknowledgementItem:
 
-    acknowledgement_date: str
+    acknowledgement_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    item_acknowledgements: list["OrderItemAcknowledgement"]
-    purchase_order_number: str
-    vendor_order_number: str
+    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field()
+    purchase_order_number: str = attrs.field()
+    vendor_order_number: str = attrs.field()
 
-    acknowledgement_status: "AcknowledgementStatus"
-    selling_party: "PartyIdentification"
-    ship_from_party: "PartyIdentification"
+    acknowledgement_status: "AcknowledgementStatus" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderDetails:
 
-    customer_order_number: str
-    items: list["OrderItem"]
-    order_date: str
+    customer_order_number: str = attrs.field()
+    items: list["OrderItem"] = attrs.field()
+    order_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    order_status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]]
+    order_status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = attrs.field()
 
-    bill_to_party: "PartyIdentification"
-    selling_party: "PartyIdentification"
-    ship_from_party: "PartyIdentification"
-    ship_to_party: "Address"
-    shipment_details: "ShipmentDetails"
-    tax_total: "TaxItemDetails"
+    bill_to_party: "PartyIdentification" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
+    ship_to_party: "Address" = attrs.field()
+    shipment_details: "ShipmentDetails" = attrs.field()
+    tax_total: "TaxItemDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItem:
 
-    buyer_product_identifier: str
-    item_sequence_number: str
-    title: str
-    vendor_product_identifier: str
+    buyer_product_identifier: str = attrs.field()
+    item_sequence_number: str = attrs.field()
+    title: str = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    gift_details: "GiftDetails"
-    net_price: "Money"
-    ordered_quantity: "ItemQuantity"
-    scheduled_delivery_shipment: "ScheduledDeliveryShipment"
-    tax_details: "TaxItemDetails"
-    total_price: "Money"
+    gift_details: "GiftDetails" = attrs.field()
+    net_price: "Money" = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field()
+    scheduled_delivery_shipment: "ScheduledDeliveryShipment" = attrs.field()
+    tax_details: "TaxItemDetails" = attrs.field()
+    total_price: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItemAcknowledgement:
 
-    buyer_product_identifier: str
-    item_sequence_number: str
-    vendor_product_identifier: str
+    buyer_product_identifier: str = attrs.field()
+    item_sequence_number: str = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    acknowledged_quantity: "ItemQuantity"
+    acknowledged_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderList:
 
-    orders: list["Order"]
+    orders: list["Order"] = attrs.field()
 
-    pagination: "Pagination"
+    pagination: "Pagination" = attrs.field()
     pass
 
 
 @attrs.define
 class Pagination:
 
-    next_token: str
+    next_token: str = attrs.field()
 
     pass
 
@@ -181,21 +181,21 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
-    party_id: str
+    party_id: str = attrs.field()
 
-    address: "Address"
-    tax_info: "TaxRegistrationDetails"
+    address: "Address" = attrs.field()
+    tax_info: "TaxRegistrationDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class ScheduledDeliveryShipment:
 
-    earliest_nominated_delivery_date: str
+    earliest_nominated_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    latest_nominated_delivery_date: str
+    latest_nominated_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    scheduled_delivery_service_type: str
+    scheduled_delivery_service_type: str = attrs.field()
 
     pass
 
@@ -203,9 +203,9 @@ class ScheduledDeliveryShipment:
 @attrs.define
 class ShipmentDates:
 
-    promised_delivery_date: str
+    promised_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    required_ship_date: str
+    required_ship_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
     pass
@@ -214,21 +214,21 @@ class ShipmentDates:
 @attrs.define
 class ShipmentDetails:
 
-    is_gift: bool
-    is_priority_shipment: bool
-    is_pslip_required: bool
-    is_scheduled_delivery_shipment: bool
-    message_to_customer: str
-    ship_method: str
+    is_gift: bool = attrs.field()
+    is_priority_shipment: bool = attrs.field()
+    is_pslip_required: bool = attrs.field()
+    is_scheduled_delivery_shipment: bool = attrs.field()
+    message_to_customer: str = attrs.field()
+    ship_method: str = attrs.field()
 
-    shipment_dates: "ShipmentDates"
+    shipment_dates: "ShipmentDates" = attrs.field()
     pass
 
 
 @attrs.define
 class SubmitAcknowledgementRequest:
 
-    order_acknowledgements: list["OrderAcknowledgementItem"]
+    order_acknowledgements: list["OrderAcknowledgementItem"] = attrs.field()
 
     pass
 
@@ -236,8 +236,8 @@ class SubmitAcknowledgementRequest:
 @attrs.define
 class SubmitAcknowledgementResponse:
 
-    errors: "ErrorList"
-    payload: "TransactionId"
+    errors: "ErrorList" = attrs.field()
+    payload: "TransactionId" = attrs.field()
     pass
 
 
@@ -252,18 +252,18 @@ class TaxDetails:
         Literal["TOTAL"],
         Literal["TVA"],
         Literal["VAT"],
-    ]
+    ] = attrs.field()
 
-    tax_amount: "Money"
-    tax_rate: "Decimal"
-    taxable_amount: "Money"
+    tax_amount: "Money" = attrs.field()
+    tax_rate: "Decimal" = attrs.field()
+    taxable_amount: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class TaxItemDetails:
 
-    tax_line_item: "TaxLineItem"
+    tax_line_item: "TaxLineItem" = attrs.field()
     pass
 
 
@@ -276,18 +276,18 @@ class TaxLineItem:
 @attrs.define
 class TaxRegistrationDetails:
 
-    tax_registration_messages: str
-    tax_registration_number: str
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]]
+    tax_registration_messages: str = attrs.field()
+    tax_registration_number: str = attrs.field()
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
-    tax_registration_address: "Address"
+    tax_registration_address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class TransactionId:
 
-    transaction_id: str
+    transaction_id: str = attrs.field()
 
     pass
 

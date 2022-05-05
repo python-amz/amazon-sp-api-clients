@@ -15,11 +15,11 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AdjustmentEvent:
 
-    adjustment_type: str
+    adjustment_type: str = attrs.field()
 
-    adjustment_amount: "Currency"
-    adjustment_item_list: "AdjustmentItemList"
-    posted_date: "Date"
+    adjustment_amount: "Currency" = attrs.field()
+    adjustment_item_list: "AdjustmentItemList" = attrs.field()
+    posted_date: "Date" = attrs.field()
     pass
 
 
@@ -32,14 +32,14 @@ class AdjustmentEventList:
 @attrs.define
 class AdjustmentItem:
 
-    asin: str
-    fn_sku: str
-    product_description: str
-    quantity: str
-    seller_sku: str
+    asin: str = attrs.field()
+    fn_sku: str = attrs.field()
+    product_description: str = attrs.field()
+    quantity: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    per_unit_amount: "Currency"
-    total_amount: "Currency"
+    per_unit_amount: "Currency" = attrs.field()
+    total_amount: "Currency" = attrs.field()
     pass
 
 
@@ -52,16 +52,16 @@ class AdjustmentItemList:
 @attrs.define
 class AffordabilityExpenseEvent:
 
-    amazon_order_id: str
-    marketplace_id: str
-    transaction_type: str
+    amazon_order_id: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    transaction_type: str = attrs.field()
 
-    base_expense: "Currency"
-    posted_date: "Date"
-    tax_type_cgst: "Currency"
-    tax_type_igst: "Currency"
-    tax_type_sgst: "Currency"
-    total_expense: "Currency"
+    base_expense: "Currency" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    tax_type_cgst: "Currency" = attrs.field()
+    tax_type_igst: "Currency" = attrs.field()
+    tax_type_sgst: "Currency" = attrs.field()
+    total_expense: "Currency" = attrs.field()
     pass
 
 
@@ -80,9 +80,9 @@ class BigDecimal:
 @attrs.define
 class ChargeComponent:
 
-    charge_type: str
+    charge_type: str = attrs.field()
 
-    charge_amount: "Currency"
+    charge_amount: "Currency" = attrs.field()
     pass
 
 
@@ -95,10 +95,10 @@ class ChargeComponentList:
 @attrs.define
 class ChargeInstrument:
 
-    description: str
-    tail: str
+    description: str = attrs.field()
+    tail: str = attrs.field()
 
-    amount: "Currency"
+    amount: "Currency" = attrs.field()
     pass
 
 
@@ -111,16 +111,16 @@ class ChargeInstrumentList:
 @attrs.define
 class CouponPaymentEvent:
 
-    clip_or_redemption_count: int
+    clip_or_redemption_count: int = attrs.field()
     # {'schema_format': 'int64'}
-    coupon_id: str
-    payment_event_id: str
-    seller_coupon_description: str
+    coupon_id: str = attrs.field()
+    payment_event_id: str = attrs.field()
+    seller_coupon_description: str = attrs.field()
 
-    charge_component: "ChargeComponent"
-    fee_component: "FeeComponent"
-    posted_date: "Date"
-    total_amount: "Currency"
+    charge_component: "ChargeComponent" = attrs.field()
+    fee_component: "FeeComponent" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    total_amount: "Currency" = attrs.field()
     pass
 
 
@@ -133,9 +133,9 @@ class CouponPaymentEventList:
 @attrs.define
 class Currency:
 
-    currency_code: str
+    currency_code: str = attrs.field()
 
-    currency_amount: "BigDecimal"
+    currency_amount: "BigDecimal" = attrs.field()
     pass
 
 
@@ -148,12 +148,12 @@ class Date:
 @attrs.define
 class DebtRecoveryEvent:
 
-    debt_recovery_type: str
+    debt_recovery_type: str = attrs.field()
 
-    charge_instrument_list: "ChargeInstrumentList"
-    debt_recovery_item_list: "DebtRecoveryItemList"
-    over_payment_credit: "Currency"
-    recovery_amount: "Currency"
+    charge_instrument_list: "ChargeInstrumentList" = attrs.field()
+    debt_recovery_item_list: "DebtRecoveryItemList" = attrs.field()
+    over_payment_credit: "Currency" = attrs.field()
+    recovery_amount: "Currency" = attrs.field()
     pass
 
 
@@ -166,10 +166,10 @@ class DebtRecoveryEventList:
 @attrs.define
 class DebtRecoveryItem:
 
-    group_begin_date: "Date"
-    group_end_date: "Date"
-    original_amount: "Currency"
-    recovery_amount: "Currency"
+    group_begin_date: "Date" = attrs.field()
+    group_end_date: "Date" = attrs.field()
+    original_amount: "Currency" = attrs.field()
+    recovery_amount: "Currency" = attrs.field()
     pass
 
 
@@ -182,9 +182,9 @@ class DebtRecoveryItemList:
 @attrs.define
 class DirectPayment:
 
-    direct_payment_type: str
+    direct_payment_type: str = attrs.field()
 
-    direct_payment_amount: "Currency"
+    direct_payment_amount: "Currency" = attrs.field()
     pass
 
 
@@ -197,9 +197,9 @@ class DirectPaymentList:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -213,11 +213,11 @@ class ErrorList:
 @attrs.define
 class FBALiquidationEvent:
 
-    original_removal_order_id: str
+    original_removal_order_id: str = attrs.field()
 
-    liquidation_fee_amount: "Currency"
-    liquidation_proceeds_amount: "Currency"
-    posted_date: "Date"
+    liquidation_fee_amount: "Currency" = attrs.field()
+    liquidation_proceeds_amount: "Currency" = attrs.field()
+    posted_date: "Date" = attrs.field()
     pass
 
 
@@ -230,9 +230,9 @@ class FBALiquidationEventList:
 @attrs.define
 class FeeComponent:
 
-    fee_type: str
+    fee_type: str = attrs.field()
 
-    fee_amount: "Currency"
+    fee_amount: "Currency" = attrs.field()
     pass
 
 
@@ -245,18 +245,18 @@ class FeeComponentList:
 @attrs.define
 class FinancialEventGroup:
 
-    account_tail: str
-    financial_event_group_id: str
-    fund_transfer_status: str
-    processing_status: str
-    trace_id: str
+    account_tail: str = attrs.field()
+    financial_event_group_id: str = attrs.field()
+    fund_transfer_status: str = attrs.field()
+    processing_status: str = attrs.field()
+    trace_id: str = attrs.field()
 
-    beginning_balance: "Currency"
-    converted_total: "Currency"
-    financial_event_group_end: "Date"
-    financial_event_group_start: "Date"
-    fund_transfer_date: "Date"
-    original_total: "Currency"
+    beginning_balance: "Currency" = attrs.field()
+    converted_total: "Currency" = attrs.field()
+    financial_event_group_end: "Date" = attrs.field()
+    financial_event_group_start: "Date" = attrs.field()
+    fund_transfer_date: "Date" = attrs.field()
+    original_total: "Currency" = attrs.field()
     pass
 
 
@@ -269,44 +269,44 @@ class FinancialEventGroupList:
 @attrs.define
 class FinancialEvents:
 
-    adjustment_event_list: "AdjustmentEventList"
-    affordability_expense_event_list: "AffordabilityExpenseEventList"
-    affordability_expense_reversal_event_list: "AffordabilityExpenseEventList"
-    chargeback_event_list: "ShipmentEventList"
-    coupon_payment_event_list: "CouponPaymentEventList"
-    debt_recovery_event_list: "DebtRecoveryEventList"
-    fbaliquidation_event_list: "FBALiquidationEventList"
-    guarantee_claim_event_list: "ShipmentEventList"
-    imaging_services_fee_event_list: "ImagingServicesFeeEventList"
-    loan_servicing_event_list: "LoanServicingEventList"
-    network_commingling_transaction_event_list: "NetworkComminglingTransactionEventList"
-    pay_with_amazon_event_list: "PayWithAmazonEventList"
-    product_ads_payment_event_list: "ProductAdsPaymentEventList"
-    refund_event_list: "ShipmentEventList"
-    removal_shipment_adjustment_event_list: "RemovalShipmentAdjustmentEventList"
-    removal_shipment_event_list: "RemovalShipmentEventList"
-    rental_transaction_event_list: "RentalTransactionEventList"
-    retrocharge_event_list: "RetrochargeEventList"
-    safetreimbursement_event_list: "SAFETReimbursementEventList"
-    seller_deal_payment_event_list: "SellerDealPaymentEventList"
-    seller_review_enrollment_payment_event_list: "SellerReviewEnrollmentPaymentEventList"
-    service_fee_event_list: "ServiceFeeEventList"
-    service_provider_credit_event_list: "SolutionProviderCreditEventList"
-    shipment_event_list: "ShipmentEventList"
-    shipment_settle_event_list: "ShipmentSettleEventList"
-    tax_withholding_event_list: "TaxWithholdingEventList"
-    trial_shipment_event_list: "TrialShipmentEventList"
+    adjustment_event_list: "AdjustmentEventList" = attrs.field()
+    affordability_expense_event_list: "AffordabilityExpenseEventList" = attrs.field()
+    affordability_expense_reversal_event_list: "AffordabilityExpenseEventList" = attrs.field()
+    chargeback_event_list: "ShipmentEventList" = attrs.field()
+    coupon_payment_event_list: "CouponPaymentEventList" = attrs.field()
+    debt_recovery_event_list: "DebtRecoveryEventList" = attrs.field()
+    fbaliquidation_event_list: "FBALiquidationEventList" = attrs.field()
+    guarantee_claim_event_list: "ShipmentEventList" = attrs.field()
+    imaging_services_fee_event_list: "ImagingServicesFeeEventList" = attrs.field()
+    loan_servicing_event_list: "LoanServicingEventList" = attrs.field()
+    network_commingling_transaction_event_list: "NetworkComminglingTransactionEventList" = attrs.field()
+    pay_with_amazon_event_list: "PayWithAmazonEventList" = attrs.field()
+    product_ads_payment_event_list: "ProductAdsPaymentEventList" = attrs.field()
+    refund_event_list: "ShipmentEventList" = attrs.field()
+    removal_shipment_adjustment_event_list: "RemovalShipmentAdjustmentEventList" = attrs.field()
+    removal_shipment_event_list: "RemovalShipmentEventList" = attrs.field()
+    rental_transaction_event_list: "RentalTransactionEventList" = attrs.field()
+    retrocharge_event_list: "RetrochargeEventList" = attrs.field()
+    safetreimbursement_event_list: "SAFETReimbursementEventList" = attrs.field()
+    seller_deal_payment_event_list: "SellerDealPaymentEventList" = attrs.field()
+    seller_review_enrollment_payment_event_list: "SellerReviewEnrollmentPaymentEventList" = attrs.field()
+    service_fee_event_list: "ServiceFeeEventList" = attrs.field()
+    service_provider_credit_event_list: "SolutionProviderCreditEventList" = attrs.field()
+    shipment_event_list: "ShipmentEventList" = attrs.field()
+    shipment_settle_event_list: "ShipmentSettleEventList" = attrs.field()
+    tax_withholding_event_list: "TaxWithholdingEventList" = attrs.field()
+    trial_shipment_event_list: "TrialShipmentEventList" = attrs.field()
     pass
 
 
 @attrs.define
 class ImagingServicesFeeEvent:
 
-    asin: str
-    imaging_request_billing_item_id: str
+    asin: str = attrs.field()
+    imaging_request_billing_item_id: str = attrs.field()
 
-    fee_list: "FeeComponentList"
-    posted_date: "Date"
+    fee_list: "FeeComponentList" = attrs.field()
+    posted_date: "Date" = attrs.field()
     pass
 
 
@@ -319,43 +319,43 @@ class ImagingServicesFeeEventList:
 @attrs.define
 class ListFinancialEventGroupsPayload:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    financial_event_group_list: "FinancialEventGroupList"
+    financial_event_group_list: "FinancialEventGroupList" = attrs.field()
     pass
 
 
 @attrs.define
 class ListFinancialEventGroupsResponse:
 
-    errors: "ErrorList"
-    payload: "ListFinancialEventGroupsPayload"
+    errors: "ErrorList" = attrs.field()
+    payload: "ListFinancialEventGroupsPayload" = attrs.field()
     pass
 
 
 @attrs.define
 class ListFinancialEventsPayload:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    financial_events: "FinancialEvents"
+    financial_events: "FinancialEvents" = attrs.field()
     pass
 
 
 @attrs.define
 class ListFinancialEventsResponse:
 
-    errors: "ErrorList"
-    payload: "ListFinancialEventsPayload"
+    errors: "ErrorList" = attrs.field()
+    payload: "ListFinancialEventsPayload" = attrs.field()
     pass
 
 
 @attrs.define
 class LoanServicingEvent:
 
-    source_business_event_type: str
+    source_business_event_type: str = attrs.field()
 
-    loan_amount: "Currency"
+    loan_amount: "Currency" = attrs.field()
     pass
 
 
@@ -368,15 +368,15 @@ class LoanServicingEventList:
 @attrs.define
 class NetworkComminglingTransactionEvent:
 
-    asin: str
-    marketplace_id: str
-    net_co_transaction_id: str
-    swap_reason: str
-    transaction_type: str
+    asin: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    net_co_transaction_id: str = attrs.field()
+    swap_reason: str = attrs.field()
+    transaction_type: str = attrs.field()
 
-    posted_date: "Date"
-    tax_amount: "Currency"
-    tax_exclusive_amount: "Currency"
+    posted_date: "Date" = attrs.field()
+    tax_amount: "Currency" = attrs.field()
+    tax_exclusive_amount: "Currency" = attrs.field()
     pass
 
 
@@ -389,17 +389,17 @@ class NetworkComminglingTransactionEventList:
 @attrs.define
 class PayWithAmazonEvent:
 
-    amount_description: str
-    business_object_type: str
-    fulfillment_channel: str
-    payment_amount_type: str
-    sales_channel: str
-    seller_order_id: str
-    store_name: str
+    amount_description: str = attrs.field()
+    business_object_type: str = attrs.field()
+    fulfillment_channel: str = attrs.field()
+    payment_amount_type: str = attrs.field()
+    sales_channel: str = attrs.field()
+    seller_order_id: str = attrs.field()
+    store_name: str = attrs.field()
 
-    charge: "ChargeComponent"
-    fee_list: "FeeComponentList"
-    transaction_posted_date: "Date"
+    charge: "ChargeComponent" = attrs.field()
+    fee_list: "FeeComponentList" = attrs.field()
+    transaction_posted_date: "Date" = attrs.field()
     pass
 
 
@@ -412,13 +412,13 @@ class PayWithAmazonEventList:
 @attrs.define
 class ProductAdsPaymentEvent:
 
-    invoice_id: str
-    transaction_type: str
+    invoice_id: str = attrs.field()
+    transaction_type: str = attrs.field()
 
-    base_value: "Currency"
-    posted_date: "Date"
-    tax_value: "Currency"
-    transaction_value: "Currency"
+    base_value: "Currency" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    tax_value: "Currency" = attrs.field()
+    transaction_value: "Currency" = attrs.field()
     pass
 
 
@@ -431,10 +431,10 @@ class ProductAdsPaymentEventList:
 @attrs.define
 class Promotion:
 
-    promotion_id: str
-    promotion_type: str
+    promotion_id: str = attrs.field()
+    promotion_type: str = attrs.field()
 
-    promotion_amount: "Currency"
+    promotion_amount: "Currency" = attrs.field()
     pass
 
 
@@ -447,13 +447,13 @@ class PromotionList:
 @attrs.define
 class RemovalShipmentAdjustmentEvent:
 
-    adjustment_event_id: str
-    merchant_order_id: str
-    order_id: str
-    removal_shipment_item_adjustment_list: list["RemovalShipmentItemAdjustment"]
-    transaction_type: str
+    adjustment_event_id: str = attrs.field()
+    merchant_order_id: str = attrs.field()
+    order_id: str = attrs.field()
+    removal_shipment_item_adjustment_list: list["RemovalShipmentItemAdjustment"] = attrs.field()
+    transaction_type: str = attrs.field()
 
-    posted_date: "Date"
+    posted_date: "Date" = attrs.field()
     pass
 
 
@@ -466,12 +466,12 @@ class RemovalShipmentAdjustmentEventList:
 @attrs.define
 class RemovalShipmentEvent:
 
-    merchant_order_id: str
-    order_id: str
-    transaction_type: str
+    merchant_order_id: str = attrs.field()
+    order_id: str = attrs.field()
+    transaction_type: str = attrs.field()
 
-    posted_date: "Date"
-    removal_shipment_item_list: "RemovalShipmentItemList"
+    posted_date: "Date" = attrs.field()
+    removal_shipment_item_list: "RemovalShipmentItemList" = attrs.field()
     pass
 
 
@@ -484,31 +484,31 @@ class RemovalShipmentEventList:
 @attrs.define
 class RemovalShipmentItem:
 
-    fulfillment_network_sku: str
-    quantity: int
+    fulfillment_network_sku: str = attrs.field()
+    quantity: int = attrs.field()
     # {'schema_format': 'int32'}
-    removal_shipment_item_id: str
-    tax_collection_model: str
+    removal_shipment_item_id: str = attrs.field()
+    tax_collection_model: str = attrs.field()
 
-    fee_amount: "Currency"
-    revenue: "Currency"
-    tax_amount: "Currency"
-    tax_withheld: "Currency"
+    fee_amount: "Currency" = attrs.field()
+    revenue: "Currency" = attrs.field()
+    tax_amount: "Currency" = attrs.field()
+    tax_withheld: "Currency" = attrs.field()
     pass
 
 
 @attrs.define
 class RemovalShipmentItemAdjustment:
 
-    adjusted_quantity: int
+    adjusted_quantity: int = attrs.field()
     # {'schema_format': 'int32'}
-    fulfillment_network_sku: str
-    removal_shipment_item_id: str
-    tax_collection_model: str
+    fulfillment_network_sku: str = attrs.field()
+    removal_shipment_item_id: str = attrs.field()
+    tax_collection_model: str = attrs.field()
 
-    revenue_adjustment: "Currency"
-    tax_amount_adjustment: "Currency"
-    tax_withheld_adjustment: "Currency"
+    revenue_adjustment: "Currency" = attrs.field()
+    tax_amount_adjustment: "Currency" = attrs.field()
+    tax_withheld_adjustment: "Currency" = attrs.field()
     pass
 
 
@@ -521,18 +521,18 @@ class RemovalShipmentItemList:
 @attrs.define
 class RentalTransactionEvent:
 
-    amazon_order_id: str
-    extension_length: int
+    amazon_order_id: str = attrs.field()
+    extension_length: int = attrs.field()
     # {'schema_format': 'int32'}
-    marketplace_name: str
-    rental_event_type: str
+    marketplace_name: str = attrs.field()
+    rental_event_type: str = attrs.field()
 
-    posted_date: "Date"
-    rental_charge_list: "ChargeComponentList"
-    rental_fee_list: "FeeComponentList"
-    rental_initial_value: "Currency"
-    rental_reimbursement: "Currency"
-    rental_tax_withheld_list: "TaxWithheldComponentList"
+    posted_date: "Date" = attrs.field()
+    rental_charge_list: "ChargeComponentList" = attrs.field()
+    rental_fee_list: "FeeComponentList" = attrs.field()
+    rental_initial_value: "Currency" = attrs.field()
+    rental_reimbursement: "Currency" = attrs.field()
+    rental_tax_withheld_list: "TaxWithheldComponentList" = attrs.field()
     pass
 
 
@@ -545,14 +545,14 @@ class RentalTransactionEventList:
 @attrs.define
 class RetrochargeEvent:
 
-    amazon_order_id: str
-    marketplace_name: str
-    retrocharge_event_type: str
+    amazon_order_id: str = attrs.field()
+    marketplace_name: str = attrs.field()
+    retrocharge_event_type: str = attrs.field()
 
-    base_tax: "Currency"
-    posted_date: "Date"
-    retrocharge_tax_withheld_list: "TaxWithheldComponentList"
-    shipping_tax: "Currency"
+    base_tax: "Currency" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    retrocharge_tax_withheld_list: "TaxWithheldComponentList" = attrs.field()
+    shipping_tax: "Currency" = attrs.field()
     pass
 
 
@@ -565,12 +565,12 @@ class RetrochargeEventList:
 @attrs.define
 class SAFETReimbursementEvent:
 
-    reason_code: str
-    safetclaim_id: str
+    reason_code: str = attrs.field()
+    safetclaim_id: str = attrs.field()
 
-    posted_date: "Date"
-    reimbursed_amount: "Currency"
-    safetreimbursement_item_list: "SAFETReimbursementItemList"
+    posted_date: "Date" = attrs.field()
+    reimbursed_amount: "Currency" = attrs.field()
+    safetreimbursement_item_list: "SAFETReimbursementItemList" = attrs.field()
     pass
 
 
@@ -583,10 +583,10 @@ class SAFETReimbursementEventList:
 @attrs.define
 class SAFETReimbursementItem:
 
-    product_description: str
-    quantity: str
+    product_description: str = attrs.field()
+    quantity: str = attrs.field()
 
-    item_charge_list: "ChargeComponentList"
+    item_charge_list: "ChargeComponentList" = attrs.field()
     pass
 
 
@@ -599,15 +599,15 @@ class SAFETReimbursementItemList:
 @attrs.define
 class SellerDealPaymentEvent:
 
-    deal_description: str
-    deal_id: str
-    event_type: str
-    fee_type: str
+    deal_description: str = attrs.field()
+    deal_id: str = attrs.field()
+    event_type: str = attrs.field()
+    fee_type: str = attrs.field()
 
-    fee_amount: "Currency"
-    posted_date: "Date"
-    tax_amount: "Currency"
-    total_amount: "Currency"
+    fee_amount: "Currency" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    tax_amount: "Currency" = attrs.field()
+    total_amount: "Currency" = attrs.field()
     pass
 
 
@@ -620,13 +620,13 @@ class SellerDealPaymentEventList:
 @attrs.define
 class SellerReviewEnrollmentPaymentEvent:
 
-    enrollment_id: str
-    parent_asin: str
+    enrollment_id: str = attrs.field()
+    parent_asin: str = attrs.field()
 
-    charge_component: "ChargeComponent"
-    fee_component: "FeeComponent"
-    posted_date: "Date"
-    total_amount: "Currency"
+    charge_component: "ChargeComponent" = attrs.field()
+    fee_component: "FeeComponent" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    total_amount: "Currency" = attrs.field()
     pass
 
 
@@ -639,14 +639,14 @@ class SellerReviewEnrollmentPaymentEventList:
 @attrs.define
 class ServiceFeeEvent:
 
-    asin: str
-    amazon_order_id: str
-    fee_description: str
-    fee_reason: str
-    fn_sku: str
-    seller_sku: str
+    asin: str = attrs.field()
+    amazon_order_id: str = attrs.field()
+    fee_description: str = attrs.field()
+    fee_reason: str = attrs.field()
+    fn_sku: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    fee_list: "FeeComponentList"
+    fee_list: "FeeComponentList" = attrs.field()
     pass
 
 
@@ -659,20 +659,20 @@ class ServiceFeeEventList:
 @attrs.define
 class ShipmentEvent:
 
-    amazon_order_id: str
-    marketplace_name: str
-    seller_order_id: str
+    amazon_order_id: str = attrs.field()
+    marketplace_name: str = attrs.field()
+    seller_order_id: str = attrs.field()
 
-    direct_payment_list: "DirectPaymentList"
-    order_charge_adjustment_list: "ChargeComponentList"
-    order_charge_list: "ChargeComponentList"
-    order_fee_adjustment_list: "FeeComponentList"
-    order_fee_list: "FeeComponentList"
-    posted_date: "Date"
-    shipment_fee_adjustment_list: "FeeComponentList"
-    shipment_fee_list: "FeeComponentList"
-    shipment_item_adjustment_list: "ShipmentItemList"
-    shipment_item_list: "ShipmentItemList"
+    direct_payment_list: "DirectPaymentList" = attrs.field()
+    order_charge_adjustment_list: "ChargeComponentList" = attrs.field()
+    order_charge_list: "ChargeComponentList" = attrs.field()
+    order_fee_adjustment_list: "FeeComponentList" = attrs.field()
+    order_fee_list: "FeeComponentList" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    shipment_fee_adjustment_list: "FeeComponentList" = attrs.field()
+    shipment_fee_list: "FeeComponentList" = attrs.field()
+    shipment_item_adjustment_list: "ShipmentItemList" = attrs.field()
+    shipment_item_list: "ShipmentItemList" = attrs.field()
     pass
 
 
@@ -685,21 +685,21 @@ class ShipmentEventList:
 @attrs.define
 class ShipmentItem:
 
-    order_adjustment_item_id: str
-    order_item_id: str
-    quantity_shipped: int
+    order_adjustment_item_id: str = attrs.field()
+    order_item_id: str = attrs.field()
+    quantity_shipped: int = attrs.field()
     # {'schema_format': 'int32'}
-    seller_sku: str
+    seller_sku: str = attrs.field()
 
-    cost_of_points_granted: "Currency"
-    cost_of_points_returned: "Currency"
-    item_charge_adjustment_list: "ChargeComponentList"
-    item_charge_list: "ChargeComponentList"
-    item_fee_adjustment_list: "FeeComponentList"
-    item_fee_list: "FeeComponentList"
-    item_tax_withheld_list: "TaxWithheldComponentList"
-    promotion_adjustment_list: "PromotionList"
-    promotion_list: "PromotionList"
+    cost_of_points_granted: "Currency" = attrs.field()
+    cost_of_points_returned: "Currency" = attrs.field()
+    item_charge_adjustment_list: "ChargeComponentList" = attrs.field()
+    item_charge_list: "ChargeComponentList" = attrs.field()
+    item_fee_adjustment_list: "FeeComponentList" = attrs.field()
+    item_fee_list: "FeeComponentList" = attrs.field()
+    item_tax_withheld_list: "TaxWithheldComponentList" = attrs.field()
+    promotion_adjustment_list: "PromotionList" = attrs.field()
+    promotion_list: "PromotionList" = attrs.field()
     pass
 
 
@@ -718,17 +718,17 @@ class ShipmentSettleEventList:
 @attrs.define
 class SolutionProviderCreditEvent:
 
-    marketplace_country_code: str
-    marketplace_id: str
-    provider_id: str
-    provider_store_name: str
-    provider_transaction_type: str
-    seller_id: str
-    seller_order_id: str
-    seller_store_name: str
+    marketplace_country_code: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    provider_id: str = attrs.field()
+    provider_store_name: str = attrs.field()
+    provider_transaction_type: str = attrs.field()
+    seller_id: str = attrs.field()
+    seller_order_id: str = attrs.field()
+    seller_store_name: str = attrs.field()
 
-    transaction_amount: "Currency"
-    transaction_creation_date: "Date"
+    transaction_amount: "Currency" = attrs.field()
+    transaction_creation_date: "Date" = attrs.field()
     pass
 
 
@@ -741,9 +741,9 @@ class SolutionProviderCreditEventList:
 @attrs.define
 class TaxWithheldComponent:
 
-    tax_collection_model: str
+    tax_collection_model: str = attrs.field()
 
-    taxes_withheld: "ChargeComponentList"
+    taxes_withheld: "ChargeComponentList" = attrs.field()
     pass
 
 
@@ -756,10 +756,10 @@ class TaxWithheldComponentList:
 @attrs.define
 class TaxWithholdingEvent:
 
-    base_amount: "Currency"
-    posted_date: "Date"
-    tax_withholding_period: "TaxWithholdingPeriod"
-    withheld_amount: "Currency"
+    base_amount: "Currency" = attrs.field()
+    posted_date: "Date" = attrs.field()
+    tax_withholding_period: "TaxWithholdingPeriod" = attrs.field()
+    withheld_amount: "Currency" = attrs.field()
     pass
 
 
@@ -772,20 +772,20 @@ class TaxWithholdingEventList:
 @attrs.define
 class TaxWithholdingPeriod:
 
-    end_date: "Date"
-    start_date: "Date"
+    end_date: "Date" = attrs.field()
+    start_date: "Date" = attrs.field()
     pass
 
 
 @attrs.define
 class TrialShipmentEvent:
 
-    amazon_order_id: str
-    financial_event_group_id: str
-    sku: str
+    amazon_order_id: str = attrs.field()
+    financial_event_group_id: str = attrs.field()
+    sku: str = attrs.field()
 
-    fee_list: "FeeComponentList"
-    posted_date: "Date"
+    fee_list: "FeeComponentList" = attrs.field()
+    posted_date: "Date" = attrs.field()
     pass
 
 

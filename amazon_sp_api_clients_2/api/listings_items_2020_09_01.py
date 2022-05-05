@@ -17,9 +17,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -27,7 +27,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -35,10 +35,10 @@ class ErrorList:
 @attrs.define
 class Issue:
 
-    attribute_name: str
-    code: str
-    message: str
-    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]
+    attribute_name: str = attrs.field()
+    code: str = attrs.field()
+    message: str = attrs.field()
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field()
 
     pass
 
@@ -46,9 +46,9 @@ class Issue:
 @attrs.define
 class ListingsItemPatchRequest:
 
-    patches: list["PatchOperation"]
+    patches: list["PatchOperation"] = attrs.field()
     # {'minItems': 1}
-    product_type: str
+    product_type: str = attrs.field()
 
     pass
 
@@ -56,10 +56,12 @@ class ListingsItemPatchRequest:
 @attrs.define
 class ListingsItemPutRequest:
 
-    attributes: dict[str, Any]
+    attributes: dict[str, Any] = attrs.field()
     # {'properties': {}}
-    product_type: str
-    requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    product_type: str = attrs.field()
+    requirements: Union[
+        Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
+    ] = attrs.field()
 
     pass
 
@@ -67,10 +69,10 @@ class ListingsItemPutRequest:
 @attrs.define
 class ListingsItemSubmissionResponse:
 
-    issues: list["Issue"]
-    sku: str
-    status: Union[Literal["ACCEPTED"], Literal["INVALID"]]
-    submission_id: str
+    issues: list["Issue"] = attrs.field()
+    sku: str = attrs.field()
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
+    submission_id: str = attrs.field()
 
     pass
 
@@ -78,9 +80,9 @@ class ListingsItemSubmissionResponse:
 @attrs.define
 class PatchOperation:
 
-    op: Union[Literal["add"], Literal["replace"], Literal["delete"]]
-    path: str
-    value: list[dict[str, Any]]
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
+    path: str = attrs.field()
+    value: list[dict[str, Any]] = attrs.field()
 
     pass
 

@@ -17,8 +17,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CreateRestrictedDataTokenRequest:
 
-    restricted_resources: list["RestrictedResource"]
-    target_application: str
+    restricted_resources: list["RestrictedResource"] = attrs.field()
+    target_application: str = attrs.field()
 
     pass
 
@@ -26,8 +26,8 @@ class CreateRestrictedDataTokenRequest:
 @attrs.define
 class CreateRestrictedDataTokenResponse:
 
-    expires_in: int
-    restricted_data_token: str
+    expires_in: int = attrs.field()
+    restricted_data_token: str = attrs.field()
 
     pass
 
@@ -35,9 +35,9 @@ class CreateRestrictedDataTokenResponse:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -45,7 +45,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -53,9 +53,9 @@ class ErrorList:
 @attrs.define
 class RestrictedResource:
 
-    data_elements: list[str]
-    method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]]
-    path: str
+    data_elements: list[str] = attrs.field()
+    method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]] = attrs.field()
+    path: str = attrs.field()
 
     pass
 

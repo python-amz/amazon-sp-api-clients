@@ -17,25 +17,25 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CreateDestinationRequest:
 
-    name: str
+    name: str = attrs.field()
 
-    resource_specification: "DestinationResourceSpecification"
+    resource_specification: "DestinationResourceSpecification" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateDestinationResponse:
 
-    errors: "ErrorList"
-    payload: "Destination"
+    errors: "ErrorList" = attrs.field()
+    payload: "Destination" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateSubscriptionRequest:
 
-    destination_id: str
-    payload_version: str
+    destination_id: str = attrs.field()
+    payload_version: str = attrs.field()
 
     pass
 
@@ -43,33 +43,33 @@ class CreateSubscriptionRequest:
 @attrs.define
 class CreateSubscriptionResponse:
 
-    errors: "ErrorList"
-    payload: "Subscription"
+    errors: "ErrorList" = attrs.field()
+    payload: "Subscription" = attrs.field()
     pass
 
 
 @attrs.define
 class DeleteDestinationResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class DeleteSubscriptionByIdResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class Destination:
 
-    destination_id: str
-    name: str
+    destination_id: str = attrs.field()
+    name: str = attrs.field()
     # {'maxLength': 256}
 
-    resource: "DestinationResource"
+    resource: "DestinationResource" = attrs.field()
     pass
 
 
@@ -82,25 +82,25 @@ class DestinationList:
 @attrs.define
 class DestinationResource:
 
-    event_bridge: "EventBridgeResource"
-    sqs: "SqsResource"
+    event_bridge: "EventBridgeResource" = attrs.field()
+    sqs: "SqsResource" = attrs.field()
     pass
 
 
 @attrs.define
 class DestinationResourceSpecification:
 
-    event_bridge: "EventBridgeResourceSpecification"
-    sqs: "SqsResource"
+    event_bridge: "EventBridgeResourceSpecification" = attrs.field()
+    sqs: "SqsResource" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -114,10 +114,10 @@ class ErrorList:
 @attrs.define
 class EventBridgeResource:
 
-    account_id: str
-    name: str
+    account_id: str = attrs.field()
+    name: str = attrs.field()
     # {'maxLength': 256}
-    region: str
+    region: str = attrs.field()
 
     pass
 
@@ -125,8 +125,8 @@ class EventBridgeResource:
 @attrs.define
 class EventBridgeResourceSpecification:
 
-    account_id: str
-    region: str
+    account_id: str = attrs.field()
+    region: str = attrs.field()
 
     pass
 
@@ -134,40 +134,40 @@ class EventBridgeResourceSpecification:
 @attrs.define
 class GetDestinationResponse:
 
-    errors: "ErrorList"
-    payload: "Destination"
+    errors: "ErrorList" = attrs.field()
+    payload: "Destination" = attrs.field()
     pass
 
 
 @attrs.define
 class GetDestinationsResponse:
 
-    errors: "ErrorList"
-    payload: "DestinationList"
+    errors: "ErrorList" = attrs.field()
+    payload: "DestinationList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetSubscriptionByIdResponse:
 
-    errors: "ErrorList"
-    payload: "Subscription"
+    errors: "ErrorList" = attrs.field()
+    payload: "Subscription" = attrs.field()
     pass
 
 
 @attrs.define
 class GetSubscriptionResponse:
 
-    errors: "ErrorList"
-    payload: "Subscription"
+    errors: "ErrorList" = attrs.field()
+    payload: "Subscription" = attrs.field()
     pass
 
 
 @attrs.define
 class SqsResource:
 
-    arn: str
-    # {'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+', 'maxLength': 1000}
+    arn: str = attrs.field()
+    # {'maxLength': 1000, 'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+'}
 
     pass
 
@@ -175,9 +175,9 @@ class SqsResource:
 @attrs.define
 class Subscription:
 
-    destination_id: str
-    payload_version: str
-    subscription_id: str
+    destination_id: str = attrs.field()
+    payload_version: str = attrs.field()
+    subscription_id: str = attrs.field()
 
     pass
 

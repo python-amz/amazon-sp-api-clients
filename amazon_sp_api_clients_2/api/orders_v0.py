@@ -15,19 +15,19 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    address_type: Union[Literal["Residential"], Literal["Commercial"]]
-    city: str
-    country_code: str
-    county: str
-    district: str
-    municipality: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    address_type: Union[Literal["Residential"], Literal["Commercial"]] = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
+    county: str = attrs.field()
+    district: str = attrs.field()
+    municipality: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
     pass
 
@@ -35,9 +35,9 @@ class Address:
 @attrs.define
 class AutomatedShippingSettings:
 
-    automated_carrier: str
-    automated_ship_method: str
-    has_automated_shipping_settings: bool
+    automated_carrier: str = attrs.field()
+    automated_ship_method: str = attrs.field()
+    has_automated_shipping_settings: bool = attrs.field()
 
     pass
 
@@ -45,7 +45,7 @@ class AutomatedShippingSettings:
 @attrs.define
 class BuyerCustomizedInfoDetail:
 
-    customized_url: str
+    customized_url: str = attrs.field()
 
     pass
 
@@ -53,20 +53,20 @@ class BuyerCustomizedInfoDetail:
 @attrs.define
 class BuyerInfo:
 
-    buyer_county: str
-    buyer_email: str
-    buyer_name: str
-    purchase_order_number: str
+    buyer_county: str = attrs.field()
+    buyer_email: str = attrs.field()
+    buyer_name: str = attrs.field()
+    purchase_order_number: str = attrs.field()
 
-    buyer_tax_info: "BuyerTaxInfo"
+    buyer_tax_info: "BuyerTaxInfo" = attrs.field()
     pass
 
 
 @attrs.define
 class BuyerRequestedCancel:
 
-    buyer_cancel_reason: str
-    is_buyer_requested_cancel: bool
+    buyer_cancel_reason: str = attrs.field()
+    is_buyer_requested_cancel: bool = attrs.field()
 
     pass
 
@@ -74,9 +74,9 @@ class BuyerRequestedCancel:
 @attrs.define
 class BuyerTaxInfo:
 
-    company_legal_name: str
-    tax_classifications: list["TaxClassification"]
-    taxing_region: str
+    company_legal_name: str = attrs.field()
+    tax_classifications: list["TaxClassification"] = attrs.field()
+    taxing_region: str = attrs.field()
 
     pass
 
@@ -84,10 +84,10 @@ class BuyerTaxInfo:
 @attrs.define
 class BuyerTaxInformation:
 
-    buyer_business_address: str
-    buyer_legal_company_name: str
-    buyer_tax_office: str
-    buyer_tax_registration_id: str
+    buyer_business_address: str = attrs.field()
+    buyer_legal_company_name: str = attrs.field()
+    buyer_tax_office: str = attrs.field()
+    buyer_tax_registration_id: str = attrs.field()
 
     pass
 
@@ -95,9 +95,9 @@ class BuyerTaxInformation:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -111,7 +111,7 @@ class ErrorList:
 @attrs.define
 class FulfillmentInstruction:
 
-    fulfillment_supply_source_id: str
+    fulfillment_supply_source_id: str = attrs.field()
 
     pass
 
@@ -119,68 +119,68 @@ class FulfillmentInstruction:
 @attrs.define
 class GetOrderAddressResponse:
 
-    errors: "ErrorList"
-    payload: "OrderAddress"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderAddress" = attrs.field()
     pass
 
 
 @attrs.define
 class GetOrderBuyerInfoResponse:
 
-    errors: "ErrorList"
-    payload: "OrderBuyerInfo"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderBuyerInfo" = attrs.field()
     pass
 
 
 @attrs.define
 class GetOrderItemsBuyerInfoResponse:
 
-    errors: "ErrorList"
-    payload: "OrderItemsBuyerInfoList"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderItemsBuyerInfoList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetOrderItemsResponse:
 
-    errors: "ErrorList"
-    payload: "OrderItemsList"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderItemsList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetOrderRegulatedInfoResponse:
 
-    errors: "ErrorList"
-    payload: "OrderRegulatedInfo"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderRegulatedInfo" = attrs.field()
     pass
 
 
 @attrs.define
 class GetOrderResponse:
 
-    errors: "ErrorList"
-    payload: "Order"
+    errors: "ErrorList" = attrs.field()
+    payload: "Order" = attrs.field()
     pass
 
 
 @attrs.define
 class GetOrdersResponse:
 
-    errors: "ErrorList"
-    payload: "OrdersList"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrdersList" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemBuyerInfo:
 
-    gift_message_text: str
-    gift_wrap_level: str
+    gift_message_text: str = attrs.field()
+    gift_wrap_level: str = attrs.field()
 
-    buyer_customized_info: "BuyerCustomizedInfoDetail"
-    gift_wrap_price: "Money"
-    gift_wrap_tax: "Money"
+    buyer_customized_info: "BuyerCustomizedInfoDetail" = attrs.field()
+    gift_wrap_price: "Money" = attrs.field()
+    gift_wrap_tax: "Money" = attrs.field()
     pass
 
 
@@ -193,7 +193,7 @@ class MarketplaceId:
 @attrs.define
 class MarketplaceTaxInfo:
 
-    tax_classifications: list["TaxClassification"]
+    tax_classifications: list["TaxClassification"] = attrs.field()
 
     pass
 
@@ -201,8 +201,8 @@ class MarketplaceTaxInfo:
 @attrs.define
 class Money:
 
-    amount: str
-    currency_code: str
+    amount: str = attrs.field()
+    currency_code: str = attrs.field()
 
     pass
 
@@ -210,30 +210,30 @@ class Money:
 @attrs.define
 class Order:
 
-    amazon_order_id: str
-    buyer_invoice_preference: Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]]
-    cba_displayable_shipping_label: str
-    earliest_delivery_date: str
-    earliest_ship_date: str
-    easy_ship_shipment_status: str
-    fulfillment_channel: Union[Literal["MFN"], Literal["AFN"]]
-    has_regulated_items: bool
-    is_business_order: bool
-    is_estimated_ship_date_set: bool
-    is_global_express_enabled: bool
-    is_iba: bool
-    is_ispu: bool
-    is_premium_order: bool
-    is_prime: bool
-    is_replacement_order: bool
-    is_sold_by_ab: bool
-    last_update_date: str
-    latest_delivery_date: str
-    latest_ship_date: str
-    marketplace_id: str
-    number_of_items_shipped: int
-    number_of_items_unshipped: int
-    order_channel: str
+    amazon_order_id: str = attrs.field()
+    buyer_invoice_preference: Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]] = attrs.field()
+    cba_displayable_shipping_label: str = attrs.field()
+    earliest_delivery_date: str = attrs.field()
+    earliest_ship_date: str = attrs.field()
+    easy_ship_shipment_status: str = attrs.field()
+    fulfillment_channel: Union[Literal["MFN"], Literal["AFN"]] = attrs.field()
+    has_regulated_items: bool = attrs.field()
+    is_business_order: bool = attrs.field()
+    is_estimated_ship_date_set: bool = attrs.field()
+    is_global_express_enabled: bool = attrs.field()
+    is_iba: bool = attrs.field()
+    is_ispu: bool = attrs.field()
+    is_premium_order: bool = attrs.field()
+    is_prime: bool = attrs.field()
+    is_replacement_order: bool = attrs.field()
+    is_sold_by_ab: bool = attrs.field()
+    last_update_date: str = attrs.field()
+    latest_delivery_date: str = attrs.field()
+    latest_ship_date: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    number_of_items_shipped: int = attrs.field()
+    number_of_items_unshipped: int = attrs.field()
+    order_channel: str = attrs.field()
     order_status: Union[
         Literal["Pending"],
         Literal["Unshipped"],
@@ -243,110 +243,110 @@ class Order:
         Literal["Unfulfillable"],
         Literal["InvoiceUnconfirmed"],
         Literal["PendingAvailability"],
-    ]
+    ] = attrs.field()
     order_type: Union[
         Literal["StandardOrder"],
         Literal["LongLeadTimeOrder"],
         Literal["Preorder"],
         Literal["BackOrder"],
         Literal["SourcingOnDemandOrder"],
-    ]
-    payment_method: Union[Literal["COD"], Literal["CVS"], Literal["Other"]]
-    promise_response_due_date: str
-    purchase_date: str
-    replaced_order_id: str
-    sales_channel: str
-    seller_display_name: str
-    seller_order_id: str
-    ship_service_level: str
-    shipment_service_level_category: str
+    ] = attrs.field()
+    payment_method: Union[Literal["COD"], Literal["CVS"], Literal["Other"]] = attrs.field()
+    promise_response_due_date: str = attrs.field()
+    purchase_date: str = attrs.field()
+    replaced_order_id: str = attrs.field()
+    sales_channel: str = attrs.field()
+    seller_display_name: str = attrs.field()
+    seller_order_id: str = attrs.field()
+    ship_service_level: str = attrs.field()
+    shipment_service_level_category: str = attrs.field()
 
-    automated_shipping_settings: "AutomatedShippingSettings"
-    buyer_info: "BuyerInfo"
-    buyer_tax_information: "BuyerTaxInformation"
-    default_ship_from_location_address: "Address"
-    fulfillment_instruction: "FulfillmentInstruction"
-    marketplace_tax_info: "MarketplaceTaxInfo"
-    order_total: "Money"
-    payment_execution_detail: "PaymentExecutionDetailItemList"
-    payment_method_details: "PaymentMethodDetailItemList"
-    shipping_address: "Address"
+    automated_shipping_settings: "AutomatedShippingSettings" = attrs.field()
+    buyer_info: "BuyerInfo" = attrs.field()
+    buyer_tax_information: "BuyerTaxInformation" = attrs.field()
+    default_ship_from_location_address: "Address" = attrs.field()
+    fulfillment_instruction: "FulfillmentInstruction" = attrs.field()
+    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field()
+    order_total: "Money" = attrs.field()
+    payment_execution_detail: "PaymentExecutionDetailItemList" = attrs.field()
+    payment_method_details: "PaymentMethodDetailItemList" = attrs.field()
+    shipping_address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderAddress:
 
-    amazon_order_id: str
+    amazon_order_id: str = attrs.field()
 
-    shipping_address: "Address"
+    shipping_address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderBuyerInfo:
 
-    amazon_order_id: str
-    buyer_county: str
-    buyer_email: str
-    buyer_name: str
-    purchase_order_number: str
+    amazon_order_id: str = attrs.field()
+    buyer_county: str = attrs.field()
+    buyer_email: str = attrs.field()
+    buyer_name: str = attrs.field()
+    purchase_order_number: str = attrs.field()
 
-    buyer_tax_info: "BuyerTaxInfo"
+    buyer_tax_info: "BuyerTaxInfo" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItem:
 
-    asin: str
-    condition_id: str
-    condition_note: str
-    condition_subtype_id: str
-    deemed_reseller_category: Union[Literal["IOSS"], Literal["UOSS"]]
-    ioss_number: str
-    is_gift: bool
-    is_transparency: bool
-    order_item_id: str
-    price_designation: str
-    quantity_ordered: int
-    quantity_shipped: int
-    scheduled_delivery_end_date: str
-    scheduled_delivery_start_date: str
-    seller_sku: str
-    serial_number_required: bool
-    store_chain_store_id: str
-    title: str
+    asin: str = attrs.field()
+    condition_id: str = attrs.field()
+    condition_note: str = attrs.field()
+    condition_subtype_id: str = attrs.field()
+    deemed_reseller_category: Union[Literal["IOSS"], Literal["UOSS"]] = attrs.field()
+    ioss_number: str = attrs.field()
+    is_gift: bool = attrs.field()
+    is_transparency: bool = attrs.field()
+    order_item_id: str = attrs.field()
+    price_designation: str = attrs.field()
+    quantity_ordered: int = attrs.field()
+    quantity_shipped: int = attrs.field()
+    scheduled_delivery_end_date: str = attrs.field()
+    scheduled_delivery_start_date: str = attrs.field()
+    seller_sku: str = attrs.field()
+    serial_number_required: bool = attrs.field()
+    store_chain_store_id: str = attrs.field()
+    title: str = attrs.field()
 
-    buyer_info: "ItemBuyerInfo"
-    buyer_requested_cancel: "BuyerRequestedCancel"
-    codfee: "Money"
-    codfee_discount: "Money"
-    item_price: "Money"
-    item_tax: "Money"
-    points_granted: "PointsGrantedDetail"
-    product_info: "ProductInfoDetail"
-    promotion_discount: "Money"
-    promotion_discount_tax: "Money"
-    promotion_ids: "PromotionIdList"
-    shipping_discount: "Money"
-    shipping_discount_tax: "Money"
-    shipping_price: "Money"
-    shipping_tax: "Money"
-    tax_collection: "TaxCollection"
+    buyer_info: "ItemBuyerInfo" = attrs.field()
+    buyer_requested_cancel: "BuyerRequestedCancel" = attrs.field()
+    codfee: "Money" = attrs.field()
+    codfee_discount: "Money" = attrs.field()
+    item_price: "Money" = attrs.field()
+    item_tax: "Money" = attrs.field()
+    points_granted: "PointsGrantedDetail" = attrs.field()
+    product_info: "ProductInfoDetail" = attrs.field()
+    promotion_discount: "Money" = attrs.field()
+    promotion_discount_tax: "Money" = attrs.field()
+    promotion_ids: "PromotionIdList" = attrs.field()
+    shipping_discount: "Money" = attrs.field()
+    shipping_discount_tax: "Money" = attrs.field()
+    shipping_price: "Money" = attrs.field()
+    shipping_tax: "Money" = attrs.field()
+    tax_collection: "TaxCollection" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItemBuyerInfo:
 
-    gift_message_text: str
-    gift_wrap_level: str
-    order_item_id: str
+    gift_message_text: str = attrs.field()
+    gift_wrap_level: str = attrs.field()
+    order_item_id: str = attrs.field()
 
-    buyer_customized_info: "BuyerCustomizedInfoDetail"
-    gift_wrap_price: "Money"
-    gift_wrap_tax: "Money"
+    buyer_customized_info: "BuyerCustomizedInfoDetail" = attrs.field()
+    gift_wrap_price: "Money" = attrs.field()
+    gift_wrap_tax: "Money" = attrs.field()
     pass
 
 
@@ -371,20 +371,20 @@ class OrderItems:
 @attrs.define
 class OrderItemsBuyerInfoList:
 
-    amazon_order_id: str
-    next_token: str
+    amazon_order_id: str = attrs.field()
+    next_token: str = attrs.field()
 
-    order_items: "OrderItemBuyerInfoList"
+    order_items: "OrderItemBuyerInfoList" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItemsList:
 
-    amazon_order_id: str
-    next_token: str
+    amazon_order_id: str = attrs.field()
+    next_token: str = attrs.field()
 
-    order_items: "OrderItemList"
+    order_items: "OrderItemList" = attrs.field()
     pass
 
 
@@ -397,31 +397,31 @@ class OrderList:
 @attrs.define
 class OrderRegulatedInfo:
 
-    amazon_order_id: str
-    requires_dosage_label: bool
+    amazon_order_id: str = attrs.field()
+    requires_dosage_label: bool = attrs.field()
 
-    regulated_information: "RegulatedInformation"
-    regulated_order_verification_status: "RegulatedOrderVerificationStatus"
+    regulated_information: "RegulatedInformation" = attrs.field()
+    regulated_order_verification_status: "RegulatedOrderVerificationStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class OrdersList:
 
-    created_before: str
-    last_updated_before: str
-    next_token: str
+    created_before: str = attrs.field()
+    last_updated_before: str = attrs.field()
+    next_token: str = attrs.field()
 
-    orders: "OrderList"
+    orders: "OrderList" = attrs.field()
     pass
 
 
 @attrs.define
 class PaymentExecutionDetailItem:
 
-    payment_method: str
+    payment_method: str = attrs.field()
 
-    payment: "Money"
+    payment: "Money" = attrs.field()
     pass
 
 
@@ -440,16 +440,16 @@ class PaymentMethodDetailItemList:
 @attrs.define
 class PointsGrantedDetail:
 
-    points_number: int
+    points_number: int = attrs.field()
 
-    points_monetary_value: "Money"
+    points_monetary_value: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class ProductInfoDetail:
 
-    number_of_items: int
+    number_of_items: int = attrs.field()
 
     pass
 
@@ -463,7 +463,7 @@ class PromotionIdList:
 @attrs.define
 class RegulatedInformation:
 
-    fields: list["RegulatedInformationField"]
+    fields: list["RegulatedInformationField"] = attrs.field()
 
     pass
 
@@ -471,10 +471,10 @@ class RegulatedInformation:
 @attrs.define
 class RegulatedInformationField:
 
-    field_id: str
-    field_label: str
-    field_type: Union[Literal["Text"], Literal["FileAttachment"]]
-    field_value: str
+    field_id: str = attrs.field()
+    field_label: str = attrs.field()
+    field_type: Union[Literal["Text"], Literal["FileAttachment"]] = attrs.field()
+    field_value: str = attrs.field()
 
     pass
 
@@ -482,23 +482,23 @@ class RegulatedInformationField:
 @attrs.define
 class RegulatedOrderVerificationStatus:
 
-    external_reviewer_id: str
-    requires_merchant_action: bool
-    review_date: str
+    external_reviewer_id: str = attrs.field()
+    requires_merchant_action: bool = attrs.field()
+    review_date: str = attrs.field()
     status: Union[
         Literal["Pending"], Literal["Approved"], Literal["Rejected"], Literal["Expired"], Literal["Cancelled"]
-    ]
-    valid_rejection_reasons: list["RejectionReason"]
+    ] = attrs.field()
+    valid_rejection_reasons: list["RejectionReason"] = attrs.field()
 
-    rejection_reason: "RejectionReason"
+    rejection_reason: "RejectionReason" = attrs.field()
     pass
 
 
 @attrs.define
 class RejectionReason:
 
-    rejection_reason_description: str
-    rejection_reason_id: str
+    rejection_reason_description: str = attrs.field()
+    rejection_reason_id: str = attrs.field()
 
     pass
 
@@ -512,8 +512,8 @@ class ShipmentStatus:
 @attrs.define
 class TaxClassification:
 
-    name: str
-    value: str
+    name: str = attrs.field()
+    value: str = attrs.field()
 
     pass
 
@@ -521,8 +521,8 @@ class TaxClassification:
 @attrs.define
 class TaxCollection:
 
-    model: Union[Literal["MarketplaceFacilitator"]]
-    responsible_party: Union[Literal["Amazon Services, Inc."]]
+    model: Union[Literal["MarketplaceFacilitator"]] = attrs.field()
+    responsible_party: Union[Literal["Amazon Services, Inc."]] = attrs.field()
 
     pass
 
@@ -530,39 +530,39 @@ class TaxCollection:
 @attrs.define
 class UpdateShipmentStatusErrorResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateShipmentStatusRequest:
 
-    marketplace_id: "MarketplaceId"
-    order_items: "OrderItems"
-    shipment_status: "ShipmentStatus"
+    marketplace_id: "MarketplaceId" = attrs.field()
+    order_items: "OrderItems" = attrs.field()
+    shipment_status: "ShipmentStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateVerificationStatusErrorResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateVerificationStatusRequest:
 
-    regulated_order_verification_status: "UpdateVerificationStatusRequestBody"
+    regulated_order_verification_status: "UpdateVerificationStatusRequestBody" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateVerificationStatusRequestBody:
 
-    external_reviewer_id: str
-    rejection_reason_id: str
-    status: Union[Literal["Approved"], Literal["Rejected"]]
+    external_reviewer_id: str = attrs.field()
+    rejection_reason_id: str = attrs.field()
+    status: Union[Literal["Approved"], Literal["Rejected"]] = attrs.field()
 
     pass
 

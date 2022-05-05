@@ -15,17 +15,17 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AcceptedRate:
 
-    billed_weight: "Weight"
-    promise: "ShippingPromiseSet"
-    service_type: "ServiceType"
-    total_charge: "Currency"
+    billed_weight: "Weight" = attrs.field()
+    promise: "ShippingPromiseSet" = attrs.field()
+    service_type: "ServiceType" = attrs.field()
+    total_charge: "Currency" = attrs.field()
     pass
 
 
 @attrs.define
 class Account:
 
-    account_id: "AccountId"
+    account_id: "AccountId" = attrs.field()
     pass
 
 
@@ -38,32 +38,32 @@ class AccountId:
 @attrs.define
 class Address:
 
-    address_line1: str
+    address_line1: str = attrs.field()
     # {'maxLength': 60, 'minLength': 1}
-    address_line2: str
+    address_line2: str = attrs.field()
     # {'maxLength': 60, 'minLength': 1}
-    address_line3: str
+    address_line3: str = attrs.field()
     # {'maxLength': 60, 'minLength': 1}
-    copy_emails: list[str]
+    copy_emails: list[str] = attrs.field()
     # {'maxItems': 2}
-    email: str
+    email: str = attrs.field()
     # {'maxLength': 64}
-    name: str
+    name: str = attrs.field()
     # {'maxLength': 50, 'minLength': 1}
-    phone_number: str
+    phone_number: str = attrs.field()
     # {'maxLength': 20, 'minLength': 1}
 
-    city: "City"
-    country_code: "CountryCode"
-    postal_code: "PostalCode"
-    state_or_region: "StateOrRegion"
+    city: "City" = attrs.field()
+    country_code: "CountryCode" = attrs.field()
+    postal_code: "PostalCode" = attrs.field()
+    state_or_region: "StateOrRegion" = attrs.field()
     pass
 
 
 @attrs.define
 class CancelShipmentResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
@@ -82,25 +82,25 @@ class ClientReferenceId:
 @attrs.define
 class Container:
 
-    container_type: Union[Literal["PACKAGE"]]
-    items: list["ContainerItem"]
+    container_type: Union[Literal["PACKAGE"]] = attrs.field()
+    items: list["ContainerItem"] = attrs.field()
 
-    container_reference_id: "ContainerReferenceId"
-    dimensions: "Dimensions"
-    value: "Currency"
-    weight: "Weight"
+    container_reference_id: "ContainerReferenceId" = attrs.field()
+    dimensions: "Dimensions" = attrs.field()
+    value: "Currency" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
 @attrs.define
 class ContainerItem:
 
-    quantity: Union[float, int]
-    title: str
+    quantity: Union[float, int] = attrs.field()
+    title: str = attrs.field()
     # {'maxLength': 30}
 
-    unit_price: "Currency"
-    unit_weight: "Weight"
+    unit_price: "Currency" = attrs.field()
+    unit_weight: "Weight" = attrs.field()
     pass
 
 
@@ -119,8 +119,8 @@ class ContainerReferenceId:
 @attrs.define
 class ContainerSpecification:
 
-    dimensions: "Dimensions"
-    weight: "Weight"
+    dimensions: "Dimensions" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
@@ -139,35 +139,35 @@ class CountryCode:
 @attrs.define
 class CreateShipmentRequest:
 
-    client_reference_id: "ClientReferenceId"
-    containers: "ContainerList"
-    ship_from: "Address"
-    ship_to: "Address"
+    client_reference_id: "ClientReferenceId" = attrs.field()
+    containers: "ContainerList" = attrs.field()
+    ship_from: "Address" = attrs.field()
+    ship_to: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateShipmentResponse:
 
-    errors: "ErrorList"
-    payload: "CreateShipmentResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CreateShipmentResult" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateShipmentResult:
 
-    eligible_rates: "RateList"
-    shipment_id: "ShipmentId"
+    eligible_rates: "RateList" = attrs.field()
+    shipment_id: "ShipmentId" = attrs.field()
     pass
 
 
 @attrs.define
 class Currency:
 
-    unit: str
+    unit: str = attrs.field()
     # {'maxLength': 3, 'minLength': 3}
-    value: Union[float, int]
+    value: Union[float, int] = attrs.field()
 
     pass
 
@@ -175,10 +175,10 @@ class Currency:
 @attrs.define
 class Dimensions:
 
-    height: Union[float, int]
-    length: Union[float, int]
-    unit: Union[Literal["IN"], Literal["CM"]]
-    width: Union[float, int]
+    height: Union[float, int] = attrs.field()
+    length: Union[float, int] = attrs.field()
+    unit: Union[Literal["IN"], Literal["CM"]] = attrs.field()
+    width: Union[float, int] = attrs.field()
 
     pass
 
@@ -186,9 +186,9 @@ class Dimensions:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -202,11 +202,11 @@ class ErrorList:
 @attrs.define
 class Event:
 
-    event_time: str
+    event_time: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    event_code: "EventCode"
-    location: "Location"
+    event_code: "EventCode" = attrs.field()
+    location: "Location" = attrs.field()
     pass
 
 
@@ -225,70 +225,70 @@ class EventList:
 @attrs.define
 class GetAccountResponse:
 
-    errors: "ErrorList"
-    payload: "Account"
+    errors: "ErrorList" = attrs.field()
+    payload: "Account" = attrs.field()
     pass
 
 
 @attrs.define
 class GetRatesRequest:
 
-    ship_date: str
+    ship_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    container_specifications: "ContainerSpecificationList"
-    service_types: "ServiceTypeList"
-    ship_from: "Address"
-    ship_to: "Address"
+    container_specifications: "ContainerSpecificationList" = attrs.field()
+    service_types: "ServiceTypeList" = attrs.field()
+    ship_from: "Address" = attrs.field()
+    ship_to: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class GetRatesResponse:
 
-    errors: "ErrorList"
-    payload: "GetRatesResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetRatesResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetRatesResult:
 
-    service_rates: "ServiceRateList"
+    service_rates: "ServiceRateList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentResponse:
 
-    errors: "ErrorList"
-    payload: "Shipment"
+    errors: "ErrorList" = attrs.field()
+    payload: "Shipment" = attrs.field()
     pass
 
 
 @attrs.define
 class GetTrackingInformationResponse:
 
-    errors: "ErrorList"
-    payload: "TrackingInformation"
+    errors: "ErrorList" = attrs.field()
+    payload: "TrackingInformation" = attrs.field()
     pass
 
 
 @attrs.define
 class Label:
 
-    label_specification: "LabelSpecification"
-    label_stream: "LabelStream"
+    label_specification: "LabelSpecification" = attrs.field()
+    label_stream: "LabelStream" = attrs.field()
     pass
 
 
 @attrs.define
 class LabelResult:
 
-    tracking_id: str
+    tracking_id: str = attrs.field()
 
-    container_reference_id: "ContainerReferenceId"
-    label: "Label"
+    container_reference_id: "ContainerReferenceId" = attrs.field()
+    label: "Label" = attrs.field()
     pass
 
 
@@ -301,8 +301,8 @@ class LabelResultList:
 @attrs.define
 class LabelSpecification:
 
-    label_format: Union[Literal["PNG"]]
-    label_stock_size: Union[Literal["4x6"]]
+    label_format: Union[Literal["PNG"]] = attrs.field()
+    label_stock_size: Union[Literal["4x6"]] = attrs.field()
 
     pass
 
@@ -316,17 +316,17 @@ class LabelStream:
 @attrs.define
 class Location:
 
-    city: "City"
-    country_code: "CountryCode"
-    postal_code: "PostalCode"
-    state_or_region: "StateOrRegion"
+    city: "City" = attrs.field()
+    country_code: "CountryCode" = attrs.field()
+    postal_code: "PostalCode" = attrs.field()
+    state_or_region: "StateOrRegion" = attrs.field()
     pass
 
 
 @attrs.define
 class Party:
 
-    account_id: "AccountId"
+    account_id: "AccountId" = attrs.field()
     pass
 
 
@@ -345,72 +345,72 @@ class PromisedDeliveryDate:
 @attrs.define
 class PurchaseLabelsRequest:
 
-    label_specification: "LabelSpecification"
-    rate_id: "RateId"
+    label_specification: "LabelSpecification" = attrs.field()
+    rate_id: "RateId" = attrs.field()
     pass
 
 
 @attrs.define
 class PurchaseLabelsResponse:
 
-    errors: "ErrorList"
-    payload: "PurchaseLabelsResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "PurchaseLabelsResult" = attrs.field()
     pass
 
 
 @attrs.define
 class PurchaseLabelsResult:
 
-    accepted_rate: "AcceptedRate"
-    client_reference_id: "ClientReferenceId"
-    label_results: "LabelResultList"
-    shipment_id: "ShipmentId"
+    accepted_rate: "AcceptedRate" = attrs.field()
+    client_reference_id: "ClientReferenceId" = attrs.field()
+    label_results: "LabelResultList" = attrs.field()
+    shipment_id: "ShipmentId" = attrs.field()
     pass
 
 
 @attrs.define
 class PurchaseShipmentRequest:
 
-    ship_date: str
+    ship_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    client_reference_id: "ClientReferenceId"
-    containers: "ContainerList"
-    label_specification: "LabelSpecification"
-    service_type: "ServiceType"
-    ship_from: "Address"
-    ship_to: "Address"
+    client_reference_id: "ClientReferenceId" = attrs.field()
+    containers: "ContainerList" = attrs.field()
+    label_specification: "LabelSpecification" = attrs.field()
+    service_type: "ServiceType" = attrs.field()
+    ship_from: "Address" = attrs.field()
+    ship_to: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class PurchaseShipmentResponse:
 
-    errors: "ErrorList"
-    payload: "PurchaseShipmentResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "PurchaseShipmentResult" = attrs.field()
     pass
 
 
 @attrs.define
 class PurchaseShipmentResult:
 
-    label_results: "LabelResultList"
-    service_rate: "ServiceRate"
-    shipment_id: "ShipmentId"
+    label_results: "LabelResultList" = attrs.field()
+    service_rate: "ServiceRate" = attrs.field()
+    shipment_id: "ShipmentId" = attrs.field()
     pass
 
 
 @attrs.define
 class Rate:
 
-    expiration_time: str
+    expiration_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    rate_id: str
+    rate_id: str = attrs.field()
 
-    billed_weight: "Weight"
-    promise: "ShippingPromiseSet"
-    service_type: "ServiceType"
-    total_charge: "Currency"
+    billed_weight: "Weight" = attrs.field()
+    promise: "ShippingPromiseSet" = attrs.field()
+    service_type: "ServiceType" = attrs.field()
+    total_charge: "Currency" = attrs.field()
     pass
 
 
@@ -429,33 +429,33 @@ class RateList:
 @attrs.define
 class RetrieveShippingLabelRequest:
 
-    label_specification: "LabelSpecification"
+    label_specification: "LabelSpecification" = attrs.field()
     pass
 
 
 @attrs.define
 class RetrieveShippingLabelResponse:
 
-    errors: "ErrorList"
-    payload: "RetrieveShippingLabelResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "RetrieveShippingLabelResult" = attrs.field()
     pass
 
 
 @attrs.define
 class RetrieveShippingLabelResult:
 
-    label_specification: "LabelSpecification"
-    label_stream: "LabelStream"
+    label_specification: "LabelSpecification" = attrs.field()
+    label_stream: "LabelStream" = attrs.field()
     pass
 
 
 @attrs.define
 class ServiceRate:
 
-    billable_weight: "Weight"
-    promise: "ShippingPromiseSet"
-    service_type: "ServiceType"
-    total_charge: "Currency"
+    billable_weight: "Weight" = attrs.field()
+    promise: "ShippingPromiseSet" = attrs.field()
+    service_type: "ServiceType" = attrs.field()
+    total_charge: "Currency" = attrs.field()
     pass
 
 
@@ -480,13 +480,13 @@ class ServiceTypeList:
 @attrs.define
 class Shipment:
 
-    accepted_rate: "AcceptedRate"
-    client_reference_id: "ClientReferenceId"
-    containers: "ContainerList"
-    ship_from: "Address"
-    ship_to: "Address"
-    shipment_id: "ShipmentId"
-    shipper: "Party"
+    accepted_rate: "AcceptedRate" = attrs.field()
+    client_reference_id: "ClientReferenceId" = attrs.field()
+    containers: "ContainerList" = attrs.field()
+    ship_from: "Address" = attrs.field()
+    ship_to: "Address" = attrs.field()
+    shipment_id: "ShipmentId" = attrs.field()
+    shipper: "Party" = attrs.field()
     pass
 
 
@@ -499,8 +499,8 @@ class ShipmentId:
 @attrs.define
 class ShippingPromiseSet:
 
-    delivery_window: "TimeRange"
-    receive_window: "TimeRange"
+    delivery_window: "TimeRange" = attrs.field()
+    receive_window: "TimeRange" = attrs.field()
     pass
 
 
@@ -513,9 +513,9 @@ class StateOrRegion:
 @attrs.define
 class TimeRange:
 
-    end: str
+    end: str = attrs.field()
     # {'schema_format': 'date-time'}
-    start: str
+    start: str = attrs.field()
     # {'schema_format': 'date-time'}
 
     pass
@@ -530,17 +530,17 @@ class TrackingId:
 @attrs.define
 class TrackingInformation:
 
-    event_history: "EventList"
-    promised_delivery_date: "PromisedDeliveryDate"
-    summary: "TrackingSummary"
-    tracking_id: "TrackingId"
+    event_history: "EventList" = attrs.field()
+    promised_delivery_date: "PromisedDeliveryDate" = attrs.field()
+    summary: "TrackingSummary" = attrs.field()
+    tracking_id: "TrackingId" = attrs.field()
     pass
 
 
 @attrs.define
 class TrackingSummary:
 
-    status: str
+    status: str = attrs.field()
     # {'maxLength': 60, 'minLength': 1}
 
     pass
@@ -549,8 +549,8 @@ class TrackingSummary:
 @attrs.define
 class Weight:
 
-    unit: Union[Literal["g"], Literal["kg"], Literal["oz"], Literal["lb"]]
-    value: Union[float, int]
+    unit: Union[Literal["g"], Literal["kg"], Literal["oz"], Literal["lb"]] = attrs.field()
+    value: Union[float, int] = attrs.field()
 
     pass
 

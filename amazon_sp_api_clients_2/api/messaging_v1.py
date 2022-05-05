@@ -15,8 +15,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Attachment:
 
-    file_name: str
-    upload_destination_id: str
+    file_name: str = attrs.field()
+    upload_destination_id: str = attrs.field()
 
     pass
 
@@ -24,7 +24,7 @@ class Attachment:
 @attrs.define
 class CreateAmazonMotorsRequest:
 
-    attachments: list["Attachment"]
+    attachments: list["Attachment"] = attrs.field()
 
     pass
 
@@ -32,15 +32,15 @@ class CreateAmazonMotorsRequest:
 @attrs.define
 class CreateAmazonMotorsResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateConfirmCustomizationDetailsRequest:
 
-    attachments: list["Attachment"]
-    text: str
+    attachments: list["Attachment"] = attrs.field()
+    text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 800}
 
     pass
@@ -49,14 +49,14 @@ class CreateConfirmCustomizationDetailsRequest:
 @attrs.define
 class CreateConfirmCustomizationDetailsResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateConfirmDeliveryDetailsRequest:
 
-    text: str
+    text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 2000}
 
     pass
@@ -65,14 +65,14 @@ class CreateConfirmDeliveryDetailsRequest:
 @attrs.define
 class CreateConfirmDeliveryDetailsResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateConfirmOrderDetailsRequest:
 
-    text: str
+    text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 2000}
 
     pass
@@ -81,14 +81,14 @@ class CreateConfirmOrderDetailsRequest:
 @attrs.define
 class CreateConfirmOrderDetailsResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateConfirmServiceDetailsRequest:
 
-    text: str
+    text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 2000}
 
     pass
@@ -97,15 +97,15 @@ class CreateConfirmServiceDetailsRequest:
 @attrs.define
 class CreateConfirmServiceDetailsResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateDigitalAccessKeyRequest:
 
-    attachments: list["Attachment"]
-    text: str
+    attachments: list["Attachment"] = attrs.field()
+    text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 400}
 
     pass
@@ -114,14 +114,14 @@ class CreateDigitalAccessKeyRequest:
 @attrs.define
 class CreateDigitalAccessKeyResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateLegalDisclosureRequest:
 
-    attachments: list["Attachment"]
+    attachments: list["Attachment"] = attrs.field()
 
     pass
 
@@ -129,21 +129,21 @@ class CreateLegalDisclosureRequest:
 @attrs.define
 class CreateLegalDisclosureResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateNegativeFeedbackRemovalResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateUnexpectedProblemRequest:
 
-    text: str
+    text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 2000}
 
     pass
@@ -152,17 +152,17 @@ class CreateUnexpectedProblemRequest:
 @attrs.define
 class CreateUnexpectedProblemResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateWarrantyRequest:
 
-    attachments: list["Attachment"]
-    coverage_end_date: str
+    attachments: list["Attachment"] = attrs.field()
+    coverage_end_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    coverage_start_date: str
+    coverage_start_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
     pass
@@ -171,16 +171,16 @@ class CreateWarrantyRequest:
 @attrs.define
 class CreateWarrantyResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -194,54 +194,54 @@ class ErrorList:
 @attrs.define
 class GetAttributesResponse:
 
-    buyer: dict[str, Any]
+    buyer: dict[str, Any] = attrs.field()
     # {'properties': {'locale': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='The buyer\'s language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetMessagingActionResponse:
 
-    _embedded: dict[str, Any]
+    _embedded: dict[str, Any] = attrs.field()
     # {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
-    _links: dict[str, Any]
+    _links: dict[str, Any] = attrs.field()
     # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['schema', 'self']}
 
-    errors: "ErrorList"
-    payload: "MessagingAction"
+    errors: "ErrorList" = attrs.field()
+    payload: "MessagingAction" = attrs.field()
     pass
 
 
 @attrs.define
 class GetMessagingActionsForOrderResponse:
 
-    _embedded: dict[str, Any]
+    _embedded: dict[str, Any] = attrs.field()
     # {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetMessagingActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
-    _links: dict[str, Any]
+    _links: dict[str, Any] = attrs.field()
     # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions', 'self']}
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetSchemaResponse:
 
-    _links: dict[str, Any]
+    _links: dict[str, Any] = attrs.field()
     # {'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['self']}
 
-    errors: "ErrorList"
-    payload: "Schema"
+    errors: "ErrorList" = attrs.field()
+    payload: "Schema" = attrs.field()
     pass
 
 
 @attrs.define
 class LinkObject:
 
-    href: str
-    name: str
+    href: str = attrs.field()
+    name: str = attrs.field()
 
     pass
 
@@ -249,7 +249,7 @@ class LinkObject:
 @attrs.define
 class MessagingAction:
 
-    name: str
+    name: str = attrs.field()
 
     pass
 

@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -25,7 +25,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -38,30 +38,30 @@ class FeeLineItem:
         Literal["FBAPerOrderFulfillmentFee"],
         Literal["FBAPerUnitFulfillmentFee"],
         Literal["Commission"],
-    ]
+    ] = attrs.field()
 
-    fee_charge: "MoneyType"
+    fee_charge: "MoneyType" = attrs.field()
     pass
 
 
 @attrs.define
 class FeePreview:
 
-    asin: str
-    errors: list["Error"]
-    fee_breakdown: list["FeeLineItem"]
+    asin: str = attrs.field()
+    errors: list["Error"] = attrs.field()
+    fee_breakdown: list["FeeLineItem"] = attrs.field()
 
-    price: "MoneyType"
-    total_fees: "MoneyType"
+    price: "MoneyType" = attrs.field()
+    total_fees: "MoneyType" = attrs.field()
     pass
 
 
 @attrs.define
 class Item:
 
-    asin: str
+    asin: str = attrs.field()
 
-    price: "MoneyType"
+    price: "MoneyType" = attrs.field()
     pass
 
 
@@ -74,8 +74,8 @@ class MarketplaceId:
 @attrs.define
 class MoneyType:
 
-    amount: Union[float, int]
-    currency_code: str
+    amount: Union[float, int] = attrs.field()
+    currency_code: str = attrs.field()
 
     pass
 
@@ -89,9 +89,9 @@ class SellerSKU:
 @attrs.define
 class SmallAndLightEligibility:
 
-    marketplace_id: "MarketplaceId"
-    seller_sku: "SellerSKU"
-    status: "SmallAndLightEligibilityStatus"
+    marketplace_id: "MarketplaceId" = attrs.field()
+    seller_sku: "SellerSKU" = attrs.field()
+    status: "SmallAndLightEligibilityStatus" = attrs.field()
     pass
 
 
@@ -104,9 +104,9 @@ class SmallAndLightEligibilityStatus:
 @attrs.define
 class SmallAndLightEnrollment:
 
-    marketplace_id: "MarketplaceId"
-    seller_sku: "SellerSKU"
-    status: "SmallAndLightEnrollmentStatus"
+    marketplace_id: "MarketplaceId" = attrs.field()
+    seller_sku: "SellerSKU" = attrs.field()
+    status: "SmallAndLightEnrollmentStatus" = attrs.field()
     pass
 
 
@@ -119,17 +119,17 @@ class SmallAndLightEnrollmentStatus:
 @attrs.define
 class SmallAndLightFeePreviewRequest:
 
-    items: list["Item"]
+    items: list["Item"] = attrs.field()
     # {'maxItems': 25}
 
-    marketplace_id: "MarketplaceId"
+    marketplace_id: "MarketplaceId" = attrs.field()
     pass
 
 
 @attrs.define
 class SmallAndLightFeePreviews:
 
-    data: list["FeePreview"]
+    data: list["FeePreview"] = attrs.field()
 
     pass
 

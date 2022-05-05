@@ -15,32 +15,32 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CancelFeedResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFeedDocumentResponse:
 
-    errors: "ErrorList"
-    payload: "CreateFeedDocumentResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CreateFeedDocumentResult" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFeedDocumentResult:
 
-    feed_document_id: str
-    url: str
+    feed_document_id: str = attrs.field()
+    url: str = attrs.field()
 
-    encryption_details: "FeedDocumentEncryptionDetails"
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFeedDocumentSpecification:
 
-    content_type: str
+    content_type: str = attrs.field()
 
     pass
 
@@ -48,15 +48,15 @@ class CreateFeedDocumentSpecification:
 @attrs.define
 class CreateFeedResponse:
 
-    errors: "ErrorList"
-    payload: "CreateFeedResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CreateFeedResult" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFeedResult:
 
-    feed_id: str
+    feed_id: str = attrs.field()
 
     pass
 
@@ -64,21 +64,21 @@ class CreateFeedResult:
 @attrs.define
 class CreateFeedSpecification:
 
-    feed_type: str
-    input_feed_document_id: str
-    marketplace_ids: list[str]
+    feed_type: str = attrs.field()
+    input_feed_document_id: str = attrs.field()
+    marketplace_ids: list[str] = attrs.field()
     # {'maxItems': 25, 'minItems': 1}
 
-    feed_options: "FeedOptions"
+    feed_options: "FeedOptions" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -92,19 +92,19 @@ class ErrorList:
 @attrs.define
 class Feed:
 
-    created_time: str
+    created_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    feed_id: str
-    feed_type: str
-    marketplace_ids: list[str]
-    processing_end_time: str
+    feed_id: str = attrs.field()
+    feed_type: str = attrs.field()
+    marketplace_ids: list[str] = attrs.field()
+    processing_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    processing_start_time: str
+    processing_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ]
-    result_feed_document_id: str
+    ] = attrs.field()
+    result_feed_document_id: str = attrs.field()
 
     pass
 
@@ -112,20 +112,20 @@ class Feed:
 @attrs.define
 class FeedDocument:
 
-    compression_algorithm: Union[Literal["GZIP"]]
-    feed_document_id: str
-    url: str
+    compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
+    feed_document_id: str = attrs.field()
+    url: str = attrs.field()
 
-    encryption_details: "FeedDocumentEncryptionDetails"
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class FeedDocumentEncryptionDetails:
 
-    initialization_vector: str
-    key: str
-    standard: Union[Literal["AES"]]
+    initialization_vector: str = attrs.field()
+    key: str = attrs.field()
+    standard: Union[Literal["AES"]] = attrs.field()
 
     pass
 
@@ -145,26 +145,26 @@ class FeedOptions:
 @attrs.define
 class GetFeedDocumentResponse:
 
-    errors: "ErrorList"
-    payload: "FeedDocument"
+    errors: "ErrorList" = attrs.field()
+    payload: "FeedDocument" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFeedResponse:
 
-    errors: "ErrorList"
-    payload: "Feed"
+    errors: "ErrorList" = attrs.field()
+    payload: "Feed" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFeedsResponse:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    errors: "ErrorList"
-    payload: "FeedList"
+    errors: "ErrorList" = attrs.field()
+    payload: "FeedList" = attrs.field()
     pass
 
 

@@ -15,10 +15,10 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class ASINInboundGuidance:
 
-    asin: str
+    asin: str = attrs.field()
 
-    guidance_reason_list: "GuidanceReasonList"
-    inbound_guidance: "InboundGuidance"
+    guidance_reason_list: "GuidanceReasonList" = attrs.field()
+    inbound_guidance: "InboundGuidance" = attrs.field()
     pass
 
 
@@ -31,11 +31,11 @@ class ASINInboundGuidanceList:
 @attrs.define
 class ASINPrepInstructions:
 
-    asin: str
+    asin: str = attrs.field()
 
-    barcode_instruction: "BarcodeInstruction"
-    prep_guidance: "PrepGuidance"
-    prep_instruction_list: "PrepInstructionList"
+    barcode_instruction: "BarcodeInstruction" = attrs.field()
+    prep_guidance: "PrepGuidance" = attrs.field()
+    prep_instruction_list: "PrepInstructionList" = attrs.field()
     pass
 
 
@@ -48,20 +48,20 @@ class ASINPrepInstructionsList:
 @attrs.define
 class Address:
 
-    address_line1: str
+    address_line1: str = attrs.field()
     # {'maxLength': 180}
-    address_line2: str
+    address_line2: str = attrs.field()
     # {'maxLength': 60}
-    city: str
+    city: str = attrs.field()
     # {'maxLength': 30}
-    country_code: str
-    district_or_county: str
+    country_code: str = attrs.field()
+    district_or_county: str = attrs.field()
     # {'maxLength': 25}
-    name: str
+    name: str = attrs.field()
     # {'maxLength': 50}
-    postal_code: str
+    postal_code: str = attrs.field()
     # {'maxLength': 30}
-    state_or_province_code: str
+    state_or_province_code: str = attrs.field()
 
     pass
 
@@ -69,8 +69,8 @@ class Address:
 @attrs.define
 class AmazonPrepFeesDetails:
 
-    fee_per_unit: "Amount"
-    prep_instruction: "PrepInstruction"
+    fee_per_unit: "Amount" = attrs.field()
+    prep_instruction: "PrepInstruction" = attrs.field()
     pass
 
 
@@ -83,8 +83,8 @@ class AmazonPrepFeesDetailsList:
 @attrs.define
 class Amount:
 
-    currency_code: "CurrencyCode"
-    value: "BigDecimalType"
+    currency_code: "CurrencyCode" = attrs.field()
+    value: "BigDecimalType" = attrs.field()
     pass
 
 
@@ -103,7 +103,7 @@ class BigDecimalType:
 @attrs.define
 class BillOfLadingDownloadURL:
 
-    download_url: str
+    download_url: str = attrs.field()
 
     pass
 
@@ -111,9 +111,9 @@ class BillOfLadingDownloadURL:
 @attrs.define
 class BoxContentsFeeDetails:
 
-    fee_per_unit: "Amount"
-    total_fee: "Amount"
-    total_units: "Quantity"
+    fee_per_unit: "Amount" = attrs.field()
+    total_fee: "Amount" = attrs.field()
+    total_units: "Quantity" = attrs.field()
     pass
 
 
@@ -126,7 +126,7 @@ class BoxContentsSource:
 @attrs.define
 class CommonTransportResult:
 
-    transport_result: "TransportResult"
+    transport_result: "TransportResult" = attrs.field()
     pass
 
 
@@ -139,37 +139,37 @@ class Condition:
 @attrs.define
 class ConfirmPreorderResponse:
 
-    errors: "ErrorList"
-    payload: "ConfirmPreorderResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "ConfirmPreorderResult" = attrs.field()
     pass
 
 
 @attrs.define
 class ConfirmPreorderResult:
 
-    confirmed_fulfillable_date: "DateStringType"
-    confirmed_need_by_date: "DateStringType"
+    confirmed_fulfillable_date: "DateStringType" = attrs.field()
+    confirmed_need_by_date: "DateStringType" = attrs.field()
     pass
 
 
 @attrs.define
 class ConfirmTransportResponse:
 
-    errors: "ErrorList"
-    payload: "CommonTransportResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CommonTransportResult" = attrs.field()
     pass
 
 
 @attrs.define
 class Contact:
 
-    email: str
+    email: str = attrs.field()
     # {'maxLength': 50}
-    fax: str
+    fax: str = attrs.field()
     # {'maxLength': 20}
-    name: str
+    name: str = attrs.field()
     # {'maxLength': 50}
-    phone: str
+    phone: str = attrs.field()
     # {'maxLength': 20}
 
     pass
@@ -178,27 +178,27 @@ class Contact:
 @attrs.define
 class CreateInboundShipmentPlanRequest:
 
-    ship_to_country_code: str
-    ship_to_country_subdivision_code: str
+    ship_to_country_code: str = attrs.field()
+    ship_to_country_subdivision_code: str = attrs.field()
 
-    inbound_shipment_plan_request_items: "InboundShipmentPlanRequestItemList"
-    label_prep_preference: "LabelPrepPreference"
-    ship_from_address: "Address"
+    inbound_shipment_plan_request_items: "InboundShipmentPlanRequestItemList" = attrs.field()
+    label_prep_preference: "LabelPrepPreference" = attrs.field()
+    ship_from_address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateInboundShipmentPlanResponse:
 
-    errors: "ErrorList"
-    payload: "CreateInboundShipmentPlanResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CreateInboundShipmentPlanResult" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateInboundShipmentPlanResult:
 
-    inbound_shipment_plans: "InboundShipmentPlanList"
+    inbound_shipment_plans: "InboundShipmentPlanList" = attrs.field()
     pass
 
 
@@ -217,19 +217,19 @@ class DateStringType:
 @attrs.define
 class Dimensions:
 
-    height: "BigDecimalType"
-    length: "BigDecimalType"
-    unit: "UnitOfMeasurement"
-    width: "BigDecimalType"
+    height: "BigDecimalType" = attrs.field()
+    length: "BigDecimalType" = attrs.field()
+    unit: "UnitOfMeasurement" = attrs.field()
+    width: "BigDecimalType" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -249,128 +249,128 @@ class ErrorReason:
 @attrs.define
 class EstimateTransportResponse:
 
-    errors: "ErrorList"
-    payload: "CommonTransportResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CommonTransportResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetBillOfLadingResponse:
 
-    errors: "ErrorList"
-    payload: "BillOfLadingDownloadURL"
+    errors: "ErrorList" = attrs.field()
+    payload: "BillOfLadingDownloadURL" = attrs.field()
     pass
 
 
 @attrs.define
 class GetInboundGuidanceResponse:
 
-    errors: "ErrorList"
-    payload: "GetInboundGuidanceResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetInboundGuidanceResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetInboundGuidanceResult:
 
-    asininbound_guidance_list: "ASINInboundGuidanceList"
-    invalid_asinlist: "InvalidASINList"
-    invalid_skulist: "InvalidSKUList"
-    skuinbound_guidance_list: "SKUInboundGuidanceList"
+    asininbound_guidance_list: "ASINInboundGuidanceList" = attrs.field()
+    invalid_asinlist: "InvalidASINList" = attrs.field()
+    invalid_skulist: "InvalidSKUList" = attrs.field()
+    skuinbound_guidance_list: "SKUInboundGuidanceList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetLabelsResponse:
 
-    errors: "ErrorList"
-    payload: "LabelDownloadURL"
+    errors: "ErrorList" = attrs.field()
+    payload: "LabelDownloadURL" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPreorderInfoResponse:
 
-    errors: "ErrorList"
-    payload: "GetPreorderInfoResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetPreorderInfoResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPreorderInfoResult:
 
-    shipment_confirmed_for_preorder: bool
-    shipment_contains_preorderable_items: bool
+    shipment_confirmed_for_preorder: bool = attrs.field()
+    shipment_contains_preorderable_items: bool = attrs.field()
 
-    confirmed_fulfillable_date: "DateStringType"
-    need_by_date: "DateStringType"
+    confirmed_fulfillable_date: "DateStringType" = attrs.field()
+    need_by_date: "DateStringType" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPrepInstructionsResponse:
 
-    errors: "ErrorList"
-    payload: "GetPrepInstructionsResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetPrepInstructionsResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPrepInstructionsResult:
 
-    asinprep_instructions_list: "ASINPrepInstructionsList"
-    invalid_asinlist: "InvalidASINList"
-    invalid_skulist: "InvalidSKUList"
-    skuprep_instructions_list: "SKUPrepInstructionsList"
+    asinprep_instructions_list: "ASINPrepInstructionsList" = attrs.field()
+    invalid_asinlist: "InvalidASINList" = attrs.field()
+    invalid_skulist: "InvalidSKUList" = attrs.field()
+    skuprep_instructions_list: "SKUPrepInstructionsList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentItemsResponse:
 
-    errors: "ErrorList"
-    payload: "GetShipmentItemsResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetShipmentItemsResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentItemsResult:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    item_data: "InboundShipmentItemList"
+    item_data: "InboundShipmentItemList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentsResponse:
 
-    errors: "ErrorList"
-    payload: "GetShipmentsResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetShipmentsResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentsResult:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    shipment_data: "InboundShipmentList"
+    shipment_data: "InboundShipmentList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetTransportDetailsResponse:
 
-    errors: "ErrorList"
-    payload: "GetTransportDetailsResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetTransportDetailsResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetTransportDetailsResult:
 
-    transport_content: "TransportContent"
+    transport_content: "TransportContent" = attrs.field()
     pass
 
 
@@ -395,46 +395,46 @@ class InboundGuidance:
 @attrs.define
 class InboundShipmentHeader:
 
-    are_cases_required: bool
-    destination_fulfillment_center_id: str
-    shipment_name: str
+    are_cases_required: bool = attrs.field()
+    destination_fulfillment_center_id: str = attrs.field()
+    shipment_name: str = attrs.field()
 
-    intended_box_contents_source: "IntendedBoxContentsSource"
-    label_prep_preference: "LabelPrepPreference"
-    ship_from_address: "Address"
-    shipment_status: "ShipmentStatus"
+    intended_box_contents_source: "IntendedBoxContentsSource" = attrs.field()
+    label_prep_preference: "LabelPrepPreference" = attrs.field()
+    ship_from_address: "Address" = attrs.field()
+    shipment_status: "ShipmentStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class InboundShipmentInfo:
 
-    are_cases_required: bool
-    destination_fulfillment_center_id: str
-    shipment_id: str
-    shipment_name: str
+    are_cases_required: bool = attrs.field()
+    destination_fulfillment_center_id: str = attrs.field()
+    shipment_id: str = attrs.field()
+    shipment_name: str = attrs.field()
 
-    box_contents_source: "BoxContentsSource"
-    confirmed_need_by_date: "DateStringType"
-    estimated_box_contents_fee: "BoxContentsFeeDetails"
-    label_prep_type: "LabelPrepType"
-    ship_from_address: "Address"
-    shipment_status: "ShipmentStatus"
+    box_contents_source: "BoxContentsSource" = attrs.field()
+    confirmed_need_by_date: "DateStringType" = attrs.field()
+    estimated_box_contents_fee: "BoxContentsFeeDetails" = attrs.field()
+    label_prep_type: "LabelPrepType" = attrs.field()
+    ship_from_address: "Address" = attrs.field()
+    shipment_status: "ShipmentStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class InboundShipmentItem:
 
-    fulfillment_network_sku: str
-    seller_sku: str
-    shipment_id: str
+    fulfillment_network_sku: str = attrs.field()
+    seller_sku: str = attrs.field()
+    shipment_id: str = attrs.field()
 
-    prep_details_list: "PrepDetailsList"
-    quantity_in_case: "Quantity"
-    quantity_received: "Quantity"
-    quantity_shipped: "Quantity"
-    release_date: "DateStringType"
+    prep_details_list: "PrepDetailsList" = attrs.field()
+    quantity_in_case: "Quantity" = attrs.field()
+    quantity_received: "Quantity" = attrs.field()
+    quantity_shipped: "Quantity" = attrs.field()
+    release_date: "DateStringType" = attrs.field()
     pass
 
 
@@ -453,24 +453,24 @@ class InboundShipmentList:
 @attrs.define
 class InboundShipmentPlan:
 
-    destination_fulfillment_center_id: str
-    shipment_id: str
+    destination_fulfillment_center_id: str = attrs.field()
+    shipment_id: str = attrs.field()
 
-    estimated_box_contents_fee: "BoxContentsFeeDetails"
-    items: "InboundShipmentPlanItemList"
-    label_prep_type: "LabelPrepType"
-    ship_to_address: "Address"
+    estimated_box_contents_fee: "BoxContentsFeeDetails" = attrs.field()
+    items: "InboundShipmentPlanItemList" = attrs.field()
+    label_prep_type: "LabelPrepType" = attrs.field()
+    ship_to_address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class InboundShipmentPlanItem:
 
-    fulfillment_network_sku: str
-    seller_sku: str
+    fulfillment_network_sku: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    prep_details_list: "PrepDetailsList"
-    quantity: "Quantity"
+    prep_details_list: "PrepDetailsList" = attrs.field()
+    quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -489,13 +489,13 @@ class InboundShipmentPlanList:
 @attrs.define
 class InboundShipmentPlanRequestItem:
 
-    asin: str
-    seller_sku: str
+    asin: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    condition: "Condition"
-    prep_details_list: "PrepDetailsList"
-    quantity: "Quantity"
-    quantity_in_case: "Quantity"
+    condition: "Condition" = attrs.field()
+    prep_details_list: "PrepDetailsList" = attrs.field()
+    quantity: "Quantity" = attrs.field()
+    quantity_in_case: "Quantity" = attrs.field()
     pass
 
 
@@ -508,25 +508,25 @@ class InboundShipmentPlanRequestItemList:
 @attrs.define
 class InboundShipmentRequest:
 
-    marketplace_id: str
+    marketplace_id: str = attrs.field()
 
-    inbound_shipment_header: "InboundShipmentHeader"
-    inbound_shipment_items: "InboundShipmentItemList"
+    inbound_shipment_header: "InboundShipmentHeader" = attrs.field()
+    inbound_shipment_items: "InboundShipmentItemList" = attrs.field()
     pass
 
 
 @attrs.define
 class InboundShipmentResponse:
 
-    errors: "ErrorList"
-    payload: "InboundShipmentResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "InboundShipmentResult" = attrs.field()
     pass
 
 
 @attrs.define
 class InboundShipmentResult:
 
-    shipment_id: str
+    shipment_id: str = attrs.field()
 
     pass
 
@@ -540,9 +540,9 @@ class IntendedBoxContentsSource:
 @attrs.define
 class InvalidASIN:
 
-    asin: str
+    asin: str = attrs.field()
 
-    error_reason: "ErrorReason"
+    error_reason: "ErrorReason" = attrs.field()
     pass
 
 
@@ -555,9 +555,9 @@ class InvalidASINList:
 @attrs.define
 class InvalidSKU:
 
-    seller_sku: str
+    seller_sku: str = attrs.field()
 
-    error_reason: "ErrorReason"
+    error_reason: "ErrorReason" = attrs.field()
     pass
 
 
@@ -570,7 +570,7 @@ class InvalidSKUList:
 @attrs.define
 class LabelDownloadURL:
 
-    download_url: str
+    download_url: str = attrs.field()
 
     pass
 
@@ -590,41 +590,41 @@ class LabelPrepType:
 @attrs.define
 class NonPartneredLtlDataInput:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
-    pro_number: "ProNumber"
+    pro_number: "ProNumber" = attrs.field()
     pass
 
 
 @attrs.define
 class NonPartneredLtlDataOutput:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
-    pro_number: "ProNumber"
+    pro_number: "ProNumber" = attrs.field()
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelDataInput:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
-    package_list: "NonPartneredSmallParcelPackageInputList"
+    package_list: "NonPartneredSmallParcelPackageInputList" = attrs.field()
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelDataOutput:
 
-    package_list: "NonPartneredSmallParcelPackageOutputList"
+    package_list: "NonPartneredSmallParcelPackageOutputList" = attrs.field()
     pass
 
 
 @attrs.define
 class NonPartneredSmallParcelPackageInput:
 
-    tracking_id: "TrackingId"
+    tracking_id: "TrackingId" = attrs.field()
     pass
 
 
@@ -637,10 +637,10 @@ class NonPartneredSmallParcelPackageInputList:
 @attrs.define
 class NonPartneredSmallParcelPackageOutput:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
-    package_status: "PackageStatus"
-    tracking_id: "TrackingId"
+    package_status: "PackageStatus" = attrs.field()
+    tracking_id: "TrackingId" = attrs.field()
     pass
 
 
@@ -659,10 +659,10 @@ class PackageStatus:
 @attrs.define
 class Pallet:
 
-    is_stacked: bool
+    is_stacked: bool = attrs.field()
 
-    dimensions: "Dimensions"
-    weight: "Weight"
+    dimensions: "Dimensions" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
@@ -675,69 +675,69 @@ class PalletList:
 @attrs.define
 class PartneredEstimate:
 
-    amount: "Amount"
-    confirm_deadline: "TimeStampStringType"
-    void_deadline: "TimeStampStringType"
+    amount: "Amount" = attrs.field()
+    confirm_deadline: "TimeStampStringType" = attrs.field()
+    void_deadline: "TimeStampStringType" = attrs.field()
     pass
 
 
 @attrs.define
 class PartneredLtlDataInput:
 
-    box_count: "UnsignedIntType"
-    contact: "Contact"
-    freight_ready_date: "DateStringType"
-    pallet_list: "PalletList"
-    seller_declared_value: "Amount"
-    seller_freight_class: "SellerFreightClass"
-    total_weight: "Weight"
+    box_count: "UnsignedIntType" = attrs.field()
+    contact: "Contact" = attrs.field()
+    freight_ready_date: "DateStringType" = attrs.field()
+    pallet_list: "PalletList" = attrs.field()
+    seller_declared_value: "Amount" = attrs.field()
+    seller_freight_class: "SellerFreightClass" = attrs.field()
+    total_weight: "Weight" = attrs.field()
     pass
 
 
 @attrs.define
 class PartneredLtlDataOutput:
 
-    amazon_reference_id: str
-    carrier_name: str
-    is_bill_of_lading_available: bool
+    amazon_reference_id: str = attrs.field()
+    carrier_name: str = attrs.field()
+    is_bill_of_lading_available: bool = attrs.field()
 
-    amazon_calculated_value: "Amount"
-    box_count: "UnsignedIntType"
-    contact: "Contact"
-    freight_ready_date: "DateStringType"
-    pallet_list: "PalletList"
-    partnered_estimate: "PartneredEstimate"
-    preview_delivery_date: "DateStringType"
-    preview_freight_class: "SellerFreightClass"
-    preview_pickup_date: "DateStringType"
-    seller_declared_value: "Amount"
-    seller_freight_class: "SellerFreightClass"
-    total_weight: "Weight"
+    amazon_calculated_value: "Amount" = attrs.field()
+    box_count: "UnsignedIntType" = attrs.field()
+    contact: "Contact" = attrs.field()
+    freight_ready_date: "DateStringType" = attrs.field()
+    pallet_list: "PalletList" = attrs.field()
+    partnered_estimate: "PartneredEstimate" = attrs.field()
+    preview_delivery_date: "DateStringType" = attrs.field()
+    preview_freight_class: "SellerFreightClass" = attrs.field()
+    preview_pickup_date: "DateStringType" = attrs.field()
+    seller_declared_value: "Amount" = attrs.field()
+    seller_freight_class: "SellerFreightClass" = attrs.field()
+    total_weight: "Weight" = attrs.field()
     pass
 
 
 @attrs.define
 class PartneredSmallParcelDataInput:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
-    package_list: "PartneredSmallParcelPackageInputList"
+    package_list: "PartneredSmallParcelPackageInputList" = attrs.field()
     pass
 
 
 @attrs.define
 class PartneredSmallParcelDataOutput:
 
-    package_list: "PartneredSmallParcelPackageOutputList"
-    partnered_estimate: "PartneredEstimate"
+    package_list: "PartneredSmallParcelPackageOutputList" = attrs.field()
+    partnered_estimate: "PartneredEstimate" = attrs.field()
     pass
 
 
 @attrs.define
 class PartneredSmallParcelPackageInput:
 
-    dimensions: "Dimensions"
-    weight: "Weight"
+    dimensions: "Dimensions" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
@@ -750,12 +750,12 @@ class PartneredSmallParcelPackageInputList:
 @attrs.define
 class PartneredSmallParcelPackageOutput:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
-    dimensions: "Dimensions"
-    package_status: "PackageStatus"
-    tracking_id: "TrackingId"
-    weight: "Weight"
+    dimensions: "Dimensions" = attrs.field()
+    package_status: "PackageStatus" = attrs.field()
+    tracking_id: "TrackingId" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
@@ -768,8 +768,8 @@ class PartneredSmallParcelPackageOutputList:
 @attrs.define
 class PrepDetails:
 
-    prep_instruction: "PrepInstruction"
-    prep_owner: "PrepOwner"
+    prep_instruction: "PrepInstruction" = attrs.field()
+    prep_owner: "PrepOwner" = attrs.field()
     pass
 
 
@@ -812,18 +812,18 @@ class ProNumber:
 @attrs.define
 class PutTransportDetailsRequest:
 
-    is_partnered: bool
+    is_partnered: bool = attrs.field()
 
-    shipment_type: "ShipmentType"
-    transport_details: "TransportDetailInput"
+    shipment_type: "ShipmentType" = attrs.field()
+    transport_details: "TransportDetailInput" = attrs.field()
     pass
 
 
 @attrs.define
 class PutTransportDetailsResponse:
 
-    errors: "ErrorList"
-    payload: "CommonTransportResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CommonTransportResult" = attrs.field()
     pass
 
 
@@ -836,11 +836,11 @@ class Quantity:
 @attrs.define
 class SKUInboundGuidance:
 
-    asin: str
-    seller_sku: str
+    asin: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    guidance_reason_list: "GuidanceReasonList"
-    inbound_guidance: "InboundGuidance"
+    guidance_reason_list: "GuidanceReasonList" = attrs.field()
+    inbound_guidance: "InboundGuidance" = attrs.field()
     pass
 
 
@@ -853,13 +853,13 @@ class SKUInboundGuidanceList:
 @attrs.define
 class SKUPrepInstructions:
 
-    asin: str
-    seller_sku: str
+    asin: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    amazon_prep_fees_details_list: "AmazonPrepFeesDetailsList"
-    barcode_instruction: "BarcodeInstruction"
-    prep_guidance: "PrepGuidance"
-    prep_instruction_list: "PrepInstructionList"
+    amazon_prep_fees_details_list: "AmazonPrepFeesDetailsList" = attrs.field()
+    barcode_instruction: "BarcodeInstruction" = attrs.field()
+    prep_guidance: "PrepGuidance" = attrs.field()
+    prep_instruction_list: "PrepInstructionList" = attrs.field()
     pass
 
 
@@ -902,50 +902,50 @@ class TrackingId:
 @attrs.define
 class TransportContent:
 
-    transport_details: "TransportDetailOutput"
-    transport_header: "TransportHeader"
-    transport_result: "TransportResult"
+    transport_details: "TransportDetailOutput" = attrs.field()
+    transport_header: "TransportHeader" = attrs.field()
+    transport_result: "TransportResult" = attrs.field()
     pass
 
 
 @attrs.define
 class TransportDetailInput:
 
-    non_partnered_ltl_data: "NonPartneredLtlDataInput"
-    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataInput"
-    partnered_ltl_data: "PartneredLtlDataInput"
-    partnered_small_parcel_data: "PartneredSmallParcelDataInput"
+    non_partnered_ltl_data: "NonPartneredLtlDataInput" = attrs.field()
+    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataInput" = attrs.field()
+    partnered_ltl_data: "PartneredLtlDataInput" = attrs.field()
+    partnered_small_parcel_data: "PartneredSmallParcelDataInput" = attrs.field()
     pass
 
 
 @attrs.define
 class TransportDetailOutput:
 
-    non_partnered_ltl_data: "NonPartneredLtlDataOutput"
-    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataOutput"
-    partnered_ltl_data: "PartneredLtlDataOutput"
-    partnered_small_parcel_data: "PartneredSmallParcelDataOutput"
+    non_partnered_ltl_data: "NonPartneredLtlDataOutput" = attrs.field()
+    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataOutput" = attrs.field()
+    partnered_ltl_data: "PartneredLtlDataOutput" = attrs.field()
+    partnered_small_parcel_data: "PartneredSmallParcelDataOutput" = attrs.field()
     pass
 
 
 @attrs.define
 class TransportHeader:
 
-    is_partnered: bool
-    seller_id: str
-    shipment_id: str
+    is_partnered: bool = attrs.field()
+    seller_id: str = attrs.field()
+    shipment_id: str = attrs.field()
 
-    shipment_type: "ShipmentType"
+    shipment_type: "ShipmentType" = attrs.field()
     pass
 
 
 @attrs.define
 class TransportResult:
 
-    error_code: str
-    error_description: str
+    error_code: str = attrs.field()
+    error_description: str = attrs.field()
 
-    transport_status: "TransportStatus"
+    transport_status: "TransportStatus" = attrs.field()
     pass
 
 
@@ -976,16 +976,16 @@ class UnsignedIntType:
 @attrs.define
 class VoidTransportResponse:
 
-    errors: "ErrorList"
-    payload: "CommonTransportResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CommonTransportResult" = attrs.field()
     pass
 
 
 @attrs.define
 class Weight:
 
-    unit: "UnitOfWeight"
-    value: "BigDecimalType"
+    unit: "UnitOfWeight" = attrs.field()
+    value: "BigDecimalType" = attrs.field()
     pass
 
 

@@ -15,24 +15,24 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AddAppointmentRequest:
 
-    appointment_time: "AppointmentTimeInput"
+    appointment_time: "AppointmentTimeInput" = attrs.field()
     pass
 
 
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    city: str
-    country_code: str
-    county: str
-    district: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
+    county: str = attrs.field()
+    district: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
     pass
 
@@ -40,14 +40,14 @@ class Address:
 @attrs.define
 class Appointment:
 
-    appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]]
-    assigned_technicians: list["Technician"]
+    appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]] = attrs.field()
+    assigned_technicians: list["Technician"] = attrs.field()
     # {'minItems': 1}
 
-    appointment_id: "AppointmentId"
-    appointment_time: "AppointmentTime"
-    poa: "Poa"
-    rescheduled_appointment_id: "AppointmentId"
+    appointment_id: "AppointmentId" = attrs.field()
+    appointment_time: "AppointmentTime" = attrs.field()
+    poa: "Poa" = attrs.field()
+    rescheduled_appointment_id: "AppointmentId" = attrs.field()
     pass
 
 
@@ -60,9 +60,9 @@ class AppointmentId:
 @attrs.define
 class AppointmentTime:
 
-    duration_in_minutes: int
+    duration_in_minutes: int = attrs.field()
     # {'minimum': 1.0}
-    start_time: str
+    start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
 
     pass
@@ -71,8 +71,8 @@ class AppointmentTime:
 @attrs.define
 class AppointmentTimeInput:
 
-    duration_in_minutes: int
-    start_time: str
+    duration_in_minutes: int = attrs.field()
+    start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
 
     pass
@@ -81,25 +81,27 @@ class AppointmentTimeInput:
 @attrs.define
 class AssociatedItem:
 
-    asin: str
-    brand_name: str
-    item_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]]
-    quantity: int
-    title: str
+    asin: str = attrs.field()
+    brand_name: str = attrs.field()
+    item_status: Union[
+        Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]
+    ] = attrs.field()
+    quantity: int = attrs.field()
+    title: str = attrs.field()
 
-    item_delivery: "ItemDelivery"
-    order_id: "OrderId"
+    item_delivery: "ItemDelivery" = attrs.field()
+    order_id: "OrderId" = attrs.field()
     pass
 
 
 @attrs.define
 class Buyer:
 
-    buyer_id: str
+    buyer_id: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
-    is_prime_member: bool
-    name: str
-    phone: str
+    is_prime_member: bool = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
 
     pass
 
@@ -107,24 +109,24 @@ class Buyer:
 @attrs.define
 class CancelServiceJobByServiceJobIdResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CompleteServiceJobByServiceJobIdResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    error_level: Union[Literal["ERROR"], Literal["WARNING"]]
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    error_level: Union[Literal["ERROR"], Literal["WARNING"]] = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -138,35 +140,35 @@ class ErrorList:
 @attrs.define
 class GetServiceJobByServiceJobIdResponse:
 
-    errors: "ErrorList"
-    payload: "ServiceJob"
+    errors: "ErrorList" = attrs.field()
+    payload: "ServiceJob" = attrs.field()
     pass
 
 
 @attrs.define
 class GetServiceJobsResponse:
 
-    errors: "ErrorList"
-    payload: "JobListing"
+    errors: "ErrorList" = attrs.field()
+    payload: "JobListing" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemDelivery:
 
-    estimated_delivery_date: str
+    estimated_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    item_delivery_promise: "ItemDeliveryPromise"
+    item_delivery_promise: "ItemDeliveryPromise" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemDeliveryPromise:
 
-    end_time: str
+    end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    start_time: str
+    start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
 
     pass
@@ -175,10 +177,10 @@ class ItemDeliveryPromise:
 @attrs.define
 class JobListing:
 
-    jobs: list["ServiceJob"]
-    next_page_token: str
-    previous_page_token: str
-    total_result_size: int
+    jobs: list["ServiceJob"] = attrs.field()
+    next_page_token: str = attrs.field()
+    previous_page_token: str = attrs.field()
+    total_result_size: int = attrs.field()
 
     pass
 
@@ -197,23 +199,23 @@ class Poa:
         Literal["CUSTOMER_SIGNATURE"],
         Literal["DUMMY_RECEIPT"],
         Literal["POA_RECEIPT"],
-    ]
-    technicians: list["Technician"]
+    ] = attrs.field()
+    technicians: list["Technician"] = attrs.field()
     # {'minItems': 1}
-    upload_time: str
+    upload_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    uploading_technician: str
+    uploading_technician: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
 
-    appointment_time: "AppointmentTime"
+    appointment_time: "AppointmentTime" = attrs.field()
     pass
 
 
 @attrs.define
 class RescheduleAppointmentRequest:
 
-    appointment_time: "AppointmentTimeInput"
-    reschedule_reason_code: "RescheduleReasonCode"
+    appointment_time: "AppointmentTimeInput" = attrs.field()
+    reschedule_reason_code: "RescheduleReasonCode" = attrs.field()
     pass
 
 
@@ -226,10 +228,10 @@ class RescheduleReasonCode:
 @attrs.define
 class ScopeOfWork:
 
-    asin: str
-    quantity: int
-    required_skills: list[str]
-    title: str
+    asin: str = attrs.field()
+    quantity: int = attrs.field()
+    required_skills: list[str] = attrs.field()
+    title: str = attrs.field()
 
     pass
 
@@ -237,7 +239,7 @@ class ScopeOfWork:
 @attrs.define
 class Seller:
 
-    seller_id: str
+    seller_id: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
 
     pass
@@ -246,13 +248,13 @@ class Seller:
 @attrs.define
 class ServiceJob:
 
-    appointments: list["Appointment"]
-    associated_items: list["AssociatedItem"]
-    create_time: str
+    appointments: list["Appointment"] = attrs.field()
+    associated_items: list["AssociatedItem"] = attrs.field()
+    create_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    marketplace_id: str
+    marketplace_id: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
-    preferred_appointment_times: list["AppointmentTime"]
+    preferred_appointment_times: list["AppointmentTime"] = attrs.field()
     service_job_status: Union[
         Literal["NOT_SERVICED"],
         Literal["CANCELLED"],
@@ -261,15 +263,15 @@ class ServiceJob:
         Literal["NOT_FULFILLABLE"],
         Literal["HOLD"],
         Literal["PAYMENT_DECLINED"],
-    ]
+    ] = attrs.field()
 
-    buyer: "Buyer"
-    scope_of_work: "ScopeOfWork"
-    seller: "Seller"
-    service_job_id: "ServiceJobId"
-    service_job_provider: "ServiceJobProvider"
-    service_location: "ServiceLocation"
-    service_order_id: "OrderId"
+    buyer: "Buyer" = attrs.field()
+    scope_of_work: "ScopeOfWork" = attrs.field()
+    seller: "Seller" = attrs.field()
+    service_job_id: "ServiceJobId" = attrs.field()
+    service_job_provider: "ServiceJobProvider" = attrs.field()
+    service_location: "ServiceLocation" = attrs.field()
+    service_order_id: "OrderId" = attrs.field()
     pass
 
 
@@ -282,7 +284,7 @@ class ServiceJobId:
 @attrs.define
 class ServiceJobProvider:
 
-    service_job_provider_id: str
+    service_job_provider_id: str = attrs.field()
     # {'pattern': '^[A-Z0-9]*$'}
 
     pass
@@ -291,27 +293,27 @@ class ServiceJobProvider:
 @attrs.define
 class ServiceLocation:
 
-    service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]]
+    service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]] = attrs.field()
 
-    address: "Address"
+    address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class SetAppointmentResponse:
 
-    appointment_id: "AppointmentId"
-    errors: "ErrorList"
-    warnings: "WarningList"
+    appointment_id: "AppointmentId" = attrs.field()
+    errors: "ErrorList" = attrs.field()
+    warnings: "WarningList" = attrs.field()
     pass
 
 
 @attrs.define
 class Technician:
 
-    name: str
-    technician_id: str
-    # {'maxLength': 50, 'minLength': 1}
+    name: str = attrs.field()
+    technician_id: str = attrs.field()
+    # {'minLength': 1, 'maxLength': 50}
 
     pass
 
@@ -319,9 +321,9 @@ class Technician:
 @attrs.define
 class Warning:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 

@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -31,15 +31,15 @@ class ErrorList:
 @attrs.define
 class GetItemEligibilityPreviewResponse:
 
-    errors: "ErrorList"
-    payload: "ItemEligibilityPreview"
+    errors: "ErrorList" = attrs.field()
+    payload: "ItemEligibilityPreview" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemEligibilityPreview:
 
-    asin: str
+    asin: str = attrs.field()
     ineligibility_reason_list: list[
         Union[
             Literal["FBA_INB_0004"],
@@ -82,10 +82,10 @@ class ItemEligibilityPreview:
             Literal["FBA_INB_0197"],
             Literal["UNKNOWN_INB_ERROR_CODE"],
         ]
-    ]
-    is_eligible_for_program: bool
-    marketplace_id: str
-    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]]
+    ] = attrs.field()
+    is_eligible_for_program: bool = attrs.field()
+    marketplace_id: str = attrs.field()
+    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]] = attrs.field()
 
     pass
 

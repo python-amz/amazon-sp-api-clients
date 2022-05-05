@@ -15,29 +15,29 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CancelReportResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CancelReportScheduleResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateReportResponse:
 
-    errors: "ErrorList"
-    payload: "CreateReportResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CreateReportResult" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateReportResult:
 
-    report_id: str
+    report_id: str = attrs.field()
 
     pass
 
@@ -45,15 +45,15 @@ class CreateReportResult:
 @attrs.define
 class CreateReportScheduleResponse:
 
-    errors: "ErrorList"
-    payload: "CreateReportScheduleResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CreateReportScheduleResult" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateReportScheduleResult:
 
-    report_schedule_id: str
+    report_schedule_id: str = attrs.field()
 
     pass
 
@@ -61,9 +61,9 @@ class CreateReportScheduleResult:
 @attrs.define
 class CreateReportScheduleSpecification:
 
-    marketplace_ids: list[str]
+    marketplace_ids: list[str] = attrs.field()
     # {'maxItems': 25, 'minItems': 1}
-    next_report_creation_time: str
+    next_report_creation_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     period: Union[
         Literal["PT5M"],
@@ -84,34 +84,34 @@ class CreateReportScheduleSpecification:
         Literal["P18D"],
         Literal["P30D"],
         Literal["P1M"],
-    ]
-    report_type: str
+    ] = attrs.field()
+    report_type: str = attrs.field()
 
-    report_options: "ReportOptions"
+    report_options: "ReportOptions" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateReportSpecification:
 
-    data_end_time: str
+    data_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    data_start_time: str
+    data_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    marketplace_ids: list[str]
+    marketplace_ids: list[str] = attrs.field()
     # {'maxItems': 25, 'minItems': 1}
-    report_type: str
+    report_type: str = attrs.field()
 
-    report_options: "ReportOptions"
+    report_options: "ReportOptions" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -125,66 +125,66 @@ class ErrorList:
 @attrs.define
 class GetReportDocumentResponse:
 
-    errors: "ErrorList"
-    payload: "ReportDocument"
+    errors: "ErrorList" = attrs.field()
+    payload: "ReportDocument" = attrs.field()
     pass
 
 
 @attrs.define
 class GetReportResponse:
 
-    errors: "ErrorList"
-    payload: "Report"
+    errors: "ErrorList" = attrs.field()
+    payload: "Report" = attrs.field()
     pass
 
 
 @attrs.define
 class GetReportScheduleResponse:
 
-    errors: "ErrorList"
-    payload: "ReportSchedule"
+    errors: "ErrorList" = attrs.field()
+    payload: "ReportSchedule" = attrs.field()
     pass
 
 
 @attrs.define
 class GetReportSchedulesResponse:
 
-    errors: "ErrorList"
-    payload: "ReportScheduleList"
+    errors: "ErrorList" = attrs.field()
+    payload: "ReportScheduleList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetReportsResponse:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    errors: "ErrorList"
-    payload: "ReportList"
+    errors: "ErrorList" = attrs.field()
+    payload: "ReportList" = attrs.field()
     pass
 
 
 @attrs.define
 class Report:
 
-    created_time: str
+    created_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    data_end_time: str
+    data_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    data_start_time: str
+    data_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    marketplace_ids: list[str]
-    processing_end_time: str
+    marketplace_ids: list[str] = attrs.field()
+    processing_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    processing_start_time: str
+    processing_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ]
-    report_document_id: str
-    report_id: str
-    report_schedule_id: str
-    report_type: str
+    ] = attrs.field()
+    report_document_id: str = attrs.field()
+    report_id: str = attrs.field()
+    report_schedule_id: str = attrs.field()
+    report_type: str = attrs.field()
 
     pass
 
@@ -192,20 +192,20 @@ class Report:
 @attrs.define
 class ReportDocument:
 
-    compression_algorithm: Union[Literal["GZIP"]]
-    report_document_id: str
-    url: str
+    compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
+    report_document_id: str = attrs.field()
+    url: str = attrs.field()
 
-    encryption_details: "ReportDocumentEncryptionDetails"
+    encryption_details: "ReportDocumentEncryptionDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class ReportDocumentEncryptionDetails:
 
-    initialization_vector: str
-    key: str
-    standard: Union[Literal["AES"]]
+    initialization_vector: str = attrs.field()
+    key: str = attrs.field()
+    standard: Union[Literal["AES"]] = attrs.field()
 
     pass
 
@@ -225,14 +225,14 @@ class ReportOptions:
 @attrs.define
 class ReportSchedule:
 
-    marketplace_ids: list[str]
-    next_report_creation_time: str
+    marketplace_ids: list[str] = attrs.field()
+    next_report_creation_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    period: str
-    report_schedule_id: str
-    report_type: str
+    period: str = attrs.field()
+    report_schedule_id: str = attrs.field()
+    report_type: str = attrs.field()
 
-    report_options: "ReportOptions"
+    report_options: "ReportOptions" = attrs.field()
     pass
 
 

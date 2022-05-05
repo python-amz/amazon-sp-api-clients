@@ -17,9 +17,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -33,11 +33,11 @@ class ErrorList:
 @attrs.define
 class Link:
 
-    resource: str
+    resource: str = attrs.field()
     # {'schema_format': 'uri'}
-    title: str
-    type: str
-    verb: Union[Literal["GET"]]
+    title: str = attrs.field()
+    type: str = attrs.field()
+    verb: Union[Literal["GET"]] = attrs.field()
 
     pass
 
@@ -45,9 +45,9 @@ class Link:
 @attrs.define
 class Reason:
 
-    links: list["Link"]
-    message: str
-    reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]]
+    links: list["Link"] = attrs.field()
+    message: str = attrs.field()
+    reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]] = attrs.field()
 
     pass
 
@@ -69,9 +69,9 @@ class Restriction:
         Literal["collectible_good"],
         Literal["collectible_acceptable"],
         Literal["club_club"],
-    ]
-    marketplace_id: str
-    reasons: list["Reason"]
+    ] = attrs.field()
+    marketplace_id: str = attrs.field()
+    reasons: list["Reason"] = attrs.field()
 
     pass
 
@@ -79,7 +79,7 @@ class Restriction:
 @attrs.define
 class RestrictionList:
 
-    restrictions: list["Restriction"]
+    restrictions: list["Restriction"] = attrs.field()
 
     pass
 

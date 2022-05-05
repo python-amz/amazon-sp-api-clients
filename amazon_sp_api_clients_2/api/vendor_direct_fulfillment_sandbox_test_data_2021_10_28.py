@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -25,7 +25,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -33,7 +33,7 @@ class ErrorList:
 @attrs.define
 class GenerateOrderScenarioRequest:
 
-    orders: list["OrderScenarioRequest"]
+    orders: list["OrderScenarioRequest"] = attrs.field()
 
     pass
 
@@ -41,15 +41,15 @@ class GenerateOrderScenarioRequest:
 @attrs.define
 class OrderScenarioRequest:
 
-    selling_party: "PartyIdentification"
-    ship_from_party: "PartyIdentification"
+    selling_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class Pagination:
 
-    next_token: str
+    next_token: str = attrs.field()
 
     pass
 
@@ -57,7 +57,7 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
-    party_id: str
+    party_id: str = attrs.field()
 
     pass
 
@@ -65,8 +65,8 @@ class PartyIdentification:
 @attrs.define
 class Scenario:
 
-    orders: list["TestOrder"]
-    scenario_id: str
+    orders: list["TestOrder"] = attrs.field()
+    scenario_id: str = attrs.field()
 
     pass
 
@@ -74,7 +74,7 @@ class Scenario:
 @attrs.define
 class TestCaseData:
 
-    scenarios: list["Scenario"]
+    scenarios: list["Scenario"] = attrs.field()
 
     pass
 
@@ -82,7 +82,7 @@ class TestCaseData:
 @attrs.define
 class TestOrder:
 
-    order_id: str
+    order_id: str = attrs.field()
 
     pass
 
@@ -90,17 +90,17 @@ class TestOrder:
 @attrs.define
 class Transaction:
 
-    status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]]
-    transaction_id: str
+    status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]] = attrs.field()
+    transaction_id: str = attrs.field()
 
-    test_case_data: "TestCaseData"
+    test_case_data: "TestCaseData" = attrs.field()
     pass
 
 
 @attrs.define
 class TransactionReference:
 
-    transaction_id: str
+    transaction_id: str = attrs.field()
 
     pass
 
@@ -108,7 +108,7 @@ class TransactionReference:
 @attrs.define
 class TransactionStatus:
 
-    transaction_status: "Transaction"
+    transaction_status: "Transaction" = attrs.field()
     pass
 
 

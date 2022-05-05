@@ -21,7 +21,7 @@ class AplusPaginatedResponse:
 @attrs.define
 class AplusResponse:
 
-    warnings: "MessageSet"
+    warnings: "MessageSet" = attrs.field()
     pass
 
 
@@ -46,15 +46,15 @@ class AsinBadgeSet:
 @attrs.define
 class AsinMetadata:
 
-    image_url: str
+    image_url: str = attrs.field()
     # {'minLength': 1}
-    title: str
+    title: str = attrs.field()
     # {'minLength': 1}
 
-    asin: "Asin"
-    badge_set: "AsinBadgeSet"
-    content_reference_key_set: "ContentReferenceKeySet"
-    parent: "Asin"
+    asin: "Asin" = attrs.field()
+    badge_set: "AsinBadgeSet" = attrs.field()
+    content_reference_key_set: "ContentReferenceKeySet" = attrs.field()
+    parent: "Asin" = attrs.field()
     pass
 
 
@@ -91,35 +91,35 @@ class ContentBadgeSet:
 @attrs.define
 class ContentDocument:
 
-    name: str
+    name: str = attrs.field()
     # {'minLength': 1, 'maxLength': 100}
 
-    content_module_list: "ContentModuleList"
-    content_sub_type: "ContentSubType"
-    content_type: "ContentType"
-    locale: "LanguageTag"
+    content_module_list: "ContentModuleList" = attrs.field()
+    content_sub_type: "ContentSubType" = attrs.field()
+    content_type: "ContentType" = attrs.field()
+    locale: "LanguageTag" = attrs.field()
     pass
 
 
 @attrs.define
 class ContentMetadata:
 
-    name: str
+    name: str = attrs.field()
     # {'minLength': 1, 'maxLength': 100}
-    update_time: str
+    update_time: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    badge_set: "ContentBadgeSet"
-    marketplace_id: "MarketplaceId"
-    status: "ContentStatus"
+    badge_set: "ContentBadgeSet" = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
+    status: "ContentStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class ContentMetadataRecord:
 
-    content_metadata: "ContentMetadata"
-    content_reference_key: "ContentReferenceKey"
+    content_metadata: "ContentMetadata" = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field()
     pass
 
 
@@ -132,22 +132,22 @@ class ContentMetadataRecordList:
 @attrs.define
 class ContentModule:
 
-    content_module_type: "ContentModuleType"
-    standard_company_logo: "StandardCompanyLogoModule"
-    standard_comparison_table: "StandardComparisonTableModule"
-    standard_four_image_text: "StandardFourImageTextModule"
-    standard_four_image_text_quadrant: "StandardFourImageTextQuadrantModule"
-    standard_header_image_text: "StandardHeaderImageTextModule"
-    standard_image_sidebar: "StandardImageSidebarModule"
-    standard_image_text_overlay: "StandardImageTextOverlayModule"
-    standard_multiple_image_text: "StandardMultipleImageTextModule"
-    standard_product_description: "StandardProductDescriptionModule"
-    standard_single_image_highlights: "StandardSingleImageHighlightsModule"
-    standard_single_image_specs_detail: "StandardSingleImageSpecsDetailModule"
-    standard_single_side_image: "StandardSingleSideImageModule"
-    standard_tech_specs: "StandardTechSpecsModule"
-    standard_text: "StandardTextModule"
-    standard_three_image_text: "StandardThreeImageTextModule"
+    content_module_type: "ContentModuleType" = attrs.field()
+    standard_company_logo: "StandardCompanyLogoModule" = attrs.field()
+    standard_comparison_table: "StandardComparisonTableModule" = attrs.field()
+    standard_four_image_text: "StandardFourImageTextModule" = attrs.field()
+    standard_four_image_text_quadrant: "StandardFourImageTextQuadrantModule" = attrs.field()
+    standard_header_image_text: "StandardHeaderImageTextModule" = attrs.field()
+    standard_image_sidebar: "StandardImageSidebarModule" = attrs.field()
+    standard_image_text_overlay: "StandardImageTextOverlayModule" = attrs.field()
+    standard_multiple_image_text: "StandardMultipleImageTextModule" = attrs.field()
+    standard_product_description: "StandardProductDescriptionModule" = attrs.field()
+    standard_single_image_highlights: "StandardSingleImageHighlightsModule" = attrs.field()
+    standard_single_image_specs_detail: "StandardSingleImageSpecsDetailModule" = attrs.field()
+    standard_single_side_image: "StandardSingleSideImageModule" = attrs.field()
+    standard_tech_specs: "StandardTechSpecsModule" = attrs.field()
+    standard_text: "StandardTextModule" = attrs.field()
+    standard_three_image_text: "StandardThreeImageTextModule" = attrs.field()
     pass
 
 
@@ -166,9 +166,9 @@ class ContentModuleType:
 @attrs.define
 class ContentRecord:
 
-    content_document: "ContentDocument"
-    content_metadata: "ContentMetadata"
-    content_reference_key: "ContentReferenceKey"
+    content_document: "ContentDocument" = attrs.field()
+    content_metadata: "ContentMetadata" = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field()
     pass
 
 
@@ -205,14 +205,14 @@ class ContentType:
 @attrs.define
 class Decorator:
 
-    depth: int
+    depth: int = attrs.field()
     # {'maximum': 100.0, 'minimum': 0.0}
-    length: int
+    length: int = attrs.field()
     # {'maximum': 10000.0, 'minimum': 0.0}
-    offset: int
+    offset: int = attrs.field()
     # {'maximum': 10000.0, 'minimum': 0.0}
 
-    type: "DecoratorType"
+    type: "DecoratorType" = attrs.field()
     pass
 
 
@@ -231,11 +231,11 @@ class DecoratorType:
 @attrs.define
 class Error:
 
-    code: str
+    code: str = attrs.field()
     # {'minLength': 1}
-    details: str
+    details: str = attrs.field()
     # {'minLength': 1}
-    message: str
+    message: str = attrs.field()
     # {'minLength': 1}
 
     pass
@@ -244,7 +244,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -258,44 +258,44 @@ class GetContentDocumentResponse:
 @attrs.define
 class ImageComponent:
 
-    alt_text: str
+    alt_text: str = attrs.field()
     # {'minLength': 1, 'maxLength': 100}
-    upload_destination_id: str
+    upload_destination_id: str = attrs.field()
     # {'minLength': 1}
 
-    image_crop_specification: "ImageCropSpecification"
+    image_crop_specification: "ImageCropSpecification" = attrs.field()
     pass
 
 
 @attrs.define
 class ImageCropSpecification:
 
-    offset: "ImageOffsets"
-    size: "ImageDimensions"
+    offset: "ImageOffsets" = attrs.field()
+    size: "ImageDimensions" = attrs.field()
     pass
 
 
 @attrs.define
 class ImageDimensions:
 
-    height: "IntegerWithUnits"
-    width: "IntegerWithUnits"
+    height: "IntegerWithUnits" = attrs.field()
+    width: "IntegerWithUnits" = attrs.field()
     pass
 
 
 @attrs.define
 class ImageOffsets:
 
-    x: "IntegerWithUnits"
-    y: "IntegerWithUnits"
+    x: "IntegerWithUnits" = attrs.field()
+    y: "IntegerWithUnits" = attrs.field()
     pass
 
 
 @attrs.define
 class IntegerWithUnits:
 
-    units: str
-    value: int
+    units: str = attrs.field()
+    value: int = attrs.field()
 
     pass
 
@@ -333,7 +333,7 @@ class PageToken:
 @attrs.define
 class ParagraphComponent:
 
-    text_list: list["TextComponent"]
+    text_list: list["TextComponent"] = attrs.field()
     # {'maxItems': 100, 'minItems': 1}
 
     pass
@@ -342,9 +342,9 @@ class ParagraphComponent:
 @attrs.define
 class PlainTextItem:
 
-    position: int
+    position: int = attrs.field()
     # {'maximum': 100.0, 'minimum': 1.0}
-    value: str
+    value: str = attrs.field()
     # {'minLength': 1, 'maxLength': 250}
 
     pass
@@ -365,7 +365,7 @@ class PostContentDocumentApprovalSubmissionResponse:
 @attrs.define
 class PostContentDocumentAsinRelationsRequest:
 
-    asin_set: "AsinSet"
+    asin_set: "AsinSet" = attrs.field()
     pass
 
 
@@ -378,7 +378,7 @@ class PostContentDocumentAsinRelationsResponse:
 @attrs.define
 class PostContentDocumentRequest:
 
-    content_document: "ContentDocument"
+    content_document: "ContentDocument" = attrs.field()
     pass
 
 
@@ -397,12 +397,12 @@ class PostContentDocumentSuspendSubmissionResponse:
 @attrs.define
 class PublishRecord:
 
-    asin: "Asin"
-    content_reference_key: "ContentReferenceKey"
-    content_sub_type: "ContentSubType"
-    content_type: "ContentType"
-    locale: "LanguageTag"
-    marketplace_id: "MarketplaceId"
+    asin: "Asin" = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field()
+    content_sub_type: "ContentSubType" = attrs.field()
+    content_type: "ContentType" = attrs.field()
+    locale: "LanguageTag" = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
     pass
 
 
@@ -427,32 +427,32 @@ class SearchContentPublishRecordsResponse:
 @attrs.define
 class StandardCompanyLogoModule:
 
-    company_logo: "ImageComponent"
+    company_logo: "ImageComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardComparisonProductBlock:
 
-    highlight: bool
-    metrics: list["PlainTextItem"]
+    highlight: bool = attrs.field()
+    metrics: list["PlainTextItem"] = attrs.field()
     # {'maxItems': 10, 'minItems': 0}
-    position: int
+    position: int = attrs.field()
     # {'maximum': 6.0, 'minimum': 1.0}
-    title: str
+    title: str = attrs.field()
     # {'minLength': 1, 'maxLength': 80}
 
-    asin: "Asin"
-    image: "ImageComponent"
+    asin: "Asin" = attrs.field()
+    image: "ImageComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardComparisonTableModule:
 
-    metric_row_labels: list["PlainTextItem"]
+    metric_row_labels: list["PlainTextItem"] = attrs.field()
     # {'maxItems': 10, 'minItems': 0}
-    product_columns: list["StandardComparisonProductBlock"]
+    product_columns: list["StandardComparisonProductBlock"] = attrs.field()
     # {'maxItems': 6, 'minItems': 0}
 
     pass
@@ -461,89 +461,89 @@ class StandardComparisonTableModule:
 @attrs.define
 class StandardFourImageTextModule:
 
-    block1: "StandardImageTextBlock"
-    block2: "StandardImageTextBlock"
-    block3: "StandardImageTextBlock"
-    block4: "StandardImageTextBlock"
-    headline: "TextComponent"
+    block1: "StandardImageTextBlock" = attrs.field()
+    block2: "StandardImageTextBlock" = attrs.field()
+    block3: "StandardImageTextBlock" = attrs.field()
+    block4: "StandardImageTextBlock" = attrs.field()
+    headline: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardFourImageTextQuadrantModule:
 
-    block1: "StandardImageTextBlock"
-    block2: "StandardImageTextBlock"
-    block3: "StandardImageTextBlock"
-    block4: "StandardImageTextBlock"
+    block1: "StandardImageTextBlock" = attrs.field()
+    block2: "StandardImageTextBlock" = attrs.field()
+    block3: "StandardImageTextBlock" = attrs.field()
+    block4: "StandardImageTextBlock" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardHeaderImageTextModule:
 
-    block: "StandardImageTextBlock"
-    headline: "TextComponent"
+    block: "StandardImageTextBlock" = attrs.field()
+    headline: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardHeaderTextListBlock:
 
-    block: "StandardTextListBlock"
-    headline: "TextComponent"
+    block: "StandardTextListBlock" = attrs.field()
+    headline: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardImageCaptionBlock:
 
-    caption: "TextComponent"
-    image: "ImageComponent"
+    caption: "TextComponent" = attrs.field()
+    image: "ImageComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardImageSidebarModule:
 
-    description_list_block: "StandardTextListBlock"
-    description_text_block: "StandardTextBlock"
-    headline: "TextComponent"
-    image_caption_block: "StandardImageCaptionBlock"
-    sidebar_image_text_block: "StandardImageTextBlock"
-    sidebar_list_block: "StandardTextListBlock"
+    description_list_block: "StandardTextListBlock" = attrs.field()
+    description_text_block: "StandardTextBlock" = attrs.field()
+    headline: "TextComponent" = attrs.field()
+    image_caption_block: "StandardImageCaptionBlock" = attrs.field()
+    sidebar_image_text_block: "StandardImageTextBlock" = attrs.field()
+    sidebar_list_block: "StandardTextListBlock" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardImageTextBlock:
 
-    body: "ParagraphComponent"
-    headline: "TextComponent"
-    image: "ImageComponent"
+    body: "ParagraphComponent" = attrs.field()
+    headline: "TextComponent" = attrs.field()
+    image: "ImageComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardImageTextCaptionBlock:
 
-    block: "StandardImageTextBlock"
-    caption: "TextComponent"
+    block: "StandardImageTextBlock" = attrs.field()
+    caption: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardImageTextOverlayModule:
 
-    block: "StandardImageTextBlock"
-    overlay_color_type: "ColorType"
+    block: "StandardImageTextBlock" = attrs.field()
+    overlay_color_type: "ColorType" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardMultipleImageTextModule:
 
-    blocks: list["StandardImageTextCaptionBlock"]
+    blocks: list["StandardImageTextCaptionBlock"] = attrs.field()
 
     pass
 
@@ -551,68 +551,68 @@ class StandardMultipleImageTextModule:
 @attrs.define
 class StandardProductDescriptionModule:
 
-    body: "ParagraphComponent"
+    body: "ParagraphComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardSingleImageHighlightsModule:
 
-    bulleted_list_block: "StandardHeaderTextListBlock"
-    headline: "TextComponent"
-    image: "ImageComponent"
-    text_block1: "StandardTextBlock"
-    text_block2: "StandardTextBlock"
-    text_block3: "StandardTextBlock"
+    bulleted_list_block: "StandardHeaderTextListBlock" = attrs.field()
+    headline: "TextComponent" = attrs.field()
+    image: "ImageComponent" = attrs.field()
+    text_block1: "StandardTextBlock" = attrs.field()
+    text_block2: "StandardTextBlock" = attrs.field()
+    text_block3: "StandardTextBlock" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardSingleImageSpecsDetailModule:
 
-    description_block1: "StandardTextBlock"
-    description_block2: "StandardTextBlock"
-    description_headline: "TextComponent"
-    headline: "TextComponent"
-    image: "ImageComponent"
-    specification_headline: "TextComponent"
-    specification_list_block: "StandardHeaderTextListBlock"
-    specification_text_block: "StandardTextBlock"
+    description_block1: "StandardTextBlock" = attrs.field()
+    description_block2: "StandardTextBlock" = attrs.field()
+    description_headline: "TextComponent" = attrs.field()
+    headline: "TextComponent" = attrs.field()
+    image: "ImageComponent" = attrs.field()
+    specification_headline: "TextComponent" = attrs.field()
+    specification_list_block: "StandardHeaderTextListBlock" = attrs.field()
+    specification_text_block: "StandardTextBlock" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardSingleSideImageModule:
 
-    block: "StandardImageTextBlock"
-    image_position_type: "PositionType"
+    block: "StandardImageTextBlock" = attrs.field()
+    image_position_type: "PositionType" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardTechSpecsModule:
 
-    specification_list: list["StandardTextPairBlock"]
+    specification_list: list["StandardTextPairBlock"] = attrs.field()
     # {'maxItems': 16, 'minItems': 4}
-    table_count: int
+    table_count: int = attrs.field()
     # {'maximum': 2.0, 'minimum': 1.0}
 
-    headline: "TextComponent"
+    headline: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardTextBlock:
 
-    body: "ParagraphComponent"
-    headline: "TextComponent"
+    body: "ParagraphComponent" = attrs.field()
+    headline: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardTextListBlock:
 
-    text_list: list["TextItem"]
+    text_list: list["TextItem"] = attrs.field()
     # {'maxItems': 8, 'minItems': 0}
 
     pass
@@ -621,46 +621,46 @@ class StandardTextListBlock:
 @attrs.define
 class StandardTextModule:
 
-    body: "ParagraphComponent"
-    headline: "TextComponent"
+    body: "ParagraphComponent" = attrs.field()
+    headline: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardTextPairBlock:
 
-    description: "TextComponent"
-    label: "TextComponent"
+    description: "TextComponent" = attrs.field()
+    label: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class StandardThreeImageTextModule:
 
-    block1: "StandardImageTextBlock"
-    block2: "StandardImageTextBlock"
-    block3: "StandardImageTextBlock"
-    headline: "TextComponent"
+    block1: "StandardImageTextBlock" = attrs.field()
+    block2: "StandardImageTextBlock" = attrs.field()
+    block3: "StandardImageTextBlock" = attrs.field()
+    headline: "TextComponent" = attrs.field()
     pass
 
 
 @attrs.define
 class TextComponent:
 
-    value: str
+    value: str = attrs.field()
     # {'minLength': 1, 'maxLength': 10000}
 
-    decorator_set: "DecoratorSet"
+    decorator_set: "DecoratorSet" = attrs.field()
     pass
 
 
 @attrs.define
 class TextItem:
 
-    position: int
+    position: int = attrs.field()
     # {'maximum': 100.0, 'minimum': 1.0}
 
-    text: "TextComponent"
+    text: "TextComponent" = attrs.field()
     pass
 
 

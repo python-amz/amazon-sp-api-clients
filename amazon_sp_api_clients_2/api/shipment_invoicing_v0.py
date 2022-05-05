@@ -15,19 +15,19 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    city: str
-    country_code: str
-    county: str
-    district: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
+    county: str = attrs.field()
+    district: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
-    address_type: "AddressTypeEnum"
+    address_type: "AddressTypeEnum" = attrs.field()
     pass
 
 
@@ -46,19 +46,19 @@ class Blob:
 @attrs.define
 class BuyerTaxInfo:
 
-    company_legal_name: str
-    taxing_region: str
+    company_legal_name: str = attrs.field()
+    taxing_region: str = attrs.field()
 
-    tax_classifications: "TaxClassificationList"
+    tax_classifications: "TaxClassificationList" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -72,34 +72,34 @@ class ErrorList:
 @attrs.define
 class GetInvoiceStatusResponse:
 
-    errors: "ErrorList"
-    payload: "ShipmentInvoiceStatusResponse"
+    errors: "ErrorList" = attrs.field()
+    payload: "ShipmentInvoiceStatusResponse" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentDetailsResponse:
 
-    errors: "ErrorList"
-    payload: "ShipmentDetail"
+    errors: "ErrorList" = attrs.field()
+    payload: "ShipmentDetail" = attrs.field()
     pass
 
 
 @attrs.define
 class MarketplaceTaxInfo:
 
-    company_legal_name: str
-    taxing_region: str
+    company_legal_name: str = attrs.field()
+    taxing_region: str = attrs.field()
 
-    tax_classifications: "TaxClassificationList"
+    tax_classifications: "TaxClassificationList" = attrs.field()
     pass
 
 
 @attrs.define
 class Money:
 
-    amount: str
-    currency_code: str
+    amount: str = attrs.field()
+    currency_code: str = attrs.field()
 
     pass
 
@@ -119,22 +119,22 @@ class SerialNumbersList:
 @attrs.define
 class ShipmentDetail:
 
-    amazon_order_id: str
-    amazon_shipment_id: str
-    buyer_county: str
-    buyer_name: str
-    marketplace_id: str
-    purchase_date: str
+    amazon_order_id: str = attrs.field()
+    amazon_shipment_id: str = attrs.field()
+    buyer_county: str = attrs.field()
+    buyer_name: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    purchase_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    seller_display_name: str
-    seller_id: str
-    warehouse_id: str
+    seller_display_name: str = attrs.field()
+    seller_id: str = attrs.field()
+    warehouse_id: str = attrs.field()
 
-    buyer_tax_info: "BuyerTaxInfo"
-    marketplace_tax_info: "MarketplaceTaxInfo"
-    payment_method_details: "PaymentMethodDetailItemList"
-    shipment_items: "ShipmentItems"
-    shipping_address: "Address"
+    buyer_tax_info: "BuyerTaxInfo" = attrs.field()
+    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field()
+    payment_method_details: "PaymentMethodDetailItemList" = attrs.field()
+    shipment_items: "ShipmentItems" = attrs.field()
+    shipping_address: "Address" = attrs.field()
     pass
 
 
@@ -147,34 +147,34 @@ class ShipmentInvoiceStatus:
 @attrs.define
 class ShipmentInvoiceStatusInfo:
 
-    amazon_shipment_id: str
+    amazon_shipment_id: str = attrs.field()
 
-    invoice_status: "ShipmentInvoiceStatus"
+    invoice_status: "ShipmentInvoiceStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class ShipmentInvoiceStatusResponse:
 
-    shipments: "ShipmentInvoiceStatusInfo"
+    shipments: "ShipmentInvoiceStatusInfo" = attrs.field()
     pass
 
 
 @attrs.define
 class ShipmentItem:
 
-    asin: str
-    order_item_id: str
-    quantity_ordered: Union[float, int]
-    seller_sku: str
-    title: str
+    asin: str = attrs.field()
+    order_item_id: str = attrs.field()
+    quantity_ordered: Union[float, int] = attrs.field()
+    seller_sku: str = attrs.field()
+    title: str = attrs.field()
 
-    gift_wrap_price: "Money"
-    item_price: "Money"
-    promotion_discount: "Money"
-    serial_numbers: "SerialNumbersList"
-    shipping_discount: "Money"
-    shipping_price: "Money"
+    gift_wrap_price: "Money" = attrs.field()
+    item_price: "Money" = attrs.field()
+    promotion_discount: "Money" = attrs.field()
+    serial_numbers: "SerialNumbersList" = attrs.field()
+    shipping_discount: "Money" = attrs.field()
+    shipping_price: "Money" = attrs.field()
     pass
 
 
@@ -187,25 +187,25 @@ class ShipmentItems:
 @attrs.define
 class SubmitInvoiceRequest:
 
-    content_md5value: str
-    marketplace_id: str
+    content_md5value: str = attrs.field()
+    marketplace_id: str = attrs.field()
 
-    invoice_content: "Blob"
+    invoice_content: "Blob" = attrs.field()
     pass
 
 
 @attrs.define
 class SubmitInvoiceResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class TaxClassification:
 
-    name: str
-    value: str
+    name: str = attrs.field()
+    value: str = attrs.field()
 
     pass
 

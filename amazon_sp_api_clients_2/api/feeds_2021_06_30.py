@@ -15,8 +15,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CreateFeedDocumentResponse:
 
-    feed_document_id: str
-    url: str
+    feed_document_id: str = attrs.field()
+    url: str = attrs.field()
 
     pass
 
@@ -24,7 +24,7 @@ class CreateFeedDocumentResponse:
 @attrs.define
 class CreateFeedDocumentSpecification:
 
-    content_type: str
+    content_type: str = attrs.field()
 
     pass
 
@@ -32,7 +32,7 @@ class CreateFeedDocumentSpecification:
 @attrs.define
 class CreateFeedResponse:
 
-    feed_id: str
+    feed_id: str = attrs.field()
 
     pass
 
@@ -40,21 +40,21 @@ class CreateFeedResponse:
 @attrs.define
 class CreateFeedSpecification:
 
-    feed_type: str
-    input_feed_document_id: str
-    marketplace_ids: list[str]
-    # {'minItems': 1, 'maxItems': 25}
+    feed_type: str = attrs.field()
+    input_feed_document_id: str = attrs.field()
+    marketplace_ids: list[str] = attrs.field()
+    # {'maxItems': 25, 'minItems': 1}
 
-    feed_options: "FeedOptions"
+    feed_options: "FeedOptions" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -62,7 +62,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -70,19 +70,19 @@ class ErrorList:
 @attrs.define
 class Feed:
 
-    created_time: str
+    created_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    feed_id: str
-    feed_type: str
-    marketplace_ids: list[str]
-    processing_end_time: str
+    feed_id: str = attrs.field()
+    feed_type: str = attrs.field()
+    marketplace_ids: list[str] = attrs.field()
+    processing_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    processing_start_time: str
+    processing_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ]
-    result_feed_document_id: str
+    ] = attrs.field()
+    result_feed_document_id: str = attrs.field()
 
     pass
 
@@ -90,9 +90,9 @@ class Feed:
 @attrs.define
 class FeedDocument:
 
-    compression_algorithm: Union[Literal["GZIP"]]
-    feed_document_id: str
-    url: str
+    compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
+    feed_document_id: str = attrs.field()
+    url: str = attrs.field()
 
     pass
 
@@ -112,9 +112,9 @@ class FeedOptions:
 @attrs.define
 class GetFeedsResponse:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    feeds: "FeedList"
+    feeds: "FeedList" = attrs.field()
     pass
 
 

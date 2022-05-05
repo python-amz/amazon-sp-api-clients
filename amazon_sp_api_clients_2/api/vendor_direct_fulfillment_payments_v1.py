@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AdditionalDetails:
 
-    detail: str
-    language_code: str
-    type: Union[Literal["SUR"], Literal["OCR"]]
+    detail: str = attrs.field()
+    language_code: str = attrs.field()
+    type: Union[Literal["SUR"], Literal["OCR"]] = attrs.field()
 
     pass
 
@@ -25,17 +25,17 @@ class AdditionalDetails:
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    city: str
-    country_code: str
-    county: str
-    district: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
+    county: str = attrs.field()
+    district: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
     pass
 
@@ -43,7 +43,7 @@ class Address:
 @attrs.define
 class ChargeDetails:
 
-    tax_details: list["TaxDetail"]
+    tax_details: list["TaxDetail"] = attrs.field()
     type: Union[
         Literal["GIFTWRAP"],
         Literal["FULFILLMENT"],
@@ -52,9 +52,9 @@ class ChargeDetails:
         Literal["LOADING"],
         Literal["FREIGHTOUT"],
         Literal["TAX_COLLECTED_AT_SOURCE"],
-    ]
+    ] = attrs.field()
 
-    charge_amount: "Money"
+    charge_amount: "Money" = attrs.field()
     pass
 
 
@@ -67,9 +67,9 @@ class Decimal:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -83,46 +83,46 @@ class ErrorList:
 @attrs.define
 class InvoiceDetail:
 
-    additional_details: list["AdditionalDetails"]
-    charge_details: list["ChargeDetails"]
-    invoice_date: str
+    additional_details: list["AdditionalDetails"] = attrs.field()
+    charge_details: list["ChargeDetails"] = attrs.field()
+    invoice_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    invoice_number: str
-    items: list["InvoiceItem"]
-    payment_terms_code: str
-    reference_number: str
-    ship_to_country_code: str
-    tax_totals: list["TaxDetail"]
+    invoice_number: str = attrs.field()
+    items: list["InvoiceItem"] = attrs.field()
+    payment_terms_code: str = attrs.field()
+    reference_number: str = attrs.field()
+    ship_to_country_code: str = attrs.field()
+    tax_totals: list["TaxDetail"] = attrs.field()
 
-    bill_to_party: "PartyIdentification"
-    invoice_total: "Money"
-    remit_to_party: "PartyIdentification"
-    ship_from_party: "PartyIdentification"
+    bill_to_party: "PartyIdentification" = attrs.field()
+    invoice_total: "Money" = attrs.field()
+    remit_to_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class InvoiceItem:
 
-    buyer_product_identifier: str
-    charge_details: list["ChargeDetails"]
-    hsn_code: str
-    item_sequence_number: str
-    purchase_order_number: str
-    tax_details: list["TaxDetail"]
-    vendor_order_number: str
-    vendor_product_identifier: str
+    buyer_product_identifier: str = attrs.field()
+    charge_details: list["ChargeDetails"] = attrs.field()
+    hsn_code: str = attrs.field()
+    item_sequence_number: str = attrs.field()
+    purchase_order_number: str = attrs.field()
+    tax_details: list["TaxDetail"] = attrs.field()
+    vendor_order_number: str = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    invoiced_quantity: "ItemQuantity"
-    net_cost: "Money"
+    invoiced_quantity: "ItemQuantity" = attrs.field()
+    net_cost: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemQuantity:
 
-    amount: int
-    unit_of_measure: str
+    amount: int = attrs.field()
+    unit_of_measure: str = attrs.field()
 
     pass
 
@@ -130,26 +130,26 @@ class ItemQuantity:
 @attrs.define
 class Money:
 
-    currency_code: str
+    currency_code: str = attrs.field()
 
-    amount: "Decimal"
+    amount: "Decimal" = attrs.field()
     pass
 
 
 @attrs.define
 class PartyIdentification:
 
-    party_id: str
-    tax_registration_details: list["TaxRegistrationDetail"]
+    party_id: str = attrs.field()
+    tax_registration_details: list["TaxRegistrationDetail"] = attrs.field()
 
-    address: "Address"
+    address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class SubmitInvoiceRequest:
 
-    invoices: list["InvoiceDetail"]
+    invoices: list["InvoiceDetail"] = attrs.field()
 
     pass
 
@@ -157,8 +157,8 @@ class SubmitInvoiceRequest:
 @attrs.define
 class SubmitInvoiceResponse:
 
-    errors: "ErrorList"
-    payload: "TransactionReference"
+    errors: "ErrorList" = attrs.field()
+    payload: "TransactionReference" = attrs.field()
     pass
 
 
@@ -180,29 +180,29 @@ class TaxDetail:
         Literal["Consumption"],
         Literal["MutuallyDefined"],
         Literal["DomesticVAT"],
-    ]
+    ] = attrs.field()
 
-    tax_amount: "Money"
-    tax_rate: "Decimal"
-    taxable_amount: "Money"
+    tax_amount: "Money" = attrs.field()
+    tax_rate: "Decimal" = attrs.field()
+    taxable_amount: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class TaxRegistrationDetail:
 
-    tax_registration_message: str
-    tax_registration_number: str
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]]
+    tax_registration_message: str = attrs.field()
+    tax_registration_number: str = attrs.field()
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
-    tax_registration_address: "Address"
+    tax_registration_address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class TransactionReference:
 
-    transaction_id: str
+    transaction_id: str = attrs.field()
 
     pass
 

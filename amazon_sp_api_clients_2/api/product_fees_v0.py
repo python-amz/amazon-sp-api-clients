@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -31,13 +31,13 @@ class ErrorList:
 @attrs.define
 class FeeDetail:
 
-    fee_type: str
+    fee_type: str = attrs.field()
 
-    fee_amount: "MoneyType"
-    fee_promotion: "MoneyType"
-    final_fee: "MoneyType"
-    included_fee_detail_list: "IncludedFeeDetailList"
-    tax_amount: "MoneyType"
+    fee_amount: "MoneyType" = attrs.field()
+    fee_promotion: "MoneyType" = attrs.field()
+    final_fee: "MoneyType" = attrs.field()
+    included_fee_detail_list: "IncludedFeeDetailList" = attrs.field()
+    tax_amount: "MoneyType" = attrs.field()
     pass
 
 
@@ -50,22 +50,22 @@ class FeeDetailList:
 @attrs.define
 class FeesEstimate:
 
-    time_of_fees_estimation: str
+    time_of_fees_estimation: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    fee_detail_list: "FeeDetailList"
-    total_fees_estimate: "MoneyType"
+    fee_detail_list: "FeeDetailList" = attrs.field()
+    total_fees_estimate: "MoneyType" = attrs.field()
     pass
 
 
 @attrs.define
 class FeesEstimateError:
 
-    code: str
-    message: str
-    type: str
+    code: str = attrs.field()
+    message: str = attrs.field()
+    type: str = attrs.field()
 
-    detail: "FeesEstimateErrorDetail"
+    detail: "FeesEstimateErrorDetail" = attrs.field()
     pass
 
 
@@ -78,72 +78,72 @@ class FeesEstimateErrorDetail:
 @attrs.define
 class FeesEstimateIdentifier:
 
-    id_type: str
-    id_value: str
-    is_amazon_fulfilled: bool
-    marketplace_id: str
-    seller_id: str
-    seller_input_identifier: str
+    id_type: str = attrs.field()
+    id_value: str = attrs.field()
+    is_amazon_fulfilled: bool = attrs.field()
+    marketplace_id: str = attrs.field()
+    seller_id: str = attrs.field()
+    seller_input_identifier: str = attrs.field()
 
-    optional_fulfillment_program: "OptionalFulfillmentProgram"
-    price_to_estimate_fees: "PriceToEstimateFees"
+    optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field()
+    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field()
     pass
 
 
 @attrs.define
 class FeesEstimateRequest:
 
-    identifier: str
-    is_amazon_fulfilled: bool
-    marketplace_id: str
+    identifier: str = attrs.field()
+    is_amazon_fulfilled: bool = attrs.field()
+    marketplace_id: str = attrs.field()
 
-    optional_fulfillment_program: "OptionalFulfillmentProgram"
-    price_to_estimate_fees: "PriceToEstimateFees"
+    optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field()
+    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field()
     pass
 
 
 @attrs.define
 class FeesEstimateResult:
 
-    status: str
+    status: str = attrs.field()
 
-    error: "FeesEstimateError"
-    fees_estimate: "FeesEstimate"
-    fees_estimate_identifier: "FeesEstimateIdentifier"
+    error: "FeesEstimateError" = attrs.field()
+    fees_estimate: "FeesEstimate" = attrs.field()
+    fees_estimate_identifier: "FeesEstimateIdentifier" = attrs.field()
     pass
 
 
 @attrs.define
 class GetMyFeesEstimateRequest:
 
-    fees_estimate_request: "FeesEstimateRequest"
+    fees_estimate_request: "FeesEstimateRequest" = attrs.field()
     pass
 
 
 @attrs.define
 class GetMyFeesEstimateResponse:
 
-    errors: "ErrorList"
-    payload: "GetMyFeesEstimateResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetMyFeesEstimateResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetMyFeesEstimateResult:
 
-    fees_estimate_result: "FeesEstimateResult"
+    fees_estimate_result: "FeesEstimateResult" = attrs.field()
     pass
 
 
 @attrs.define
 class IncludedFeeDetail:
 
-    fee_type: str
+    fee_type: str = attrs.field()
 
-    fee_amount: "MoneyType"
-    fee_promotion: "MoneyType"
-    final_fee: "MoneyType"
-    tax_amount: "MoneyType"
+    fee_amount: "MoneyType" = attrs.field()
+    fee_promotion: "MoneyType" = attrs.field()
+    final_fee: "MoneyType" = attrs.field()
+    tax_amount: "MoneyType" = attrs.field()
     pass
 
 
@@ -156,8 +156,8 @@ class IncludedFeeDetailList:
 @attrs.define
 class MoneyType:
 
-    amount: Union[float, int]
-    currency_code: str
+    amount: Union[float, int] = attrs.field()
+    currency_code: str = attrs.field()
 
     pass
 
@@ -171,19 +171,19 @@ class OptionalFulfillmentProgram:
 @attrs.define
 class Points:
 
-    points_number: int
+    points_number: int = attrs.field()
     # {'schema_format': 'int32'}
 
-    points_monetary_value: "MoneyType"
+    points_monetary_value: "MoneyType" = attrs.field()
     pass
 
 
 @attrs.define
 class PriceToEstimateFees:
 
-    listing_price: "MoneyType"
-    points: "Points"
-    shipping: "MoneyType"
+    listing_price: "MoneyType" = attrs.field()
+    points: "Points" = attrs.field()
+    shipping: "MoneyType" = attrs.field()
     pass
 
 

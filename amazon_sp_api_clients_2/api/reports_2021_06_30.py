@@ -15,7 +15,7 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class CreateReportResponse:
 
-    report_id: str
+    report_id: str = attrs.field()
 
     pass
 
@@ -23,7 +23,7 @@ class CreateReportResponse:
 @attrs.define
 class CreateReportScheduleResponse:
 
-    report_schedule_id: str
+    report_schedule_id: str = attrs.field()
 
     pass
 
@@ -31,9 +31,9 @@ class CreateReportScheduleResponse:
 @attrs.define
 class CreateReportScheduleSpecification:
 
-    marketplace_ids: list[str]
+    marketplace_ids: list[str] = attrs.field()
     # {'minItems': 1, 'maxItems': 25}
-    next_report_creation_time: str
+    next_report_creation_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     period: Union[
         Literal["PT5M"],
@@ -54,34 +54,34 @@ class CreateReportScheduleSpecification:
         Literal["P18D"],
         Literal["P30D"],
         Literal["P1M"],
-    ]
-    report_type: str
+    ] = attrs.field()
+    report_type: str = attrs.field()
 
-    report_options: "ReportOptions"
+    report_options: "ReportOptions" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateReportSpecification:
 
-    data_end_time: str
+    data_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    data_start_time: str
+    data_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    marketplace_ids: list[str]
+    marketplace_ids: list[str] = attrs.field()
     # {'minItems': 1, 'maxItems': 25}
-    report_type: str
+    report_type: str = attrs.field()
 
-    report_options: "ReportOptions"
+    report_options: "ReportOptions" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -89,7 +89,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -97,33 +97,33 @@ class ErrorList:
 @attrs.define
 class GetReportsResponse:
 
-    next_token: str
+    next_token: str = attrs.field()
 
-    reports: "ReportList"
+    reports: "ReportList" = attrs.field()
     pass
 
 
 @attrs.define
 class Report:
 
-    created_time: str
+    created_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    data_end_time: str
+    data_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    data_start_time: str
+    data_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    marketplace_ids: list[str]
-    processing_end_time: str
+    marketplace_ids: list[str] = attrs.field()
+    processing_end_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    processing_start_time: str
+    processing_start_time: str = attrs.field()
     # {'schema_format': 'date-time'}
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ]
-    report_document_id: str
-    report_id: str
-    report_schedule_id: str
-    report_type: str
+    ] = attrs.field()
+    report_document_id: str = attrs.field()
+    report_id: str = attrs.field()
+    report_schedule_id: str = attrs.field()
+    report_type: str = attrs.field()
 
     pass
 
@@ -131,9 +131,9 @@ class Report:
 @attrs.define
 class ReportDocument:
 
-    compression_algorithm: Union[Literal["GZIP"]]
-    report_document_id: str
-    url: str
+    compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
+    report_document_id: str = attrs.field()
+    url: str = attrs.field()
 
     pass
 
@@ -153,21 +153,21 @@ class ReportOptions:
 @attrs.define
 class ReportSchedule:
 
-    marketplace_ids: list[str]
-    next_report_creation_time: str
+    marketplace_ids: list[str] = attrs.field()
+    next_report_creation_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    period: str
-    report_schedule_id: str
-    report_type: str
+    period: str = attrs.field()
+    report_schedule_id: str = attrs.field()
+    report_type: str = attrs.field()
 
-    report_options: "ReportOptions"
+    report_options: "ReportOptions" = attrs.field()
     pass
 
 
 @attrs.define
 class ReportScheduleList:
 
-    report_schedules: list["ReportSchedule"]
+    report_schedules: list["ReportSchedule"] = attrs.field()
 
     pass
 

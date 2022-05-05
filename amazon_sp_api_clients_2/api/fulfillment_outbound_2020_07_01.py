@@ -21,16 +21,16 @@ class AdditionalLocationInfo:
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    city: str
-    country_code: str
-    district_or_county: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
+    district_or_county: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
     pass
 
@@ -38,39 +38,39 @@ class Address:
 @attrs.define
 class CODSettings:
 
-    is_cod_required: bool
+    is_cod_required: bool = attrs.field()
 
-    cod_charge: "Money"
-    cod_charge_tax: "Money"
-    shipping_charge: "Money"
-    shipping_charge_tax: "Money"
+    cod_charge: "Money" = attrs.field()
+    cod_charge_tax: "Money" = attrs.field()
+    shipping_charge: "Money" = attrs.field()
+    shipping_charge_tax: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class CancelFulfillmentOrderResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFulfillmentOrderItem:
 
-    displayable_comment: str
+    displayable_comment: str = attrs.field()
     # {'maxLength': 250}
-    fulfillment_network_sku: str
-    gift_message: str
+    fulfillment_network_sku: str = attrs.field()
+    gift_message: str = attrs.field()
     # {'maxLength': 512}
-    seller_fulfillment_order_item_id: str
+    seller_fulfillment_order_item_id: str = attrs.field()
     # {'maxLength': 50}
-    seller_sku: str
+    seller_sku: str = attrs.field()
     # {'maxLength': 50}
 
-    per_unit_declared_value: "Money"
-    per_unit_price: "Money"
-    per_unit_tax: "Money"
-    quantity: "Quantity"
+    per_unit_declared_value: "Money" = attrs.field()
+    per_unit_price: "Money" = attrs.field()
+    per_unit_tax: "Money" = attrs.field()
+    quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -83,68 +83,68 @@ class CreateFulfillmentOrderItemList:
 @attrs.define
 class CreateFulfillmentOrderRequest:
 
-    displayable_order_comment: str
+    displayable_order_comment: str = attrs.field()
     # {'maxLength': 1000}
-    displayable_order_id: str
+    displayable_order_id: str = attrs.field()
     # {'maxLength': 40}
-    feature_constraints: list["FeatureSettings"]
-    marketplace_id: str
-    seller_fulfillment_order_id: str
+    feature_constraints: list["FeatureSettings"] = attrs.field()
+    marketplace_id: str = attrs.field()
+    seller_fulfillment_order_id: str = attrs.field()
     # {'maxLength': 40}
-    ship_from_country_code: str
+    ship_from_country_code: str = attrs.field()
 
-    cod_settings: "CODSettings"
-    delivery_window: "DeliveryWindow"
-    destination_address: "Address"
-    displayable_order_date: "Timestamp"
-    fulfillment_action: "FulfillmentAction"
-    fulfillment_policy: "FulfillmentPolicy"
-    items: "CreateFulfillmentOrderItemList"
-    notification_emails: "NotificationEmailList"
-    shipping_speed_category: "ShippingSpeedCategory"
+    cod_settings: "CODSettings" = attrs.field()
+    delivery_window: "DeliveryWindow" = attrs.field()
+    destination_address: "Address" = attrs.field()
+    displayable_order_date: "Timestamp" = attrs.field()
+    fulfillment_action: "FulfillmentAction" = attrs.field()
+    fulfillment_policy: "FulfillmentPolicy" = attrs.field()
+    items: "CreateFulfillmentOrderItemList" = attrs.field()
+    notification_emails: "NotificationEmailList" = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFulfillmentOrderResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFulfillmentReturnRequest:
 
-    items: "CreateReturnItemList"
+    items: "CreateReturnItemList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFulfillmentReturnResponse:
 
-    errors: "ErrorList"
-    payload: "CreateFulfillmentReturnResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "CreateFulfillmentReturnResult" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateFulfillmentReturnResult:
 
-    invalid_return_items: "InvalidReturnItemList"
-    return_authorizations: "ReturnAuthorizationList"
-    return_items: "ReturnItemList"
+    invalid_return_items: "InvalidReturnItemList" = attrs.field()
+    return_authorizations: "ReturnAuthorizationList" = attrs.field()
+    return_items: "ReturnItemList" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateReturnItem:
 
-    amazon_shipment_id: str
-    return_comment: str
+    amazon_shipment_id: str = attrs.field()
+    return_comment: str = attrs.field()
     # {'maxLength': 1000}
-    return_reason_code: str
-    seller_fulfillment_order_item_id: str
-    seller_return_item_id: str
+    return_reason_code: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_return_item_id: str = attrs.field()
     # {'maxLength': 80}
 
     pass
@@ -171,8 +171,8 @@ class Decimal:
 @attrs.define
 class DeliveryWindow:
 
-    end_date: "Timestamp"
-    start_date: "Timestamp"
+    end_date: "Timestamp" = attrs.field()
+    start_date: "Timestamp" = attrs.field()
     pass
 
 
@@ -185,9 +185,9 @@ class DeliveryWindowList:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -207,9 +207,9 @@ class EventCode:
 @attrs.define
 class Feature:
 
-    feature_description: str
-    feature_name: str
-    seller_eligible: bool
+    feature_description: str = attrs.field()
+    feature_name: str = attrs.field()
+    seller_eligible: bool = attrs.field()
 
     pass
 
@@ -217,8 +217,8 @@ class Feature:
 @attrs.define
 class FeatureSettings:
 
-    feature_fulfillment_policy: Union[Literal["Required"], Literal["NotRequired"]]
-    feature_name: str
+    feature_fulfillment_policy: Union[Literal["Required"], Literal["NotRequired"]] = attrs.field()
+    feature_name: str = attrs.field()
 
     pass
 
@@ -226,11 +226,11 @@ class FeatureSettings:
 @attrs.define
 class FeatureSku:
 
-    asin: str
-    fn_sku: str
-    overlapping_skus: list[str]
-    seller_sku: str
-    sku_count: Union[float, int]
+    asin: str = attrs.field()
+    fn_sku: str = attrs.field()
+    overlapping_skus: list[str] = attrs.field()
+    seller_sku: str = attrs.field()
+    sku_count: Union[float, int] = attrs.field()
 
     pass
 
@@ -249,9 +249,9 @@ class Fee:
         Literal["FBAPerOrderFulfillmentFee"],
         Literal["FBATransportationFee"],
         Literal["FBAFulfillmentCODFee"],
-    ]
+    ] = attrs.field()
 
-    amount: "Money"
+    amount: "Money" = attrs.field()
     pass
 
 
@@ -270,44 +270,44 @@ class FulfillmentAction:
 @attrs.define
 class FulfillmentOrder:
 
-    displayable_order_comment: str
-    displayable_order_id: str
-    feature_constraints: list["FeatureSettings"]
-    marketplace_id: str
-    seller_fulfillment_order_id: str
+    displayable_order_comment: str = attrs.field()
+    displayable_order_id: str = attrs.field()
+    feature_constraints: list["FeatureSettings"] = attrs.field()
+    marketplace_id: str = attrs.field()
+    seller_fulfillment_order_id: str = attrs.field()
 
-    cod_settings: "CODSettings"
-    delivery_window: "DeliveryWindow"
-    destination_address: "Address"
-    displayable_order_date: "Timestamp"
-    fulfillment_action: "FulfillmentAction"
-    fulfillment_order_status: "FulfillmentOrderStatus"
-    fulfillment_policy: "FulfillmentPolicy"
-    notification_emails: "NotificationEmailList"
-    received_date: "Timestamp"
-    shipping_speed_category: "ShippingSpeedCategory"
-    status_updated_date: "Timestamp"
+    cod_settings: "CODSettings" = attrs.field()
+    delivery_window: "DeliveryWindow" = attrs.field()
+    destination_address: "Address" = attrs.field()
+    displayable_order_date: "Timestamp" = attrs.field()
+    fulfillment_action: "FulfillmentAction" = attrs.field()
+    fulfillment_order_status: "FulfillmentOrderStatus" = attrs.field()
+    fulfillment_policy: "FulfillmentPolicy" = attrs.field()
+    notification_emails: "NotificationEmailList" = attrs.field()
+    received_date: "Timestamp" = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    status_updated_date: "Timestamp" = attrs.field()
     pass
 
 
 @attrs.define
 class FulfillmentOrderItem:
 
-    displayable_comment: str
-    fulfillment_network_sku: str
-    gift_message: str
-    order_item_disposition: str
-    seller_fulfillment_order_item_id: str
-    seller_sku: str
+    displayable_comment: str = attrs.field()
+    fulfillment_network_sku: str = attrs.field()
+    gift_message: str = attrs.field()
+    order_item_disposition: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    cancelled_quantity: "Quantity"
-    estimated_arrival_date: "Timestamp"
-    estimated_ship_date: "Timestamp"
-    per_unit_declared_value: "Money"
-    per_unit_price: "Money"
-    per_unit_tax: "Money"
-    quantity: "Quantity"
-    unfulfillable_quantity: "Quantity"
+    cancelled_quantity: "Quantity" = attrs.field()
+    estimated_arrival_date: "Timestamp" = attrs.field()
+    estimated_ship_date: "Timestamp" = attrs.field()
+    per_unit_declared_value: "Money" = attrs.field()
+    per_unit_price: "Money" = attrs.field()
+    per_unit_tax: "Money" = attrs.field()
+    quantity: "Quantity" = attrs.field()
+    unfulfillable_quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -332,30 +332,30 @@ class FulfillmentPolicy:
 @attrs.define
 class FulfillmentPreview:
 
-    feature_constraints: list["FeatureSettings"]
-    is_codcapable: bool
-    is_fulfillable: bool
-    marketplace_id: str
+    feature_constraints: list["FeatureSettings"] = attrs.field()
+    is_codcapable: bool = attrs.field()
+    is_fulfillable: bool = attrs.field()
+    marketplace_id: str = attrs.field()
 
-    estimated_fees: "FeeList"
-    estimated_shipping_weight: "Weight"
-    fulfillment_preview_shipments: "FulfillmentPreviewShipmentList"
-    order_unfulfillable_reasons: "StringList"
-    scheduled_delivery_info: "ScheduledDeliveryInfo"
-    shipping_speed_category: "ShippingSpeedCategory"
-    unfulfillable_preview_items: "UnfulfillablePreviewItemList"
+    estimated_fees: "FeeList" = attrs.field()
+    estimated_shipping_weight: "Weight" = attrs.field()
+    fulfillment_preview_shipments: "FulfillmentPreviewShipmentList" = attrs.field()
+    order_unfulfillable_reasons: "StringList" = attrs.field()
+    scheduled_delivery_info: "ScheduledDeliveryInfo" = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    unfulfillable_preview_items: "UnfulfillablePreviewItemList" = attrs.field()
     pass
 
 
 @attrs.define
 class FulfillmentPreviewItem:
 
-    seller_fulfillment_order_item_id: str
-    seller_sku: str
-    shipping_weight_calculation_method: Union[Literal["Package"], Literal["Dimensional"]]
+    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_sku: str = attrs.field()
+    shipping_weight_calculation_method: Union[Literal["Package"], Literal["Dimensional"]] = attrs.field()
 
-    estimated_shipping_weight: "Weight"
-    quantity: "Quantity"
+    estimated_shipping_weight: "Weight" = attrs.field()
+    quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -374,13 +374,13 @@ class FulfillmentPreviewList:
 @attrs.define
 class FulfillmentPreviewShipment:
 
-    shipping_notes: list[str]
+    shipping_notes: list[str] = attrs.field()
 
-    earliest_arrival_date: "Timestamp"
-    earliest_ship_date: "Timestamp"
-    fulfillment_preview_items: "FulfillmentPreviewItemList"
-    latest_arrival_date: "Timestamp"
-    latest_ship_date: "Timestamp"
+    earliest_arrival_date: "Timestamp" = attrs.field()
+    earliest_ship_date: "Timestamp" = attrs.field()
+    fulfillment_preview_items: "FulfillmentPreviewItemList" = attrs.field()
+    latest_arrival_date: "Timestamp" = attrs.field()
+    latest_ship_date: "Timestamp" = attrs.field()
     pass
 
 
@@ -399,30 +399,30 @@ class FulfillmentReturnItemStatus:
 @attrs.define
 class FulfillmentShipment:
 
-    amazon_shipment_id: str
-    fulfillment_center_id: str
+    amazon_shipment_id: str = attrs.field()
+    fulfillment_center_id: str = attrs.field()
     fulfillment_shipment_status: Union[
         Literal["PENDING"], Literal["SHIPPED"], Literal["CANCELLED_BY_FULFILLER"], Literal["CANCELLED_BY_SELLER"]
-    ]
-    shipping_notes: list[str]
+    ] = attrs.field()
+    shipping_notes: list[str] = attrs.field()
 
-    estimated_arrival_date: "Timestamp"
-    fulfillment_shipment_item: "FulfillmentShipmentItemList"
-    fulfillment_shipment_package: "FulfillmentShipmentPackageList"
-    shipping_date: "Timestamp"
+    estimated_arrival_date: "Timestamp" = attrs.field()
+    fulfillment_shipment_item: "FulfillmentShipmentItemList" = attrs.field()
+    fulfillment_shipment_package: "FulfillmentShipmentPackageList" = attrs.field()
+    shipping_date: "Timestamp" = attrs.field()
     pass
 
 
 @attrs.define
 class FulfillmentShipmentItem:
 
-    package_number: int
+    package_number: int = attrs.field()
     # {'schema_format': 'int32'}
-    seller_fulfillment_order_item_id: str
-    seller_sku: str
-    serial_number: str
+    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_sku: str = attrs.field()
+    serial_number: str = attrs.field()
 
-    quantity: "Quantity"
+    quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -441,12 +441,12 @@ class FulfillmentShipmentList:
 @attrs.define
 class FulfillmentShipmentPackage:
 
-    carrier_code: str
-    package_number: int
+    carrier_code: str = attrs.field()
+    package_number: int = attrs.field()
     # {'schema_format': 'int32'}
-    tracking_number: str
+    tracking_number: str = attrs.field()
 
-    estimated_arrival_date: "Timestamp"
+    estimated_arrival_date: "Timestamp" = attrs.field()
     pass
 
 
@@ -459,18 +459,18 @@ class FulfillmentShipmentPackageList:
 @attrs.define
 class GetFeatureInventoryResponse:
 
-    errors: "ErrorList"
-    payload: "GetFeatureInventoryResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetFeatureInventoryResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFeatureInventoryResult:
 
-    feature_name: str
-    feature_skus: list["FeatureSku"]
-    marketplace_id: str
-    next_token: str
+    feature_name: str = attrs.field()
+    feature_skus: list["FeatureSku"] = attrs.field()
+    marketplace_id: str = attrs.field()
+    next_token: str = attrs.field()
 
     pass
 
@@ -478,67 +478,67 @@ class GetFeatureInventoryResult:
 @attrs.define
 class GetFeatureSkuResponse:
 
-    errors: "ErrorList"
-    payload: "GetFeatureSkuResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetFeatureSkuResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFeatureSkuResult:
 
-    feature_name: str
-    ineligible_reasons: list[str]
-    is_eligible: bool
-    marketplace_id: str
+    feature_name: str = attrs.field()
+    ineligible_reasons: list[str] = attrs.field()
+    is_eligible: bool = attrs.field()
+    marketplace_id: str = attrs.field()
 
-    sku_info: "FeatureSku"
+    sku_info: "FeatureSku" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFeaturesResponse:
 
-    errors: "ErrorList"
-    payload: "GetFeaturesResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetFeaturesResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFeaturesResult:
 
-    features: "Features"
+    features: "Features" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFulfillmentOrderResponse:
 
-    errors: "ErrorList"
-    payload: "GetFulfillmentOrderResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetFulfillmentOrderResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFulfillmentOrderResult:
 
-    fulfillment_order: "FulfillmentOrder"
-    fulfillment_order_items: "FulfillmentOrderItemList"
-    fulfillment_shipments: "FulfillmentShipmentList"
-    return_authorizations: "ReturnAuthorizationList"
-    return_items: "ReturnItemList"
+    fulfillment_order: "FulfillmentOrder" = attrs.field()
+    fulfillment_order_items: "FulfillmentOrderItemList" = attrs.field()
+    fulfillment_shipments: "FulfillmentShipmentList" = attrs.field()
+    return_authorizations: "ReturnAuthorizationList" = attrs.field()
+    return_items: "ReturnItemList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFulfillmentPreviewItem:
 
-    seller_fulfillment_order_item_id: str
+    seller_fulfillment_order_item_id: str = attrs.field()
     # {'maxLength': 50}
-    seller_sku: str
+    seller_sku: str = attrs.field()
     # {'maxLength': 50}
 
-    per_unit_declared_value: "Money"
-    quantity: "Quantity"
+    per_unit_declared_value: "Money" = attrs.field()
+    quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -551,46 +551,46 @@ class GetFulfillmentPreviewItemList:
 @attrs.define
 class GetFulfillmentPreviewRequest:
 
-    feature_constraints: list["FeatureSettings"]
-    include_codfulfillment_preview: bool
-    include_delivery_windows: bool
-    marketplace_id: str
+    feature_constraints: list["FeatureSettings"] = attrs.field()
+    include_codfulfillment_preview: bool = attrs.field()
+    include_delivery_windows: bool = attrs.field()
+    marketplace_id: str = attrs.field()
 
-    address: "Address"
-    items: "GetFulfillmentPreviewItemList"
-    shipping_speed_categories: "ShippingSpeedCategoryList"
+    address: "Address" = attrs.field()
+    items: "GetFulfillmentPreviewItemList" = attrs.field()
+    shipping_speed_categories: "ShippingSpeedCategoryList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFulfillmentPreviewResponse:
 
-    errors: "ErrorList"
-    payload: "GetFulfillmentPreviewResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetFulfillmentPreviewResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetFulfillmentPreviewResult:
 
-    fulfillment_previews: "FulfillmentPreviewList"
+    fulfillment_previews: "FulfillmentPreviewList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPackageTrackingDetailsResponse:
 
-    errors: "ErrorList"
-    payload: "PackageTrackingDetails"
+    errors: "ErrorList" = attrs.field()
+    payload: "PackageTrackingDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class InvalidItemReason:
 
-    description: str
+    description: str = attrs.field()
 
-    invalid_item_reason_code: "InvalidItemReasonCode"
+    invalid_item_reason_code: "InvalidItemReasonCode" = attrs.field()
     pass
 
 
@@ -603,10 +603,10 @@ class InvalidItemReasonCode:
 @attrs.define
 class InvalidReturnItem:
 
-    seller_fulfillment_order_item_id: str
-    seller_return_item_id: str
+    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_return_item_id: str = attrs.field()
 
-    invalid_item_reason: "InvalidItemReason"
+    invalid_item_reason: "InvalidItemReason" = attrs.field()
     pass
 
 
@@ -619,16 +619,16 @@ class InvalidReturnItemList:
 @attrs.define
 class ListAllFulfillmentOrdersResponse:
 
-    errors: "ErrorList"
-    payload: "ListAllFulfillmentOrdersResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "ListAllFulfillmentOrdersResult" = attrs.field()
     pass
 
 
 @attrs.define
 class ListAllFulfillmentOrdersResult:
 
-    fulfillment_orders: list["FulfillmentOrder"]
-    next_token: str
+    fulfillment_orders: list["FulfillmentOrder"] = attrs.field()
+    next_token: str = attrs.field()
 
     pass
 
@@ -636,24 +636,24 @@ class ListAllFulfillmentOrdersResult:
 @attrs.define
 class ListReturnReasonCodesResponse:
 
-    errors: "ErrorList"
-    payload: "ListReturnReasonCodesResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "ListReturnReasonCodesResult" = attrs.field()
     pass
 
 
 @attrs.define
 class ListReturnReasonCodesResult:
 
-    reason_code_details: "ReasonCodeDetailsList"
+    reason_code_details: "ReasonCodeDetailsList" = attrs.field()
     pass
 
 
 @attrs.define
 class Money:
 
-    currency_code: str
+    currency_code: str = attrs.field()
 
-    value: "Decimal"
+    value: "Decimal" = attrs.field()
     pass
 
 
@@ -666,22 +666,22 @@ class NotificationEmailList:
 @attrs.define
 class PackageTrackingDetails:
 
-    carrier_code: str
-    carrier_phone_number: str
-    carrier_url: str
-    current_status_description: str
-    customer_tracking_link: str
-    package_number: int
+    carrier_code: str = attrs.field()
+    carrier_phone_number: str = attrs.field()
+    carrier_url: str = attrs.field()
+    current_status_description: str = attrs.field()
+    customer_tracking_link: str = attrs.field()
+    package_number: int = attrs.field()
     # {'schema_format': 'int32'}
-    signed_for_by: str
-    tracking_number: str
+    signed_for_by: str = attrs.field()
+    tracking_number: str = attrs.field()
 
-    additional_location_info: "AdditionalLocationInfo"
-    current_status: "CurrentStatus"
-    estimated_arrival_date: "Timestamp"
-    ship_date: "Timestamp"
-    ship_to_address: "TrackingAddress"
-    tracking_events: "TrackingEventList"
+    additional_location_info: "AdditionalLocationInfo" = attrs.field()
+    current_status: "CurrentStatus" = attrs.field()
+    estimated_arrival_date: "Timestamp" = attrs.field()
+    ship_date: "Timestamp" = attrs.field()
+    ship_to_address: "TrackingAddress" = attrs.field()
+    tracking_events: "TrackingEventList" = attrs.field()
     pass
 
 
@@ -694,9 +694,9 @@ class Quantity:
 @attrs.define
 class ReasonCodeDetails:
 
-    description: str
-    return_reason_code: str
-    translated_description: str
+    description: str = attrs.field()
+    return_reason_code: str = attrs.field()
+    translated_description: str = attrs.field()
 
     pass
 
@@ -710,12 +710,12 @@ class ReasonCodeDetailsList:
 @attrs.define
 class ReturnAuthorization:
 
-    amazon_rma_id: str
-    fulfillment_center_id: str
-    return_authorization_id: str
-    rma_page_url: str
+    amazon_rma_id: str = attrs.field()
+    fulfillment_center_id: str = attrs.field()
+    return_authorization_id: str = attrs.field()
+    rma_page_url: str = attrs.field()
 
-    return_to_address: "Address"
+    return_to_address: "Address" = attrs.field()
     pass
 
 
@@ -728,18 +728,18 @@ class ReturnAuthorizationList:
 @attrs.define
 class ReturnItem:
 
-    amazon_return_reason_code: str
-    amazon_shipment_id: str
-    fulfillment_center_id: str
-    return_authorization_id: str
-    return_comment: str
-    seller_fulfillment_order_item_id: str
-    seller_return_item_id: str
-    seller_return_reason_code: str
+    amazon_return_reason_code: str = attrs.field()
+    amazon_shipment_id: str = attrs.field()
+    fulfillment_center_id: str = attrs.field()
+    return_authorization_id: str = attrs.field()
+    return_comment: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_return_item_id: str = attrs.field()
+    seller_return_reason_code: str = attrs.field()
 
-    return_received_condition: "ReturnItemDisposition"
-    status: "FulfillmentReturnItemStatus"
-    status_changed_date: "Timestamp"
+    return_received_condition: "ReturnItemDisposition" = attrs.field()
+    status: "FulfillmentReturnItemStatus" = attrs.field()
+    status_changed_date: "Timestamp" = attrs.field()
     pass
 
 
@@ -758,9 +758,9 @@ class ReturnItemList:
 @attrs.define
 class ScheduledDeliveryInfo:
 
-    delivery_time_zone: str
+    delivery_time_zone: str = attrs.field()
 
-    delivery_windows: "DeliveryWindowList"
+    delivery_windows: "DeliveryWindowList" = attrs.field()
     pass
 
 
@@ -791,11 +791,11 @@ class Timestamp:
 @attrs.define
 class TrackingAddress:
 
-    city: str
+    city: str = attrs.field()
     # {'maxLength': 150}
-    country: str
+    country: str = attrs.field()
     # {'maxLength': 6}
-    state: str
+    state: str = attrs.field()
     # {'maxLength': 150}
 
     pass
@@ -804,11 +804,11 @@ class TrackingAddress:
 @attrs.define
 class TrackingEvent:
 
-    event_description: str
+    event_description: str = attrs.field()
 
-    event_address: "TrackingAddress"
-    event_code: "EventCode"
-    event_date: "Timestamp"
+    event_address: "TrackingAddress" = attrs.field()
+    event_code: "EventCode" = attrs.field()
+    event_date: "Timestamp" = attrs.field()
     pass
 
 
@@ -821,13 +821,13 @@ class TrackingEventList:
 @attrs.define
 class UnfulfillablePreviewItem:
 
-    seller_fulfillment_order_item_id: str
+    seller_fulfillment_order_item_id: str = attrs.field()
     # {'maxLength': 50}
-    seller_sku: str
+    seller_sku: str = attrs.field()
     # {'maxLength': 50}
 
-    item_unfulfillable_reasons: "StringList"
-    quantity: "Quantity"
+    item_unfulfillable_reasons: "StringList" = attrs.field()
+    quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -840,20 +840,20 @@ class UnfulfillablePreviewItemList:
 @attrs.define
 class UpdateFulfillmentOrderItem:
 
-    displayable_comment: str
+    displayable_comment: str = attrs.field()
     # {'maxLength': 250}
-    fulfillment_network_sku: str
-    gift_message: str
+    fulfillment_network_sku: str = attrs.field()
+    gift_message: str = attrs.field()
     # {'maxLength': 512}
-    order_item_disposition: str
-    seller_fulfillment_order_item_id: str
+    order_item_disposition: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     # {'maxLength': 50}
-    seller_sku: str
+    seller_sku: str = attrs.field()
 
-    per_unit_declared_value: "Money"
-    per_unit_price: "Money"
-    per_unit_tax: "Money"
-    quantity: "Quantity"
+    per_unit_declared_value: "Money" = attrs.field()
+    per_unit_price: "Money" = attrs.field()
+    per_unit_tax: "Money" = attrs.field()
+    quantity: "Quantity" = attrs.field()
     pass
 
 
@@ -866,36 +866,36 @@ class UpdateFulfillmentOrderItemList:
 @attrs.define
 class UpdateFulfillmentOrderRequest:
 
-    displayable_order_comment: str
+    displayable_order_comment: str = attrs.field()
     # {'maxLength': 1000}
-    displayable_order_id: str
+    displayable_order_id: str = attrs.field()
     # {'maxLength': 40}
-    feature_constraints: list["FeatureSettings"]
-    marketplace_id: str
-    ship_from_country_code: str
+    feature_constraints: list["FeatureSettings"] = attrs.field()
+    marketplace_id: str = attrs.field()
+    ship_from_country_code: str = attrs.field()
 
-    destination_address: "Address"
-    displayable_order_date: "Timestamp"
-    fulfillment_action: "FulfillmentAction"
-    fulfillment_policy: "FulfillmentPolicy"
-    items: "UpdateFulfillmentOrderItemList"
-    notification_emails: "NotificationEmailList"
-    shipping_speed_category: "ShippingSpeedCategory"
+    destination_address: "Address" = attrs.field()
+    displayable_order_date: "Timestamp" = attrs.field()
+    fulfillment_action: "FulfillmentAction" = attrs.field()
+    fulfillment_policy: "FulfillmentPolicy" = attrs.field()
+    items: "UpdateFulfillmentOrderItemList" = attrs.field()
+    notification_emails: "NotificationEmailList" = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
     pass
 
 
 @attrs.define
 class UpdateFulfillmentOrderResponse:
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class Weight:
 
-    unit: Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]]
-    value: str
+    unit: Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]] = attrs.field()
+    value: str = attrs.field()
 
     pass
 

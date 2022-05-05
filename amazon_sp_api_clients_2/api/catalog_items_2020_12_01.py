@@ -17,8 +17,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class BrandRefinement:
 
-    brand_name: str
-    number_of_results: int
+    brand_name: str = attrs.field()
+    number_of_results: int = attrs.field()
 
     pass
 
@@ -26,9 +26,9 @@ class BrandRefinement:
 @attrs.define
 class ClassificationRefinement:
 
-    classification_id: str
-    display_name: str
-    number_of_results: int
+    classification_id: str = attrs.field()
+    display_name: str = attrs.field()
+    number_of_results: int = attrs.field()
 
     pass
 
@@ -36,9 +36,9 @@ class ClassificationRefinement:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -46,7 +46,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -54,15 +54,15 @@ class ErrorList:
 @attrs.define
 class Item:
 
-    asin: "ItemAsin"
-    attributes: "ItemAttributes"
-    identifiers: "ItemIdentifiers"
-    images: "ItemImages"
-    product_types: "ItemProductTypes"
-    sales_ranks: "ItemSalesRanks"
-    summaries: "ItemSummaries"
-    variations: "ItemVariations"
-    vendor_details: "ItemVendorDetails"
+    asin: "ItemAsin" = attrs.field()
+    attributes: "ItemAttributes" = attrs.field()
+    identifiers: "ItemIdentifiers" = attrs.field()
+    images: "ItemImages" = attrs.field()
+    product_types: "ItemProductTypes" = attrs.field()
+    sales_ranks: "ItemSalesRanks" = attrs.field()
+    summaries: "ItemSummaries" = attrs.field()
+    variations: "ItemVariations" = attrs.field()
+    vendor_details: "ItemVendorDetails" = attrs.field()
     pass
 
 
@@ -81,8 +81,8 @@ class ItemAttributes:
 @attrs.define
 class ItemIdentifier:
 
-    identifier: str
-    identifier_type: str
+    identifier: str = attrs.field()
+    identifier_type: str = attrs.field()
 
     pass
 
@@ -96,8 +96,8 @@ class ItemIdentifiers:
 @attrs.define
 class ItemIdentifiersByMarketplace:
 
-    identifiers: list["ItemIdentifier"]
-    marketplace_id: str
+    identifiers: list["ItemIdentifier"] = attrs.field()
+    marketplace_id: str = attrs.field()
 
     pass
 
@@ -105,8 +105,8 @@ class ItemIdentifiersByMarketplace:
 @attrs.define
 class ItemImage:
 
-    height: int
-    link: str
+    height: int = attrs.field()
+    link: str = attrs.field()
     variant: Union[
         Literal["MAIN"],
         Literal["PT01"],
@@ -118,9 +118,9 @@ class ItemImage:
         Literal["PT07"],
         Literal["PT08"],
         Literal["SWCH"],
-    ]
+    ] = attrs.field()
     # {'example': 'MAIN'}
-    width: int
+    width: int = attrs.field()
 
     pass
 
@@ -134,8 +134,8 @@ class ItemImages:
 @attrs.define
 class ItemImagesByMarketplace:
 
-    images: list["ItemImage"]
-    marketplace_id: str
+    images: list["ItemImage"] = attrs.field()
+    marketplace_id: str = attrs.field()
 
     pass
 
@@ -143,8 +143,8 @@ class ItemImagesByMarketplace:
 @attrs.define
 class ItemProductTypeByMarketplace:
 
-    marketplace_id: str
-    product_type: str
+    marketplace_id: str = attrs.field()
+    product_type: str = attrs.field()
     # {'example': 'LUGGAGE'}
 
     pass
@@ -159,9 +159,9 @@ class ItemProductTypes:
 @attrs.define
 class ItemSalesRank:
 
-    link: str
-    rank: int
-    title: str
+    link: str = attrs.field()
+    rank: int = attrs.field()
+    title: str = attrs.field()
 
     pass
 
@@ -175,8 +175,8 @@ class ItemSalesRanks:
 @attrs.define
 class ItemSalesRanksByMarketplace:
 
-    marketplace_id: str
-    ranks: list["ItemSalesRank"]
+    marketplace_id: str = attrs.field()
+    ranks: list["ItemSalesRank"] = attrs.field()
 
     pass
 
@@ -184,11 +184,11 @@ class ItemSalesRanksByMarketplace:
 @attrs.define
 class ItemSearchResults:
 
-    items: list["Item"]
-    number_of_results: int
+    items: list["Item"] = attrs.field()
+    number_of_results: int = attrs.field()
 
-    pagination: "Pagination"
-    refinements: "Refinements"
+    pagination: "Pagination" = attrs.field()
+    refinements: "Refinements" = attrs.field()
     pass
 
 
@@ -201,15 +201,15 @@ class ItemSummaries:
 @attrs.define
 class ItemSummaryByMarketplace:
 
-    brand_name: str
-    browse_node: str
-    color_name: str
-    item_name: str
-    manufacturer: str
-    marketplace_id: str
-    model_number: str
-    size_name: str
-    style_name: str
+    brand_name: str = attrs.field()
+    browse_node: str = attrs.field()
+    color_name: str = attrs.field()
+    item_name: str = attrs.field()
+    manufacturer: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    model_number: str = attrs.field()
+    size_name: str = attrs.field()
+    style_name: str = attrs.field()
 
     pass
 
@@ -223,9 +223,9 @@ class ItemVariations:
 @attrs.define
 class ItemVariationsByMarketplace:
 
-    asins: list[str]
-    marketplace_id: str
-    variation_type: Union[Literal["PARENT"], Literal["CHILD"]]
+    asins: list[str] = attrs.field()
+    marketplace_id: str = attrs.field()
+    variation_type: Union[Literal["PARENT"], Literal["CHILD"]] = attrs.field()
     # {'example': 'PARENT'}
 
     pass
@@ -240,12 +240,12 @@ class ItemVendorDetails:
 @attrs.define
 class ItemVendorDetailsByMarketplace:
 
-    brand_code: str
-    category_code: str
-    manufacturer_code: str
-    manufacturer_code_parent: str
-    marketplace_id: str
-    product_group: str
+    brand_code: str = attrs.field()
+    category_code: str = attrs.field()
+    manufacturer_code: str = attrs.field()
+    manufacturer_code_parent: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    product_group: str = attrs.field()
     replenishment_category: Union[
         Literal["ALLOCATED"],
         Literal["BASIC_REPLENISHMENT"],
@@ -257,8 +257,8 @@ class ItemVendorDetailsByMarketplace:
         Literal["NON_STOCKUPABLE"],
         Literal["OBSOLETE"],
         Literal["PLANNED_REPLENISHMENT"],
-    ]
-    subcategory_code: str
+    ] = attrs.field()
+    subcategory_code: str = attrs.field()
 
     pass
 
@@ -266,8 +266,8 @@ class ItemVendorDetailsByMarketplace:
 @attrs.define
 class Pagination:
 
-    next_token: str
-    previous_token: str
+    next_token: str = attrs.field()
+    previous_token: str = attrs.field()
 
     pass
 
@@ -275,8 +275,8 @@ class Pagination:
 @attrs.define
 class Refinements:
 
-    brands: list["BrandRefinement"]
-    classifications: list["ClassificationRefinement"]
+    brands: list["BrandRefinement"] = attrs.field()
+    classifications: list["ClassificationRefinement"] = attrs.field()
 
     pass
 

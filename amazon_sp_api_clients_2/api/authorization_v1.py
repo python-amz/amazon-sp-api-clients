@@ -15,7 +15,7 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AuthorizationCode:
 
-    authorization_code: str
+    authorization_code: str = attrs.field()
 
     pass
 
@@ -23,9 +23,9 @@ class AuthorizationCode:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -39,8 +39,8 @@ class ErrorList:
 @attrs.define
 class GetAuthorizationCodeResponse:
 
-    errors: "ErrorList"
-    payload: "AuthorizationCode"
+    errors: "ErrorList" = attrs.field()
+    payload: "AuthorizationCode" = attrs.field()
     pass
 
 

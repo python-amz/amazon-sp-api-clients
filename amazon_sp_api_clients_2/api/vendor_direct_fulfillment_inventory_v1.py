@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -31,29 +31,29 @@ class ErrorList:
 @attrs.define
 class InventoryUpdate:
 
-    is_full_update: bool
-    items: list["ItemDetails"]
+    is_full_update: bool = attrs.field()
+    items: list["ItemDetails"] = attrs.field()
 
-    selling_party: "PartyIdentification"
+    selling_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemDetails:
 
-    buyer_product_identifier: str
-    is_obsolete: bool
-    vendor_product_identifier: str
+    buyer_product_identifier: str = attrs.field()
+    is_obsolete: bool = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    available_quantity: "ItemQuantity"
+    available_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemQuantity:
 
-    amount: int
-    unit_of_measure: str
+    amount: int = attrs.field()
+    unit_of_measure: str = attrs.field()
 
     pass
 
@@ -61,7 +61,7 @@ class ItemQuantity:
 @attrs.define
 class PartyIdentification:
 
-    party_id: str
+    party_id: str = attrs.field()
 
     pass
 
@@ -69,22 +69,22 @@ class PartyIdentification:
 @attrs.define
 class SubmitInventoryUpdateRequest:
 
-    inventory: "InventoryUpdate"
+    inventory: "InventoryUpdate" = attrs.field()
     pass
 
 
 @attrs.define
 class SubmitInventoryUpdateResponse:
 
-    errors: "ErrorList"
-    payload: "TransactionReference"
+    errors: "ErrorList" = attrs.field()
+    payload: "TransactionReference" = attrs.field()
     pass
 
 
 @attrs.define
 class TransactionReference:
 
-    transaction_id: str
+    transaction_id: str = attrs.field()
 
     pass
 

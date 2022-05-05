@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -31,25 +31,25 @@ class ErrorList:
 @attrs.define
 class GetTransactionResponse:
 
-    errors: "ErrorList"
-    payload: "TransactionStatus"
+    errors: "ErrorList" = attrs.field()
+    payload: "TransactionStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class Transaction:
 
-    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]]
-    transaction_id: str
+    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field()
+    transaction_id: str = attrs.field()
 
-    errors: "ErrorList"
+    errors: "ErrorList" = attrs.field()
     pass
 
 
 @attrs.define
 class TransactionStatus:
 
-    transaction_status: "Transaction"
+    transaction_status: "Transaction" = attrs.field()
     pass
 
 

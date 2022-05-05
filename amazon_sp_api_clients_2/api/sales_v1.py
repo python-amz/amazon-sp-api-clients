@@ -21,9 +21,9 @@ class Decimal:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -37,30 +37,30 @@ class ErrorList:
 @attrs.define
 class GetOrderMetricsResponse:
 
-    errors: "ErrorList"
-    payload: "OrderMetricsList"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderMetricsList" = attrs.field()
     pass
 
 
 @attrs.define
 class Money:
 
-    currency_code: str
+    currency_code: str = attrs.field()
 
-    amount: "Decimal"
+    amount: "Decimal" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderMetricsInterval:
 
-    interval: str
-    order_count: int
-    order_item_count: int
-    unit_count: int
+    interval: str = attrs.field()
+    order_count: int = attrs.field()
+    order_item_count: int = attrs.field()
+    unit_count: int = attrs.field()
 
-    average_unit_price: "Money"
-    total_sales: "Money"
+    average_unit_price: "Money" = attrs.field()
+    total_sales: "Money" = attrs.field()
     pass
 
 

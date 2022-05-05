@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AdditionalInputs:
 
-    additional_input_field_name: str
+    additional_input_field_name: str = attrs.field()
 
-    seller_input_definition: "SellerInputDefinition"
+    seller_input_definition: "SellerInputDefinition" = attrs.field()
     pass
 
 
@@ -30,25 +30,25 @@ class AdditionalInputsList:
 @attrs.define
 class AdditionalSellerInput:
 
-    data_type: str
-    value_as_boolean: bool
-    value_as_integer: int
-    value_as_string: str
+    data_type: str = attrs.field()
+    value_as_boolean: bool = attrs.field()
+    value_as_integer: int = attrs.field()
+    value_as_string: str = attrs.field()
 
-    value_as_address: "Address"
-    value_as_currency: "CurrencyAmount"
-    value_as_dimension: "Length"
-    value_as_timestamp: "Timestamp"
-    value_as_weight: "Weight"
+    value_as_address: "Address" = attrs.field()
+    value_as_currency: "CurrencyAmount" = attrs.field()
+    value_as_dimension: "Length" = attrs.field()
+    value_as_timestamp: "Timestamp" = attrs.field()
+    value_as_weight: "Weight" = attrs.field()
     pass
 
 
 @attrs.define
 class AdditionalSellerInputs:
 
-    additional_input_field_name: str
+    additional_input_field_name: str = attrs.field()
 
-    additional_seller_input: "AdditionalSellerInput"
+    additional_seller_input: "AdditionalSellerInput" = attrs.field()
     pass
 
 
@@ -61,17 +61,17 @@ class AdditionalSellerInputsList:
 @attrs.define
 class Address:
 
-    address_line1: "AddressLine1"
-    address_line2: "AddressLine2"
-    address_line3: "AddressLine3"
-    city: "City"
-    country_code: "CountryCode"
-    district_or_county: "DistrictOrCounty"
-    email: "EmailAddress"
-    name: "AddressName"
-    phone: "PhoneNumber"
-    postal_code: "PostalCode"
-    state_or_province_code: "StateOrProvinceCode"
+    address_line1: "AddressLine1" = attrs.field()
+    address_line2: "AddressLine2" = attrs.field()
+    address_line3: "AddressLine3" = attrs.field()
+    city: "City" = attrs.field()
+    country_code: "CountryCode" = attrs.field()
+    district_or_county: "DistrictOrCounty" = attrs.field()
+    email: "EmailAddress" = attrs.field()
+    name: "AddressName" = attrs.field()
+    phone: "PhoneNumber" = attrs.field()
+    postal_code: "PostalCode" = attrs.field()
+    state_or_province_code: "StateOrProvinceCode" = attrs.field()
     pass
 
 
@@ -108,8 +108,8 @@ class AmazonOrderId:
 @attrs.define
 class AvailableCarrierWillPickUpOption:
 
-    carrier_will_pick_up_option: "CarrierWillPickUpOption"
-    charge: "CurrencyAmount"
+    carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field()
+    charge: "CurrencyAmount" = attrs.field()
     pass
 
 
@@ -122,8 +122,8 @@ class AvailableCarrierWillPickUpOptionsList:
 @attrs.define
 class AvailableDeliveryExperienceOption:
 
-    charge: "CurrencyAmount"
-    delivery_experience_option: "DeliveryExperienceOption"
+    charge: "CurrencyAmount" = attrs.field()
+    delivery_experience_option: "DeliveryExperienceOption" = attrs.field()
     pass
 
 
@@ -142,16 +142,16 @@ class AvailableFormatOptionsForLabelList:
 @attrs.define
 class AvailableShippingServiceOptions:
 
-    available_carrier_will_pick_up_options: "AvailableCarrierWillPickUpOptionsList"
-    available_delivery_experience_options: "AvailableDeliveryExperienceOptionsList"
+    available_carrier_will_pick_up_options: "AvailableCarrierWillPickUpOptionsList" = attrs.field()
+    available_delivery_experience_options: "AvailableDeliveryExperienceOptionsList" = attrs.field()
     pass
 
 
 @attrs.define
 class CancelShipmentResponse:
 
-    errors: "ErrorList"
-    payload: "Shipment"
+    errors: "ErrorList" = attrs.field()
+    payload: "Shipment" = attrs.field()
     pass
 
 
@@ -170,8 +170,8 @@ class City:
 @attrs.define
 class Constraint:
 
-    validation_reg_ex: str
-    validation_string: str
+    validation_reg_ex: str = attrs.field()
+    validation_string: str = attrs.field()
 
     pass
 
@@ -191,30 +191,30 @@ class CountryCode:
 @attrs.define
 class CreateShipmentRequest:
 
-    shipping_service_offer_id: str
+    shipping_service_offer_id: str = attrs.field()
 
-    hazmat_type: "HazmatType"
-    label_format_option: "LabelFormatOptionRequest"
-    shipment_level_seller_inputs_list: "AdditionalSellerInputsList"
-    shipment_request_details: "ShipmentRequestDetails"
-    shipping_service_id: "ShippingServiceIdentifier"
+    hazmat_type: "HazmatType" = attrs.field()
+    label_format_option: "LabelFormatOptionRequest" = attrs.field()
+    shipment_level_seller_inputs_list: "AdditionalSellerInputsList" = attrs.field()
+    shipment_request_details: "ShipmentRequestDetails" = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
     pass
 
 
 @attrs.define
 class CreateShipmentResponse:
 
-    errors: "ErrorList"
-    payload: "Shipment"
+    errors: "ErrorList" = attrs.field()
+    payload: "Shipment" = attrs.field()
     pass
 
 
 @attrs.define
 class CurrencyAmount:
 
-    amount: Union[float, int]
+    amount: Union[float, int] = attrs.field()
     # {'schema_format': 'double'}
-    currency_code: str
+    currency_code: str = attrs.field()
     # {'maxLength': 3}
 
     pass
@@ -253,9 +253,9 @@ class EmailAddress:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -269,10 +269,10 @@ class ErrorList:
 @attrs.define
 class FileContents:
 
-    checksum: str
-    contents: str
+    checksum: str = attrs.field()
+    contents: str = attrs.field()
 
-    file_type: "FileType"
+    file_type: "FileType" = attrs.field()
     pass
 
 
@@ -285,59 +285,59 @@ class FileType:
 @attrs.define
 class GetAdditionalSellerInputsRequest:
 
-    order_id: "AmazonOrderId"
-    ship_from_address: "Address"
-    shipping_service_id: "ShippingServiceIdentifier"
+    order_id: "AmazonOrderId" = attrs.field()
+    ship_from_address: "Address" = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
     pass
 
 
 @attrs.define
 class GetAdditionalSellerInputsResponse:
 
-    errors: "ErrorList"
-    payload: "GetAdditionalSellerInputsResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetAdditionalSellerInputsResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetAdditionalSellerInputsResult:
 
-    item_level_fields_list: "ItemLevelFieldsList"
-    shipment_level_fields: "AdditionalInputsList"
+    item_level_fields_list: "ItemLevelFieldsList" = attrs.field()
+    shipment_level_fields: "AdditionalInputsList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesRequest:
 
-    shipment_request_details: "ShipmentRequestDetails"
-    shipping_offering_filter: "ShippingOfferingFilter"
+    shipment_request_details: "ShipmentRequestDetails" = attrs.field()
+    shipping_offering_filter: "ShippingOfferingFilter" = attrs.field()
     pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesResponse:
 
-    errors: "ErrorList"
-    payload: "GetEligibleShipmentServicesResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetEligibleShipmentServicesResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesResult:
 
-    rejected_shipping_service_list: "RejectedShippingServiceList"
-    shipping_service_list: "ShippingServiceList"
-    temporarily_unavailable_carrier_list: "TemporarilyUnavailableCarrierList"
-    terms_and_conditions_not_accepted_carrier_list: "TermsAndConditionsNotAcceptedCarrierList"
+    rejected_shipping_service_list: "RejectedShippingServiceList" = attrs.field()
+    shipping_service_list: "ShippingServiceList" = attrs.field()
+    temporarily_unavailable_carrier_list: "TemporarilyUnavailableCarrierList" = attrs.field()
+    terms_and_conditions_not_accepted_carrier_list: "TermsAndConditionsNotAcceptedCarrierList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShipmentResponse:
 
-    errors: "ErrorList"
-    payload: "Shipment"
+    errors: "ErrorList" = attrs.field()
+    payload: "Shipment" = attrs.field()
     pass
 
 
@@ -356,12 +356,12 @@ class InputTargetType:
 @attrs.define
 class Item:
 
-    item_description: "ItemDescription"
-    item_level_seller_inputs_list: "AdditionalSellerInputsList"
-    item_weight: "Weight"
-    order_item_id: "OrderItemId"
-    quantity: "ItemQuantity"
-    transparency_code_list: "TransparencyCodeList"
+    item_description: "ItemDescription" = attrs.field()
+    item_level_seller_inputs_list: "AdditionalSellerInputsList" = attrs.field()
+    item_weight: "Weight" = attrs.field()
+    order_item_id: "OrderItemId" = attrs.field()
+    quantity: "ItemQuantity" = attrs.field()
+    transparency_code_list: "TransparencyCodeList" = attrs.field()
     pass
 
 
@@ -374,9 +374,9 @@ class ItemDescription:
 @attrs.define
 class ItemLevelFields:
 
-    asin: str
+    asin: str = attrs.field()
 
-    additional_inputs: "AdditionalInputsList"
+    additional_inputs: "AdditionalInputsList" = attrs.field()
     pass
 
 
@@ -401,19 +401,19 @@ class ItemQuantity:
 @attrs.define
 class Label:
 
-    custom_text_for_label: "CustomTextForLabel"
-    dimensions: "LabelDimensions"
-    file_contents: "FileContents"
-    label_format: "LabelFormat"
-    standard_id_for_label: "StandardIdForLabel"
+    custom_text_for_label: "CustomTextForLabel" = attrs.field()
+    dimensions: "LabelDimensions" = attrs.field()
+    file_contents: "FileContents" = attrs.field()
+    label_format: "LabelFormat" = attrs.field()
+    standard_id_for_label: "StandardIdForLabel" = attrs.field()
     pass
 
 
 @attrs.define
 class LabelCustomization:
 
-    custom_text_for_label: "CustomTextForLabel"
-    standard_id_for_label: "StandardIdForLabel"
+    custom_text_for_label: "CustomTextForLabel" = attrs.field()
+    standard_id_for_label: "StandardIdForLabel" = attrs.field()
     pass
 
 
@@ -426,9 +426,9 @@ class LabelDimension:
 @attrs.define
 class LabelDimensions:
 
-    length: "LabelDimension"
-    unit: "UnitOfLength"
-    width: "LabelDimension"
+    length: "LabelDimension" = attrs.field()
+    unit: "UnitOfLength" = attrs.field()
+    width: "LabelDimension" = attrs.field()
     pass
 
 
@@ -447,16 +447,16 @@ class LabelFormatList:
 @attrs.define
 class LabelFormatOption:
 
-    include_packing_slip_with_label: bool
+    include_packing_slip_with_label: bool = attrs.field()
 
-    label_format: "LabelFormat"
+    label_format: "LabelFormat" = attrs.field()
     pass
 
 
 @attrs.define
 class LabelFormatOptionRequest:
 
-    include_packing_slip_with_label: bool
+    include_packing_slip_with_label: bool = attrs.field()
 
     pass
 
@@ -464,9 +464,9 @@ class LabelFormatOptionRequest:
 @attrs.define
 class Length:
 
-    value: Union[float, int]
+    value: Union[float, int] = attrs.field()
 
-    unit: "UnitOfLength"
+    unit: "UnitOfLength" = attrs.field()
     pass
 
 
@@ -485,11 +485,11 @@ class PackageDimension:
 @attrs.define
 class PackageDimensions:
 
-    height: "PackageDimension"
-    length: "PackageDimension"
-    predefined_package_dimensions: "PredefinedPackageDimensions"
-    unit: "UnitOfLength"
-    width: "PackageDimension"
+    height: "PackageDimension" = attrs.field()
+    length: "PackageDimension" = attrs.field()
+    predefined_package_dimensions: "PredefinedPackageDimensions" = attrs.field()
+    unit: "UnitOfLength" = attrs.field()
+    width: "PackageDimension" = attrs.field()
     pass
 
 
@@ -514,12 +514,12 @@ class PredefinedPackageDimensions:
 @attrs.define
 class RejectedShippingService:
 
-    carrier_name: str
-    rejection_reason_code: str
-    rejection_reason_message: str
-    shipping_service_name: str
+    carrier_name: str = attrs.field()
+    rejection_reason_code: str = attrs.field()
+    rejection_reason_message: str = attrs.field()
+    shipping_service_name: str = attrs.field()
 
-    shipping_service_id: "ShippingServiceIdentifier"
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
     pass
 
 
@@ -538,14 +538,14 @@ class RestrictedSetValues:
 @attrs.define
 class SellerInputDefinition:
 
-    data_type: str
-    input_display_text: str
-    is_required: bool
+    data_type: str = attrs.field()
+    input_display_text: str = attrs.field()
+    is_required: bool = attrs.field()
 
-    constraints: "Constraints"
-    input_target: "InputTargetType"
-    restricted_set_values: "RestrictedSetValues"
-    stored_value: "AdditionalSellerInput"
+    constraints: "Constraints" = attrs.field()
+    input_target: "InputTargetType" = attrs.field()
+    restricted_set_values: "RestrictedSetValues" = attrs.field()
+    stored_value: "AdditionalSellerInput" = attrs.field()
     pass
 
 
@@ -558,21 +558,21 @@ class SellerOrderId:
 @attrs.define
 class Shipment:
 
-    amazon_order_id: "AmazonOrderId"
-    created_date: "Timestamp"
-    insurance: "CurrencyAmount"
-    item_list: "ItemList"
-    label: "Label"
-    last_updated_date: "Timestamp"
-    package_dimensions: "PackageDimensions"
-    seller_order_id: "SellerOrderId"
-    ship_from_address: "Address"
-    ship_to_address: "Address"
-    shipment_id: "ShipmentId"
-    shipping_service: "ShippingService"
-    status: "ShipmentStatus"
-    tracking_id: "TrackingId"
-    weight: "Weight"
+    amazon_order_id: "AmazonOrderId" = attrs.field()
+    created_date: "Timestamp" = attrs.field()
+    insurance: "CurrencyAmount" = attrs.field()
+    item_list: "ItemList" = attrs.field()
+    label: "Label" = attrs.field()
+    last_updated_date: "Timestamp" = attrs.field()
+    package_dimensions: "PackageDimensions" = attrs.field()
+    seller_order_id: "SellerOrderId" = attrs.field()
+    ship_from_address: "Address" = attrs.field()
+    ship_to_address: "Address" = attrs.field()
+    shipment_id: "ShipmentId" = attrs.field()
+    shipping_service: "ShippingService" = attrs.field()
+    status: "ShipmentStatus" = attrs.field()
+    tracking_id: "TrackingId" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
@@ -585,16 +585,16 @@ class ShipmentId:
 @attrs.define
 class ShipmentRequestDetails:
 
-    amazon_order_id: "AmazonOrderId"
-    item_list: "ItemList"
-    label_customization: "LabelCustomization"
-    must_arrive_by_date: "Timestamp"
-    package_dimensions: "PackageDimensions"
-    seller_order_id: "SellerOrderId"
-    ship_date: "Timestamp"
-    ship_from_address: "Address"
-    shipping_service_options: "ShippingServiceOptions"
-    weight: "Weight"
+    amazon_order_id: "AmazonOrderId" = attrs.field()
+    item_list: "ItemList" = attrs.field()
+    label_customization: "LabelCustomization" = attrs.field()
+    must_arrive_by_date: "Timestamp" = attrs.field()
+    package_dimensions: "PackageDimensions" = attrs.field()
+    seller_order_id: "SellerOrderId" = attrs.field()
+    ship_date: "Timestamp" = attrs.field()
+    ship_from_address: "Address" = attrs.field()
+    shipping_service_options: "ShippingServiceOptions" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
@@ -607,31 +607,31 @@ class ShipmentStatus:
 @attrs.define
 class ShippingOfferingFilter:
 
-    include_complex_shipping_options: bool
-    include_packing_slip_with_label: bool
+    include_complex_shipping_options: bool = attrs.field()
+    include_packing_slip_with_label: bool = attrs.field()
 
-    carrier_will_pick_up: "CarrierWillPickUpOption"
-    delivery_experience: "DeliveryExperienceOption"
+    carrier_will_pick_up: "CarrierWillPickUpOption" = attrs.field()
+    delivery_experience: "DeliveryExperienceOption" = attrs.field()
     pass
 
 
 @attrs.define
 class ShippingService:
 
-    carrier_name: str
-    requires_additional_seller_inputs: bool
-    shipping_service_name: str
-    shipping_service_offer_id: str
+    carrier_name: str = attrs.field()
+    requires_additional_seller_inputs: bool = attrs.field()
+    shipping_service_name: str = attrs.field()
+    shipping_service_offer_id: str = attrs.field()
 
-    available_format_options_for_label: "AvailableFormatOptionsForLabelList"
-    available_label_formats: "LabelFormatList"
-    available_shipping_service_options: "AvailableShippingServiceOptions"
-    earliest_estimated_delivery_date: "Timestamp"
-    latest_estimated_delivery_date: "Timestamp"
-    rate: "CurrencyAmount"
-    ship_date: "Timestamp"
-    shipping_service_id: "ShippingServiceIdentifier"
-    shipping_service_options: "ShippingServiceOptions"
+    available_format_options_for_label: "AvailableFormatOptionsForLabelList" = attrs.field()
+    available_label_formats: "LabelFormatList" = attrs.field()
+    available_shipping_service_options: "AvailableShippingServiceOptions" = attrs.field()
+    earliest_estimated_delivery_date: "Timestamp" = attrs.field()
+    latest_estimated_delivery_date: "Timestamp" = attrs.field()
+    rate: "CurrencyAmount" = attrs.field()
+    ship_date: "Timestamp" = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
+    shipping_service_options: "ShippingServiceOptions" = attrs.field()
     pass
 
 
@@ -650,12 +650,12 @@ class ShippingServiceList:
 @attrs.define
 class ShippingServiceOptions:
 
-    carrier_will_pick_up: bool
+    carrier_will_pick_up: bool = attrs.field()
 
-    carrier_will_pick_up_option: "CarrierWillPickUpOption"
-    declared_value: "CurrencyAmount"
-    delivery_experience: "DeliveryExperienceType"
-    label_format: "LabelFormat"
+    carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field()
+    declared_value: "CurrencyAmount" = attrs.field()
+    delivery_experience: "DeliveryExperienceType" = attrs.field()
+    label_format: "LabelFormat" = attrs.field()
     pass
 
 
@@ -674,7 +674,7 @@ class StateOrProvinceCode:
 @attrs.define
 class TemporarilyUnavailableCarrier:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
     pass
 
@@ -688,7 +688,7 @@ class TemporarilyUnavailableCarrierList:
 @attrs.define
 class TermsAndConditionsNotAcceptedCarrier:
 
-    carrier_name: str
+    carrier_name: str = attrs.field()
 
     pass
 
@@ -738,8 +738,8 @@ class UnitOfWeight:
 @attrs.define
 class Weight:
 
-    unit: "UnitOfWeight"
-    value: "WeightValue"
+    unit: "UnitOfWeight" = attrs.field()
+    value: "WeightValue" = attrs.field()
     pass
 
 

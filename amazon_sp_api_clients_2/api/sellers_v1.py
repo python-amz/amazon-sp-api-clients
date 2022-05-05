@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -31,21 +31,21 @@ class ErrorList:
 @attrs.define
 class GetMarketplaceParticipationsResponse:
 
-    errors: "ErrorList"
-    payload: "MarketplaceParticipationList"
+    errors: "ErrorList" = attrs.field()
+    payload: "MarketplaceParticipationList" = attrs.field()
     pass
 
 
 @attrs.define
 class Marketplace:
 
-    country_code: str
+    country_code: str = attrs.field()
     # {'pattern': '^([A-Z]{2})$'}
-    default_currency_code: str
-    default_language_code: str
-    domain_name: str
-    id: str
-    name: str
+    default_currency_code: str = attrs.field()
+    default_language_code: str = attrs.field()
+    domain_name: str = attrs.field()
+    id: str = attrs.field()
+    name: str = attrs.field()
 
     pass
 
@@ -53,8 +53,8 @@ class Marketplace:
 @attrs.define
 class MarketplaceParticipation:
 
-    marketplace: "Marketplace"
-    participation: "Participation"
+    marketplace: "Marketplace" = attrs.field()
+    participation: "Participation" = attrs.field()
     pass
 
 
@@ -67,8 +67,8 @@ class MarketplaceParticipationList:
 @attrs.define
 class Participation:
 
-    has_suspended_listings: bool
-    is_participating: bool
+    has_suspended_listings: bool = attrs.field()
+    is_participating: bool = attrs.field()
 
     pass
 

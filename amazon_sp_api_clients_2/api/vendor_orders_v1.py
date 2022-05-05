@@ -15,29 +15,29 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AcknowledgementStatusDetails:
 
-    acknowledgement_date: str
+    acknowledgement_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    accepted_quantity: "ItemQuantity"
-    rejected_quantity: "ItemQuantity"
+    accepted_quantity: "ItemQuantity" = attrs.field()
+    rejected_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    city: str
-    country_code: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
     # {'maxLength': 2}
-    county: str
-    district: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    county: str = attrs.field()
+    district: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
     pass
 
@@ -57,9 +57,9 @@ class Decimal:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -73,31 +73,31 @@ class ErrorList:
 @attrs.define
 class GetPurchaseOrderResponse:
 
-    errors: "ErrorList"
-    payload: "Order"
+    errors: "ErrorList" = attrs.field()
+    payload: "Order" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPurchaseOrdersResponse:
 
-    errors: "ErrorList"
-    payload: "OrderList"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPurchaseOrdersStatusResponse:
 
-    errors: "ErrorList"
-    payload: "OrderListStatus"
+    errors: "ErrorList" = attrs.field()
+    payload: "OrderListStatus" = attrs.field()
     pass
 
 
 @attrs.define
 class ImportDetails:
 
-    import_containers: str
+    import_containers: str = attrs.field()
     # {'maxLength': 64}
     international_commercial_terms: Union[
         Literal["ExWorks"],
@@ -111,7 +111,7 @@ class ImportDetails:
         Literal["DeliveredAtTerminal"],
         Literal["DeliveredAtPlace"],
         Literal["DeliverDutyPaid"],
-    ]
+    ] = attrs.field()
     method_of_payment: Union[
         Literal["PaidByBuyer"],
         Literal["CollectOnDelivery"],
@@ -119,10 +119,10 @@ class ImportDetails:
         Literal["FOBPortOfCall"],
         Literal["PrepaidBySeller"],
         Literal["PaidBySeller"],
-    ]
-    port_of_delivery: str
+    ] = attrs.field()
+    port_of_delivery: str = attrs.field()
     # {'maxLength': 64}
-    shipping_instructions: str
+    shipping_instructions: str = attrs.field()
 
     pass
 
@@ -130,9 +130,9 @@ class ImportDetails:
 @attrs.define
 class ItemQuantity:
 
-    amount: int
-    unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]]
-    unit_size: int
+    amount: int = attrs.field()
+    unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field()
+    unit_size: int = attrs.field()
 
     pass
 
@@ -146,173 +146,175 @@ class ItemStatus:
 @attrs.define
 class Money:
 
-    currency_code: str
+    currency_code: str = attrs.field()
     # {'maxLength': 3}
 
-    amount: "Decimal"
+    amount: "Decimal" = attrs.field()
     pass
 
 
 @attrs.define
 class Order:
 
-    purchase_order_number: str
-    purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]]
+    purchase_order_number: str = attrs.field()
+    purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = attrs.field()
 
-    order_details: "OrderDetails"
+    order_details: "OrderDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderAcknowledgement:
 
-    acknowledgement_date: str
+    acknowledgement_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    items: list["OrderAcknowledgementItem"]
-    purchase_order_number: str
+    items: list["OrderAcknowledgementItem"] = attrs.field()
+    purchase_order_number: str = attrs.field()
 
-    selling_party: "PartyIdentification"
+    selling_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderAcknowledgementItem:
 
-    amazon_product_identifier: str
-    discount_multiplier: str
-    item_acknowledgements: list["OrderItemAcknowledgement"]
-    item_sequence_number: str
-    vendor_product_identifier: str
+    amazon_product_identifier: str = attrs.field()
+    discount_multiplier: str = attrs.field()
+    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field()
+    item_sequence_number: str = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    list_price: "Money"
-    net_cost: "Money"
-    ordered_quantity: "ItemQuantity"
+    list_price: "Money" = attrs.field()
+    net_cost: "Money" = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderDetails:
 
-    deal_code: str
-    items: list["OrderItem"]
-    payment_method: Union[Literal["Invoice"], Literal["Consignment"], Literal["CreditCard"], Literal["Prepaid"]]
-    purchase_order_changed_date: str
+    deal_code: str = attrs.field()
+    items: list["OrderItem"] = attrs.field()
+    payment_method: Union[
+        Literal["Invoice"], Literal["Consignment"], Literal["CreditCard"], Literal["Prepaid"]
+    ] = attrs.field()
+    purchase_order_changed_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    purchase_order_date: str
+    purchase_order_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    purchase_order_state_changed_date: str
+    purchase_order_state_changed_date: str = attrs.field()
     # {'schema_format': 'date-time'}
     purchase_order_type: Union[
         Literal["RegularOrder"], Literal["ConsignedOrder"], Literal["NewProductIntroduction"], Literal["RushOrder"]
-    ]
+    ] = attrs.field()
 
-    bill_to_party: "PartyIdentification"
-    buying_party: "PartyIdentification"
-    delivery_window: "DateTimeInterval"
-    import_details: "ImportDetails"
-    selling_party: "PartyIdentification"
-    ship_to_party: "PartyIdentification"
-    ship_window: "DateTimeInterval"
+    bill_to_party: "PartyIdentification" = attrs.field()
+    buying_party: "PartyIdentification" = attrs.field()
+    delivery_window: "DateTimeInterval" = attrs.field()
+    import_details: "ImportDetails" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
+    ship_to_party: "PartyIdentification" = attrs.field()
+    ship_window: "DateTimeInterval" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItem:
 
-    amazon_product_identifier: str
-    is_back_order_allowed: bool
-    item_sequence_number: str
-    vendor_product_identifier: str
+    amazon_product_identifier: str = attrs.field()
+    is_back_order_allowed: bool = attrs.field()
+    item_sequence_number: str = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    list_price: "Money"
-    net_cost: "Money"
-    ordered_quantity: "ItemQuantity"
+    list_price: "Money" = attrs.field()
+    net_cost: "Money" = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItemAcknowledgement:
 
-    acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]]
+    acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field()
     rejection_reason: Union[
         Literal["TemporarilyUnavailable"], Literal["InvalidProductIdentifier"], Literal["ObsoleteProduct"]
-    ]
-    scheduled_delivery_date: str
+    ] = attrs.field()
+    scheduled_delivery_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    scheduled_ship_date: str
+    scheduled_ship_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    acknowledged_quantity: "ItemQuantity"
+    acknowledged_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderItemStatus:
 
-    acknowledgement_status: dict[str, Any]
+    acknowledgement_status: dict[str, Any] = attrs.field()
     # {'properties': {'confirmationStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['ACCEPTED', 'PARTIALLY_ACCEPTED', 'REJECTED', 'UNCONFIRMED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Confirmation status of line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'acceptedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'rejectedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'acknowledgementStatusDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/AcknowledgementStatusDetails'), properties=None, additionalProperties=None, description='Details of item quantity confirmed.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    buyer_product_identifier: str
-    item_sequence_number: str
-    ordered_quantity: dict[str, Any]
+    buyer_product_identifier: str = attrs.field()
+    item_sequence_number: str = attrs.field()
+    ordered_quantity: dict[str, Any] = attrs.field()
     # {'properties': {'orderedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'orderedQuantityDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/OrderedQuantityDetails'), properties=None, additionalProperties=None, description='Details of item quantity ordered.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    receiving_status: dict[str, Any]
+    receiving_status: dict[str, Any] = attrs.field()
     # {'properties': {'receiveStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['NOT_RECEIVED', 'PARTIALLY_RECEIVED', 'RECEIVED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Receive status of the line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'receivedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'lastReceiveDate': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description="The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.", schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    vendor_product_identifier: str
+    vendor_product_identifier: str = attrs.field()
 
-    list_price: "Money"
-    net_cost: "Money"
+    list_price: "Money" = attrs.field()
+    net_cost: "Money" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderList:
 
-    orders: list["Order"]
+    orders: list["Order"] = attrs.field()
 
-    pagination: "Pagination"
+    pagination: "Pagination" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderListStatus:
 
-    orders_status: list["OrderStatus"]
+    orders_status: list["OrderStatus"] = attrs.field()
 
-    pagination: "Pagination"
+    pagination: "Pagination" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderStatus:
 
-    last_updated_date: str
+    last_updated_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    purchase_order_date: str
+    purchase_order_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    purchase_order_number: str
-    purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]]
+    purchase_order_number: str = attrs.field()
+    purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = attrs.field()
 
-    item_status: "ItemStatus"
-    selling_party: "PartyIdentification"
-    ship_to_party: "PartyIdentification"
+    item_status: "ItemStatus" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
+    ship_to_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class OrderedQuantityDetails:
 
-    updated_date: str
+    updated_date: str = attrs.field()
     # {'schema_format': 'date-time'}
 
-    cancelled_quantity: "ItemQuantity"
-    ordered_quantity: "ItemQuantity"
+    cancelled_quantity: "ItemQuantity" = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class Pagination:
 
-    next_token: str
+    next_token: str = attrs.field()
 
     pass
 
@@ -320,17 +322,17 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
-    party_id: str
+    party_id: str = attrs.field()
 
-    address: "Address"
-    tax_info: "TaxRegistrationDetails"
+    address: "Address" = attrs.field()
+    tax_info: "TaxRegistrationDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class SubmitAcknowledgementRequest:
 
-    acknowledgements: list["OrderAcknowledgement"]
+    acknowledgements: list["OrderAcknowledgement"] = attrs.field()
 
     pass
 
@@ -338,16 +340,16 @@ class SubmitAcknowledgementRequest:
 @attrs.define
 class SubmitAcknowledgementResponse:
 
-    errors: "ErrorList"
-    payload: "TransactionId"
+    errors: "ErrorList" = attrs.field()
+    payload: "TransactionId" = attrs.field()
     pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
 
-    tax_registration_number: str
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]]
+    tax_registration_number: str = attrs.field()
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
     pass
 
@@ -355,7 +357,7 @@ class TaxRegistrationDetails:
 @attrs.define
 class TransactionId:
 
-    transaction_id: str
+    transaction_id: str = attrs.field()
 
     pass
 

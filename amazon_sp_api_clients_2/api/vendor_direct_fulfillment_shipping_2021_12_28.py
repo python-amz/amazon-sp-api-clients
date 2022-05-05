@@ -15,17 +15,17 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Address:
 
-    address_line1: str
-    address_line2: str
-    address_line3: str
-    city: str
-    country_code: str
-    county: str
-    district: str
-    name: str
-    phone: str
-    postal_code: str
-    state_or_region: str
+    address_line1: str = attrs.field()
+    address_line2: str = attrs.field()
+    address_line3: str = attrs.field()
+    city: str = attrs.field()
+    country_code: str = attrs.field()
+    county: str = attrs.field()
+    district: str = attrs.field()
+    name: str = attrs.field()
+    phone: str = attrs.field()
+    postal_code: str = attrs.field()
+    state_or_region: str = attrs.field()
 
     pass
 
@@ -33,27 +33,27 @@ class Address:
 @attrs.define
 class Container:
 
-    carrier: str
-    container_identifier: str
-    container_sequence_number: int
-    container_type: Union[Literal["Carton"], Literal["Pallet"]]
-    manifest_date: str
-    manifest_id: str
-    packed_items: list["PackedItem"]
-    scac_code: str
-    ship_method: str
-    tracking_number: str
+    carrier: str = attrs.field()
+    container_identifier: str = attrs.field()
+    container_sequence_number: int = attrs.field()
+    container_type: Union[Literal["Carton"], Literal["Pallet"]] = attrs.field()
+    manifest_date: str = attrs.field()
+    manifest_id: str = attrs.field()
+    packed_items: list["PackedItem"] = attrs.field()
+    scac_code: str = attrs.field()
+    ship_method: str = attrs.field()
+    tracking_number: str = attrs.field()
 
-    dimensions: "Dimensions"
-    weight: "Weight"
+    dimensions: "Dimensions" = attrs.field()
+    weight: "Weight" = attrs.field()
     pass
 
 
 @attrs.define
 class CustomerInvoice:
 
-    content: str
-    purchase_order_number: str
+    content: str = attrs.field()
+    purchase_order_number: str = attrs.field()
     # {'pattern': '^[a-zA-Z0-9]+$'}
 
     pass
@@ -62,9 +62,9 @@ class CustomerInvoice:
 @attrs.define
 class CustomerInvoiceList:
 
-    customer_invoices: list["CustomerInvoice"]
+    customer_invoices: list["CustomerInvoice"] = attrs.field()
 
-    pagination: "Pagination"
+    pagination: "Pagination" = attrs.field()
     pass
 
 
@@ -77,20 +77,20 @@ class Decimal:
 @attrs.define
 class Dimensions:
 
-    unit_of_measure: Union[Literal["IN"], Literal["CM"]]
+    unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field()
 
-    height: "Decimal"
-    length: "Decimal"
-    width: "Decimal"
+    height: "Decimal" = attrs.field()
+    length: "Decimal" = attrs.field()
+    width: "Decimal" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -98,7 +98,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -106,51 +106,51 @@ class ErrorList:
 @attrs.define
 class GetCustomerInvoiceResponse:
 
-    errors: "ErrorList"
-    payload: "CustomerInvoice"
+    errors: "ErrorList" = attrs.field()
+    payload: "CustomerInvoice" = attrs.field()
     pass
 
 
 @attrs.define
 class GetCustomerInvoicesResponse:
 
-    errors: "ErrorList"
-    payload: "CustomerInvoiceList"
+    errors: "ErrorList" = attrs.field()
+    payload: "CustomerInvoiceList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShippingLabelListResponse:
 
-    errors: "ErrorList"
-    payload: "ShippingLabelList"
+    errors: "ErrorList" = attrs.field()
+    payload: "ShippingLabelList" = attrs.field()
     pass
 
 
 @attrs.define
 class GetShippingLabelResponse:
 
-    errors: "ErrorList"
-    payload: "ShippingLabel"
+    errors: "ErrorList" = attrs.field()
+    payload: "ShippingLabel" = attrs.field()
     pass
 
 
 @attrs.define
 class Item:
 
-    buyer_product_identifier: str
-    item_sequence_number: int
-    vendor_product_identifier: str
+    buyer_product_identifier: str = attrs.field()
+    item_sequence_number: int = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    shipped_quantity: "ItemQuantity"
+    shipped_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemQuantity:
 
-    amount: int
-    unit_of_measure: str
+    amount: int = attrs.field()
+    unit_of_measure: str = attrs.field()
 
     pass
 
@@ -158,11 +158,11 @@ class ItemQuantity:
 @attrs.define
 class LabelData:
 
-    content: str
-    package_identifier: str
-    ship_method: str
-    ship_method_name: str
-    tracking_number: str
+    content: str = attrs.field()
+    package_identifier: str = attrs.field()
+    ship_method: str = attrs.field()
+    ship_method_name: str = attrs.field()
+    tracking_number: str = attrs.field()
 
     pass
 
@@ -170,18 +170,18 @@ class LabelData:
 @attrs.define
 class PackedItem:
 
-    buyer_product_identifier: str
-    item_sequence_number: int
-    vendor_product_identifier: str
+    buyer_product_identifier: str = attrs.field()
+    item_sequence_number: int = attrs.field()
+    vendor_product_identifier: str = attrs.field()
 
-    packed_quantity: "ItemQuantity"
+    packed_quantity: "ItemQuantity" = attrs.field()
     pass
 
 
 @attrs.define
 class Pagination:
 
-    next_token: str
+    next_token: str = attrs.field()
 
     pass
 
@@ -189,51 +189,51 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
-    party_id: str
-    tax_registration_details: list["TaxRegistrationDetails"]
+    party_id: str = attrs.field()
+    tax_registration_details: list["TaxRegistrationDetails"] = attrs.field()
 
-    address: "Address"
+    address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class ShippingLabel:
 
-    label_data: list["LabelData"]
-    label_format: Union[Literal["PNG"], Literal["ZPL"]]
-    purchase_order_number: str
+    label_data: list["LabelData"] = attrs.field()
+    label_format: Union[Literal["PNG"], Literal["ZPL"]] = attrs.field()
+    purchase_order_number: str = attrs.field()
     # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: "PartyIdentification"
-    ship_from_party: "PartyIdentification"
+    selling_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class ShippingLabelList:
 
-    shipping_labels: list["ShippingLabel"]
+    shipping_labels: list["ShippingLabel"] = attrs.field()
 
-    pagination: "Pagination"
+    pagination: "Pagination" = attrs.field()
     pass
 
 
 @attrs.define
 class ShippingLabelRequest:
 
-    containers: list["Container"]
-    purchase_order_number: str
+    containers: list["Container"] = attrs.field()
+    purchase_order_number: str = attrs.field()
     # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: "PartyIdentification"
-    ship_from_party: "PartyIdentification"
+    selling_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
     pass
 
 
 @attrs.define
 class SubmitShippingLabelsRequest:
 
-    shipping_label_requests: list["ShippingLabelRequest"]
+    shipping_label_requests: list["ShippingLabelRequest"] = attrs.field()
 
     pass
 
@@ -241,26 +241,26 @@ class SubmitShippingLabelsRequest:
 @attrs.define
 class SubmitShippingLabelsResponse:
 
-    errors: "ErrorList"
-    payload: "TransactionReference"
+    errors: "ErrorList" = attrs.field()
+    payload: "TransactionReference" = attrs.field()
     pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
 
-    tax_registration_messages: str
-    tax_registration_number: str
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]]
+    tax_registration_messages: str = attrs.field()
+    tax_registration_number: str = attrs.field()
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
-    tax_registration_address: "Address"
+    tax_registration_address: "Address" = attrs.field()
     pass
 
 
 @attrs.define
 class TransactionReference:
 
-    transaction_id: str
+    transaction_id: str = attrs.field()
 
     pass
 
@@ -268,9 +268,9 @@ class TransactionReference:
 @attrs.define
 class Weight:
 
-    unit_of_measure: Union[Literal["KG"], Literal["LB"]]
+    unit_of_measure: Union[Literal["KG"], Literal["LB"]] = attrs.field()
 
-    value: "Decimal"
+    value: "Decimal" = attrs.field()
     pass
 
 

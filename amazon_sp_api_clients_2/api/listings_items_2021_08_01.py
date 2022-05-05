@@ -23,9 +23,9 @@ class Decimal:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -33,7 +33,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"]
+    errors: list["Error"] = attrs.field()
 
     pass
 
@@ -41,8 +41,8 @@ class ErrorList:
 @attrs.define
 class FulfillmentAvailability:
 
-    fulfillment_channel_code: str
-    quantity: int
+    fulfillment_channel_code: str = attrs.field()
+    quantity: int = attrs.field()
     # {'minimum': 0.0}
 
     pass
@@ -51,10 +51,10 @@ class FulfillmentAvailability:
 @attrs.define
 class Issue:
 
-    attribute_names: list[str]
-    code: str
-    message: str
-    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]
+    attribute_names: list[str] = attrs.field()
+    code: str = attrs.field()
+    message: str = attrs.field()
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field()
 
     pass
 
@@ -62,14 +62,14 @@ class Issue:
 @attrs.define
 class Item:
 
-    fulfillment_availability: list["FulfillmentAvailability"]
-    sku: str
+    fulfillment_availability: list["FulfillmentAvailability"] = attrs.field()
+    sku: str = attrs.field()
 
-    attributes: "ItemAttributes"
-    issues: "ItemIssues"
-    offers: "ItemOffers"
-    procurement: "ItemProcurement"
-    summaries: "ItemSummaries"
+    attributes: "ItemAttributes" = attrs.field()
+    issues: "ItemIssues" = attrs.field()
+    offers: "ItemOffers" = attrs.field()
+    procurement: "ItemProcurement" = attrs.field()
+    summaries: "ItemSummaries" = attrs.field()
     pass
 
 
@@ -82,9 +82,9 @@ class ItemAttributes:
 @attrs.define
 class ItemImage:
 
-    height: int
-    link: str
-    width: int
+    height: int = attrs.field()
+    link: str = attrs.field()
+    width: int = attrs.field()
 
     pass
 
@@ -98,11 +98,11 @@ class ItemIssues:
 @attrs.define
 class ItemOfferByMarketplace:
 
-    marketplace_id: str
-    offer_type: Union[Literal["B2C"], Literal["B2B"]]
+    marketplace_id: str = attrs.field()
+    offer_type: Union[Literal["B2C"], Literal["B2B"]] = attrs.field()
 
-    points: "Points"
-    price: "Money"
+    points: "Points" = attrs.field()
+    price: "Money" = attrs.field()
     pass
 
 
@@ -115,7 +115,7 @@ class ItemOffers:
 @attrs.define
 class ItemProcurement:
 
-    cost_price: "Money"
+    cost_price: "Money" = attrs.field()
     pass
 
 
@@ -128,7 +128,7 @@ class ItemSummaries:
 @attrs.define
 class ItemSummaryByMarketplace:
 
-    asin: str
+    asin: str = attrs.field()
     condition_type: Union[
         Literal["new_new"],
         Literal["new_open_box"],
@@ -143,27 +143,27 @@ class ItemSummaryByMarketplace:
         Literal["collectible_good"],
         Literal["collectible_acceptable"],
         Literal["club_club"],
-    ]
-    created_date: str
+    ] = attrs.field()
+    created_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    fn_sku: str
-    item_name: str
-    last_updated_date: str
+    fn_sku: str = attrs.field()
+    item_name: str = attrs.field()
+    last_updated_date: str = attrs.field()
     # {'schema_format': 'date-time'}
-    marketplace_id: str
-    product_type: str
-    status: list[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]]
+    marketplace_id: str = attrs.field()
+    product_type: str = attrs.field()
+    status: list[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]] = attrs.field()
 
-    main_image: "ItemImage"
+    main_image: "ItemImage" = attrs.field()
     pass
 
 
 @attrs.define
 class ListingsItemPatchRequest:
 
-    patches: list["PatchOperation"]
+    patches: list["PatchOperation"] = attrs.field()
     # {'minItems': 1}
-    product_type: str
+    product_type: str = attrs.field()
 
     pass
 
@@ -171,10 +171,12 @@ class ListingsItemPatchRequest:
 @attrs.define
 class ListingsItemPutRequest:
 
-    attributes: dict[str, Any]
+    attributes: dict[str, Any] = attrs.field()
     # {'properties': {}}
-    product_type: str
-    requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    product_type: str = attrs.field()
+    requirements: Union[
+        Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
+    ] = attrs.field()
 
     pass
 
@@ -182,10 +184,10 @@ class ListingsItemPutRequest:
 @attrs.define
 class ListingsItemSubmissionResponse:
 
-    issues: list["Issue"]
-    sku: str
-    status: Union[Literal["ACCEPTED"], Literal["INVALID"]]
-    submission_id: str
+    issues: list["Issue"] = attrs.field()
+    sku: str = attrs.field()
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
+    submission_id: str = attrs.field()
 
     pass
 
@@ -193,18 +195,18 @@ class ListingsItemSubmissionResponse:
 @attrs.define
 class Money:
 
-    currency_code: str
+    currency_code: str = attrs.field()
 
-    amount: "Decimal"
+    amount: "Decimal" = attrs.field()
     pass
 
 
 @attrs.define
 class PatchOperation:
 
-    op: Union[Literal["add"], Literal["replace"], Literal["delete"]]
-    path: str
-    value: list[dict[str, Any]]
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
+    path: str = attrs.field()
+    value: list[dict[str, Any]] = attrs.field()
 
     pass
 
@@ -212,7 +214,7 @@ class PatchOperation:
 @attrs.define
 class Points:
 
-    points_number: int
+    points_number: int = attrs.field()
 
     pass
 

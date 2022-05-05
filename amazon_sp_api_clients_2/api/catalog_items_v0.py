@@ -15,8 +15,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class ASINIdentifier:
 
-    asin: str
-    marketplace_id: str
+    asin: str = attrs.field()
+    marketplace_id: str = attrs.field()
 
     pass
 
@@ -30,112 +30,112 @@ class AttributeSetList:
 @attrs.define
 class AttributeSetListType:
 
-    actor: list[str]
-    artist: list[str]
-    aspect_ratio: str
-    audience_rating: str
-    author: list[str]
-    back_finding: str
-    band_material_type: str
-    binding: str
-    bluray_region: str
-    brand: str
-    cero_age_rating: str
-    chain_type: str
-    clasp_type: str
-    color: str
-    cpu_manufacturer: str
-    cpu_type: str
-    creator: list["CreatorType"]
-    department: str
-    director: list[str]
-    edition: str
-    episode_sequence: str
-    esrb_age_rating: str
-    feature: list[str]
-    flavor: str
-    format: list[str]
-    gem_type: list[str]
-    genre: str
-    golf_club_flex: str
-    hand_orientation: str
-    hard_disk_interface: str
-    hardware_platform: str
-    hazardous_material_type: str
-    is_adult_product: bool
-    is_autographed: bool
-    is_eligible_for_trade_in: bool
-    is_memorabilia: bool
-    issues_per_year: str
-    item_part_number: str
-    label: str
-    languages: list["LanguageType"]
-    legal_disclaimer: str
-    manufacturer: str
-    manufacturer_parts_warranty_description: str
-    material_type: list[str]
-    media_type: list[str]
-    metal_stamp: str
-    metal_type: str
-    model: str
-    number_of_discs: int
-    number_of_issues: int
-    number_of_items: int
-    number_of_pages: int
-    number_of_tracks: int
-    operating_system: list[str]
-    package_quantity: int
-    part_number: str
-    pegi_rating: str
-    platform: list[str]
-    processor_count: int
-    product_group: str
-    product_type_name: str
-    product_type_subcategory: str
-    publication_date: str
-    publisher: str
-    region_code: str
-    release_date: str
-    ring_size: str
-    scent: str
-    season_sequence: str
-    seikodo_product_code: str
-    shaft_material: str
-    size: str
-    size_per_pearl: str
-    studio: str
-    system_memory_type: str
-    theatrical_release_date: str
-    title: str
-    warranty: str
+    actor: list[str] = attrs.field()
+    artist: list[str] = attrs.field()
+    aspect_ratio: str = attrs.field()
+    audience_rating: str = attrs.field()
+    author: list[str] = attrs.field()
+    back_finding: str = attrs.field()
+    band_material_type: str = attrs.field()
+    binding: str = attrs.field()
+    bluray_region: str = attrs.field()
+    brand: str = attrs.field()
+    cero_age_rating: str = attrs.field()
+    chain_type: str = attrs.field()
+    clasp_type: str = attrs.field()
+    color: str = attrs.field()
+    cpu_manufacturer: str = attrs.field()
+    cpu_type: str = attrs.field()
+    creator: list["CreatorType"] = attrs.field()
+    department: str = attrs.field()
+    director: list[str] = attrs.field()
+    edition: str = attrs.field()
+    episode_sequence: str = attrs.field()
+    esrb_age_rating: str = attrs.field()
+    feature: list[str] = attrs.field()
+    flavor: str = attrs.field()
+    format: list[str] = attrs.field()
+    gem_type: list[str] = attrs.field()
+    genre: str = attrs.field()
+    golf_club_flex: str = attrs.field()
+    hand_orientation: str = attrs.field()
+    hard_disk_interface: str = attrs.field()
+    hardware_platform: str = attrs.field()
+    hazardous_material_type: str = attrs.field()
+    is_adult_product: bool = attrs.field()
+    is_autographed: bool = attrs.field()
+    is_eligible_for_trade_in: bool = attrs.field()
+    is_memorabilia: bool = attrs.field()
+    issues_per_year: str = attrs.field()
+    item_part_number: str = attrs.field()
+    label: str = attrs.field()
+    languages: list["LanguageType"] = attrs.field()
+    legal_disclaimer: str = attrs.field()
+    manufacturer: str = attrs.field()
+    manufacturer_parts_warranty_description: str = attrs.field()
+    material_type: list[str] = attrs.field()
+    media_type: list[str] = attrs.field()
+    metal_stamp: str = attrs.field()
+    metal_type: str = attrs.field()
+    model: str = attrs.field()
+    number_of_discs: int = attrs.field()
+    number_of_issues: int = attrs.field()
+    number_of_items: int = attrs.field()
+    number_of_pages: int = attrs.field()
+    number_of_tracks: int = attrs.field()
+    operating_system: list[str] = attrs.field()
+    package_quantity: int = attrs.field()
+    part_number: str = attrs.field()
+    pegi_rating: str = attrs.field()
+    platform: list[str] = attrs.field()
+    processor_count: int = attrs.field()
+    product_group: str = attrs.field()
+    product_type_name: str = attrs.field()
+    product_type_subcategory: str = attrs.field()
+    publication_date: str = attrs.field()
+    publisher: str = attrs.field()
+    region_code: str = attrs.field()
+    release_date: str = attrs.field()
+    ring_size: str = attrs.field()
+    scent: str = attrs.field()
+    season_sequence: str = attrs.field()
+    seikodo_product_code: str = attrs.field()
+    shaft_material: str = attrs.field()
+    size: str = attrs.field()
+    size_per_pearl: str = attrs.field()
+    studio: str = attrs.field()
+    system_memory_type: str = attrs.field()
+    theatrical_release_date: str = attrs.field()
+    title: str = attrs.field()
+    warranty: str = attrs.field()
 
-    cpu_speed: "DecimalWithUnits"
-    display_size: "DecimalWithUnits"
-    golf_club_loft: "DecimalWithUnits"
-    hard_disk_size: "DecimalWithUnits"
-    item_dimensions: "DimensionType"
-    list_price: "Price"
-    manufacturer_maximum_age: "DecimalWithUnits"
-    manufacturer_minimum_age: "DecimalWithUnits"
-    maximum_resolution: "DecimalWithUnits"
-    optical_zoom: "DecimalWithUnits"
-    package_dimensions: "DimensionType"
-    running_time: "DecimalWithUnits"
-    small_image: "Image"
-    subscription_length: "DecimalWithUnits"
-    system_memory_size: "DecimalWithUnits"
-    total_diamond_weight: "DecimalWithUnits"
-    total_gem_weight: "DecimalWithUnits"
-    weee_tax_value: "Price"
+    cpu_speed: "DecimalWithUnits" = attrs.field()
+    display_size: "DecimalWithUnits" = attrs.field()
+    golf_club_loft: "DecimalWithUnits" = attrs.field()
+    hard_disk_size: "DecimalWithUnits" = attrs.field()
+    item_dimensions: "DimensionType" = attrs.field()
+    list_price: "Price" = attrs.field()
+    manufacturer_maximum_age: "DecimalWithUnits" = attrs.field()
+    manufacturer_minimum_age: "DecimalWithUnits" = attrs.field()
+    maximum_resolution: "DecimalWithUnits" = attrs.field()
+    optical_zoom: "DecimalWithUnits" = attrs.field()
+    package_dimensions: "DimensionType" = attrs.field()
+    running_time: "DecimalWithUnits" = attrs.field()
+    small_image: "Image" = attrs.field()
+    subscription_length: "DecimalWithUnits" = attrs.field()
+    system_memory_size: "DecimalWithUnits" = attrs.field()
+    total_diamond_weight: "DecimalWithUnits" = attrs.field()
+    total_gem_weight: "DecimalWithUnits" = attrs.field()
+    weee_tax_value: "Price" = attrs.field()
     pass
 
 
 @attrs.define
 class Categories:
 
-    product_category_id: str
-    product_category_name: str
-    parent: dict[str, Any]
+    product_category_id: str = attrs.field()
+    product_category_name: str = attrs.field()
+    parent: dict[str, Any] = attrs.field()
     # {'properties': {}}
 
     pass
@@ -144,8 +144,8 @@ class Categories:
 @attrs.define
 class CreatorType:
 
-    role: str
-    value: str
+    role: str = attrs.field()
+    value: str = attrs.field()
 
     pass
 
@@ -153,8 +153,8 @@ class CreatorType:
 @attrs.define
 class DecimalWithUnits:
 
-    units: str
-    value: Union[float, int]
+    units: str = attrs.field()
+    value: Union[float, int] = attrs.field()
 
     pass
 
@@ -162,19 +162,19 @@ class DecimalWithUnits:
 @attrs.define
 class DimensionType:
 
-    height: "DecimalWithUnits"
-    length: "DecimalWithUnits"
-    weight: "DecimalWithUnits"
-    width: "DecimalWithUnits"
+    height: "DecimalWithUnits" = attrs.field()
+    length: "DecimalWithUnits" = attrs.field()
+    weight: "DecimalWithUnits" = attrs.field()
+    width: "DecimalWithUnits" = attrs.field()
     pass
 
 
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -188,36 +188,36 @@ class ErrorList:
 @attrs.define
 class GetCatalogItemResponse:
 
-    errors: "ErrorList"
-    payload: "Item"
+    errors: "ErrorList" = attrs.field()
+    payload: "Item" = attrs.field()
     pass
 
 
 @attrs.define
 class IdentifierType:
 
-    marketplace_asin: "ASINIdentifier"
-    skuidentifier: "SellerSKUIdentifier"
+    marketplace_asin: "ASINIdentifier" = attrs.field()
+    skuidentifier: "SellerSKUIdentifier" = attrs.field()
     pass
 
 
 @attrs.define
 class Image:
 
-    url: str
+    url: str = attrs.field()
 
-    height: "DecimalWithUnits"
-    width: "DecimalWithUnits"
+    height: "DecimalWithUnits" = attrs.field()
+    width: "DecimalWithUnits" = attrs.field()
     pass
 
 
 @attrs.define
 class Item:
 
-    attribute_sets: "AttributeSetList"
-    identifiers: "IdentifierType"
-    relationships: "RelationshipList"
-    sales_rankings: "SalesRankList"
+    attribute_sets: "AttributeSetList" = attrs.field()
+    identifiers: "IdentifierType" = attrs.field()
+    relationships: "RelationshipList" = attrs.field()
+    sales_rankings: "SalesRankList" = attrs.field()
     pass
 
 
@@ -230,9 +230,9 @@ class ItemList:
 @attrs.define
 class LanguageType:
 
-    audio_format: str
-    name: str
-    type: str
+    audio_format: str = attrs.field()
+    name: str = attrs.field()
+    type: str = attrs.field()
 
     pass
 
@@ -240,23 +240,23 @@ class LanguageType:
 @attrs.define
 class ListCatalogCategoriesResponse:
 
-    errors: "ErrorList"
-    payload: "ListOfCategories"
+    errors: "ErrorList" = attrs.field()
+    payload: "ListOfCategories" = attrs.field()
     pass
 
 
 @attrs.define
 class ListCatalogItemsResponse:
 
-    errors: "ErrorList"
-    payload: "ListMatchingItemsResponse"
+    errors: "ErrorList" = attrs.field()
+    payload: "ListMatchingItemsResponse" = attrs.field()
     pass
 
 
 @attrs.define
 class ListMatchingItemsResponse:
 
-    items: "ItemList"
+    items: "ItemList" = attrs.field()
     pass
 
 
@@ -269,8 +269,8 @@ class ListOfCategories:
 @attrs.define
 class Price:
 
-    amount: Union[float, int]
-    currency_code: str
+    amount: Union[float, int] = attrs.field()
+    currency_code: str = attrs.field()
 
     pass
 
@@ -284,30 +284,30 @@ class RelationshipList:
 @attrs.define
 class RelationshipType:
 
-    color: str
-    edition: str
-    flavor: str
-    gem_type: list[str]
-    golf_club_flex: str
-    hand_orientation: str
-    hardware_platform: str
-    material_type: list[str]
-    metal_type: str
-    model: str
-    operating_system: list[str]
-    package_quantity: int
-    product_type_subcategory: str
-    ring_size: str
-    scent: str
-    shaft_material: str
-    size: str
-    size_per_pearl: str
+    color: str = attrs.field()
+    edition: str = attrs.field()
+    flavor: str = attrs.field()
+    gem_type: list[str] = attrs.field()
+    golf_club_flex: str = attrs.field()
+    hand_orientation: str = attrs.field()
+    hardware_platform: str = attrs.field()
+    material_type: list[str] = attrs.field()
+    metal_type: str = attrs.field()
+    model: str = attrs.field()
+    operating_system: list[str] = attrs.field()
+    package_quantity: int = attrs.field()
+    product_type_subcategory: str = attrs.field()
+    ring_size: str = attrs.field()
+    scent: str = attrs.field()
+    shaft_material: str = attrs.field()
+    size: str = attrs.field()
+    size_per_pearl: str = attrs.field()
 
-    golf_club_loft: "DecimalWithUnits"
-    identifiers: "IdentifierType"
-    item_dimensions: "DimensionType"
-    total_diamond_weight: "DecimalWithUnits"
-    total_gem_weight: "DecimalWithUnits"
+    golf_club_loft: "DecimalWithUnits" = attrs.field()
+    identifiers: "IdentifierType" = attrs.field()
+    item_dimensions: "DimensionType" = attrs.field()
+    total_diamond_weight: "DecimalWithUnits" = attrs.field()
+    total_gem_weight: "DecimalWithUnits" = attrs.field()
     pass
 
 
@@ -320,8 +320,8 @@ class SalesRankList:
 @attrs.define
 class SalesRankType:
 
-    product_category_id: str
-    rank: int
+    product_category_id: str = attrs.field()
+    rank: int = attrs.field()
     # {'schema_format': 'int32'}
 
     pass
@@ -330,9 +330,9 @@ class SalesRankType:
 @attrs.define
 class SellerSKUIdentifier:
 
-    marketplace_id: str
-    seller_id: str
-    seller_sku: str
+    marketplace_id: str = attrs.field()
+    seller_id: str = attrs.field()
+    seller_sku: str = attrs.field()
 
     pass
 

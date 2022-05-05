@@ -15,9 +15,9 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -31,25 +31,25 @@ class ErrorList:
 @attrs.define
 class GetInventorySummariesResponse:
 
-    errors: "ErrorList"
-    pagination: "Pagination"
-    payload: "GetInventorySummariesResult"
+    errors: "ErrorList" = attrs.field()
+    pagination: "Pagination" = attrs.field()
+    payload: "GetInventorySummariesResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetInventorySummariesResult:
 
-    granularity: "Granularity"
-    inventory_summaries: "InventorySummaries"
+    granularity: "Granularity" = attrs.field()
+    inventory_summaries: "InventorySummaries" = attrs.field()
     pass
 
 
 @attrs.define
 class Granularity:
 
-    granularity_id: str
-    granularity_type: str
+    granularity_id: str = attrs.field()
+    granularity_type: str = attrs.field()
 
     pass
 
@@ -57,14 +57,14 @@ class Granularity:
 @attrs.define
 class InventoryDetails:
 
-    fulfillable_quantity: int
-    inbound_receiving_quantity: int
-    inbound_shipped_quantity: int
-    inbound_working_quantity: int
+    fulfillable_quantity: int = attrs.field()
+    inbound_receiving_quantity: int = attrs.field()
+    inbound_shipped_quantity: int = attrs.field()
+    inbound_working_quantity: int = attrs.field()
 
-    researching_quantity: "ResearchingQuantity"
-    reserved_quantity: "ReservedQuantity"
-    unfulfillable_quantity: "UnfulfillableQuantity"
+    researching_quantity: "ResearchingQuantity" = attrs.field()
+    reserved_quantity: "ReservedQuantity" = attrs.field()
+    unfulfillable_quantity: "UnfulfillableQuantity" = attrs.field()
     pass
 
 
@@ -77,23 +77,23 @@ class InventorySummaries:
 @attrs.define
 class InventorySummary:
 
-    asin: str
-    condition: str
-    fn_sku: str
-    last_updated_time: str
+    asin: str = attrs.field()
+    condition: str = attrs.field()
+    fn_sku: str = attrs.field()
+    last_updated_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    product_name: str
-    seller_sku: str
-    total_quantity: int
+    product_name: str = attrs.field()
+    seller_sku: str = attrs.field()
+    total_quantity: int = attrs.field()
 
-    inventory_details: "InventoryDetails"
+    inventory_details: "InventoryDetails" = attrs.field()
     pass
 
 
 @attrs.define
 class Pagination:
 
-    next_token: str
+    next_token: str = attrs.field()
 
     pass
 
@@ -101,8 +101,8 @@ class Pagination:
 @attrs.define
 class ResearchingQuantity:
 
-    researching_quantity_breakdown: list["ResearchingQuantityEntry"]
-    total_researching_quantity: int
+    researching_quantity_breakdown: list["ResearchingQuantityEntry"] = attrs.field()
+    total_researching_quantity: int = attrs.field()
 
     pass
 
@@ -114,8 +114,8 @@ class ResearchingQuantityEntry:
         Literal["researchingQuantityInShortTerm"],
         Literal["researchingQuantityInMidTerm"],
         Literal["researchingQuantityInLongTerm"],
-    ]
-    quantity: int
+    ] = attrs.field()
+    quantity: int = attrs.field()
 
     pass
 
@@ -123,10 +123,10 @@ class ResearchingQuantityEntry:
 @attrs.define
 class ReservedQuantity:
 
-    fc_processing_quantity: int
-    pending_customer_order_quantity: int
-    pending_transshipment_quantity: int
-    total_reserved_quantity: int
+    fc_processing_quantity: int = attrs.field()
+    pending_customer_order_quantity: int = attrs.field()
+    pending_transshipment_quantity: int = attrs.field()
+    total_reserved_quantity: int = attrs.field()
 
     pass
 
@@ -134,13 +134,13 @@ class ReservedQuantity:
 @attrs.define
 class UnfulfillableQuantity:
 
-    carrier_damaged_quantity: int
-    customer_damaged_quantity: int
-    defective_quantity: int
-    distributor_damaged_quantity: int
-    expired_quantity: int
-    total_unfulfillable_quantity: int
-    warehouse_damaged_quantity: int
+    carrier_damaged_quantity: int = attrs.field()
+    customer_damaged_quantity: int = attrs.field()
+    defective_quantity: int = attrs.field()
+    distributor_damaged_quantity: int = attrs.field()
+    expired_quantity: int = attrs.field()
+    total_unfulfillable_quantity: int = attrs.field()
+    warehouse_damaged_quantity: int = attrs.field()
 
     pass
 

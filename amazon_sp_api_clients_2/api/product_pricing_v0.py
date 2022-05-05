@@ -15,8 +15,8 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class ASINIdentifier:
 
-    asin: str
-    marketplace_id: str
+    asin: str = attrs.field()
+    marketplace_id: str = attrs.field()
 
     pass
 
@@ -36,17 +36,17 @@ class BuyBoxEligibleOffers:
 @attrs.define
 class BuyBoxPriceType:
 
-    condition: str
-    quantity_tier: int
+    condition: str = attrs.field()
+    quantity_tier: int = attrs.field()
     # {'schema_format': 'int32'}
-    seller_id: str
+    seller_id: str = attrs.field()
 
-    landed_price: "MoneyType"
-    listing_price: "MoneyType"
-    points: "Points"
-    shipping: "MoneyType"
-    offer_type: "OfferCustomerType"
-    quantity_discount_type: "QuantityDiscountType"
+    landed_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field()
+    points: "Points" = attrs.field()
+    shipping: "MoneyType" = attrs.field()
+    offer_type: "OfferCustomerType" = attrs.field()
+    quantity_discount_type: "QuantityDiscountType" = attrs.field()
     pass
 
 
@@ -65,26 +65,26 @@ class CompetitivePriceList:
 @attrs.define
 class CompetitivePriceType:
 
-    competitive_price_id: str
-    belongs_to_requester: bool
-    condition: str
-    quantity_tier: int
+    competitive_price_id: str = attrs.field()
+    belongs_to_requester: bool = attrs.field()
+    condition: str = attrs.field()
+    quantity_tier: int = attrs.field()
     # {'schema_format': 'int32'}
-    seller_id: str
-    subcondition: str
+    seller_id: str = attrs.field()
+    subcondition: str = attrs.field()
 
-    price: "PriceType"
-    offer_type: "OfferCustomerType"
-    quantity_discount_type: "QuantityDiscountType"
+    price: "PriceType" = attrs.field()
+    offer_type: "OfferCustomerType" = attrs.field()
+    quantity_discount_type: "QuantityDiscountType" = attrs.field()
     pass
 
 
 @attrs.define
 class CompetitivePricingType:
 
-    competitive_prices: "CompetitivePriceList"
-    number_of_offer_listings: "NumberOfOfferListingsList"
-    trade_in_value: "MoneyType"
+    competitive_prices: "CompetitivePriceList" = attrs.field()
+    number_of_offer_listings: "NumberOfOfferListingsList" = attrs.field()
+    trade_in_value: "MoneyType" = attrs.field()
     pass
 
 
@@ -97,11 +97,13 @@ class ConditionType:
 @attrs.define
 class DetailedShippingTimeType:
 
-    availability_type: Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]]
-    available_date: str
-    maximum_hours: int
+    availability_type: Union[
+        Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]
+    ] = attrs.field()
+    available_date: str = attrs.field()
+    maximum_hours: int = attrs.field()
     # {'schema_format': 'int64'}
-    minimum_hours: int
+    minimum_hours: int = attrs.field()
     # {'schema_format': 'int64'}
 
     pass
@@ -110,9 +112,9 @@ class DetailedShippingTimeType:
 @attrs.define
 class Error:
 
-    code: str
-    details: str
-    message: str
+    code: str = attrs.field()
+    details: str = attrs.field()
+    message: str = attrs.field()
 
     pass
 
@@ -132,67 +134,67 @@ class FulfillmentChannelType:
 @attrs.define
 class GetOffersResponse:
 
-    errors: "ErrorList"
-    payload: "GetOffersResult"
+    errors: "ErrorList" = attrs.field()
+    payload: "GetOffersResult" = attrs.field()
     pass
 
 
 @attrs.define
 class GetOffersResult:
 
-    asin: str
-    marketplace_id: str
-    sku: str
-    status: str
+    asin: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    sku: str = attrs.field()
+    status: str = attrs.field()
 
-    identifier: "ItemIdentifier"
-    item_condition: "ConditionType"
-    offers: "OfferDetailList"
-    summary: "Summary"
+    identifier: "ItemIdentifier" = attrs.field()
+    item_condition: "ConditionType" = attrs.field()
+    offers: "OfferDetailList" = attrs.field()
+    summary: "Summary" = attrs.field()
     pass
 
 
 @attrs.define
 class GetPricingResponse:
 
-    errors: "ErrorList"
-    payload: "PriceList"
+    errors: "ErrorList" = attrs.field()
+    payload: "PriceList" = attrs.field()
     pass
 
 
 @attrs.define
 class IdentifierType:
 
-    marketplace_asin: "ASINIdentifier"
-    skuidentifier: "SellerSKUIdentifier"
+    marketplace_asin: "ASINIdentifier" = attrs.field()
+    skuidentifier: "SellerSKUIdentifier" = attrs.field()
     pass
 
 
 @attrs.define
 class ItemIdentifier:
 
-    asin: str
-    marketplace_id: str
-    seller_sku: str
+    asin: str = attrs.field()
+    marketplace_id: str = attrs.field()
+    seller_sku: str = attrs.field()
 
-    item_condition: "ConditionType"
+    item_condition: "ConditionType" = attrs.field()
     pass
 
 
 @attrs.define
 class LowestPriceType:
 
-    condition: str
-    fulfillment_channel: str
-    quantity_tier: int
+    condition: str = attrs.field()
+    fulfillment_channel: str = attrs.field()
+    quantity_tier: int = attrs.field()
     # {'schema_format': 'int32'}
 
-    landed_price: "MoneyType"
-    listing_price: "MoneyType"
-    points: "Points"
-    shipping: "MoneyType"
-    offer_type: "OfferCustomerType"
-    quantity_discount_type: "QuantityDiscountType"
+    landed_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field()
+    points: "Points" = attrs.field()
+    shipping: "MoneyType" = attrs.field()
+    offer_type: "OfferCustomerType" = attrs.field()
+    quantity_discount_type: "QuantityDiscountType" = attrs.field()
     pass
 
 
@@ -205,8 +207,8 @@ class LowestPrices:
 @attrs.define
 class MoneyType:
 
-    amount: Union[float, int]
-    currency_code: str
+    amount: Union[float, int] = attrs.field()
+    currency_code: str = attrs.field()
 
     pass
 
@@ -226,11 +228,11 @@ class NumberOfOffers:
 @attrs.define
 class OfferCountType:
 
-    offer_count: int
+    offer_count: int = attrs.field()
     # {'schema_format': 'int32'}
-    condition: str
+    condition: str = attrs.field()
 
-    fulfillment_channel: "FulfillmentChannelType"
+    fulfillment_channel: "FulfillmentChannelType" = attrs.field()
     pass
 
 
@@ -243,23 +245,23 @@ class OfferCustomerType:
 @attrs.define
 class OfferDetail:
 
-    condition_notes: str
-    is_buy_box_winner: bool
-    is_featured_merchant: bool
-    is_fulfilled_by_amazon: bool
-    my_offer: bool
-    seller_id: str
-    sub_condition: str
-    quantity_discount_prices: list["QuantityDiscountPriceType"]
+    condition_notes: str = attrs.field()
+    is_buy_box_winner: bool = attrs.field()
+    is_featured_merchant: bool = attrs.field()
+    is_fulfilled_by_amazon: bool = attrs.field()
+    my_offer: bool = attrs.field()
+    seller_id: str = attrs.field()
+    sub_condition: str = attrs.field()
+    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field()
 
-    listing_price: "MoneyType"
-    points: "Points"
-    prime_information: "PrimeInformationType"
-    seller_feedback_rating: "SellerFeedbackType"
-    shipping: "MoneyType"
-    shipping_time: "DetailedShippingTimeType"
-    ships_from: "ShipsFromType"
-    offer_type: "OfferCustomerType"
+    listing_price: "MoneyType" = attrs.field()
+    points: "Points" = attrs.field()
+    prime_information: "PrimeInformationType" = attrs.field()
+    seller_feedback_rating: "SellerFeedbackType" = attrs.field()
+    shipping: "MoneyType" = attrs.field()
+    shipping_time: "DetailedShippingTimeType" = attrs.field()
+    ships_from: "ShipsFromType" = attrs.field()
+    offer_type: "OfferCustomerType" = attrs.field()
     pass
 
 
@@ -272,9 +274,9 @@ class OfferDetailList:
 @attrs.define
 class OfferListingCountType:
 
-    count: int
+    count: int = attrs.field()
     # {'schema_format': 'int32'}
-    condition: str
+    condition: str = attrs.field()
 
     pass
 
@@ -282,16 +284,16 @@ class OfferListingCountType:
 @attrs.define
 class OfferType:
 
-    fulfillment_channel: str
-    item_condition: str
-    item_sub_condition: str
-    seller_sku: str
-    quantity_discount_prices: list["QuantityDiscountPriceType"]
+    fulfillment_channel: str = attrs.field()
+    item_condition: str = attrs.field()
+    item_sub_condition: str = attrs.field()
+    seller_sku: str = attrs.field()
+    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field()
 
-    buying_price: "PriceType"
-    regular_price: "MoneyType"
-    business_price: "MoneyType"
-    offer_type: "OfferCustomerType"
+    buying_price: "PriceType" = attrs.field()
+    regular_price: "MoneyType" = attrs.field()
+    business_price: "MoneyType" = attrs.field()
+    offer_type: "OfferCustomerType" = attrs.field()
     pass
 
 
@@ -304,21 +306,21 @@ class OffersList:
 @attrs.define
 class Points:
 
-    points_number: int
+    points_number: int = attrs.field()
     # {'schema_format': 'int32'}
 
-    points_monetary_value: "MoneyType"
+    points_monetary_value: "MoneyType" = attrs.field()
     pass
 
 
 @attrs.define
 class Price:
 
-    asin: str
-    seller_sku: str
-    status: str
+    asin: str = attrs.field()
+    seller_sku: str = attrs.field()
+    status: str = attrs.field()
 
-    product: "Product"
+    product: "Product" = attrs.field()
     pass
 
 
@@ -331,18 +333,18 @@ class PriceList:
 @attrs.define
 class PriceType:
 
-    landed_price: "MoneyType"
-    listing_price: "MoneyType"
-    points: "Points"
-    shipping: "MoneyType"
+    landed_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field()
+    points: "Points" = attrs.field()
+    shipping: "MoneyType" = attrs.field()
     pass
 
 
 @attrs.define
 class PrimeInformationType:
 
-    is_national_prime: bool
-    is_prime: bool
+    is_national_prime: bool = attrs.field()
+    is_prime: bool = attrs.field()
 
     pass
 
@@ -350,23 +352,23 @@ class PrimeInformationType:
 @attrs.define
 class Product:
 
-    attribute_sets: "AttributeSetList"
-    competitive_pricing: "CompetitivePricingType"
-    identifiers: "IdentifierType"
-    offers: "OffersList"
-    relationships: "RelationshipList"
-    sales_rankings: "SalesRankList"
+    attribute_sets: "AttributeSetList" = attrs.field()
+    competitive_pricing: "CompetitivePricingType" = attrs.field()
+    identifiers: "IdentifierType" = attrs.field()
+    offers: "OffersList" = attrs.field()
+    relationships: "RelationshipList" = attrs.field()
+    sales_rankings: "SalesRankList" = attrs.field()
     pass
 
 
 @attrs.define
 class QuantityDiscountPriceType:
 
-    quantity_tier: int
+    quantity_tier: int = attrs.field()
     # {'schema_format': 'int32'}
 
-    listing_price: "MoneyType"
-    quantity_discount_type: "QuantityDiscountType"
+    listing_price: "MoneyType" = attrs.field()
+    quantity_discount_type: "QuantityDiscountType" = attrs.field()
     pass
 
 
@@ -391,8 +393,8 @@ class SalesRankList:
 @attrs.define
 class SalesRankType:
 
-    product_category_id: str
-    rank: int
+    product_category_id: str = attrs.field()
+    rank: int = attrs.field()
     # {'schema_format': 'int32'}
 
     pass
@@ -401,9 +403,9 @@ class SalesRankType:
 @attrs.define
 class SellerFeedbackType:
 
-    feedback_count: int
+    feedback_count: int = attrs.field()
     # {'schema_format': 'int64'}
-    seller_positive_feedback_rating: Union[float, int]
+    seller_positive_feedback_rating: Union[float, int] = attrs.field()
     # {'schema_format': 'double'}
 
     pass
@@ -412,9 +414,9 @@ class SellerFeedbackType:
 @attrs.define
 class SellerSKUIdentifier:
 
-    marketplace_id: str
-    seller_id: str
-    seller_sku: str
+    marketplace_id: str = attrs.field()
+    seller_id: str = attrs.field()
+    seller_sku: str = attrs.field()
 
     pass
 
@@ -422,8 +424,8 @@ class SellerSKUIdentifier:
 @attrs.define
 class ShipsFromType:
 
-    country: str
-    state: str
+    country: str = attrs.field()
+    state: str = attrs.field()
 
     pass
 
@@ -431,19 +433,19 @@ class ShipsFromType:
 @attrs.define
 class Summary:
 
-    offers_available_time: str
+    offers_available_time: str = attrs.field()
     # {'schema_format': 'date-time'}
-    total_offer_count: int
+    total_offer_count: int = attrs.field()
     # {'schema_format': 'int32'}
 
-    buy_box_eligible_offers: "BuyBoxEligibleOffers"
-    buy_box_prices: "BuyBoxPrices"
-    competitive_price_threshold: "MoneyType"
-    list_price: "MoneyType"
-    lowest_prices: "LowestPrices"
-    number_of_offers: "NumberOfOffers"
-    sales_rankings: "SalesRankList"
-    suggested_lower_price_plus_shipping: "MoneyType"
+    buy_box_eligible_offers: "BuyBoxEligibleOffers" = attrs.field()
+    buy_box_prices: "BuyBoxPrices" = attrs.field()
+    competitive_price_threshold: "MoneyType" = attrs.field()
+    list_price: "MoneyType" = attrs.field()
+    lowest_prices: "LowestPrices" = attrs.field()
+    number_of_offers: "NumberOfOffers" = attrs.field()
+    sales_rankings: "SalesRankList" = attrs.field()
+    suggested_lower_price_plus_shipping: "MoneyType" = attrs.field()
     pass
 
 
