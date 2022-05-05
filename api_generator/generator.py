@@ -170,10 +170,14 @@ class Generator:
         with open(self.directory / 'api.py', 'w') as f:
             f.write(self.content)
 
+    @classmethod
+    def main(cls):
+        generators = [cls(f) for f in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json')]
+        [g.generate() for g in generators]
+
 
 def main():
-    generators = [Generator(f) for f in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json')]
-    [g.generate() for g in generators]
+    Generator.main()
 
 
 if __name__ == '__main__':
