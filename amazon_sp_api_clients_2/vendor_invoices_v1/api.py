@@ -31,5 +31,7 @@ class VendorInvoicesV1Client(BaseClient):
         """
         url = "/vendor/payments/v1/invoices"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_invoices_params)
+        return response
 
     _submit_invoices_params = ()  # name, param in

@@ -32,6 +32,8 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/feeds/{feedId}"
         values = (feed_id,)
+        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_feed_params)
+        return response
 
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
@@ -53,6 +55,8 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/feeds"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_feed_params)
+        return response
 
     _create_feed_params = ()  # name, param in
 
@@ -74,6 +78,8 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/documents"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_feed_document_params)
+        return response
 
     _create_feed_document_params = ()  # name, param in
 
@@ -97,6 +103,8 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/feeds/{feedId}"
         values = (feed_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_feed_params)
+        return response
 
     _get_feed_params = (("feedId", "path"),)  # name, param in
 
@@ -120,6 +128,8 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/documents/{feedDocumentId}"
         values = (feed_document_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_feed_document_params)
+        return response
 
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
@@ -165,6 +175,8 @@ class Feeds20200904Client(BaseClient):
             created_until,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_feeds_params)
+        return response
 
     _get_feeds_params = (  # name, param in
         ("feedTypes", "query"),

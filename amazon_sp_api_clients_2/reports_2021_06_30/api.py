@@ -32,6 +32,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/reports/{reportId}"
         values = (report_id,)
+        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_report_params)
+        return response
 
     _cancel_report_params = (("reportId", "path"),)  # name, param in
 
@@ -55,6 +57,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
+        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_report_schedule_params)
+        return response
 
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
@@ -76,6 +80,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/reports"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_report_params)
+        return response
 
     _create_report_params = ()  # name, param in
 
@@ -97,6 +103,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/schedules"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_report_schedule_params)
+        return response
 
     _create_report_schedule_params = ()  # name, param in
 
@@ -120,6 +128,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/reports/{reportId}"
         values = (report_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_report_params)
+        return response
 
     _get_report_params = (("reportId", "path"),)  # name, param in
 
@@ -143,6 +153,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/documents/{reportDocumentId}"
         values = (report_document_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_report_document_params)
+        return response
 
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
@@ -166,6 +178,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_report_schedule_params)
+        return response
 
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
@@ -189,6 +203,8 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/schedules"
         values = (report_types,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_report_schedules_params)
+        return response
 
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
@@ -234,6 +250,8 @@ class Reports20210630Client(BaseClient):
             created_until,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_reports_params)
+        return response
 
     _get_reports_params = (  # name, param in
         ("reportTypes", "query"),

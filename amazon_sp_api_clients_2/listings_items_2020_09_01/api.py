@@ -46,6 +46,8 @@ class ListingsItems20200901Client(BaseClient):
             marketplace_ids,
             issue_locale,
         )
+        response = self._parse_args_and_request(url, "DELETE", values, self._delete_listings_item_params)
+        return response
 
     _delete_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -92,6 +94,8 @@ class ListingsItems20200901Client(BaseClient):
             product_type,
             patches,
         )
+        response = self._parse_args_and_request(url, "PATCH", values, self._patch_listings_item_params)
+        return response
 
     _patch_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -143,6 +147,8 @@ class ListingsItems20200901Client(BaseClient):
             requirements,
             attributes,
         )
+        response = self._parse_args_and_request(url, "PUT", values, self._put_listings_item_params)
+        return response
 
     _put_listings_item_params = (  # name, param in
         ("sellerId", "path"),

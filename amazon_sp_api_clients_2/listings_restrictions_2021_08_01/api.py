@@ -62,6 +62,8 @@ class ListingsRestrictions20210801Client(BaseClient):
             marketplace_ids,
             reason_locale,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_listings_restrictions_params)
+        return response
 
     _get_listings_restrictions_params = (  # name, param in
         ("asin", "query"),

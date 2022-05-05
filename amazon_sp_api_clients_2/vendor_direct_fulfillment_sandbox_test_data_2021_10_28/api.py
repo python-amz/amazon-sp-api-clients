@@ -22,6 +22,8 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         """
         url = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._generate_order_scenarios_params)
+        return response
 
     _generate_order_scenarios_params = ()  # name, param in
 
@@ -37,5 +39,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         """
         url = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}"
         values = (transaction_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_scenarios_params)
+        return response
 
     _get_order_scenarios_params = (("transactionId", "path"),)  # name, param in

@@ -33,6 +33,8 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}"
         values = (order_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_params)
+        return response
 
     _get_order_params = (("orderId", "path"),)  # name, param in
 
@@ -57,6 +59,8 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}/address"
         values = (order_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_address_params)
+        return response
 
     _get_order_address_params = (("orderId", "path"),)  # name, param in
 
@@ -81,6 +85,8 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}/buyerInfo"
         values = (order_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_buyer_info_params)
+        return response
 
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
 
@@ -112,6 +118,8 @@ class OrdersV0Client(BaseClient):
             order_id,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_items_params)
+        return response
 
     _get_order_items_params = (  # name, param in
         ("orderId", "path"),
@@ -144,6 +152,8 @@ class OrdersV0Client(BaseClient):
             order_id,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_items_buyer_info_params)
+        return response
 
     _get_order_items_buyer_info_params = (  # name, param in
         ("orderId", "path"),
@@ -171,6 +181,8 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}/regulatedInfo"
         values = (order_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_regulated_info_params)
+        return response
 
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
 
@@ -246,6 +258,8 @@ class OrdersV0Client(BaseClient):
             is_ispu,
             store_chain_store_id,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_orders_params)
+        return response
 
     _get_orders_params = (  # name, param in
         ("CreatedAfter", "query"),
@@ -290,6 +304,8 @@ class OrdersV0Client(BaseClient):
             shipment_status,
             order_items,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._update_shipment_status_params)
+        return response
 
     _update_shipment_status_params = (  # name, param in
         ("orderId", "path"),
@@ -324,6 +340,8 @@ class OrdersV0Client(BaseClient):
             order_id,
             regulated_order_verification_status,
         )
+        response = self._parse_args_and_request(url, "PATCH", values, self._update_verification_status_params)
+        return response
 
     _update_verification_status_params = (  # name, param in
         ("orderId", "path"),

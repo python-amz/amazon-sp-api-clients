@@ -95,6 +95,8 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             requirements_enforced,
             locale,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_definitions_product_type_params)
+        return response
 
     _get_definitions_product_type_params = (  # name, param in
         ("productType", "path"),
@@ -132,6 +134,8 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             keywords,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._search_definitions_product_types_params)
+        return response
 
     _search_definitions_product_types_params = (  # name, param in
         ("keywords", "query"),

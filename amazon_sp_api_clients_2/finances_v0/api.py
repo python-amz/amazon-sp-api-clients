@@ -43,6 +43,8 @@ class FinancesV0Client(BaseClient):
             financial_event_group_started_after,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_financial_event_groups_params)
+        return response
 
     _list_financial_event_groups_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -82,6 +84,8 @@ class FinancesV0Client(BaseClient):
             posted_before,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_financial_events_params)
+        return response
 
     _list_financial_events_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -118,6 +122,8 @@ class FinancesV0Client(BaseClient):
             event_group_id,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_financial_events_by_group_id_params)
+        return response
 
     _list_financial_events_by_group_id_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -153,6 +159,8 @@ class FinancesV0Client(BaseClient):
             max_results_per_page,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_financial_events_by_order_id_params)
+        return response
 
     _list_financial_events_by_order_id_params = (  # name, param in
         ("orderId", "path"),

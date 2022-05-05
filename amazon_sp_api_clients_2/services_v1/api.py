@@ -37,6 +37,10 @@ class ServicesV1Client(BaseClient):
             service_job_id,
             appointment_time,
         )
+        response = self._parse_args_and_request(
+            url, "POST", values, self._add_appointment_for_service_job_by_service_job_id_params
+        )
+        return response
 
     _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),
@@ -68,6 +72,8 @@ class ServicesV1Client(BaseClient):
             service_job_id,
             cancellation_reason_code,
         )
+        response = self._parse_args_and_request(url, "PUT", values, self._cancel_service_job_by_service_job_id_params)
+        return response
 
     _cancel_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),
@@ -94,6 +100,8 @@ class ServicesV1Client(BaseClient):
         """
         url = "/service/v1/serviceJobs/{serviceJobId}/completions"
         values = (service_job_id,)
+        response = self._parse_args_and_request(url, "PUT", values, self._complete_service_job_by_service_job_id_params)
+        return response
 
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
@@ -117,6 +125,8 @@ class ServicesV1Client(BaseClient):
         """
         url = "/service/v1/serviceJobs/{serviceJobId}"
         values = (service_job_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_service_job_by_service_job_id_params)
+        return response
 
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
@@ -188,6 +198,8 @@ class ServicesV1Client(BaseClient):
             schedule_end_date,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_service_jobs_params)
+        return response
 
     _get_service_jobs_params = (  # name, param in
         ("serviceOrderIds", "query"),
@@ -236,6 +248,10 @@ class ServicesV1Client(BaseClient):
             appointment_time,
             reschedule_reason_code,
         )
+        response = self._parse_args_and_request(
+            url, "POST", values, self._reschedule_appointment_for_service_job_by_service_job_id_params
+        )
+        return response
 
     _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),

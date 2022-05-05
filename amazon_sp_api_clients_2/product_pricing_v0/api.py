@@ -47,6 +47,8 @@ class ProductPricingV0Client(BaseClient):
             item_type,
             customer_type,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_competitive_pricing_params)
+        return response
 
     _get_competitive_pricing_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -90,6 +92,8 @@ class ProductPricingV0Client(BaseClient):
             asin,
             customer_type,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_item_offers_params)
+        return response
 
     _get_item_offers_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -132,6 +136,8 @@ class ProductPricingV0Client(BaseClient):
             seller_sku,
             customer_type,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_listing_offers_params)
+        return response
 
     _get_listing_offers_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -180,6 +186,8 @@ class ProductPricingV0Client(BaseClient):
             item_condition,
             offer_type,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_pricing_params)
+        return response
 
     _get_pricing_params = (  # name, param in
         ("MarketplaceId", "query"),

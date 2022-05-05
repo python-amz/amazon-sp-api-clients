@@ -32,6 +32,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/shipments/{shipmentId}"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_shipment_params)
+        return response
 
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
@@ -55,6 +57,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/shipments/{shipmentId}/cancel"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "PUT", values, self._cancel_shipment_old_params)
+        return response
 
     _cancel_shipment_old_params = (("shipmentId", "path"),)  # name, param in
 
@@ -76,6 +80,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/shipments"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_shipment_params)
+        return response
 
     _create_shipment_params = ()  # name, param in
 
@@ -97,6 +103,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/additionalSellerInputs"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_params)
+        return response
 
     _get_additional_seller_inputs_params = ()  # name, param in
 
@@ -118,6 +126,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/sellerInputs"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_old_params)
+        return response
 
     _get_additional_seller_inputs_old_params = ()  # name, param in
 
@@ -139,6 +149,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/eligibleShippingServices"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._get_eligible_shipment_services_params)
+        return response
 
     _get_eligible_shipment_services_params = ()  # name, param in
 
@@ -160,6 +172,8 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/eligibleServices"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._get_eligible_shipment_services_old_params)
+        return response
 
     _get_eligible_shipment_services_old_params = ()  # name, param in
 
@@ -183,5 +197,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/shipments/{shipmentId}"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_params)
+        return response
 
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in

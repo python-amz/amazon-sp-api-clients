@@ -30,5 +30,7 @@ class SellersV1Client(BaseClient):
         """
         url = "/sellers/v1/marketplaceParticipations"
         values = ()
+        response = self._parse_args_and_request(url, "GET", values, self._get_marketplace_participations_params)
+        return response
 
     _get_marketplace_participations_params = ()  # name, param in

@@ -38,6 +38,8 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
             warehouse_id,
             inventory,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._submit_inventory_update_params)
+        return response
 
     _submit_inventory_update_params = (  # name, param in
         ("warehouseId", "path"),

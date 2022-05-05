@@ -37,6 +37,10 @@ class FbaSmallAndLightV1Client(BaseClient):
             seller_sku,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(
+            url, "DELETE", values, self._delete_small_and_light_enrollment_by_seller_sku_params
+        )
+        return response
 
     _delete_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
@@ -68,6 +72,10 @@ class FbaSmallAndLightV1Client(BaseClient):
             seller_sku,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(
+            url, "GET", values, self._get_small_and_light_eligibility_by_seller_sku_params
+        )
+        return response
 
     _get_small_and_light_eligibility_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
@@ -99,6 +107,10 @@ class FbaSmallAndLightV1Client(BaseClient):
             seller_sku,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(
+            url, "GET", values, self._get_small_and_light_enrollment_by_seller_sku_params
+        )
+        return response
 
     _get_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
@@ -123,6 +135,8 @@ class FbaSmallAndLightV1Client(BaseClient):
         """
         url = "/fba/smallAndLight/v1/feePreviews"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._get_small_and_light_fee_preview_params)
+        return response
 
     _get_small_and_light_fee_preview_params = ()  # name, param in
 
@@ -151,6 +165,10 @@ class FbaSmallAndLightV1Client(BaseClient):
             seller_sku,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(
+            url, "PUT", values, self._put_small_and_light_enrollment_by_seller_sku_params
+        )
+        return response
 
     _put_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),

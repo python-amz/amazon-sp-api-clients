@@ -33,5 +33,7 @@ class VendorTransactionStatusV1Client(BaseClient):
         """
         url = "/vendor/transactions/v1/transactions/{transactionId}"
         values = (transaction_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_transaction_params)
+        return response
 
     _get_transaction_params = (("transactionId", "path"),)  # name, param in

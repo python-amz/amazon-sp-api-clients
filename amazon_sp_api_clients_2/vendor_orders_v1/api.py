@@ -33,6 +33,8 @@ class VendorOrdersV1Client(BaseClient):
         """
         url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}"
         values = (purchase_order_number,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_purchase_order_params)
+        return response
 
     _get_purchase_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -92,6 +94,8 @@ class VendorOrdersV1Client(BaseClient):
             purchase_order_state,
             ordering_vendor_code,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_purchase_orders_params)
+        return response
 
     _get_purchase_orders_params = (  # name, param in
         ("limit", "query"),
@@ -169,6 +173,8 @@ class VendorOrdersV1Client(BaseClient):
             ordering_vendor_code,
             ship_to_party_id,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_purchase_orders_status_params)
+        return response
 
     _get_purchase_orders_status_params = (  # name, param in
         ("limit", "query"),
@@ -205,5 +211,7 @@ class VendorOrdersV1Client(BaseClient):
         """
         url = "/vendor/orders/v1/acknowledgements"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_acknowledgement_params)
+        return response
 
     _submit_acknowledgement_params = ()  # name, param in

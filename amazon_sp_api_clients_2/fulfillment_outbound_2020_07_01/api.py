@@ -32,6 +32,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
         values = (seller_fulfillment_order_id,)
+        response = self._parse_args_and_request(url, "PUT", values, self._cancel_fulfillment_order_params)
+        return response
 
     _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
@@ -53,6 +55,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_fulfillment_order_params)
+        return response
 
     _create_fulfillment_order_params = ()  # name, param in
 
@@ -81,6 +85,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
             seller_fulfillment_order_id,
             items,
         )
+        response = self._parse_args_and_request(url, "PUT", values, self._create_fulfillment_return_params)
+        return response
 
     _create_fulfillment_return_params = (  # name, param in
         ("sellerFulfillmentOrderId", "path"),
@@ -115,6 +121,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
             feature_name,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_feature_inventory_params)
+        return response
 
     _get_feature_inventory_params = (  # name, param in
         ("marketplaceId", "query"),
@@ -150,6 +158,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
             feature_name,
             seller_sku,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_feature_sku_params)
+        return response
 
     _get_feature_sku_params = (  # name, param in
         ("marketplaceId", "query"),
@@ -177,6 +187,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/features"
         values = (marketplace_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_features_params)
+        return response
 
     _get_features_params = (("marketplaceId", "query"),)  # name, param in
 
@@ -200,6 +212,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         values = (seller_fulfillment_order_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_fulfillment_order_params)
+        return response
 
     _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
@@ -221,6 +235,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._get_fulfillment_preview_params)
+        return response
 
     _get_fulfillment_preview_params = ()  # name, param in
 
@@ -244,6 +260,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/tracking"
         values = (package_number,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_package_tracking_details_params)
+        return response
 
     _get_package_tracking_details_params = (("packageNumber", "query"),)  # name, param in
 
@@ -272,6 +290,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
             query_start_date,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_all_fulfillment_orders_params)
+        return response
 
     _list_all_fulfillment_orders_params = (  # name, param in
         ("queryStartDate", "query"),
@@ -309,6 +329,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
             seller_fulfillment_order_id,
             language,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_return_reason_codes_params)
+        return response
 
     _list_return_reason_codes_params = (  # name, param in
         ("sellerSku", "query"),
@@ -377,6 +399,8 @@ class FulfillmentOutbound20200701Client(BaseClient):
             feature_constraints,
             items,
         )
+        response = self._parse_args_and_request(url, "PUT", values, self._update_fulfillment_order_params)
+        return response
 
     _update_fulfillment_order_params = (  # name, param in
         ("sellerFulfillmentOrderId", "path"),

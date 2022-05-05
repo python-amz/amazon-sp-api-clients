@@ -42,6 +42,8 @@ class ProductFeesV0Client(BaseClient):
             asin,
             fees_estimate_request,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._get_my_fees_estimate_for_asin_params)
+        return response
 
     _get_my_fees_estimate_for_asin_params = (  # name, param in
         ("Asin", "path"),
@@ -78,6 +80,8 @@ class ProductFeesV0Client(BaseClient):
             seller_sku,
             fees_estimate_request,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._get_my_fees_estimate_for_sku_params)
+        return response
 
     _get_my_fees_estimate_for_sku_params = (  # name, param in
         ("SellerSKU", "path"),

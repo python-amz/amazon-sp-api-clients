@@ -40,6 +40,8 @@ class FbaInboundEligibilityV1Client(BaseClient):
             asin,
             program,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_item_eligibility_preview_params)
+        return response
 
     _get_item_eligibility_preview_params = (  # name, param in
         ("marketplaceIds", "query"),

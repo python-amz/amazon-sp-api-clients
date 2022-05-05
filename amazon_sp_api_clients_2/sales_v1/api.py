@@ -60,6 +60,8 @@ class SalesV1Client(BaseClient):
             asin,
             sku,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_metrics_params)
+        return response
 
     _get_order_metrics_params = (  # name, param in
         ("marketplaceIds", "query"),

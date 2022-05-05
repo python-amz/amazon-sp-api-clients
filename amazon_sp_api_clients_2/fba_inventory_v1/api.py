@@ -56,6 +56,8 @@ class FbaInventoryV1Client(BaseClient):
             next_token,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_inventory_summaries_params)
+        return response
 
     _get_inventory_summaries_params = (  # name, param in
         ("details", "query"),

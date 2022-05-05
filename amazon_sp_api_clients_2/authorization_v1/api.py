@@ -40,6 +40,8 @@ class AuthorizationV1Client(BaseClient):
             developer_id,
             mws_auth_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_authorization_code_params)
+        return response
 
     _get_authorization_code_params = (  # name, param in
         ("sellingPartnerId", "query"),

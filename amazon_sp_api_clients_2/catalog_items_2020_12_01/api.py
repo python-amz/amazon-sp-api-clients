@@ -57,6 +57,8 @@ class CatalogItems20201201Client(BaseClient):
             included_data,
             locale,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_catalog_item_params)
+        return response
 
     _get_catalog_item_params = (  # name, param in
         ("asin", "path"),
@@ -122,6 +124,8 @@ class CatalogItems20201201Client(BaseClient):
             keywords_locale,
             locale,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._search_catalog_items_params)
+        return response
 
     _search_catalog_items_params = (  # name, param in
         ("keywords", "query"),

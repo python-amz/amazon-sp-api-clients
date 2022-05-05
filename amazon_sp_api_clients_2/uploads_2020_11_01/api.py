@@ -43,6 +43,10 @@ class Uploads20201101Client(BaseClient):
             resource,
             content_type,
         )
+        response = self._parse_args_and_request(
+            url, "POST", values, self._create_upload_destination_for_resource_params
+        )
+        return response
 
     _create_upload_destination_for_resource_params = (  # name, param in
         ("marketplaceIds", "query"),

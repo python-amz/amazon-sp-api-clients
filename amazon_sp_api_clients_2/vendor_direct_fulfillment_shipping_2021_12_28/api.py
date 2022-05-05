@@ -32,6 +32,8 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}"
         values = (purchase_order_number,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipping_label_params)
+        return response
 
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -72,6 +74,8 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             sort_order,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipping_labels_params)
+        return response
 
     _get_shipping_labels_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -100,5 +104,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_shipping_label_request_params)
+        return response
 
     _submit_shipping_label_request_params = ()  # name, param in

@@ -31,5 +31,7 @@ class VendorShipmentsV1Client(BaseClient):
         """
         url = "/vendor/shipping/v1/shipmentConfirmations"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_confirmations_params)
+        return response
 
     _submit_shipment_confirmations_params = ()  # name, param in

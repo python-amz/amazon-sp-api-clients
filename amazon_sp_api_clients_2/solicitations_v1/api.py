@@ -37,6 +37,10 @@ class SolicitationsV1Client(BaseClient):
             amazon_order_id,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(
+            url, "POST", values, self._create_product_review_and_seller_feedback_solicitation_params
+        )
+        return response
 
     _create_product_review_and_seller_feedback_solicitation_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -68,6 +72,8 @@ class SolicitationsV1Client(BaseClient):
             amazon_order_id,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_solicitation_actions_for_order_params)
+        return response
 
     _get_solicitation_actions_for_order_params = (  # name, param in
         ("amazonOrderId", "path"),

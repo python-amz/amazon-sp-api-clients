@@ -33,5 +33,7 @@ class VendorDirectFulfillmentTransactionsV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/transactions/v1/transactions/{transactionId}"
         values = (transaction_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_transaction_status_params)
+        return response
 
     _get_transaction_status_params = (("transactionId", "path"),)  # name, param in

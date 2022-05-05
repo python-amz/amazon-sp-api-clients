@@ -32,6 +32,8 @@ Args:
 """
         url = "{{ operation.path }}"
         values = ({% for p in operation.parsed_parameters %}{{ p.variable_name }},{% endfor %})
+        response = self._parse_args_and_request(url, '{{ operation.method | upper }}', values, self._{{ operation.method_name }}_params)
+        return response
     _{{ operation.method_name }}_params = ( # name, param in
         {% for p in operation.parsed_parameters %}
             ("{{ p.name }}", "{{ p.param_in }}"),{% endfor %}

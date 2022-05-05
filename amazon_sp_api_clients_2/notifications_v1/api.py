@@ -32,6 +32,8 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/destinations"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_destination_params)
+        return response
 
     _create_destination_params = ()  # name, param in
 
@@ -64,6 +66,8 @@ class NotificationsV1Client(BaseClient):
             payload_version,
             destination_id,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_subscription_params)
+        return response
 
     _create_subscription_params = (  # name, param in
         ("notificationType", "path"),
@@ -91,6 +95,8 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/destinations/{destinationId}"
         values = (destination_id,)
+        response = self._parse_args_and_request(url, "DELETE", values, self._delete_destination_params)
+        return response
 
     _delete_destination_params = (("destinationId", "path"),)  # name, param in
 
@@ -120,6 +126,8 @@ class NotificationsV1Client(BaseClient):
             subscription_id,
             notification_type,
         )
+        response = self._parse_args_and_request(url, "DELETE", values, self._delete_subscription_by_id_params)
+        return response
 
     _delete_subscription_by_id_params = (  # name, param in
         ("subscriptionId", "path"),
@@ -146,6 +154,8 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/destinations/{destinationId}"
         values = (destination_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_destination_params)
+        return response
 
     _get_destination_params = (("destinationId", "path"),)  # name, param in
 
@@ -167,6 +177,8 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/destinations"
         values = ()
+        response = self._parse_args_and_request(url, "GET", values, self._get_destinations_params)
+        return response
 
     _get_destinations_params = ()  # name, param in
 
@@ -191,6 +203,8 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/subscriptions/{notificationType}"
         values = (notification_type,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_subscription_params)
+        return response
 
     _get_subscription_params = (("notificationType", "path"),)  # name, param in
 
@@ -220,6 +234,8 @@ class NotificationsV1Client(BaseClient):
             subscription_id,
             notification_type,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_subscription_by_id_params)
+        return response
 
     _get_subscription_by_id_params = (  # name, param in
         ("subscriptionId", "path"),

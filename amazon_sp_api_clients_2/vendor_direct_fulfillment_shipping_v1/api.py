@@ -33,6 +33,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}"
         values = (purchase_order_number,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_customer_invoice_params)
+        return response
 
     _get_customer_invoice_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -74,6 +76,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_customer_invoices_params)
+        return response
 
     _get_customer_invoices_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -105,6 +109,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}"
         values = (purchase_order_number,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_packing_slip_params)
+        return response
 
     _get_packing_slip_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -146,6 +152,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_packing_slips_params)
+        return response
 
     _get_packing_slips_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -177,6 +185,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}"
         values = (purchase_order_number,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipping_label_params)
+        return response
 
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -218,6 +228,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order,
             next_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipping_labels_params)
+        return response
 
     _get_shipping_labels_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -247,6 +259,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_confirmations_params)
+        return response
 
     _submit_shipment_confirmations_params = ()  # name, param in
 
@@ -269,6 +283,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_status_updates_params)
+        return response
 
     _submit_shipment_status_updates_params = ()  # name, param in
 
@@ -291,5 +307,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_shipping_label_request_params)
+        return response
 
     _submit_shipping_label_request_params = ()  # name, param in

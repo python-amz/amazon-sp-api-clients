@@ -40,6 +40,8 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
             attachments,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_amazon_motors_params)
+        return response
 
     _create_amazon_motors_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -81,6 +83,8 @@ class MessagingV1Client(BaseClient):
             coverage_start_date,
             coverage_end_date,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_warranty_params)
+        return response
 
     _create_warranty_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -113,6 +117,8 @@ class MessagingV1Client(BaseClient):
             amazon_order_id,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_attributes_params)
+        return response
 
     _get_attributes_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -150,6 +156,8 @@ class MessagingV1Client(BaseClient):
             text,
             attachments,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._confirm_customization_details_params)
+        return response
 
     _confirm_customization_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -186,6 +194,8 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
             text,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_confirm_delivery_details_params)
+        return response
 
     _create_confirm_delivery_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -221,6 +231,8 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
             text,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_confirm_order_details_params)
+        return response
 
     _create_confirm_order_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -256,6 +268,8 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
             text,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_confirm_service_details_params)
+        return response
 
     _create_confirm_service_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -294,6 +308,8 @@ class MessagingV1Client(BaseClient):
             text,
             attachments,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_digital_access_key_params)
+        return response
 
     _create_digital_access_key_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -330,6 +346,8 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
             attachments,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_legal_disclosure_params)
+        return response
 
     _create_legal_disclosure_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -362,6 +380,8 @@ class MessagingV1Client(BaseClient):
             amazon_order_id,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_negative_feedback_removal_params)
+        return response
 
     _create_negative_feedback_removal_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -396,6 +416,8 @@ class MessagingV1Client(BaseClient):
             marketplace_ids,
             text,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_unexpected_problem_params)
+        return response
 
     _create_unexpected_problem_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -428,6 +450,8 @@ class MessagingV1Client(BaseClient):
             amazon_order_id,
             marketplace_ids,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_messaging_actions_for_order_params)
+        return response
 
     _get_messaging_actions_for_order_params = (  # name, param in
         ("amazonOrderId", "path"),

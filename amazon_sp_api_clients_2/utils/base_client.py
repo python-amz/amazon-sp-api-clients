@@ -17,7 +17,7 @@ import os
 import urllib
 from datetime import datetime
 from functools import reduce
-from typing import Union, Type, TYPE_CHECKING
+from typing import Union, Type, TYPE_CHECKING, Any, Tuple
 from urllib.parse import urlparse
 
 import boto3
@@ -204,6 +204,33 @@ class BaseClient:
         url = f'{self._endpoint}{path}'
         response = request(method=method, url=url, data=data, headers=headers, auth=auth, params=params)
         self.last_response = response
+        return response
+
+    def _parse_args_and_request(
+            self,
+            url: str,
+            method: str,
+            values: Tuple[Any, ...],
+            definitions: Tuple[Tuple[str, str], ...]):
+        """Match values and definitions, build request parameters, and send request.
+
+        Args:
+            url: source url string, before format with path parameters.
+            method: get, post, patch, etc.
+            values: parameters for request.
+            definitions: definition of the parameters.
+
+        Returns:
+            response
+        """
+        data = ((v, *d) for v, d in zip(values, definitions))
+        data = tuple((value, name, param_in) for value, name, param_in in data if value is not None)
+        assert all(param_in in ('path', 'query', 'body') for _, _, param_in in data)
+        path = {name: value for value, name, param_in in data if param_in == 'path'}
+        query = {name: value for value, name, param_in in data if param_in == 'query'}
+        body = {name: value for value, name, param_in in data if param_in == 'body'}
+        url = url.format(**path)
+        response = self.request(url, method=method, params=query, data=body)
         return response
 
 

@@ -32,6 +32,8 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/shipments/{shipmentId}/cancel"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "POST", values, self._cancel_shipment_params)
+        return response
 
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
@@ -53,6 +55,8 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/shipments"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_shipment_params)
+        return response
 
     _create_shipment_params = ()  # name, param in
 
@@ -74,6 +78,8 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/account"
         values = ()
+        response = self._parse_args_and_request(url, "GET", values, self._get_account_params)
+        return response
 
     _get_account_params = ()  # name, param in
 
@@ -95,6 +101,8 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/rates"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._get_rates_params)
+        return response
 
     _get_rates_params = ()  # name, param in
 
@@ -118,6 +126,8 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/shipments/{shipmentId}"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_params)
+        return response
 
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
 
@@ -141,6 +151,8 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/tracking/{trackingId}"
         values = (tracking_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_tracking_information_params)
+        return response
 
     _get_tracking_information_params = (("trackingId", "path"),)  # name, param in
 
@@ -172,6 +184,8 @@ class ShippingV1Client(BaseClient):
             rate_id,
             label_specification,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._purchase_labels_params)
+        return response
 
     _purchase_labels_params = (  # name, param in
         ("shipmentId", "path"),
@@ -197,6 +211,8 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/purchaseShipment"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._purchase_shipment_params)
+        return response
 
     _purchase_shipment_params = ()  # name, param in
 
@@ -228,6 +244,8 @@ class ShippingV1Client(BaseClient):
             tracking_id,
             label_specification,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._retrieve_shipping_label_params)
+        return response
 
     _retrieve_shipping_label_params = (  # name, param in
         ("shipmentId", "path"),

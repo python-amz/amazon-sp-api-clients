@@ -38,6 +38,8 @@ class CatalogItemsV0Client(BaseClient):
             marketplace_id,
             asin,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_catalog_item_params)
+        return response
 
     _get_catalog_item_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -73,6 +75,8 @@ class CatalogItemsV0Client(BaseClient):
             asin,
             seller_sku,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_catalog_categories_params)
+        return response
 
     _list_catalog_categories_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -128,6 +132,8 @@ class CatalogItemsV0Client(BaseClient):
             isbn,
             jan,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_catalog_items_params)
+        return response
 
     _list_catalog_items_params = (  # name, param in
         ("MarketplaceId", "query"),

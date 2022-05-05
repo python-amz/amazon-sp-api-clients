@@ -33,6 +33,8 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/orders/v1/purchaseOrders/{purchaseOrderNumber}"
         values = (purchase_order_number,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_order_params)
+        return response
 
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -80,6 +82,8 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
             next_token,
             include_details,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_orders_params)
+        return response
 
     _get_orders_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -111,5 +115,7 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/orders/v1/acknowledgements"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._submit_acknowledgement_params)
+        return response
 
     _submit_acknowledgement_params = ()  # name, param in

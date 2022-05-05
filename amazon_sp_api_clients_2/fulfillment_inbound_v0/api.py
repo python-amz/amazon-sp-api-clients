@@ -40,6 +40,8 @@ class FulfillmentInboundV0Client(BaseClient):
             need_by_date,
             marketplace_id,
         )
+        response = self._parse_args_and_request(url, "PUT", values, self._confirm_preorder_params)
+        return response
 
     _confirm_preorder_params = (  # name, param in
         ("shipmentId", "path"),
@@ -71,6 +73,8 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/confirm"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "POST", values, self._confirm_transport_params)
+        return response
 
     _confirm_transport_params = (("shipmentId", "path"),)  # name, param in
 
@@ -105,6 +109,8 @@ class FulfillmentInboundV0Client(BaseClient):
             inbound_shipment_items,
             marketplace_id,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_inbound_shipment_params)
+        return response
 
     _create_inbound_shipment_params = (  # name, param in
         ("shipmentId", "path"),
@@ -131,6 +137,8 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/plans"
         values = ()
+        response = self._parse_args_and_request(url, "POST", values, self._create_inbound_shipment_plan_params)
+        return response
 
     _create_inbound_shipment_plan_params = ()  # name, param in
 
@@ -156,6 +164,8 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/estimate"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "POST", values, self._estimate_transport_params)
+        return response
 
     _estimate_transport_params = (("shipmentId", "path"),)  # name, param in
 
@@ -179,6 +189,8 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/billOfLading"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_bill_of_lading_params)
+        return response
 
     _get_bill_of_lading_params = (("shipmentId", "path"),)  # name, param in
 
@@ -210,6 +222,8 @@ class FulfillmentInboundV0Client(BaseClient):
             seller_skulist,
             asinlist,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_inbound_guidance_params)
+        return response
 
     _get_inbound_guidance_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -274,6 +288,8 @@ class FulfillmentInboundV0Client(BaseClient):
             page_size,
             page_start_index,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_labels_params)
+        return response
 
     _get_labels_params = (  # name, param in
         ("shipmentId", "path"),
@@ -311,6 +327,8 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_id,
             marketplace_id,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_preorder_info_params)
+        return response
 
     _get_preorder_info_params = (  # name, param in
         ("shipmentId", "path"),
@@ -347,6 +365,8 @@ class FulfillmentInboundV0Client(BaseClient):
             seller_skulist,
             asinlist,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_prep_instructions_params)
+        return response
 
     _get_prep_instructions_params = (  # name, param in
         ("ShipToCountryCode", "query"),
@@ -388,6 +408,8 @@ class FulfillmentInboundV0Client(BaseClient):
             next_token,
             marketplace_id,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_items_params)
+        return response
 
     _get_shipment_items_params = (  # name, param in
         ("LastUpdatedAfter", "query"),
@@ -422,6 +444,8 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_id,
             marketplace_id,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_items_by_shipment_id_params)
+        return response
 
     _get_shipment_items_by_shipment_id_params = (  # name, param in
         ("shipmentId", "path"),
@@ -481,6 +505,8 @@ class FulfillmentInboundV0Client(BaseClient):
             next_token,
             marketplace_id,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_shipments_params)
+        return response
 
     _get_shipments_params = (  # name, param in
         ("ShipmentStatusList", "query"),
@@ -512,6 +538,8 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "GET", values, self._get_transport_details_params)
+        return response
 
     _get_transport_details_params = (("shipmentId", "path"),)  # name, param in
 
@@ -546,6 +574,8 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_type,
             transport_details,
         )
+        response = self._parse_args_and_request(url, "PUT", values, self._put_transport_details_params)
+        return response
 
     _put_transport_details_params = (  # name, param in
         ("shipmentId", "path"),
@@ -585,6 +615,8 @@ class FulfillmentInboundV0Client(BaseClient):
             inbound_shipment_items,
             marketplace_id,
         )
+        response = self._parse_args_and_request(url, "PUT", values, self._update_inbound_shipment_params)
+        return response
 
     _update_inbound_shipment_params = (  # name, param in
         ("shipmentId", "path"),
@@ -617,5 +649,7 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/void"
         values = (shipment_id,)
+        response = self._parse_args_and_request(url, "POST", values, self._void_transport_params)
+        return response
 
     _void_transport_params = (("shipmentId", "path"),)  # name, param in

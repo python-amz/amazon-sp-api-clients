@@ -38,6 +38,8 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             content_document,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._create_content_document_params)
+        return response
 
     _create_content_document_params = (  # name, param in
         ("marketplaceId", "query"),
@@ -73,6 +75,8 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             included_data_set,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._get_content_document_params)
+        return response
 
     _get_content_document_params = (  # name, param in
         ("contentReferenceKey", "path"),
@@ -115,6 +119,8 @@ class AplusContent20201101Client(BaseClient):
             asin_set,
             page_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._list_content_document_asin_relations_params)
+        return response
 
     _list_content_document_asin_relations_params = (  # name, param in
         ("contentReferenceKey", "path"),
@@ -150,6 +156,10 @@ class AplusContent20201101Client(BaseClient):
             content_reference_key,
             marketplace_id,
         )
+        response = self._parse_args_and_request(
+            url, "POST", values, self._post_content_document_approval_submission_params
+        )
+        return response
 
     _post_content_document_approval_submission_params = (  # name, param in
         ("contentReferenceKey", "path"),
@@ -185,6 +195,8 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             asin_set,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._post_content_document_asin_relations_params)
+        return response
 
     _post_content_document_asin_relations_params = (  # name, param in
         ("contentReferenceKey", "path"),
@@ -218,6 +230,10 @@ class AplusContent20201101Client(BaseClient):
             content_reference_key,
             marketplace_id,
         )
+        response = self._parse_args_and_request(
+            url, "POST", values, self._post_content_document_suspend_submission_params
+        )
+        return response
 
     _post_content_document_suspend_submission_params = (  # name, param in
         ("contentReferenceKey", "path"),
@@ -250,6 +266,8 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             page_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._search_content_documents_params)
+        return response
 
     _search_content_documents_params = (  # name, param in
         ("marketplaceId", "query"),
@@ -285,6 +303,8 @@ class AplusContent20201101Client(BaseClient):
             asin,
             page_token,
         )
+        response = self._parse_args_and_request(url, "GET", values, self._search_content_publish_records_params)
+        return response
 
     _search_content_publish_records_params = (  # name, param in
         ("marketplaceId", "query"),
@@ -321,6 +341,8 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             content_document,
         )
+        response = self._parse_args_and_request(url, "POST", values, self._update_content_document_params)
+        return response
 
     _update_content_document_params = (  # name, param in
         ("contentReferenceKey", "path"),
@@ -357,6 +379,10 @@ class AplusContent20201101Client(BaseClient):
             asin_set,
             content_document,
         )
+        response = self._parse_args_and_request(
+            url, "POST", values, self._validate_content_document_asin_relations_params
+        )
+        return response
 
     _validate_content_document_asin_relations_params = (  # name, param in
         ("marketplaceId", "query"),
