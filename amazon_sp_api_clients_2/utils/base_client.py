@@ -99,7 +99,6 @@ class BaseClient:
     def __init__(self, *, refresh_token: str = None,
                  role_arn: str = None, endpoint: str = None, region: str = None, marketplace: str = None,
                  aws_key: str = None, aws_secret: str = None, lwa_key: str = None, lwa_secret: str = None,
-                 check_errors=True, ignore_quota_exceed: bool = True,
                  ):
         """Create a client.
 
@@ -117,14 +116,11 @@ class BaseClient:
                            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
                            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
                            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-            check_errors: if True, parse response to json and raise Exception if have errors
-            ignore_quota_exceed: if True, when caught quota exceeded exception, wait 0.1s and resend
         """
         parameters = dict(
             role_arn=role_arn, endpoint=endpoint, region=region, marketplace=marketplace,
             refresh_token=refresh_token,
             aws_key=aws_key, aws_secret=aws_secret, lwa_key=lwa_key, lwa_secret=lwa_secret,
-            check_errors=check_errors, ignore_quota_exceed=ignore_quota_exceed,
         )
 
         [parameters.__setitem__(k, os.environ.get(v)) for k, v in self.ENVIRON_VARIABLES if parameters[k] is None]
@@ -142,8 +138,6 @@ class BaseClient:
         self._parameters = parameters
 
         self._client = boto3.client('sts', aws_access_key_id=self._aws_key, aws_secret_access_key=self._aws_secret)
-        self._check_errors = check_errors
-        self._ignore_quota_exceeded = ignore_quota_exceed
 
     # Refresh token can be used to get access token, access token will last for 1 hour
     _lwa_access_token_cache = TTLCache(maxsize=1000, ttl=3000)
@@ -209,23 +203,6 @@ class BaseClient:
         url = f'{self._endpoint}{path}'
         response = request(method=method, url=url, data=data, headers=headers, auth=auth, params=params)
         self.last_response = response
-
-        # TODO check errors and quota exceeded should be processed later, in case to avoid decode twice
-
-        # process quota exceeded exception
-        # if not self._check_errors:
-        #     return response
-
-        # If found error, and the error is QuotaExceed, just resend the request
-        # errors = self._get_response_json(response).get('errors', None)
-        # if errors:
-        #     if self._ignore_quota_exceeded and len(errors) == 1 \
-        #             and 'code' in errors[0] and errors[0]['code'] == 'QuotaExceeded':
-        #         sleep(0.1)
-        #         return self.request(path, data=data, params=params, headers=headers, method=method)
-        #     else:
-        #         raise SellingApiError(errors)
-
         return response
 
 
