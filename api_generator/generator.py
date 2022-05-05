@@ -165,13 +165,13 @@ class Generator:
 
     @cached_property
     def directory(self):
-        return Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / self.package_name
+        return Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / 'api'
 
     def generate(self):
         self.directory.mkdir(parents=True, exist_ok=True)
         with open(self.directory / '__init__.py', 'w') as f:
             f.write('')
-        with open(self.directory / 'api.py', 'w') as f:
+        with open(self.directory / f'{self.package_name}.py', 'w') as f:
             f.write(self.content)
 
     @classmethod
