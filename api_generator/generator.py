@@ -64,13 +64,8 @@ class Generator:
         if not isinstance(ref, Reference):
             return ref
         match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
-        category, name = match.group(1), match.group(2)
-        if category == 'schemas':
-            return self.data.components.schemas.get(name)
-        elif category == 'parameters':
-            return self.data.components.parameters.get(name)
-        else:
-            raise ValueError(category)
+        category, name = match.group(1, 2)
+        return getattr(self.data.components, category).get(name)
 
     @cached_property
     def data(self) -> OpenAPI:
