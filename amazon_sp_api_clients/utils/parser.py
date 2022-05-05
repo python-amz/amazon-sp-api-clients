@@ -1,3 +1,4 @@
+
 class Parser:
     TRUE_VALUES = (True, 'true', 't', 'yes', 'y')
     FALSE_VALUES = (False, 'false', 'f', 'no', 'n')
