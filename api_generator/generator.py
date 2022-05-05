@@ -40,6 +40,13 @@ class ParsedParameter(Parameter):
         type_convert = {**base_type_convert, 'array': f'list[{child}]', 'object': f'dict[str, {child}]'}
         return type_convert[schema.type]
 
+    @property
+    def parsed_description(self):
+        result = self.description.splitlines()
+        result = [line.strip() for line in result]
+        result = [line for line in result if line]
+        return '\n        '.join(result)
+
 
 class OperationWithName(Operation):
     path: str
@@ -140,8 +147,8 @@ class Generator:
 
 def main():
     for json_file in (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'):
-        # if 'listing' not in json_file.stem:
-        #     continue
+        if 'order' not in json_file.stem:
+            continue
         Generator(json_file).generate()
 
 

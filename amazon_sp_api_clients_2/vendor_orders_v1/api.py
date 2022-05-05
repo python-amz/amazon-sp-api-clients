@@ -52,7 +52,6 @@ class VendorOrdersV1Client(BaseClient):
             purchase_order_state: Filters purchase orders based on the purchase order state.
             ordering_vendor_code: Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client application are returned.
         """
-        path_parameters = {}
         url = "/vendor/orders/v1/purchaseOrders"
         params = (  # name, param in, value, required
             ("limit", "query", limit, False),
@@ -88,7 +87,6 @@ class VendorOrdersV1Client(BaseClient):
         Args:
             purchase_order_number: The purchase order identifier for the order that you want. Formatting Notes: 8-character alpha-numeric code.
         """
-        path_parameters = {}
         url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}"
         params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
 
@@ -109,7 +107,6 @@ class VendorOrdersV1Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/vendor/orders/v1/acknowledgements"
         params = ()  # name, param in, value, required
 
@@ -156,7 +153,6 @@ class VendorOrdersV1Client(BaseClient):
             ordering_vendor_code: Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase orders for all the vendor codes that exist in the vendor group used to authorize API client application are returned.
             ship_to_party_id: Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order. If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor group purchase orders.
         """
-        path_parameters = {}
         url = "/vendor/orders/v1/purchaseOrdersStatus"
         params = (  # name, param in, value, required
             ("limit", "query", limit, False),

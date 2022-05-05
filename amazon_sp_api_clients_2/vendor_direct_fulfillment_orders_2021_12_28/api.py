@@ -13,11 +13,11 @@ from typing import Any, List, Dict, Union, Literal
 class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     def get_orders(
         self,
+        created_after: str,
+        created_before: str,
         ship_from_party_id: str = None,
         status: str = None,
         limit: int = None,
-        created_after: str,
-        created_before: str,
         sort_order: str = None,
         next_token: str = None,
         include_details: str = None,
@@ -43,7 +43,6 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             next_token: Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
             include_details: When true, returns the complete purchase order details. Otherwise, only purchase order numbers are returned.
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders"
         params = (  # name, param in, value, required
             ("shipFromPartyId", "query", ship_from_party_id, False),
@@ -74,7 +73,6 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         Args:
             purchase_order_number: The order identifier for the purchase order that you want. Formatting Notes: alpha-numeric code.
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/{purchaseOrderNumber}"
         params = (("purchaseOrderNumber", "path", purchase_order_number, True),)  # name, param in, value, required
 
@@ -94,6 +92,5 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
 
         Args:
         """
-        path_parameters = {}
         url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
         params = ()  # name, param in, value, required
