@@ -73,12 +73,6 @@ class AwsSignV4(AuthBase):
 
 
 class BaseSyncClient:
-    # By assume role, a token will be received.
-    _role_cache = TTLCache(maxsize=10, ttl=3000)
-
-    # Refresh token can be used to get access token, access token will last for 1 hour
-    _access_token_cache = TTLCache(maxsize=1000, ttl=3000)
-
     # Sometimes the response are required, however, current architecture is not able to return the response.
     # So, the last response is recorded here. Usually, the client will not request multiple requests. So, it will not
     # cause the data conflict.
@@ -122,6 +116,12 @@ class BaseSyncClient:
                                    self._marketplace, self._refresh_token, self._lwa_key, self._lwa_secret)):
             raise ValueError('Please set all parameters of the client')
 
+        # By assume role, a token will be received.
+        self._auth_cache = TTLCache(maxsize=10, ttl=3000)
+
+        # Refresh token can be used to get access token, access token will last for 1 hour
+        self._access_token_cache = TTLCache(maxsize=1000, ttl=3000)
+
     @cached_property
     def _parameters(self):
         return dict(
@@ -130,7 +130,7 @@ class BaseSyncClient:
             aws_key=self._aws_key, aws_secret=self._aws_secret, lwa_key=self._lwa_key, lwa_secret=self._lwa_secret,
         )
 
-    def __get_access_token(self, refresh_token: str):
+    def _get_access_token(self, refresh_token: str):
         if refresh_token not in self._access_token_cache:
             data = {'grant_type': 'refresh_token', 'refresh_token': refresh_token,
                     'client_id': self._lwa_key, 'client_secret': self._lwa_secret}
@@ -152,6 +152,14 @@ class BaseSyncClient:
                 raise SellingApiError('Could not parse response, please try to install demjson')
             return demjson.decode(response.text)
 
+    def _get_auth(self):
+        if 'auth' not in self._auth_cache:
+            role = self._client.assume_role(RoleArn=self._role_arn, RoleSessionName='guid').get('Credentials')
+            self._auth_cache['auth'] = AwsSignV4(
+                service='execute-api', region=self._region, aws_session_token=role.get('SessionToken'),
+                aws_key=role.get('AccessKeyId'), aws_secret=role.get('SecretAccessKey'))
+        return self._auth_cache['auth']
+
     def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
                 method='GET', check_exception=True) -> Response:
 
@@ -171,25 +179,15 @@ class BaseSyncClient:
             raise TypeError('data should be a dict or bytes')
 
         parsed_headers = {
-            'host': self._endpoint[8:],
+            'host': urlparse(self._endpoint).hostname,
             'user-agent': 'python-sp-api',
-            'x-amz-access-token': self.__get_access_token(self._refresh_token),
+            'x-amz-access-token': self._get_access_token(self._refresh_token),
             'x-amz-date': datetime.utcnow().strftime('%Y%m%dT%H%M%SZ'),
             'content-type': 'application/json'
         }
         headers is None or parsed_headers.update(headers)
-
-        # process auth
-        if 'role' not in self._role_cache:
-            role = self._client.assume_role(RoleArn=self._role_arn, RoleSessionName='guid').get('Credentials')
-            self._role_cache['role'] = role
-        role = self._role_cache['role']
-        auth = AwsSignV4(service='execute-api',
-                         aws_key=role.get('AccessKeyId'),
-                         aws_secret=role.get('SecretAccessKey'),
-                         region=self._region,
-                         aws_session_token=role.get('SessionToken'))
-        url = self._endpoint + path
+        auth = self._get_auth()
+        url = f'{self._endpoint}{path}'
 
         # process quota exceeded exception
         while True:
@@ -203,8 +201,7 @@ class BaseSyncClient:
             # If found error, and the error is QuotaExceed, just resend the request
             e = self._get_response_json(response).get('errors', None)
             if e:
-                if self._ignore_quota_exceeded and len(e) == 1 and 'code' in e[0] and e[0]['code'] in \
-                        ('QuotaExceeded',):
+                if self._ignore_quota_exceeded and len(e) == 1 and 'code' in e[0] and e[0]['code'] == 'QuotaExceeded':
                     sleep(0.1)
                     continue
                 else:
