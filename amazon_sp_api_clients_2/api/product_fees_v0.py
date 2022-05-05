@@ -7,82 +7,102 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class GetMyFeesEstimateRequest:
     pass
 
 
+@attrs.define
 class FeesEstimateRequest:
     pass
 
 
+@attrs.define
 class GetMyFeesEstimateResponse:
     pass
 
 
+@attrs.define
 class GetMyFeesEstimateResult:
     pass
 
 
+@attrs.define
 class Points:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class FeesEstimateResult:
     pass
 
 
+@attrs.define
 class FeesEstimateIdentifier:
     pass
 
 
+@attrs.define
 class PriceToEstimateFees:
     pass
 
 
+@attrs.define
 class FeesEstimate:
     pass
 
 
+@attrs.define
 class FeeDetailList:
     pass
 
 
+@attrs.define
 class FeesEstimateError:
     pass
 
 
+@attrs.define
 class FeesEstimateErrorDetail:
     pass
 
 
+@attrs.define
 class FeeDetail:
     pass
 
 
+@attrs.define
 class IncludedFeeDetailList:
     pass
 
 
+@attrs.define
 class IncludedFeeDetail:
     pass
 
 
+@attrs.define
 class MoneyType:
     pass
 
 
+@attrs.define
 class OptionalFulfillmentProgram:
     pass
 

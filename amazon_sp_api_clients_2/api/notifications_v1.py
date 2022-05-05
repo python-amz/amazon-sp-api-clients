@@ -9,86 +9,107 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class Subscription:
     pass
 
 
+@attrs.define
 class CreateSubscriptionResponse:
     pass
 
 
+@attrs.define
 class CreateSubscriptionRequest:
     pass
 
 
+@attrs.define
 class GetSubscriptionByIdResponse:
     pass
 
 
+@attrs.define
 class GetSubscriptionResponse:
     pass
 
 
+@attrs.define
 class DeleteSubscriptionByIdResponse:
     pass
 
 
+@attrs.define
 class DestinationList:
     pass
 
 
+@attrs.define
 class Destination:
     pass
 
 
+@attrs.define
 class DestinationResource:
     pass
 
 
+@attrs.define
 class DestinationResourceSpecification:
     pass
 
 
+@attrs.define
 class SqsResource:
     pass
 
 
+@attrs.define
 class EventBridgeResourceSpecification:
     pass
 
 
+@attrs.define
 class EventBridgeResource:
     pass
 
 
+@attrs.define
 class CreateDestinationRequest:
     pass
 
 
+@attrs.define
 class CreateDestinationResponse:
     pass
 
 
+@attrs.define
 class GetDestinationResponse:
     pass
 
 
+@attrs.define
 class GetDestinationsResponse:
     pass
 
 
+@attrs.define
 class DeleteDestinationResponse:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 

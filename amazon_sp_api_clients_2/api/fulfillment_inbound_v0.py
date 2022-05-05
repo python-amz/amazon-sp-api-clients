@@ -7,478 +7,597 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class ASINInboundGuidance:
     pass
 
 
+@attrs.define
 class ASINInboundGuidanceList:
     pass
 
 
+@attrs.define
 class ASINPrepInstructions:
     pass
 
 
+@attrs.define
 class ASINPrepInstructionsList:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class AmazonPrepFeesDetails:
     pass
 
 
+@attrs.define
 class AmazonPrepFeesDetailsList:
     pass
 
 
+@attrs.define
 class Amount:
     pass
 
 
+@attrs.define
 class BarcodeInstruction:
     pass
 
 
+@attrs.define
 class BigDecimalType:
     pass
 
 
+@attrs.define
 class BoxContentsFeeDetails:
     pass
 
 
+@attrs.define
 class BoxContentsSource:
     pass
 
 
+@attrs.define
 class Condition:
     pass
 
 
+@attrs.define
 class ConfirmPreorderResult:
     pass
 
 
+@attrs.define
 class ConfirmPreorderResponse:
     pass
 
 
+@attrs.define
 class CommonTransportResult:
     pass
 
 
+@attrs.define
 class ConfirmTransportResponse:
     pass
 
 
+@attrs.define
 class Contact:
     pass
 
 
+@attrs.define
 class CreateInboundShipmentPlanRequest:
     pass
 
 
+@attrs.define
 class CreateInboundShipmentPlanResult:
     pass
 
 
+@attrs.define
 class CreateInboundShipmentPlanResponse:
     pass
 
 
+@attrs.define
 class InboundShipmentRequest:
     pass
 
 
+@attrs.define
 class InboundShipmentResult:
     pass
 
 
+@attrs.define
 class InboundShipmentResponse:
     pass
 
 
+@attrs.define
 class CurrencyCode:
     pass
 
 
+@attrs.define
 class DateStringType:
     pass
 
 
+@attrs.define
 class Dimensions:
     pass
 
 
+@attrs.define
 class ErrorReason:
     pass
 
 
+@attrs.define
 class EstimateTransportResponse:
     pass
 
 
+@attrs.define
 class GetBillOfLadingResponse:
     pass
 
 
+@attrs.define
 class GetInboundGuidanceResult:
     pass
 
 
+@attrs.define
 class GetInboundGuidanceResponse:
     pass
 
 
+@attrs.define
 class LabelDownloadURL:
     pass
 
 
+@attrs.define
 class BillOfLadingDownloadURL:
     pass
 
 
+@attrs.define
 class GetLabelsResponse:
     pass
 
 
+@attrs.define
 class GetPreorderInfoResult:
     pass
 
 
+@attrs.define
 class GetPreorderInfoResponse:
     pass
 
 
+@attrs.define
 class GetPrepInstructionsResult:
     pass
 
 
+@attrs.define
 class GetPrepInstructionsResponse:
     pass
 
 
+@attrs.define
 class GetTransportDetailsResult:
     pass
 
 
+@attrs.define
 class GetTransportDetailsResponse:
     pass
 
 
+@attrs.define
 class GuidanceReason:
     pass
 
 
+@attrs.define
 class GuidanceReasonList:
     pass
 
 
+@attrs.define
 class InboundGuidance:
     pass
 
 
+@attrs.define
 class InboundShipmentHeader:
     pass
 
 
+@attrs.define
 class InboundShipmentInfo:
     pass
 
 
+@attrs.define
 class InboundShipmentItem:
     pass
 
 
+@attrs.define
 class InboundShipmentItemList:
     pass
 
 
+@attrs.define
 class InboundShipmentList:
     pass
 
 
+@attrs.define
 class InboundShipmentPlan:
     pass
 
 
+@attrs.define
 class InboundShipmentPlanItem:
     pass
 
 
+@attrs.define
 class InboundShipmentPlanItemList:
     pass
 
 
+@attrs.define
 class InboundShipmentPlanList:
     pass
 
 
+@attrs.define
 class InboundShipmentPlanRequestItem:
     pass
 
 
+@attrs.define
 class InboundShipmentPlanRequestItemList:
     pass
 
 
+@attrs.define
 class IntendedBoxContentsSource:
     pass
 
 
+@attrs.define
 class InvalidASIN:
     pass
 
 
+@attrs.define
 class InvalidASINList:
     pass
 
 
+@attrs.define
 class InvalidSKU:
     pass
 
 
+@attrs.define
 class InvalidSKUList:
     pass
 
 
+@attrs.define
 class LabelPrepPreference:
     pass
 
 
+@attrs.define
 class LabelPrepType:
     pass
 
 
+@attrs.define
 class GetShipmentItemsResult:
     pass
 
 
+@attrs.define
 class GetShipmentItemsResponse:
     pass
 
 
+@attrs.define
 class GetShipmentsResult:
     pass
 
 
+@attrs.define
 class GetShipmentsResponse:
     pass
 
 
+@attrs.define
 class NonPartneredLtlDataInput:
     pass
 
 
+@attrs.define
 class NonPartneredLtlDataOutput:
     pass
 
 
+@attrs.define
 class NonPartneredSmallParcelDataInput:
     pass
 
 
+@attrs.define
 class NonPartneredSmallParcelDataOutput:
     pass
 
 
+@attrs.define
 class NonPartneredSmallParcelPackageInput:
     pass
 
 
+@attrs.define
 class NonPartneredSmallParcelPackageInputList:
     pass
 
 
+@attrs.define
 class NonPartneredSmallParcelPackageOutput:
     pass
 
 
+@attrs.define
 class NonPartneredSmallParcelPackageOutputList:
     pass
 
 
+@attrs.define
 class PackageStatus:
     pass
 
 
+@attrs.define
 class Pallet:
     pass
 
 
+@attrs.define
 class PalletList:
     pass
 
 
+@attrs.define
 class PartneredEstimate:
     pass
 
 
+@attrs.define
 class PartneredLtlDataInput:
     pass
 
 
+@attrs.define
 class PartneredLtlDataOutput:
     pass
 
 
+@attrs.define
 class PartneredSmallParcelDataInput:
     pass
 
 
+@attrs.define
 class PartneredSmallParcelDataOutput:
     pass
 
 
+@attrs.define
 class PartneredSmallParcelPackageInput:
     pass
 
 
+@attrs.define
 class PartneredSmallParcelPackageInputList:
     pass
 
 
+@attrs.define
 class PartneredSmallParcelPackageOutput:
     pass
 
 
+@attrs.define
 class PartneredSmallParcelPackageOutputList:
     pass
 
 
+@attrs.define
 class PrepDetails:
     pass
 
 
+@attrs.define
 class PrepDetailsList:
     pass
 
 
+@attrs.define
 class PrepGuidance:
     pass
 
 
+@attrs.define
 class PrepInstruction:
     pass
 
 
+@attrs.define
 class PrepInstructionList:
     pass
 
 
+@attrs.define
 class PrepOwner:
     pass
 
 
+@attrs.define
 class ProNumber:
     pass
 
 
+@attrs.define
 class PutTransportDetailsRequest:
     pass
 
 
+@attrs.define
 class PutTransportDetailsResponse:
     pass
 
 
+@attrs.define
 class Quantity:
     pass
 
 
+@attrs.define
 class SKUInboundGuidance:
     pass
 
 
+@attrs.define
 class SKUInboundGuidanceList:
     pass
 
 
+@attrs.define
 class SKUPrepInstructions:
     pass
 
 
+@attrs.define
 class SKUPrepInstructionsList:
     pass
 
 
+@attrs.define
 class SellerFreightClass:
     pass
 
 
+@attrs.define
 class ShipmentStatus:
     pass
 
 
+@attrs.define
 class ShipmentType:
     pass
 
 
+@attrs.define
 class TimeStampStringType:
     pass
 
 
+@attrs.define
 class TrackingId:
     pass
 
 
+@attrs.define
 class TransportContent:
     pass
 
 
+@attrs.define
 class TransportDetailInput:
     pass
 
 
+@attrs.define
 class TransportDetailOutput:
     pass
 
 
+@attrs.define
 class TransportHeader:
     pass
 
 
+@attrs.define
 class TransportResult:
     pass
 
 
+@attrs.define
 class TransportStatus:
     pass
 
 
+@attrs.define
 class UnitOfMeasurement:
     pass
 
 
+@attrs.define
 class UnitOfWeight:
     pass
 
 
+@attrs.define
 class UnsignedIntType:
     pass
 
 
+@attrs.define
 class VoidTransportResponse:
     pass
 
 
+@attrs.define
 class Weight:
     pass
 

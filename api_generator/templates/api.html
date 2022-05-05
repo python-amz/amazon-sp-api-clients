@@ -7,11 +7,13 @@ API Version: {{ data.data.info.version }}
 Contact Amazon: {{ data.data.info.contact.name }} {% if data.data.info.contact.email %}<{{ data.data.info.contact.email }}> {% endif %}{{ data.data.info.contact.url }}
 License for the OpenAPI file: {{ data.data.info.license.name }} {{ data.data.info.license.url }}
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
 {% for schema in data.components.schemas %}
+@attrs.define
 class {{ schema }}:
     pass
 {% endfor %}

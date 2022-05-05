@@ -7,110 +7,137 @@ API Version: 2021-12-28
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class SubmitShippingLabelsRequest:
     pass
 
 
+@attrs.define
 class ShippingLabelRequest:
     pass
 
 
+@attrs.define
 class Item:
     pass
 
 
+@attrs.define
 class PackedItem:
     pass
 
 
+@attrs.define
 class PartyIdentification:
     pass
 
 
+@attrs.define
 class TaxRegistrationDetails:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class Dimensions:
     pass
 
 
+@attrs.define
 class Weight:
     pass
 
 
+@attrs.define
 class Decimal:
     pass
 
 
+@attrs.define
 class ItemQuantity:
     pass
 
 
+@attrs.define
 class GetShippingLabelListResponse:
     pass
 
 
+@attrs.define
 class GetShippingLabelResponse:
     pass
 
 
+@attrs.define
 class ShippingLabelList:
     pass
 
 
+@attrs.define
 class LabelData:
     pass
 
 
+@attrs.define
 class ShippingLabel:
     pass
 
 
+@attrs.define
 class SubmitShippingLabelsResponse:
     pass
 
 
+@attrs.define
 class GetCustomerInvoicesResponse:
     pass
 
 
+@attrs.define
 class GetCustomerInvoiceResponse:
     pass
 
 
+@attrs.define
 class CustomerInvoiceList:
     pass
 
 
+@attrs.define
 class Pagination:
     pass
 
 
+@attrs.define
 class CustomerInvoice:
     pass
 
 
+@attrs.define
 class TransactionReference:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class Container:
     pass
 

@@ -7,94 +7,117 @@ API Version: 2020-09-04
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ReportDocumentEncryptionDetails:
     pass
 
 
+@attrs.define
 class Report:
     pass
 
 
+@attrs.define
 class ReportList:
     pass
 
 
+@attrs.define
 class CreateReportScheduleSpecification:
     pass
 
 
+@attrs.define
 class CreateReportSpecification:
     pass
 
 
+@attrs.define
 class ReportOptions:
     pass
 
 
+@attrs.define
 class ReportSchedule:
     pass
 
 
+@attrs.define
 class ReportScheduleList:
     pass
 
 
+@attrs.define
 class CreateReportResult:
     pass
 
 
+@attrs.define
 class GetReportsResponse:
     pass
 
 
+@attrs.define
 class CreateReportResponse:
     pass
 
 
+@attrs.define
 class CancelReportResponse:
     pass
 
 
+@attrs.define
 class CancelReportScheduleResponse:
     pass
 
 
+@attrs.define
 class GetReportResponse:
     pass
 
 
+@attrs.define
 class GetReportSchedulesResponse:
     pass
 
 
+@attrs.define
 class GetReportScheduleResponse:
     pass
 
 
+@attrs.define
 class CreateReportScheduleResult:
     pass
 
 
+@attrs.define
 class CreateReportScheduleResponse:
     pass
 
 
+@attrs.define
 class ReportDocument:
     pass
 
 
+@attrs.define
 class GetReportDocumentResponse:
     pass
 

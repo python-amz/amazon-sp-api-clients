@@ -7,330 +7,412 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class AdjustmentEvent:
     pass
 
 
+@attrs.define
 class AdjustmentEventList:
     pass
 
 
+@attrs.define
 class AdjustmentItem:
     pass
 
 
+@attrs.define
 class AdjustmentItemList:
     pass
 
 
+@attrs.define
 class AffordabilityExpenseEvent:
     pass
 
 
+@attrs.define
 class AffordabilityExpenseEventList:
     pass
 
 
+@attrs.define
 class BigDecimal:
     pass
 
 
+@attrs.define
 class ChargeComponent:
     pass
 
 
+@attrs.define
 class ChargeComponentList:
     pass
 
 
+@attrs.define
 class ChargeInstrument:
     pass
 
 
+@attrs.define
 class ChargeInstrumentList:
     pass
 
 
+@attrs.define
 class CouponPaymentEvent:
     pass
 
 
+@attrs.define
 class CouponPaymentEventList:
     pass
 
 
+@attrs.define
 class Currency:
     pass
 
 
+@attrs.define
 class Date:
     pass
 
 
+@attrs.define
 class DebtRecoveryEvent:
     pass
 
 
+@attrs.define
 class DebtRecoveryEventList:
     pass
 
 
+@attrs.define
 class DebtRecoveryItem:
     pass
 
 
+@attrs.define
 class DebtRecoveryItemList:
     pass
 
 
+@attrs.define
 class DirectPayment:
     pass
 
 
+@attrs.define
 class DirectPaymentList:
     pass
 
 
+@attrs.define
 class FBALiquidationEvent:
     pass
 
 
+@attrs.define
 class FBALiquidationEventList:
     pass
 
 
+@attrs.define
 class FeeComponent:
     pass
 
 
+@attrs.define
 class FeeComponentList:
     pass
 
 
+@attrs.define
 class FinancialEventGroup:
     pass
 
 
+@attrs.define
 class FinancialEventGroupList:
     pass
 
 
+@attrs.define
 class FinancialEvents:
     pass
 
 
+@attrs.define
 class ImagingServicesFeeEvent:
     pass
 
 
+@attrs.define
 class ImagingServicesFeeEventList:
     pass
 
 
+@attrs.define
 class ListFinancialEventGroupsPayload:
     pass
 
 
+@attrs.define
 class ListFinancialEventGroupsResponse:
     pass
 
 
+@attrs.define
 class ListFinancialEventsPayload:
     pass
 
 
+@attrs.define
 class ListFinancialEventsResponse:
     pass
 
 
+@attrs.define
 class LoanServicingEvent:
     pass
 
 
+@attrs.define
 class LoanServicingEventList:
     pass
 
 
+@attrs.define
 class NetworkComminglingTransactionEvent:
     pass
 
 
+@attrs.define
 class NetworkComminglingTransactionEventList:
     pass
 
 
+@attrs.define
 class PayWithAmazonEvent:
     pass
 
 
+@attrs.define
 class PayWithAmazonEventList:
     pass
 
 
+@attrs.define
 class ProductAdsPaymentEvent:
     pass
 
 
+@attrs.define
 class ProductAdsPaymentEventList:
     pass
 
 
+@attrs.define
 class Promotion:
     pass
 
 
+@attrs.define
 class PromotionList:
     pass
 
 
+@attrs.define
 class RemovalShipmentEvent:
     pass
 
 
+@attrs.define
 class RemovalShipmentEventList:
     pass
 
 
+@attrs.define
 class RemovalShipmentItem:
     pass
 
 
+@attrs.define
 class RemovalShipmentItemList:
     pass
 
 
+@attrs.define
 class RemovalShipmentAdjustmentEvent:
     pass
 
 
+@attrs.define
 class RemovalShipmentAdjustmentEventList:
     pass
 
 
+@attrs.define
 class RemovalShipmentItemAdjustment:
     pass
 
 
+@attrs.define
 class RentalTransactionEvent:
     pass
 
 
+@attrs.define
 class RentalTransactionEventList:
     pass
 
 
+@attrs.define
 class RetrochargeEvent:
     pass
 
 
+@attrs.define
 class RetrochargeEventList:
     pass
 
 
+@attrs.define
 class SAFETReimbursementEvent:
     pass
 
 
+@attrs.define
 class SAFETReimbursementEventList:
     pass
 
 
+@attrs.define
 class SAFETReimbursementItem:
     pass
 
 
+@attrs.define
 class SAFETReimbursementItemList:
     pass
 
 
+@attrs.define
 class SellerDealPaymentEvent:
     pass
 
 
+@attrs.define
 class SellerDealPaymentEventList:
     pass
 
 
+@attrs.define
 class SellerReviewEnrollmentPaymentEvent:
     pass
 
 
+@attrs.define
 class SellerReviewEnrollmentPaymentEventList:
     pass
 
 
+@attrs.define
 class ServiceFeeEvent:
     pass
 
 
+@attrs.define
 class ServiceFeeEventList:
     pass
 
 
+@attrs.define
 class ShipmentEvent:
     pass
 
 
+@attrs.define
 class ShipmentEventList:
     pass
 
 
+@attrs.define
 class ShipmentItem:
     pass
 
 
+@attrs.define
 class ShipmentItemList:
     pass
 
 
+@attrs.define
 class SolutionProviderCreditEvent:
     pass
 
 
+@attrs.define
 class SolutionProviderCreditEventList:
     pass
 
 
+@attrs.define
 class TaxWithholdingPeriod:
     pass
 
 
+@attrs.define
 class TaxWithholdingEvent:
     pass
 
 
+@attrs.define
 class TaxWithholdingEventList:
     pass
 
 
+@attrs.define
 class TaxWithheldComponent:
     pass
 
 
+@attrs.define
 class TaxWithheldComponentList:
     pass
 
 
+@attrs.define
 class TrialShipmentEvent:
     pass
 
 
+@attrs.define
 class TrialShipmentEventList:
     pass
 
 
+@attrs.define
 class ShipmentSettleEventList:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 

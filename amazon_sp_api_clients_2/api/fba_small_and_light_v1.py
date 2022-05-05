@@ -7,62 +7,77 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class MarketplaceId:
     pass
 
 
+@attrs.define
 class SellerSKU:
     pass
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class SmallAndLightEnrollmentStatus:
     pass
 
 
+@attrs.define
 class SmallAndLightEligibilityStatus:
     pass
 
 
+@attrs.define
 class SmallAndLightEnrollment:
     pass
 
 
+@attrs.define
 class SmallAndLightEligibility:
     pass
 
 
+@attrs.define
 class SmallAndLightFeePreviewRequest:
     pass
 
 
+@attrs.define
 class SmallAndLightFeePreviews:
     pass
 
 
+@attrs.define
 class Item:
     pass
 
 
+@attrs.define
 class FeePreview:
     pass
 
 
+@attrs.define
 class FeeLineItem:
     pass
 
 
+@attrs.define
 class MoneyType:
     pass
 

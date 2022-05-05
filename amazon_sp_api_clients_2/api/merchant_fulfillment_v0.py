@@ -7,382 +7,477 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class LabelFormatOptionRequest:
     pass
 
 
+@attrs.define
 class LabelFormatOption:
     pass
 
 
+@attrs.define
 class AvailableCarrierWillPickUpOption:
     pass
 
 
+@attrs.define
 class AvailableCarrierWillPickUpOptionsList:
     pass
 
 
+@attrs.define
 class AvailableDeliveryExperienceOption:
     pass
 
 
+@attrs.define
 class AvailableDeliveryExperienceOptionsList:
     pass
 
 
+@attrs.define
 class AvailableShippingServiceOptions:
     pass
 
 
+@attrs.define
 class AvailableFormatOptionsForLabel:
     pass
 
 
+@attrs.define
 class AvailableFormatOptionsForLabelList:
     pass
 
 
+@attrs.define
 class Constraint:
     pass
 
 
+@attrs.define
 class Constraints:
     pass
 
 
+@attrs.define
 class AdditionalInputs:
     pass
 
 
+@attrs.define
 class SellerInputDefinition:
     pass
 
 
+@attrs.define
 class InputTargetType:
     pass
 
 
+@attrs.define
 class AdditionalInputsList:
     pass
 
 
+@attrs.define
 class AdditionalSellerInput:
     pass
 
 
+@attrs.define
 class AdditionalSellerInputs:
     pass
 
 
+@attrs.define
 class AdditionalSellerInputsList:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class AddressLine1:
     pass
 
 
+@attrs.define
 class AddressLine2:
     pass
 
 
+@attrs.define
 class AddressLine3:
     pass
 
 
+@attrs.define
 class AddressName:
     pass
 
 
+@attrs.define
 class AmazonOrderId:
     pass
 
 
+@attrs.define
 class CancelShipmentResponse:
     pass
 
 
+@attrs.define
 class City:
     pass
 
 
+@attrs.define
 class CountryCode:
     pass
 
 
+@attrs.define
 class CreateShipmentRequest:
     pass
 
 
+@attrs.define
 class CreateShipmentResponse:
     pass
 
 
+@attrs.define
 class ItemLevelFields:
     pass
 
 
+@attrs.define
 class ItemLevelFieldsList:
     pass
 
 
+@attrs.define
 class GetAdditionalSellerInputsRequest:
     pass
 
 
+@attrs.define
 class GetAdditionalSellerInputsResult:
     pass
 
 
+@attrs.define
 class GetAdditionalSellerInputsResponse:
     pass
 
 
+@attrs.define
 class CurrencyAmount:
     pass
 
 
+@attrs.define
 class CustomTextForLabel:
     pass
 
 
+@attrs.define
 class DeliveryExperienceType:
     pass
 
 
+@attrs.define
 class DistrictOrCounty:
     pass
 
 
+@attrs.define
 class EmailAddress:
     pass
 
 
+@attrs.define
 class FileContents:
     pass
 
 
+@attrs.define
 class FileType:
     pass
 
 
+@attrs.define
 class GetEligibleShipmentServicesRequest:
     pass
 
 
+@attrs.define
 class GetEligibleShipmentServicesResponse:
     pass
 
 
+@attrs.define
 class GetEligibleShipmentServicesResult:
     pass
 
 
+@attrs.define
 class GetShipmentResponse:
     pass
 
 
+@attrs.define
 class HazmatType:
     pass
 
 
+@attrs.define
 class Item:
     pass
 
 
+@attrs.define
 class ItemList:
     pass
 
 
+@attrs.define
 class ItemQuantity:
     pass
 
 
+@attrs.define
 class ItemDescription:
     pass
 
 
+@attrs.define
 class Label:
     pass
 
 
+@attrs.define
 class LabelCustomization:
     pass
 
 
+@attrs.define
 class LabelDimension:
     pass
 
 
+@attrs.define
 class LabelDimensions:
     pass
 
 
+@attrs.define
 class LabelFormat:
     pass
 
 
+@attrs.define
 class LabelFormatList:
     pass
 
 
+@attrs.define
 class Length:
     pass
 
 
+@attrs.define
 class OrderItemId:
     pass
 
 
+@attrs.define
 class PackageDimension:
     pass
 
 
+@attrs.define
 class PackageDimensions:
     pass
 
 
+@attrs.define
 class PhoneNumber:
     pass
 
 
+@attrs.define
 class PostalCode:
     pass
 
 
+@attrs.define
 class PredefinedPackageDimensions:
     pass
 
 
+@attrs.define
 class RestrictedSetValues:
     pass
 
 
+@attrs.define
 class SellerOrderId:
     pass
 
 
+@attrs.define
 class Shipment:
     pass
 
 
+@attrs.define
 class ShipmentId:
     pass
 
 
+@attrs.define
 class ShipmentRequestDetails:
     pass
 
 
+@attrs.define
 class ShipmentStatus:
     pass
 
 
+@attrs.define
 class DeliveryExperienceOption:
     pass
 
 
+@attrs.define
 class ShippingOfferingFilter:
     pass
 
 
+@attrs.define
 class ShippingService:
     pass
 
 
+@attrs.define
 class ShippingServiceIdentifier:
     pass
 
 
+@attrs.define
 class ShippingServiceList:
     pass
 
 
+@attrs.define
 class ShippingServiceOptions:
     pass
 
 
+@attrs.define
 class CarrierWillPickUpOption:
     pass
 
 
+@attrs.define
 class StandardIdForLabel:
     pass
 
 
+@attrs.define
 class StateOrProvinceCode:
     pass
 
 
+@attrs.define
 class RejectedShippingService:
     pass
 
 
+@attrs.define
 class RejectedShippingServiceList:
     pass
 
 
+@attrs.define
 class TemporarilyUnavailableCarrier:
     pass
 
 
+@attrs.define
 class TemporarilyUnavailableCarrierList:
     pass
 
 
+@attrs.define
 class TermsAndConditionsNotAcceptedCarrier:
     pass
 
 
+@attrs.define
 class TermsAndConditionsNotAcceptedCarrierList:
     pass
 
 
+@attrs.define
 class Timestamp:
     pass
 
 
+@attrs.define
 class TrackingId:
     pass
 
 
+@attrs.define
 class TransparencyCode:
     pass
 
 
+@attrs.define
 class TransparencyCodeList:
     pass
 
 
+@attrs.define
 class UnitOfLength:
     pass
 
 
+@attrs.define
 class UnitOfWeight:
     pass
 
 
+@attrs.define
 class Weight:
     pass
 
 
+@attrs.define
 class WeightValue:
     pass
 

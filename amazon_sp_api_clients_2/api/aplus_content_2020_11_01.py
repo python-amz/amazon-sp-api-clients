@@ -7,322 +7,402 @@ API Version: 2020-11-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class AplusResponse:
     pass
 
 
+@attrs.define
 class AplusPaginatedResponse:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class MessageSet:
     pass
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ContentMetadataRecordList:
     pass
 
 
+@attrs.define
 class ContentMetadataRecord:
     pass
 
 
+@attrs.define
 class ContentMetadata:
     pass
 
 
+@attrs.define
 class ContentType:
     pass
 
 
+@attrs.define
 class ContentSubType:
     pass
 
 
+@attrs.define
 class ContentStatus:
     pass
 
 
+@attrs.define
 class ContentBadgeSet:
     pass
 
 
+@attrs.define
 class ContentBadge:
     pass
 
 
+@attrs.define
 class AsinBadgeSet:
     pass
 
 
+@attrs.define
 class AsinBadge:
     pass
 
 
+@attrs.define
 class MarketplaceId:
     pass
 
 
+@attrs.define
 class LanguageTag:
     pass
 
 
+@attrs.define
 class AsinSet:
     pass
 
 
+@attrs.define
 class Asin:
     pass
 
 
+@attrs.define
 class AsinMetadataSet:
     pass
 
 
+@attrs.define
 class AsinMetadata:
     pass
 
 
+@attrs.define
 class PublishRecordList:
     pass
 
 
+@attrs.define
 class PublishRecord:
     pass
 
 
+@attrs.define
 class ContentReferenceKeySet:
     pass
 
 
+@attrs.define
 class ContentReferenceKey:
     pass
 
 
+@attrs.define
 class PageToken:
     pass
 
 
+@attrs.define
 class ImageCropSpecification:
     pass
 
 
+@attrs.define
 class ImageDimensions:
     pass
 
 
+@attrs.define
 class ImageOffsets:
     pass
 
 
+@attrs.define
 class IntegerWithUnits:
     pass
 
 
+@attrs.define
 class ContentRecord:
     pass
 
 
+@attrs.define
 class ContentDocument:
     pass
 
 
+@attrs.define
 class ContentModuleList:
     pass
 
 
+@attrs.define
 class ContentModule:
     pass
 
 
+@attrs.define
 class ContentModuleType:
     pass
 
 
+@attrs.define
 class StandardCompanyLogoModule:
     pass
 
 
+@attrs.define
 class StandardComparisonTableModule:
     pass
 
 
+@attrs.define
 class StandardFourImageTextModule:
     pass
 
 
+@attrs.define
 class StandardFourImageTextQuadrantModule:
     pass
 
 
+@attrs.define
 class StandardHeaderImageTextModule:
     pass
 
 
+@attrs.define
 class StandardImageSidebarModule:
     pass
 
 
+@attrs.define
 class StandardImageTextOverlayModule:
     pass
 
 
+@attrs.define
 class StandardMultipleImageTextModule:
     pass
 
 
+@attrs.define
 class StandardProductDescriptionModule:
     pass
 
 
+@attrs.define
 class StandardSingleImageHighlightsModule:
     pass
 
 
+@attrs.define
 class StandardSingleImageSpecsDetailModule:
     pass
 
 
+@attrs.define
 class StandardSingleSideImageModule:
     pass
 
 
+@attrs.define
 class StandardTechSpecsModule:
     pass
 
 
+@attrs.define
 class StandardTextModule:
     pass
 
 
+@attrs.define
 class StandardThreeImageTextModule:
     pass
 
 
+@attrs.define
 class StandardComparisonProductBlock:
     pass
 
 
+@attrs.define
 class StandardHeaderTextListBlock:
     pass
 
 
+@attrs.define
 class StandardTextListBlock:
     pass
 
 
+@attrs.define
 class StandardImageTextCaptionBlock:
     pass
 
 
+@attrs.define
 class StandardImageCaptionBlock:
     pass
 
 
+@attrs.define
 class StandardImageTextBlock:
     pass
 
 
+@attrs.define
 class StandardTextBlock:
     pass
 
 
+@attrs.define
 class StandardTextPairBlock:
     pass
 
 
+@attrs.define
 class TextItem:
     pass
 
 
+@attrs.define
 class PlainTextItem:
     pass
 
 
+@attrs.define
 class ImageComponent:
     pass
 
 
+@attrs.define
 class ParagraphComponent:
     pass
 
 
+@attrs.define
 class TextComponent:
     pass
 
 
+@attrs.define
 class ColorType:
     pass
 
 
+@attrs.define
 class PositionType:
     pass
 
 
+@attrs.define
 class DecoratorSet:
     pass
 
 
+@attrs.define
 class Decorator:
     pass
 
 
+@attrs.define
 class DecoratorType:
     pass
 
 
+@attrs.define
 class SearchContentDocumentsResponse:
     pass
 
 
+@attrs.define
 class GetContentDocumentResponse:
     pass
 
 
+@attrs.define
 class PostContentDocumentRequest:
     pass
 
 
+@attrs.define
 class PostContentDocumentResponse:
     pass
 
 
+@attrs.define
 class ListContentDocumentAsinRelationsResponse:
     pass
 
 
+@attrs.define
 class PostContentDocumentAsinRelationsRequest:
     pass
 
 
+@attrs.define
 class PostContentDocumentAsinRelationsResponse:
     pass
 
 
+@attrs.define
 class ValidateContentDocumentAsinRelationsResponse:
     pass
 
 
+@attrs.define
 class SearchContentPublishRecordsResponse:
     pass
 
 
+@attrs.define
 class PostContentDocumentApprovalSubmissionResponse:
     pass
 
 
+@attrs.define
 class PostContentDocumentSuspendSubmissionResponse:
     pass
 

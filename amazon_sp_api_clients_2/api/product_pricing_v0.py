@@ -7,186 +7,232 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class GetPricingResponse:
     pass
 
 
+@attrs.define
 class GetOffersResponse:
     pass
 
 
+@attrs.define
 class PriceList:
     pass
 
 
+@attrs.define
 class GetOffersResult:
     pass
 
 
+@attrs.define
 class Price:
     pass
 
 
+@attrs.define
 class Product:
     pass
 
 
+@attrs.define
 class IdentifierType:
     pass
 
 
+@attrs.define
 class ASINIdentifier:
     pass
 
 
+@attrs.define
 class SellerSKUIdentifier:
     pass
 
 
+@attrs.define
 class AttributeSetList:
     pass
 
 
+@attrs.define
 class RelationshipList:
     pass
 
 
+@attrs.define
 class CompetitivePricingType:
     pass
 
 
+@attrs.define
 class CompetitivePriceList:
     pass
 
 
+@attrs.define
 class CompetitivePriceType:
     pass
 
 
+@attrs.define
 class NumberOfOfferListingsList:
     pass
 
 
+@attrs.define
 class OfferListingCountType:
     pass
 
 
+@attrs.define
 class MoneyType:
     pass
 
 
+@attrs.define
 class SalesRankList:
     pass
 
 
+@attrs.define
 class SalesRankType:
     pass
 
 
+@attrs.define
 class PriceType:
     pass
 
 
+@attrs.define
 class OffersList:
     pass
 
 
+@attrs.define
 class OfferType:
     pass
 
 
+@attrs.define
 class OfferCustomerType:
     pass
 
 
+@attrs.define
 class QuantityDiscountPriceType:
     pass
 
 
+@attrs.define
 class QuantityDiscountType:
     pass
 
 
+@attrs.define
 class Points:
     pass
 
 
+@attrs.define
 class ConditionType:
     pass
 
 
+@attrs.define
 class ItemIdentifier:
     pass
 
 
+@attrs.define
 class Summary:
     pass
 
 
+@attrs.define
 class BuyBoxEligibleOffers:
     pass
 
 
+@attrs.define
 class BuyBoxPrices:
     pass
 
 
+@attrs.define
 class LowestPrices:
     pass
 
 
+@attrs.define
 class NumberOfOffers:
     pass
 
 
+@attrs.define
 class OfferCountType:
     pass
 
 
+@attrs.define
 class FulfillmentChannelType:
     pass
 
 
+@attrs.define
 class LowestPriceType:
     pass
 
 
+@attrs.define
 class BuyBoxPriceType:
     pass
 
 
+@attrs.define
 class OfferDetailList:
     pass
 
 
+@attrs.define
 class OfferDetail:
     pass
 
 
+@attrs.define
 class PrimeInformationType:
     pass
 
 
+@attrs.define
 class SellerFeedbackType:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class DetailedShippingTimeType:
     pass
 
 
+@attrs.define
 class ShipsFromType:
     pass
 
 
+@attrs.define
 class Error:
     pass
 

@@ -7,378 +7,472 @@ API Version: 2020-07-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class CODSettings:
     pass
 
 
+@attrs.define
 class CreateFulfillmentOrderItem:
     pass
 
 
+@attrs.define
 class CreateFulfillmentOrderItemList:
     pass
 
 
+@attrs.define
 class FulfillmentPolicy:
     pass
 
 
+@attrs.define
 class FulfillmentOrderStatus:
     pass
 
 
+@attrs.define
 class CreateFulfillmentOrderRequest:
     pass
 
 
+@attrs.define
 class CreateFulfillmentReturnRequest:
     pass
 
 
+@attrs.define
 class CreateFulfillmentReturnResult:
     pass
 
 
+@attrs.define
 class CreateFulfillmentReturnResponse:
     pass
 
 
+@attrs.define
 class CreateReturnItem:
     pass
 
 
+@attrs.define
 class CreateReturnItemList:
     pass
 
 
+@attrs.define
 class Money:
     pass
 
 
+@attrs.define
 class Decimal:
     pass
 
 
+@attrs.define
 class DeliveryWindow:
     pass
 
 
+@attrs.define
 class DeliveryWindowList:
     pass
 
 
+@attrs.define
 class Fee:
     pass
 
 
+@attrs.define
 class FeeList:
     pass
 
 
+@attrs.define
 class FulfillmentAction:
     pass
 
 
+@attrs.define
 class FulfillmentOrder:
     pass
 
 
+@attrs.define
 class FulfillmentOrderItem:
     pass
 
 
+@attrs.define
 class FulfillmentOrderItemList:
     pass
 
 
+@attrs.define
 class FulfillmentPreview:
     pass
 
 
+@attrs.define
 class FulfillmentPreviewItem:
     pass
 
 
+@attrs.define
 class FulfillmentPreviewItemList:
     pass
 
 
+@attrs.define
 class FulfillmentPreviewList:
     pass
 
 
+@attrs.define
 class FulfillmentPreviewShipment:
     pass
 
 
+@attrs.define
 class FulfillmentPreviewShipmentList:
     pass
 
 
+@attrs.define
 class FulfillmentReturnItemStatus:
     pass
 
 
+@attrs.define
 class FulfillmentShipment:
     pass
 
 
+@attrs.define
 class FulfillmentShipmentItem:
     pass
 
 
+@attrs.define
 class FulfillmentShipmentItemList:
     pass
 
 
+@attrs.define
 class FulfillmentShipmentList:
     pass
 
 
+@attrs.define
 class FulfillmentShipmentPackage:
     pass
 
 
+@attrs.define
 class FulfillmentShipmentPackageList:
     pass
 
 
+@attrs.define
 class GetFulfillmentOrderResult:
     pass
 
 
+@attrs.define
 class GetFulfillmentOrderResponse:
     pass
 
 
+@attrs.define
 class GetFulfillmentPreviewItem:
     pass
 
 
+@attrs.define
 class GetFulfillmentPreviewItemList:
     pass
 
 
+@attrs.define
 class GetFulfillmentPreviewRequest:
     pass
 
 
+@attrs.define
 class GetFulfillmentPreviewResult:
     pass
 
 
+@attrs.define
 class GetFulfillmentPreviewResponse:
     pass
 
 
+@attrs.define
 class InvalidItemReasonCode:
     pass
 
 
+@attrs.define
 class InvalidItemReason:
     pass
 
 
+@attrs.define
 class InvalidReturnItem:
     pass
 
 
+@attrs.define
 class InvalidReturnItemList:
     pass
 
 
+@attrs.define
 class ListAllFulfillmentOrdersResult:
     pass
 
 
+@attrs.define
 class ListAllFulfillmentOrdersResponse:
     pass
 
 
+@attrs.define
 class ListReturnReasonCodesResult:
     pass
 
 
+@attrs.define
 class ListReturnReasonCodesResponse:
     pass
 
 
+@attrs.define
 class NotificationEmailList:
     pass
 
 
+@attrs.define
 class CurrentStatus:
     pass
 
 
+@attrs.define
 class AdditionalLocationInfo:
     pass
 
 
+@attrs.define
 class PackageTrackingDetails:
     pass
 
 
+@attrs.define
 class GetPackageTrackingDetailsResponse:
     pass
 
 
+@attrs.define
 class ReasonCodeDetails:
     pass
 
 
+@attrs.define
 class ReasonCodeDetailsList:
     pass
 
 
+@attrs.define
 class ReturnAuthorization:
     pass
 
 
+@attrs.define
 class ReturnAuthorizationList:
     pass
 
 
+@attrs.define
 class ReturnItem:
     pass
 
 
+@attrs.define
 class ReturnItemDisposition:
     pass
 
 
+@attrs.define
 class ReturnItemList:
     pass
 
 
+@attrs.define
 class ScheduledDeliveryInfo:
     pass
 
 
+@attrs.define
 class ShippingSpeedCategoryList:
     pass
 
 
+@attrs.define
 class StringList:
     pass
 
 
+@attrs.define
 class Timestamp:
     pass
 
 
+@attrs.define
 class TrackingAddress:
     pass
 
 
+@attrs.define
 class EventCode:
     pass
 
 
+@attrs.define
 class TrackingEvent:
     pass
 
 
+@attrs.define
 class TrackingEventList:
     pass
 
 
+@attrs.define
 class UnfulfillablePreviewItem:
     pass
 
 
+@attrs.define
 class UnfulfillablePreviewItemList:
     pass
 
 
+@attrs.define
 class UpdateFulfillmentOrderItem:
     pass
 
 
+@attrs.define
 class UpdateFulfillmentOrderItemList:
     pass
 
 
+@attrs.define
 class UpdateFulfillmentOrderRequest:
     pass
 
 
+@attrs.define
 class UpdateFulfillmentOrderResponse:
     pass
 
 
+@attrs.define
 class CreateFulfillmentOrderResponse:
     pass
 
 
+@attrs.define
 class CancelFulfillmentOrderResponse:
     pass
 
 
+@attrs.define
 class Weight:
     pass
 
 
+@attrs.define
 class Quantity:
     pass
 
 
+@attrs.define
 class ShippingSpeedCategory:
     pass
 
 
+@attrs.define
 class GetFeatureInventoryResponse:
     pass
 
 
+@attrs.define
 class GetFeatureInventoryResult:
     pass
 
 
+@attrs.define
 class FeatureSku:
     pass
 
 
+@attrs.define
 class GetFeaturesResponse:
     pass
 
 
+@attrs.define
 class GetFeaturesResult:
     pass
 
 
+@attrs.define
 class Features:
     pass
 
 
+@attrs.define
 class Feature:
     pass
 
 
+@attrs.define
 class GetFeatureSkuResponse:
     pass
 
 
+@attrs.define
 class GetFeatureSkuResult:
     pass
 
 
+@attrs.define
 class FeatureSettings:
     pass
 

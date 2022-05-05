@@ -7,262 +7,327 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class AccountId:
     pass
 
 
+@attrs.define
 class ShipmentId:
     pass
 
 
+@attrs.define
 class ClientReferenceId:
     pass
 
 
+@attrs.define
 class ContainerReferenceId:
     pass
 
 
+@attrs.define
 class EventCode:
     pass
 
 
+@attrs.define
 class StateOrRegion:
     pass
 
 
+@attrs.define
 class City:
     pass
 
 
+@attrs.define
 class CountryCode:
     pass
 
 
+@attrs.define
 class PostalCode:
     pass
 
 
+@attrs.define
 class Location:
     pass
 
 
+@attrs.define
 class Event:
     pass
 
 
+@attrs.define
 class EventList:
     pass
 
 
+@attrs.define
 class TrackingId:
     pass
 
 
+@attrs.define
 class TrackingSummary:
     pass
 
 
+@attrs.define
 class PromisedDeliveryDate:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class TimeRange:
     pass
 
 
+@attrs.define
 class ShippingPromiseSet:
     pass
 
 
+@attrs.define
 class ServiceType:
     pass
 
 
+@attrs.define
 class ServiceTypeList:
     pass
 
 
+@attrs.define
 class Rate:
     pass
 
 
+@attrs.define
 class RateList:
     pass
 
 
+@attrs.define
 class RateId:
     pass
 
 
+@attrs.define
 class AcceptedRate:
     pass
 
 
+@attrs.define
 class ServiceRate:
     pass
 
 
+@attrs.define
 class ServiceRateList:
     pass
 
 
+@attrs.define
 class Party:
     pass
 
 
+@attrs.define
 class Currency:
     pass
 
 
+@attrs.define
 class Dimensions:
     pass
 
 
+@attrs.define
 class Weight:
     pass
 
 
+@attrs.define
 class ContainerItem:
     pass
 
 
+@attrs.define
 class Container:
     pass
 
 
+@attrs.define
 class ContainerList:
     pass
 
 
+@attrs.define
 class ContainerSpecification:
     pass
 
 
+@attrs.define
 class ContainerSpecificationList:
     pass
 
 
+@attrs.define
 class Label:
     pass
 
 
+@attrs.define
 class LabelResult:
     pass
 
 
+@attrs.define
 class LabelResultList:
     pass
 
 
+@attrs.define
 class LabelStream:
     pass
 
 
+@attrs.define
 class LabelSpecification:
     pass
 
 
+@attrs.define
 class CreateShipmentRequest:
     pass
 
 
+@attrs.define
 class PurchaseLabelsRequest:
     pass
 
 
+@attrs.define
 class RetrieveShippingLabelRequest:
     pass
 
 
+@attrs.define
 class GetRatesRequest:
     pass
 
 
+@attrs.define
 class PurchaseShipmentRequest:
     pass
 
 
+@attrs.define
 class CreateShipmentResult:
     pass
 
 
+@attrs.define
 class Shipment:
     pass
 
 
+@attrs.define
 class PurchaseLabelsResult:
     pass
 
 
+@attrs.define
 class RetrieveShippingLabelResult:
     pass
 
 
+@attrs.define
 class Account:
     pass
 
 
+@attrs.define
 class GetRatesResult:
     pass
 
 
+@attrs.define
 class PurchaseShipmentResult:
     pass
 
 
+@attrs.define
 class TrackingInformation:
     pass
 
 
+@attrs.define
 class CreateShipmentResponse:
     pass
 
 
+@attrs.define
 class GetShipmentResponse:
     pass
 
 
+@attrs.define
 class GetRatesResponse:
     pass
 
 
+@attrs.define
 class PurchaseShipmentResponse:
     pass
 
 
+@attrs.define
 class CancelShipmentResponse:
     pass
 
 
+@attrs.define
 class PurchaseLabelsResponse:
     pass
 
 
+@attrs.define
 class RetrieveShippingLabelResponse:
     pass
 
 
+@attrs.define
 class GetAccountResponse:
     pass
 
 
+@attrs.define
 class GetTrackingInformationResponse:
     pass
 

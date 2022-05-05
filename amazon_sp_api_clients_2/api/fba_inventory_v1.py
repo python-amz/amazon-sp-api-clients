@@ -7,58 +7,72 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class Granularity:
     pass
 
 
+@attrs.define
 class ReservedQuantity:
     pass
 
 
+@attrs.define
 class ResearchingQuantityEntry:
     pass
 
 
+@attrs.define
 class ResearchingQuantity:
     pass
 
 
+@attrs.define
 class UnfulfillableQuantity:
     pass
 
 
+@attrs.define
 class InventoryDetails:
     pass
 
 
+@attrs.define
 class InventorySummary:
     pass
 
 
+@attrs.define
 class InventorySummaries:
     pass
 
 
+@attrs.define
 class Pagination:
     pass
 
 
+@attrs.define
 class GetInventorySummariesResult:
     pass
 
 
+@attrs.define
 class GetInventorySummariesResponse:
     pass
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 

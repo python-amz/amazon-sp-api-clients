@@ -7,122 +7,152 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class Attachment:
     pass
 
 
+@attrs.define
 class LinkObject:
     pass
 
 
+@attrs.define
 class MessagingAction:
     pass
 
 
+@attrs.define
 class Schema:
     pass
 
 
+@attrs.define
 class GetMessagingActionsForOrderResponse:
     pass
 
 
+@attrs.define
 class GetMessagingActionResponse:
     pass
 
 
+@attrs.define
 class GetSchemaResponse:
     pass
 
 
+@attrs.define
 class CreateConfirmCustomizationDetailsRequest:
     pass
 
 
+@attrs.define
 class CreateConfirmCustomizationDetailsResponse:
     pass
 
 
+@attrs.define
 class CreateConfirmDeliveryDetailsRequest:
     pass
 
 
+@attrs.define
 class CreateConfirmDeliveryDetailsResponse:
     pass
 
 
+@attrs.define
 class CreateNegativeFeedbackRemovalResponse:
     pass
 
 
+@attrs.define
 class CreateLegalDisclosureRequest:
     pass
 
 
+@attrs.define
 class CreateLegalDisclosureResponse:
     pass
 
 
+@attrs.define
 class CreateConfirmOrderDetailsRequest:
     pass
 
 
+@attrs.define
 class CreateConfirmOrderDetailsResponse:
     pass
 
 
+@attrs.define
 class CreateConfirmServiceDetailsRequest:
     pass
 
 
+@attrs.define
 class CreateConfirmServiceDetailsResponse:
     pass
 
 
+@attrs.define
 class CreateAmazonMotorsRequest:
     pass
 
 
+@attrs.define
 class CreateAmazonMotorsResponse:
     pass
 
 
+@attrs.define
 class CreateWarrantyRequest:
     pass
 
 
+@attrs.define
 class CreateWarrantyResponse:
     pass
 
 
+@attrs.define
 class GetAttributesResponse:
     pass
 
 
+@attrs.define
 class CreateDigitalAccessKeyRequest:
     pass
 
 
+@attrs.define
 class CreateDigitalAccessKeyResponse:
     pass
 
 
+@attrs.define
 class CreateUnexpectedProblemRequest:
     pass
 
 
+@attrs.define
 class CreateUnexpectedProblemResponse:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 

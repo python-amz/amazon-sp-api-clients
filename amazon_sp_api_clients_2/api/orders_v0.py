@@ -7,214 +7,267 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class UpdateShipmentStatusRequest:
     pass
 
 
+@attrs.define
 class UpdateVerificationStatusRequest:
     pass
 
 
+@attrs.define
 class UpdateVerificationStatusRequestBody:
     pass
 
 
+@attrs.define
 class MarketplaceId:
     pass
 
 
+@attrs.define
 class ShipmentStatus:
     pass
 
 
+@attrs.define
 class OrderItems:
     pass
 
 
+@attrs.define
 class UpdateShipmentStatusErrorResponse:
     pass
 
 
+@attrs.define
 class UpdateVerificationStatusErrorResponse:
     pass
 
 
+@attrs.define
 class GetOrdersResponse:
     pass
 
 
+@attrs.define
 class GetOrderResponse:
     pass
 
 
+@attrs.define
 class GetOrderBuyerInfoResponse:
     pass
 
 
+@attrs.define
 class GetOrderRegulatedInfoResponse:
     pass
 
 
+@attrs.define
 class GetOrderAddressResponse:
     pass
 
 
+@attrs.define
 class GetOrderItemsResponse:
     pass
 
 
+@attrs.define
 class GetOrderItemsBuyerInfoResponse:
     pass
 
 
+@attrs.define
 class OrdersList:
     pass
 
 
+@attrs.define
 class OrderList:
     pass
 
 
+@attrs.define
 class Order:
     pass
 
 
+@attrs.define
 class OrderBuyerInfo:
     pass
 
 
+@attrs.define
 class OrderRegulatedInfo:
     pass
 
 
+@attrs.define
 class RegulatedOrderVerificationStatus:
     pass
 
 
+@attrs.define
 class RejectionReason:
     pass
 
 
+@attrs.define
 class RegulatedInformation:
     pass
 
 
+@attrs.define
 class RegulatedInformationField:
     pass
 
 
+@attrs.define
 class OrderAddress:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class Money:
     pass
 
 
+@attrs.define
 class PaymentMethodDetailItemList:
     pass
 
 
+@attrs.define
 class PaymentExecutionDetailItemList:
     pass
 
 
+@attrs.define
 class PaymentExecutionDetailItem:
     pass
 
 
+@attrs.define
 class BuyerTaxInfo:
     pass
 
 
+@attrs.define
 class MarketplaceTaxInfo:
     pass
 
 
+@attrs.define
 class TaxClassification:
     pass
 
 
+@attrs.define
 class OrderItemsList:
     pass
 
 
+@attrs.define
 class OrderItemList:
     pass
 
 
+@attrs.define
 class OrderItem:
     pass
 
 
+@attrs.define
 class OrderItemsBuyerInfoList:
     pass
 
 
+@attrs.define
 class OrderItemBuyerInfoList:
     pass
 
 
+@attrs.define
 class OrderItemBuyerInfo:
     pass
 
 
+@attrs.define
 class PointsGrantedDetail:
     pass
 
 
+@attrs.define
 class ProductInfoDetail:
     pass
 
 
+@attrs.define
 class PromotionIdList:
     pass
 
 
+@attrs.define
 class BuyerCustomizedInfoDetail:
     pass
 
 
+@attrs.define
 class TaxCollection:
     pass
 
 
+@attrs.define
 class BuyerTaxInformation:
     pass
 
 
+@attrs.define
 class FulfillmentInstruction:
     pass
 
 
+@attrs.define
 class BuyerInfo:
     pass
 
 
+@attrs.define
 class ItemBuyerInfo:
     pass
 
 
+@attrs.define
 class AutomatedShippingSettings:
     pass
 
 
+@attrs.define
 class BuyerRequestedCancel:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 

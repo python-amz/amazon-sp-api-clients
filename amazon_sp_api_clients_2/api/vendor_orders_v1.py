@@ -7,126 +7,157 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class GetPurchaseOrdersResponse:
     pass
 
 
+@attrs.define
 class GetPurchaseOrderResponse:
     pass
 
 
+@attrs.define
 class OrderList:
     pass
 
 
+@attrs.define
 class Pagination:
     pass
 
 
+@attrs.define
 class Order:
     pass
 
 
+@attrs.define
 class OrderDetails:
     pass
 
 
+@attrs.define
 class ImportDetails:
     pass
 
 
+@attrs.define
 class DateTimeInterval:
     pass
 
 
+@attrs.define
 class PartyIdentification:
     pass
 
 
+@attrs.define
 class TaxRegistrationDetails:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class OrderItem:
     pass
 
 
+@attrs.define
 class Money:
     pass
 
 
+@attrs.define
 class Decimal:
     pass
 
 
+@attrs.define
 class SubmitAcknowledgementResponse:
     pass
 
 
+@attrs.define
 class TransactionId:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class SubmitAcknowledgementRequest:
     pass
 
 
+@attrs.define
 class OrderAcknowledgement:
     pass
 
 
+@attrs.define
 class OrderAcknowledgementItem:
     pass
 
 
+@attrs.define
 class OrderItemAcknowledgement:
     pass
 
 
+@attrs.define
 class ItemQuantity:
     pass
 
 
+@attrs.define
 class GetPurchaseOrdersStatusResponse:
     pass
 
 
+@attrs.define
 class OrderListStatus:
     pass
 
 
+@attrs.define
 class OrderStatus:
     pass
 
 
+@attrs.define
 class ItemStatus:
     pass
 
 
+@attrs.define
 class OrderItemStatus:
     pass
 
 
+@attrs.define
 class OrderedQuantityDetails:
     pass
 
 
+@attrs.define
 class AcknowledgementStatusDetails:
     pass
 
 
+@attrs.define
 class Error:
     pass
 

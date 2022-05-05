@@ -7,130 +7,162 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
+import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
 
 
+@attrs.define
 class GetServiceJobByServiceJobIdResponse:
     pass
 
 
+@attrs.define
 class CancelServiceJobByServiceJobIdResponse:
     pass
 
 
+@attrs.define
 class CompleteServiceJobByServiceJobIdResponse:
     pass
 
 
+@attrs.define
 class GetServiceJobsResponse:
     pass
 
 
+@attrs.define
 class SetAppointmentResponse:
     pass
 
 
+@attrs.define
 class JobListing:
     pass
 
 
+@attrs.define
 class ServiceJob:
     pass
 
 
+@attrs.define
 class ServiceJobId:
     pass
 
 
+@attrs.define
 class OrderId:
     pass
 
 
+@attrs.define
 class ScopeOfWork:
     pass
 
 
+@attrs.define
 class Seller:
     pass
 
 
+@attrs.define
 class ServiceJobProvider:
     pass
 
 
+@attrs.define
 class Buyer:
     pass
 
 
+@attrs.define
 class AppointmentTime:
     pass
 
 
+@attrs.define
 class AppointmentId:
     pass
 
 
+@attrs.define
 class Appointment:
     pass
 
 
+@attrs.define
 class Technician:
     pass
 
 
+@attrs.define
 class Poa:
     pass
 
 
+@attrs.define
 class AssociatedItem:
     pass
 
 
+@attrs.define
 class ItemDelivery:
     pass
 
 
+@attrs.define
 class ItemDeliveryPromise:
     pass
 
 
+@attrs.define
 class ServiceLocation:
     pass
 
 
+@attrs.define
 class Address:
     pass
 
 
+@attrs.define
 class AddAppointmentRequest:
     pass
 
 
+@attrs.define
 class RescheduleAppointmentRequest:
     pass
 
 
+@attrs.define
 class AppointmentTimeInput:
     pass
 
 
+@attrs.define
 class RescheduleReasonCode:
     pass
 
 
+@attrs.define
 class ErrorList:
     pass
 
 
+@attrs.define
 class Error:
     pass
 
 
+@attrs.define
 class WarningList:
     pass
 
 
+@attrs.define
 class Warning:
     pass
 
