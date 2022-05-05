@@ -134,7 +134,8 @@ class BaseSyncClient:
         if refresh_token not in self._access_token_cache:
             data = {'grant_type': 'refresh_token', 'refresh_token': refresh_token,
                     'client_id': self._lwa_key, 'client_secret': self._lwa_secret}
-            headers = {'User-Agent': 'python-sp-api', 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}
+            headers = {'User-Agent': 'amazon-sp-api-clients',
+                       'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}
             response = requests.post('https://api.amazon.com/auth/o2/token', data=data, headers=headers)
             access_token = response.json()['access_token']
             self._access_token_cache[refresh_token] = access_token
