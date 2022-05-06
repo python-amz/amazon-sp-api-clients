@@ -7,42 +7,131 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AdditionalDetails:
-    detail: str = attrs.field()
-    language_code: str = attrs.field()
-    type: Union[Literal["SUR"], Literal["OCR"]] = attrs.field()
+
+    detail: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The detail of the additional information provided by the selling party.
+    """
+
+    language_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The language code of the additional information detail.
+    """
+
+    type: Union[Literal["SUR"], Literal["OCR"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The type of the additional information provided by the selling party.
+    """
 
     pass
 
 
 @attrs.define
 class Address:
-    address_line1: str = attrs.field()
-    address_line2: str = attrs.field()
-    address_line3: str = attrs.field()
-    city: str = attrs.field()
-    country_code: str = attrs.field()
-    county: str = attrs.field()
-    district: str = attrs.field()
-    name: str = attrs.field()
-    phone: str = attrs.field()
-    postal_code: str = attrs.field()
-    state_or_region: str = attrs.field()
+
+    address_line1: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    First line of the address.
+    """
+
+    address_line2: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional street address information, if required.
+    """
+
+    address_line3: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional street address information, if required.
+    """
+
+    city: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The city where the person, business or institution is located.
+    """
+
+    country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The two digit country code in ISO 3166-1 alpha-2 format.
+    """
+
+    county: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The county where person, business or institution is located.
+    """
+
+    district: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The district where person, business or institution is located.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the person, business or institution at that address.
+    """
+
+    phone: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The phone number of the person, business or institution located at that address.
+    """
+
+    postal_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
+    """
+
+    state_or_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The state or region where person, business or institution is located.
+    """
 
     pass
 
 
 @attrs.define
 class ChargeDetails:
-    tax_details: list["TaxDetail"] = attrs.field()
+
+    tax_details: list["TaxDetail"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Individual tax details per line item.
+    """
+
     type: Union[
         Literal["GIFTWRAP"],
         Literal["FULFILLMENT"],
@@ -51,108 +140,341 @@ class ChargeDetails:
         Literal["LOADING"],
         Literal["FREIGHTOUT"],
         Literal["TAX_COLLECTED_AT_SOURCE"],
-    ] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Type of charge applied.
+    """
 
-    charge_amount: "Money" = attrs.field()
+    charge_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Decimal:
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class InvoiceDetail:
-    additional_details: list["AdditionalDetails"] = attrs.field()
-    charge_details: list["ChargeDetails"] = attrs.field()
-    invoice_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    invoice_number: str = attrs.field()
-    items: list["InvoiceItem"] = attrs.field()
-    payment_terms_code: str = attrs.field()
-    reference_number: str = attrs.field()
-    ship_to_country_code: str = attrs.field()
-    tax_totals: list["TaxDetail"] = attrs.field()
 
-    bill_to_party: "PartyIdentification" = attrs.field()
-    invoice_total: "Money" = attrs.field()
-    remit_to_party: "PartyIdentification" = attrs.field()
-    ship_from_party: "PartyIdentification" = attrs.field()
+    additional_details: list["AdditionalDetails"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details provided by the selling party, for tax related or other purposes.
+    """
+
+    charge_details: list["ChargeDetails"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Total charge amount details for all line items.
+    """
+
+    invoice_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Invoice date.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    invoice_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unique invoice number.
+    """
+
+    items: list["InvoiceItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Provides the details of the items in this invoice.
+    """
+
+    payment_terms_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The payment terms for the invoice.
+    """
+
+    reference_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An additional unique reference number used for regulatory or other purposes.
+    """
+
+    ship_to_country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Ship-to country code.
+    """
+
+    tax_totals: list["TaxDetail"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Individual tax details per line item.
+    """
+
+    bill_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    invoice_total: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    remit_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_from_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class InvoiceItem:
-    buyer_product_identifier: str = attrs.field()
-    charge_details: list["ChargeDetails"] = attrs.field()
-    hsn_code: str = attrs.field()
-    item_sequence_number: str = attrs.field()
-    purchase_order_number: str = attrs.field()
-    tax_details: list["TaxDetail"] = attrs.field()
-    vendor_order_number: str = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    invoiced_quantity: "ItemQuantity" = attrs.field()
-    net_cost: "Money" = attrs.field()
+    buyer_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Buyer's standard identification number (ASIN) of an item.
+    """
+
+    charge_details: list["ChargeDetails"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Individual charge details per line item.
+    """
+
+    hsn_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    HSN tax code. The HSN number cannot contain alphabets.
+    """
+
+    item_sequence_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
+    """
+
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
+    """
+
+    tax_details: list["TaxDetail"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Individual tax details per line item.
+    """
+
+    vendor_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor's order number for this order.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item.
+    """
+
+    invoiced_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    net_cost: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemQuantity:
-    amount: int = attrs.field()
-    unit_of_measure: str = attrs.field()
+
+    amount: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Quantity of units available for a specific item.
+    """
+
+    unit_of_measure: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Unit of measure for the available quantity.
+    """
 
     pass
 
 
 @attrs.define
 class Money:
-    currency_code: str = attrs.field()
 
-    amount: "Decimal" = attrs.field()
+    currency_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Three digit currency code in ISO 4217 format.
+    """
+
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class PartyIdentification:
-    party_id: str = attrs.field()
-    tax_registration_details: list["TaxRegistrationDetail"] = attrs.field()
 
-    address: "Address" = attrs.field()
+    party_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Assigned Identification for the party.
+    """
+
+    tax_registration_details: list["TaxRegistrationDetail"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration details of the entity.
+    """
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SubmitInvoiceRequest:
-    invoices: list["InvoiceDetail"] = attrs.field()
+
+    invoices: list["InvoiceDetail"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class SubmitInvoiceResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "TransactionReference" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "TransactionReference" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxDetail:
+
     tax_type: Union[
         Literal["CGST"],
         Literal["SGST"],
@@ -168,34 +490,87 @@ class TaxDetail:
         Literal["Consumption"],
         Literal["MutuallyDefined"],
         Literal["DomesticVAT"],
-    ] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Type of the tax applied.
+    """
 
-    tax_amount: "Money" = attrs.field()
-    tax_rate: "Decimal" = attrs.field()
-    taxable_amount: "Money" = attrs.field()
+    tax_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    tax_rate: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    taxable_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxRegistrationDetail:
-    tax_registration_message: str = attrs.field()
-    tax_registration_number: str = attrs.field()
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
-    tax_registration_address: "Address" = attrs.field()
+    tax_registration_message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration message that can be used for additional tax related details.
+    """
+
+    tax_registration_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration number for the party. For example, VAT ID.
+    """
+
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration type for the entity.
+    """
+
+    tax_registration_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TransactionReference:
-    transaction_id: str = attrs.field()
+
+    transaction_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    """
 
     pass
 
 
 class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
     def submit_invoice(
-            self,
+        self,
     ):
         """
         Submits one or more invoices for a vendor's direct fulfillment orders.

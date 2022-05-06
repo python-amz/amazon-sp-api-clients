@@ -9,49 +9,111 @@ API Version: 2021-08-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class Link:
-    resource: str = attrs.field()
-    # {'schema_format': 'uri'}
-    title: str = attrs.field()
-    type: str = attrs.field()
-    verb: Union[Literal["GET"]] = attrs.field()
+
+    resource: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The URI of the related resource.
+
+    Extra fields:
+    {'schema_format': 'uri'}
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The title of the related resource.
+    """
+
+    type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The media type of the related resource.
+    """
+
+    verb: Union[Literal["GET"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The HTTP verb used to interact with the related resource.
+    """
 
     pass
 
 
 @attrs.define
 class Reason:
-    links: list["Link"] = attrs.field()
-    message: str = attrs.field()
-    reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]] = attrs.field()
+
+    links: list["Link"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of path forward links that may allow Selling Partners to remove the restriction.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message describing the reason for the restriction.
+    """
+
+    reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A code indicating why the listing is restricted.
+    """
 
     pass
 
 
 @attrs.define
 class Restriction:
+
     condition_type: Union[
         Literal["new_new"],
         Literal["new_open_box"],
@@ -66,42 +128,65 @@ class Restriction:
         Literal["collectible_good"],
         Literal["collectible_acceptable"],
         Literal["club_club"],
-    ] = attrs.field()
-    marketplace_id: str = attrs.field()
-    reasons: list["Reason"] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The condition that applies to the restriction.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
+    """
+
+    reasons: list["Reason"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of reasons for the restriction.
+    """
 
     pass
 
 
 @attrs.define
 class RestrictionList:
-    restrictions: list["Restriction"] = attrs.field()
+
+    restrictions: list["Restriction"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 class ListingsRestrictions20210801Client(BaseClient):
     def get_listings_restrictions(
-            self,
-            asin: str,
-            seller_id: str,
-            marketplace_ids: list[str],
-            condition_type: Union[
-                Literal["new_new"],
-                Literal["new_open_box"],
-                Literal["new_oem"],
-                Literal["refurbished_refurbished"],
-                Literal["used_like_new"],
-                Literal["used_very_good"],
-                Literal["used_good"],
-                Literal["used_acceptable"],
-                Literal["collectible_like_new"],
-                Literal["collectible_very_good"],
-                Literal["collectible_good"],
-                Literal["collectible_acceptable"],
-                Literal["club_club"],
-            ] = None,
-            reason_locale: str = None,
+        self,
+        asin: str,
+        seller_id: str,
+        marketplace_ids: list[str],
+        condition_type: Union[
+            Literal["new_new"],
+            Literal["new_open_box"],
+            Literal["new_oem"],
+            Literal["refurbished_refurbished"],
+            Literal["used_like_new"],
+            Literal["used_very_good"],
+            Literal["used_good"],
+            Literal["used_acceptable"],
+            Literal["collectible_like_new"],
+            Literal["collectible_very_good"],
+            Literal["collectible_good"],
+            Literal["collectible_acceptable"],
+            Literal["club_club"],
+        ] = None,
+        reason_locale: str = None,
     ):
         """
         Returns listing restrictions for an item in the Amazon Catalog.

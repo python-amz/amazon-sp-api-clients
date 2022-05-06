@@ -7,232 +7,675 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Any, Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AddAppointmentRequest:
-    appointment_time: "AppointmentTimeInput" = attrs.field()
+
+    appointment_time: "AppointmentTimeInput" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Address:
-    address_line1: str = attrs.field()
-    address_line2: str = attrs.field()
-    address_line3: str = attrs.field()
-    city: str = attrs.field()
-    country_code: str = attrs.field()
-    county: str = attrs.field()
-    district: str = attrs.field()
-    name: str = attrs.field()
-    phone: str = attrs.field()
-    postal_code: str = attrs.field()
-    state_or_region: str = attrs.field()
+
+    address_line1: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The first line of the address.
+    """
+
+    address_line2: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional address information, if required.
+    """
+
+    address_line3: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional address information, if required.
+    """
+
+    city: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The city.
+    """
+
+    country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The two digit country code, in ISO 3166-1 alpha-2 format.
+    """
+
+    county: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The county.
+    """
+
+    district: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The district.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the person, business, or institution.
+    """
+
+    phone: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The phone number.
+    """
+
+    postal_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The postal code. This can contain letters, digits, spaces, and/or punctuation.
+    """
+
+    state_or_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The state or region.
+    """
 
     pass
 
 
 @attrs.define
 class Appointment:
-    appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]] = attrs.field()
-    assigned_technicians: list["Technician"] = attrs.field()
-    # {'minItems': 1}
 
-    appointment_id: "AppointmentId" = attrs.field()
-    appointment_time: "AppointmentTime" = attrs.field()
-    poa: "Poa" = attrs.field()
-    rescheduled_appointment_id: "AppointmentId" = attrs.field()
+    appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the appointment.
+    """
+
+    assigned_technicians: list["Technician"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of technicians assigned to the service job.
+
+    Extra fields:
+    {'minItems': 1}
+    """
+
+    appointment_id: "AppointmentId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    appointment_time: "AppointmentTime" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    poa: "Poa" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    rescheduled_appointment_id: "AppointmentId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class AppointmentId:
+
     pass
 
 
 @attrs.define
 class AppointmentTime:
-    duration_in_minutes: int = attrs.field()
-    # {'minimum': 1.0}
-    start_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
+
+    duration_in_minutes: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The duration of the appointment window, in minutes.
+
+    Extra fields:
+    {'minimum': 1.0}
+    """
+
+    start_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time of the start of the appointment window, in ISO 8601 format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
 
     pass
 
 
 @attrs.define
 class AppointmentTimeInput:
-    duration_in_minutes: int = attrs.field()
-    start_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
+
+    duration_in_minutes: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The duration of an appointment in minutes.
+    """
+
+    start_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date, time in UTC for the start time of an appointment in ISO 8601 format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
 
     pass
 
 
 @attrs.define
 class AssociatedItem:
-    asin: str = attrs.field()
-    brand_name: str = attrs.field()
-    item_status: Union[
-        Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]
-    ] = attrs.field()
-    quantity: int = attrs.field()
-    title: str = attrs.field()
 
-    item_delivery: "ItemDelivery" = attrs.field()
-    order_id: "OrderId" = attrs.field()
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of the item.
+    """
+
+    brand_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The brand name of the item.
+    """
+
+    item_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the item.
+    """
+
+    quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The total number of items included in the order.
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The title of the item.
+    """
+
+    item_delivery: "ItemDelivery" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    order_id: "OrderId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Buyer:
-    buyer_id: str = attrs.field()
-    # {'pattern': '^[A-Z0-9]*$'}
-    is_prime_member: bool = attrs.field()
-    name: str = attrs.field()
-    phone: str = attrs.field()
+
+    buyer_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier of the buyer.
+
+    Extra fields:
+    {'pattern': '^[A-Z0-9]*$'}
+    """
+
+    is_prime_member: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the service is for an Amazon Prime buyer.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the buyer.
+    """
+
+    phone: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The phone number of the buyer.
+    """
 
     pass
 
 
 @attrs.define
 class CancelServiceJobByServiceJobIdResponse:
-    errors: "ErrorList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CompleteServiceJobByServiceJobIdResponse:
-    errors: "ErrorList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    error_level: Union[Literal["ERROR"], Literal["WARNING"]] = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    error_level: Union[Literal["ERROR"], Literal["WARNING"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The type of error.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetServiceJobByServiceJobIdResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "ServiceJob" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "ServiceJob" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetServiceJobsResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "JobListing" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "JobListing" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemDelivery:
-    estimated_delivery_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
 
-    item_delivery_promise: "ItemDeliveryPromise" = attrs.field()
+    estimated_delivery_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time of the latest Estimated Delivery Date (EDD) of all the items with an EDD. In ISO 8601 format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    item_delivery_promise: "ItemDeliveryPromise" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemDeliveryPromise:
-    end_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    start_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
+
+    end_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time of the end of the promised delivery window, in ISO 8601 format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    start_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time of the start of the promised delivery window, in ISO 8601 format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
 
     pass
 
 
 @attrs.define
 class JobListing:
-    jobs: list["ServiceJob"] = attrs.field()
-    next_page_token: str = attrs.field()
-    previous_page_token: str = attrs.field()
-    total_result_size: int = attrs.field()
+
+    jobs: list["ServiceJob"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    List of job details for the given input.
+    """
+
+    next_page_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A generated string used to pass information to your next request.If nextPageToken is returned, pass the value of nextPageToken to the pageToken to get next results.
+    """
+
+    previous_page_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A generated string used to pass information to your next request.If previousPageToken is returned, pass the value of previousPageToken to the pageToken to get previous page results.
+    """
+
+    total_result_size: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Total result size of the query result.
+    """
 
     pass
 
 
 @attrs.define
 class OrderId:
+
     pass
 
 
 @attrs.define
 class Poa:
+
     poa_type: Union[
         Literal["NO_SIGNATURE_DUMMY_POS"],
         Literal["CUSTOMER_SIGNATURE"],
         Literal["DUMMY_RECEIPT"],
         Literal["POA_RECEIPT"],
-    ] = attrs.field()
-    technicians: list["Technician"] = attrs.field()
-    # {'minItems': 1}
-    upload_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    uploading_technician: str = attrs.field()
-    # {'pattern': '^[A-Z0-9]*$'}
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The type of POA uploaded.
+    """
 
-    appointment_time: "AppointmentTime" = attrs.field()
+    technicians: list["Technician"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of technicians.
+
+    Extra fields:
+    {'minItems': 1}
+    """
+
+    upload_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the POA was uploaded, in ISO 8601 format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    uploading_technician: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier of the technician who uploaded the POA.
+
+    Extra fields:
+    {'pattern': '^[A-Z0-9]*$'}
+    """
+
+    appointment_time: "AppointmentTime" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class RescheduleAppointmentRequest:
-    appointment_time: "AppointmentTimeInput" = attrs.field()
-    reschedule_reason_code: "RescheduleReasonCode" = attrs.field()
+
+    appointment_time: "AppointmentTimeInput" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    reschedule_reason_code: "RescheduleReasonCode" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class RescheduleReasonCode:
+
     pass
 
 
 @attrs.define
 class ScopeOfWork:
-    asin: str = attrs.field()
-    quantity: int = attrs.field()
-    required_skills: list[str] = attrs.field()
-    title: str = attrs.field()
+
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of the service job.
+    """
+
+    quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of service jobs.
+    """
+
+    required_skills: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of skills required to perform the job.
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The title of the service job.
+    """
 
     pass
 
 
 @attrs.define
 class Seller:
-    seller_id: str = attrs.field()
-    # {'pattern': '^[A-Z0-9]*$'}
+
+    seller_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier of the seller of the service job.
+
+    Extra fields:
+    {'pattern': '^[A-Z0-9]*$'}
+    """
 
     pass
 
 
 @attrs.define
 class ServiceJob:
-    appointments: list["Appointment"] = attrs.field()
-    associated_items: list["AssociatedItem"] = attrs.field()
-    create_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    marketplace_id: str = attrs.field()
-    # {'pattern': '^[A-Z0-9]*$'}
-    preferred_appointment_times: list["AppointmentTime"] = attrs.field()
+
+    appointments: list["Appointment"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of appointments.
+    """
+
+    associated_items: list["AssociatedItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of items associated with the service job.
+    """
+
+    create_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time of the creation of the job, in ISO 8601 format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The marketplace identifier.
+
+    Extra fields:
+    {'pattern': '^[A-Z0-9]*$'}
+    """
+
+    preferred_appointment_times: list["AppointmentTime"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of appointment windows preferred by the buyer. Included only if the buyer selected appointment windows when creating the order.
+    """
+
     service_job_status: Union[
         Literal["NOT_SERVICED"],
         Literal["CANCELLED"],
@@ -241,75 +684,195 @@ class ServiceJob:
         Literal["NOT_FULFILLABLE"],
         Literal["HOLD"],
         Literal["PAYMENT_DECLINED"],
-    ] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the service job.
+    """
 
-    buyer: "Buyer" = attrs.field()
-    scope_of_work: "ScopeOfWork" = attrs.field()
-    seller: "Seller" = attrs.field()
-    service_job_id: "ServiceJobId" = attrs.field()
-    service_job_provider: "ServiceJobProvider" = attrs.field()
-    service_location: "ServiceLocation" = attrs.field()
-    service_order_id: "OrderId" = attrs.field()
+    buyer: "Buyer" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    scope_of_work: "ScopeOfWork" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    seller: "Seller" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    service_job_id: "ServiceJobId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    service_job_provider: "ServiceJobProvider" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    service_location: "ServiceLocation" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    service_order_id: "OrderId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ServiceJobId:
+
     pass
 
 
 @attrs.define
 class ServiceJobProvider:
-    service_job_provider_id: str = attrs.field()
-    # {'pattern': '^[A-Z0-9]*$'}
+
+    service_job_provider_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier of the service job provider.
+
+    Extra fields:
+    {'pattern': '^[A-Z0-9]*$'}
+    """
 
     pass
 
 
 @attrs.define
 class ServiceLocation:
-    service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]] = attrs.field()
 
-    address: "Address" = attrs.field()
+    service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The location of the service job.
+    """
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SetAppointmentResponse:
-    appointment_id: "AppointmentId" = attrs.field()
-    errors: "ErrorList" = attrs.field()
-    warnings: "WarningList" = attrs.field()
+
+    appointment_id: "AppointmentId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    warnings: "WarningList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Technician:
-    name: str = attrs.field()
-    technician_id: str = attrs.field()
-    # {'minLength': 1, 'maxLength': 50}
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the technician.
+    """
+
+    technician_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The technician identifier.
+
+    Extra fields:
+    {'minLength': 1, 'maxLength': 50}
+    """
 
     pass
 
 
 @attrs.define
 class Warning:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An warning code that identifies the type of warning that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or address the warning.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the warning condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class WarningList:
+
     pass
 
 
 class ServicesV1Client(BaseClient):
     def add_appointment_for_service_job_by_service_job_id(
-            self,
-            service_job_id: str,
-            appointment_time: dict[str, Any],
+        self,
+        service_job_id: str,
+        appointment_time: dict[str, Any],
     ):
         """
         Adds an appointment to the service job indicated by the service job identifier you specify.
@@ -342,9 +905,9 @@ class ServicesV1Client(BaseClient):
     )
 
     def cancel_service_job_by_service_job_id(
-            self,
-            service_job_id: str,
-            cancellation_reason_code: str,
+        self,
+        service_job_id: str,
+        cancellation_reason_code: str,
     ):
         """
         Cancels the service job indicated by the service job identifier you specify.
@@ -375,8 +938,8 @@ class ServicesV1Client(BaseClient):
     )
 
     def complete_service_job_by_service_job_id(
-            self,
-            service_job_id: str,
+        self,
+        service_job_id: str,
     ):
         """
         Completes the service job indicated by the service job identifier you specify.
@@ -400,8 +963,8 @@ class ServicesV1Client(BaseClient):
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     def get_service_job_by_service_job_id(
-            self,
-            service_job_id: str,
+        self,
+        service_job_id: str,
     ):
         """
         Gets service job details for the service job indicated by the service job identifier you specify.
@@ -425,30 +988,30 @@ class ServicesV1Client(BaseClient):
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     def get_service_jobs(
-            self,
-            marketplace_ids: list[str],
-            service_order_ids: list[str] = None,
-            service_job_status: list[
-                Union[
-                    Literal["NOT_SERVICED"],
-                    Literal["CANCELLED"],
-                    Literal["COMPLETED"],
-                    Literal["PENDING_SCHEDULE"],
-                    Literal["NOT_FULFILLABLE"],
-                    Literal["HOLD"],
-                    Literal["PAYMENT_DECLINED"],
-                ]
-            ] = None,
-            page_token: str = None,
-            page_size: int = None,
-            sort_field: Union[Literal["JOB_DATE"], Literal["JOB_STATUS"]] = None,
-            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-            created_after: str = None,
-            created_before: str = None,
-            last_updated_after: str = None,
-            last_updated_before: str = None,
-            schedule_start_date: str = None,
-            schedule_end_date: str = None,
+        self,
+        marketplace_ids: list[str],
+        service_order_ids: list[str] = None,
+        service_job_status: list[
+            Union[
+                Literal["NOT_SERVICED"],
+                Literal["CANCELLED"],
+                Literal["COMPLETED"],
+                Literal["PENDING_SCHEDULE"],
+                Literal["NOT_FULFILLABLE"],
+                Literal["HOLD"],
+                Literal["PAYMENT_DECLINED"],
+            ]
+        ] = None,
+        page_token: str = None,
+        page_size: int = None,
+        sort_field: Union[Literal["JOB_DATE"], Literal["JOB_STATUS"]] = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+        created_after: str = None,
+        created_before: str = None,
+        last_updated_after: str = None,
+        last_updated_before: str = None,
+        schedule_start_date: str = None,
+        schedule_end_date: str = None,
     ):
         """
         Gets service job details for the specified filter query.
@@ -512,11 +1075,11 @@ class ServicesV1Client(BaseClient):
     )
 
     def reschedule_appointment_for_service_job_by_service_job_id(
-            self,
-            service_job_id: str,
-            appointment_id: str,
-            appointment_time: dict[str, Any],
-            reschedule_reason_code: str,
+        self,
+        service_job_id: str,
+        appointment_id: str,
+        appointment_time: dict[str, Any],
+        reschedule_reason_code: str,
     ):
         """
         Reschedules an appointment for the service job indicated by the service job identifier you specify.

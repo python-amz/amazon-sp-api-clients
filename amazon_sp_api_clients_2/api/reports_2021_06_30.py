@@ -7,33 +7,60 @@ API Version: 2021-06-30
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class CreateReportResponse:
-    report_id: str = attrs.field()
+
+    report_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the report. This identifier is unique only in combination with a seller ID.
+    """
 
     pass
 
 
 @attrs.define
 class CreateReportScheduleResponse:
-    report_schedule_id: str = attrs.field()
+
+    report_schedule_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+    """
 
     pass
 
 
 @attrs.define
 class CreateReportScheduleSpecification:
-    marketplace_ids: list[str] = attrs.field()
-    # {'minItems': 1, 'maxItems': 25}
-    next_report_creation_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
+
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of marketplace identifiers for the report schedule.
+
+    Extra fields:
+    {'maxItems': 25, 'minItems': 1}
+    """
+
+    next_report_creation_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the schedule will create its next report, in ISO 8601 date time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
     period: Union[
         Literal["PT5M"],
         Literal["PT15M"],
@@ -53,118 +80,347 @@ class CreateReportScheduleSpecification:
         Literal["P18D"],
         Literal["P30D"],
         Literal["P1M"],
-    ] = attrs.field()
-    report_type: str = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    One of a set of predefined ISO 8601 periods that specifies how often a report should be created.
+    """
 
-    report_options: "ReportOptions" = attrs.field()
+    report_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The report type.
+    """
+
+    report_options: "ReportOptions" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CreateReportSpecification:
-    data_end_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    data_start_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    marketplace_ids: list[str] = attrs.field()
-    # {'minItems': 1, 'maxItems': 25}
-    report_type: str = attrs.field()
 
-    report_options: "ReportOptions" = attrs.field()
+    data_end_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The end of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    data_start_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The start of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
+
+    Extra fields:
+    {'maxItems': 25, 'minItems': 1}
+    """
+
+    report_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The report type.
+    """
+
+    report_options: "ReportOptions" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class GetReportsResponse:
-    next_token: str = attrs.field()
 
-    reports: "ReportList" = attrs.field()
+    next_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Returned when the number of results exceeds pageSize. To get the next page of results, call getReports with this token as the only parameter.
+    """
+
+    reports: "ReportList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Report:
-    created_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    data_end_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    data_start_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    marketplace_ids: list[str] = attrs.field()
-    processing_end_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    processing_start_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
+
+    created_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the report was created.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    data_end_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The end of a date and time range used for selecting the data to report.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    data_start_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The start of a date and time range used for selecting the data to report.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of marketplace identifiers for the report.
+    """
+
+    processing_end_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the report processing completed, in ISO 8601 date time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    processing_start_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the report processing started, in ISO 8601 date time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ] = attrs.field()
-    report_document_id: str = attrs.field()
-    report_id: str = attrs.field()
-    report_schedule_id: str = attrs.field()
-    report_type: str = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The processing status of the report.
+    """
+
+    report_document_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the report document. Pass this into the getReportDocument operation to get the information you will need to retrieve the report document's contents.
+    """
+
+    report_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the report. This identifier is unique only in combination with a seller ID.
+    """
+
+    report_schedule_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
+    """
+
+    report_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The report type.
+    """
 
     pass
 
 
 @attrs.define
 class ReportDocument:
-    compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
-    report_document_id: str = attrs.field()
-    url: str = attrs.field()
+
+    compression_algorithm: Union[Literal["GZIP"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    If present, the report document contents have been compressed with the provided algorithm.
+    """
+
+    report_document_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the report document. This identifier is unique only in combination with a seller ID.
+    """
+
+    url: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A presigned URL for the report document. This URL expires after 5 minutes.
+    """
 
     pass
 
 
 @attrs.define
 class ReportList:
+
     pass
 
 
 @attrs.define
 class ReportOptions:
+
     pass
 
 
 @attrs.define
 class ReportSchedule:
-    marketplace_ids: list[str] = attrs.field()
-    next_report_creation_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    period: str = attrs.field()
-    report_schedule_id: str = attrs.field()
-    report_type: str = attrs.field()
 
-    report_options: "ReportOptions" = attrs.field()
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
+    """
+
+    next_report_creation_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the schedule will create its next report, in ISO 8601 date time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    period: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An ISO 8601 period value that indicates how often a report should be created.
+    """
+
+    report_schedule_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+    """
+
+    report_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The report type.
+    """
+
+    report_options: "ReportOptions" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ReportScheduleList:
-    report_schedules: list["ReportSchedule"] = attrs.field()
+
+    report_schedules: list["ReportSchedule"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 class Reports20210630Client(BaseClient):
     def cancel_report(
-            self,
-            report_id: str,
+        self,
+        report_id: str,
     ):
         """
         Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
@@ -188,8 +444,8 @@ class Reports20210630Client(BaseClient):
     _cancel_report_params = (("reportId", "path"),)  # name, param in
 
     def cancel_report_schedule(
-            self,
-            report_schedule_id: str,
+        self,
+        report_schedule_id: str,
     ):
         """
         Cancels the report schedule that you specify.
@@ -213,7 +469,7 @@ class Reports20210630Client(BaseClient):
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     def create_report(
-            self,
+        self,
     ):
         """
         Creates a report.
@@ -236,7 +492,7 @@ class Reports20210630Client(BaseClient):
     _create_report_params = ()  # name, param in
 
     def create_report_schedule(
-            self,
+        self,
     ):
         """
         Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
@@ -259,8 +515,8 @@ class Reports20210630Client(BaseClient):
     _create_report_schedule_params = ()  # name, param in
 
     def get_report(
-            self,
-            report_id: str,
+        self,
+        report_id: str,
     ):
         """
         Returns report details (including the reportDocumentId, if available) for the report that you specify.
@@ -284,8 +540,8 @@ class Reports20210630Client(BaseClient):
     _get_report_params = (("reportId", "path"),)  # name, param in
 
     def get_report_document(
-            self,
-            report_document_id: str,
+        self,
+        report_document_id: str,
     ):
         """
         Returns the information required for retrieving a report document's contents.
@@ -309,8 +565,8 @@ class Reports20210630Client(BaseClient):
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
     def get_report_schedule(
-            self,
-            report_schedule_id: str,
+        self,
+        report_schedule_id: str,
     ):
         """
         Returns report schedule details for the report schedule that you specify.
@@ -334,8 +590,8 @@ class Reports20210630Client(BaseClient):
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     def get_report_schedules(
-            self,
-            report_types: list[str],
+        self,
+        report_types: list[str],
     ):
         """
         Returns report schedule details that match the filters that you specify.
@@ -359,17 +615,16 @@ class Reports20210630Client(BaseClient):
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
     def get_reports(
-            self,
-            report_types: list[str] = None,
-            processing_statuses: list[
-                Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal[
-                    "IN_QUEUE"]]
-            ] = None,
-            marketplace_ids: list[str] = None,
-            page_size: int = None,
-            created_since: str = None,
-            created_until: str = None,
-            next_token: str = None,
+        self,
+        report_types: list[str] = None,
+        processing_statuses: list[
+            Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+        ] = None,
+        marketplace_ids: list[str] = None,
+        page_size: int = None,
+        created_since: str = None,
+        created_until: str = None,
+        next_token: str = None,
     ):
         """
         Returns report details for the reports that match the filters that you specify.

@@ -7,37 +7,74 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional information that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetItemEligibilityPreviewResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "ItemEligibilityPreview" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "ItemEligibilityPreview" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemEligibilityPreview:
-    asin: str = attrs.field()
+
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The ASIN for which eligibility was determined.
+    """
+
     ineligibility_reason_list: list[
         Union[
             Literal["FBA_INB_0004"],
@@ -80,20 +117,43 @@ class ItemEligibilityPreview:
             Literal["FBA_INB_0197"],
             Literal["UNKNOWN_INB_ERROR_CODE"],
         ]
-    ] = attrs.field()
-    is_eligible_for_program: bool = attrs.field()
-    marketplace_id: str = attrs.field()
-    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Potential Ineligibility Reason Codes.
+    """
+
+    is_eligible_for_program: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates if the item is eligible for the program.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The marketplace for which eligibility was determined.
+    """
+
+    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The program for which eligibility was determined.
+    """
 
     pass
 
 
 class FbaInboundEligibilityV1Client(BaseClient):
     def get_item_eligibility_preview(
-            self,
-            asin: str,
-            program: Union[Literal["INBOUND"], Literal["COMMINGLING"]],
-            marketplace_ids: list[str] = None,
+        self,
+        asin: str,
+        program: Union[Literal["INBOUND"], Literal["COMMINGLING"]],
+        marketplace_ids: list[str] = None,
     ):
         """
         This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.

@@ -10,161 +10,401 @@ Contact Amazon: Selling Partner API Developer Support https://sellercentral.amaz
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class CreateDestinationRequest:
-    name: str = attrs.field()
 
-    resource_specification: "DestinationResourceSpecification" = attrs.field()
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A developer-defined name to help identify this destination.
+    """
+
+    resource_specification: "DestinationResourceSpecification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CreateDestinationResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "Destination" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "Destination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CreateSubscriptionRequest:
-    destination_id: str = attrs.field()
-    payload_version: str = attrs.field()
+
+    destination_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the destination where notifications will be delivered.
+    """
+
+    payload_version: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The version of the payload object to be used in the notification.
+    """
 
     pass
 
 
 @attrs.define
 class CreateSubscriptionResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "Subscription" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "Subscription" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class DeleteDestinationResponse:
-    errors: "ErrorList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class DeleteSubscriptionByIdResponse:
-    errors: "ErrorList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Destination:
-    destination_id: str = attrs.field()
-    name: str = attrs.field()
-    # {'maxLength': 256}
 
-    resource: "DestinationResource" = attrs.field()
+    destination_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The destination identifier generated when you created the destination.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The developer-defined name for this destination.
+
+    Extra fields:
+    {'maxLength': 256}
+    """
+
+    resource: "DestinationResource" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class DestinationList:
+
     pass
 
 
 @attrs.define
 class DestinationResource:
-    event_bridge: "EventBridgeResource" = attrs.field()
-    sqs: "SqsResource" = attrs.field()
+
+    event_bridge: "EventBridgeResource" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    sqs: "SqsResource" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class DestinationResourceSpecification:
-    event_bridge: "EventBridgeResourceSpecification" = attrs.field()
-    sqs: "SqsResource" = attrs.field()
+
+    event_bridge: "EventBridgeResourceSpecification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    sqs: "SqsResource" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class EventBridgeResource:
-    account_id: str = attrs.field()
-    name: str = attrs.field()
-    # {'maxLength': 256}
-    region: str = attrs.field()
+
+    account_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the AWS account that is responsible for charges related to receiving notifications.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the partner event source associated with the destination.
+
+    Extra fields:
+    {'maxLength': 256}
+    """
+
+    region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The AWS region in which you receive the notifications. For AWS regions that are supported in Amazon EventBridge, see https://docs.aws.amazon.com/general/latest/gr/ev.html.
+    """
 
     pass
 
 
 @attrs.define
 class EventBridgeResourceSpecification:
-    account_id: str = attrs.field()
-    region: str = attrs.field()
+
+    account_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the AWS account that is responsible for charges related to receiving notifications.
+    """
+
+    region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The AWS region in which you will be receiving the notifications.
+    """
 
     pass
 
 
 @attrs.define
 class GetDestinationResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "Destination" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "Destination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetDestinationsResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "DestinationList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "DestinationList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetSubscriptionByIdResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "Subscription" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "Subscription" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetSubscriptionResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "Subscription" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "Subscription" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SqsResource:
-    arn: str = attrs.field()
-    # {'maxLength': 1000, 'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+'}
+
+    arn: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Resource Name (ARN) associated with the SQS queue.
+
+    Extra fields:
+    {'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+', 'maxLength': 1000}
+    """
 
     pass
 
 
 @attrs.define
 class Subscription:
-    destination_id: str = attrs.field()
-    payload_version: str = attrs.field()
-    subscription_id: str = attrs.field()
+
+    destination_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the destination where notifications will be delivered.
+    """
+
+    payload_version: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The version of the payload object to be used in the notification.
+    """
+
+    subscription_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The subscription identifier generated when the subscription is created.
+    """
 
     pass
 
 
 class NotificationsV1Client(BaseClient):
     def create_destination(
-            self,
+        self,
     ):
         """
         Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -187,10 +427,10 @@ class NotificationsV1Client(BaseClient):
     _create_destination_params = ()  # name, param in
 
     def create_subscription(
-            self,
-            notification_type: str,
-            payload_version: str = None,
-            destination_id: str = None,
+        self,
+        notification_type: str,
+        payload_version: str = None,
+        destination_id: str = None,
     ):
         """
         Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
@@ -225,8 +465,8 @@ class NotificationsV1Client(BaseClient):
     )
 
     def delete_destination(
-            self,
-            destination_id: str,
+        self,
+        destination_id: str,
     ):
         """
         Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -250,9 +490,9 @@ class NotificationsV1Client(BaseClient):
     _delete_destination_params = (("destinationId", "path"),)  # name, param in
 
     def delete_subscription_by_id(
-            self,
-            subscription_id: str,
-            notification_type: str,
+        self,
+        subscription_id: str,
+        notification_type: str,
     ):
         """
         Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -284,8 +524,8 @@ class NotificationsV1Client(BaseClient):
     )
 
     def get_destination(
-            self,
-            destination_id: str,
+        self,
+        destination_id: str,
     ):
         """
         Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -309,7 +549,7 @@ class NotificationsV1Client(BaseClient):
     _get_destination_params = (("destinationId", "path"),)  # name, param in
 
     def get_destinations(
-            self,
+        self,
     ):
         """
         Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -332,8 +572,8 @@ class NotificationsV1Client(BaseClient):
     _get_destinations_params = ()  # name, param in
 
     def get_subscription(
-            self,
-            notification_type: str,
+        self,
+        notification_type: str,
     ):
         """
         Returns information about subscriptions of the specified notification type. You can use this API to get subscription information when you do not have a subscription identifier.
@@ -358,9 +598,9 @@ class NotificationsV1Client(BaseClient):
     _get_subscription_params = (("notificationType", "path"),)  # name, param in
 
     def get_subscription_by_id(
-            self,
-            subscription_id: str,
-            notification_type: str,
+        self,
+        subscription_id: str,
+        notification_type: str,
     ):
         """
         Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.

@@ -8,44 +8,82 @@ Contact Amazon: Selling Partner API Developer Support https://sellercentral.amaz
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AuthorizationCode:
-    authorization_code: str = attrs.field()
+
+    authorization_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A Login with Amazon (LWA) authorization code that can be exchanged for a refresh token and access token that authorize you to make calls to a Selling Partner API.
+    """
 
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetAuthorizationCodeResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "AuthorizationCode" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "AuthorizationCode" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 class AuthorizationV1Client(BaseClient):
     def get_authorization_code(
-            self,
-            selling_partner_id: str,
-            developer_id: str,
-            mws_auth_token: str,
+        self,
+        selling_partner_id: str,
+        developer_id: str,
+        mws_auth_token: str,
     ):
         """
         With the getAuthorizationCode operation, you can request a Login With Amazon (LWA) authorization code that will allow you to call a Selling Partner API on behalf of a seller who has already authorized you to call Amazon Marketplace Web Service (Amazon MWS). You specify a developer ID, an MWS auth token, and a seller ID. Taken together, these represent the Amazon MWS authorization that the seller previously granted you. The operation returns an LWA authorization code that can be exchanged for a refresh token and access token representing authorization to call the Selling Partner API on the seller's behalf. By using this API, sellers who have already authorized you for Amazon MWS do not need to re-authorize you for the Selling Partner API.

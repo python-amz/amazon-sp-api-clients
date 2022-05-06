@@ -7,597 +7,1555 @@ API Version: 2020-11-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Any, Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AplusPaginatedResponse:
+
     pass
 
 
 @attrs.define
 class AplusResponse:
-    warnings: "MessageSet" = attrs.field()
+
+    warnings: "MessageSet" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Asin:
+
     pass
 
 
 @attrs.define
 class AsinBadge:
+
     pass
 
 
 @attrs.define
 class AsinBadgeSet:
+
     pass
 
 
 @attrs.define
 class AsinMetadata:
-    image_url: str = attrs.field()
-    # {'minLength': 1}
-    title: str = attrs.field()
-    # {'minLength': 1}
 
-    asin: "Asin" = attrs.field()
-    badge_set: "AsinBadgeSet" = attrs.field()
-    content_reference_key_set: "ContentReferenceKeySet" = attrs.field()
-    parent: "Asin" = attrs.field()
+    image_url: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The default image for the ASIN in the Amazon catalog.
+
+    Extra fields:
+    {'minLength': 1}
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The title for the ASIN in the Amazon catalog.
+
+    Extra fields:
+    {'minLength': 1}
+    """
+
+    asin: "Asin" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    badge_set: "AsinBadgeSet" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_reference_key_set: "ContentReferenceKeySet" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    parent: "Asin" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class AsinMetadataSet:
+
     pass
 
 
 @attrs.define
 class AsinSet:
+
     pass
 
 
 @attrs.define
 class ColorType:
+
     pass
 
 
 @attrs.define
 class ContentBadge:
+
     pass
 
 
 @attrs.define
 class ContentBadgeSet:
+
     pass
 
 
 @attrs.define
 class ContentDocument:
-    name: str = attrs.field()
-    # {'minLength': 1, 'maxLength': 100}
 
-    content_module_list: "ContentModuleList" = attrs.field()
-    content_sub_type: "ContentSubType" = attrs.field()
-    content_type: "ContentType" = attrs.field()
-    locale: "LanguageTag" = attrs.field()
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The A+ Content document name.
+
+    Extra fields:
+    {'maxLength': 100, 'minLength': 1}
+    """
+
+    content_module_list: "ContentModuleList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_sub_type: "ContentSubType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_type: "ContentType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    locale: "LanguageTag" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ContentMetadata:
-    name: str = attrs.field()
-    # {'minLength': 1, 'maxLength': 100}
-    update_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
 
-    badge_set: "ContentBadgeSet" = attrs.field()
-    marketplace_id: "MarketplaceId" = attrs.field()
-    status: "ContentStatus" = attrs.field()
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The A+ Content document name.
+
+    Extra fields:
+    {'maxLength': 100, 'minLength': 1}
+    """
+
+    update_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The approximate age of the A+ Content document and metadata.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    badge_set: "ContentBadgeSet" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    marketplace_id: "MarketplaceId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    status: "ContentStatus" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ContentMetadataRecord:
-    content_metadata: "ContentMetadata" = attrs.field()
-    content_reference_key: "ContentReferenceKey" = attrs.field()
+
+    content_metadata: "ContentMetadata" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_reference_key: "ContentReferenceKey" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ContentMetadataRecordList:
+
     pass
 
 
 @attrs.define
 class ContentModule:
-    content_module_type: "ContentModuleType" = attrs.field()
-    standard_company_logo: "StandardCompanyLogoModule" = attrs.field()
-    standard_comparison_table: "StandardComparisonTableModule" = attrs.field()
-    standard_four_image_text: "StandardFourImageTextModule" = attrs.field()
-    standard_four_image_text_quadrant: "StandardFourImageTextQuadrantModule" = attrs.field()
-    standard_header_image_text: "StandardHeaderImageTextModule" = attrs.field()
-    standard_image_sidebar: "StandardImageSidebarModule" = attrs.field()
-    standard_image_text_overlay: "StandardImageTextOverlayModule" = attrs.field()
-    standard_multiple_image_text: "StandardMultipleImageTextModule" = attrs.field()
-    standard_product_description: "StandardProductDescriptionModule" = attrs.field()
-    standard_single_image_highlights: "StandardSingleImageHighlightsModule" = attrs.field()
-    standard_single_image_specs_detail: "StandardSingleImageSpecsDetailModule" = attrs.field()
-    standard_single_side_image: "StandardSingleSideImageModule" = attrs.field()
-    standard_tech_specs: "StandardTechSpecsModule" = attrs.field()
-    standard_text: "StandardTextModule" = attrs.field()
-    standard_three_image_text: "StandardThreeImageTextModule" = attrs.field()
+
+    content_module_type: "ContentModuleType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_company_logo: "StandardCompanyLogoModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_comparison_table: "StandardComparisonTableModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_four_image_text: "StandardFourImageTextModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_four_image_text_quadrant: "StandardFourImageTextQuadrantModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_header_image_text: "StandardHeaderImageTextModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_image_sidebar: "StandardImageSidebarModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_image_text_overlay: "StandardImageTextOverlayModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_multiple_image_text: "StandardMultipleImageTextModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_product_description: "StandardProductDescriptionModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_single_image_highlights: "StandardSingleImageHighlightsModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_single_image_specs_detail: "StandardSingleImageSpecsDetailModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_single_side_image: "StandardSingleSideImageModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_tech_specs: "StandardTechSpecsModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_text: "StandardTextModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    standard_three_image_text: "StandardThreeImageTextModule" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ContentModuleList:
+
     pass
 
 
 @attrs.define
 class ContentModuleType:
+
     pass
 
 
 @attrs.define
 class ContentRecord:
-    content_document: "ContentDocument" = attrs.field()
-    content_metadata: "ContentMetadata" = attrs.field()
-    content_reference_key: "ContentReferenceKey" = attrs.field()
+
+    content_document: "ContentDocument" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_metadata: "ContentMetadata" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_reference_key: "ContentReferenceKey" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ContentReferenceKey:
+
     pass
 
 
 @attrs.define
 class ContentReferenceKeySet:
+
     pass
 
 
 @attrs.define
 class ContentStatus:
+
     pass
 
 
 @attrs.define
 class ContentSubType:
+
     pass
 
 
 @attrs.define
 class ContentType:
+
     pass
 
 
 @attrs.define
 class Decorator:
-    depth: int = attrs.field()
-    # {'maximum': 100.0, 'minimum': 0.0}
-    length: int = attrs.field()
-    # {'maximum': 10000.0, 'minimum': 0.0}
-    offset: int = attrs.field()
-    # {'maximum': 10000.0, 'minimum': 0.0}
 
-    type: "DecoratorType" = attrs.field()
+    depth: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The relative intensity or variation of this decorator. Decorators such as bullet-points, for example, can have multiple indentation depths.
+
+    Extra fields:
+    {'minimum': 0.0, 'maximum': 100.0}
+    """
+
+    length: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of content characters to alter with this decorator. Decorators such as line breaks can have zero length and fit between characters.
+
+    Extra fields:
+    {'minimum': 0.0, 'maximum': 10000.0}
+    """
+
+    offset: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The starting character of this decorator within the content string. Use zero for the first character.
+
+    Extra fields:
+    {'minimum': 0.0, 'maximum': 10000.0}
+    """
+
+    type: "DecoratorType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class DecoratorSet:
+
     pass
 
 
 @attrs.define
 class DecoratorType:
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    # {'minLength': 1}
-    details: str = attrs.field()
-    # {'minLength': 1}
-    message: str = attrs.field()
-    # {'minLength': 1}
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The code that identifies the type of error condition.
+
+    Extra fields:
+    {'minLength': 1}
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional information, if available, to clarify the error condition.
+
+    Extra fields:
+    {'minLength': 1}
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A human readable description of the error condition.
+
+    Extra fields:
+    {'minLength': 1}
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
 
 @attrs.define
 class GetContentDocumentResponse:
+
     pass
 
 
 @attrs.define
 class ImageComponent:
-    alt_text: str = attrs.field()
-    # {'minLength': 1, 'maxLength': 100}
-    upload_destination_id: str = attrs.field()
-    # {'minLength': 1}
 
-    image_crop_specification: "ImageCropSpecification" = attrs.field()
+    alt_text: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The alternative text for the image.
+
+    Extra fields:
+    {'maxLength': 100, 'minLength': 1}
+    """
+
+    upload_destination_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    This identifier is provided by the Selling Partner API for Uploads.
+
+    Extra fields:
+    {'minLength': 1}
+    """
+
+    image_crop_specification: "ImageCropSpecification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ImageCropSpecification:
-    offset: "ImageOffsets" = attrs.field()
-    size: "ImageDimensions" = attrs.field()
+
+    offset: "ImageOffsets" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    size: "ImageDimensions" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ImageDimensions:
-    height: "IntegerWithUnits" = attrs.field()
-    width: "IntegerWithUnits" = attrs.field()
+
+    height: "IntegerWithUnits" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    width: "IntegerWithUnits" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ImageOffsets:
-    x: "IntegerWithUnits" = attrs.field()
-    y: "IntegerWithUnits" = attrs.field()
+
+    x: "IntegerWithUnits" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    y: "IntegerWithUnits" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class IntegerWithUnits:
-    units: str = attrs.field()
-    value: int = attrs.field()
+
+    units: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unit of measurement.
+    """
+
+    value: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The dimension value.
+    """
 
     pass
 
 
 @attrs.define
 class LanguageTag:
+
     pass
 
 
 @attrs.define
 class ListContentDocumentAsinRelationsResponse:
+
     pass
 
 
 @attrs.define
 class MarketplaceId:
+
     pass
 
 
 @attrs.define
 class MessageSet:
+
     pass
 
 
 @attrs.define
 class PageToken:
+
     pass
 
 
 @attrs.define
 class ParagraphComponent:
-    text_list: list["TextComponent"] = attrs.field()
-    # {'maxItems': 100, 'minItems': 1}
+
+    text_list: list["TextComponent"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+
+    Extra fields:
+    {'minItems': 1, 'maxItems': 100}
+    """
 
     pass
 
 
 @attrs.define
 class PlainTextItem:
-    position: int = attrs.field()
-    # {'maximum': 100.0, 'minimum': 1.0}
-    value: str = attrs.field()
-    # {'minLength': 1, 'maxLength': 250}
+
+    position: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
+
+    Extra fields:
+    {'minimum': 1.0, 'maximum': 100.0}
+    """
+
+    value: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The actual plain text.
+
+    Extra fields:
+    {'maxLength': 250, 'minLength': 1}
+    """
 
     pass
 
 
 @attrs.define
 class PositionType:
+
     pass
 
 
 @attrs.define
 class PostContentDocumentApprovalSubmissionResponse:
+
     pass
 
 
 @attrs.define
 class PostContentDocumentAsinRelationsRequest:
-    asin_set: "AsinSet" = attrs.field()
+
+    asin_set: "AsinSet" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class PostContentDocumentAsinRelationsResponse:
+
     pass
 
 
 @attrs.define
 class PostContentDocumentRequest:
-    content_document: "ContentDocument" = attrs.field()
+
+    content_document: "ContentDocument" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class PostContentDocumentResponse:
+
     pass
 
 
 @attrs.define
 class PostContentDocumentSuspendSubmissionResponse:
+
     pass
 
 
 @attrs.define
 class PublishRecord:
-    asin: "Asin" = attrs.field()
-    content_reference_key: "ContentReferenceKey" = attrs.field()
-    content_sub_type: "ContentSubType" = attrs.field()
-    content_type: "ContentType" = attrs.field()
-    locale: "LanguageTag" = attrs.field()
-    marketplace_id: "MarketplaceId" = attrs.field()
+
+    asin: "Asin" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_reference_key: "ContentReferenceKey" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_sub_type: "ContentSubType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    content_type: "ContentType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    locale: "LanguageTag" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    marketplace_id: "MarketplaceId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class PublishRecordList:
+
     pass
 
 
 @attrs.define
 class SearchContentDocumentsResponse:
+
     pass
 
 
 @attrs.define
 class SearchContentPublishRecordsResponse:
+
     pass
 
 
 @attrs.define
 class StandardCompanyLogoModule:
-    company_logo: "ImageComponent" = attrs.field()
+
+    company_logo: "ImageComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardComparisonProductBlock:
-    highlight: bool = attrs.field()
-    metrics: list["PlainTextItem"] = attrs.field()
-    # {'maxItems': 10, 'minItems': 0}
-    position: int = attrs.field()
-    # {'maximum': 6.0, 'minimum': 1.0}
-    title: str = attrs.field()
-    # {'minLength': 1, 'maxLength': 80}
 
-    asin: "Asin" = attrs.field()
-    image: "ImageComponent" = attrs.field()
+    highlight: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    Determines whether this block of content is visually highlighted.
+    """
+
+    metrics: list["PlainTextItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Comparison metrics for the product.
+
+    Extra fields:
+    {'minItems': 0, 'maxItems': 10}
+    """
+
+    position: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The rank or index of this comparison product block within the module. Different blocks cannot occupy the same position within a single module.
+
+    Extra fields:
+    {'minimum': 1.0, 'maximum': 6.0}
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The comparison product title.
+
+    Extra fields:
+    {'maxLength': 80, 'minLength': 1}
+    """
+
+    asin: "Asin" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    image: "ImageComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardComparisonTableModule:
-    metric_row_labels: list["PlainTextItem"] = attrs.field()
-    # {'maxItems': 10, 'minItems': 0}
-    product_columns: list["StandardComparisonProductBlock"] = attrs.field()
-    # {'maxItems': 6, 'minItems': 0}
+
+    metric_row_labels: list["PlainTextItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+
+    Extra fields:
+    {'minItems': 0, 'maxItems': 10}
+    """
+
+    product_columns: list["StandardComparisonProductBlock"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+
+    Extra fields:
+    {'minItems': 0, 'maxItems': 6}
+    """
 
     pass
 
 
 @attrs.define
 class StandardFourImageTextModule:
-    block1: "StandardImageTextBlock" = attrs.field()
-    block2: "StandardImageTextBlock" = attrs.field()
-    block3: "StandardImageTextBlock" = attrs.field()
-    block4: "StandardImageTextBlock" = attrs.field()
-    headline: "TextComponent" = attrs.field()
+
+    block1: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block2: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block3: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block4: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardFourImageTextQuadrantModule:
-    block1: "StandardImageTextBlock" = attrs.field()
-    block2: "StandardImageTextBlock" = attrs.field()
-    block3: "StandardImageTextBlock" = attrs.field()
-    block4: "StandardImageTextBlock" = attrs.field()
+
+    block1: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block2: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block3: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block4: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardHeaderImageTextModule:
-    block: "StandardImageTextBlock" = attrs.field()
-    headline: "TextComponent" = attrs.field()
+
+    block: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardHeaderTextListBlock:
-    block: "StandardTextListBlock" = attrs.field()
-    headline: "TextComponent" = attrs.field()
+
+    block: "StandardTextListBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardImageCaptionBlock:
-    caption: "TextComponent" = attrs.field()
-    image: "ImageComponent" = attrs.field()
+
+    caption: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    image: "ImageComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardImageSidebarModule:
-    description_list_block: "StandardTextListBlock" = attrs.field()
-    description_text_block: "StandardTextBlock" = attrs.field()
-    headline: "TextComponent" = attrs.field()
-    image_caption_block: "StandardImageCaptionBlock" = attrs.field()
-    sidebar_image_text_block: "StandardImageTextBlock" = attrs.field()
-    sidebar_list_block: "StandardTextListBlock" = attrs.field()
+
+    description_list_block: "StandardTextListBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    description_text_block: "StandardTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    image_caption_block: "StandardImageCaptionBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    sidebar_image_text_block: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    sidebar_list_block: "StandardTextListBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardImageTextBlock:
-    body: "ParagraphComponent" = attrs.field()
-    headline: "TextComponent" = attrs.field()
-    image: "ImageComponent" = attrs.field()
+
+    body: "ParagraphComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    image: "ImageComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardImageTextCaptionBlock:
-    block: "StandardImageTextBlock" = attrs.field()
-    caption: "TextComponent" = attrs.field()
+
+    block: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    caption: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardImageTextOverlayModule:
-    block: "StandardImageTextBlock" = attrs.field()
-    overlay_color_type: "ColorType" = attrs.field()
+
+    block: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    overlay_color_type: "ColorType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardMultipleImageTextModule:
-    blocks: list["StandardImageTextCaptionBlock"] = attrs.field()
+
+    blocks: list["StandardImageTextCaptionBlock"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class StandardProductDescriptionModule:
-    body: "ParagraphComponent" = attrs.field()
+
+    body: "ParagraphComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardSingleImageHighlightsModule:
-    bulleted_list_block: "StandardHeaderTextListBlock" = attrs.field()
-    headline: "TextComponent" = attrs.field()
-    image: "ImageComponent" = attrs.field()
-    text_block1: "StandardTextBlock" = attrs.field()
-    text_block2: "StandardTextBlock" = attrs.field()
-    text_block3: "StandardTextBlock" = attrs.field()
+
+    bulleted_list_block: "StandardHeaderTextListBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    image: "ImageComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    text_block1: "StandardTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    text_block2: "StandardTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    text_block3: "StandardTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardSingleImageSpecsDetailModule:
-    description_block1: "StandardTextBlock" = attrs.field()
-    description_block2: "StandardTextBlock" = attrs.field()
-    description_headline: "TextComponent" = attrs.field()
-    headline: "TextComponent" = attrs.field()
-    image: "ImageComponent" = attrs.field()
-    specification_headline: "TextComponent" = attrs.field()
-    specification_list_block: "StandardHeaderTextListBlock" = attrs.field()
-    specification_text_block: "StandardTextBlock" = attrs.field()
+
+    description_block1: "StandardTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    description_block2: "StandardTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    description_headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    image: "ImageComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    specification_headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    specification_list_block: "StandardHeaderTextListBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    specification_text_block: "StandardTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardSingleSideImageModule:
-    block: "StandardImageTextBlock" = attrs.field()
-    image_position_type: "PositionType" = attrs.field()
+
+    block: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    image_position_type: "PositionType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardTechSpecsModule:
-    specification_list: list["StandardTextPairBlock"] = attrs.field()
-    # {'maxItems': 16, 'minItems': 4}
-    table_count: int = attrs.field()
-    # {'maximum': 2.0, 'minimum': 1.0}
 
-    headline: "TextComponent" = attrs.field()
+    specification_list: list["StandardTextPairBlock"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The specification list.
+
+    Extra fields:
+    {'minItems': 4, 'maxItems': 16}
+    """
+
+    table_count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of tables to present. Features are evenly divided between the tables.
+
+    Extra fields:
+    {'minimum': 1.0, 'maximum': 2.0}
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardTextBlock:
-    body: "ParagraphComponent" = attrs.field()
-    headline: "TextComponent" = attrs.field()
+
+    body: "ParagraphComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardTextListBlock:
-    text_list: list["TextItem"] = attrs.field()
-    # {'maxItems': 8, 'minItems': 0}
+
+    text_list: list["TextItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+
+    Extra fields:
+    {'minItems': 0, 'maxItems': 8}
+    """
 
     pass
 
 
 @attrs.define
 class StandardTextModule:
-    body: "ParagraphComponent" = attrs.field()
-    headline: "TextComponent" = attrs.field()
+
+    body: "ParagraphComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardTextPairBlock:
-    description: "TextComponent" = attrs.field()
-    label: "TextComponent" = attrs.field()
+
+    description: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    label: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class StandardThreeImageTextModule:
-    block1: "StandardImageTextBlock" = attrs.field()
-    block2: "StandardImageTextBlock" = attrs.field()
-    block3: "StandardImageTextBlock" = attrs.field()
-    headline: "TextComponent" = attrs.field()
+
+    block1: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block2: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    block3: "StandardImageTextBlock" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TextComponent:
-    value: str = attrs.field()
-    # {'minLength': 1, 'maxLength': 10000}
 
-    decorator_set: "DecoratorSet" = attrs.field()
+    value: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The actual plain text.
+
+    Extra fields:
+    {'maxLength': 10000, 'minLength': 1}
+    """
+
+    decorator_set: "DecoratorSet" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TextItem:
-    position: int = attrs.field()
-    # {'maximum': 100.0, 'minimum': 1.0}
 
-    text: "TextComponent" = attrs.field()
+    position: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
+
+    Extra fields:
+    {'minimum': 1.0, 'maximum': 100.0}
+    """
+
+    text: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ValidateContentDocumentAsinRelationsResponse:
+
     pass
 
 
 class AplusContent20201101Client(BaseClient):
     def create_content_document(
-            self,
-            marketplace_id: str,
-            content_document: dict[str, Any],
+        self,
+        marketplace_id: str,
+        content_document: dict[str, Any],
     ):
         """
         Creates a new A+ Content document.
@@ -629,10 +1587,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def get_content_document(
-            self,
-            content_reference_key: str,
-            marketplace_id: str,
-            included_data_set: list[Union[Literal["CONTENTS"], Literal["METADATA"]]],
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
+        included_data_set: list[Union[Literal["CONTENTS"], Literal["METADATA"]]],
     ):
         """
         Returns an A+ Content document, if available.
@@ -667,12 +1625,12 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def list_content_document_asin_relations(
-            self,
-            content_reference_key: str,
-            marketplace_id: str,
-            included_data_set: list[Union[Literal["METADATA"]]] = None,
-            asin_set: list[str] = None,
-            page_token: str = None,
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
+        included_data_set: list[Union[Literal["METADATA"]]] = None,
+        asin_set: list[str] = None,
+        page_token: str = None,
     ):
         """
         Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the asinSet parameter, the operation returns all ASINs related to the content document.
@@ -713,9 +1671,9 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def post_content_document_approval_submission(
-            self,
-            content_reference_key: str,
-            marketplace_id: str,
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
     ):
         """
         Submits an A+ Content document for review, approval, and publishing.
@@ -749,10 +1707,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def post_content_document_asin_relations(
-            self,
-            content_reference_key: str,
-            marketplace_id: str,
-            asin_set: list["Asin"],
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
+        asin_set: list["Asin"],
     ):
         """
         Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
@@ -787,9 +1745,9 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def post_content_document_suspend_submission(
-            self,
-            content_reference_key: str,
-            marketplace_id: str,
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
     ):
         """
         Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
@@ -823,9 +1781,9 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def search_content_documents(
-            self,
-            marketplace_id: str,
-            page_token: str = None,
+        self,
+        marketplace_id: str,
+        page_token: str = None,
     ):
         """
         Returns a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the getContentDocument operation to get the actual contents of the A+ Content documents.
@@ -857,10 +1815,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def search_content_publish_records(
-            self,
-            marketplace_id: str,
-            asin: str,
-            page_token: str = None,
+        self,
+        marketplace_id: str,
+        asin: str,
+        page_token: str = None,
     ):
         """
         Searches for A+ Content publishing records, if available.
@@ -895,10 +1853,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def update_content_document(
-            self,
-            content_reference_key: str,
-            marketplace_id: str,
-            content_document: dict[str, Any],
+        self,
+        content_reference_key: str,
+        marketplace_id: str,
+        content_document: dict[str, Any],
     ):
         """
         Updates an existing A+ Content document.
@@ -933,10 +1891,10 @@ class AplusContent20201101Client(BaseClient):
     )
 
     def validate_content_document_asin_relations(
-            self,
-            marketplace_id: str,
-            content_document: dict[str, Any],
-            asin_set: list[str] = None,
+        self,
+        marketplace_id: str,
+        content_document: dict[str, Any],
+        asin_set: list[str] = None,
     ):
         """
         Checks if the A+ Content document is valid for use on a set of ASINs.

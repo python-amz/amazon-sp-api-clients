@@ -7,143 +7,393 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional information that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetInventorySummariesResponse:
-    errors: "ErrorList" = attrs.field()
-    pagination: "Pagination" = attrs.field()
-    payload: "GetInventorySummariesResult" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    pagination: "Pagination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "GetInventorySummariesResult" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetInventorySummariesResult:
-    granularity: "Granularity" = attrs.field()
-    inventory_summaries: "InventorySummaries" = attrs.field()
+
+    granularity: "Granularity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    inventory_summaries: "InventorySummaries" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Granularity:
-    granularity_id: str = attrs.field()
-    granularity_type: str = attrs.field()
+
+    granularity_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
+    """
+
+    granularity_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The granularity type for the inventory aggregation level.
+    """
 
     pass
 
 
 @attrs.define
 class InventoryDetails:
-    fulfillable_quantity: int = attrs.field()
-    inbound_receiving_quantity: int = attrs.field()
-    inbound_shipped_quantity: int = attrs.field()
-    inbound_working_quantity: int = attrs.field()
 
-    researching_quantity: "ResearchingQuantity" = attrs.field()
-    reserved_quantity: "ReservedQuantity" = attrs.field()
-    unfulfillable_quantity: "UnfulfillableQuantity" = attrs.field()
+    fulfillable_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The item quantity that can be picked, packed, and shipped.
+    """
+
+    inbound_receiving_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units that have not yet been received at an Amazon fulfillment center for processing, but are part of an inbound shipment with some units that have already been received and processed.
+    """
+
+    inbound_shipped_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in an inbound shipment that you have notified Amazon about and have provided a tracking number.
+    """
+
+    inbound_working_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in an inbound shipment for which you have notified Amazon.
+    """
+
+    researching_quantity: "ResearchingQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    reserved_quantity: "ReservedQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    unfulfillable_quantity: "UnfulfillableQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class InventorySummaries:
+
     pass
 
 
 @attrs.define
 class InventorySummary:
-    asin: str = attrs.field()
-    condition: str = attrs.field()
-    fn_sku: str = attrs.field()
-    last_updated_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    product_name: str = attrs.field()
-    seller_sku: str = attrs.field()
-    total_quantity: int = attrs.field()
 
-    inventory_details: "InventoryDetails" = attrs.field()
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of an item.
+    """
+
+    condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The condition of the item as described by the seller (for example, New Item).
+    """
+
+    fn_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon's fulfillment network SKU identifier.
+    """
+
+    last_updated_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time that any quantity was last updated.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    product_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The localized language product title of the item within the specific marketplace.
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
+
+    total_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The total number of units in an inbound shipment or in Amazon fulfillment centers.
+    """
+
+    inventory_details: "InventoryDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Pagination:
-    next_token: str = attrs.field()
+
+    next_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
+    """
 
     pass
 
 
 @attrs.define
 class ResearchingQuantity:
-    researching_quantity_breakdown: list["ResearchingQuantityEntry"] = attrs.field()
-    total_researching_quantity: int = attrs.field()
+
+    researching_quantity_breakdown: list["ResearchingQuantityEntry"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of quantity details for items currently being researched.
+    """
+
+    total_researching_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The total number of units currently being researched in Amazon's fulfillment network.
+    """
 
     pass
 
 
 @attrs.define
 class ResearchingQuantityEntry:
+
     name: Union[
         Literal["researchingQuantityInShortTerm"],
         Literal["researchingQuantityInMidTerm"],
         Literal["researchingQuantityInLongTerm"],
-    ] = attrs.field()
-    quantity: int = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The duration of the research.
+    """
+
+    quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units.
+    """
 
     pass
 
 
 @attrs.define
 class ReservedQuantity:
-    fc_processing_quantity: int = attrs.field()
-    pending_customer_order_quantity: int = attrs.field()
-    pending_transshipment_quantity: int = attrs.field()
-    total_reserved_quantity: int = attrs.field()
+
+    fc_processing_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units that have been sidelined at the fulfillment center for additional processing.
+    """
+
+    pending_customer_order_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units reserved for customer orders.
+    """
+
+    pending_transshipment_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units being transferred from one fulfillment center to another.
+    """
+
+    total_reserved_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
+    """
 
     pass
 
 
 @attrs.define
 class UnfulfillableQuantity:
-    carrier_damaged_quantity: int = attrs.field()
-    customer_damaged_quantity: int = attrs.field()
-    defective_quantity: int = attrs.field()
-    distributor_damaged_quantity: int = attrs.field()
-    expired_quantity: int = attrs.field()
-    total_unfulfillable_quantity: int = attrs.field()
-    warehouse_damaged_quantity: int = attrs.field()
+
+    carrier_damaged_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in carrier damaged disposition.
+    """
+
+    customer_damaged_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in customer damaged disposition.
+    """
+
+    defective_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in defective disposition.
+    """
+
+    distributor_damaged_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in distributor damaged disposition.
+    """
+
+    expired_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in expired disposition.
+    """
+
+    total_unfulfillable_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The total number of units in Amazon's fulfillment network in unsellable condition.
+    """
+
+    warehouse_damaged_quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in warehouse damaged disposition.
+    """
 
     pass
 
 
 class FbaInventoryV1Client(BaseClient):
     def get_inventory_summaries(
-            self,
-            granularity_type: Union[Literal["Marketplace"]],
-            granularity_id: str,
-            marketplace_ids: list[str],
-            details: bool = None,
-            start_date_time: str = None,
-            seller_skus: list[str] = None,
-            next_token: str = None,
+        self,
+        granularity_type: Union[Literal["Marketplace"]],
+        granularity_id: str,
+        marketplace_ids: list[str],
+        details: bool = None,
+        start_date_time: str = None,
+        seller_skus: list[str] = None,
+        next_token: str = None,
     ):
         """
         Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:

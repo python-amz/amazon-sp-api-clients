@@ -7,156 +7,404 @@ API Version: 2020-09-04
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class CancelFeedResponse:
-    errors: "ErrorList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CreateFeedDocumentResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "CreateFeedDocumentResult" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "CreateFeedDocumentResult" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CreateFeedDocumentResult:
-    feed_document_id: str = attrs.field()
-    url: str = attrs.field()
 
-    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
+    feed_document_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier of the feed document.
+    """
+
+    url: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
+    """
+
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CreateFeedDocumentSpecification:
-    content_type: str = attrs.field()
+
+    content_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The content type of the feed.
+    """
 
     pass
 
 
 @attrs.define
 class CreateFeedResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "CreateFeedResult" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "CreateFeedResult" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CreateFeedResult:
-    feed_id: str = attrs.field()
+
+    feed_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the feed. This identifier is unique only in combination with a seller ID.
+    """
 
     pass
 
 
 @attrs.define
 class CreateFeedSpecification:
-    feed_type: str = attrs.field()
-    input_feed_document_id: str = attrs.field()
-    marketplace_ids: list[str] = attrs.field()
-    # {'maxItems': 25, 'minItems': 1}
 
-    feed_options: "FeedOptions" = attrs.field()
+    feed_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The feed type.
+    """
+
+    input_feed_document_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The document identifier returned by the createFeedDocument operation. Encrypt and upload the feed document contents before calling the createFeed operation.
+    """
+
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of identifiers for marketplaces that you want the feed to be applied to.
+
+    Extra fields:
+    {'maxItems': 25, 'minItems': 1}
+    """
+
+    feed_options: "FeedOptions" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class Feed:
-    created_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    feed_id: str = attrs.field()
-    feed_type: str = attrs.field()
-    marketplace_ids: list[str] = attrs.field()
-    processing_end_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    processing_start_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
+
+    created_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the feed was created, in ISO 8601 date time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    feed_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the feed. This identifier is unique only in combination with a seller ID.
+    """
+
+    feed_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The feed type.
+    """
+
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of identifiers for the marketplaces that the feed is applied to.
+    """
+
+    processing_end_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when feed processing completed, in ISO 8601 date time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    processing_start_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when feed processing started, in ISO 8601 date time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ] = attrs.field()
-    result_feed_document_id: str = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The processing status of the feed.
+    """
+
+    result_feed_document_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+    """
 
     pass
 
 
 @attrs.define
 class FeedDocument:
-    compression_algorithm: Union[Literal["GZIP"]] = attrs.field()
-    feed_document_id: str = attrs.field()
-    url: str = attrs.field()
 
-    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
+    compression_algorithm: Union[Literal["GZIP"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    If present, the feed document contents are compressed using the indicated algorithm.
+    """
+
+    feed_document_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+    """
+
+    url: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A presigned URL for the feed document. This URL expires after 5 minutes.
+    """
+
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class FeedDocumentEncryptionDetails:
-    initialization_vector: str = attrs.field()
-    key: str = attrs.field()
-    standard: Union[Literal["AES"]] = attrs.field()
+
+    initialization_vector: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vector to encrypt or decrypt the document contents using Cipher Block Chaining (CBC).
+    """
+
+    key: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The encryption key used to encrypt or decrypt the document contents.
+    """
+
+    standard: Union[Literal["AES"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The encryption standard required to encrypt or decrypt the document contents.
+    """
 
     pass
 
 
 @attrs.define
 class FeedList:
+
     pass
 
 
 @attrs.define
 class FeedOptions:
+
     pass
 
 
 @attrs.define
 class GetFeedDocumentResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "FeedDocument" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "FeedDocument" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetFeedResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "Feed" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "Feed" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetFeedsResponse:
-    next_token: str = attrs.field()
 
-    errors: "ErrorList" = attrs.field()
-    payload: "FeedList" = attrs.field()
+    next_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
+    """
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "FeedList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 class Feeds20200904Client(BaseClient):
     def cancel_feed(
-            self,
-            feed_id: str,
+        self,
+        feed_id: str,
     ):
         """
         Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
@@ -180,7 +428,7 @@ class Feeds20200904Client(BaseClient):
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
     def create_feed(
-            self,
+        self,
     ):
         """
         Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
@@ -203,7 +451,7 @@ class Feeds20200904Client(BaseClient):
     _create_feed_params = ()  # name, param in
 
     def create_feed_document(
-            self,
+        self,
     ):
         """
         Creates a feed document for the feed type that you specify. This operation returns encryption details for encrypting the contents of the document, as well as a presigned URL for uploading the encrypted feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
@@ -226,8 +474,8 @@ class Feeds20200904Client(BaseClient):
     _create_feed_document_params = ()  # name, param in
 
     def get_feed(
-            self,
-            feed_id: str,
+        self,
+        feed_id: str,
     ):
         """
         Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
@@ -251,8 +499,8 @@ class Feeds20200904Client(BaseClient):
     _get_feed_params = (("feedId", "path"),)  # name, param in
 
     def get_feed_document(
-            self,
-            feed_document_id: str,
+        self,
+        feed_document_id: str,
     ):
         """
         Returns the information required for retrieving a feed document's contents. This includes a presigned URL for the feed document as well as the information required to decrypt the document's contents.
@@ -276,17 +524,16 @@ class Feeds20200904Client(BaseClient):
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
     def get_feeds(
-            self,
-            feed_types: list[str] = None,
-            marketplace_ids: list[str] = None,
-            page_size: int = None,
-            processing_statuses: list[
-                Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal[
-                    "IN_QUEUE"]]
-            ] = None,
-            created_since: str = None,
-            created_until: str = None,
-            next_token: str = None,
+        self,
+        feed_types: list[str] = None,
+        marketplace_ids: list[str] = None,
+        page_size: int = None,
+        processing_statuses: list[
+            Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+        ] = None,
+        created_since: str = None,
+        created_until: str = None,
+        next_token: str = None,
     ):
         """
         Returns feed details for the feeds that match the filters that you specify.

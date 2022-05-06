@@ -7,90 +7,245 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Any, Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AcknowledgementStatusDetails:
-    acknowledgement_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
 
-    accepted_quantity: "ItemQuantity" = attrs.field()
-    rejected_quantity: "ItemQuantity" = attrs.field()
+    acknowledgement_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date when the line item was confirmed by vendor. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    accepted_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    rejected_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Address:
-    address_line1: str = attrs.field()
-    address_line2: str = attrs.field()
-    address_line3: str = attrs.field()
-    city: str = attrs.field()
-    country_code: str = attrs.field()
-    # {'maxLength': 2}
-    county: str = attrs.field()
-    district: str = attrs.field()
-    name: str = attrs.field()
-    phone: str = attrs.field()
-    postal_code: str = attrs.field()
-    state_or_region: str = attrs.field()
+
+    address_line1: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    First line of the address.
+    """
+
+    address_line2: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional address information, if required.
+    """
+
+    address_line3: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional address information, if required.
+    """
+
+    city: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The city where the person, business or institution is located.
+    """
+
+    country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The two digit country code. In ISO 3166-1 alpha-2 format.
+
+    Extra fields:
+    {'maxLength': 2}
+    """
+
+    county: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The county where person, business or institution is located.
+    """
+
+    district: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The district where person, business or institution is located.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the person, business or institution at that address.
+    """
+
+    phone: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The phone number of the person, business or institution located at that address.
+    """
+
+    postal_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
+    """
+
+    state_or_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The state or region where person, business or institution is located.
+    """
 
     pass
 
 
 @attrs.define
 class DateTimeInterval:
+
     pass
 
 
 @attrs.define
 class Decimal:
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetPurchaseOrderResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "Order" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "Order" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetPurchaseOrdersResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "OrderList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "OrderList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetPurchaseOrdersStatusResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "OrderListStatus" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "OrderListStatus" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ImportDetails:
-    import_containers: str = attrs.field()
-    # {'maxLength': 64}
+
+    import_containers: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Types and numbers of container(s) for import purchase orders. Can be a comma-separated list if the shipment has multiple containers. HC signifies a high-capacity container. Free-text field, limited to 64 characters. The format will be a comma-delimited list containing values of the type: $NUMBER_OF_CONTAINERS_OF_THIS_TYPE-$CONTAINER_TYPE. The list of values for the container type is: 40'(40-foot container), 40'HC (40-foot high-capacity container), 45', 45'HC, 30', 30'HC, 20', 20'HC.
+
+    Extra fields:
+    {'maxLength': 64}
+    """
+
     international_commercial_terms: Union[
         Literal["ExWorks"],
         Literal["FreeCarrier"],
@@ -103,7 +258,13 @@ class ImportDetails:
         Literal["DeliveredAtTerminal"],
         Literal["DeliveredAtPlace"],
         Literal["DeliverDutyPaid"],
-    ] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Incoterms (International Commercial Terms) are used to divide transaction costs and responsibilities between buyer and seller and reflect state-of-the-art transportation practices. This is for import purchase orders only.
+    """
+
     method_of_payment: Union[
         Literal["PaidByBuyer"],
         Literal["CollectOnDelivery"],
@@ -111,233 +272,748 @@ class ImportDetails:
         Literal["FOBPortOfCall"],
         Literal["PrepaidBySeller"],
         Literal["PaidBySeller"],
-    ] = attrs.field()
-    port_of_delivery: str = attrs.field()
-    # {'maxLength': 64}
-    shipping_instructions: str = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    If the recipient requests, contains the shipment method of payment. This is for import PO's only.
+    """
+
+    port_of_delivery: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The port where goods on an import purchase order must be delivered by the vendor. This should only be specified when the internationalCommercialTerms is FOB.
+
+    Extra fields:
+    {'maxLength': 64}
+    """
+
+    shipping_instructions: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Special instructions regarding the shipment. This field is for import purchase orders.
+    """
 
     pass
 
 
 @attrs.define
 class ItemQuantity:
-    amount: int = attrs.field()
-    unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field()
-    unit_size: int = attrs.field()
+
+    amount: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Acknowledged quantity. This value should not be zero.
+    """
+
+    unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Unit of measure for the acknowledged quantity.
+    """
+
+    unit_size: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The case size, in the event that we ordered using cases.
+    """
 
     pass
 
 
 @attrs.define
 class ItemStatus:
+
     pass
 
 
 @attrs.define
 class Money:
-    currency_code: str = attrs.field()
-    # {'maxLength': 3}
 
-    amount: "Decimal" = attrs.field()
+    currency_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Three digit currency code in ISO 4217 format. String of length 3.
+
+    Extra fields:
+    {'maxLength': 3}
+    """
+
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Order:
-    purchase_order_number: str = attrs.field()
-    purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = attrs.field()
 
-    order_details: "OrderDetails" = attrs.field()
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
+    """
+
+    purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    This field will contain the current state of the purchase order.
+    """
+
+    order_details: "OrderDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderAcknowledgement:
-    acknowledgement_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    items: list["OrderAcknowledgementItem"] = attrs.field()
-    purchase_order_number: str = attrs.field()
 
-    selling_party: "PartyIdentification" = attrs.field()
+    acknowledgement_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the purchase order is acknowledged, in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    items: list["OrderAcknowledgementItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of the items being acknowledged with associated details.
+    """
+
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The purchase order number. Formatting Notes: 8-character alpha-numeric code.
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderAcknowledgementItem:
-    amazon_product_identifier: str = attrs.field()
-    discount_multiplier: str = attrs.field()
-    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field()
-    item_sequence_number: str = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    list_price: "Money" = attrs.field()
-    net_cost: "Money" = attrs.field()
-    ordered_quantity: "ItemQuantity" = attrs.field()
+    amazon_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon Standard Identification Number (ASIN) of an item.
+    """
+
+    discount_multiplier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The discount multiplier that should be applied to the price if a vendor sells books with a list price. This is a multiplier factor to arrive at a final discounted price. A multiplier of .90 would be the factor if a 10% discount is given.
+    """
+
+    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    This is used to indicate acknowledged quantity.
+    """
+
+    item_sequence_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Line item sequence number for the item.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item. Should be the same as was sent in the purchase order.
+    """
+
+    list_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    net_cost: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ordered_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderDetails:
-    deal_code: str = attrs.field()
-    items: list["OrderItem"] = attrs.field()
+
+    deal_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    If requested by the recipient, this field will contain a promotional/deal number. The discount code line is optional. It is used to obtain a price discount on items on the order.
+    """
+
+    items: list["OrderItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of items in this purchase order.
+    """
+
     payment_method: Union[
         Literal["Invoice"], Literal["Consignment"], Literal["CreditCard"], Literal["Prepaid"]
-    ] = attrs.field()
-    purchase_order_changed_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    purchase_order_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    purchase_order_state_changed_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Payment method used.
+    """
+
+    purchase_order_changed_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date when purchase order was last changed by Amazon after the order was placed. This date will be greater than 'purchaseOrderDate'. This means the PO data was changed on that date and vendors are required to fulfill the  updated PO. The PO changes can be related to Item Quantity, Ship to Location, Ship Window etc. This field will not be present in orders that have not changed after creation. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    purchase_order_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date the purchase order was placed. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    purchase_order_state_changed_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date when current purchase order state was changed. Current purchase order state is available in the field 'purchaseOrderState'. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
     purchase_order_type: Union[
         Literal["RegularOrder"], Literal["ConsignedOrder"], Literal["NewProductIntroduction"], Literal["RushOrder"]
-    ] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Type of purchase order.
+    """
 
-    bill_to_party: "PartyIdentification" = attrs.field()
-    buying_party: "PartyIdentification" = attrs.field()
-    delivery_window: "DateTimeInterval" = attrs.field()
-    import_details: "ImportDetails" = attrs.field()
-    selling_party: "PartyIdentification" = attrs.field()
-    ship_to_party: "PartyIdentification" = attrs.field()
-    ship_window: "DateTimeInterval" = attrs.field()
+    bill_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    buying_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    delivery_window: "DateTimeInterval" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    import_details: "ImportDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_window: "DateTimeInterval" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderItem:
-    amazon_product_identifier: str = attrs.field()
-    is_back_order_allowed: bool = attrs.field()
-    item_sequence_number: str = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    list_price: "Money" = attrs.field()
-    net_cost: "Money" = attrs.field()
-    ordered_quantity: "ItemQuantity" = attrs.field()
+    amazon_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon Standard Identification Number (ASIN) of an item.
+    """
+
+    is_back_order_allowed: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, we will accept backorder confirmations for this item.
+    """
+
+    item_sequence_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item.
+    """
+
+    list_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    net_cost: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ordered_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderItemAcknowledgement:
-    acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field()
+
+    acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    This indicates the acknowledgement code.
+    """
+
     rejection_reason: Union[
         Literal["TemporarilyUnavailable"], Literal["InvalidProductIdentifier"], Literal["ObsoleteProduct"]
-    ] = attrs.field()
-    scheduled_delivery_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    scheduled_ship_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates the reason for rejection.
+    """
 
-    acknowledged_quantity: "ItemQuantity" = attrs.field()
+    scheduled_delivery_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Estimated delivery date per line item. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    scheduled_ship_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Estimated ship date per line item. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    acknowledged_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderItemStatus:
-    acknowledgement_status: dict[str, Any] = attrs.field()
-    # {'properties': {'confirmationStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['ACCEPTED', 'PARTIALLY_ACCEPTED', 'REJECTED', 'UNCONFIRMED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Confirmation status of line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'acceptedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'rejectedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'acknowledgementStatusDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/AcknowledgementStatusDetails'), properties=None, additionalProperties=None, description='Details of item quantity confirmed.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    buyer_product_identifier: str = attrs.field()
-    item_sequence_number: str = attrs.field()
-    ordered_quantity: dict[str, Any] = attrs.field()
-    # {'properties': {'orderedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'orderedQuantityDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/OrderedQuantityDetails'), properties=None, additionalProperties=None, description='Details of item quantity ordered.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    receiving_status: dict[str, Any] = attrs.field()
-    # {'properties': {'receiveStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['NOT_RECEIVED', 'PARTIALLY_RECEIVED', 'RECEIVED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Receive status of the line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'receivedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'lastReceiveDate': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description="The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.", schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    vendor_product_identifier: str = attrs.field()
 
-    list_price: "Money" = attrs.field()
-    net_cost: "Money" = attrs.field()
+    acknowledgement_status: dict[str, Any] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Acknowledgement status information.
+
+    Extra fields:
+    {'properties': {'confirmationStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['ACCEPTED', 'PARTIALLY_ACCEPTED', 'REJECTED', 'UNCONFIRMED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Confirmation status of line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'acceptedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'rejectedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'acknowledgementStatusDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/AcknowledgementStatusDetails'), properties=None, additionalProperties=None, description='Details of item quantity confirmed.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+    """
+
+    buyer_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Buyer's Standard Identification Number (ASIN) of an item.
+    """
+
+    item_sequence_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
+    """
+
+    ordered_quantity: dict[str, Any] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Ordered quantity information.
+
+    Extra fields:
+    {'properties': {'orderedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'orderedQuantityDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/OrderedQuantityDetails'), properties=None, additionalProperties=None, description='Details of item quantity ordered.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+    """
+
+    receiving_status: dict[str, Any] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Item receive status at the buyer's warehouse.
+
+    Extra fields:
+    {'properties': {'receiveStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['NOT_RECEIVED', 'PARTIALLY_RECEIVED', 'RECEIVED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Receive status of the line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'receivedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'lastReceiveDate': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description="The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.", schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item.
+    """
+
+    list_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    net_cost: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderList:
-    orders: list["Order"] = attrs.field()
 
-    pagination: "Pagination" = attrs.field()
+    orders: list["Order"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    pagination: "Pagination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderListStatus:
-    orders_status: list["OrderStatus"] = attrs.field()
 
-    pagination: "Pagination" = attrs.field()
+    orders_status: list["OrderStatus"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    pagination: "Pagination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderStatus:
-    last_updated_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    purchase_order_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    purchase_order_number: str = attrs.field()
-    purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = attrs.field()
 
-    item_status: "ItemStatus" = attrs.field()
-    selling_party: "PartyIdentification" = attrs.field()
-    ship_to_party: "PartyIdentification" = attrs.field()
+    last_updated_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date when the purchase order was last updated. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    purchase_order_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date the purchase order was placed. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The buyer's purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
+    """
+
+    purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the buyer's purchase order for this order.
+    """
+
+    item_status: "ItemStatus" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderedQuantityDetails:
-    updated_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
 
-    cancelled_quantity: "ItemQuantity" = attrs.field()
-    ordered_quantity: "ItemQuantity" = attrs.field()
+    updated_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date when the line item quantity was updated by buyer. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    cancelled_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ordered_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Pagination:
-    next_token: str = attrs.field()
+
+    next_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more purchase order items to return.
+    """
 
     pass
 
 
 @attrs.define
 class PartyIdentification:
-    party_id: str = attrs.field()
 
-    address: "Address" = attrs.field()
-    tax_info: "TaxRegistrationDetails" = attrs.field()
+    party_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
+    """
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    tax_info: "TaxRegistrationDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SubmitAcknowledgementRequest:
-    acknowledgements: list["OrderAcknowledgement"] = attrs.field()
+
+    acknowledgements: list["OrderAcknowledgement"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class SubmitAcknowledgementResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "TransactionId" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "TransactionId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
-    tax_registration_number: str = attrs.field()
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
+
+    tax_registration_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration number for the entity. For example, VAT ID.
+    """
+
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration type for the entity.
+    """
 
     pass
 
 
 @attrs.define
 class TransactionId:
-    transaction_id: str = attrs.field()
+
+    transaction_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    GUID assigned by Amazon to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    """
 
     pass
 
 
 class VendorOrdersV1Client(BaseClient):
     def get_purchase_order(
-            self,
-            purchase_order_number: str,
+        self,
+        purchase_order_number: str,
     ):
         """
         Returns a purchase order based on the purchaseOrderNumber value that you specify.
@@ -362,19 +1038,19 @@ class VendorOrdersV1Client(BaseClient):
     _get_purchase_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_purchase_orders(
-            self,
-            limit: int = None,
-            created_after: str = None,
-            created_before: str = None,
-            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-            next_token: str = None,
-            include_details: str = None,
-            changed_after: str = None,
-            changed_before: str = None,
-            po_item_state: Union[Literal["Cancelled"]] = None,
-            is_pochanged: str = None,
-            purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = None,
-            ordering_vendor_code: str = None,
+        self,
+        limit: int = None,
+        created_after: str = None,
+        created_before: str = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+        next_token: str = None,
+        include_details: str = None,
+        changed_after: str = None,
+        changed_before: str = None,
+        po_item_state: Union[Literal["Cancelled"]] = None,
+        is_pochanged: str = None,
+        purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = None,
+        ordering_vendor_code: str = None,
     ):
         """
         Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the createdAfter, createdBefore, changedAfter and changedBefore parameters. The date range to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting includeDetails to false. You can then use the getPurchaseOrder operation to receive details for a specific purchase order.
@@ -436,23 +1112,22 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     def get_purchase_orders_status(
-            self,
-            limit: int = None,
-            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-            next_token: str = None,
-            created_after: str = None,
-            created_before: str = None,
-            updated_after: str = None,
-            updated_before: str = None,
-            purchase_order_number: str = None,
-            purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = None,
-            item_confirmation_status: Union[
-                Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]
-            ] = None,
-            item_receive_status: Union[
-                Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = None,
-            ordering_vendor_code: str = None,
-            ship_to_party_id: str = None,
+        self,
+        limit: int = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+        next_token: str = None,
+        created_after: str = None,
+        created_before: str = None,
+        updated_after: str = None,
+        updated_before: str = None,
+        purchase_order_number: str = None,
+        purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = None,
+        item_confirmation_status: Union[
+            Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]
+        ] = None,
+        item_receive_status: Union[Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = None,
+        ordering_vendor_code: str = None,
+        ship_to_party_id: str = None,
     ):
         """
         Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
@@ -517,7 +1192,7 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     def submit_acknowledgement(
-            self,
+        self,
     ):
         """
         Submits acknowledgements for one or more purchase orders.

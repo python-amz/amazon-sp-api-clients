@@ -9,86 +9,208 @@ API Version: 2020-09-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Any, Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class Issue:
-    attribute_name: str = attrs.field()
-    code: str = attrs.field()
-    message: str = attrs.field()
-    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field()
+
+    attribute_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the attribute associated with the issue, if applicable.
+    """
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An issue code that identifies the type of issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the issue.
+    """
+
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The severity of the issue.
+    """
 
     pass
 
 
 @attrs.define
 class ListingsItemPatchRequest:
-    patches: list["PatchOperation"] = attrs.field()
-    # {'minItems': 1}
-    product_type: str = attrs.field()
+
+    patches: list["PatchOperation"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    One or more JSON Patch operations to perform on the listings item.
+
+    Extra fields:
+    {'minItems': 1}
+    """
+
+    product_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon product type of the listings item.
+    """
 
     pass
 
 
 @attrs.define
 class ListingsItemPutRequest:
-    attributes: dict[str, Any] = attrs.field()
-    # {'properties': {}}
-    product_type: str = attrs.field()
+
+    attributes: dict[str, Any] = attrs.field(
+        kw_only=True,
+    )
+    """
+    JSON object containing structured listings item attribute data keyed by attribute name.
+
+    Extra fields:
+    {'properties': {}}
+    """
+
+    product_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon product type of the listings item.
+    """
+
     requirements: Union[
         Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
-    ] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the requirements set for the provided data.
+    """
 
     pass
 
 
 @attrs.define
 class ListingsItemSubmissionResponse:
-    issues: list["Issue"] = attrs.field()
-    sku: str = attrs.field()
-    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
-    submission_id: str = attrs.field()
+
+    issues: list["Issue"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Listings item issues related to the listings item submission.
+    """
+
+    sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A selling partner provided identifier for an Amazon listing.
+    """
+
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the listings item submission.
+    """
+
+    submission_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unique identifier of the listings item submission.
+    """
 
     pass
 
 
 @attrs.define
 class PatchOperation:
-    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
-    path: str = attrs.field()
-    value: list[dict[str, Any]] = attrs.field()
+
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
+    """
+
+    path: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
+    """
+
+    value: list[dict[str, Any]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    JSON value to add, replace, or delete.
+    """
 
     pass
 
 
 class ListingsItems20200901Client(BaseClient):
     def delete_listings_item(
-            self,
-            seller_id: str,
-            sku: str,
-            marketplace_ids: list[str],
-            issue_locale: str = None,
+        self,
+        seller_id: str,
+        sku: str,
+        marketplace_ids: list[str],
+        issue_locale: str = None,
     ):
         """
         Delete a listings item for a selling partner.
@@ -126,13 +248,13 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     def patch_listings_item(
-            self,
-            seller_id: str,
-            sku: str,
-            marketplace_ids: list[str],
-            product_type: str,
-            patches: list["PatchOperation"],
-            issue_locale: str = None,
+        self,
+        seller_id: str,
+        sku: str,
+        marketplace_ids: list[str],
+        product_type: str,
+        patches: list["PatchOperation"],
+        issue_locale: str = None,
     ):
         """
         Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
@@ -176,15 +298,14 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     def put_listings_item(
-            self,
-            seller_id: str,
-            sku: str,
-            marketplace_ids: list[str],
-            product_type: str,
-            attributes: dict[str, Any],
-            issue_locale: str = None,
-            requirements: Union[
-                Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
+        self,
+        seller_id: str,
+        sku: str,
+        marketplace_ids: list[str],
+        product_type: str,
+        attributes: dict[str, Any],
+        issue_locale: str = None,
+        requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
     ):
         """
         Creates a new or fully-updates an existing listings item for a selling partner.

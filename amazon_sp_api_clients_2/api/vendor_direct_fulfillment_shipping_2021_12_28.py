@@ -7,253 +7,761 @@ API Version: 2021-12-28
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Address:
-    address_line1: str = attrs.field()
-    address_line2: str = attrs.field()
-    address_line3: str = attrs.field()
-    city: str = attrs.field()
-    country_code: str = attrs.field()
-    county: str = attrs.field()
-    district: str = attrs.field()
-    name: str = attrs.field()
-    phone: str = attrs.field()
-    postal_code: str = attrs.field()
-    state_or_region: str = attrs.field()
+
+    address_line1: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    First line of the address.
+    """
+
+    address_line2: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional street address information, if required.
+    """
+
+    address_line3: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional street address information, if required.
+    """
+
+    city: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The city where the person, business or institution is located.
+    """
+
+    country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The two digit country code in ISO 3166-1 alpha-2 format.
+    """
+
+    county: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The county where person, business or institution is located.
+    """
+
+    district: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The district where person, business or institution is located.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the person, business or institution at that address.
+    """
+
+    phone: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The phone number of the person, business or institution located at that address.
+    """
+
+    postal_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
+    """
+
+    state_or_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The state or region where person, business or institution is located.
+    """
 
     pass
 
 
 @attrs.define
 class Container:
-    carrier: str = attrs.field()
-    container_identifier: str = attrs.field()
-    container_sequence_number: int = attrs.field()
-    container_type: Union[Literal["Carton"], Literal["Pallet"]] = attrs.field()
-    manifest_date: str = attrs.field()
-    manifest_id: str = attrs.field()
-    packed_items: list["PackedItem"] = attrs.field()
-    scac_code: str = attrs.field()
-    ship_method: str = attrs.field()
-    tracking_number: str = attrs.field()
 
-    dimensions: "Dimensions" = attrs.field()
-    weight: "Weight" = attrs.field()
+    carrier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Carrier required for EU VOC vendors only.
+    """
+
+    container_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The container identifier.
+    """
+
+    container_sequence_number: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    An integer that must be submitted for multi-box shipments only, where one item may come in separate packages.
+    """
+
+    container_type: Union[Literal["Carton"], Literal["Pallet"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The type of container.
+    """
+
+    manifest_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date of the manifest.
+    """
+
+    manifest_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The manifest identifier.
+    """
+
+    packed_items: list["PackedItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of packed items.
+    """
+
+    scac_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    SCAC code required for NA VOC vendors only.
+    """
+
+    ship_method: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The shipment method.
+    """
+
+    tracking_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The tracking number.
+    """
+
+    dimensions: "Dimensions" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    weight: "Weight" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CustomerInvoice:
-    content: str = attrs.field()
-    purchase_order_number: str = attrs.field()
-    # {'pattern': '^[a-zA-Z0-9]+$'}
+
+    content: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Base64encoded customer invoice.
+    """
+
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The purchase order number for this order.
+
+    Extra fields:
+    {'pattern': '^[a-zA-Z0-9]+$'}
+    """
 
     pass
 
 
 @attrs.define
 class CustomerInvoiceList:
-    customer_invoices: list["CustomerInvoice"] = attrs.field()
 
-    pagination: "Pagination" = attrs.field()
+    customer_invoices: list["CustomerInvoice"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    pagination: "Pagination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Decimal:
+
     pass
 
 
 @attrs.define
 class Dimensions:
-    unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field()
 
-    height: "Decimal" = attrs.field()
-    length: "Decimal" = attrs.field()
-    width: "Decimal" = attrs.field()
+    unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unit of measure for dimensions.
+    """
+
+    height: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    length: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    width: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class GetCustomerInvoiceResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "CustomerInvoice" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "CustomerInvoice" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetCustomerInvoicesResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "CustomerInvoiceList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "CustomerInvoiceList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetShippingLabelListResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "ShippingLabelList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "ShippingLabelList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetShippingLabelResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "ShippingLabel" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "ShippingLabel" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Item:
-    buyer_product_identifier: str = attrs.field()
-    item_sequence_number: int = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    shipped_quantity: "ItemQuantity" = attrs.field()
+    buyer_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
+    """
+
+    item_sequence_number: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Item Sequence Number for the item. This must be the same value as sent in order for a given item.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item. Should be the same as was sent in the purchase order, like SKU Number.
+    """
+
+    shipped_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemQuantity:
-    amount: int = attrs.field()
-    unit_of_measure: str = attrs.field()
+
+    amount: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Quantity of units shipped for a specific item at a shipment level. If the item is present only in certain packages or pallets within the shipment, please provide this at the appropriate package or pallet level.
+    """
+
+    unit_of_measure: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Unit of measure for the shipped quantity.
+    """
 
     pass
 
 
 @attrs.define
 class LabelData:
-    content: str = attrs.field()
-    package_identifier: str = attrs.field()
-    ship_method: str = attrs.field()
-    ship_method_name: str = attrs.field()
-    tracking_number: str = attrs.field()
+
+    content: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    This field will contain the Base64encoded string of the shipment label content.
+    """
+
+    package_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifier for the package. The first package will be 001, the second 002, and so on. This number is used as a reference to refer to this package from the pallet level.
+    """
+
+    ship_method: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Ship method to be used for shipping the order. Amazon defines Ship Method Codes indicating shipping carrier and shipment service level. Ship Method Codes are case and format sensitive. The same ship method code should returned on the shipment confirmation. Note that the Ship Method Codes are vendor specific and will be provided to each vendor during the implementation.
+    """
+
+    ship_method_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Shipping method name for internal reference.
+    """
+
+    tracking_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Package tracking identifier from the shipping carrier.
+    """
 
     pass
 
 
 @attrs.define
 class PackedItem:
-    buyer_product_identifier: str = attrs.field()
-    item_sequence_number: int = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    packed_quantity: "ItemQuantity" = attrs.field()
+    buyer_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
+    """
+
+    item_sequence_number: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Item Sequence Number for the item. This must be the same value as sent in the order for a given item.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item. Should be the same as was sent in the Purchase Order, like SKU Number.
+    """
+
+    packed_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Pagination:
-    next_token: str = attrs.field()
+
+    next_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
+    """
 
     pass
 
 
 @attrs.define
 class PartyIdentification:
-    party_id: str = attrs.field()
-    tax_registration_details: list["TaxRegistrationDetails"] = attrs.field()
 
-    address: "Address" = attrs.field()
+    party_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Assigned Identification for the party.
+    """
+
+    tax_registration_details: list["TaxRegistrationDetails"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration details of the entity.
+    """
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ShippingLabel:
-    label_data: list["LabelData"] = attrs.field()
-    label_format: Union[Literal["PNG"], Literal["ZPL"]] = attrs.field()
-    purchase_order_number: str = attrs.field()
-    # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: "PartyIdentification" = attrs.field()
-    ship_from_party: "PartyIdentification" = attrs.field()
+    label_data: list["LabelData"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Provides the details of the packages in this shipment.
+    """
+
+    label_format: Union[Literal["PNG"], Literal["ZPL"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Format of the label.
+    """
+
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    This field will contain the Purchase Order Number for this order.
+
+    Extra fields:
+    {'pattern': '^[a-zA-Z0-9]+$'}
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_from_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ShippingLabelList:
-    shipping_labels: list["ShippingLabel"] = attrs.field()
 
-    pagination: "Pagination" = attrs.field()
+    shipping_labels: list["ShippingLabel"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    pagination: "Pagination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ShippingLabelRequest:
-    containers: list["Container"] = attrs.field()
-    purchase_order_number: str = attrs.field()
-    # {'pattern': '^[a-zA-Z0-9]+$'}
 
-    selling_party: "PartyIdentification" = attrs.field()
-    ship_from_party: "PartyIdentification" = attrs.field()
+    containers: list["Container"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of the packages in this shipment.
+    """
+
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Purchase order number of the order for which to create a shipping label.
+
+    Extra fields:
+    {'pattern': '^[a-zA-Z0-9]+$'}
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_from_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SubmitShippingLabelsRequest:
-    shipping_label_requests: list["ShippingLabelRequest"] = attrs.field()
+
+    shipping_label_requests: list["ShippingLabelRequest"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class SubmitShippingLabelsResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "TransactionReference" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "TransactionReference" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
-    tax_registration_messages: str = attrs.field()
-    tax_registration_number: str = attrs.field()
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
-    tax_registration_address: "Address" = attrs.field()
+    tax_registration_messages: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration message that can be used for additional tax related details.
+    """
+
+    tax_registration_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration number for the party. For example, VAT ID.
+    """
+
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration type for the entity.
+    """
+
+    tax_registration_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TransactionReference:
-    transaction_id: str = attrs.field()
+
+    transaction_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    """
 
     pass
 
 
 @attrs.define
 class Weight:
-    unit_of_measure: Union[Literal["KG"], Literal["LB"]] = attrs.field()
 
-    value: "Decimal" = attrs.field()
+    unit_of_measure: Union[Literal["KG"], Literal["LB"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unit of measurement.
+    """
+
+    value: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     def get_shipping_label(
-            self,
-            purchase_order_number: str,
+        self,
+        purchase_order_number: str,
     ):
         """
         Returns a shipping label for the purchaseOrderNumber that you specify.
@@ -277,13 +785,13 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_shipping_labels(
-            self,
-            created_after: str,
-            created_before: str,
-            ship_from_party_id: str = None,
-            limit: int = None,
-            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-            next_token: str = None,
+        self,
+        created_after: str,
+        created_before: str,
+        ship_from_party_id: str = None,
+        limit: int = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+        next_token: str = None,
     ):
         """
         Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
@@ -326,7 +834,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     )
 
     def submit_shipping_label_request(
-            self,
+        self,
     ):
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.

@@ -15,14 +15,34 @@ from typing import Any, List, Dict, Union, Literal
 {% for schema in data.schemas %}
 @attrs.define
 class {{ schema.name }}:
+
+
     {% for property in schema.schema_properties %}
     {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(
-        ){% if property.fields %}
-    # {{ property.fields }}{% endif %}{% endfor %}
+        kw_only=True,
+        )
+    """
+    {{ property.parsed_description }}{% if property.fields %}
+
+    Extra fields:
+    {{ property.fields }}{% endif %}
+    """
+    {% endfor %}
+
+
     {% for property in schema.reference_properties %}
     {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(
-        ){% if property.fields %}
-    # {{ property.fields }}{% endif %}{% endfor %}
+        kw_only=True,
+        )
+    """
+    {{ property.parsed_description }}{% if property.fields %}
+
+    Extra fields:
+    {{ property.fields }}{% endif %}
+    """
+    {% endfor %}
+
+
     pass
 {% endfor %}
 

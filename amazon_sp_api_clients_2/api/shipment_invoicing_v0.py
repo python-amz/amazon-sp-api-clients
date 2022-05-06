@@ -7,199 +7,577 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Address:
-    address_line1: str = attrs.field()
-    address_line2: str = attrs.field()
-    address_line3: str = attrs.field()
-    city: str = attrs.field()
-    country_code: str = attrs.field()
-    county: str = attrs.field()
-    district: str = attrs.field()
-    name: str = attrs.field()
-    phone: str = attrs.field()
-    postal_code: str = attrs.field()
-    state_or_region: str = attrs.field()
 
-    address_type: "AddressTypeEnum" = attrs.field()
+    address_line1: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The street address.
+    """
+
+    address_line2: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional street address information, if required.
+    """
+
+    address_line3: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional street address information, if required.
+    """
+
+    city: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The city.
+    """
+
+    country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The country code.
+    """
+
+    county: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The county.
+    """
+
+    district: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The district.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name.
+    """
+
+    phone: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The phone number.
+    """
+
+    postal_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The postal code.
+    """
+
+    state_or_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The state or region.
+    """
+
+    address_type: "AddressTypeEnum" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class AddressTypeEnum:
+
     pass
 
 
 @attrs.define
 class Blob:
+
     pass
 
 
 @attrs.define
 class BuyerTaxInfo:
-    company_legal_name: str = attrs.field()
-    taxing_region: str = attrs.field()
 
-    tax_classifications: "TaxClassificationList" = attrs.field()
+    company_legal_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The legal name of the company.
+    """
+
+    taxing_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The country or region imposing the tax.
+    """
+
+    tax_classifications: "TaxClassificationList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetInvoiceStatusResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "ShipmentInvoiceStatusResponse" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "ShipmentInvoiceStatusResponse" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetShipmentDetailsResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "ShipmentDetail" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "ShipmentDetail" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class MarketplaceTaxInfo:
-    company_legal_name: str = attrs.field()
-    taxing_region: str = attrs.field()
 
-    tax_classifications: "TaxClassificationList" = attrs.field()
+    company_legal_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The legal name of the company.
+    """
+
+    taxing_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The country or region imposing the tax.
+    """
+
+    tax_classifications: "TaxClassificationList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Money:
-    amount: str = attrs.field()
-    currency_code: str = attrs.field()
+
+    amount: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The currency amount.
+    """
+
+    currency_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Three-digit currency code in ISO 4217 format.
+    """
 
     pass
 
 
 @attrs.define
 class PaymentMethodDetailItemList:
+
     pass
 
 
 @attrs.define
 class SerialNumbersList:
+
     pass
 
 
 @attrs.define
 class ShipmentDetail:
-    amazon_order_id: str = attrs.field()
-    amazon_shipment_id: str = attrs.field()
-    buyer_county: str = attrs.field()
-    buyer_name: str = attrs.field()
-    marketplace_id: str = attrs.field()
-    purchase_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    seller_display_name: str = attrs.field()
-    seller_id: str = attrs.field()
-    warehouse_id: str = attrs.field()
 
-    buyer_tax_info: "BuyerTaxInfo" = attrs.field()
-    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field()
-    payment_method_details: "PaymentMethodDetailItemList" = attrs.field()
-    shipment_items: "ShipmentItems" = attrs.field()
-    shipping_address: "Address" = attrs.field()
+    amazon_order_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon-defined identifier for the order.
+    """
+
+    amazon_shipment_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon-defined identifier for the shipment.
+    """
+
+    buyer_county: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The county of the buyer.
+    """
+
+    buyer_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the buyer.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the marketplace where the order was placed.
+    """
+
+    purchase_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the order was created.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    seller_display_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller’s friendly name registered in the marketplace.
+    """
+
+    seller_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller identifier.
+    """
+
+    warehouse_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon-defined identifier for the warehouse.
+    """
+
+    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payment_method_details: "PaymentMethodDetailItemList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipment_items: "ShipmentItems" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentInvoiceStatus:
+
     pass
 
 
 @attrs.define
 class ShipmentInvoiceStatusInfo:
-    amazon_shipment_id: str = attrs.field()
 
-    invoice_status: "ShipmentInvoiceStatus" = attrs.field()
+    amazon_shipment_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon-defined shipment identifier.
+    """
+
+    invoice_status: "ShipmentInvoiceStatus" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentInvoiceStatusResponse:
-    shipments: "ShipmentInvoiceStatusInfo" = attrs.field()
+
+    shipments: "ShipmentInvoiceStatusInfo" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentItem:
-    asin: str = attrs.field()
-    order_item_id: str = attrs.field()
-    quantity_ordered: Union[float, int] = attrs.field()
-    seller_sku: str = attrs.field()
-    title: str = attrs.field()
 
-    gift_wrap_price: "Money" = attrs.field()
-    item_price: "Money" = attrs.field()
-    promotion_discount: "Money" = attrs.field()
-    serial_numbers: "SerialNumbersList" = attrs.field()
-    shipping_discount: "Money" = attrs.field()
-    shipping_price: "Money" = attrs.field()
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of the item.
+    """
+
+    order_item_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon-defined identifier for the order item.
+    """
+
+    quantity_ordered: Union[float, int] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of items ordered.
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the item.
+    """
+
+    gift_wrap_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    item_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    promotion_discount: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    serial_numbers: "SerialNumbersList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping_discount: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentItems:
+
     pass
 
 
 @attrs.define
 class SubmitInvoiceRequest:
-    content_md5value: str = attrs.field()
-    marketplace_id: str = attrs.field()
 
-    invoice_content: "Blob" = attrs.field()
+    content_md5value: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An Amazon marketplace identifier.
+    """
+
+    invoice_content: "Blob" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SubmitInvoiceResponse:
-    errors: "ErrorList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxClassification:
-    name: str = attrs.field()
-    value: str = attrs.field()
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The type of tax.
+    """
+
+    value: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The entity's tax identifier.
+    """
 
     pass
 
 
 @attrs.define
 class TaxClassificationList:
+
     pass
 
 
 class ShipmentInvoicingV0Client(BaseClient):
     def get_invoice_status(
-            self,
-            shipment_id: str,
+        self,
+        shipment_id: str,
     ):
         """
         Returns the invoice status for the shipment you specify.
@@ -224,8 +602,8 @@ class ShipmentInvoicingV0Client(BaseClient):
     _get_invoice_status_params = (("shipmentId", "path"),)  # name, param in
 
     def get_shipment_details(
-            self,
-            shipment_id: str,
+        self,
+        shipment_id: str,
     ):
         """
         Returns the shipment details required to issue an invoice for the specified shipment.
@@ -250,11 +628,11 @@ class ShipmentInvoicingV0Client(BaseClient):
     _get_shipment_details_params = (("shipmentId", "path"),)  # name, param in
 
     def submit_invoice(
-            self,
-            shipment_id: str,
-            invoice_content: str,
-            content_md5value: str,
-            marketplace_id: str = None,
+        self,
+        shipment_id: str,
+        invoice_content: str,
+        content_md5value: str,
+        marketplace_id: str = None,
     ):
         """
         Submits a shipment invoice document for a given shipment.

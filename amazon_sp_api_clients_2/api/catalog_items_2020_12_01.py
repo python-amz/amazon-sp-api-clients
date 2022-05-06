@@ -9,95 +9,242 @@ API Version: 2020-12-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class BrandRefinement:
-    brand_name: str = attrs.field()
-    number_of_results: int = attrs.field()
+
+    brand_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Brand name. For display and can be used as a search refinement.
+    """
+
+    number_of_results: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The estimated number of results that would still be returned if refinement key applied.
+    """
 
     pass
 
 
 @attrs.define
 class ClassificationRefinement:
-    classification_id: str = attrs.field()
-    display_name: str = attrs.field()
-    number_of_results: int = attrs.field()
+
+    classification_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifier for the classification that can be used for search refinement purposes.
+    """
+
+    display_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Display name for the classification.
+    """
+
+    number_of_results: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The estimated number of results that would still be returned if refinement key applied.
+    """
 
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class Item:
-    asin: "ItemAsin" = attrs.field()
-    attributes: "ItemAttributes" = attrs.field()
-    identifiers: "ItemIdentifiers" = attrs.field()
-    images: "ItemImages" = attrs.field()
-    product_types: "ItemProductTypes" = attrs.field()
-    sales_ranks: "ItemSalesRanks" = attrs.field()
-    summaries: "ItemSummaries" = attrs.field()
-    variations: "ItemVariations" = attrs.field()
-    vendor_details: "ItemVendorDetails" = attrs.field()
+
+    asin: "ItemAsin" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    attributes: "ItemAttributes" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    identifiers: "ItemIdentifiers" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    images: "ItemImages" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    product_types: "ItemProductTypes" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    sales_ranks: "ItemSalesRanks" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    summaries: "ItemSummaries" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    variations: "ItemVariations" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    vendor_details: "ItemVendorDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemAsin:
+
     pass
 
 
 @attrs.define
 class ItemAttributes:
+
     pass
 
 
 @attrs.define
 class ItemIdentifier:
-    identifier: str = attrs.field()
-    identifier_type: str = attrs.field()
+
+    identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifier.
+    """
+
+    identifier_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Type of identifier, such as UPC, EAN, or ISBN.
+    """
 
     pass
 
 
 @attrs.define
 class ItemIdentifiers:
+
     pass
 
 
 @attrs.define
 class ItemIdentifiersByMarketplace:
-    identifiers: list["ItemIdentifier"] = attrs.field()
-    marketplace_id: str = attrs.field()
+
+    identifiers: list["ItemIdentifier"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifier.
+    """
 
     pass
 
 
 @attrs.define
 class ItemImage:
-    height: int = attrs.field()
-    link: str = attrs.field()
+
+    height: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Height of the image in pixels.
+    """
+
+    link: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Link, or URL, for the image.
+    """
+
     variant: Union[
         Literal["MAIN"],
         Literal["PT01"],
@@ -109,120 +256,331 @@ class ItemImage:
         Literal["PT07"],
         Literal["PT08"],
         Literal["SWCH"],
-    ] = attrs.field()
-    # {'example': 'MAIN'}
-    width: int = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Variant of the image, such as MAIN or PT01.
+
+    Extra fields:
+    {'example': 'MAIN'}
+    """
+
+    width: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Width of the image in pixels.
+    """
 
     pass
 
 
 @attrs.define
 class ItemImages:
+
     pass
 
 
 @attrs.define
 class ItemImagesByMarketplace:
-    images: list["ItemImage"] = attrs.field()
-    marketplace_id: str = attrs.field()
+
+    images: list["ItemImage"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Images for an item in the Amazon catalog for the indicated Amazon marketplace.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifier.
+    """
 
     pass
 
 
 @attrs.define
 class ItemProductTypeByMarketplace:
-    marketplace_id: str = attrs.field()
-    product_type: str = attrs.field()
-    # {'example': 'LUGGAGE'}
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifier.
+    """
+
+    product_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the product type associated with the Amazon catalog item.
+
+    Extra fields:
+    {'example': 'LUGGAGE'}
+    """
 
     pass
 
 
 @attrs.define
 class ItemProductTypes:
+
     pass
 
 
 @attrs.define
 class ItemSalesRank:
-    link: str = attrs.field()
-    rank: int = attrs.field()
-    title: str = attrs.field()
+
+    link: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Corresponding Amazon retail website link, or URL, for the sales rank.
+    """
+
+    rank: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Sales rank value.
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Title, or name, of the sales rank.
+    """
 
     pass
 
 
 @attrs.define
 class ItemSalesRanks:
+
     pass
 
 
 @attrs.define
 class ItemSalesRanksByMarketplace:
-    marketplace_id: str = attrs.field()
-    ranks: list["ItemSalesRank"] = attrs.field()
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifier.
+    """
+
+    ranks: list["ItemSalesRank"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Sales ranks of an Amazon catalog item for an Amazon marketplace.
+    """
 
     pass
 
 
 @attrs.define
 class ItemSearchResults:
-    items: list["Item"] = attrs.field()
-    number_of_results: int = attrs.field()
 
-    pagination: "Pagination" = attrs.field()
-    refinements: "Refinements" = attrs.field()
+    items: list["Item"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of items from the Amazon catalog.
+    """
+
+    number_of_results: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The estimated total number of products matched by the search query (only results up to the page count limit will be returned per request regardless of the number found).
+        Note: The maximum number of items (ASINs) that can be returned and paged through is 1000.
+    """
+
+    pagination: "Pagination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    refinements: "Refinements" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemSummaries:
+
     pass
 
 
 @attrs.define
 class ItemSummaryByMarketplace:
-    brand_name: str = attrs.field()
-    browse_node: str = attrs.field()
-    color_name: str = attrs.field()
-    item_name: str = attrs.field()
-    manufacturer: str = attrs.field()
-    marketplace_id: str = attrs.field()
-    model_number: str = attrs.field()
-    size_name: str = attrs.field()
-    style_name: str = attrs.field()
+
+    brand_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the brand associated with an Amazon catalog item.
+    """
+
+    browse_node: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifier of the browse node associated with an Amazon catalog item.
+    """
+
+    color_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the color associated with an Amazon catalog item.
+    """
+
+    item_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name, or title, associated with an Amazon catalog item.
+    """
+
+    manufacturer: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the manufacturer associated with an Amazon catalog item.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifier.
+    """
+
+    model_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Model number associated with an Amazon catalog item.
+    """
+
+    size_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the size associated with an Amazon catalog item.
+    """
+
+    style_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the style associated with an Amazon catalog item.
+    """
 
     pass
 
 
 @attrs.define
 class ItemVariations:
+
     pass
 
 
 @attrs.define
 class ItemVariationsByMarketplace:
-    asins: list[str] = attrs.field()
-    marketplace_id: str = attrs.field()
-    variation_type: Union[Literal["PARENT"], Literal["CHILD"]] = attrs.field()
-    # {'example': 'PARENT'}
+
+    asins: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifiers (ASINs) of the related items.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifier.
+    """
+
+    variation_type: Union[Literal["PARENT"], Literal["CHILD"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Type of variation relationship of the Amazon catalog item in the request to the related item(s): "PARENT" or "CHILD".
+
+    Extra fields:
+    {'example': 'PARENT'}
+    """
 
     pass
 
 
 @attrs.define
 class ItemVendorDetails:
+
     pass
 
 
 @attrs.define
 class ItemVendorDetailsByMarketplace:
-    brand_code: str = attrs.field()
-    category_code: str = attrs.field()
-    manufacturer_code: str = attrs.field()
-    manufacturer_code_parent: str = attrs.field()
-    marketplace_id: str = attrs.field()
-    product_group: str = attrs.field()
+
+    brand_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Brand code associated with an Amazon catalog item.
+    """
+
+    category_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Product category associated with an Amazon catalog item.
+    """
+
+    manufacturer_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Manufacturer code associated with an Amazon catalog item.
+    """
+
+    manufacturer_code_parent: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Parent vendor code of the manufacturer code.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifier.
+    """
+
+    product_group: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Product group associated with an Amazon catalog item.
+    """
+
     replenishment_category: Union[
         Literal["ALLOCATED"],
         Literal["BASIC_REPLENISHMENT"],
@@ -234,46 +592,81 @@ class ItemVendorDetailsByMarketplace:
         Literal["NON_STOCKUPABLE"],
         Literal["OBSOLETE"],
         Literal["PLANNED_REPLENISHMENT"],
-    ] = attrs.field()
-    subcategory_code: str = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Replenishment category associated with an Amazon catalog item.
+    """
+
+    subcategory_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Product subcategory associated with an Amazon catalog item.
+    """
 
     pass
 
 
 @attrs.define
 class Pagination:
-    next_token: str = attrs.field()
-    previous_token: str = attrs.field()
+
+    next_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A token that can be used to fetch the next page.
+    """
+
+    previous_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A token that can be used to fetch the previous page.
+    """
 
     pass
 
 
 @attrs.define
 class Refinements:
-    brands: list["BrandRefinement"] = attrs.field()
-    classifications: list["ClassificationRefinement"] = attrs.field()
+
+    brands: list["BrandRefinement"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Brand search refinements.
+    """
+
+    classifications: list["ClassificationRefinement"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Classification search refinements.
+    """
 
     pass
 
 
 class CatalogItems20201201Client(BaseClient):
     def get_catalog_item(
-            self,
-            asin: str,
-            marketplace_ids: list[str],
-            included_data: list[
-                Union[
-                    Literal["attributes"],
-                    Literal["identifiers"],
-                    Literal["images"],
-                    Literal["productTypes"],
-                    Literal["salesRanks"],
-                    Literal["summaries"],
-                    Literal["variations"],
-                    Literal["vendorDetails"],
-                ]
-            ] = None,
-            locale: str = None,
+        self,
+        asin: str,
+        marketplace_ids: list[str],
+        included_data: list[
+            Union[
+                Literal["attributes"],
+                Literal["identifiers"],
+                Literal["images"],
+                Literal["productTypes"],
+                Literal["salesRanks"],
+                Literal["summaries"],
+                Literal["variations"],
+                Literal["vendorDetails"],
+            ]
+        ] = None,
+        locale: str = None,
     ):
         """
         Retrieves details for an item in the Amazon catalog.
@@ -311,26 +704,26 @@ class CatalogItems20201201Client(BaseClient):
     )
 
     def search_catalog_items(
-            self,
-            keywords: list[str],
-            marketplace_ids: list[str],
-            included_data: list[
-                Union[
-                    Literal["identifiers"],
-                    Literal["images"],
-                    Literal["productTypes"],
-                    Literal["salesRanks"],
-                    Literal["summaries"],
-                    Literal["variations"],
-                    Literal["vendorDetails"],
-                ]
-            ] = None,
-            brand_names: list[str] = None,
-            classification_ids: list[str] = None,
-            page_size: int = None,
-            page_token: str = None,
-            keywords_locale: str = None,
-            locale: str = None,
+        self,
+        keywords: list[str],
+        marketplace_ids: list[str],
+        included_data: list[
+            Union[
+                Literal["identifiers"],
+                Literal["images"],
+                Literal["productTypes"],
+                Literal["salesRanks"],
+                Literal["summaries"],
+                Literal["variations"],
+                Literal["vendorDetails"],
+            ]
+        ] = None,
+        brand_names: list[str] = None,
+        classification_ids: list[str] = None,
+        page_size: int = None,
+        page_token: str = None,
+        keywords_locale: str = None,
+        locale: str = None,
     ):
         """
         Search for and return a list of Amazon catalog items and associated information.

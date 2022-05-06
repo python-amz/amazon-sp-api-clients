@@ -7,413 +7,1239 @@ API Version: v0
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class ASINIdentifier:
-    asin: str = attrs.field()
-    marketplace_id: str = attrs.field()
+
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of the item.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A marketplace identifier.
+    """
 
     pass
 
 
 @attrs.define
 class AttributeSetList:
+
     pass
 
 
 @attrs.define
 class BuyBoxEligibleOffers:
+
     pass
 
 
 @attrs.define
 class BuyBoxPriceType:
-    condition: str = attrs.field()
-    quantity_tier: int = attrs.field()
-    # {'schema_format': 'int32'}
-    seller_id: str = attrs.field()
 
-    landed_price: "MoneyType" = attrs.field()
-    listing_price: "MoneyType" = attrs.field()
-    points: "Points" = attrs.field()
-    shipping: "MoneyType" = attrs.field()
-    offer_type: "OfferCustomerType" = attrs.field()
-    quantity_discount_type: "QuantityDiscountType" = attrs.field()
+    condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
+    """
+
+    quantity_tier: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates at what quantity this price becomes active.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    seller_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller identifier for the offer.
+    """
+
+    landed_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    listing_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    points: "Points" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    offer_type: "OfferCustomerType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    quantity_discount_type: "QuantityDiscountType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class BuyBoxPrices:
+
     pass
 
 
 @attrs.define
 class CompetitivePriceList:
+
     pass
 
 
 @attrs.define
 class CompetitivePriceType:
-    competitive_price_id: str = attrs.field()
-    belongs_to_requester: bool = attrs.field()
-    condition: str = attrs.field()
-    quantity_tier: int = attrs.field()
-    # {'schema_format': 'int32'}
-    seller_id: str = attrs.field()
-    subcondition: str = attrs.field()
 
-    price: "PriceType" = attrs.field()
-    offer_type: "OfferCustomerType" = attrs.field()
-    quantity_discount_type: "QuantityDiscountType" = attrs.field()
+    competitive_price_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The pricing model for each price that is returned.
+        Possible values:
+        * 1 - New Buy Box Price.
+        * 2 - Used Buy Box Price.
+    """
+
+    belongs_to_requester: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates whether or not the pricing information is for an offer listing that belongs to the requester. The requester is the seller associated with the SellerId that was submitted with the request. Possible values are: true and false.
+    """
+
+    condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates the condition of the item whose pricing information is returned. Possible values are: New, Used, Collectible, Refurbished, or Club.
+    """
+
+    quantity_tier: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates at what quantity this price becomes active.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    seller_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller identifier for the offer.
+    """
+
+    subcondition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates the subcondition of the item whose pricing information is returned. Possible values are: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
+    """
+
+    price: "PriceType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    offer_type: "OfferCustomerType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    quantity_discount_type: "QuantityDiscountType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class CompetitivePricingType:
-    competitive_prices: "CompetitivePriceList" = attrs.field()
-    number_of_offer_listings: "NumberOfOfferListingsList" = attrs.field()
-    trade_in_value: "MoneyType" = attrs.field()
+
+    competitive_prices: "CompetitivePriceList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    number_of_offer_listings: "NumberOfOfferListingsList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    trade_in_value: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ConditionType:
+
     pass
 
 
 @attrs.define
 class DetailedShippingTimeType:
-    availability_type: Union[
-        Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]
-    ] = attrs.field()
-    available_date: str = attrs.field()
-    maximum_hours: int = attrs.field()
-    # {'schema_format': 'int64'}
-    minimum_hours: int = attrs.field()
-    # {'schema_format': 'int64'}
+
+    availability_type: Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates whether the item is available for shipping now, or on a known or an unknown date in the future. If known, the availableDate property indicates the date that the item will be available for shipping. Possible values: NOW, FUTURE_WITHOUT_DATE, FUTURE_WITH_DATE.
+    """
+
+    available_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping.
+    """
+
+    maximum_hours: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The maximum time, in hours, that the item will likely be shipped after the order has been placed.
+
+    Extra fields:
+    {'schema_format': 'int64'}
+    """
+
+    minimum_hours: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The minimum time, in hours, that the item will likely be shipped after the order has been placed.
+
+    Extra fields:
+    {'schema_format': 'int64'}
+    """
 
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional information that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class FulfillmentChannelType:
+
     pass
 
 
 @attrs.define
 class GetOffersResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "GetOffersResult" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "GetOffersResult" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetOffersResult:
-    asin: str = attrs.field()
-    marketplace_id: str = attrs.field()
-    sku: str = attrs.field()
-    status: str = attrs.field()
 
-    identifier: "ItemIdentifier" = attrs.field()
-    item_condition: "ConditionType" = attrs.field()
-    offers: "OfferDetailList" = attrs.field()
-    summary: "Summary" = attrs.field()
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of the item.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A marketplace identifier.
+    """
+
+    sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The stock keeping unit (SKU) of the item.
+    """
+
+    status: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the operation.
+    """
+
+    identifier: "ItemIdentifier" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    item_condition: "ConditionType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    offers: "OfferDetailList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    summary: "Summary" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class GetPricingResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "PriceList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "PriceList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class IdentifierType:
-    marketplace_asin: "ASINIdentifier" = attrs.field()
-    skuidentifier: "SellerSKUIdentifier" = attrs.field()
+
+    marketplace_asin: "ASINIdentifier" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    skuidentifier: "SellerSKUIdentifier" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemIdentifier:
-    asin: str = attrs.field()
-    marketplace_id: str = attrs.field()
-    seller_sku: str = attrs.field()
 
-    item_condition: "ConditionType" = attrs.field()
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of the item.
+    """
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A marketplace identifier. Specifies the marketplace from which prices are returned.
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller stock keeping unit (SKU) of the item.
+    """
+
+    item_condition: "ConditionType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class LowestPriceType:
-    condition: str = attrs.field()
-    fulfillment_channel: str = attrs.field()
-    quantity_tier: int = attrs.field()
-    # {'schema_format': 'int32'}
 
-    landed_price: "MoneyType" = attrs.field()
-    listing_price: "MoneyType" = attrs.field()
-    points: "Points" = attrs.field()
-    shipping: "MoneyType" = attrs.field()
-    offer_type: "OfferCustomerType" = attrs.field()
-    quantity_discount_type: "QuantityDiscountType" = attrs.field()
+    condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
+    """
+
+    fulfillment_channel: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates whether the item is fulfilled by Amazon or by the seller.
+    """
+
+    quantity_tier: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates at what quantity this price becomes active.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    landed_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    listing_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    points: "Points" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    offer_type: "OfferCustomerType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    quantity_discount_type: "QuantityDiscountType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class LowestPrices:
+
     pass
 
 
 @attrs.define
 class MoneyType:
-    amount: Union[float, int] = attrs.field()
-    currency_code: str = attrs.field()
+
+    amount: Union[float, int] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The monetary value.
+    """
+
+    currency_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The currency code in ISO 4217 format.
+    """
 
     pass
 
 
 @attrs.define
 class NumberOfOfferListingsList:
+
     pass
 
 
 @attrs.define
 class NumberOfOffers:
+
     pass
 
 
 @attrs.define
 class OfferCountType:
-    offer_count: int = attrs.field()
-    # {'schema_format': 'int32'}
-    condition: str = attrs.field()
 
-    fulfillment_channel: "FulfillmentChannelType" = attrs.field()
+    offer_count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of offers in a fulfillment channel that meet a specific condition.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
+    """
+
+    fulfillment_channel: "FulfillmentChannelType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OfferCustomerType:
+
     pass
 
 
 @attrs.define
 class OfferDetail:
-    condition_notes: str = attrs.field()
-    is_buy_box_winner: bool = attrs.field()
-    is_featured_merchant: bool = attrs.field()
-    is_fulfilled_by_amazon: bool = attrs.field()
-    my_offer: bool = attrs.field()
-    seller_id: str = attrs.field()
-    sub_condition: str = attrs.field()
-    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field()
 
-    listing_price: "MoneyType" = attrs.field()
-    points: "Points" = attrs.field()
-    prime_information: "PrimeInformationType" = attrs.field()
-    seller_feedback_rating: "SellerFeedbackType" = attrs.field()
-    shipping: "MoneyType" = attrs.field()
-    shipping_time: "DetailedShippingTimeType" = attrs.field()
-    ships_from: "ShipsFromType" = attrs.field()
-    offer_type: "OfferCustomerType" = attrs.field()
+    condition_notes: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Information about the condition of the item.
+    """
+
+    is_buy_box_winner: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.
+    """
+
+    is_featured_merchant: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the seller of the item is eligible to win the Buy Box.
+    """
+
+    is_fulfilled_by_amazon: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the offer is fulfilled by Amazon.
+    """
+
+    my_offer: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, this is the seller's offer.
+    """
+
+    seller_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller identifier for the offer.
+    """
+
+    sub_condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
+    """
+
+    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    listing_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    points: "Points" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    prime_information: "PrimeInformationType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    seller_feedback_rating: "SellerFeedbackType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping_time: "DetailedShippingTimeType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ships_from: "ShipsFromType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    offer_type: "OfferCustomerType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OfferDetailList:
+
     pass
 
 
 @attrs.define
 class OfferListingCountType:
-    count: int = attrs.field()
-    # {'schema_format': 'int32'}
-    condition: str = attrs.field()
+
+    count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of offer listings.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The condition of the item.
+    """
 
     pass
 
 
 @attrs.define
 class OfferType:
-    fulfillment_channel: str = attrs.field()
-    item_condition: str = attrs.field()
-    item_sub_condition: str = attrs.field()
-    seller_sku: str = attrs.field()
-    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field()
 
-    buying_price: "PriceType" = attrs.field()
-    regular_price: "MoneyType" = attrs.field()
-    business_price: "MoneyType" = attrs.field()
-    offer_type: "OfferCustomerType" = attrs.field()
+    fulfillment_channel: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The fulfillment channel for the offer listing. Possible values:
+        * Amazon - Fulfilled by Amazon.
+        * Merchant - Fulfilled by the seller.
+    """
+
+    item_condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The item condition for the offer listing. Possible values: New, Used, Collectible, Refurbished, or Club.
+    """
+
+    item_sub_condition: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller stock keeping unit (SKU) of the item.
+    """
+
+    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    buying_price: "PriceType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    regular_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    business_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    offer_type: "OfferCustomerType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OffersList:
+
     pass
 
 
 @attrs.define
 class Points:
-    points_number: int = attrs.field()
-    # {'schema_format': 'int32'}
 
-    points_monetary_value: "MoneyType" = attrs.field()
+    points_number: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of points.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    points_monetary_value: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Price:
-    asin: str = attrs.field()
-    seller_sku: str = attrs.field()
-    status: str = attrs.field()
 
-    product: "Product" = attrs.field()
+    asin: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon Standard Identification Number (ASIN) of the item.
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller stock keeping unit (SKU) of the item.
+    """
+
+    status: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the operation.
+    """
+
+    product: "Product" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class PriceList:
+
     pass
 
 
 @attrs.define
 class PriceType:
-    landed_price: "MoneyType" = attrs.field()
-    listing_price: "MoneyType" = attrs.field()
-    points: "Points" = attrs.field()
-    shipping: "MoneyType" = attrs.field()
+
+    landed_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    listing_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    points: "Points" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipping: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class PrimeInformationType:
-    is_national_prime: bool = attrs.field()
-    is_prime: bool = attrs.field()
+
+    is_national_prime: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed.
+    """
+
+    is_prime: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates whether the offer is an Amazon Prime offer.
+    """
 
     pass
 
 
 @attrs.define
 class Product:
-    attribute_sets: "AttributeSetList" = attrs.field()
-    competitive_pricing: "CompetitivePricingType" = attrs.field()
-    identifiers: "IdentifierType" = attrs.field()
-    offers: "OffersList" = attrs.field()
-    relationships: "RelationshipList" = attrs.field()
-    sales_rankings: "SalesRankList" = attrs.field()
+
+    attribute_sets: "AttributeSetList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    competitive_pricing: "CompetitivePricingType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    identifiers: "IdentifierType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    offers: "OffersList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    relationships: "RelationshipList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    sales_rankings: "SalesRankList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class QuantityDiscountPriceType:
-    quantity_tier: int = attrs.field()
-    # {'schema_format': 'int32'}
 
-    listing_price: "MoneyType" = attrs.field()
-    quantity_discount_type: "QuantityDiscountType" = attrs.field()
+    quantity_tier: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates at what quantity this price becomes active.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    listing_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    quantity_discount_type: "QuantityDiscountType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class QuantityDiscountType:
+
     pass
 
 
 @attrs.define
 class RelationshipList:
+
     pass
 
 
 @attrs.define
 class SalesRankList:
+
     pass
 
 
 @attrs.define
 class SalesRankType:
-    product_category_id: str = attrs.field()
-    rank: int = attrs.field()
-    # {'schema_format': 'int32'}
+
+    product_category_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifies the item category from which the sales rank is taken.
+    """
+
+    rank: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The sales rank of the item within the item category.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
 
     pass
 
 
 @attrs.define
 class SellerFeedbackType:
-    feedback_count: int = attrs.field()
-    # {'schema_format': 'int64'}
-    seller_positive_feedback_rating: Union[float, int] = attrs.field()
-    # {'schema_format': 'double'}
+
+    feedback_count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of ratings received about the seller.
+
+    Extra fields:
+    {'schema_format': 'int64'}
+    """
+
+    seller_positive_feedback_rating: Union[float, int] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The percentage of positive feedback for the seller in the past 365 days.
+
+    Extra fields:
+    {'schema_format': 'double'}
+    """
 
     pass
 
 
 @attrs.define
 class SellerSKUIdentifier:
-    marketplace_id: str = attrs.field()
-    seller_id: str = attrs.field()
-    seller_sku: str = attrs.field()
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A marketplace identifier.
+    """
+
+    seller_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller identifier submitted for the operation.
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller stock keeping unit (SKU) of the item.
+    """
 
     pass
 
 
 @attrs.define
 class ShipsFromType:
-    country: str = attrs.field()
-    state: str = attrs.field()
+
+    country: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The country from where the item is shipped.
+    """
+
+    state: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The state from where the item is shipped.
+    """
 
     pass
 
 
 @attrs.define
 class Summary:
-    offers_available_time: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    total_offer_count: int = attrs.field()
-    # {'schema_format': 'int32'}
 
-    buy_box_eligible_offers: "BuyBoxEligibleOffers" = attrs.field()
-    buy_box_prices: "BuyBoxPrices" = attrs.field()
-    competitive_price_threshold: "MoneyType" = attrs.field()
-    list_price: "MoneyType" = attrs.field()
-    lowest_prices: "LowestPrices" = attrs.field()
-    number_of_offers: "NumberOfOffers" = attrs.field()
-    sales_rankings: "SalesRankList" = attrs.field()
-    suggested_lower_price_plus_shipping: "MoneyType" = attrs.field()
+    offers_available_time: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    When the status is ActiveButTooSoonForProcessing, this is the time when the offers will be available for processing.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    total_offer_count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of unique offers contained in NumberOfOffers.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    buy_box_eligible_offers: "BuyBoxEligibleOffers" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    buy_box_prices: "BuyBoxPrices" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    competitive_price_threshold: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    list_price: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    lowest_prices: "LowestPrices" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    number_of_offers: "NumberOfOffers" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    sales_rankings: "SalesRankList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    suggested_lower_price_plus_shipping: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 class ProductPricingV0Client(BaseClient):
     def get_competitive_pricing(
-            self,
-            marketplace_id: str,
-            item_type: Union[Literal["Asin"], Literal["Sku"]],
-            asins: list[str] = None,
-            skus: list[str] = None,
-            customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
+        self,
+        marketplace_id: str,
+        item_type: Union[Literal["Asin"], Literal["Sku"]],
+        asins: list[str] = None,
+        skus: list[str] = None,
+        customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
     ):
         """
         Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -454,13 +1280,13 @@ class ProductPricingV0Client(BaseClient):
     )
 
     def get_item_offers(
-            self,
-            marketplace_id: str,
-            item_condition: Union[
-                Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
-            ],
-            asin: str,
-            customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
+        self,
+        marketplace_id: str,
+        item_condition: Union[
+            Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+        ],
+        asin: str,
+        customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
     ):
         """
         Returns the lowest priced offers for a single item based on ASIN.
@@ -498,13 +1324,13 @@ class ProductPricingV0Client(BaseClient):
     )
 
     def get_listing_offers(
-            self,
-            marketplace_id: str,
-            item_condition: Union[
-                Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
-            ],
-            seller_sku: str,
-            customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
+        self,
+        marketplace_id: str,
+        item_condition: Union[
+            Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+        ],
+        seller_sku: str,
+        customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
     ):
         """
         Returns the lowest priced offers for a single SKU listing.
@@ -542,15 +1368,15 @@ class ProductPricingV0Client(BaseClient):
     )
 
     def get_pricing(
-            self,
-            marketplace_id: str,
-            item_type: Union[Literal["Asin"], Literal["Sku"]],
-            asins: list[str] = None,
-            skus: list[str] = None,
-            item_condition: Union[
-                Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
-            ] = None,
-            offer_type: Union[Literal["B2C"], Literal["B2B"]] = None,
+        self,
+        marketplace_id: str,
+        item_type: Union[Literal["Asin"], Literal["Sku"]],
+        asins: list[str] = None,
+        skus: list[str] = None,
+        item_condition: Union[
+            Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
+        ] = None,
+        offer_type: Union[Literal["B2C"], Literal["B2B"]] = None,
     ):
         """
         Returns pricing information for a seller's offer listings based on seller SKU or ASIN.

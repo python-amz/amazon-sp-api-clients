@@ -9,139 +9,284 @@ API Version: 2020-09-01
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Any, Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class ProductType:
-    marketplace_ids: list[str] = attrs.field()
-    name: str = attrs.field()
+
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon marketplace identifiers for which the product type definition is available.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the Amazon product type.
+    """
 
     pass
 
 
 @attrs.define
 class ProductTypeDefinition:
-    locale: str = attrs.field()
-    marketplace_ids: list[str] = attrs.field()
-    product_type: str = attrs.field()
-    property_groups: dict[str, Any] = attrs.field()
-    # {'additionalProperties': Reference(ref='#/components/schemas/PropertyGroup')}
+
+    locale: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Locale of the display elements contained in the product type definition.
+    """
+
+    marketplace_ids: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Amazon marketplace identifiers for which the product type definition is applicable.
+    """
+
+    product_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the Amazon product type that this product type definition applies to.
+    """
+
+    property_groups: dict[str, Any] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
+
+    Extra fields:
+    {'additionalProperties': Reference(ref='#/components/schemas/PropertyGroup')}
+    """
+
     requirements: Union[
         Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
-    ] = attrs.field()
-    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Name of the requirements set represented in this product type definition.
+    """
 
-    meta_schema: "SchemaLink" = attrs.field()
-    product_type_version: "ProductTypeVersion" = attrs.field()
-    schema: "SchemaLink" = attrs.field()
+    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).
+    """
+
+    meta_schema: "SchemaLink" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    product_type_version: "ProductTypeVersion" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    schema: "SchemaLink" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ProductTypeList:
-    product_types: list["ProductType"] = attrs.field()
+
+    product_types: list["ProductType"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class ProductTypeVersion:
-    latest: bool = attrs.field()
-    release_candidate: bool = attrs.field()
-    version: str = attrs.field()
+
+    latest: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the version indicated by the version identifier is the latest available for the Amazon product type.
+    """
+
+    release_candidate: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
+    """
+
+    version: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Version identifier.
+    """
 
     pass
 
 
 @attrs.define
 class PropertyGroup:
-    description: str = attrs.field()
-    property_names: list[str] = attrs.field()
-    title: str = attrs.field()
+
+    description: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The description of the property group.
+    """
+
+    property_names: list[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The names of the schema properties for the property group.
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The display label of the property group.
+    """
 
     pass
 
 
 @attrs.define
 class SchemaLink:
-    checksum: str = attrs.field()
-    link: dict[str, Any] = attrs.field()
-    # {'required': ['resource', 'verb'], 'properties': {'resource': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='URI resource for the link.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'verb': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['GET'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='HTTP method for the link operation.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
+
+    checksum: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Checksum hash of the schema (Base64 MD5). Can be used to verify schema contents, identify changes between schema versions, and for caching.
+    """
+
+    link: dict[str, Any] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Link to retrieve the schema.
+
+    Extra fields:
+    {'properties': {'resource': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='URI resource for the link.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'verb': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['GET'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='HTTP method for the link operation.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['resource', 'verb']}
+    """
 
     pass
 
 
 class ProductTypeDefinitions20200901Client(BaseClient):
     def get_definitions_product_type(
-            self,
-            product_type: str,
-            marketplace_ids: list[str],
-            seller_id: str = None,
-            product_type_version: str = None,
-            requirements: Union[
-                Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
-            requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = None,
-            locale: Union[
-                Literal["DEFAULT"],
-                Literal["ar"],
-                Literal["ar_AE"],
-                Literal["de"],
-                Literal["de_DE"],
-                Literal["en"],
-                Literal["en_AE"],
-                Literal["en_AU"],
-                Literal["en_CA"],
-                Literal["en_GB"],
-                Literal["en_IN"],
-                Literal["en_SG"],
-                Literal["en_US"],
-                Literal["es"],
-                Literal["es_ES"],
-                Literal["es_MX"],
-                Literal["es_US"],
-                Literal["fr"],
-                Literal["fr_CA"],
-                Literal["fr_FR"],
-                Literal["it"],
-                Literal["it_IT"],
-                Literal["ja"],
-                Literal["ja_JP"],
-                Literal["nl"],
-                Literal["nl_NL"],
-                Literal["pl"],
-                Literal["pl_PL"],
-                Literal["pt"],
-                Literal["pt_BR"],
-                Literal["pt_PT"],
-                Literal["sv"],
-                Literal["sv_SE"],
-                Literal["tr"],
-                Literal["tr_TR"],
-                Literal["zh"],
-                Literal["zh_CN"],
-                Literal["zh_TW"],
-            ] = None,
+        self,
+        product_type: str,
+        marketplace_ids: list[str],
+        seller_id: str = None,
+        product_type_version: str = None,
+        requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
+        requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = None,
+        locale: Union[
+            Literal["DEFAULT"],
+            Literal["ar"],
+            Literal["ar_AE"],
+            Literal["de"],
+            Literal["de_DE"],
+            Literal["en"],
+            Literal["en_AE"],
+            Literal["en_AU"],
+            Literal["en_CA"],
+            Literal["en_GB"],
+            Literal["en_IN"],
+            Literal["en_SG"],
+            Literal["en_US"],
+            Literal["es"],
+            Literal["es_ES"],
+            Literal["es_MX"],
+            Literal["es_US"],
+            Literal["fr"],
+            Literal["fr_CA"],
+            Literal["fr_FR"],
+            Literal["it"],
+            Literal["it_IT"],
+            Literal["ja"],
+            Literal["ja_JP"],
+            Literal["nl"],
+            Literal["nl_NL"],
+            Literal["pl"],
+            Literal["pl_PL"],
+            Literal["pt"],
+            Literal["pt_BR"],
+            Literal["pt_PT"],
+            Literal["sv"],
+            Literal["sv_SE"],
+            Literal["tr"],
+            Literal["tr_TR"],
+            Literal["zh"],
+            Literal["zh_CN"],
+            Literal["zh_TW"],
+        ] = None,
     ):
         """
         Retrieve an Amazon product type definition.
@@ -189,9 +334,9 @@ class ProductTypeDefinitions20200901Client(BaseClient):
     )
 
     def search_definitions_product_types(
-            self,
-            marketplace_ids: list[str],
-            keywords: list[str] = None,
+        self,
+        marketplace_ids: list[str],
+        keywords: list[str] = None,
     ):
         """
         Search for and return a list of Amazon product types that have definitions available.

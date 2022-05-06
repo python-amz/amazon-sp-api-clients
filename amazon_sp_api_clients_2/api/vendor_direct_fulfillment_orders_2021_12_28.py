@@ -7,223 +7,704 @@ API Version: 2021-12-28
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class AcknowledgementStatus:
-    code: str = attrs.field()
-    description: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Acknowledgement code is a unique two digit value which indicates the status of the acknowledgement. For a list of acknowledgement codes that Amazon supports, see the Vendor Direct Fulfillment APIs Use Case Guide.
+    """
+
+    description: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Reason for the acknowledgement code.
+    """
 
     pass
 
 
 @attrs.define
 class Address:
-    address_line1: str = attrs.field()
-    address_line2: str = attrs.field()
-    address_line3: str = attrs.field()
-    attention: str = attrs.field()
-    city: str = attrs.field()
-    country_code: str = attrs.field()
-    county: str = attrs.field()
-    district: str = attrs.field()
-    name: str = attrs.field()
-    phone: str = attrs.field()
-    postal_code: str = attrs.field()
-    state_or_region: str = attrs.field()
+
+    address_line1: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    First line of the address.
+    """
+
+    address_line2: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional address information, if required.
+    """
+
+    address_line3: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional address information, if required.
+    """
+
+    attention: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The attention name of the person at that address.
+    """
+
+    city: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The city where the person, business or institution is located.
+    """
+
+    country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The two digit country code. In ISO 3166-1 alpha-2 format.
+    """
+
+    county: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The county where person, business or institution is located.
+    """
+
+    district: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The district where person, business or institution is located.
+    """
+
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the person, business or institution at that address.
+    """
+
+    phone: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The phone number of the person, business or institution located at that address.
+    """
+
+    postal_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
+    """
+
+    state_or_region: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The state or region where person, business or institution is located.
+    """
 
     pass
 
 
 @attrs.define
 class Decimal:
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class GiftDetails:
-    gift_message: str = attrs.field()
-    gift_wrap_id: str = attrs.field()
+
+    gift_message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Gift message to be printed in shipment.
+    """
+
+    gift_wrap_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Gift wrap identifier for the gift wrapping, if any.
+    """
 
     pass
 
 
 @attrs.define
 class ItemQuantity:
-    amount: int = attrs.field()
-    unit_of_measure: Union[Literal["Each"]] = attrs.field()
+
+    amount: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Acknowledged quantity. This value should not be zero.
+    """
+
+    unit_of_measure: Union[Literal["Each"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Unit of measure for the acknowledged quantity.
+    """
 
     pass
 
 
 @attrs.define
 class Money:
-    currency_code: str = attrs.field()
 
-    amount: "Decimal" = attrs.field()
+    currency_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Three digit currency code in ISO 4217 format. String of length 3.
+    """
+
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Order:
-    purchase_order_number: str = attrs.field()
 
-    order_details: "OrderDetails" = attrs.field()
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The purchase order number for this order. Formatting Notes: alpha-numeric code.
+    """
+
+    order_details: "OrderDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderAcknowledgementItem:
-    acknowledgement_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field()
-    purchase_order_number: str = attrs.field()
-    vendor_order_number: str = attrs.field()
 
-    acknowledgement_status: "AcknowledgementStatus" = attrs.field()
-    selling_party: "PartyIdentification" = attrs.field()
-    ship_from_party: "PartyIdentification" = attrs.field()
+    acknowledgement_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date and time when the order is acknowledged, in ISO-8601 date/time format. For example: 2018-07-16T23:00:00Z / 2018-07-16T23:00:00-05:00 / 2018-07-16T23:00:00-08:00.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Item details including acknowledged quantity.
+    """
+
+    purchase_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The purchase order number for this order. Formatting Notes: alpha-numeric code.
+    """
+
+    vendor_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor's order number for this order.
+    """
+
+    acknowledgement_status: "AcknowledgementStatus" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_from_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderDetails:
-    customer_order_number: str = attrs.field()
-    items: list["OrderItem"] = attrs.field()
-    order_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    order_status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = attrs.field()
 
-    bill_to_party: "PartyIdentification" = attrs.field()
-    selling_party: "PartyIdentification" = attrs.field()
-    ship_from_party: "PartyIdentification" = attrs.field()
-    ship_to_party: "Address" = attrs.field()
-    shipment_details: "ShipmentDetails" = attrs.field()
-    tax_total: "TaxItemDetails" = attrs.field()
+    customer_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The customer order number.
+    """
+
+    items: list["OrderItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of items in this purchase order.
+    """
+
+    order_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date the order was placed. This  field is expected to be in ISO-8601 date/time format, for example:2018-07-16T23:00:00Z/ 2018-07-16T23:00:00-05:00 /2018-07-16T23:00:00-08:00. If no time zone is specified, UTC should be assumed.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    order_status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Current status of the order.
+    """
+
+    bill_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_from_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ship_to_party: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    shipment_details: "ShipmentDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    tax_total: "TaxItemDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderItem:
-    buyer_product_identifier: str = attrs.field()
-    item_sequence_number: str = attrs.field()
-    title: str = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    gift_details: "GiftDetails" = attrs.field()
-    net_price: "Money" = attrs.field()
-    ordered_quantity: "ItemQuantity" = attrs.field()
-    scheduled_delivery_shipment: "ScheduledDeliveryShipment" = attrs.field()
-    tax_details: "TaxItemDetails" = attrs.field()
-    total_price: "Money" = attrs.field()
+    buyer_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Buyer's standard identification number (ASIN) of an item.
+    """
+
+    item_sequence_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
+    """
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Title for the item.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item.
+    """
+
+    gift_details: "GiftDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    net_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    ordered_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    scheduled_delivery_shipment: "ScheduledDeliveryShipment" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    tax_details: "TaxItemDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    total_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderItemAcknowledgement:
-    buyer_product_identifier: str = attrs.field()
-    item_sequence_number: str = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    acknowledged_quantity: "ItemQuantity" = attrs.field()
+    buyer_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Buyer's standard identification number (ASIN) of an item.
+    """
+
+    item_sequence_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Line item sequence number for the item.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item. Should be the same as was provided in the purchase order.
+    """
+
+    acknowledged_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderList:
-    orders: list["Order"] = attrs.field()
 
-    pagination: "Pagination" = attrs.field()
+    orders: list["Order"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    pagination: "Pagination" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Pagination:
-    next_token: str = attrs.field()
+
+    next_token: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
+    """
 
     pass
 
 
 @attrs.define
 class PartyIdentification:
-    party_id: str = attrs.field()
 
-    address: "Address" = attrs.field()
-    tax_info: "TaxRegistrationDetails" = attrs.field()
+    party_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
+    """
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    tax_info: "TaxRegistrationDetails" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ScheduledDeliveryShipment:
-    earliest_nominated_delivery_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    latest_nominated_delivery_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    scheduled_delivery_service_type: str = attrs.field()
+
+    earliest_nominated_delivery_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Earliest nominated delivery date for the scheduled delivery.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    latest_nominated_delivery_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Latest nominated delivery date for the scheduled delivery.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    scheduled_delivery_service_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Scheduled delivery service type.
+    """
 
     pass
 
 
 @attrs.define
 class ShipmentDates:
-    promised_delivery_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
-    required_ship_date: str = attrs.field()
-    # {'schema_format': 'date-time'}
+
+    promised_delivery_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Delivery date promised to the Amazon customer.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    required_ship_date: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Time by which the vendor is required to ship the order.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
 
     pass
 
 
 @attrs.define
 class ShipmentDetails:
-    is_gift: bool = attrs.field()
-    is_priority_shipment: bool = attrs.field()
-    is_pslip_required: bool = attrs.field()
-    is_scheduled_delivery_shipment: bool = attrs.field()
-    message_to_customer: str = attrs.field()
-    ship_method: str = attrs.field()
 
-    shipment_dates: "ShipmentDates" = attrs.field()
+    is_gift: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the order contain a gift. Include the gift message and gift wrap information.
+    """
+
+    is_priority_shipment: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, this is a priority shipment.
+    """
+
+    is_pslip_required: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, a packing slip is required to be sent to the customer.
+    """
+
+    is_scheduled_delivery_shipment: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, this order is part of a scheduled delivery program.
+    """
+
+    message_to_customer: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Message to customer for order status.
+    """
+
+    ship_method: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Ship method to be used for shipping the order. Amazon defines ship method codes indicating the shipping carrier and shipment service level. To see the full list of ship methods in use, including both the code and the friendly name, search the 'Help' section on Vendor Central for 'ship methods'.
+    """
+
+    shipment_dates: "ShipmentDates" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SubmitAcknowledgementRequest:
-    order_acknowledgements: list["OrderAcknowledgementItem"] = attrs.field()
+
+    order_acknowledgements: list["OrderAcknowledgementItem"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of one or more purchase orders.
+    """
 
     pass
 
 
 @attrs.define
 class SubmitAcknowledgementResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "TransactionId" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "TransactionId" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxDetails:
+
     type: Union[
         Literal["CONSUMPTION"],
         Literal["GST"],
@@ -232,46 +713,107 @@ class TaxDetails:
         Literal["TOTAL"],
         Literal["TVA"],
         Literal["VAT"],
-    ] = attrs.field()
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax type.
+    """
 
-    tax_amount: "Money" = attrs.field()
-    tax_rate: "Decimal" = attrs.field()
-    taxable_amount: "Money" = attrs.field()
+    tax_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    tax_rate: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    taxable_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxItemDetails:
-    tax_line_item: "TaxLineItem" = attrs.field()
+
+    tax_line_item: "TaxLineItem" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TaxLineItem:
+
     pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
-    tax_registration_messages: str = attrs.field()
-    tax_registration_number: str = attrs.field()
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
 
-    tax_registration_address: "Address" = attrs.field()
+    tax_registration_messages: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration message that can be used for additional tax related details.
+    """
+
+    tax_registration_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration number for the party. For example, VAT ID.
+    """
+
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Tax registration type for the entity.
+    """
+
+    tax_registration_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TransactionId:
-    transaction_id: str = attrs.field()
+
+    transaction_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    GUID assigned by Amazon to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    """
 
     pass
 
 
 class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     def get_order(
-            self,
-            purchase_order_number: str,
+        self,
+        purchase_order_number: str,
     ):
         """
         Returns purchase order information for the purchaseOrderNumber that you specify.
@@ -295,15 +837,15 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     def get_orders(
-            self,
-            created_after: str,
-            created_before: str,
-            ship_from_party_id: str = None,
-            status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = None,
-            limit: int = None,
-            sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
-            next_token: str = None,
-            include_details: str = None,
+        self,
+        created_after: str,
+        created_before: str,
+        ship_from_party_id: str = None,
+        status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = None,
+        limit: int = None,
+        sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
+        next_token: str = None,
+        include_details: str = None,
     ):
         """
         Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
@@ -352,7 +894,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     )
 
     def submit_acknowledgement(
-            self,
+        self,
     ):
         """
         Submits acknowledgements for one or more purchase orders.

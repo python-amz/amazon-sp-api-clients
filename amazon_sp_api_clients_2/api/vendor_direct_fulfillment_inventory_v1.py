@@ -7,86 +7,189 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Any
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class InventoryUpdate:
-    is_full_update: bool = attrs.field()
-    items: list["ItemDetails"] = attrs.field()
 
-    selling_party: "PartyIdentification" = attrs.field()
+    is_full_update: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, this request contains a full feed. Otherwise, this request contains a partial feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in the full feed are updated as not available. When sending a partial feed, only include the items that need an update to inventory. The status of other items will remain unchanged.
+    """
+
+    items: list["ItemDetails"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    A list of inventory items with updated details, including quantity available.
+    """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemDetails:
-    buyer_product_identifier: str = attrs.field()
-    is_obsolete: bool = attrs.field()
-    vendor_product_identifier: str = attrs.field()
 
-    available_quantity: "ItemQuantity" = attrs.field()
+    buyer_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The buyer selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
+    """
+
+    is_obsolete: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, the item is permanently unavailable.
+    """
+
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
+    """
+
+    available_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class ItemQuantity:
-    amount: int = attrs.field()
-    unit_of_measure: str = attrs.field()
+
+    amount: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    Quantity of units available for a specific item.
+    """
+
+    unit_of_measure: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Unit of measure for the available quantity.
+    """
 
     pass
 
 
 @attrs.define
 class PartyIdentification:
-    party_id: str = attrs.field()
+
+    party_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Assigned identification for the party.
+    """
 
     pass
 
 
 @attrs.define
 class SubmitInventoryUpdateRequest:
-    inventory: "InventoryUpdate" = attrs.field()
+
+    inventory: "InventoryUpdate" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class SubmitInventoryUpdateResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "TransactionReference" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "TransactionReference" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TransactionReference:
-    transaction_id: str = attrs.field()
+
+    transaction_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    """
 
     pass
 
 
 class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     def submit_inventory_update(
-            self,
-            warehouse_id: str,
-            inventory: dict[str, Any] = None,
+        self,
+        warehouse_id: str,
+        inventory: dict[str, Any] = None,
     ):
         """
         Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.

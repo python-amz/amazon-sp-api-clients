@@ -7,48 +7,95 @@ API Version: 2021-12-28
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occurred.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
-    errors: list["Error"] = attrs.field()
+
+    errors: list["Error"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
 
     pass
 
 
 @attrs.define
 class Transaction:
-    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field()
-    transaction_id: str = attrs.field()
 
-    errors: "ErrorList" = attrs.field()
+    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Current processing status of the transaction.
+    """
+
+    transaction_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unique identifier sent in the 'transactionId' field in response to the post request of a specific transaction.
+    """
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class TransactionStatus:
-    transaction_status: "Transaction" = attrs.field()
+
+    transaction_status: "Transaction" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
     def get_transaction_status(
-            self,
-            transaction_id: str,
+        self,
+        transaction_id: str,
     ):
         """
         Returns the status of the transaction indicated by the specified transactionId.

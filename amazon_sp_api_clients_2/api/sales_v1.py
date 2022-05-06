@@ -7,78 +7,158 @@ API Version: v1
 Contact Amazon: Selling Partner API Developer Support https://sellercentral.amazon.com/gp/mws/contactus.html
 License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
 """
-from typing import Union, Literal
-
 import attrs
-
 from ..utils.base_client import BaseClient
+from typing import Any, List, Dict, Union, Literal
 
 
 @attrs.define
 class Decimal:
+
     pass
 
 
 @attrs.define
 class Error:
-    code: str = attrs.field()
-    details: str = attrs.field()
-    message: str = attrs.field()
+
+    code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An error code that identifies the type of error that occured.
+    """
+
+    details: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Additional details that can help the caller understand or fix the issue.
+    """
+
+    message: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A message that describes the error condition in a human-readable form.
+    """
 
     pass
 
 
 @attrs.define
 class ErrorList:
+
     pass
 
 
 @attrs.define
 class GetOrderMetricsResponse:
-    errors: "ErrorList" = attrs.field()
-    payload: "OrderMetricsList" = attrs.field()
+
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    payload: "OrderMetricsList" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class Money:
-    currency_code: str = attrs.field()
 
-    amount: "Decimal" = attrs.field()
+    currency_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Three-digit currency code. In ISO 4217 format.
+    """
+
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderMetricsInterval:
-    interval: str = attrs.field()
-    order_count: int = attrs.field()
-    order_item_count: int = attrs.field()
-    unit_count: int = attrs.field()
 
-    average_unit_price: "Money" = attrs.field()
-    total_sales: "Money" = attrs.field()
+    interval: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The interval of time based on requested granularity (ex. Hour, Day, etc.) If this is the first or the last interval from the list, it might contain incomplete data if the requested interval doesn't align with the requested granularity (ex. request interval 2018-09-01T02:00:00Z--2018-09-04T19:00:00Z and granularity day will result in Sept 1st UTC day and Sept 4th UTC days having partial data).
+    """
+
+    order_count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of orders based on the specified filters.
+    """
+
+    order_item_count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of order items based on the specified filters.
+    """
+
+    unit_count: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of units in orders based on the specified filters.
+    """
+
+    average_unit_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
+    total_sales: "Money" = attrs.field(
+        kw_only=True,
+    )
+    """
+    no description.
+    """
+
     pass
 
 
 @attrs.define
 class OrderMetricsList:
+
     pass
 
 
 class SalesV1Client(BaseClient):
     def get_order_metrics(
-            self,
-            marketplace_ids: list[str],
-            interval: str,
-            granularity: Union[
-                Literal["Hour"], Literal["Day"], Literal["Week"], Literal["Month"], Literal["Year"], Literal["Total"]
-            ],
-            granularity_time_zone: str = None,
-            buyer_type: Union[Literal["B2B"], Literal["B2C"], Literal["All"]] = None,
-            fulfillment_network: str = None,
-            first_day_of_week: Union[Literal["Monday"], Literal["Sunday"]] = None,
-            asin: str = None,
-            sku: str = None,
+        self,
+        marketplace_ids: list[str],
+        interval: str,
+        granularity: Union[
+            Literal["Hour"], Literal["Day"], Literal["Week"], Literal["Month"], Literal["Year"], Literal["Total"]
+        ],
+        granularity_time_zone: str = None,
+        buyer_type: Union[Literal["B2B"], Literal["B2C"], Literal["All"]] = None,
+        fulfillment_network: str = None,
+        first_day_of_week: Union[Literal["Monday"], Literal["Sunday"]] = None,
+        asin: str = None,
+        sku: str = None,
     ):
         """
         Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
