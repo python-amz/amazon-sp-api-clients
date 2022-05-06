@@ -2459,11 +2459,11 @@ class FulfillmentInboundV0Client(BaseClient):
 
     def create_inbound_shipment_plan(
         self,
-        ship_from_address: Dict[str, Any],
+        inbound_shipment_plan_request_items: List["InboundShipmentPlanRequestItem"],
         label_prep_preference: Union[
             Literal["SELLER_LABEL"], Literal["AMAZON_LABEL_ONLY"], Literal["AMAZON_LABEL_PREFERRED"]
         ],
-        inbound_shipment_plan_request_items: List["InboundShipmentPlanRequestItem"],
+        ship_from_address: Dict[str, Any],
         ship_to_country_code: str = None,
         ship_to_country_subdivision_code: str = None,
     ):
@@ -2479,8 +2479,9 @@ class FulfillmentInboundV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            ship_from_address: no description.
+            inbound_shipment_plan_request_items: no description.
             label_prep_preference: The preference for label preparation for an inbound shipment.
+            ship_from_address: no description.
             ship_to_country_code: The two-character country code for the country where the inbound shipment is to be sent.
                 Note: Not required. Specifying both ShipToCountryCode and ShipToCountrySubdivisionCode returns an error.
                 Values:
@@ -2497,25 +2498,24 @@ class FulfillmentInboundV0Client(BaseClient):
                 Default: The country code for the seller's home marketplace.
             ship_to_country_subdivision_code: The two-character country code, followed by a dash and then up to three characters that represent the subdivision of the country where the inbound shipment is to be sent. For example, "IN-MH". In full ISO 3166-2 format.
                 Note: Not required. Specifying both ShipToCountryCode and ShipToCountrySubdivisionCode returns an error.
-            inbound_shipment_plan_request_items: no description.
         """
         url = "/fba/inbound/v0/plans"
         values = (
-            ship_from_address,
+            inbound_shipment_plan_request_items,
             label_prep_preference,
+            ship_from_address,
             ship_to_country_code,
             ship_to_country_subdivision_code,
-            inbound_shipment_plan_request_items,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_inbound_shipment_plan_params)
         return response
 
     _create_inbound_shipment_plan_params = (  # name, param in
-        ("ShipFromAddress", "body"),
+        ("InboundShipmentPlanRequestItems", "body"),
         ("LabelPrepPreference", "body"),
+        ("ShipFromAddress", "body"),
         ("ShipToCountryCode", "body"),
         ("ShipToCountrySubdivisionCode", "body"),
-        ("InboundShipmentPlanRequestItems", "body"),
     )
 
     def estimate_transport(

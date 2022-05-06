@@ -1739,10 +1739,10 @@ class MerchantFulfillmentV0Client(BaseClient):
         self,
         shipment_request_details: Dict[str, Any],
         shipping_service_id: str,
-        shipping_service_offer_id: str = None,
         hazmat_type: Union[Literal["None"], Literal["LQHazmat"]] = None,
         label_format_option: Dict[str, Any] = None,
         shipment_level_seller_inputs_list: List["AdditionalSellerInputs"] = None,
+        shipping_service_offer_id: str = None,
     ):
         """
         Create a shipment with the information provided.
@@ -1756,39 +1756,39 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            shipment_request_details: Shipment information required for requesting shipping service offers or for creating a shipment.
-            shipping_service_id: An Amazon-defined shipping service identifier.
-            shipping_service_offer_id: Identifies a shipping service order made by a carrier.
             hazmat_type: Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information on hazardous materials.
             label_format_option: Whether to include a packing slip.
             shipment_level_seller_inputs_list: A list of additional seller input pairs required to purchase shipping.
+            shipment_request_details: Shipment information required for requesting shipping service offers or for creating a shipment.
+            shipping_service_id: An Amazon-defined shipping service identifier.
+            shipping_service_offer_id: Identifies a shipping service order made by a carrier.
         """
         url = "/mfn/v0/shipments"
         values = (
-            shipment_request_details,
-            shipping_service_id,
-            shipping_service_offer_id,
             hazmat_type,
             label_format_option,
             shipment_level_seller_inputs_list,
+            shipment_request_details,
+            shipping_service_id,
+            shipping_service_offer_id,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_shipment_params)
         return response
 
     _create_shipment_params = (  # name, param in
-        ("ShipmentRequestDetails", "body"),
-        ("ShippingServiceId", "body"),
-        ("ShippingServiceOfferId", "body"),
         ("HazmatType", "body"),
         ("LabelFormatOption", "body"),
         ("ShipmentLevelSellerInputsList", "body"),
+        ("ShipmentRequestDetails", "body"),
+        ("ShippingServiceId", "body"),
+        ("ShippingServiceOfferId", "body"),
     )
 
     def get_additional_seller_inputs(
         self,
-        shipping_service_id: str,
-        ship_from_address: Dict[str, Any],
         order_id: str,
+        ship_from_address: Dict[str, Any],
+        shipping_service_id: str,
     ):
         """
         Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
@@ -1802,30 +1802,30 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            shipping_service_id: An Amazon-defined shipping service identifier.
-            ship_from_address: The postal address information.
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
+            ship_from_address: The postal address information.
+            shipping_service_id: An Amazon-defined shipping service identifier.
         """
         url = "/mfn/v0/additionalSellerInputs"
         values = (
-            shipping_service_id,
-            ship_from_address,
             order_id,
+            ship_from_address,
+            shipping_service_id,
         )
         response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_params)
         return response
 
     _get_additional_seller_inputs_params = (  # name, param in
-        ("ShippingServiceId", "body"),
-        ("ShipFromAddress", "body"),
         ("OrderId", "body"),
+        ("ShipFromAddress", "body"),
+        ("ShippingServiceId", "body"),
     )
 
     def get_additional_seller_inputs_old(
         self,
-        shipping_service_id: str,
-        ship_from_address: Dict[str, Any],
         order_id: str,
+        ship_from_address: Dict[str, Any],
+        shipping_service_id: str,
     ):
         """
         Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
@@ -1839,23 +1839,23 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            shipping_service_id: An Amazon-defined shipping service identifier.
-            ship_from_address: The postal address information.
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
+            ship_from_address: The postal address information.
+            shipping_service_id: An Amazon-defined shipping service identifier.
         """
         url = "/mfn/v0/sellerInputs"
         values = (
-            shipping_service_id,
-            ship_from_address,
             order_id,
+            ship_from_address,
+            shipping_service_id,
         )
         response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_old_params)
         return response
 
     _get_additional_seller_inputs_old_params = (  # name, param in
-        ("ShippingServiceId", "body"),
-        ("ShipFromAddress", "body"),
         ("OrderId", "body"),
+        ("ShipFromAddress", "body"),
+        ("ShippingServiceId", "body"),
     )
 
     def get_eligible_shipment_services(

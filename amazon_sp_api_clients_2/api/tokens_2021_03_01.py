@@ -150,19 +150,19 @@ class Tokens20210301Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            target_application: The application ID for the target application to which access is being delegated.
             restricted_resources: A list of restricted resources.
                 Maximum: 50
+            target_application: The application ID for the target application to which access is being delegated.
         """
         url = "/tokens/2021-03-01/restrictedDataToken"
         values = (
-            target_application,
             restricted_resources,
+            target_application,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_restricted_data_token_params)
         return response
 
     _create_restricted_data_token_params = (  # name, param in
-        ("targetApplication", "body"),
         ("restrictedResources", "body"),
+        ("targetApplication", "body"),
     )

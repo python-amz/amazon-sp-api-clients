@@ -573,8 +573,8 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: List[str],
         attachments: List["Attachment"] = None,
-        coverage_start_date: datetime = None,
         coverage_end_date: datetime = None,
+        coverage_start_date: datetime = None,
     ):
         """
         Sends a message to a buyer to provide details about warranty information on a purchase in their order.
@@ -591,16 +591,16 @@ class MessagingV1Client(BaseClient):
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
             attachments: Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
-            coverage_start_date: The start date of the warranty coverage to include in the message to the buyer.
             coverage_end_date: The end date of the warranty coverage to include in the message to the buyer.
+            coverage_start_date: The start date of the warranty coverage to include in the message to the buyer.
         """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/warranty"
         values = (
             amazon_order_id,
             marketplace_ids,
             attachments,
-            coverage_start_date,
             coverage_end_date,
+            coverage_start_date,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_warranty_params)
         return response
@@ -609,8 +609,8 @@ class MessagingV1Client(BaseClient):
         ("amazonOrderId", "path"),
         ("marketplaceIds", "query"),
         ("attachments", "body"),
-        ("coverageStartDate", "body"),
         ("coverageEndDate", "body"),
+        ("coverageStartDate", "body"),
     )
 
     def get_attributes(
@@ -648,8 +648,8 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: List[str],
-        text: str = None,
         attachments: List["Attachment"] = None,
+        text: str = None,
     ):
         """
         Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
@@ -665,15 +665,15 @@ class MessagingV1Client(BaseClient):
         Args:
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-            text: The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
             attachments: Attachments to include in the message to the buyer.
+            text: The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
         """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails"
         values = (
             amazon_order_id,
             marketplace_ids,
-            text,
             attachments,
+            text,
         )
         response = self._parse_args_and_request(url, "POST", values, self._confirm_customization_details_params)
         return response
@@ -681,8 +681,8 @@ class MessagingV1Client(BaseClient):
     _confirm_customization_details_params = (  # name, param in
         ("amazonOrderId", "path"),
         ("marketplaceIds", "query"),
-        ("text", "body"),
         ("attachments", "body"),
+        ("text", "body"),
     )
 
     def create_confirm_delivery_details(
@@ -800,8 +800,8 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: List[str],
-        text: str = None,
         attachments: List["Attachment"] = None,
+        text: str = None,
     ):
         """
         Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
@@ -817,15 +817,15 @@ class MessagingV1Client(BaseClient):
         Args:
             amazon_order_id: An Amazon order identifier. This specifies the order for which a message is sent.
             marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.
-            text: The text to be sent to the buyer. Only links related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
             attachments: Attachments to include in the message to the buyer.
+            text: The text to be sent to the buyer. Only links related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
         """
         url = "/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey"
         values = (
             amazon_order_id,
             marketplace_ids,
-            text,
             attachments,
+            text,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_digital_access_key_params)
         return response
@@ -833,8 +833,8 @@ class MessagingV1Client(BaseClient):
     _create_digital_access_key_params = (  # name, param in
         ("amazonOrderId", "path"),
         ("marketplaceIds", "query"),
-        ("text", "body"),
         ("attachments", "body"),
+        ("text", "body"),
     )
 
     def create_legal_disclosure(

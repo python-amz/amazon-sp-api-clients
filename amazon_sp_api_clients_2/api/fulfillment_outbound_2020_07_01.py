@@ -2520,23 +2520,23 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
     def create_fulfillment_order(
         self,
-        seller_fulfillment_order_id: str,
-        displayable_order_id: str,
-        displayable_order_date: datetime,
+        destination_address: Dict[str, Any],
         displayable_order_comment: str,
+        displayable_order_date: datetime,
+        displayable_order_id: str,
+        items: List["CreateFulfillmentOrderItem"],
+        seller_fulfillment_order_id: str,
         shipping_speed_category: Union[
             Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
         ],
-        destination_address: Dict[str, Any],
-        items: List["CreateFulfillmentOrderItem"],
-        marketplace_id: str = None,
+        cod_settings: Dict[str, Any] = None,
         delivery_window: Dict[str, Any] = None,
+        feature_constraints: List["FeatureSettings"] = None,
         fulfillment_action: Union[Literal["Ship"], Literal["Hold"]] = None,
         fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]] = None,
-        cod_settings: Dict[str, Any] = None,
-        ship_from_country_code: str = None,
+        marketplace_id: str = None,
         notification_emails: List[str] = None,
-        feature_constraints: List["FeatureSettings"] = None,
+        ship_from_country_code: str = None,
     ):
         """
         Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
@@ -2550,60 +2550,60 @@ class FulfillmentOutbound20200701Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            marketplace_id: The marketplace the fulfillment order is placed against.
-            seller_fulfillment_order_id: A fulfillment order identifier that the seller creates to track their fulfillment order. The SellerFulfillmentOrderId must be unique for each fulfillment order that a seller creates. If the seller's system already creates unique order identifiers, then these might be good values for them to use.
-            displayable_order_id: A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
-                The value must be an alpha-numeric or ISO 8859-1 compliant string from one to 40 characters in length. Cannot contain two spaces in a row. Leading and trailing white space is removed.
-            displayable_order_date: no description.
-            displayable_order_comment: Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
-            shipping_speed_category: The shipping method used for the fulfillment order.
+            cod_settings: The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
             delivery_window: The time range within which a Scheduled Delivery fulfillment order should be delivered.
             destination_address: A physical address.
+            displayable_order_comment: Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
+            displayable_order_date: no description.
+            displayable_order_id: A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
+                The value must be an alpha-numeric or ISO 8859-1 compliant string from one to 40 characters in length. Cannot contain two spaces in a row. Leading and trailing white space is removed.
+            feature_constraints: A list of features and their fulfillment policies to apply to the order.
             fulfillment_action: Specifies whether the fulfillment order should ship now or have an order hold put on it.
             fulfillment_policy: The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
-            cod_settings: The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
-            ship_from_country_code: The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
-            notification_emails: A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
-            feature_constraints: A list of features and their fulfillment policies to apply to the order.
             items: An array of item information for creating a fulfillment order.
+            marketplace_id: The marketplace the fulfillment order is placed against.
+            notification_emails: A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+            seller_fulfillment_order_id: A fulfillment order identifier that the seller creates to track their fulfillment order. The SellerFulfillmentOrderId must be unique for each fulfillment order that a seller creates. If the seller's system already creates unique order identifiers, then these might be good values for them to use.
+            ship_from_country_code: The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
+            shipping_speed_category: The shipping method used for the fulfillment order.
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders"
         values = (
-            marketplace_id,
-            seller_fulfillment_order_id,
-            displayable_order_id,
-            displayable_order_date,
-            displayable_order_comment,
-            shipping_speed_category,
+            cod_settings,
             delivery_window,
             destination_address,
+            displayable_order_comment,
+            displayable_order_date,
+            displayable_order_id,
+            feature_constraints,
             fulfillment_action,
             fulfillment_policy,
-            cod_settings,
-            ship_from_country_code,
-            notification_emails,
-            feature_constraints,
             items,
+            marketplace_id,
+            notification_emails,
+            seller_fulfillment_order_id,
+            ship_from_country_code,
+            shipping_speed_category,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_fulfillment_order_params)
         return response
 
     _create_fulfillment_order_params = (  # name, param in
-        ("marketplaceId", "body"),
-        ("sellerFulfillmentOrderId", "body"),
-        ("displayableOrderId", "body"),
-        ("displayableOrderDate", "body"),
-        ("displayableOrderComment", "body"),
-        ("shippingSpeedCategory", "body"),
+        ("codSettings", "body"),
         ("deliveryWindow", "body"),
         ("destinationAddress", "body"),
+        ("displayableOrderComment", "body"),
+        ("displayableOrderDate", "body"),
+        ("displayableOrderId", "body"),
+        ("featureConstraints", "body"),
         ("fulfillmentAction", "body"),
         ("fulfillmentPolicy", "body"),
-        ("codSettings", "body"),
-        ("shipFromCountryCode", "body"),
-        ("notificationEmails", "body"),
-        ("featureConstraints", "body"),
         ("items", "body"),
+        ("marketplaceId", "body"),
+        ("notificationEmails", "body"),
+        ("sellerFulfillmentOrderId", "body"),
+        ("shipFromCountryCode", "body"),
+        ("shippingSpeedCategory", "body"),
     )
 
     def create_fulfillment_return(
@@ -2767,11 +2767,11 @@ class FulfillmentOutbound20200701Client(BaseClient):
         self,
         address: Dict[str, Any],
         items: List["GetFulfillmentPreviewItem"],
-        marketplace_id: str = None,
-        shipping_speed_categories: List["ShippingSpeedCategory"] = None,
+        feature_constraints: List["FeatureSettings"] = None,
         include_codfulfillment_preview: bool = None,
         include_delivery_windows: bool = None,
-        feature_constraints: List["FeatureSettings"] = None,
+        marketplace_id: str = None,
+        shipping_speed_categories: List["ShippingSpeedCategory"] = None,
     ):
         """
         Returns a list of fulfillment order previews based on shipping criteria that you specify.
@@ -2785,38 +2785,38 @@ class FulfillmentOutbound20200701Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            marketplace_id: The marketplace the fulfillment order is placed against.
             address: A physical address.
-            items: An array of fulfillment preview item information.
-            shipping_speed_categories: no description.
+            feature_constraints: A list of features and their fulfillment policies to apply to the order.
             include_codfulfillment_preview: Specifies whether to return fulfillment order previews that are for COD (Cash On Delivery).
                 Possible values:
                 * true - Returns all fulfillment order previews (both for COD and not for COD).
                 * false - Returns only fulfillment order previews that are not for COD.
             include_delivery_windows: Specifies whether to return the ScheduledDeliveryInfo response object, which contains the available delivery windows for a Scheduled Delivery. The ScheduledDeliveryInfo response object can only be returned for fulfillment order previews with ShippingSpeedCategories = ScheduledDelivery.
-            feature_constraints: A list of features and their fulfillment policies to apply to the order.
+            items: An array of fulfillment preview item information.
+            marketplace_id: The marketplace the fulfillment order is placed against.
+            shipping_speed_categories: no description.
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
         values = (
-            marketplace_id,
             address,
-            items,
-            shipping_speed_categories,
+            feature_constraints,
             include_codfulfillment_preview,
             include_delivery_windows,
-            feature_constraints,
+            items,
+            marketplace_id,
+            shipping_speed_categories,
         )
         response = self._parse_args_and_request(url, "POST", values, self._get_fulfillment_preview_params)
         return response
 
     _get_fulfillment_preview_params = (  # name, param in
-        ("marketplaceId", "body"),
         ("address", "body"),
-        ("items", "body"),
-        ("shippingSpeedCategories", "body"),
+        ("featureConstraints", "body"),
         ("includeCODFulfillmentPreview", "body"),
         ("includeDeliveryWindows", "body"),
-        ("featureConstraints", "body"),
+        ("items", "body"),
+        ("marketplaceId", "body"),
+        ("shippingSpeedCategories", "body"),
     )
 
     def get_package_tracking_details(
@@ -2921,20 +2921,20 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def update_fulfillment_order(
         self,
         seller_fulfillment_order_id: str,
-        marketplace_id: str = None,
-        displayable_order_id: str = None,
-        displayable_order_date: datetime = None,
+        destination_address: Dict[str, Any] = None,
         displayable_order_comment: str = None,
+        displayable_order_date: datetime = None,
+        displayable_order_id: str = None,
+        feature_constraints: List["FeatureSettings"] = None,
+        fulfillment_action: Union[Literal["Ship"], Literal["Hold"]] = None,
+        fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]] = None,
+        items: List["UpdateFulfillmentOrderItem"] = None,
+        marketplace_id: str = None,
+        notification_emails: List[str] = None,
+        ship_from_country_code: str = None,
         shipping_speed_category: Union[
             Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
         ] = None,
-        destination_address: Dict[str, Any] = None,
-        fulfillment_action: Union[Literal["Ship"], Literal["Hold"]] = None,
-        fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]] = None,
-        ship_from_country_code: str = None,
-        notification_emails: List[str] = None,
-        feature_constraints: List["FeatureSettings"] = None,
-        items: List["UpdateFulfillmentOrderItem"] = None,
     ):
         """
         Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -2949,50 +2949,50 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
         Args:
             seller_fulfillment_order_id: The identifier assigned to the item by the seller when the fulfillment order was created.
-            marketplace_id: The marketplace the fulfillment order is placed against.
-            displayable_order_id: A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
-            displayable_order_date: no description.
-            displayable_order_comment: Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
-            shipping_speed_category: The shipping method used for the fulfillment order.
             destination_address: A physical address.
+            displayable_order_comment: Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
+            displayable_order_date: no description.
+            displayable_order_id: A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
+            feature_constraints: A list of features and their fulfillment policies to apply to the order.
             fulfillment_action: Specifies whether the fulfillment order should ship now or have an order hold put on it.
             fulfillment_policy: The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
-            ship_from_country_code: The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
-            notification_emails: A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
-            feature_constraints: A list of features and their fulfillment policies to apply to the order.
             items: An array of fulfillment order item information for updating a fulfillment order.
+            marketplace_id: The marketplace the fulfillment order is placed against.
+            notification_emails: A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+            ship_from_country_code: The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
+            shipping_speed_category: The shipping method used for the fulfillment order.
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         values = (
             seller_fulfillment_order_id,
-            marketplace_id,
-            displayable_order_id,
-            displayable_order_date,
-            displayable_order_comment,
-            shipping_speed_category,
             destination_address,
+            displayable_order_comment,
+            displayable_order_date,
+            displayable_order_id,
+            feature_constraints,
             fulfillment_action,
             fulfillment_policy,
-            ship_from_country_code,
-            notification_emails,
-            feature_constraints,
             items,
+            marketplace_id,
+            notification_emails,
+            ship_from_country_code,
+            shipping_speed_category,
         )
         response = self._parse_args_and_request(url, "PUT", values, self._update_fulfillment_order_params)
         return response
 
     _update_fulfillment_order_params = (  # name, param in
         ("sellerFulfillmentOrderId", "path"),
-        ("marketplaceId", "body"),
-        ("displayableOrderId", "body"),
-        ("displayableOrderDate", "body"),
-        ("displayableOrderComment", "body"),
-        ("shippingSpeedCategory", "body"),
         ("destinationAddress", "body"),
+        ("displayableOrderComment", "body"),
+        ("displayableOrderDate", "body"),
+        ("displayableOrderId", "body"),
+        ("featureConstraints", "body"),
         ("fulfillmentAction", "body"),
         ("fulfillmentPolicy", "body"),
-        ("shipFromCountryCode", "body"),
-        ("notificationEmails", "body"),
-        ("featureConstraints", "body"),
         ("items", "body"),
+        ("marketplaceId", "body"),
+        ("notificationEmails", "body"),
+        ("shipFromCountryCode", "body"),
+        ("shippingSpeedCategory", "body"),
     )

@@ -406,8 +406,8 @@ class Subscription:
 class NotificationsV1Client(BaseClient):
     def create_destination(
         self,
-        resource_specification: Dict[str, Any],
         name: str,
+        resource_specification: Dict[str, Any],
     ):
         """
         Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -421,27 +421,27 @@ class NotificationsV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            resource_specification: The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
             name: A developer-defined name to help identify this destination.
+            resource_specification: The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
         """
         url = "/notifications/v1/destinations"
         values = (
-            resource_specification,
             name,
+            resource_specification,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_destination_params)
         return response
 
     _create_destination_params = (  # name, param in
-        ("resourceSpecification", "body"),
         ("name", "body"),
+        ("resourceSpecification", "body"),
     )
 
     def create_subscription(
         self,
         notification_type: str,
-        payload_version: str = None,
         destination_id: str = None,
+        payload_version: str = None,
     ):
         """
         Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
@@ -457,22 +457,22 @@ class NotificationsV1Client(BaseClient):
         Args:
             notification_type: The type of notification.
                 For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
-            payload_version: The version of the payload object to be used in the notification.
             destination_id: The identifier for the destination where notifications will be delivered.
+            payload_version: The version of the payload object to be used in the notification.
         """
         url = "/notifications/v1/subscriptions/{notificationType}"
         values = (
             notification_type,
-            payload_version,
             destination_id,
+            payload_version,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_subscription_params)
         return response
 
     _create_subscription_params = (  # name, param in
         ("notificationType", "path"),
-        ("payloadVersion", "body"),
         ("destinationId", "body"),
+        ("payloadVersion", "body"),
     )
 
     def delete_destination(

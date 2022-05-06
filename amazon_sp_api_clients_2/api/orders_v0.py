@@ -2003,15 +2003,15 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
             marketplace_id: the unobfuscated marketplace ID
-            shipment_status: the status of the shipment of the order to be updated
             order_items: the list of order items and quantities when the seller wants to partially update the shipment status of the order
+            shipment_status: the status of the shipment of the order to be updated
         """
         url = "/orders/v0/orders/{orderId}/shipment"
         values = (
             order_id,
             marketplace_id,
-            shipment_status,
             order_items,
+            shipment_status,
         )
         response = self._parse_args_and_request(url, "POST", values, self._update_shipment_status_params)
         return response
@@ -2019,8 +2019,8 @@ class OrdersV0Client(BaseClient):
     _update_shipment_status_params = (  # name, param in
         ("orderId", "path"),
         ("marketplaceId", "body"),
-        ("shipmentStatus", "body"),
         ("orderItems", "body"),
+        ("shipmentStatus", "body"),
     )
 
     def update_verification_status(

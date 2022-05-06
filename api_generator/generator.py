@@ -128,7 +128,9 @@ class Generator:
             return ref
         match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
         category, name = match.group(1, 2)
-        return getattr(self.components, category).get(name)
+        result = getattr(self.components, category).get(name)
+        assert result is not None, f'{category}/{name}'
+        return result
 
     @cached_property
     def data(self) -> OpenAPI:
@@ -157,7 +159,10 @@ class Generator:
             schema: the inline schema
 
         Returns:
-            like the input arguments, but as a list
+            Like the input arguments, but as a list.
+            The first of the tuple is the path of the inline schema, including parent path,
+            like ``offer.price.unit``.
+
         """
         fields = schema.__fields_set__
         fields = {f for f in fields if getattr(schema, f) is not None}
@@ -183,9 +188,12 @@ class Generator:
                     if sub_schema.type in simple_types:
                         continue
                     assert sub_schema.type in ('object', 'array')
+                    capitalized_sub_name = re.sub(r'^_?([a-z])', lambda s: s.group(1).upper(), sub_name)
 
                     if sub_schema.type == 'object':
-                        new_schemas.extend(self._find_new_schema(sub_name, sub_schema))
+                        new_schema_name = f'{name}{capitalized_sub_name}'
+                        schema.properties[sub_name] = Reference(ref=f"#/components/schemas/{new_schema_name}")
+                        new_schemas.extend(self._find_new_schema(new_schema_name, sub_schema))
 
                     if sub_schema.type == 'array':
                         item = sub_schema.items
@@ -195,7 +203,9 @@ class Generator:
                         if item.type in simple_types:
                             continue
                         assert item.type == 'object', item.type
-                        new_schemas.extend(self._find_new_schema(f'{sub_name}Item', item))
+                        new_schema_name = f'{name}{capitalized_sub_name}Item'
+                        schema.properties[sub_name] = Reference(ref=f"#/components/schemas/{new_schema_name}")
+                        new_schemas.extend(self._find_new_schema(new_schema_name, item))
 
             if item := schema.items:
                 assert isinstance(item, (Reference, Schema))
@@ -205,7 +215,9 @@ class Generator:
                     assert item.type in ('string', 'object')
                     if item.type == 'object':
                         assert item.properties is not None
-                        new_schemas.extend(self._find_new_schema(f'{name}Item', item))
+                        new_schema_name = f'{name}Item'
+                        schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
+                        new_schemas.extend(self._find_new_schema(new_schema_name, item))
 
         elif isinstance(schema, Reference):
             pass
@@ -217,11 +229,14 @@ class Generator:
     def schemas(self) -> list[ParsedSchema]:
         src = self.components.schemas
         src = {k: v for k, v in src.items() if isinstance(v, Schema)}
-        schemas = list(chain.from_iterable(self._find_new_schema(k, v) for k, v in src.items()))
-        new_names = set([k for k, v in schemas]) - set(src)
-        new_names and print(new_names)
+        schemas = list(src.items())
+        # schemas = list(chain.from_iterable(self._find_new_schema(k, v) for k, v in schemas))
+        schema_names = [k for k, v in schemas]
+        assert set(src).issubset(set(schema_names)), 'existing schemas should not be deleted'
+        assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
+        self.components.schemas = dict(schemas)
 
-        values = [v.dict() | {'name': k, 'generator': self} for k, v in src.items()]
+        values = [v.dict() | {'name': k, 'generator': self} for k, v in schemas]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
         while True:  # the validation progress will create some new schemas, validate again
@@ -236,8 +251,8 @@ class Generator:
             # data validation
             # additional properties only contains a type field, so do not need to create a new component
             additional_properties = [v for s in dst if (v := s.additionalProperties) is not None]
-            assert all(isinstance(a, Schema) for a in additional_properties)
-            known_additional_fields = {'type'}
+            assert all(isinstance(a, (Schema, Reference)) for a in additional_properties), additional_properties
+            known_additional_fields = {'type', 'ref'}
             assert (v := {f for s in additional_properties for f in s.__fields_set__ if getattr(s, f) is not None}) \
                 .issubset(known_additional_fields), v
 
@@ -348,6 +363,7 @@ class Generator:
                 assert len(set(required)) == len(required)
                 properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
                 properties = tuple((k, self.resolve_ref(v) if isinstance(v, Reference) else v) for k, v in properties)
+                properties = tuple(sorted(properties, key=lambda i: i[0]))
                 params.extend([Parameter(name=k, param_in='body', description=v.description,
                                          required=k in required, param_schema=v) for k, v in properties])
 

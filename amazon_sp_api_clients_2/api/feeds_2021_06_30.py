@@ -297,8 +297,8 @@ class Feeds20210630Client(BaseClient):
     def create_feed(
         self,
         feed_type: str,
-        marketplace_ids: List[str],
         input_feed_document_id: str,
+        marketplace_ids: List[str],
         feed_options: Dict[str, Any] = None,
     ):
         """
@@ -313,26 +313,26 @@ class Feeds20210630Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            feed_type: The feed type.
-            marketplace_ids: A list of identifiers for marketplaces that you want the feed to be applied to.
-            input_feed_document_id: The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
             feed_options: Additional options to control the feed. These vary by feed type.
+            feed_type: The feed type.
+            input_feed_document_id: The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
+            marketplace_ids: A list of identifiers for marketplaces that you want the feed to be applied to.
         """
         url = "/feeds/2021-06-30/feeds"
         values = (
-            feed_type,
-            marketplace_ids,
-            input_feed_document_id,
             feed_options,
+            feed_type,
+            input_feed_document_id,
+            marketplace_ids,
         )
         response = self._parse_args_and_request(url, "POST", values, self._create_feed_params)
         return response
 
     _create_feed_params = (  # name, param in
-        ("feedType", "body"),
-        ("marketplaceIds", "body"),
-        ("inputFeedDocumentId", "body"),
         ("feedOptions", "body"),
+        ("feedType", "body"),
+        ("inputFeedDocumentId", "body"),
+        ("marketplaceIds", "body"),
     )
 
     def create_feed_document(
