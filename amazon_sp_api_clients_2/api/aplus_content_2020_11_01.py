@@ -447,7 +447,7 @@ class Decorator:
     The relative intensity or variation of this decorator. Decorators such as bullet-points, for example, can have multiple indentation depths.
 
     Extra fields:
-    {'minimum': 0.0, 'maximum': 100.0}
+    {'maximum': 100.0, 'minimum': 0.0}
     """
 
     length: int = attrs.field(
@@ -457,7 +457,7 @@ class Decorator:
     The number of content characters to alter with this decorator. Decorators such as line breaks can have zero length and fit between characters.
 
     Extra fields:
-    {'minimum': 0.0, 'maximum': 10000.0}
+    {'maximum': 10000.0, 'minimum': 0.0}
     """
 
     offset: int = attrs.field(
@@ -467,7 +467,7 @@ class Decorator:
     The starting character of this decorator within the content string. Use zero for the first character.
 
     Extra fields:
-    {'minimum': 0.0, 'maximum': 10000.0}
+    {'maximum': 10000.0, 'minimum': 0.0}
     """
 
     type: "DecoratorType" = attrs.field(
@@ -700,7 +700,7 @@ class ParagraphComponent:
     no description.
 
     Extra fields:
-    {'minItems': 1, 'maxItems': 100}
+    {'maxItems': 100, 'minItems': 1}
     """
 
     pass
@@ -716,7 +716,7 @@ class PlainTextItem:
     The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
 
     Extra fields:
-    {'minimum': 1.0, 'maximum': 100.0}
+    {'maximum': 100.0, 'minimum': 1.0}
     """
 
     value: str = attrs.field(
@@ -884,7 +884,7 @@ class StandardComparisonProductBlock:
     Comparison metrics for the product.
 
     Extra fields:
-    {'minItems': 0, 'maxItems': 10}
+    {'maxItems': 10, 'minItems': 0}
     """
 
     position: int = attrs.field(
@@ -894,7 +894,7 @@ class StandardComparisonProductBlock:
     The rank or index of this comparison product block within the module. Different blocks cannot occupy the same position within a single module.
 
     Extra fields:
-    {'minimum': 1.0, 'maximum': 6.0}
+    {'maximum': 6.0, 'minimum': 1.0}
     """
 
     title: str = attrs.field(
@@ -934,7 +934,7 @@ class StandardComparisonTableModule:
     no description.
 
     Extra fields:
-    {'minItems': 0, 'maxItems': 10}
+    {'maxItems': 10, 'minItems': 0}
     """
 
     product_columns: list["StandardComparisonProductBlock"] = attrs.field(
@@ -944,7 +944,7 @@ class StandardComparisonTableModule:
     no description.
 
     Extra fields:
-    {'minItems': 0, 'maxItems': 6}
+    {'maxItems': 6, 'minItems': 0}
     """
 
     pass
@@ -1366,7 +1366,7 @@ class StandardTechSpecsModule:
     The specification list.
 
     Extra fields:
-    {'minItems': 4, 'maxItems': 16}
+    {'maxItems': 16, 'minItems': 4}
     """
 
     table_count: int = attrs.field(
@@ -1376,7 +1376,7 @@ class StandardTechSpecsModule:
     The number of tables to present. Features are evenly divided between the tables.
 
     Extra fields:
-    {'minimum': 1.0, 'maximum': 2.0}
+    {'maximum': 2.0, 'minimum': 1.0}
     """
 
     headline: "TextComponent" = attrs.field(
@@ -1419,7 +1419,7 @@ class StandardTextListBlock:
     no description.
 
     Extra fields:
-    {'minItems': 0, 'maxItems': 8}
+    {'maxItems': 8, 'minItems': 0}
     """
 
     pass
@@ -1532,7 +1532,7 @@ class TextItem:
     The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
 
     Extra fields:
-    {'minimum': 1.0, 'maximum': 100.0}
+    {'maximum': 100.0, 'minimum': 1.0}
     """
 
     text: "TextComponent" = attrs.field(

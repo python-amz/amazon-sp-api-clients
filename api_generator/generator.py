@@ -28,11 +28,10 @@ class SchemaBase(Schema):
     @property
     def fields(self):
         known = {'description', 'name', 'generator', 'type', 'ref', 'enum', 'items'}
-        fields = {k: getattr(self, k) for k in self.__fields_set__ - known}
+        fields = self.__fields_set__ - known
+        fields = list(sorted(fields))
+        fields = {k: getattr(self, k) for k in fields}
         fields = {k: v for k, v in fields.items() if v is not None}
-        # assert set(fields).issubset(known), fields
-        if fields:
-            print(fields)
         return fields
 
     @property
@@ -164,6 +163,8 @@ class Generator:
 
     def get_type_hint_of_schema(self, schema: Schema):
         # recursively get inline type hint of a schema
+
+        # for ``Reference`` components, which will be created as dataclasses, the type is itself.
         if isinstance(schema, Reference):
             assert (match := re.match(r'^#/components/(.*?)/(.*?)$', schema.ref))
             name = match.group(2)

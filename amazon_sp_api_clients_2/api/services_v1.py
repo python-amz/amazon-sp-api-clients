@@ -829,7 +829,7 @@ class Technician:
     The technician identifier.
 
     Extra fields:
-    {'minLength': 1, 'maxLength': 50}
+    {'maxLength': 50, 'minLength': 1}
     """
 
     pass

@@ -114,7 +114,7 @@ class CreateReportScheduleSpecification:
     A list of marketplace identifiers for the report schedule.
 
     Extra fields:
-    {'minItems': 1, 'maxItems': 25}
+    {'maxItems': 25, 'minItems': 1}
     """
 
     next_report_creation_time: str = attrs.field(
@@ -200,7 +200,7 @@ class CreateReportSpecification:
     A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
 
     Extra fields:
-    {'minItems': 1, 'maxItems': 25}
+    {'maxItems': 25, 'minItems': 1}
     """
 
     report_type: str = attrs.field(

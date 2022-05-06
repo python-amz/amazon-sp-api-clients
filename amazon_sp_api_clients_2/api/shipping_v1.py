@@ -75,7 +75,7 @@ class Address:
     First line of that address.
 
     Extra fields:
-    {'minLength': 1, 'maxLength': 60}
+    {'maxLength': 60, 'minLength': 1}
     """
 
     address_line2: str = attrs.field(
@@ -85,7 +85,7 @@ class Address:
     Additional address information, if required.
 
     Extra fields:
-    {'minLength': 1, 'maxLength': 60}
+    {'maxLength': 60, 'minLength': 1}
     """
 
     address_line3: str = attrs.field(
@@ -95,7 +95,7 @@ class Address:
     Additional address information, if required.
 
     Extra fields:
-    {'minLength': 1, 'maxLength': 60}
+    {'maxLength': 60, 'minLength': 1}
     """
 
     copy_emails: list[str] = attrs.field(
@@ -125,7 +125,7 @@ class Address:
     The name of the person, business or institution at that address.
 
     Extra fields:
-    {'minLength': 1, 'maxLength': 50}
+    {'maxLength': 50, 'minLength': 1}
     """
 
     phone_number: str = attrs.field(
@@ -135,7 +135,7 @@ class Address:
     The phone number of the person, business or institution located at that address.
 
     Extra fields:
-    {'minLength': 1, 'maxLength': 20}
+    {'maxLength': 20, 'minLength': 1}
     """
 
     city: "City" = attrs.field(
@@ -407,7 +407,7 @@ class Currency:
     A 3-character currency code.
 
     Extra fields:
-    {'minLength': 3, 'maxLength': 3}
+    {'maxLength': 3, 'minLength': 3}
     """
 
     value: Union[float, int] = attrs.field(
@@ -1314,7 +1314,7 @@ class TrackingSummary:
     The derived status based on the events in the eventHistory.
 
     Extra fields:
-    {'minLength': 1, 'maxLength': 60}
+    {'maxLength': 60, 'minLength': 1}
     """
 
     pass

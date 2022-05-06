@@ -82,7 +82,7 @@ class CreateFeedSpecification:
     A list of identifiers for marketplaces that you want the feed to be applied to.
 
     Extra fields:
-    {'minItems': 1, 'maxItems': 25}
+    {'maxItems': 25, 'minItems': 1}
     """
 
     feed_options: "FeedOptions" = attrs.field(

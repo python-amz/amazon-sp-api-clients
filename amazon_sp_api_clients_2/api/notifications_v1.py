@@ -369,7 +369,7 @@ class SqsResource:
     The Amazon Resource Name (ARN) associated with the SQS queue.
 
     Extra fields:
-    {'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+', 'maxLength': 1000}
+    {'maxLength': 1000, 'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+'}
     """
 
     pass
