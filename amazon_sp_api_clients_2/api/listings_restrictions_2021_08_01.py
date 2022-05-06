@@ -17,7 +17,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -43,12 +42,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -58,7 +54,6 @@ class ErrorList:
 
 @attrs.define
 class Link:
-
     """
     A link to resources related to a listing restriction.
     """
@@ -94,12 +89,9 @@ class Link:
     The HTTP verb used to interact with the related resource.
     """
 
-    pass
-
 
 @attrs.define
 class Reason:
-
     """
     A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
     """
@@ -125,12 +117,9 @@ class Reason:
     A code indicating why the listing is restricted.
     """
 
-    pass
-
 
 @attrs.define
 class Restriction:
-
     """
     A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
     """
@@ -170,12 +159,9 @@ class Restriction:
     A list of reasons for the restriction.
     """
 
-    pass
-
 
 @attrs.define
 class RestrictionList:
-
     """
     A list of restrictions for the specified Amazon catalog item.
     """
@@ -183,11 +169,6 @@ class RestrictionList:
     restrictions: List["Restriction"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class ListingsRestrictions20210801Client(BaseClient):

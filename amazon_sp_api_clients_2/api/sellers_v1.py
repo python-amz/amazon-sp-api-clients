@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -41,12 +40,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -56,7 +52,6 @@ class ErrorList:
 
 @attrs.define
 class GetMarketplaceParticipationsResponse:
-
     """
     The response schema for the getMarketplaceParticipations operation.
     """
@@ -64,23 +59,14 @@ class GetMarketplaceParticipationsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "MarketplaceParticipationList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Marketplace:
-
     """
     Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
     """
@@ -130,8 +116,6 @@ class Marketplace:
     Marketplace name.
     """
 
-    pass
-
 
 @attrs.define
 class MarketplaceParticipation:
@@ -139,23 +123,14 @@ class MarketplaceParticipation:
     marketplace: "Marketplace" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     participation: "Participation" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class MarketplaceParticipationList:
-
     """
     List of marketplace participations.
     """
@@ -165,7 +140,6 @@ class MarketplaceParticipationList:
 
 @attrs.define
 class Participation:
-
     """
     Detailed information that is specific to a seller in a Marketplace.
     """
@@ -180,11 +154,6 @@ class Participation:
     is_participating: bool = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class SellersV1Client(BaseClient):

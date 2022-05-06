@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class AdjustmentEvent:
-
     """
     An adjustment to the seller's account.
     """
@@ -39,30 +38,18 @@ class AdjustmentEvent:
     adjustment_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     adjustment_item_list: "AdjustmentItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AdjustmentEventList:
-
     """
     A list of adjustment event information for the seller's account.
     """
@@ -72,7 +59,6 @@ class AdjustmentEventList:
 
 @attrs.define
 class AdjustmentItem:
-
     """
     An item in an adjustment to the seller's account.
     """
@@ -115,23 +101,14 @@ class AdjustmentItem:
     per_unit_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AdjustmentItemList:
-
     """
     A list of information about items in an adjustment to the seller's account.
     """
@@ -141,7 +118,6 @@ class AdjustmentItemList:
 
 @attrs.define
 class AffordabilityExpenseEvent:
-
     """
     An expense related to an affordability promotion.
     """
@@ -173,51 +149,30 @@ class AffordabilityExpenseEvent:
     base_expense: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_type_cgst: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_type_igst: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_type_sgst: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_expense: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AffordabilityExpenseEventList:
-
     """
     A list of expense information related to an affordability promotion.
     """
@@ -233,7 +188,6 @@ class BigDecimal:
 
 @attrs.define
 class ChargeComponent:
-
     """
         A charge on the seller's account.
 
@@ -312,16 +266,10 @@ class ChargeComponent:
     charge_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ChargeComponentList:
-
     """
     A list of charge information on the seller's account.
     """
@@ -331,7 +279,6 @@ class ChargeComponentList:
 
 @attrs.define
 class ChargeInstrument:
-
     """
     A payment instrument.
     """
@@ -353,16 +300,10 @@ class ChargeInstrument:
     amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ChargeInstrumentList:
-
     """
     A list of payment instruments.
     """
@@ -372,7 +313,6 @@ class ChargeInstrumentList:
 
 @attrs.define
 class CouponPaymentEvent:
-
     """
     An event related to coupon payments.
     """
@@ -411,37 +351,22 @@ class CouponPaymentEvent:
     charge_component: "ChargeComponent" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fee_component: "FeeComponent" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CouponPaymentEventList:
-
     """
     A list of coupon payment event information.
     """
@@ -451,7 +376,6 @@ class CouponPaymentEventList:
 
 @attrs.define
 class Currency:
-
     """
     A currency type and amount.
     """
@@ -466,11 +390,6 @@ class Currency:
     currency_amount: "BigDecimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -481,7 +400,6 @@ class Date:
 
 @attrs.define
 class DebtRecoveryEvent:
-
     """
     A debt payment or debt adjustment.
     """
@@ -500,37 +418,22 @@ class DebtRecoveryEvent:
     charge_instrument_list: "ChargeInstrumentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     debt_recovery_item_list: "DebtRecoveryItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     over_payment_credit: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     recovery_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class DebtRecoveryEventList:
-
     """
     A list of debt recovery event information.
     """
@@ -540,7 +443,6 @@ class DebtRecoveryEventList:
 
 @attrs.define
 class DebtRecoveryItem:
-
     """
     An item of a debt payment or debt adjustment.
     """
@@ -548,37 +450,22 @@ class DebtRecoveryItem:
     group_begin_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     group_end_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     original_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     recovery_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class DebtRecoveryItemList:
-
     """
     A list of debt recovery item information.
     """
@@ -588,7 +475,6 @@ class DebtRecoveryItemList:
 
 @attrs.define
 class DirectPayment:
-
     """
     A payment made directly to a seller.
     """
@@ -610,16 +496,10 @@ class DirectPayment:
     direct_payment_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class DirectPaymentList:
-
     """
     A list of direct payment information.
     """
@@ -629,7 +509,6 @@ class DirectPaymentList:
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -655,12 +534,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -670,7 +546,6 @@ class ErrorList:
 
 @attrs.define
 class FBALiquidationEvent:
-
     """
     A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
     """
@@ -685,30 +560,18 @@ class FBALiquidationEvent:
     liquidation_fee_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     liquidation_proceeds_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FBALiquidationEventList:
-
     """
     A list of FBA inventory liquidation payment events.
     """
@@ -718,7 +581,6 @@ class FBALiquidationEventList:
 
 @attrs.define
 class FeeComponent:
-
     """
     A fee associated with the event.
     """
@@ -733,16 +595,10 @@ class FeeComponent:
     fee_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeeComponentList:
-
     """
     A list of fee component information.
     """
@@ -752,7 +608,6 @@ class FeeComponentList:
 
 @attrs.define
 class FinancialEventGroup:
-
     """
     Information related to a financial event group.
     """
@@ -798,51 +653,30 @@ class FinancialEventGroup:
     beginning_balance: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     converted_total: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     financial_event_group_end: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     financial_event_group_start: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fund_transfer_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     original_total: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FinancialEventGroupList:
-
     """
     A list of financial event group information.
     """
@@ -852,7 +686,6 @@ class FinancialEventGroupList:
 
 @attrs.define
 class FinancialEvents:
-
     """
     Contains all information related to a financial event.
     """
@@ -860,198 +693,114 @@ class FinancialEvents:
     adjustment_event_list: "AdjustmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     affordability_expense_event_list: "AffordabilityExpenseEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     affordability_expense_reversal_event_list: "AffordabilityExpenseEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     chargeback_event_list: "ShipmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     coupon_payment_event_list: "CouponPaymentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     debt_recovery_event_list: "DebtRecoveryEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fbaliquidation_event_list: "FBALiquidationEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     guarantee_claim_event_list: "ShipmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     imaging_services_fee_event_list: "ImagingServicesFeeEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     loan_servicing_event_list: "LoanServicingEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     network_commingling_transaction_event_list: "NetworkComminglingTransactionEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     pay_with_amazon_event_list: "PayWithAmazonEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     product_ads_payment_event_list: "ProductAdsPaymentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     refund_event_list: "ShipmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     removal_shipment_adjustment_event_list: "RemovalShipmentAdjustmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     removal_shipment_event_list: "RemovalShipmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rental_transaction_event_list: "RentalTransactionEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     retrocharge_event_list: "RetrochargeEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     safetreimbursement_event_list: "SAFETReimbursementEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller_deal_payment_event_list: "SellerDealPaymentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller_review_enrollment_payment_event_list: "SellerReviewEnrollmentPaymentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     service_fee_event_list: "ServiceFeeEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     service_provider_credit_event_list: "SolutionProviderCreditEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_event_list: "ShipmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_settle_event_list: "ShipmentSettleEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_withholding_event_list: "TaxWithholdingEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     trial_shipment_event_list: "TrialShipmentEventList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ImagingServicesFeeEvent:
-
     """
     A fee event related to Amazon Imaging services.
     """
@@ -1073,23 +822,14 @@ class ImagingServicesFeeEvent:
     fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ImagingServicesFeeEventList:
-
     """
     A list of fee events related to Amazon Imaging services.
     """
@@ -1099,7 +839,6 @@ class ImagingServicesFeeEventList:
 
 @attrs.define
 class ListFinancialEventGroupsPayload:
-
     """
     The payload for the listFinancialEventGroups operation.
     """
@@ -1114,16 +853,10 @@ class ListFinancialEventGroupsPayload:
     financial_event_group_list: "FinancialEventGroupList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ListFinancialEventGroupsResponse:
-
     """
     The response schema for the listFinancialEventGroups operation.
     """
@@ -1131,23 +864,14 @@ class ListFinancialEventGroupsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ListFinancialEventGroupsPayload" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ListFinancialEventsPayload:
-
     """
     The payload for the listFinancialEvents operation.
     """
@@ -1162,16 +886,10 @@ class ListFinancialEventsPayload:
     financial_events: "FinancialEvents" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ListFinancialEventsResponse:
-
     """
     The response schema for the listFinancialEvents operation.
     """
@@ -1179,23 +897,14 @@ class ListFinancialEventsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ListFinancialEventsPayload" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LoanServicingEvent:
-
     """
     A loan advance, loan payment, or loan refund.
     """
@@ -1214,16 +923,10 @@ class LoanServicingEvent:
     loan_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LoanServicingEventList:
-
     """
     A list of loan servicing events.
     """
@@ -1233,7 +936,6 @@ class LoanServicingEventList:
 
 @attrs.define
 class NetworkComminglingTransactionEvent:
-
     """
     A network commingling transaction event.
     """
@@ -1279,30 +981,18 @@ class NetworkComminglingTransactionEvent:
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_exclusive_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class NetworkComminglingTransactionEventList:
-
     """
     A list of network commingling transaction events.
     """
@@ -1312,7 +1002,6 @@ class NetworkComminglingTransactionEventList:
 
 @attrs.define
 class PayWithAmazonEvent:
-
     """
     An event related to the seller's Pay with Amazon account.
     """
@@ -1374,30 +1063,18 @@ class PayWithAmazonEvent:
     charge: "ChargeComponent" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     transaction_posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PayWithAmazonEventList:
-
     """
     A list of events related to the seller's Pay with Amazon account.
     """
@@ -1407,7 +1084,6 @@ class PayWithAmazonEventList:
 
 @attrs.define
 class ProductAdsPaymentEvent:
-
     """
     A Sponsored Products payment event.
     """
@@ -1432,37 +1108,22 @@ class ProductAdsPaymentEvent:
     base_value: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_value: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     transaction_value: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ProductAdsPaymentEventList:
-
     """
     A list of sponsored products payment events.
     """
@@ -1472,7 +1133,6 @@ class ProductAdsPaymentEventList:
 
 @attrs.define
 class Promotion:
-
     """
     A promotion applied to an item.
     """
@@ -1494,16 +1154,10 @@ class Promotion:
     promotion_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PromotionList:
-
     """
     A list of promotions.
     """
@@ -1513,7 +1167,6 @@ class PromotionList:
 
 @attrs.define
 class RemovalShipmentAdjustmentEvent:
-
     """
     A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or fewer items than ordered).
     """
@@ -1558,16 +1211,10 @@ class RemovalShipmentAdjustmentEvent:
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RemovalShipmentAdjustmentEventList:
-
     """
     A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.
     """
@@ -1577,7 +1224,6 @@ class RemovalShipmentAdjustmentEventList:
 
 @attrs.define
 class RemovalShipmentEvent:
-
     """
     A removal shipment event for a removal order.
     """
@@ -1608,23 +1254,14 @@ class RemovalShipmentEvent:
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     removal_shipment_item_list: "RemovalShipmentItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RemovalShipmentEventList:
-
     """
     A list of removal shipment event information.
     """
@@ -1634,7 +1271,6 @@ class RemovalShipmentEventList:
 
 @attrs.define
 class RemovalShipmentItem:
-
     """
     Item-level information for a removal shipment.
     """
@@ -1676,37 +1312,22 @@ class RemovalShipmentItem:
     fee_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     revenue: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_withheld: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RemovalShipmentItemAdjustment:
-
     """
     Item-level information for a removal shipment item adjustment.
     """
@@ -1748,30 +1369,18 @@ class RemovalShipmentItemAdjustment:
     revenue_adjustment: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_amount_adjustment: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_withheld_adjustment: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RemovalShipmentItemList:
-
     """
     A list of information about removal shipment items.
     """
@@ -1781,7 +1390,6 @@ class RemovalShipmentItemList:
 
 @attrs.define
 class RentalTransactionEvent:
-
     """
     An event related to a rental transaction.
     """
@@ -1828,51 +1436,30 @@ class RentalTransactionEvent:
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rental_charge_list: "ChargeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rental_fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rental_initial_value: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rental_reimbursement: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rental_tax_withheld_list: "TaxWithheldComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RentalTransactionEventList:
-
     """
     A list of rental transaction event information.
     """
@@ -1882,7 +1469,6 @@ class RentalTransactionEventList:
 
 @attrs.define
 class RetrochargeEvent:
-
     """
     A retrocharge or retrocharge reversal.
     """
@@ -1914,37 +1500,22 @@ class RetrochargeEvent:
     base_tax: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     retrocharge_tax_withheld_list: "TaxWithheldComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_tax: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RetrochargeEventList:
-
     """
     A list of information about Retrocharge or RetrochargeReversal events.
     """
@@ -1954,7 +1525,6 @@ class RetrochargeEventList:
 
 @attrs.define
 class SAFETReimbursementEvent:
-
     """
     A SAFE-T claim reimbursement on the seller's account.
     """
@@ -1976,30 +1546,18 @@ class SAFETReimbursementEvent:
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     reimbursed_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     safetreimbursement_item_list: "SAFETReimbursementItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SAFETReimbursementEventList:
-
     """
     A list of SAFETReimbursementEvents.
     """
@@ -2009,7 +1567,6 @@ class SAFETReimbursementEventList:
 
 @attrs.define
 class SAFETReimbursementItem:
-
     """
     An item from a SAFE-T claim reimbursement.
     """
@@ -2031,16 +1588,10 @@ class SAFETReimbursementItem:
     item_charge_list: "ChargeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SAFETReimbursementItemList:
-
     """
     A list of SAFETReimbursementItems.
     """
@@ -2050,7 +1601,6 @@ class SAFETReimbursementItemList:
 
 @attrs.define
 class SellerDealPaymentEvent:
-
     """
     An event linked to the payment of a fee related to the specified deal.
     """
@@ -2086,37 +1636,22 @@ class SellerDealPaymentEvent:
     fee_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SellerDealPaymentEventList:
-
     """
     A list of payment events for deal-related fees.
     """
@@ -2126,7 +1661,6 @@ class SellerDealPaymentEventList:
 
 @attrs.define
 class SellerReviewEnrollmentPaymentEvent:
-
     """
     A fee payment event for the Early Reviewer Program.
     """
@@ -2148,37 +1682,22 @@ class SellerReviewEnrollmentPaymentEvent:
     charge_component: "ChargeComponent" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fee_component: "FeeComponent" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SellerReviewEnrollmentPaymentEventList:
-
     """
     A list of information about fee events for the Early Reviewer Program.
     """
@@ -2188,7 +1707,6 @@ class SellerReviewEnrollmentPaymentEventList:
 
 @attrs.define
 class ServiceFeeEvent:
-
     """
     A service fee on the seller's account.
     """
@@ -2238,16 +1756,10 @@ class ServiceFeeEvent:
     fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ServiceFeeEventList:
-
     """
     A list of information about service fee events.
     """
@@ -2257,7 +1769,6 @@ class ServiceFeeEventList:
 
 @attrs.define
 class ShipmentEvent:
-
     """
     A shipment, refund, guarantee claim, or chargeback.
     """
@@ -2286,79 +1797,46 @@ class ShipmentEvent:
     direct_payment_list: "DirectPaymentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     order_charge_adjustment_list: "ChargeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     order_charge_list: "ChargeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     order_fee_adjustment_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     order_fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_fee_adjustment_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_item_adjustment_list: "ShipmentItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_item_list: "ShipmentItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentEventList:
-
     """
     A list of shipment event information.
     """
@@ -2368,7 +1846,6 @@ class ShipmentEventList:
 
 @attrs.define
 class ShipmentItem:
-
     """
     An item of a shipment, refund, guarantee claim, or chargeback.
     """
@@ -2407,72 +1884,42 @@ class ShipmentItem:
     cost_of_points_granted: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     cost_of_points_returned: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_charge_adjustment_list: "ChargeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_charge_list: "ChargeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_fee_adjustment_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_tax_withheld_list: "TaxWithheldComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     promotion_adjustment_list: "PromotionList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     promotion_list: "PromotionList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentItemList:
-
     """
     A list of shipment items.
     """
@@ -2482,7 +1929,6 @@ class ShipmentItemList:
 
 @attrs.define
 class ShipmentSettleEventList:
-
     """
     A list of information about shipment settle financial events.
     """
@@ -2492,7 +1938,6 @@ class ShipmentSettleEventList:
 
 @attrs.define
 class SolutionProviderCreditEvent:
-
     """
     A credit given to a solution provider.
     """
@@ -2556,23 +2001,14 @@ class SolutionProviderCreditEvent:
     transaction_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     transaction_creation_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SolutionProviderCreditEventList:
-
     """
     A list of information about solution provider credits.
     """
@@ -2582,7 +2018,6 @@ class SolutionProviderCreditEventList:
 
 @attrs.define
 class TaxWithheldComponent:
-
     """
     Information about the taxes withheld.
     """
@@ -2600,16 +2035,10 @@ class TaxWithheldComponent:
     taxes_withheld: "ChargeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxWithheldComponentList:
-
     """
     A list of information about taxes withheld.
     """
@@ -2619,7 +2048,6 @@ class TaxWithheldComponentList:
 
 @attrs.define
 class TaxWithholdingEvent:
-
     """
     A TaxWithholding event on seller's account.
     """
@@ -2627,37 +2055,22 @@ class TaxWithholdingEvent:
     base_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_withholding_period: "TaxWithholdingPeriod" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     withheld_amount: "Currency" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxWithholdingEventList:
-
     """
     List of TaxWithholding events.
     """
@@ -2667,7 +2080,6 @@ class TaxWithholdingEventList:
 
 @attrs.define
 class TaxWithholdingPeriod:
-
     """
     Period which taxwithholding on seller's account is calculated.
     """
@@ -2675,23 +2087,14 @@ class TaxWithholdingPeriod:
     end_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     start_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TrialShipmentEvent:
-
     """
     An event related to a trial shipment.
     """
@@ -2720,23 +2123,14 @@ class TrialShipmentEvent:
     fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TrialShipmentEventList:
-
     """
     A list of information about trial shipment financial events.
     """

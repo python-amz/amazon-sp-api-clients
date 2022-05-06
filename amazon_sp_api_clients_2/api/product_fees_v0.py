@@ -37,12 +37,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -52,7 +49,6 @@ class ErrorList:
 
 @attrs.define
 class FeeDetail:
-
     """
     The type of fee, fee amount, and other details.
     """
@@ -67,44 +63,26 @@ class FeeDetail:
     fee_amount: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fee_promotion: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     final_fee: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     included_fee_detail_list: "IncludedFeeDetailList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_amount: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeeDetailList:
-
     """
     A list of other fees that contribute to a given fee.
     """
@@ -114,7 +92,6 @@ class FeeDetailList:
 
 @attrs.define
 class FeesEstimate:
-
     """
     The total estimated fees for an item and a list of details.
     """
@@ -132,23 +109,14 @@ class FeesEstimate:
     fee_detail_list: "FeeDetailList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_fees_estimate: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeesEstimateError:
-
     """
     An unexpected error occurred during this operation.
     """
@@ -177,16 +145,10 @@ class FeesEstimateError:
     detail: "FeesEstimateErrorDetail" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeesEstimateErrorDetail:
-
     """
     Additional information that can help the caller understand or fix the issue.
     """
@@ -196,7 +158,6 @@ class FeesEstimateErrorDetail:
 
 @attrs.define
 class FeesEstimateIdentifier:
-
     """
     An item identifier, marketplace, time of request, and other details that identify an estimate.
     """
@@ -246,18 +207,10 @@ class FeesEstimateIdentifier:
     optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     price_to_estimate_fees: "PriceToEstimateFees" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -287,23 +240,14 @@ class FeesEstimateRequest:
     optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     price_to_estimate_fees: "PriceToEstimateFees" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeesEstimateResult:
-
     """
     An item identifier and the estimated fees for the item.
     """
@@ -318,30 +262,18 @@ class FeesEstimateResult:
     error: "FeesEstimateError" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fees_estimate: "FeesEstimate" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fees_estimate_identifier: "FeesEstimateIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetMyFeesEstimateRequest:
-
     """
     Request schema.
     """
@@ -349,11 +281,6 @@ class GetMyFeesEstimateRequest:
     fees_estimate_request: "FeesEstimateRequest" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -362,23 +289,14 @@ class GetMyFeesEstimateResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "GetMyFeesEstimateResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetMyFeesEstimateResult:
-
     """
     Response schema.
     """
@@ -386,16 +304,10 @@ class GetMyFeesEstimateResult:
     fees_estimate_result: "FeesEstimateResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class IncludedFeeDetail:
-
     """
     The type of fee, fee amount, and other details.
     """
@@ -410,37 +322,22 @@ class IncludedFeeDetail:
     fee_amount: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     fee_promotion: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     final_fee: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_amount: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class IncludedFeeDetailList:
-
     """
     A list of other fees that contribute to a given fee.
     """
@@ -465,12 +362,9 @@ class MoneyType:
     The currency code in ISO 4217 format.
     """
 
-    pass
-
 
 @attrs.define
 class OptionalFulfillmentProgram:
-
     """
     An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
     """
@@ -485,7 +379,6 @@ class Points:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'schema_format': 'int32'}
@@ -494,16 +387,10 @@ class Points:
     points_monetary_value: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PriceToEstimateFees:
-
     """
     Price information for an item, used to estimate fees.
     """
@@ -511,25 +398,14 @@ class PriceToEstimateFees:
     listing_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     points: "Points" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class ProductFeesV0Client(BaseClient):

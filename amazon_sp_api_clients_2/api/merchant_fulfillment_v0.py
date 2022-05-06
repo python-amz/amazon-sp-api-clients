@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class AdditionalInputs:
-
     """
     Maps the additional seller input to the definition. The key to the map is the field name.
     """
@@ -30,16 +29,10 @@ class AdditionalInputs:
     seller_input_definition: "SellerInputDefinition" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AdditionalInputsList:
-
     """
     A list of additional inputs.
     """
@@ -49,7 +42,6 @@ class AdditionalInputsList:
 
 @attrs.define
 class AdditionalSellerInput:
-
     """
     Additional information required to purchase shipping.
     """
@@ -85,44 +77,26 @@ class AdditionalSellerInput:
     value_as_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     value_as_currency: "CurrencyAmount" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     value_as_dimension: "Length" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     value_as_timestamp: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     value_as_weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AdditionalSellerInputs:
-
     """
     An additional set of seller inputs required to purchase shipping.
     """
@@ -137,16 +111,10 @@ class AdditionalSellerInputs:
     additional_seller_input: "AdditionalSellerInput" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AdditionalSellerInputsList:
-
     """
     A list of additional seller input pairs required to purchase shipping.
     """
@@ -156,7 +124,6 @@ class AdditionalSellerInputsList:
 
 @attrs.define
 class Address:
-
     """
     The postal address information.
     """
@@ -164,86 +131,50 @@ class Address:
     address_line1: "AddressLine1" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     address_line2: "AddressLine2" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     address_line3: "AddressLine3" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     city: "City" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     country_code: "CountryCode" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     district_or_county: "DistrictOrCounty" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     email: "EmailAddress" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     name: "AddressName" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     phone: "PhoneNumber" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     postal_code: "PostalCode" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     state_or_province_code: "StateOrProvinceCode" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AddressLine1:
-
     """
     The street address information.
     """
@@ -253,7 +184,6 @@ class AddressLine1:
 
 @attrs.define
 class AddressLine2:
-
     """
     Additional street address information.
     """
@@ -263,7 +193,6 @@ class AddressLine2:
 
 @attrs.define
 class AddressLine3:
-
     """
     Additional street address information.
     """
@@ -273,7 +202,6 @@ class AddressLine3:
 
 @attrs.define
 class AddressName:
-
     """
     The name of the addressee, or business name.
     """
@@ -283,7 +211,6 @@ class AddressName:
 
 @attrs.define
 class AmazonOrderId:
-
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
@@ -293,7 +220,6 @@ class AmazonOrderId:
 
 @attrs.define
 class AvailableCarrierWillPickUpOption:
-
     """
     Indicates whether the carrier will pick up the package, and what fee is charged, if any.
     """
@@ -301,23 +227,14 @@ class AvailableCarrierWillPickUpOption:
     carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     charge: "CurrencyAmount" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AvailableCarrierWillPickUpOptionsList:
-
     """
     List of available carrier pickup options.
     """
@@ -327,7 +244,6 @@ class AvailableCarrierWillPickUpOptionsList:
 
 @attrs.define
 class AvailableDeliveryExperienceOption:
-
     """
     The available delivery confirmation options, and the fee charged, if any.
     """
@@ -335,23 +251,14 @@ class AvailableDeliveryExperienceOption:
     charge: "CurrencyAmount" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     delivery_experience_option: "DeliveryExperienceOption" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AvailableDeliveryExperienceOptionsList:
-
     """
     List of available delivery experience options.
     """
@@ -361,7 +268,6 @@ class AvailableDeliveryExperienceOptionsList:
 
 @attrs.define
 class AvailableFormatOptionsForLabelList:
-
     """
     The available label formats.
     """
@@ -371,7 +277,6 @@ class AvailableFormatOptionsForLabelList:
 
 @attrs.define
 class AvailableShippingServiceOptions:
-
     """
     The available shipping service options.
     """
@@ -379,23 +284,14 @@ class AvailableShippingServiceOptions:
     available_carrier_will_pick_up_options: "AvailableCarrierWillPickUpOptionsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     available_delivery_experience_options: "AvailableDeliveryExperienceOptionsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CancelShipmentResponse:
-
     """
     Response schema.
     """
@@ -403,23 +299,14 @@ class CancelShipmentResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Shipment" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CarrierWillPickUpOption:
-
     """
     Carrier will pick up option.
     """
@@ -429,7 +316,6 @@ class CarrierWillPickUpOption:
 
 @attrs.define
 class City:
-
     """
     The city.
     """
@@ -439,7 +325,6 @@ class City:
 
 @attrs.define
 class Constraint:
-
     """
     A validation constraint.
     """
@@ -458,12 +343,9 @@ class Constraint:
     A validation string.
     """
 
-    pass
-
 
 @attrs.define
 class Constraints:
-
     """
     List of constraints.
     """
@@ -473,7 +355,6 @@ class Constraints:
 
 @attrs.define
 class CountryCode:
-
     """
     The country code. A two-character country code, in ISO 3166-1 alpha-2 format.
     """
@@ -483,7 +364,6 @@ class CountryCode:
 
 @attrs.define
 class CreateShipmentRequest:
-
     """
     Request schema.
     """
@@ -498,44 +378,26 @@ class CreateShipmentRequest:
     hazmat_type: "HazmatType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     label_format_option: "LabelFormatOptionRequest" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_level_seller_inputs_list: "AdditionalSellerInputsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_request_details: "ShipmentRequestDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateShipmentResponse:
-
     """
     Response schema.
     """
@@ -543,23 +405,14 @@ class CreateShipmentResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Shipment" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CurrencyAmount:
-
     """
     Currency type and amount.
     """
@@ -584,12 +437,9 @@ class CurrencyAmount:
     {'maxLength': 3}
     """
 
-    pass
-
 
 @attrs.define
 class CustomTextForLabel:
-
     """
         Custom text to print on the label.
 
@@ -601,7 +451,6 @@ class CustomTextForLabel:
 
 @attrs.define
 class DeliveryExperienceOption:
-
     """
     The delivery confirmation level.
     """
@@ -611,7 +460,6 @@ class DeliveryExperienceOption:
 
 @attrs.define
 class DeliveryExperienceType:
-
     """
     The delivery confirmation level.
     """
@@ -621,7 +469,6 @@ class DeliveryExperienceType:
 
 @attrs.define
 class DistrictOrCounty:
-
     """
     The district or county.
     """
@@ -631,7 +478,6 @@ class DistrictOrCounty:
 
 @attrs.define
 class EmailAddress:
-
     """
     The email address.
     """
@@ -641,7 +487,6 @@ class EmailAddress:
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -667,12 +512,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -682,7 +524,6 @@ class ErrorList:
 
 @attrs.define
 class FileContents:
-
     """
     The document data and checksum.
     """
@@ -704,16 +545,10 @@ class FileContents:
     file_type: "FileType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FileType:
-
     """
     The file type for a label.
     """
@@ -723,7 +558,6 @@ class FileType:
 
 @attrs.define
 class GetAdditionalSellerInputsRequest:
-
     """
     Request schema.
     """
@@ -731,30 +565,18 @@ class GetAdditionalSellerInputsRequest:
     order_id: "AmazonOrderId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetAdditionalSellerInputsResponse:
-
     """
     Response schema.
     """
@@ -762,23 +584,14 @@ class GetAdditionalSellerInputsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "GetAdditionalSellerInputsResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetAdditionalSellerInputsResult:
-
     """
     The payload for the getAdditionalSellerInputs operation.
     """
@@ -786,23 +599,14 @@ class GetAdditionalSellerInputsResult:
     item_level_fields_list: "ItemLevelFieldsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_level_fields: "AdditionalInputsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesRequest:
-
     """
     Request schema.
     """
@@ -810,23 +614,14 @@ class GetEligibleShipmentServicesRequest:
     shipment_request_details: "ShipmentRequestDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_offering_filter: "ShippingOfferingFilter" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesResponse:
-
     """
     Response schema.
     """
@@ -834,23 +629,14 @@ class GetEligibleShipmentServicesResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "GetEligibleShipmentServicesResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetEligibleShipmentServicesResult:
-
     """
     The payload for the getEligibleShipmentServices operation.
     """
@@ -858,37 +644,22 @@ class GetEligibleShipmentServicesResult:
     rejected_shipping_service_list: "RejectedShippingServiceList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_service_list: "ShippingServiceList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     temporarily_unavailable_carrier_list: "TemporarilyUnavailableCarrierList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     terms_and_conditions_not_accepted_carrier_list: "TermsAndConditionsNotAcceptedCarrierList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetShipmentResponse:
-
     """
     Response schema.
     """
@@ -896,23 +667,14 @@ class GetShipmentResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Shipment" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class HazmatType:
-
     """
     Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information on hazardous materials.
     """
@@ -922,7 +684,6 @@ class HazmatType:
 
 @attrs.define
 class InputTargetType:
-
     """
     Indicates whether the additional seller input is at the item or shipment level.
     """
@@ -932,7 +693,6 @@ class InputTargetType:
 
 @attrs.define
 class Item:
-
     """
     An Amazon order item identifier and a quantity.
     """
@@ -940,51 +700,30 @@ class Item:
     item_description: "ItemDescription" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_level_seller_inputs_list: "AdditionalSellerInputsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     order_item_id: "OrderItemId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     transparency_code_list: "TransparencyCodeList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemDescription:
-
     """
     The description of the item.
     """
@@ -1005,16 +744,10 @@ class ItemLevelFields:
     additional_inputs: "AdditionalInputsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemLevelFieldsList:
-
     """
     A list of item level fields.
     """
@@ -1024,7 +757,6 @@ class ItemLevelFieldsList:
 
 @attrs.define
 class ItemList:
-
     """
     The list of items to be included in a shipment.
     """
@@ -1034,7 +766,6 @@ class ItemList:
 
 @attrs.define
 class ItemQuantity:
-
     """
     The number of items.
     """
@@ -1044,7 +775,6 @@ class ItemQuantity:
 
 @attrs.define
 class Label:
-
     """
     Data for creating a shipping label and dimensions for printing the label.
     """
@@ -1052,44 +782,26 @@ class Label:
     custom_text_for_label: "CustomTextForLabel" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     dimensions: "LabelDimensions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     file_contents: "FileContents" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     label_format: "LabelFormat" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     standard_id_for_label: "StandardIdForLabel" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LabelCustomization:
-
     """
     Custom text for shipping labels.
     """
@@ -1097,23 +809,14 @@ class LabelCustomization:
     custom_text_for_label: "CustomTextForLabel" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     standard_id_for_label: "StandardIdForLabel" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LabelDimension:
-
     """
     A label dimension.
     """
@@ -1123,7 +826,6 @@ class LabelDimension:
 
 @attrs.define
 class LabelDimensions:
-
     """
     Dimensions for printing a shipping label.
     """
@@ -1131,30 +833,18 @@ class LabelDimensions:
     length: "LabelDimension" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     unit: "UnitOfLength" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     width: "LabelDimension" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LabelFormat:
-
     """
     The label format.
     """
@@ -1164,7 +854,6 @@ class LabelFormat:
 
 @attrs.define
 class LabelFormatList:
-
     """
     List of label formats.
     """
@@ -1174,7 +863,6 @@ class LabelFormatList:
 
 @attrs.define
 class LabelFormatOption:
-
     """
     The label format details and whether to include a packing slip.
     """
@@ -1189,16 +877,10 @@ class LabelFormatOption:
     label_format: "LabelFormat" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LabelFormatOptionRequest:
-
     """
     Whether to include a packing slip.
     """
@@ -1210,12 +892,9 @@ class LabelFormatOptionRequest:
     When true, include a packing slip with the label.
     """
 
-    pass
-
 
 @attrs.define
 class Length:
-
     """
     The length.
     """
@@ -1230,16 +909,10 @@ class Length:
     unit: "UnitOfLength" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class OrderItemId:
-
     """
     An Amazon-defined identifier for an individual item in an order.
     """
@@ -1255,7 +928,6 @@ class PackageDimension:
 
 @attrs.define
 class PackageDimensions:
-
     """
     The dimensions of a package contained in a shipment.
     """
@@ -1263,44 +935,26 @@ class PackageDimensions:
     height: "PackageDimension" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     length: "PackageDimension" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     predefined_package_dimensions: "PredefinedPackageDimensions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     unit: "UnitOfLength" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     width: "PackageDimension" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PhoneNumber:
-
     """
     The phone number.
     """
@@ -1310,7 +964,6 @@ class PhoneNumber:
 
 @attrs.define
 class PostalCode:
-
     """
     The zip code or postal code.
     """
@@ -1320,7 +973,6 @@ class PostalCode:
 
 @attrs.define
 class PredefinedPackageDimensions:
-
     """
         An enumeration of predefined parcel tokens. If you specify a PredefinedPackageDimensions token, you are not obligated to use a branded package from a carrier. For example, if you specify the FedEx_Box_10kg token, you do not have to use that particular package from FedEx. You are only obligated to use a box that matches the dimensions specified by the token.
 
@@ -1332,7 +984,6 @@ class PredefinedPackageDimensions:
 
 @attrs.define
 class RejectedShippingService:
-
     """
     Information about a rejected shipping service
     """
@@ -1368,16 +1019,10 @@ class RejectedShippingService:
     shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RejectedShippingServiceList:
-
     """
     List of services that were for some reason unavailable for this request
     """
@@ -1387,7 +1032,6 @@ class RejectedShippingServiceList:
 
 @attrs.define
 class RestrictedSetValues:
-
     """
     The set of fixed values in an additional seller input.
     """
@@ -1397,7 +1041,6 @@ class RestrictedSetValues:
 
 @attrs.define
 class SellerInputDefinition:
-
     """
     Specifies characteristics that apply to a seller input.
     """
@@ -1426,37 +1069,22 @@ class SellerInputDefinition:
     constraints: "Constraints" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     input_target: "InputTargetType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     restricted_set_values: "RestrictedSetValues" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     stored_value: "AdditionalSellerInput" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SellerOrderId:
-
     """
     A seller-defined order identifier.
     """
@@ -1466,7 +1094,6 @@ class SellerOrderId:
 
 @attrs.define
 class Shipment:
-
     """
     The details of a shipment, including the shipment status.
     """
@@ -1474,114 +1101,66 @@ class Shipment:
     amazon_order_id: "AmazonOrderId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     created_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     insurance: "CurrencyAmount" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_list: "ItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     label: "Label" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     last_updated_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     package_dimensions: "PackageDimensions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller_order_id: "SellerOrderId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_to_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_id: "ShipmentId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_service: "ShippingService" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     status: "ShipmentStatus" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tracking_id: "TrackingId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentId:
-
     """
     An Amazon-defined shipment identifier.
     """
@@ -1591,7 +1170,6 @@ class ShipmentId:
 
 @attrs.define
 class ShipmentRequestDetails:
-
     """
     Shipment information required for requesting shipping service offers or for creating a shipment.
     """
@@ -1599,79 +1177,46 @@ class ShipmentRequestDetails:
     amazon_order_id: "AmazonOrderId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_list: "ItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     label_customization: "LabelCustomization" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     must_arrive_by_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     package_dimensions: "PackageDimensions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller_order_id: "SellerOrderId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_service_options: "ShippingServiceOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentStatus:
-
     """
     The shipment status.
     """
@@ -1681,7 +1226,6 @@ class ShipmentStatus:
 
 @attrs.define
 class ShippingOfferingFilter:
-
     """
     Filter for use when requesting eligible shipping services.
     """
@@ -1703,23 +1247,14 @@ class ShippingOfferingFilter:
     carrier_will_pick_up: "CarrierWillPickUpOption" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     delivery_experience: "DeliveryExperienceOption" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShippingService:
-
     """
     A shipping service offer made by a carrier.
     """
@@ -1755,72 +1290,42 @@ class ShippingService:
     available_format_options_for_label: "AvailableFormatOptionsForLabelList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     available_label_formats: "LabelFormatList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     available_shipping_service_options: "AvailableShippingServiceOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     earliest_estimated_delivery_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     latest_estimated_delivery_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rate: "CurrencyAmount" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_service_options: "ShippingServiceOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShippingServiceIdentifier:
-
     """
     An Amazon-defined shipping service identifier.
     """
@@ -1830,7 +1335,6 @@ class ShippingServiceIdentifier:
 
 @attrs.define
 class ShippingServiceList:
-
     """
     A list of shipping services offers.
     """
@@ -1840,7 +1344,6 @@ class ShippingServiceList:
 
 @attrs.define
 class ShippingServiceOptions:
-
     """
     Extra services provided by a carrier.
     """
@@ -1856,37 +1359,22 @@ class ShippingServiceOptions:
     carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     declared_value: "CurrencyAmount" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     delivery_experience: "DeliveryExperienceType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     label_format: "LabelFormat" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class StandardIdForLabel:
-
     """
     The type of standard identifier to print on the label.
     """
@@ -1896,7 +1384,6 @@ class StandardIdForLabel:
 
 @attrs.define
 class StateOrProvinceCode:
-
     """
     The state or province code. **Note.** Required in the Canada, US, and UK marketplaces. Also required for shipments originating from China.
     """
@@ -1906,7 +1393,6 @@ class StateOrProvinceCode:
 
 @attrs.define
 class TemporarilyUnavailableCarrier:
-
     """
     A carrier who is temporarily unavailable, most likely due to a service outage experienced by the carrier.
     """
@@ -1918,12 +1404,9 @@ class TemporarilyUnavailableCarrier:
     The name of the carrier.
     """
 
-    pass
-
 
 @attrs.define
 class TemporarilyUnavailableCarrierList:
-
     """
     A list of temporarily unavailable carriers.
     """
@@ -1933,7 +1416,6 @@ class TemporarilyUnavailableCarrierList:
 
 @attrs.define
 class TermsAndConditionsNotAcceptedCarrier:
-
     """
     A carrier whose terms and conditions have not been accepted by the seller.
     """
@@ -1945,12 +1427,9 @@ class TermsAndConditionsNotAcceptedCarrier:
     The name of the carrier.
     """
 
-    pass
-
 
 @attrs.define
 class TermsAndConditionsNotAcceptedCarrierList:
-
     """
     List of carriers whose terms and conditions were not accepted by the seller.
     """
@@ -1966,7 +1445,6 @@ class Timestamp:
 
 @attrs.define
 class TrackingId:
-
     """
     The shipment tracking identifier provided by the carrier.
     """
@@ -1976,7 +1454,6 @@ class TrackingId:
 
 @attrs.define
 class TransparencyCode:
-
     """
     The Transparency code associated with the item.
     """
@@ -1986,7 +1463,6 @@ class TransparencyCode:
 
 @attrs.define
 class TransparencyCodeList:
-
     """
     A list of transparency codes.
     """
@@ -1996,7 +1472,6 @@ class TransparencyCodeList:
 
 @attrs.define
 class UnitOfLength:
-
     """
     The unit of length.
     """
@@ -2006,7 +1481,6 @@ class UnitOfLength:
 
 @attrs.define
 class UnitOfWeight:
-
     """
     The unit of weight.
     """
@@ -2016,7 +1490,6 @@ class UnitOfWeight:
 
 @attrs.define
 class Weight:
-
     """
     The weight.
     """
@@ -2024,23 +1497,14 @@ class Weight:
     unit: "UnitOfWeight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     value: "WeightValue" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class WeightValue:
-
     """
     The weight value.
     """

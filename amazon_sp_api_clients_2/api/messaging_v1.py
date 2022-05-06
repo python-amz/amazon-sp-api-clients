@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Attachment:
-
     """
     Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
     """
@@ -34,12 +33,9 @@ class Attachment:
     The identifier of the upload destination. Get this value by calling the createUploadDestination operation of the Uploads API.
     """
 
-    pass
-
 
 @attrs.define
 class CreateAmazonMotorsRequest:
-
     """
     The request schema for the createAmazonMotors operation.
     """
@@ -51,12 +47,9 @@ class CreateAmazonMotorsRequest:
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
 
-    pass
-
 
 @attrs.define
 class CreateAmazonMotorsResponse:
-
     """
     The response schema for the createAmazonMotors operation.
     """
@@ -64,16 +57,10 @@ class CreateAmazonMotorsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateConfirmCustomizationDetailsRequest:
-
     """
     The request schema for the confirmCustomizationDetails operation.
     """
@@ -95,12 +82,9 @@ class CreateConfirmCustomizationDetailsRequest:
     {'maxLength': 800, 'minLength': 1}
     """
 
-    pass
-
 
 @attrs.define
 class CreateConfirmCustomizationDetailsResponse:
-
     """
     The response schema for the confirmCustomizationDetails operation.
     """
@@ -108,16 +92,10 @@ class CreateConfirmCustomizationDetailsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateConfirmDeliveryDetailsRequest:
-
     """
     The request schema for the createConfirmDeliveryDetails operation.
     """
@@ -132,12 +110,9 @@ class CreateConfirmDeliveryDetailsRequest:
     {'maxLength': 2000, 'minLength': 1}
     """
 
-    pass
-
 
 @attrs.define
 class CreateConfirmDeliveryDetailsResponse:
-
     """
     The response schema for the createConfirmDeliveryDetails operation.
     """
@@ -145,16 +120,10 @@ class CreateConfirmDeliveryDetailsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateConfirmOrderDetailsRequest:
-
     """
     The request schema for the createConfirmOrderDetails operation.
     """
@@ -169,12 +138,9 @@ class CreateConfirmOrderDetailsRequest:
     {'maxLength': 2000, 'minLength': 1}
     """
 
-    pass
-
 
 @attrs.define
 class CreateConfirmOrderDetailsResponse:
-
     """
     The response schema for the createConfirmOrderDetails operation.
     """
@@ -182,16 +148,10 @@ class CreateConfirmOrderDetailsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateConfirmServiceDetailsRequest:
-
     """
     The request schema for the createConfirmServiceDetails operation.
     """
@@ -206,12 +166,9 @@ class CreateConfirmServiceDetailsRequest:
     {'maxLength': 2000, 'minLength': 1}
     """
 
-    pass
-
 
 @attrs.define
 class CreateConfirmServiceDetailsResponse:
-
     """
     The response schema for the createConfirmServiceDetails operation.
     """
@@ -219,16 +176,10 @@ class CreateConfirmServiceDetailsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateDigitalAccessKeyRequest:
-
     """
     The request schema for the createDigitalAccessKey operation.
     """
@@ -250,12 +201,9 @@ class CreateDigitalAccessKeyRequest:
     {'maxLength': 400, 'minLength': 1}
     """
 
-    pass
-
 
 @attrs.define
 class CreateDigitalAccessKeyResponse:
-
     """
     The response schema for the createDigitalAccessKey operation.
     """
@@ -263,16 +211,10 @@ class CreateDigitalAccessKeyResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateLegalDisclosureRequest:
-
     """
     The request schema for the createLegalDisclosure operation.
     """
@@ -284,12 +226,9 @@ class CreateLegalDisclosureRequest:
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
 
-    pass
-
 
 @attrs.define
 class CreateLegalDisclosureResponse:
-
     """
     The response schema for the createLegalDisclosure operation.
     """
@@ -297,16 +236,10 @@ class CreateLegalDisclosureResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateNegativeFeedbackRemovalResponse:
-
     """
     The response schema for the createNegativeFeedbackRemoval operation.
     """
@@ -314,16 +247,10 @@ class CreateNegativeFeedbackRemovalResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateUnexpectedProblemRequest:
-
     """
     The request schema for the createUnexpectedProblem operation.
     """
@@ -338,12 +265,9 @@ class CreateUnexpectedProblemRequest:
     {'maxLength': 2000, 'minLength': 1}
     """
 
-    pass
-
 
 @attrs.define
 class CreateUnexpectedProblemResponse:
-
     """
     The response schema for the createUnexpectedProblem operation.
     """
@@ -351,16 +275,10 @@ class CreateUnexpectedProblemResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateWarrantyRequest:
-
     """
     The request schema for the createWarranty operation.
     """
@@ -392,12 +310,9 @@ class CreateWarrantyRequest:
     {'schema_format': 'date-time'}
     """
 
-    pass
-
 
 @attrs.define
 class CreateWarrantyResponse:
-
     """
     The response schema for the createWarranty operation.
     """
@@ -405,16 +320,10 @@ class CreateWarrantyResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -440,12 +349,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -455,7 +361,6 @@ class ErrorList:
 
 @attrs.define
 class GetAttributesResponse:
-
     """
     The response schema for the GetAttributes operation.
     """
@@ -473,16 +378,10 @@ class GetAttributesResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetMessagingActionResponse:
-
     """
     Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
@@ -491,7 +390,6 @@ class GetMessagingActionResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
@@ -501,7 +399,6 @@ class GetMessagingActionResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['schema', 'self']}
@@ -510,23 +407,14 @@ class GetMessagingActionResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "MessagingAction" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetMessagingActionsForOrderResponse:
-
     """
     The response schema for the getMessagingActionsForOrder operation.
     """
@@ -535,7 +423,6 @@ class GetMessagingActionsForOrderResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetMessagingActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
@@ -545,7 +432,6 @@ class GetMessagingActionsForOrderResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions', 'self']}
@@ -554,11 +440,6 @@ class GetMessagingActionsForOrderResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -568,7 +449,6 @@ class GetSchemaResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['self']}
@@ -577,23 +457,14 @@ class GetSchemaResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Schema" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LinkObject:
-
     """
     A Link object.
     """
@@ -612,12 +483,9 @@ class LinkObject:
     An identifier for this object.
     """
 
-    pass
-
 
 @attrs.define
 class MessagingAction:
-
     """
     A simple object containing the name of the template.
     """
@@ -625,16 +493,10 @@ class MessagingAction:
     name: str = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Schema:
-
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """

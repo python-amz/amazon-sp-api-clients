@@ -17,7 +17,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CreateDestinationRequest:
-
     """
     The request schema for the createDestination operation.
     """
@@ -32,16 +31,10 @@ class CreateDestinationRequest:
     resource_specification: "DestinationResourceSpecification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateDestinationResponse:
-
     """
     The response schema for the createDestination operation.
     """
@@ -49,23 +42,14 @@ class CreateDestinationResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Destination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateSubscriptionRequest:
-
     """
     The request schema for the createSubscription operation.
     """
@@ -84,12 +68,9 @@ class CreateSubscriptionRequest:
     The version of the payload object to be used in the notification.
     """
 
-    pass
-
 
 @attrs.define
 class CreateSubscriptionResponse:
-
     """
     The response schema for the createSubscription operation.
     """
@@ -97,23 +78,14 @@ class CreateSubscriptionResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Subscription" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class DeleteDestinationResponse:
-
     """
     The response schema for the deleteDestination operation.
     """
@@ -121,16 +93,10 @@ class DeleteDestinationResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class DeleteSubscriptionByIdResponse:
-
     """
     The response schema for the deleteSubscriptionById operation.
     """
@@ -138,16 +104,10 @@ class DeleteSubscriptionByIdResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Destination:
-
     """
     Represents a destination created when you call the createDestination operation.
     """
@@ -172,16 +132,10 @@ class Destination:
     resource: "DestinationResource" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class DestinationList:
-
     """
     A list of destinations.
     """
@@ -191,7 +145,6 @@ class DestinationList:
 
 @attrs.define
 class DestinationResource:
-
     """
     The destination resource types.
     """
@@ -199,23 +152,14 @@ class DestinationResource:
     event_bridge: "EventBridgeResource" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     sqs: "SqsResource" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class DestinationResourceSpecification:
-
     """
     The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
     """
@@ -223,23 +167,14 @@ class DestinationResourceSpecification:
     event_bridge: "EventBridgeResourceSpecification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     sqs: "SqsResource" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -265,12 +200,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -280,7 +212,6 @@ class ErrorList:
 
 @attrs.define
 class EventBridgeResource:
-
     """
     Represents an Amazon EventBridge destination.
     """
@@ -309,12 +240,9 @@ class EventBridgeResource:
     The AWS region in which you receive the notifications. For AWS regions that are supported in Amazon EventBridge, see https://docs.aws.amazon.com/general/latest/gr/ev.html.
     """
 
-    pass
-
 
 @attrs.define
 class EventBridgeResourceSpecification:
-
     """
     The information required to create an Amazon EventBridge destination.
     """
@@ -333,12 +261,9 @@ class EventBridgeResourceSpecification:
     The AWS region in which you will be receiving the notifications.
     """
 
-    pass
-
 
 @attrs.define
 class GetDestinationResponse:
-
     """
     The response schema for the getDestination operation.
     """
@@ -346,23 +271,14 @@ class GetDestinationResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Destination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetDestinationsResponse:
-
     """
     The response schema for the getDestinations operation.
     """
@@ -370,23 +286,14 @@ class GetDestinationsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "DestinationList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetSubscriptionByIdResponse:
-
     """
     The response schema for the getSubscriptionById operation.
     """
@@ -394,23 +301,14 @@ class GetSubscriptionByIdResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Subscription" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetSubscriptionResponse:
-
     """
     The response schema for the getSubscription operation.
     """
@@ -418,23 +316,14 @@ class GetSubscriptionResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Subscription" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SqsResource:
-
     """
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
@@ -449,12 +338,9 @@ class SqsResource:
     {'maxLength': 1000, 'pattern': '^arn:aws:sqs:\\S+:\\S+:\\S+'}
     """
 
-    pass
-
 
 @attrs.define
 class Subscription:
-
     """
     Represents a subscription to receive notifications.
     """
@@ -479,8 +365,6 @@ class Subscription:
     """
     The subscription identifier generated when the subscription is created.
     """
-
-    pass
 
 
 class NotificationsV1Client(BaseClient):

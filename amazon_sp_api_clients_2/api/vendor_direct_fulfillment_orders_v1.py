@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class AcknowledgementStatus:
-
     """
     Status of acknowledgement.
     """
@@ -34,12 +33,9 @@ class AcknowledgementStatus:
     Reason for the acknowledgement code.
     """
 
-    pass
-
 
 @attrs.define
 class Address:
-
     """
     Address of the party.
     """
@@ -128,12 +124,9 @@ class Address:
     The state or region where person, business or institution is located.
     """
 
-    pass
-
 
 @attrs.define
 class Decimal:
-
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
     """
@@ -143,7 +136,6 @@ class Decimal:
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -169,12 +161,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -184,7 +173,6 @@ class ErrorList:
 
 @attrs.define
 class GetOrderResponse:
-
     """
     The response schema for the getOrder operation.
     """
@@ -192,23 +180,14 @@ class GetOrderResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Order" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetOrdersResponse:
-
     """
     The response schema for the getOrders operation.
     """
@@ -216,23 +195,14 @@ class GetOrdersResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "OrderList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GiftDetails:
-
     """
     Gift details for the item.
     """
@@ -251,12 +221,9 @@ class GiftDetails:
     Gift wrap identifier for the gift wrapping, if any.
     """
 
-    pass
-
 
 @attrs.define
 class ItemQuantity:
-
     """
     Details of quantity ordered.
     """
@@ -275,12 +242,9 @@ class ItemQuantity:
     Unit of measure for the acknowledged quantity.
     """
 
-    pass
-
 
 @attrs.define
 class Money:
-
     """
     An amount of money, including units in the form of currency.
     """
@@ -295,11 +259,6 @@ class Money:
     amount: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -315,16 +274,10 @@ class Order:
     order_details: "OrderDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class OrderAcknowledgementItem:
-
     """
     Details of an individual order being acknowledged.
     """
@@ -363,30 +316,18 @@ class OrderAcknowledgementItem:
     acknowledgement_status: "AcknowledgementStatus" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class OrderDetails:
-
     """
     Details of an order.
     """
@@ -426,7 +367,6 @@ class OrderDetails:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'taxLineItem': Reference(ref='#/components/schemas/TaxLineItem')}}
@@ -435,39 +375,22 @@ class OrderDetails:
     bill_to_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_to_party: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_details: "ShipmentDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -514,39 +437,22 @@ class OrderItem:
     gift_details: "GiftDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     net_price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ordered_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     scheduled_delivery_shipment: "ScheduledDeliveryShipment" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -576,11 +482,6 @@ class OrderItemAcknowledgement:
     acknowledged_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -589,18 +490,10 @@ class OrderList:
     orders: List["Order"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     pagination: "Pagination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -612,8 +505,6 @@ class Pagination:
     """
     A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
     """
-
-    pass
 
 
 @attrs.define
@@ -629,23 +520,14 @@ class PartyIdentification:
     address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_info: "TaxRegistrationDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ScheduledDeliveryShipment:
-
     """
     Dates for the scheduled delivery shipments.
     """
@@ -677,12 +559,9 @@ class ScheduledDeliveryShipment:
     Scheduled delivery service type.
     """
 
-    pass
-
 
 @attrs.define
 class ShipmentDates:
-
     """
     Shipment dates.
     """
@@ -707,12 +586,9 @@ class ShipmentDates:
     {'schema_format': 'date-time'}
     """
 
-    pass
-
 
 @attrs.define
 class ShipmentDetails:
-
     """
     Shipment details required for the shipment.
     """
@@ -762,16 +638,10 @@ class ShipmentDetails:
     shipment_dates: "ShipmentDates" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitAcknowledgementRequest:
-
     """
     The request schema for the submitAcknowledgement operation.
     """
@@ -783,12 +653,9 @@ class SubmitAcknowledgementRequest:
     A list of one or more purchase orders.
     """
 
-    pass
-
 
 @attrs.define
 class SubmitAcknowledgementResponse:
-
     """
     The response schema for the submitAcknowledgement operation.
     """
@@ -796,18 +663,10 @@ class SubmitAcknowledgementResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "TransactionId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -831,30 +690,18 @@ class TaxDetails:
     tax_amount: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_rate: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     taxable_amount: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxLineItem:
-
     """
     A list of tax line items.
     """
@@ -864,7 +711,6 @@ class TaxLineItem:
 
 @attrs.define
 class TaxRegistrationDetails:
-
     """
     Tax registration details of the entity.
     """
@@ -893,11 +739,6 @@ class TaxRegistrationDetails:
     tax_registration_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -909,8 +750,6 @@ class TransactionId:
     """
     GUID assigned by Amazon to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
-
-    pass
 
 
 class VendorDirectFulfillmentOrdersV1Client(BaseClient):

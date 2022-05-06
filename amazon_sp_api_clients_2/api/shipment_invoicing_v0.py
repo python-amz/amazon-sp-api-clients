@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Address:
-
     """
     The shipping address details of the shipment.
     """
@@ -100,16 +99,10 @@ class Address:
     address_type: "AddressTypeEnum" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AddressTypeEnum:
-
     """
     The shipping address type.
     """
@@ -119,7 +112,6 @@ class AddressTypeEnum:
 
 @attrs.define
 class Blob:
-
     """
     Shipment invoice document content.
     """
@@ -129,7 +121,6 @@ class Blob:
 
 @attrs.define
 class BuyerTaxInfo:
-
     """
     Tax information about the buyer.
     """
@@ -151,16 +142,10 @@ class BuyerTaxInfo:
     tax_classifications: "TaxClassificationList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     An error response returned when the request is unsuccessful.
     """
@@ -186,12 +171,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -201,7 +183,6 @@ class ErrorList:
 
 @attrs.define
 class GetInvoiceStatusResponse:
-
     """
     The response schema for the getInvoiceStatus operation.
     """
@@ -209,23 +190,14 @@ class GetInvoiceStatusResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ShipmentInvoiceStatusResponse" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetShipmentDetailsResponse:
-
     """
     The response schema for the getShipmentDetails operation.
     """
@@ -233,23 +205,14 @@ class GetShipmentDetailsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ShipmentDetail" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class MarketplaceTaxInfo:
-
     """
     Tax information about the marketplace.
     """
@@ -271,16 +234,10 @@ class MarketplaceTaxInfo:
     tax_classifications: "TaxClassificationList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Money:
-
     """
     The currency type and amount.
     """
@@ -299,12 +256,9 @@ class Money:
     Three-digit currency code in ISO 4217 format.
     """
 
-    pass
-
 
 @attrs.define
 class PaymentMethodDetailItemList:
-
     """
     The list of payment method details.
     """
@@ -314,7 +268,6 @@ class PaymentMethodDetailItemList:
 
 @attrs.define
 class SerialNumbersList:
-
     """
     The list of serial numbers.
     """
@@ -324,7 +277,6 @@ class SerialNumbersList:
 
 @attrs.define
 class ShipmentDetail:
-
     """
     The information required by a selling partner to issue a shipment invoice.
     """
@@ -398,44 +350,26 @@ class ShipmentDetail:
     buyer_tax_info: "BuyerTaxInfo" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payment_method_details: "PaymentMethodDetailItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_items: "ShipmentItems" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentInvoiceStatus:
-
     """
     The shipment invoice status.
     """
@@ -445,7 +379,6 @@ class ShipmentInvoiceStatus:
 
 @attrs.define
 class ShipmentInvoiceStatusInfo:
-
     """
     The shipment invoice status information.
     """
@@ -460,16 +393,10 @@ class ShipmentInvoiceStatusInfo:
     invoice_status: "ShipmentInvoiceStatus" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentInvoiceStatusResponse:
-
     """
     The shipment invoice status response.
     """
@@ -477,16 +404,10 @@ class ShipmentInvoiceStatusResponse:
     shipments: "ShipmentInvoiceStatusInfo" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentItem:
-
     """
     The shipment item information required by a seller to issue a shipment invoice.
     """
@@ -529,51 +450,30 @@ class ShipmentItem:
     gift_wrap_price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     promotion_discount: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     serial_numbers: "SerialNumbersList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_discount: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentItems:
-
     """
     A list of shipment items.
     """
@@ -583,7 +483,6 @@ class ShipmentItems:
 
 @attrs.define
 class SubmitInvoiceRequest:
-
     """
     The request schema for the submitInvoice operation.
     """
@@ -605,16 +504,10 @@ class SubmitInvoiceRequest:
     invoice_content: "Blob" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitInvoiceResponse:
-
     """
     The response schema for the submitInvoice operation.
     """
@@ -622,16 +515,10 @@ class SubmitInvoiceResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxClassification:
-
     """
     The tax classification for the entity.
     """
@@ -650,12 +537,9 @@ class TaxClassification:
     The entity's tax identifier.
     """
 
-    pass
-
 
 @attrs.define
 class TaxClassificationList:
-
     """
     The list of tax classifications.
     """

@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CreateUploadDestinationResponse:
-
     """
     The response schema for the createUploadDestination operation.
     """
@@ -23,23 +22,14 @@ class CreateUploadDestinationResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "UploadDestination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -65,12 +55,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -80,7 +67,6 @@ class ErrorList:
 
 @attrs.define
 class UploadDestination:
-
     """
     Information about an upload destination.
     """
@@ -108,8 +94,6 @@ class UploadDestination:
     """
     The URL for the upload destination.
     """
-
-    pass
 
 
 class Uploads20201101Client(BaseClient):

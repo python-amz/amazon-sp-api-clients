@@ -17,7 +17,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -43,12 +42,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -56,16 +52,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Issue:
-
     """
     An issue with a listings item.
     """
@@ -98,12 +88,9 @@ class Issue:
     The severity of the issue.
     """
 
-    pass
-
 
 @attrs.define
 class ListingsItemPatchRequest:
-
     """
     The request body schema for the patchListingsItem operation.
     """
@@ -125,12 +112,9 @@ class ListingsItemPatchRequest:
     The Amazon product type of the listings item.
     """
 
-    pass
-
 
 @attrs.define
 class ListingsItemPutRequest:
-
     """
     The request body schema for the putListingsItem operation.
     """
@@ -161,12 +145,9 @@ class ListingsItemPutRequest:
     The name of the requirements set for the provided data.
     """
 
-    pass
-
 
 @attrs.define
 class ListingsItemSubmissionResponse:
-
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
@@ -199,12 +180,9 @@ class ListingsItemSubmissionResponse:
     The unique identifier of the listings item submission.
     """
 
-    pass
-
 
 @attrs.define
 class PatchOperation:
-
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
@@ -229,8 +207,6 @@ class PatchOperation:
     """
     JSON value to add, replace, or delete.
     """
-
-    pass
 
 
 class ListingsItems20200901Client(BaseClient):

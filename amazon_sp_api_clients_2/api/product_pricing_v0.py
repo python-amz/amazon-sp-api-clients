@@ -30,12 +30,9 @@ class ASINIdentifier:
     A marketplace identifier.
     """
 
-    pass
-
 
 @attrs.define
 class AttributeSetList:
-
     """
     A list of product attributes if they are applicable to the product that is returned.
     """
@@ -79,46 +76,26 @@ class BuyBoxPriceType:
     landed_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     listing_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     points: "Points" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offer_type: "OfferCustomerType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     quantity_discount_type: "QuantityDiscountType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -129,7 +106,6 @@ class BuyBoxPrices:
 
 @attrs.define
 class CompetitivePriceList:
-
     """
     A list of competitive pricing information.
     """
@@ -191,30 +167,18 @@ class CompetitivePriceType:
     price: "PriceType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offer_type: "OfferCustomerType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     quantity_discount_type: "QuantityDiscountType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CompetitivePricingType:
-
     """
     Competitive pricing information for the item.
     """
@@ -222,30 +186,18 @@ class CompetitivePricingType:
     competitive_prices: "CompetitivePriceList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     number_of_offer_listings: "NumberOfOfferListingsList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     trade_in_value: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ConditionType:
-
     """
     Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.
     """
@@ -255,7 +207,6 @@ class ConditionType:
 
 @attrs.define
 class DetailedShippingTimeType:
-
     """
     The time range in which an item will likely be shipped once an order has been placed.
     """
@@ -294,12 +245,9 @@ class DetailedShippingTimeType:
     {'schema_format': 'int64'}
     """
 
-    pass
-
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -325,12 +273,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -340,7 +285,6 @@ class ErrorList:
 
 @attrs.define
 class FulfillmentChannelType:
-
     """
     Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
     """
@@ -350,7 +294,6 @@ class FulfillmentChannelType:
 
 @attrs.define
 class GetOffersResponse:
-
     """
     The response schema for the getListingOffers and getItemOffers operations.
     """
@@ -358,18 +301,10 @@ class GetOffersResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "GetOffersResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -406,37 +341,22 @@ class GetOffersResult:
     identifier: "ItemIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_condition: "ConditionType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offers: "OfferDetailList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     summary: "Summary" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetPricingResponse:
-
     """
     The response schema for the getPricing and getCompetitivePricing operations.
     """
@@ -444,23 +364,14 @@ class GetPricingResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "PriceList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class IdentifierType:
-
     """
     Specifies the identifiers used to uniquely identify an item.
     """
@@ -468,23 +379,14 @@ class IdentifierType:
     marketplace_asin: "ASINIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     skuidentifier: "SellerSKUIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemIdentifier:
-
     """
     Information that identifies an item.
     """
@@ -513,11 +415,6 @@ class ItemIdentifier:
     item_condition: "ConditionType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -550,46 +447,26 @@ class LowestPriceType:
     landed_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     listing_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     points: "Points" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offer_type: "OfferCustomerType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     quantity_discount_type: "QuantityDiscountType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -615,12 +492,9 @@ class MoneyType:
     The currency code in ISO 4217 format.
     """
 
-    pass
-
 
 @attrs.define
 class NumberOfOfferListingsList:
-
     """
     The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
     """
@@ -636,7 +510,6 @@ class NumberOfOffers:
 
 @attrs.define
 class OfferCountType:
-
     """
     The total number of offers for the specified condition and fulfillment channel.
     """
@@ -661,11 +534,6 @@ class OfferCountType:
     fulfillment_channel: "FulfillmentChannelType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -729,67 +597,38 @@ class OfferDetail:
     quantity_discount_prices: List["QuantityDiscountPriceType"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     listing_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     points: "Points" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     prime_information: "PrimeInformationType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller_feedback_rating: "SellerFeedbackType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping_time: "DetailedShippingTimeType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ships_from: "ShipsFromType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offer_type: "OfferCustomerType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -800,7 +639,6 @@ class OfferDetailList:
 
 @attrs.define
 class OfferListingCountType:
-
     """
     The number of offer listings with the specified condition.
     """
@@ -821,8 +659,6 @@ class OfferListingCountType:
     """
     The condition of the item.
     """
-
-    pass
 
 
 @attrs.define
@@ -861,44 +697,26 @@ class OfferType:
     quantity_discount_prices: List["QuantityDiscountPriceType"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     buying_price: "PriceType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     regular_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     business_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offer_type: "OfferCustomerType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class OffersList:
-
     """
     A list of offers.
     """
@@ -922,11 +740,6 @@ class Points:
     points_monetary_value: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -956,11 +769,6 @@ class Price:
     product: "Product" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -975,37 +783,22 @@ class PriceType:
     landed_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     listing_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     points: "Points" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipping: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PrimeInformationType:
-
     """
     Amazon Prime information.
     """
@@ -1024,12 +817,9 @@ class PrimeInformationType:
     Indicates whether the offer is an Amazon Prime offer.
     """
 
-    pass
-
 
 @attrs.define
 class Product:
-
     """
     An item.
     """
@@ -1037,51 +827,30 @@ class Product:
     attribute_sets: "AttributeSetList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     competitive_pricing: "CompetitivePricingType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     identifiers: "IdentifierType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offers: "OffersList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     relationships: "RelationshipList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     sales_rankings: "SalesRankList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class QuantityDiscountPriceType:
-
     """
     Contains pricing information that includes special pricing when buying in bulk.
     """
@@ -1099,18 +868,10 @@ class QuantityDiscountPriceType:
     listing_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     quantity_discount_type: "QuantityDiscountType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1121,7 +882,6 @@ class QuantityDiscountType:
 
 @attrs.define
 class RelationshipList:
-
     """
     A list that contains product variation information, if applicable.
     """
@@ -1131,7 +891,6 @@ class RelationshipList:
 
 @attrs.define
 class SalesRankList:
-
     """
     A list of sales rank information for the item, by category.
     """
@@ -1159,12 +918,9 @@ class SalesRankType:
     {'schema_format': 'int32'}
     """
 
-    pass
-
 
 @attrs.define
 class SellerFeedbackType:
-
     """
     Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
     """
@@ -1188,8 +944,6 @@ class SellerFeedbackType:
     Extra fields:
     {'schema_format': 'double'}
     """
-
-    pass
 
 
 @attrs.define
@@ -1216,12 +970,9 @@ class SellerSKUIdentifier:
     The seller stock keeping unit (SKU) of the item.
     """
 
-    pass
-
 
 @attrs.define
 class ShipsFromType:
-
     """
     The state and country from where the item is shipped.
     """
@@ -1240,12 +991,9 @@ class ShipsFromType:
     The state from where the item is shipped.
     """
 
-    pass
-
 
 @attrs.define
 class Summary:
-
     """
     Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
     """
@@ -1273,60 +1021,34 @@ class Summary:
     buy_box_eligible_offers: "BuyBoxEligibleOffers" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     buy_box_prices: "BuyBoxPrices" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     competitive_price_threshold: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     list_price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     lowest_prices: "LowestPrices" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     number_of_offers: "NumberOfOffers" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     sales_rankings: "SalesRankList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     suggested_lower_price_plus_shipping: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class ProductPricingV0Client(BaseClient):

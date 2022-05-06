@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -41,12 +40,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -54,16 +50,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Transaction:
-
     """
     The transaction status details.
     """
@@ -85,16 +75,10 @@ class Transaction:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TransactionStatus:
-
     """
     The payload for the getTransactionStatus operation.
     """
@@ -102,11 +86,6 @@ class TransactionStatus:
     transaction_status: "Transaction" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class VendorDirectFulfillmentTransactions20211228Client(BaseClient):

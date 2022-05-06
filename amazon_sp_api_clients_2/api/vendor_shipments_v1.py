@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Address:
-
     """
     Address of the party.
     """
@@ -97,12 +96,9 @@ class Address:
     The state or region where person, business or institution is located.
     """
 
-    pass
-
 
 @attrs.define
 class Carton:
-
     """
     Details of the carton/package being shipped.
     """
@@ -138,18 +134,10 @@ class Carton:
     dimensions: "Dimensions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -168,8 +156,6 @@ class CartonReferenceDetails:
     """
     Array of reference numbers for the carton that are part of this pallet/shipment. Please provide the cartonSequenceNumber from the 'cartons' segment to refer to that carton's details here.
     """
-
-    pass
 
 
 @attrs.define
@@ -191,12 +177,9 @@ class ContainerIdentification:
     The container identification type.
     """
 
-    pass
-
 
 @attrs.define
 class ContainerItem:
-
     """
     Carton/Pallet level details for the item.
     """
@@ -211,23 +194,14 @@ class ContainerItem:
     item_details: "ItemDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipped_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Decimal:
-
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
     """
@@ -237,7 +211,6 @@ class Decimal:
 
 @attrs.define
 class Dimensions:
-
     """
     Physical dimensional measurements of a container.
     """
@@ -252,25 +225,14 @@ class Dimensions:
     height: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     length: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     width: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -290,12 +252,9 @@ class Duration:
     Value for the duration in terms of the durationUnit.
     """
 
-    pass
-
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -321,12 +280,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -360,11 +316,6 @@ class Expiry:
     expiry_after_duration: "Duration" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -414,23 +365,14 @@ class ImportDetails:
     billable_weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     route: "Route" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Item:
-
     """
     Details of the item being shipped.
     """
@@ -459,23 +401,14 @@ class Item:
     item_details: "ItemDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipped_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemDetails:
-
     """
     Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
     """
@@ -506,23 +439,14 @@ class ItemDetails:
     expiry: "Expiry" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     maximum_retail_price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemQuantity:
-
     """
     Details of item quantity.
     """
@@ -548,12 +472,9 @@ class ItemQuantity:
     The case size, in the event that we ordered using cases. Otherwise, 1.
     """
 
-    pass
-
 
 @attrs.define
 class Location:
-
     """
     Location identifier.
     """
@@ -579,12 +500,9 @@ class Location:
     Type of location identification.
     """
 
-    pass
-
 
 @attrs.define
 class Money:
-
     """
     An amount of money, including units in the form of currency.
     """
@@ -599,16 +517,10 @@ class Money:
     amount: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Pallet:
-
     """
     Details of the Pallet/Tare being shipped.
     """
@@ -644,25 +556,14 @@ class Pallet:
     carton_reference_details: "CartonReferenceDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     dimensions: "Dimensions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -685,16 +586,10 @@ class PartyIdentification:
     address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Route:
-
     """
     This is used only for direct import shipment confirmations.
     """
@@ -702,11 +597,6 @@ class Route:
     stops: List["Stop"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -809,51 +699,30 @@ class ShipmentConfirmation:
     import_details: "ImportDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_to_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_measurements: "ShipmentMeasurements" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     transportation_details: "TransportationDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentMeasurements:
-
     """
     Shipment measurement details.
     """
@@ -875,23 +744,14 @@ class ShipmentMeasurements:
     gross_shipment_weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_volume: "Volume" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Stop:
-
     """
     Contractual or operational port or point relevant to the movement of the cargo.
     """
@@ -928,16 +788,10 @@ class Stop:
     location_identification: "Location" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitShipmentConfirmationsRequest:
-
     """
     The request schema for the SubmitShipmentConfirmations operation.
     """
@@ -945,16 +799,10 @@ class SubmitShipmentConfirmationsRequest:
     shipment_confirmations: List["ShipmentConfirmation"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitShipmentConfirmationsResponse:
-
     """
     The response schema for the SubmitShipmentConfirmations operation.
     """
@@ -962,23 +810,14 @@ class SubmitShipmentConfirmationsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "TransactionReference" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
-
     """
     Tax registration details of the entity.
     """
@@ -997,8 +836,6 @@ class TaxRegistrationDetails:
     Tax registration type for the entity.
     """
 
-    pass
-
 
 @attrs.define
 class TransactionReference:
@@ -1009,8 +846,6 @@ class TransactionReference:
     """
     GUID assigned by Amazon to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
-
-    pass
 
 
 @attrs.define
@@ -1044,12 +879,9 @@ class TransportationDetails:
     The mode of transportation for this shipment.
     """
 
-    pass
-
 
 @attrs.define
 class Volume:
-
     """
     The volume of the container.
     """
@@ -1064,16 +896,10 @@ class Volume:
     value: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Weight:
-
     """
     The weight.
     """
@@ -1088,11 +914,6 @@ class Weight:
     value: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class VendorShipmentsV1Client(BaseClient):

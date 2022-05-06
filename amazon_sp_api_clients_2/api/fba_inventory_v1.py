@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     An error response returned when the request is unsuccessful.
     """
@@ -41,12 +40,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -56,7 +52,6 @@ class ErrorList:
 
 @attrs.define
 class GetInventorySummariesResponse:
-
     """
     The Response schema.
     """
@@ -64,30 +59,18 @@ class GetInventorySummariesResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     pagination: "Pagination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "GetInventorySummariesResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetInventorySummariesResult:
-
     """
     The payload schema for the getInventorySummaries operation.
     """
@@ -95,23 +78,14 @@ class GetInventorySummariesResult:
     granularity: "Granularity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     inventory_summaries: "InventorySummaries" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Granularity:
-
     """
     Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
     """
@@ -130,12 +104,9 @@ class Granularity:
     The granularity type for the inventory aggregation level.
     """
 
-    pass
-
 
 @attrs.define
 class InventoryDetails:
-
     """
     Summarized inventory details. This object will not appear if the details parameter in the request is false.
     """
@@ -171,30 +142,18 @@ class InventoryDetails:
     researching_quantity: "ResearchingQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     reserved_quantity: "ReservedQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     unfulfillable_quantity: "UnfulfillableQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class InventorySummaries:
-
     """
     A list of inventory summaries.
     """
@@ -204,7 +163,6 @@ class InventorySummaries:
 
 @attrs.define
 class InventorySummary:
-
     """
     Inventory summary for a specific item.
     """
@@ -264,16 +222,10 @@ class InventorySummary:
     inventory_details: "InventoryDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Pagination:
-
     """
     The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
     """
@@ -285,12 +237,9 @@ class Pagination:
     A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
     """
 
-    pass
-
 
 @attrs.define
 class ResearchingQuantity:
-
     """
     The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
     """
@@ -309,12 +258,9 @@ class ResearchingQuantity:
     The total number of units currently being researched in Amazon's fulfillment network.
     """
 
-    pass
-
 
 @attrs.define
 class ResearchingQuantityEntry:
-
     """
     The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
     """
@@ -337,12 +283,9 @@ class ResearchingQuantityEntry:
     The number of units.
     """
 
-    pass
-
 
 @attrs.define
 class ReservedQuantity:
-
     """
     The quantity of reserved inventory.
     """
@@ -375,12 +318,9 @@ class ReservedQuantity:
     The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
     """
 
-    pass
-
 
 @attrs.define
 class UnfulfillableQuantity:
-
     """
     The quantity of unfulfillable inventory.
     """
@@ -433,8 +373,6 @@ class UnfulfillableQuantity:
     """
     The number of units in warehouse damaged disposition.
     """
-
-    pass
 
 
 class FbaInventoryV1Client(BaseClient):

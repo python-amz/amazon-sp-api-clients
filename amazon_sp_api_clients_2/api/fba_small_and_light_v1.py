@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -41,12 +40,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -54,16 +50,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeeLineItem:
-
     """
     Fee details for a specific fee.
     """
@@ -83,16 +73,10 @@ class FeeLineItem:
     fee_charge: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeePreview:
-
     """
     The fee estimate for a specific item.
     """
@@ -121,23 +105,14 @@ class FeePreview:
     price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_fees: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Item:
-
     """
     An item to be sold.
     """
@@ -152,16 +127,10 @@ class Item:
     price: "MoneyType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class MarketplaceId:
-
     """
     A marketplace identifier.
     """
@@ -186,12 +155,9 @@ class MoneyType:
     The currency code in ISO 4217 format.
     """
 
-    pass
-
 
 @attrs.define
 class SellerSKU:
-
     """
     Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     """
@@ -201,7 +167,6 @@ class SellerSKU:
 
 @attrs.define
 class SmallAndLightEligibility:
-
     """
     The Small and Light eligibility status of the item indicated by the specified seller SKU.
     """
@@ -209,30 +174,18 @@ class SmallAndLightEligibility:
     marketplace_id: "MarketplaceId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller_sku: "SellerSKU" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     status: "SmallAndLightEligibilityStatus" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SmallAndLightEligibilityStatus:
-
     """
     The Small and Light eligibility status of the item.
     """
@@ -242,7 +195,6 @@ class SmallAndLightEligibilityStatus:
 
 @attrs.define
 class SmallAndLightEnrollment:
-
     """
     The Small and Light enrollment status of the item indicated by the specified seller SKU.
     """
@@ -250,30 +202,18 @@ class SmallAndLightEnrollment:
     marketplace_id: "MarketplaceId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller_sku: "SellerSKU" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     status: "SmallAndLightEnrollmentStatus" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SmallAndLightEnrollmentStatus:
-
     """
     The Small and Light enrollment status of the item.
     """
@@ -283,7 +223,6 @@ class SmallAndLightEnrollmentStatus:
 
 @attrs.define
 class SmallAndLightFeePreviewRequest:
-
     """
     Request schema for submitting items for which to retrieve fee estimates.
     """
@@ -301,11 +240,6 @@ class SmallAndLightFeePreviewRequest:
     marketplace_id: "MarketplaceId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -317,8 +251,6 @@ class SmallAndLightFeePreviews:
     """
     A list of fee estimates for the requested items. The order of the fee estimates will follow the same order as the items in the request, with duplicates removed.
     """
-
-    pass
 
 
 class FbaSmallAndLightV1Client(BaseClient):

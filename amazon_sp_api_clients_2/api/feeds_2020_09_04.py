@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CancelFeedResponse:
-
     """
     Response schema.
     """
@@ -23,16 +22,10 @@ class CancelFeedResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateFeedDocumentResponse:
-
     """
     The response for the createFeedDocument operation.
     """
@@ -40,23 +33,14 @@ class CreateFeedDocumentResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "CreateFeedDocumentResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateFeedDocumentResult:
-
     """
     Information required to encrypt and upload a feed document's contents.
     """
@@ -78,11 +62,6 @@ class CreateFeedDocumentResult:
     encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -95,12 +74,9 @@ class CreateFeedDocumentSpecification:
     The content type of the feed.
     """
 
-    pass
-
 
 @attrs.define
 class CreateFeedResponse:
-
     """
     Response schema.
     """
@@ -108,18 +84,10 @@ class CreateFeedResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "CreateFeedResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -131,8 +99,6 @@ class CreateFeedResult:
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
-
-    pass
 
 
 @attrs.define
@@ -165,16 +131,10 @@ class CreateFeedSpecification:
     feed_options: "FeedOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     An error response returned when the request is unsuccessful.
     """
@@ -200,12 +160,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -283,8 +240,6 @@ class Feed:
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
 
-    pass
-
 
 @attrs.define
 class FeedDocument:
@@ -313,16 +268,10 @@ class FeedDocument:
     encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FeedDocumentEncryptionDetails:
-
     """
     Encryption details for required client-side encryption and decryption of document contents.
     """
@@ -348,8 +297,6 @@ class FeedDocumentEncryptionDetails:
     The encryption standard required to encrypt or decrypt the document contents.
     """
 
-    pass
-
 
 @attrs.define
 class FeedList:
@@ -359,7 +306,6 @@ class FeedList:
 
 @attrs.define
 class FeedOptions:
-
     """
     Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
     """
@@ -369,7 +315,6 @@ class FeedOptions:
 
 @attrs.define
 class GetFeedDocumentResponse:
-
     """
     Response schema.
     """
@@ -377,23 +322,14 @@ class GetFeedDocumentResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "FeedDocument" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetFeedResponse:
-
     """
     Response schema.
     """
@@ -401,23 +337,14 @@ class GetFeedResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Feed" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetFeedsResponse:
-
     """
     Response schema.
     """
@@ -432,18 +359,10 @@ class GetFeedsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "FeedList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class Feeds20200904Client(BaseClient):

@@ -17,7 +17,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CreateRestrictedDataTokenRequest:
-
     """
     The request schema for the createRestrictedDataToken operation.
     """
@@ -37,12 +36,9 @@ class CreateRestrictedDataTokenRequest:
     The application ID for the target application to which access is being delegated.
     """
 
-    pass
-
 
 @attrs.define
 class CreateRestrictedDataTokenResponse:
-
     """
     The response schema for the createRestrictedDataToken operation.
     """
@@ -61,12 +57,9 @@ class CreateRestrictedDataTokenResponse:
     A Restricted Data Token (RDT). This is a short-lived access token that authorizes calls to restricted operations. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources.
     """
 
-    pass
-
 
 @attrs.define
 class Error:
-
     """
     An error response returned when the request is unsuccessful.
     """
@@ -92,12 +85,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -105,16 +95,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RestrictedResource:
-
     """
     Model of a restricted resource.
     """
@@ -147,8 +131,6 @@ class RestrictedResource:
         - ```/mfn/v0/shipments/FBA1234ABC5D```. For getting an RDT for the getShipment operation of the Shipping API. For a specific shipment.
         - ```/mfn/v0/shipments/{shipmentId}```. For getting an RDT for the getShipment operation of the Shipping API. For any of a selling partner's shipments that you specify when you call the getShipment operation.
     """
-
-    pass
 
 
 class Tokens20210301Client(BaseClient):

@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class AdditionalDetails:
-
     """
     A field where selling party can provide additional information for tax related or any other purposes.
     """
@@ -41,12 +40,9 @@ class AdditionalDetails:
     The type of the additional information provided by the selling party.
     """
 
-    pass
-
 
 @attrs.define
 class Address:
-
     """
     Address of the party.
     """
@@ -128,12 +124,9 @@ class Address:
     The state or region where person, business or institution is located.
     """
 
-    pass
-
 
 @attrs.define
 class ChargeDetails:
-
     """
     Monetary and tax details of the charge.
     """
@@ -163,16 +156,10 @@ class ChargeDetails:
     charge_amount: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Decimal:
-
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
     """
@@ -182,7 +169,6 @@ class Decimal:
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -208,12 +194,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -293,32 +276,18 @@ class InvoiceDetail:
     bill_to_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     invoice_total: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     remit_to_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -383,23 +352,14 @@ class InvoiceItem:
     invoiced_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     net_cost: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemQuantity:
-
     """
     Details of item quantity.
     """
@@ -418,12 +378,9 @@ class ItemQuantity:
     Unit of measure for the available quantity.
     """
 
-    pass
-
 
 @attrs.define
 class Money:
-
     """
     An amount of money, including units in the form of currency.
     """
@@ -438,11 +395,6 @@ class Money:
     amount: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -465,16 +417,10 @@ class PartyIdentification:
     address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitInvoiceRequest:
-
     """
     The request schema for the submitInvoice operation.
     """
@@ -482,16 +428,10 @@ class SubmitInvoiceRequest:
     invoices: List["InvoiceDetail"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitInvoiceResponse:
-
     """
     The response schema for the submitInvoice operation.
     """
@@ -499,23 +439,14 @@ class SubmitInvoiceResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "TransactionReference" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxDetail:
-
     """
     Details of tax amount applied.
     """
@@ -545,30 +476,18 @@ class TaxDetail:
     tax_amount: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     tax_rate: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     taxable_amount: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxRegistrationDetail:
-
     """
     Tax registration details of the entity.
     """
@@ -597,11 +516,6 @@ class TaxRegistrationDetail:
     tax_registration_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -613,8 +527,6 @@ class TransactionReference:
     """
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
-
-    pass
 
 
 class VendorDirectFulfillmentPaymentsV1Client(BaseClient):

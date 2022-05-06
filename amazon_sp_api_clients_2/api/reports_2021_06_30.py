@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CreateReportResponse:
-
     """
     Response schema.
     """
@@ -27,12 +26,9 @@ class CreateReportResponse:
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
 
-    pass
-
 
 @attrs.define
 class CreateReportScheduleResponse:
-
     """
     Response schema.
     """
@@ -43,8 +39,6 @@ class CreateReportScheduleResponse:
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
-
-    pass
 
 
 @attrs.define
@@ -106,16 +100,10 @@ class CreateReportScheduleSpecification:
     report_options: "ReportOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateReportSpecification:
-
     """
     Information required to create the report.
     """
@@ -160,16 +148,10 @@ class CreateReportSpecification:
     report_options: "ReportOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -195,12 +177,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -208,16 +187,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetReportsResponse:
-
     """
     The response for the getReports operation.
     """
@@ -232,16 +205,10 @@ class GetReportsResponse:
     reports: "ReportList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Report:
-
     """
     Detailed information about the report.
     """
@@ -340,12 +307,9 @@ class Report:
     The report type.
     """
 
-    pass
-
 
 @attrs.define
 class ReportDocument:
-
     """
     Information required for the report document.
     """
@@ -371,12 +335,9 @@ class ReportDocument:
     A presigned URL for the report document. This URL expires after 5 minutes.
     """
 
-    pass
-
 
 @attrs.define
 class ReportList:
-
     """
     A list of reports.
     """
@@ -386,7 +347,6 @@ class ReportList:
 
 @attrs.define
 class ReportOptions:
-
     """
     Additional information passed to reports. This varies by report type.
     """
@@ -396,7 +356,6 @@ class ReportOptions:
 
 @attrs.define
 class ReportSchedule:
-
     """
     Detailed information about a report schedule.
     """
@@ -442,16 +401,10 @@ class ReportSchedule:
     report_options: "ReportOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ReportScheduleList:
-
     """
     A list of report schedules.
     """
@@ -459,11 +412,6 @@ class ReportScheduleList:
     report_schedules: List["ReportSchedule"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class Reports20210630Client(BaseClient):

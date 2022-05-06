@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -41,12 +40,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -56,7 +52,6 @@ class ErrorList:
 
 @attrs.define
 class GetItemEligibilityPreviewResponse:
-
     """
     The response schema for the getItemEligibilityPreview operation.
     """
@@ -64,23 +59,14 @@ class GetItemEligibilityPreviewResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ItemEligibilityPreview" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemEligibilityPreview:
-
     """
     The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
     """
@@ -161,8 +147,6 @@ class ItemEligibilityPreview:
     """
     The program for which eligibility was determined.
     """
-
-    pass
 
 
 class FbaInboundEligibilityV1Client(BaseClient):

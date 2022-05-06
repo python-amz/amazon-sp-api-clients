@@ -30,12 +30,9 @@ class ASINIdentifier:
     A marketplace identifier.
     """
 
-    pass
-
 
 @attrs.define
 class AttributeSetList:
-
     """
     A list of attributes for the item.
     """
@@ -45,7 +42,6 @@ class AttributeSetList:
 
 @attrs.define
 class AttributeSetListType:
-
     """
     The attributes of the item.
     """
@@ -599,130 +595,74 @@ class AttributeSetListType:
     cpu_speed: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     display_size: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     golf_club_loft: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     hard_disk_size: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_dimensions: "DimensionType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     list_price: "Price" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     manufacturer_maximum_age: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     manufacturer_minimum_age: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     maximum_resolution: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     optical_zoom: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     package_dimensions: "DimensionType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     running_time: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     small_image: "Image" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     subscription_length: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     system_memory_size: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_diamond_weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_gem_weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     weee_tax_value: "Price" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -752,12 +692,9 @@ class Categories:
     {'properties': {}}
     """
 
-    pass
-
 
 @attrs.define
 class CreatorType:
-
     """
     The creator type attribute of an item.
     """
@@ -776,12 +713,9 @@ class CreatorType:
     The value of the attribute.
     """
 
-    pass
-
 
 @attrs.define
 class DecimalWithUnits:
-
     """
     The decimal value and unit.
     """
@@ -800,12 +734,9 @@ class DecimalWithUnits:
     The decimal value.
     """
 
-    pass
-
 
 @attrs.define
 class DimensionType:
-
     """
     The dimension type attribute of an item.
     """
@@ -813,37 +744,22 @@ class DimensionType:
     height: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     length: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     width: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -869,12 +785,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -888,18 +801,10 @@ class GetCatalogItemResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Item" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -908,23 +813,14 @@ class IdentifierType:
     marketplace_asin: "ASINIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     skuidentifier: "SellerSKUIdentifier" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Image:
-
     """
     The image attribute of the item.
     """
@@ -939,23 +835,14 @@ class Image:
     height: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     width: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Item:
-
     """
     An item in the Amazon catalog.
     """
@@ -963,37 +850,22 @@ class Item:
     attribute_sets: "AttributeSetList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     identifiers: "IdentifierType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     relationships: "RelationshipList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     sales_rankings: "SalesRankList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemList:
-
     """
     A list of items.
     """
@@ -1003,7 +875,6 @@ class ItemList:
 
 @attrs.define
 class LanguageType:
-
     """
     The language type attribute of an item.
     """
@@ -1029,8 +900,6 @@ class LanguageType:
     The type attribute of the item.
     """
 
-    pass
-
 
 @attrs.define
 class ListCatalogCategoriesResponse:
@@ -1038,18 +907,10 @@ class ListCatalogCategoriesResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ListOfCategories" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1058,18 +919,10 @@ class ListCatalogItemsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ListMatchingItemsResponse" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1078,11 +931,6 @@ class ListMatchingItemsResponse:
     items: "ItemList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1093,7 +941,6 @@ class ListOfCategories:
 
 @attrs.define
 class Price:
-
     """
     The price attribute of the item.
     """
@@ -1112,12 +959,9 @@ class Price:
     The currency code of the amount.
     """
 
-    pass
-
 
 @attrs.define
 class RelationshipList:
-
     """
     A list of variation relationship information, if applicable for the item.
     """
@@ -1127,7 +971,6 @@ class RelationshipList:
 
 @attrs.define
 class RelationshipType:
-
     """
     Specific variations of the item.
     """
@@ -1261,44 +1104,26 @@ class RelationshipType:
     golf_club_loft: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     identifiers: "IdentifierType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     item_dimensions: "DimensionType" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_diamond_weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     total_gem_weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SalesRankList:
-
     """
     A list of sales rank information for the item by category.
     """
@@ -1326,8 +1151,6 @@ class SalesRankType:
     {'schema_format': 'int32'}
     """
 
-    pass
-
 
 @attrs.define
 class SellerSKUIdentifier:
@@ -1352,8 +1175,6 @@ class SellerSKUIdentifier:
     """
     The seller stock keeping unit (SKU) of the item.
     """
-
-    pass
 
 
 class CatalogItemsV0Client(BaseClient):

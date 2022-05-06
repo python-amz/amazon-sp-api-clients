@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class AddAppointmentRequest:
-
     """
     Input for add appointment operation.
     """
@@ -23,16 +22,10 @@ class AddAppointmentRequest:
     appointment_time: "AppointmentTimeInput" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Address:
-
     """
     The shipping address for the service job.
     """
@@ -114,12 +107,9 @@ class Address:
     The state or region.
     """
 
-    pass
-
 
 @attrs.define
 class Appointment:
-
     """
     The details of an appointment.
     """
@@ -144,37 +134,22 @@ class Appointment:
     appointment_id: "AppointmentId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     appointment_time: "AppointmentTime" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     poa: "Poa" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     rescheduled_appointment_id: "AppointmentId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class AppointmentId:
-
     """
     The appointment identifier.
     """
@@ -184,7 +159,6 @@ class AppointmentId:
 
 @attrs.define
 class AppointmentTime:
-
     """
     The time of the appointment window.
     """
@@ -209,12 +183,9 @@ class AppointmentTime:
     {'schema_format': 'date-time'}
     """
 
-    pass
-
 
 @attrs.define
 class AppointmentTimeInput:
-
     """
     The input appointment time details.
     """
@@ -236,12 +207,9 @@ class AppointmentTimeInput:
     {'schema_format': 'date-time'}
     """
 
-    pass
-
 
 @attrs.define
 class AssociatedItem:
-
     """
     Information about an item associated with the service job.
     """
@@ -284,23 +252,14 @@ class AssociatedItem:
     item_delivery: "ItemDelivery" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     order_id: "OrderId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Buyer:
-
     """
     Information about the buyer.
     """
@@ -336,12 +295,9 @@ class Buyer:
     The phone number of the buyer.
     """
 
-    pass
-
 
 @attrs.define
 class CancelServiceJobByServiceJobIdResponse:
-
     """
     Response schema for CancelServiceJobByServiceJobId operation.
     """
@@ -349,16 +305,10 @@ class CancelServiceJobByServiceJobIdResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CompleteServiceJobByServiceJobIdResponse:
-
     """
     Response schema for CompleteServiceJobByServiceJobId operation.
     """
@@ -366,16 +316,10 @@ class CompleteServiceJobByServiceJobIdResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -408,12 +352,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -423,7 +364,6 @@ class ErrorList:
 
 @attrs.define
 class GetServiceJobByServiceJobIdResponse:
-
     """
     The response schema for the GetServiceJobByServiceJobId operation.
     """
@@ -431,23 +371,14 @@ class GetServiceJobByServiceJobIdResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ServiceJob" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetServiceJobsResponse:
-
     """
     Response schema for GetJobs operation.
     """
@@ -455,23 +386,14 @@ class GetServiceJobsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "JobListing" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemDelivery:
-
     """
     Delivery information for the item.
     """
@@ -489,16 +411,10 @@ class ItemDelivery:
     item_delivery_promise: "ItemDeliveryPromise" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemDeliveryPromise:
-
     """
     Promised delivery information for the item.
     """
@@ -523,12 +439,9 @@ class ItemDeliveryPromise:
     {'schema_format': 'date-time'}
     """
 
-    pass
-
 
 @attrs.define
 class JobListing:
-
     """
     The payload for the GetJobs operation.
     """
@@ -561,12 +474,9 @@ class JobListing:
     Total result size of the query result.
     """
 
-    pass
-
 
 @attrs.define
 class OrderId:
-
     """
     The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
     """
@@ -576,7 +486,6 @@ class OrderId:
 
 @attrs.define
 class Poa:
-
     """
     Proof of Appointment (POA) details.
     """
@@ -626,16 +535,10 @@ class Poa:
     appointment_time: "AppointmentTime" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RescheduleAppointmentRequest:
-
     """
     Input for rescheduled appointment operation.
     """
@@ -643,23 +546,14 @@ class RescheduleAppointmentRequest:
     appointment_time: "AppointmentTimeInput" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     reschedule_reason_code: "RescheduleReasonCode" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class RescheduleReasonCode:
-
     """
     Appointment reschedule reason code.
     """
@@ -669,7 +563,6 @@ class RescheduleReasonCode:
 
 @attrs.define
 class ScopeOfWork:
-
     """
     The scope of work for the order.
     """
@@ -702,12 +595,9 @@ class ScopeOfWork:
     The title of the service job.
     """
 
-    pass
-
 
 @attrs.define
 class Seller:
-
     """
     Information about the seller of the service job.
     """
@@ -722,12 +612,9 @@ class Seller:
     {'pattern': '^[A-Z0-9]*$'}
     """
 
-    pass
-
 
 @attrs.define
 class ServiceJob:
-
     """
     The job details of a service.
     """
@@ -791,58 +678,34 @@ class ServiceJob:
     buyer: "Buyer" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     scope_of_work: "ScopeOfWork" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     seller: "Seller" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     service_job_id: "ServiceJobId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     service_job_provider: "ServiceJobProvider" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     service_location: "ServiceLocation" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     service_order_id: "OrderId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ServiceJobId:
-
     """
     Amazon identifier for the service job.
     """
@@ -852,7 +715,6 @@ class ServiceJobId:
 
 @attrs.define
 class ServiceJobProvider:
-
     """
     Information about the service job provider.
     """
@@ -867,12 +729,9 @@ class ServiceJobProvider:
     {'pattern': '^[A-Z0-9]*$'}
     """
 
-    pass
-
 
 @attrs.define
 class ServiceLocation:
-
     """
     Information about the location of the service job.
     """
@@ -887,16 +746,10 @@ class ServiceLocation:
     address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SetAppointmentResponse:
-
     """
     Response schema for add or reschedule appointment operation.
     """
@@ -904,30 +757,18 @@ class SetAppointmentResponse:
     appointment_id: "AppointmentId" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     warnings: "WarningList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Technician:
-
     """
     A technician who is assigned to perform the service job in part or in full.
     """
@@ -949,12 +790,9 @@ class Technician:
     {'maxLength': 50, 'minLength': 1}
     """
 
-    pass
-
 
 @attrs.define
 class Warning:
-
     """
     Warning returned when the request is successful but execution have some important callouts on basis of which API clients should take defined actions.
     """
@@ -980,12 +818,9 @@ class Warning:
     A message that describes the warning condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class WarningList:
-
     """
     A list of warnings returned in the sucessful execution response of an API request.
     """

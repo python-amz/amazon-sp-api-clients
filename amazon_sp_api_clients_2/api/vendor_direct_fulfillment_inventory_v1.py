@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -41,12 +40,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -74,16 +70,10 @@ class InventoryUpdate:
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemDetails:
-
     """
     Updated inventory details for an item.
     """
@@ -112,16 +102,10 @@ class ItemDetails:
     available_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemQuantity:
-
     """
     Details of item quantity.
     """
@@ -140,8 +124,6 @@ class ItemQuantity:
     Unit of measure for the available quantity.
     """
 
-    pass
-
 
 @attrs.define
 class PartyIdentification:
@@ -153,12 +135,9 @@ class PartyIdentification:
     Assigned identification for the party.
     """
 
-    pass
-
 
 @attrs.define
 class SubmitInventoryUpdateRequest:
-
     """
     The request body for the submitInventoryUpdate operation.
     """
@@ -166,16 +145,10 @@ class SubmitInventoryUpdateRequest:
     inventory: "InventoryUpdate" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitInventoryUpdateResponse:
-
     """
     The response schema for the submitInventoryUpdate operation.
     """
@@ -183,18 +156,10 @@ class SubmitInventoryUpdateResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "TransactionReference" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -206,8 +171,6 @@ class TransactionReference:
     """
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
-
-    pass
 
 
 class VendorDirectFulfillmentInventoryV1Client(BaseClient):

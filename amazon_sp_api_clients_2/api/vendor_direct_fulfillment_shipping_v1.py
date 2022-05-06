@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Address:
-
     """
     Address of the party.
     """
@@ -97,8 +96,6 @@ class Address:
     The state or region where person, business or institution is located.
     """
 
-    pass
-
 
 @attrs.define
 class Container:
@@ -176,18 +173,10 @@ class Container:
     dimensions: "Dimensions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     weight: "Weight" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -210,8 +199,6 @@ class CustomerInvoice:
     {'pattern': '^[a-zA-Z0-9]+$'}
     """
 
-    pass
-
 
 @attrs.define
 class CustomerInvoiceList:
@@ -219,23 +206,14 @@ class CustomerInvoiceList:
     customer_invoices: List["CustomerInvoice"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     pagination: "Pagination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Decimal:
-
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
     """
@@ -245,7 +223,6 @@ class Decimal:
 
 @attrs.define
 class Dimensions:
-
     """
     Physical dimensional measurements of a container.
     """
@@ -260,30 +237,18 @@ class Dimensions:
     height: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     length: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     width: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -309,12 +274,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -324,7 +286,6 @@ class ErrorList:
 
 @attrs.define
 class GetCustomerInvoiceResponse:
-
     """
     The response schema for the getCustomerInvoice operation.
     """
@@ -332,23 +293,14 @@ class GetCustomerInvoiceResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "CustomerInvoice" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetCustomerInvoicesResponse:
-
     """
     The response schema for the getCustomerInvoices operation.
     """
@@ -356,18 +308,10 @@ class GetCustomerInvoicesResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "CustomerInvoiceList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -376,18 +320,10 @@ class GetPackingSlipListResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "PackingSlipList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -396,23 +332,14 @@ class GetPackingSlipResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "PackingSlip" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetShippingLabelListResponse:
-
     """
     The response schema for the getShippingLabels operation.
     """
@@ -420,23 +347,14 @@ class GetShippingLabelListResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ShippingLabelList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetShippingLabelResponse:
-
     """
     The response schema for the getShippingLabel operation.
     """
@@ -444,23 +362,14 @@ class GetShippingLabelResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ShippingLabel" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Item:
-
     """
     Details of the item being shipped.
     """
@@ -489,16 +398,10 @@ class Item:
     shipped_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemQuantity:
-
     """
     Details of item quantity.
     """
@@ -517,12 +420,9 @@ class ItemQuantity:
     Unit of measure for the shipped quantity.
     """
 
-    pass
-
 
 @attrs.define
 class LabelData:
-
     """
     Details of the shipment label.
     """
@@ -562,8 +462,6 @@ class LabelData:
     Package tracking identifier from the shipping carrier.
     """
 
-    pass
-
 
 @attrs.define
 class PackedItem:
@@ -592,16 +490,10 @@ class PackedItem:
     packed_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PackingSlip:
-
     """
     Packing slip information.
     """
@@ -630,12 +522,9 @@ class PackingSlip:
     {'pattern': '^[a-zA-Z0-9]+$'}
     """
 
-    pass
-
 
 @attrs.define
 class PackingSlipList:
-
     """
     A list of packing slips.
     """
@@ -643,18 +532,10 @@ class PackingSlipList:
     packing_slips: List["PackingSlip"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     pagination: "Pagination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -666,8 +547,6 @@ class Pagination:
     """
     A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
     """
-
-    pass
 
 
 @attrs.define
@@ -690,11 +569,6 @@ class PartyIdentification:
     address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -727,30 +601,18 @@ class ShipmentConfirmation:
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     shipment_details: "ShipmentDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ShipmentDetails:
-
     """
     Details about a shipment.
     """
@@ -796,8 +658,6 @@ class ShipmentDetails:
     The vendor order number is a unique identifier generated by a vendor for their reference.
     """
 
-    pass
-
 
 @attrs.define
 class ShipmentStatusUpdate:
@@ -815,25 +675,14 @@ class ShipmentStatusUpdate:
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     status_update_details: "StatusUpdateDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -866,18 +715,10 @@ class ShippingLabel:
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -886,18 +727,10 @@ class ShippingLabelList:
     shipping_labels: List["ShippingLabel"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     pagination: "Pagination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -923,23 +756,14 @@ class ShippingLabelRequest:
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class StatusUpdateDetails:
-
     """
     Details for the shipment status update given by the vendor for the specific package.
     """
@@ -955,7 +779,6 @@ class StatusUpdateDetails:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'estimatedDeliveryDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Date on which the shipment is expected to reach the customer delivery location. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowStartDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the start of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'apptWindowEndDateTime': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='This field indicates the date and time at the end of the appointment window scheduled to deliver the shipment. This field is expected to be in ISO-8601 date/time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.', schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
@@ -988,11 +811,6 @@ class StatusUpdateDetails:
     status_location_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1001,16 +819,10 @@ class SubmitShipmentConfirmationsRequest:
     shipment_confirmations: List["ShipmentConfirmation"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitShipmentConfirmationsResponse:
-
     """
     The response schema for the submitShipmentConfirmations operation.
     """
@@ -1018,18 +830,10 @@ class SubmitShipmentConfirmationsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "TransactionReference" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1039,18 +843,14 @@ class SubmitShipmentStatusUpdatesRequest:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'minItems': 1}
     """
 
-    pass
-
 
 @attrs.define
 class SubmitShipmentStatusUpdatesResponse:
-
     """
     The response schema for the submitShipmentStatusUpdates operation.
     """
@@ -1058,18 +858,10 @@ class SubmitShipmentStatusUpdatesResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "TransactionReference" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1078,16 +870,10 @@ class SubmitShippingLabelsRequest:
     shipping_label_requests: List["ShippingLabelRequest"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class SubmitShippingLabelsResponse:
-
     """
     The response schema for the submitShippingLabelRequest operation.
     """
@@ -1095,23 +881,14 @@ class SubmitShippingLabelsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "TransactionReference" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
-
     """
     Tax registration details of the entity.
     """
@@ -1140,11 +917,6 @@ class TaxRegistrationDetails:
     tax_registration_address: "Address" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -1157,12 +929,9 @@ class TransactionReference:
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
 
-    pass
-
 
 @attrs.define
 class Weight:
-
     """
     The weight.
     """
@@ -1177,11 +946,6 @@ class Weight:
     value: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class VendorDirectFulfillmentShippingV1Client(BaseClient):

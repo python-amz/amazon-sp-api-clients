@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CancelReportResponse:
-
     """
     The response for the cancelReport operation.
     """
@@ -23,16 +22,10 @@ class CancelReportResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CancelReportScheduleResponse:
-
     """
     The response for the cancelReportSchedule operation.
     """
@@ -40,16 +33,10 @@ class CancelReportScheduleResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class CreateReportResponse:
-
     """
     The response for the createReport operation.
     """
@@ -57,18 +44,10 @@ class CreateReportResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "CreateReportResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -81,12 +60,9 @@ class CreateReportResult:
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
 
-    pass
-
 
 @attrs.define
 class CreateReportScheduleResponse:
-
     """
     The response for the createReportSchedule operation.
     """
@@ -94,18 +70,10 @@ class CreateReportScheduleResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "CreateReportScheduleResult" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -117,8 +85,6 @@ class CreateReportScheduleResult:
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
-
-    pass
 
 
 @attrs.define
@@ -180,11 +146,6 @@ class CreateReportScheduleSpecification:
     report_options: "ReportOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -230,16 +191,10 @@ class CreateReportSpecification:
     report_options: "ReportOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -265,12 +220,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -280,7 +232,6 @@ class ErrorList:
 
 @attrs.define
 class GetReportDocumentResponse:
-
     """
     Response schema.
     """
@@ -288,23 +239,14 @@ class GetReportDocumentResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ReportDocument" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetReportResponse:
-
     """
     The response for the getReport operation.
     """
@@ -312,23 +254,14 @@ class GetReportResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Report" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetReportScheduleResponse:
-
     """
     The response for the getReportSchedule operation.
     """
@@ -336,23 +269,14 @@ class GetReportScheduleResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ReportSchedule" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetReportSchedulesResponse:
-
     """
     The response for the getReportSchedules operation.
     """
@@ -360,23 +284,14 @@ class GetReportSchedulesResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ReportScheduleList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetReportsResponse:
-
     """
     The response for the getReports operation.
     """
@@ -391,18 +306,10 @@ class GetReportsResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "ReportList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
@@ -502,8 +409,6 @@ class Report:
     The report type.
     """
 
-    pass
-
 
 @attrs.define
 class ReportDocument:
@@ -532,16 +437,10 @@ class ReportDocument:
     encryption_details: "ReportDocumentEncryptionDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ReportDocumentEncryptionDetails:
-
     """
     Encryption details required for decryption of a report document's contents.
     """
@@ -567,8 +466,6 @@ class ReportDocumentEncryptionDetails:
     The encryption standard required to decrypt the document contents.
     """
 
-    pass
-
 
 @attrs.define
 class ReportList:
@@ -578,7 +475,6 @@ class ReportList:
 
 @attrs.define
 class ReportOptions:
-
     """
     Additional information passed to reports. This varies by report type.
     """
@@ -588,7 +484,6 @@ class ReportOptions:
 
 @attrs.define
 class ReportSchedule:
-
     """
     Detailed information about a report schedule.
     """
@@ -634,11 +529,6 @@ class ReportSchedule:
     report_options: "ReportOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define

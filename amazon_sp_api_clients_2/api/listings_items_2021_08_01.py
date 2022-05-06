@@ -17,7 +17,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Decimal:
-
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
     """
@@ -27,7 +26,6 @@ class Decimal:
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -53,12 +51,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -66,16 +61,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class FulfillmentAvailability:
-
     """
     Fulfillment availability details for the listings item.
     """
@@ -97,12 +86,9 @@ class FulfillmentAvailability:
     {'minimum': 0.0}
     """
 
-    pass
-
 
 @attrs.define
 class Issue:
-
     """
     An issue with a listings item.
     """
@@ -135,12 +121,9 @@ class Issue:
     The severity of the issue.
     """
 
-    pass
-
 
 @attrs.define
 class Item:
-
     """
     A listings item.
     """
@@ -162,44 +145,26 @@ class Item:
     attributes: "ItemAttributes" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     issues: "ItemIssues" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     offers: "ItemOffers" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     procurement: "ItemProcurement" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     summaries: "ItemSummaries" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemAttributes:
-
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
@@ -209,7 +174,6 @@ class ItemAttributes:
 
 @attrs.define
 class ItemImage:
-
     """
     Image for the listings item.
     """
@@ -235,12 +199,9 @@ class ItemImage:
     Width of the image in pixels.
     """
 
-    pass
-
 
 @attrs.define
 class ItemIssues:
-
     """
     Issues associated with the listings item.
     """
@@ -250,7 +211,6 @@ class ItemIssues:
 
 @attrs.define
 class ItemOfferByMarketplace:
-
     """
     Offer details of a listings item for an Amazon marketplace.
     """
@@ -272,23 +232,14 @@ class ItemOfferByMarketplace:
     points: "Points" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemOffers:
-
     """
     Offer details for the listings item.
     """
@@ -298,7 +249,6 @@ class ItemOffers:
 
 @attrs.define
 class ItemProcurement:
-
     """
     Vendor procurement information for the listings item.
     """
@@ -306,16 +256,10 @@ class ItemProcurement:
     cost_price: "Money" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemSummaries:
-
     """
     Summary details of a listings item.
     """
@@ -325,7 +269,6 @@ class ItemSummaries:
 
 @attrs.define
 class ItemSummaryByMarketplace:
-
     """
     Summary details of a listings item for an Amazon marketplace.
     """
@@ -416,16 +359,10 @@ class ItemSummaryByMarketplace:
     main_image: "ItemImage" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ListingsItemPatchRequest:
-
     """
     The request body schema for the patchListingsItem operation.
     """
@@ -447,12 +384,9 @@ class ListingsItemPatchRequest:
     The Amazon product type of the listings item.
     """
 
-    pass
-
 
 @attrs.define
 class ListingsItemPutRequest:
-
     """
     The request body schema for the putListingsItem operation.
     """
@@ -483,12 +417,9 @@ class ListingsItemPutRequest:
     The name of the requirements set for the provided data.
     """
 
-    pass
-
 
 @attrs.define
 class ListingsItemSubmissionResponse:
-
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
@@ -521,12 +452,9 @@ class ListingsItemSubmissionResponse:
     The unique identifier of the listings item submission.
     """
 
-    pass
-
 
 @attrs.define
 class Money:
-
     """
     The currency type and the amount.
     """
@@ -541,16 +469,10 @@ class Money:
     amount: "Decimal" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PatchOperation:
-
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
@@ -576,12 +498,9 @@ class PatchOperation:
     JSON value to add, replace, or delete.
     """
 
-    pass
-
 
 @attrs.define
 class Points:
-
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
@@ -589,11 +508,6 @@ class Points:
     points_number: int = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class ListingsItems20210801Client(BaseClient):

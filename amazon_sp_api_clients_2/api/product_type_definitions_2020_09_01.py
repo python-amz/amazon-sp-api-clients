@@ -17,7 +17,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -43,12 +42,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -56,16 +52,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ProductType:
-
     """
     An Amazon product type with a definition available.
     """
@@ -84,12 +74,9 @@ class ProductType:
     The name of the Amazon product type.
     """
 
-    pass
-
 
 @attrs.define
 class ProductTypeDefinition:
-
     """
     A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
     """
@@ -144,30 +131,18 @@ class ProductTypeDefinition:
     meta_schema: "SchemaLink" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     product_type_version: "ProductTypeVersion" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     schema: "SchemaLink" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ProductTypeList:
-
     """
     A list of Amazon product types with definitions available.
     """
@@ -175,16 +150,10 @@ class ProductTypeList:
     product_types: List["ProductType"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ProductTypeVersion:
-
     """
     The version details for an Amazon product type.
     """
@@ -210,12 +179,9 @@ class ProductTypeVersion:
     Version identifier.
     """
 
-    pass
-
 
 @attrs.define
 class PropertyGroup:
-
     """
     A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
     """
@@ -241,8 +207,6 @@ class PropertyGroup:
     The display label of the property group.
     """
 
-    pass
-
 
 @attrs.define
 class SchemaLink:
@@ -263,8 +227,6 @@ class SchemaLink:
     Extra fields:
     {'properties': {'resource': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='URI resource for the link.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'verb': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['GET'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='HTTP method for the link operation.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['resource', 'verb']}
     """
-
-    pass
 
 
 class ProductTypeDefinitions20200901Client(BaseClient):

@@ -48,7 +48,7 @@ class SchemaBase(Schema):
 
     @property
     def parsed_description(self):
-        result = 'no description.' if self.description is None else self.description
+        result = '' if self.description is None else self.description
         result = result.splitlines()
         result = [line.strip() for line in result]
         result = [line for line in result if line]
@@ -95,7 +95,7 @@ class ParsedParameter(Parameter):
 
     @property
     def parsed_description(self):
-        result = 'no description.' if self.description is None else self.description
+        result = '' if self.description is None else self.description
         result = result.splitlines()
         result = [line.strip() for line in result]
         result = [line for line in result if line]

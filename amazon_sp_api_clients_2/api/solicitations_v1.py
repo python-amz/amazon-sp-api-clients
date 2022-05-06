@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CreateProductReviewAndSellerFeedbackSolicitationResponse:
-
     """
     The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
     """
@@ -23,16 +22,10 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -58,12 +51,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -78,7 +68,6 @@ class GetSchemaResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['self']}
@@ -87,23 +76,14 @@ class GetSchemaResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "Schema" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetSolicitationActionResponse:
-
     """
     Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
@@ -112,7 +92,6 @@ class GetSolicitationActionResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
@@ -122,7 +101,6 @@ class GetSolicitationActionResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['schema', 'self']}
@@ -131,23 +109,14 @@ class GetSolicitationActionResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "SolicitationsAction" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GetSolicitationActionsForOrderResponse:
-
     """
     The response schema for the getSolicitationActionsForOrder operation.
     """
@@ -156,7 +125,6 @@ class GetSolicitationActionsForOrderResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetSolicitationActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
@@ -166,7 +134,6 @@ class GetSolicitationActionsForOrderResponse:
         kw_only=True,
     )
     """
-    no description.
 
     Extra fields:
     {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions', 'self']}
@@ -175,16 +142,10 @@ class GetSolicitationActionsForOrderResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class LinkObject:
-
     """
     A Link object.
     """
@@ -203,12 +164,9 @@ class LinkObject:
     An identifier for this object.
     """
 
-    pass
-
 
 @attrs.define
 class Schema:
-
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
@@ -218,7 +176,6 @@ class Schema:
 
 @attrs.define
 class SolicitationsAction:
-
     """
     A simple object containing the name of the template.
     """
@@ -226,11 +183,6 @@ class SolicitationsAction:
     name: str = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class SolicitationsV1Client(BaseClient):

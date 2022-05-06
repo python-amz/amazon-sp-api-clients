@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -41,12 +40,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -54,16 +50,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class GenerateOrderScenarioRequest:
-
     """
     The request body for the generateOrderScenarios operation.
     """
@@ -75,12 +65,9 @@ class GenerateOrderScenarioRequest:
     The list of test orders requested as indicated by party identifiers.
     """
 
-    pass
-
 
 @attrs.define
 class OrderScenarioRequest:
-
     """
     The party identifiers required to generate the test data.
     """
@@ -88,23 +75,14 @@ class OrderScenarioRequest:
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     ship_from_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Pagination:
-
     """
     A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
     """
@@ -112,16 +90,10 @@ class Pagination:
     next_token: str = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class PartyIdentification:
-
     """
     The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
@@ -133,12 +105,9 @@ class PartyIdentification:
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
-    pass
-
 
 @attrs.define
 class Scenario:
-
     """
     A scenario test case response returned when the request is successful.
     """
@@ -157,12 +126,9 @@ class Scenario:
     An identifier that identifies the type of scenario that user can use for testing.
     """
 
-    pass
-
 
 @attrs.define
 class TestCaseData:
-
     """
     The set of test case data returned in response to the test data request.
     """
@@ -174,12 +140,9 @@ class TestCaseData:
     Set of use cases that describes the possible test scenarios.
     """
 
-    pass
-
 
 @attrs.define
 class TestOrder:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -191,12 +154,9 @@ class TestOrder:
     An error code that identifies the type of error that occurred.
     """
 
-    pass
-
 
 @attrs.define
 class Transaction:
-
     """
     The transaction details including the status. If the transaction was successful, also includes the requested test order data.
     """
@@ -218,16 +178,10 @@ class Transaction:
     test_case_data: "TestCaseData" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TransactionReference:
-
     """
     A GUID assigned by Amazon to identify this transaction.
     """
@@ -235,16 +189,10 @@ class TransactionReference:
     transaction_id: str = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class TransactionStatus:
-
     """
     The payload for the getOrderScenarios operation.
     """
@@ -252,11 +200,6 @@ class TransactionStatus:
     transaction_status: "Transaction" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):

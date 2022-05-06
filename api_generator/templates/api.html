@@ -16,8 +16,7 @@ from datetime import date, datetime
 {% for schema in data.schemas %}
 @attrs.define
 class {{ schema.name }}:
-    {% if schema.description %}
-    """
+    {% if schema.description %}"""
     {{ schema.description }}
     """
     {% endif %}
@@ -26,12 +25,13 @@ class {{ schema.name }}:
     {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(
         kw_only=True,
         )
-    """
-    {{ property.parsed_description }}{% if property.fields %}
+    {% if property.parsed_description or property.fields %}"""{% if property.parsed_description %}
+    {{ property.parsed_description }}{% endif %}{% if property.fields %}
 
     Extra fields:
     {{ property.fields }}{% endif %}
     """
+        {% endif %}
     {% endfor %}
 
 
@@ -39,16 +39,18 @@ class {{ schema.name }}:
     {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(
         kw_only=True,
         )
-    """
-    {{ property.parsed_description }}{% if property.fields %}
+    {% if property.parsed_description or property.fields %}"""{% if property.parsed_description %}
+    {{ property.parsed_description }}{% endif %}{% if property.fields %}
 
     Extra fields:
     {{ property.fields }}{% endif %}
     """
+        {% endif %}
     {% endfor %}
 
-
+    {% if not schema.properties %}
     pass
+    {% endif %}
 {% endfor %}
 
 class {{ data.class_name }}Client(BaseClient):
@@ -69,7 +71,7 @@ class {{ data.class_name }}Client(BaseClient):
 {{ operation.description }}
 
 Args:
-    {% for param in operation.parsed_parameters %}{{ param.variable_name }}: {{ param.parsed_description }}
+    {% for param in operation.parsed_parameters %}{{ param.variable_name }}: {% if param.parsed_description %}{{ param.parsed_description }}{% else %}no description.{% endif %}
     {% endfor %}
 """
         url = "{{ operation.path }}"

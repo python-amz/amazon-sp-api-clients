@@ -17,7 +17,6 @@ from datetime import date, datetime
 
 @attrs.define
 class BrandRefinement:
-
     """
     Description of a brand that can be used to get more fine-grained search results.
     """
@@ -36,12 +35,9 @@ class BrandRefinement:
     The estimated number of results that would still be returned if refinement key applied.
     """
 
-    pass
-
 
 @attrs.define
 class ClassificationRefinement:
-
     """
     Description of a classification that can be used to get more fine-grained search results.
     """
@@ -67,12 +63,9 @@ class ClassificationRefinement:
     The estimated number of results that would still be returned if refinement key applied.
     """
 
-    pass
-
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -98,12 +91,9 @@ class Error:
     A message that describes the error condition.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -111,16 +101,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Item:
-
     """
     An item in the Amazon catalog.
     """
@@ -128,72 +112,42 @@ class Item:
     asin: "ItemAsin" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     attributes: "ItemAttributes" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     identifiers: "ItemIdentifiers" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     images: "ItemImages" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     product_types: "ItemProductTypes" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     sales_ranks: "ItemSalesRanks" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     summaries: "ItemSummaries" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     variations: "ItemVariations" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     vendor_details: "ItemVendorDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemAsin:
-
     """
     Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
     """
@@ -203,7 +157,6 @@ class ItemAsin:
 
 @attrs.define
 class ItemAttributes:
-
     """
     A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
     """
@@ -213,7 +166,6 @@ class ItemAttributes:
 
 @attrs.define
 class ItemIdentifier:
-
     """
     Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
     """
@@ -232,12 +184,9 @@ class ItemIdentifier:
     Type of identifier, such as UPC, EAN, or ISBN.
     """
 
-    pass
-
 
 @attrs.define
 class ItemIdentifiers:
-
     """
     Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
     """
@@ -247,7 +196,6 @@ class ItemIdentifiers:
 
 @attrs.define
 class ItemIdentifiersByMarketplace:
-
     """
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
     """
@@ -266,12 +214,9 @@ class ItemIdentifiersByMarketplace:
     Amazon marketplace identifier.
     """
 
-    pass
-
 
 @attrs.define
 class ItemImage:
-
     """
     Image for an item in the Amazon catalog.
     """
@@ -318,12 +263,9 @@ class ItemImage:
     Width of the image in pixels.
     """
 
-    pass
-
 
 @attrs.define
 class ItemImages:
-
     """
     Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a thumbnail of the "MAIN" image variant is provided.
     """
@@ -333,7 +275,6 @@ class ItemImages:
 
 @attrs.define
 class ItemImagesByMarketplace:
-
     """
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
     """
@@ -352,12 +293,9 @@ class ItemImagesByMarketplace:
     Amazon marketplace identifier.
     """
 
-    pass
-
 
 @attrs.define
 class ItemProductTypeByMarketplace:
-
     """
     Product type associated with the Amazon catalog item for the indicated Amazon marketplace.
     """
@@ -379,12 +317,9 @@ class ItemProductTypeByMarketplace:
     {'example': 'LUGGAGE'}
     """
 
-    pass
-
 
 @attrs.define
 class ItemProductTypes:
-
     """
     Product types associated with the Amazon catalog item.
     """
@@ -394,7 +329,6 @@ class ItemProductTypes:
 
 @attrs.define
 class ItemSalesRank:
-
     """
     Sales rank of an Amazon catalog item.
     """
@@ -420,12 +354,9 @@ class ItemSalesRank:
     Title, or name, of the sales rank.
     """
 
-    pass
-
 
 @attrs.define
 class ItemSalesRanks:
-
     """
     Sales ranks of an Amazon catalog item.
     """
@@ -435,7 +366,6 @@ class ItemSalesRanks:
 
 @attrs.define
 class ItemSalesRanksByMarketplace:
-
     """
     Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
     """
@@ -454,12 +384,9 @@ class ItemSalesRanksByMarketplace:
     Sales ranks of an Amazon catalog item for an Amazon marketplace.
     """
 
-    pass
-
 
 @attrs.define
 class ItemSearchResults:
-
     """
     Items in the Amazon catalog and search related metadata.
     """
@@ -482,23 +409,14 @@ class ItemSearchResults:
     pagination: "Pagination" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     refinements: "Refinements" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class ItemSummaries:
-
     """
     Summary details of an Amazon catalog item.
     """
@@ -508,7 +426,6 @@ class ItemSummaries:
 
 @attrs.define
 class ItemSummaryByMarketplace:
-
     """
     Summary details of an Amazon catalog item for the indicated Amazon marketplace.
     """
@@ -576,12 +493,9 @@ class ItemSummaryByMarketplace:
     Name of the style associated with an Amazon catalog item.
     """
 
-    pass
-
 
 @attrs.define
 class ItemVariations:
-
     """
     Variation details by marketplace for an Amazon catalog item (variation relationships).
     """
@@ -591,7 +505,6 @@ class ItemVariations:
 
 @attrs.define
 class ItemVariationsByMarketplace:
-
     """
     Variation details for the Amazon catalog item for the indicated Amazon marketplace.
     """
@@ -620,12 +533,9 @@ class ItemVariationsByMarketplace:
     {'example': 'PARENT'}
     """
 
-    pass
-
 
 @attrs.define
 class ItemVendorDetails:
-
     """
     Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.
     """
@@ -635,7 +545,6 @@ class ItemVendorDetails:
 
 @attrs.define
 class ItemVendorDetailsByMarketplace:
-
     """
     Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
     """
@@ -707,12 +616,9 @@ class ItemVendorDetailsByMarketplace:
     Product subcategory associated with an Amazon catalog item.
     """
 
-    pass
-
 
 @attrs.define
 class Pagination:
-
     """
     When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
     """
@@ -731,12 +637,9 @@ class Pagination:
     A token that can be used to fetch the previous page.
     """
 
-    pass
-
 
 @attrs.define
 class Refinements:
-
     """
     Search refinements.
     """
@@ -754,8 +657,6 @@ class Refinements:
     """
     Classification search refinements.
     """
-
-    pass
 
 
 class CatalogItems20201201Client(BaseClient):

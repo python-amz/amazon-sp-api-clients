@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class AuthorizationCode:
-
     """
     A Login with Amazon (LWA) authorization code.
     """
@@ -27,12 +26,9 @@ class AuthorizationCode:
     A Login with Amazon (LWA) authorization code that can be exchanged for a refresh token and access token that authorize you to make calls to a Selling Partner API.
     """
 
-    pass
-
 
 @attrs.define
 class Error:
-
     """
     Error response returned when the request is unsuccessful.
     """
@@ -58,12 +54,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -73,7 +66,6 @@ class ErrorList:
 
 @attrs.define
 class GetAuthorizationCodeResponse:
-
     """
     The response schema for the GetAuthorizationCode operation.
     """
@@ -81,18 +73,10 @@ class GetAuthorizationCodeResponse:
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
 
     payload: "AuthorizationCode" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class AuthorizationV1Client(BaseClient):

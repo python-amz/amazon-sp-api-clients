@@ -15,7 +15,6 @@ from datetime import date, datetime
 
 @attrs.define
 class CreateFeedDocumentResponse:
-
     """
     Information required to upload a feed document's contents.
     """
@@ -34,12 +33,9 @@ class CreateFeedDocumentResponse:
     The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
     """
 
-    pass
-
 
 @attrs.define
 class CreateFeedDocumentSpecification:
-
     """
     Specifies the content type for the createFeedDocument operation.
     """
@@ -51,12 +47,9 @@ class CreateFeedDocumentSpecification:
     The content type of the feed.
     """
 
-    pass
-
 
 @attrs.define
 class CreateFeedResponse:
-
     """
     Response schema.
     """
@@ -68,12 +61,9 @@ class CreateFeedResponse:
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
 
-    pass
-
 
 @attrs.define
 class CreateFeedSpecification:
-
     """
     Information required to create the feed.
     """
@@ -105,16 +95,10 @@ class CreateFeedSpecification:
     feed_options: "FeedOptions" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Error:
-
     """
     An error response returned when the request is unsuccessful.
     """
@@ -140,12 +124,9 @@ class Error:
     A message that describes the error condition in a human-readable form.
     """
 
-    pass
-
 
 @attrs.define
 class ErrorList:
-
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -153,16 +134,10 @@ class ErrorList:
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 @attrs.define
 class Feed:
-
     """
     Detailed information about the feed.
     """
@@ -234,12 +209,9 @@ class Feed:
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
 
-    pass
-
 
 @attrs.define
 class FeedDocument:
-
     """
     Information required for the feed document.
     """
@@ -265,12 +237,9 @@ class FeedDocument:
     A presigned URL for the feed document. This URL expires after 5 minutes.
     """
 
-    pass
-
 
 @attrs.define
 class FeedList:
-
     """
     A list of feeds.
     """
@@ -280,7 +249,6 @@ class FeedList:
 
 @attrs.define
 class FeedOptions:
-
     """
     Additional options to control the feed. These vary by feed type.
     """
@@ -290,7 +258,6 @@ class FeedOptions:
 
 @attrs.define
 class GetFeedsResponse:
-
     """
     Response schema.
     """
@@ -305,11 +272,6 @@ class GetFeedsResponse:
     feeds: "FeedList" = attrs.field(
         kw_only=True,
     )
-    """
-    no description.
-    """
-
-    pass
 
 
 class Feeds20210630Client(BaseClient):
