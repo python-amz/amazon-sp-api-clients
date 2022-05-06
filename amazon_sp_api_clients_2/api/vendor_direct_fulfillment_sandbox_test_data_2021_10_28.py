@@ -9,197 +9,161 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GenerateOrderScenarioRequest:
     """
     The request body for the generateOrderScenarios operation.
     """
 
-    orders: List["OrderScenarioRequest"] = attrs.field(
-        kw_only=True,
-    )
+    orders: Optional[List["OrderScenarioRequest"]] = attrs.field()
     """
     The list of test orders requested as indicated by party identifiers.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderScenarioRequest:
     """
     The party identifiers required to generate the test data.
     """
 
-    selling_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    selling_party: Optional["PartyIdentification"] = attrs.field()
 
-    ship_from_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    ship_from_party: Optional["PartyIdentification"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Pagination:
     """
     A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
     """
 
-    next_token: str = attrs.field(
-        kw_only=True,
-    )
+    next_token: Optional[str] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
     """
     The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
-    party_id: str = attrs.field(
-        kw_only=True,
-    )
+    party_id: Optional[str] = attrs.field()
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Scenario:
     """
     A scenario test case response returned when the request is successful.
     """
 
-    orders: List["TestOrder"] = attrs.field(
-        kw_only=True,
-    )
+    orders: Optional[List["TestOrder"]] = attrs.field()
     """
     A list of orders that can be used by the caller to test each life cycle or scenario.
     """
 
-    scenario_id: str = attrs.field(
-        kw_only=True,
-    )
+    scenario_id: Optional[str] = attrs.field()
     """
     An identifier that identifies the type of scenario that user can use for testing.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TestCaseData:
     """
     The set of test case data returned in response to the test data request.
     """
 
-    scenarios: List["Scenario"] = attrs.field(
-        kw_only=True,
-    )
+    scenarios: Optional[List["Scenario"]] = attrs.field()
     """
     Set of use cases that describes the possible test scenarios.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TestOrder:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    order_id: str = attrs.field(
-        kw_only=True,
-    )
+    order_id: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Transaction:
     """
     The transaction details including the status. If the transaction was successful, also includes the requested test order data.
     """
 
-    status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]] = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]]] = attrs.field()
     """
     The current processing status of the transaction.
     """
 
-    test_case_data: "TestCaseData" = attrs.field(
-        kw_only=True,
-    )
+    test_case_data: Optional["TestCaseData"] = attrs.field()
 
-    transaction_id: str = attrs.field(
-        kw_only=True,
-    )
+    transaction_id: Optional[str] = attrs.field()
     """
     The unique identifier returned in the response to the generateOrderScenarios request.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionReference:
     """
     A GUID assigned by Amazon to identify this transaction.
     """
 
-    transaction_id: str = attrs.field(
-        kw_only=True,
-    )
+    transaction_id: Optional[str] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionStatus:
     """
     The payload for the getOrderScenarios operation.
     """
 
-    transaction_status: "Transaction" = attrs.field(
-        kw_only=True,
-    )
+    transaction_status: Optional["Transaction"] = attrs.field()
 
 
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):

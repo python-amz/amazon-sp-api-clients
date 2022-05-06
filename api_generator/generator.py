@@ -24,6 +24,7 @@ django.setup()
 class SchemaBase(Schema):
     name: str
     generator: Any
+    schema_type: str = ''
 
     @property
     def fields(self):
@@ -82,8 +83,8 @@ class ParsedSchema(SchemaBase, Schema):
                 for k, v in self.parsed_properties if isinstance(v, Schema)]
 
     @property
-    def all_properties(self):
-        result: list[ParsedReferenceProperty | ParsedSchemaProperty] = self.reference_properties
+    def all_properties(self) -> list[SchemaBase]:
+        result: list[SchemaBase] = self.reference_properties
         result.extend(self.schema_properties)
         result.sort(key=lambda i: i.name)
         return result

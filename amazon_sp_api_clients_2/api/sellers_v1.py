@@ -9,39 +9,33 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -50,30 +44,24 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMarketplaceParticipationsResponse:
     """
     The response schema for the getMarketplaceParticipations operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "MarketplaceParticipationList" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["MarketplaceParticipationList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Marketplace:
     """
     Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
     """
 
-    country_code: str = attrs.field(
-        kw_only=True,
-    )
+    country_code: Optional[str] = attrs.field()
     """
     The ISO 3166-1 alpha-2 format country code of the marketplace.
 
@@ -81,55 +69,41 @@ class Marketplace:
     {'pattern': '^([A-Z]{2})$'}
     """
 
-    default_currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    default_currency_code: Optional[str] = attrs.field()
     """
     The ISO 4217 format currency code of the marketplace.
     """
 
-    default_language_code: str = attrs.field(
-        kw_only=True,
-    )
+    default_language_code: Optional[str] = attrs.field()
     """
     The ISO 639-1 format language code of the marketplace.
     """
 
-    domain_name: str = attrs.field(
-        kw_only=True,
-    )
+    domain_name: Optional[str] = attrs.field()
     """
     The domain name of the marketplace.
     """
 
-    id: str = attrs.field(
-        kw_only=True,
-    )
+    id: Optional[str] = attrs.field()
     """
     The encrypted marketplace value.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     Marketplace name.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MarketplaceParticipation:
 
-    marketplace: "Marketplace" = attrs.field(
-        kw_only=True,
-    )
+    marketplace: Optional["Marketplace"] = attrs.field()
 
-    participation: "Participation" = attrs.field(
-        kw_only=True,
-    )
+    participation: Optional["Participation"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MarketplaceParticipationList:
     """
     List of marketplace participations.
@@ -138,22 +112,18 @@ class MarketplaceParticipationList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Participation:
     """
     Detailed information that is specific to a seller in a Marketplace.
     """
 
-    has_suspended_listings: bool = attrs.field(
-        kw_only=True,
-    )
+    has_suspended_listings: Optional[bool] = attrs.field()
     """
     Specifies if the seller has suspended listings. True if the seller Listing Status is set to Inactive, otherwise False.
     """
 
-    is_participating: bool = attrs.field(
-        kw_only=True,
-    )
+    is_participating: Optional[bool] = attrs.field()
 
 
 class SellersV1Client(BaseClient):

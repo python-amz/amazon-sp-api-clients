@@ -9,50 +9,42 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateProductReviewAndSellerFeedbackSolicitationResponse:
     """
     The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -61,137 +53,99 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponse:
 
-    _links: "GetSchemaResponseLinks" = attrs.field(
-        kw_only=True,
-    )
+    _links: Optional["GetSchemaResponseLinks"] = attrs.field()
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Schema" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Schema"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
 
-    self: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    self: Optional["LinkObject"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionResponse:
     """
     Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
 
-    _embedded: "GetSolicitationActionResponseEmbedded" = attrs.field(
-        kw_only=True,
-    )
+    _embedded: Optional["GetSolicitationActionResponseEmbedded"] = attrs.field()
 
-    _links: "GetSolicitationActionResponseLinks" = attrs.field(
-        kw_only=True,
-    )
+    _links: Optional["GetSolicitationActionResponseLinks"] = attrs.field()
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "SolicitationsAction" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["SolicitationsAction"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionResponseEmbedded:
 
-    schema: "GetSchemaResponse" = attrs.field(
-        kw_only=True,
-    )
+    schema: Optional["GetSchemaResponse"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionResponseLinks:
 
-    schema: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    schema: Optional["LinkObject"] = attrs.field()
 
-    self: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    self: Optional["LinkObject"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionsForOrderResponse:
     """
     The response schema for the getSolicitationActionsForOrder operation.
     """
 
-    _embedded: "GetSolicitationActionsForOrderResponseEmbedded" = attrs.field(
-        kw_only=True,
-    )
+    _embedded: Optional["GetSolicitationActionsForOrderResponseEmbedded"] = attrs.field()
 
-    _links: "GetSolicitationActionsForOrderResponseLinks" = attrs.field(
-        kw_only=True,
-    )
+    _links: Optional["GetSolicitationActionsForOrderResponseLinks"] = attrs.field()
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionsForOrderResponseEmbedded:
 
-    actions: List["GetSolicitationActionResponse"] = attrs.field(
-        kw_only=True,
-    )
+    actions: Optional[List["GetSolicitationActionResponse"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionsForOrderResponseLinks:
 
-    actions: List["LinkObject"] = attrs.field(
-        kw_only=True,
-    )
+    actions: Optional[List["LinkObject"]] = attrs.field()
     """
     Eligible actions for the specified amazonOrderId.
     """
 
-    self: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    self: Optional["LinkObject"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LinkObject:
     """
     A Link object.
     """
 
-    href: str = attrs.field(
-        kw_only=True,
-    )
+    href: Optional[str] = attrs.field()
     """
     A URI for this object.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     An identifier for this object.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=False)
 class Schema:
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
@@ -200,15 +154,13 @@ class Schema:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SolicitationsAction:
     """
     A simple object containing the name of the template.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
 
 
 class SolicitationsV1Client(BaseClient):

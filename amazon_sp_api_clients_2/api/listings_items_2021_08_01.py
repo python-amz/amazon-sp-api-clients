@@ -11,11 +11,11 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Decimal:
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
@@ -24,61 +24,49 @@ class Decimal:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FulfillmentAvailability:
     """
     Fulfillment availability details for the listings item.
     """
 
-    fulfillment_channel_code: str = attrs.field(
-        kw_only=True,
-    )
+    fulfillment_channel_code: Optional[str] = attrs.field()
     """
     Designates which fulfillment network will be used.
     """
 
-    quantity: int = attrs.field(
-        kw_only=True,
-    )
+    quantity: Optional[int] = attrs.field()
     """
     The quantity of the item you are making available for sale.
 
@@ -87,83 +75,61 @@ class FulfillmentAvailability:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Issue:
     """
     An issue with a listings item.
     """
 
-    attribute_names: List[str] = attrs.field(
-        kw_only=True,
-    )
+    attribute_names: Optional[List[str]] = attrs.field()
     """
     Names of the attributes associated with the issue, if applicable.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An issue code that identifies the type of issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the issue.
     """
 
-    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field(
-        kw_only=True,
-    )
+    severity: Optional[Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]] = attrs.field()
     """
     The severity of the issue.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Item:
     """
     A listings item.
     """
 
-    attributes: "ItemAttributes" = attrs.field(
-        kw_only=True,
-    )
+    attributes: Optional["ItemAttributes"] = attrs.field()
 
-    fulfillment_availability: List["FulfillmentAvailability"] = attrs.field(
-        kw_only=True,
-    )
+    fulfillment_availability: Optional[List["FulfillmentAvailability"]] = attrs.field()
     """
     Fulfillment availability for the listings item.
     """
 
-    issues: "ItemIssues" = attrs.field(
-        kw_only=True,
-    )
+    issues: Optional["ItemIssues"] = attrs.field()
 
-    offers: "ItemOffers" = attrs.field(
-        kw_only=True,
-    )
+    offers: Optional["ItemOffers"] = attrs.field()
 
-    procurement: "ItemProcurement" = attrs.field(
-        kw_only=True,
-    )
+    procurement: Optional["ItemProcurement"] = attrs.field()
 
-    sku: str = attrs.field(
-        kw_only=True,
-    )
+    sku: Optional[str] = attrs.field()
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    summaries: "ItemSummaries" = attrs.field(
-        kw_only=True,
-    )
+    summaries: Optional["ItemSummaries"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemAttributes:
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
@@ -172,35 +138,29 @@ class ItemAttributes:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemImage:
     """
     Image for the listings item.
     """
 
-    height: int = attrs.field(
-        kw_only=True,
-    )
+    height: Optional[int] = attrs.field()
     """
     Height of the image in pixels.
     """
 
-    link: str = attrs.field(
-        kw_only=True,
-    )
+    link: Optional[str] = attrs.field()
     """
     Link, or URL, for the image.
     """
 
-    width: int = attrs.field(
-        kw_only=True,
-    )
+    width: Optional[int] = attrs.field()
     """
     Width of the image in pixels.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemIssues:
     """
     Issues associated with the listings item.
@@ -209,36 +169,28 @@ class ItemIssues:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemOfferByMarketplace:
     """
     Offer details of a listings item for an Amazon marketplace.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     Amazon marketplace identifier.
     """
 
-    offer_type: Union[Literal["B2C"], Literal["B2B"]] = attrs.field(
-        kw_only=True,
-    )
+    offer_type: Optional[Union[Literal["B2C"], Literal["B2B"]]] = attrs.field()
     """
     Type of offer for the listings item.
     """
 
-    points: "Points" = attrs.field(
-        kw_only=True,
-    )
+    points: Optional["Points"] = attrs.field()
 
-    price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    price: Optional["Money"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemOffers:
     """
     Offer details for the listings item.
@@ -247,18 +199,16 @@ class ItemOffers:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemProcurement:
     """
     Vendor procurement information for the listings item.
     """
 
-    cost_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    cost_price: Optional["Money"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemSummaries:
     """
     Summary details of a listings item.
@@ -267,43 +217,39 @@ class ItemSummaries:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemSummaryByMarketplace:
     """
     Summary details of a listings item for an Amazon marketplace.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     Amazon Standard Identification Number (ASIN) of the listings item.
     """
 
-    condition_type: Union[
-        Literal["new_new"],
-        Literal["new_open_box"],
-        Literal["new_oem"],
-        Literal["refurbished_refurbished"],
-        Literal["used_like_new"],
-        Literal["used_very_good"],
-        Literal["used_good"],
-        Literal["used_acceptable"],
-        Literal["collectible_like_new"],
-        Literal["collectible_very_good"],
-        Literal["collectible_good"],
-        Literal["collectible_acceptable"],
-        Literal["club_club"],
-    ] = attrs.field(
-        kw_only=True,
-    )
+    condition_type: Optional[
+        Union[
+            Literal["new_new"],
+            Literal["new_open_box"],
+            Literal["new_oem"],
+            Literal["refurbished_refurbished"],
+            Literal["used_like_new"],
+            Literal["used_very_good"],
+            Literal["used_good"],
+            Literal["used_acceptable"],
+            Literal["collectible_like_new"],
+            Literal["collectible_very_good"],
+            Literal["collectible_good"],
+            Literal["collectible_acceptable"],
+            Literal["club_club"],
+        ]
+    ] = attrs.field()
     """
     Identifies the condition of the listings item.
     """
 
-    created_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    created_date: Optional[datetime] = attrs.field()
     """
     Date the listings item was created, in ISO 8601 format.
 
@@ -311,23 +257,17 @@ class ItemSummaryByMarketplace:
     {'schema_format': 'date-time'}
     """
 
-    fn_sku: str = attrs.field(
-        kw_only=True,
-    )
+    fn_sku: Optional[str] = attrs.field()
     """
     Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item.
     """
 
-    item_name: str = attrs.field(
-        kw_only=True,
-    )
+    item_name: Optional[str] = attrs.field()
     """
     Name, or title, associated with an Amazon catalog item.
     """
 
-    last_updated_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    last_updated_date: Optional[datetime] = attrs.field()
     """
     Date the listings item was last updated, in ISO 8601 format.
 
@@ -335,41 +275,31 @@ class ItemSummaryByMarketplace:
     {'schema_format': 'date-time'}
     """
 
-    main_image: "ItemImage" = attrs.field(
-        kw_only=True,
-    )
+    main_image: Optional["ItemImage"] = attrs.field()
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier. Identifies the Amazon marketplace for the listings item.
     """
 
-    product_type: str = attrs.field(
-        kw_only=True,
-    )
+    product_type: Optional[str] = attrs.field()
     """
     The Amazon product type of the listings item.
     """
 
-    status: List[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]] = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[List[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]]] = attrs.field()
     """
     Statuses that apply to the listings item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemPatchRequest:
     """
     The request body schema for the patchListingsItem operation.
     """
 
-    patches: List["PatchOperation"] = attrs.field(
-        kw_only=True,
-    )
+    patches: Optional[List["PatchOperation"]] = attrs.field()
     """
     One or more JSON Patch operations to perform on the listings item.
 
@@ -377,42 +307,34 @@ class ListingsItemPatchRequest:
     {'minItems': 1}
     """
 
-    product_type: str = attrs.field(
-        kw_only=True,
-    )
+    product_type: Optional[str] = attrs.field()
     """
     The Amazon product type of the listings item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemPutRequest:
     """
     The request body schema for the putListingsItem operation.
     """
 
-    attributes: "ListingsItemPutRequestAttributes" = attrs.field(
-        kw_only=True,
-    )
+    attributes: Optional["ListingsItemPutRequestAttributes"] = attrs.field()
 
-    product_type: str = attrs.field(
-        kw_only=True,
-    )
+    product_type: Optional[str] = attrs.field()
     """
     The Amazon product type of the listings item.
     """
 
-    requirements: Union[
-        Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    requirements: Optional[
+        Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    ] = attrs.field()
     """
     The name of the requirements set for the provided data.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemPutRequestAttributes:
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
@@ -421,102 +343,82 @@ class ListingsItemPutRequestAttributes:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemSubmissionResponse:
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
 
-    issues: List["Issue"] = attrs.field(
-        kw_only=True,
-    )
+    issues: Optional[List["Issue"]] = attrs.field()
     """
     Listings item issues related to the listings item submission.
     """
 
-    sku: str = attrs.field(
-        kw_only=True,
-    )
+    sku: Optional[str] = attrs.field()
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[Union[Literal["ACCEPTED"], Literal["INVALID"]]] = attrs.field()
     """
     The status of the listings item submission.
     """
 
-    submission_id: str = attrs.field(
-        kw_only=True,
-    )
+    submission_id: Optional[str] = attrs.field()
     """
     The unique identifier of the listings item submission.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Money:
     """
     The currency type and the amount.
     """
 
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional["Decimal"] = attrs.field()
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     Three-digit currency code. In ISO 4217 format.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PatchOperation:
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
-    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field(
-        kw_only=True,
-    )
+    op: Optional[Union[Literal["add"], Literal["replace"], Literal["delete"]]] = attrs.field()
     """
     Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    path: str = attrs.field(
-        kw_only=True,
-    )
+    path: Optional[str] = attrs.field()
     """
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    value: List["PatchOperationValueItem"] = attrs.field(
-        kw_only=True,
-    )
+    value: Optional[List["PatchOperationValueItem"]] = attrs.field()
     """
     JSON value to add, replace, or delete.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PatchOperationValueItem:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Points:
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
 
-    points_number: int = attrs.field(
-        kw_only=True,
-    )
+    points_number: Optional[int] = attrs.field()
 
 
 class ListingsItems20210801Client(BaseClient):

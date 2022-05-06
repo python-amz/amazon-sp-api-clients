@@ -11,101 +11,83 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateRestrictedDataTokenRequest:
     """
     The request schema for the createRestrictedDataToken operation.
     """
 
-    restricted_resources: List["RestrictedResource"] = attrs.field(
-        kw_only=True,
-    )
+    restricted_resources: Optional[List["RestrictedResource"]] = attrs.field()
     """
     A list of restricted resources.
         Maximum: 50
     """
 
-    target_application: str = attrs.field(
-        kw_only=True,
-    )
+    target_application: Optional[str] = attrs.field()
     """
     The application ID for the target application to which access is being delegated.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateRestrictedDataTokenResponse:
     """
     The response schema for the createRestrictedDataToken operation.
     """
 
-    expires_in: int = attrs.field(
-        kw_only=True,
-    )
+    expires_in: Optional[int] = attrs.field()
     """
     The lifetime of the Restricted Data Token, in seconds.
     """
 
-    restricted_data_token: str = attrs.field(
-        kw_only=True,
-    )
+    restricted_data_token: Optional[str] = attrs.field()
     """
     A Restricted Data Token (RDT). This is a short-lived access token that authorizes calls to restricted operations. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     An error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RestrictedResource:
     """
     Model of a restricted resource.
     """
 
-    data_elements: List[str] = attrs.field(
-        kw_only=True,
-    )
+    data_elements: Optional[List[str]] = attrs.field()
     """
     Indicates the type of Personally Identifiable Information requested. This parameter is required only when getting an RDT for use with the getOrder, getOrders, or getOrderItems operation of the Orders API. For more information, see the [Tokens API Use Case Guide](doc:tokens-api-use-case-guide). Possible values include:
         - **buyerInfo**. On the order level this includes general identifying information about the buyer and tax-related information. On the order item level this includes gift wrap information and custom order information, if available.
@@ -113,16 +95,12 @@ class RestrictedResource:
         - **buyerTaxInformation**. This includes information for issuing tax invoices.
     """
 
-    method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]] = attrs.field(
-        kw_only=True,
-    )
+    method: Optional[Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]]] = attrs.field()
     """
     The HTTP method in the restricted resource.
     """
 
-    path: str = attrs.field(
-        kw_only=True,
-    )
+    path: Optional[str] = attrs.field()
     """
     The path in the restricted resource. Here are some path examples:
         - ```/orders/v0/orders```. For getting an RDT for the getOrders operation of the Orders API. For bulk orders.

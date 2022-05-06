@@ -9,72 +9,60 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Attachment:
     """
     Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
     """
 
-    file_name: str = attrs.field(
-        kw_only=True,
-    )
+    file_name: Optional[str] = attrs.field()
     """
     The name of the file, including the extension. This is the file name that will appear in the message. This does not need to match the file name of the file that you uploaded.
     """
 
-    upload_destination_id: str = attrs.field(
-        kw_only=True,
-    )
+    upload_destination_id: Optional[str] = attrs.field()
     """
     The identifier of the upload destination. Get this value by calling the createUploadDestination operation of the Uploads API.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateAmazonMotorsRequest:
     """
     The request schema for the createAmazonMotors operation.
     """
 
-    attachments: List["Attachment"] = attrs.field(
-        kw_only=True,
-    )
+    attachments: Optional[List["Attachment"]] = attrs.field()
     """
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateAmazonMotorsResponse:
     """
     The response schema for the createAmazonMotors operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmCustomizationDetailsRequest:
     """
     The request schema for the confirmCustomizationDetails operation.
     """
 
-    attachments: List["Attachment"] = attrs.field(
-        kw_only=True,
-    )
+    attachments: Optional[List["Attachment"]] = attrs.field()
     """
     Attachments to include in the message to the buyer.
     """
 
-    text: str = attrs.field(
-        kw_only=True,
-    )
+    text: Optional[str] = attrs.field()
     """
     The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -83,26 +71,22 @@ class CreateConfirmCustomizationDetailsRequest:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmCustomizationDetailsResponse:
     """
     The response schema for the confirmCustomizationDetails operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmDeliveryDetailsRequest:
     """
     The request schema for the createConfirmDeliveryDetails operation.
     """
 
-    text: str = attrs.field(
-        kw_only=True,
-    )
+    text: Optional[str] = attrs.field()
     """
     The text to be sent to the buyer. Only links related to order delivery are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -111,26 +95,22 @@ class CreateConfirmDeliveryDetailsRequest:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmDeliveryDetailsResponse:
     """
     The response schema for the createConfirmDeliveryDetails operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmOrderDetailsRequest:
     """
     The request schema for the createConfirmOrderDetails operation.
     """
 
-    text: str = attrs.field(
-        kw_only=True,
-    )
+    text: Optional[str] = attrs.field()
     """
     The text to be sent to the buyer. Only links related to order completion are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -139,26 +119,22 @@ class CreateConfirmOrderDetailsRequest:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmOrderDetailsResponse:
     """
     The response schema for the createConfirmOrderDetails operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmServiceDetailsRequest:
     """
     The request schema for the createConfirmServiceDetails operation.
     """
 
-    text: str = attrs.field(
-        kw_only=True,
-    )
+    text: Optional[str] = attrs.field()
     """
     The text to be sent to the buyer. Only links related to Home Service calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -167,33 +143,27 @@ class CreateConfirmServiceDetailsRequest:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateConfirmServiceDetailsResponse:
     """
     The response schema for the createConfirmServiceDetails operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateDigitalAccessKeyRequest:
     """
     The request schema for the createDigitalAccessKey operation.
     """
 
-    attachments: List["Attachment"] = attrs.field(
-        kw_only=True,
-    )
+    attachments: Optional[List["Attachment"]] = attrs.field()
     """
     Attachments to include in the message to the buyer.
     """
 
-    text: str = attrs.field(
-        kw_only=True,
-    )
+    text: Optional[str] = attrs.field()
     """
     The text to be sent to the buyer. Only links related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -202,62 +172,52 @@ class CreateDigitalAccessKeyRequest:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateDigitalAccessKeyResponse:
     """
     The response schema for the createDigitalAccessKey operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateLegalDisclosureRequest:
     """
     The request schema for the createLegalDisclosure operation.
     """
 
-    attachments: List["Attachment"] = attrs.field(
-        kw_only=True,
-    )
+    attachments: Optional[List["Attachment"]] = attrs.field()
     """
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateLegalDisclosureResponse:
     """
     The response schema for the createLegalDisclosure operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateNegativeFeedbackRemovalResponse:
     """
     The response schema for the createNegativeFeedbackRemoval operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateUnexpectedProblemRequest:
     """
     The request schema for the createUnexpectedProblem operation.
     """
 
-    text: str = attrs.field(
-        kw_only=True,
-    )
+    text: Optional[str] = attrs.field()
     """
     The text to be sent to the buyer. Only links related to unexpected problem calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -266,33 +226,27 @@ class CreateUnexpectedProblemRequest:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateUnexpectedProblemResponse:
     """
     The response schema for the createUnexpectedProblem operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateWarrantyRequest:
     """
     The request schema for the createWarranty operation.
     """
 
-    attachments: List["Attachment"] = attrs.field(
-        kw_only=True,
-    )
+    attachments: Optional[List["Attachment"]] = attrs.field()
     """
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
 
-    coverage_end_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    coverage_end_date: Optional[datetime] = attrs.field()
     """
     The end date of the warranty coverage to include in the message to the buyer.
 
@@ -300,9 +254,7 @@ class CreateWarrantyRequest:
     {'schema_format': 'date-time'}
     """
 
-    coverage_start_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    coverage_start_date: Optional[datetime] = attrs.field()
     """
     The start date of the warranty coverage to include in the message to the buyer.
 
@@ -311,46 +263,38 @@ class CreateWarrantyRequest:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateWarrantyResponse:
     """
     The response schema for the createWarranty operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -359,177 +303,131 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetAttributesResponse:
     """
     The response schema for the GetAttributes operation.
     """
 
-    buyer: "GetAttributesResponseBuyer" = attrs.field(
-        kw_only=True,
-    )
+    buyer: Optional["GetAttributesResponseBuyer"] = attrs.field()
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetAttributesResponseBuyer:
     """
     The list of attributes related to the buyer.
     """
 
-    locale: str = attrs.field(
-        kw_only=True,
-    )
+    locale: Optional[str] = attrs.field()
     """
     The buyer's language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionResponse:
     """
     Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
 
-    _embedded: "GetMessagingActionResponseEmbedded" = attrs.field(
-        kw_only=True,
-    )
+    _embedded: Optional["GetMessagingActionResponseEmbedded"] = attrs.field()
 
-    _links: "GetMessagingActionResponseLinks" = attrs.field(
-        kw_only=True,
-    )
+    _links: Optional["GetMessagingActionResponseLinks"] = attrs.field()
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "MessagingAction" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["MessagingAction"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionResponseEmbedded:
 
-    schema: "GetSchemaResponse" = attrs.field(
-        kw_only=True,
-    )
+    schema: Optional["GetSchemaResponse"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionResponseLinks:
 
-    schema: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    schema: Optional["LinkObject"] = attrs.field()
 
-    self: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    self: Optional["LinkObject"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionsForOrderResponse:
     """
     The response schema for the getMessagingActionsForOrder operation.
     """
 
-    _embedded: "GetMessagingActionsForOrderResponseEmbedded" = attrs.field(
-        kw_only=True,
-    )
+    _embedded: Optional["GetMessagingActionsForOrderResponseEmbedded"] = attrs.field()
 
-    _links: "GetMessagingActionsForOrderResponseLinks" = attrs.field(
-        kw_only=True,
-    )
+    _links: Optional["GetMessagingActionsForOrderResponseLinks"] = attrs.field()
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionsForOrderResponseEmbedded:
 
-    actions: List["GetMessagingActionResponse"] = attrs.field(
-        kw_only=True,
-    )
+    actions: Optional[List["GetMessagingActionResponse"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionsForOrderResponseLinks:
 
-    actions: List["LinkObject"] = attrs.field(
-        kw_only=True,
-    )
+    actions: Optional[List["LinkObject"]] = attrs.field()
     """
     Eligible actions for the specified amazonOrderId.
     """
 
-    self: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    self: Optional["LinkObject"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponse:
 
-    _links: "GetSchemaResponseLinks" = attrs.field(
-        kw_only=True,
-    )
+    _links: Optional["GetSchemaResponseLinks"] = attrs.field()
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Schema" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Schema"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
 
-    self: "LinkObject" = attrs.field(
-        kw_only=True,
-    )
+    self: Optional["LinkObject"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LinkObject:
     """
     A Link object.
     """
 
-    href: str = attrs.field(
-        kw_only=True,
-    )
+    href: Optional[str] = attrs.field()
     """
     A URI for this object.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     An identifier for this object.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MessagingAction:
     """
     A simple object containing the name of the template.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Schema:
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.

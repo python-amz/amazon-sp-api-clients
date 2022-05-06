@@ -9,53 +9,45 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AuthorizationCode:
     """
     A Login with Amazon (LWA) authorization code.
     """
 
-    authorization_code: str = attrs.field(
-        kw_only=True,
-    )
+    authorization_code: Optional[str] = attrs.field()
     """
     A Login with Amazon (LWA) authorization code that can be exchanged for a refresh token and access token that authorize you to make calls to a Selling Partner API.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -64,19 +56,15 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetAuthorizationCodeResponse:
     """
     The response schema for the GetAuthorizationCode operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "AuthorizationCode" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["AuthorizationCode"] = attrs.field()
 
 
 class AuthorizationV1Client(BaseClient):

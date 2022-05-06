@@ -9,45 +9,35 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AcceptedRate:
     """
     The specific rate purchased for the shipment, or null if unpurchased.
     """
 
-    billed_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    billed_weight: Optional["Weight"] = attrs.field()
 
-    promise: "ShippingPromiseSet" = attrs.field(
-        kw_only=True,
-    )
+    promise: Optional["ShippingPromiseSet"] = attrs.field()
 
-    service_type: "ServiceType" = attrs.field(
-        kw_only=True,
-    )
+    service_type: Optional["ServiceType"] = attrs.field()
 
-    total_charge: "Currency" = attrs.field(
-        kw_only=True,
-    )
+    total_charge: Optional["Currency"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Account:
     """
     The account related data.
     """
 
-    account_id: "AccountId" = attrs.field(
-        kw_only=True,
-    )
+    account_id: Optional["AccountId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AccountId:
     """
     This is the Amazon Shipping account id generated during the Amazon Shipping onboarding process.
@@ -56,15 +46,13 @@ class AccountId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Address:
     """
     The address.
     """
 
-    address_line1: str = attrs.field(
-        kw_only=True,
-    )
+    address_line1: Optional[str] = attrs.field()
     """
     First line of that address.
 
@@ -72,9 +60,7 @@ class Address:
     {'maxLength': 60, 'minLength': 1}
     """
 
-    address_line2: str = attrs.field(
-        kw_only=True,
-    )
+    address_line2: Optional[str] = attrs.field()
     """
     Additional address information, if required.
 
@@ -82,9 +68,7 @@ class Address:
     {'maxLength': 60, 'minLength': 1}
     """
 
-    address_line3: str = attrs.field(
-        kw_only=True,
-    )
+    address_line3: Optional[str] = attrs.field()
     """
     Additional address information, if required.
 
@@ -92,13 +76,9 @@ class Address:
     {'maxLength': 60, 'minLength': 1}
     """
 
-    city: "City" = attrs.field(
-        kw_only=True,
-    )
+    city: Optional["City"] = attrs.field()
 
-    copy_emails: List[str] = attrs.field(
-        kw_only=True,
-    )
+    copy_emails: Optional[List[str]] = attrs.field()
     """
     The email cc addresses of the contact associated with the address.
 
@@ -106,13 +86,9 @@ class Address:
     {'maxItems': 2}
     """
 
-    country_code: "CountryCode" = attrs.field(
-        kw_only=True,
-    )
+    country_code: Optional["CountryCode"] = attrs.field()
 
-    email: str = attrs.field(
-        kw_only=True,
-    )
+    email: Optional[str] = attrs.field()
     """
     The email address of the contact associated with the address.
 
@@ -120,9 +96,7 @@ class Address:
     {'maxLength': 64}
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The name of the person, business or institution at that address.
 
@@ -130,9 +104,7 @@ class Address:
     {'maxLength': 50, 'minLength': 1}
     """
 
-    phone_number: str = attrs.field(
-        kw_only=True,
-    )
+    phone_number: Optional[str] = attrs.field()
     """
     The phone number of the person, business or institution located at that address.
 
@@ -140,27 +112,21 @@ class Address:
     {'maxLength': 20, 'minLength': 1}
     """
 
-    postal_code: "PostalCode" = attrs.field(
-        kw_only=True,
-    )
+    postal_code: Optional["PostalCode"] = attrs.field()
 
-    state_or_region: "StateOrRegion" = attrs.field(
-        kw_only=True,
-    )
+    state_or_region: Optional["StateOrRegion"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CancelShipmentResponse:
     """
     The response schema for the cancelShipment operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class City:
     """
     The city where the person, business or institution is located.
@@ -169,7 +135,7 @@ class City:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ClientReferenceId:
     """
     Client reference id.
@@ -178,59 +144,43 @@ class ClientReferenceId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Container:
     """
     Container in the shipment.
     """
 
-    container_reference_id: "ContainerReferenceId" = attrs.field(
-        kw_only=True,
-    )
+    container_reference_id: Optional["ContainerReferenceId"] = attrs.field()
 
-    container_type: Union[Literal["PACKAGE"]] = attrs.field(
-        kw_only=True,
-    )
+    container_type: Optional[Union[Literal["PACKAGE"]]] = attrs.field()
     """
     The type of physical container being used. (always 'PACKAGE')
     """
 
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
+    dimensions: Optional["Dimensions"] = attrs.field()
 
-    items: List["ContainerItem"] = attrs.field(
-        kw_only=True,
-    )
+    items: Optional[List["ContainerItem"]] = attrs.field()
     """
     A list of the items in the container.
     """
 
-    value: "Currency" = attrs.field(
-        kw_only=True,
-    )
+    value: Optional["Currency"] = attrs.field()
 
-    weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ContainerItem:
     """
     Item in the container.
     """
 
-    quantity: float = attrs.field(
-        kw_only=True,
-    )
+    quantity: Optional[float] = attrs.field()
     """
     The quantity of the items of this type in the container.
     """
 
-    title: str = attrs.field(
-        kw_only=True,
-    )
+    title: Optional[str] = attrs.field()
     """
     A descriptive title of the item.
 
@@ -238,16 +188,12 @@ class ContainerItem:
     {'maxLength': 30}
     """
 
-    unit_price: "Currency" = attrs.field(
-        kw_only=True,
-    )
+    unit_price: Optional["Currency"] = attrs.field()
 
-    unit_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    unit_weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ContainerList:
     """
     A list of container.
@@ -256,7 +202,7 @@ class ContainerList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ContainerReferenceId:
     """
     An identifier for the container. This must be unique within all the containers in the same shipment.
@@ -265,22 +211,18 @@ class ContainerReferenceId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ContainerSpecification:
     """
     Container specification for checking the service rate.
     """
 
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
+    dimensions: Optional["Dimensions"] = attrs.field()
 
-    weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ContainerSpecificationList:
     """
     A list of container specifications.
@@ -289,7 +231,7 @@ class ContainerSpecificationList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CountryCode:
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
@@ -298,68 +240,50 @@ class CountryCode:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateShipmentRequest:
     """
     The request schema for the createShipment operation.
     """
 
-    client_reference_id: "ClientReferenceId" = attrs.field(
-        kw_only=True,
-    )
+    client_reference_id: Optional["ClientReferenceId"] = attrs.field()
 
-    containers: "ContainerList" = attrs.field(
-        kw_only=True,
-    )
+    containers: Optional["ContainerList"] = attrs.field()
 
-    ship_from: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_from: Optional["Address"] = attrs.field()
 
-    ship_to: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_to: Optional["Address"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateShipmentResponse:
     """
     The response schema for the createShipment operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "CreateShipmentResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["CreateShipmentResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateShipmentResult:
     """
     The payload schema for the createShipment operation.
     """
 
-    eligible_rates: "RateList" = attrs.field(
-        kw_only=True,
-    )
+    eligible_rates: Optional["RateList"] = attrs.field()
 
-    shipment_id: "ShipmentId" = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional["ShipmentId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Currency:
     """
     The total value of all items in the container.
     """
 
-    unit: str = attrs.field(
-        kw_only=True,
-    )
+    unit: Optional[str] = attrs.field()
     """
     A 3-character currency code.
 
@@ -367,78 +291,62 @@ class Currency:
     {'maxLength': 3, 'minLength': 3}
     """
 
-    value: float = attrs.field(
-        kw_only=True,
-    )
+    value: Optional[float] = attrs.field()
     """
     The amount of currency.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Dimensions:
     """
     A set of measurements for a three-dimensional object.
     """
 
-    height: float = attrs.field(
-        kw_only=True,
-    )
+    height: Optional[float] = attrs.field()
     """
     The height of the container.
     """
 
-    length: float = attrs.field(
-        kw_only=True,
-    )
+    length: Optional[float] = attrs.field()
     """
     The length of the container.
     """
 
-    unit: Union[Literal["IN"], Literal["CM"]] = attrs.field(
-        kw_only=True,
-    )
+    unit: Optional[Union[Literal["IN"], Literal["CM"]]] = attrs.field()
     """
     The unit of these measurements.
     """
 
-    width: float = attrs.field(
-        kw_only=True,
-    )
+    width: Optional[float] = attrs.field()
     """
     The width of the container.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -447,19 +355,15 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Event:
     """
     An event of a shipment
     """
 
-    event_code: "EventCode" = attrs.field(
-        kw_only=True,
-    )
+    event_code: Optional["EventCode"] = attrs.field()
 
-    event_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    event_time: Optional[datetime] = attrs.field()
     """
     The date and time of an event for a shipment.
 
@@ -467,12 +371,10 @@ class Event:
     {'schema_format': 'date-time'}
     """
 
-    location: "Location" = attrs.field(
-        kw_only=True,
-    )
+    location: Optional["Location"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class EventCode:
     """
     The event code of a shipment, such as Departed, Received, and ReadyForReceive.
@@ -481,7 +383,7 @@ class EventCode:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class EventList:
     """
     A list of events of a shipment.
@@ -490,38 +392,28 @@ class EventList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetAccountResponse:
     """
     The response schema for the getAccount operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Account" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Account"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetRatesRequest:
     """
     The payload schema for the getRates operation.
     """
 
-    container_specifications: "ContainerSpecificationList" = attrs.field(
-        kw_only=True,
-    )
+    container_specifications: Optional["ContainerSpecificationList"] = attrs.field()
 
-    service_types: "ServiceTypeList" = attrs.field(
-        kw_only=True,
-    )
+    service_types: Optional["ServiceTypeList"] = attrs.field()
 
-    ship_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    ship_date: Optional[datetime] = attrs.field()
     """
     The start date and time. This defaults to the current date and time.
 
@@ -529,109 +421,81 @@ class GetRatesRequest:
     {'schema_format': 'date-time'}
     """
 
-    ship_from: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_from: Optional["Address"] = attrs.field()
 
-    ship_to: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_to: Optional["Address"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetRatesResponse:
     """
     The response schema for the getRates operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetRatesResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetRatesResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetRatesResult:
     """
     The payload schema for the getRates operation.
     """
 
-    service_rates: "ServiceRateList" = attrs.field(
-        kw_only=True,
-    )
+    service_rates: Optional["ServiceRateList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetShipmentResponse:
     """
     The response schema for the getShipment operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Shipment" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Shipment"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetTrackingInformationResponse:
     """
     The response schema for the getTrackingInformation operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "TrackingInformation" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["TrackingInformation"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Label:
     """
     The label details of the container.
     """
 
-    label_specification: "LabelSpecification" = attrs.field(
-        kw_only=True,
-    )
+    label_specification: Optional["LabelSpecification"] = attrs.field()
 
-    label_stream: "LabelStream" = attrs.field(
-        kw_only=True,
-    )
+    label_stream: Optional["LabelStream"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LabelResult:
     """
     Label details including label stream, format, size.
     """
 
-    container_reference_id: "ContainerReferenceId" = attrs.field(
-        kw_only=True,
-    )
+    container_reference_id: Optional["ContainerReferenceId"] = attrs.field()
 
-    label: "Label" = attrs.field(
-        kw_only=True,
-    )
+    label: Optional["Label"] = attrs.field()
 
-    tracking_id: str = attrs.field(
-        kw_only=True,
-    )
+    tracking_id: Optional[str] = attrs.field()
     """
     The tracking identifier assigned to the container.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LabelResultList:
     """
     A list of label results
@@ -640,28 +504,24 @@ class LabelResultList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LabelSpecification:
     """
     The label specification info.
     """
 
-    label_format: Union[Literal["PNG"]] = attrs.field(
-        kw_only=True,
-    )
+    label_format: Optional[Union[Literal["PNG"]]] = attrs.field()
     """
     The format of the label. Enum of PNG only for now.
     """
 
-    label_stock_size: Union[Literal["4x6"]] = attrs.field(
-        kw_only=True,
-    )
+    label_stock_size: Optional[Union[Literal["4x6"]]] = attrs.field()
     """
     The label stock size specification in length and height. Enum of 4x6 only for now.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LabelStream:
     """
     Contains binary image data encoded as a base-64 string.
@@ -670,41 +530,31 @@ class LabelStream:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Location:
     """
     The location where the person, business or institution is located.
     """
 
-    city: "City" = attrs.field(
-        kw_only=True,
-    )
+    city: Optional["City"] = attrs.field()
 
-    country_code: "CountryCode" = attrs.field(
-        kw_only=True,
-    )
+    country_code: Optional["CountryCode"] = attrs.field()
 
-    postal_code: "PostalCode" = attrs.field(
-        kw_only=True,
-    )
+    postal_code: Optional["PostalCode"] = attrs.field()
 
-    state_or_region: "StateOrRegion" = attrs.field(
-        kw_only=True,
-    )
+    state_or_region: Optional["StateOrRegion"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Party:
     """
     The account related with the shipment.
     """
 
-    account_id: "AccountId" = attrs.field(
-        kw_only=True,
-    )
+    account_id: Optional["AccountId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PostalCode:
     """
     The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
@@ -713,7 +563,7 @@ class PostalCode:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PromisedDeliveryDate:
     """
     The promised delivery date and time of a shipment.
@@ -722,84 +572,58 @@ class PromisedDeliveryDate:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PurchaseLabelsRequest:
     """
     The request schema for the purchaseLabels operation.
     """
 
-    label_specification: "LabelSpecification" = attrs.field(
-        kw_only=True,
-    )
+    label_specification: Optional["LabelSpecification"] = attrs.field()
 
-    rate_id: "RateId" = attrs.field(
-        kw_only=True,
-    )
+    rate_id: Optional["RateId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PurchaseLabelsResponse:
     """
     The response schema for the purchaseLabels operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "PurchaseLabelsResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["PurchaseLabelsResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PurchaseLabelsResult:
     """
     The payload schema for the purchaseLabels operation.
     """
 
-    accepted_rate: "AcceptedRate" = attrs.field(
-        kw_only=True,
-    )
+    accepted_rate: Optional["AcceptedRate"] = attrs.field()
 
-    client_reference_id: "ClientReferenceId" = attrs.field(
-        kw_only=True,
-    )
+    client_reference_id: Optional["ClientReferenceId"] = attrs.field()
 
-    label_results: "LabelResultList" = attrs.field(
-        kw_only=True,
-    )
+    label_results: Optional["LabelResultList"] = attrs.field()
 
-    shipment_id: "ShipmentId" = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional["ShipmentId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PurchaseShipmentRequest:
     """
     The payload schema for the purchaseShipment operation.
     """
 
-    client_reference_id: "ClientReferenceId" = attrs.field(
-        kw_only=True,
-    )
+    client_reference_id: Optional["ClientReferenceId"] = attrs.field()
 
-    containers: "ContainerList" = attrs.field(
-        kw_only=True,
-    )
+    containers: Optional["ContainerList"] = attrs.field()
 
-    label_specification: "LabelSpecification" = attrs.field(
-        kw_only=True,
-    )
+    label_specification: Optional["LabelSpecification"] = attrs.field()
 
-    service_type: "ServiceType" = attrs.field(
-        kw_only=True,
-    )
+    service_type: Optional["ServiceType"] = attrs.field()
 
-    ship_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    ship_date: Optional[datetime] = attrs.field()
     """
     The start date and time. This defaults to the current date and time.
 
@@ -807,62 +631,44 @@ class PurchaseShipmentRequest:
     {'schema_format': 'date-time'}
     """
 
-    ship_from: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_from: Optional["Address"] = attrs.field()
 
-    ship_to: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_to: Optional["Address"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PurchaseShipmentResponse:
     """
     The response schema for the purchaseShipment operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "PurchaseShipmentResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["PurchaseShipmentResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PurchaseShipmentResult:
     """
     The payload schema for the purchaseShipment operation.
     """
 
-    label_results: "LabelResultList" = attrs.field(
-        kw_only=True,
-    )
+    label_results: Optional["LabelResultList"] = attrs.field()
 
-    service_rate: "ServiceRate" = attrs.field(
-        kw_only=True,
-    )
+    service_rate: Optional["ServiceRate"] = attrs.field()
 
-    shipment_id: "ShipmentId" = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional["ShipmentId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Rate:
     """
     The available rate that can be used to send the shipment
     """
 
-    billed_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    billed_weight: Optional["Weight"] = attrs.field()
 
-    expiration_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    expiration_time: Optional[datetime] = attrs.field()
     """
     The time after which the offering will expire.
 
@@ -870,27 +676,19 @@ class Rate:
     {'schema_format': 'date-time'}
     """
 
-    promise: "ShippingPromiseSet" = attrs.field(
-        kw_only=True,
-    )
+    promise: Optional["ShippingPromiseSet"] = attrs.field()
 
-    rate_id: str = attrs.field(
-        kw_only=True,
-    )
+    rate_id: Optional[str] = attrs.field()
     """
     An identifier for the rate.
     """
 
-    service_type: "ServiceType" = attrs.field(
-        kw_only=True,
-    )
+    service_type: Optional["ServiceType"] = attrs.field()
 
-    total_charge: "Currency" = attrs.field(
-        kw_only=True,
-    )
+    total_charge: Optional["Currency"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RateId:
     """
     An identifier for the rating.
@@ -899,7 +697,7 @@ class RateId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RateList:
     """
     A list of all the available rates that can be used to send the shipment.
@@ -908,71 +706,53 @@ class RateList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RetrieveShippingLabelRequest:
     """
     The request schema for the retrieveShippingLabel operation.
     """
 
-    label_specification: "LabelSpecification" = attrs.field(
-        kw_only=True,
-    )
+    label_specification: Optional["LabelSpecification"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RetrieveShippingLabelResponse:
     """
     The response schema for the retrieveShippingLabel operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "RetrieveShippingLabelResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["RetrieveShippingLabelResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RetrieveShippingLabelResult:
     """
     The payload schema for the retrieveShippingLabel operation.
     """
 
-    label_specification: "LabelSpecification" = attrs.field(
-        kw_only=True,
-    )
+    label_specification: Optional["LabelSpecification"] = attrs.field()
 
-    label_stream: "LabelStream" = attrs.field(
-        kw_only=True,
-    )
+    label_stream: Optional["LabelStream"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ServiceRate:
     """
     The specific rate for a shipping service, or null if no service available.
     """
 
-    billable_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    billable_weight: Optional["Weight"] = attrs.field()
 
-    promise: "ShippingPromiseSet" = attrs.field(
-        kw_only=True,
-    )
+    promise: Optional["ShippingPromiseSet"] = attrs.field()
 
-    service_type: "ServiceType" = attrs.field(
-        kw_only=True,
-    )
+    service_type: Optional["ServiceType"] = attrs.field()
 
-    total_charge: "Currency" = attrs.field(
-        kw_only=True,
-    )
+    total_charge: Optional["Currency"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ServiceRateList:
     """
     A list of service rates.
@@ -981,7 +761,7 @@ class ServiceRateList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ServiceType:
     """
     The type of shipping service that will be used for the service offering.
@@ -990,7 +770,7 @@ class ServiceType:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ServiceTypeList:
     """
     A list of service types that can be used to send the shipment.
@@ -999,42 +779,28 @@ class ServiceTypeList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Shipment:
     """
     The shipment related data.
     """
 
-    accepted_rate: "AcceptedRate" = attrs.field(
-        kw_only=True,
-    )
+    accepted_rate: Optional["AcceptedRate"] = attrs.field()
 
-    client_reference_id: "ClientReferenceId" = attrs.field(
-        kw_only=True,
-    )
+    client_reference_id: Optional["ClientReferenceId"] = attrs.field()
 
-    containers: "ContainerList" = attrs.field(
-        kw_only=True,
-    )
+    containers: Optional["ContainerList"] = attrs.field()
 
-    ship_from: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_from: Optional["Address"] = attrs.field()
 
-    ship_to: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_to: Optional["Address"] = attrs.field()
 
-    shipment_id: "ShipmentId" = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional["ShipmentId"] = attrs.field()
 
-    shipper: "Party" = attrs.field(
-        kw_only=True,
-    )
+    shipper: Optional["Party"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentId:
     """
     The unique shipment identifier.
@@ -1043,22 +809,18 @@ class ShipmentId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShippingPromiseSet:
     """
     The promised delivery time and pickup time.
     """
 
-    delivery_window: "TimeRange" = attrs.field(
-        kw_only=True,
-    )
+    delivery_window: Optional["TimeRange"] = attrs.field()
 
-    receive_window: "TimeRange" = attrs.field(
-        kw_only=True,
-    )
+    receive_window: Optional["TimeRange"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class StateOrRegion:
     """
     The state or region where the person, business or institution is located.
@@ -1067,15 +829,13 @@ class StateOrRegion:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TimeRange:
     """
     The time range.
     """
 
-    end: datetime = attrs.field(
-        kw_only=True,
-    )
+    end: Optional[datetime] = attrs.field()
     """
     The end date and time. This must come after the value of start. This defaults to the next business day from the start.
 
@@ -1083,9 +843,7 @@ class TimeRange:
     {'schema_format': 'date-time'}
     """
 
-    start: datetime = attrs.field(
-        kw_only=True,
-    )
+    start: Optional[datetime] = attrs.field()
     """
     The start date and time. This defaults to the current date and time.
 
@@ -1094,7 +852,7 @@ class TimeRange:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TrackingId:
     """
     The tracking id generated to each shipment. It contains a series of letters or digits or both.
@@ -1103,38 +861,28 @@ class TrackingId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TrackingInformation:
     """
     The payload schema for the getTrackingInformation operation.
     """
 
-    event_history: "EventList" = attrs.field(
-        kw_only=True,
-    )
+    event_history: Optional["EventList"] = attrs.field()
 
-    promised_delivery_date: "PromisedDeliveryDate" = attrs.field(
-        kw_only=True,
-    )
+    promised_delivery_date: Optional["PromisedDeliveryDate"] = attrs.field()
 
-    summary: "TrackingSummary" = attrs.field(
-        kw_only=True,
-    )
+    summary: Optional["TrackingSummary"] = attrs.field()
 
-    tracking_id: "TrackingId" = attrs.field(
-        kw_only=True,
-    )
+    tracking_id: Optional["TrackingId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TrackingSummary:
     """
     The tracking summary.
     """
 
-    status: str = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[str] = attrs.field()
     """
     The derived status based on the events in the eventHistory.
 
@@ -1143,22 +891,18 @@ class TrackingSummary:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Weight:
     """
     The weight.
     """
 
-    unit: Union[Literal["g"], Literal["kg"], Literal["oz"], Literal["lb"]] = attrs.field(
-        kw_only=True,
-    )
+    unit: Optional[Union[Literal["g"], Literal["kg"], Literal["oz"], Literal["lb"]]] = attrs.field()
     """
     The unit of measurement.
     """
 
-    value: float = attrs.field(
-        kw_only=True,
-    )
+    value: Optional[float] = attrs.field()
     """
     The measurement value.
     """

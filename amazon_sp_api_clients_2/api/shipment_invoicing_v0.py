@@ -9,99 +9,75 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Address:
     """
     The shipping address details of the shipment.
     """
 
-    address_line1: str = attrs.field(
-        kw_only=True,
-    )
+    address_line1: Optional[str] = attrs.field()
     """
     The street address.
     """
 
-    address_line2: str = attrs.field(
-        kw_only=True,
-    )
+    address_line2: Optional[str] = attrs.field()
     """
     Additional street address information, if required.
     """
 
-    address_line3: str = attrs.field(
-        kw_only=True,
-    )
+    address_line3: Optional[str] = attrs.field()
     """
     Additional street address information, if required.
     """
 
-    address_type: "AddressTypeEnum" = attrs.field(
-        kw_only=True,
-    )
+    address_type: Optional["AddressTypeEnum"] = attrs.field()
 
-    city: str = attrs.field(
-        kw_only=True,
-    )
+    city: Optional[str] = attrs.field()
     """
     The city.
     """
 
-    country_code: str = attrs.field(
-        kw_only=True,
-    )
+    country_code: Optional[str] = attrs.field()
     """
     The country code.
     """
 
-    county: str = attrs.field(
-        kw_only=True,
-    )
+    county: Optional[str] = attrs.field()
     """
     The county.
     """
 
-    district: str = attrs.field(
-        kw_only=True,
-    )
+    district: Optional[str] = attrs.field()
     """
     The district.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The name.
     """
 
-    phone: str = attrs.field(
-        kw_only=True,
-    )
+    phone: Optional[str] = attrs.field()
     """
     The phone number.
     """
 
-    postal_code: str = attrs.field(
-        kw_only=True,
-    )
+    postal_code: Optional[str] = attrs.field()
     """
     The postal code.
     """
 
-    state_or_region: str = attrs.field(
-        kw_only=True,
-    )
+    state_or_region: Optional[str] = attrs.field()
     """
     The state or region.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AddressTypeEnum:
     """
     The shipping address type.
@@ -110,7 +86,7 @@ class AddressTypeEnum:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Blob:
     """
     Shipment invoice document content.
@@ -119,60 +95,48 @@ class Blob:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BuyerTaxInfo:
     """
     Tax information about the buyer.
     """
 
-    company_legal_name: str = attrs.field(
-        kw_only=True,
-    )
+    company_legal_name: Optional[str] = attrs.field()
     """
     The legal name of the company.
     """
 
-    tax_classifications: "TaxClassificationList" = attrs.field(
-        kw_only=True,
-    )
+    tax_classifications: Optional["TaxClassificationList"] = attrs.field()
 
-    taxing_region: str = attrs.field(
-        kw_only=True,
-    )
+    taxing_region: Optional[str] = attrs.field()
     """
     The country or region imposing the tax.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     An error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -181,83 +145,65 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetInvoiceStatusResponse:
     """
     The response schema for the getInvoiceStatus operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "ShipmentInvoiceStatusResponse" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["ShipmentInvoiceStatusResponse"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetShipmentDetailsResponse:
     """
     The response schema for the getShipmentDetails operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "ShipmentDetail" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["ShipmentDetail"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MarketplaceTaxInfo:
     """
     Tax information about the marketplace.
     """
 
-    company_legal_name: str = attrs.field(
-        kw_only=True,
-    )
+    company_legal_name: Optional[str] = attrs.field()
     """
     The legal name of the company.
     """
 
-    tax_classifications: "TaxClassificationList" = attrs.field(
-        kw_only=True,
-    )
+    tax_classifications: Optional["TaxClassificationList"] = attrs.field()
 
-    taxing_region: str = attrs.field(
-        kw_only=True,
-    )
+    taxing_region: Optional[str] = attrs.field()
     """
     The country or region imposing the tax.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Money:
     """
     The currency type and amount.
     """
 
-    amount: str = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional[str] = attrs.field()
     """
     The currency amount.
     """
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     Three-digit currency code in ISO 4217 format.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PaymentMethodDetailItemList:
     """
     The list of payment method details.
@@ -266,7 +212,7 @@ class PaymentMethodDetailItemList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SerialNumbersList:
     """
     The list of serial numbers.
@@ -275,62 +221,44 @@ class SerialNumbersList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentDetail:
     """
     The information required by a selling partner to issue a shipment invoice.
     """
 
-    amazon_order_id: str = attrs.field(
-        kw_only=True,
-    )
+    amazon_order_id: Optional[str] = attrs.field()
     """
     The Amazon-defined identifier for the order.
     """
 
-    amazon_shipment_id: str = attrs.field(
-        kw_only=True,
-    )
+    amazon_shipment_id: Optional[str] = attrs.field()
     """
     The Amazon-defined identifier for the shipment.
     """
 
-    buyer_county: str = attrs.field(
-        kw_only=True,
-    )
+    buyer_county: Optional[str] = attrs.field()
     """
     The county of the buyer.
     """
 
-    buyer_name: str = attrs.field(
-        kw_only=True,
-    )
+    buyer_name: Optional[str] = attrs.field()
     """
     The name of the buyer.
     """
 
-    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
-        kw_only=True,
-    )
+    buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field()
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     The identifier for the marketplace where the order was placed.
     """
 
-    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field(
-        kw_only=True,
-    )
+    marketplace_tax_info: Optional["MarketplaceTaxInfo"] = attrs.field()
 
-    payment_method_details: "PaymentMethodDetailItemList" = attrs.field(
-        kw_only=True,
-    )
+    payment_method_details: Optional["PaymentMethodDetailItemList"] = attrs.field()
 
-    purchase_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    purchase_date: Optional[datetime] = attrs.field()
     """
     The date and time when the order was created.
 
@@ -338,37 +266,27 @@ class ShipmentDetail:
     {'schema_format': 'date-time'}
     """
 
-    seller_display_name: str = attrs.field(
-        kw_only=True,
-    )
+    seller_display_name: Optional[str] = attrs.field()
     """
     The seller’s friendly name registered in the marketplace.
     """
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The seller identifier.
     """
 
-    shipment_items: "ShipmentItems" = attrs.field(
-        kw_only=True,
-    )
+    shipment_items: Optional["ShipmentItems"] = attrs.field()
 
-    shipping_address: "Address" = attrs.field(
-        kw_only=True,
-    )
+    shipping_address: Optional["Address"] = attrs.field()
 
-    warehouse_id: str = attrs.field(
-        kw_only=True,
-    )
+    warehouse_id: Optional[str] = attrs.field()
     """
     The Amazon-defined identifier for the warehouse.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentInvoiceStatus:
     """
     The shipment invoice status.
@@ -377,102 +295,74 @@ class ShipmentInvoiceStatus:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentInvoiceStatusInfo:
     """
     The shipment invoice status information.
     """
 
-    amazon_shipment_id: str = attrs.field(
-        kw_only=True,
-    )
+    amazon_shipment_id: Optional[str] = attrs.field()
     """
     The Amazon-defined shipment identifier.
     """
 
-    invoice_status: "ShipmentInvoiceStatus" = attrs.field(
-        kw_only=True,
-    )
+    invoice_status: Optional["ShipmentInvoiceStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentInvoiceStatusResponse:
     """
     The shipment invoice status response.
     """
 
-    shipments: "ShipmentInvoiceStatusInfo" = attrs.field(
-        kw_only=True,
-    )
+    shipments: Optional["ShipmentInvoiceStatusInfo"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentItem:
     """
     The shipment item information required by a seller to issue a shipment invoice.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    gift_wrap_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    gift_wrap_price: Optional["Money"] = attrs.field()
 
-    item_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    item_price: Optional["Money"] = attrs.field()
 
-    order_item_id: str = attrs.field(
-        kw_only=True,
-    )
+    order_item_id: Optional[str] = attrs.field()
     """
     The Amazon-defined identifier for the order item.
     """
 
-    promotion_discount: "Money" = attrs.field(
-        kw_only=True,
-    )
+    promotion_discount: Optional["Money"] = attrs.field()
 
-    quantity_ordered: float = attrs.field(
-        kw_only=True,
-    )
+    quantity_ordered: Optional[float] = attrs.field()
     """
     The number of items ordered.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
-    serial_numbers: "SerialNumbersList" = attrs.field(
-        kw_only=True,
-    )
+    serial_numbers: Optional["SerialNumbersList"] = attrs.field()
 
-    shipping_discount: "Money" = attrs.field(
-        kw_only=True,
-    )
+    shipping_discount: Optional["Money"] = attrs.field()
 
-    shipping_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    shipping_price: Optional["Money"] = attrs.field()
 
-    title: str = attrs.field(
-        kw_only=True,
-    )
+    title: Optional[str] = attrs.field()
     """
     The name of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentItems:
     """
     A list of shipment items.
@@ -481,64 +371,52 @@ class ShipmentItems:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SubmitInvoiceRequest:
     """
     The request schema for the submitInvoice operation.
     """
 
-    content_md5value: str = attrs.field(
-        kw_only=True,
-    )
+    content_md5value: Optional[str] = attrs.field()
     """
     MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
     """
 
-    invoice_content: "Blob" = attrs.field(
-        kw_only=True,
-    )
+    invoice_content: Optional["Blob"] = attrs.field()
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     An Amazon marketplace identifier.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SubmitInvoiceResponse:
     """
     The response schema for the submitInvoice operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TaxClassification:
     """
     The tax classification for the entity.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The type of tax.
     """
 
-    value: str = attrs.field(
-        kw_only=True,
-    )
+    value: Optional[str] = attrs.field()
     """
     The entity's tax identifier.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TaxClassificationList:
     """
     The list of tax classifications.

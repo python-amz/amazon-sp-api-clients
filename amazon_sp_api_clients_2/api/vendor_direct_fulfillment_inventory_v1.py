@@ -9,39 +9,33 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -50,124 +44,96 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InventoryUpdate:
 
-    is_full_update: bool = attrs.field(
-        kw_only=True,
-    )
+    is_full_update: Optional[bool] = attrs.field()
     """
     When true, this request contains a full feed. Otherwise, this request contains a partial feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in the full feed are updated as not available. When sending a partial feed, only include the items that need an update to inventory. The status of other items will remain unchanged.
     """
 
-    items: List["ItemDetails"] = attrs.field(
-        kw_only=True,
-    )
+    items: Optional[List["ItemDetails"]] = attrs.field()
     """
     A list of inventory items with updated details, including quantity available.
     """
 
-    selling_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    selling_party: Optional["PartyIdentification"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemDetails:
     """
     Updated inventory details for an item.
     """
 
-    available_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    available_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    buyer_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    buyer_product_identifier: Optional[str] = attrs.field()
     """
     The buyer selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
     """
 
-    is_obsolete: bool = attrs.field(
-        kw_only=True,
-    )
+    is_obsolete: Optional[bool] = attrs.field()
     """
     When true, the item is permanently unavailable.
     """
 
-    vendor_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    vendor_product_identifier: Optional[str] = attrs.field()
     """
     The vendor selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemQuantity:
     """
     Details of item quantity.
     """
 
-    amount: int = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional[int] = attrs.field()
     """
     Quantity of units available for a specific item.
     """
 
-    unit_of_measure: str = attrs.field(
-        kw_only=True,
-    )
+    unit_of_measure: Optional[str] = attrs.field()
     """
     Unit of measure for the available quantity.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    party_id: str = attrs.field(
-        kw_only=True,
-    )
+    party_id: Optional[str] = attrs.field()
     """
     Assigned identification for the party.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SubmitInventoryUpdateRequest:
     """
     The request body for the submitInventoryUpdate operation.
     """
 
-    inventory: "InventoryUpdate" = attrs.field(
-        kw_only=True,
-    )
+    inventory: Optional["InventoryUpdate"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SubmitInventoryUpdateResponse:
     """
     The response schema for the submitInventoryUpdate operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "TransactionReference" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["TransactionReference"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionReference:
 
-    transaction_id: str = attrs.field(
-        kw_only=True,
-    )
+    transaction_id: Optional[str] = attrs.field()
     """
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """

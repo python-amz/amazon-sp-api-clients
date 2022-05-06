@@ -11,131 +11,101 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ProductType:
     """
     An Amazon product type with a definition available.
     """
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     The Amazon marketplace identifiers for which the product type definition is available.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The name of the Amazon product type.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ProductTypeDefinition:
     """
     A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
     """
 
-    locale: str = attrs.field(
-        kw_only=True,
-    )
+    locale: Optional[str] = attrs.field()
     """
     Locale of the display elements contained in the product type definition.
     """
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     Amazon marketplace identifiers for which the product type definition is applicable.
     """
 
-    meta_schema: "SchemaLink" = attrs.field(
-        kw_only=True,
-    )
+    meta_schema: Optional["SchemaLink"] = attrs.field()
 
-    product_type: str = attrs.field(
-        kw_only=True,
-    )
+    product_type: Optional[str] = attrs.field()
     """
     The name of the Amazon product type that this product type definition applies to.
     """
 
-    product_type_version: "ProductTypeVersion" = attrs.field(
-        kw_only=True,
-    )
+    product_type_version: Optional["ProductTypeVersion"] = attrs.field()
 
-    property_groups: "ProductTypeDefinitionPropertyGroups" = attrs.field(
-        kw_only=True,
-    )
+    property_groups: Optional["ProductTypeDefinitionPropertyGroups"] = attrs.field()
 
-    requirements: Union[
-        Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    requirements: Optional[
+        Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    ] = attrs.field()
     """
     Name of the requirements set represented in this product type definition.
     """
 
-    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = attrs.field(
-        kw_only=True,
-    )
+    requirements_enforced: Optional[Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]]] = attrs.field()
     """
     Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).
     """
 
-    schema: "SchemaLink" = attrs.field(
-        kw_only=True,
-    )
+    schema: Optional["SchemaLink"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=False)
 class ProductTypeDefinitionPropertyGroups:
     """
     Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
@@ -144,104 +114,82 @@ class ProductTypeDefinitionPropertyGroups:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ProductTypeList:
     """
     A list of Amazon product types with definitions available.
     """
 
-    product_types: List["ProductType"] = attrs.field(
-        kw_only=True,
-    )
+    product_types: Optional[List["ProductType"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ProductTypeVersion:
     """
     The version details for an Amazon product type.
     """
 
-    latest: bool = attrs.field(
-        kw_only=True,
-    )
+    latest: Optional[bool] = attrs.field()
     """
     When true, the version indicated by the version identifier is the latest available for the Amazon product type.
     """
 
-    release_candidate: bool = attrs.field(
-        kw_only=True,
-    )
+    release_candidate: Optional[bool] = attrs.field()
     """
     When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
     """
 
-    version: str = attrs.field(
-        kw_only=True,
-    )
+    version: Optional[str] = attrs.field()
     """
     Version identifier.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PropertyGroup:
     """
     A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
     """
 
-    description: str = attrs.field(
-        kw_only=True,
-    )
+    description: Optional[str] = attrs.field()
     """
     The description of the property group.
     """
 
-    property_names: List[str] = attrs.field(
-        kw_only=True,
-    )
+    property_names: Optional[List[str]] = attrs.field()
     """
     The names of the schema properties for the property group.
     """
 
-    title: str = attrs.field(
-        kw_only=True,
-    )
+    title: Optional[str] = attrs.field()
     """
     The display label of the property group.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SchemaLink:
 
-    checksum: str = attrs.field(
-        kw_only=True,
-    )
+    checksum: Optional[str] = attrs.field()
     """
     Checksum hash of the schema (Base64 MD5). Can be used to verify schema contents, identify changes between schema versions, and for caching.
     """
 
-    link: "SchemaLinkLink" = attrs.field(
-        kw_only=True,
-    )
+    link: Optional["SchemaLinkLink"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SchemaLinkLink:
     """
     Link to retrieve the schema.
     """
 
-    resource: str = attrs.field(
-        kw_only=True,
-    )
+    resource: Optional[str] = attrs.field()
     """
     URI resource for the link.
     """
 
-    verb: Union[Literal["GET"]] = attrs.field(
-        kw_only=True,
-    )
+    verb: Optional[Union[Literal["GET"]]] = attrs.field()
     """
     HTTP method for the link operation.
     """

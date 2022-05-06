@@ -9,11 +9,11 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Decimal:
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
@@ -22,35 +22,29 @@ class Decimal:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -59,83 +53,63 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetOrderMetricsResponse:
     """
     The response schema for the getOrderMetrics operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "OrderMetricsList" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["OrderMetricsList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Money:
     """
     The currency type and the amount.
     """
 
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional["Decimal"] = attrs.field()
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     Three-digit currency code. In ISO 4217 format.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderMetricsInterval:
     """
     Contains order metrics.
     """
 
-    average_unit_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    average_unit_price: Optional["Money"] = attrs.field()
 
-    interval: str = attrs.field(
-        kw_only=True,
-    )
+    interval: Optional[str] = attrs.field()
     """
     The interval of time based on requested granularity (ex. Hour, Day, etc.) If this is the first or the last interval from the list, it might contain incomplete data if the requested interval doesn't align with the requested granularity (ex. request interval 2018-09-01T02:00:00Z--2018-09-04T19:00:00Z and granularity day will result in Sept 1st UTC day and Sept 4th UTC days having partial data).
     """
 
-    order_count: int = attrs.field(
-        kw_only=True,
-    )
+    order_count: Optional[int] = attrs.field()
     """
     The number of orders based on the specified filters.
     """
 
-    order_item_count: int = attrs.field(
-        kw_only=True,
-    )
+    order_item_count: Optional[int] = attrs.field()
     """
     The number of order items based on the specified filters.
     """
 
-    total_sales: "Money" = attrs.field(
-        kw_only=True,
-    )
+    total_sales: Optional["Money"] = attrs.field()
 
-    unit_count: int = attrs.field(
-        kw_only=True,
-    )
+    unit_count: Optional[int] = attrs.field()
     """
     The number of units in orders based on the specified filters.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderMetricsList:
     """
     A set of order metrics, each scoped to a particular time interval.

@@ -9,12 +9,12 @@ License for the OpenAPI file: {{ data.data.info.license.name }} {{ data.data.inf
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
 {% for schema in data.schemas %}
-@attrs.define
+@attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
 class {{ schema.name }}:
     {% if schema.description %}"""
     {{ schema.description }}
@@ -22,9 +22,7 @@ class {{ schema.name }}:
     {% endif %}
 
     {% for property in schema.all_properties %}
-    {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(
-        kw_only=True,
-        )
+    {{ property.variable_name }}: {% if property.required %}{{ property.type_hint }}{% else %}Optional[{{ property.type_hint }}]{% endif %} = attrs.field()
     {% if property.parsed_description or property.fields %}"""{% if property.parsed_description %}
     {{ property.parsed_description }}{% endif %}{% if property.fields %}
 

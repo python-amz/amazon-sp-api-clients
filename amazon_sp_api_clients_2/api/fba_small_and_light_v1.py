@@ -9,127 +9,103 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeeLineItem:
     """
     Fee details for a specific fee.
     """
 
-    fee_charge: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    fee_charge: Optional["MoneyType"] = attrs.field()
 
-    fee_type: Union[
-        Literal["FBAWeightBasedFee"],
-        Literal["FBAPerOrderFulfillmentFee"],
-        Literal["FBAPerUnitFulfillmentFee"],
-        Literal["Commission"],
-    ] = attrs.field(
-        kw_only=True,
-    )
+    fee_type: Optional[
+        Union[
+            Literal["FBAWeightBasedFee"],
+            Literal["FBAPerOrderFulfillmentFee"],
+            Literal["FBAPerUnitFulfillmentFee"],
+            Literal["Commission"],
+        ]
+    ] = attrs.field()
     """
     The type of fee charged to the seller.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeePreview:
     """
     The fee estimate for a specific item.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) value used to identify the item.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
     """
     One or more unexpected errors occurred during the getSmallAndLightFeePreview operation.
     """
 
-    fee_breakdown: List["FeeLineItem"] = attrs.field(
-        kw_only=True,
-    )
+    fee_breakdown: Optional[List["FeeLineItem"]] = attrs.field()
     """
     A list of the Small and Light fees for the item.
     """
 
-    price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    price: Optional["MoneyType"] = attrs.field()
 
-    total_fees: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    total_fees: Optional["MoneyType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Item:
     """
     An item to be sold.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) value used to identify the item.
     """
 
-    price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    price: Optional["MoneyType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MarketplaceId:
     """
     A marketplace identifier.
@@ -138,25 +114,21 @@ class MarketplaceId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MoneyType:
 
-    amount: float = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional[float] = attrs.field()
     """
     The monetary value.
     """
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     The currency code in ISO 4217 format.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerSKU:
     """
     Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
@@ -165,26 +137,20 @@ class SellerSKU:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SmallAndLightEligibility:
     """
     The Small and Light eligibility status of the item indicated by the specified seller SKU.
     """
 
-    marketplace_id: "MarketplaceId" = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional["MarketplaceId"] = attrs.field()
 
-    seller_sku: "SellerSKU" = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional["SellerSKU"] = attrs.field()
 
-    status: "SmallAndLightEligibilityStatus" = attrs.field(
-        kw_only=True,
-    )
+    status: Optional["SmallAndLightEligibilityStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SmallAndLightEligibilityStatus:
     """
     The Small and Light eligibility status of the item.
@@ -193,26 +159,20 @@ class SmallAndLightEligibilityStatus:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SmallAndLightEnrollment:
     """
     The Small and Light enrollment status of the item indicated by the specified seller SKU.
     """
 
-    marketplace_id: "MarketplaceId" = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional["MarketplaceId"] = attrs.field()
 
-    seller_sku: "SellerSKU" = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional["SellerSKU"] = attrs.field()
 
-    status: "SmallAndLightEnrollmentStatus" = attrs.field(
-        kw_only=True,
-    )
+    status: Optional["SmallAndLightEnrollmentStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SmallAndLightEnrollmentStatus:
     """
     The Small and Light enrollment status of the item.
@@ -221,15 +181,13 @@ class SmallAndLightEnrollmentStatus:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SmallAndLightFeePreviewRequest:
     """
     Request schema for submitting items for which to retrieve fee estimates.
     """
 
-    items: List["Item"] = attrs.field(
-        kw_only=True,
-    )
+    items: Optional[List["Item"]] = attrs.field()
     """
     A list of items for which to retrieve fee estimates (limit: 25).
 
@@ -237,17 +195,13 @@ class SmallAndLightFeePreviewRequest:
     {'maxItems': 25}
     """
 
-    marketplace_id: "MarketplaceId" = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional["MarketplaceId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SmallAndLightFeePreviews:
 
-    data: List["FeePreview"] = attrs.field(
-        kw_only=True,
-    )
+    data: Optional[List["FeePreview"]] = attrs.field()
     """
     A list of fee estimates for the requested items. The order of the fee estimates will follow the same order as the items in the request, with duplicates removed.
     """

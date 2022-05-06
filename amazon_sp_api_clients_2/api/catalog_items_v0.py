@@ -9,29 +9,25 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINIdentifier:
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AttributeSetList:
     """
     A list of attributes for the item.
@@ -40,654 +36,456 @@ class AttributeSetList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AttributeSetListType:
     """
     The attributes of the item.
     """
 
-    actor: List[str] = attrs.field(
-        kw_only=True,
-    )
+    actor: Optional[List[str]] = attrs.field()
     """
     The actor attributes of the item.
     """
 
-    artist: List[str] = attrs.field(
-        kw_only=True,
-    )
+    artist: Optional[List[str]] = attrs.field()
     """
     The artist attributes of the item.
     """
 
-    aspect_ratio: str = attrs.field(
-        kw_only=True,
-    )
+    aspect_ratio: Optional[str] = attrs.field()
     """
     The aspect ratio attribute of the item.
     """
 
-    audience_rating: str = attrs.field(
-        kw_only=True,
-    )
+    audience_rating: Optional[str] = attrs.field()
     """
     The audience rating attribute of the item.
     """
 
-    author: List[str] = attrs.field(
-        kw_only=True,
-    )
+    author: Optional[List[str]] = attrs.field()
     """
     The author attributes of the item.
     """
 
-    back_finding: str = attrs.field(
-        kw_only=True,
-    )
+    back_finding: Optional[str] = attrs.field()
     """
     The back finding attribute of the item.
     """
 
-    band_material_type: str = attrs.field(
-        kw_only=True,
-    )
+    band_material_type: Optional[str] = attrs.field()
     """
     The band material type attribute of the item.
     """
 
-    binding: str = attrs.field(
-        kw_only=True,
-    )
+    binding: Optional[str] = attrs.field()
     """
     The binding attribute of the item.
     """
 
-    bluray_region: str = attrs.field(
-        kw_only=True,
-    )
+    bluray_region: Optional[str] = attrs.field()
     """
     The Bluray region attribute of the item.
     """
 
-    brand: str = attrs.field(
-        kw_only=True,
-    )
+    brand: Optional[str] = attrs.field()
     """
     The brand attribute of the item.
     """
 
-    cero_age_rating: str = attrs.field(
-        kw_only=True,
-    )
+    cero_age_rating: Optional[str] = attrs.field()
     """
     The CERO age rating attribute of the item.
     """
 
-    chain_type: str = attrs.field(
-        kw_only=True,
-    )
+    chain_type: Optional[str] = attrs.field()
     """
     The chain type attribute of the item.
     """
 
-    clasp_type: str = attrs.field(
-        kw_only=True,
-    )
+    clasp_type: Optional[str] = attrs.field()
     """
     The clasp type attribute of the item.
     """
 
-    color: str = attrs.field(
-        kw_only=True,
-    )
+    color: Optional[str] = attrs.field()
     """
     The color attribute of the item.
     """
 
-    cpu_manufacturer: str = attrs.field(
-        kw_only=True,
-    )
+    cpu_manufacturer: Optional[str] = attrs.field()
     """
     The CPU manufacturer attribute of the item.
     """
 
-    cpu_speed: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    cpu_speed: Optional["DecimalWithUnits"] = attrs.field()
 
-    cpu_type: str = attrs.field(
-        kw_only=True,
-    )
+    cpu_type: Optional[str] = attrs.field()
     """
     The CPU type attribute of the item.
     """
 
-    creator: List["CreatorType"] = attrs.field(
-        kw_only=True,
-    )
+    creator: Optional[List["CreatorType"]] = attrs.field()
     """
     The creator attributes of the item.
     """
 
-    department: str = attrs.field(
-        kw_only=True,
-    )
+    department: Optional[str] = attrs.field()
     """
     The department attribute of the item.
     """
 
-    director: List[str] = attrs.field(
-        kw_only=True,
-    )
+    director: Optional[List[str]] = attrs.field()
     """
     The director attributes of the item.
     """
 
-    display_size: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    display_size: Optional["DecimalWithUnits"] = attrs.field()
 
-    edition: str = attrs.field(
-        kw_only=True,
-    )
+    edition: Optional[str] = attrs.field()
     """
     The edition attribute of the item.
     """
 
-    episode_sequence: str = attrs.field(
-        kw_only=True,
-    )
+    episode_sequence: Optional[str] = attrs.field()
     """
     The episode sequence attribute of the item.
     """
 
-    esrb_age_rating: str = attrs.field(
-        kw_only=True,
-    )
+    esrb_age_rating: Optional[str] = attrs.field()
     """
     The ESRB age rating attribute of the item.
     """
 
-    feature: List[str] = attrs.field(
-        kw_only=True,
-    )
+    feature: Optional[List[str]] = attrs.field()
     """
     The feature attributes of the item
     """
 
-    flavor: str = attrs.field(
-        kw_only=True,
-    )
+    flavor: Optional[str] = attrs.field()
     """
     The flavor attribute of the item.
     """
 
-    format: List[str] = attrs.field(
-        kw_only=True,
-    )
+    format: Optional[List[str]] = attrs.field()
     """
     The format attributes of the item.
     """
 
-    gem_type: List[str] = attrs.field(
-        kw_only=True,
-    )
+    gem_type: Optional[List[str]] = attrs.field()
     """
     The gem type attributes of the item.
     """
 
-    genre: str = attrs.field(
-        kw_only=True,
-    )
+    genre: Optional[str] = attrs.field()
     """
     The genre attribute of the item.
     """
 
-    golf_club_flex: str = attrs.field(
-        kw_only=True,
-    )
+    golf_club_flex: Optional[str] = attrs.field()
     """
     The golf club flex attribute of the item.
     """
 
-    golf_club_loft: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    golf_club_loft: Optional["DecimalWithUnits"] = attrs.field()
 
-    hand_orientation: str = attrs.field(
-        kw_only=True,
-    )
+    hand_orientation: Optional[str] = attrs.field()
     """
     The hand orientation attribute of the item.
     """
 
-    hard_disk_interface: str = attrs.field(
-        kw_only=True,
-    )
+    hard_disk_interface: Optional[str] = attrs.field()
     """
     The hard disk interface attribute of the item.
     """
 
-    hard_disk_size: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    hard_disk_size: Optional["DecimalWithUnits"] = attrs.field()
 
-    hardware_platform: str = attrs.field(
-        kw_only=True,
-    )
+    hardware_platform: Optional[str] = attrs.field()
     """
     The hardware platform attribute of the item.
     """
 
-    hazardous_material_type: str = attrs.field(
-        kw_only=True,
-    )
+    hazardous_material_type: Optional[str] = attrs.field()
     """
     The hazardous material type attribute of the item.
     """
 
-    is_adult_product: bool = attrs.field(
-        kw_only=True,
-    )
+    is_adult_product: Optional[bool] = attrs.field()
     """
     The adult product attribute of the item.
     """
 
-    is_autographed: bool = attrs.field(
-        kw_only=True,
-    )
+    is_autographed: Optional[bool] = attrs.field()
     """
     The autographed attribute of the item.
     """
 
-    is_eligible_for_trade_in: bool = attrs.field(
-        kw_only=True,
-    )
+    is_eligible_for_trade_in: Optional[bool] = attrs.field()
     """
     The is eligible for trade in attribute of the item.
     """
 
-    is_memorabilia: bool = attrs.field(
-        kw_only=True,
-    )
+    is_memorabilia: Optional[bool] = attrs.field()
     """
     The is memorabilia attribute of the item.
     """
 
-    issues_per_year: str = attrs.field(
-        kw_only=True,
-    )
+    issues_per_year: Optional[str] = attrs.field()
     """
     The issues per year attribute of the item.
     """
 
-    item_dimensions: "DimensionType" = attrs.field(
-        kw_only=True,
-    )
+    item_dimensions: Optional["DimensionType"] = attrs.field()
 
-    item_part_number: str = attrs.field(
-        kw_only=True,
-    )
+    item_part_number: Optional[str] = attrs.field()
     """
     The item part number attribute of the item.
     """
 
-    label: str = attrs.field(
-        kw_only=True,
-    )
+    label: Optional[str] = attrs.field()
     """
     The label attribute of the item.
     """
 
-    languages: List["LanguageType"] = attrs.field(
-        kw_only=True,
-    )
+    languages: Optional[List["LanguageType"]] = attrs.field()
     """
     The languages attribute of the item.
     """
 
-    legal_disclaimer: str = attrs.field(
-        kw_only=True,
-    )
+    legal_disclaimer: Optional[str] = attrs.field()
     """
     The legal disclaimer attribute of the item.
     """
 
-    list_price: "Price" = attrs.field(
-        kw_only=True,
-    )
+    list_price: Optional["Price"] = attrs.field()
 
-    manufacturer: str = attrs.field(
-        kw_only=True,
-    )
+    manufacturer: Optional[str] = attrs.field()
     """
     The manufacturer attribute of the item.
     """
 
-    manufacturer_maximum_age: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    manufacturer_maximum_age: Optional["DecimalWithUnits"] = attrs.field()
 
-    manufacturer_minimum_age: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    manufacturer_minimum_age: Optional["DecimalWithUnits"] = attrs.field()
 
-    manufacturer_parts_warranty_description: str = attrs.field(
-        kw_only=True,
-    )
+    manufacturer_parts_warranty_description: Optional[str] = attrs.field()
     """
     The manufacturer parts warranty description attribute of the item.
     """
 
-    material_type: List[str] = attrs.field(
-        kw_only=True,
-    )
+    material_type: Optional[List[str]] = attrs.field()
     """
     The material type attributes of the item.
     """
 
-    maximum_resolution: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    maximum_resolution: Optional["DecimalWithUnits"] = attrs.field()
 
-    media_type: List[str] = attrs.field(
-        kw_only=True,
-    )
+    media_type: Optional[List[str]] = attrs.field()
     """
     The media type attributes of the item.
     """
 
-    metal_stamp: str = attrs.field(
-        kw_only=True,
-    )
+    metal_stamp: Optional[str] = attrs.field()
     """
     The metal stamp attribute of the item.
     """
 
-    metal_type: str = attrs.field(
-        kw_only=True,
-    )
+    metal_type: Optional[str] = attrs.field()
     """
     The metal type attribute of the item.
     """
 
-    model: str = attrs.field(
-        kw_only=True,
-    )
+    model: Optional[str] = attrs.field()
     """
     The model attribute of the item.
     """
 
-    number_of_discs: int = attrs.field(
-        kw_only=True,
-    )
+    number_of_discs: Optional[int] = attrs.field()
     """
     The number of discs attribute of the item.
     """
 
-    number_of_issues: int = attrs.field(
-        kw_only=True,
-    )
+    number_of_issues: Optional[int] = attrs.field()
     """
     The number of issues attribute of the item.
     """
 
-    number_of_items: int = attrs.field(
-        kw_only=True,
-    )
+    number_of_items: Optional[int] = attrs.field()
     """
     The number of items attribute of the item.
     """
 
-    number_of_pages: int = attrs.field(
-        kw_only=True,
-    )
+    number_of_pages: Optional[int] = attrs.field()
     """
     The number of pages attribute of the item.
     """
 
-    number_of_tracks: int = attrs.field(
-        kw_only=True,
-    )
+    number_of_tracks: Optional[int] = attrs.field()
     """
     The number of tracks attribute of the item.
     """
 
-    operating_system: List[str] = attrs.field(
-        kw_only=True,
-    )
+    operating_system: Optional[List[str]] = attrs.field()
     """
     The operating system attributes of the item.
     """
 
-    optical_zoom: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    optical_zoom: Optional["DecimalWithUnits"] = attrs.field()
 
-    package_dimensions: "DimensionType" = attrs.field(
-        kw_only=True,
-    )
+    package_dimensions: Optional["DimensionType"] = attrs.field()
 
-    package_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    package_quantity: Optional[int] = attrs.field()
     """
     The package quantity attribute of the item.
     """
 
-    part_number: str = attrs.field(
-        kw_only=True,
-    )
+    part_number: Optional[str] = attrs.field()
     """
     The part number attribute of the item.
     """
 
-    pegi_rating: str = attrs.field(
-        kw_only=True,
-    )
+    pegi_rating: Optional[str] = attrs.field()
     """
     The PEGI rating attribute of the item.
     """
 
-    platform: List[str] = attrs.field(
-        kw_only=True,
-    )
+    platform: Optional[List[str]] = attrs.field()
     """
     The platform attributes of the item.
     """
 
-    processor_count: int = attrs.field(
-        kw_only=True,
-    )
+    processor_count: Optional[int] = attrs.field()
     """
     The processor count attribute of the item.
     """
 
-    product_group: str = attrs.field(
-        kw_only=True,
-    )
+    product_group: Optional[str] = attrs.field()
     """
     The product group attribute of the item.
     """
 
-    product_type_name: str = attrs.field(
-        kw_only=True,
-    )
+    product_type_name: Optional[str] = attrs.field()
     """
     The product type name attribute of the item.
     """
 
-    product_type_subcategory: str = attrs.field(
-        kw_only=True,
-    )
+    product_type_subcategory: Optional[str] = attrs.field()
     """
     The product type subcategory attribute of the item.
     """
 
-    publication_date: str = attrs.field(
-        kw_only=True,
-    )
+    publication_date: Optional[str] = attrs.field()
     """
     The publication date attribute of the item.
     """
 
-    publisher: str = attrs.field(
-        kw_only=True,
-    )
+    publisher: Optional[str] = attrs.field()
     """
     The publisher attribute of the item.
     """
 
-    region_code: str = attrs.field(
-        kw_only=True,
-    )
+    region_code: Optional[str] = attrs.field()
     """
     The region code attribute of the item.
     """
 
-    release_date: str = attrs.field(
-        kw_only=True,
-    )
+    release_date: Optional[str] = attrs.field()
     """
     The release date attribute of the item.
     """
 
-    ring_size: str = attrs.field(
-        kw_only=True,
-    )
+    ring_size: Optional[str] = attrs.field()
     """
     The ring size attribute of the item.
     """
 
-    running_time: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    running_time: Optional["DecimalWithUnits"] = attrs.field()
 
-    scent: str = attrs.field(
-        kw_only=True,
-    )
+    scent: Optional[str] = attrs.field()
     """
     The scent attribute of the item.
     """
 
-    season_sequence: str = attrs.field(
-        kw_only=True,
-    )
+    season_sequence: Optional[str] = attrs.field()
     """
     The season sequence attribute of the item.
     """
 
-    seikodo_product_code: str = attrs.field(
-        kw_only=True,
-    )
+    seikodo_product_code: Optional[str] = attrs.field()
     """
     The Seikodo product code attribute of the item.
     """
 
-    shaft_material: str = attrs.field(
-        kw_only=True,
-    )
+    shaft_material: Optional[str] = attrs.field()
     """
     The shaft material attribute of the item.
     """
 
-    size: str = attrs.field(
-        kw_only=True,
-    )
+    size: Optional[str] = attrs.field()
     """
     The size attribute of the item.
     """
 
-    size_per_pearl: str = attrs.field(
-        kw_only=True,
-    )
+    size_per_pearl: Optional[str] = attrs.field()
     """
     The size per pearl attribute of the item.
     """
 
-    small_image: "Image" = attrs.field(
-        kw_only=True,
-    )
+    small_image: Optional["Image"] = attrs.field()
 
-    studio: str = attrs.field(
-        kw_only=True,
-    )
+    studio: Optional[str] = attrs.field()
     """
     The studio attribute of the item.
     """
 
-    subscription_length: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    subscription_length: Optional["DecimalWithUnits"] = attrs.field()
 
-    system_memory_size: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    system_memory_size: Optional["DecimalWithUnits"] = attrs.field()
 
-    system_memory_type: str = attrs.field(
-        kw_only=True,
-    )
+    system_memory_type: Optional[str] = attrs.field()
     """
     The system memory type attribute of the item.
     """
 
-    theatrical_release_date: str = attrs.field(
-        kw_only=True,
-    )
+    theatrical_release_date: Optional[str] = attrs.field()
     """
     The theatrical release date attribute of the item.
     """
 
-    title: str = attrs.field(
-        kw_only=True,
-    )
+    title: Optional[str] = attrs.field()
     """
     The title attribute of the item.
     """
 
-    total_diamond_weight: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field()
 
-    total_gem_weight: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    total_gem_weight: Optional["DecimalWithUnits"] = attrs.field()
 
-    warranty: str = attrs.field(
-        kw_only=True,
-    )
+    warranty: Optional[str] = attrs.field()
     """
     The warranty attribute of the item.
     """
 
-    weee_tax_value: "Price" = attrs.field(
-        kw_only=True,
-    )
+    weee_tax_value: Optional["Price"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Categories:
 
-    product_category_id: str = attrs.field(
-        kw_only=True,
-    )
+    product_category_id: Optional[str] = attrs.field()
     """
     The identifier for the product category (or browse node).
     """
 
-    product_category_name: str = attrs.field(
-        kw_only=True,
-    )
+    product_category_name: Optional[str] = attrs.field()
     """
     The name of the product category (or browse node).
     """
 
-    parent: "CategoriesParent" = attrs.field(
-        kw_only=True,
-    )
+    parent: Optional["CategoriesParent"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CategoriesParent:
     """
     The parent product category.
@@ -696,100 +494,78 @@ class CategoriesParent:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreatorType:
     """
     The creator type attribute of an item.
     """
 
-    role: str = attrs.field(
-        kw_only=True,
-    )
+    role: Optional[str] = attrs.field()
     """
     The role of the value.
     """
 
-    value: str = attrs.field(
-        kw_only=True,
-    )
+    value: Optional[str] = attrs.field()
     """
     The value of the attribute.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DecimalWithUnits:
     """
     The decimal value and unit.
     """
 
-    units: str = attrs.field(
-        kw_only=True,
-    )
+    units: Optional[str] = attrs.field()
     """
     The unit of the decimal value.
     """
 
-    value: float = attrs.field(
-        kw_only=True,
-    )
+    value: Optional[float] = attrs.field()
     """
     The decimal value.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DimensionType:
     """
     The dimension type attribute of an item.
     """
 
-    height: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    height: Optional["DecimalWithUnits"] = attrs.field()
 
-    length: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    length: Optional["DecimalWithUnits"] = attrs.field()
 
-    weight: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    weight: Optional["DecimalWithUnits"] = attrs.field()
 
-    width: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    width: Optional["DecimalWithUnits"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -798,76 +574,54 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetCatalogItemResponse:
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Item" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Item"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class IdentifierType:
 
-    marketplace_asin: "ASINIdentifier" = attrs.field(
-        kw_only=True,
-    )
+    marketplace_asin: Optional["ASINIdentifier"] = attrs.field()
 
-    skuidentifier: "SellerSKUIdentifier" = attrs.field(
-        kw_only=True,
-    )
+    skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Image:
     """
     The image attribute of the item.
     """
 
-    height: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    height: Optional["DecimalWithUnits"] = attrs.field()
 
-    url: str = attrs.field(
-        kw_only=True,
-    )
+    url: Optional[str] = attrs.field()
     """
     The image URL attribute of the item.
     """
 
-    width: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    width: Optional["DecimalWithUnits"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Item:
     """
     An item in the Amazon catalog.
     """
 
-    attribute_sets: "AttributeSetList" = attrs.field(
-        kw_only=True,
-    )
+    attribute_sets: Optional["AttributeSetList"] = attrs.field()
 
-    identifiers: "IdentifierType" = attrs.field(
-        kw_only=True,
-    )
+    identifiers: Optional["IdentifierType"] = attrs.field()
 
-    relationships: "RelationshipList" = attrs.field(
-        kw_only=True,
-    )
+    relationships: Optional["RelationshipList"] = attrs.field()
 
-    sales_rankings: "SalesRankList" = attrs.field(
-        kw_only=True,
-    )
+    sales_rankings: Optional["SalesRankList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemList:
     """
     A list of items.
@@ -876,94 +630,74 @@ class ItemList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LanguageType:
     """
     The language type attribute of an item.
     """
 
-    audio_format: str = attrs.field(
-        kw_only=True,
-    )
+    audio_format: Optional[str] = attrs.field()
     """
     The audio format attribute of the item.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The name attribute of the item.
     """
 
-    type: str = attrs.field(
-        kw_only=True,
-    )
+    type: Optional[str] = attrs.field()
     """
     The type attribute of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListCatalogCategoriesResponse:
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "ListOfCategories" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["ListOfCategories"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListCatalogItemsResponse:
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "ListMatchingItemsResponse" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["ListMatchingItemsResponse"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListMatchingItemsResponse:
 
-    items: "ItemList" = attrs.field(
-        kw_only=True,
-    )
+    items: Optional["ItemList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListOfCategories:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Price:
     """
     The price attribute of the item.
     """
 
-    amount: float = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional[float] = attrs.field()
     """
     The amount.
     """
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     The currency code of the amount.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RelationshipList:
     """
     A list of variation relationship information, if applicable for the item.
@@ -972,160 +706,114 @@ class RelationshipList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RelationshipType:
     """
     Specific variations of the item.
     """
 
-    color: str = attrs.field(
-        kw_only=True,
-    )
+    color: Optional[str] = attrs.field()
     """
     The color variation of the item.
     """
 
-    edition: str = attrs.field(
-        kw_only=True,
-    )
+    edition: Optional[str] = attrs.field()
     """
     The edition variation of the item.
     """
 
-    flavor: str = attrs.field(
-        kw_only=True,
-    )
+    flavor: Optional[str] = attrs.field()
     """
     The flavor variation of the item.
     """
 
-    gem_type: List[str] = attrs.field(
-        kw_only=True,
-    )
+    gem_type: Optional[List[str]] = attrs.field()
     """
     The gem type variations of the item.
     """
 
-    golf_club_flex: str = attrs.field(
-        kw_only=True,
-    )
+    golf_club_flex: Optional[str] = attrs.field()
     """
     The golf club flex variation of an item.
     """
 
-    golf_club_loft: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    golf_club_loft: Optional["DecimalWithUnits"] = attrs.field()
 
-    hand_orientation: str = attrs.field(
-        kw_only=True,
-    )
+    hand_orientation: Optional[str] = attrs.field()
     """
     The hand orientation variation of an item.
     """
 
-    hardware_platform: str = attrs.field(
-        kw_only=True,
-    )
+    hardware_platform: Optional[str] = attrs.field()
     """
     The hardware platform variation of an item.
     """
 
-    identifiers: "IdentifierType" = attrs.field(
-        kw_only=True,
-    )
+    identifiers: Optional["IdentifierType"] = attrs.field()
 
-    item_dimensions: "DimensionType" = attrs.field(
-        kw_only=True,
-    )
+    item_dimensions: Optional["DimensionType"] = attrs.field()
 
-    material_type: List[str] = attrs.field(
-        kw_only=True,
-    )
+    material_type: Optional[List[str]] = attrs.field()
     """
     The material type variations of an item.
     """
 
-    metal_type: str = attrs.field(
-        kw_only=True,
-    )
+    metal_type: Optional[str] = attrs.field()
     """
     The metal type variation of an item.
     """
 
-    model: str = attrs.field(
-        kw_only=True,
-    )
+    model: Optional[str] = attrs.field()
     """
     The model variation of an item.
     """
 
-    operating_system: List[str] = attrs.field(
-        kw_only=True,
-    )
+    operating_system: Optional[List[str]] = attrs.field()
     """
     The operating system variations of an item.
     """
 
-    package_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    package_quantity: Optional[int] = attrs.field()
     """
     The package quantity variation of an item.
     """
 
-    product_type_subcategory: str = attrs.field(
-        kw_only=True,
-    )
+    product_type_subcategory: Optional[str] = attrs.field()
     """
     The product type subcategory variation of an item.
     """
 
-    ring_size: str = attrs.field(
-        kw_only=True,
-    )
+    ring_size: Optional[str] = attrs.field()
     """
     The ring size variation of an item.
     """
 
-    scent: str = attrs.field(
-        kw_only=True,
-    )
+    scent: Optional[str] = attrs.field()
     """
     The scent variation of an item.
     """
 
-    shaft_material: str = attrs.field(
-        kw_only=True,
-    )
+    shaft_material: Optional[str] = attrs.field()
     """
     The shaft material variation of an item.
     """
 
-    size: str = attrs.field(
-        kw_only=True,
-    )
+    size: Optional[str] = attrs.field()
     """
     The size variation of an item.
     """
 
-    size_per_pearl: str = attrs.field(
-        kw_only=True,
-    )
+    size_per_pearl: Optional[str] = attrs.field()
     """
     The size per pearl variation of an item.
     """
 
-    total_diamond_weight: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field()
 
-    total_gem_weight: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
+    total_gem_weight: Optional["DecimalWithUnits"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SalesRankList:
     """
     A list of sales rank information for the item by category.
@@ -1134,19 +822,15 @@ class SalesRankList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SalesRankType:
 
-    product_category_id: str = attrs.field(
-        kw_only=True,
-    )
+    product_category_id: Optional[str] = attrs.field()
     """
     Identifies the item category from which the sales rank is taken.
     """
 
-    rank: int = attrs.field(
-        kw_only=True,
-    )
+    rank: Optional[int] = attrs.field()
     """
     The sales rank of the item within the item category.
 
@@ -1155,26 +839,20 @@ class SalesRankType:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerSKUIdentifier:
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier.
     """
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The seller identifier submitted for the operation.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller stock keeping unit (SKU) of the item.
     """

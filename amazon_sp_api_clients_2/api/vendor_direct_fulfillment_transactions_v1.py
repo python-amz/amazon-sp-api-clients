@@ -9,39 +9,33 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -50,55 +44,43 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetTransactionResponse:
     """
     The response schema for the getTransactionStatus operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "TransactionStatus" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["TransactionStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Transaction:
     """
     The transaction status details.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[Union[Literal["Failure"], Literal["Processing"], Literal["Success"]]] = attrs.field()
     """
     Current processing status of the transaction.
     """
 
-    transaction_id: str = attrs.field(
-        kw_only=True,
-    )
+    transaction_id: Optional[str] = attrs.field()
     """
     The unique identifier sent in the 'transactionId' field in response to the post request of a specific transaction.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionStatus:
     """
     The payload for the getTransactionStatus operation.
     """
 
-    transaction_status: "Transaction" = attrs.field(
-        kw_only=True,
-    )
+    transaction_status: Optional["Transaction"] = attrs.field()
 
 
 class VendorDirectFulfillmentTransactionsV1Client(BaseClient):

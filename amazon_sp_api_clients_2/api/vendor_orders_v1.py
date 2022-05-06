@@ -9,23 +9,19 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AcknowledgementStatusDetails:
     """
     Details of item quantity ordered
     """
 
-    accepted_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    accepted_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    acknowledgement_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    acknowledgement_date: Optional[datetime] = attrs.field()
     """
     The date when the line item was confirmed by vendor. Must be in ISO-8601 date/time format.
 
@@ -33,48 +29,36 @@ class AcknowledgementStatusDetails:
     {'schema_format': 'date-time'}
     """
 
-    rejected_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    rejected_quantity: Optional["ItemQuantity"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Address:
     """
     Address of the party.
     """
 
-    address_line1: str = attrs.field(
-        kw_only=True,
-    )
+    address_line1: Optional[str] = attrs.field()
     """
     First line of the address.
     """
 
-    address_line2: str = attrs.field(
-        kw_only=True,
-    )
+    address_line2: Optional[str] = attrs.field()
     """
     Additional address information, if required.
     """
 
-    address_line3: str = attrs.field(
-        kw_only=True,
-    )
+    address_line3: Optional[str] = attrs.field()
     """
     Additional address information, if required.
     """
 
-    city: str = attrs.field(
-        kw_only=True,
-    )
+    city: Optional[str] = attrs.field()
     """
     The city where the person, business or institution is located.
     """
 
-    country_code: str = attrs.field(
-        kw_only=True,
-    )
+    country_code: Optional[str] = attrs.field()
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
 
@@ -82,50 +66,38 @@ class Address:
     {'maxLength': 2}
     """
 
-    county: str = attrs.field(
-        kw_only=True,
-    )
+    county: Optional[str] = attrs.field()
     """
     The county where person, business or institution is located.
     """
 
-    district: str = attrs.field(
-        kw_only=True,
-    )
+    district: Optional[str] = attrs.field()
     """
     The district where person, business or institution is located.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The name of the person, business or institution at that address.
     """
 
-    phone: str = attrs.field(
-        kw_only=True,
-    )
+    phone: Optional[str] = attrs.field()
     """
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: str = attrs.field(
-        kw_only=True,
-    )
+    postal_code: Optional[str] = attrs.field()
     """
     The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: str = attrs.field(
-        kw_only=True,
-    )
+    state_or_region: Optional[str] = attrs.field()
     """
     The state or region where person, business or institution is located.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DateTimeInterval:
     """
     Defines a date time interval according to ISO8601. Interval is separated by double hyphen (--).
@@ -134,7 +106,7 @@ class DateTimeInterval:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Decimal:
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
@@ -143,35 +115,29 @@ class Decimal:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -180,60 +146,46 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPurchaseOrderResponse:
     """
     The response schema for the getPurchaseOrder operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Order" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Order"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPurchaseOrdersResponse:
     """
     The response schema for the getPurchaseOrders operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "OrderList" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["OrderList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPurchaseOrdersStatusResponse:
     """
     The response schema for the getPurchaseOrdersStatus operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "OrderListStatus" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["OrderListStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ImportDetails:
     """
     Import details for an import order.
     """
 
-    import_containers: str = attrs.field(
-        kw_only=True,
-    )
+    import_containers: Optional[str] = attrs.field()
     """
     Types and numbers of container(s) for import purchase orders. Can be a comma-separated list if the shipment has multiple containers. HC signifies a high-capacity container. Free-text field, limited to 64 characters. The format will be a comma-delimited list containing values of the type: $NUMBER_OF_CONTAINERS_OF_THIS_TYPE-$CONTAINER_TYPE. The list of values for the container type is: 40'(40-foot container), 40'HC (40-foot high-capacity container), 45', 45'HC, 30', 30'HC, 20', 20'HC.
 
@@ -241,42 +193,40 @@ class ImportDetails:
     {'maxLength': 64}
     """
 
-    international_commercial_terms: Union[
-        Literal["ExWorks"],
-        Literal["FreeCarrier"],
-        Literal["FreeOnBoard"],
-        Literal["FreeAlongSideShip"],
-        Literal["CarriagePaidTo"],
-        Literal["CostAndFreight"],
-        Literal["CarriageAndInsurancePaidTo"],
-        Literal["CostInsuranceAndFreight"],
-        Literal["DeliveredAtTerminal"],
-        Literal["DeliveredAtPlace"],
-        Literal["DeliverDutyPaid"],
-    ] = attrs.field(
-        kw_only=True,
-    )
+    international_commercial_terms: Optional[
+        Union[
+            Literal["ExWorks"],
+            Literal["FreeCarrier"],
+            Literal["FreeOnBoard"],
+            Literal["FreeAlongSideShip"],
+            Literal["CarriagePaidTo"],
+            Literal["CostAndFreight"],
+            Literal["CarriageAndInsurancePaidTo"],
+            Literal["CostInsuranceAndFreight"],
+            Literal["DeliveredAtTerminal"],
+            Literal["DeliveredAtPlace"],
+            Literal["DeliverDutyPaid"],
+        ]
+    ] = attrs.field()
     """
     Incoterms (International Commercial Terms) are used to divide transaction costs and responsibilities between buyer and seller and reflect state-of-the-art transportation practices. This is for import purchase orders only.
     """
 
-    method_of_payment: Union[
-        Literal["PaidByBuyer"],
-        Literal["CollectOnDelivery"],
-        Literal["DefinedByBuyerAndSeller"],
-        Literal["FOBPortOfCall"],
-        Literal["PrepaidBySeller"],
-        Literal["PaidBySeller"],
-    ] = attrs.field(
-        kw_only=True,
-    )
+    method_of_payment: Optional[
+        Union[
+            Literal["PaidByBuyer"],
+            Literal["CollectOnDelivery"],
+            Literal["DefinedByBuyerAndSeller"],
+            Literal["FOBPortOfCall"],
+            Literal["PrepaidBySeller"],
+            Literal["PaidBySeller"],
+        ]
+    ] = attrs.field()
     """
     If the recipient requests, contains the shipment method of payment. This is for import PO's only.
     """
 
-    port_of_delivery: str = attrs.field(
-        kw_only=True,
-    )
+    port_of_delivery: Optional[str] = attrs.field()
     """
     The port where goods on an import purchase order must be delivered by the vendor. This should only be specified when the internationalCommercialTerms is FOB.
 
@@ -284,43 +234,35 @@ class ImportDetails:
     {'maxLength': 64}
     """
 
-    shipping_instructions: str = attrs.field(
-        kw_only=True,
-    )
+    shipping_instructions: Optional[str] = attrs.field()
     """
     Special instructions regarding the shipment. This field is for import purchase orders.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemQuantity:
     """
     Details of quantity ordered.
     """
 
-    amount: int = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional[int] = attrs.field()
     """
     Acknowledged quantity. This value should not be zero.
     """
 
-    unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field(
-        kw_only=True,
-    )
+    unit_of_measure: Optional[Union[Literal["Cases"], Literal["Eaches"]]] = attrs.field()
     """
     Unit of measure for the acknowledged quantity.
     """
 
-    unit_size: int = attrs.field(
-        kw_only=True,
-    )
+    unit_size: Optional[int] = attrs.field()
     """
     The case size, in the event that we ordered using cases.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemStatus:
     """
     Detailed description of items order status.
@@ -329,19 +271,15 @@ class ItemStatus:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Money:
     """
     An amount of money, including units in the form of currency.
     """
 
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional["Decimal"] = attrs.field()
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     Three digit currency code in ISO 4217 format. String of length 3.
 
@@ -350,34 +288,26 @@ class Money:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Order:
 
-    order_details: "OrderDetails" = attrs.field(
-        kw_only=True,
-    )
+    order_details: Optional["OrderDetails"] = attrs.field()
 
-    purchase_order_number: str = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_number: Optional[str] = attrs.field()
     """
     The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_state: Optional[Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]]] = attrs.field()
     """
     This field will contain the current state of the purchase order.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderAcknowledgement:
 
-    acknowledgement_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    acknowledgement_date: Optional[datetime] = attrs.field()
     """
     The date and time when the purchase order is acknowledged, in ISO-8601 date/time format.
 
@@ -385,127 +315,89 @@ class OrderAcknowledgement:
     {'schema_format': 'date-time'}
     """
 
-    items: List["OrderAcknowledgementItem"] = attrs.field(
-        kw_only=True,
-    )
+    items: Optional[List["OrderAcknowledgementItem"]] = attrs.field()
     """
     A list of the items being acknowledged with associated details.
     """
 
-    purchase_order_number: str = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_number: Optional[str] = attrs.field()
     """
     The purchase order number. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    selling_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    selling_party: Optional["PartyIdentification"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderAcknowledgementItem:
     """
     Details of the item being acknowledged.
     """
 
-    amazon_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    amazon_product_identifier: Optional[str] = attrs.field()
     """
     Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    discount_multiplier: str = attrs.field(
-        kw_only=True,
-    )
+    discount_multiplier: Optional[str] = attrs.field()
     """
     The discount multiplier that should be applied to the price if a vendor sells books with a list price. This is a multiplier factor to arrive at a final discounted price. A multiplier of .90 would be the factor if a 10% discount is given.
     """
 
-    item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field(
-        kw_only=True,
-    )
+    item_acknowledgements: Optional[List["OrderItemAcknowledgement"]] = attrs.field()
     """
     This is used to indicate acknowledged quantity.
     """
 
-    item_sequence_number: str = attrs.field(
-        kw_only=True,
-    )
+    item_sequence_number: Optional[str] = attrs.field()
     """
     Line item sequence number for the item.
     """
 
-    list_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    list_price: Optional["Money"] = attrs.field()
 
-    net_cost: "Money" = attrs.field(
-        kw_only=True,
-    )
+    net_cost: Optional["Money"] = attrs.field()
 
-    ordered_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    ordered_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    vendor_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    vendor_product_identifier: Optional[str] = attrs.field()
     """
     The vendor selected product identification of the item. Should be the same as was sent in the purchase order.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderDetails:
     """
     Details of an order.
     """
 
-    bill_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    bill_to_party: Optional["PartyIdentification"] = attrs.field()
 
-    buying_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    buying_party: Optional["PartyIdentification"] = attrs.field()
 
-    deal_code: str = attrs.field(
-        kw_only=True,
-    )
+    deal_code: Optional[str] = attrs.field()
     """
     If requested by the recipient, this field will contain a promotional/deal number. The discount code line is optional. It is used to obtain a price discount on items on the order.
     """
 
-    delivery_window: "DateTimeInterval" = attrs.field(
-        kw_only=True,
-    )
+    delivery_window: Optional["DateTimeInterval"] = attrs.field()
 
-    import_details: "ImportDetails" = attrs.field(
-        kw_only=True,
-    )
+    import_details: Optional["ImportDetails"] = attrs.field()
 
-    items: List["OrderItem"] = attrs.field(
-        kw_only=True,
-    )
+    items: Optional[List["OrderItem"]] = attrs.field()
     """
     A list of items in this purchase order.
     """
 
-    payment_method: Union[
-        Literal["Invoice"], Literal["Consignment"], Literal["CreditCard"], Literal["Prepaid"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    payment_method: Optional[
+        Union[Literal["Invoice"], Literal["Consignment"], Literal["CreditCard"], Literal["Prepaid"]]
+    ] = attrs.field()
     """
     Payment method used.
     """
 
-    purchase_order_changed_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_changed_date: Optional[datetime] = attrs.field()
     """
     The date when purchase order was last changed by Amazon after the order was placed. This date will be greater than 'purchaseOrderDate'. This means the PO data was changed on that date and vendors are required to fulfill the  updated PO. The PO changes can be related to Item Quantity, Ship to Location, Ship Window etc. This field will not be present in orders that have not changed after creation. Must be in ISO-8601 date/time format.
 
@@ -513,9 +405,7 @@ class OrderDetails:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_date: Optional[datetime] = attrs.field()
     """
     The date the purchase order was placed. Must be in ISO-8601 date/time format.
 
@@ -523,9 +413,7 @@ class OrderDetails:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_state_changed_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_state_changed_date: Optional[datetime] = attrs.field()
     """
     The date when current purchase order state was changed. Current purchase order state is available in the field 'purchaseOrderState'. Must be in ISO-8601 date/time format.
 
@@ -533,98 +421,72 @@ class OrderDetails:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_type: Union[
-        Literal["RegularOrder"], Literal["ConsignedOrder"], Literal["NewProductIntroduction"], Literal["RushOrder"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_type: Optional[
+        Union[
+            Literal["RegularOrder"], Literal["ConsignedOrder"], Literal["NewProductIntroduction"], Literal["RushOrder"]
+        ]
+    ] = attrs.field()
     """
     Type of purchase order.
     """
 
-    selling_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    selling_party: Optional["PartyIdentification"] = attrs.field()
 
-    ship_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    ship_to_party: Optional["PartyIdentification"] = attrs.field()
 
-    ship_window: "DateTimeInterval" = attrs.field(
-        kw_only=True,
-    )
+    ship_window: Optional["DateTimeInterval"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItem:
 
-    amazon_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    amazon_product_identifier: Optional[str] = attrs.field()
     """
     Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    is_back_order_allowed: bool = attrs.field(
-        kw_only=True,
-    )
+    is_back_order_allowed: Optional[bool] = attrs.field()
     """
     When true, we will accept backorder confirmations for this item.
     """
 
-    item_sequence_number: str = attrs.field(
-        kw_only=True,
-    )
+    item_sequence_number: Optional[str] = attrs.field()
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    list_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    list_price: Optional["Money"] = attrs.field()
 
-    net_cost: "Money" = attrs.field(
-        kw_only=True,
-    )
+    net_cost: Optional["Money"] = attrs.field()
 
-    ordered_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    ordered_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    vendor_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    vendor_product_identifier: Optional[str] = attrs.field()
     """
     The vendor selected product identification of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemAcknowledgement:
 
-    acknowledged_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    acknowledged_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field(
-        kw_only=True,
-    )
+    acknowledgement_code: Optional[
+        Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]]
+    ] = attrs.field()
     """
     This indicates the acknowledgement code.
     """
 
-    rejection_reason: Union[
-        Literal["TemporarilyUnavailable"], Literal["InvalidProductIdentifier"], Literal["ObsoleteProduct"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    rejection_reason: Optional[
+        Union[Literal["TemporarilyUnavailable"], Literal["InvalidProductIdentifier"], Literal["ObsoleteProduct"]]
+    ] = attrs.field()
     """
     Indicates the reason for rejection.
     """
 
-    scheduled_delivery_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    scheduled_delivery_date: Optional[datetime] = attrs.field()
     """
     Estimated delivery date per line item. Must be in ISO-8601 date/time format.
 
@@ -632,9 +494,7 @@ class OrderItemAcknowledgement:
     {'schema_format': 'date-time'}
     """
 
-    scheduled_ship_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    scheduled_ship_date: Optional[datetime] = attrs.field()
     """
     Estimated ship date per line item. Must be in ISO-8601 date/time format.
 
@@ -643,109 +503,79 @@ class OrderItemAcknowledgement:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemStatus:
 
-    acknowledgement_status: "OrderItemStatusAcknowledgementStatus" = attrs.field(
-        kw_only=True,
-    )
+    acknowledgement_status: Optional["OrderItemStatusAcknowledgementStatus"] = attrs.field()
 
-    buyer_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    buyer_product_identifier: Optional[str] = attrs.field()
     """
     Buyer's Standard Identification Number (ASIN) of an item.
     """
 
-    item_sequence_number: str = attrs.field(
-        kw_only=True,
-    )
+    item_sequence_number: Optional[str] = attrs.field()
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    list_price: "Money" = attrs.field(
-        kw_only=True,
-    )
+    list_price: Optional["Money"] = attrs.field()
 
-    net_cost: "Money" = attrs.field(
-        kw_only=True,
-    )
+    net_cost: Optional["Money"] = attrs.field()
 
-    ordered_quantity: "OrderItemStatusOrderedQuantity" = attrs.field(
-        kw_only=True,
-    )
+    ordered_quantity: Optional["OrderItemStatusOrderedQuantity"] = attrs.field()
 
-    receiving_status: "OrderItemStatusReceivingStatus" = attrs.field(
-        kw_only=True,
-    )
+    receiving_status: Optional["OrderItemStatusReceivingStatus"] = attrs.field()
 
-    vendor_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    vendor_product_identifier: Optional[str] = attrs.field()
     """
     The vendor selected product identification of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemStatusAcknowledgementStatus:
     """
     Acknowledgement status information.
     """
 
-    accepted_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    accepted_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    acknowledgement_status_details: List["AcknowledgementStatusDetails"] = attrs.field(
-        kw_only=True,
-    )
+    acknowledgement_status_details: Optional[List["AcknowledgementStatusDetails"]] = attrs.field()
     """
     Details of item quantity confirmed.
     """
 
-    confirmation_status: Union[
-        Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    confirmation_status: Optional[
+        Union[Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]]
+    ] = attrs.field()
     """
     Confirmation status of line item.
     """
 
-    rejected_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    rejected_quantity: Optional["ItemQuantity"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemStatusOrderedQuantity:
     """
     Ordered quantity information.
     """
 
-    ordered_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    ordered_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    ordered_quantity_details: List["OrderedQuantityDetails"] = attrs.field(
-        kw_only=True,
-    )
+    ordered_quantity_details: Optional[List["OrderedQuantityDetails"]] = attrs.field()
     """
     Details of item quantity ordered.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemStatusReceivingStatus:
     """
     Item receive status at the buyer's warehouse.
     """
 
-    last_receive_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    last_receive_date: Optional[datetime] = attrs.field()
     """
     The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.
 
@@ -753,55 +583,41 @@ class OrderItemStatusReceivingStatus:
     {'schema_format': 'date-time'}
     """
 
-    receive_status: Union[Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = attrs.field(
-        kw_only=True,
-    )
+    receive_status: Optional[
+        Union[Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]]
+    ] = attrs.field()
     """
     Receive status of the line item.
     """
 
-    received_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    received_quantity: Optional["ItemQuantity"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderList:
 
-    orders: List["Order"] = attrs.field(
-        kw_only=True,
-    )
+    orders: Optional[List["Order"]] = attrs.field()
 
-    pagination: "Pagination" = attrs.field(
-        kw_only=True,
-    )
+    pagination: Optional["Pagination"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderListStatus:
 
-    orders_status: List["OrderStatus"] = attrs.field(
-        kw_only=True,
-    )
+    orders_status: Optional[List["OrderStatus"]] = attrs.field()
 
-    pagination: "Pagination" = attrs.field(
-        kw_only=True,
-    )
+    pagination: Optional["Pagination"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderStatus:
     """
     Current status of a purchase order.
     """
 
-    item_status: "ItemStatus" = attrs.field(
-        kw_only=True,
-    )
+    item_status: Optional["ItemStatus"] = attrs.field()
 
-    last_updated_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    last_updated_date: Optional[datetime] = attrs.field()
     """
     The date when the purchase order was last updated. Must be in ISO-8601 date/time format.
 
@@ -809,9 +625,7 @@ class OrderStatus:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_date: Optional[datetime] = attrs.field()
     """
     The date the purchase order was placed. Must be in ISO-8601 date/time format.
 
@@ -819,46 +633,32 @@ class OrderStatus:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_number: str = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_number: Optional[str] = attrs.field()
     """
     The buyer's purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = attrs.field(
-        kw_only=True,
-    )
+    purchase_order_status: Optional[Union[Literal["OPEN"], Literal["CLOSED"]]] = attrs.field()
     """
     The status of the buyer's purchase order for this order.
     """
 
-    selling_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    selling_party: Optional["PartyIdentification"] = attrs.field()
 
-    ship_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
+    ship_to_party: Optional["PartyIdentification"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderedQuantityDetails:
     """
     Details of item quantity ordered
     """
 
-    cancelled_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    cancelled_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    ordered_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
+    ordered_quantity: Optional["ItemQuantity"] = attrs.field()
 
-    updated_date: datetime = attrs.field(
-        kw_only=True,
-    )
+    updated_date: Optional[datetime] = attrs.field()
     """
     The date when the line item quantity was updated by buyer. Must be in ISO-8601 date/time format.
 
@@ -867,89 +667,69 @@ class OrderedQuantityDetails:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Pagination:
 
-    next_token: str = attrs.field(
-        kw_only=True,
-    )
+    next_token: Optional[str] = attrs.field()
     """
     A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more purchase order items to return.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
+    address: Optional["Address"] = attrs.field()
 
-    party_id: str = attrs.field(
-        kw_only=True,
-    )
+    party_id: Optional[str] = attrs.field()
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
-    tax_info: "TaxRegistrationDetails" = attrs.field(
-        kw_only=True,
-    )
+    tax_info: Optional["TaxRegistrationDetails"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SubmitAcknowledgementRequest:
     """
     The request schema for the submitAcknowledgment operation.
     """
 
-    acknowledgements: List["OrderAcknowledgement"] = attrs.field(
-        kw_only=True,
-    )
+    acknowledgements: Optional[List["OrderAcknowledgement"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SubmitAcknowledgementResponse:
     """
     The response schema for the submitAcknowledgement operation
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "TransactionId" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["TransactionId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TaxRegistrationDetails:
     """
     Tax registration details of the entity.
     """
 
-    tax_registration_number: str = attrs.field(
-        kw_only=True,
-    )
+    tax_registration_number: Optional[str] = attrs.field()
     """
     Tax registration number for the entity. For example, VAT ID.
     """
 
-    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field(
-        kw_only=True,
-    )
+    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field()
     """
     Tax registration type for the entity.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionId:
 
-    transaction_id: str = attrs.field(
-        kw_only=True,
-    )
+    transaction_id: Optional[str] = attrs.field()
     """
     GUID assigned by Amazon to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """

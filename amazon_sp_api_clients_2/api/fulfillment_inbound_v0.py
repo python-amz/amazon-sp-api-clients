@@ -9,33 +9,27 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINInboundGuidance:
     """
     Reasons why a given ASIN is not recommended for shipment to Amazon's fulfillment network.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    guidance_reason_list: "GuidanceReasonList" = attrs.field(
-        kw_only=True,
-    )
+    guidance_reason_list: Optional["GuidanceReasonList"] = attrs.field()
 
-    inbound_guidance: "InboundGuidance" = attrs.field(
-        kw_only=True,
-    )
+    inbound_guidance: Optional["InboundGuidance"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINInboundGuidanceList:
     """
     A list of ASINs and their associated inbound guidance.
@@ -44,33 +38,25 @@ class ASINInboundGuidanceList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINPrepInstructions:
     """
     Item preparation instructions to help with item sourcing decisions.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    barcode_instruction: "BarcodeInstruction" = attrs.field(
-        kw_only=True,
-    )
+    barcode_instruction: Optional["BarcodeInstruction"] = attrs.field()
 
-    prep_guidance: "PrepGuidance" = attrs.field(
-        kw_only=True,
-    )
+    prep_guidance: Optional["PrepGuidance"] = attrs.field()
 
-    prep_instruction_list: "PrepInstructionList" = attrs.field(
-        kw_only=True,
-    )
+    prep_instruction_list: Optional["PrepInstructionList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINPrepInstructionsList:
     """
     A list of item preparation instructions.
@@ -79,12 +65,10 @@ class ASINPrepInstructionsList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Address:
 
-    address_line1: str = attrs.field(
-        kw_only=True,
-    )
+    address_line1: Optional[str] = attrs.field()
     """
     The street address information.
 
@@ -92,9 +76,7 @@ class Address:
     {'maxLength': 180}
     """
 
-    address_line2: str = attrs.field(
-        kw_only=True,
-    )
+    address_line2: Optional[str] = attrs.field()
     """
     Additional street address information, if required.
 
@@ -102,9 +84,7 @@ class Address:
     {'maxLength': 60}
     """
 
-    city: str = attrs.field(
-        kw_only=True,
-    )
+    city: Optional[str] = attrs.field()
     """
     The city.
 
@@ -112,16 +92,12 @@ class Address:
     {'maxLength': 30}
     """
 
-    country_code: str = attrs.field(
-        kw_only=True,
-    )
+    country_code: Optional[str] = attrs.field()
     """
     The country code in two-character ISO 3166-1 alpha-2 format.
     """
 
-    district_or_county: str = attrs.field(
-        kw_only=True,
-    )
+    district_or_county: Optional[str] = attrs.field()
     """
     The district or county.
 
@@ -129,9 +105,7 @@ class Address:
     {'maxLength': 25}
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     Name of the individual or business.
 
@@ -139,9 +113,7 @@ class Address:
     {'maxLength': 50}
     """
 
-    postal_code: str = attrs.field(
-        kw_only=True,
-    )
+    postal_code: Optional[str] = attrs.field()
     """
     The postal code.
         If postal codes are used in your marketplace, we recommended that you include one with your request. This helps Amazon select the most appropriate Amazon fulfillment center for the inbound shipment plan.
@@ -150,31 +122,25 @@ class Address:
     {'maxLength': 30}
     """
 
-    state_or_province_code: str = attrs.field(
-        kw_only=True,
-    )
+    state_or_province_code: Optional[str] = attrs.field()
     """
     The state or province code.
         If state or province codes are used in your marketplace, it is recommended that you include one with your request. This helps Amazon to select the most appropriate Amazon fulfillment center for your inbound shipment plan.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AmazonPrepFeesDetails:
     """
     The fees for Amazon to prep goods for shipment.
     """
 
-    fee_per_unit: "Amount" = attrs.field(
-        kw_only=True,
-    )
+    fee_per_unit: Optional["Amount"] = attrs.field()
 
-    prep_instruction: "PrepInstruction" = attrs.field(
-        kw_only=True,
-    )
+    prep_instruction: Optional["PrepInstruction"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AmazonPrepFeesDetailsList:
     """
     A list of preparation instructions and fees for Amazon to prep goods for shipment.
@@ -183,22 +149,18 @@ class AmazonPrepFeesDetailsList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Amount:
     """
     The monetary value.
     """
 
-    currency_code: "CurrencyCode" = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional["CurrencyCode"] = attrs.field()
 
-    value: "BigDecimalType" = attrs.field(
-        kw_only=True,
-    )
+    value: Optional["BigDecimalType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BarcodeInstruction:
     """
     Labeling requirements for the item. For more information about FBA labeling requirements, see the Seller Central Help for your marketplace.
@@ -207,43 +169,35 @@ class BarcodeInstruction:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BigDecimalType:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BillOfLadingDownloadURL:
 
-    download_url: str = attrs.field(
-        kw_only=True,
-    )
+    download_url: Optional[str] = attrs.field()
     """
     URL to download the bill of lading for the package. Note: The URL will only be valid for 15 seconds
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BoxContentsFeeDetails:
     """
     The manual processing fee per unit and total fee for a shipment.
     """
 
-    fee_per_unit: "Amount" = attrs.field(
-        kw_only=True,
-    )
+    fee_per_unit: Optional["Amount"] = attrs.field()
 
-    total_fee: "Amount" = attrs.field(
-        kw_only=True,
-    )
+    total_fee: Optional["Amount"] = attrs.field()
 
-    total_units: "Quantity" = attrs.field(
-        kw_only=True,
-    )
+    total_units: Optional["Quantity"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BoxContentsSource:
     """
     Where the seller provided box contents information for a shipment.
@@ -252,15 +206,13 @@ class BoxContentsSource:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CommonTransportResult:
 
-    transport_result: "TransportResult" = attrs.field(
-        kw_only=True,
-    )
+    transport_result: Optional["TransportResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Condition:
     """
     The condition of the item.
@@ -269,57 +221,43 @@ class Condition:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ConfirmPreorderResponse:
     """
     The response schema for the confirmPreorder operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "ConfirmPreorderResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["ConfirmPreorderResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ConfirmPreorderResult:
 
-    confirmed_fulfillable_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    confirmed_fulfillable_date: Optional["DateStringType"] = attrs.field()
 
-    confirmed_need_by_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    confirmed_need_by_date: Optional["DateStringType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ConfirmTransportResponse:
     """
     The response schema for the confirmTransport operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "CommonTransportResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["CommonTransportResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Contact:
     """
     Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
     """
 
-    email: str = attrs.field(
-        kw_only=True,
-    )
+    email: Optional[str] = attrs.field()
     """
     The email address of the contact person.
 
@@ -327,9 +265,7 @@ class Contact:
     {'maxLength': 50}
     """
 
-    fax: str = attrs.field(
-        kw_only=True,
-    )
+    fax: Optional[str] = attrs.field()
     """
     The fax number of the contact person.
 
@@ -337,9 +273,7 @@ class Contact:
     {'maxLength': 20}
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The name of the contact person.
 
@@ -347,9 +281,7 @@ class Contact:
     {'maxLength': 50}
     """
 
-    phone: str = attrs.field(
-        kw_only=True,
-    )
+    phone: Optional[str] = attrs.field()
     """
     The phone number of the contact person.
 
@@ -358,27 +290,19 @@ class Contact:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateInboundShipmentPlanRequest:
     """
     The request schema for the createInboundShipmentPlan operation.
     """
 
-    inbound_shipment_plan_request_items: "InboundShipmentPlanRequestItemList" = attrs.field(
-        kw_only=True,
-    )
+    inbound_shipment_plan_request_items: Optional["InboundShipmentPlanRequestItemList"] = attrs.field()
 
-    label_prep_preference: "LabelPrepPreference" = attrs.field(
-        kw_only=True,
-    )
+    label_prep_preference: Optional["LabelPrepPreference"] = attrs.field()
 
-    ship_from_address: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_from_address: Optional["Address"] = attrs.field()
 
-    ship_to_country_code: str = attrs.field(
-        kw_only=True,
-    )
+    ship_to_country_code: Optional[str] = attrs.field()
     """
     The two-character country code for the country where the inbound shipment is to be sent.
         Note: Not required. Specifying both ShipToCountryCode and ShipToCountrySubdivisionCode returns an error.
@@ -396,39 +320,31 @@ class CreateInboundShipmentPlanRequest:
         Default: The country code for the seller's home marketplace.
     """
 
-    ship_to_country_subdivision_code: str = attrs.field(
-        kw_only=True,
-    )
+    ship_to_country_subdivision_code: Optional[str] = attrs.field()
     """
     The two-character country code, followed by a dash and then up to three characters that represent the subdivision of the country where the inbound shipment is to be sent. For example, "IN-MH". In full ISO 3166-2 format.
         Note: Not required. Specifying both ShipToCountryCode and ShipToCountrySubdivisionCode returns an error.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateInboundShipmentPlanResponse:
     """
     The response schema for the createInboundShipmentPlan operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "CreateInboundShipmentPlanResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["CreateInboundShipmentPlanResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateInboundShipmentPlanResult:
 
-    inbound_shipment_plans: "InboundShipmentPlanList" = attrs.field(
-        kw_only=True,
-    )
+    inbound_shipment_plans: Optional["InboundShipmentPlanList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CurrencyCode:
     """
     The currency code.
@@ -437,64 +353,50 @@ class CurrencyCode:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DateStringType:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Dimensions:
     """
     The dimension values and unit of measurement.
     """
 
-    height: "BigDecimalType" = attrs.field(
-        kw_only=True,
-    )
+    height: Optional["BigDecimalType"] = attrs.field()
 
-    length: "BigDecimalType" = attrs.field(
-        kw_only=True,
-    )
+    length: Optional["BigDecimalType"] = attrs.field()
 
-    unit: "UnitOfMeasurement" = attrs.field(
-        kw_only=True,
-    )
+    unit: Optional["UnitOfMeasurement"] = attrs.field()
 
-    width: "BigDecimalType" = attrs.field(
-        kw_only=True,
-    )
+    width: Optional["BigDecimalType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -503,7 +405,7 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorReason:
     """
     The reason that the ASIN is invalid.
@@ -512,246 +414,176 @@ class ErrorReason:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class EstimateTransportResponse:
     """
     The response schema for the estimateTransport operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "CommonTransportResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["CommonTransportResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetBillOfLadingResponse:
     """
     The response schema for the getBillOfLading operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "BillOfLadingDownloadURL" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["BillOfLadingDownloadURL"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetInboundGuidanceResponse:
     """
     The response schema for the getInboundGuidance operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetInboundGuidanceResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetInboundGuidanceResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetInboundGuidanceResult:
 
-    asininbound_guidance_list: "ASINInboundGuidanceList" = attrs.field(
-        kw_only=True,
-    )
+    asininbound_guidance_list: Optional["ASINInboundGuidanceList"] = attrs.field()
 
-    invalid_asinlist: "InvalidASINList" = attrs.field(
-        kw_only=True,
-    )
+    invalid_asinlist: Optional["InvalidASINList"] = attrs.field()
 
-    invalid_skulist: "InvalidSKUList" = attrs.field(
-        kw_only=True,
-    )
+    invalid_skulist: Optional["InvalidSKUList"] = attrs.field()
 
-    skuinbound_guidance_list: "SKUInboundGuidanceList" = attrs.field(
-        kw_only=True,
-    )
+    skuinbound_guidance_list: Optional["SKUInboundGuidanceList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetLabelsResponse:
     """
     The response schema for the getLabels operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "LabelDownloadURL" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["LabelDownloadURL"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPreorderInfoResponse:
     """
     The response schema for the getPreorderInfo operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetPreorderInfoResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetPreorderInfoResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPreorderInfoResult:
 
-    confirmed_fulfillable_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    confirmed_fulfillable_date: Optional["DateStringType"] = attrs.field()
 
-    need_by_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    need_by_date: Optional["DateStringType"] = attrs.field()
 
-    shipment_confirmed_for_preorder: bool = attrs.field(
-        kw_only=True,
-    )
+    shipment_confirmed_for_preorder: Optional[bool] = attrs.field()
     """
     Indicates whether this shipment has been confirmed for pre-order.
     """
 
-    shipment_contains_preorderable_items: bool = attrs.field(
-        kw_only=True,
-    )
+    shipment_contains_preorderable_items: Optional[bool] = attrs.field()
     """
     Indicates whether the shipment contains items that have been enabled for pre-order. For more information about enabling items for pre-order, see the Seller Central Help.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPrepInstructionsResponse:
     """
     The response schema for the getPrepInstructions operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetPrepInstructionsResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetPrepInstructionsResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPrepInstructionsResult:
 
-    asinprep_instructions_list: "ASINPrepInstructionsList" = attrs.field(
-        kw_only=True,
-    )
+    asinprep_instructions_list: Optional["ASINPrepInstructionsList"] = attrs.field()
 
-    invalid_asinlist: "InvalidASINList" = attrs.field(
-        kw_only=True,
-    )
+    invalid_asinlist: Optional["InvalidASINList"] = attrs.field()
 
-    invalid_skulist: "InvalidSKUList" = attrs.field(
-        kw_only=True,
-    )
+    invalid_skulist: Optional["InvalidSKUList"] = attrs.field()
 
-    skuprep_instructions_list: "SKUPrepInstructionsList" = attrs.field(
-        kw_only=True,
-    )
+    skuprep_instructions_list: Optional["SKUPrepInstructionsList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetShipmentItemsResponse:
     """
     The response schema for the getShipmentItems operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetShipmentItemsResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetShipmentItemsResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetShipmentItemsResult:
 
-    item_data: "InboundShipmentItemList" = attrs.field(
-        kw_only=True,
-    )
+    item_data: Optional["InboundShipmentItemList"] = attrs.field()
 
-    next_token: str = attrs.field(
-        kw_only=True,
-    )
+    next_token: Optional[str] = attrs.field()
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetShipmentsResponse:
     """
     The response schema for the getShipments operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetShipmentsResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetShipmentsResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetShipmentsResult:
 
-    next_token: str = attrs.field(
-        kw_only=True,
-    )
+    next_token: Optional[str] = attrs.field()
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    shipment_data: "InboundShipmentList" = attrs.field(
-        kw_only=True,
-    )
+    shipment_data: Optional["InboundShipmentList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetTransportDetailsResponse:
     """
     The response schema for the getTransportDetails operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetTransportDetailsResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetTransportDetailsResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetTransportDetailsResult:
 
-    transport_content: "TransportContent" = attrs.field(
-        kw_only=True,
-    )
+    transport_content: Optional["TransportContent"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GuidanceReason:
     """
     A reason for the current inbound guidance for an item.
@@ -760,7 +592,7 @@ class GuidanceReason:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GuidanceReasonList:
     """
     A list of inbound guidance reason information.
@@ -769,7 +601,7 @@ class GuidanceReasonList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundGuidance:
     """
     Specific inbound guidance for an item.
@@ -778,15 +610,13 @@ class InboundGuidance:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentHeader:
     """
     Inbound shipment information used to create and update inbound shipments.
     """
 
-    are_cases_required: bool = attrs.field(
-        kw_only=True,
-    )
+    are_cases_required: Optional[bool] = attrs.field()
     """
     Indicates whether or not an inbound shipment contains case-packed boxes. Note: A shipment must contain either all case-packed boxes or all individually packed boxes.
         Possible values:
@@ -795,145 +625,97 @@ class InboundShipmentHeader:
         Note: If AreCasesRequired = true for an inbound shipment, then the value of QuantityInCase must be greater than zero for every item in the shipment. Otherwise the service returns an error.
     """
 
-    destination_fulfillment_center_id: str = attrs.field(
-        kw_only=True,
-    )
+    destination_fulfillment_center_id: Optional[str] = attrs.field()
     """
     The identifier for the fulfillment center to which the shipment will be shipped. Get this value from the InboundShipmentPlan object in the response returned by the createInboundShipmentPlan operation.
     """
 
-    intended_box_contents_source: "IntendedBoxContentsSource" = attrs.field(
-        kw_only=True,
-    )
+    intended_box_contents_source: Optional["IntendedBoxContentsSource"] = attrs.field()
 
-    label_prep_preference: "LabelPrepPreference" = attrs.field(
-        kw_only=True,
-    )
+    label_prep_preference: Optional["LabelPrepPreference"] = attrs.field()
 
-    ship_from_address: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_from_address: Optional["Address"] = attrs.field()
 
-    shipment_name: str = attrs.field(
-        kw_only=True,
-    )
+    shipment_name: Optional[str] = attrs.field()
     """
     The name for the shipment. Use a naming convention that helps distinguish between shipments over time, such as the date the shipment was created.
     """
 
-    shipment_status: "ShipmentStatus" = attrs.field(
-        kw_only=True,
-    )
+    shipment_status: Optional["ShipmentStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentInfo:
     """
     Information about the seller's inbound shipments. Returned by the listInboundShipments operation.
     """
 
-    are_cases_required: bool = attrs.field(
-        kw_only=True,
-    )
+    are_cases_required: Optional[bool] = attrs.field()
     """
     Indicates whether or not an inbound shipment contains case-packed boxes. When AreCasesRequired = true for an inbound shipment, all items in the inbound shipment must be case packed.
     """
 
-    box_contents_source: "BoxContentsSource" = attrs.field(
-        kw_only=True,
-    )
+    box_contents_source: Optional["BoxContentsSource"] = attrs.field()
 
-    confirmed_need_by_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    confirmed_need_by_date: Optional["DateStringType"] = attrs.field()
 
-    destination_fulfillment_center_id: str = attrs.field(
-        kw_only=True,
-    )
+    destination_fulfillment_center_id: Optional[str] = attrs.field()
     """
     An Amazon fulfillment center identifier created by Amazon.
     """
 
-    estimated_box_contents_fee: "BoxContentsFeeDetails" = attrs.field(
-        kw_only=True,
-    )
+    estimated_box_contents_fee: Optional["BoxContentsFeeDetails"] = attrs.field()
 
-    label_prep_type: "LabelPrepType" = attrs.field(
-        kw_only=True,
-    )
+    label_prep_type: Optional["LabelPrepType"] = attrs.field()
 
-    ship_from_address: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_from_address: Optional["Address"] = attrs.field()
 
-    shipment_id: str = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional[str] = attrs.field()
     """
     The shipment identifier submitted in the request.
     """
 
-    shipment_name: str = attrs.field(
-        kw_only=True,
-    )
+    shipment_name: Optional[str] = attrs.field()
     """
     The name for the inbound shipment.
     """
 
-    shipment_status: "ShipmentStatus" = attrs.field(
-        kw_only=True,
-    )
+    shipment_status: Optional["ShipmentStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentItem:
     """
     Item information for an inbound shipment. Submitted with a call to the createInboundShipment or updateInboundShipment operation.
     """
 
-    fulfillment_network_sku: str = attrs.field(
-        kw_only=True,
-    )
+    fulfillment_network_sku: Optional[str] = attrs.field()
     """
     Amazon's fulfillment network SKU of the item.
     """
 
-    prep_details_list: "PrepDetailsList" = attrs.field(
-        kw_only=True,
-    )
+    prep_details_list: Optional["PrepDetailsList"] = attrs.field()
 
-    quantity_in_case: "Quantity" = attrs.field(
-        kw_only=True,
-    )
+    quantity_in_case: Optional["Quantity"] = attrs.field()
 
-    quantity_received: "Quantity" = attrs.field(
-        kw_only=True,
-    )
+    quantity_received: Optional["Quantity"] = attrs.field()
 
-    quantity_shipped: "Quantity" = attrs.field(
-        kw_only=True,
-    )
+    quantity_shipped: Optional["Quantity"] = attrs.field()
 
-    release_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    release_date: Optional["DateStringType"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
-    shipment_id: str = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional[str] = attrs.field()
     """
     A shipment identifier originally returned by the createInboundShipmentPlan operation.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentItemList:
     """
     A list of inbound shipment item information.
@@ -942,7 +724,7 @@ class InboundShipmentItemList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentList:
     """
     A list of inbound shipment information.
@@ -951,73 +733,53 @@ class InboundShipmentList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentPlan:
     """
     Inbound shipment information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
     """
 
-    destination_fulfillment_center_id: str = attrs.field(
-        kw_only=True,
-    )
+    destination_fulfillment_center_id: Optional[str] = attrs.field()
     """
     An Amazon fulfillment center identifier created by Amazon.
     """
 
-    estimated_box_contents_fee: "BoxContentsFeeDetails" = attrs.field(
-        kw_only=True,
-    )
+    estimated_box_contents_fee: Optional["BoxContentsFeeDetails"] = attrs.field()
 
-    items: "InboundShipmentPlanItemList" = attrs.field(
-        kw_only=True,
-    )
+    items: Optional["InboundShipmentPlanItemList"] = attrs.field()
 
-    label_prep_type: "LabelPrepType" = attrs.field(
-        kw_only=True,
-    )
+    label_prep_type: Optional["LabelPrepType"] = attrs.field()
 
-    ship_to_address: "Address" = attrs.field(
-        kw_only=True,
-    )
+    ship_to_address: Optional["Address"] = attrs.field()
 
-    shipment_id: str = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional[str] = attrs.field()
     """
     A shipment identifier originally returned by the createInboundShipmentPlan operation.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentPlanItem:
     """
     Item information used to create an inbound shipment. Returned by the createInboundShipmentPlan operation.
     """
 
-    fulfillment_network_sku: str = attrs.field(
-        kw_only=True,
-    )
+    fulfillment_network_sku: Optional[str] = attrs.field()
     """
     Amazon's fulfillment network SKU of the item.
     """
 
-    prep_details_list: "PrepDetailsList" = attrs.field(
-        kw_only=True,
-    )
+    prep_details_list: Optional["PrepDetailsList"] = attrs.field()
 
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
+    quantity: Optional["Quantity"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentPlanItemList:
     """
     A list of inbound shipment plan item information.
@@ -1026,7 +788,7 @@ class InboundShipmentPlanItemList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentPlanList:
     """
     A list of inbound shipment plan information
@@ -1035,98 +797,74 @@ class InboundShipmentPlanList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentPlanRequestItem:
     """
     Item information for creating an inbound shipment plan. Submitted with a call to the createInboundShipmentPlan operation.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    condition: "Condition" = attrs.field(
-        kw_only=True,
-    )
+    condition: Optional["Condition"] = attrs.field()
 
-    prep_details_list: "PrepDetailsList" = attrs.field(
-        kw_only=True,
-    )
+    prep_details_list: Optional["PrepDetailsList"] = attrs.field()
 
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
+    quantity: Optional["Quantity"] = attrs.field()
 
-    quantity_in_case: "Quantity" = attrs.field(
-        kw_only=True,
-    )
+    quantity_in_case: Optional["Quantity"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentPlanRequestItemList:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentRequest:
     """
     The request schema for an inbound shipment.
     """
 
-    inbound_shipment_header: "InboundShipmentHeader" = attrs.field(
-        kw_only=True,
-    )
+    inbound_shipment_header: Optional["InboundShipmentHeader"] = attrs.field()
 
-    inbound_shipment_items: "InboundShipmentItemList" = attrs.field(
-        kw_only=True,
-    )
+    inbound_shipment_items: Optional["InboundShipmentItemList"] = attrs.field()
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier. Specifies the marketplace where the product would be stored.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentResponse:
     """
     The response schema for this operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "InboundShipmentResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["InboundShipmentResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InboundShipmentResult:
 
-    shipment_id: str = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional[str] = attrs.field()
     """
     The shipment identifier submitted in the request.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class IntendedBoxContentsSource:
     """
     How the seller intends to provide box contents information for a shipment.
@@ -1135,22 +873,18 @@ class IntendedBoxContentsSource:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InvalidASIN:
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    error_reason: "ErrorReason" = attrs.field(
-        kw_only=True,
-    )
+    error_reason: Optional["ErrorReason"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InvalidASINList:
     """
     A list of invalid ASIN values and the reasons they are invalid.
@@ -1159,22 +893,18 @@ class InvalidASINList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InvalidSKU:
 
-    error_reason: "ErrorReason" = attrs.field(
-        kw_only=True,
-    )
+    error_reason: Optional["ErrorReason"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InvalidSKUList:
     """
     A list of invalid SKU values and the reason they are invalid.
@@ -1183,18 +913,16 @@ class InvalidSKUList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LabelDownloadURL:
 
-    download_url: str = attrs.field(
-        kw_only=True,
-    )
+    download_url: Optional[str] = attrs.field()
     """
     URL to download the label for the package. Note: The URL will only be valid for 15 seconds
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LabelPrepPreference:
     """
     The preference for label preparation for an inbound shipment.
@@ -1203,7 +931,7 @@ class LabelPrepPreference:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LabelPrepType:
     """
     The type of label preparation that is required for the inbound shipment.
@@ -1212,83 +940,67 @@ class LabelPrepType:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredLtlDataInput:
     """
     Information that you provide to Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by a carrier that has not partnered with Amazon.
     """
 
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
+    carrier_name: Optional[str] = attrs.field()
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    pro_number: "ProNumber" = attrs.field(
-        kw_only=True,
-    )
+    pro_number: Optional["ProNumber"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredLtlDataOutput:
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment shipped by a carrier that has not partnered with Amazon.
     """
 
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
+    carrier_name: Optional[str] = attrs.field()
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    pro_number: "ProNumber" = attrs.field(
-        kw_only=True,
-    )
+    pro_number: Optional["ProNumber"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredSmallParcelDataInput:
     """
     Information that you provide to Amazon about a Small Parcel shipment shipped by a carrier that has not partnered with Amazon.
     """
 
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
+    carrier_name: Optional[str] = attrs.field()
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    package_list: "NonPartneredSmallParcelPackageInputList" = attrs.field(
-        kw_only=True,
-    )
+    package_list: Optional["NonPartneredSmallParcelPackageInputList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredSmallParcelDataOutput:
     """
     Information returned by Amazon about a Small Parcel shipment by a carrier that has not partnered with Amazon.
     """
 
-    package_list: "NonPartneredSmallParcelPackageOutputList" = attrs.field(
-        kw_only=True,
-    )
+    package_list: Optional["NonPartneredSmallParcelPackageOutputList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredSmallParcelPackageInput:
     """
     The tracking number of the package, provided by the carrier.
     """
 
-    tracking_id: "TrackingId" = attrs.field(
-        kw_only=True,
-    )
+    tracking_id: Optional["TrackingId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredSmallParcelPackageInputList:
     """
     A list of package tracking information.
@@ -1297,29 +1009,23 @@ class NonPartneredSmallParcelPackageInputList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredSmallParcelPackageOutput:
     """
     Carrier, tracking number, and status information for the package.
     """
 
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
+    carrier_name: Optional[str] = attrs.field()
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    package_status: "PackageStatus" = attrs.field(
-        kw_only=True,
-    )
+    package_status: Optional["PackageStatus"] = attrs.field()
 
-    tracking_id: "TrackingId" = attrs.field(
-        kw_only=True,
-    )
+    tracking_id: Optional["TrackingId"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NonPartneredSmallParcelPackageOutputList:
     """
     A list of packages, including carrier, tracking number, and status information for each package.
@@ -1328,7 +1034,7 @@ class NonPartneredSmallParcelPackageOutputList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PackageStatus:
     """
     The shipment status of the package.
@@ -1337,29 +1043,23 @@ class PackageStatus:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Pallet:
     """
     Pallet information.
     """
 
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
+    dimensions: Optional["Dimensions"] = attrs.field()
 
-    is_stacked: bool = attrs.field(
-        kw_only=True,
-    )
+    is_stacked: Optional[bool] = attrs.field()
     """
     Indicates whether pallets will be stacked when carrier arrives for pick-up.
     """
 
-    weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PalletList:
     """
     A list of pallet information.
@@ -1368,185 +1068,123 @@ class PalletList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredEstimate:
     """
     The estimated shipping cost for a shipment using an Amazon-partnered carrier.
     """
 
-    amount: "Amount" = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional["Amount"] = attrs.field()
 
-    confirm_deadline: "TimeStampStringType" = attrs.field(
-        kw_only=True,
-    )
+    confirm_deadline: Optional["TimeStampStringType"] = attrs.field()
 
-    void_deadline: "TimeStampStringType" = attrs.field(
-        kw_only=True,
-    )
+    void_deadline: Optional["TimeStampStringType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredLtlDataInput:
     """
     Information that is required by an Amazon-partnered carrier to ship a Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
     """
 
-    box_count: "UnsignedIntType" = attrs.field(
-        kw_only=True,
-    )
+    box_count: Optional["UnsignedIntType"] = attrs.field()
 
-    contact: "Contact" = attrs.field(
-        kw_only=True,
-    )
+    contact: Optional["Contact"] = attrs.field()
 
-    freight_ready_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    freight_ready_date: Optional["DateStringType"] = attrs.field()
 
-    pallet_list: "PalletList" = attrs.field(
-        kw_only=True,
-    )
+    pallet_list: Optional["PalletList"] = attrs.field()
 
-    seller_declared_value: "Amount" = attrs.field(
-        kw_only=True,
-    )
+    seller_declared_value: Optional["Amount"] = attrs.field()
 
-    seller_freight_class: "SellerFreightClass" = attrs.field(
-        kw_only=True,
-    )
+    seller_freight_class: Optional["SellerFreightClass"] = attrs.field()
 
-    total_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    total_weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredLtlDataOutput:
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
     """
 
-    amazon_calculated_value: "Amount" = attrs.field(
-        kw_only=True,
-    )
+    amazon_calculated_value: Optional["Amount"] = attrs.field()
 
-    amazon_reference_id: str = attrs.field(
-        kw_only=True,
-    )
+    amazon_reference_id: Optional[str] = attrs.field()
     """
     A unique identifier created by Amazon that identifies this Amazon-partnered, Less Than Truckload/Full Truckload (LTL/FTL) shipment.
     """
 
-    box_count: "UnsignedIntType" = attrs.field(
-        kw_only=True,
-    )
+    box_count: Optional["UnsignedIntType"] = attrs.field()
 
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
+    carrier_name: Optional[str] = attrs.field()
     """
     The carrier for the inbound shipment.
     """
 
-    contact: "Contact" = attrs.field(
-        kw_only=True,
-    )
+    contact: Optional["Contact"] = attrs.field()
 
-    freight_ready_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    freight_ready_date: Optional["DateStringType"] = attrs.field()
 
-    is_bill_of_lading_available: bool = attrs.field(
-        kw_only=True,
-    )
+    is_bill_of_lading_available: Optional[bool] = attrs.field()
     """
     Indicates whether the bill of lading for the shipment is available.
     """
 
-    pallet_list: "PalletList" = attrs.field(
-        kw_only=True,
-    )
+    pallet_list: Optional["PalletList"] = attrs.field()
 
-    partnered_estimate: "PartneredEstimate" = attrs.field(
-        kw_only=True,
-    )
+    partnered_estimate: Optional["PartneredEstimate"] = attrs.field()
 
-    preview_delivery_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    preview_delivery_date: Optional["DateStringType"] = attrs.field()
 
-    preview_freight_class: "SellerFreightClass" = attrs.field(
-        kw_only=True,
-    )
+    preview_freight_class: Optional["SellerFreightClass"] = attrs.field()
 
-    preview_pickup_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
+    preview_pickup_date: Optional["DateStringType"] = attrs.field()
 
-    seller_declared_value: "Amount" = attrs.field(
-        kw_only=True,
-    )
+    seller_declared_value: Optional["Amount"] = attrs.field()
 
-    seller_freight_class: "SellerFreightClass" = attrs.field(
-        kw_only=True,
-    )
+    seller_freight_class: Optional["SellerFreightClass"] = attrs.field()
 
-    total_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    total_weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredSmallParcelDataInput:
     """
     Information that is required by an Amazon-partnered carrier to ship a Small Parcel inbound shipment.
     """
 
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
+    carrier_name: Optional[str] = attrs.field()
     """
     The Amazon-partnered carrier to use for the inbound shipment.
     """
 
-    package_list: "PartneredSmallParcelPackageInputList" = attrs.field(
-        kw_only=True,
-    )
+    package_list: Optional["PartneredSmallParcelPackageInputList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredSmallParcelDataOutput:
     """
     Information returned by Amazon about a Small Parcel shipment by an Amazon-partnered carrier.
     """
 
-    package_list: "PartneredSmallParcelPackageOutputList" = attrs.field(
-        kw_only=True,
-    )
+    package_list: Optional["PartneredSmallParcelPackageOutputList"] = attrs.field()
 
-    partnered_estimate: "PartneredEstimate" = attrs.field(
-        kw_only=True,
-    )
+    partnered_estimate: Optional["PartneredEstimate"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredSmallParcelPackageInput:
     """
     Dimension and weight information for the package.
     """
 
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
+    dimensions: Optional["Dimensions"] = attrs.field()
 
-    weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredSmallParcelPackageInputList:
     """
     A list of dimensions and weight information for packages.
@@ -1555,37 +1193,27 @@ class PartneredSmallParcelPackageInputList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredSmallParcelPackageOutput:
     """
     Dimension, weight, and shipping information for the package.
     """
 
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
+    carrier_name: Optional[str] = attrs.field()
     """
     The carrier specified with a previous call to putTransportDetails.
     """
 
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
+    dimensions: Optional["Dimensions"] = attrs.field()
 
-    package_status: "PackageStatus" = attrs.field(
-        kw_only=True,
-    )
+    package_status: Optional["PackageStatus"] = attrs.field()
 
-    tracking_id: "TrackingId" = attrs.field(
-        kw_only=True,
-    )
+    tracking_id: Optional["TrackingId"] = attrs.field()
 
-    weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
+    weight: Optional["Weight"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PartneredSmallParcelPackageOutputList:
     """
     A list of packages, including shipping information from the Amazon-partnered carrier.
@@ -1594,22 +1222,18 @@ class PartneredSmallParcelPackageOutputList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PrepDetails:
     """
     Preparation instructions and who is responsible for the preparation.
     """
 
-    prep_instruction: "PrepInstruction" = attrs.field(
-        kw_only=True,
-    )
+    prep_instruction: Optional["PrepInstruction"] = attrs.field()
 
-    prep_owner: "PrepOwner" = attrs.field(
-        kw_only=True,
-    )
+    prep_owner: Optional["PrepOwner"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PrepDetailsList:
     """
     A list of preparation instructions and who is responsible for that preparation.
@@ -1618,7 +1242,7 @@ class PrepDetailsList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PrepGuidance:
     """
     Item preparation instructions.
@@ -1627,7 +1251,7 @@ class PrepGuidance:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PrepInstruction:
     """
     Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, see the Seller Central Help for your marketplace.
@@ -1636,7 +1260,7 @@ class PrepInstruction:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PrepInstructionList:
     """
     A list of preparation instructions to help with item sourcing decisions.
@@ -1645,7 +1269,7 @@ class PrepInstructionList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PrepOwner:
     """
     Indicates who will prepare the item.
@@ -1654,7 +1278,7 @@ class PrepOwner:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ProNumber:
     """
     The PRO number ("progressive number" or "progressive ID") assigned to the shipment by the carrier.
@@ -1663,44 +1287,34 @@ class ProNumber:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PutTransportDetailsRequest:
     """
     The request schema for a putTransportDetails operation.
     """
 
-    is_partnered: bool = attrs.field(
-        kw_only=True,
-    )
+    is_partnered: Optional[bool] = attrs.field()
     """
     Indicates whether a putTransportDetails request is for an Amazon-partnered carrier.
     """
 
-    shipment_type: "ShipmentType" = attrs.field(
-        kw_only=True,
-    )
+    shipment_type: Optional["ShipmentType"] = attrs.field()
 
-    transport_details: "TransportDetailInput" = attrs.field(
-        kw_only=True,
-    )
+    transport_details: Optional["TransportDetailInput"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PutTransportDetailsResponse:
     """
     Workflow status for a shipment with an Amazon-partnered carrier.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "CommonTransportResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["CommonTransportResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Quantity:
     """
     The item quantity.
@@ -1709,36 +1323,28 @@ class Quantity:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SKUInboundGuidance:
     """
     Reasons why a given seller SKU is not recommended for shipment to Amazon's fulfillment network.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    guidance_reason_list: "GuidanceReasonList" = attrs.field(
-        kw_only=True,
-    )
+    guidance_reason_list: Optional["GuidanceReasonList"] = attrs.field()
 
-    inbound_guidance: "InboundGuidance" = attrs.field(
-        kw_only=True,
-    )
+    inbound_guidance: Optional["InboundGuidance"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SKUInboundGuidanceList:
     """
     A list of SKU inbound guidance information.
@@ -1747,44 +1353,32 @@ class SKUInboundGuidanceList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SKUPrepInstructions:
     """
     Labeling requirements and item preparation instructions to help you prepare items for shipment to Amazon's fulfillment network.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    amazon_prep_fees_details_list: "AmazonPrepFeesDetailsList" = attrs.field(
-        kw_only=True,
-    )
+    amazon_prep_fees_details_list: Optional["AmazonPrepFeesDetailsList"] = attrs.field()
 
-    barcode_instruction: "BarcodeInstruction" = attrs.field(
-        kw_only=True,
-    )
+    barcode_instruction: Optional["BarcodeInstruction"] = attrs.field()
 
-    prep_guidance: "PrepGuidance" = attrs.field(
-        kw_only=True,
-    )
+    prep_guidance: Optional["PrepGuidance"] = attrs.field()
 
-    prep_instruction_list: "PrepInstructionList" = attrs.field(
-        kw_only=True,
-    )
+    prep_instruction_list: Optional["PrepInstructionList"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SKUPrepInstructionsList:
     """
     A list of SKU labeling requirements and item preparation instructions.
@@ -1793,7 +1387,7 @@ class SKUPrepInstructionsList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerFreightClass:
     """
     The freight class of the shipment. For information about determining the freight class, contact the carrier.
@@ -1802,7 +1396,7 @@ class SellerFreightClass:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentStatus:
     """
     Indicates the status of the inbound shipment. When used with the createInboundShipment operation, WORKING is the only valid value. When used with the updateInboundShipment operation, possible values are WORKING, SHIPPED or CANCELLED.
@@ -1811,7 +1405,7 @@ class ShipmentStatus:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentType:
     """
     Specifies the carrier shipment type in a putTransportDetails request.
@@ -1820,13 +1414,13 @@ class ShipmentType:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TimeStampStringType:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TrackingId:
     """
     The tracking number of the package, provided by the carrier.
@@ -1835,80 +1429,56 @@ class TrackingId:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransportContent:
     """
     Inbound shipment information, including carrier details, shipment status, and the workflow status for a request for shipment with an Amazon-partnered carrier.
     """
 
-    transport_details: "TransportDetailOutput" = attrs.field(
-        kw_only=True,
-    )
+    transport_details: Optional["TransportDetailOutput"] = attrs.field()
 
-    transport_header: "TransportHeader" = attrs.field(
-        kw_only=True,
-    )
+    transport_header: Optional["TransportHeader"] = attrs.field()
 
-    transport_result: "TransportResult" = attrs.field(
-        kw_only=True,
-    )
+    transport_result: Optional["TransportResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransportDetailInput:
     """
     Information required to create an Amazon-partnered carrier shipping estimate, or to alert the Amazon fulfillment center to the arrival of an inbound shipment by a non-Amazon-partnered carrier.
     """
 
-    non_partnered_ltl_data: "NonPartneredLtlDataInput" = attrs.field(
-        kw_only=True,
-    )
+    non_partnered_ltl_data: Optional["NonPartneredLtlDataInput"] = attrs.field()
 
-    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataInput" = attrs.field(
-        kw_only=True,
-    )
+    non_partnered_small_parcel_data: Optional["NonPartneredSmallParcelDataInput"] = attrs.field()
 
-    partnered_ltl_data: "PartneredLtlDataInput" = attrs.field(
-        kw_only=True,
-    )
+    partnered_ltl_data: Optional["PartneredLtlDataInput"] = attrs.field()
 
-    partnered_small_parcel_data: "PartneredSmallParcelDataInput" = attrs.field(
-        kw_only=True,
-    )
+    partnered_small_parcel_data: Optional["PartneredSmallParcelDataInput"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransportDetailOutput:
     """
     Inbound shipment information, including carrier details and shipment status.
     """
 
-    non_partnered_ltl_data: "NonPartneredLtlDataOutput" = attrs.field(
-        kw_only=True,
-    )
+    non_partnered_ltl_data: Optional["NonPartneredLtlDataOutput"] = attrs.field()
 
-    non_partnered_small_parcel_data: "NonPartneredSmallParcelDataOutput" = attrs.field(
-        kw_only=True,
-    )
+    non_partnered_small_parcel_data: Optional["NonPartneredSmallParcelDataOutput"] = attrs.field()
 
-    partnered_ltl_data: "PartneredLtlDataOutput" = attrs.field(
-        kw_only=True,
-    )
+    partnered_ltl_data: Optional["PartneredLtlDataOutput"] = attrs.field()
 
-    partnered_small_parcel_data: "PartneredSmallParcelDataOutput" = attrs.field(
-        kw_only=True,
-    )
+    partnered_small_parcel_data: Optional["PartneredSmallParcelDataOutput"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransportHeader:
     """
     The shipping identifier, information about whether the shipment is by an Amazon-partnered carrier, and information about whether the shipment is Small Parcel or Less Than Truckload/Full Truckload (LTL/FTL).
     """
 
-    is_partnered: bool = attrs.field(
-        kw_only=True,
-    )
+    is_partnered: Optional[bool] = attrs.field()
     """
     Indicates whether a putTransportDetails request is for a partnered carrier.
         Possible values:
@@ -1916,51 +1486,39 @@ class TransportHeader:
         * false – Request is for a non-Amazon-partnered carrier.
     """
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The Amazon seller identifier.
     """
 
-    shipment_id: str = attrs.field(
-        kw_only=True,
-    )
+    shipment_id: Optional[str] = attrs.field()
     """
     A shipment identifier originally returned by the createInboundShipmentPlan operation.
     """
 
-    shipment_type: "ShipmentType" = attrs.field(
-        kw_only=True,
-    )
+    shipment_type: Optional["ShipmentType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransportResult:
     """
     The workflow status for a shipment with an Amazon-partnered carrier.
     """
 
-    error_code: str = attrs.field(
-        kw_only=True,
-    )
+    error_code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
 
-    error_description: str = attrs.field(
-        kw_only=True,
-    )
+    error_description: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
-    transport_status: "TransportStatus" = attrs.field(
-        kw_only=True,
-    )
+    transport_status: Optional["TransportStatus"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class TransportStatus:
     """
     Indicates the status of the Amazon-partnered carrier shipment.
@@ -1969,7 +1527,7 @@ class TransportStatus:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class UnitOfMeasurement:
     """
     Indicates the unit of measurement.
@@ -1978,7 +1536,7 @@ class UnitOfMeasurement:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class UnitOfWeight:
     """
     Indicates the unit of weight.
@@ -1987,40 +1545,32 @@ class UnitOfWeight:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class UnsignedIntType:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class VoidTransportResponse:
     """
     The response schema for the voidTransport operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "CommonTransportResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["CommonTransportResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Weight:
     """
     The weight of the package.
     """
 
-    unit: "UnitOfWeight" = attrs.field(
-        kw_only=True,
-    )
+    unit: Optional["UnitOfWeight"] = attrs.field()
 
-    value: "BigDecimalType" = attrs.field(
-        kw_only=True,
-    )
+    value: Optional["BigDecimalType"] = attrs.field()
 
 
 class FulfillmentInboundV0Client(BaseClient):

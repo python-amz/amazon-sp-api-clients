@@ -11,93 +11,75 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Issue:
     """
     An issue with a listings item.
     """
 
-    attribute_name: str = attrs.field(
-        kw_only=True,
-    )
+    attribute_name: Optional[str] = attrs.field()
     """
     Name of the attribute associated with the issue, if applicable.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An issue code that identifies the type of issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the issue.
     """
 
-    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field(
-        kw_only=True,
-    )
+    severity: Optional[Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]] = attrs.field()
     """
     The severity of the issue.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemPatchRequest:
     """
     The request body schema for the patchListingsItem operation.
     """
 
-    patches: List["PatchOperation"] = attrs.field(
-        kw_only=True,
-    )
+    patches: Optional[List["PatchOperation"]] = attrs.field()
     """
     One or more JSON Patch operations to perform on the listings item.
 
@@ -105,42 +87,34 @@ class ListingsItemPatchRequest:
     {'minItems': 1}
     """
 
-    product_type: str = attrs.field(
-        kw_only=True,
-    )
+    product_type: Optional[str] = attrs.field()
     """
     The Amazon product type of the listings item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemPutRequest:
     """
     The request body schema for the putListingsItem operation.
     """
 
-    attributes: "ListingsItemPutRequestAttributes" = attrs.field(
-        kw_only=True,
-    )
+    attributes: Optional["ListingsItemPutRequestAttributes"] = attrs.field()
 
-    product_type: str = attrs.field(
-        kw_only=True,
-    )
+    product_type: Optional[str] = attrs.field()
     """
     The Amazon product type of the listings item.
     """
 
-    requirements: Union[
-        Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    requirements: Optional[
+        Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    ] = attrs.field()
     """
     The name of the requirements set for the provided data.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemPutRequestAttributes:
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
@@ -149,70 +123,56 @@ class ListingsItemPutRequestAttributes:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListingsItemSubmissionResponse:
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
 
-    issues: List["Issue"] = attrs.field(
-        kw_only=True,
-    )
+    issues: Optional[List["Issue"]] = attrs.field()
     """
     Listings item issues related to the listings item submission.
     """
 
-    sku: str = attrs.field(
-        kw_only=True,
-    )
+    sku: Optional[str] = attrs.field()
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[Union[Literal["ACCEPTED"], Literal["INVALID"]]] = attrs.field()
     """
     The status of the listings item submission.
     """
 
-    submission_id: str = attrs.field(
-        kw_only=True,
-    )
+    submission_id: Optional[str] = attrs.field()
     """
     The unique identifier of the listings item submission.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PatchOperation:
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
-    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field(
-        kw_only=True,
-    )
+    op: Optional[Union[Literal["add"], Literal["replace"], Literal["delete"]]] = attrs.field()
     """
     Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    path: str = attrs.field(
-        kw_only=True,
-    )
+    path: Optional[str] = attrs.field()
     """
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    value: List["PatchOperationValueItem"] = attrs.field(
-        kw_only=True,
-    )
+    value: Optional[List["PatchOperationValueItem"]] = attrs.field()
     """
     JSON value to add, replace, or delete.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PatchOperationValueItem:
 
     pass

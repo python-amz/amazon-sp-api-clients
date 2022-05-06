@@ -9,39 +9,33 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -50,100 +44,88 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetItemEligibilityPreviewResponse:
     """
     The response schema for the getItemEligibilityPreview operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "ItemEligibilityPreview" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["ItemEligibilityPreview"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemEligibilityPreview:
     """
     The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The ASIN for which eligibility was determined.
     """
 
-    ineligibility_reason_list: List[
-        Union[
-            Literal["FBA_INB_0004"],
-            Literal["FBA_INB_0006"],
-            Literal["FBA_INB_0007"],
-            Literal["FBA_INB_0008"],
-            Literal["FBA_INB_0009"],
-            Literal["FBA_INB_0010"],
-            Literal["FBA_INB_0011"],
-            Literal["FBA_INB_0012"],
-            Literal["FBA_INB_0013"],
-            Literal["FBA_INB_0014"],
-            Literal["FBA_INB_0015"],
-            Literal["FBA_INB_0016"],
-            Literal["FBA_INB_0017"],
-            Literal["FBA_INB_0018"],
-            Literal["FBA_INB_0019"],
-            Literal["FBA_INB_0034"],
-            Literal["FBA_INB_0035"],
-            Literal["FBA_INB_0036"],
-            Literal["FBA_INB_0037"],
-            Literal["FBA_INB_0038"],
-            Literal["FBA_INB_0050"],
-            Literal["FBA_INB_0051"],
-            Literal["FBA_INB_0053"],
-            Literal["FBA_INB_0055"],
-            Literal["FBA_INB_0056"],
-            Literal["FBA_INB_0059"],
-            Literal["FBA_INB_0065"],
-            Literal["FBA_INB_0066"],
-            Literal["FBA_INB_0067"],
-            Literal["FBA_INB_0068"],
-            Literal["FBA_INB_0095"],
-            Literal["FBA_INB_0097"],
-            Literal["FBA_INB_0098"],
-            Literal["FBA_INB_0099"],
-            Literal["FBA_INB_0100"],
-            Literal["FBA_INB_0103"],
-            Literal["FBA_INB_0104"],
-            Literal["FBA_INB_0197"],
-            Literal["UNKNOWN_INB_ERROR_CODE"],
+    ineligibility_reason_list: Optional[
+        List[
+            Union[
+                Literal["FBA_INB_0004"],
+                Literal["FBA_INB_0006"],
+                Literal["FBA_INB_0007"],
+                Literal["FBA_INB_0008"],
+                Literal["FBA_INB_0009"],
+                Literal["FBA_INB_0010"],
+                Literal["FBA_INB_0011"],
+                Literal["FBA_INB_0012"],
+                Literal["FBA_INB_0013"],
+                Literal["FBA_INB_0014"],
+                Literal["FBA_INB_0015"],
+                Literal["FBA_INB_0016"],
+                Literal["FBA_INB_0017"],
+                Literal["FBA_INB_0018"],
+                Literal["FBA_INB_0019"],
+                Literal["FBA_INB_0034"],
+                Literal["FBA_INB_0035"],
+                Literal["FBA_INB_0036"],
+                Literal["FBA_INB_0037"],
+                Literal["FBA_INB_0038"],
+                Literal["FBA_INB_0050"],
+                Literal["FBA_INB_0051"],
+                Literal["FBA_INB_0053"],
+                Literal["FBA_INB_0055"],
+                Literal["FBA_INB_0056"],
+                Literal["FBA_INB_0059"],
+                Literal["FBA_INB_0065"],
+                Literal["FBA_INB_0066"],
+                Literal["FBA_INB_0067"],
+                Literal["FBA_INB_0068"],
+                Literal["FBA_INB_0095"],
+                Literal["FBA_INB_0097"],
+                Literal["FBA_INB_0098"],
+                Literal["FBA_INB_0099"],
+                Literal["FBA_INB_0100"],
+                Literal["FBA_INB_0103"],
+                Literal["FBA_INB_0104"],
+                Literal["FBA_INB_0197"],
+                Literal["UNKNOWN_INB_ERROR_CODE"],
+            ]
         ]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    ] = attrs.field()
     """
     Potential Ineligibility Reason Codes.
     """
 
-    is_eligible_for_program: bool = attrs.field(
-        kw_only=True,
-    )
+    is_eligible_for_program: Optional[bool] = attrs.field()
     """
     Indicates if the item is eligible for the program.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     The marketplace for which eligibility was determined.
     """
 
-    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]] = attrs.field(
-        kw_only=True,
-    )
+    program: Optional[Union[Literal["INBOUND"], Literal["COMMINGLING"]]] = attrs.field()
     """
     The program for which eligibility was determined.
     """

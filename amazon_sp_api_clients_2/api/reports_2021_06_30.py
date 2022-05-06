@@ -9,44 +9,38 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportResponse:
     """
     Response schema.
     """
 
-    report_id: str = attrs.field(
-        kw_only=True,
-    )
+    report_id: Optional[str] = attrs.field()
     """
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportScheduleResponse:
     """
     Response schema.
     """
 
-    report_schedule_id: str = attrs.field(
-        kw_only=True,
-    )
+    report_schedule_id: Optional[str] = attrs.field()
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportScheduleSpecification:
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     A list of marketplace identifiers for the report schedule.
 
@@ -54,9 +48,7 @@ class CreateReportScheduleSpecification:
     {'maxItems': 25, 'minItems': 1}
     """
 
-    next_report_creation_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    next_report_creation_time: Optional[datetime] = attrs.field()
     """
     The date and time when the schedule will create its next report, in ISO 8601 date time format.
 
@@ -64,53 +56,47 @@ class CreateReportScheduleSpecification:
     {'schema_format': 'date-time'}
     """
 
-    period: Union[
-        Literal["PT5M"],
-        Literal["PT15M"],
-        Literal["PT30M"],
-        Literal["PT1H"],
-        Literal["PT2H"],
-        Literal["PT4H"],
-        Literal["PT8H"],
-        Literal["PT12H"],
-        Literal["P1D"],
-        Literal["P2D"],
-        Literal["P3D"],
-        Literal["PT84H"],
-        Literal["P7D"],
-        Literal["P14D"],
-        Literal["P15D"],
-        Literal["P18D"],
-        Literal["P30D"],
-        Literal["P1M"],
-    ] = attrs.field(
-        kw_only=True,
-    )
+    period: Optional[
+        Union[
+            Literal["PT5M"],
+            Literal["PT15M"],
+            Literal["PT30M"],
+            Literal["PT1H"],
+            Literal["PT2H"],
+            Literal["PT4H"],
+            Literal["PT8H"],
+            Literal["PT12H"],
+            Literal["P1D"],
+            Literal["P2D"],
+            Literal["P3D"],
+            Literal["PT84H"],
+            Literal["P7D"],
+            Literal["P14D"],
+            Literal["P15D"],
+            Literal["P18D"],
+            Literal["P30D"],
+            Literal["P1M"],
+        ]
+    ] = attrs.field()
     """
     One of a set of predefined ISO 8601 periods that specifies how often a report should be created.
     """
 
-    report_options: "ReportOptions" = attrs.field(
-        kw_only=True,
-    )
+    report_options: Optional["ReportOptions"] = attrs.field()
 
-    report_type: str = attrs.field(
-        kw_only=True,
-    )
+    report_type: Optional[str] = attrs.field()
     """
     The report type.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportSpecification:
     """
     Information required to create the report.
     """
 
-    data_end_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    data_end_time: Optional[datetime] = attrs.field()
     """
     The end of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
 
@@ -118,9 +104,7 @@ class CreateReportSpecification:
     {'schema_format': 'date-time'}
     """
 
-    data_start_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    data_start_time: Optional[datetime] = attrs.field()
     """
     The start of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
 
@@ -128,9 +112,7 @@ class CreateReportSpecification:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
 
@@ -138,84 +120,66 @@ class CreateReportSpecification:
     {'maxItems': 25, 'minItems': 1}
     """
 
-    report_options: "ReportOptions" = attrs.field(
-        kw_only=True,
-    )
+    report_options: Optional["ReportOptions"] = attrs.field()
 
-    report_type: str = attrs.field(
-        kw_only=True,
-    )
+    report_type: Optional[str] = attrs.field()
     """
     The report type.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetReportsResponse:
     """
     The response for the getReports operation.
     """
 
-    next_token: str = attrs.field(
-        kw_only=True,
-    )
+    next_token: Optional[str] = attrs.field()
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call getReports with this token as the only parameter.
     """
 
-    reports: "ReportList" = attrs.field(
-        kw_only=True,
-    )
+    reports: Optional["ReportList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Report:
     """
     Detailed information about the report.
     """
 
-    created_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    created_time: Optional[datetime] = attrs.field()
     """
     The date and time when the report was created.
 
@@ -223,9 +187,7 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    data_end_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    data_end_time: Optional[datetime] = attrs.field()
     """
     The end of a date and time range used for selecting the data to report.
 
@@ -233,9 +195,7 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    data_start_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    data_start_time: Optional[datetime] = attrs.field()
     """
     The start of a date and time range used for selecting the data to report.
 
@@ -243,16 +203,12 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     A list of marketplace identifiers for the report.
     """
 
-    processing_end_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    processing_end_time: Optional[datetime] = attrs.field()
     """
     The date and time when the report processing completed, in ISO 8601 date time format.
 
@@ -260,9 +216,7 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    processing_start_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    processing_start_time: Optional[datetime] = attrs.field()
     """
     The date and time when the report processing started, in ISO 8601 date time format.
 
@@ -270,73 +224,57 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    processing_status: Union[
-        Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    processing_status: Optional[
+        Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+    ] = attrs.field()
     """
     The processing status of the report.
     """
 
-    report_document_id: str = attrs.field(
-        kw_only=True,
-    )
+    report_document_id: Optional[str] = attrs.field()
     """
     The identifier for the report document. Pass this into the getReportDocument operation to get the information you will need to retrieve the report document's contents.
     """
 
-    report_id: str = attrs.field(
-        kw_only=True,
-    )
+    report_id: Optional[str] = attrs.field()
     """
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
 
-    report_schedule_id: str = attrs.field(
-        kw_only=True,
-    )
+    report_schedule_id: Optional[str] = attrs.field()
     """
     The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
     """
 
-    report_type: str = attrs.field(
-        kw_only=True,
-    )
+    report_type: Optional[str] = attrs.field()
     """
     The report type.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ReportDocument:
     """
     Information required for the report document.
     """
 
-    compression_algorithm: Union[Literal["GZIP"]] = attrs.field(
-        kw_only=True,
-    )
+    compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field()
     """
     If present, the report document contents have been compressed with the provided algorithm.
     """
 
-    report_document_id: str = attrs.field(
-        kw_only=True,
-    )
+    report_document_id: Optional[str] = attrs.field()
     """
     The identifier for the report document. This identifier is unique only in combination with a seller ID.
     """
 
-    url: str = attrs.field(
-        kw_only=True,
-    )
+    url: Optional[str] = attrs.field()
     """
     A presigned URL for the report document. This URL expires after 5 minutes.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ReportList:
     """
     A list of reports.
@@ -345,7 +283,7 @@ class ReportList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=False)
 class ReportOptions:
     """
     Additional information passed to reports. This varies by report type.
@@ -354,22 +292,18 @@ class ReportOptions:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ReportSchedule:
     """
     Detailed information about a report schedule.
     """
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
     """
 
-    next_report_creation_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    next_report_creation_time: Optional[datetime] = attrs.field()
     """
     The date and time when the schedule will create its next report, in ISO 8601 date time format.
 
@@ -377,41 +311,31 @@ class ReportSchedule:
     {'schema_format': 'date-time'}
     """
 
-    period: str = attrs.field(
-        kw_only=True,
-    )
+    period: Optional[str] = attrs.field()
     """
     An ISO 8601 period value that indicates how often a report should be created.
     """
 
-    report_options: "ReportOptions" = attrs.field(
-        kw_only=True,
-    )
+    report_options: Optional["ReportOptions"] = attrs.field()
 
-    report_schedule_id: str = attrs.field(
-        kw_only=True,
-    )
+    report_schedule_id: Optional[str] = attrs.field()
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
 
-    report_type: str = attrs.field(
-        kw_only=True,
-    )
+    report_type: Optional[str] = attrs.field()
     """
     The report type.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ReportScheduleList:
     """
     A list of report schedules.
     """
 
-    report_schedules: List["ReportSchedule"] = attrs.field(
-        kw_only=True,
-    )
+    report_schedules: Optional[List["ReportSchedule"]] = attrs.field()
 
 
 class Reports20210630Client(BaseClient):

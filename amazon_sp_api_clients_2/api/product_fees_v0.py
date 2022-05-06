@@ -9,36 +9,30 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -47,41 +41,29 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeeDetail:
     """
     The type of fee, fee amount, and other details.
     """
 
-    fee_amount: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    fee_amount: Optional["MoneyType"] = attrs.field()
 
-    fee_promotion: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    fee_promotion: Optional["MoneyType"] = attrs.field()
 
-    fee_type: str = attrs.field(
-        kw_only=True,
-    )
+    fee_type: Optional[str] = attrs.field()
     """
     The type of fee charged to a seller.
     """
 
-    final_fee: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    final_fee: Optional["MoneyType"] = attrs.field()
 
-    included_fee_detail_list: "IncludedFeeDetailList" = attrs.field(
-        kw_only=True,
-    )
+    included_fee_detail_list: Optional["IncludedFeeDetailList"] = attrs.field()
 
-    tax_amount: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    tax_amount: Optional["MoneyType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeeDetailList:
     """
     A list of other fees that contribute to a given fee.
@@ -90,19 +72,15 @@ class FeeDetailList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimate:
     """
     The total estimated fees for an item and a list of details.
     """
 
-    fee_detail_list: "FeeDetailList" = attrs.field(
-        kw_only=True,
-    )
+    fee_detail_list: Optional["FeeDetailList"] = attrs.field()
 
-    time_of_fees_estimation: datetime = attrs.field(
-        kw_only=True,
-    )
+    time_of_fees_estimation: Optional[datetime] = attrs.field()
     """
     The time at which the fees were estimated. This defaults to the time the request is made.
 
@@ -110,44 +88,34 @@ class FeesEstimate:
     {'schema_format': 'date-time'}
     """
 
-    total_fees_estimate: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    total_fees_estimate: Optional["MoneyType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateError:
     """
     An unexpected error occurred during this operation.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    detail: "FeesEstimateErrorDetail" = attrs.field(
-        kw_only=True,
-    )
+    detail: Optional["FeesEstimateErrorDetail"] = attrs.field()
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
-    type: str = attrs.field(
-        kw_only=True,
-    )
+    type: Optional[str] = attrs.field()
     """
     An error type, identifying either the receiver or the sender as the originator of the error.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateErrorDetail:
     """
     Additional information that can help the caller understand or fix the issue.
@@ -156,193 +124,141 @@ class FeesEstimateErrorDetail:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateErrorDetailItem:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateIdentifier:
     """
     An item identifier, marketplace, time of request, and other details that identify an estimate.
     """
 
-    id_type: str = attrs.field(
-        kw_only=True,
-    )
+    id_type: Optional[str] = attrs.field()
     """
     The type of item identifier specified.
     """
 
-    id_value: str = attrs.field(
-        kw_only=True,
-    )
+    id_value: Optional[str] = attrs.field()
     """
     The item identifier.
     """
 
-    is_amazon_fulfilled: bool = attrs.field(
-        kw_only=True,
-    )
+    is_amazon_fulfilled: Optional[bool] = attrs.field()
     """
     When true, the offer is fulfilled by Amazon.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier.
     """
 
-    optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field(
-        kw_only=True,
-    )
+    optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field()
 
-    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field(
-        kw_only=True,
-    )
+    price_to_estimate_fees: Optional["PriceToEstimateFees"] = attrs.field()
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The seller identifier.
     """
 
-    seller_input_identifier: str = attrs.field(
-        kw_only=True,
-    )
+    seller_input_identifier: Optional[str] = attrs.field()
     """
     A unique identifier provided by the caller to track this request.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateRequest:
 
-    identifier: str = attrs.field(
-        kw_only=True,
-    )
+    identifier: Optional[str] = attrs.field()
     """
     A unique identifier provided by the caller to track this request.
     """
 
-    is_amazon_fulfilled: bool = attrs.field(
-        kw_only=True,
-    )
+    is_amazon_fulfilled: Optional[bool] = attrs.field()
     """
     When true, the offer is fulfilled by Amazon.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier.
     """
 
-    optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field(
-        kw_only=True,
-    )
+    optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field()
 
-    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field(
-        kw_only=True,
-    )
+    price_to_estimate_fees: Optional["PriceToEstimateFees"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateResult:
     """
     An item identifier and the estimated fees for the item.
     """
 
-    error: "FeesEstimateError" = attrs.field(
-        kw_only=True,
-    )
+    error: Optional["FeesEstimateError"] = attrs.field()
 
-    fees_estimate: "FeesEstimate" = attrs.field(
-        kw_only=True,
-    )
+    fees_estimate: Optional["FeesEstimate"] = attrs.field()
 
-    fees_estimate_identifier: "FeesEstimateIdentifier" = attrs.field(
-        kw_only=True,
-    )
+    fees_estimate_identifier: Optional["FeesEstimateIdentifier"] = attrs.field()
 
-    status: str = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[str] = attrs.field()
     """
     The status of the fee request. Possible values: Success, ClientError, ServiceError.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMyFeesEstimateRequest:
     """
     Request schema.
     """
 
-    fees_estimate_request: "FeesEstimateRequest" = attrs.field(
-        kw_only=True,
-    )
+    fees_estimate_request: Optional["FeesEstimateRequest"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMyFeesEstimateResponse:
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetMyFeesEstimateResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetMyFeesEstimateResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMyFeesEstimateResult:
     """
     Response schema.
     """
 
-    fees_estimate_result: "FeesEstimateResult" = attrs.field(
-        kw_only=True,
-    )
+    fees_estimate_result: Optional["FeesEstimateResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class IncludedFeeDetail:
     """
     The type of fee, fee amount, and other details.
     """
 
-    fee_amount: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    fee_amount: Optional["MoneyType"] = attrs.field()
 
-    fee_promotion: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    fee_promotion: Optional["MoneyType"] = attrs.field()
 
-    fee_type: str = attrs.field(
-        kw_only=True,
-    )
+    fee_type: Optional[str] = attrs.field()
     """
     The type of fee charged to a seller.
     """
 
-    final_fee: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    final_fee: Optional["MoneyType"] = attrs.field()
 
-    tax_amount: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    tax_amount: Optional["MoneyType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class IncludedFeeDetailList:
     """
     A list of other fees that contribute to a given fee.
@@ -351,25 +267,21 @@ class IncludedFeeDetailList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MoneyType:
 
-    amount: float = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional[float] = attrs.field()
     """
     The monetary value.
     """
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     The currency code in ISO 4217 format.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OptionalFulfillmentProgram:
     """
     An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
@@ -378,16 +290,12 @@ class OptionalFulfillmentProgram:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Points:
 
-    points_monetary_value: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    points_monetary_value: Optional["MoneyType"] = attrs.field()
 
-    points_number: int = attrs.field(
-        kw_only=True,
-    )
+    points_number: Optional[int] = attrs.field()
     """
 
     Extra fields:
@@ -395,23 +303,17 @@ class Points:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PriceToEstimateFees:
     """
     Price information for an item, used to estimate fees.
     """
 
-    listing_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    listing_price: Optional["MoneyType"] = attrs.field()
 
-    points: "Points" = attrs.field(
-        kw_only=True,
-    )
+    points: Optional["Points"] = attrs.field()
 
-    shipping: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    shipping: Optional["MoneyType"] = attrs.field()
 
 
 class ProductFeesV0Client(BaseClient):

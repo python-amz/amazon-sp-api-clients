@@ -9,39 +9,33 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     An error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -50,109 +44,81 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetInventorySummariesResponse:
     """
     The Response schema.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    pagination: "Pagination" = attrs.field(
-        kw_only=True,
-    )
+    pagination: Optional["Pagination"] = attrs.field()
 
-    payload: "GetInventorySummariesResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetInventorySummariesResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetInventorySummariesResult:
     """
     The payload schema for the getInventorySummaries operation.
     """
 
-    granularity: "Granularity" = attrs.field(
-        kw_only=True,
-    )
+    granularity: Optional["Granularity"] = attrs.field()
 
-    inventory_summaries: "InventorySummaries" = attrs.field(
-        kw_only=True,
-    )
+    inventory_summaries: Optional["InventorySummaries"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Granularity:
     """
     Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
     """
 
-    granularity_id: str = attrs.field(
-        kw_only=True,
-    )
+    granularity_id: Optional[str] = attrs.field()
     """
     The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
     """
 
-    granularity_type: str = attrs.field(
-        kw_only=True,
-    )
+    granularity_type: Optional[str] = attrs.field()
     """
     The granularity type for the inventory aggregation level.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InventoryDetails:
     """
     Summarized inventory details. This object will not appear if the details parameter in the request is false.
     """
 
-    fulfillable_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    fulfillable_quantity: Optional[int] = attrs.field()
     """
     The item quantity that can be picked, packed, and shipped.
     """
 
-    inbound_receiving_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    inbound_receiving_quantity: Optional[int] = attrs.field()
     """
     The number of units that have not yet been received at an Amazon fulfillment center for processing, but are part of an inbound shipment with some units that have already been received and processed.
     """
 
-    inbound_shipped_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    inbound_shipped_quantity: Optional[int] = attrs.field()
     """
     The number of units in an inbound shipment that you have notified Amazon about and have provided a tracking number.
     """
 
-    inbound_working_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    inbound_working_quantity: Optional[int] = attrs.field()
     """
     The number of units in an inbound shipment for which you have notified Amazon.
     """
 
-    researching_quantity: "ResearchingQuantity" = attrs.field(
-        kw_only=True,
-    )
+    researching_quantity: Optional["ResearchingQuantity"] = attrs.field()
 
-    reserved_quantity: "ReservedQuantity" = attrs.field(
-        kw_only=True,
-    )
+    reserved_quantity: Optional["ReservedQuantity"] = attrs.field()
 
-    unfulfillable_quantity: "UnfulfillableQuantity" = attrs.field(
-        kw_only=True,
-    )
+    unfulfillable_quantity: Optional["UnfulfillableQuantity"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InventorySummaries:
     """
     A list of inventory summaries.
@@ -161,40 +127,30 @@ class InventorySummaries:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class InventorySummary:
     """
     Inventory summary for a specific item.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    condition: str = attrs.field(
-        kw_only=True,
-    )
+    condition: Optional[str] = attrs.field()
     """
     The condition of the item as described by the seller (for example, New Item).
     """
 
-    fn_sku: str = attrs.field(
-        kw_only=True,
-    )
+    fn_sku: Optional[str] = attrs.field()
     """
     Amazon's fulfillment network SKU identifier.
     """
 
-    inventory_details: "InventoryDetails" = attrs.field(
-        kw_only=True,
-    )
+    inventory_details: Optional["InventoryDetails"] = attrs.field()
 
-    last_updated_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    last_updated_time: Optional[datetime] = attrs.field()
     """
     The date and time that any quantity was last updated.
 
@@ -202,174 +158,138 @@ class InventorySummary:
     {'schema_format': 'date-time'}
     """
 
-    product_name: str = attrs.field(
-        kw_only=True,
-    )
+    product_name: Optional[str] = attrs.field()
     """
     The localized language product title of the item within the specific marketplace.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller SKU of the item.
     """
 
-    total_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    total_quantity: Optional[int] = attrs.field()
     """
     The total number of units in an inbound shipment or in Amazon fulfillment centers.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Pagination:
     """
     The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
     """
 
-    next_token: str = attrs.field(
-        kw_only=True,
-    )
+    next_token: Optional[str] = attrs.field()
     """
     A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ResearchingQuantity:
     """
     The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
     """
 
-    researching_quantity_breakdown: List["ResearchingQuantityEntry"] = attrs.field(
-        kw_only=True,
-    )
+    researching_quantity_breakdown: Optional[List["ResearchingQuantityEntry"]] = attrs.field()
     """
     A list of quantity details for items currently being researched.
     """
 
-    total_researching_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    total_researching_quantity: Optional[int] = attrs.field()
     """
     The total number of units currently being researched in Amazon's fulfillment network.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ResearchingQuantityEntry:
     """
     The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
     """
 
-    name: Union[
-        Literal["researchingQuantityInShortTerm"],
-        Literal["researchingQuantityInMidTerm"],
-        Literal["researchingQuantityInLongTerm"],
-    ] = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[
+        Union[
+            Literal["researchingQuantityInShortTerm"],
+            Literal["researchingQuantityInMidTerm"],
+            Literal["researchingQuantityInLongTerm"],
+        ]
+    ] = attrs.field()
     """
     The duration of the research.
     """
 
-    quantity: int = attrs.field(
-        kw_only=True,
-    )
+    quantity: Optional[int] = attrs.field()
     """
     The number of units.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ReservedQuantity:
     """
     The quantity of reserved inventory.
     """
 
-    fc_processing_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    fc_processing_quantity: Optional[int] = attrs.field()
     """
     The number of units that have been sidelined at the fulfillment center for additional processing.
     """
 
-    pending_customer_order_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    pending_customer_order_quantity: Optional[int] = attrs.field()
     """
     The number of units reserved for customer orders.
     """
 
-    pending_transshipment_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    pending_transshipment_quantity: Optional[int] = attrs.field()
     """
     The number of units being transferred from one fulfillment center to another.
     """
 
-    total_reserved_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    total_reserved_quantity: Optional[int] = attrs.field()
     """
     The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class UnfulfillableQuantity:
     """
     The quantity of unfulfillable inventory.
     """
 
-    carrier_damaged_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    carrier_damaged_quantity: Optional[int] = attrs.field()
     """
     The number of units in carrier damaged disposition.
     """
 
-    customer_damaged_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    customer_damaged_quantity: Optional[int] = attrs.field()
     """
     The number of units in customer damaged disposition.
     """
 
-    defective_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    defective_quantity: Optional[int] = attrs.field()
     """
     The number of units in defective disposition.
     """
 
-    distributor_damaged_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    distributor_damaged_quantity: Optional[int] = attrs.field()
     """
     The number of units in distributor damaged disposition.
     """
 
-    expired_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    expired_quantity: Optional[int] = attrs.field()
     """
     The number of units in expired disposition.
     """
 
-    total_unfulfillable_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    total_unfulfillable_quantity: Optional[int] = attrs.field()
     """
     The total number of units in Amazon's fulfillment network in unsellable condition.
     """
 
-    warehouse_damaged_quantity: int = attrs.field(
-        kw_only=True,
-    )
+    warehouse_damaged_quantity: Optional[int] = attrs.field()
     """
     The number of units in warehouse damaged disposition.
     """

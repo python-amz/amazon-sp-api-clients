@@ -11,117 +11,93 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateDestinationRequest:
     """
     The request schema for the createDestination operation.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     A developer-defined name to help identify this destination.
     """
 
-    resource_specification: "DestinationResourceSpecification" = attrs.field(
-        kw_only=True,
-    )
+    resource_specification: Optional["DestinationResourceSpecification"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateDestinationResponse:
     """
     The response schema for the createDestination operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Destination" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Destination"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateSubscriptionRequest:
     """
     The request schema for the createSubscription operation.
     """
 
-    destination_id: str = attrs.field(
-        kw_only=True,
-    )
+    destination_id: Optional[str] = attrs.field()
     """
     The identifier for the destination where notifications will be delivered.
     """
 
-    payload_version: str = attrs.field(
-        kw_only=True,
-    )
+    payload_version: Optional[str] = attrs.field()
     """
     The version of the payload object to be used in the notification.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateSubscriptionResponse:
     """
     The response schema for the createSubscription operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Subscription" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Subscription"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DeleteDestinationResponse:
     """
     The response schema for the deleteDestination operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DeleteSubscriptionByIdResponse:
     """
     The response schema for the deleteSubscriptionById operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Destination:
     """
     Represents a destination created when you call the createDestination operation.
     """
 
-    destination_id: str = attrs.field(
-        kw_only=True,
-    )
+    destination_id: Optional[str] = attrs.field()
     """
     The destination identifier generated when you created the destination.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The developer-defined name for this destination.
 
@@ -129,12 +105,10 @@ class Destination:
     {'maxLength': 256}
     """
 
-    resource: "DestinationResource" = attrs.field(
-        kw_only=True,
-    )
+    resource: Optional["DestinationResource"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DestinationList:
     """
     A list of destinations.
@@ -143,65 +117,51 @@ class DestinationList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DestinationResource:
     """
     The destination resource types.
     """
 
-    event_bridge: "EventBridgeResource" = attrs.field(
-        kw_only=True,
-    )
+    event_bridge: Optional["EventBridgeResource"] = attrs.field()
 
-    sqs: "SqsResource" = attrs.field(
-        kw_only=True,
-    )
+    sqs: Optional["SqsResource"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DestinationResourceSpecification:
     """
     The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
     """
 
-    event_bridge: "EventBridgeResourceSpecification" = attrs.field(
-        kw_only=True,
-    )
+    event_bridge: Optional["EventBridgeResourceSpecification"] = attrs.field()
 
-    sqs: "SqsResource" = attrs.field(
-        kw_only=True,
-    )
+    sqs: Optional["SqsResource"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -210,22 +170,18 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class EventBridgeResource:
     """
     Represents an Amazon EventBridge destination.
     """
 
-    account_id: str = attrs.field(
-        kw_only=True,
-    )
+    account_id: Optional[str] = attrs.field()
     """
     The identifier for the AWS account that is responsible for charges related to receiving notifications.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
+    name: Optional[str] = attrs.field()
     """
     The name of the partner event source associated with the destination.
 
@@ -233,104 +189,80 @@ class EventBridgeResource:
     {'maxLength': 256}
     """
 
-    region: str = attrs.field(
-        kw_only=True,
-    )
+    region: Optional[str] = attrs.field()
     """
     The AWS region in which you receive the notifications. For AWS regions that are supported in Amazon EventBridge, see https://docs.aws.amazon.com/general/latest/gr/ev.html.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class EventBridgeResourceSpecification:
     """
     The information required to create an Amazon EventBridge destination.
     """
 
-    account_id: str = attrs.field(
-        kw_only=True,
-    )
+    account_id: Optional[str] = attrs.field()
     """
     The identifier for the AWS account that is responsible for charges related to receiving notifications.
     """
 
-    region: str = attrs.field(
-        kw_only=True,
-    )
+    region: Optional[str] = attrs.field()
     """
     The AWS region in which you will be receiving the notifications.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetDestinationResponse:
     """
     The response schema for the getDestination operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Destination" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Destination"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetDestinationsResponse:
     """
     The response schema for the getDestinations operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "DestinationList" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["DestinationList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSubscriptionByIdResponse:
     """
     The response schema for the getSubscriptionById operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Subscription" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Subscription"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSubscriptionResponse:
     """
     The response schema for the getSubscription operation.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "Subscription" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["Subscription"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SqsResource:
     """
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
 
-    arn: str = attrs.field(
-        kw_only=True,
-    )
+    arn: Optional[str] = attrs.field()
     """
     The Amazon Resource Name (ARN) associated with the SQS queue.
 
@@ -339,29 +271,23 @@ class SqsResource:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Subscription:
     """
     Represents a subscription to receive notifications.
     """
 
-    destination_id: str = attrs.field(
-        kw_only=True,
-    )
+    destination_id: Optional[str] = attrs.field()
     """
     The identifier for the destination where notifications will be delivered.
     """
 
-    payload_version: str = attrs.field(
-        kw_only=True,
-    )
+    payload_version: Optional[str] = attrs.field()
     """
     The version of the payload object to be used in the notification.
     """
 
-    subscription_id: str = attrs.field(
-        kw_only=True,
-    )
+    subscription_id: Optional[str] = attrs.field()
     """
     The subscription identifier generated when the subscription is created.
     """

@@ -11,39 +11,33 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -52,15 +46,13 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Link:
     """
     A link to resources related to a listing restriction.
     """
 
-    resource: str = attrs.field(
-        kw_only=True,
-    )
+    resource: Optional[str] = attrs.field()
     """
     The URI of the related resource.
 
@@ -68,107 +60,91 @@ class Link:
     {'schema_format': 'uri'}
     """
 
-    title: str = attrs.field(
-        kw_only=True,
-    )
+    title: Optional[str] = attrs.field()
     """
     The title of the related resource.
     """
 
-    type: str = attrs.field(
-        kw_only=True,
-    )
+    type: Optional[str] = attrs.field()
     """
     The media type of the related resource.
     """
 
-    verb: Union[Literal["GET"]] = attrs.field(
-        kw_only=True,
-    )
+    verb: Optional[Union[Literal["GET"]]] = attrs.field()
     """
     The HTTP verb used to interact with the related resource.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Reason:
     """
     A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
     """
 
-    links: List["Link"] = attrs.field(
-        kw_only=True,
-    )
+    links: Optional[List["Link"]] = attrs.field()
     """
     A list of path forward links that may allow Selling Partners to remove the restriction.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message describing the reason for the restriction.
     """
 
-    reason_code: Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]] = attrs.field(
-        kw_only=True,
-    )
+    reason_code: Optional[
+        Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]]
+    ] = attrs.field()
     """
     A code indicating why the listing is restricted.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Restriction:
     """
     A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
     """
 
-    condition_type: Union[
-        Literal["new_new"],
-        Literal["new_open_box"],
-        Literal["new_oem"],
-        Literal["refurbished_refurbished"],
-        Literal["used_like_new"],
-        Literal["used_very_good"],
-        Literal["used_good"],
-        Literal["used_acceptable"],
-        Literal["collectible_like_new"],
-        Literal["collectible_very_good"],
-        Literal["collectible_good"],
-        Literal["collectible_acceptable"],
-        Literal["club_club"],
-    ] = attrs.field(
-        kw_only=True,
-    )
+    condition_type: Optional[
+        Union[
+            Literal["new_new"],
+            Literal["new_open_box"],
+            Literal["new_oem"],
+            Literal["refurbished_refurbished"],
+            Literal["used_like_new"],
+            Literal["used_very_good"],
+            Literal["used_good"],
+            Literal["used_acceptable"],
+            Literal["collectible_like_new"],
+            Literal["collectible_very_good"],
+            Literal["collectible_good"],
+            Literal["collectible_acceptable"],
+            Literal["club_club"],
+        ]
+    ] = attrs.field()
     """
     The condition that applies to the restriction.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
     """
 
-    reasons: List["Reason"] = attrs.field(
-        kw_only=True,
-    )
+    reasons: Optional[List["Reason"]] = attrs.field()
     """
     A list of reasons for the restriction.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RestrictionList:
     """
     A list of restrictions for the specified Amazon catalog item.
     """
 
-    restrictions: List["Restriction"] = attrs.field(
-        kw_only=True,
-    )
+    restrictions: Optional[List["Restriction"]] = attrs.field()
 
 
 class ListingsRestrictions20210801Client(BaseClient):

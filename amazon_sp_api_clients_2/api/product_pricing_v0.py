@@ -9,29 +9,25 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINIdentifier:
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AttributeSetList:
     """
     A list of product attributes if they are applicable to the product that is returned.
@@ -40,55 +36,39 @@ class AttributeSetList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class AttributeSetListItem:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BuyBoxEligibleOffers:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BuyBoxPriceType:
 
-    landed_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    landed_price: Optional["MoneyType"] = attrs.field()
 
-    listing_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    listing_price: Optional["MoneyType"] = attrs.field()
 
-    points: "Points" = attrs.field(
-        kw_only=True,
-    )
+    points: Optional["Points"] = attrs.field()
 
-    shipping: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    shipping: Optional["MoneyType"] = attrs.field()
 
-    condition: str = attrs.field(
-        kw_only=True,
-    )
+    condition: Optional[str] = attrs.field()
     """
     Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     """
 
-    offer_type: "OfferCustomerType" = attrs.field(
-        kw_only=True,
-    )
+    offer_type: Optional["OfferCustomerType"] = attrs.field()
 
-    quantity_discount_type: "QuantityDiscountType" = attrs.field(
-        kw_only=True,
-    )
+    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field()
 
-    quantity_tier: int = attrs.field(
-        kw_only=True,
-    )
+    quantity_tier: Optional[int] = attrs.field()
     """
     Indicates at what quantity this price becomes active.
 
@@ -96,21 +76,19 @@ class BuyBoxPriceType:
     {'schema_format': 'int32'}
     """
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The seller identifier for the offer.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class BuyBoxPrices:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CompetitivePriceList:
     """
     A list of competitive pricing information.
@@ -119,12 +97,10 @@ class CompetitivePriceList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CompetitivePriceType:
 
-    competitive_price_id: str = attrs.field(
-        kw_only=True,
-    )
+    competitive_price_id: Optional[str] = attrs.field()
     """
     The pricing model for each price that is returned.
         Possible values:
@@ -132,35 +108,23 @@ class CompetitivePriceType:
         * 2 - Used Buy Box Price.
     """
 
-    price: "PriceType" = attrs.field(
-        kw_only=True,
-    )
+    price: Optional["PriceType"] = attrs.field()
 
-    belongs_to_requester: bool = attrs.field(
-        kw_only=True,
-    )
+    belongs_to_requester: Optional[bool] = attrs.field()
     """
     Indicates whether or not the pricing information is for an offer listing that belongs to the requester. The requester is the seller associated with the SellerId that was submitted with the request. Possible values are: true and false.
     """
 
-    condition: str = attrs.field(
-        kw_only=True,
-    )
+    condition: Optional[str] = attrs.field()
     """
     Indicates the condition of the item whose pricing information is returned. Possible values are: New, Used, Collectible, Refurbished, or Club.
     """
 
-    offer_type: "OfferCustomerType" = attrs.field(
-        kw_only=True,
-    )
+    offer_type: Optional["OfferCustomerType"] = attrs.field()
 
-    quantity_discount_type: "QuantityDiscountType" = attrs.field(
-        kw_only=True,
-    )
+    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field()
 
-    quantity_tier: int = attrs.field(
-        kw_only=True,
-    )
+    quantity_tier: Optional[int] = attrs.field()
     """
     Indicates at what quantity this price becomes active.
 
@@ -168,41 +132,31 @@ class CompetitivePriceType:
     {'schema_format': 'int32'}
     """
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The seller identifier for the offer.
     """
 
-    subcondition: str = attrs.field(
-        kw_only=True,
-    )
+    subcondition: Optional[str] = attrs.field()
     """
     Indicates the subcondition of the item whose pricing information is returned. Possible values are: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CompetitivePricingType:
     """
     Competitive pricing information for the item.
     """
 
-    competitive_prices: "CompetitivePriceList" = attrs.field(
-        kw_only=True,
-    )
+    competitive_prices: Optional["CompetitivePriceList"] = attrs.field()
 
-    number_of_offer_listings: "NumberOfOfferListingsList" = attrs.field(
-        kw_only=True,
-    )
+    number_of_offer_listings: Optional["NumberOfOfferListingsList"] = attrs.field()
 
-    trade_in_value: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    trade_in_value: Optional["MoneyType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ConditionType:
     """
     Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.
@@ -211,29 +165,25 @@ class ConditionType:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class DetailedShippingTimeType:
     """
     The time range in which an item will likely be shipped once an order has been placed.
     """
 
-    availability_type: Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]] = attrs.field(
-        kw_only=True,
-    )
+    availability_type: Optional[
+        Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]]
+    ] = attrs.field()
     """
     Indicates whether the item is available for shipping now, or on a known or an unknown date in the future. If known, the availableDate property indicates the date that the item will be available for shipping. Possible values: NOW, FUTURE_WITHOUT_DATE, FUTURE_WITH_DATE.
     """
 
-    available_date: str = attrs.field(
-        kw_only=True,
-    )
+    available_date: Optional[str] = attrs.field()
     """
     The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping.
     """
 
-    maximum_hours: int = attrs.field(
-        kw_only=True,
-    )
+    maximum_hours: Optional[int] = attrs.field()
     """
     The maximum time, in hours, that the item will likely be shipped after the order has been placed.
 
@@ -241,9 +191,7 @@ class DetailedShippingTimeType:
     {'schema_format': 'int64'}
     """
 
-    minimum_hours: int = attrs.field(
-        kw_only=True,
-    )
+    minimum_hours: Optional[int] = attrs.field()
     """
     The minimum time, in hours, that the item will likely be shipped after the order has been placed.
 
@@ -252,35 +200,29 @@ class DetailedShippingTimeType:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
@@ -289,7 +231,7 @@ class ErrorList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FulfillmentChannelType:
     """
     Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
@@ -298,175 +240,121 @@ class FulfillmentChannelType:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetOffersResponse:
     """
     The response schema for the getListingOffers and getItemOffers operations.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "GetOffersResult" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["GetOffersResult"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetOffersResult:
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    identifier: "ItemIdentifier" = attrs.field(
-        kw_only=True,
-    )
+    identifier: Optional["ItemIdentifier"] = attrs.field()
 
-    item_condition: "ConditionType" = attrs.field(
-        kw_only=True,
-    )
+    item_condition: Optional["ConditionType"] = attrs.field()
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier.
     """
 
-    offers: "OfferDetailList" = attrs.field(
-        kw_only=True,
-    )
+    offers: Optional["OfferDetailList"] = attrs.field()
 
-    sku: str = attrs.field(
-        kw_only=True,
-    )
+    sku: Optional[str] = attrs.field()
     """
     The stock keeping unit (SKU) of the item.
     """
 
-    summary: "Summary" = attrs.field(
-        kw_only=True,
-    )
+    summary: Optional["Summary"] = attrs.field()
 
-    status: str = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[str] = attrs.field()
     """
     The status of the operation.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPricingResponse:
     """
     The response schema for the getPricing and getCompetitivePricing operations.
     """
 
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional["ErrorList"] = attrs.field()
 
-    payload: "PriceList" = attrs.field(
-        kw_only=True,
-    )
+    payload: Optional["PriceList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class IdentifierType:
     """
     Specifies the identifiers used to uniquely identify an item.
     """
 
-    marketplace_asin: "ASINIdentifier" = attrs.field(
-        kw_only=True,
-    )
+    marketplace_asin: Optional["ASINIdentifier"] = attrs.field()
 
-    skuidentifier: "SellerSKUIdentifier" = attrs.field(
-        kw_only=True,
-    )
+    skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemIdentifier:
     """
     Information that identifies an item.
     """
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    item_condition: "ConditionType" = attrs.field(
-        kw_only=True,
-    )
+    item_condition: Optional["ConditionType"] = attrs.field()
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier. Specifies the marketplace from which prices are returned.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller stock keeping unit (SKU) of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LowestPriceType:
 
-    landed_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    landed_price: Optional["MoneyType"] = attrs.field()
 
-    listing_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    listing_price: Optional["MoneyType"] = attrs.field()
 
-    points: "Points" = attrs.field(
-        kw_only=True,
-    )
+    points: Optional["Points"] = attrs.field()
 
-    shipping: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    shipping: Optional["MoneyType"] = attrs.field()
 
-    condition: str = attrs.field(
-        kw_only=True,
-    )
+    condition: Optional[str] = attrs.field()
     """
     Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     """
 
-    fulfillment_channel: str = attrs.field(
-        kw_only=True,
-    )
+    fulfillment_channel: Optional[str] = attrs.field()
     """
     Indicates whether the item is fulfilled by Amazon or by the seller.
     """
 
-    offer_type: "OfferCustomerType" = attrs.field(
-        kw_only=True,
-    )
+    offer_type: Optional["OfferCustomerType"] = attrs.field()
 
-    quantity_discount_type: "QuantityDiscountType" = attrs.field(
-        kw_only=True,
-    )
+    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field()
 
-    quantity_tier: int = attrs.field(
-        kw_only=True,
-    )
+    quantity_tier: Optional[int] = attrs.field()
     """
     Indicates at what quantity this price becomes active.
 
@@ -475,31 +363,27 @@ class LowestPriceType:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class LowestPrices:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class MoneyType:
 
-    amount: float = attrs.field(
-        kw_only=True,
-    )
+    amount: Optional[float] = attrs.field()
     """
     The monetary value.
     """
 
-    currency_code: str = attrs.field(
-        kw_only=True,
-    )
+    currency_code: Optional[str] = attrs.field()
     """
     The currency code in ISO 4217 format.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NumberOfOfferListingsList:
     """
     The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
@@ -508,21 +392,19 @@ class NumberOfOfferListingsList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class NumberOfOffers:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferCountType:
     """
     The total number of offers for the specified condition and fulfillment channel.
     """
 
-    offer_count: int = attrs.field(
-        kw_only=True,
-    )
+    offer_count: Optional[int] = attrs.field()
     """
     The number of offers in a fulfillment channel that meet a specific condition.
 
@@ -530,128 +412,90 @@ class OfferCountType:
     {'schema_format': 'int32'}
     """
 
-    condition: str = attrs.field(
-        kw_only=True,
-    )
+    condition: Optional[str] = attrs.field()
     """
     Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     """
 
-    fulfillment_channel: "FulfillmentChannelType" = attrs.field(
-        kw_only=True,
-    )
+    fulfillment_channel: Optional["FulfillmentChannelType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferCustomerType:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferDetail:
 
-    condition_notes: str = attrs.field(
-        kw_only=True,
-    )
+    condition_notes: Optional[str] = attrs.field()
     """
     Information about the condition of the item.
     """
 
-    is_buy_box_winner: bool = attrs.field(
-        kw_only=True,
-    )
+    is_buy_box_winner: Optional[bool] = attrs.field()
     """
     When true, the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.
     """
 
-    is_featured_merchant: bool = attrs.field(
-        kw_only=True,
-    )
+    is_featured_merchant: Optional[bool] = attrs.field()
     """
     When true, the seller of the item is eligible to win the Buy Box.
     """
 
-    is_fulfilled_by_amazon: bool = attrs.field(
-        kw_only=True,
-    )
+    is_fulfilled_by_amazon: Optional[bool] = attrs.field()
     """
     When true, the offer is fulfilled by Amazon.
     """
 
-    listing_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    listing_price: Optional["MoneyType"] = attrs.field()
 
-    my_offer: bool = attrs.field(
-        kw_only=True,
-    )
+    my_offer: Optional[bool] = attrs.field()
     """
     When true, this is the seller's offer.
     """
 
-    points: "Points" = attrs.field(
-        kw_only=True,
-    )
+    points: Optional["Points"] = attrs.field()
 
-    prime_information: "PrimeInformationType" = attrs.field(
-        kw_only=True,
-    )
+    prime_information: Optional["PrimeInformationType"] = attrs.field()
 
-    seller_feedback_rating: "SellerFeedbackType" = attrs.field(
-        kw_only=True,
-    )
+    seller_feedback_rating: Optional["SellerFeedbackType"] = attrs.field()
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The seller identifier for the offer.
     """
 
-    shipping: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    shipping: Optional["MoneyType"] = attrs.field()
 
-    shipping_time: "DetailedShippingTimeType" = attrs.field(
-        kw_only=True,
-    )
+    shipping_time: Optional["DetailedShippingTimeType"] = attrs.field()
 
-    ships_from: "ShipsFromType" = attrs.field(
-        kw_only=True,
-    )
+    ships_from: Optional["ShipsFromType"] = attrs.field()
 
-    sub_condition: str = attrs.field(
-        kw_only=True,
-    )
+    sub_condition: Optional[str] = attrs.field()
     """
     The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
 
-    offer_type: "OfferCustomerType" = attrs.field(
-        kw_only=True,
-    )
+    offer_type: Optional["OfferCustomerType"] = attrs.field()
 
-    quantity_discount_prices: List["QuantityDiscountPriceType"] = attrs.field(
-        kw_only=True,
-    )
+    quantity_discount_prices: Optional[List["QuantityDiscountPriceType"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferDetailList:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferListingCountType:
     """
     The number of offer listings with the specified condition.
     """
 
-    count: int = attrs.field(
-        kw_only=True,
-    )
+    count: Optional[int] = attrs.field()
     """
     The number of offer listings.
 
@@ -659,69 +503,49 @@ class OfferListingCountType:
     {'schema_format': 'int32'}
     """
 
-    condition: str = attrs.field(
-        kw_only=True,
-    )
+    condition: Optional[str] = attrs.field()
     """
     The condition of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferType:
 
-    buying_price: "PriceType" = attrs.field(
-        kw_only=True,
-    )
+    buying_price: Optional["PriceType"] = attrs.field()
 
-    fulfillment_channel: str = attrs.field(
-        kw_only=True,
-    )
+    fulfillment_channel: Optional[str] = attrs.field()
     """
     The fulfillment channel for the offer listing. Possible values:
         * Amazon - Fulfilled by Amazon.
         * Merchant - Fulfilled by the seller.
     """
 
-    item_condition: str = attrs.field(
-        kw_only=True,
-    )
+    item_condition: Optional[str] = attrs.field()
     """
     The item condition for the offer listing. Possible values: New, Used, Collectible, Refurbished, or Club.
     """
 
-    item_sub_condition: str = attrs.field(
-        kw_only=True,
-    )
+    item_sub_condition: Optional[str] = attrs.field()
     """
     The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
 
-    regular_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    regular_price: Optional["MoneyType"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller stock keeping unit (SKU) of the item.
     """
 
-    business_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    business_price: Optional["MoneyType"] = attrs.field()
 
-    offer_type: "OfferCustomerType" = attrs.field(
-        kw_only=True,
-    )
+    offer_type: Optional["OfferCustomerType"] = attrs.field()
 
-    quantity_discount_prices: List["QuantityDiscountPriceType"] = attrs.field(
-        kw_only=True,
-    )
+    quantity_discount_prices: Optional[List["QuantityDiscountPriceType"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class OffersList:
     """
     A list of offers.
@@ -730,16 +554,12 @@ class OffersList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Points:
 
-    points_monetary_value: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    points_monetary_value: Optional["MoneyType"] = attrs.field()
 
-    points_number: int = attrs.field(
-        kw_only=True,
-    )
+    points_number: Optional[int] = attrs.field()
     """
     The number of points.
 
@@ -748,130 +568,92 @@ class Points:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Price:
 
-    asin: str = attrs.field(
-        kw_only=True,
-    )
+    asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    product: "Product" = attrs.field(
-        kw_only=True,
-    )
+    product: Optional["Product"] = attrs.field()
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller stock keeping unit (SKU) of the item.
     """
 
-    status: str = attrs.field(
-        kw_only=True,
-    )
+    status: Optional[str] = attrs.field()
     """
     The status of the operation.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PriceList:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PriceType:
 
-    landed_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    landed_price: Optional["MoneyType"] = attrs.field()
 
-    listing_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    listing_price: Optional["MoneyType"] = attrs.field()
 
-    points: "Points" = attrs.field(
-        kw_only=True,
-    )
+    points: Optional["Points"] = attrs.field()
 
-    shipping: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    shipping: Optional["MoneyType"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class PrimeInformationType:
     """
     Amazon Prime information.
     """
 
-    is_national_prime: bool = attrs.field(
-        kw_only=True,
-    )
+    is_national_prime: Optional[bool] = attrs.field()
     """
     Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed.
     """
 
-    is_prime: bool = attrs.field(
-        kw_only=True,
-    )
+    is_prime: Optional[bool] = attrs.field()
     """
     Indicates whether the offer is an Amazon Prime offer.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Product:
     """
     An item.
     """
 
-    attribute_sets: "AttributeSetList" = attrs.field(
-        kw_only=True,
-    )
+    attribute_sets: Optional["AttributeSetList"] = attrs.field()
 
-    competitive_pricing: "CompetitivePricingType" = attrs.field(
-        kw_only=True,
-    )
+    competitive_pricing: Optional["CompetitivePricingType"] = attrs.field()
 
-    identifiers: "IdentifierType" = attrs.field(
-        kw_only=True,
-    )
+    identifiers: Optional["IdentifierType"] = attrs.field()
 
-    offers: "OffersList" = attrs.field(
-        kw_only=True,
-    )
+    offers: Optional["OffersList"] = attrs.field()
 
-    relationships: "RelationshipList" = attrs.field(
-        kw_only=True,
-    )
+    relationships: Optional["RelationshipList"] = attrs.field()
 
-    sales_rankings: "SalesRankList" = attrs.field(
-        kw_only=True,
-    )
+    sales_rankings: Optional["SalesRankList"] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class QuantityDiscountPriceType:
     """
     Contains pricing information that includes special pricing when buying in bulk.
     """
 
-    listing_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    listing_price: Optional["MoneyType"] = attrs.field()
 
-    quantity_discount_type: "QuantityDiscountType" = attrs.field(
-        kw_only=True,
-    )
+    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field()
 
-    quantity_tier: int = attrs.field(
-        kw_only=True,
-    )
+    quantity_tier: Optional[int] = attrs.field()
     """
     Indicates at what quantity this price becomes active.
 
@@ -880,13 +662,13 @@ class QuantityDiscountPriceType:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class QuantityDiscountType:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RelationshipList:
     """
     A list that contains product variation information, if applicable.
@@ -895,13 +677,13 @@ class RelationshipList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class RelationshipListItem:
 
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SalesRankList:
     """
     A list of sales rank information for the item, by category.
@@ -910,19 +692,15 @@ class SalesRankList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SalesRankType:
 
-    product_category_id: str = attrs.field(
-        kw_only=True,
-    )
+    product_category_id: Optional[str] = attrs.field()
     """
     Identifies the item category from which the sales rank is taken.
     """
 
-    rank: int = attrs.field(
-        kw_only=True,
-    )
+    rank: Optional[int] = attrs.field()
     """
     The sales rank of the item within the item category.
 
@@ -931,15 +709,13 @@ class SalesRankType:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerFeedbackType:
     """
     Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
     """
 
-    feedback_count: int = attrs.field(
-        kw_only=True,
-    )
+    feedback_count: Optional[int] = attrs.field()
     """
     The number of ratings received about the seller.
 
@@ -947,9 +723,7 @@ class SellerFeedbackType:
     {'schema_format': 'int64'}
     """
 
-    seller_positive_feedback_rating: float = attrs.field(
-        kw_only=True,
-    )
+    seller_positive_feedback_rating: Optional[float] = attrs.field()
     """
     The percentage of positive feedback for the seller in the past 365 days.
 
@@ -958,85 +732,61 @@ class SellerFeedbackType:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerSKUIdentifier:
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
+    marketplace_id: Optional[str] = attrs.field()
     """
     A marketplace identifier.
     """
 
-    seller_id: str = attrs.field(
-        kw_only=True,
-    )
+    seller_id: Optional[str] = attrs.field()
     """
     The seller identifier submitted for the operation.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
+    seller_sku: Optional[str] = attrs.field()
     """
     The seller stock keeping unit (SKU) of the item.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipsFromType:
     """
     The state and country from where the item is shipped.
     """
 
-    country: str = attrs.field(
-        kw_only=True,
-    )
+    country: Optional[str] = attrs.field()
     """
     The country from where the item is shipped.
     """
 
-    state: str = attrs.field(
-        kw_only=True,
-    )
+    state: Optional[str] = attrs.field()
     """
     The state from where the item is shipped.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Summary:
     """
     Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
     """
 
-    buy_box_eligible_offers: "BuyBoxEligibleOffers" = attrs.field(
-        kw_only=True,
-    )
+    buy_box_eligible_offers: Optional["BuyBoxEligibleOffers"] = attrs.field()
 
-    buy_box_prices: "BuyBoxPrices" = attrs.field(
-        kw_only=True,
-    )
+    buy_box_prices: Optional["BuyBoxPrices"] = attrs.field()
 
-    competitive_price_threshold: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    competitive_price_threshold: Optional["MoneyType"] = attrs.field()
 
-    list_price: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    list_price: Optional["MoneyType"] = attrs.field()
 
-    lowest_prices: "LowestPrices" = attrs.field(
-        kw_only=True,
-    )
+    lowest_prices: Optional["LowestPrices"] = attrs.field()
 
-    number_of_offers: "NumberOfOffers" = attrs.field(
-        kw_only=True,
-    )
+    number_of_offers: Optional["NumberOfOffers"] = attrs.field()
 
-    offers_available_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    offers_available_time: Optional[datetime] = attrs.field()
     """
     When the status is ActiveButTooSoonForProcessing, this is the time when the offers will be available for processing.
 
@@ -1044,17 +794,11 @@ class Summary:
     {'schema_format': 'date-time'}
     """
 
-    sales_rankings: "SalesRankList" = attrs.field(
-        kw_only=True,
-    )
+    sales_rankings: Optional["SalesRankList"] = attrs.field()
 
-    suggested_lower_price_plus_shipping: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
+    suggested_lower_price_plus_shipping: Optional["MoneyType"] = attrs.field()
 
-    total_offer_count: int = attrs.field(
-        kw_only=True,
-    )
+    total_offer_count: Optional[int] = attrs.field()
     """
     The number of unique offers contained in NumberOfOffers.
 

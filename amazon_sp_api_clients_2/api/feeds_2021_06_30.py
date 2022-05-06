@@ -9,86 +9,70 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 """
 import attrs
 from ..utils.base_client import BaseClient
-from typing import Any, List, Dict, Union, Literal
+from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedDocumentResponse:
     """
     Information required to upload a feed document's contents.
     """
 
-    feed_document_id: str = attrs.field(
-        kw_only=True,
-    )
+    feed_document_id: Optional[str] = attrs.field()
     """
     The identifier of the feed document.
     """
 
-    url: str = attrs.field(
-        kw_only=True,
-    )
+    url: Optional[str] = attrs.field()
     """
     The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedDocumentSpecification:
     """
     Specifies the content type for the createFeedDocument operation.
     """
 
-    content_type: str = attrs.field(
-        kw_only=True,
-    )
+    content_type: Optional[str] = attrs.field()
     """
     The content type of the feed.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedResponse:
     """
     Response schema.
     """
 
-    feed_id: str = attrs.field(
-        kw_only=True,
-    )
+    feed_id: Optional[str] = attrs.field()
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedSpecification:
     """
     Information required to create the feed.
     """
 
-    feed_options: "FeedOptions" = attrs.field(
-        kw_only=True,
-    )
+    feed_options: Optional["FeedOptions"] = attrs.field()
 
-    feed_type: str = attrs.field(
-        kw_only=True,
-    )
+    feed_type: Optional[str] = attrs.field()
     """
     The feed type.
     """
 
-    input_feed_document_id: str = attrs.field(
-        kw_only=True,
-    )
+    input_feed_document_id: Optional[str] = attrs.field()
     """
     The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
     """
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     A list of identifiers for marketplaces that you want the feed to be applied to.
 
@@ -97,54 +81,44 @@ class CreateFeedSpecification:
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     An error response returned when the request is unsuccessful.
     """
 
-    code: str = attrs.field(
-        kw_only=True,
-    )
+    code: Optional[str] = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    details: str = attrs.field(
-        kw_only=True,
-    )
+    details: Optional[str] = attrs.field()
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field(
-        kw_only=True,
-    )
+    message: Optional[str] = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class ErrorList:
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: List["Error"] = attrs.field(
-        kw_only=True,
-    )
+    errors: Optional[List["Error"]] = attrs.field()
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class Feed:
     """
     Detailed information about the feed.
     """
 
-    created_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    created_time: Optional[datetime] = attrs.field()
     """
     The date and time when the feed was created, in ISO 8601 date time format.
 
@@ -152,30 +126,22 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    feed_id: str = attrs.field(
-        kw_only=True,
-    )
+    feed_id: Optional[str] = attrs.field()
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
 
-    feed_type: str = attrs.field(
-        kw_only=True,
-    )
+    feed_type: Optional[str] = attrs.field()
     """
     The feed type.
     """
 
-    marketplace_ids: List[str] = attrs.field(
-        kw_only=True,
-    )
+    marketplace_ids: Optional[List[str]] = attrs.field()
     """
     A list of identifiers for the marketplaces that the feed is applied to.
     """
 
-    processing_end_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    processing_end_time: Optional[datetime] = attrs.field()
     """
     The date and time when feed processing completed, in ISO 8601 date time format.
 
@@ -183,9 +149,7 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    processing_start_time: datetime = attrs.field(
-        kw_only=True,
-    )
+    processing_start_time: Optional[datetime] = attrs.field()
     """
     The date and time when feed processing started, in ISO 8601 date time format.
 
@@ -193,52 +157,42 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    processing_status: Union[
-        Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ] = attrs.field(
-        kw_only=True,
-    )
+    processing_status: Optional[
+        Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+    ] = attrs.field()
     """
     The processing status of the feed.
     """
 
-    result_feed_document_id: str = attrs.field(
-        kw_only=True,
-    )
+    result_feed_document_id: Optional[str] = attrs.field()
     """
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeedDocument:
     """
     Information required for the feed document.
     """
 
-    compression_algorithm: Union[Literal["GZIP"]] = attrs.field(
-        kw_only=True,
-    )
+    compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field()
     """
     If present, the feed document contents are compressed using the indicated algorithm.
     """
 
-    feed_document_id: str = attrs.field(
-        kw_only=True,
-    )
+    feed_document_id: Optional[str] = attrs.field()
     """
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
 
-    url: str = attrs.field(
-        kw_only=True,
-    )
+    url: Optional[str] = attrs.field()
     """
     A presigned URL for the feed document. This URL expires after 5 minutes.
     """
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeedList:
     """
     A list of feeds.
@@ -247,7 +201,7 @@ class FeedList:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=False)
 class FeedOptions:
     """
     Additional options to control the feed. These vary by feed type.
@@ -256,19 +210,15 @@ class FeedOptions:
     pass
 
 
-@attrs.define
+@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetFeedsResponse:
     """
     Response schema.
     """
 
-    feeds: "FeedList" = attrs.field(
-        kw_only=True,
-    )
+    feeds: Optional["FeedList"] = attrs.field()
 
-    next_token: str = attrs.field(
-        kw_only=True,
-    )
+    next_token: Optional[str] = attrs.field()
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
     """
