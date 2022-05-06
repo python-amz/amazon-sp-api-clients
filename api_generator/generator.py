@@ -201,9 +201,12 @@ class Generator:
             ('number', 'double'): 'float',
         }
         type_hint = type_convert[(schema.type, schema.schema_format)]
+
+        # make string enum like Literal["v1"]
         assert schema.enum is None or type_hint == 'str'
         choices = ', '.join(f'Literal["{v}"]' for v in schema.enum) if schema.enum is not None else None
         type_hint = f'Union[{choices}]' if type_hint == 'str' and choices is not None else type_hint
+
         return type_hint
 
     @cached_property
