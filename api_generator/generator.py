@@ -146,10 +146,81 @@ class Generator:
     def components(self) -> Components:
         return self.data.components
 
+    def _find_new_schema(self, name: str, schema: Schema | Reference | Parameter) -> list[tuple[str, Schema]]:
+        """Find inline schemas, which are not able to convert in python.
+
+        Python type hint for dict do not support inline type hint.
+        This method will find the inline schemas and convert to reference, which will be created as classes.
+
+        Args:
+            name: the name of the new schema, will be rendered as the class name
+            schema: the inline schema
+
+        Returns:
+            like the input arguments, but as a list
+        """
+        fields = schema.__fields_set__
+        fields = {f for f in fields if getattr(schema, f) is not None}
+        new_schemas: list[tuple[str, Schema]] = [(name, schema)]
+        if isinstance(schema, Schema):
+            fields -= {'type', 'description', 'required', 'properties', 'minLength', 'maxLength', 'enum', 'items',
+                       'allOf', 'additionalProperties', 'schema_format', 'maxItems', 'minItems', 'minimum', 'maximum',
+                       'example', 'pattern'}
+            assert not fields
+
+            # additional properties only contains simple types, do not need to convert
+            if (additional := schema.additionalProperties) is not None:
+                assert isinstance(additional, (Schema, Reference))
+                if isinstance(additional, Schema):
+                    assert additional.__fields_set__.issubset({'type'})
+
+            simple_types = 'string', 'integer', 'boolean', 'number'
+            if schema.properties:
+                for sub_name, sub_schema in schema.properties.items():
+                    if isinstance(sub_schema, Reference):
+                        continue
+                    assert isinstance(sub_schema, Schema)
+                    if sub_schema.type in simple_types:
+                        continue
+                    assert sub_schema.type in ('object', 'array')
+
+                    if sub_schema.type == 'object':
+                        new_schemas.extend(self._find_new_schema(sub_name, sub_schema))
+
+                    if sub_schema.type == 'array':
+                        item = sub_schema.items
+                        if isinstance(item, Reference):
+                            continue
+                        assert isinstance(item, Schema)
+                        if item.type in simple_types:
+                            continue
+                        assert item.type == 'object', item.type
+                        new_schemas.extend(self._find_new_schema(f'{sub_name}Item', item))
+
+            if item := schema.items:
+                assert isinstance(item, (Reference, Schema))
+                if isinstance(item, Schema):
+                    known = {'type', 'maxLength', 'enum', 'description', 'properties'}
+                    assert not (v := item.__fields_set__ - known), v
+                    assert item.type in ('string', 'object')
+                    if item.type == 'object':
+                        assert item.properties is not None
+                        new_schemas.extend(self._find_new_schema(f'{name}Item', item))
+
+        elif isinstance(schema, Reference):
+            pass
+        else:
+            raise ValueError(f'Not supported: {type(schema)}')
+        return new_schemas
+
     @cached_property
     def schemas(self) -> list[ParsedSchema]:
         src = self.components.schemas
         src = {k: v for k, v in src.items() if isinstance(v, Schema)}
+        schemas = list(chain.from_iterable(self._find_new_schema(k, v) for k, v in src.items()))
+        new_names = set([k for k, v in schemas]) - set(src)
+        new_names and print(new_names)
+
         values = [v.dict() | {'name': k, 'generator': self} for k, v in src.items()]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
