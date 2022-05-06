@@ -123,7 +123,7 @@ class Generator:
         """
         self.path = path
 
-    def resolve_ref(self, ref: Reference):
+    def resolve_ref(self, ref: Reference | Schema | Parameter):
         if not isinstance(ref, Reference):
             return ref
         match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
@@ -148,19 +148,14 @@ class Generator:
         schemas = components.schemas
         schemas = {} if schemas is None else schemas
         schemas: dict[str, Schema] = {k: v for k, v in schemas.items()}
-        parameters = components.parameters
-        parameters = {} if parameters is None else parameters
-        parameters: dict[str, Parameter] = {k: v for k, v in parameters.items()}
-        for p in parameters:
-            print(p)
         return components
 
     @cached_property
     def schemas(self) -> list[ParsedSchema]:
         src = self.components.schemas
         src = {k: v for k, v in src.items() if isinstance(v, Schema)}
-        dst: list[ParsedSchema] = [ParsedSchema.parse_obj({**v.dict(), 'name': k, 'generator': self})
-                                   for k, v in src.items()]
+        values = [v.dict() | {'name': k, 'generator': self} for k, v in src.items()]
+        dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
         return dst
 
@@ -220,14 +215,18 @@ class Generator:
 
     @cached_property
     def operations(self) -> tuple[ParsedOperation, ...]:
-        operations = tuple(ParsedOperation(**{'path': path, 'method': method, **getattr(path_item, method).dict()})
-                           for path, path_item in self.data.paths.items()
-                           for method in path_item.__fields_set__)
+        operations = tuple(ParsedOperation.parse_obj({'path': path, 'method': method} | getattr(item, method).dict())
+                           for path, item in self.data.paths.items() for method in item.__fields_set__)
         operations = tuple(sorted(operations, key=lambda k: k.operationId))
         for operation in [o for o in operations if o.parameters is not None or o.requestBody is not None]:
-            params = operation.parameters
-            params = [] if params is None else params
-            params = [self.resolve_ref(p) for p in params]
+            params_or_refs = [] if (v := operation.parameters) is None else v
+            params: list[Parameter] = [self.resolve_ref(p) for p in params_or_refs]
+            assert all(isinstance(p, Parameter) for p in params)
+            known = {'param_in', 'name', 'param_schema', 'description', 'required',
+                     'style', 'example', 'allowEmptyValue', 'allowReserved', 'deprecated', 'explode'}  # useless
+            for p in params:
+                assert not (fields := {f for f in p.__fields_set__ if getattr(p, f) is not None} - known), fields
+                assert p.allowEmptyValue is p.allowReserved is p.deprecated is p.explode is False
 
             # convert post object to parameter objects, the main work of following code is data validation
             if (body := operation.requestBody) is not None:
@@ -241,15 +240,15 @@ class Generator:
                 schemas = tuple(self.resolve_ref(schema) for schema in schemas)
                 assert all(s.type == 'object' for s in schemas)
                 fields = {'required', 'properties', 'type', 'description'}
-                assert set(chain(*(s.__fields_set__ for s in schemas))).issubset(fields)
-                required = tuple(chain(*(s.required for s in schemas if s.required)))
+                assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
+                required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
                 assert len(set(required)) == len(required)
                 properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
                 properties = tuple((k, self.resolve_ref(v) if isinstance(v, Reference) else v) for k, v in properties)
-                post_parameters = [Parameter(name=k, param_in='body', description=v.description,
-                                             required=k in required, param_schema=v) for k, v in properties]
-                params.extend(post_parameters)
+                params.extend([Parameter(name=k, param_in='body', description=v.description,
+                                         required=k in required, param_schema=v) for k, v in properties])
 
+            assert all(isinstance(p.param_schema, Schema) for p in params)
             operation.parameters = params
             parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(
                 p.dict() | {'generator': self}) for p in params]
