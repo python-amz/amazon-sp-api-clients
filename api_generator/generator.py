@@ -153,6 +153,42 @@ class Generator:
         values = [v.dict() | {'name': k, 'generator': self} for k, v in src.items()]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
+        while True:  # the validation progress will create some new schemas, validate again
+            known_schema_fields = {'type', 'required', 'description', 'schema_format', 'maxLength', 'items', 'name',
+                                   'generator', 'properties', 'enum', 'additionalProperties', 'allOf', 'maxItems',
+                                   'minItems', 'minLength'}
+            # find all schema objects
+            assert {f for s in dst for f in s.__fields_set__ if getattr(s, f) is not None}.issubset(known_schema_fields)
+            schema_fields = {f for s in dst for f in s.__fields_set__ if isinstance(getattr(s, f), Schema)}
+            assert schema_fields.issubset({'additionalProperties', 'items'}), schema_fields
+
+            # data validation
+            # additional properties only contains a type field, so do not need to create a new component
+            additional_properties = [v for s in dst if (v := s.additionalProperties) is not None]
+            assert all(isinstance(a, Schema) for a in additional_properties)
+            known_additional_fields = {'type'}
+            assert (v := {f for s in additional_properties for f in s.__fields_set__ if getattr(s, f) is not None}) \
+                .issubset(known_additional_fields), v
+
+            # properties
+            props = [(name, p) for s in dst if s.properties is not None for name, p in s.properties.items()]
+            assert all(isinstance(p, (Schema, Reference)) for name, p in props)
+            props = [(k, v) for k, v in props if isinstance(v, Schema)]
+
+            schema_in_properties = [(name, p) for name, p in props if isinstance(p, Schema)]
+            known = {
+                'items', 'schema_format', 'additionalProperties', 'properties',
+                'maximum', 'maxItems', 'minItems', 'minLength', 'type', 'maxLength', 'description', 'minimum', 'enum',
+                'example', 'required', 'pattern',
+            }
+            fields = {f for k, p in props for f in p.__fields_set__ if getattr(p, f) is not None} - known
+            assert not fields, v
+
+            # additional properties all points to another schema, so do not need to parse
+            assert all(v := [isinstance(v, Reference) for k, p in props
+                             if (v := p.additionalProperties) is not None]), v
+
+            break
         return dst
 
     @cached_property
