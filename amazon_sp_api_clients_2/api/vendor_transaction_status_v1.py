@@ -71,6 +71,10 @@ class Transaction:
     The transaction status.
     """
 
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+
     status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field(
         kw_only=True,
     )
@@ -84,10 +88,6 @@ class Transaction:
     """
     The unique identifier returned in the 'transactionId' field in response to the post request of a specific transaction.
     """
-
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

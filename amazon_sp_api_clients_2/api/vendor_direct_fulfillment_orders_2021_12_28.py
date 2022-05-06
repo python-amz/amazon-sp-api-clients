@@ -221,6 +221,10 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
@@ -228,13 +232,13 @@ class Money:
     Three digit currency code in ISO 4217 format. String of length 3.
     """
 
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class Order:
+
+    order_details: "OrderDetails" = attrs.field(
+        kw_only=True,
+    )
 
     purchase_order_number: str = attrs.field(
         kw_only=True,
@@ -242,10 +246,6 @@ class Order:
     """
     The purchase order number for this order. Formatting Notes: alpha-numeric code.
     """
-
-    order_details: "OrderDetails" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -264,6 +264,10 @@ class OrderAcknowledgementItem:
     {'schema_format': 'date-time'}
     """
 
+    acknowledgement_status: "AcknowledgementStatus" = attrs.field(
+        kw_only=True,
+    )
+
     item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field(
         kw_only=True,
     )
@@ -278,17 +282,6 @@ class OrderAcknowledgementItem:
     The purchase order number for this order. Formatting Notes: alpha-numeric code.
     """
 
-    vendor_order_number: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The vendor's order number for this order.
-    """
-
-    acknowledgement_status: "AcknowledgementStatus" = attrs.field(
-        kw_only=True,
-    )
-
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
@@ -297,12 +290,23 @@ class OrderAcknowledgementItem:
         kw_only=True,
     )
 
+    vendor_order_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor's order number for this order.
+    """
+
 
 @attrs.define
 class OrderDetails:
     """
     Details of an order.
     """
+
+    bill_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
 
     customer_order_number: str = attrs.field(
         kw_only=True,
@@ -335,10 +339,6 @@ class OrderDetails:
     Current status of the order.
     """
 
-    bill_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
@@ -370,30 +370,16 @@ class OrderItem:
     Buyer's standard identification number (ASIN) of an item.
     """
 
+    gift_details: "GiftDetails" = attrs.field(
+        kw_only=True,
+    )
+
     item_sequence_number: str = attrs.field(
         kw_only=True,
     )
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
-
-    title: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    Title for the item.
-    """
-
-    vendor_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The vendor selected product identification of the item.
-    """
-
-    gift_details: "GiftDetails" = attrs.field(
-        kw_only=True,
-    )
 
     net_price: "Money" = attrs.field(
         kw_only=True,
@@ -411,13 +397,31 @@ class OrderItem:
         kw_only=True,
     )
 
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Title for the item.
+    """
+
     total_price: "Money" = attrs.field(
         kw_only=True,
     )
 
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item.
+    """
+
 
 @attrs.define
 class OrderItemAcknowledgement:
+
+    acknowledged_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
 
     buyer_product_identifier: str = attrs.field(
         kw_only=True,
@@ -439,10 +443,6 @@ class OrderItemAcknowledgement:
     """
     The vendor selected product identification of the item. Should be the same as was provided in the purchase order.
     """
-
-    acknowledged_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -471,16 +471,16 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     party_id: str = attrs.field(
         kw_only=True,
     )
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
-
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
     tax_info: "TaxRegistrationDetails" = attrs.field(
         kw_only=True,
@@ -633,6 +633,18 @@ class SubmitAcknowledgementResponse:
 @attrs.define
 class TaxDetails:
 
+    tax_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    tax_rate: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
+    taxable_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     type: Union[
         Literal["CONSUMPTION"],
         Literal["GST"],
@@ -647,18 +659,6 @@ class TaxDetails:
     """
     Tax type.
     """
-
-    tax_amount: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    tax_rate: "Decimal" = attrs.field(
-        kw_only=True,
-    )
-
-    taxable_amount: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -687,6 +687,10 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
+    tax_registration_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     tax_registration_messages: str = attrs.field(
         kw_only=True,
     )
@@ -707,10 +711,6 @@ class TaxRegistrationDetails:
     """
     Tax registration type for the entity.
     """
-
-    tax_registration_address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

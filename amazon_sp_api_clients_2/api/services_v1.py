@@ -114,12 +114,20 @@ class Appointment:
     The details of an appointment.
     """
 
+    appointment_id: "AppointmentId" = attrs.field(
+        kw_only=True,
+    )
+
     appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]] = attrs.field(
         kw_only=True,
     )
     """
     The status of the appointment.
     """
+
+    appointment_time: "AppointmentTime" = attrs.field(
+        kw_only=True,
+    )
 
     assigned_technicians: List["Technician"] = attrs.field(
         kw_only=True,
@@ -130,14 +138,6 @@ class Appointment:
     Extra fields:
     {'minItems': 1}
     """
-
-    appointment_id: "AppointmentId" = attrs.field(
-        kw_only=True,
-    )
-
-    appointment_time: "AppointmentTime" = attrs.field(
-        kw_only=True,
-    )
 
     poa: "Poa" = attrs.field(
         kw_only=True,
@@ -228,12 +228,20 @@ class AssociatedItem:
     The brand name of the item.
     """
 
+    item_delivery: "ItemDelivery" = attrs.field(
+        kw_only=True,
+    )
+
     item_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]] = attrs.field(
         kw_only=True,
     )
     """
     The status of the item.
     """
+
+    order_id: "OrderId" = attrs.field(
+        kw_only=True,
+    )
 
     quantity: int = attrs.field(
         kw_only=True,
@@ -248,14 +256,6 @@ class AssociatedItem:
     """
     The title of the item.
     """
-
-    item_delivery: "ItemDelivery" = attrs.field(
-        kw_only=True,
-    )
-
-    order_id: "OrderId" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -490,6 +490,10 @@ class Poa:
     Proof of Appointment (POA) details.
     """
 
+    appointment_time: "AppointmentTime" = attrs.field(
+        kw_only=True,
+    )
+
     poa_type: Union[
         Literal["NO_SIGNATURE_DUMMY_POS"],
         Literal["CUSTOMER_SIGNATURE"],
@@ -531,10 +535,6 @@ class Poa:
     Extra fields:
     {'pattern': '^[A-Z0-9]*$'}
     """
-
-    appointment_time: "AppointmentTime" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -633,6 +633,10 @@ class ServiceJob:
     A list of items associated with the service job.
     """
 
+    buyer: "Buyer" = attrs.field(
+        kw_only=True,
+    )
+
     create_time: datetime = attrs.field(
         kw_only=True,
     )
@@ -660,25 +664,6 @@ class ServiceJob:
     A list of appointment windows preferred by the buyer. Included only if the buyer selected appointment windows when creating the order.
     """
 
-    service_job_status: Union[
-        Literal["NOT_SERVICED"],
-        Literal["CANCELLED"],
-        Literal["COMPLETED"],
-        Literal["PENDING_SCHEDULE"],
-        Literal["NOT_FULFILLABLE"],
-        Literal["HOLD"],
-        Literal["PAYMENT_DECLINED"],
-    ] = attrs.field(
-        kw_only=True,
-    )
-    """
-    The status of the service job.
-    """
-
-    buyer: "Buyer" = attrs.field(
-        kw_only=True,
-    )
-
     scope_of_work: "ScopeOfWork" = attrs.field(
         kw_only=True,
     )
@@ -694,6 +679,21 @@ class ServiceJob:
     service_job_provider: "ServiceJobProvider" = attrs.field(
         kw_only=True,
     )
+
+    service_job_status: Union[
+        Literal["NOT_SERVICED"],
+        Literal["CANCELLED"],
+        Literal["COMPLETED"],
+        Literal["PENDING_SCHEDULE"],
+        Literal["NOT_FULFILLABLE"],
+        Literal["HOLD"],
+        Literal["PAYMENT_DECLINED"],
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the service job.
+    """
 
     service_location: "ServiceLocation" = attrs.field(
         kw_only=True,
@@ -736,16 +736,16 @@ class ServiceLocation:
     Information about the location of the service job.
     """
 
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]] = attrs.field(
         kw_only=True,
     )
     """
     The location of the service job.
     """
-
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

@@ -53,12 +53,24 @@ class AdditionalSellerInput:
     The data type of the additional information.
     """
 
+    value_as_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     value_as_boolean: bool = attrs.field(
         kw_only=True,
     )
     """
     The value when the data type is boolean.
     """
+
+    value_as_currency: "CurrencyAmount" = attrs.field(
+        kw_only=True,
+    )
+
+    value_as_dimension: "Length" = attrs.field(
+        kw_only=True,
+    )
 
     value_as_integer: int = attrs.field(
         kw_only=True,
@@ -73,18 +85,6 @@ class AdditionalSellerInput:
     """
     The value when the data type is string.
     """
-
-    value_as_address: "Address" = attrs.field(
-        kw_only=True,
-    )
-
-    value_as_currency: "CurrencyAmount" = attrs.field(
-        kw_only=True,
-    )
-
-    value_as_dimension: "Length" = attrs.field(
-        kw_only=True,
-    )
 
     value_as_timestamp: "Timestamp" = attrs.field(
         kw_only=True,
@@ -368,13 +368,6 @@ class CreateShipmentRequest:
     Request schema.
     """
 
-    shipping_service_offer_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    Identifies a shipping service order made by a carrier.
-    """
-
     hazmat_type: "HazmatType" = attrs.field(
         kw_only=True,
     )
@@ -394,6 +387,13 @@ class CreateShipmentRequest:
     shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
         kw_only=True,
     )
+
+    shipping_service_offer_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Identifies a shipping service order made by a carrier.
+    """
 
 
 @attrs.define
@@ -734,16 +734,16 @@ class ItemDescription:
 @attrs.define
 class ItemLevelFields:
 
+    additional_inputs: "AdditionalInputsList" = attrs.field(
+        kw_only=True,
+    )
+
     asin: str = attrs.field(
         kw_only=True,
     )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
-
-    additional_inputs: "AdditionalInputsList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -899,16 +899,16 @@ class Length:
     The length.
     """
 
+    unit: "UnitOfLength" = attrs.field(
+        kw_only=True,
+    )
+
     value: float = attrs.field(
         kw_only=True,
     )
     """
     The value in units.
     """
-
-    unit: "UnitOfLength" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1009,16 +1009,16 @@ class RejectedShippingService:
     A localized human readable description of the rejected reason.
     """
 
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
+        kw_only=True,
+    )
+
     shipping_service_name: str = attrs.field(
         kw_only=True,
     )
     """
     The rejected shipping service localized name. e.g. FedEx Standard Overnight
     """
-
-    shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1045,6 +1045,10 @@ class SellerInputDefinition:
     Specifies characteristics that apply to a seller input.
     """
 
+    constraints: "Constraints" = attrs.field(
+        kw_only=True,
+    )
+
     data_type: str = attrs.field(
         kw_only=True,
     )
@@ -1059,20 +1063,16 @@ class SellerInputDefinition:
     The display text for the additional input field.
     """
 
+    input_target: "InputTargetType" = attrs.field(
+        kw_only=True,
+    )
+
     is_required: bool = attrs.field(
         kw_only=True,
     )
     """
     When true, the additional input field is required.
     """
-
-    constraints: "Constraints" = attrs.field(
-        kw_only=True,
-    )
-
-    input_target: "InputTargetType" = attrs.field(
-        kw_only=True,
-    )
 
     restricted_set_values: "RestrictedSetValues" = attrs.field(
         kw_only=True,
@@ -1230,6 +1230,14 @@ class ShippingOfferingFilter:
     Filter for use when requesting eligible shipping services.
     """
 
+    carrier_will_pick_up: "CarrierWillPickUpOption" = attrs.field(
+        kw_only=True,
+    )
+
+    delivery_experience: "DeliveryExperienceOption" = attrs.field(
+        kw_only=True,
+    )
+
     include_complex_shipping_options: bool = attrs.field(
         kw_only=True,
     )
@@ -1244,47 +1252,11 @@ class ShippingOfferingFilter:
     When true, include a packing slip with the label.
     """
 
-    carrier_will_pick_up: "CarrierWillPickUpOption" = attrs.field(
-        kw_only=True,
-    )
-
-    delivery_experience: "DeliveryExperienceOption" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class ShippingService:
     """
     A shipping service offer made by a carrier.
-    """
-
-    carrier_name: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The name of the carrier.
-    """
-
-    requires_additional_seller_inputs: bool = attrs.field(
-        kw_only=True,
-    )
-    """
-    When true, additional seller inputs are required.
-    """
-
-    shipping_service_name: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A plain text representation of a carrier's shipping service. For example, "UPS Ground" or "FedEx Standard Overnight".
-    """
-
-    shipping_service_offer_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    An Amazon-defined shipping service offer identifier.
     """
 
     available_format_options_for_label: "AvailableFormatOptionsForLabelList" = attrs.field(
@@ -1299,6 +1271,13 @@ class ShippingService:
         kw_only=True,
     )
 
+    carrier_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the carrier.
+    """
+
     earliest_estimated_delivery_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
@@ -1311,6 +1290,13 @@ class ShippingService:
         kw_only=True,
     )
 
+    requires_additional_seller_inputs: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, additional seller inputs are required.
+    """
+
     ship_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
@@ -1318,6 +1304,20 @@ class ShippingService:
     shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
         kw_only=True,
     )
+
+    shipping_service_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A plain text representation of a carrier's shipping service. For example, "UPS Ground" or "FedEx Standard Overnight".
+    """
+
+    shipping_service_offer_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An Amazon-defined shipping service offer identifier.
+    """
 
     shipping_service_options: "ShippingServiceOptions" = attrs.field(
         kw_only=True,

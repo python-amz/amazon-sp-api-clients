@@ -188,6 +188,10 @@ class InventorySummary:
     Amazon's fulfillment network SKU identifier.
     """
 
+    inventory_details: "InventoryDetails" = attrs.field(
+        kw_only=True,
+    )
+
     last_updated_time: datetime = attrs.field(
         kw_only=True,
     )
@@ -218,10 +222,6 @@ class InventorySummary:
     """
     The total number of units in an inbound shipment or in Amazon fulfillment centers.
     """
-
-    inventory_details: "InventoryDetails" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

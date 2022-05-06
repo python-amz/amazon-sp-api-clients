@@ -95,12 +95,20 @@ class ProductTypeDefinition:
     Amazon marketplace identifiers for which the product type definition is applicable.
     """
 
+    meta_schema: "SchemaLink" = attrs.field(
+        kw_only=True,
+    )
+
     product_type: str = attrs.field(
         kw_only=True,
     )
     """
     The name of the Amazon product type that this product type definition applies to.
     """
+
+    product_type_version: "ProductTypeVersion" = attrs.field(
+        kw_only=True,
+    )
 
     property_groups: Dict[str, Any] = attrs.field(
         kw_only=True,
@@ -127,14 +135,6 @@ class ProductTypeDefinition:
     """
     Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).
     """
-
-    meta_schema: "SchemaLink" = attrs.field(
-        kw_only=True,
-    )
-
-    product_type_version: "ProductTypeVersion" = attrs.field(
-        kw_only=True,
-    )
 
     schema: "SchemaLink" = attrs.field(
         kw_only=True,

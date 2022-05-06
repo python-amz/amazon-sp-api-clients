@@ -66,26 +66,6 @@ class AsinMetadata:
     The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the listContentDocumentAsinRelations operation, the related ASINs are returned without metadata.
     """
 
-    image_url: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The default image for the ASIN in the Amazon catalog.
-
-    Extra fields:
-    {'minLength': 1}
-    """
-
-    title: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The title for the ASIN in the Amazon catalog.
-
-    Extra fields:
-    {'minLength': 1}
-    """
-
     asin: "Asin" = attrs.field(
         kw_only=True,
     )
@@ -98,9 +78,29 @@ class AsinMetadata:
         kw_only=True,
     )
 
+    image_url: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The default image for the ASIN in the Amazon catalog.
+
+    Extra fields:
+    {'minLength': 1}
+    """
+
     parent: "Asin" = attrs.field(
         kw_only=True,
     )
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The title for the ASIN in the Amazon catalog.
+
+    Extra fields:
+    {'minLength': 1}
+    """
 
 
 @attrs.define
@@ -154,16 +154,6 @@ class ContentDocument:
     The A+ Content document. This is the enhanced content that is published to product detail pages.
     """
 
-    name: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The A+ Content document name.
-
-    Extra fields:
-    {'maxLength': 100, 'minLength': 1}
-    """
-
     content_module_list: "ContentModuleList" = attrs.field(
         kw_only=True,
     )
@@ -180,12 +170,30 @@ class ContentDocument:
         kw_only=True,
     )
 
+    name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The A+ Content document name.
+
+    Extra fields:
+    {'maxLength': 100, 'minLength': 1}
+    """
+
 
 @attrs.define
 class ContentMetadata:
     """
     The metadata of an A+ Content document.
     """
+
+    badge_set: "ContentBadgeSet" = attrs.field(
+        kw_only=True,
+    )
+
+    marketplace_id: "MarketplaceId" = attrs.field(
+        kw_only=True,
+    )
 
     name: str = attrs.field(
         kw_only=True,
@@ -197,6 +205,10 @@ class ContentMetadata:
     {'maxLength': 100, 'minLength': 1}
     """
 
+    status: "ContentStatus" = attrs.field(
+        kw_only=True,
+    )
+
     update_time: datetime = attrs.field(
         kw_only=True,
     )
@@ -206,18 +218,6 @@ class ContentMetadata:
     Extra fields:
     {'schema_format': 'date-time'}
     """
-
-    badge_set: "ContentBadgeSet" = attrs.field(
-        kw_only=True,
-    )
-
-    marketplace_id: "MarketplaceId" = attrs.field(
-        kw_only=True,
-    )
-
-    status: "ContentStatus" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -529,6 +529,10 @@ class ImageComponent:
     {'maxLength': 100, 'minLength': 1}
     """
 
+    image_crop_specification: "ImageCropSpecification" = attrs.field(
+        kw_only=True,
+    )
+
     upload_destination_id: str = attrs.field(
         kw_only=True,
     )
@@ -538,10 +542,6 @@ class ImageComponent:
     Extra fields:
     {'minLength': 1}
     """
-
-    image_crop_specification: "ImageCropSpecification" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -814,12 +814,20 @@ class StandardComparisonProductBlock:
     The A+ Content standard comparison product block.
     """
 
+    asin: "Asin" = attrs.field(
+        kw_only=True,
+    )
+
     highlight: bool = attrs.field(
         kw_only=True,
     )
     """
     Determines whether this block of content is visually highlighted.
     """
+
+    image: "ImageComponent" = attrs.field(
+        kw_only=True,
+    )
 
     metrics: List["PlainTextItem"] = attrs.field(
         kw_only=True,
@@ -850,14 +858,6 @@ class StandardComparisonProductBlock:
     Extra fields:
     {'maxLength': 80, 'minLength': 1}
     """
-
-    asin: "Asin" = attrs.field(
-        kw_only=True,
-    )
-
-    image: "ImageComponent" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1173,6 +1173,10 @@ class StandardTechSpecsModule:
     The standard table of technical feature names and definitions.
     """
 
+    headline: "TextComponent" = attrs.field(
+        kw_only=True,
+    )
+
     specification_list: List["StandardTextPairBlock"] = attrs.field(
         kw_only=True,
     )
@@ -1192,10 +1196,6 @@ class StandardTechSpecsModule:
     Extra fields:
     {'maximum': 2.0, 'minimum': 1.0}
     """
-
-    headline: "TextComponent" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1288,6 +1288,10 @@ class TextComponent:
     Rich text content.
     """
 
+    decorator_set: "DecoratorSet" = attrs.field(
+        kw_only=True,
+    )
+
     value: str = attrs.field(
         kw_only=True,
     )
@@ -1297,10 +1301,6 @@ class TextComponent:
     Extra fields:
     {'maxLength': 10000, 'minLength': 1}
     """
-
-    decorator_set: "DecoratorSet" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

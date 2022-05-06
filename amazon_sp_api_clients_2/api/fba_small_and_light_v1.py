@@ -58,6 +58,10 @@ class FeeLineItem:
     Fee details for a specific fee.
     """
 
+    fee_charge: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+
     fee_type: Union[
         Literal["FBAWeightBasedFee"],
         Literal["FBAPerOrderFulfillmentFee"],
@@ -69,10 +73,6 @@ class FeeLineItem:
     """
     The type of fee charged to the seller.
     """
-
-    fee_charge: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

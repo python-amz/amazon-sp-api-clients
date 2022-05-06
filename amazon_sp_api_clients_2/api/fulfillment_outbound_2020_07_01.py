@@ -105,13 +105,6 @@ class CODSettings:
     The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
     """
 
-    is_cod_required: bool = attrs.field(
-        kw_only=True,
-    )
-    """
-    When true, this fulfillment order requires a COD (Cash On Delivery) payment.
-    """
-
     cod_charge: "Money" = attrs.field(
         kw_only=True,
     )
@@ -119,6 +112,13 @@ class CODSettings:
     cod_charge_tax: "Money" = attrs.field(
         kw_only=True,
     )
+
+    is_cod_required: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    When true, this fulfillment order requires a COD (Cash On Delivery) payment.
+    """
 
     shipping_charge: "Money" = attrs.field(
         kw_only=True,
@@ -173,6 +173,22 @@ class CreateFulfillmentOrderItem:
     {'maxLength': 512}
     """
 
+    per_unit_declared_value: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    per_unit_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    per_unit_tax: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    quantity: "Quantity" = attrs.field(
+        kw_only=True,
+    )
+
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
     )
@@ -193,22 +209,6 @@ class CreateFulfillmentOrderItem:
     {'maxLength': 50}
     """
 
-    per_unit_declared_value: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    per_unit_price: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    per_unit_tax: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class CreateFulfillmentOrderItemList:
@@ -225,6 +225,18 @@ class CreateFulfillmentOrderRequest:
     The request body schema for the createFulfillmentOrder operation.
     """
 
+    cod_settings: "CODSettings" = attrs.field(
+        kw_only=True,
+    )
+
+    delivery_window: "DeliveryWindow" = attrs.field(
+        kw_only=True,
+    )
+
+    destination_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     displayable_order_comment: str = attrs.field(
         kw_only=True,
     )
@@ -234,6 +246,10 @@ class CreateFulfillmentOrderRequest:
     Extra fields:
     {'maxLength': 1000}
     """
+
+    displayable_order_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
 
     displayable_order_id: str = attrs.field(
         kw_only=True,
@@ -253,12 +269,28 @@ class CreateFulfillmentOrderRequest:
     A list of features and their fulfillment policies to apply to the order.
     """
 
+    fulfillment_action: "FulfillmentAction" = attrs.field(
+        kw_only=True,
+    )
+
+    fulfillment_policy: "FulfillmentPolicy" = attrs.field(
+        kw_only=True,
+    )
+
+    items: "CreateFulfillmentOrderItemList" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_id: str = attrs.field(
         kw_only=True,
     )
     """
     The marketplace the fulfillment order is placed against.
     """
+
+    notification_emails: "NotificationEmailList" = attrs.field(
+        kw_only=True,
+    )
 
     seller_fulfillment_order_id: str = attrs.field(
         kw_only=True,
@@ -276,38 +308,6 @@ class CreateFulfillmentOrderRequest:
     """
     The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
     """
-
-    cod_settings: "CODSettings" = attrs.field(
-        kw_only=True,
-    )
-
-    delivery_window: "DeliveryWindow" = attrs.field(
-        kw_only=True,
-    )
-
-    destination_address: "Address" = attrs.field(
-        kw_only=True,
-    )
-
-    displayable_order_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
-
-    fulfillment_action: "FulfillmentAction" = attrs.field(
-        kw_only=True,
-    )
-
-    fulfillment_policy: "FulfillmentPolicy" = attrs.field(
-        kw_only=True,
-    )
-
-    items: "CreateFulfillmentOrderItemList" = attrs.field(
-        kw_only=True,
-    )
-
-    notification_emails: "NotificationEmailList" = attrs.field(
-        kw_only=True,
-    )
 
     shipping_speed_category: "ShippingSpeedCategory" = attrs.field(
         kw_only=True,
@@ -618,6 +618,10 @@ class Fee:
     Fee type and cost.
     """
 
+    amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     name: Union[
         Literal["FBAPerUnitFulfillmentFee"],
         Literal["FBAPerOrderFulfillmentFee"],
@@ -629,10 +633,6 @@ class Fee:
     """
     The type of fee.
     """
-
-    amount: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -659,12 +659,28 @@ class FulfillmentOrder:
     General information about a fulfillment order, including its status.
     """
 
+    cod_settings: "CODSettings" = attrs.field(
+        kw_only=True,
+    )
+
+    delivery_window: "DeliveryWindow" = attrs.field(
+        kw_only=True,
+    )
+
+    destination_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     displayable_order_comment: str = attrs.field(
         kw_only=True,
     )
     """
     A text block submitted with the createFulfillmentOrder operation. Displays in recipient-facing materials such as the packing slip.
     """
+
+    displayable_order_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
 
     displayable_order_id: str = attrs.field(
         kw_only=True,
@@ -680,36 +696,6 @@ class FulfillmentOrder:
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The identifier for the marketplace the fulfillment order is placed against.
-    """
-
-    seller_fulfillment_order_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The fulfillment order identifier submitted with the createFulfillmentOrder operation.
-    """
-
-    cod_settings: "CODSettings" = attrs.field(
-        kw_only=True,
-    )
-
-    delivery_window: "DeliveryWindow" = attrs.field(
-        kw_only=True,
-    )
-
-    destination_address: "Address" = attrs.field(
-        kw_only=True,
-    )
-
-    displayable_order_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
-
     fulfillment_action: "FulfillmentAction" = attrs.field(
         kw_only=True,
     )
@@ -722,6 +708,13 @@ class FulfillmentOrder:
         kw_only=True,
     )
 
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the marketplace the fulfillment order is placed against.
+    """
+
     notification_emails: "NotificationEmailList" = attrs.field(
         kw_only=True,
     )
@@ -729,6 +722,13 @@ class FulfillmentOrder:
     received_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
+
+    seller_fulfillment_order_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The fulfillment order identifier submitted with the createFulfillmentOrder operation.
+    """
 
     shipping_speed_category: "ShippingSpeedCategory" = attrs.field(
         kw_only=True,
@@ -745,12 +745,24 @@ class FulfillmentOrderItem:
     Item information for a fulfillment order.
     """
 
+    cancelled_quantity: "Quantity" = attrs.field(
+        kw_only=True,
+    )
+
     displayable_comment: str = attrs.field(
         kw_only=True,
     )
     """
     Item-specific text that displays in recipient-facing materials such as the outbound shipment packing slip.
     """
+
+    estimated_arrival_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
+
+    estimated_ship_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
 
     fulfillment_network_sku: str = attrs.field(
         kw_only=True,
@@ -773,32 +785,6 @@ class FulfillmentOrderItem:
     Indicates whether the item is sellable or unsellable.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A fulfillment order item identifier submitted with a call to the createFulfillmentOrder operation.
-    """
-
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The seller SKU of the item.
-    """
-
-    cancelled_quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
-
-    estimated_arrival_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
-
-    estimated_ship_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
-
     per_unit_declared_value: "Money" = attrs.field(
         kw_only=True,
     )
@@ -814,6 +800,20 @@ class FulfillmentOrderItem:
     quantity: "Quantity" = attrs.field(
         kw_only=True,
     )
+
+    seller_fulfillment_order_item_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A fulfillment order item identifier submitted with a call to the createFulfillmentOrder operation.
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
 
     unfulfillable_quantity: "Quantity" = attrs.field(
         kw_only=True,
@@ -853,12 +853,24 @@ class FulfillmentPreview:
     Information about a fulfillment order preview, including delivery and fee information based on shipping method.
     """
 
+    estimated_fees: "FeeList" = attrs.field(
+        kw_only=True,
+    )
+
+    estimated_shipping_weight: "Weight" = attrs.field(
+        kw_only=True,
+    )
+
     feature_constraints: List["FeatureSettings"] = attrs.field(
         kw_only=True,
     )
     """
     A list of features and their fulfillment policies to apply to the order.
     """
+
+    fulfillment_preview_shipments: "FulfillmentPreviewShipmentList" = attrs.field(
+        kw_only=True,
+    )
 
     is_codcapable: bool = attrs.field(
         kw_only=True,
@@ -880,18 +892,6 @@ class FulfillmentPreview:
     """
     The marketplace the fulfillment order is placed against.
     """
-
-    estimated_fees: "FeeList" = attrs.field(
-        kw_only=True,
-    )
-
-    estimated_shipping_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
-
-    fulfillment_preview_shipments: "FulfillmentPreviewShipmentList" = attrs.field(
-        kw_only=True,
-    )
 
     order_unfulfillable_reasons: "StringList" = attrs.field(
         kw_only=True,
@@ -916,6 +916,14 @@ class FulfillmentPreviewItem:
     Item information for a shipment in a fulfillment order preview.
     """
 
+    estimated_shipping_weight: "Weight" = attrs.field(
+        kw_only=True,
+    )
+
+    quantity: "Quantity" = attrs.field(
+        kw_only=True,
+    )
+
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
     )
@@ -936,14 +944,6 @@ class FulfillmentPreviewItem:
     """
     The method used to calculate the estimated shipping weight.
     """
-
-    estimated_shipping_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
-
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -970,13 +970,6 @@ class FulfillmentPreviewShipment:
     Delivery and item information for a shipment in a fulfillment order preview.
     """
 
-    shipping_notes: List[str] = attrs.field(
-        kw_only=True,
-    )
-    """
-    Provides additional insight into the shipment timeline when exact delivery dates are not able to be precomputed.
-    """
-
     earliest_arrival_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
@@ -996,6 +989,13 @@ class FulfillmentPreviewShipment:
     latest_ship_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
+
+    shipping_notes: List[str] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Provides additional insight into the shipment timeline when exact delivery dates are not able to be precomputed.
+    """
 
 
 @attrs.define
@@ -1029,12 +1029,24 @@ class FulfillmentShipment:
     A shipment identifier assigned by Amazon.
     """
 
+    estimated_arrival_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
+
     fulfillment_center_id: str = attrs.field(
         kw_only=True,
     )
     """
     An identifier for the fulfillment center that the shipment will be sent from.
     """
+
+    fulfillment_shipment_item: "FulfillmentShipmentItemList" = attrs.field(
+        kw_only=True,
+    )
+
+    fulfillment_shipment_package: "FulfillmentShipmentPackageList" = attrs.field(
+        kw_only=True,
+    )
 
     fulfillment_shipment_status: Union[
         Literal["PENDING"], Literal["SHIPPED"], Literal["CANCELLED_BY_FULFILLER"], Literal["CANCELLED_BY_SELLER"]
@@ -1045,28 +1057,16 @@ class FulfillmentShipment:
     The current status of the shipment.
     """
 
+    shipping_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
+
     shipping_notes: List[str] = attrs.field(
         kw_only=True,
     )
     """
     Provides additional insight into shipment timeline. Primairly used to communicate that actual delivery dates aren't available.
     """
-
-    estimated_arrival_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
-
-    fulfillment_shipment_item: "FulfillmentShipmentItemList" = attrs.field(
-        kw_only=True,
-    )
-
-    fulfillment_shipment_package: "FulfillmentShipmentPackageList" = attrs.field(
-        kw_only=True,
-    )
-
-    shipping_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1084,6 +1084,10 @@ class FulfillmentShipmentItem:
     Extra fields:
     {'schema_format': 'int32'}
     """
+
+    quantity: "Quantity" = attrs.field(
+        kw_only=True,
+    )
 
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
@@ -1105,10 +1109,6 @@ class FulfillmentShipmentItem:
     """
     The serial number of the shipped item.
     """
-
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1142,6 +1142,10 @@ class FulfillmentShipmentPackage:
     Identifies the carrier who will deliver the shipment to the recipient.
     """
 
+    estimated_arrival_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
+
     package_number: int = attrs.field(
         kw_only=True,
     )
@@ -1158,10 +1162,6 @@ class FulfillmentShipmentPackage:
     """
     The tracking number, if provided, can be used to obtain tracking and delivery information.
     """
-
-    estimated_arrival_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1352,6 +1352,14 @@ class GetFulfillmentPreviewItem:
     Item information for a fulfillment order preview.
     """
 
+    per_unit_declared_value: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    quantity: "Quantity" = attrs.field(
+        kw_only=True,
+    )
+
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
     )
@@ -1372,14 +1380,6 @@ class GetFulfillmentPreviewItem:
     {'maxLength': 50}
     """
 
-    per_unit_declared_value: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class GetFulfillmentPreviewItemList:
@@ -1395,6 +1395,10 @@ class GetFulfillmentPreviewRequest:
     """
     The request body schema for the getFulfillmentPreview operation.
     """
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
 
     feature_constraints: List["FeatureSettings"] = attrs.field(
         kw_only=True,
@@ -1420,20 +1424,16 @@ class GetFulfillmentPreviewRequest:
     Specifies whether to return the ScheduledDeliveryInfo response object, which contains the available delivery windows for a Scheduled Delivery. The ScheduledDeliveryInfo response object can only be returned for fulfillment order previews with ShippingSpeedCategories = ScheduledDelivery.
     """
 
+    items: "GetFulfillmentPreviewItemList" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_id: str = attrs.field(
         kw_only=True,
     )
     """
     The marketplace the fulfillment order is placed against.
     """
-
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
-
-    items: "GetFulfillmentPreviewItemList" = attrs.field(
-        kw_only=True,
-    )
 
     shipping_speed_categories: "ShippingSpeedCategoryList" = attrs.field(
         kw_only=True,
@@ -1514,6 +1514,10 @@ class InvalidReturnItem:
     An item that is invalid for return.
     """
 
+    invalid_item_reason: "InvalidItemReason" = attrs.field(
+        kw_only=True,
+    )
+
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
     )
@@ -1527,10 +1531,6 @@ class InvalidReturnItem:
     """
     An identifier assigned by the seller to the return item.
     """
-
-    invalid_item_reason: "InvalidItemReason" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1628,6 +1628,10 @@ class NotificationEmailList:
 @attrs.define
 class PackageTrackingDetails:
 
+    additional_location_info: "AdditionalLocationInfo" = attrs.field(
+        kw_only=True,
+    )
+
     carrier_code: str = attrs.field(
         kw_only=True,
     )
@@ -1649,6 +1653,10 @@ class PackageTrackingDetails:
     The URL of the carrier’s website.
     """
 
+    current_status: "CurrentStatus" = attrs.field(
+        kw_only=True,
+    )
+
     current_status_description: str = attrs.field(
         kw_only=True,
     )
@@ -1663,6 +1671,10 @@ class PackageTrackingDetails:
     Link on swiship.com that allows customers to track the package.
     """
 
+    estimated_arrival_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
+
     package_number: int = attrs.field(
         kw_only=True,
     )
@@ -1673,32 +1685,6 @@ class PackageTrackingDetails:
     {'schema_format': 'int32'}
     """
 
-    signed_for_by: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The name of the person who signed for the package.
-    """
-
-    tracking_number: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The tracking number for the package.
-    """
-
-    additional_location_info: "AdditionalLocationInfo" = attrs.field(
-        kw_only=True,
-    )
-
-    current_status: "CurrentStatus" = attrs.field(
-        kw_only=True,
-    )
-
-    estimated_arrival_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
-
     ship_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
@@ -1707,9 +1693,23 @@ class PackageTrackingDetails:
         kw_only=True,
     )
 
+    signed_for_by: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the person who signed for the package.
+    """
+
     tracking_events: "TrackingEventList" = attrs.field(
         kw_only=True,
     )
+
+    tracking_number: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The tracking number for the package.
+    """
 
 
 @attrs.define
@@ -1785,16 +1785,16 @@ class ReturnAuthorization:
     An identifier for the return authorization. This identifier associates return items with the return authorization used to return them.
     """
 
+    return_to_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     rma_page_url: str = attrs.field(
         kw_only=True,
     )
     """
     A URL for a web page that contains the return authorization barcode and the mailing label. This does not include pre-paid shipping.
     """
-
-    return_to_address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1847,6 +1847,10 @@ class ReturnItem:
     An optional comment about the return item.
     """
 
+    return_received_condition: "ReturnItemDisposition" = attrs.field(
+        kw_only=True,
+    )
+
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
     )
@@ -1867,10 +1871,6 @@ class ReturnItem:
     """
     The return reason code assigned to the return item by the seller.
     """
-
-    return_received_condition: "ReturnItemDisposition" = attrs.field(
-        kw_only=True,
-    )
 
     status: "FulfillmentReturnItemStatus" = attrs.field(
         kw_only=True,
@@ -1987,13 +1987,6 @@ class TrackingEvent:
     Information for tracking package deliveries.
     """
 
-    event_description: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A description for the corresponding event code.
-    """
-
     event_address: "TrackingAddress" = attrs.field(
         kw_only=True,
     )
@@ -2005,6 +1998,13 @@ class TrackingEvent:
     event_date: "Timestamp" = attrs.field(
         kw_only=True,
     )
+
+    event_description: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A description for the corresponding event code.
+    """
 
 
 @attrs.define
@@ -2021,6 +2021,14 @@ class UnfulfillablePreviewItem:
     """
     Information about unfulfillable items in a fulfillment order preview.
     """
+
+    item_unfulfillable_reasons: "StringList" = attrs.field(
+        kw_only=True,
+    )
+
+    quantity: "Quantity" = attrs.field(
+        kw_only=True,
+    )
 
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
@@ -2041,14 +2049,6 @@ class UnfulfillablePreviewItem:
     Extra fields:
     {'maxLength': 50}
     """
-
-    item_unfulfillable_reasons: "StringList" = attrs.field(
-        kw_only=True,
-    )
-
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -2100,6 +2100,22 @@ class UpdateFulfillmentOrderItem:
     Indicates whether the item is sellable or unsellable.
     """
 
+    per_unit_declared_value: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    per_unit_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    per_unit_tax: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    quantity: "Quantity" = attrs.field(
+        kw_only=True,
+    )
+
     seller_fulfillment_order_item_id: str = attrs.field(
         kw_only=True,
     )
@@ -2117,22 +2133,6 @@ class UpdateFulfillmentOrderItem:
     The seller SKU of the item.
     """
 
-    per_unit_declared_value: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    per_unit_price: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    per_unit_tax: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    quantity: "Quantity" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class UpdateFulfillmentOrderItemList:
@@ -2146,6 +2146,10 @@ class UpdateFulfillmentOrderItemList:
 @attrs.define
 class UpdateFulfillmentOrderRequest:
 
+    destination_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     displayable_order_comment: str = attrs.field(
         kw_only=True,
     )
@@ -2155,6 +2159,10 @@ class UpdateFulfillmentOrderRequest:
     Extra fields:
     {'maxLength': 1000}
     """
+
+    displayable_order_date: "Timestamp" = attrs.field(
+        kw_only=True,
+    )
 
     displayable_order_id: str = attrs.field(
         kw_only=True,
@@ -2173,28 +2181,6 @@ class UpdateFulfillmentOrderRequest:
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The marketplace the fulfillment order is placed against.
-    """
-
-    ship_from_country_code: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
-    """
-
-    destination_address: "Address" = attrs.field(
-        kw_only=True,
-    )
-
-    displayable_order_date: "Timestamp" = attrs.field(
-        kw_only=True,
-    )
-
     fulfillment_action: "FulfillmentAction" = attrs.field(
         kw_only=True,
     )
@@ -2207,9 +2193,23 @@ class UpdateFulfillmentOrderRequest:
         kw_only=True,
     )
 
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The marketplace the fulfillment order is placed against.
+    """
+
     notification_emails: "NotificationEmailList" = attrs.field(
         kw_only=True,
     )
+
+    ship_from_country_code: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
+    """
 
     shipping_speed_category: "ShippingSpeedCategory" = attrs.field(
         kw_only=True,

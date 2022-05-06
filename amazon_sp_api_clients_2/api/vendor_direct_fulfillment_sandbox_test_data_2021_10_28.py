@@ -168,16 +168,16 @@ class Transaction:
     The current processing status of the transaction.
     """
 
+    test_case_data: "TestCaseData" = attrs.field(
+        kw_only=True,
+    )
+
     transaction_id: str = attrs.field(
         kw_only=True,
     )
     """
     The unique identifier returned in the response to the generateOrderScenarios request.
     """
-
-    test_case_data: "TestCaseData" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

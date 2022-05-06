@@ -180,16 +180,16 @@ class BuyerInfo:
     The name of the buyer.
     """
 
+    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
+        kw_only=True,
+    )
+
     purchase_order_number: str = attrs.field(
         kw_only=True,
     )
     """
     The purchase order (PO) number entered by the buyer at checkout. Returned only for orders where the buyer entered a PO number at checkout.
     """
-
-    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -438,6 +438,10 @@ class ItemBuyerInfo:
     A single item's buyer information.
     """
 
+    buyer_customized_info: "BuyerCustomizedInfoDetail" = attrs.field(
+        kw_only=True,
+    )
+
     gift_message_text: str = attrs.field(
         kw_only=True,
     )
@@ -451,10 +455,6 @@ class ItemBuyerInfo:
     """
     The gift wrap level specified by the buyer.
     """
-
-    buyer_customized_info: "BuyerCustomizedInfoDetail" = attrs.field(
-        kw_only=True,
-    )
 
     gift_wrap_price: "Money" = attrs.field(
         kw_only=True,
@@ -522,6 +522,14 @@ class Order:
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
+    automated_shipping_settings: "AutomatedShippingSettings" = attrs.field(
+        kw_only=True,
+    )
+
+    buyer_info: "BuyerInfo" = attrs.field(
+        kw_only=True,
+    )
+
     buyer_invoice_preference: Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]] = attrs.field(
         kw_only=True,
     )
@@ -529,12 +537,20 @@ class Order:
     The buyer's invoicing preference. Available only in the TR marketplace.
     """
 
+    buyer_tax_information: "BuyerTaxInformation" = attrs.field(
+        kw_only=True,
+    )
+
     cba_displayable_shipping_label: str = attrs.field(
         kw_only=True,
     )
     """
     Custom ship label for Checkout by Amazon (CBA).
     """
+
+    default_ship_from_location_address: "Address" = attrs.field(
+        kw_only=True,
+    )
 
     earliest_delivery_date: str = attrs.field(
         kw_only=True,
@@ -565,6 +581,10 @@ class Order:
     """
     Whether the order was fulfilled by Amazon (AFN) or by the seller (MFN).
     """
+
+    fulfillment_instruction: "FulfillmentInstruction" = attrs.field(
+        kw_only=True,
+    )
 
     has_regulated_items: bool = attrs.field(
         kw_only=True,
@@ -666,6 +686,10 @@ class Order:
     The identifier for the marketplace where the order was placed.
     """
 
+    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field(
+        kw_only=True,
+    )
+
     number_of_items_shipped: int = attrs.field(
         kw_only=True,
     )
@@ -703,6 +727,10 @@ class Order:
     The current order status.
     """
 
+    order_total: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     order_type: Union[
         Literal["StandardOrder"],
         Literal["LongLeadTimeOrder"],
@@ -716,12 +744,20 @@ class Order:
     The type of the order.
     """
 
+    payment_execution_detail: "PaymentExecutionDetailItemList" = attrs.field(
+        kw_only=True,
+    )
+
     payment_method: Union[Literal["COD"], Literal["CVS"], Literal["Other"]] = attrs.field(
         kw_only=True,
     )
     """
     The payment method for the order. This property is limited to Cash On Delivery (COD) and Convenience Store (CVS) payment methods. Unless you need the specific COD payment information provided by the PaymentExecutionDetailItem object, we recommend using the PaymentMethodDetails property to get payment method information.
     """
+
+    payment_method_details: "PaymentMethodDetailItemList" = attrs.field(
+        kw_only=True,
+    )
 
     promise_response_due_date: str = attrs.field(
         kw_only=True,
@@ -780,42 +816,6 @@ class Order:
         Possible values: Expedited, FreeEconomy, NextDay, SameDay, SecondDay, Scheduled, Standard.
     """
 
-    automated_shipping_settings: "AutomatedShippingSettings" = attrs.field(
-        kw_only=True,
-    )
-
-    buyer_info: "BuyerInfo" = attrs.field(
-        kw_only=True,
-    )
-
-    buyer_tax_information: "BuyerTaxInformation" = attrs.field(
-        kw_only=True,
-    )
-
-    default_ship_from_location_address: "Address" = attrs.field(
-        kw_only=True,
-    )
-
-    fulfillment_instruction: "FulfillmentInstruction" = attrs.field(
-        kw_only=True,
-    )
-
-    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field(
-        kw_only=True,
-    )
-
-    order_total: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    payment_execution_detail: "PaymentExecutionDetailItemList" = attrs.field(
-        kw_only=True,
-    )
-
-    payment_method_details: "PaymentMethodDetailItemList" = attrs.field(
-        kw_only=True,
-    )
-
     shipping_address: "Address" = attrs.field(
         kw_only=True,
     )
@@ -873,16 +873,16 @@ class OrderBuyerInfo:
     The name of the buyer.
     """
 
+    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
+        kw_only=True,
+    )
+
     purchase_order_number: str = attrs.field(
         kw_only=True,
     )
     """
     The purchase order (PO) number entered by the buyer at checkout. Returned only for orders where the buyer entered a PO number at checkout.
     """
-
-    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -897,6 +897,22 @@ class OrderItem:
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
+
+    buyer_info: "ItemBuyerInfo" = attrs.field(
+        kw_only=True,
+    )
+
+    buyer_requested_cancel: "BuyerRequestedCancel" = attrs.field(
+        kw_only=True,
+    )
+
+    codfee: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    codfee_discount: "Money" = attrs.field(
+        kw_only=True,
+    )
 
     condition_id: str = attrs.field(
         kw_only=True,
@@ -949,12 +965,24 @@ class OrderItem:
     When true, transparency codes are required.
     """
 
+    item_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    item_tax: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     order_item_id: str = attrs.field(
         kw_only=True,
     )
     """
     An Amazon-defined order item identifier.
     """
+
+    points_granted: "PointsGrantedDetail" = attrs.field(
+        kw_only=True,
+    )
 
     price_designation: str = attrs.field(
         kw_only=True,
@@ -963,6 +991,22 @@ class OrderItem:
     Indicates that the selling price is a special price that is available only for Amazon Business orders. For more information about the Amazon Business Seller Program, see the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business).
         Possible values: BusinessPrice - A special price that is available only for Amazon Business orders.
     """
+
+    product_info: "ProductInfoDetail" = attrs.field(
+        kw_only=True,
+    )
+
+    promotion_discount: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    promotion_discount_tax: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    promotion_ids: "PromotionIdList" = attrs.field(
+        kw_only=True,
+    )
 
     quantity_ordered: int = attrs.field(
         kw_only=True,
@@ -1007,64 +1051,6 @@ class OrderItem:
         Returned only for Amazon Easy Ship orders.
     """
 
-    store_chain_store_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The store chain store identifier. Linked to a specific store in a store chain.
-    """
-
-    title: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The name of the item.
-    """
-
-    buyer_info: "ItemBuyerInfo" = attrs.field(
-        kw_only=True,
-    )
-
-    buyer_requested_cancel: "BuyerRequestedCancel" = attrs.field(
-        kw_only=True,
-    )
-
-    codfee: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    codfee_discount: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    item_price: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    item_tax: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    points_granted: "PointsGrantedDetail" = attrs.field(
-        kw_only=True,
-    )
-
-    product_info: "ProductInfoDetail" = attrs.field(
-        kw_only=True,
-    )
-
-    promotion_discount: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    promotion_discount_tax: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    promotion_ids: "PromotionIdList" = attrs.field(
-        kw_only=True,
-    )
-
     shipping_discount: "Money" = attrs.field(
         kw_only=True,
     )
@@ -1081,9 +1067,23 @@ class OrderItem:
         kw_only=True,
     )
 
+    store_chain_store_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The store chain store identifier. Linked to a specific store in a store chain.
+    """
+
     tax_collection: "TaxCollection" = attrs.field(
         kw_only=True,
     )
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the item.
+    """
 
 
 @attrs.define
@@ -1091,6 +1091,10 @@ class OrderItemBuyerInfo:
     """
     A single order item's buyer information.
     """
+
+    buyer_customized_info: "BuyerCustomizedInfoDetail" = attrs.field(
+        kw_only=True,
+    )
 
     gift_message_text: str = attrs.field(
         kw_only=True,
@@ -1106,17 +1110,6 @@ class OrderItemBuyerInfo:
     The gift wrap level specified by the buyer.
     """
 
-    order_item_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    An Amazon-defined order item identifier.
-    """
-
-    buyer_customized_info: "BuyerCustomizedInfoDetail" = attrs.field(
-        kw_only=True,
-    )
-
     gift_wrap_price: "Money" = attrs.field(
         kw_only=True,
     )
@@ -1124,6 +1117,13 @@ class OrderItemBuyerInfo:
     gift_wrap_tax: "Money" = attrs.field(
         kw_only=True,
     )
+
+    order_item_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An Amazon-defined order item identifier.
+    """
 
 
 @attrs.define
@@ -1225,13 +1225,6 @@ class OrderRegulatedInfo:
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    requires_dosage_label: bool = attrs.field(
-        kw_only=True,
-    )
-    """
-    Whether the order requires attaching a dosage information label when shipped.
-    """
-
     regulated_information: "RegulatedInformation" = attrs.field(
         kw_only=True,
     )
@@ -1239,6 +1232,13 @@ class OrderRegulatedInfo:
     regulated_order_verification_status: "RegulatedOrderVerificationStatus" = attrs.field(
         kw_only=True,
     )
+
+    requires_dosage_label: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    Whether the order requires attaching a dosage information label when shipped.
+    """
 
 
 @attrs.define
@@ -1279,6 +1279,10 @@ class PaymentExecutionDetailItem:
     Information about a sub-payment method used to pay for a COD order.
     """
 
+    payment: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     payment_method: str = attrs.field(
         kw_only=True,
     )
@@ -1289,10 +1293,6 @@ class PaymentExecutionDetailItem:
         * GC - Gift Card.
         * PointsAccount - Amazon Points.
     """
-
-    payment: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1319,16 +1319,16 @@ class PointsGrantedDetail:
     The number of Amazon Points offered with the purchase of an item, and their monetary value.
     """
 
+    points_monetary_value: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     points_number: int = attrs.field(
         kw_only=True,
     )
     """
     The number of Amazon Points granted with the purchase of an item.
     """
-
-    points_monetary_value: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1416,6 +1416,10 @@ class RegulatedOrderVerificationStatus:
     The identifier for the order's regulated information reviewer.
     """
 
+    rejection_reason: "RejectionReason" = attrs.field(
+        kw_only=True,
+    )
+
     requires_merchant_action: bool = attrs.field(
         kw_only=True,
     )
@@ -1445,10 +1449,6 @@ class RegulatedOrderVerificationStatus:
     """
     A list of valid rejection reasons that may be used to reject the order's regulated information.
     """
-
-    rejection_reason: "RejectionReason" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

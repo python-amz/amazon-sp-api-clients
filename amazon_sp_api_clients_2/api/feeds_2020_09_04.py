@@ -45,6 +45,10 @@ class CreateFeedDocumentResult:
     Information required to encrypt and upload a feed document's contents.
     """
 
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
+        kw_only=True,
+    )
+
     feed_document_id: str = attrs.field(
         kw_only=True,
     )
@@ -58,10 +62,6 @@ class CreateFeedDocumentResult:
     """
     The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
     """
-
-    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -104,6 +104,10 @@ class CreateFeedResult:
 @attrs.define
 class CreateFeedSpecification:
 
+    feed_options: "FeedOptions" = attrs.field(
+        kw_only=True,
+    )
+
     feed_type: str = attrs.field(
         kw_only=True,
     )
@@ -127,10 +131,6 @@ class CreateFeedSpecification:
     Extra fields:
     {'maxItems': 25, 'minItems': 1}
     """
-
-    feed_options: "FeedOptions" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -251,6 +251,10 @@ class FeedDocument:
     If present, the feed document contents are compressed using the indicated algorithm.
     """
 
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
+        kw_only=True,
+    )
+
     feed_document_id: str = attrs.field(
         kw_only=True,
     )
@@ -264,10 +268,6 @@ class FeedDocument:
     """
     A presigned URL for the feed document. This URL expires after 5 minutes.
     """
-
-    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -349,16 +349,16 @@ class GetFeedsResponse:
     Response schema.
     """
 
+    errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+
     next_token: str = attrs.field(
         kw_only=True,
     )
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
     """
-
-    errors: "ErrorList" = attrs.field(
-        kw_only=True,
-    )
 
     payload: "FeedList" = attrs.field(
         kw_only=True,

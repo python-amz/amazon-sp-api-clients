@@ -56,11 +56,11 @@ class SchemaBase(Schema):
 
 
 class ParsedReferenceProperty(SchemaBase, Reference):
-    pass
+    schema_type = 'reference'
 
 
 class ParsedSchemaProperty(SchemaBase, Schema):
-    pass
+    schema_type = 'schema'
 
 
 class ParsedSchema(SchemaBase, Schema):
@@ -80,6 +80,13 @@ class ParsedSchema(SchemaBase, Schema):
     def schema_properties(self) -> list[ParsedSchemaProperty]:
         return [ParsedSchemaProperty.parse_obj({**v.dict(), 'name': k, 'generator': self.generator})
                 for k, v in self.parsed_properties if isinstance(v, Schema)]
+
+    @property
+    def all_properties(self):
+        result: list[ParsedReferenceProperty | ParsedSchemaProperty] = self.reference_properties
+        result.extend(self.schema_properties)
+        result.sort(key=lambda i: i.name)
+        return result
 
 
 class ParsedParameter(Parameter):

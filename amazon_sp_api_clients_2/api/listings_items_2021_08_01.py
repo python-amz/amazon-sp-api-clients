@@ -128,23 +128,16 @@ class Item:
     A listings item.
     """
 
+    attributes: "ItemAttributes" = attrs.field(
+        kw_only=True,
+    )
+
     fulfillment_availability: List["FulfillmentAvailability"] = attrs.field(
         kw_only=True,
     )
     """
     Fulfillment availability for the listings item.
     """
-
-    sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A selling partner provided identifier for an Amazon listing.
-    """
-
-    attributes: "ItemAttributes" = attrs.field(
-        kw_only=True,
-    )
 
     issues: "ItemIssues" = attrs.field(
         kw_only=True,
@@ -157,6 +150,13 @@ class Item:
     procurement: "ItemProcurement" = attrs.field(
         kw_only=True,
     )
+
+    sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A selling partner provided identifier for an Amazon listing.
+    """
 
     summaries: "ItemSummaries" = attrs.field(
         kw_only=True,
@@ -335,6 +335,10 @@ class ItemSummaryByMarketplace:
     {'schema_format': 'date-time'}
     """
 
+    main_image: "ItemImage" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_id: str = attrs.field(
         kw_only=True,
     )
@@ -355,10 +359,6 @@ class ItemSummaryByMarketplace:
     """
     Statuses that apply to the listings item.
     """
-
-    main_image: "ItemImage" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -459,16 +459,16 @@ class Money:
     The currency type and the amount.
     """
 
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
     """
     Three-digit currency code. In ISO 4217 format.
     """
-
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

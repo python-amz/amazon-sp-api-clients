@@ -151,6 +151,10 @@ class AttributeSetListType:
     The CPU manufacturer attribute of the item.
     """
 
+    cpu_speed: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
     cpu_type: str = attrs.field(
         kw_only=True,
     )
@@ -178,6 +182,10 @@ class AttributeSetListType:
     """
     The director attributes of the item.
     """
+
+    display_size: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
 
     edition: str = attrs.field(
         kw_only=True,
@@ -242,6 +250,10 @@ class AttributeSetListType:
     The golf club flex attribute of the item.
     """
 
+    golf_club_loft: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
     hand_orientation: str = attrs.field(
         kw_only=True,
     )
@@ -255,6 +267,10 @@ class AttributeSetListType:
     """
     The hard disk interface attribute of the item.
     """
+
+    hard_disk_size: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
 
     hardware_platform: str = attrs.field(
         kw_only=True,
@@ -305,6 +321,10 @@ class AttributeSetListType:
     The issues per year attribute of the item.
     """
 
+    item_dimensions: "DimensionType" = attrs.field(
+        kw_only=True,
+    )
+
     item_part_number: str = attrs.field(
         kw_only=True,
     )
@@ -333,12 +353,24 @@ class AttributeSetListType:
     The legal disclaimer attribute of the item.
     """
 
+    list_price: "Price" = attrs.field(
+        kw_only=True,
+    )
+
     manufacturer: str = attrs.field(
         kw_only=True,
     )
     """
     The manufacturer attribute of the item.
     """
+
+    manufacturer_maximum_age: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
+    manufacturer_minimum_age: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
 
     manufacturer_parts_warranty_description: str = attrs.field(
         kw_only=True,
@@ -353,6 +385,10 @@ class AttributeSetListType:
     """
     The material type attributes of the item.
     """
+
+    maximum_resolution: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
 
     media_type: List[str] = attrs.field(
         kw_only=True,
@@ -423,6 +459,14 @@ class AttributeSetListType:
     """
     The operating system attributes of the item.
     """
+
+    optical_zoom: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
+    package_dimensions: "DimensionType" = attrs.field(
+        kw_only=True,
+    )
 
     package_quantity: int = attrs.field(
         kw_only=True,
@@ -515,6 +559,10 @@ class AttributeSetListType:
     The ring size attribute of the item.
     """
 
+    running_time: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
     scent: str = attrs.field(
         kw_only=True,
     )
@@ -557,12 +605,24 @@ class AttributeSetListType:
     The size per pearl attribute of the item.
     """
 
+    small_image: "Image" = attrs.field(
+        kw_only=True,
+    )
+
     studio: str = attrs.field(
         kw_only=True,
     )
     """
     The studio attribute of the item.
     """
+
+    subscription_length: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
+    system_memory_size: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
 
     system_memory_type: str = attrs.field(
         kw_only=True,
@@ -585,73 +645,6 @@ class AttributeSetListType:
     The title attribute of the item.
     """
 
-    warranty: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The warranty attribute of the item.
-    """
-
-    cpu_speed: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    display_size: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    golf_club_loft: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    hard_disk_size: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    item_dimensions: "DimensionType" = attrs.field(
-        kw_only=True,
-    )
-
-    list_price: "Price" = attrs.field(
-        kw_only=True,
-    )
-
-    manufacturer_maximum_age: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    manufacturer_minimum_age: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    maximum_resolution: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    optical_zoom: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    package_dimensions: "DimensionType" = attrs.field(
-        kw_only=True,
-    )
-
-    running_time: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    small_image: "Image" = attrs.field(
-        kw_only=True,
-    )
-
-    subscription_length: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    system_memory_size: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
     total_diamond_weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
@@ -659,6 +652,13 @@ class AttributeSetListType:
     total_gem_weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,
     )
+
+    warranty: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The warranty attribute of the item.
+    """
 
     weee_tax_value: "Price" = attrs.field(
         kw_only=True,
@@ -825,16 +825,16 @@ class Image:
     The image attribute of the item.
     """
 
+    height: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
     url: str = attrs.field(
         kw_only=True,
     )
     """
     The image URL attribute of the item.
     """
-
-    height: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
 
     width: "DecimalWithUnits" = attrs.field(
         kw_only=True,
@@ -1010,6 +1010,10 @@ class RelationshipType:
     The golf club flex variation of an item.
     """
 
+    golf_club_loft: "DecimalWithUnits" = attrs.field(
+        kw_only=True,
+    )
+
     hand_orientation: str = attrs.field(
         kw_only=True,
     )
@@ -1023,6 +1027,14 @@ class RelationshipType:
     """
     The hardware platform variation of an item.
     """
+
+    identifiers: "IdentifierType" = attrs.field(
+        kw_only=True,
+    )
+
+    item_dimensions: "DimensionType" = attrs.field(
+        kw_only=True,
+    )
 
     material_type: List[str] = attrs.field(
         kw_only=True,
@@ -1100,18 +1112,6 @@ class RelationshipType:
     """
     The size per pearl variation of an item.
     """
-
-    golf_club_loft: "DecimalWithUnits" = attrs.field(
-        kw_only=True,
-    )
-
-    identifiers: "IdentifierType" = attrs.field(
-        kw_only=True,
-    )
-
-    item_dimensions: "DimensionType" = attrs.field(
-        kw_only=True,
-    )
 
     total_diamond_weight: "DecimalWithUnits" = attrs.field(
         kw_only=True,

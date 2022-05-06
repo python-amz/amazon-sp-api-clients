@@ -92,6 +92,10 @@ class Address:
     {'maxLength': 60, 'minLength': 1}
     """
 
+    city: "City" = attrs.field(
+        kw_only=True,
+    )
+
     copy_emails: List[str] = attrs.field(
         kw_only=True,
     )
@@ -101,6 +105,10 @@ class Address:
     Extra fields:
     {'maxItems': 2}
     """
+
+    country_code: "CountryCode" = attrs.field(
+        kw_only=True,
+    )
 
     email: str = attrs.field(
         kw_only=True,
@@ -131,14 +139,6 @@ class Address:
     Extra fields:
     {'maxLength': 20, 'minLength': 1}
     """
-
-    city: "City" = attrs.field(
-        kw_only=True,
-    )
-
-    country_code: "CountryCode" = attrs.field(
-        kw_only=True,
-    )
 
     postal_code: "PostalCode" = attrs.field(
         kw_only=True,
@@ -184,6 +184,10 @@ class Container:
     Container in the shipment.
     """
 
+    container_reference_id: "ContainerReferenceId" = attrs.field(
+        kw_only=True,
+    )
+
     container_type: Union[Literal["PACKAGE"]] = attrs.field(
         kw_only=True,
     )
@@ -191,20 +195,16 @@ class Container:
     The type of physical container being used. (always 'PACKAGE')
     """
 
+    dimensions: "Dimensions" = attrs.field(
+        kw_only=True,
+    )
+
     items: List["ContainerItem"] = attrs.field(
         kw_only=True,
     )
     """
     A list of the items in the container.
     """
-
-    container_reference_id: "ContainerReferenceId" = attrs.field(
-        kw_only=True,
-    )
-
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
 
     value: "Currency" = attrs.field(
         kw_only=True,
@@ -453,6 +453,10 @@ class Event:
     An event of a shipment
     """
 
+    event_code: "EventCode" = attrs.field(
+        kw_only=True,
+    )
+
     event_time: datetime = attrs.field(
         kw_only=True,
     )
@@ -462,10 +466,6 @@ class Event:
     Extra fields:
     {'schema_format': 'date-time'}
     """
-
-    event_code: "EventCode" = attrs.field(
-        kw_only=True,
-    )
 
     location: "Location" = attrs.field(
         kw_only=True,
@@ -511,6 +511,14 @@ class GetRatesRequest:
     The payload schema for the getRates operation.
     """
 
+    container_specifications: "ContainerSpecificationList" = attrs.field(
+        kw_only=True,
+    )
+
+    service_types: "ServiceTypeList" = attrs.field(
+        kw_only=True,
+    )
+
     ship_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -520,14 +528,6 @@ class GetRatesRequest:
     Extra fields:
     {'schema_format': 'date-time'}
     """
-
-    container_specifications: "ContainerSpecificationList" = attrs.field(
-        kw_only=True,
-    )
-
-    service_types: "ServiceTypeList" = attrs.field(
-        kw_only=True,
-    )
 
     ship_from: "Address" = attrs.field(
         kw_only=True,
@@ -615,13 +615,6 @@ class LabelResult:
     Label details including label stream, format, size.
     """
 
-    tracking_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The tracking identifier assigned to the container.
-    """
-
     container_reference_id: "ContainerReferenceId" = attrs.field(
         kw_only=True,
     )
@@ -629,6 +622,13 @@ class LabelResult:
     label: "Label" = attrs.field(
         kw_only=True,
     )
+
+    tracking_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The tracking identifier assigned to the container.
+    """
 
 
 @attrs.define
@@ -781,16 +781,6 @@ class PurchaseShipmentRequest:
     The payload schema for the purchaseShipment operation.
     """
 
-    ship_date: datetime = attrs.field(
-        kw_only=True,
-    )
-    """
-    The start date and time. This defaults to the current date and time.
-
-    Extra fields:
-    {'schema_format': 'date-time'}
-    """
-
     client_reference_id: "ClientReferenceId" = attrs.field(
         kw_only=True,
     )
@@ -806,6 +796,16 @@ class PurchaseShipmentRequest:
     service_type: "ServiceType" = attrs.field(
         kw_only=True,
     )
+
+    ship_date: datetime = attrs.field(
+        kw_only=True,
+    )
+    """
+    The start date and time. This defaults to the current date and time.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
 
     ship_from: "Address" = attrs.field(
         kw_only=True,
@@ -856,6 +856,10 @@ class Rate:
     The available rate that can be used to send the shipment
     """
 
+    billed_weight: "Weight" = attrs.field(
+        kw_only=True,
+    )
+
     expiration_time: datetime = attrs.field(
         kw_only=True,
     )
@@ -866,20 +870,16 @@ class Rate:
     {'schema_format': 'date-time'}
     """
 
+    promise: "ShippingPromiseSet" = attrs.field(
+        kw_only=True,
+    )
+
     rate_id: str = attrs.field(
         kw_only=True,
     )
     """
     An identifier for the rate.
     """
-
-    billed_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
-
-    promise: "ShippingPromiseSet" = attrs.field(
-        kw_only=True,
-    )
 
     service_type: "ServiceType" = attrs.field(
         kw_only=True,

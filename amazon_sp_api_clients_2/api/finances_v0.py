@@ -19,6 +19,14 @@ class AdjustmentEvent:
     An adjustment to the seller's account.
     """
 
+    adjustment_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
+    adjustment_item_list: "AdjustmentItemList" = attrs.field(
+        kw_only=True,
+    )
+
     adjustment_type: str = attrs.field(
         kw_only=True,
     )
@@ -34,14 +42,6 @@ class AdjustmentEvent:
         * ReimbursementClawback - An Amazon Easy Ship reimbursement clawback from a seller's account. This occurs when a prior reimbursement is reversed. This value is used only in the India marketplace.
         * SellerRewards - An award credited to a seller's account for their participation in an offer in the Seller Rewards program. Applies only to the India marketplace.
     """
-
-    adjustment_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    adjustment_item_list: "AdjustmentItemList" = attrs.field(
-        kw_only=True,
-    )
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
@@ -77,6 +77,10 @@ class AdjustmentItem:
     A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
     """
 
+    per_unit_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     product_description: str = attrs.field(
         kw_only=True,
     )
@@ -97,10 +101,6 @@ class AdjustmentItem:
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
-
-    per_unit_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
     total_amount: "Currency" = attrs.field(
         kw_only=True,
@@ -129,26 +129,16 @@ class AffordabilityExpenseEvent:
     An Amazon-defined identifier for an order.
     """
 
+    base_expense: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_id: str = attrs.field(
         kw_only=True,
     )
     """
     An encrypted, Amazon-defined marketplace identifier.
     """
-
-    transaction_type: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    Indicates the type of transaction.
-        Possible values:
-        * Charge - For an affordability promotion expense.
-        * Refund - For an affordability promotion expense reversal.
-    """
-
-    base_expense: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
@@ -169,6 +159,16 @@ class AffordabilityExpenseEvent:
     total_expense: "Currency" = attrs.field(
         kw_only=True,
     )
+
+    transaction_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates the type of transaction.
+        Possible values:
+        * Charge - For an affordability promotion expense.
+        * Refund - For an affordability promotion expense reversal.
+    """
 
 
 @attrs.define
@@ -256,16 +256,16 @@ class ChargeComponent:
     * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
     """
 
+    charge_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     charge_type: str = attrs.field(
         kw_only=True,
     )
     """
     The type of charge.
     """
-
-    charge_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -283,6 +283,10 @@ class ChargeInstrument:
     A payment instrument.
     """
 
+    amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     description: str = attrs.field(
         kw_only=True,
     )
@@ -296,10 +300,6 @@ class ChargeInstrument:
     """
     The account tail (trailing digits) of the charge instrument.
     """
-
-    amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -316,6 +316,10 @@ class CouponPaymentEvent:
     """
     An event related to coupon payments.
     """
+
+    charge_component: "ChargeComponent" = attrs.field(
+        kw_only=True,
+    )
 
     clip_or_redemption_count: int = attrs.field(
         kw_only=True,
@@ -334,6 +338,10 @@ class CouponPaymentEvent:
     A coupon identifier.
     """
 
+    fee_component: "FeeComponent" = attrs.field(
+        kw_only=True,
+    )
+
     payment_event_id: str = attrs.field(
         kw_only=True,
     )
@@ -341,24 +349,16 @@ class CouponPaymentEvent:
     A payment event identifier.
     """
 
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
     seller_coupon_description: str = attrs.field(
         kw_only=True,
     )
     """
     The description provided by the seller when they created the coupon.
     """
-
-    charge_component: "ChargeComponent" = attrs.field(
-        kw_only=True,
-    )
-
-    fee_component: "FeeComponent" = attrs.field(
-        kw_only=True,
-    )
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
 
     total_amount: "Currency" = attrs.field(
         kw_only=True,
@@ -380,16 +380,16 @@ class Currency:
     A currency type and amount.
     """
 
+    currency_amount: "BigDecimal" = attrs.field(
+        kw_only=True,
+    )
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
     """
     The three-digit currency code in ISO 4217 format.
     """
-
-    currency_amount: "BigDecimal" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -404,6 +404,14 @@ class DebtRecoveryEvent:
     A debt payment or debt adjustment.
     """
 
+    charge_instrument_list: "ChargeInstrumentList" = attrs.field(
+        kw_only=True,
+    )
+
+    debt_recovery_item_list: "DebtRecoveryItemList" = attrs.field(
+        kw_only=True,
+    )
+
     debt_recovery_type: str = attrs.field(
         kw_only=True,
     )
@@ -414,14 +422,6 @@ class DebtRecoveryEvent:
         * DebtPaymentFailure
         *DebtAdjustment
     """
-
-    charge_instrument_list: "ChargeInstrumentList" = attrs.field(
-        kw_only=True,
-    )
-
-    debt_recovery_item_list: "DebtRecoveryItemList" = attrs.field(
-        kw_only=True,
-    )
 
     over_payment_credit: "Currency" = attrs.field(
         kw_only=True,
@@ -479,6 +479,10 @@ class DirectPayment:
     A payment made directly to a seller.
     """
 
+    direct_payment_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     direct_payment_type: str = attrs.field(
         kw_only=True,
     )
@@ -492,10 +496,6 @@ class DirectPayment:
         * CollectOnDeliveryRevenue - The COD amount that the seller collected directly from the buyer.
         * CollectOnDeliveryRefund - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.
     """
-
-    direct_payment_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -550,13 +550,6 @@ class FBALiquidationEvent:
     A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
     """
 
-    original_removal_order_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The identifier for the original removal order.
-    """
-
     liquidation_fee_amount: "Currency" = attrs.field(
         kw_only=True,
     )
@@ -564,6 +557,13 @@ class FBALiquidationEvent:
     liquidation_proceeds_amount: "Currency" = attrs.field(
         kw_only=True,
     )
+
+    original_removal_order_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The identifier for the original removal order.
+    """
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
@@ -585,16 +585,16 @@ class FeeComponent:
     A fee associated with the event.
     """
 
+    fee_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     fee_type: str = attrs.field(
         kw_only=True,
     )
     """
     The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
     """
-
-    fee_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -619,6 +619,18 @@ class FinancialEventGroup:
     The account tail of the payment instrument.
     """
 
+    beginning_balance: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
+    converted_total: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
+    financial_event_group_end: "Date" = attrs.field(
+        kw_only=True,
+    )
+
     financial_event_group_id: str = attrs.field(
         kw_only=True,
     )
@@ -626,12 +638,24 @@ class FinancialEventGroup:
     A unique identifier for the financial event group.
     """
 
+    financial_event_group_start: "Date" = attrs.field(
+        kw_only=True,
+    )
+
+    fund_transfer_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
     fund_transfer_status: str = attrs.field(
         kw_only=True,
     )
     """
     The status of the fund transfer.
     """
+
+    original_total: "Currency" = attrs.field(
+        kw_only=True,
+    )
 
     processing_status: str = attrs.field(
         kw_only=True,
@@ -649,30 +673,6 @@ class FinancialEventGroup:
     """
     The trace identifier used by sellers to look up transactions externally.
     """
-
-    beginning_balance: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    converted_total: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    financial_event_group_end: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    financial_event_group_start: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    fund_transfer_date: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    original_total: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -812,16 +812,16 @@ class ImagingServicesFeeEvent:
     The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
     """
 
+    fee_list: "FeeComponentList" = attrs.field(
+        kw_only=True,
+    )
+
     imaging_request_billing_item_id: str = attrs.field(
         kw_only=True,
     )
     """
     The identifier for the imaging services request.
     """
-
-    fee_list: "FeeComponentList" = attrs.field(
-        kw_only=True,
-    )
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
@@ -843,16 +843,16 @@ class ListFinancialEventGroupsPayload:
     The payload for the listFinancialEventGroups operation.
     """
 
+    financial_event_group_list: "FinancialEventGroupList" = attrs.field(
+        kw_only=True,
+    )
+
     next_token: str = attrs.field(
         kw_only=True,
     )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
-
-    financial_event_group_list: "FinancialEventGroupList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -876,16 +876,16 @@ class ListFinancialEventsPayload:
     The payload for the listFinancialEvents operation.
     """
 
+    financial_events: "FinancialEvents" = attrs.field(
+        kw_only=True,
+    )
+
     next_token: str = attrs.field(
         kw_only=True,
     )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
-
-    financial_events: "FinancialEvents" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -909,6 +909,10 @@ class LoanServicingEvent:
     A loan advance, loan payment, or loan refund.
     """
 
+    loan_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     source_business_event_type: str = attrs.field(
         kw_only=True,
     )
@@ -919,10 +923,6 @@ class LoanServicingEvent:
         * LoanPayment
         * LoanRefund
     """
-
-    loan_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -961,12 +961,24 @@ class NetworkComminglingTransactionEvent:
     The identifier for the network item swap.
     """
 
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
     swap_reason: str = attrs.field(
         kw_only=True,
     )
     """
     The reason for the network item swap.
     """
+
+    tax_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
+    tax_exclusive_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
 
     transaction_type: str = attrs.field(
         kw_only=True,
@@ -977,18 +989,6 @@ class NetworkComminglingTransactionEvent:
         * NetCo - A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
         * ComminglingVAT - A commingling VAT transaction. Available only in the UK, Spain, France, Germany, and Italy marketplaces.
     """
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    tax_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    tax_exclusive_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1019,6 +1019,14 @@ class PayWithAmazonEvent:
     """
     The type of business object.
     """
+
+    charge: "ChargeComponent" = attrs.field(
+        kw_only=True,
+    )
+
+    fee_list: "FeeComponentList" = attrs.field(
+        kw_only=True,
+    )
 
     fulfillment_channel: str = attrs.field(
         kw_only=True,
@@ -1060,14 +1068,6 @@ class PayWithAmazonEvent:
     The store name where the event occurred.
     """
 
-    charge: "ChargeComponent" = attrs.field(
-        kw_only=True,
-    )
-
-    fee_list: "FeeComponentList" = attrs.field(
-        kw_only=True,
-    )
-
     transaction_posted_date: "Date" = attrs.field(
         kw_only=True,
     )
@@ -1088,12 +1088,24 @@ class ProductAdsPaymentEvent:
     A Sponsored Products payment event.
     """
 
+    base_value: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     invoice_id: str = attrs.field(
         kw_only=True,
     )
     """
     Identifier for the invoice that the transaction appears in.
     """
+
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
+    tax_value: "Currency" = attrs.field(
+        kw_only=True,
+    )
 
     transaction_type: str = attrs.field(
         kw_only=True,
@@ -1104,18 +1116,6 @@ class ProductAdsPaymentEvent:
         * charge - Charge
         * refund - Refund
     """
-
-    base_value: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    tax_value: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
     transaction_value: "Currency" = attrs.field(
         kw_only=True,
@@ -1137,6 +1137,10 @@ class Promotion:
     A promotion applied to an item.
     """
 
+    promotion_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     promotion_id: str = attrs.field(
         kw_only=True,
     )
@@ -1150,10 +1154,6 @@ class Promotion:
     """
     The type of promotion.
     """
-
-    promotion_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1192,6 +1192,10 @@ class RemovalShipmentAdjustmentEvent:
     The orderId for shipping inventory.
     """
 
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
     removal_shipment_item_adjustment_list: List["RemovalShipmentItemAdjustment"] = attrs.field(
         kw_only=True,
     )
@@ -1207,10 +1211,6 @@ class RemovalShipmentAdjustmentEvent:
         Possible values:
         * WHOLESALE_LIQUIDATION.
     """
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1242,6 +1242,14 @@ class RemovalShipmentEvent:
     The identifier for the removal shipment order.
     """
 
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
+    removal_shipment_item_list: "RemovalShipmentItemList" = attrs.field(
+        kw_only=True,
+    )
+
     transaction_type: str = attrs.field(
         kw_only=True,
     )
@@ -1250,14 +1258,6 @@ class RemovalShipmentEvent:
         Possible values:
         * WHOLESALE_LIQUIDATION
     """
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    removal_shipment_item_list: "RemovalShipmentItemList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1274,6 +1274,10 @@ class RemovalShipmentItem:
     """
     Item-level information for a removal shipment.
     """
+
+    fee_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
 
     fulfillment_network_sku: str = attrs.field(
         kw_only=True,
@@ -1299,6 +1303,14 @@ class RemovalShipmentItem:
     An identifier for an item in a removal shipment.
     """
 
+    revenue: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
+    tax_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     tax_collection_model: str = attrs.field(
         kw_only=True,
     )
@@ -1308,18 +1320,6 @@ class RemovalShipmentItem:
         * MarketplaceFacilitator - Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
         * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     """
-
-    fee_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    revenue: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    tax_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
     tax_withheld: "Currency" = attrs.field(
         kw_only=True,
@@ -1356,6 +1356,14 @@ class RemovalShipmentItemAdjustment:
     An identifier for an item in a removal shipment.
     """
 
+    revenue_adjustment: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
+    tax_amount_adjustment: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     tax_collection_model: str = attrs.field(
         kw_only=True,
     )
@@ -1365,14 +1373,6 @@ class RemovalShipmentItemAdjustment:
         * MarketplaceFacilitator - Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
         * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     """
-
-    revenue_adjustment: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    tax_amount_adjustment: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
     tax_withheld_adjustment: "Currency" = attrs.field(
         kw_only=True,
@@ -1418,6 +1418,14 @@ class RentalTransactionEvent:
     The name of the marketplace.
     """
 
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
+    rental_charge_list: "ChargeComponentList" = attrs.field(
+        kw_only=True,
+    )
+
     rental_event_type: str = attrs.field(
         kw_only=True,
     )
@@ -1432,14 +1440,6 @@ class RentalTransactionEvent:
         * RentalChargeFailureReimbursement - Transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
         * RentalLostItemReimbursement - Transaction type that represents when Amazon sends money to the seller to compensate for a lost item.
     """
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    rental_charge_list: "ChargeComponentList" = attrs.field(
-        kw_only=True,
-    )
 
     rental_fee_list: "FeeComponentList" = attrs.field(
         kw_only=True,
@@ -1480,12 +1480,20 @@ class RetrochargeEvent:
     An Amazon-defined identifier for an order.
     """
 
+    base_tax: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_name: str = attrs.field(
         kw_only=True,
     )
     """
     The name of the marketplace where the retrocharge event occurred.
     """
+
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
 
     retrocharge_event_type: str = attrs.field(
         kw_only=True,
@@ -1496,14 +1504,6 @@ class RetrochargeEvent:
         * Retrocharge
         * RetrochargeReversal
     """
-
-    base_tax: "Currency" = attrs.field(
-        kw_only=True,
-    )
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
 
     retrocharge_tax_withheld_list: "TaxWithheldComponentList" = attrs.field(
         kw_only=True,
@@ -1529,6 +1529,10 @@ class SAFETReimbursementEvent:
     A SAFE-T claim reimbursement on the seller's account.
     """
 
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
     reason_code: str = attrs.field(
         kw_only=True,
     )
@@ -1536,20 +1540,16 @@ class SAFETReimbursementEvent:
     Indicates why the seller was reimbursed.
     """
 
+    reimbursed_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     safetclaim_id: str = attrs.field(
         kw_only=True,
     )
     """
     A SAFE-T claim identifier.
     """
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
-
-    reimbursed_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
     safetreimbursement_item_list: "SAFETReimbursementItemList" = attrs.field(
         kw_only=True,
@@ -1571,6 +1571,10 @@ class SAFETReimbursementItem:
     An item from a SAFE-T claim reimbursement.
     """
 
+    item_charge_list: "ChargeComponentList" = attrs.field(
+        kw_only=True,
+    )
+
     product_description: str = attrs.field(
         kw_only=True,
     )
@@ -1584,10 +1588,6 @@ class SAFETReimbursementItem:
     """
     The number of units of the item being reimbursed.
     """
-
-    item_charge_list: "ChargeComponentList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1626,16 +1626,16 @@ class SellerDealPaymentEvent:
     The type of event: SellerDealComplete.
     """
 
+    fee_amount: "Currency" = attrs.field(
+        kw_only=True,
+    )
+
     fee_type: str = attrs.field(
         kw_only=True,
     )
     """
     The type of fee: RunLightningDealFee.
     """
-
-    fee_amount: "Currency" = attrs.field(
-        kw_only=True,
-    )
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
@@ -1665,6 +1665,10 @@ class SellerReviewEnrollmentPaymentEvent:
     A fee payment event for the Early Reviewer Program.
     """
 
+    charge_component: "ChargeComponent" = attrs.field(
+        kw_only=True,
+    )
+
     enrollment_id: str = attrs.field(
         kw_only=True,
     )
@@ -1672,20 +1676,16 @@ class SellerReviewEnrollmentPaymentEvent:
     An enrollment identifier.
     """
 
+    fee_component: "FeeComponent" = attrs.field(
+        kw_only=True,
+    )
+
     parent_asin: str = attrs.field(
         kw_only=True,
     )
     """
     The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early Reviewer Program.
     """
-
-    charge_component: "ChargeComponent" = attrs.field(
-        kw_only=True,
-    )
-
-    fee_component: "FeeComponent" = attrs.field(
-        kw_only=True,
-    )
 
     posted_date: "Date" = attrs.field(
         kw_only=True,
@@ -1732,6 +1732,10 @@ class ServiceFeeEvent:
     A short description of the service fee event.
     """
 
+    fee_list: "FeeComponentList" = attrs.field(
+        kw_only=True,
+    )
+
     fee_reason: str = attrs.field(
         kw_only=True,
     )
@@ -1752,10 +1756,6 @@ class ServiceFeeEvent:
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
-
-    fee_list: "FeeComponentList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1780,23 +1780,16 @@ class ShipmentEvent:
     An Amazon-defined identifier for an order.
     """
 
+    direct_payment_list: "DirectPaymentList" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_name: str = attrs.field(
         kw_only=True,
     )
     """
     The name of the marketplace where the event occurred.
     """
-
-    seller_order_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A seller-defined identifier for an order.
-    """
-
-    direct_payment_list: "DirectPaymentList" = attrs.field(
-        kw_only=True,
-    )
 
     order_charge_adjustment_list: "ChargeComponentList" = attrs.field(
         kw_only=True,
@@ -1817,6 +1810,13 @@ class ShipmentEvent:
     posted_date: "Date" = attrs.field(
         kw_only=True,
     )
+
+    seller_order_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A seller-defined identifier for an order.
+    """
 
     shipment_fee_adjustment_list: "FeeComponentList" = attrs.field(
         kw_only=True,
@@ -1850,37 +1850,6 @@ class ShipmentItem:
     An item of a shipment, refund, guarantee claim, or chargeback.
     """
 
-    order_adjustment_item_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
-    """
-
-    order_item_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    An Amazon-defined order item identifier.
-    """
-
-    quantity_shipped: int = attrs.field(
-        kw_only=True,
-    )
-    """
-    The number of items shipped.
-
-    Extra fields:
-    {'schema_format': 'int32'}
-    """
-
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
-    """
-
     cost_of_points_granted: "Currency" = attrs.field(
         kw_only=True,
     )
@@ -1909,6 +1878,20 @@ class ShipmentItem:
         kw_only=True,
     )
 
+    order_adjustment_item_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
+    """
+
+    order_item_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    An Amazon-defined order item identifier.
+    """
+
     promotion_adjustment_list: "PromotionList" = attrs.field(
         kw_only=True,
     )
@@ -1916,6 +1899,23 @@ class ShipmentItem:
     promotion_list: "PromotionList" = attrs.field(
         kw_only=True,
     )
+
+    quantity_shipped: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    The number of items shipped.
+
+    Extra fields:
+    {'schema_format': 'int32'}
+    """
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+    """
 
 
 @attrs.define
@@ -2106,6 +2106,10 @@ class TrialShipmentEvent:
     An Amazon-defined identifier for an order.
     """
 
+    fee_list: "FeeComponentList" = attrs.field(
+        kw_only=True,
+    )
+
     financial_event_group_id: str = attrs.field(
         kw_only=True,
     )
@@ -2113,20 +2117,16 @@ class TrialShipmentEvent:
     The identifier of the financial event group.
     """
 
+    posted_date: "Date" = attrs.field(
+        kw_only=True,
+    )
+
     sku: str = attrs.field(
         kw_only=True,
     )
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
-
-    fee_list: "FeeComponentList" = attrs.field(
-        kw_only=True,
-    )
-
-    posted_date: "Date" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

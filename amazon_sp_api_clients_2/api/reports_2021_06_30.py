@@ -90,16 +90,16 @@ class CreateReportScheduleSpecification:
     One of a set of predefined ISO 8601 periods that specifies how often a report should be created.
     """
 
+    report_options: "ReportOptions" = attrs.field(
+        kw_only=True,
+    )
+
     report_type: str = attrs.field(
         kw_only=True,
     )
     """
     The report type.
     """
-
-    report_options: "ReportOptions" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -138,16 +138,16 @@ class CreateReportSpecification:
     {'maxItems': 25, 'minItems': 1}
     """
 
+    report_options: "ReportOptions" = attrs.field(
+        kw_only=True,
+    )
+
     report_type: str = attrs.field(
         kw_only=True,
     )
     """
     The report type.
     """
-
-    report_options: "ReportOptions" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -384,6 +384,10 @@ class ReportSchedule:
     An ISO 8601 period value that indicates how often a report should be created.
     """
 
+    report_options: "ReportOptions" = attrs.field(
+        kw_only=True,
+    )
+
     report_schedule_id: str = attrs.field(
         kw_only=True,
     )
@@ -397,10 +401,6 @@ class ReportSchedule:
     """
     The report type.
     """
-
-    report_options: "ReportOptions" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

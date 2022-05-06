@@ -131,6 +131,10 @@ class ChargeDetails:
     Monetary and tax details of the charge.
     """
 
+    charge_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     tax_details: List["TaxDetail"] = attrs.field(
         kw_only=True,
     )
@@ -152,10 +156,6 @@ class ChargeDetails:
     """
     Type of charge applied.
     """
-
-    charge_amount: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -214,6 +214,10 @@ class InvoiceDetail:
     Additional details provided by the selling party, for tax related or other purposes.
     """
 
+    bill_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+
     charge_details: List["ChargeDetails"] = attrs.field(
         kw_only=True,
     )
@@ -238,6 +242,10 @@ class InvoiceDetail:
     The unique invoice number.
     """
 
+    invoice_total: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     items: List["InvoiceItem"] = attrs.field(
         kw_only=True,
     )
@@ -259,6 +267,14 @@ class InvoiceDetail:
     An additional unique reference number used for regulatory or other purposes.
     """
 
+    remit_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+
+    ship_from_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+
     ship_to_country_code: str = attrs.field(
         kw_only=True,
     )
@@ -272,22 +288,6 @@ class InvoiceDetail:
     """
     Individual tax details per line item.
     """
-
-    bill_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
-    invoice_total: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    remit_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
-    ship_from_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -314,12 +314,20 @@ class InvoiceItem:
     HSN tax code. The HSN number cannot contain alphabets.
     """
 
+    invoiced_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
     item_sequence_number: str = attrs.field(
         kw_only=True,
     )
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
+
+    net_cost: "Money" = attrs.field(
+        kw_only=True,
+    )
 
     purchase_order_number: str = attrs.field(
         kw_only=True,
@@ -349,14 +357,6 @@ class InvoiceItem:
     The vendor selected product identification of the item.
     """
 
-    invoiced_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
-
-    net_cost: "Money" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class ItemQuantity:
@@ -385,6 +385,10 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
@@ -392,13 +396,13 @@ class Money:
     Three digit currency code in ISO 4217 format.
     """
 
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class PartyIdentification:
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
 
     party_id: str = attrs.field(
         kw_only=True,
@@ -413,10 +417,6 @@ class PartyIdentification:
     """
     Tax registration details of the entity.
     """
-
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -451,6 +451,14 @@ class TaxDetail:
     Details of tax amount applied.
     """
 
+    tax_amount: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    tax_rate: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
     tax_type: Union[
         Literal["CGST"],
         Literal["SGST"],
@@ -473,14 +481,6 @@ class TaxDetail:
     Type of the tax applied.
     """
 
-    tax_amount: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    tax_rate: "Decimal" = attrs.field(
-        kw_only=True,
-    )
-
     taxable_amount: "Money" = attrs.field(
         kw_only=True,
     )
@@ -491,6 +491,10 @@ class TaxRegistrationDetail:
     """
     Tax registration details of the entity.
     """
+
+    tax_registration_address: "Address" = attrs.field(
+        kw_only=True,
+    )
 
     tax_registration_message: str = attrs.field(
         kw_only=True,
@@ -512,10 +516,6 @@ class TaxRegistrationDetail:
     """
     Tax registration type for the entity.
     """
-
-    tax_registration_address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

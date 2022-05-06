@@ -53,13 +53,6 @@ class FeeDetail:
     The type of fee, fee amount, and other details.
     """
 
-    fee_type: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The type of fee charged to a seller.
-    """
-
     fee_amount: "MoneyType" = attrs.field(
         kw_only=True,
     )
@@ -67,6 +60,13 @@ class FeeDetail:
     fee_promotion: "MoneyType" = attrs.field(
         kw_only=True,
     )
+
+    fee_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The type of fee charged to a seller.
+    """
 
     final_fee: "MoneyType" = attrs.field(
         kw_only=True,
@@ -96,6 +96,10 @@ class FeesEstimate:
     The total estimated fees for an item and a list of details.
     """
 
+    fee_detail_list: "FeeDetailList" = attrs.field(
+        kw_only=True,
+    )
+
     time_of_fees_estimation: datetime = attrs.field(
         kw_only=True,
     )
@@ -105,10 +109,6 @@ class FeesEstimate:
     Extra fields:
     {'schema_format': 'date-time'}
     """
-
-    fee_detail_list: "FeeDetailList" = attrs.field(
-        kw_only=True,
-    )
 
     total_fees_estimate: "MoneyType" = attrs.field(
         kw_only=True,
@@ -128,6 +128,10 @@ class FeesEstimateError:
     An error code that identifies the type of error that occurred.
     """
 
+    detail: "FeesEstimateErrorDetail" = attrs.field(
+        kw_only=True,
+    )
+
     message: str = attrs.field(
         kw_only=True,
     )
@@ -141,10 +145,6 @@ class FeesEstimateError:
     """
     An error type, identifying either the receiver or the sender as the originator of the error.
     """
-
-    detail: "FeesEstimateErrorDetail" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -190,6 +190,14 @@ class FeesEstimateIdentifier:
     A marketplace identifier.
     """
 
+    optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field(
+        kw_only=True,
+    )
+
+    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field(
+        kw_only=True,
+    )
+
     seller_id: str = attrs.field(
         kw_only=True,
     )
@@ -203,14 +211,6 @@ class FeesEstimateIdentifier:
     """
     A unique identifier provided by the caller to track this request.
     """
-
-    optional_fulfillment_program: "OptionalFulfillmentProgram" = attrs.field(
-        kw_only=True,
-    )
-
-    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -252,13 +252,6 @@ class FeesEstimateResult:
     An item identifier and the estimated fees for the item.
     """
 
-    status: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The status of the fee request. Possible values: Success, ClientError, ServiceError.
-    """
-
     error: "FeesEstimateError" = attrs.field(
         kw_only=True,
     )
@@ -270,6 +263,13 @@ class FeesEstimateResult:
     fees_estimate_identifier: "FeesEstimateIdentifier" = attrs.field(
         kw_only=True,
     )
+
+    status: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The status of the fee request. Possible values: Success, ClientError, ServiceError.
+    """
 
 
 @attrs.define
@@ -312,13 +312,6 @@ class IncludedFeeDetail:
     The type of fee, fee amount, and other details.
     """
 
-    fee_type: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The type of fee charged to a seller.
-    """
-
     fee_amount: "MoneyType" = attrs.field(
         kw_only=True,
     )
@@ -326,6 +319,13 @@ class IncludedFeeDetail:
     fee_promotion: "MoneyType" = attrs.field(
         kw_only=True,
     )
+
+    fee_type: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The type of fee charged to a seller.
+    """
 
     final_fee: "MoneyType" = attrs.field(
         kw_only=True,
@@ -375,6 +375,10 @@ class OptionalFulfillmentProgram:
 @attrs.define
 class Points:
 
+    points_monetary_value: "MoneyType" = attrs.field(
+        kw_only=True,
+    )
+
     points_number: int = attrs.field(
         kw_only=True,
     )
@@ -383,10 +387,6 @@ class Points:
     Extra fields:
     {'schema_format': 'int32'}
     """
-
-    points_monetary_value: "MoneyType" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

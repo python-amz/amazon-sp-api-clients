@@ -40,6 +40,10 @@ class Address:
     Additional street address information, if required.
     """
 
+    address_type: "AddressTypeEnum" = attrs.field(
+        kw_only=True,
+    )
+
     city: str = attrs.field(
         kw_only=True,
     )
@@ -96,10 +100,6 @@ class Address:
     The state or region.
     """
 
-    address_type: "AddressTypeEnum" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class AddressTypeEnum:
@@ -132,16 +132,16 @@ class BuyerTaxInfo:
     The legal name of the company.
     """
 
+    tax_classifications: "TaxClassificationList" = attrs.field(
+        kw_only=True,
+    )
+
     taxing_region: str = attrs.field(
         kw_only=True,
     )
     """
     The country or region imposing the tax.
     """
-
-    tax_classifications: "TaxClassificationList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -224,16 +224,16 @@ class MarketplaceTaxInfo:
     The legal name of the company.
     """
 
+    tax_classifications: "TaxClassificationList" = attrs.field(
+        kw_only=True,
+    )
+
     taxing_region: str = attrs.field(
         kw_only=True,
     )
     """
     The country or region imposing the tax.
     """
-
-    tax_classifications: "TaxClassificationList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -309,12 +309,24 @@ class ShipmentDetail:
     The name of the buyer.
     """
 
+    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_id: str = attrs.field(
         kw_only=True,
     )
     """
     The identifier for the marketplace where the order was placed.
     """
+
+    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field(
+        kw_only=True,
+    )
+
+    payment_method_details: "PaymentMethodDetailItemList" = attrs.field(
+        kw_only=True,
+    )
 
     purchase_date: datetime = attrs.field(
         kw_only=True,
@@ -340,25 +352,6 @@ class ShipmentDetail:
     The seller identifier.
     """
 
-    warehouse_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The Amazon-defined identifier for the warehouse.
-    """
-
-    buyer_tax_info: "BuyerTaxInfo" = attrs.field(
-        kw_only=True,
-    )
-
-    marketplace_tax_info: "MarketplaceTaxInfo" = attrs.field(
-        kw_only=True,
-    )
-
-    payment_method_details: "PaymentMethodDetailItemList" = attrs.field(
-        kw_only=True,
-    )
-
     shipment_items: "ShipmentItems" = attrs.field(
         kw_only=True,
     )
@@ -366,6 +359,13 @@ class ShipmentDetail:
     shipping_address: "Address" = attrs.field(
         kw_only=True,
     )
+
+    warehouse_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The Amazon-defined identifier for the warehouse.
+    """
 
 
 @attrs.define
@@ -419,12 +419,24 @@ class ShipmentItem:
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
+    gift_wrap_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    item_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     order_item_id: str = attrs.field(
         kw_only=True,
     )
     """
     The Amazon-defined identifier for the order item.
     """
+
+    promotion_discount: "Money" = attrs.field(
+        kw_only=True,
+    )
 
     quantity_ordered: float = attrs.field(
         kw_only=True,
@@ -440,25 +452,6 @@ class ShipmentItem:
     The seller SKU of the item.
     """
 
-    title: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The name of the item.
-    """
-
-    gift_wrap_price: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    item_price: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    promotion_discount: "Money" = attrs.field(
-        kw_only=True,
-    )
-
     serial_numbers: "SerialNumbersList" = attrs.field(
         kw_only=True,
     )
@@ -470,6 +463,13 @@ class ShipmentItem:
     shipping_price: "Money" = attrs.field(
         kw_only=True,
     )
+
+    title: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name of the item.
+    """
 
 
 @attrs.define
@@ -494,16 +494,16 @@ class SubmitInvoiceRequest:
     MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
     """
 
+    invoice_content: "Blob" = attrs.field(
+        kw_only=True,
+    )
+
     marketplace_id: str = attrs.field(
         kw_only=True,
     )
     """
     An Amazon marketplace identifier.
     """
-
-    invoice_content: "Blob" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

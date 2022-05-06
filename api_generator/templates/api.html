@@ -21,21 +21,7 @@ class {{ schema.name }}:
     """
     {% endif %}
 
-    {% for property in schema.schema_properties %}
-    {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(
-        kw_only=True,
-        )
-    {% if property.parsed_description or property.fields %}"""{% if property.parsed_description %}
-    {{ property.parsed_description }}{% endif %}{% if property.fields %}
-
-    Extra fields:
-    {{ property.fields }}{% endif %}
-    """
-        {% endif %}
-    {% endfor %}
-
-
-    {% for property in schema.reference_properties %}
+    {% for property in schema.all_properties %}
     {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(
         kw_only=True,
         )

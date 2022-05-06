@@ -128,6 +128,10 @@ class Container:
     The type of container.
     """
 
+    dimensions: "Dimensions" = attrs.field(
+        kw_only=True,
+    )
+
     manifest_date: str = attrs.field(
         kw_only=True,
     )
@@ -169,10 +173,6 @@ class Container:
     """
     The tracking number.
     """
-
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
 
     weight: "Weight" = attrs.field(
         kw_only=True,
@@ -227,13 +227,6 @@ class Dimensions:
     Physical dimensional measurements of a container.
     """
 
-    unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field(
-        kw_only=True,
-    )
-    """
-    The unit of measure for dimensions.
-    """
-
     height: "Decimal" = attrs.field(
         kw_only=True,
     )
@@ -241,6 +234,13 @@ class Dimensions:
     length: "Decimal" = attrs.field(
         kw_only=True,
     )
+
+    unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unit of measure for dimensions.
+    """
 
     width: "Decimal" = attrs.field(
         kw_only=True,
@@ -366,16 +366,16 @@ class Item:
     Item Sequence Number for the item. This must be the same value as sent in order for a given item.
     """
 
+    shipped_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
     vendor_product_identifier: str = attrs.field(
         kw_only=True,
     )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the purchase order, like SKU Number.
     """
-
-    shipped_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -458,16 +458,16 @@ class PackedItem:
     Item Sequence Number for the item. This must be the same value as sent in the order for a given item.
     """
 
+    packed_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
     vendor_product_identifier: str = attrs.field(
         kw_only=True,
     )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the Purchase Order, like SKU Number.
     """
-
-    packed_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -484,6 +484,10 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     party_id: str = attrs.field(
         kw_only=True,
     )
@@ -497,10 +501,6 @@ class PartyIdentification:
     """
     Tax registration details of the entity.
     """
-
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -542,11 +542,11 @@ class ShippingLabel:
 @attrs.define
 class ShippingLabelList:
 
-    shipping_labels: List["ShippingLabel"] = attrs.field(
+    pagination: "Pagination" = attrs.field(
         kw_only=True,
     )
 
-    pagination: "Pagination" = attrs.field(
+    shipping_labels: List["ShippingLabel"] = attrs.field(
         kw_only=True,
     )
 
@@ -609,6 +609,10 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
+    tax_registration_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     tax_registration_messages: str = attrs.field(
         kw_only=True,
     )
@@ -629,10 +633,6 @@ class TaxRegistrationDetails:
     """
     Tax registration type for the entity.
     """
-
-    tax_registration_address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

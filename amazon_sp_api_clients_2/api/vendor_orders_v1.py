@@ -19,6 +19,10 @@ class AcknowledgementStatusDetails:
     Details of item quantity ordered
     """
 
+    accepted_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
     acknowledgement_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -28,10 +32,6 @@ class AcknowledgementStatusDetails:
     Extra fields:
     {'schema_format': 'date-time'}
     """
-
-    accepted_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
 
     rejected_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
@@ -335,6 +335,10 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
@@ -345,13 +349,13 @@ class Money:
     {'maxLength': 3}
     """
 
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class Order:
+
+    order_details: "OrderDetails" = attrs.field(
+        kw_only=True,
+    )
 
     purchase_order_number: str = attrs.field(
         kw_only=True,
@@ -366,10 +370,6 @@ class Order:
     """
     This field will contain the current state of the purchase order.
     """
-
-    order_details: "OrderDetails" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -438,13 +438,6 @@ class OrderAcknowledgementItem:
     Line item sequence number for the item.
     """
 
-    vendor_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The vendor selected product identification of the item. Should be the same as was sent in the purchase order.
-    """
-
     list_price: "Money" = attrs.field(
         kw_only=True,
     )
@@ -457,6 +450,13 @@ class OrderAcknowledgementItem:
         kw_only=True,
     )
 
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item. Should be the same as was sent in the purchase order.
+    """
+
 
 @attrs.define
 class OrderDetails:
@@ -464,12 +464,28 @@ class OrderDetails:
     Details of an order.
     """
 
+    bill_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+
+    buying_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+
     deal_code: str = attrs.field(
         kw_only=True,
     )
     """
     If requested by the recipient, this field will contain a promotional/deal number. The discount code line is optional. It is used to obtain a price discount on items on the order.
     """
+
+    delivery_window: "DateTimeInterval" = attrs.field(
+        kw_only=True,
+    )
+
+    import_details: "ImportDetails" = attrs.field(
+        kw_only=True,
+    )
 
     items: List["OrderItem"] = attrs.field(
         kw_only=True,
@@ -526,22 +542,6 @@ class OrderDetails:
     Type of purchase order.
     """
 
-    bill_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
-    buying_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
-    delivery_window: "DateTimeInterval" = attrs.field(
-        kw_only=True,
-    )
-
-    import_details: "ImportDetails" = attrs.field(
-        kw_only=True,
-    )
-
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
@@ -579,13 +579,6 @@ class OrderItem:
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    vendor_product_identifier: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The vendor selected product identification of the item.
-    """
-
     list_price: "Money" = attrs.field(
         kw_only=True,
     )
@@ -598,9 +591,20 @@ class OrderItem:
         kw_only=True,
     )
 
+    vendor_product_identifier: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The vendor selected product identification of the item.
+    """
+
 
 @attrs.define
 class OrderItemAcknowledgement:
+
+    acknowledged_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
 
     acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field(
         kw_only=True,
@@ -638,10 +642,6 @@ class OrderItemAcknowledgement:
     {'schema_format': 'date-time'}
     """
 
-    acknowledged_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class OrderItemStatus:
@@ -670,6 +670,14 @@ class OrderItemStatus:
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
+    list_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+
+    net_cost: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     ordered_quantity: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
@@ -696,14 +704,6 @@ class OrderItemStatus:
     """
     The vendor selected product identification of the item.
     """
-
-    list_price: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    net_cost: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -735,6 +735,10 @@ class OrderStatus:
     """
     Current status of a purchase order.
     """
+
+    item_status: "ItemStatus" = attrs.field(
+        kw_only=True,
+    )
 
     last_updated_date: datetime = attrs.field(
         kw_only=True,
@@ -770,10 +774,6 @@ class OrderStatus:
     The status of the buyer's purchase order for this order.
     """
 
-    item_status: "ItemStatus" = attrs.field(
-        kw_only=True,
-    )
-
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
     )
@@ -789,6 +789,14 @@ class OrderedQuantityDetails:
     Details of item quantity ordered
     """
 
+    cancelled_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
+    ordered_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
     updated_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -798,14 +806,6 @@ class OrderedQuantityDetails:
     Extra fields:
     {'schema_format': 'date-time'}
     """
-
-    cancelled_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
-
-    ordered_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -822,16 +822,16 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     party_id: str = attrs.field(
         kw_only=True,
     )
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
-
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
     tax_info: "TaxRegistrationDetails" = attrs.field(
         kw_only=True,

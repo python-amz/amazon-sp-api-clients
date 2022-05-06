@@ -364,6 +364,18 @@ class CreateInboundShipmentPlanRequest:
     The request schema for the createInboundShipmentPlan operation.
     """
 
+    inbound_shipment_plan_request_items: "InboundShipmentPlanRequestItemList" = attrs.field(
+        kw_only=True,
+    )
+
+    label_prep_preference: "LabelPrepPreference" = attrs.field(
+        kw_only=True,
+    )
+
+    ship_from_address: "Address" = attrs.field(
+        kw_only=True,
+    )
+
     ship_to_country_code: str = attrs.field(
         kw_only=True,
     )
@@ -391,18 +403,6 @@ class CreateInboundShipmentPlanRequest:
     The two-character country code, followed by a dash and then up to three characters that represent the subdivision of the country where the inbound shipment is to be sent. For example, "IN-MH". In full ISO 3166-2 format.
         Note: Not required. Specifying both ShipToCountryCode and ShipToCountrySubdivisionCode returns an error.
     """
-
-    inbound_shipment_plan_request_items: "InboundShipmentPlanRequestItemList" = attrs.field(
-        kw_only=True,
-    )
-
-    label_prep_preference: "LabelPrepPreference" = attrs.field(
-        kw_only=True,
-    )
-
-    ship_from_address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -610,6 +610,14 @@ class GetPreorderInfoResponse:
 @attrs.define
 class GetPreorderInfoResult:
 
+    confirmed_fulfillable_date: "DateStringType" = attrs.field(
+        kw_only=True,
+    )
+
+    need_by_date: "DateStringType" = attrs.field(
+        kw_only=True,
+    )
+
     shipment_confirmed_for_preorder: bool = attrs.field(
         kw_only=True,
     )
@@ -623,14 +631,6 @@ class GetPreorderInfoResult:
     """
     Indicates whether the shipment contains items that have been enabled for pre-order. For more information about enabling items for pre-order, see the Seller Central Help.
     """
-
-    confirmed_fulfillable_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
-
-    need_by_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -686,16 +686,16 @@ class GetShipmentItemsResponse:
 @attrs.define
 class GetShipmentItemsResult:
 
+    item_data: "InboundShipmentItemList" = attrs.field(
+        kw_only=True,
+    )
+
     next_token: str = attrs.field(
         kw_only=True,
     )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
-
-    item_data: "InboundShipmentItemList" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -802,13 +802,6 @@ class InboundShipmentHeader:
     The identifier for the fulfillment center to which the shipment will be shipped. Get this value from the InboundShipmentPlan object in the response returned by the createInboundShipmentPlan operation.
     """
 
-    shipment_name: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The name for the shipment. Use a naming convention that helps distinguish between shipments over time, such as the date the shipment was created.
-    """
-
     intended_box_contents_source: "IntendedBoxContentsSource" = attrs.field(
         kw_only=True,
     )
@@ -820,6 +813,13 @@ class InboundShipmentHeader:
     ship_from_address: "Address" = attrs.field(
         kw_only=True,
     )
+
+    shipment_name: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The name for the shipment. Use a naming convention that helps distinguish between shipments over time, such as the date the shipment was created.
+    """
 
     shipment_status: "ShipmentStatus" = attrs.field(
         kw_only=True,
@@ -839,12 +839,32 @@ class InboundShipmentInfo:
     Indicates whether or not an inbound shipment contains case-packed boxes. When AreCasesRequired = true for an inbound shipment, all items in the inbound shipment must be case packed.
     """
 
+    box_contents_source: "BoxContentsSource" = attrs.field(
+        kw_only=True,
+    )
+
+    confirmed_need_by_date: "DateStringType" = attrs.field(
+        kw_only=True,
+    )
+
     destination_fulfillment_center_id: str = attrs.field(
         kw_only=True,
     )
     """
     An Amazon fulfillment center identifier created by Amazon.
     """
+
+    estimated_box_contents_fee: "BoxContentsFeeDetails" = attrs.field(
+        kw_only=True,
+    )
+
+    label_prep_type: "LabelPrepType" = attrs.field(
+        kw_only=True,
+    )
+
+    ship_from_address: "Address" = attrs.field(
+        kw_only=True,
+    )
 
     shipment_id: str = attrs.field(
         kw_only=True,
@@ -859,26 +879,6 @@ class InboundShipmentInfo:
     """
     The name for the inbound shipment.
     """
-
-    box_contents_source: "BoxContentsSource" = attrs.field(
-        kw_only=True,
-    )
-
-    confirmed_need_by_date: "DateStringType" = attrs.field(
-        kw_only=True,
-    )
-
-    estimated_box_contents_fee: "BoxContentsFeeDetails" = attrs.field(
-        kw_only=True,
-    )
-
-    label_prep_type: "LabelPrepType" = attrs.field(
-        kw_only=True,
-    )
-
-    ship_from_address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
     shipment_status: "ShipmentStatus" = attrs.field(
         kw_only=True,
@@ -896,20 +896,6 @@ class InboundShipmentItem:
     )
     """
     Amazon's fulfillment network SKU of the item.
-    """
-
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The seller SKU of the item.
-    """
-
-    shipment_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A shipment identifier originally returned by the createInboundShipmentPlan operation.
     """
 
     prep_details_list: "PrepDetailsList" = attrs.field(
@@ -931,6 +917,20 @@ class InboundShipmentItem:
     release_date: "DateStringType" = attrs.field(
         kw_only=True,
     )
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
+
+    shipment_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A shipment identifier originally returned by the createInboundShipmentPlan operation.
+    """
 
 
 @attrs.define
@@ -964,13 +964,6 @@ class InboundShipmentPlan:
     An Amazon fulfillment center identifier created by Amazon.
     """
 
-    shipment_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A shipment identifier originally returned by the createInboundShipmentPlan operation.
-    """
-
     estimated_box_contents_fee: "BoxContentsFeeDetails" = attrs.field(
         kw_only=True,
     )
@@ -987,6 +980,13 @@ class InboundShipmentPlan:
         kw_only=True,
     )
 
+    shipment_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A shipment identifier originally returned by the createInboundShipmentPlan operation.
+    """
+
 
 @attrs.define
 class InboundShipmentPlanItem:
@@ -1001,13 +1001,6 @@ class InboundShipmentPlanItem:
     Amazon's fulfillment network SKU of the item.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The seller SKU of the item.
-    """
-
     prep_details_list: "PrepDetailsList" = attrs.field(
         kw_only=True,
     )
@@ -1015,6 +1008,13 @@ class InboundShipmentPlanItem:
     quantity: "Quantity" = attrs.field(
         kw_only=True,
     )
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
 
 
 @attrs.define
@@ -1048,13 +1048,6 @@ class InboundShipmentPlanRequestItem:
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The seller SKU of the item.
-    """
-
     condition: "Condition" = attrs.field(
         kw_only=True,
     )
@@ -1071,6 +1064,13 @@ class InboundShipmentPlanRequestItem:
         kw_only=True,
     )
 
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
+
 
 @attrs.define
 class InboundShipmentPlanRequestItemList:
@@ -1084,13 +1084,6 @@ class InboundShipmentRequest:
     The request schema for an inbound shipment.
     """
 
-    marketplace_id: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    A marketplace identifier. Specifies the marketplace where the product would be stored.
-    """
-
     inbound_shipment_header: "InboundShipmentHeader" = attrs.field(
         kw_only=True,
     )
@@ -1098,6 +1091,13 @@ class InboundShipmentRequest:
     inbound_shipment_items: "InboundShipmentItemList" = attrs.field(
         kw_only=True,
     )
+
+    marketplace_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    A marketplace identifier. Specifies the marketplace where the product would be stored.
+    """
 
 
 @attrs.define
@@ -1162,16 +1162,16 @@ class InvalidASINList:
 @attrs.define
 class InvalidSKU:
 
+    error_reason: "ErrorReason" = attrs.field(
+        kw_only=True,
+    )
+
     seller_sku: str = attrs.field(
         kw_only=True,
     )
     """
     The seller SKU of the item.
     """
-
-    error_reason: "ErrorReason" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -1343,16 +1343,16 @@ class Pallet:
     Pallet information.
     """
 
+    dimensions: "Dimensions" = attrs.field(
+        kw_only=True,
+    )
+
     is_stacked: bool = attrs.field(
         kw_only=True,
     )
     """
     Indicates whether pallets will be stacked when carrier arrives for pick-up.
     """
-
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
 
     weight: "Weight" = attrs.field(
         kw_only=True,
@@ -1428,12 +1428,20 @@ class PartneredLtlDataOutput:
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
     """
 
+    amazon_calculated_value: "Amount" = attrs.field(
+        kw_only=True,
+    )
+
     amazon_reference_id: str = attrs.field(
         kw_only=True,
     )
     """
     A unique identifier created by Amazon that identifies this Amazon-partnered, Less Than Truckload/Full Truckload (LTL/FTL) shipment.
     """
+
+    box_count: "UnsignedIntType" = attrs.field(
+        kw_only=True,
+    )
 
     carrier_name: str = attrs.field(
         kw_only=True,
@@ -1442,21 +1450,6 @@ class PartneredLtlDataOutput:
     The carrier for the inbound shipment.
     """
 
-    is_bill_of_lading_available: bool = attrs.field(
-        kw_only=True,
-    )
-    """
-    Indicates whether the bill of lading for the shipment is available.
-    """
-
-    amazon_calculated_value: "Amount" = attrs.field(
-        kw_only=True,
-    )
-
-    box_count: "UnsignedIntType" = attrs.field(
-        kw_only=True,
-    )
-
     contact: "Contact" = attrs.field(
         kw_only=True,
     )
@@ -1464,6 +1457,13 @@ class PartneredLtlDataOutput:
     freight_ready_date: "DateStringType" = attrs.field(
         kw_only=True,
     )
+
+    is_bill_of_lading_available: bool = attrs.field(
+        kw_only=True,
+    )
+    """
+    Indicates whether the bill of lading for the shipment is available.
+    """
 
     pallet_list: "PalletList" = attrs.field(
         kw_only=True,
@@ -1722,13 +1722,6 @@ class SKUInboundGuidance:
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The seller SKU of the item.
-    """
-
     guidance_reason_list: "GuidanceReasonList" = attrs.field(
         kw_only=True,
     )
@@ -1736,6 +1729,13 @@ class SKUInboundGuidance:
     inbound_guidance: "InboundGuidance" = attrs.field(
         kw_only=True,
     )
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
 
 
 @attrs.define
@@ -1760,13 +1760,6 @@ class SKUPrepInstructions:
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    seller_sku: str = attrs.field(
-        kw_only=True,
-    )
-    """
-    The seller SKU of the item.
-    """
-
     amazon_prep_fees_details_list: "AmazonPrepFeesDetailsList" = attrs.field(
         kw_only=True,
     )
@@ -1782,6 +1775,13 @@ class SKUPrepInstructions:
     prep_instruction_list: "PrepInstructionList" = attrs.field(
         kw_only=True,
     )
+
+    seller_sku: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The seller SKU of the item.
+    """
 
 
 @attrs.define

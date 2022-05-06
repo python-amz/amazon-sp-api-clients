@@ -78,6 +78,10 @@ class ItemDetails:
     Updated inventory details for an item.
     """
 
+    available_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
     buyer_product_identifier: str = attrs.field(
         kw_only=True,
     )
@@ -98,10 +102,6 @@ class ItemDetails:
     """
     The vendor selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
     """
-
-    available_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

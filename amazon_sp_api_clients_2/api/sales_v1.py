@@ -80,6 +80,10 @@ class Money:
     The currency type and the amount.
     """
 
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
@@ -87,16 +91,16 @@ class Money:
     Three-digit currency code. In ISO 4217 format.
     """
 
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class OrderMetricsInterval:
     """
     Contains order metrics.
     """
+
+    average_unit_price: "Money" = attrs.field(
+        kw_only=True,
+    )
 
     interval: str = attrs.field(
         kw_only=True,
@@ -119,20 +123,16 @@ class OrderMetricsInterval:
     The number of order items based on the specified filters.
     """
 
+    total_sales: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     unit_count: int = attrs.field(
         kw_only=True,
     )
     """
     The number of units in orders based on the specified filters.
     """
-
-    average_unit_price: "Money" = attrs.field(
-        kw_only=True,
-    )
-
-    total_sales: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define

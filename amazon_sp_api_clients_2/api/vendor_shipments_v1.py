@@ -117,6 +117,10 @@ class Carton:
     Carton sequence number for the carton. The first carton will be 001, the second 002, and so on. This number is used as a reference to refer to this carton from the pallet level.
     """
 
+    dimensions: "Dimensions" = attrs.field(
+        kw_only=True,
+    )
+
     items: List["ContainerItem"] = attrs.field(
         kw_only=True,
     )
@@ -130,10 +134,6 @@ class Carton:
     """
     This is required to be provided for every carton in the small parcel shipments.
     """
-
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
 
     weight: "Weight" = attrs.field(
         kw_only=True,
@@ -184,16 +184,16 @@ class ContainerItem:
     Carton/Pallet level details for the item.
     """
 
+    item_details: "ItemDetails" = attrs.field(
+        kw_only=True,
+    )
+
     item_reference: str = attrs.field(
         kw_only=True,
     )
     """
     The reference number for the item. Please provide the itemSequenceNumber from the 'items' segment to refer to that item's details here.
     """
-
-    item_details: "ItemDetails" = attrs.field(
-        kw_only=True,
-    )
 
     shipped_quantity: "ItemQuantity" = attrs.field(
         kw_only=True,
@@ -215,13 +215,6 @@ class Dimensions:
     Physical dimensional measurements of a container.
     """
 
-    unit_of_measure: Union[Literal["In"], Literal["Ft"], Literal["Meter"], Literal["Yard"]] = attrs.field(
-        kw_only=True,
-    )
-    """
-    The unit of measure for dimensions.
-    """
-
     height: "Decimal" = attrs.field(
         kw_only=True,
     )
@@ -229,6 +222,13 @@ class Dimensions:
     length: "Decimal" = attrs.field(
         kw_only=True,
     )
+
+    unit_of_measure: Union[Literal["In"], Literal["Ft"], Literal["Meter"], Literal["Yard"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    The unit of measure for dimensions.
+    """
 
     width: "Decimal" = attrs.field(
         kw_only=True,
@@ -293,6 +293,10 @@ class ErrorList:
 @attrs.define
 class Expiry:
 
+    expiry_after_duration: "Duration" = attrs.field(
+        kw_only=True,
+    )
+
     expiry_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -313,13 +317,13 @@ class Expiry:
     {'schema_format': 'date-time'}
     """
 
-    expiry_after_duration: "Duration" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class ImportDetails:
+
+    billable_weight: "Weight" = attrs.field(
+        kw_only=True,
+    )
 
     estimated_ship_by_date: datetime = attrs.field(
         kw_only=True,
@@ -355,20 +359,16 @@ class ImportDetails:
     This is used for import purchase orders only. If the recipient requests, this field will contain the shipment method of payment.
     """
 
+    route: "Route" = attrs.field(
+        kw_only=True,
+    )
+
     seal_number: str = attrs.field(
         kw_only=True,
     )
     """
     The container's seal number.
     """
-
-    billable_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
-
-    route: "Route" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -384,12 +384,20 @@ class Item:
     Amazon Standard Identification Number (ASIN) of an item.
     """
 
+    item_details: "ItemDetails" = attrs.field(
+        kw_only=True,
+    )
+
     item_sequence_number: str = attrs.field(
         kw_only=True,
     )
     """
     Item sequence number for the item. The first item will be 001, the second 002, and so on. This number is used as a reference to refer to this item from the carton or pallet level.
     """
+
+    shipped_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
 
     vendor_product_identifier: str = attrs.field(
         kw_only=True,
@@ -398,20 +406,16 @@ class Item:
     The vendor selected product identification of the item. Should be the same as was sent in the purchase order.
     """
 
-    item_details: "ItemDetails" = attrs.field(
-        kw_only=True,
-    )
-
-    shipped_quantity: "ItemQuantity" = attrs.field(
-        kw_only=True,
-    )
-
 
 @attrs.define
 class ItemDetails:
     """
     Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
     """
+
+    expiry: "Expiry" = attrs.field(
+        kw_only=True,
+    )
 
     handling_code: Union[
         Literal["Oversized"], Literal["Fragile"], Literal["Food"], Literal["HandleWithCare"]
@@ -429,20 +433,16 @@ class ItemDetails:
     The batch or lot number associates an item with information the manufacturer considers relevant for traceability of the trade item to which the Element String is applied. The data may refer to the trade item itself or to items contained. This field is mandatory for all perishable items.
     """
 
+    maximum_retail_price: "Money" = attrs.field(
+        kw_only=True,
+    )
+
     purchase_order_number: str = attrs.field(
         kw_only=True,
     )
     """
     The Amazon purchase order number for the shipment being confirmed. If the items in this shipment belong to multiple purchase order numbers that are in particular carton or pallet within the shipment, then provide the purchaseOrderNumber at the appropriate carton or pallet level. Formatting Notes: 8-character alpha-numeric code.
     """
-
-    expiry: "Expiry" = attrs.field(
-        kw_only=True,
-    )
-
-    maximum_retail_price: "Money" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -507,16 +507,16 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
+    amount: "Decimal" = attrs.field(
+        kw_only=True,
+    )
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
     """
     Three digit currency code in ISO 4217 format.
     """
-
-    amount: "Decimal" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -531,6 +531,14 @@ class Pallet:
     """
     Number of cartons per layer on the pallet.
     """
+
+    carton_reference_details: "CartonReferenceDetails" = attrs.field(
+        kw_only=True,
+    )
+
+    dimensions: "Dimensions" = attrs.field(
+        kw_only=True,
+    )
 
     items: List["ContainerItem"] = attrs.field(
         kw_only=True,
@@ -553,14 +561,6 @@ class Pallet:
     Number of layers per pallet.
     """
 
-    carton_reference_details: "CartonReferenceDetails" = attrs.field(
-        kw_only=True,
-    )
-
-    dimensions: "Dimensions" = attrs.field(
-        kw_only=True,
-    )
-
     weight: "Weight" = attrs.field(
         kw_only=True,
     )
@@ -568,6 +568,10 @@ class Pallet:
 
 @attrs.define
 class PartyIdentification:
+
+    address: "Address" = attrs.field(
+        kw_only=True,
+    )
 
     party_id: str = attrs.field(
         kw_only=True,
@@ -582,10 +586,6 @@ class PartyIdentification:
     """
     Tax registration details of the entity.
     """
-
-    address: "Address" = attrs.field(
-        kw_only=True,
-    )
 
 
 @attrs.define
@@ -626,12 +626,28 @@ class ShipmentConfirmation:
     {'schema_format': 'date-time'}
     """
 
+    import_details: "ImportDetails" = attrs.field(
+        kw_only=True,
+    )
+
     pallets: List["Pallet"] = attrs.field(
         kw_only=True,
     )
     """
     A list of the pallets in this shipment.
     """
+
+    selling_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+
+    ship_from_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
+
+    ship_to_party: "PartyIdentification" = attrs.field(
+        kw_only=True,
+    )
 
     shipment_confirmation_date: datetime = attrs.field(
         kw_only=True,
@@ -656,6 +672,10 @@ class ShipmentConfirmation:
     """
     Unique shipment ID (not used over the last 365 days).
     """
+
+    shipment_measurements: "ShipmentMeasurements" = attrs.field(
+        kw_only=True,
+    )
 
     shipment_structure: Union[
         Literal["PalletizedAssortmentCase"],
@@ -696,26 +716,6 @@ class ShipmentConfirmation:
     A list of the items in this shipment and their associated details. If any of the item detail fields are common at a carton or a pallet level, provide them at the corresponding carton or pallet level.
     """
 
-    import_details: "ImportDetails" = attrs.field(
-        kw_only=True,
-    )
-
-    selling_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
-    ship_from_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
-    ship_to_party: "PartyIdentification" = attrs.field(
-        kw_only=True,
-    )
-
-    shipment_measurements: "ShipmentMeasurements" = attrs.field(
-        kw_only=True,
-    )
-
     transportation_details: "TransportationDetails" = attrs.field(
         kw_only=True,
     )
@@ -734,16 +734,16 @@ class ShipmentMeasurements:
     Number of cartons present in the shipment. Provide the cartonCount only for unpalletized shipments.
     """
 
+    gross_shipment_weight: "Weight" = attrs.field(
+        kw_only=True,
+    )
+
     pallet_count: int = attrs.field(
         kw_only=True,
     )
     """
     Number of pallets present in the shipment. Provide the palletCount only for palletized shipments.
     """
-
-    gross_shipment_weight: "Weight" = attrs.field(
-        kw_only=True,
-    )
 
     shipment_volume: "Volume" = attrs.field(
         kw_only=True,
