@@ -128,7 +128,7 @@ class Generator:
             return ref
         match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
         category, name = match.group(1, 2)
-        return getattr(self.data.components, category).get(name)
+        return getattr(self.components, category).get(name)
 
     @cached_property
     def data(self) -> OpenAPI:
@@ -144,7 +144,16 @@ class Generator:
 
     @cached_property
     def components(self) -> Components:
-        return self.data.components
+        components = self.data.components
+        schemas = components.schemas
+        schemas = {} if schemas is None else schemas
+        schemas: dict[str, Schema] = {k: v for k, v in schemas.items()}
+        parameters = components.parameters
+        parameters = {} if parameters is None else parameters
+        parameters: dict[str, Parameter] = {k: v for k, v in parameters.items()}
+        for p in parameters:
+            print(p)
+        return components
 
     @cached_property
     def schemas(self) -> list[ParsedSchema]:
@@ -216,7 +225,9 @@ class Generator:
                            for method in path_item.__fields_set__)
         operations = tuple(sorted(operations, key=lambda k: k.operationId))
         for operation in [o for o in operations if o.parameters is not None or o.requestBody is not None]:
-            operation.parameters = [] if operation.parameters is None else operation.parameters
+            params = operation.parameters
+            params = [] if params is None else params
+            params = [self.resolve_ref(p) for p in params]
 
             # convert post object to parameter objects, the main work of following code is data validation
             if (body := operation.requestBody) is not None:
@@ -235,13 +246,13 @@ class Generator:
                 assert len(set(required)) == len(required)
                 properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
                 properties = tuple((k, self.resolve_ref(v) if isinstance(v, Reference) else v) for k, v in properties)
-                post_parameters = tuple(Parameter(name=k, param_in='body', description=v.description,
-                                                  required=k in required, param_schema=v) for k, v in properties)
-                operation.parameters.extend(post_parameters)
+                post_parameters = [Parameter(name=k, param_in='body', description=v.description,
+                                             required=k in required, param_schema=v) for k, v in properties]
+                params.extend(post_parameters)
 
-            params = tuple(self.resolve_ref(p) for p in operation.parameters)
-            parsed_params: tuple[ParsedParameter, ...] = tuple(ParsedParameter.parse_obj(
-                {**p.dict(), 'generator': self}) for p in params)
+            operation.parameters = params
+            parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(
+                p.dict() | {'generator': self}) for p in params]
             operation.parsed_parameters = parsed_params
 
             # Ensure that post parameters do not conflict with path and query parameters
