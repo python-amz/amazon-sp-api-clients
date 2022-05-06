@@ -144,11 +144,7 @@ class Generator:
 
     @cached_property
     def components(self) -> Components:
-        components = self.data.components
-        schemas = components.schemas
-        schemas = {} if schemas is None else schemas
-        schemas: dict[str, Schema] = {k: v for k, v in schemas.items()}
-        return components
+        return self.data.components
 
     @cached_property
     def schemas(self) -> list[ParsedSchema]:
