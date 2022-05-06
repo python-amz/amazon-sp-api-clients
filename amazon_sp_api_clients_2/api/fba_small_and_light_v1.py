@@ -380,6 +380,8 @@ class FbaSmallAndLightV1Client(BaseClient):
 
     def get_small_and_light_fee_preview(
         self,
+        marketplace_id: str,
+        items: list["Item"],
     ):
         """
         Returns the Small and Light fee estimates for the specified items. You must include a marketplaceId parameter to retrieve the proper fee estimates for items to be sold in that marketplace. The ordering of items in the response will mirror the order of the items in the request. Duplicate ASIN/price combinations are removed.
@@ -393,13 +395,21 @@ class FbaSmallAndLightV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            marketplace_id: A marketplace identifier.
+            items: A list of items for which to retrieve fee estimates (limit: 25).
         """
         url = "/fba/smallAndLight/v1/feePreviews"
-        values = ()
+        values = (
+            marketplace_id,
+            items,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._get_small_and_light_fee_preview_params)
         return response
 
-    _get_small_and_light_fee_preview_params = ()  # name, param in
+    _get_small_and_light_fee_preview_params = (  # name, param in
+        ("marketplaceId", "body"),
+        ("items", "body"),
+    )
 
     def put_small_and_light_enrollment_by_seller_sku(
         self,

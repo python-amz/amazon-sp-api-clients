@@ -1013,6 +1013,7 @@ class Weight:
 class VendorShipmentsV1Client(BaseClient):
     def submit_shipment_confirmations(
         self,
+        shipment_confirmations: list["ShipmentConfirmation"] = None,
     ):
         """
         Submits one or more shipment confirmations for vendor orders.
@@ -1027,10 +1028,11 @@ class VendorShipmentsV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipment_confirmations: no description.
         """
         url = "/vendor/shipping/v1/shipmentConfirmations"
-        values = ()
+        values = (shipment_confirmations,)
         response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_confirmations_params)
         return response
 
-    _submit_shipment_confirmations_params = ()  # name, param in
+    _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in

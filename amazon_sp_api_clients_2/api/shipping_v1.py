@@ -1368,6 +1368,10 @@ class ShippingV1Client(BaseClient):
 
     def create_shipment(
         self,
+        client_reference_id: str,
+        ship_to: dict[str, Any],
+        ship_from: dict[str, Any],
+        containers: list["Container"],
     ):
         """
         Create a new shipment.
@@ -1381,13 +1385,27 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            client_reference_id: Client reference id.
+            ship_to: The address.
+            ship_from: The address.
+            containers: A list of container.
         """
         url = "/shipping/v1/shipments"
-        values = ()
+        values = (
+            client_reference_id,
+            ship_to,
+            ship_from,
+            containers,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_shipment_params)
         return response
 
-    _create_shipment_params = ()  # name, param in
+    _create_shipment_params = (  # name, param in
+        ("clientReferenceId", "body"),
+        ("shipTo", "body"),
+        ("shipFrom", "body"),
+        ("containers", "body"),
+    )
 
     def get_account(
         self,
@@ -1414,6 +1432,11 @@ class ShippingV1Client(BaseClient):
 
     def get_rates(
         self,
+        ship_to: dict[str, Any],
+        ship_from: dict[str, Any],
+        service_types: list["ServiceType"],
+        container_specifications: list["ContainerSpecification"],
+        ship_date: str = None,
     ):
         """
         Get service rates.
@@ -1427,13 +1450,30 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            ship_to: The address.
+            ship_from: The address.
+            service_types: A list of service types that can be used to send the shipment.
+            ship_date: The start date and time. This defaults to the current date and time.
+            container_specifications: A list of container specifications.
         """
         url = "/shipping/v1/rates"
-        values = ()
+        values = (
+            ship_to,
+            ship_from,
+            service_types,
+            ship_date,
+            container_specifications,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._get_rates_params)
         return response
 
-    _get_rates_params = ()  # name, param in
+    _get_rates_params = (  # name, param in
+        ("shipTo", "body"),
+        ("shipFrom", "body"),
+        ("serviceTypes", "body"),
+        ("shipDate", "body"),
+        ("containerSpecifications", "body"),
+    )
 
     def get_shipment(
         self,
@@ -1524,6 +1564,15 @@ class ShippingV1Client(BaseClient):
 
     def purchase_shipment(
         self,
+        client_reference_id: str,
+        ship_to: dict[str, Any],
+        ship_from: dict[str, Any],
+        service_type: Union[
+            Literal["Amazon Shipping Ground"], Literal["Amazon Shipping Standard"], Literal["Amazon Shipping Premium"]
+        ],
+        containers: list["Container"],
+        label_specification: dict[str, Any],
+        ship_date: str = None,
     ):
         """
         Purchase shipping labels.
@@ -1537,13 +1586,36 @@ class ShippingV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            client_reference_id: Client reference id.
+            ship_to: The address.
+            ship_from: The address.
+            ship_date: The start date and time. This defaults to the current date and time.
+            service_type: The type of shipping service that will be used for the service offering.
+            containers: A list of container.
+            label_specification: The label specification info.
         """
         url = "/shipping/v1/purchaseShipment"
-        values = ()
+        values = (
+            client_reference_id,
+            ship_to,
+            ship_from,
+            ship_date,
+            service_type,
+            containers,
+            label_specification,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._purchase_shipment_params)
         return response
 
-    _purchase_shipment_params = ()  # name, param in
+    _purchase_shipment_params = (  # name, param in
+        ("clientReferenceId", "body"),
+        ("shipTo", "body"),
+        ("shipFrom", "body"),
+        ("shipDate", "body"),
+        ("serviceType", "body"),
+        ("containers", "body"),
+        ("labelSpecification", "body"),
+    )
 
     def retrieve_shipping_label(
         self,

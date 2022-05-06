@@ -213,18 +213,20 @@ class TransactionStatus:
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
     def generate_order_scenarios(
         self,
+        orders: list["OrderScenarioRequest"] = None,
     ):
         """
         Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
 
         Args:
+            orders: The list of test orders requested as indicated by party identifiers.
         """
         url = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
-        values = ()
+        values = (orders,)
         response = self._parse_args_and_request(url, "POST", values, self._generate_order_scenarios_params)
         return response
 
-    _generate_order_scenarios_params = ()  # name, param in
+    _generate_order_scenarios_params = (("orders", "body"),)  # name, param in
 
     def get_order_scenarios(
         self,

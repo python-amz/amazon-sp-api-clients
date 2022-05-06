@@ -295,6 +295,10 @@ class Feeds20210630Client(BaseClient):
 
     def create_feed(
         self,
+        feed_type: str,
+        marketplace_ids: list[str],
+        input_feed_document_id: str,
+        feed_options: dict[str, Any] = None,
     ):
         """
         Creates a feed. Upload the contents of the feed document before calling this operation.
@@ -308,16 +312,31 @@ class Feeds20210630Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            feed_type: The feed type.
+            marketplace_ids: A list of identifiers for marketplaces that you want the feed to be applied to.
+            input_feed_document_id: The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
+            feed_options: Additional options to control the feed. These vary by feed type.
         """
         url = "/feeds/2021-06-30/feeds"
-        values = ()
+        values = (
+            feed_type,
+            marketplace_ids,
+            input_feed_document_id,
+            feed_options,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_feed_params)
         return response
 
-    _create_feed_params = ()  # name, param in
+    _create_feed_params = (  # name, param in
+        ("feedType", "body"),
+        ("marketplaceIds", "body"),
+        ("inputFeedDocumentId", "body"),
+        ("feedOptions", "body"),
+    )
 
     def create_feed_document(
         self,
+        content_type: str,
     ):
         """
         Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
@@ -331,13 +350,14 @@ class Feeds20210630Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            content_type: The content type of the feed.
         """
         url = "/feeds/2021-06-30/documents"
-        values = ()
+        values = (content_type,)
         response = self._parse_args_and_request(url, "POST", values, self._create_feed_document_params)
         return response
 
-    _create_feed_document_params = ()  # name, param in
+    _create_feed_document_params = (("contentType", "body"),)  # name, param in
 
     def get_feed(
         self,

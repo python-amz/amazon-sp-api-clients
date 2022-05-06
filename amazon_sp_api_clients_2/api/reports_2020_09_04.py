@@ -643,6 +643,11 @@ class Reports20200904Client(BaseClient):
 
     def create_report(
         self,
+        report_type: str,
+        marketplace_ids: list[str],
+        report_options: dict[str, Any] = None,
+        data_start_time: str = None,
+        data_end_time: str = None,
     ):
         """
         Creates a report.
@@ -656,16 +661,57 @@ class Reports20200904Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            report_options: Additional information passed to reports. This varies by report type.
+            report_type: The report type.
+            data_start_time: The start of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+            data_end_time: The end of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+            marketplace_ids: A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
         """
         url = "/reports/2020-09-04/reports"
-        values = ()
+        values = (
+            report_options,
+            report_type,
+            data_start_time,
+            data_end_time,
+            marketplace_ids,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_report_params)
         return response
 
-    _create_report_params = ()  # name, param in
+    _create_report_params = (  # name, param in
+        ("reportOptions", "body"),
+        ("reportType", "body"),
+        ("dataStartTime", "body"),
+        ("dataEndTime", "body"),
+        ("marketplaceIds", "body"),
+    )
 
     def create_report_schedule(
         self,
+        report_type: str,
+        marketplace_ids: list[str],
+        period: Union[
+            Literal["PT5M"],
+            Literal["PT15M"],
+            Literal["PT30M"],
+            Literal["PT1H"],
+            Literal["PT2H"],
+            Literal["PT4H"],
+            Literal["PT8H"],
+            Literal["PT12H"],
+            Literal["P1D"],
+            Literal["P2D"],
+            Literal["P3D"],
+            Literal["PT84H"],
+            Literal["P7D"],
+            Literal["P14D"],
+            Literal["P15D"],
+            Literal["P18D"],
+            Literal["P30D"],
+            Literal["P1M"],
+        ],
+        report_options: dict[str, Any] = None,
+        next_report_creation_time: str = None,
     ):
         """
         Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
@@ -679,13 +725,30 @@ class Reports20200904Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            report_type: The report type.
+            marketplace_ids: A list of marketplace identifiers for the report schedule.
+            report_options: Additional information passed to reports. This varies by report type.
+            period: One of a set of predefined ISO 8601 periods that specifies how often a report should be created.
+            next_report_creation_time: The date and time when the schedule will create its next report, in ISO 8601 date time format.
         """
         url = "/reports/2020-09-04/schedules"
-        values = ()
+        values = (
+            report_type,
+            marketplace_ids,
+            report_options,
+            period,
+            next_report_creation_time,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_report_schedule_params)
         return response
 
-    _create_report_schedule_params = ()  # name, param in
+    _create_report_schedule_params = (  # name, param in
+        ("reportType", "body"),
+        ("marketplaceIds", "body"),
+        ("reportOptions", "body"),
+        ("period", "body"),
+        ("nextReportCreationTime", "body"),
+    )
 
     def get_report(
         self,

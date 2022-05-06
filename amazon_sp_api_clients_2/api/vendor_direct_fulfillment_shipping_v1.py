@@ -1330,6 +1330,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
     def submit_shipment_confirmations(
         self,
+        shipment_confirmations: list["ShipmentConfirmation"] = None,
     ):
         """
         Submits one or more shipment confirmations for vendor orders.
@@ -1344,16 +1345,18 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipment_confirmations: no description.
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
-        values = ()
+        values = (shipment_confirmations,)
         response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_confirmations_params)
         return response
 
-    _submit_shipment_confirmations_params = ()  # name, param in
+    _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
 
     def submit_shipment_status_updates(
         self,
+        shipment_status_updates: list["ShipmentStatusUpdate"] = None,
     ):
         """
         This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
@@ -1368,16 +1371,18 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipment_status_updates: no description.
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
-        values = ()
+        values = (shipment_status_updates,)
         response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_status_updates_params)
         return response
 
-    _submit_shipment_status_updates_params = ()  # name, param in
+    _submit_shipment_status_updates_params = (("shipmentStatusUpdates", "body"),)  # name, param in
 
     def submit_shipping_label_request(
         self,
+        shipping_label_requests: list["ShippingLabelRequest"] = None,
     ):
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.
@@ -1392,10 +1397,11 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipping_label_requests: no description.
         """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
-        values = ()
+        values = (shipping_label_requests,)
         response = self._parse_args_and_request(url, "POST", values, self._submit_shipping_label_request_params)
         return response
 
-    _submit_shipping_label_request_params = ()  # name, param in
+    _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in

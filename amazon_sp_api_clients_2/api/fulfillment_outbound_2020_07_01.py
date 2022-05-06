@@ -2519,6 +2519,23 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
     def create_fulfillment_order(
         self,
+        seller_fulfillment_order_id: str,
+        displayable_order_id: str,
+        displayable_order_date: str,
+        displayable_order_comment: str,
+        shipping_speed_category: Union[
+            Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
+        ],
+        destination_address: dict[str, Any],
+        items: list["CreateFulfillmentOrderItem"],
+        marketplace_id: str = None,
+        delivery_window: dict[str, Any] = None,
+        fulfillment_action: Union[Literal["Ship"], Literal["Hold"]] = None,
+        fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]] = None,
+        cod_settings: dict[str, Any] = None,
+        ship_from_country_code: str = None,
+        notification_emails: list[str] = None,
+        feature_constraints: list["FeatureSettings"] = None,
     ):
         """
         Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
@@ -2532,13 +2549,61 @@ class FulfillmentOutbound20200701Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            marketplace_id: The marketplace the fulfillment order is placed against.
+            seller_fulfillment_order_id: A fulfillment order identifier that the seller creates to track their fulfillment order. The SellerFulfillmentOrderId must be unique for each fulfillment order that a seller creates. If the seller's system already creates unique order identifiers, then these might be good values for them to use.
+            displayable_order_id: A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
+                The value must be an alpha-numeric or ISO 8859-1 compliant string from one to 40 characters in length. Cannot contain two spaces in a row. Leading and trailing white space is removed.
+            displayable_order_date: no description.
+            displayable_order_comment: Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
+            shipping_speed_category: The shipping method used for the fulfillment order.
+            delivery_window: The time range within which a Scheduled Delivery fulfillment order should be delivered.
+            destination_address: A physical address.
+            fulfillment_action: Specifies whether the fulfillment order should ship now or have an order hold put on it.
+            fulfillment_policy: The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
+            cod_settings: The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
+            ship_from_country_code: The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
+            notification_emails: A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+            feature_constraints: A list of features and their fulfillment policies to apply to the order.
+            items: An array of item information for creating a fulfillment order.
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders"
-        values = ()
+        values = (
+            marketplace_id,
+            seller_fulfillment_order_id,
+            displayable_order_id,
+            displayable_order_date,
+            displayable_order_comment,
+            shipping_speed_category,
+            delivery_window,
+            destination_address,
+            fulfillment_action,
+            fulfillment_policy,
+            cod_settings,
+            ship_from_country_code,
+            notification_emails,
+            feature_constraints,
+            items,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_fulfillment_order_params)
         return response
 
-    _create_fulfillment_order_params = ()  # name, param in
+    _create_fulfillment_order_params = (  # name, param in
+        ("marketplaceId", "body"),
+        ("sellerFulfillmentOrderId", "body"),
+        ("displayableOrderId", "body"),
+        ("displayableOrderDate", "body"),
+        ("displayableOrderComment", "body"),
+        ("shippingSpeedCategory", "body"),
+        ("deliveryWindow", "body"),
+        ("destinationAddress", "body"),
+        ("fulfillmentAction", "body"),
+        ("fulfillmentPolicy", "body"),
+        ("codSettings", "body"),
+        ("shipFromCountryCode", "body"),
+        ("notificationEmails", "body"),
+        ("featureConstraints", "body"),
+        ("items", "body"),
+    )
 
     def create_fulfillment_return(
         self,
@@ -2699,6 +2764,13 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
     def get_fulfillment_preview(
         self,
+        address: dict[str, Any],
+        items: list["GetFulfillmentPreviewItem"],
+        marketplace_id: str = None,
+        shipping_speed_categories: list["ShippingSpeedCategory"] = None,
+        include_codfulfillment_preview: bool = None,
+        include_delivery_windows: bool = None,
+        feature_constraints: list["FeatureSettings"] = None,
     ):
         """
         Returns a list of fulfillment order previews based on shipping criteria that you specify.
@@ -2712,13 +2784,39 @@ class FulfillmentOutbound20200701Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            marketplace_id: The marketplace the fulfillment order is placed against.
+            address: A physical address.
+            items: An array of fulfillment preview item information.
+            shipping_speed_categories: no description.
+            include_codfulfillment_preview: Specifies whether to return fulfillment order previews that are for COD (Cash On Delivery).
+                Possible values:
+                * true - Returns all fulfillment order previews (both for COD and not for COD).
+                * false - Returns only fulfillment order previews that are not for COD.
+            include_delivery_windows: Specifies whether to return the ScheduledDeliveryInfo response object, which contains the available delivery windows for a Scheduled Delivery. The ScheduledDeliveryInfo response object can only be returned for fulfillment order previews with ShippingSpeedCategories = ScheduledDelivery.
+            feature_constraints: A list of features and their fulfillment policies to apply to the order.
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
-        values = ()
+        values = (
+            marketplace_id,
+            address,
+            items,
+            shipping_speed_categories,
+            include_codfulfillment_preview,
+            include_delivery_windows,
+            feature_constraints,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._get_fulfillment_preview_params)
         return response
 
-    _get_fulfillment_preview_params = ()  # name, param in
+    _get_fulfillment_preview_params = (  # name, param in
+        ("marketplaceId", "body"),
+        ("address", "body"),
+        ("items", "body"),
+        ("shippingSpeedCategories", "body"),
+        ("includeCODFulfillmentPreview", "body"),
+        ("includeDeliveryWindows", "body"),
+        ("featureConstraints", "body"),
+    )
 
     def get_package_tracking_details(
         self,

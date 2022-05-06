@@ -923,6 +923,7 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
 
     def submit_acknowledgement(
         self,
+        order_acknowledgements: list["OrderAcknowledgementItem"] = None,
     ):
         """
         Submits acknowledgements for one or more purchase orders.
@@ -937,10 +938,11 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            order_acknowledgements: A list of one or more purchase orders.
         """
         url = "/vendor/directFulfillment/orders/v1/acknowledgements"
-        values = ()
+        values = (order_acknowledgements,)
         response = self._parse_args_and_request(url, "POST", values, self._submit_acknowledgement_params)
         return response
 
-    _submit_acknowledgement_params = ()  # name, param in
+    _submit_acknowledgement_params = (("orderAcknowledgements", "body"),)  # name, param in

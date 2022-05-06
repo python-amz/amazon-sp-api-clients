@@ -739,6 +739,7 @@ class TransactionId:
 class VendorInvoicesV1Client(BaseClient):
     def submit_invoices(
         self,
+        invoices: list["Invoice"] = None,
     ):
         """
         Submit new invoices to Amazon.
@@ -753,10 +754,11 @@ class VendorInvoicesV1Client(BaseClient):
         The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            invoices: no description.
         """
         url = "/vendor/payments/v1/invoices"
-        values = ()
+        values = (invoices,)
         response = self._parse_args_and_request(url, "POST", values, self._submit_invoices_params)
         return response
 
-    _submit_invoices_params = ()  # name, param in
+    _submit_invoices_params = (("invoices", "body"),)  # name, param in

@@ -1736,6 +1736,12 @@ class MerchantFulfillmentV0Client(BaseClient):
 
     def create_shipment(
         self,
+        shipment_request_details: dict[str, Any],
+        shipping_service_id: str,
+        shipping_service_offer_id: str = None,
+        hazmat_type: Union[Literal["None"], Literal["LQHazmat"]] = None,
+        label_format_option: dict[str, Any] = None,
+        shipment_level_seller_inputs_list: list["AdditionalSellerInputs"] = None,
     ):
         """
         Create a shipment with the information provided.
@@ -1749,16 +1755,39 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipment_request_details: Shipment information required for requesting shipping service offers or for creating a shipment.
+            shipping_service_id: An Amazon-defined shipping service identifier.
+            shipping_service_offer_id: Identifies a shipping service order made by a carrier.
+            hazmat_type: Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information on hazardous materials.
+            label_format_option: Whether to include a packing slip.
+            shipment_level_seller_inputs_list: A list of additional seller input pairs required to purchase shipping.
         """
         url = "/mfn/v0/shipments"
-        values = ()
+        values = (
+            shipment_request_details,
+            shipping_service_id,
+            shipping_service_offer_id,
+            hazmat_type,
+            label_format_option,
+            shipment_level_seller_inputs_list,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_shipment_params)
         return response
 
-    _create_shipment_params = ()  # name, param in
+    _create_shipment_params = (  # name, param in
+        ("ShipmentRequestDetails", "body"),
+        ("ShippingServiceId", "body"),
+        ("ShippingServiceOfferId", "body"),
+        ("HazmatType", "body"),
+        ("LabelFormatOption", "body"),
+        ("ShipmentLevelSellerInputsList", "body"),
+    )
 
     def get_additional_seller_inputs(
         self,
+        shipping_service_id: str,
+        ship_from_address: dict[str, Any],
+        order_id: str,
     ):
         """
         Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
@@ -1772,16 +1801,30 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipping_service_id: An Amazon-defined shipping service identifier.
+            ship_from_address: The postal address information.
+            order_id: An Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/mfn/v0/additionalSellerInputs"
-        values = ()
+        values = (
+            shipping_service_id,
+            ship_from_address,
+            order_id,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_params)
         return response
 
-    _get_additional_seller_inputs_params = ()  # name, param in
+    _get_additional_seller_inputs_params = (  # name, param in
+        ("ShippingServiceId", "body"),
+        ("ShipFromAddress", "body"),
+        ("OrderId", "body"),
+    )
 
     def get_additional_seller_inputs_old(
         self,
+        shipping_service_id: str,
+        ship_from_address: dict[str, Any],
+        order_id: str,
     ):
         """
         Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
@@ -1795,16 +1838,29 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipping_service_id: An Amazon-defined shipping service identifier.
+            ship_from_address: The postal address information.
+            order_id: An Amazon-defined order identifier, in 3-7-7 format.
         """
         url = "/mfn/v0/sellerInputs"
-        values = ()
+        values = (
+            shipping_service_id,
+            ship_from_address,
+            order_id,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_old_params)
         return response
 
-    _get_additional_seller_inputs_old_params = ()  # name, param in
+    _get_additional_seller_inputs_old_params = (  # name, param in
+        ("ShippingServiceId", "body"),
+        ("ShipFromAddress", "body"),
+        ("OrderId", "body"),
+    )
 
     def get_eligible_shipment_services(
         self,
+        shipment_request_details: dict[str, Any],
+        shipping_offering_filter: dict[str, Any] = None,
     ):
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.
@@ -1818,16 +1874,26 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipment_request_details: Shipment information required for requesting shipping service offers or for creating a shipment.
+            shipping_offering_filter: Filter for use when requesting eligible shipping services.
         """
         url = "/mfn/v0/eligibleShippingServices"
-        values = ()
+        values = (
+            shipment_request_details,
+            shipping_offering_filter,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._get_eligible_shipment_services_params)
         return response
 
-    _get_eligible_shipment_services_params = ()  # name, param in
+    _get_eligible_shipment_services_params = (  # name, param in
+        ("ShipmentRequestDetails", "body"),
+        ("ShippingOfferingFilter", "body"),
+    )
 
     def get_eligible_shipment_services_old(
         self,
+        shipment_request_details: dict[str, Any],
+        shipping_offering_filter: dict[str, Any] = None,
     ):
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.
@@ -1841,13 +1907,21 @@ class MerchantFulfillmentV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            shipment_request_details: Shipment information required for requesting shipping service offers or for creating a shipment.
+            shipping_offering_filter: Filter for use when requesting eligible shipping services.
         """
         url = "/mfn/v0/eligibleServices"
-        values = ()
+        values = (
+            shipment_request_details,
+            shipping_offering_filter,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._get_eligible_shipment_services_old_params)
         return response
 
-    _get_eligible_shipment_services_old_params = ()  # name, param in
+    _get_eligible_shipment_services_old_params = (  # name, param in
+        ("ShipmentRequestDetails", "body"),
+        ("ShippingOfferingFilter", "body"),
+    )
 
     def get_shipment(
         self,

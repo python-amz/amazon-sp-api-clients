@@ -169,7 +169,7 @@ class Generator:
             assert (match := re.match(r'^#/components/(.*?)/(.*?)$', schema.ref))
             name = match.group(2)
             return f"'{name}'"
-        schema = self.resolve_ref(schema) if isinstance(schema, Reference) else schema
+
         if schema is None or (schema.type is None and schema.items is None):
             return 'Any'
         base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
@@ -186,7 +186,8 @@ class Generator:
                            for path, path_item in self.data.paths.items()
                            for method in path_item.__fields_set__)
         operations = tuple(sorted(operations, key=lambda k: k.operationId))
-        for operation in [o for o in operations if o.parameters is not None]:
+        for operation in [o for o in operations if o.parameters is not None or o.requestBody is not None]:
+            operation.parameters = [] if operation.parameters is None else operation.parameters
 
             # convert post object to parameter objects, the main work of following code is data validation
             if (body := operation.requestBody) is not None:
@@ -266,8 +267,10 @@ class Generator:
 
     @classmethod
     def main(cls):
+        # files = list((Path(__file__).parent.parent / 'swagger3_apis').glob('*report*21*.json'))
+        files = list((Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'))
         with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
-            generators = pool.map(cls.worker, (Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'))
+            generators = pool.map(cls.worker, files)
         [g.generate() for g in generators]
         content = render(RequestFactory(), 'init.html', {'data': generators}).content.decode('utf-8')
         content = cls.format_python_file(content)

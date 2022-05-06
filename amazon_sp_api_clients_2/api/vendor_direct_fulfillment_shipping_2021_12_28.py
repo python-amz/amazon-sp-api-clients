@@ -835,6 +835,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
 
     def submit_shipping_label_request(
         self,
+        shipping_label_requests: list["ShippingLabelRequest"] = None,
     ):
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.
@@ -848,10 +849,11 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
 
         Args:
+            shipping_label_requests: no description.
         """
         url = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
-        values = ()
+        values = (shipping_label_requests,)
         response = self._parse_args_and_request(url, "POST", values, self._submit_shipping_label_request_params)
         return response
 
-    _submit_shipping_label_request_params = ()  # name, param in
+    _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in

@@ -405,6 +405,8 @@ class Subscription:
 class NotificationsV1Client(BaseClient):
     def create_destination(
         self,
+        resource_specification: dict[str, Any],
+        name: str,
     ):
         """
         Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
@@ -418,13 +420,21 @@ class NotificationsV1Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            resource_specification: The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
+            name: A developer-defined name to help identify this destination.
         """
         url = "/notifications/v1/destinations"
-        values = ()
+        values = (
+            resource_specification,
+            name,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_destination_params)
         return response
 
-    _create_destination_params = ()  # name, param in
+    _create_destination_params = (  # name, param in
+        ("resourceSpecification", "body"),
+        ("name", "body"),
+    )
 
     def create_subscription(
         self,

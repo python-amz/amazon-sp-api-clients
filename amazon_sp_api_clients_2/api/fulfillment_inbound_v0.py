@@ -2458,6 +2458,13 @@ class FulfillmentInboundV0Client(BaseClient):
 
     def create_inbound_shipment_plan(
         self,
+        ship_from_address: dict[str, Any],
+        label_prep_preference: Union[
+            Literal["SELLER_LABEL"], Literal["AMAZON_LABEL_ONLY"], Literal["AMAZON_LABEL_PREFERRED"]
+        ],
+        inbound_shipment_plan_request_items: list["InboundShipmentPlanRequestItem"],
+        ship_to_country_code: str = None,
+        ship_to_country_subdivision_code: str = None,
     ):
         """
         Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory.
@@ -2471,13 +2478,44 @@ class FulfillmentInboundV0Client(BaseClient):
         For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
+            ship_from_address: no description.
+            label_prep_preference: The preference for label preparation for an inbound shipment.
+            ship_to_country_code: The two-character country code for the country where the inbound shipment is to be sent.
+                Note: Not required. Specifying both ShipToCountryCode and ShipToCountrySubdivisionCode returns an error.
+                Values:
+                ShipToCountryCode values for North America:
+                * CA – Canada
+                * MX - Mexico
+                * US - United States
+                ShipToCountryCode values for MCI sellers in Europe:
+                * DE – Germany
+                * ES – Spain
+                * FR – France
+                * GB – United Kingdom
+                * IT – Italy
+                Default: The country code for the seller's home marketplace.
+            ship_to_country_subdivision_code: The two-character country code, followed by a dash and then up to three characters that represent the subdivision of the country where the inbound shipment is to be sent. For example, "IN-MH". In full ISO 3166-2 format.
+                Note: Not required. Specifying both ShipToCountryCode and ShipToCountrySubdivisionCode returns an error.
+            inbound_shipment_plan_request_items: no description.
         """
         url = "/fba/inbound/v0/plans"
-        values = ()
+        values = (
+            ship_from_address,
+            label_prep_preference,
+            ship_to_country_code,
+            ship_to_country_subdivision_code,
+            inbound_shipment_plan_request_items,
+        )
         response = self._parse_args_and_request(url, "POST", values, self._create_inbound_shipment_plan_params)
         return response
 
-    _create_inbound_shipment_plan_params = ()  # name, param in
+    _create_inbound_shipment_plan_params = (  # name, param in
+        ("ShipFromAddress", "body"),
+        ("LabelPrepPreference", "body"),
+        ("ShipToCountryCode", "body"),
+        ("ShipToCountrySubdivisionCode", "body"),
+        ("InboundShipmentPlanRequestItems", "body"),
+    )
 
     def estimate_transport(
         self,
