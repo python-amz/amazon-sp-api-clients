@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -61,7 +62,7 @@ class ErrorList:
 @attrs.define
 class GetSchemaResponse:
 
-    _links: dict[str, Any] = attrs.field(
+    _links: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -91,7 +92,7 @@ class GetSchemaResponse:
 @attrs.define
 class GetSolicitationActionResponse:
 
-    _embedded: dict[str, Any] = attrs.field(
+    _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -101,7 +102,7 @@ class GetSolicitationActionResponse:
     {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
     """
 
-    _links: dict[str, Any] = attrs.field(
+    _links: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -131,7 +132,7 @@ class GetSolicitationActionResponse:
 @attrs.define
 class GetSolicitationActionsForOrderResponse:
 
-    _embedded: dict[str, Any] = attrs.field(
+    _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -141,7 +142,7 @@ class GetSolicitationActionsForOrderResponse:
     {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetSolicitationActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
     """
 
-    _links: dict[str, Any] = attrs.field(
+    _links: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -204,7 +205,7 @@ class SolicitationsV1Client(BaseClient):
     def create_product_review_and_seller_feedback_solicitation(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
     ):
         """
         Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send only one productReviewAndSellerFeedback or free form proactive message per order.
@@ -239,7 +240,7 @@ class SolicitationsV1Client(BaseClient):
     def get_solicitation_actions_for_order(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
     ):
         """
         Returns a list of solicitation types that are available for an order that you specify. A solicitation type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a solicitation. Currently only the productReviewAndSellerFeedbackSolicitation solicitation type is available.

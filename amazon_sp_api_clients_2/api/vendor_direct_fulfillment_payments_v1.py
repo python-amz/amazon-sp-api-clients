@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -125,7 +126,7 @@ class Address:
 @attrs.define
 class ChargeDetails:
 
-    tax_details: list["TaxDetail"] = attrs.field(
+    tax_details: List["TaxDetail"] = attrs.field(
         kw_only=True,
     )
     """
@@ -199,14 +200,14 @@ class ErrorList:
 @attrs.define
 class InvoiceDetail:
 
-    additional_details: list["AdditionalDetails"] = attrs.field(
+    additional_details: List["AdditionalDetails"] = attrs.field(
         kw_only=True,
     )
     """
     Additional details provided by the selling party, for tax related or other purposes.
     """
 
-    charge_details: list["ChargeDetails"] = attrs.field(
+    charge_details: List["ChargeDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -230,7 +231,7 @@ class InvoiceDetail:
     The unique invoice number.
     """
 
-    items: list["InvoiceItem"] = attrs.field(
+    items: List["InvoiceItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -258,7 +259,7 @@ class InvoiceDetail:
     Ship-to country code.
     """
 
-    tax_totals: list["TaxDetail"] = attrs.field(
+    tax_totals: List["TaxDetail"] = attrs.field(
         kw_only=True,
     )
     """
@@ -306,7 +307,7 @@ class InvoiceItem:
     Buyer's standard identification number (ASIN) of an item.
     """
 
-    charge_details: list["ChargeDetails"] = attrs.field(
+    charge_details: List["ChargeDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -334,7 +335,7 @@ class InvoiceItem:
     The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    tax_details: list["TaxDetail"] = attrs.field(
+    tax_details: List["TaxDetail"] = attrs.field(
         kw_only=True,
     )
     """
@@ -422,7 +423,7 @@ class PartyIdentification:
     Assigned Identification for the party.
     """
 
-    tax_registration_details: list["TaxRegistrationDetail"] = attrs.field(
+    tax_registration_details: List["TaxRegistrationDetail"] = attrs.field(
         kw_only=True,
     )
     """
@@ -442,7 +443,7 @@ class PartyIdentification:
 @attrs.define
 class SubmitInvoiceRequest:
 
-    invoices: list["InvoiceDetail"] = attrs.field(
+    invoices: List["InvoiceDetail"] = attrs.field(
         kw_only=True,
     )
     """
@@ -571,7 +572,7 @@ class TransactionReference:
 class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
     def submit_invoice(
         self,
-        invoices: list["InvoiceDetail"] = None,
+        invoices: List["InvoiceDetail"] = None,
     ):
         """
         Submits one or more invoices for a vendor's direct fulfillment orders.

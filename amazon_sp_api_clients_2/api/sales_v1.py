@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -148,7 +149,7 @@ class OrderMetricsList:
 class SalesV1Client(BaseClient):
     def get_order_metrics(
         self,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         interval: str,
         granularity: Union[
             Literal["Hour"], Literal["Day"], Literal["Week"], Literal["Month"], Literal["Year"], Literal["Total"]

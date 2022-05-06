@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -55,7 +56,7 @@ class InventoryUpdate:
     When true, this request contains a full feed. Otherwise, this request contains a partial feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in the full feed are updated as not available. When sending a partial feed, only include the items that need an update to inventory. The status of other items will remain unchanged.
     """
 
-    items: list["ItemDetails"] = attrs.field(
+    items: List["ItemDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -189,7 +190,7 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     def submit_inventory_update(
         self,
         warehouse_id: str,
-        inventory: dict[str, Any] = None,
+        inventory: Dict[str, Any] = None,
     ):
         """
         Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.

@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -395,7 +396,7 @@ class OrderAcknowledgement:
     {'schema_format': 'date-time'}
     """
 
-    items: list["OrderAcknowledgementItem"] = attrs.field(
+    items: List["OrderAcknowledgementItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -436,7 +437,7 @@ class OrderAcknowledgementItem:
     The discount multiplier that should be applied to the price if a vendor sells books with a list price. This is a multiplier factor to arrive at a final discounted price. A multiplier of .90 would be the factor if a 10% discount is given.
     """
 
-    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field(
+    item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field(
         kw_only=True,
     )
     """
@@ -491,7 +492,7 @@ class OrderDetails:
     If requested by the recipient, this field will contain a promotional/deal number. The discount code line is optional. It is used to obtain a price discount on items on the order.
     """
 
-    items: list["OrderItem"] = attrs.field(
+    items: List["OrderItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -705,7 +706,7 @@ class OrderItemAcknowledgement:
 @attrs.define
 class OrderItemStatus:
 
-    acknowledgement_status: dict[str, Any] = attrs.field(
+    acknowledgement_status: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -729,7 +730,7 @@ class OrderItemStatus:
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    ordered_quantity: dict[str, Any] = attrs.field(
+    ordered_quantity: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -739,7 +740,7 @@ class OrderItemStatus:
     {'properties': {'orderedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'orderedQuantityDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/OrderedQuantityDetails'), properties=None, additionalProperties=None, description='Details of item quantity ordered.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
     """
 
-    receiving_status: dict[str, Any] = attrs.field(
+    receiving_status: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -776,7 +777,7 @@ class OrderItemStatus:
 @attrs.define
 class OrderList:
 
-    orders: list["Order"] = attrs.field(
+    orders: List["Order"] = attrs.field(
         kw_only=True,
     )
     """
@@ -796,7 +797,7 @@ class OrderList:
 @attrs.define
 class OrderListStatus:
 
-    orders_status: list["OrderStatus"] = attrs.field(
+    orders_status: List["OrderStatus"] = attrs.field(
         kw_only=True,
     )
     """
@@ -947,7 +948,7 @@ class PartyIdentification:
 @attrs.define
 class SubmitAcknowledgementRequest:
 
-    acknowledgements: list["OrderAcknowledgement"] = attrs.field(
+    acknowledgements: List["OrderAcknowledgement"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1193,7 +1194,7 @@ class VendorOrdersV1Client(BaseClient):
 
     def submit_acknowledgement(
         self,
-        acknowledgements: list["OrderAcknowledgement"] = None,
+        acknowledgements: List["OrderAcknowledgement"] = None,
     ):
         """
         Submits acknowledgements for one or more purchase orders.

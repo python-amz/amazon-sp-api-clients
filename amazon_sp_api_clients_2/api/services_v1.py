@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -118,7 +119,7 @@ class Appointment:
     The status of the appointment.
     """
 
-    assigned_technicians: list["Technician"] = attrs.field(
+    assigned_technicians: List["Technician"] = attrs.field(
         kw_only=True,
     )
     """
@@ -464,7 +465,7 @@ class ItemDeliveryPromise:
 @attrs.define
 class JobListing:
 
-    jobs: list["ServiceJob"] = attrs.field(
+    jobs: List["ServiceJob"] = attrs.field(
         kw_only=True,
     )
     """
@@ -516,7 +517,7 @@ class Poa:
     The type of POA uploaded.
     """
 
-    technicians: list["Technician"] = attrs.field(
+    technicians: List["Technician"] = attrs.field(
         kw_only=True,
     )
     """
@@ -599,7 +600,7 @@ class ScopeOfWork:
     The number of service jobs.
     """
 
-    required_skills: list[str] = attrs.field(
+    required_skills: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -635,14 +636,14 @@ class Seller:
 @attrs.define
 class ServiceJob:
 
-    appointments: list["Appointment"] = attrs.field(
+    appointments: List["Appointment"] = attrs.field(
         kw_only=True,
     )
     """
     A list of appointments.
     """
 
-    associated_items: list["AssociatedItem"] = attrs.field(
+    associated_items: List["AssociatedItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -669,7 +670,7 @@ class ServiceJob:
     {'pattern': '^[A-Z0-9]*$'}
     """
 
-    preferred_appointment_times: list["AppointmentTime"] = attrs.field(
+    preferred_appointment_times: List["AppointmentTime"] = attrs.field(
         kw_only=True,
     )
     """
@@ -872,7 +873,7 @@ class ServicesV1Client(BaseClient):
     def add_appointment_for_service_job_by_service_job_id(
         self,
         service_job_id: str,
-        appointment_time: dict[str, Any],
+        appointment_time: Dict[str, Any],
     ):
         """
         Adds an appointment to the service job indicated by the service job identifier you specify.
@@ -989,9 +990,9 @@ class ServicesV1Client(BaseClient):
 
     def get_service_jobs(
         self,
-        marketplace_ids: list[str],
-        service_order_ids: list[str] = None,
-        service_job_status: list[
+        marketplace_ids: List[str],
+        service_order_ids: List[str] = None,
+        service_job_status: List[
             Union[
                 Literal["NOT_SERVICED"],
                 Literal["CANCELLED"],
@@ -1078,7 +1079,7 @@ class ServicesV1Client(BaseClient):
         self,
         service_job_id: str,
         appointment_id: str,
-        appointment_time: dict[str, Any],
+        appointment_time: Dict[str, Any],
         reschedule_reason_code: str,
     ):
         """

@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -531,7 +532,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -693,7 +694,7 @@ class PageToken:
 @attrs.define
 class ParagraphComponent:
 
-    text_list: list["TextComponent"] = attrs.field(
+    text_list: List["TextComponent"] = attrs.field(
         kw_only=True,
     )
     """
@@ -877,7 +878,7 @@ class StandardComparisonProductBlock:
     Determines whether this block of content is visually highlighted.
     """
 
-    metrics: list["PlainTextItem"] = attrs.field(
+    metrics: List["PlainTextItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -927,7 +928,7 @@ class StandardComparisonProductBlock:
 @attrs.define
 class StandardComparisonTableModule:
 
-    metric_row_labels: list["PlainTextItem"] = attrs.field(
+    metric_row_labels: List["PlainTextItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -937,7 +938,7 @@ class StandardComparisonTableModule:
     {'maxItems': 10, 'minItems': 0}
     """
 
-    product_columns: list["StandardComparisonProductBlock"] = attrs.field(
+    product_columns: List["StandardComparisonProductBlock"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1203,7 +1204,7 @@ class StandardImageTextOverlayModule:
 @attrs.define
 class StandardMultipleImageTextModule:
 
-    blocks: list["StandardImageTextCaptionBlock"] = attrs.field(
+    blocks: List["StandardImageTextCaptionBlock"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1359,7 +1360,7 @@ class StandardSingleSideImageModule:
 @attrs.define
 class StandardTechSpecsModule:
 
-    specification_list: list["StandardTextPairBlock"] = attrs.field(
+    specification_list: List["StandardTextPairBlock"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1412,7 +1413,7 @@ class StandardTextBlock:
 @attrs.define
 class StandardTextListBlock:
 
-    text_list: list["TextItem"] = attrs.field(
+    text_list: List["TextItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1555,7 +1556,7 @@ class AplusContent20201101Client(BaseClient):
     def create_content_document(
         self,
         marketplace_id: str,
-        content_document: dict[str, Any],
+        content_document: Dict[str, Any],
     ):
         """
         Creates a new A+ Content document.
@@ -1590,7 +1591,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
-        included_data_set: list[Union[Literal["CONTENTS"], Literal["METADATA"]]],
+        included_data_set: List[Union[Literal["CONTENTS"], Literal["METADATA"]]],
     ):
         """
         Returns an A+ Content document, if available.
@@ -1628,8 +1629,8 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
-        included_data_set: list[Union[Literal["METADATA"]]] = None,
-        asin_set: list[str] = None,
+        included_data_set: List[Union[Literal["METADATA"]]] = None,
+        asin_set: List[str] = None,
         page_token: str = None,
     ):
         """
@@ -1710,7 +1711,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
-        asin_set: list["Asin"],
+        asin_set: List["Asin"],
     ):
         """
         Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
@@ -1856,7 +1857,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
-        content_document: dict[str, Any],
+        content_document: Dict[str, Any],
     ):
         """
         Updates an existing A+ Content document.
@@ -1893,8 +1894,8 @@ class AplusContent20201101Client(BaseClient):
     def validate_content_document_asin_relations(
         self,
         marketplace_id: str,
-        content_document: dict[str, Any],
-        asin_set: list[str] = None,
+        content_document: Dict[str, Any],
+        asin_set: List[str] = None,
     ):
         """
         Checks if the A+ Content document is valid for use on a set of ASINs.

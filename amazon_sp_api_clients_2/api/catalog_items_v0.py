@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -41,14 +42,14 @@ class AttributeSetList:
 @attrs.define
 class AttributeSetListType:
 
-    actor: list[str] = attrs.field(
+    actor: List[str] = attrs.field(
         kw_only=True,
     )
     """
     The actor attributes of the item.
     """
 
-    artist: list[str] = attrs.field(
+    artist: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -69,7 +70,7 @@ class AttributeSetListType:
     The audience rating attribute of the item.
     """
 
-    author: list[str] = attrs.field(
+    author: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -153,7 +154,7 @@ class AttributeSetListType:
     The CPU type attribute of the item.
     """
 
-    creator: list["CreatorType"] = attrs.field(
+    creator: List["CreatorType"] = attrs.field(
         kw_only=True,
     )
     """
@@ -167,7 +168,7 @@ class AttributeSetListType:
     The department attribute of the item.
     """
 
-    director: list[str] = attrs.field(
+    director: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -195,7 +196,7 @@ class AttributeSetListType:
     The ESRB age rating attribute of the item.
     """
 
-    feature: list[str] = attrs.field(
+    feature: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -209,14 +210,14 @@ class AttributeSetListType:
     The flavor attribute of the item.
     """
 
-    format: list[str] = attrs.field(
+    format: List[str] = attrs.field(
         kw_only=True,
     )
     """
     The format attributes of the item.
     """
 
-    gem_type: list[str] = attrs.field(
+    gem_type: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -314,7 +315,7 @@ class AttributeSetListType:
     The label attribute of the item.
     """
 
-    languages: list["LanguageType"] = attrs.field(
+    languages: List["LanguageType"] = attrs.field(
         kw_only=True,
     )
     """
@@ -342,14 +343,14 @@ class AttributeSetListType:
     The manufacturer parts warranty description attribute of the item.
     """
 
-    material_type: list[str] = attrs.field(
+    material_type: List[str] = attrs.field(
         kw_only=True,
     )
     """
     The material type attributes of the item.
     """
 
-    media_type: list[str] = attrs.field(
+    media_type: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -412,7 +413,7 @@ class AttributeSetListType:
     The number of tracks attribute of the item.
     """
 
-    operating_system: list[str] = attrs.field(
+    operating_system: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -440,7 +441,7 @@ class AttributeSetListType:
     The PEGI rating attribute of the item.
     """
 
-    platform: list[str] = attrs.field(
+    platform: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -733,7 +734,7 @@ class Categories:
     The name of the product category (or browse node).
     """
 
-    parent: dict[str, Any] = attrs.field(
+    parent: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -1096,7 +1097,7 @@ class RelationshipType:
     The flavor variation of the item.
     """
 
-    gem_type: list[str] = attrs.field(
+    gem_type: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -1124,7 +1125,7 @@ class RelationshipType:
     The hardware platform variation of an item.
     """
 
-    material_type: list[str] = attrs.field(
+    material_type: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -1145,7 +1146,7 @@ class RelationshipType:
     The model variation of an item.
     """
 
-    operating_system: list[str] = attrs.field(
+    operating_system: List[str] = attrs.field(
         kw_only=True,
     )
     """

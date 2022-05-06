@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -75,7 +76,7 @@ class ItemEligibilityPreview:
     The ASIN for which eligibility was determined.
     """
 
-    ineligibility_reason_list: list[
+    ineligibility_reason_list: List[
         Union[
             Literal["FBA_INB_0004"],
             Literal["FBA_INB_0006"],
@@ -153,7 +154,7 @@ class FbaInboundEligibilityV1Client(BaseClient):
         self,
         asin: str,
         program: Union[Literal["INBOUND"], Literal["COMMINGLING"]],
-        marketplace_ids: list[str] = None,
+        marketplace_ids: List[str] = None,
     ):
         """
         This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.

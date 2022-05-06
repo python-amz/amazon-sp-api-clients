@@ -12,6 +12,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -44,7 +45,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -57,7 +58,7 @@ class ErrorList:
 @attrs.define
 class ProductType:
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -84,7 +85,7 @@ class ProductTypeDefinition:
     Locale of the display elements contained in the product type definition.
     """
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -98,7 +99,7 @@ class ProductTypeDefinition:
     The name of the Amazon product type that this product type definition applies to.
     """
 
-    property_groups: dict[str, Any] = attrs.field(
+    property_groups: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -151,7 +152,7 @@ class ProductTypeDefinition:
 @attrs.define
 class ProductTypeList:
 
-    product_types: list["ProductType"] = attrs.field(
+    product_types: List["ProductType"] = attrs.field(
         kw_only=True,
     )
     """
@@ -198,7 +199,7 @@ class PropertyGroup:
     The description of the property group.
     """
 
-    property_names: list[str] = attrs.field(
+    property_names: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -225,7 +226,7 @@ class SchemaLink:
     Checksum hash of the schema (Base64 MD5). Can be used to verify schema contents, identify changes between schema versions, and for caching.
     """
 
-    link: dict[str, Any] = attrs.field(
+    link: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -242,7 +243,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
     def get_definitions_product_type(
         self,
         product_type: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         seller_id: str = None,
         product_type_version: str = None,
         requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
@@ -335,8 +336,8 @@ class ProductTypeDefinitions20200901Client(BaseClient):
 
     def search_definitions_product_types(
         self,
-        marketplace_ids: list[str],
-        keywords: list[str] = None,
+        marketplace_ids: List[str],
+        keywords: List[str] = None,
     ):
         """
         Search for and return a list of Amazon product types that have definitions available.

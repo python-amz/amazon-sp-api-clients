@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -42,7 +43,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -55,7 +56,7 @@ class ErrorList:
 @attrs.define
 class GenerateOrderScenarioRequest:
 
-    orders: list["OrderScenarioRequest"] = attrs.field(
+    orders: List["OrderScenarioRequest"] = attrs.field(
         kw_only=True,
     )
     """
@@ -114,7 +115,7 @@ class PartyIdentification:
 @attrs.define
 class Scenario:
 
-    orders: list["TestOrder"] = attrs.field(
+    orders: List["TestOrder"] = attrs.field(
         kw_only=True,
     )
     """
@@ -134,7 +135,7 @@ class Scenario:
 @attrs.define
 class TestCaseData:
 
-    scenarios: list["Scenario"] = attrs.field(
+    scenarios: List["Scenario"] = attrs.field(
         kw_only=True,
     )
     """
@@ -213,7 +214,7 @@ class TransactionStatus:
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
     def generate_order_scenarios(
         self,
-        orders: list["OrderScenarioRequest"] = None,
+        orders: List["OrderScenarioRequest"] = None,
     ):
         """
         Submits a request to generate test order data for Vendor Direct Fulfillment API entities.

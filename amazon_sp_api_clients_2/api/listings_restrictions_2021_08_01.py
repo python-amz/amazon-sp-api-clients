@@ -12,6 +12,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -87,7 +88,7 @@ class Link:
 @attrs.define
 class Reason:
 
-    links: list["Link"] = attrs.field(
+    links: List["Link"] = attrs.field(
         kw_only=True,
     )
     """
@@ -142,7 +143,7 @@ class Restriction:
     A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
     """
 
-    reasons: list["Reason"] = attrs.field(
+    reasons: List["Reason"] = attrs.field(
         kw_only=True,
     )
     """
@@ -155,7 +156,7 @@ class Restriction:
 @attrs.define
 class RestrictionList:
 
-    restrictions: list["Restriction"] = attrs.field(
+    restrictions: List["Restriction"] = attrs.field(
         kw_only=True,
     )
     """
@@ -170,7 +171,7 @@ class ListingsRestrictions20210801Client(BaseClient):
         self,
         asin: str,
         seller_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         condition_type: Union[
             Literal["new_new"],
             Literal["new_open_box"],

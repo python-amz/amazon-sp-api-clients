@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -669,7 +670,7 @@ class OfferDetail:
     The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
 
-    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field(
+    quantity_discount_prices: List["QuantityDiscountPriceType"] = attrs.field(
         kw_only=True,
     )
     """
@@ -797,7 +798,7 @@ class OfferType:
     The seller stock keeping unit (SKU) of the item.
     """
 
-    quantity_discount_prices: list["QuantityDiscountPriceType"] = attrs.field(
+    quantity_discount_prices: List["QuantityDiscountPriceType"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1237,8 +1238,8 @@ class ProductPricingV0Client(BaseClient):
         self,
         marketplace_id: str,
         item_type: Union[Literal["Asin"], Literal["Sku"]],
-        asins: list[str] = None,
-        skus: list[str] = None,
+        asins: List[str] = None,
+        skus: List[str] = None,
         customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
     ):
         """
@@ -1371,8 +1372,8 @@ class ProductPricingV0Client(BaseClient):
         self,
         marketplace_id: str,
         item_type: Union[Literal["Asin"], Literal["Sku"]],
-        asins: list[str] = None,
-        skus: list[str] = None,
+        asins: List[str] = None,
+        skus: List[str] = None,
         item_condition: Union[
             Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
         ] = None,

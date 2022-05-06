@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -140,7 +141,7 @@ class Container:
     The manifest identifier.
     """
 
-    packed_items: list["PackedItem"] = attrs.field(
+    packed_items: List["PackedItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -211,7 +212,7 @@ class CustomerInvoice:
 @attrs.define
 class CustomerInvoiceList:
 
-    customer_invoices: list["CustomerInvoice"] = attrs.field(
+    customer_invoices: List["CustomerInvoice"] = attrs.field(
         kw_only=True,
     )
     """
@@ -298,7 +299,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -540,7 +541,7 @@ class PartyIdentification:
     Assigned Identification for the party.
     """
 
-    tax_registration_details: list["TaxRegistrationDetails"] = attrs.field(
+    tax_registration_details: List["TaxRegistrationDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -560,7 +561,7 @@ class PartyIdentification:
 @attrs.define
 class ShippingLabel:
 
-    label_data: list["LabelData"] = attrs.field(
+    label_data: List["LabelData"] = attrs.field(
         kw_only=True,
     )
     """
@@ -604,7 +605,7 @@ class ShippingLabel:
 @attrs.define
 class ShippingLabelList:
 
-    shipping_labels: list["ShippingLabel"] = attrs.field(
+    shipping_labels: List["ShippingLabel"] = attrs.field(
         kw_only=True,
     )
     """
@@ -624,7 +625,7 @@ class ShippingLabelList:
 @attrs.define
 class ShippingLabelRequest:
 
-    containers: list["Container"] = attrs.field(
+    containers: List["Container"] = attrs.field(
         kw_only=True,
     )
     """
@@ -661,7 +662,7 @@ class ShippingLabelRequest:
 @attrs.define
 class SubmitShippingLabelsRequest:
 
-    shipping_label_requests: list["ShippingLabelRequest"] = attrs.field(
+    shipping_label_requests: List["ShippingLabelRequest"] = attrs.field(
         kw_only=True,
     )
     """
@@ -835,7 +836,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
 
     def submit_shipping_label_request(
         self,
-        shipping_label_requests: list["ShippingLabelRequest"] = None,
+        shipping_label_requests: List["ShippingLabelRequest"] = None,
     ):
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.

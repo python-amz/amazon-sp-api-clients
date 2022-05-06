@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -35,7 +36,7 @@ class Attachment:
 @attrs.define
 class CreateAmazonMotorsRequest:
 
-    attachments: list["Attachment"] = attrs.field(
+    attachments: List["Attachment"] = attrs.field(
         kw_only=True,
     )
     """
@@ -61,7 +62,7 @@ class CreateAmazonMotorsResponse:
 @attrs.define
 class CreateConfirmCustomizationDetailsRequest:
 
-    attachments: list["Attachment"] = attrs.field(
+    attachments: List["Attachment"] = attrs.field(
         kw_only=True,
     )
     """
@@ -184,7 +185,7 @@ class CreateConfirmServiceDetailsResponse:
 @attrs.define
 class CreateDigitalAccessKeyRequest:
 
-    attachments: list["Attachment"] = attrs.field(
+    attachments: List["Attachment"] = attrs.field(
         kw_only=True,
     )
     """
@@ -220,7 +221,7 @@ class CreateDigitalAccessKeyResponse:
 @attrs.define
 class CreateLegalDisclosureRequest:
 
-    attachments: list["Attachment"] = attrs.field(
+    attachments: List["Attachment"] = attrs.field(
         kw_only=True,
     )
     """
@@ -288,7 +289,7 @@ class CreateUnexpectedProblemResponse:
 @attrs.define
 class CreateWarrantyRequest:
 
-    attachments: list["Attachment"] = attrs.field(
+    attachments: List["Attachment"] = attrs.field(
         kw_only=True,
     )
     """
@@ -367,7 +368,7 @@ class ErrorList:
 @attrs.define
 class GetAttributesResponse:
 
-    buyer: dict[str, Any] = attrs.field(
+    buyer: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -390,7 +391,7 @@ class GetAttributesResponse:
 @attrs.define
 class GetMessagingActionResponse:
 
-    _embedded: dict[str, Any] = attrs.field(
+    _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -400,7 +401,7 @@ class GetMessagingActionResponse:
     {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
     """
 
-    _links: dict[str, Any] = attrs.field(
+    _links: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -430,7 +431,7 @@ class GetMessagingActionResponse:
 @attrs.define
 class GetMessagingActionsForOrderResponse:
 
-    _embedded: dict[str, Any] = attrs.field(
+    _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -440,7 +441,7 @@ class GetMessagingActionsForOrderResponse:
     {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetMessagingActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
     """
 
-    _links: dict[str, Any] = attrs.field(
+    _links: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -463,7 +464,7 @@ class GetMessagingActionsForOrderResponse:
 @attrs.define
 class GetSchemaResponse:
 
-    _links: dict[str, Any] = attrs.field(
+    _links: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -533,8 +534,8 @@ class MessagingV1Client(BaseClient):
     def create_amazon_motors(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
-        attachments: list["Attachment"] = None,
+        marketplace_ids: List[str],
+        attachments: List["Attachment"] = None,
     ):
         """
         Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
@@ -570,8 +571,8 @@ class MessagingV1Client(BaseClient):
     def create_warranty(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
-        attachments: list["Attachment"] = None,
+        marketplace_ids: List[str],
+        attachments: List["Attachment"] = None,
         coverage_start_date: datetime = None,
         coverage_end_date: datetime = None,
     ):
@@ -615,7 +616,7 @@ class MessagingV1Client(BaseClient):
     def get_attributes(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
     ):
         """
         Returns a response containing attributes related to an order. This includes buyer preferences.
@@ -646,9 +647,9 @@ class MessagingV1Client(BaseClient):
     def confirm_customization_details(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         text: str = None,
-        attachments: list["Attachment"] = None,
+        attachments: List["Attachment"] = None,
     ):
         """
         Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
@@ -687,7 +688,7 @@ class MessagingV1Client(BaseClient):
     def create_confirm_delivery_details(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         text: str = None,
     ):
         """
@@ -724,7 +725,7 @@ class MessagingV1Client(BaseClient):
     def create_confirm_order_details(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         text: str = None,
     ):
         """
@@ -761,7 +762,7 @@ class MessagingV1Client(BaseClient):
     def create_confirm_service_details(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         text: str = None,
     ):
         """
@@ -798,9 +799,9 @@ class MessagingV1Client(BaseClient):
     def create_digital_access_key(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         text: str = None,
-        attachments: list["Attachment"] = None,
+        attachments: List["Attachment"] = None,
     ):
         """
         Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
@@ -839,8 +840,8 @@ class MessagingV1Client(BaseClient):
     def create_legal_disclosure(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
-        attachments: list["Attachment"] = None,
+        marketplace_ids: List[str],
+        attachments: List["Attachment"] = None,
     ):
         """
         Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
@@ -876,7 +877,7 @@ class MessagingV1Client(BaseClient):
     def create_negative_feedback_removal(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
     ):
         """
         Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be sent after the seller has resolved the buyer's problem.
@@ -909,7 +910,7 @@ class MessagingV1Client(BaseClient):
     def create_unexpected_problem(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         text: str = None,
     ):
         """
@@ -946,7 +947,7 @@ class MessagingV1Client(BaseClient):
     def get_messaging_actions_for_order(
         self,
         amazon_order_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
     ):
         """
         Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.

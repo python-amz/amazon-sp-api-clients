@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -254,7 +255,7 @@ class Pagination:
 @attrs.define
 class ResearchingQuantity:
 
-    researching_quantity_breakdown: list["ResearchingQuantityEntry"] = attrs.field(
+    researching_quantity_breakdown: List["ResearchingQuantityEntry"] = attrs.field(
         kw_only=True,
     )
     """
@@ -389,10 +390,10 @@ class FbaInventoryV1Client(BaseClient):
         self,
         granularity_type: Union[Literal["Marketplace"]],
         granularity_id: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         details: bool = None,
         start_date_time: datetime = None,
-        seller_skus: list[str] = None,
+        seller_skus: List[str] = None,
         next_token: str = None,
     ):
         """

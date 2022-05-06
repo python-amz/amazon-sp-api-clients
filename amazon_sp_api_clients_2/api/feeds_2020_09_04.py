@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -135,7 +136,7 @@ class CreateFeedSpecification:
     The document identifier returned by the createFeedDocument operation. Encrypt and upload the feed document contents before calling the createFeed operation.
     """
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -215,7 +216,7 @@ class Feed:
     The feed type.
     """
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -430,9 +431,9 @@ class Feeds20200904Client(BaseClient):
     def create_feed(
         self,
         feed_type: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         input_feed_document_id: str,
-        feed_options: dict[str, Any] = None,
+        feed_options: Dict[str, Any] = None,
     ):
         """
         Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
@@ -545,10 +546,10 @@ class Feeds20200904Client(BaseClient):
 
     def get_feeds(
         self,
-        feed_types: list[str] = None,
-        marketplace_ids: list[str] = None,
+        feed_types: List[str] = None,
+        marketplace_ids: List[str] = None,
         page_size: int = None,
-        processing_statuses: list[
+        processing_statuses: List[
             Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
         ] = None,
         created_since: datetime = None,

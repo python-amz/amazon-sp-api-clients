@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -479,7 +480,7 @@ class ProductFeesV0Client(BaseClient):
     def get_my_fees_estimate_for_asin(
         self,
         asin: str,
-        fees_estimate_request: dict[str, Any] = None,
+        fees_estimate_request: Dict[str, Any] = None,
     ):
         """
         Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
@@ -517,7 +518,7 @@ class ProductFeesV0Client(BaseClient):
     def get_my_fees_estimate_for_sku(
         self,
         seller_sku: str,
-        fees_estimate_request: dict[str, Any] = None,
+        fees_estimate_request: Dict[str, Any] = None,
     ):
         """
         Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.

@@ -12,12 +12,13 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
 class CreateRestrictedDataTokenRequest:
 
-    restricted_resources: list["RestrictedResource"] = attrs.field(
+    restricted_resources: List["RestrictedResource"] = attrs.field(
         kw_only=True,
     )
     """
@@ -85,7 +86,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -98,7 +99,7 @@ class ErrorList:
 @attrs.define
 class RestrictedResource:
 
-    data_elements: list[str] = attrs.field(
+    data_elements: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -133,7 +134,7 @@ class RestrictedResource:
 class Tokens20210301Client(BaseClient):
     def create_restricted_data_token(
         self,
-        restricted_resources: list["RestrictedResource"],
+        restricted_resources: List["RestrictedResource"],
         target_application: str = None,
     ):
         """

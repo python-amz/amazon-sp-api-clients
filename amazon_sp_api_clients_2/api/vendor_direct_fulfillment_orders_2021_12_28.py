@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -158,7 +159,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -261,7 +262,7 @@ class OrderAcknowledgementItem:
     {'schema_format': 'date-time'}
     """
 
-    item_acknowledgements: list["OrderItemAcknowledgement"] = attrs.field(
+    item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field(
         kw_only=True,
     )
     """
@@ -316,7 +317,7 @@ class OrderDetails:
     The customer order number.
     """
 
-    items: list["OrderItem"] = attrs.field(
+    items: List["OrderItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -498,7 +499,7 @@ class OrderItemAcknowledgement:
 @attrs.define
 class OrderList:
 
-    orders: list["Order"] = attrs.field(
+    orders: List["Order"] = attrs.field(
         kw_only=True,
     )
     """
@@ -672,7 +673,7 @@ class ShipmentDetails:
 @attrs.define
 class SubmitAcknowledgementRequest:
 
-    order_acknowledgements: list["OrderAcknowledgementItem"] = attrs.field(
+    order_acknowledgements: List["OrderAcknowledgementItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -895,7 +896,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
 
     def submit_acknowledgement(
         self,
-        order_acknowledgements: list["OrderAcknowledgementItem"] = None,
+        order_acknowledgements: List["OrderAcknowledgementItem"] = None,
     ):
         """
         Submits acknowledgements for one or more purchase orders.

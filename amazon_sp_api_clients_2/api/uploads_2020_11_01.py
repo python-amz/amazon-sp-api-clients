@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -68,7 +69,7 @@ class ErrorList:
 @attrs.define
 class UploadDestination:
 
-    headers: dict[str, Any] = attrs.field(
+    headers: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -98,7 +99,7 @@ class UploadDestination:
 class Uploads20201101Client(BaseClient):
     def create_upload_destination_for_resource(
         self,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         content_md5: str,
         resource: str,
         content_type: str = None,

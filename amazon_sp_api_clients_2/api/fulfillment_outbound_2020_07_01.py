@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -259,7 +260,7 @@ class CreateFulfillmentOrderRequest:
     {'maxLength': 40}
     """
 
-    feature_constraints: list["FeatureSettings"] = attrs.field(
+    feature_constraints: List["FeatureSettings"] = attrs.field(
         kw_only=True,
     )
     """
@@ -623,7 +624,7 @@ class FeatureSku:
     The unique SKU used by Amazon's fulfillment network.
     """
 
-    overlapping_skus: list[str] = attrs.field(
+    overlapping_skus: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -707,7 +708,7 @@ class FulfillmentOrder:
     A fulfillment order identifier submitted with the createFulfillmentOrder operation. Displays as the order identifier in recipient-facing materials such as the packing slip.
     """
 
-    feature_constraints: list["FeatureSettings"] = attrs.field(
+    feature_constraints: List["FeatureSettings"] = attrs.field(
         kw_only=True,
     )
     """
@@ -933,7 +934,7 @@ class FulfillmentPolicy:
 @attrs.define
 class FulfillmentPreview:
 
-    feature_constraints: list["FeatureSettings"] = attrs.field(
+    feature_constraints: List["FeatureSettings"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1069,7 +1070,7 @@ class FulfillmentPreviewList:
 @attrs.define
 class FulfillmentPreviewShipment:
 
-    shipping_notes: list[str] = attrs.field(
+    shipping_notes: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -1152,7 +1153,7 @@ class FulfillmentShipment:
     The current status of the shipment.
     """
 
-    shipping_notes: list[str] = attrs.field(
+    shipping_notes: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -1319,7 +1320,7 @@ class GetFeatureInventoryResult:
     The name of the feature.
     """
 
-    feature_skus: list["FeatureSku"] = attrs.field(
+    feature_skus: List["FeatureSku"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1373,7 +1374,7 @@ class GetFeatureSkuResult:
     The name of the feature.
     """
 
-    ineligible_reasons: list[str] = attrs.field(
+    ineligible_reasons: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -1551,7 +1552,7 @@ class GetFulfillmentPreviewItemList:
 @attrs.define
 class GetFulfillmentPreviewRequest:
 
-    feature_constraints: list["FeatureSettings"] = attrs.field(
+    feature_constraints: List["FeatureSettings"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1741,7 +1742,7 @@ class ListAllFulfillmentOrdersResponse:
 @attrs.define
 class ListAllFulfillmentOrdersResult:
 
-    fulfillment_orders: list["FulfillmentOrder"] = attrs.field(
+    fulfillment_orders: List["FulfillmentOrder"] = attrs.field(
         kw_only=True,
     )
     """
@@ -2385,7 +2386,7 @@ class UpdateFulfillmentOrderRequest:
     {'maxLength': 40}
     """
 
-    feature_constraints: list["FeatureSettings"] = attrs.field(
+    feature_constraints: List["FeatureSettings"] = attrs.field(
         kw_only=True,
     )
     """
@@ -2526,16 +2527,16 @@ class FulfillmentOutbound20200701Client(BaseClient):
         shipping_speed_category: Union[
             Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
         ],
-        destination_address: dict[str, Any],
-        items: list["CreateFulfillmentOrderItem"],
+        destination_address: Dict[str, Any],
+        items: List["CreateFulfillmentOrderItem"],
         marketplace_id: str = None,
-        delivery_window: dict[str, Any] = None,
+        delivery_window: Dict[str, Any] = None,
         fulfillment_action: Union[Literal["Ship"], Literal["Hold"]] = None,
         fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]] = None,
-        cod_settings: dict[str, Any] = None,
+        cod_settings: Dict[str, Any] = None,
         ship_from_country_code: str = None,
-        notification_emails: list[str] = None,
-        feature_constraints: list["FeatureSettings"] = None,
+        notification_emails: List[str] = None,
+        feature_constraints: List["FeatureSettings"] = None,
     ):
         """
         Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
@@ -2608,7 +2609,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def create_fulfillment_return(
         self,
         seller_fulfillment_order_id: str,
-        items: list["CreateReturnItem"],
+        items: List["CreateReturnItem"],
     ):
         """
         Creates a fulfillment return.
@@ -2764,13 +2765,13 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
     def get_fulfillment_preview(
         self,
-        address: dict[str, Any],
-        items: list["GetFulfillmentPreviewItem"],
+        address: Dict[str, Any],
+        items: List["GetFulfillmentPreviewItem"],
         marketplace_id: str = None,
-        shipping_speed_categories: list["ShippingSpeedCategory"] = None,
+        shipping_speed_categories: List["ShippingSpeedCategory"] = None,
         include_codfulfillment_preview: bool = None,
         include_delivery_windows: bool = None,
-        feature_constraints: list["FeatureSettings"] = None,
+        feature_constraints: List["FeatureSettings"] = None,
     ):
         """
         Returns a list of fulfillment order previews based on shipping criteria that you specify.
@@ -2927,13 +2928,13 @@ class FulfillmentOutbound20200701Client(BaseClient):
         shipping_speed_category: Union[
             Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
         ] = None,
-        destination_address: dict[str, Any] = None,
+        destination_address: Dict[str, Any] = None,
         fulfillment_action: Union[Literal["Ship"], Literal["Hold"]] = None,
         fulfillment_policy: Union[Literal["FillOrKill"], Literal["FillAll"], Literal["FillAllAvailable"]] = None,
         ship_from_country_code: str = None,
-        notification_emails: list[str] = None,
-        feature_constraints: list["FeatureSettings"] = None,
-        items: list["UpdateFulfillmentOrderItem"] = None,
+        notification_emails: List[str] = None,
+        feature_constraints: List["FeatureSettings"] = None,
+        items: List["UpdateFulfillmentOrderItem"] = None,
     ):
         """
         Updates and/or requests shipment for a fulfillment order with an order hold on it.

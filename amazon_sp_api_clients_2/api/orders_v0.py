@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -220,7 +221,7 @@ class BuyerTaxInfo:
     The legal name of the company.
     """
 
-    tax_classifications: list["TaxClassification"] = attrs.field(
+    tax_classifications: List["TaxClassification"] = attrs.field(
         kw_only=True,
     )
     """
@@ -507,7 +508,7 @@ class MarketplaceId:
 @attrs.define
 class MarketplaceTaxInfo:
 
-    tax_classifications: list["TaxClassification"] = attrs.field(
+    tax_classifications: List["TaxClassification"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1466,7 +1467,7 @@ class PromotionIdList:
 @attrs.define
 class RegulatedInformation:
 
-    fields: list["RegulatedInformationField"] = attrs.field(
+    fields: List["RegulatedInformationField"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1543,7 +1544,7 @@ class RegulatedOrderVerificationStatus:
     The verification status of the order.
     """
 
-    valid_rejection_reasons: list["RejectionReason"] = attrs.field(
+    valid_rejection_reasons: List["RejectionReason"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1896,20 +1897,20 @@ class OrdersV0Client(BaseClient):
 
     def get_orders(
         self,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         created_after: str = None,
         created_before: str = None,
         last_updated_after: str = None,
         last_updated_before: str = None,
-        order_statuses: list[str] = None,
-        fulfillment_channels: list[str] = None,
-        payment_methods: list[str] = None,
+        order_statuses: List[str] = None,
+        fulfillment_channels: List[str] = None,
+        payment_methods: List[str] = None,
         buyer_email: str = None,
         seller_order_id: str = None,
         max_results_per_page: int = None,
-        easy_ship_shipment_statuses: list[str] = None,
+        easy_ship_shipment_statuses: List[str] = None,
         next_token: str = None,
-        amazon_order_ids: list[str] = None,
+        amazon_order_ids: List[str] = None,
         actual_fulfillment_supply_source_id: str = None,
         is_ispu: bool = None,
         store_chain_store_id: str = None,
@@ -1994,7 +1995,7 @@ class OrdersV0Client(BaseClient):
         order_id: str,
         marketplace_id: str,
         shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]],
-        order_items: list[dict[str, Any]] = None,
+        order_items: List[Dict[str, Any]] = None,
     ):
         """
         Update the shipment status.
@@ -2025,7 +2026,7 @@ class OrdersV0Client(BaseClient):
     def update_verification_status(
         self,
         order_id: str,
-        regulated_order_verification_status: dict[str, Any],
+        regulated_order_verification_status: Dict[str, Any],
     ):
         """
         Updates (approves or rejects) the verification status of an order containing regulated products.

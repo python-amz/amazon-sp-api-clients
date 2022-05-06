@@ -12,6 +12,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -50,7 +51,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -86,7 +87,7 @@ class FulfillmentAvailability:
 @attrs.define
 class Issue:
 
-    attribute_names: list[str] = attrs.field(
+    attribute_names: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -120,7 +121,7 @@ class Issue:
 @attrs.define
 class Item:
 
-    fulfillment_availability: list["FulfillmentAvailability"] = attrs.field(
+    fulfillment_availability: List["FulfillmentAvailability"] = attrs.field(
         kw_only=True,
     )
     """
@@ -349,7 +350,7 @@ class ItemSummaryByMarketplace:
     The Amazon product type of the listings item.
     """
 
-    status: list[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]] = attrs.field(
+    status: List[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]] = attrs.field(
         kw_only=True,
     )
     """
@@ -369,7 +370,7 @@ class ItemSummaryByMarketplace:
 @attrs.define
 class ListingsItemPatchRequest:
 
-    patches: list["PatchOperation"] = attrs.field(
+    patches: List["PatchOperation"] = attrs.field(
         kw_only=True,
     )
     """
@@ -392,7 +393,7 @@ class ListingsItemPatchRequest:
 @attrs.define
 class ListingsItemPutRequest:
 
-    attributes: dict[str, Any] = attrs.field(
+    attributes: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -424,7 +425,7 @@ class ListingsItemPutRequest:
 @attrs.define
 class ListingsItemSubmissionResponse:
 
-    issues: list["Issue"] = attrs.field(
+    issues: List["Issue"] = attrs.field(
         kw_only=True,
     )
     """
@@ -492,7 +493,7 @@ class PatchOperation:
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    value: list[dict[str, Any]] = attrs.field(
+    value: List[Dict[str, Any]] = attrs.field(
         kw_only=True,
     )
     """
@@ -520,7 +521,7 @@ class ListingsItems20210801Client(BaseClient):
         self,
         seller_id: str,
         sku: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         issue_locale: str = None,
     ):
         """
@@ -561,9 +562,9 @@ class ListingsItems20210801Client(BaseClient):
         self,
         seller_id: str,
         sku: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         issue_locale: str = None,
-        included_data: list[
+        included_data: List[
             Union[
                 Literal["summaries"],
                 Literal["attributes"],
@@ -615,9 +616,9 @@ class ListingsItems20210801Client(BaseClient):
         self,
         seller_id: str,
         sku: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         product_type: str,
-        patches: list["PatchOperation"],
+        patches: List["PatchOperation"],
         issue_locale: str = None,
     ):
         """
@@ -664,9 +665,9 @@ class ListingsItems20210801Client(BaseClient):
         self,
         seller_id: str,
         sku: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         product_type: str,
-        attributes: dict[str, Any],
+        attributes: Dict[str, Any],
         issue_locale: str = None,
         requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
     ):

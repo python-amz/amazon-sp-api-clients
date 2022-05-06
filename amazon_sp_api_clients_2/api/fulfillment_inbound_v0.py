@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -2418,8 +2419,8 @@ class FulfillmentInboundV0Client(BaseClient):
     def create_inbound_shipment(
         self,
         shipment_id: str,
-        inbound_shipment_header: dict[str, Any],
-        inbound_shipment_items: list["InboundShipmentItem"],
+        inbound_shipment_header: Dict[str, Any],
+        inbound_shipment_items: List["InboundShipmentItem"],
         marketplace_id: str,
     ):
         """
@@ -2458,11 +2459,11 @@ class FulfillmentInboundV0Client(BaseClient):
 
     def create_inbound_shipment_plan(
         self,
-        ship_from_address: dict[str, Any],
+        ship_from_address: Dict[str, Any],
         label_prep_preference: Union[
             Literal["SELLER_LABEL"], Literal["AMAZON_LABEL_ONLY"], Literal["AMAZON_LABEL_PREFERRED"]
         ],
-        inbound_shipment_plan_request_items: list["InboundShipmentPlanRequestItem"],
+        inbound_shipment_plan_request_items: List["InboundShipmentPlanRequestItem"],
         ship_to_country_code: str = None,
         ship_to_country_subdivision_code: str = None,
     ):
@@ -2572,8 +2573,8 @@ class FulfillmentInboundV0Client(BaseClient):
     def get_inbound_guidance(
         self,
         marketplace_id: str,
-        seller_skulist: list[str] = None,
-        asinlist: list[str] = None,
+        seller_skulist: List[str] = None,
+        asinlist: List[str] = None,
     ):
         """
         Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion.
@@ -2625,7 +2626,7 @@ class FulfillmentInboundV0Client(BaseClient):
         ],
         label_type: Union[Literal["BARCODE_2D"], Literal["UNIQUE"], Literal["PALLET"]],
         number_of_packages: int = None,
-        package_labels_to_print: list[str] = None,
+        package_labels_to_print: List[str] = None,
         number_of_pallets: int = None,
         page_size: int = None,
         page_start_index: int = None,
@@ -2713,8 +2714,8 @@ class FulfillmentInboundV0Client(BaseClient):
     def get_prep_instructions(
         self,
         ship_to_country_code: str,
-        seller_skulist: list[str] = None,
-        asinlist: list[str] = None,
+        seller_skulist: List[str] = None,
+        asinlist: List[str] = None,
     ):
         """
         Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network.
@@ -2831,7 +2832,7 @@ class FulfillmentInboundV0Client(BaseClient):
         self,
         query_type: Union[Literal["SHIPMENT"], Literal["DATE_RANGE"], Literal["NEXT_TOKEN"]],
         marketplace_id: str,
-        shipment_status_list: list[
+        shipment_status_list: List[
             Union[
                 Literal["WORKING"],
                 Literal["SHIPPED"],
@@ -2845,7 +2846,7 @@ class FulfillmentInboundV0Client(BaseClient):
                 Literal["CHECKED_IN"],
             ]
         ] = None,
-        shipment_id_list: list[str] = None,
+        shipment_id_list: List[str] = None,
         last_updated_after: datetime = None,
         last_updated_before: datetime = None,
         next_token: str = None,
@@ -2923,7 +2924,7 @@ class FulfillmentInboundV0Client(BaseClient):
         shipment_id: str,
         is_partnered: bool,
         shipment_type: Union[Literal["SP"], Literal["LTL"]],
-        transport_details: dict[str, Any],
+        transport_details: Dict[str, Any],
     ):
         """
         Sends transportation information to Amazon about an inbound shipment.
@@ -2962,8 +2963,8 @@ class FulfillmentInboundV0Client(BaseClient):
     def update_inbound_shipment(
         self,
         shipment_id: str,
-        inbound_shipment_header: dict[str, Any],
-        inbound_shipment_items: list["InboundShipmentItem"],
+        inbound_shipment_header: Dict[str, Any],
+        inbound_shipment_items: List["InboundShipmentItem"],
         marketplace_id: str,
     ):
         """

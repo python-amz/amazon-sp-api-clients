@@ -12,6 +12,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -91,7 +92,7 @@ class Error:
 @attrs.define
 class ErrorList:
 
-    errors: list["Error"] = attrs.field(
+    errors: List["Error"] = attrs.field(
         kw_only=True,
     )
     """
@@ -211,7 +212,7 @@ class ItemIdentifiers:
 @attrs.define
 class ItemIdentifiersByMarketplace:
 
-    identifiers: list["ItemIdentifier"] = attrs.field(
+    identifiers: List["ItemIdentifier"] = attrs.field(
         kw_only=True,
     )
     """
@@ -285,7 +286,7 @@ class ItemImages:
 @attrs.define
 class ItemImagesByMarketplace:
 
-    images: list["ItemImage"] = attrs.field(
+    images: List["ItemImage"] = attrs.field(
         kw_only=True,
     )
     """
@@ -374,7 +375,7 @@ class ItemSalesRanksByMarketplace:
     Amazon marketplace identifier.
     """
 
-    ranks: list["ItemSalesRank"] = attrs.field(
+    ranks: List["ItemSalesRank"] = attrs.field(
         kw_only=True,
     )
     """
@@ -387,7 +388,7 @@ class ItemSalesRanksByMarketplace:
 @attrs.define
 class ItemSearchResults:
 
-    items: list["Item"] = attrs.field(
+    items: List["Item"] = attrs.field(
         kw_only=True,
     )
     """
@@ -503,7 +504,7 @@ class ItemVariations:
 @attrs.define
 class ItemVariationsByMarketplace:
 
-    asins: list[str] = attrs.field(
+    asins: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -632,14 +633,14 @@ class Pagination:
 @attrs.define
 class Refinements:
 
-    brands: list["BrandRefinement"] = attrs.field(
+    brands: List["BrandRefinement"] = attrs.field(
         kw_only=True,
     )
     """
     Brand search refinements.
     """
 
-    classifications: list["ClassificationRefinement"] = attrs.field(
+    classifications: List["ClassificationRefinement"] = attrs.field(
         kw_only=True,
     )
     """
@@ -653,8 +654,8 @@ class CatalogItems20201201Client(BaseClient):
     def get_catalog_item(
         self,
         asin: str,
-        marketplace_ids: list[str],
-        included_data: list[
+        marketplace_ids: List[str],
+        included_data: List[
             Union[
                 Literal["attributes"],
                 Literal["identifiers"],
@@ -705,9 +706,9 @@ class CatalogItems20201201Client(BaseClient):
 
     def search_catalog_items(
         self,
-        keywords: list[str],
-        marketplace_ids: list[str],
-        included_data: list[
+        keywords: List[str],
+        marketplace_ids: List[str],
+        included_data: List[
             Union[
                 Literal["identifiers"],
                 Literal["images"],
@@ -718,8 +719,8 @@ class CatalogItems20201201Client(BaseClient):
                 Literal["vendorDetails"],
             ]
         ] = None,
-        brand_names: list[str] = None,
-        classification_ids: list[str] = None,
+        brand_names: List[str] = None,
+        classification_ids: List[str] = None,
         page_size: int = None,
         page_token: str = None,
         keywords_locale: str = None,

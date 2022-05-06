@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -1294,7 +1295,7 @@ class RemovalShipmentAdjustmentEvent:
     The orderId for shipping inventory.
     """
 
-    removal_shipment_item_adjustment_list: list["RemovalShipmentItemAdjustment"] = attrs.field(
+    removal_shipment_item_adjustment_list: List["RemovalShipmentItemAdjustment"] = attrs.field(
         kw_only=True,
     )
     """

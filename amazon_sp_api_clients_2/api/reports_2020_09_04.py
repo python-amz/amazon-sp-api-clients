@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -107,7 +108,7 @@ class CreateReportScheduleResult:
 @attrs.define
 class CreateReportScheduleSpecification:
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -193,7 +194,7 @@ class CreateReportSpecification:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -393,7 +394,7 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -536,7 +537,7 @@ class ReportOptions:
 @attrs.define
 class ReportSchedule:
 
-    marketplace_ids: list[str] = attrs.field(
+    marketplace_ids: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -644,8 +645,8 @@ class Reports20200904Client(BaseClient):
     def create_report(
         self,
         report_type: str,
-        marketplace_ids: list[str],
-        report_options: dict[str, Any] = None,
+        marketplace_ids: List[str],
+        report_options: Dict[str, Any] = None,
         data_start_time: datetime = None,
         data_end_time: datetime = None,
     ):
@@ -689,7 +690,7 @@ class Reports20200904Client(BaseClient):
     def create_report_schedule(
         self,
         report_type: str,
-        marketplace_ids: list[str],
+        marketplace_ids: List[str],
         period: Union[
             Literal["PT5M"],
             Literal["PT15M"],
@@ -710,7 +711,7 @@ class Reports20200904Client(BaseClient):
             Literal["P30D"],
             Literal["P1M"],
         ],
-        report_options: dict[str, Any] = None,
+        report_options: Dict[str, Any] = None,
         next_report_creation_time: datetime = None,
     ):
         """
@@ -827,7 +828,7 @@ class Reports20200904Client(BaseClient):
 
     def get_report_schedules(
         self,
-        report_types: list[str],
+        report_types: List[str],
     ):
         """
         Returns report schedule details that match the filters that you specify.
@@ -852,11 +853,11 @@ class Reports20200904Client(BaseClient):
 
     def get_reports(
         self,
-        report_types: list[str] = None,
-        processing_statuses: list[
+        report_types: List[str] = None,
+        processing_statuses: List[
             Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
         ] = None,
-        marketplace_ids: list[str] = None,
+        marketplace_ids: List[str] = None,
         page_size: int = None,
         created_since: datetime = None,
         created_until: datetime = None,

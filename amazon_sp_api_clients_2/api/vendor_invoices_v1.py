@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -135,7 +136,7 @@ class AllowanceDetails:
     Description of the allowance.
     """
 
-    tax_details: list["TaxDetails"] = attrs.field(
+    tax_details: List["TaxDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -176,7 +177,7 @@ class ChargeDetails:
     Description of the charge.
     """
 
-    tax_details: list["TaxDetails"] = attrs.field(
+    tax_details: List["TaxDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -315,21 +316,21 @@ class ErrorList:
 @attrs.define
 class Invoice:
 
-    additional_details: list["AdditionalDetails"] = attrs.field(
+    additional_details: List["AdditionalDetails"] = attrs.field(
         kw_only=True,
     )
     """
     Additional details provided by the selling party, for tax related or other purposes.
     """
 
-    allowance_details: list["AllowanceDetails"] = attrs.field(
+    allowance_details: List["AllowanceDetails"] = attrs.field(
         kw_only=True,
     )
     """
     Total allowance amount details for all line items.
     """
 
-    charge_details: list["ChargeDetails"] = attrs.field(
+    charge_details: List["ChargeDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -350,7 +351,7 @@ class Invoice:
     Identifies the type of invoice.
     """
 
-    items: list["InvoiceItem"] = attrs.field(
+    items: List["InvoiceItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -364,7 +365,7 @@ class Invoice:
     An additional unique reference number used for regulatory or other purposes.
     """
 
-    tax_details: list["TaxDetails"] = attrs.field(
+    tax_details: List["TaxDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -426,7 +427,7 @@ class Invoice:
 @attrs.define
 class InvoiceItem:
 
-    allowance_details: list["AllowanceDetails"] = attrs.field(
+    allowance_details: List["AllowanceDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -440,7 +441,7 @@ class InvoiceItem:
     Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    charge_details: list["ChargeDetails"] = attrs.field(
+    charge_details: List["ChargeDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -468,7 +469,7 @@ class InvoiceItem:
     The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character alpha-numeric code. This value is mandatory only when invoiceType is Invoice, and is not required when invoiceType is CreditNote.
     """
 
-    tax_details: list["TaxDetails"] = attrs.field(
+    tax_details: List["TaxDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -563,7 +564,7 @@ class PartyIdentification:
     Assigned identification for the party.
     """
 
-    tax_registration_details: list["TaxRegistrationDetails"] = attrs.field(
+    tax_registration_details: List["TaxRegistrationDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -624,7 +625,7 @@ class PaymentTerms:
 @attrs.define
 class SubmitInvoicesRequest:
 
-    invoices: list["Invoice"] = attrs.field(
+    invoices: List["Invoice"] = attrs.field(
         kw_only=True,
     )
     """
@@ -739,7 +740,7 @@ class TransactionId:
 class VendorInvoicesV1Client(BaseClient):
     def submit_invoices(
         self,
-        invoices: list["Invoice"] = None,
+        invoices: List["Invoice"] = None,
     ):
         """
         Submit new invoices to Amazon.

@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -1736,12 +1737,12 @@ class MerchantFulfillmentV0Client(BaseClient):
 
     def create_shipment(
         self,
-        shipment_request_details: dict[str, Any],
+        shipment_request_details: Dict[str, Any],
         shipping_service_id: str,
         shipping_service_offer_id: str = None,
         hazmat_type: Union[Literal["None"], Literal["LQHazmat"]] = None,
-        label_format_option: dict[str, Any] = None,
-        shipment_level_seller_inputs_list: list["AdditionalSellerInputs"] = None,
+        label_format_option: Dict[str, Any] = None,
+        shipment_level_seller_inputs_list: List["AdditionalSellerInputs"] = None,
     ):
         """
         Create a shipment with the information provided.
@@ -1786,7 +1787,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     def get_additional_seller_inputs(
         self,
         shipping_service_id: str,
-        ship_from_address: dict[str, Any],
+        ship_from_address: Dict[str, Any],
         order_id: str,
     ):
         """
@@ -1823,7 +1824,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     def get_additional_seller_inputs_old(
         self,
         shipping_service_id: str,
-        ship_from_address: dict[str, Any],
+        ship_from_address: Dict[str, Any],
         order_id: str,
     ):
         """
@@ -1859,8 +1860,8 @@ class MerchantFulfillmentV0Client(BaseClient):
 
     def get_eligible_shipment_services(
         self,
-        shipment_request_details: dict[str, Any],
-        shipping_offering_filter: dict[str, Any] = None,
+        shipment_request_details: Dict[str, Any],
+        shipping_offering_filter: Dict[str, Any] = None,
     ):
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.
@@ -1892,8 +1893,8 @@ class MerchantFulfillmentV0Client(BaseClient):
 
     def get_eligible_shipment_services_old(
         self,
-        shipment_request_details: dict[str, Any],
-        shipping_offering_filter: dict[str, Any] = None,
+        shipment_request_details: Dict[str, Any],
+        shipping_offering_filter: Dict[str, Any] = None,
     ):
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.

@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -140,7 +141,7 @@ class Container:
     The manifest identifier.
     """
 
-    packed_items: list["PackedItem"] = attrs.field(
+    packed_items: List["PackedItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -211,7 +212,7 @@ class CustomerInvoice:
 @attrs.define
 class CustomerInvoiceList:
 
-    customer_invoices: list["CustomerInvoice"] = attrs.field(
+    customer_invoices: List["CustomerInvoice"] = attrs.field(
         kw_only=True,
     )
     """
@@ -583,7 +584,7 @@ class PackingSlip:
 @attrs.define
 class PackingSlipList:
 
-    packing_slips: list["PackingSlip"] = attrs.field(
+    packing_slips: List["PackingSlip"] = attrs.field(
         kw_only=True,
     )
     """
@@ -623,7 +624,7 @@ class PartyIdentification:
     Assigned Identification for the party.
     """
 
-    tax_registration_details: list["TaxRegistrationDetails"] = attrs.field(
+    tax_registration_details: List["TaxRegistrationDetails"] = attrs.field(
         kw_only=True,
     )
     """
@@ -643,14 +644,14 @@ class PartyIdentification:
 @attrs.define
 class ShipmentConfirmation:
 
-    containers: list["Container"] = attrs.field(
+    containers: List["Container"] = attrs.field(
         kw_only=True,
     )
     """
     Provide the details of the items in this shipment. If any of the item details field is common at a package or a pallet level, then provide them at the corresponding package.
     """
 
-    items: list["Item"] = attrs.field(
+    items: List["Item"] = attrs.field(
         kw_only=True,
     )
     """
@@ -778,7 +779,7 @@ class ShipmentStatusUpdate:
 @attrs.define
 class ShippingLabel:
 
-    label_data: list["LabelData"] = attrs.field(
+    label_data: List["LabelData"] = attrs.field(
         kw_only=True,
     )
     """
@@ -822,7 +823,7 @@ class ShippingLabel:
 @attrs.define
 class ShippingLabelList:
 
-    shipping_labels: list["ShippingLabel"] = attrs.field(
+    shipping_labels: List["ShippingLabel"] = attrs.field(
         kw_only=True,
     )
     """
@@ -842,7 +843,7 @@ class ShippingLabelList:
 @attrs.define
 class ShippingLabelRequest:
 
-    containers: list["Container"] = attrs.field(
+    containers: List["Container"] = attrs.field(
         kw_only=True,
     )
     """
@@ -886,7 +887,7 @@ class StatusUpdateDetails:
     Provides a reason code for the status of the package that will provide additional information about the transportation status.
     """
 
-    shipment_schedule: dict[str, Any] = attrs.field(
+    shipment_schedule: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
     """
@@ -933,7 +934,7 @@ class StatusUpdateDetails:
 @attrs.define
 class SubmitShipmentConfirmationsRequest:
 
-    shipment_confirmations: list["ShipmentConfirmation"] = attrs.field(
+    shipment_confirmations: List["ShipmentConfirmation"] = attrs.field(
         kw_only=True,
     )
     """
@@ -966,7 +967,7 @@ class SubmitShipmentConfirmationsResponse:
 @attrs.define
 class SubmitShipmentStatusUpdatesRequest:
 
-    shipment_status_updates: list["ShipmentStatusUpdate"] = attrs.field(
+    shipment_status_updates: List["ShipmentStatusUpdate"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1002,7 +1003,7 @@ class SubmitShipmentStatusUpdatesResponse:
 @attrs.define
 class SubmitShippingLabelsRequest:
 
-    shipping_label_requests: list["ShippingLabelRequest"] = attrs.field(
+    shipping_label_requests: List["ShippingLabelRequest"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1330,7 +1331,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
     def submit_shipment_confirmations(
         self,
-        shipment_confirmations: list["ShipmentConfirmation"] = None,
+        shipment_confirmations: List["ShipmentConfirmation"] = None,
     ):
         """
         Submits one or more shipment confirmations for vendor orders.
@@ -1356,7 +1357,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
     def submit_shipment_status_updates(
         self,
-        shipment_status_updates: list["ShipmentStatusUpdate"] = None,
+        shipment_status_updates: List["ShipmentStatusUpdate"] = None,
     ):
         """
         This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
@@ -1382,7 +1383,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
     def submit_shipping_label_request(
         self,
-        shipping_label_requests: list["ShippingLabelRequest"] = None,
+        shipping_label_requests: List["ShippingLabelRequest"] = None,
     ):
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.

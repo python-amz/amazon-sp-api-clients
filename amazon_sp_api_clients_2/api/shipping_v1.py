@@ -10,6 +10,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -98,7 +99,7 @@ class Address:
     {'maxLength': 60, 'minLength': 1}
     """
 
-    copy_emails: list[str] = attrs.field(
+    copy_emails: List[str] = attrs.field(
         kw_only=True,
     )
     """
@@ -204,7 +205,7 @@ class Container:
     The type of physical container being used. (always 'PACKAGE')
     """
 
-    items: list["ContainerItem"] = attrs.field(
+    items: List["ContainerItem"] = attrs.field(
         kw_only=True,
     )
     """
@@ -1369,9 +1370,9 @@ class ShippingV1Client(BaseClient):
     def create_shipment(
         self,
         client_reference_id: str,
-        ship_to: dict[str, Any],
-        ship_from: dict[str, Any],
-        containers: list["Container"],
+        ship_to: Dict[str, Any],
+        ship_from: Dict[str, Any],
+        containers: List["Container"],
     ):
         """
         Create a new shipment.
@@ -1432,10 +1433,10 @@ class ShippingV1Client(BaseClient):
 
     def get_rates(
         self,
-        ship_to: dict[str, Any],
-        ship_from: dict[str, Any],
-        service_types: list["ServiceType"],
-        container_specifications: list["ContainerSpecification"],
+        ship_to: Dict[str, Any],
+        ship_from: Dict[str, Any],
+        service_types: List["ServiceType"],
+        container_specifications: List["ContainerSpecification"],
         ship_date: datetime = None,
     ):
         """
@@ -1529,7 +1530,7 @@ class ShippingV1Client(BaseClient):
         self,
         shipment_id: str,
         rate_id: str,
-        label_specification: dict[str, Any],
+        label_specification: Dict[str, Any],
     ):
         """
         Purchase shipping labels based on a given rate.
@@ -1565,13 +1566,13 @@ class ShippingV1Client(BaseClient):
     def purchase_shipment(
         self,
         client_reference_id: str,
-        ship_to: dict[str, Any],
-        ship_from: dict[str, Any],
+        ship_to: Dict[str, Any],
+        ship_from: Dict[str, Any],
         service_type: Union[
             Literal["Amazon Shipping Ground"], Literal["Amazon Shipping Standard"], Literal["Amazon Shipping Premium"]
         ],
-        containers: list["Container"],
-        label_specification: dict[str, Any],
+        containers: List["Container"],
+        label_specification: Dict[str, Any],
         ship_date: datetime = None,
     ):
         """
@@ -1621,7 +1622,7 @@ class ShippingV1Client(BaseClient):
         self,
         shipment_id: str,
         tracking_id: str,
-        label_specification: dict[str, Any],
+        label_specification: Dict[str, Any],
     ):
         """
         Retrieve shipping label based on the shipment id and tracking id.

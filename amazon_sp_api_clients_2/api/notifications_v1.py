@@ -12,6 +12,7 @@ License for the OpenAPI file: Apache License 2.0 http://www.apache.org/licenses/
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 @attrs.define
@@ -405,7 +406,7 @@ class Subscription:
 class NotificationsV1Client(BaseClient):
     def create_destination(
         self,
-        resource_specification: dict[str, Any],
+        resource_specification: Dict[str, Any],
         name: str,
     ):
         """

@@ -10,6 +10,7 @@ License for the OpenAPI file: {{ data.data.info.license.name }} {{ data.data.inf
 import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal
+from datetime import date, datetime
 
 
 {% for schema in data.schemas %}
