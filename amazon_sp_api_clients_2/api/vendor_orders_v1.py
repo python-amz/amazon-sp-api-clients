@@ -646,15 +646,9 @@ class OrderItemAcknowledgement:
 @attrs.define
 class OrderItemStatus:
 
-    acknowledgement_status: Dict[str, Any] = attrs.field(
+    acknowledgement_status: "OrderItemStatusAcknowledgementStatus" = attrs.field(
         kw_only=True,
     )
-    """
-    Acknowledgement status information.
-
-    Extra fields:
-    {'properties': {'confirmationStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['ACCEPTED', 'PARTIALLY_ACCEPTED', 'REJECTED', 'UNCONFIRMED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Confirmation status of line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'acceptedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'rejectedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'acknowledgementStatusDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/AcknowledgementStatusDetails'), properties=None, additionalProperties=None, description='Details of item quantity confirmed.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    """
 
     buyer_product_identifier: str = attrs.field(
         kw_only=True,
@@ -678,25 +672,13 @@ class OrderItemStatus:
         kw_only=True,
     )
 
-    ordered_quantity: Dict[str, Any] = attrs.field(
+    ordered_quantity: "OrderItemStatusOrderedQuantity" = attrs.field(
         kw_only=True,
     )
-    """
-    Ordered quantity information.
 
-    Extra fields:
-    {'properties': {'orderedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'orderedQuantityDetails': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/OrderedQuantityDetails'), properties=None, additionalProperties=None, description='Details of item quantity ordered.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    """
-
-    receiving_status: Dict[str, Any] = attrs.field(
+    receiving_status: "OrderItemStatusReceivingStatus" = attrs.field(
         kw_only=True,
     )
-    """
-    Item receive status at the buyer's warehouse.
-
-    Extra fields:
-    {'properties': {'receiveStatus': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['NOT_RECEIVED', 'PARTIALLY_RECEIVED', 'RECEIVED'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='Receive status of the line item.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'receivedQuantity': Reference(ref='#/components/schemas/ItemQuantity'), 'lastReceiveDate': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description="The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.", schema_format='date-time', default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    """
 
     vendor_product_identifier: str = attrs.field(
         kw_only=True,
@@ -704,6 +686,83 @@ class OrderItemStatus:
     """
     The vendor selected product identification of the item.
     """
+
+
+@attrs.define
+class OrderItemStatusAcknowledgementStatus:
+    """
+    Acknowledgement status information.
+    """
+
+    accepted_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
+    acknowledgement_status_details: List["AcknowledgementStatusDetails"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Details of item quantity confirmed.
+    """
+
+    confirmation_status: Union[
+        Literal["ACCEPTED"], Literal["PARTIALLY_ACCEPTED"], Literal["REJECTED"], Literal["UNCONFIRMED"]
+    ] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Confirmation status of line item.
+    """
+
+    rejected_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class OrderItemStatusOrderedQuantity:
+    """
+    Ordered quantity information.
+    """
+
+    ordered_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
+
+    ordered_quantity_details: List["OrderedQuantityDetails"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Details of item quantity ordered.
+    """
+
+
+@attrs.define
+class OrderItemStatusReceivingStatus:
+    """
+    Item receive status at the buyer's warehouse.
+    """
+
+    last_receive_date: datetime = attrs.field(
+        kw_only=True,
+    )
+    """
+    The date when the most recent item was received at the buyer's warehouse. Must be in ISO-8601 date/time format.
+
+    Extra fields:
+    {'schema_format': 'date-time'}
+    """
+
+    receive_status: Union[Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Receive status of the line item.
+    """
+
+    received_quantity: "ItemQuantity" = attrs.field(
+        kw_only=True,
+    )
 
 
 @attrs.define

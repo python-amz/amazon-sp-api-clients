@@ -365,19 +365,27 @@ class GetAttributesResponse:
     The response schema for the GetAttributes operation.
     """
 
-    buyer: Dict[str, Any] = attrs.field(
+    buyer: "GetAttributesResponseBuyer" = attrs.field(
         kw_only=True,
     )
-    """
-    The list of attributes related to the buyer.
-
-    Extra fields:
-    {'properties': {'locale': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='The buyer\'s language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}}
-    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
+
+
+@attrs.define
+class GetAttributesResponseBuyer:
+    """
+    The list of attributes related to the buyer.
+    """
+
+    locale: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    The buyer's language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".
+    """
 
 
 @attrs.define
@@ -386,23 +394,13 @@ class GetMessagingActionResponse:
     Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
 
-    _embedded: Dict[str, Any] = attrs.field(
+    _embedded: "GetMessagingActionResponseEmbedded" = attrs.field(
         kw_only=True,
     )
-    """
 
-    Extra fields:
-    {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
-    """
-
-    _links: Dict[str, Any] = attrs.field(
+    _links: "GetMessagingActionResponseLinks" = attrs.field(
         kw_only=True,
     )
-    """
-
-    Extra fields:
-    {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['schema', 'self']}
-    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -414,28 +412,38 @@ class GetMessagingActionResponse:
 
 
 @attrs.define
+class GetMessagingActionResponseEmbedded:
+
+    schema: "GetSchemaResponse" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class GetMessagingActionResponseLinks:
+
+    schema: "LinkObject" = attrs.field(
+        kw_only=True,
+    )
+
+    self: "LinkObject" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
 class GetMessagingActionsForOrderResponse:
     """
     The response schema for the getMessagingActionsForOrder operation.
     """
 
-    _embedded: Dict[str, Any] = attrs.field(
+    _embedded: "GetMessagingActionsForOrderResponseEmbedded" = attrs.field(
         kw_only=True,
     )
-    """
 
-    Extra fields:
-    {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetMessagingActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
-    """
-
-    _links: Dict[str, Any] = attrs.field(
+    _links: "GetMessagingActionsForOrderResponseLinks" = attrs.field(
         kw_only=True,
     )
-    """
-
-    Extra fields:
-    {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions', 'self']}
-    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -443,22 +451,48 @@ class GetMessagingActionsForOrderResponse:
 
 
 @attrs.define
-class GetSchemaResponse:
+class GetMessagingActionsForOrderResponseEmbedded:
 
-    _links: Dict[str, Any] = attrs.field(
+    actions: List["GetMessagingActionResponse"] = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class GetMessagingActionsForOrderResponseLinks:
+
+    actions: List["LinkObject"] = attrs.field(
         kw_only=True,
     )
     """
-
-    Extra fields:
-    {'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['self']}
+    Eligible actions for the specified amazonOrderId.
     """
+
+    self: "LinkObject" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class GetSchemaResponse:
+
+    _links: "GetSchemaResponseLinks" = attrs.field(
+        kw_only=True,
+    )
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
 
     payload: "Schema" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class GetSchemaResponseLinks:
+
+    self: "LinkObject" = attrs.field(
         kw_only=True,
     )
 

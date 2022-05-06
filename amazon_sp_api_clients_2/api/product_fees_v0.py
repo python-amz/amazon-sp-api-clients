@@ -157,6 +157,12 @@ class FeesEstimateErrorDetail:
 
 
 @attrs.define
+class FeesEstimateErrorDetailItem:
+
+    pass
+
+
+@attrs.define
 class FeesEstimateIdentifier:
     """
     An item identifier, marketplace, time of request, and other details that identify an estimate.

@@ -391,15 +391,9 @@ class ListingsItemPutRequest:
     The request body schema for the putListingsItem operation.
     """
 
-    attributes: Dict[str, Any] = attrs.field(
+    attributes: "ListingsItemPutRequestAttributes" = attrs.field(
         kw_only=True,
     )
-    """
-    JSON object containing structured listings item attribute data keyed by attribute name.
-
-    Extra fields:
-    {'properties': {}}
-    """
 
     product_type: str = attrs.field(
         kw_only=True,
@@ -416,6 +410,15 @@ class ListingsItemPutRequest:
     """
     The name of the requirements set for the provided data.
     """
+
+
+@attrs.define
+class ListingsItemPutRequestAttributes:
+    """
+    JSON object containing structured listings item attribute data keyed by attribute name.
+    """
+
+    pass
 
 
 @attrs.define
@@ -491,12 +494,18 @@ class PatchOperation:
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    value: List[Dict[str, Any]] = attrs.field(
+    value: List["PatchOperationValueItem"] = attrs.field(
         kw_only=True,
     )
     """
     JSON value to add, replace, or delete.
     """
+
+
+@attrs.define
+class PatchOperationValueItem:
+
+    pass
 
 
 @attrs.define

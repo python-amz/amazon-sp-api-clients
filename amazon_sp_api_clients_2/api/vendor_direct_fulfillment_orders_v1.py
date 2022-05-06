@@ -383,14 +383,17 @@ class OrderDetails:
         kw_only=True,
     )
 
-    tax_total: Dict[str, Any] = attrs.field(
+    tax_total: "OrderDetailsTaxTotal" = attrs.field(
         kw_only=True,
     )
-    """
 
-    Extra fields:
-    {'properties': {'taxLineItem': Reference(ref='#/components/schemas/TaxLineItem')}}
-    """
+
+@attrs.define
+class OrderDetailsTaxTotal:
+
+    tax_line_item: "TaxLineItem" = attrs.field(
+        kw_only=True,
+    )
 
 
 @attrs.define
@@ -426,15 +429,9 @@ class OrderItem:
         kw_only=True,
     )
 
-    tax_details: Dict[str, Any] = attrs.field(
+    tax_details: "OrderItemTaxDetails" = attrs.field(
         kw_only=True,
     )
-    """
-    Total tax details for the line item.
-
-    Extra fields:
-    {'properties': {'taxLineItem': Reference(ref='#/components/schemas/TaxLineItem')}}
-    """
 
     title: str = attrs.field(
         kw_only=True,
@@ -482,6 +479,17 @@ class OrderItemAcknowledgement:
     """
     The vendor selected product identification of the item. Should be the same as was provided in the purchase order.
     """
+
+
+@attrs.define
+class OrderItemTaxDetails:
+    """
+    Total tax details for the line item.
+    """
+
+    tax_line_item: "TaxLineItem" = attrs.field(
+        kw_only=True,
+    )
 
 
 @attrs.define

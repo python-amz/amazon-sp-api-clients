@@ -71,15 +71,9 @@ class UploadDestination:
     Information about an upload destination.
     """
 
-    headers: Dict[str, Any] = attrs.field(
+    headers: "UploadDestinationHeaders" = attrs.field(
         kw_only=True,
     )
-    """
-    The headers to include in the upload request.
-
-    Extra fields:
-    {'properties': {}}
-    """
 
     upload_destination_id: str = attrs.field(
         kw_only=True,
@@ -94,6 +88,15 @@ class UploadDestination:
     """
     The URL for the upload destination.
     """
+
+
+@attrs.define
+class UploadDestinationHeaders:
+    """
+    The headers to include in the upload request.
+    """
+
+    pass
 
 
 class Uploads20201101Client(BaseClient):

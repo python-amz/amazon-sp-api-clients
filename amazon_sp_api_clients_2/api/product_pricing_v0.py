@@ -41,6 +41,12 @@ class AttributeSetList:
 
 
 @attrs.define
+class AttributeSetListItem:
+
+    pass
+
+
+@attrs.define
 class BuyBoxEligibleOffers:
 
     pass
@@ -885,6 +891,12 @@ class RelationshipList:
     """
     A list that contains product variation information, if applicable.
     """
+
+    pass
+
+
+@attrs.define
+class RelationshipListItem:
 
     pass
 

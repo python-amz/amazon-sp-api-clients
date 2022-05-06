@@ -1179,6 +1179,24 @@ class OrderItemsBuyerInfoList:
 
 
 @attrs.define
+class OrderItemsItem:
+
+    order_item_id: str = attrs.field(
+        kw_only=True,
+    )
+    """
+    the unique identifier for the order item
+    """
+
+    quantity: int = attrs.field(
+        kw_only=True,
+    )
+    """
+    the quantity of items that needs an update of the shipment status
+    """
+
+
+@attrs.define
 class OrderItemsList:
     """
     The order items list along with the order ID.
@@ -1878,7 +1896,7 @@ class OrdersV0Client(BaseClient):
         order_id: str,
         marketplace_id: str,
         shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]],
-        order_items: List[Dict[str, Any]] = None,
+        order_items: List["OrderItemsItem"] = None,
     ):
         """
         Update the shipment status.

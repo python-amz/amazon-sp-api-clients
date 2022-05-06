@@ -110,15 +110,9 @@ class ProductTypeDefinition:
         kw_only=True,
     )
 
-    property_groups: Dict[str, Any] = attrs.field(
+    property_groups: "ProductTypeDefinitionPropertyGroups" = attrs.field(
         kw_only=True,
     )
-    """
-    Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
-
-    Extra fields:
-    {'additionalProperties': Reference(ref='#/components/schemas/PropertyGroup')}
-    """
 
     requirements: Union[
         Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
@@ -139,6 +133,15 @@ class ProductTypeDefinition:
     schema: "SchemaLink" = attrs.field(
         kw_only=True,
     )
+
+
+@attrs.define
+class ProductTypeDefinitionPropertyGroups:
+    """
+    Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
+    """
+
+    pass
 
 
 @attrs.define
@@ -218,14 +221,29 @@ class SchemaLink:
     Checksum hash of the schema (Base64 MD5). Can be used to verify schema contents, identify changes between schema versions, and for caching.
     """
 
-    link: Dict[str, Any] = attrs.field(
+    link: "SchemaLinkLink" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class SchemaLinkLink:
+    """
+    Link to retrieve the schema.
+    """
+
+    resource: str = attrs.field(
         kw_only=True,
     )
     """
-    Link to retrieve the schema.
+    URI resource for the link.
+    """
 
-    Extra fields:
-    {'properties': {'resource': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='URI resource for the link.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None), 'verb': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=['GET'], type='string', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=None, properties=None, additionalProperties=None, description='HTTP method for the link operation.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['resource', 'verb']}
+    verb: Union[Literal["GET"]] = attrs.field(
+        kw_only=True,
+    )
+    """
+    HTTP method for the link operation.
     """
 
 

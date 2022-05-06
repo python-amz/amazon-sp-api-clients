@@ -682,15 +682,18 @@ class Categories:
     The name of the product category (or browse node).
     """
 
-    parent: Dict[str, Any] = attrs.field(
+    parent: "CategoriesParent" = attrs.field(
         kw_only=True,
     )
+
+
+@attrs.define
+class CategoriesParent:
     """
     The parent product category.
-
-    Extra fields:
-    {'properties': {}}
     """
+
+    pass
 
 
 @attrs.define

@@ -211,7 +211,7 @@ class Generator:
                             continue
                         assert item.type == 'object', item.type
                         new_schema_name = f'{name}{capitalized_sub_name}Item'
-                        schema.properties[sub_name] = Reference(ref=f"#/components/schemas/{new_schema_name}")
+                        sub_schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
                         new_schemas.extend(self._find_new_schema(new_schema_name, item))
 
             if item := schema.items:
@@ -237,7 +237,7 @@ class Generator:
         src = self.components.schemas
         src = {k: v for k, v in src.items() if isinstance(v, Schema)}
         schemas = list(src.items())
-        # schemas = list(chain.from_iterable(self._find_new_schema(k, v) for k, v in schemas))
+        schemas = list(chain.from_iterable(self._find_new_schema(k, v) for k, v in schemas))
         schema_names = [k for k, v in schemas]
         assert set(src).issubset(set(schema_names)), 'existing schemas should not be deleted'
         assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'

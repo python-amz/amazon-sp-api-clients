@@ -64,14 +64,9 @@ class ErrorList:
 @attrs.define
 class GetSchemaResponse:
 
-    _links: Dict[str, Any] = attrs.field(
+    _links: "GetSchemaResponseLinks" = attrs.field(
         kw_only=True,
     )
-    """
-
-    Extra fields:
-    {'properties': {'self': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['self']}
-    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -83,28 +78,26 @@ class GetSchemaResponse:
 
 
 @attrs.define
+class GetSchemaResponseLinks:
+
+    self: "LinkObject" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
 class GetSolicitationActionResponse:
     """
     Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
 
-    _embedded: Dict[str, Any] = attrs.field(
+    _embedded: "GetSolicitationActionResponseEmbedded" = attrs.field(
         kw_only=True,
     )
-    """
 
-    Extra fields:
-    {'properties': {'schema': Reference(ref='#/components/schemas/GetSchemaResponse')}}
-    """
-
-    _links: Dict[str, Any] = attrs.field(
+    _links: "GetSolicitationActionResponseLinks" = attrs.field(
         kw_only=True,
     )
-    """
-
-    Extra fields:
-    {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'schema': Reference(ref='#/components/schemas/LinkObject')}, 'required': ['schema', 'self']}
-    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -116,30 +109,63 @@ class GetSolicitationActionResponse:
 
 
 @attrs.define
+class GetSolicitationActionResponseEmbedded:
+
+    schema: "GetSchemaResponse" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class GetSolicitationActionResponseLinks:
+
+    schema: "LinkObject" = attrs.field(
+        kw_only=True,
+    )
+
+    self: "LinkObject" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
 class GetSolicitationActionsForOrderResponse:
     """
     The response schema for the getSolicitationActionsForOrder operation.
     """
 
-    _embedded: Dict[str, Any] = attrs.field(
+    _embedded: "GetSolicitationActionsForOrderResponseEmbedded" = attrs.field(
         kw_only=True,
     )
-    """
 
-    Extra fields:
-    {'properties': {'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/GetSolicitationActionResponse'), properties=None, additionalProperties=None, description=None, schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions']}
-    """
-
-    _links: Dict[str, Any] = attrs.field(
+    _links: "GetSolicitationActionsForOrderResponseLinks" = attrs.field(
         kw_only=True,
     )
-    """
-
-    Extra fields:
-    {'properties': {'self': Reference(ref='#/components/schemas/LinkObject'), 'actions': Schema(title=None, multipleOf=None, maximum=None, exclusiveMaximum=None, minimum=None, exclusiveMinimum=None, maxLength=None, minLength=None, pattern=None, maxItems=None, minItems=None, uniqueItems=None, maxProperties=None, minProperties=None, required=None, enum=None, type='array', allOf=None, oneOf=None, anyOf=None, schema_not=None, items=Reference(ref='#/components/schemas/LinkObject'), properties=None, additionalProperties=None, description='Eligible actions for the specified amazonOrderId.', schema_format=None, default=None, nullable=None, discriminator=None, readOnly=None, writeOnly=None, xml=None, externalDocs=None, example=None, deprecated=None)}, 'required': ['actions', 'self']}
-    """
 
     errors: "ErrorList" = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class GetSolicitationActionsForOrderResponseEmbedded:
+
+    actions: List["GetSolicitationActionResponse"] = attrs.field(
+        kw_only=True,
+    )
+
+
+@attrs.define
+class GetSolicitationActionsForOrderResponseLinks:
+
+    actions: List["LinkObject"] = attrs.field(
+        kw_only=True,
+    )
+    """
+    Eligible actions for the specified amazonOrderId.
+    """
+
+    self: "LinkObject" = attrs.field(
         kw_only=True,
     )
 
