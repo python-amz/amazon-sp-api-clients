@@ -295,7 +295,7 @@ class CreateWarrantyRequest:
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
 
-    coverage_end_date: str = attrs.field(
+    coverage_end_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -305,7 +305,7 @@ class CreateWarrantyRequest:
     {'schema_format': 'date-time'}
     """
 
-    coverage_start_date: str = attrs.field(
+    coverage_start_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -572,8 +572,8 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: list[str],
         attachments: list["Attachment"] = None,
-        coverage_start_date: str = None,
-        coverage_end_date: str = None,
+        coverage_start_date: datetime = None,
+        coverage_end_date: datetime = None,
     ):
         """
         Sends a message to a buyer to provide details about warranty information on a purchase in their order.

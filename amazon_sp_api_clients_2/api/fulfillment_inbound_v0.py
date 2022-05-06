@@ -2352,7 +2352,7 @@ class FulfillmentInboundV0Client(BaseClient):
     def confirm_preorder(
         self,
         shipment_id: str,
-        need_by_date: str,
+        need_by_date: date,
         marketplace_id: str,
     ):
         """
@@ -2753,8 +2753,8 @@ class FulfillmentInboundV0Client(BaseClient):
         self,
         query_type: Union[Literal["DATE_RANGE"], Literal["NEXT_TOKEN"]],
         marketplace_id: str,
-        last_updated_after: str = None,
-        last_updated_before: str = None,
+        last_updated_after: datetime = None,
+        last_updated_before: datetime = None,
         next_token: str = None,
     ):
         """
@@ -2846,8 +2846,8 @@ class FulfillmentInboundV0Client(BaseClient):
             ]
         ] = None,
         shipment_id_list: list[str] = None,
-        last_updated_after: str = None,
-        last_updated_before: str = None,
+        last_updated_after: datetime = None,
+        last_updated_before: datetime = None,
         next_token: str = None,
     ):
         """

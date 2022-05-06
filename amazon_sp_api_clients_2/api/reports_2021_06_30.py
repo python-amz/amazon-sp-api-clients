@@ -51,7 +51,7 @@ class CreateReportScheduleSpecification:
     {'maxItems': 25, 'minItems': 1}
     """
 
-    next_report_creation_time: str = attrs.field(
+    next_report_creation_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -107,7 +107,7 @@ class CreateReportScheduleSpecification:
 @attrs.define
 class CreateReportSpecification:
 
-    data_end_time: str = attrs.field(
+    data_end_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -117,7 +117,7 @@ class CreateReportSpecification:
     {'schema_format': 'date-time'}
     """
 
-    data_start_time: str = attrs.field(
+    data_start_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -217,7 +217,7 @@ class GetReportsResponse:
 @attrs.define
 class Report:
 
-    created_time: str = attrs.field(
+    created_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -227,7 +227,7 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    data_end_time: str = attrs.field(
+    data_end_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -237,7 +237,7 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    data_start_time: str = attrs.field(
+    data_start_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -254,7 +254,7 @@ class Report:
     A list of marketplace identifiers for the report.
     """
 
-    processing_end_time: str = attrs.field(
+    processing_end_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -264,7 +264,7 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    processing_start_time: str = attrs.field(
+    processing_start_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -363,7 +363,7 @@ class ReportSchedule:
     A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
     """
 
-    next_report_creation_time: str = attrs.field(
+    next_report_creation_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -473,8 +473,8 @@ class Reports20210630Client(BaseClient):
         report_type: str,
         marketplace_ids: list[str],
         report_options: dict[str, Any] = None,
-        data_start_time: str = None,
-        data_end_time: str = None,
+        data_start_time: datetime = None,
+        data_end_time: datetime = None,
     ):
         """
         Creates a report.
@@ -538,7 +538,7 @@ class Reports20210630Client(BaseClient):
             Literal["P1M"],
         ],
         report_options: dict[str, Any] = None,
-        next_report_creation_time: str = None,
+        next_report_creation_time: datetime = None,
     ):
         """
         Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
@@ -685,8 +685,8 @@ class Reports20210630Client(BaseClient):
         ] = None,
         marketplace_ids: list[str] = None,
         page_size: int = None,
-        created_since: str = None,
-        created_until: str = None,
+        created_since: datetime = None,
+        created_until: datetime = None,
         next_token: str = None,
     ):
         """

@@ -102,7 +102,7 @@ class FeeDetailList:
 @attrs.define
 class FeesEstimate:
 
-    time_of_fees_estimation: str = attrs.field(
+    time_of_fees_estimation: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -402,7 +402,7 @@ class IncludedFeeDetailList:
 @attrs.define
 class MoneyType:
 
-    amount: Union[float, int] = attrs.field(
+    amount: float = attrs.field(
         kw_only=True,
     )
     """

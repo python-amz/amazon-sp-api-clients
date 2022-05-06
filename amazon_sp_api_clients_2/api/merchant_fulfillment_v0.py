@@ -459,7 +459,7 @@ class CreateShipmentResponse:
 @attrs.define
 class CurrencyAmount:
 
-    amount: Union[float, int] = attrs.field(
+    amount: float = attrs.field(
         kw_only=True,
     )
     """
@@ -985,7 +985,7 @@ class LabelFormatOptionRequest:
 @attrs.define
 class Length:
 
-    value: Union[float, int] = attrs.field(
+    value: float = attrs.field(
         kw_only=True,
     )
     """

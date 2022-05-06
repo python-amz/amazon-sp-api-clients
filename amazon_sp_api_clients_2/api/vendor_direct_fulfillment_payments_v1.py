@@ -213,7 +213,7 @@ class InvoiceDetail:
     Total charge amount details for all line items.
     """
 
-    invoice_date: str = attrs.field(
+    invoice_date: datetime = attrs.field(
         kw_only=True,
     )
     """

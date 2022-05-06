@@ -191,7 +191,7 @@ class ErrorList:
 @attrs.define
 class Feed:
 
-    created_time: str = attrs.field(
+    created_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -222,7 +222,7 @@ class Feed:
     A list of identifiers for the marketplaces that the feed is applied to.
     """
 
-    processing_end_time: str = attrs.field(
+    processing_end_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -232,7 +232,7 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    processing_start_time: str = attrs.field(
+    processing_start_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -551,8 +551,8 @@ class Feeds20200904Client(BaseClient):
         processing_statuses: list[
             Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
         ] = None,
-        created_since: str = None,
-        created_until: str = None,
+        created_since: datetime = None,
+        created_until: datetime = None,
         next_token: str = None,
     ):
         """

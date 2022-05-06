@@ -178,7 +178,7 @@ class AppointmentTime:
     {'minimum': 1.0}
     """
 
-    start_time: str = attrs.field(
+    start_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -201,7 +201,7 @@ class AppointmentTimeInput:
     The duration of an appointment in minutes.
     """
 
-    start_time: str = attrs.field(
+    start_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -415,7 +415,7 @@ class GetServiceJobsResponse:
 @attrs.define
 class ItemDelivery:
 
-    estimated_delivery_date: str = attrs.field(
+    estimated_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -438,7 +438,7 @@ class ItemDelivery:
 @attrs.define
 class ItemDeliveryPromise:
 
-    end_time: str = attrs.field(
+    end_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -448,7 +448,7 @@ class ItemDeliveryPromise:
     {'schema_format': 'date-time'}
     """
 
-    start_time: str = attrs.field(
+    start_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -526,7 +526,7 @@ class Poa:
     {'minItems': 1}
     """
 
-    upload_time: str = attrs.field(
+    upload_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -649,7 +649,7 @@ class ServiceJob:
     A list of items associated with the service job.
     """
 
-    create_time: str = attrs.field(
+    create_time: datetime = attrs.field(
         kw_only=True,
     )
     """

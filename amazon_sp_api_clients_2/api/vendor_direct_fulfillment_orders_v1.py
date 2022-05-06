@@ -284,7 +284,7 @@ class Order:
 @attrs.define
 class OrderAcknowledgementItem:
 
-    acknowledgement_date: str = attrs.field(
+    acknowledgement_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -356,7 +356,7 @@ class OrderDetails:
     A list of items in this purchase order.
     """
 
-    order_date: str = attrs.field(
+    order_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -597,7 +597,7 @@ class PartyIdentification:
 @attrs.define
 class ScheduledDeliveryShipment:
 
-    earliest_nominated_delivery_date: str = attrs.field(
+    earliest_nominated_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -607,7 +607,7 @@ class ScheduledDeliveryShipment:
     {'schema_format': 'date-time'}
     """
 
-    latest_nominated_delivery_date: str = attrs.field(
+    latest_nominated_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -630,7 +630,7 @@ class ScheduledDeliveryShipment:
 @attrs.define
 class ShipmentDates:
 
-    promised_delivery_date: str = attrs.field(
+    promised_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -640,7 +640,7 @@ class ShipmentDates:
     {'schema_format': 'date-time'}
     """
 
-    required_ship_date: str = attrs.field(
+    required_ship_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -865,14 +865,14 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
 
     def get_orders(
         self,
-        created_after: str,
-        created_before: str,
+        created_after: datetime,
+        created_before: datetime,
         ship_from_party_id: str = None,
         status: Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]] = None,
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
-        include_details: str = None,
+        include_details: bool = None,
     ):
         """
         Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.

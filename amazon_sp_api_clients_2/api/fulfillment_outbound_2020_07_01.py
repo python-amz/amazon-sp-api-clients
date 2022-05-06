@@ -637,7 +637,7 @@ class FeatureSku:
     Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     """
 
-    sku_count: Union[float, int] = attrs.field(
+    sku_count: float = attrs.field(
         kw_only=True,
     )
     """
@@ -2521,7 +2521,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         self,
         seller_fulfillment_order_id: str,
         displayable_order_id: str,
-        displayable_order_date: str,
+        displayable_order_date: datetime,
         displayable_order_comment: str,
         shipping_speed_category: Union[
             Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
@@ -2845,7 +2845,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
 
     def list_all_fulfillment_orders(
         self,
-        query_start_date: str = None,
+        query_start_date: datetime = None,
         next_token: str = None,
     ):
         """
@@ -2922,7 +2922,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         seller_fulfillment_order_id: str,
         marketplace_id: str = None,
         displayable_order_id: str = None,
-        displayable_order_date: str = None,
+        displayable_order_date: datetime = None,
         displayable_order_comment: str = None,
         shipping_speed_category: Union[
             Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]

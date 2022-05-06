@@ -694,7 +694,7 @@ class ShipmentConfirmation:
 @attrs.define
 class ShipmentDetails:
 
-    estimated_delivery_date: str = attrs.field(
+    estimated_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -718,7 +718,7 @@ class ShipmentDetails:
     Indicate the shipment status.
     """
 
-    shipped_date: str = attrs.field(
+    shipped_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -903,7 +903,7 @@ class StatusUpdateDetails:
     Indicates the shipment status code of the package that provides transportation information for Amazon tracking systems and ultimately for the final customer.
     """
 
-    status_date_time: str = attrs.field(
+    status_date_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -1128,8 +1128,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
     def get_customer_invoices(
         self,
-        created_after: str,
-        created_before: str,
+        created_after: datetime,
+        created_before: datetime,
         ship_from_party_id: str = None,
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
@@ -1204,8 +1204,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
     def get_packing_slips(
         self,
-        created_after: str,
-        created_before: str,
+        created_after: datetime,
+        created_before: datetime,
         ship_from_party_id: str = None,
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
@@ -1280,8 +1280,8 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
 
     def get_shipping_labels(
         self,
-        created_after: str,
-        created_before: str,
+        created_after: datetime,
+        created_before: datetime,
         ship_from_party_id: str = None,
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,

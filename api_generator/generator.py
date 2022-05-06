@@ -164,18 +164,44 @@ class Generator:
     def get_type_hint_of_schema(self, schema: Schema):
         # recursively get inline type hint of a schema
 
+        if schema is None:
+            return 'Any'
+
         # for ``Reference`` components, which will be created as dataclasses, the type is itself.
         if isinstance(schema, Reference):
             assert (match := re.match(r'^#/components/(.*?)/(.*?)$', schema.ref))
             name = match.group(2)
             return f"'{name}'"
 
-        if schema is None or (schema.type is None and schema.items is None):
-            return 'Any'
-        base_type_convert = {'string': 'str', 'integer': 'int', 'boolean': 'bool', 'number': 'Union[float, int]'}
+        assert schema.type is not None
+        probable_fields = {'generator', 'type', 'description', 'name', 'enum', 'maximum', 'minimum', 'items',
+                           'minItems', 'maxItems', 'pattern', 'default', 'required', 'minLength', 'maxLength',
+                           'uniqueItems', 'example',
+                           'schema_format', 'properties', 'additionalProperties'}
+        fields = {f for f in schema.__fields_set__ if getattr(schema, f) is not None}
+        assert fields.issubset(probable_fields), fields - probable_fields
+
         child = self.get_type_hint_of_schema(schema.items) if schema.type in ('object', 'array') else 'Any'
-        type_convert = {**base_type_convert, 'array': f'list[{child}]', 'object': f'dict[str, {child}]'}
-        type_hint = type_convert[schema.type]
+
+        type_convert = {
+            ('integer', None): 'int',
+            ('string', None): 'str',
+            ('boolean', None): 'bool',
+            ('object', None): f'dict[str, {child}]',
+            ('array', None): f'list[{child}]',
+            ('number', None): 'float',
+            ('string', 'date-time'): 'datetime',
+            ('string', 'date'): 'date',
+            ('string', 'boolean'): 'bool',
+            ('string', 'uri'): 'str',
+            ('string', '[A-Z]{2}'): 'str',
+            ('string', 'byte'): 'bytes',
+            ('integer', 'int32'): 'int',
+            ('integer', 'int64'): 'int',
+            ('number', 'double'): 'float',
+        }
+        type_hint = type_convert[(schema.type, schema.schema_format)]
+        assert schema.enum is None or type_hint == 'str'
         choices = ', '.join(f'Literal["{v}"]' for v in schema.enum) if schema.enum is not None else None
         type_hint = f'Union[{choices}]' if type_hint == 'str' and choices is not None else type_hint
         return type_hint
@@ -254,10 +280,14 @@ class Generator:
 
     def generate(self):
         self.directory.mkdir(parents=True, exist_ok=True)
-        with open(self.directory / '__init__.py', 'w', encoding='utf-8') as f:
-            f.write('')
-        with open(self.directory / f'{self.package_name}.py', 'w', encoding='utf-8') as f:
-            f.write(self.content)
+
+        init_content = ''
+        with open(self.directory / '__init__.py', 'w+', encoding='utf-8') as f:
+            existing_content = f.read()
+            init_content != existing_content and f.write(init_content)
+        with open(self.directory / f'{self.package_name}.py', 'w+', encoding='utf-8') as f:
+            existing_content = f.read()
+            self.content != existing_content and f.write(self.content)
 
     @classmethod
     def worker(cls, path: Path):

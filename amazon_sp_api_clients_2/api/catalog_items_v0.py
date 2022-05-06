@@ -776,7 +776,7 @@ class DecimalWithUnits:
     The unit of the decimal value.
     """
 
-    value: Union[float, int] = attrs.field(
+    value: float = attrs.field(
         kw_only=True,
     )
     """
@@ -1049,7 +1049,7 @@ class ListOfCategories:
 @attrs.define
 class Price:
 
-    amount: Union[float, int] = attrs.field(
+    amount: float = attrs.field(
         kw_only=True,
     )
     """

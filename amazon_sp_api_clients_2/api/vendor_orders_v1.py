@@ -15,7 +15,7 @@ from typing import Any, List, Dict, Union, Literal
 @attrs.define
 class AcknowledgementStatusDetails:
 
-    acknowledgement_date: str = attrs.field(
+    acknowledgement_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -385,7 +385,7 @@ class Order:
 @attrs.define
 class OrderAcknowledgement:
 
-    acknowledgement_date: str = attrs.field(
+    acknowledgement_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -507,7 +507,7 @@ class OrderDetails:
     Payment method used.
     """
 
-    purchase_order_changed_date: str = attrs.field(
+    purchase_order_changed_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -517,7 +517,7 @@ class OrderDetails:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_date: str = attrs.field(
+    purchase_order_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -527,7 +527,7 @@ class OrderDetails:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_state_changed_date: str = attrs.field(
+    purchase_order_state_changed_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -672,7 +672,7 @@ class OrderItemAcknowledgement:
     Indicates the reason for rejection.
     """
 
-    scheduled_delivery_date: str = attrs.field(
+    scheduled_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -682,7 +682,7 @@ class OrderItemAcknowledgement:
     {'schema_format': 'date-time'}
     """
 
-    scheduled_ship_date: str = attrs.field(
+    scheduled_ship_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -816,7 +816,7 @@ class OrderListStatus:
 @attrs.define
 class OrderStatus:
 
-    last_updated_date: str = attrs.field(
+    last_updated_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -826,7 +826,7 @@ class OrderStatus:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_date: str = attrs.field(
+    purchase_order_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -877,7 +877,7 @@ class OrderStatus:
 @attrs.define
 class OrderedQuantityDetails:
 
-    updated_date: str = attrs.field(
+    updated_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -1040,15 +1040,15 @@ class VendorOrdersV1Client(BaseClient):
     def get_purchase_orders(
         self,
         limit: int = None,
-        created_after: str = None,
-        created_before: str = None,
+        created_after: datetime = None,
+        created_before: datetime = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
-        include_details: str = None,
-        changed_after: str = None,
-        changed_before: str = None,
+        include_details: bool = None,
+        changed_after: datetime = None,
+        changed_before: datetime = None,
         po_item_state: Union[Literal["Cancelled"]] = None,
-        is_pochanged: str = None,
+        is_pochanged: bool = None,
         purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = None,
         ordering_vendor_code: str = None,
     ):
@@ -1116,10 +1116,10 @@ class VendorOrdersV1Client(BaseClient):
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
-        created_after: str = None,
-        created_before: str = None,
-        updated_after: str = None,
-        updated_before: str = None,
+        created_after: datetime = None,
+        created_before: datetime = None,
+        updated_after: datetime = None,
+        updated_before: datetime = None,
         purchase_order_number: str = None,
         purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = None,
         item_confirmation_status: Union[

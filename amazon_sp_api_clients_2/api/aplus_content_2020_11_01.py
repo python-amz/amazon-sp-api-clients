@@ -190,7 +190,7 @@ class ContentMetadata:
     {'maxLength': 100, 'minLength': 1}
     """
 
-    update_time: str = attrs.field(
+    update_time: datetime = attrs.field(
         kw_only=True,
     )
     """

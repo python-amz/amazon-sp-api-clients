@@ -2367,8 +2367,8 @@ class FinancesV0Client(BaseClient):
     def list_financial_event_groups(
         self,
         max_results_per_page: int = None,
-        financial_event_group_started_before: str = None,
-        financial_event_group_started_after: str = None,
+        financial_event_group_started_before: datetime = None,
+        financial_event_group_started_after: datetime = None,
         next_token: str = None,
     ):
         """
@@ -2408,8 +2408,8 @@ class FinancesV0Client(BaseClient):
     def list_financial_events(
         self,
         max_results_per_page: int = None,
-        posted_after: str = None,
-        posted_before: str = None,
+        posted_after: datetime = None,
+        posted_before: datetime = None,
         next_token: str = None,
     ):
         """

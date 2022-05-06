@@ -786,8 +786,8 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
 
     def get_shipping_labels(
         self,
-        created_after: str,
-        created_before: str,
+        created_after: datetime,
+        created_before: datetime,
         ship_from_party_id: str = None,
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,

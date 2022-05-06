@@ -147,7 +147,7 @@ class MarketplaceId:
 @attrs.define
 class MoneyType:
 
-    amount: Union[float, int] = attrs.field(
+    amount: float = attrs.field(
         kw_only=True,
     )
     """

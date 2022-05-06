@@ -245,7 +245,7 @@ class Container:
 @attrs.define
 class ContainerItem:
 
-    quantity: Union[float, int] = attrs.field(
+    quantity: float = attrs.field(
         kw_only=True,
     )
     """
@@ -410,7 +410,7 @@ class Currency:
     {'maxLength': 3, 'minLength': 3}
     """
 
-    value: Union[float, int] = attrs.field(
+    value: float = attrs.field(
         kw_only=True,
     )
     """
@@ -423,14 +423,14 @@ class Currency:
 @attrs.define
 class Dimensions:
 
-    height: Union[float, int] = attrs.field(
+    height: float = attrs.field(
         kw_only=True,
     )
     """
     The height of the container.
     """
 
-    length: Union[float, int] = attrs.field(
+    length: float = attrs.field(
         kw_only=True,
     )
     """
@@ -444,7 +444,7 @@ class Dimensions:
     The unit of these measurements.
     """
 
-    width: Union[float, int] = attrs.field(
+    width: float = attrs.field(
         kw_only=True,
     )
     """
@@ -490,7 +490,7 @@ class ErrorList:
 @attrs.define
 class Event:
 
-    event_time: str = attrs.field(
+    event_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -552,7 +552,7 @@ class GetAccountResponse:
 @attrs.define
 class GetRatesRequest:
 
-    ship_date: str = attrs.field(
+    ship_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -881,7 +881,7 @@ class PurchaseLabelsResult:
 @attrs.define
 class PurchaseShipmentRequest:
 
-    ship_date: str = attrs.field(
+    ship_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -986,7 +986,7 @@ class PurchaseShipmentResult:
 @attrs.define
 class Rate:
 
-    expiration_time: str = attrs.field(
+    expiration_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -1241,7 +1241,7 @@ class StateOrRegion:
 @attrs.define
 class TimeRange:
 
-    end: str = attrs.field(
+    end: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -1251,7 +1251,7 @@ class TimeRange:
     {'schema_format': 'date-time'}
     """
 
-    start: str = attrs.field(
+    start: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -1330,7 +1330,7 @@ class Weight:
     The unit of measurement.
     """
 
-    value: Union[float, int] = attrs.field(
+    value: float = attrs.field(
         kw_only=True,
     )
     """
@@ -1436,7 +1436,7 @@ class ShippingV1Client(BaseClient):
         ship_from: dict[str, Any],
         service_types: list["ServiceType"],
         container_specifications: list["ContainerSpecification"],
-        ship_date: str = None,
+        ship_date: datetime = None,
     ):
         """
         Get service rates.
@@ -1572,7 +1572,7 @@ class ShippingV1Client(BaseClient):
         ],
         containers: list["Container"],
         label_specification: dict[str, Any],
-        ship_date: str = None,
+        ship_date: datetime = None,
     ):
         """
         Purchase shipping labels.

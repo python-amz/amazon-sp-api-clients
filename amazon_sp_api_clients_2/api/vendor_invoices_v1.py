@@ -583,14 +583,14 @@ class PartyIdentification:
 @attrs.define
 class PaymentTerms:
 
-    discount_due_days: Union[float, int] = attrs.field(
+    discount_due_days: float = attrs.field(
         kw_only=True,
     )
     """
     The number of calendar days from the Base date (Invoice date) until the discount is no longer valid.
     """
 
-    net_due_days: Union[float, int] = attrs.field(
+    net_due_days: float = attrs.field(
         kw_only=True,
     )
     """

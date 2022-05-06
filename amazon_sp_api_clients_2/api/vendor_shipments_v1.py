@@ -308,7 +308,7 @@ class ErrorList:
 @attrs.define
 class Expiry:
 
-    expiry_date: str = attrs.field(
+    expiry_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -318,7 +318,7 @@ class Expiry:
     {'schema_format': 'date-time'}
     """
 
-    manufacturer_date: str = attrs.field(
+    manufacturer_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -341,7 +341,7 @@ class Expiry:
 @attrs.define
 class ImportDetails:
 
-    estimated_ship_by_date: str = attrs.field(
+    estimated_ship_by_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -669,7 +669,7 @@ class ShipmentConfirmation:
     A list of the cartons in this shipment.
     """
 
-    estimated_delivery_date: str = attrs.field(
+    estimated_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -686,7 +686,7 @@ class ShipmentConfirmation:
     A list of the pallets in this shipment.
     """
 
-    shipment_confirmation_date: str = attrs.field(
+    shipment_confirmation_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -732,7 +732,7 @@ class ShipmentConfirmation:
     The type of shipment.
     """
 
-    shipped_date: str = attrs.field(
+    shipped_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -831,7 +831,7 @@ class ShipmentMeasurements:
 @attrs.define
 class Stop:
 
-    arrival_time: str = attrs.field(
+    arrival_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -841,7 +841,7 @@ class Stop:
     {'schema_format': 'date-time'}
     """
 
-    departure_time: str = attrs.field(
+    departure_time: datetime = attrs.field(
         kw_only=True,
     )
     """

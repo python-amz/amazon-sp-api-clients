@@ -197,7 +197,7 @@ class InventorySummary:
     Amazon's fulfillment network SKU identifier.
     """
 
-    last_updated_time: str = attrs.field(
+    last_updated_time: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -391,7 +391,7 @@ class FbaInventoryV1Client(BaseClient):
         granularity_id: str,
         marketplace_ids: list[str],
         details: bool = None,
-        start_date_time: str = None,
+        start_date_time: datetime = None,
         seller_skus: list[str] = None,
         next_token: str = None,
     ):

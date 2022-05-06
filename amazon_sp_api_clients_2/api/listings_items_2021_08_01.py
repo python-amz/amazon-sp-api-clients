@@ -301,7 +301,7 @@ class ItemSummaryByMarketplace:
     Identifies the condition of the listings item.
     """
 
-    created_date: str = attrs.field(
+    created_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -325,7 +325,7 @@ class ItemSummaryByMarketplace:
     Name, or title, associated with an Amazon catalog item.
     """
 
-    last_updated_date: str = attrs.field(
+    last_updated_date: datetime = attrs.field(
         kw_only=True,
     )
     """

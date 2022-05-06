@@ -311,7 +311,7 @@ class ShipmentDetail:
     The identifier for the marketplace where the order was placed.
     """
 
-    purchase_date: str = attrs.field(
+    purchase_date: datetime = attrs.field(
         kw_only=True,
     )
     """
@@ -436,7 +436,7 @@ class ShipmentItem:
     The Amazon-defined identifier for the order item.
     """
 
-    quantity_ordered: Union[float, int] = attrs.field(
+    quantity_ordered: float = attrs.field(
         kw_only=True,
     )
     """
@@ -630,7 +630,7 @@ class ShipmentInvoicingV0Client(BaseClient):
     def submit_invoice(
         self,
         shipment_id: str,
-        invoice_content: str,
+        invoice_content: bytes,
         content_md5value: str,
         marketplace_id: str = None,
     ):

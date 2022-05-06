@@ -552,7 +552,7 @@ class LowestPrices:
 @attrs.define
 class MoneyType:
 
-    amount: Union[float, int] = attrs.field(
+    amount: float = attrs.field(
         kw_only=True,
     )
     """
@@ -1090,7 +1090,7 @@ class SellerFeedbackType:
     {'schema_format': 'int64'}
     """
 
-    seller_positive_feedback_rating: Union[float, int] = attrs.field(
+    seller_positive_feedback_rating: float = attrs.field(
         kw_only=True,
     )
     """
@@ -1153,7 +1153,7 @@ class ShipsFromType:
 @attrs.define
 class Summary:
 
-    offers_available_time: str = attrs.field(
+    offers_available_time: datetime = attrs.field(
         kw_only=True,
     )
     """
