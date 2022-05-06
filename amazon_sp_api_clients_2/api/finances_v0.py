@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class AdjustmentEvent:
 
+    """
+    An adjustment to the seller's account.
+    """
+
     adjustment_type: str = attrs.field(
         kw_only=True,
     )
@@ -59,11 +63,19 @@ class AdjustmentEvent:
 @attrs.define
 class AdjustmentEventList:
 
+    """
+    A list of adjustment event information for the seller's account.
+    """
+
     pass
 
 
 @attrs.define
 class AdjustmentItem:
+
+    """
+    An item in an adjustment to the seller's account.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -120,11 +132,19 @@ class AdjustmentItem:
 @attrs.define
 class AdjustmentItemList:
 
+    """
+    A list of information about items in an adjustment to the seller's account.
+    """
+
     pass
 
 
 @attrs.define
 class AffordabilityExpenseEvent:
+
+    """
+    An expense related to an affordability promotion.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -198,6 +218,10 @@ class AffordabilityExpenseEvent:
 @attrs.define
 class AffordabilityExpenseEventList:
 
+    """
+    A list of expense information related to an affordability promotion.
+    """
+
     pass
 
 
@@ -209,6 +233,74 @@ class BigDecimal:
 
 @attrs.define
 class ChargeComponent:
+
+    """
+        A charge on the seller's account.
+
+    Possible values:
+
+    * Principal - The selling price of the order item, equal to the selling price of the item multiplied by the quantity ordered.
+
+    * Tax - The tax collected by the seller on the Principal.
+
+    * MarketplaceFacilitatorTax-Principal - The tax withheld on the Principal.
+
+    * MarketplaceFacilitatorTax-Shipping - The tax withheld on the ShippingCharge.
+
+    * MarketplaceFacilitatorTax-Giftwrap - The tax withheld on the Giftwrap charge.
+
+    * MarketplaceFacilitatorTax-Other - The tax withheld on other miscellaneous charges.
+
+    * Discount - The promotional discount for an order item.
+
+    * TaxDiscount - The tax amount deducted for promotional rebates.
+
+    * CODItemCharge - The COD charge for an order item.
+
+    * CODItemTaxCharge - The tax collected by the seller on a CODItemCharge.
+
+    * CODOrderCharge - The COD charge for an order.
+
+    * CODOrderTaxCharge - The tax collected by the seller on a CODOrderCharge.
+
+    * CODShippingCharge - Shipping charges for a COD order.
+
+    * CODShippingTaxCharge - The tax collected by the seller on a CODShippingCharge.
+
+    * ShippingCharge - The shipping charge.
+
+    * ShippingTax - The tax collected by the seller on a ShippingCharge.
+
+    * Goodwill - The amount given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+
+    * Giftwrap - The gift wrap charge.
+
+    * GiftwrapTax - The tax collected by the seller on a Giftwrap charge.
+
+    * RestockingFee - The charge applied to the buyer when returning a product in certain categories.
+
+    * ReturnShipping - The amount given to the buyer to compensate for shipping the item back in the event we are at fault.
+
+    * PointsFee - The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+
+    * GenericDeduction - A generic bad debt deduction.
+
+    * FreeReplacementReturnShipping - The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+
+    * PaymentMethodFee - The fee collected for certain payment methods in certain marketplaces.
+
+    * ExportCharge - The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+
+    * SAFE-TReimbursement - The SAFE-T claim amount for the item.
+
+    * TCS-CGST - Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+
+    * TCS-SGST - Tax Collected at Source for State Goods and Services Tax (SGST).
+
+    * TCS-IGST - Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+
+    * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+    """
 
     charge_type: str = attrs.field(
         kw_only=True,
@@ -230,11 +322,19 @@ class ChargeComponent:
 @attrs.define
 class ChargeComponentList:
 
+    """
+    A list of charge information on the seller's account.
+    """
+
     pass
 
 
 @attrs.define
 class ChargeInstrument:
+
+    """
+    A payment instrument.
+    """
 
     description: str = attrs.field(
         kw_only=True,
@@ -263,11 +363,19 @@ class ChargeInstrument:
 @attrs.define
 class ChargeInstrumentList:
 
+    """
+    A list of payment instruments.
+    """
+
     pass
 
 
 @attrs.define
 class CouponPaymentEvent:
+
+    """
+    An event related to coupon payments.
+    """
 
     clip_or_redemption_count: int = attrs.field(
         kw_only=True,
@@ -334,11 +442,19 @@ class CouponPaymentEvent:
 @attrs.define
 class CouponPaymentEventList:
 
+    """
+    A list of coupon payment event information.
+    """
+
     pass
 
 
 @attrs.define
 class Currency:
+
+    """
+    A currency type and amount.
+    """
 
     currency_code: str = attrs.field(
         kw_only=True,
@@ -365,6 +481,10 @@ class Date:
 
 @attrs.define
 class DebtRecoveryEvent:
+
+    """
+    A debt payment or debt adjustment.
+    """
 
     debt_recovery_type: str = attrs.field(
         kw_only=True,
@@ -411,11 +531,19 @@ class DebtRecoveryEvent:
 @attrs.define
 class DebtRecoveryEventList:
 
+    """
+    A list of debt recovery event information.
+    """
+
     pass
 
 
 @attrs.define
 class DebtRecoveryItem:
+
+    """
+    An item of a debt payment or debt adjustment.
+    """
 
     group_begin_date: "Date" = attrs.field(
         kw_only=True,
@@ -451,11 +579,19 @@ class DebtRecoveryItem:
 @attrs.define
 class DebtRecoveryItemList:
 
+    """
+    A list of debt recovery item information.
+    """
+
     pass
 
 
 @attrs.define
 class DirectPayment:
+
+    """
+    A payment made directly to a seller.
+    """
 
     direct_payment_type: str = attrs.field(
         kw_only=True,
@@ -484,11 +620,19 @@ class DirectPayment:
 @attrs.define
 class DirectPaymentList:
 
+    """
+    A list of direct payment information.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -517,11 +661,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class FBALiquidationEvent:
+
+    """
+    A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
+    """
 
     original_removal_order_id: str = attrs.field(
         kw_only=True,
@@ -557,11 +709,19 @@ class FBALiquidationEvent:
 @attrs.define
 class FBALiquidationEventList:
 
+    """
+    A list of FBA inventory liquidation payment events.
+    """
+
     pass
 
 
 @attrs.define
 class FeeComponent:
+
+    """
+    A fee associated with the event.
+    """
 
     fee_type: str = attrs.field(
         kw_only=True,
@@ -583,11 +743,19 @@ class FeeComponent:
 @attrs.define
 class FeeComponentList:
 
+    """
+    A list of fee component information.
+    """
+
     pass
 
 
 @attrs.define
 class FinancialEventGroup:
+
+    """
+    Information related to a financial event group.
+    """
 
     account_tail: str = attrs.field(
         kw_only=True,
@@ -675,11 +843,19 @@ class FinancialEventGroup:
 @attrs.define
 class FinancialEventGroupList:
 
+    """
+    A list of financial event group information.
+    """
+
     pass
 
 
 @attrs.define
 class FinancialEvents:
+
+    """
+    Contains all information related to a financial event.
+    """
 
     adjustment_event_list: "AdjustmentEventList" = attrs.field(
         kw_only=True,
@@ -876,6 +1052,10 @@ class FinancialEvents:
 @attrs.define
 class ImagingServicesFeeEvent:
 
+    """
+    A fee event related to Amazon Imaging services.
+    """
+
     asin: str = attrs.field(
         kw_only=True,
     )
@@ -910,11 +1090,19 @@ class ImagingServicesFeeEvent:
 @attrs.define
 class ImagingServicesFeeEventList:
 
+    """
+    A list of fee events related to Amazon Imaging services.
+    """
+
     pass
 
 
 @attrs.define
 class ListFinancialEventGroupsPayload:
+
+    """
+    The payload for the listFinancialEventGroups operation.
+    """
 
     next_token: str = attrs.field(
         kw_only=True,
@@ -936,6 +1124,10 @@ class ListFinancialEventGroupsPayload:
 @attrs.define
 class ListFinancialEventGroupsResponse:
 
+    """
+    The response schema for the listFinancialEventGroups operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -955,6 +1147,10 @@ class ListFinancialEventGroupsResponse:
 
 @attrs.define
 class ListFinancialEventsPayload:
+
+    """
+    The payload for the listFinancialEvents operation.
+    """
 
     next_token: str = attrs.field(
         kw_only=True,
@@ -976,6 +1172,10 @@ class ListFinancialEventsPayload:
 @attrs.define
 class ListFinancialEventsResponse:
 
+    """
+    The response schema for the listFinancialEvents operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -995,6 +1195,10 @@ class ListFinancialEventsResponse:
 
 @attrs.define
 class LoanServicingEvent:
+
+    """
+    A loan advance, loan payment, or loan refund.
+    """
 
     source_business_event_type: str = attrs.field(
         kw_only=True,
@@ -1020,11 +1224,19 @@ class LoanServicingEvent:
 @attrs.define
 class LoanServicingEventList:
 
+    """
+    A list of loan servicing events.
+    """
+
     pass
 
 
 @attrs.define
 class NetworkComminglingTransactionEvent:
+
+    """
+    A network commingling transaction event.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -1091,11 +1303,19 @@ class NetworkComminglingTransactionEvent:
 @attrs.define
 class NetworkComminglingTransactionEventList:
 
+    """
+    A list of network commingling transaction events.
+    """
+
     pass
 
 
 @attrs.define
 class PayWithAmazonEvent:
+
+    """
+    An event related to the seller's Pay with Amazon account.
+    """
 
     amount_description: str = attrs.field(
         kw_only=True,
@@ -1178,11 +1398,19 @@ class PayWithAmazonEvent:
 @attrs.define
 class PayWithAmazonEventList:
 
+    """
+    A list of events related to the seller's Pay with Amazon account.
+    """
+
     pass
 
 
 @attrs.define
 class ProductAdsPaymentEvent:
+
+    """
+    A Sponsored Products payment event.
+    """
 
     invoice_id: str = attrs.field(
         kw_only=True,
@@ -1235,11 +1463,19 @@ class ProductAdsPaymentEvent:
 @attrs.define
 class ProductAdsPaymentEventList:
 
+    """
+    A list of sponsored products payment events.
+    """
+
     pass
 
 
 @attrs.define
 class Promotion:
+
+    """
+    A promotion applied to an item.
+    """
 
     promotion_id: str = attrs.field(
         kw_only=True,
@@ -1268,11 +1504,19 @@ class Promotion:
 @attrs.define
 class PromotionList:
 
+    """
+    A list of promotions.
+    """
+
     pass
 
 
 @attrs.define
 class RemovalShipmentAdjustmentEvent:
+
+    """
+    A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or fewer items than ordered).
+    """
 
     adjustment_event_id: str = attrs.field(
         kw_only=True,
@@ -1324,11 +1568,19 @@ class RemovalShipmentAdjustmentEvent:
 @attrs.define
 class RemovalShipmentAdjustmentEventList:
 
+    """
+    A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.
+    """
+
     pass
 
 
 @attrs.define
 class RemovalShipmentEvent:
+
+    """
+    A removal shipment event for a removal order.
+    """
 
     merchant_order_id: str = attrs.field(
         kw_only=True,
@@ -1373,11 +1625,19 @@ class RemovalShipmentEvent:
 @attrs.define
 class RemovalShipmentEventList:
 
+    """
+    A list of removal shipment event information.
+    """
+
     pass
 
 
 @attrs.define
 class RemovalShipmentItem:
+
+    """
+    Item-level information for a removal shipment.
+    """
 
     fulfillment_network_sku: str = attrs.field(
         kw_only=True,
@@ -1447,6 +1707,10 @@ class RemovalShipmentItem:
 @attrs.define
 class RemovalShipmentItemAdjustment:
 
+    """
+    Item-level information for a removal shipment item adjustment.
+    """
+
     adjusted_quantity: int = attrs.field(
         kw_only=True,
     )
@@ -1508,11 +1772,19 @@ class RemovalShipmentItemAdjustment:
 @attrs.define
 class RemovalShipmentItemList:
 
+    """
+    A list of information about removal shipment items.
+    """
+
     pass
 
 
 @attrs.define
 class RentalTransactionEvent:
+
+    """
+    An event related to a rental transaction.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -1601,11 +1873,19 @@ class RentalTransactionEvent:
 @attrs.define
 class RentalTransactionEventList:
 
+    """
+    A list of rental transaction event information.
+    """
+
     pass
 
 
 @attrs.define
 class RetrochargeEvent:
+
+    """
+    A retrocharge or retrocharge reversal.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -1665,11 +1945,19 @@ class RetrochargeEvent:
 @attrs.define
 class RetrochargeEventList:
 
+    """
+    A list of information about Retrocharge or RetrochargeReversal events.
+    """
+
     pass
 
 
 @attrs.define
 class SAFETReimbursementEvent:
+
+    """
+    A SAFE-T claim reimbursement on the seller's account.
+    """
 
     reason_code: str = attrs.field(
         kw_only=True,
@@ -1712,11 +2000,19 @@ class SAFETReimbursementEvent:
 @attrs.define
 class SAFETReimbursementEventList:
 
+    """
+    A list of SAFETReimbursementEvents.
+    """
+
     pass
 
 
 @attrs.define
 class SAFETReimbursementItem:
+
+    """
+    An item from a SAFE-T claim reimbursement.
+    """
 
     product_description: str = attrs.field(
         kw_only=True,
@@ -1745,11 +2041,19 @@ class SAFETReimbursementItem:
 @attrs.define
 class SAFETReimbursementItemList:
 
+    """
+    A list of SAFETReimbursementItems.
+    """
+
     pass
 
 
 @attrs.define
 class SellerDealPaymentEvent:
+
+    """
+    An event linked to the payment of a fee related to the specified deal.
+    """
 
     deal_description: str = attrs.field(
         kw_only=True,
@@ -1813,11 +2117,19 @@ class SellerDealPaymentEvent:
 @attrs.define
 class SellerDealPaymentEventList:
 
+    """
+    A list of payment events for deal-related fees.
+    """
+
     pass
 
 
 @attrs.define
 class SellerReviewEnrollmentPaymentEvent:
+
+    """
+    A fee payment event for the Early Reviewer Program.
+    """
 
     enrollment_id: str = attrs.field(
         kw_only=True,
@@ -1867,11 +2179,19 @@ class SellerReviewEnrollmentPaymentEvent:
 @attrs.define
 class SellerReviewEnrollmentPaymentEventList:
 
+    """
+    A list of information about fee events for the Early Reviewer Program.
+    """
+
     pass
 
 
 @attrs.define
 class ServiceFeeEvent:
+
+    """
+    A service fee on the seller's account.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -1928,11 +2248,19 @@ class ServiceFeeEvent:
 @attrs.define
 class ServiceFeeEventList:
 
+    """
+    A list of information about service fee events.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentEvent:
+
+    """
+    A shipment, refund, guarantee claim, or chargeback.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -2031,11 +2359,19 @@ class ShipmentEvent:
 @attrs.define
 class ShipmentEventList:
 
+    """
+    A list of shipment event information.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentItem:
+
+    """
+    An item of a shipment, refund, guarantee claim, or chargeback.
+    """
 
     order_adjustment_item_id: str = attrs.field(
         kw_only=True,
@@ -2137,17 +2473,29 @@ class ShipmentItem:
 @attrs.define
 class ShipmentItemList:
 
+    """
+    A list of shipment items.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentSettleEventList:
 
+    """
+    A list of information about shipment settle financial events.
+    """
+
     pass
 
 
 @attrs.define
 class SolutionProviderCreditEvent:
+
+    """
+    A credit given to a solution provider.
+    """
 
     marketplace_country_code: str = attrs.field(
         kw_only=True,
@@ -2225,11 +2573,19 @@ class SolutionProviderCreditEvent:
 @attrs.define
 class SolutionProviderCreditEventList:
 
+    """
+    A list of information about solution provider credits.
+    """
+
     pass
 
 
 @attrs.define
 class TaxWithheldComponent:
+
+    """
+    Information about the taxes withheld.
+    """
 
     tax_collection_model: str = attrs.field(
         kw_only=True,
@@ -2254,11 +2610,19 @@ class TaxWithheldComponent:
 @attrs.define
 class TaxWithheldComponentList:
 
+    """
+    A list of information about taxes withheld.
+    """
+
     pass
 
 
 @attrs.define
 class TaxWithholdingEvent:
+
+    """
+    A TaxWithholding event on seller's account.
+    """
 
     base_amount: "Currency" = attrs.field(
         kw_only=True,
@@ -2294,11 +2658,19 @@ class TaxWithholdingEvent:
 @attrs.define
 class TaxWithholdingEventList:
 
+    """
+    List of TaxWithholding events.
+    """
+
     pass
 
 
 @attrs.define
 class TaxWithholdingPeriod:
+
+    """
+    Period which taxwithholding on seller's account is calculated.
+    """
 
     end_date: "Date" = attrs.field(
         kw_only=True,
@@ -2319,6 +2691,10 @@ class TaxWithholdingPeriod:
 
 @attrs.define
 class TrialShipmentEvent:
+
+    """
+    An event related to a trial shipment.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -2360,6 +2736,10 @@ class TrialShipmentEvent:
 
 @attrs.define
 class TrialShipmentEventList:
+
+    """
+    A list of information about trial shipment financial events.
+    """
 
     pass
 

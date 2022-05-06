@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class AcceptedRate:
 
+    """
+    The specific rate purchased for the shipment, or null if unpurchased.
+    """
+
     billed_weight: "Weight" = attrs.field(
         kw_only=True,
     )
@@ -50,6 +54,10 @@ class AcceptedRate:
 @attrs.define
 class Account:
 
+    """
+    The account related data.
+    """
+
     account_id: "AccountId" = attrs.field(
         kw_only=True,
     )
@@ -63,11 +71,19 @@ class Account:
 @attrs.define
 class AccountId:
 
+    """
+    This is the Amazon Shipping account id generated during the Amazon Shipping onboarding process.
+    """
+
     pass
 
 
 @attrs.define
 class Address:
+
+    """
+    The address.
+    """
 
     address_line1: str = attrs.field(
         kw_only=True,
@@ -173,6 +189,10 @@ class Address:
 @attrs.define
 class CancelShipmentResponse:
 
+    """
+    The response schema for the cancelShipment operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -186,17 +206,29 @@ class CancelShipmentResponse:
 @attrs.define
 class City:
 
+    """
+    The city where the person, business or institution is located.
+    """
+
     pass
 
 
 @attrs.define
 class ClientReferenceId:
 
+    """
+    Client reference id.
+    """
+
     pass
 
 
 @attrs.define
 class Container:
+
+    """
+    Container in the shipment.
+    """
 
     container_type: Union[Literal["PACKAGE"]] = attrs.field(
         kw_only=True,
@@ -246,6 +278,10 @@ class Container:
 @attrs.define
 class ContainerItem:
 
+    """
+    Item in the container.
+    """
+
     quantity: float = attrs.field(
         kw_only=True,
     )
@@ -283,17 +319,29 @@ class ContainerItem:
 @attrs.define
 class ContainerList:
 
+    """
+    A list of container.
+    """
+
     pass
 
 
 @attrs.define
 class ContainerReferenceId:
 
+    """
+    An identifier for the container. This must be unique within all the containers in the same shipment.
+    """
+
     pass
 
 
 @attrs.define
 class ContainerSpecification:
+
+    """
+    Container specification for checking the service rate.
+    """
 
     dimensions: "Dimensions" = attrs.field(
         kw_only=True,
@@ -315,17 +363,29 @@ class ContainerSpecification:
 @attrs.define
 class ContainerSpecificationList:
 
+    """
+    A list of container specifications.
+    """
+
     pass
 
 
 @attrs.define
 class CountryCode:
 
+    """
+    The two digit country code. In ISO 3166-1 alpha-2 format.
+    """
+
     pass
 
 
 @attrs.define
 class CreateShipmentRequest:
+
+    """
+    The request schema for the createShipment operation.
+    """
 
     client_reference_id: "ClientReferenceId" = attrs.field(
         kw_only=True,
@@ -361,6 +421,10 @@ class CreateShipmentRequest:
 @attrs.define
 class CreateShipmentResponse:
 
+    """
+    The response schema for the createShipment operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -381,6 +445,10 @@ class CreateShipmentResponse:
 @attrs.define
 class CreateShipmentResult:
 
+    """
+    The payload schema for the createShipment operation.
+    """
+
     eligible_rates: "RateList" = attrs.field(
         kw_only=True,
     )
@@ -400,6 +468,10 @@ class CreateShipmentResult:
 
 @attrs.define
 class Currency:
+
+    """
+    The total value of all items in the container.
+    """
 
     unit: str = attrs.field(
         kw_only=True,
@@ -423,6 +495,10 @@ class Currency:
 
 @attrs.define
 class Dimensions:
+
+    """
+    A set of measurements for a three-dimensional object.
+    """
 
     height: float = attrs.field(
         kw_only=True,
@@ -458,6 +534,10 @@ class Dimensions:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -485,11 +565,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class Event:
+
+    """
+    An event of a shipment
+    """
 
     event_time: datetime = attrs.field(
         kw_only=True,
@@ -521,17 +609,29 @@ class Event:
 @attrs.define
 class EventCode:
 
+    """
+    The event code of a shipment, such as Departed, Received, and ReadyForReceive.
+    """
+
     pass
 
 
 @attrs.define
 class EventList:
 
+    """
+    A list of events of a shipment.
+    """
+
     pass
 
 
 @attrs.define
 class GetAccountResponse:
+
+    """
+    The response schema for the getAccount operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -552,6 +652,10 @@ class GetAccountResponse:
 
 @attrs.define
 class GetRatesRequest:
+
+    """
+    The payload schema for the getRates operation.
+    """
 
     ship_date: datetime = attrs.field(
         kw_only=True,
@@ -597,6 +701,10 @@ class GetRatesRequest:
 @attrs.define
 class GetRatesResponse:
 
+    """
+    The response schema for the getRates operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -617,6 +725,10 @@ class GetRatesResponse:
 @attrs.define
 class GetRatesResult:
 
+    """
+    The payload schema for the getRates operation.
+    """
+
     service_rates: "ServiceRateList" = attrs.field(
         kw_only=True,
     )
@@ -629,6 +741,10 @@ class GetRatesResult:
 
 @attrs.define
 class GetShipmentResponse:
+
+    """
+    The response schema for the getShipment operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -650,6 +766,10 @@ class GetShipmentResponse:
 @attrs.define
 class GetTrackingInformationResponse:
 
+    """
+    The response schema for the getTrackingInformation operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -670,6 +790,10 @@ class GetTrackingInformationResponse:
 @attrs.define
 class Label:
 
+    """
+    The label details of the container.
+    """
+
     label_specification: "LabelSpecification" = attrs.field(
         kw_only=True,
     )
@@ -689,6 +813,10 @@ class Label:
 
 @attrs.define
 class LabelResult:
+
+    """
+    Label details including label stream, format, size.
+    """
 
     tracking_id: str = attrs.field(
         kw_only=True,
@@ -717,11 +845,19 @@ class LabelResult:
 @attrs.define
 class LabelResultList:
 
+    """
+    A list of label results
+    """
+
     pass
 
 
 @attrs.define
 class LabelSpecification:
+
+    """
+    The label specification info.
+    """
 
     label_format: Union[Literal["PNG"]] = attrs.field(
         kw_only=True,
@@ -743,11 +879,19 @@ class LabelSpecification:
 @attrs.define
 class LabelStream:
 
+    """
+    Contains binary image data encoded as a base-64 string.
+    """
+
     pass
 
 
 @attrs.define
 class Location:
+
+    """
+    The location where the person, business or institution is located.
+    """
 
     city: "City" = attrs.field(
         kw_only=True,
@@ -783,6 +927,10 @@ class Location:
 @attrs.define
 class Party:
 
+    """
+    The account related with the shipment.
+    """
+
     account_id: "AccountId" = attrs.field(
         kw_only=True,
     )
@@ -796,17 +944,29 @@ class Party:
 @attrs.define
 class PostalCode:
 
+    """
+    The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
+    """
+
     pass
 
 
 @attrs.define
 class PromisedDeliveryDate:
 
+    """
+    The promised delivery date and time of a shipment.
+    """
+
     pass
 
 
 @attrs.define
 class PurchaseLabelsRequest:
+
+    """
+    The request schema for the purchaseLabels operation.
+    """
 
     label_specification: "LabelSpecification" = attrs.field(
         kw_only=True,
@@ -828,6 +988,10 @@ class PurchaseLabelsRequest:
 @attrs.define
 class PurchaseLabelsResponse:
 
+    """
+    The response schema for the purchaseLabels operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -847,6 +1011,10 @@ class PurchaseLabelsResponse:
 
 @attrs.define
 class PurchaseLabelsResult:
+
+    """
+    The payload schema for the purchaseLabels operation.
+    """
 
     accepted_rate: "AcceptedRate" = attrs.field(
         kw_only=True,
@@ -881,6 +1049,10 @@ class PurchaseLabelsResult:
 
 @attrs.define
 class PurchaseShipmentRequest:
+
+    """
+    The payload schema for the purchaseShipment operation.
+    """
 
     ship_date: datetime = attrs.field(
         kw_only=True,
@@ -940,6 +1112,10 @@ class PurchaseShipmentRequest:
 @attrs.define
 class PurchaseShipmentResponse:
 
+    """
+    The response schema for the purchaseShipment operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -959,6 +1135,10 @@ class PurchaseShipmentResponse:
 
 @attrs.define
 class PurchaseShipmentResult:
+
+    """
+    The payload schema for the purchaseShipment operation.
+    """
 
     label_results: "LabelResultList" = attrs.field(
         kw_only=True,
@@ -986,6 +1166,10 @@ class PurchaseShipmentResult:
 
 @attrs.define
 class Rate:
+
+    """
+    The available rate that can be used to send the shipment
+    """
 
     expiration_time: datetime = attrs.field(
         kw_only=True,
@@ -1038,17 +1222,29 @@ class Rate:
 @attrs.define
 class RateId:
 
+    """
+    An identifier for the rating.
+    """
+
     pass
 
 
 @attrs.define
 class RateList:
 
+    """
+    A list of all the available rates that can be used to send the shipment.
+    """
+
     pass
 
 
 @attrs.define
 class RetrieveShippingLabelRequest:
+
+    """
+    The request schema for the retrieveShippingLabel operation.
+    """
 
     label_specification: "LabelSpecification" = attrs.field(
         kw_only=True,
@@ -1062,6 +1258,10 @@ class RetrieveShippingLabelRequest:
 
 @attrs.define
 class RetrieveShippingLabelResponse:
+
+    """
+    The response schema for the retrieveShippingLabel operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -1083,6 +1283,10 @@ class RetrieveShippingLabelResponse:
 @attrs.define
 class RetrieveShippingLabelResult:
 
+    """
+    The payload schema for the retrieveShippingLabel operation.
+    """
+
     label_specification: "LabelSpecification" = attrs.field(
         kw_only=True,
     )
@@ -1102,6 +1306,10 @@ class RetrieveShippingLabelResult:
 
 @attrs.define
 class ServiceRate:
+
+    """
+    The specific rate for a shipping service, or null if no service available.
+    """
 
     billable_weight: "Weight" = attrs.field(
         kw_only=True,
@@ -1137,11 +1345,19 @@ class ServiceRate:
 @attrs.define
 class ServiceRateList:
 
+    """
+    A list of service rates.
+    """
+
     pass
 
 
 @attrs.define
 class ServiceType:
+
+    """
+    The type of shipping service that will be used for the service offering.
+    """
 
     pass
 
@@ -1149,11 +1365,19 @@ class ServiceType:
 @attrs.define
 class ServiceTypeList:
 
+    """
+    A list of service types that can be used to send the shipment.
+    """
+
     pass
 
 
 @attrs.define
 class Shipment:
+
+    """
+    The shipment related data.
+    """
 
     accepted_rate: "AcceptedRate" = attrs.field(
         kw_only=True,
@@ -1210,11 +1434,19 @@ class Shipment:
 @attrs.define
 class ShipmentId:
 
+    """
+    The unique shipment identifier.
+    """
+
     pass
 
 
 @attrs.define
 class ShippingPromiseSet:
+
+    """
+    The promised delivery time and pickup time.
+    """
 
     delivery_window: "TimeRange" = attrs.field(
         kw_only=True,
@@ -1236,11 +1468,19 @@ class ShippingPromiseSet:
 @attrs.define
 class StateOrRegion:
 
+    """
+    The state or region where the person, business or institution is located.
+    """
+
     pass
 
 
 @attrs.define
 class TimeRange:
+
+    """
+    The time range.
+    """
 
     end: datetime = attrs.field(
         kw_only=True,
@@ -1268,11 +1508,19 @@ class TimeRange:
 @attrs.define
 class TrackingId:
 
+    """
+    The tracking id generated to each shipment. It contains a series of letters or digits or both.
+    """
+
     pass
 
 
 @attrs.define
 class TrackingInformation:
+
+    """
+    The payload schema for the getTrackingInformation operation.
+    """
 
     event_history: "EventList" = attrs.field(
         kw_only=True,
@@ -1308,6 +1556,10 @@ class TrackingInformation:
 @attrs.define
 class TrackingSummary:
 
+    """
+    The tracking summary.
+    """
+
     status: str = attrs.field(
         kw_only=True,
     )
@@ -1323,6 +1575,10 @@ class TrackingSummary:
 
 @attrs.define
 class Weight:
+
+    """
+    The weight.
+    """
 
     unit: Union[Literal["g"], Literal["kg"], Literal["oz"], Literal["lb"]] = attrs.field(
         kw_only=True,

@@ -18,6 +18,10 @@ from datetime import date, datetime
 @attrs.define
 class BrandRefinement:
 
+    """
+    Description of a brand that can be used to get more fine-grained search results.
+    """
+
     brand_name: str = attrs.field(
         kw_only=True,
     )
@@ -37,6 +41,10 @@ class BrandRefinement:
 
 @attrs.define
 class ClassificationRefinement:
+
+    """
+    Description of a classification that can be used to get more fine-grained search results.
+    """
 
     classification_id: str = attrs.field(
         kw_only=True,
@@ -65,6 +73,10 @@ class ClassificationRefinement:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -92,6 +104,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -104,6 +120,10 @@ class ErrorList:
 
 @attrs.define
 class Item:
+
+    """
+    An item in the Amazon catalog.
+    """
 
     asin: "ItemAsin" = attrs.field(
         kw_only=True,
@@ -174,17 +194,29 @@ class Item:
 @attrs.define
 class ItemAsin:
 
+    """
+    Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
+    """
+
     pass
 
 
 @attrs.define
 class ItemAttributes:
 
+    """
+    A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
+    """
+
     pass
 
 
 @attrs.define
 class ItemIdentifier:
+
+    """
+    Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
+    """
 
     identifier: str = attrs.field(
         kw_only=True,
@@ -206,11 +238,19 @@ class ItemIdentifier:
 @attrs.define
 class ItemIdentifiers:
 
+    """
+    Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
+    """
+
     pass
 
 
 @attrs.define
 class ItemIdentifiersByMarketplace:
+
+    """
+    Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
+    """
 
     identifiers: List["ItemIdentifier"] = attrs.field(
         kw_only=True,
@@ -231,6 +271,10 @@ class ItemIdentifiersByMarketplace:
 
 @attrs.define
 class ItemImage:
+
+    """
+    Image for an item in the Amazon catalog.
+    """
 
     height: int = attrs.field(
         kw_only=True,
@@ -280,11 +324,19 @@ class ItemImage:
 @attrs.define
 class ItemImages:
 
+    """
+    Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a thumbnail of the "MAIN" image variant is provided.
+    """
+
     pass
 
 
 @attrs.define
 class ItemImagesByMarketplace:
+
+    """
+    Images for an item in the Amazon catalog for the indicated Amazon marketplace.
+    """
 
     images: List["ItemImage"] = attrs.field(
         kw_only=True,
@@ -305,6 +357,10 @@ class ItemImagesByMarketplace:
 
 @attrs.define
 class ItemProductTypeByMarketplace:
+
+    """
+    Product type associated with the Amazon catalog item for the indicated Amazon marketplace.
+    """
 
     marketplace_id: str = attrs.field(
         kw_only=True,
@@ -329,11 +385,19 @@ class ItemProductTypeByMarketplace:
 @attrs.define
 class ItemProductTypes:
 
+    """
+    Product types associated with the Amazon catalog item.
+    """
+
     pass
 
 
 @attrs.define
 class ItemSalesRank:
+
+    """
+    Sales rank of an Amazon catalog item.
+    """
 
     link: str = attrs.field(
         kw_only=True,
@@ -362,11 +426,19 @@ class ItemSalesRank:
 @attrs.define
 class ItemSalesRanks:
 
+    """
+    Sales ranks of an Amazon catalog item.
+    """
+
     pass
 
 
 @attrs.define
 class ItemSalesRanksByMarketplace:
+
+    """
+    Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
+    """
 
     marketplace_id: str = attrs.field(
         kw_only=True,
@@ -387,6 +459,10 @@ class ItemSalesRanksByMarketplace:
 
 @attrs.define
 class ItemSearchResults:
+
+    """
+    Items in the Amazon catalog and search related metadata.
+    """
 
     items: List["Item"] = attrs.field(
         kw_only=True,
@@ -423,11 +499,19 @@ class ItemSearchResults:
 @attrs.define
 class ItemSummaries:
 
+    """
+    Summary details of an Amazon catalog item.
+    """
+
     pass
 
 
 @attrs.define
 class ItemSummaryByMarketplace:
+
+    """
+    Summary details of an Amazon catalog item for the indicated Amazon marketplace.
+    """
 
     brand_name: str = attrs.field(
         kw_only=True,
@@ -498,11 +582,19 @@ class ItemSummaryByMarketplace:
 @attrs.define
 class ItemVariations:
 
+    """
+    Variation details by marketplace for an Amazon catalog item (variation relationships).
+    """
+
     pass
 
 
 @attrs.define
 class ItemVariationsByMarketplace:
+
+    """
+    Variation details for the Amazon catalog item for the indicated Amazon marketplace.
+    """
 
     asins: List[str] = attrs.field(
         kw_only=True,
@@ -534,11 +626,19 @@ class ItemVariationsByMarketplace:
 @attrs.define
 class ItemVendorDetails:
 
+    """
+    Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.
+    """
+
     pass
 
 
 @attrs.define
 class ItemVendorDetailsByMarketplace:
+
+    """
+    Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
+    """
 
     brand_code: str = attrs.field(
         kw_only=True,
@@ -613,6 +713,10 @@ class ItemVendorDetailsByMarketplace:
 @attrs.define
 class Pagination:
 
+    """
+    When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
+    """
+
     next_token: str = attrs.field(
         kw_only=True,
     )
@@ -632,6 +736,10 @@ class Pagination:
 
 @attrs.define
 class Refinements:
+
+    """
+    Search refinements.
+    """
 
     brands: List["BrandRefinement"] = attrs.field(
         kw_only=True,

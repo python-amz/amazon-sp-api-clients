@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class CreateProductReviewAndSellerFeedbackSolicitationResponse:
 
+    """
+    The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -28,6 +32,10 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -55,6 +63,10 @@ class Error:
 
 @attrs.define
 class ErrorList:
+
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
@@ -91,6 +103,10 @@ class GetSchemaResponse:
 
 @attrs.define
 class GetSolicitationActionResponse:
+
+    """
+    Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
+    """
 
     _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
@@ -132,6 +148,10 @@ class GetSolicitationActionResponse:
 @attrs.define
 class GetSolicitationActionsForOrderResponse:
 
+    """
+    The response schema for the getSolicitationActionsForOrder operation.
+    """
+
     _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
     )
@@ -165,6 +185,10 @@ class GetSolicitationActionsForOrderResponse:
 @attrs.define
 class LinkObject:
 
+    """
+    A Link object.
+    """
+
     href: str = attrs.field(
         kw_only=True,
     )
@@ -185,11 +209,19 @@ class LinkObject:
 @attrs.define
 class Schema:
 
+    """
+    A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+    """
+
     pass
 
 
 @attrs.define
 class SolicitationsAction:
+
+    """
+    A simple object containing the name of the template.
+    """
 
     name: str = attrs.field(
         kw_only=True,

@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -43,11 +47,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetMarketplaceParticipationsResponse:
+
+    """
+    The response schema for the getMarketplaceParticipations operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -68,6 +80,10 @@ class GetMarketplaceParticipationsResponse:
 
 @attrs.define
 class Marketplace:
+
+    """
+    Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
+    """
 
     country_code: str = attrs.field(
         kw_only=True,
@@ -140,11 +156,19 @@ class MarketplaceParticipation:
 @attrs.define
 class MarketplaceParticipationList:
 
+    """
+    List of marketplace participations.
+    """
+
     pass
 
 
 @attrs.define
 class Participation:
+
+    """
+    Detailed information that is specific to a seller in a Marketplace.
+    """
 
     has_suspended_listings: bool = attrs.field(
         kw_only=True,

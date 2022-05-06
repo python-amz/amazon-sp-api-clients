@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -43,6 +47,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -55,6 +63,10 @@ class ErrorList:
 
 @attrs.define
 class Transaction:
+
+    """
+    The transaction status details.
+    """
 
     status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field(
         kw_only=True,
@@ -82,6 +94,10 @@ class Transaction:
 
 @attrs.define
 class TransactionStatus:
+
+    """
+    The payload for the getTransactionStatus operation.
+    """
 
     transaction_status: "Transaction" = attrs.field(
         kw_only=True,

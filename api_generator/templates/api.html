@@ -16,7 +16,11 @@ from datetime import date, datetime
 {% for schema in data.schemas %}
 @attrs.define
 class {{ schema.name }}:
-
+    {% if schema.description %}
+    """
+    {{ schema.description }}
+    """
+    {% endif %}
 
     {% for property in schema.schema_properties %}
     {{ property.variable_name }}: {{ property.type_hint }} = attrs.field(

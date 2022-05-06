@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -43,11 +47,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetItemEligibilityPreviewResponse:
+
+    """
+    The response schema for the getItemEligibilityPreview operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -68,6 +80,10 @@ class GetItemEligibilityPreviewResponse:
 
 @attrs.define
 class ItemEligibilityPreview:
+
+    """
+    The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
+    """
 
     asin: str = attrs.field(
         kw_only=True,

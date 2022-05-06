@@ -43,11 +43,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class FeeDetail:
+
+    """
+    The type of fee, fee amount, and other details.
+    """
 
     fee_type: str = attrs.field(
         kw_only=True,
@@ -97,11 +105,19 @@ class FeeDetail:
 @attrs.define
 class FeeDetailList:
 
+    """
+    A list of other fees that contribute to a given fee.
+    """
+
     pass
 
 
 @attrs.define
 class FeesEstimate:
+
+    """
+    The total estimated fees for an item and a list of details.
+    """
 
     time_of_fees_estimation: datetime = attrs.field(
         kw_only=True,
@@ -132,6 +148,10 @@ class FeesEstimate:
 
 @attrs.define
 class FeesEstimateError:
+
+    """
+    An unexpected error occurred during this operation.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -167,11 +187,19 @@ class FeesEstimateError:
 @attrs.define
 class FeesEstimateErrorDetail:
 
+    """
+    Additional information that can help the caller understand or fix the issue.
+    """
+
     pass
 
 
 @attrs.define
 class FeesEstimateIdentifier:
+
+    """
+    An item identifier, marketplace, time of request, and other details that identify an estimate.
+    """
 
     id_type: str = attrs.field(
         kw_only=True,
@@ -276,6 +304,10 @@ class FeesEstimateRequest:
 @attrs.define
 class FeesEstimateResult:
 
+    """
+    An item identifier and the estimated fees for the item.
+    """
+
     status: str = attrs.field(
         kw_only=True,
     )
@@ -310,6 +342,10 @@ class FeesEstimateResult:
 @attrs.define
 class GetMyFeesEstimateRequest:
 
+    """
+    Request schema.
+    """
+
     fees_estimate_request: "FeesEstimateRequest" = attrs.field(
         kw_only=True,
     )
@@ -343,6 +379,10 @@ class GetMyFeesEstimateResponse:
 @attrs.define
 class GetMyFeesEstimateResult:
 
+    """
+    Response schema.
+    """
+
     fees_estimate_result: "FeesEstimateResult" = attrs.field(
         kw_only=True,
     )
@@ -355,6 +395,10 @@ class GetMyFeesEstimateResult:
 
 @attrs.define
 class IncludedFeeDetail:
+
+    """
+    The type of fee, fee amount, and other details.
+    """
 
     fee_type: str = attrs.field(
         kw_only=True,
@@ -397,6 +441,10 @@ class IncludedFeeDetail:
 @attrs.define
 class IncludedFeeDetailList:
 
+    """
+    A list of other fees that contribute to a given fee.
+    """
+
     pass
 
 
@@ -422,6 +470,10 @@ class MoneyType:
 
 @attrs.define
 class OptionalFulfillmentProgram:
+
+    """
+    An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+    """
 
     pass
 
@@ -451,6 +503,10 @@ class Points:
 
 @attrs.define
 class PriceToEstimateFees:
+
+    """
+    Price information for an item, used to estimate fees.
+    """
 
     listing_price: "MoneyType" = attrs.field(
         kw_only=True,

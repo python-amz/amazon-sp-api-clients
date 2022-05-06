@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Address:
 
+    """
+    The shipping address for the order.
+    """
+
     address_line1: str = attrs.field(
         kw_only=True,
     )
@@ -113,6 +117,10 @@ class Address:
 @attrs.define
 class AutomatedShippingSettings:
 
+    """
+    Contains information regarding the Shipping Settings Automation program, such as whether the order's shipping settings were generated automatically, and what those settings are.
+    """
+
     automated_carrier: str = attrs.field(
         kw_only=True,
     )
@@ -140,6 +148,10 @@ class AutomatedShippingSettings:
 @attrs.define
 class BuyerCustomizedInfoDetail:
 
+    """
+    Buyer information for custom orders from the Amazon Custom program.
+    """
+
     customized_url: str = attrs.field(
         kw_only=True,
     )
@@ -152,6 +164,10 @@ class BuyerCustomizedInfoDetail:
 
 @attrs.define
 class BuyerInfo:
+
+    """
+    Buyer information
+    """
 
     buyer_county: str = attrs.field(
         kw_only=True,
@@ -194,6 +210,10 @@ class BuyerInfo:
 @attrs.define
 class BuyerRequestedCancel:
 
+    """
+    Information about whether or not a buyer requested cancellation.
+    """
+
     buyer_cancel_reason: str = attrs.field(
         kw_only=True,
     )
@@ -213,6 +233,10 @@ class BuyerRequestedCancel:
 
 @attrs.define
 class BuyerTaxInfo:
+
+    """
+    Tax information about the buyer.
+    """
 
     company_legal_name: str = attrs.field(
         kw_only=True,
@@ -240,6 +264,10 @@ class BuyerTaxInfo:
 
 @attrs.define
 class BuyerTaxInformation:
+
+    """
+    Contains the business invoice tax information. Available only in the TR marketplace.
+    """
 
     buyer_business_address: str = attrs.field(
         kw_only=True,
@@ -275,6 +303,10 @@ class BuyerTaxInformation:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -302,11 +334,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class FulfillmentInstruction:
+
+    """
+    Contains the instructions about the fulfillment like where should it be fulfilled from.
+    """
 
     fulfillment_supply_source_id: str = attrs.field(
         kw_only=True,
@@ -320,6 +360,10 @@ class FulfillmentInstruction:
 
 @attrs.define
 class GetOrderAddressResponse:
+
+    """
+    The response schema for the getOrderAddress operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -341,6 +385,10 @@ class GetOrderAddressResponse:
 @attrs.define
 class GetOrderBuyerInfoResponse:
 
+    """
+    The response schema for the getOrderBuyerInfo operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -360,6 +408,10 @@ class GetOrderBuyerInfoResponse:
 
 @attrs.define
 class GetOrderItemsBuyerInfoResponse:
+
+    """
+    The response schema for the getOrderItemsBuyerInfo operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -381,6 +433,10 @@ class GetOrderItemsBuyerInfoResponse:
 @attrs.define
 class GetOrderItemsResponse:
 
+    """
+    The response schema for the getOrderItems operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -400,6 +456,10 @@ class GetOrderItemsResponse:
 
 @attrs.define
 class GetOrderRegulatedInfoResponse:
+
+    """
+    The response schema for the getOrderRegulatedInfo operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -421,6 +481,10 @@ class GetOrderRegulatedInfoResponse:
 @attrs.define
 class GetOrderResponse:
 
+    """
+    The response schema for the getOrder operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -441,6 +505,10 @@ class GetOrderResponse:
 @attrs.define
 class GetOrdersResponse:
 
+    """
+    The response schema for the getOrders operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -460,6 +528,10 @@ class GetOrdersResponse:
 
 @attrs.define
 class ItemBuyerInfo:
+
+    """
+    A single item's buyer information.
+    """
 
     gift_message_text: str = attrs.field(
         kw_only=True,
@@ -502,11 +574,19 @@ class ItemBuyerInfo:
 @attrs.define
 class MarketplaceId:
 
+    """
+    the unobfuscated marketplace ID
+    """
+
     pass
 
 
 @attrs.define
 class MarketplaceTaxInfo:
+
+    """
+    Tax information about the marketplace.
+    """
 
     tax_classifications: List["TaxClassification"] = attrs.field(
         kw_only=True,
@@ -520,6 +600,10 @@ class MarketplaceTaxInfo:
 
 @attrs.define
 class Money:
+
+    """
+    The monetary value of the order.
+    """
 
     amount: str = attrs.field(
         kw_only=True,
@@ -540,6 +624,10 @@ class Money:
 
 @attrs.define
 class Order:
+
+    """
+    Order information.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -882,6 +970,10 @@ class Order:
 @attrs.define
 class OrderAddress:
 
+    """
+    The shipping address for the order.
+    """
+
     amazon_order_id: str = attrs.field(
         kw_only=True,
     )
@@ -901,6 +993,10 @@ class OrderAddress:
 
 @attrs.define
 class OrderBuyerInfo:
+
+    """
+    Buyer information for an order.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -949,6 +1045,10 @@ class OrderBuyerInfo:
 
 @attrs.define
 class OrderItem:
+
+    """
+    A single order item.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -1198,6 +1298,10 @@ class OrderItem:
 @attrs.define
 class OrderItemBuyerInfo:
 
+    """
+    A single order item's buyer information.
+    """
+
     gift_message_text: str = attrs.field(
         kw_only=True,
     )
@@ -1246,11 +1350,19 @@ class OrderItemBuyerInfo:
 @attrs.define
 class OrderItemBuyerInfoList:
 
+    """
+    A single order item's buyer information list.
+    """
+
     pass
 
 
 @attrs.define
 class OrderItemList:
+
+    """
+    A list of order items.
+    """
 
     pass
 
@@ -1258,11 +1370,19 @@ class OrderItemList:
 @attrs.define
 class OrderItems:
 
+    """
+    the list of order items and quantities when the seller wants to partially update the shipment status of the order
+    """
+
     pass
 
 
 @attrs.define
 class OrderItemsBuyerInfoList:
+
+    """
+    A single order item's buyer information list with the order ID.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -1291,6 +1411,10 @@ class OrderItemsBuyerInfoList:
 @attrs.define
 class OrderItemsList:
 
+    """
+    The order items list along with the order ID.
+    """
+
     amazon_order_id: str = attrs.field(
         kw_only=True,
     )
@@ -1318,11 +1442,19 @@ class OrderItemsList:
 @attrs.define
 class OrderList:
 
+    """
+    A list of orders.
+    """
+
     pass
 
 
 @attrs.define
 class OrderRegulatedInfo:
+
+    """
+    The order's regulated information along with its verification status.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -1358,6 +1490,10 @@ class OrderRegulatedInfo:
 @attrs.define
 class OrdersList:
 
+    """
+    A list of orders along with additional information to make subsequent API calls.
+    """
+
     created_before: str = attrs.field(
         kw_only=True,
     )
@@ -1392,6 +1528,10 @@ class OrdersList:
 @attrs.define
 class PaymentExecutionDetailItem:
 
+    """
+    Information about a sub-payment method used to pay for a COD order.
+    """
+
     payment_method: str = attrs.field(
         kw_only=True,
     )
@@ -1416,17 +1556,29 @@ class PaymentExecutionDetailItem:
 @attrs.define
 class PaymentExecutionDetailItemList:
 
+    """
+    A list of payment execution detail items.
+    """
+
     pass
 
 
 @attrs.define
 class PaymentMethodDetailItemList:
 
+    """
+    A list of payment method detail items.
+    """
+
     pass
 
 
 @attrs.define
 class PointsGrantedDetail:
+
+    """
+    The number of Amazon Points offered with the purchase of an item, and their monetary value.
+    """
 
     points_number: int = attrs.field(
         kw_only=True,
@@ -1448,6 +1600,10 @@ class PointsGrantedDetail:
 @attrs.define
 class ProductInfoDetail:
 
+    """
+    Product information on the number of items.
+    """
+
     number_of_items: int = attrs.field(
         kw_only=True,
     )
@@ -1461,11 +1617,19 @@ class ProductInfoDetail:
 @attrs.define
 class PromotionIdList:
 
+    """
+    A list of promotion identifiers provided by the seller when the promotions were created.
+    """
+
     pass
 
 
 @attrs.define
 class RegulatedInformation:
+
+    """
+    The regulated information collected during purchase and used to verify the order.
+    """
 
     fields: List["RegulatedInformationField"] = attrs.field(
         kw_only=True,
@@ -1479,6 +1643,10 @@ class RegulatedInformation:
 
 @attrs.define
 class RegulatedInformationField:
+
+    """
+    A field collected from the regulatory form.
+    """
 
     field_id: str = attrs.field(
         kw_only=True,
@@ -1513,6 +1681,10 @@ class RegulatedInformationField:
 
 @attrs.define
 class RegulatedOrderVerificationStatus:
+
+    """
+    The verification status of the order along with associated approval or rejection metadata.
+    """
 
     external_reviewer_id: str = attrs.field(
         kw_only=True,
@@ -1564,6 +1736,10 @@ class RegulatedOrderVerificationStatus:
 @attrs.define
 class RejectionReason:
 
+    """
+    The reason for rejecting the order's regulated information. Not present if the order isn't rejected.
+    """
+
     rejection_reason_description: str = attrs.field(
         kw_only=True,
     )
@@ -1584,11 +1760,19 @@ class RejectionReason:
 @attrs.define
 class ShipmentStatus:
 
+    """
+    the status of the shipment of the order to be updated
+    """
+
     pass
 
 
 @attrs.define
 class TaxClassification:
+
+    """
+    The tax classification for the order.
+    """
 
     name: str = attrs.field(
         kw_only=True,
@@ -1610,6 +1794,10 @@ class TaxClassification:
 @attrs.define
 class TaxCollection:
 
+    """
+    Information about withheld taxes.
+    """
+
     model: Union[Literal["MarketplaceFacilitator"]] = attrs.field(
         kw_only=True,
     )
@@ -1630,6 +1818,10 @@ class TaxCollection:
 @attrs.define
 class UpdateShipmentStatusErrorResponse:
 
+    """
+    The error response schema for the UpdateShipmentStatus operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -1642,6 +1834,10 @@ class UpdateShipmentStatusErrorResponse:
 
 @attrs.define
 class UpdateShipmentStatusRequest:
+
+    """
+    Request to update the status of shipment of an order.
+    """
 
     marketplace_id: "MarketplaceId" = attrs.field(
         kw_only=True,
@@ -1670,6 +1866,10 @@ class UpdateShipmentStatusRequest:
 @attrs.define
 class UpdateVerificationStatusErrorResponse:
 
+    """
+    The error response schema for the UpdateVerificationStatus operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -1683,6 +1883,10 @@ class UpdateVerificationStatusErrorResponse:
 @attrs.define
 class UpdateVerificationStatusRequest:
 
+    """
+    Request to update the verification status of an order containing regulated products.
+    """
+
     regulated_order_verification_status: "UpdateVerificationStatusRequestBody" = attrs.field(
         kw_only=True,
     )
@@ -1695,6 +1899,10 @@ class UpdateVerificationStatusRequest:
 
 @attrs.define
 class UpdateVerificationStatusRequestBody:
+
+    """
+    The updated values of the VerificationStatus field.
+    """
 
     external_reviewer_id: str = attrs.field(
         kw_only=True,

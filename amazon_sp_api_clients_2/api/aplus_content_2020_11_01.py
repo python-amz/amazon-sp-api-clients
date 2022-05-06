@@ -16,11 +16,19 @@ from datetime import date, datetime
 @attrs.define
 class AplusPaginatedResponse:
 
+    """
+    The base response data for paginated A+ Content operations. Individual operations may extend this with additional data. If nextPageToken is not returned, there are no more pages to return.
+    """
+
     pass
 
 
 @attrs.define
 class AplusResponse:
+
+    """
+    The base response data for all A+ Content operations when a request is successful or partially successful. Individual operations may extend this with additional data.
+    """
 
     warnings: "MessageSet" = attrs.field(
         kw_only=True,
@@ -35,11 +43,19 @@ class AplusResponse:
 @attrs.define
 class Asin:
 
+    """
+    The Amazon Standard Identification Number (ASIN).
+    """
+
     pass
 
 
 @attrs.define
 class AsinBadge:
+
+    """
+    A flag that provides additional information about an ASIN. This is contextual and may change depending on the request that generated it.
+    """
 
     pass
 
@@ -47,11 +63,19 @@ class AsinBadge:
 @attrs.define
 class AsinBadgeSet:
 
+    """
+    The set of ASIN badges.
+    """
+
     pass
 
 
 @attrs.define
 class AsinMetadata:
+
+    """
+    The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the listContentDocumentAsinRelations operation, the related ASINs are returned without metadata.
+    """
 
     image_url: str = attrs.field(
         kw_only=True,
@@ -107,11 +131,19 @@ class AsinMetadata:
 @attrs.define
 class AsinMetadataSet:
 
+    """
+    The set of ASIN metadata.
+    """
+
     pass
 
 
 @attrs.define
 class AsinSet:
+
+    """
+    The set of ASINs.
+    """
 
     pass
 
@@ -119,11 +151,19 @@ class AsinSet:
 @attrs.define
 class ColorType:
 
+    """
+    The relative color scheme of content.
+    """
+
     pass
 
 
 @attrs.define
 class ContentBadge:
+
+    """
+    A flag that provides additional information about an A+ Content document.
+    """
 
     pass
 
@@ -131,11 +171,19 @@ class ContentBadge:
 @attrs.define
 class ContentBadgeSet:
 
+    """
+    The set of content badges.
+    """
+
     pass
 
 
 @attrs.define
 class ContentDocument:
+
+    """
+    The A+ Content document. This is the enhanced content that is published to product detail pages.
+    """
 
     name: str = attrs.field(
         kw_only=True,
@@ -180,6 +228,10 @@ class ContentDocument:
 
 @attrs.define
 class ContentMetadata:
+
+    """
+    The metadata of an A+ Content document.
+    """
 
     name: str = attrs.field(
         kw_only=True,
@@ -228,6 +280,10 @@ class ContentMetadata:
 @attrs.define
 class ContentMetadataRecord:
 
+    """
+    The metadata for an A+ Content document, with additional information for content management.
+    """
+
     content_metadata: "ContentMetadata" = attrs.field(
         kw_only=True,
     )
@@ -248,11 +304,19 @@ class ContentMetadataRecord:
 @attrs.define
 class ContentMetadataRecordList:
 
+    """
+    A list of A+ Content metadata records.
+    """
+
     pass
 
 
 @attrs.define
 class ContentModule:
+
+    """
+    An A+ Content module. An A+ Content document is composed of content modules. The contentModuleType property selects which content module types to use.
+    """
 
     content_module_type: "ContentModuleType" = attrs.field(
         kw_only=True,
@@ -372,17 +436,29 @@ class ContentModule:
 @attrs.define
 class ContentModuleList:
 
+    """
+    A list of A+ Content modules.
+    """
+
     pass
 
 
 @attrs.define
 class ContentModuleType:
 
+    """
+    The type of A+ Content module.
+    """
+
     pass
 
 
 @attrs.define
 class ContentRecord:
+
+    """
+    A content document with additional information for content management.
+    """
 
     content_document: "ContentDocument" = attrs.field(
         kw_only=True,
@@ -411,11 +487,19 @@ class ContentRecord:
 @attrs.define
 class ContentReferenceKey:
 
+    """
+    A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+    """
+
     pass
 
 
 @attrs.define
 class ContentReferenceKeySet:
+
+    """
+    A set of content reference keys.
+    """
 
     pass
 
@@ -423,11 +507,19 @@ class ContentReferenceKeySet:
 @attrs.define
 class ContentStatus:
 
+    """
+    The submission status of the content document.
+    """
+
     pass
 
 
 @attrs.define
 class ContentSubType:
+
+    """
+    The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
+    """
 
     pass
 
@@ -435,11 +527,19 @@ class ContentSubType:
 @attrs.define
 class ContentType:
 
+    """
+    The A+ Content document type.
+    """
+
     pass
 
 
 @attrs.define
 class Decorator:
+
+    """
+    A decorator applied to a content string value in order to create rich text.
+    """
 
     depth: int = attrs.field(
         kw_only=True,
@@ -484,17 +584,29 @@ class Decorator:
 @attrs.define
 class DecoratorSet:
 
+    """
+    A set of content decorators.
+    """
+
     pass
 
 
 @attrs.define
 class DecoratorType:
 
+    """
+    The type of rich text decorator.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -532,6 +644,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    The error response for when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -550,6 +666,10 @@ class GetContentDocumentResponse:
 
 @attrs.define
 class ImageComponent:
+
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
 
     alt_text: str = attrs.field(
         kw_only=True,
@@ -584,6 +704,10 @@ class ImageComponent:
 @attrs.define
 class ImageCropSpecification:
 
+    """
+    The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
+    """
+
     offset: "ImageOffsets" = attrs.field(
         kw_only=True,
     )
@@ -603,6 +727,10 @@ class ImageCropSpecification:
 
 @attrs.define
 class ImageDimensions:
+
+    """
+    The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
+    """
 
     height: "IntegerWithUnits" = attrs.field(
         kw_only=True,
@@ -624,6 +752,10 @@ class ImageDimensions:
 @attrs.define
 class ImageOffsets:
 
+    """
+    The top left corner of the cropped image, specified in the original image's coordinate space.
+    """
+
     x: "IntegerWithUnits" = attrs.field(
         kw_only=True,
     )
@@ -643,6 +775,10 @@ class ImageOffsets:
 
 @attrs.define
 class IntegerWithUnits:
+
+    """
+    A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
+    """
 
     units: str = attrs.field(
         kw_only=True,
@@ -664,6 +800,11 @@ class IntegerWithUnits:
 @attrs.define
 class LanguageTag:
 
+    """
+        The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
+    **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
+    """
+
     pass
 
 
@@ -676,11 +817,19 @@ class ListContentDocumentAsinRelationsResponse:
 @attrs.define
 class MarketplaceId:
 
+    """
+    The identifier for the marketplace where the A+ Content is published.
+    """
+
     pass
 
 
 @attrs.define
 class MessageSet:
+
+    """
+    A set of messages to the user, such as warnings or comments.
+    """
 
     pass
 
@@ -688,11 +837,19 @@ class MessageSet:
 @attrs.define
 class PageToken:
 
+    """
+    A page token that is returned when the results of the call exceed the page size. To get another page of results, call the operation again, passing in this value with the pageToken parameter.
+    """
+
     pass
 
 
 @attrs.define
 class ParagraphComponent:
+
+    """
+    A list of rich text content, usually presented in a text box.
+    """
 
     text_list: List["TextComponent"] = attrs.field(
         kw_only=True,
@@ -709,6 +866,10 @@ class ParagraphComponent:
 
 @attrs.define
 class PlainTextItem:
+
+    """
+    Plain positional text, used in collections of brief labels and descriptors.
+    """
 
     position: int = attrs.field(
         kw_only=True,
@@ -735,6 +896,10 @@ class PlainTextItem:
 
 @attrs.define
 class PositionType:
+
+    """
+    The relative positioning of content.
+    """
 
     pass
 
@@ -792,6 +957,10 @@ class PostContentDocumentSuspendSubmissionResponse:
 @attrs.define
 class PublishRecord:
 
+    """
+    The full context for an A+ Content publishing event.
+    """
+
     asin: "Asin" = attrs.field(
         kw_only=True,
     )
@@ -840,6 +1009,10 @@ class PublishRecord:
 @attrs.define
 class PublishRecordList:
 
+    """
+    A list of A+ Content publishing records.
+    """
+
     pass
 
 
@@ -858,6 +1031,10 @@ class SearchContentPublishRecordsResponse:
 @attrs.define
 class StandardCompanyLogoModule:
 
+    """
+    The standard company logo image.
+    """
+
     company_logo: "ImageComponent" = attrs.field(
         kw_only=True,
     )
@@ -870,6 +1047,10 @@ class StandardCompanyLogoModule:
 
 @attrs.define
 class StandardComparisonProductBlock:
+
+    """
+    The A+ Content standard comparison product block.
+    """
 
     highlight: bool = attrs.field(
         kw_only=True,
@@ -928,6 +1109,10 @@ class StandardComparisonProductBlock:
 @attrs.define
 class StandardComparisonTableModule:
 
+    """
+    The standard product comparison table.
+    """
+
     metric_row_labels: List["PlainTextItem"] = attrs.field(
         kw_only=True,
     )
@@ -953,6 +1138,10 @@ class StandardComparisonTableModule:
 
 @attrs.define
 class StandardFourImageTextModule:
+
+    """
+    Four standard images with text, presented across a single row.
+    """
 
     block1: "StandardImageTextBlock" = attrs.field(
         kw_only=True,
@@ -995,6 +1184,10 @@ class StandardFourImageTextModule:
 @attrs.define
 class StandardFourImageTextQuadrantModule:
 
+    """
+    Four standard images with text, presented on a grid of four quadrants.
+    """
+
     block1: "StandardImageTextBlock" = attrs.field(
         kw_only=True,
     )
@@ -1029,6 +1222,10 @@ class StandardFourImageTextQuadrantModule:
 @attrs.define
 class StandardHeaderImageTextModule:
 
+    """
+    Standard headline text, an image, and body text.
+    """
+
     block: "StandardImageTextBlock" = attrs.field(
         kw_only=True,
     )
@@ -1048,6 +1245,10 @@ class StandardHeaderImageTextModule:
 
 @attrs.define
 class StandardHeaderTextListBlock:
+
+    """
+    The A+ standard fixed-length list of text, with a related headline.
+    """
 
     block: "StandardTextListBlock" = attrs.field(
         kw_only=True,
@@ -1069,6 +1270,10 @@ class StandardHeaderTextListBlock:
 @attrs.define
 class StandardImageCaptionBlock:
 
+    """
+    The A+ Content standard image and caption block.
+    """
+
     caption: "TextComponent" = attrs.field(
         kw_only=True,
     )
@@ -1088,6 +1293,10 @@ class StandardImageCaptionBlock:
 
 @attrs.define
 class StandardImageSidebarModule:
+
+    """
+    Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
+    """
 
     description_list_block: "StandardTextListBlock" = attrs.field(
         kw_only=True,
@@ -1137,6 +1346,10 @@ class StandardImageSidebarModule:
 @attrs.define
 class StandardImageTextBlock:
 
+    """
+    The A+ Content standard image and text box block.
+    """
+
     body: "ParagraphComponent" = attrs.field(
         kw_only=True,
     )
@@ -1164,6 +1377,10 @@ class StandardImageTextBlock:
 @attrs.define
 class StandardImageTextCaptionBlock:
 
+    """
+    The A+ Content standard image and text block, with a related caption. The caption may not display on all devices.
+    """
+
     block: "StandardImageTextBlock" = attrs.field(
         kw_only=True,
     )
@@ -1183,6 +1400,10 @@ class StandardImageTextCaptionBlock:
 
 @attrs.define
 class StandardImageTextOverlayModule:
+
+    """
+    A standard background image with a floating text box.
+    """
 
     block: "StandardImageTextBlock" = attrs.field(
         kw_only=True,
@@ -1204,6 +1425,10 @@ class StandardImageTextOverlayModule:
 @attrs.define
 class StandardMultipleImageTextModule:
 
+    """
+    Standard images with text, presented one at a time. The user clicks on thumbnails to view each block.
+    """
+
     blocks: List["StandardImageTextCaptionBlock"] = attrs.field(
         kw_only=True,
     )
@@ -1217,6 +1442,10 @@ class StandardMultipleImageTextModule:
 @attrs.define
 class StandardProductDescriptionModule:
 
+    """
+    Standard product description text.
+    """
+
     body: "ParagraphComponent" = attrs.field(
         kw_only=True,
     )
@@ -1229,6 +1458,10 @@ class StandardProductDescriptionModule:
 
 @attrs.define
 class StandardSingleImageHighlightsModule:
+
+    """
+    A standard image with several paragraphs and a bulleted list.
+    """
 
     bulleted_list_block: "StandardHeaderTextListBlock" = attrs.field(
         kw_only=True,
@@ -1277,6 +1510,10 @@ class StandardSingleImageHighlightsModule:
 
 @attrs.define
 class StandardSingleImageSpecsDetailModule:
+
+    """
+    A standard image with paragraphs and a bulleted list, and extra space for technical details.
+    """
 
     description_block1: "StandardTextBlock" = attrs.field(
         kw_only=True,
@@ -1340,6 +1577,10 @@ class StandardSingleImageSpecsDetailModule:
 @attrs.define
 class StandardSingleSideImageModule:
 
+    """
+    A standard headline and body text with an image on the side.
+    """
+
     block: "StandardImageTextBlock" = attrs.field(
         kw_only=True,
     )
@@ -1359,6 +1600,10 @@ class StandardSingleSideImageModule:
 
 @attrs.define
 class StandardTechSpecsModule:
+
+    """
+    The standard table of technical feature names and definitions.
+    """
 
     specification_list: List["StandardTextPairBlock"] = attrs.field(
         kw_only=True,
@@ -1393,6 +1638,10 @@ class StandardTechSpecsModule:
 @attrs.define
 class StandardTextBlock:
 
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
+
     body: "ParagraphComponent" = attrs.field(
         kw_only=True,
     )
@@ -1413,6 +1662,10 @@ class StandardTextBlock:
 @attrs.define
 class StandardTextListBlock:
 
+    """
+    The A+ Content standard fixed length list of text, usually presented as bullet points.
+    """
+
     text_list: List["TextItem"] = attrs.field(
         kw_only=True,
     )
@@ -1428,6 +1681,10 @@ class StandardTextListBlock:
 
 @attrs.define
 class StandardTextModule:
+
+    """
+    A standard headline and body text.
+    """
 
     body: "ParagraphComponent" = attrs.field(
         kw_only=True,
@@ -1449,6 +1706,10 @@ class StandardTextModule:
 @attrs.define
 class StandardTextPairBlock:
 
+    """
+    The A+ Content standard label and description block, comprised of a pair of text components.
+    """
+
     description: "TextComponent" = attrs.field(
         kw_only=True,
     )
@@ -1468,6 +1729,10 @@ class StandardTextPairBlock:
 
 @attrs.define
 class StandardThreeImageTextModule:
+
+    """
+    Three standard images with text, presented across a single row.
+    """
 
     block1: "StandardImageTextBlock" = attrs.field(
         kw_only=True,
@@ -1503,6 +1768,10 @@ class StandardThreeImageTextModule:
 @attrs.define
 class TextComponent:
 
+    """
+    Rich text content.
+    """
+
     value: str = attrs.field(
         kw_only=True,
     )
@@ -1525,6 +1794,10 @@ class TextComponent:
 
 @attrs.define
 class TextItem:
+
+    """
+    Rich positional text, usually presented as a collection of bullet points.
+    """
 
     position: int = attrs.field(
         kw_only=True,

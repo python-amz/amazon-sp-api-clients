@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    An error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -43,11 +47,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetInventorySummariesResponse:
+
+    """
+    The Response schema.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -76,6 +88,10 @@ class GetInventorySummariesResponse:
 @attrs.define
 class GetInventorySummariesResult:
 
+    """
+    The payload schema for the getInventorySummaries operation.
+    """
+
     granularity: "Granularity" = attrs.field(
         kw_only=True,
     )
@@ -96,6 +112,10 @@ class GetInventorySummariesResult:
 @attrs.define
 class Granularity:
 
+    """
+    Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
+    """
+
     granularity_id: str = attrs.field(
         kw_only=True,
     )
@@ -115,6 +135,10 @@ class Granularity:
 
 @attrs.define
 class InventoryDetails:
+
+    """
+    Summarized inventory details. This object will not appear if the details parameter in the request is false.
+    """
 
     fulfillable_quantity: int = attrs.field(
         kw_only=True,
@@ -171,11 +195,19 @@ class InventoryDetails:
 @attrs.define
 class InventorySummaries:
 
+    """
+    A list of inventory summaries.
+    """
+
     pass
 
 
 @attrs.define
 class InventorySummary:
+
+    """
+    Inventory summary for a specific item.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -242,6 +274,10 @@ class InventorySummary:
 @attrs.define
 class Pagination:
 
+    """
+    The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
+    """
+
     next_token: str = attrs.field(
         kw_only=True,
     )
@@ -254,6 +290,10 @@ class Pagination:
 
 @attrs.define
 class ResearchingQuantity:
+
+    """
+    The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
+    """
 
     researching_quantity_breakdown: List["ResearchingQuantityEntry"] = attrs.field(
         kw_only=True,
@@ -274,6 +314,10 @@ class ResearchingQuantity:
 
 @attrs.define
 class ResearchingQuantityEntry:
+
+    """
+    The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
+    """
 
     name: Union[
         Literal["researchingQuantityInShortTerm"],
@@ -298,6 +342,10 @@ class ResearchingQuantityEntry:
 
 @attrs.define
 class ReservedQuantity:
+
+    """
+    The quantity of reserved inventory.
+    """
 
     fc_processing_quantity: int = attrs.field(
         kw_only=True,
@@ -332,6 +380,10 @@ class ReservedQuantity:
 
 @attrs.define
 class UnfulfillableQuantity:
+
+    """
+    The quantity of unfulfillable inventory.
+    """
 
     carrier_damaged_quantity: int = attrs.field(
         kw_only=True,

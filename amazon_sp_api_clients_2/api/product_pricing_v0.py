@@ -36,6 +36,10 @@ class ASINIdentifier:
 @attrs.define
 class AttributeSetList:
 
+    """
+    A list of product attributes if they are applicable to the product that is returned.
+    """
+
     pass
 
 
@@ -126,6 +130,10 @@ class BuyBoxPrices:
 @attrs.define
 class CompetitivePriceList:
 
+    """
+    A list of competitive pricing information.
+    """
+
     pass
 
 
@@ -207,6 +215,10 @@ class CompetitivePriceType:
 @attrs.define
 class CompetitivePricingType:
 
+    """
+    Competitive pricing information for the item.
+    """
+
     competitive_prices: "CompetitivePriceList" = attrs.field(
         kw_only=True,
     )
@@ -234,11 +246,19 @@ class CompetitivePricingType:
 @attrs.define
 class ConditionType:
 
+    """
+    Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.
+    """
+
     pass
 
 
 @attrs.define
 class DetailedShippingTimeType:
+
+    """
+    The time range in which an item will likely be shipped once an order has been placed.
+    """
 
     availability_type: Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]] = attrs.field(
         kw_only=True,
@@ -280,6 +300,10 @@ class DetailedShippingTimeType:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -307,17 +331,29 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class FulfillmentChannelType:
 
+    """
+    Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
+    """
+
     pass
 
 
 @attrs.define
 class GetOffersResponse:
+
+    """
+    The response schema for the getListingOffers and getItemOffers operations.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -401,6 +437,10 @@ class GetOffersResult:
 @attrs.define
 class GetPricingResponse:
 
+    """
+    The response schema for the getPricing and getCompetitivePricing operations.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -421,6 +461,10 @@ class GetPricingResponse:
 @attrs.define
 class IdentifierType:
 
+    """
+    Specifies the identifiers used to uniquely identify an item.
+    """
+
     marketplace_asin: "ASINIdentifier" = attrs.field(
         kw_only=True,
     )
@@ -440,6 +484,10 @@ class IdentifierType:
 
 @attrs.define
 class ItemIdentifier:
+
+    """
+    Information that identifies an item.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -573,6 +621,10 @@ class MoneyType:
 @attrs.define
 class NumberOfOfferListingsList:
 
+    """
+    The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
+    """
+
     pass
 
 
@@ -584,6 +636,10 @@ class NumberOfOffers:
 
 @attrs.define
 class OfferCountType:
+
+    """
+    The total number of offers for the specified condition and fulfillment channel.
+    """
 
     offer_count: int = attrs.field(
         kw_only=True,
@@ -745,6 +801,10 @@ class OfferDetailList:
 @attrs.define
 class OfferListingCountType:
 
+    """
+    The number of offer listings with the specified condition.
+    """
+
     count: int = attrs.field(
         kw_only=True,
     )
@@ -838,6 +898,10 @@ class OfferType:
 
 @attrs.define
 class OffersList:
+
+    """
+    A list of offers.
+    """
 
     pass
 
@@ -942,6 +1006,10 @@ class PriceType:
 @attrs.define
 class PrimeInformationType:
 
+    """
+    Amazon Prime information.
+    """
+
     is_national_prime: bool = attrs.field(
         kw_only=True,
     )
@@ -961,6 +1029,10 @@ class PrimeInformationType:
 
 @attrs.define
 class Product:
+
+    """
+    An item.
+    """
 
     attribute_sets: "AttributeSetList" = attrs.field(
         kw_only=True,
@@ -1010,6 +1082,10 @@ class Product:
 @attrs.define
 class QuantityDiscountPriceType:
 
+    """
+    Contains pricing information that includes special pricing when buying in bulk.
+    """
+
     quantity_tier: int = attrs.field(
         kw_only=True,
     )
@@ -1046,11 +1122,19 @@ class QuantityDiscountType:
 @attrs.define
 class RelationshipList:
 
+    """
+    A list that contains product variation information, if applicable.
+    """
+
     pass
 
 
 @attrs.define
 class SalesRankList:
+
+    """
+    A list of sales rank information for the item, by category.
+    """
 
     pass
 
@@ -1080,6 +1164,10 @@ class SalesRankType:
 
 @attrs.define
 class SellerFeedbackType:
+
+    """
+    Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
+    """
 
     feedback_count: int = attrs.field(
         kw_only=True,
@@ -1134,6 +1222,10 @@ class SellerSKUIdentifier:
 @attrs.define
 class ShipsFromType:
 
+    """
+    The state and country from where the item is shipped.
+    """
+
     country: str = attrs.field(
         kw_only=True,
     )
@@ -1153,6 +1245,10 @@ class ShipsFromType:
 
 @attrs.define
 class Summary:
+
+    """
+    Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
+    """
 
     offers_available_time: datetime = attrs.field(
         kw_only=True,

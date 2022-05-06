@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class CreateFeedDocumentResponse:
 
+    """
+    Information required to upload a feed document's contents.
+    """
+
     feed_document_id: str = attrs.field(
         kw_only=True,
     )
@@ -36,6 +40,10 @@ class CreateFeedDocumentResponse:
 @attrs.define
 class CreateFeedDocumentSpecification:
 
+    """
+    Specifies the content type for the createFeedDocument operation.
+    """
+
     content_type: str = attrs.field(
         kw_only=True,
     )
@@ -49,6 +57,10 @@ class CreateFeedDocumentSpecification:
 @attrs.define
 class CreateFeedResponse:
 
+    """
+    Response schema.
+    """
+
     feed_id: str = attrs.field(
         kw_only=True,
     )
@@ -61,6 +73,10 @@ class CreateFeedResponse:
 
 @attrs.define
 class CreateFeedSpecification:
+
+    """
+    Information required to create the feed.
+    """
 
     feed_type: str = attrs.field(
         kw_only=True,
@@ -99,6 +115,10 @@ class CreateFeedSpecification:
 @attrs.define
 class Error:
 
+    """
+    An error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -126,6 +146,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -138,6 +162,10 @@ class ErrorList:
 
 @attrs.define
 class Feed:
+
+    """
+    Detailed information about the feed.
+    """
 
     created_time: datetime = attrs.field(
         kw_only=True,
@@ -212,6 +240,10 @@ class Feed:
 @attrs.define
 class FeedDocument:
 
+    """
+    Information required for the feed document.
+    """
+
     compression_algorithm: Union[Literal["GZIP"]] = attrs.field(
         kw_only=True,
     )
@@ -239,17 +271,29 @@ class FeedDocument:
 @attrs.define
 class FeedList:
 
+    """
+    A list of feeds.
+    """
+
     pass
 
 
 @attrs.define
 class FeedOptions:
 
+    """
+    Additional options to control the feed. These vary by feed type.
+    """
+
     pass
 
 
 @attrs.define
 class GetFeedsResponse:
+
+    """
+    Response schema.
+    """
 
     next_token: str = attrs.field(
         kw_only=True,

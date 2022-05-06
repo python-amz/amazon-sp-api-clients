@@ -36,11 +36,19 @@ class ASINIdentifier:
 @attrs.define
 class AttributeSetList:
 
+    """
+    A list of attributes for the item.
+    """
+
     pass
 
 
 @attrs.define
 class AttributeSetListType:
+
+    """
+    The attributes of the item.
+    """
 
     actor: List[str] = attrs.field(
         kw_only=True,
@@ -750,6 +758,10 @@ class Categories:
 @attrs.define
 class CreatorType:
 
+    """
+    The creator type attribute of an item.
+    """
+
     role: str = attrs.field(
         kw_only=True,
     )
@@ -770,6 +782,10 @@ class CreatorType:
 @attrs.define
 class DecimalWithUnits:
 
+    """
+    The decimal value and unit.
+    """
+
     units: str = attrs.field(
         kw_only=True,
     )
@@ -789,6 +805,10 @@ class DecimalWithUnits:
 
 @attrs.define
 class DimensionType:
+
+    """
+    The dimension type attribute of an item.
+    """
 
     height: "DecimalWithUnits" = attrs.field(
         kw_only=True,
@@ -824,6 +844,10 @@ class DimensionType:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -850,6 +874,10 @@ class Error:
 
 @attrs.define
 class ErrorList:
+
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
@@ -897,6 +925,10 @@ class IdentifierType:
 @attrs.define
 class Image:
 
+    """
+    The image attribute of the item.
+    """
+
     url: str = attrs.field(
         kw_only=True,
     )
@@ -923,6 +955,10 @@ class Image:
 
 @attrs.define
 class Item:
+
+    """
+    An item in the Amazon catalog.
+    """
 
     attribute_sets: "AttributeSetList" = attrs.field(
         kw_only=True,
@@ -958,11 +994,19 @@ class Item:
 @attrs.define
 class ItemList:
 
+    """
+    A list of items.
+    """
+
     pass
 
 
 @attrs.define
 class LanguageType:
+
+    """
+    The language type attribute of an item.
+    """
 
     audio_format: str = attrs.field(
         kw_only=True,
@@ -1050,6 +1094,10 @@ class ListOfCategories:
 @attrs.define
 class Price:
 
+    """
+    The price attribute of the item.
+    """
+
     amount: float = attrs.field(
         kw_only=True,
     )
@@ -1070,11 +1118,19 @@ class Price:
 @attrs.define
 class RelationshipList:
 
+    """
+    A list of variation relationship information, if applicable for the item.
+    """
+
     pass
 
 
 @attrs.define
 class RelationshipType:
+
+    """
+    Specific variations of the item.
+    """
 
     color: str = attrs.field(
         kw_only=True,
@@ -1242,6 +1298,10 @@ class RelationshipType:
 
 @attrs.define
 class SalesRankList:
+
+    """
+    A list of sales rank information for the item by category.
+    """
 
     pass
 

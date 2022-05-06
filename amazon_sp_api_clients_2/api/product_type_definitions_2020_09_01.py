@@ -18,6 +18,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -45,6 +49,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -57,6 +65,10 @@ class ErrorList:
 
 @attrs.define
 class ProductType:
+
+    """
+    An Amazon product type with a definition available.
+    """
 
     marketplace_ids: List[str] = attrs.field(
         kw_only=True,
@@ -77,6 +89,10 @@ class ProductType:
 
 @attrs.define
 class ProductTypeDefinition:
+
+    """
+    A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
+    """
 
     locale: str = attrs.field(
         kw_only=True,
@@ -152,6 +168,10 @@ class ProductTypeDefinition:
 @attrs.define
 class ProductTypeList:
 
+    """
+    A list of Amazon product types with definitions available.
+    """
+
     product_types: List["ProductType"] = attrs.field(
         kw_only=True,
     )
@@ -164,6 +184,10 @@ class ProductTypeList:
 
 @attrs.define
 class ProductTypeVersion:
+
+    """
+    The version details for an Amazon product type.
+    """
 
     latest: bool = attrs.field(
         kw_only=True,
@@ -191,6 +215,10 @@ class ProductTypeVersion:
 
 @attrs.define
 class PropertyGroup:
+
+    """
+    A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
+    """
 
     description: str = attrs.field(
         kw_only=True,

@@ -18,6 +18,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -45,11 +49,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class Link:
+
+    """
+    A link to resources related to a listing restriction.
+    """
 
     resource: str = attrs.field(
         kw_only=True,
@@ -88,6 +100,10 @@ class Link:
 @attrs.define
 class Reason:
 
+    """
+    A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
+    """
+
     links: List["Link"] = attrs.field(
         kw_only=True,
     )
@@ -114,6 +130,10 @@ class Reason:
 
 @attrs.define
 class Restriction:
+
+    """
+    A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
+    """
 
     condition_type: Union[
         Literal["new_new"],
@@ -155,6 +175,10 @@ class Restriction:
 
 @attrs.define
 class RestrictionList:
+
+    """
+    A list of restrictions for the specified Amazon catalog item.
+    """
 
     restrictions: List["Restriction"] = attrs.field(
         kw_only=True,

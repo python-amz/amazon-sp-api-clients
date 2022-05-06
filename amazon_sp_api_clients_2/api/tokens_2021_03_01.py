@@ -18,6 +18,10 @@ from datetime import date, datetime
 @attrs.define
 class CreateRestrictedDataTokenRequest:
 
+    """
+    The request schema for the createRestrictedDataToken operation.
+    """
+
     restricted_resources: List["RestrictedResource"] = attrs.field(
         kw_only=True,
     )
@@ -39,6 +43,10 @@ class CreateRestrictedDataTokenRequest:
 @attrs.define
 class CreateRestrictedDataTokenResponse:
 
+    """
+    The response schema for the createRestrictedDataToken operation.
+    """
+
     expires_in: int = attrs.field(
         kw_only=True,
     )
@@ -58,6 +66,10 @@ class CreateRestrictedDataTokenResponse:
 
 @attrs.define
 class Error:
+
+    """
+    An error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -86,6 +98,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -98,6 +114,10 @@ class ErrorList:
 
 @attrs.define
 class RestrictedResource:
+
+    """
+    Model of a restricted resource.
+    """
 
     data_elements: List[str] = attrs.field(
         kw_only=True,

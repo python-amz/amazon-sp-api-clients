@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Address:
 
+    """
+    The shipping address details of the shipment.
+    """
+
     address_line1: str = attrs.field(
         kw_only=True,
     )
@@ -106,17 +110,29 @@ class Address:
 @attrs.define
 class AddressTypeEnum:
 
+    """
+    The shipping address type.
+    """
+
     pass
 
 
 @attrs.define
 class Blob:
 
+    """
+    Shipment invoice document content.
+    """
+
     pass
 
 
 @attrs.define
 class BuyerTaxInfo:
+
+    """
+    Tax information about the buyer.
+    """
 
     company_legal_name: str = attrs.field(
         kw_only=True,
@@ -145,6 +161,10 @@ class BuyerTaxInfo:
 @attrs.define
 class Error:
 
+    """
+    An error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -172,11 +192,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetInvoiceStatusResponse:
+
+    """
+    The response schema for the getInvoiceStatus operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -198,6 +226,10 @@ class GetInvoiceStatusResponse:
 @attrs.define
 class GetShipmentDetailsResponse:
 
+    """
+    The response schema for the getShipmentDetails operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -217,6 +249,10 @@ class GetShipmentDetailsResponse:
 
 @attrs.define
 class MarketplaceTaxInfo:
+
+    """
+    Tax information about the marketplace.
+    """
 
     company_legal_name: str = attrs.field(
         kw_only=True,
@@ -245,6 +281,10 @@ class MarketplaceTaxInfo:
 @attrs.define
 class Money:
 
+    """
+    The currency type and amount.
+    """
+
     amount: str = attrs.field(
         kw_only=True,
     )
@@ -265,17 +305,29 @@ class Money:
 @attrs.define
 class PaymentMethodDetailItemList:
 
+    """
+    The list of payment method details.
+    """
+
     pass
 
 
 @attrs.define
 class SerialNumbersList:
 
+    """
+    The list of serial numbers.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentDetail:
+
+    """
+    The information required by a selling partner to issue a shipment invoice.
+    """
 
     amazon_order_id: str = attrs.field(
         kw_only=True,
@@ -384,11 +436,19 @@ class ShipmentDetail:
 @attrs.define
 class ShipmentInvoiceStatus:
 
+    """
+    The shipment invoice status.
+    """
+
     pass
 
 
 @attrs.define
 class ShipmentInvoiceStatusInfo:
+
+    """
+    The shipment invoice status information.
+    """
 
     amazon_shipment_id: str = attrs.field(
         kw_only=True,
@@ -410,6 +470,10 @@ class ShipmentInvoiceStatusInfo:
 @attrs.define
 class ShipmentInvoiceStatusResponse:
 
+    """
+    The shipment invoice status response.
+    """
+
     shipments: "ShipmentInvoiceStatusInfo" = attrs.field(
         kw_only=True,
     )
@@ -422,6 +486,10 @@ class ShipmentInvoiceStatusResponse:
 
 @attrs.define
 class ShipmentItem:
+
+    """
+    The shipment item information required by a seller to issue a shipment invoice.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -506,11 +574,19 @@ class ShipmentItem:
 @attrs.define
 class ShipmentItems:
 
+    """
+    A list of shipment items.
+    """
+
     pass
 
 
 @attrs.define
 class SubmitInvoiceRequest:
+
+    """
+    The request schema for the submitInvoice operation.
+    """
 
     content_md5value: str = attrs.field(
         kw_only=True,
@@ -539,6 +615,10 @@ class SubmitInvoiceRequest:
 @attrs.define
 class SubmitInvoiceResponse:
 
+    """
+    The response schema for the submitInvoice operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -551,6 +631,10 @@ class SubmitInvoiceResponse:
 
 @attrs.define
 class TaxClassification:
+
+    """
+    The tax classification for the entity.
+    """
 
     name: str = attrs.field(
         kw_only=True,
@@ -571,6 +655,10 @@ class TaxClassification:
 
 @attrs.define
 class TaxClassificationList:
+
+    """
+    The list of tax classifications.
+    """
 
     pass
 

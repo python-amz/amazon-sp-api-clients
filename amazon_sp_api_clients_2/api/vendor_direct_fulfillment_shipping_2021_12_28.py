@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Address:
 
+    """
+    Address of the party.
+    """
+
     address_line1: str = attrs.field(
         kw_only=True,
     )
@@ -232,11 +236,19 @@ class CustomerInvoiceList:
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
+    """
+
     pass
 
 
 @attrs.define
 class Dimensions:
+
+    """
+    Physical dimensional measurements of a container.
+    """
 
     unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field(
         kw_only=True,
@@ -272,6 +284,10 @@ class Dimensions:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -299,6 +315,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -311,6 +331,10 @@ class ErrorList:
 
 @attrs.define
 class GetCustomerInvoiceResponse:
+
+    """
+    The response schema for the getCustomerInvoice operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -332,6 +356,10 @@ class GetCustomerInvoiceResponse:
 @attrs.define
 class GetCustomerInvoicesResponse:
 
+    """
+    The response schema for the getCustomerInvoices operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -351,6 +379,10 @@ class GetCustomerInvoicesResponse:
 
 @attrs.define
 class GetShippingLabelListResponse:
+
+    """
+    The response schema for the getShippingLabels operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -372,6 +404,10 @@ class GetShippingLabelListResponse:
 @attrs.define
 class GetShippingLabelResponse:
 
+    """
+    The response schema for the getShippingLabel operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -391,6 +427,10 @@ class GetShippingLabelResponse:
 
 @attrs.define
 class Item:
+
+    """
+    Details of the item being shipped.
+    """
 
     buyer_product_identifier: str = attrs.field(
         kw_only=True,
@@ -426,6 +466,10 @@ class Item:
 @attrs.define
 class ItemQuantity:
 
+    """
+    Details of item quantity.
+    """
+
     amount: int = attrs.field(
         kw_only=True,
     )
@@ -445,6 +489,10 @@ class ItemQuantity:
 
 @attrs.define
 class LabelData:
+
+    """
+    Details of the shipment label.
+    """
 
     content: str = attrs.field(
         kw_only=True,
@@ -675,6 +723,10 @@ class SubmitShippingLabelsRequest:
 @attrs.define
 class SubmitShippingLabelsResponse:
 
+    """
+    The response schema for the submitShippingLabelRequest operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -694,6 +746,10 @@ class SubmitShippingLabelsResponse:
 
 @attrs.define
 class TaxRegistrationDetails:
+
+    """
+    Tax registration details of the entity.
+    """
 
     tax_registration_messages: str = attrs.field(
         kw_only=True,
@@ -741,6 +797,10 @@ class TransactionReference:
 
 @attrs.define
 class Weight:
+
+    """
+    The weight.
+    """
 
     unit_of_measure: Union[Literal["KG"], Literal["LB"]] = attrs.field(
         kw_only=True,

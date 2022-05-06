@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -42,6 +46,10 @@ class Error:
 
 @attrs.define
 class ErrorList:
+
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
@@ -75,6 +83,10 @@ class InventoryUpdate:
 
 @attrs.define
 class ItemDetails:
+
+    """
+    Updated inventory details for an item.
+    """
 
     buyer_product_identifier: str = attrs.field(
         kw_only=True,
@@ -110,6 +122,10 @@ class ItemDetails:
 @attrs.define
 class ItemQuantity:
 
+    """
+    Details of item quantity.
+    """
+
     amount: int = attrs.field(
         kw_only=True,
     )
@@ -143,6 +159,10 @@ class PartyIdentification:
 @attrs.define
 class SubmitInventoryUpdateRequest:
 
+    """
+    The request body for the submitInventoryUpdate operation.
+    """
+
     inventory: "InventoryUpdate" = attrs.field(
         kw_only=True,
     )
@@ -155,6 +175,10 @@ class SubmitInventoryUpdateRequest:
 
 @attrs.define
 class SubmitInventoryUpdateResponse:
+
+    """
+    The response schema for the submitInventoryUpdate operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,

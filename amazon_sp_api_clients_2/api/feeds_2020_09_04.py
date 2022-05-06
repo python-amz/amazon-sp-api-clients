@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class CancelFeedResponse:
 
+    """
+    Response schema.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -28,6 +32,10 @@ class CancelFeedResponse:
 
 @attrs.define
 class CreateFeedDocumentResponse:
+
+    """
+    The response for the createFeedDocument operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -48,6 +56,10 @@ class CreateFeedDocumentResponse:
 
 @attrs.define
 class CreateFeedDocumentResult:
+
+    """
+    Information required to encrypt and upload a feed document's contents.
+    """
 
     feed_document_id: str = attrs.field(
         kw_only=True,
@@ -88,6 +100,10 @@ class CreateFeedDocumentSpecification:
 
 @attrs.define
 class CreateFeedResponse:
+
+    """
+    Response schema.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -159,6 +175,10 @@ class CreateFeedSpecification:
 @attrs.define
 class Error:
 
+    """
+    An error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -185,6 +205,10 @@ class Error:
 
 @attrs.define
 class ErrorList:
+
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
@@ -299,6 +323,10 @@ class FeedDocument:
 @attrs.define
 class FeedDocumentEncryptionDetails:
 
+    """
+    Encryption details for required client-side encryption and decryption of document contents.
+    """
+
     initialization_vector: str = attrs.field(
         kw_only=True,
     )
@@ -332,11 +360,19 @@ class FeedList:
 @attrs.define
 class FeedOptions:
 
+    """
+    Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
+    """
+
     pass
 
 
 @attrs.define
 class GetFeedDocumentResponse:
+
+    """
+    Response schema.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -358,6 +394,10 @@ class GetFeedDocumentResponse:
 @attrs.define
 class GetFeedResponse:
 
+    """
+    Response schema.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -377,6 +417,10 @@ class GetFeedResponse:
 
 @attrs.define
 class GetFeedsResponse:
+
+    """
+    Response schema.
+    """
 
     next_token: str = attrs.field(
         kw_only=True,

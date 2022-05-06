@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class AdditionalDetails:
 
+    """
+    A field where selling party can provide additional information for tax related or any other purposes.
+    """
+
     detail: str = attrs.field(
         kw_only=True,
     )
@@ -42,6 +46,10 @@ class AdditionalDetails:
 
 @attrs.define
 class Address:
+
+    """
+    Address of the party.
+    """
 
     address_line1: str = attrs.field(
         kw_only=True,
@@ -126,6 +134,10 @@ class Address:
 @attrs.define
 class ChargeDetails:
 
+    """
+    Monetary and tax details of the charge.
+    """
+
     tax_details: List["TaxDetail"] = attrs.field(
         kw_only=True,
     )
@@ -161,11 +173,19 @@ class ChargeDetails:
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -193,6 +213,10 @@ class Error:
 
 @attrs.define
 class ErrorList:
+
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
@@ -376,6 +400,10 @@ class InvoiceItem:
 @attrs.define
 class ItemQuantity:
 
+    """
+    Details of item quantity.
+    """
+
     amount: int = attrs.field(
         kw_only=True,
     )
@@ -395,6 +423,10 @@ class ItemQuantity:
 
 @attrs.define
 class Money:
+
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     currency_code: str = attrs.field(
         kw_only=True,
@@ -443,6 +475,10 @@ class PartyIdentification:
 @attrs.define
 class SubmitInvoiceRequest:
 
+    """
+    The request schema for the submitInvoice operation.
+    """
+
     invoices: List["InvoiceDetail"] = attrs.field(
         kw_only=True,
     )
@@ -455,6 +491,10 @@ class SubmitInvoiceRequest:
 
 @attrs.define
 class SubmitInvoiceResponse:
+
+    """
+    The response schema for the submitInvoice operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -475,6 +515,10 @@ class SubmitInvoiceResponse:
 
 @attrs.define
 class TaxDetail:
+
+    """
+    Details of tax amount applied.
+    """
 
     tax_type: Union[
         Literal["CGST"],
@@ -524,6 +568,10 @@ class TaxDetail:
 
 @attrs.define
 class TaxRegistrationDetail:
+
+    """
+    Tax registration details of the entity.
+    """
 
     tax_registration_message: str = attrs.field(
         kw_only=True,

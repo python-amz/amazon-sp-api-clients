@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -43,6 +47,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -56,6 +64,10 @@ class ErrorList:
 @attrs.define
 class GenerateOrderScenarioRequest:
 
+    """
+    The request body for the generateOrderScenarios operation.
+    """
+
     orders: List["OrderScenarioRequest"] = attrs.field(
         kw_only=True,
     )
@@ -68,6 +80,10 @@ class GenerateOrderScenarioRequest:
 
 @attrs.define
 class OrderScenarioRequest:
+
+    """
+    The party identifiers required to generate the test data.
+    """
 
     selling_party: "PartyIdentification" = attrs.field(
         kw_only=True,
@@ -89,6 +105,10 @@ class OrderScenarioRequest:
 @attrs.define
 class Pagination:
 
+    """
+    A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
+    """
+
     next_token: str = attrs.field(
         kw_only=True,
     )
@@ -102,6 +122,10 @@ class Pagination:
 @attrs.define
 class PartyIdentification:
 
+    """
+    The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
+    """
+
     party_id: str = attrs.field(
         kw_only=True,
     )
@@ -114,6 +138,10 @@ class PartyIdentification:
 
 @attrs.define
 class Scenario:
+
+    """
+    A scenario test case response returned when the request is successful.
+    """
 
     orders: List["TestOrder"] = attrs.field(
         kw_only=True,
@@ -135,6 +163,10 @@ class Scenario:
 @attrs.define
 class TestCaseData:
 
+    """
+    The set of test case data returned in response to the test data request.
+    """
+
     scenarios: List["Scenario"] = attrs.field(
         kw_only=True,
     )
@@ -148,6 +180,10 @@ class TestCaseData:
 @attrs.define
 class TestOrder:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     order_id: str = attrs.field(
         kw_only=True,
     )
@@ -160,6 +196,10 @@ class TestOrder:
 
 @attrs.define
 class Transaction:
+
+    """
+    The transaction details including the status. If the transaction was successful, also includes the requested test order data.
+    """
 
     status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]] = attrs.field(
         kw_only=True,
@@ -188,6 +228,10 @@ class Transaction:
 @attrs.define
 class TransactionReference:
 
+    """
+    A GUID assigned by Amazon to identify this transaction.
+    """
+
     transaction_id: str = attrs.field(
         kw_only=True,
     )
@@ -200,6 +244,10 @@ class TransactionReference:
 
 @attrs.define
 class TransactionStatus:
+
+    """
+    The payload for the getOrderScenarios operation.
+    """
 
     transaction_status: "Transaction" = attrs.field(
         kw_only=True,

@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class CancelReportResponse:
 
+    """
+    The response for the cancelReport operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -29,6 +33,10 @@ class CancelReportResponse:
 @attrs.define
 class CancelReportScheduleResponse:
 
+    """
+    The response for the cancelReportSchedule operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -41,6 +49,10 @@ class CancelReportScheduleResponse:
 
 @attrs.define
 class CreateReportResponse:
+
+    """
+    The response for the createReport operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -74,6 +86,10 @@ class CreateReportResult:
 
 @attrs.define
 class CreateReportScheduleResponse:
+
+    """
+    The response for the createReportSchedule operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -224,6 +240,10 @@ class CreateReportSpecification:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -251,11 +271,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetReportDocumentResponse:
+
+    """
+    Response schema.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -277,6 +305,10 @@ class GetReportDocumentResponse:
 @attrs.define
 class GetReportResponse:
 
+    """
+    The response for the getReport operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -296,6 +328,10 @@ class GetReportResponse:
 
 @attrs.define
 class GetReportScheduleResponse:
+
+    """
+    The response for the getReportSchedule operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -317,6 +353,10 @@ class GetReportScheduleResponse:
 @attrs.define
 class GetReportSchedulesResponse:
 
+    """
+    The response for the getReportSchedules operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -336,6 +376,10 @@ class GetReportSchedulesResponse:
 
 @attrs.define
 class GetReportsResponse:
+
+    """
+    The response for the getReports operation.
+    """
 
     next_token: str = attrs.field(
         kw_only=True,
@@ -498,6 +542,10 @@ class ReportDocument:
 @attrs.define
 class ReportDocumentEncryptionDetails:
 
+    """
+    Encryption details required for decryption of a report document's contents.
+    """
+
     initialization_vector: str = attrs.field(
         kw_only=True,
     )
@@ -531,11 +579,19 @@ class ReportList:
 @attrs.define
 class ReportOptions:
 
+    """
+    Additional information passed to reports. This varies by report type.
+    """
+
     pass
 
 
 @attrs.define
 class ReportSchedule:
+
+    """
+    Detailed information about a report schedule.
+    """
 
     marketplace_ids: List[str] = attrs.field(
         kw_only=True,

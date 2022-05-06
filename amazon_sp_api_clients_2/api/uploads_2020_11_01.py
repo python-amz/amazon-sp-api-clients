@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class CreateUploadDestinationResponse:
 
+    """
+    The response schema for the createUploadDestination operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -35,6 +39,10 @@ class CreateUploadDestinationResponse:
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -63,11 +71,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class UploadDestination:
+
+    """
+    Information about an upload destination.
+    """
 
     headers: Dict[str, Any] = attrs.field(
         kw_only=True,

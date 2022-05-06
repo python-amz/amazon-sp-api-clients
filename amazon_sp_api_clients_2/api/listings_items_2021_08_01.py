@@ -18,11 +18,19 @@ from datetime import date, datetime
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -51,6 +59,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -63,6 +75,10 @@ class ErrorList:
 
 @attrs.define
 class FulfillmentAvailability:
+
+    """
+    Fulfillment availability details for the listings item.
+    """
 
     fulfillment_channel_code: str = attrs.field(
         kw_only=True,
@@ -86,6 +102,10 @@ class FulfillmentAvailability:
 
 @attrs.define
 class Issue:
+
+    """
+    An issue with a listings item.
+    """
 
     attribute_names: List[str] = attrs.field(
         kw_only=True,
@@ -120,6 +140,10 @@ class Issue:
 
 @attrs.define
 class Item:
+
+    """
+    A listings item.
+    """
 
     fulfillment_availability: List["FulfillmentAvailability"] = attrs.field(
         kw_only=True,
@@ -176,11 +200,19 @@ class Item:
 @attrs.define
 class ItemAttributes:
 
+    """
+    JSON object containing structured listings item attribute data keyed by attribute name.
+    """
+
     pass
 
 
 @attrs.define
 class ItemImage:
+
+    """
+    Image for the listings item.
+    """
 
     height: int = attrs.field(
         kw_only=True,
@@ -209,11 +241,19 @@ class ItemImage:
 @attrs.define
 class ItemIssues:
 
+    """
+    Issues associated with the listings item.
+    """
+
     pass
 
 
 @attrs.define
 class ItemOfferByMarketplace:
+
+    """
+    Offer details of a listings item for an Amazon marketplace.
+    """
 
     marketplace_id: str = attrs.field(
         kw_only=True,
@@ -249,11 +289,19 @@ class ItemOfferByMarketplace:
 @attrs.define
 class ItemOffers:
 
+    """
+    Offer details for the listings item.
+    """
+
     pass
 
 
 @attrs.define
 class ItemProcurement:
+
+    """
+    Vendor procurement information for the listings item.
+    """
 
     cost_price: "Money" = attrs.field(
         kw_only=True,
@@ -268,11 +316,19 @@ class ItemProcurement:
 @attrs.define
 class ItemSummaries:
 
+    """
+    Summary details of a listings item.
+    """
+
     pass
 
 
 @attrs.define
 class ItemSummaryByMarketplace:
+
+    """
+    Summary details of a listings item for an Amazon marketplace.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -370,6 +426,10 @@ class ItemSummaryByMarketplace:
 @attrs.define
 class ListingsItemPatchRequest:
 
+    """
+    The request body schema for the patchListingsItem operation.
+    """
+
     patches: List["PatchOperation"] = attrs.field(
         kw_only=True,
     )
@@ -392,6 +452,10 @@ class ListingsItemPatchRequest:
 
 @attrs.define
 class ListingsItemPutRequest:
+
+    """
+    The request body schema for the putListingsItem operation.
+    """
 
     attributes: Dict[str, Any] = attrs.field(
         kw_only=True,
@@ -424,6 +488,10 @@ class ListingsItemPutRequest:
 
 @attrs.define
 class ListingsItemSubmissionResponse:
+
+    """
+    Response containing the results of a submission to the Selling Partner API for Listings Items.
+    """
 
     issues: List["Issue"] = attrs.field(
         kw_only=True,
@@ -459,6 +527,10 @@ class ListingsItemSubmissionResponse:
 @attrs.define
 class Money:
 
+    """
+    The currency type and the amount.
+    """
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
@@ -478,6 +550,10 @@ class Money:
 
 @attrs.define
 class PatchOperation:
+
+    """
+    Individual JSON Patch operation for an HTTP PATCH request.
+    """
 
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field(
         kw_only=True,
@@ -505,6 +581,10 @@ class PatchOperation:
 
 @attrs.define
 class Points:
+
+    """
+    The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
+    """
 
     points_number: int = attrs.field(
         kw_only=True,

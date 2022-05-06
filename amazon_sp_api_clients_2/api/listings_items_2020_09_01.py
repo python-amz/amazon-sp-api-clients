@@ -18,6 +18,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -45,6 +49,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -57,6 +65,10 @@ class ErrorList:
 
 @attrs.define
 class Issue:
+
+    """
+    An issue with a listings item.
+    """
 
     attribute_name: str = attrs.field(
         kw_only=True,
@@ -92,6 +104,10 @@ class Issue:
 @attrs.define
 class ListingsItemPatchRequest:
 
+    """
+    The request body schema for the patchListingsItem operation.
+    """
+
     patches: List["PatchOperation"] = attrs.field(
         kw_only=True,
     )
@@ -114,6 +130,10 @@ class ListingsItemPatchRequest:
 
 @attrs.define
 class ListingsItemPutRequest:
+
+    """
+    The request body schema for the putListingsItem operation.
+    """
 
     attributes: Dict[str, Any] = attrs.field(
         kw_only=True,
@@ -146,6 +166,10 @@ class ListingsItemPutRequest:
 
 @attrs.define
 class ListingsItemSubmissionResponse:
+
+    """
+    Response containing the results of a submission to the Selling Partner API for Listings Items.
+    """
 
     issues: List["Issue"] = attrs.field(
         kw_only=True,
@@ -180,6 +204,10 @@ class ListingsItemSubmissionResponse:
 
 @attrs.define
 class PatchOperation:
+
+    """
+    Individual JSON Patch operation for an HTTP PATCH request.
+    """
 
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field(
         kw_only=True,

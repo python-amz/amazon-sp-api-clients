@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class AcknowledgementStatusDetails:
 
+    """
+    Details of item quantity ordered
+    """
+
     acknowledgement_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -45,6 +49,10 @@ class AcknowledgementStatusDetails:
 
 @attrs.define
 class Address:
+
+    """
+    Address of the party.
+    """
 
     address_line1: str = attrs.field(
         kw_only=True,
@@ -132,17 +140,29 @@ class Address:
 @attrs.define
 class DateTimeInterval:
 
+    """
+    Defines a date time interval according to ISO8601. Interval is separated by double hyphen (--).
+    """
+
     pass
 
 
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -171,11 +191,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetPurchaseOrderResponse:
+
+    """
+    The response schema for the getPurchaseOrder operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -197,6 +225,10 @@ class GetPurchaseOrderResponse:
 @attrs.define
 class GetPurchaseOrdersResponse:
 
+    """
+    The response schema for the getPurchaseOrders operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -217,6 +249,10 @@ class GetPurchaseOrdersResponse:
 @attrs.define
 class GetPurchaseOrdersStatusResponse:
 
+    """
+    The response schema for the getPurchaseOrdersStatus operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -236,6 +272,10 @@ class GetPurchaseOrdersStatusResponse:
 
 @attrs.define
 class ImportDetails:
+
+    """
+    Import details for an import order.
+    """
 
     import_containers: str = attrs.field(
         kw_only=True,
@@ -303,6 +343,10 @@ class ImportDetails:
 @attrs.define
 class ItemQuantity:
 
+    """
+    Details of quantity ordered.
+    """
+
     amount: int = attrs.field(
         kw_only=True,
     )
@@ -330,11 +374,19 @@ class ItemQuantity:
 @attrs.define
 class ItemStatus:
 
+    """
+    Detailed description of items order status.
+    """
+
     pass
 
 
 @attrs.define
 class Money:
+
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     currency_code: str = attrs.field(
         kw_only=True,
@@ -423,6 +475,10 @@ class OrderAcknowledgement:
 @attrs.define
 class OrderAcknowledgementItem:
 
+    """
+    Details of the item being acknowledged.
+    """
+
     amazon_product_identifier: str = attrs.field(
         kw_only=True,
     )
@@ -484,6 +540,10 @@ class OrderAcknowledgementItem:
 
 @attrs.define
 class OrderDetails:
+
+    """
+    Details of an order.
+    """
 
     deal_code: str = attrs.field(
         kw_only=True,
@@ -817,6 +877,10 @@ class OrderListStatus:
 @attrs.define
 class OrderStatus:
 
+    """
+    Current status of a purchase order.
+    """
+
     last_updated_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -877,6 +941,10 @@ class OrderStatus:
 
 @attrs.define
 class OrderedQuantityDetails:
+
+    """
+    Details of item quantity ordered
+    """
 
     updated_date: datetime = attrs.field(
         kw_only=True,
@@ -948,6 +1016,10 @@ class PartyIdentification:
 @attrs.define
 class SubmitAcknowledgementRequest:
 
+    """
+    The request schema for the submitAcknowledgment operation.
+    """
+
     acknowledgements: List["OrderAcknowledgement"] = attrs.field(
         kw_only=True,
     )
@@ -960,6 +1032,10 @@ class SubmitAcknowledgementRequest:
 
 @attrs.define
 class SubmitAcknowledgementResponse:
+
+    """
+    The response schema for the submitAcknowledgement operation
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -980,6 +1056,10 @@ class SubmitAcknowledgementResponse:
 
 @attrs.define
 class TaxRegistrationDetails:
+
+    """
+    Tax registration details of the entity.
+    """
 
     tax_registration_number: str = attrs.field(
         kw_only=True,

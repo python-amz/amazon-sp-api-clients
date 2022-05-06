@@ -16,11 +16,19 @@ from datetime import date, datetime
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -49,11 +57,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetOrderMetricsResponse:
+
+    """
+    The response schema for the getOrderMetrics operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -75,6 +91,10 @@ class GetOrderMetricsResponse:
 @attrs.define
 class Money:
 
+    """
+    The currency type and the amount.
+    """
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
@@ -94,6 +114,10 @@ class Money:
 
 @attrs.define
 class OrderMetricsInterval:
+
+    """
+    Contains order metrics.
+    """
 
     interval: str = attrs.field(
         kw_only=True,
@@ -142,6 +166,10 @@ class OrderMetricsInterval:
 
 @attrs.define
 class OrderMetricsList:
+
+    """
+    A set of order metrics, each scoped to a particular time interval.
+    """
 
     pass
 

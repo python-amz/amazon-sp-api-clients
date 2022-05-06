@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class AdditionalDetails:
 
+    """
+    Additional information provided by the selling party for tax-related or any other purpose.
+    """
+
     detail: str = attrs.field(
         kw_only=True,
     )
@@ -42,6 +46,10 @@ class AdditionalDetails:
 
 @attrs.define
 class Address:
+
+    """
+    A physical address.
+    """
 
     address_line1: str = attrs.field(
         kw_only=True,
@@ -129,6 +137,10 @@ class Address:
 @attrs.define
 class AllowanceDetails:
 
+    """
+    Monetary and tax details of the allowance.
+    """
+
     description: str = attrs.field(
         kw_only=True,
     )
@@ -169,6 +181,10 @@ class AllowanceDetails:
 
 @attrs.define
 class ChargeDetails:
+
+    """
+    Monetary and tax details of the charge.
+    """
 
     description: str = attrs.field(
         kw_only=True,
@@ -215,6 +231,10 @@ class ChargeDetails:
 
 @attrs.define
 class CreditNoteDetails:
+
+    """
+    References required in order to process a credit note. This information is required only if InvoiceType is CreditNote.
+    """
 
     consignors_reference_number: str = attrs.field(
         kw_only=True,
@@ -271,17 +291,29 @@ class CreditNoteDetails:
 @attrs.define
 class DateTime:
 
+    """
+    Defines a date and time according to ISO8601.
+    """
+
     pass
 
 
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -309,6 +341,10 @@ class Error:
 
 @attrs.define
 class ErrorList:
+
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
@@ -427,6 +463,10 @@ class Invoice:
 @attrs.define
 class InvoiceItem:
 
+    """
+    Details of the item being invoiced.
+    """
+
     allowance_details: List["AllowanceDetails"] = attrs.field(
         kw_only=True,
     )
@@ -510,6 +550,10 @@ class InvoiceItem:
 @attrs.define
 class ItemQuantity:
 
+    """
+    Details of quantity.
+    """
+
     amount: int = attrs.field(
         kw_only=True,
     )
@@ -536,6 +580,10 @@ class ItemQuantity:
 
 @attrs.define
 class Money:
+
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     currency_code: str = attrs.field(
         kw_only=True,
@@ -584,6 +632,10 @@ class PartyIdentification:
 @attrs.define
 class PaymentTerms:
 
+    """
+    Terms of the payment for the invoice. The basis of the payment terms is the invoice date.
+    """
+
     discount_due_days: float = attrs.field(
         kw_only=True,
     )
@@ -625,6 +677,10 @@ class PaymentTerms:
 @attrs.define
 class SubmitInvoicesRequest:
 
+    """
+    The request schema for the submitInvoices operation.
+    """
+
     invoices: List["Invoice"] = attrs.field(
         kw_only=True,
     )
@@ -637,6 +693,10 @@ class SubmitInvoicesRequest:
 
 @attrs.define
 class SubmitInvoicesResponse:
+
+    """
+    The response schema for the submitInvoices operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -657,6 +717,10 @@ class SubmitInvoicesResponse:
 
 @attrs.define
 class TaxDetails:
+
+    """
+    Details of tax amount applied.
+    """
 
     tax_type: Union[
         Literal["CGST"],
@@ -706,6 +770,10 @@ class TaxDetails:
 
 @attrs.define
 class TaxRegistrationDetails:
+
+    """
+    Tax registration details of the entity.
+    """
 
     tax_registration_number: str = attrs.field(
         kw_only=True,

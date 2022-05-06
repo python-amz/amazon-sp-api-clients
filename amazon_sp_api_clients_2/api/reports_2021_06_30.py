@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class CreateReportResponse:
 
+    """
+    Response schema.
+    """
+
     report_id: str = attrs.field(
         kw_only=True,
     )
@@ -28,6 +32,10 @@ class CreateReportResponse:
 
 @attrs.define
 class CreateReportScheduleResponse:
+
+    """
+    Response schema.
+    """
 
     report_schedule_id: str = attrs.field(
         kw_only=True,
@@ -108,6 +116,10 @@ class CreateReportScheduleSpecification:
 @attrs.define
 class CreateReportSpecification:
 
+    """
+    Information required to create the report.
+    """
+
     data_end_time: datetime = attrs.field(
         kw_only=True,
     )
@@ -158,6 +170,10 @@ class CreateReportSpecification:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -185,6 +201,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -197,6 +217,10 @@ class ErrorList:
 
 @attrs.define
 class GetReportsResponse:
+
+    """
+    The response for the getReports operation.
+    """
 
     next_token: str = attrs.field(
         kw_only=True,
@@ -217,6 +241,10 @@ class GetReportsResponse:
 
 @attrs.define
 class Report:
+
+    """
+    Detailed information about the report.
+    """
 
     created_time: datetime = attrs.field(
         kw_only=True,
@@ -318,6 +346,10 @@ class Report:
 @attrs.define
 class ReportDocument:
 
+    """
+    Information required for the report document.
+    """
+
     compression_algorithm: Union[Literal["GZIP"]] = attrs.field(
         kw_only=True,
     )
@@ -345,17 +377,29 @@ class ReportDocument:
 @attrs.define
 class ReportList:
 
+    """
+    A list of reports.
+    """
+
     pass
 
 
 @attrs.define
 class ReportOptions:
 
+    """
+    Additional information passed to reports. This varies by report type.
+    """
+
     pass
 
 
 @attrs.define
 class ReportSchedule:
+
+    """
+    Detailed information about a report schedule.
+    """
 
     marketplace_ids: List[str] = attrs.field(
         kw_only=True,
@@ -407,6 +451,10 @@ class ReportSchedule:
 
 @attrs.define
 class ReportScheduleList:
+
+    """
+    A list of report schedules.
+    """
 
     report_schedules: List["ReportSchedule"] = attrs.field(
         kw_only=True,

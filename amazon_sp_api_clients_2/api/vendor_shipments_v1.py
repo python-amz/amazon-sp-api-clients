@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Address:
 
+    """
+    Address of the party.
+    """
+
     address_line1: str = attrs.field(
         kw_only=True,
     )
@@ -98,6 +102,10 @@ class Address:
 
 @attrs.define
 class Carton:
+
+    """
+    Details of the carton/package being shipped.
+    """
 
     carton_identifiers: List["ContainerIdentification"] = attrs.field(
         kw_only=True,
@@ -189,6 +197,10 @@ class ContainerIdentification:
 @attrs.define
 class ContainerItem:
 
+    """
+    Carton/Pallet level details for the item.
+    """
+
     item_reference: str = attrs.field(
         kw_only=True,
     )
@@ -216,11 +228,19 @@ class ContainerItem:
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
+
     pass
 
 
 @attrs.define
 class Dimensions:
+
+    """
+    Physical dimensional measurements of a container.
+    """
 
     unit_of_measure: Union[Literal["In"], Literal["Ft"], Literal["Meter"], Literal["Yard"]] = attrs.field(
         kw_only=True,
@@ -276,6 +296,10 @@ class Duration:
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -302,6 +326,10 @@ class Error:
 
 @attrs.define
 class ErrorList:
+
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pass
 
@@ -403,6 +431,10 @@ class ImportDetails:
 @attrs.define
 class Item:
 
+    """
+    Details of the item being shipped.
+    """
+
     amazon_product_identifier: str = attrs.field(
         kw_only=True,
     )
@@ -443,6 +475,10 @@ class Item:
 
 @attrs.define
 class ItemDetails:
+
+    """
+    Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
+    """
 
     handling_code: Union[
         Literal["Oversized"], Literal["Fragile"], Literal["Food"], Literal["HandleWithCare"]
@@ -487,6 +523,10 @@ class ItemDetails:
 @attrs.define
 class ItemQuantity:
 
+    """
+    Details of item quantity.
+    """
+
     amount: int = attrs.field(
         kw_only=True,
     )
@@ -513,6 +553,10 @@ class ItemQuantity:
 
 @attrs.define
 class Location:
+
+    """
+    Location identifier.
+    """
 
     country_code: str = attrs.field(
         kw_only=True,
@@ -541,6 +585,10 @@ class Location:
 @attrs.define
 class Money:
 
+    """
+    An amount of money, including units in the form of currency.
+    """
+
     currency_code: str = attrs.field(
         kw_only=True,
     )
@@ -560,6 +608,10 @@ class Money:
 
 @attrs.define
 class Pallet:
+
+    """
+    Details of the Pallet/Tare being shipped.
+    """
 
     block: int = attrs.field(
         kw_only=True,
@@ -642,6 +694,10 @@ class PartyIdentification:
 
 @attrs.define
 class Route:
+
+    """
+    This is used only for direct import shipment confirmations.
+    """
 
     stops: List["Stop"] = attrs.field(
         kw_only=True,
@@ -798,6 +854,10 @@ class ShipmentConfirmation:
 @attrs.define
 class ShipmentMeasurements:
 
+    """
+    Shipment measurement details.
+    """
+
     carton_count: int = attrs.field(
         kw_only=True,
     )
@@ -831,6 +891,10 @@ class ShipmentMeasurements:
 
 @attrs.define
 class Stop:
+
+    """
+    Contractual or operational port or point relevant to the movement of the cargo.
+    """
 
     arrival_time: datetime = attrs.field(
         kw_only=True,
@@ -874,6 +938,10 @@ class Stop:
 @attrs.define
 class SubmitShipmentConfirmationsRequest:
 
+    """
+    The request schema for the SubmitShipmentConfirmations operation.
+    """
+
     shipment_confirmations: List["ShipmentConfirmation"] = attrs.field(
         kw_only=True,
     )
@@ -886,6 +954,10 @@ class SubmitShipmentConfirmationsRequest:
 
 @attrs.define
 class SubmitShipmentConfirmationsResponse:
+
+    """
+    The response schema for the SubmitShipmentConfirmations operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -906,6 +978,10 @@ class SubmitShipmentConfirmationsResponse:
 
 @attrs.define
 class TaxRegistrationDetails:
+
+    """
+    Tax registration details of the entity.
+    """
 
     tax_registration_number: str = attrs.field(
         kw_only=True,
@@ -974,6 +1050,10 @@ class TransportationDetails:
 @attrs.define
 class Volume:
 
+    """
+    The volume of the container.
+    """
+
     unit_of_measure: Union[Literal["CuFt"], Literal["CuIn"], Literal["CuM"], Literal["CuY"]] = attrs.field(
         kw_only=True,
     )
@@ -993,6 +1073,10 @@ class Volume:
 
 @attrs.define
 class Weight:
+
+    """
+    The weight.
+    """
 
     unit_of_measure: Union[Literal["G"], Literal["Kg"], Literal["Oz"], Literal["Lb"]] = attrs.field(
         kw_only=True,

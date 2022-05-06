@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Attachment:
 
+    """
+    Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
+    """
+
     file_name: str = attrs.field(
         kw_only=True,
     )
@@ -36,6 +40,10 @@ class Attachment:
 @attrs.define
 class CreateAmazonMotorsRequest:
 
+    """
+    The request schema for the createAmazonMotors operation.
+    """
+
     attachments: List["Attachment"] = attrs.field(
         kw_only=True,
     )
@@ -49,6 +57,10 @@ class CreateAmazonMotorsRequest:
 @attrs.define
 class CreateAmazonMotorsResponse:
 
+    """
+    The response schema for the createAmazonMotors operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -61,6 +73,10 @@ class CreateAmazonMotorsResponse:
 
 @attrs.define
 class CreateConfirmCustomizationDetailsRequest:
+
+    """
+    The request schema for the confirmCustomizationDetails operation.
+    """
 
     attachments: List["Attachment"] = attrs.field(
         kw_only=True,
@@ -85,6 +101,10 @@ class CreateConfirmCustomizationDetailsRequest:
 @attrs.define
 class CreateConfirmCustomizationDetailsResponse:
 
+    """
+    The response schema for the confirmCustomizationDetails operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -97,6 +117,10 @@ class CreateConfirmCustomizationDetailsResponse:
 
 @attrs.define
 class CreateConfirmDeliveryDetailsRequest:
+
+    """
+    The request schema for the createConfirmDeliveryDetails operation.
+    """
 
     text: str = attrs.field(
         kw_only=True,
@@ -114,6 +138,10 @@ class CreateConfirmDeliveryDetailsRequest:
 @attrs.define
 class CreateConfirmDeliveryDetailsResponse:
 
+    """
+    The response schema for the createConfirmDeliveryDetails operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -126,6 +154,10 @@ class CreateConfirmDeliveryDetailsResponse:
 
 @attrs.define
 class CreateConfirmOrderDetailsRequest:
+
+    """
+    The request schema for the createConfirmOrderDetails operation.
+    """
 
     text: str = attrs.field(
         kw_only=True,
@@ -143,6 +175,10 @@ class CreateConfirmOrderDetailsRequest:
 @attrs.define
 class CreateConfirmOrderDetailsResponse:
 
+    """
+    The response schema for the createConfirmOrderDetails operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -155,6 +191,10 @@ class CreateConfirmOrderDetailsResponse:
 
 @attrs.define
 class CreateConfirmServiceDetailsRequest:
+
+    """
+    The request schema for the createConfirmServiceDetails operation.
+    """
 
     text: str = attrs.field(
         kw_only=True,
@@ -172,6 +212,10 @@ class CreateConfirmServiceDetailsRequest:
 @attrs.define
 class CreateConfirmServiceDetailsResponse:
 
+    """
+    The response schema for the createConfirmServiceDetails operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -184,6 +228,10 @@ class CreateConfirmServiceDetailsResponse:
 
 @attrs.define
 class CreateDigitalAccessKeyRequest:
+
+    """
+    The request schema for the createDigitalAccessKey operation.
+    """
 
     attachments: List["Attachment"] = attrs.field(
         kw_only=True,
@@ -208,6 +256,10 @@ class CreateDigitalAccessKeyRequest:
 @attrs.define
 class CreateDigitalAccessKeyResponse:
 
+    """
+    The response schema for the createDigitalAccessKey operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -220,6 +272,10 @@ class CreateDigitalAccessKeyResponse:
 
 @attrs.define
 class CreateLegalDisclosureRequest:
+
+    """
+    The request schema for the createLegalDisclosure operation.
+    """
 
     attachments: List["Attachment"] = attrs.field(
         kw_only=True,
@@ -234,6 +290,10 @@ class CreateLegalDisclosureRequest:
 @attrs.define
 class CreateLegalDisclosureResponse:
 
+    """
+    The response schema for the createLegalDisclosure operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -247,6 +307,10 @@ class CreateLegalDisclosureResponse:
 @attrs.define
 class CreateNegativeFeedbackRemovalResponse:
 
+    """
+    The response schema for the createNegativeFeedbackRemoval operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -259,6 +323,10 @@ class CreateNegativeFeedbackRemovalResponse:
 
 @attrs.define
 class CreateUnexpectedProblemRequest:
+
+    """
+    The request schema for the createUnexpectedProblem operation.
+    """
 
     text: str = attrs.field(
         kw_only=True,
@@ -276,6 +344,10 @@ class CreateUnexpectedProblemRequest:
 @attrs.define
 class CreateUnexpectedProblemResponse:
 
+    """
+    The response schema for the createUnexpectedProblem operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -288,6 +360,10 @@ class CreateUnexpectedProblemResponse:
 
 @attrs.define
 class CreateWarrantyRequest:
+
+    """
+    The request schema for the createWarranty operation.
+    """
 
     attachments: List["Attachment"] = attrs.field(
         kw_only=True,
@@ -322,6 +398,10 @@ class CreateWarrantyRequest:
 @attrs.define
 class CreateWarrantyResponse:
 
+    """
+    The response schema for the createWarranty operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -334,6 +414,10 @@ class CreateWarrantyResponse:
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -362,11 +446,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetAttributesResponse:
+
+    """
+    The response schema for the GetAttributes operation.
+    """
 
     buyer: Dict[str, Any] = attrs.field(
         kw_only=True,
@@ -390,6 +482,10 @@ class GetAttributesResponse:
 
 @attrs.define
 class GetMessagingActionResponse:
+
+    """
+    Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
+    """
 
     _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
@@ -430,6 +526,10 @@ class GetMessagingActionResponse:
 
 @attrs.define
 class GetMessagingActionsForOrderResponse:
+
+    """
+    The response schema for the getMessagingActionsForOrder operation.
+    """
 
     _embedded: Dict[str, Any] = attrs.field(
         kw_only=True,
@@ -494,6 +594,10 @@ class GetSchemaResponse:
 @attrs.define
 class LinkObject:
 
+    """
+    A Link object.
+    """
+
     href: str = attrs.field(
         kw_only=True,
     )
@@ -514,6 +618,10 @@ class LinkObject:
 @attrs.define
 class MessagingAction:
 
+    """
+    A simple object containing the name of the template.
+    """
+
     name: str = attrs.field(
         kw_only=True,
     )
@@ -526,6 +634,10 @@ class MessagingAction:
 
 @attrs.define
 class Schema:
+
+    """
+    A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+    """
 
     pass
 

@@ -18,6 +18,10 @@ from datetime import date, datetime
 @attrs.define
 class CreateDestinationRequest:
 
+    """
+    The request schema for the createDestination operation.
+    """
+
     name: str = attrs.field(
         kw_only=True,
     )
@@ -37,6 +41,10 @@ class CreateDestinationRequest:
 
 @attrs.define
 class CreateDestinationResponse:
+
+    """
+    The response schema for the createDestination operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -58,6 +66,10 @@ class CreateDestinationResponse:
 @attrs.define
 class CreateSubscriptionRequest:
 
+    """
+    The request schema for the createSubscription operation.
+    """
+
     destination_id: str = attrs.field(
         kw_only=True,
     )
@@ -77,6 +89,10 @@ class CreateSubscriptionRequest:
 
 @attrs.define
 class CreateSubscriptionResponse:
+
+    """
+    The response schema for the createSubscription operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -98,6 +114,10 @@ class CreateSubscriptionResponse:
 @attrs.define
 class DeleteDestinationResponse:
 
+    """
+    The response schema for the deleteDestination operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -111,6 +131,10 @@ class DeleteDestinationResponse:
 @attrs.define
 class DeleteSubscriptionByIdResponse:
 
+    """
+    The response schema for the deleteSubscriptionById operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -123,6 +147,10 @@ class DeleteSubscriptionByIdResponse:
 
 @attrs.define
 class Destination:
+
+    """
+    Represents a destination created when you call the createDestination operation.
+    """
 
     destination_id: str = attrs.field(
         kw_only=True,
@@ -154,11 +182,19 @@ class Destination:
 @attrs.define
 class DestinationList:
 
+    """
+    A list of destinations.
+    """
+
     pass
 
 
 @attrs.define
 class DestinationResource:
+
+    """
+    The destination resource types.
+    """
 
     event_bridge: "EventBridgeResource" = attrs.field(
         kw_only=True,
@@ -180,6 +216,10 @@ class DestinationResource:
 @attrs.define
 class DestinationResourceSpecification:
 
+    """
+    The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
+    """
+
     event_bridge: "EventBridgeResourceSpecification" = attrs.field(
         kw_only=True,
     )
@@ -199,6 +239,10 @@ class DestinationResourceSpecification:
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -227,11 +271,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class EventBridgeResource:
+
+    """
+    Represents an Amazon EventBridge destination.
+    """
 
     account_id: str = attrs.field(
         kw_only=True,
@@ -263,6 +315,10 @@ class EventBridgeResource:
 @attrs.define
 class EventBridgeResourceSpecification:
 
+    """
+    The information required to create an Amazon EventBridge destination.
+    """
+
     account_id: str = attrs.field(
         kw_only=True,
     )
@@ -282,6 +338,10 @@ class EventBridgeResourceSpecification:
 
 @attrs.define
 class GetDestinationResponse:
+
+    """
+    The response schema for the getDestination operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -303,6 +363,10 @@ class GetDestinationResponse:
 @attrs.define
 class GetDestinationsResponse:
 
+    """
+    The response schema for the getDestinations operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -322,6 +386,10 @@ class GetDestinationsResponse:
 
 @attrs.define
 class GetSubscriptionByIdResponse:
+
+    """
+    The response schema for the getSubscriptionById operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -343,6 +411,10 @@ class GetSubscriptionByIdResponse:
 @attrs.define
 class GetSubscriptionResponse:
 
+    """
+    The response schema for the getSubscription operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -363,6 +435,10 @@ class GetSubscriptionResponse:
 @attrs.define
 class SqsResource:
 
+    """
+    The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
+    """
+
     arn: str = attrs.field(
         kw_only=True,
     )
@@ -378,6 +454,10 @@ class SqsResource:
 
 @attrs.define
 class Subscription:
+
+    """
+    Represents a subscription to receive notifications.
+    """
 
     destination_id: str = attrs.field(
         kw_only=True,

@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class Error:
 
+    """
+    Error response returned when the request is unsuccessful.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -43,6 +47,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -55,6 +63,10 @@ class ErrorList:
 
 @attrs.define
 class FeeLineItem:
+
+    """
+    Fee details for a specific fee.
+    """
 
     fee_type: Union[
         Literal["FBAWeightBasedFee"],
@@ -80,6 +92,10 @@ class FeeLineItem:
 
 @attrs.define
 class FeePreview:
+
+    """
+    The fee estimate for a specific item.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -122,6 +138,10 @@ class FeePreview:
 @attrs.define
 class Item:
 
+    """
+    An item to be sold.
+    """
+
     asin: str = attrs.field(
         kw_only=True,
     )
@@ -141,6 +161,10 @@ class Item:
 
 @attrs.define
 class MarketplaceId:
+
+    """
+    A marketplace identifier.
+    """
 
     pass
 
@@ -168,11 +192,19 @@ class MoneyType:
 @attrs.define
 class SellerSKU:
 
+    """
+    Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+    """
+
     pass
 
 
 @attrs.define
 class SmallAndLightEligibility:
+
+    """
+    The Small and Light eligibility status of the item indicated by the specified seller SKU.
+    """
 
     marketplace_id: "MarketplaceId" = attrs.field(
         kw_only=True,
@@ -201,11 +233,19 @@ class SmallAndLightEligibility:
 @attrs.define
 class SmallAndLightEligibilityStatus:
 
+    """
+    The Small and Light eligibility status of the item.
+    """
+
     pass
 
 
 @attrs.define
 class SmallAndLightEnrollment:
+
+    """
+    The Small and Light enrollment status of the item indicated by the specified seller SKU.
+    """
 
     marketplace_id: "MarketplaceId" = attrs.field(
         kw_only=True,
@@ -234,11 +274,19 @@ class SmallAndLightEnrollment:
 @attrs.define
 class SmallAndLightEnrollmentStatus:
 
+    """
+    The Small and Light enrollment status of the item.
+    """
+
     pass
 
 
 @attrs.define
 class SmallAndLightFeePreviewRequest:
+
+    """
+    Request schema for submitting items for which to retrieve fee estimates.
+    """
 
     items: List["Item"] = attrs.field(
         kw_only=True,

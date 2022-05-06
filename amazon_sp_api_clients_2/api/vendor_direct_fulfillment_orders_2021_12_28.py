@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class AcknowledgementStatus:
 
+    """
+    Status of acknowledgement.
+    """
+
     code: str = attrs.field(
         kw_only=True,
     )
@@ -35,6 +39,10 @@ class AcknowledgementStatus:
 
 @attrs.define
 class Address:
+
+    """
+    Address of the party.
+    """
 
     address_line1: str = attrs.field(
         kw_only=True,
@@ -126,11 +134,19 @@ class Address:
 @attrs.define
 class Decimal:
 
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+    """
+
     pass
 
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -159,6 +175,10 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     errors: List["Error"] = attrs.field(
         kw_only=True,
     )
@@ -171,6 +191,10 @@ class ErrorList:
 
 @attrs.define
 class GiftDetails:
+
+    """
+    Gift details for the item.
+    """
 
     gift_message: str = attrs.field(
         kw_only=True,
@@ -192,6 +216,10 @@ class GiftDetails:
 @attrs.define
 class ItemQuantity:
 
+    """
+    Details of quantity ordered.
+    """
+
     amount: int = attrs.field(
         kw_only=True,
     )
@@ -211,6 +239,10 @@ class ItemQuantity:
 
 @attrs.define
 class Money:
+
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     currency_code: str = attrs.field(
         kw_only=True,
@@ -251,6 +283,10 @@ class Order:
 
 @attrs.define
 class OrderAcknowledgementItem:
+
+    """
+    Details of an individual order being acknowledged.
+    """
 
     acknowledgement_date: datetime = attrs.field(
         kw_only=True,
@@ -309,6 +345,10 @@ class OrderAcknowledgementItem:
 
 @attrs.define
 class OrderDetails:
+
+    """
+    Details of an order.
+    """
 
     customer_order_number: str = attrs.field(
         kw_only=True,
@@ -559,6 +599,10 @@ class PartyIdentification:
 @attrs.define
 class ScheduledDeliveryShipment:
 
+    """
+    Dates for the scheduled delivery shipments.
+    """
+
     earliest_nominated_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -592,6 +636,10 @@ class ScheduledDeliveryShipment:
 @attrs.define
 class ShipmentDates:
 
+    """
+    Shipment dates.
+    """
+
     promised_delivery_date: datetime = attrs.field(
         kw_only=True,
     )
@@ -617,6 +665,10 @@ class ShipmentDates:
 
 @attrs.define
 class ShipmentDetails:
+
+    """
+    Shipment details required for the shipment.
+    """
 
     is_gift: bool = attrs.field(
         kw_only=True,
@@ -673,6 +725,10 @@ class ShipmentDetails:
 @attrs.define
 class SubmitAcknowledgementRequest:
 
+    """
+    The request schema for the submitAcknowledgement operation.
+    """
+
     order_acknowledgements: List["OrderAcknowledgementItem"] = attrs.field(
         kw_only=True,
     )
@@ -685,6 +741,10 @@ class SubmitAcknowledgementRequest:
 
 @attrs.define
 class SubmitAcknowledgementResponse:
+
+    """
+    The response schema for the submitAcknowledgement operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -748,6 +808,10 @@ class TaxDetails:
 @attrs.define
 class TaxItemDetails:
 
+    """
+    Total tax details for the line item.
+    """
+
     tax_line_item: "TaxLineItem" = attrs.field(
         kw_only=True,
     )
@@ -761,11 +825,19 @@ class TaxItemDetails:
 @attrs.define
 class TaxLineItem:
 
+    """
+    A list of tax line items.
+    """
+
     pass
 
 
 @attrs.define
 class TaxRegistrationDetails:
+
+    """
+    Tax registration details of the entity.
+    """
 
     tax_registration_messages: str = attrs.field(
         kw_only=True,

@@ -16,6 +16,10 @@ from datetime import date, datetime
 @attrs.define
 class AddAppointmentRequest:
 
+    """
+    Input for add appointment operation.
+    """
+
     appointment_time: "AppointmentTimeInput" = attrs.field(
         kw_only=True,
     )
@@ -28,6 +32,10 @@ class AddAppointmentRequest:
 
 @attrs.define
 class Address:
+
+    """
+    The shipping address for the service job.
+    """
 
     address_line1: str = attrs.field(
         kw_only=True,
@@ -112,6 +120,10 @@ class Address:
 @attrs.define
 class Appointment:
 
+    """
+    The details of an appointment.
+    """
+
     appointment_status: Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]] = attrs.field(
         kw_only=True,
     )
@@ -163,11 +175,19 @@ class Appointment:
 @attrs.define
 class AppointmentId:
 
+    """
+    The appointment identifier.
+    """
+
     pass
 
 
 @attrs.define
 class AppointmentTime:
+
+    """
+    The time of the appointment window.
+    """
 
     duration_in_minutes: int = attrs.field(
         kw_only=True,
@@ -195,6 +215,10 @@ class AppointmentTime:
 @attrs.define
 class AppointmentTimeInput:
 
+    """
+    The input appointment time details.
+    """
+
     duration_in_minutes: int = attrs.field(
         kw_only=True,
     )
@@ -217,6 +241,10 @@ class AppointmentTimeInput:
 
 @attrs.define
 class AssociatedItem:
+
+    """
+    Information about an item associated with the service job.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -273,6 +301,10 @@ class AssociatedItem:
 @attrs.define
 class Buyer:
 
+    """
+    Information about the buyer.
+    """
+
     buyer_id: str = attrs.field(
         kw_only=True,
     )
@@ -310,6 +342,10 @@ class Buyer:
 @attrs.define
 class CancelServiceJobByServiceJobIdResponse:
 
+    """
+    Response schema for CancelServiceJobByServiceJobId operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -323,6 +359,10 @@ class CancelServiceJobByServiceJobIdResponse:
 @attrs.define
 class CompleteServiceJobByServiceJobIdResponse:
 
+    """
+    Response schema for CompleteServiceJobByServiceJobId operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -335,6 +375,10 @@ class CompleteServiceJobByServiceJobIdResponse:
 
 @attrs.define
 class Error:
+
+    """
+    Error response returned when the request is unsuccessful.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -370,11 +414,19 @@ class Error:
 @attrs.define
 class ErrorList:
 
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
     pass
 
 
 @attrs.define
 class GetServiceJobByServiceJobIdResponse:
+
+    """
+    The response schema for the GetServiceJobByServiceJobId operation.
+    """
 
     errors: "ErrorList" = attrs.field(
         kw_only=True,
@@ -396,6 +448,10 @@ class GetServiceJobByServiceJobIdResponse:
 @attrs.define
 class GetServiceJobsResponse:
 
+    """
+    Response schema for GetJobs operation.
+    """
+
     errors: "ErrorList" = attrs.field(
         kw_only=True,
     )
@@ -415,6 +471,10 @@ class GetServiceJobsResponse:
 
 @attrs.define
 class ItemDelivery:
+
+    """
+    Delivery information for the item.
+    """
 
     estimated_delivery_date: datetime = attrs.field(
         kw_only=True,
@@ -438,6 +498,10 @@ class ItemDelivery:
 
 @attrs.define
 class ItemDeliveryPromise:
+
+    """
+    Promised delivery information for the item.
+    """
 
     end_time: datetime = attrs.field(
         kw_only=True,
@@ -464,6 +528,10 @@ class ItemDeliveryPromise:
 
 @attrs.define
 class JobListing:
+
+    """
+    The payload for the GetJobs operation.
+    """
 
     jobs: List["ServiceJob"] = attrs.field(
         kw_only=True,
@@ -499,11 +567,19 @@ class JobListing:
 @attrs.define
 class OrderId:
 
+    """
+    The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
+    """
+
     pass
 
 
 @attrs.define
 class Poa:
+
+    """
+    Proof of Appointment (POA) details.
+    """
 
     poa_type: Union[
         Literal["NO_SIGNATURE_DUMMY_POS"],
@@ -560,6 +636,10 @@ class Poa:
 @attrs.define
 class RescheduleAppointmentRequest:
 
+    """
+    Input for rescheduled appointment operation.
+    """
+
     appointment_time: "AppointmentTimeInput" = attrs.field(
         kw_only=True,
     )
@@ -580,11 +660,19 @@ class RescheduleAppointmentRequest:
 @attrs.define
 class RescheduleReasonCode:
 
+    """
+    Appointment reschedule reason code.
+    """
+
     pass
 
 
 @attrs.define
 class ScopeOfWork:
+
+    """
+    The scope of work for the order.
+    """
 
     asin: str = attrs.field(
         kw_only=True,
@@ -620,6 +708,10 @@ class ScopeOfWork:
 @attrs.define
 class Seller:
 
+    """
+    Information about the seller of the service job.
+    """
+
     seller_id: str = attrs.field(
         kw_only=True,
     )
@@ -635,6 +727,10 @@ class Seller:
 
 @attrs.define
 class ServiceJob:
+
+    """
+    The job details of a service.
+    """
 
     appointments: List["Appointment"] = attrs.field(
         kw_only=True,
@@ -747,11 +843,19 @@ class ServiceJob:
 @attrs.define
 class ServiceJobId:
 
+    """
+    Amazon identifier for the service job.
+    """
+
     pass
 
 
 @attrs.define
 class ServiceJobProvider:
+
+    """
+    Information about the service job provider.
+    """
 
     service_job_provider_id: str = attrs.field(
         kw_only=True,
@@ -768,6 +872,10 @@ class ServiceJobProvider:
 
 @attrs.define
 class ServiceLocation:
+
+    """
+    Information about the location of the service job.
+    """
 
     service_location_type: Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]] = attrs.field(
         kw_only=True,
@@ -788,6 +896,10 @@ class ServiceLocation:
 
 @attrs.define
 class SetAppointmentResponse:
+
+    """
+    Response schema for add or reschedule appointment operation.
+    """
 
     appointment_id: "AppointmentId" = attrs.field(
         kw_only=True,
@@ -816,6 +928,10 @@ class SetAppointmentResponse:
 @attrs.define
 class Technician:
 
+    """
+    A technician who is assigned to perform the service job in part or in full.
+    """
+
     name: str = attrs.field(
         kw_only=True,
     )
@@ -838,6 +954,10 @@ class Technician:
 
 @attrs.define
 class Warning:
+
+    """
+    Warning returned when the request is successful but execution have some important callouts on basis of which API clients should take defined actions.
+    """
 
     code: str = attrs.field(
         kw_only=True,
@@ -865,6 +985,10 @@ class Warning:
 
 @attrs.define
 class WarningList:
+
+    """
+    A list of warnings returned in the sucessful execution response of an API request.
+    """
 
     pass
 
