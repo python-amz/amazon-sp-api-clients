@@ -210,7 +210,7 @@ class Generator:
                                                   required=k in required, param_schema=v) for k, v in properties)
                 operation.parameters.extend(post_parameters)
 
-            params = tuple(self.resolve_ref(p) if isinstance(p, Reference) else p for p in operation.parameters)
+            params = tuple(self.resolve_ref(p) for p in operation.parameters)
             parsed_params: tuple[ParsedParameter, ...] = tuple(ParsedParameter.parse_obj(
                 {**p.dict(), 'generator': self}) for p in params)
             operation.parsed_parameters = parsed_params
