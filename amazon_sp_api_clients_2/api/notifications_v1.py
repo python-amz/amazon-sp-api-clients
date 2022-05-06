@@ -21,12 +21,12 @@ class CreateDestinationRequest:
     The request schema for the createDestination operation.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     A developer-defined name to help identify this destination.
     """
 
-    resource_specification: Optional["DestinationResourceSpecification"] = attrs.field()
+    resource_specification: "DestinationResourceSpecification" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -92,12 +92,12 @@ class Destination:
     Represents a destination created when you call the createDestination operation.
     """
 
-    destination_id: Optional[str] = attrs.field()
+    destination_id: str = attrs.field()
     """
     The destination identifier generated when you created the destination.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The developer-defined name for this destination.
 
@@ -105,7 +105,7 @@ class Destination:
     {'maxLength': 256}
     """
 
-    resource: Optional["DestinationResource"] = attrs.field()
+    resource: "DestinationResource" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -145,7 +145,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -155,7 +155,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -176,12 +176,12 @@ class EventBridgeResource:
     Represents an Amazon EventBridge destination.
     """
 
-    account_id: Optional[str] = attrs.field()
+    account_id: str = attrs.field()
     """
     The identifier for the AWS account that is responsible for charges related to receiving notifications.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the partner event source associated with the destination.
 
@@ -189,7 +189,7 @@ class EventBridgeResource:
     {'maxLength': 256}
     """
 
-    region: Optional[str] = attrs.field()
+    region: str = attrs.field()
     """
     The AWS region in which you receive the notifications. For AWS regions that are supported in Amazon EventBridge, see https://docs.aws.amazon.com/general/latest/gr/ev.html.
     """
@@ -201,12 +201,12 @@ class EventBridgeResourceSpecification:
     The information required to create an Amazon EventBridge destination.
     """
 
-    account_id: Optional[str] = attrs.field()
+    account_id: str = attrs.field()
     """
     The identifier for the AWS account that is responsible for charges related to receiving notifications.
     """
 
-    region: Optional[str] = attrs.field()
+    region: str = attrs.field()
     """
     The AWS region in which you will be receiving the notifications.
     """
@@ -262,7 +262,7 @@ class SqsResource:
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
 
-    arn: Optional[str] = attrs.field()
+    arn: str = attrs.field()
     """
     The Amazon Resource Name (ARN) associated with the SQS queue.
 
@@ -277,17 +277,17 @@ class Subscription:
     Represents a subscription to receive notifications.
     """
 
-    destination_id: Optional[str] = attrs.field()
+    destination_id: str = attrs.field()
     """
     The identifier for the destination where notifications will be delivered.
     """
 
-    payload_version: Optional[str] = attrs.field()
+    payload_version: str = attrs.field()
     """
     The version of the payload object to be used in the notification.
     """
 
-    subscription_id: Optional[str] = attrs.field()
+    subscription_id: str = attrs.field()
     """
     The subscription identifier generated when the subscription is created.
     """

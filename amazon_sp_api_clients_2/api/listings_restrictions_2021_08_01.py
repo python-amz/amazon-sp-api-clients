@@ -21,7 +21,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -31,7 +31,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -52,7 +52,7 @@ class Link:
     A link to resources related to a listing restriction.
     """
 
-    resource: Optional[str] = attrs.field()
+    resource: str = attrs.field()
     """
     The URI of the related resource.
 
@@ -70,7 +70,7 @@ class Link:
     The media type of the related resource.
     """
 
-    verb: Optional[Union[Literal["GET"]]] = attrs.field()
+    verb: Union[Literal["GET"]] = attrs.field()
     """
     The HTTP verb used to interact with the related resource.
     """
@@ -87,7 +87,7 @@ class Reason:
     A list of path forward links that may allow Selling Partners to remove the restriction.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message describing the reason for the restriction.
     """
@@ -127,7 +127,7 @@ class Restriction:
     The condition that applies to the restriction.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
     """
@@ -144,7 +144,7 @@ class RestrictionList:
     A list of restrictions for the specified Amazon catalog item.
     """
 
-    restrictions: Optional[List["Restriction"]] = attrs.field()
+    restrictions: List["Restriction"] = attrs.field()
 
 
 class ListingsRestrictions20210801Client(BaseClient):

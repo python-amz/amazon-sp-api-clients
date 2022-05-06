@@ -31,7 +31,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -41,7 +41,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """

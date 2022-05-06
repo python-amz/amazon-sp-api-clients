@@ -38,7 +38,7 @@ class Address:
     Address of the party.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: str = attrs.field()
     """
     First line of the address.
     """
@@ -58,7 +58,7 @@ class Address:
     The city where the person, business or institution is located.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: str = attrs.field()
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
 
@@ -76,7 +76,7 @@ class Address:
     The district where person, business or institution is located.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the person, business or institution at that address.
     """
@@ -121,7 +121,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -131,7 +131,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -293,12 +293,12 @@ class Order:
 
     order_details: Optional["OrderDetails"] = attrs.field()
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    purchase_order_state: Optional[Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]]] = attrs.field()
+    purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = attrs.field()
     """
     This field will contain the current state of the purchase order.
     """
@@ -307,7 +307,7 @@ class Order:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderAcknowledgement:
 
-    acknowledgement_date: Optional[datetime] = attrs.field()
+    acknowledgement_date: datetime = attrs.field()
     """
     The date and time when the purchase order is acknowledged, in ISO-8601 date/time format.
 
@@ -315,17 +315,17 @@ class OrderAcknowledgement:
     {'schema_format': 'date-time'}
     """
 
-    items: Optional[List["OrderAcknowledgementItem"]] = attrs.field()
+    items: List["OrderAcknowledgementItem"] = attrs.field()
     """
     A list of the items being acknowledged with associated details.
     """
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     The purchase order number. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -344,7 +344,7 @@ class OrderAcknowledgementItem:
     The discount multiplier that should be applied to the price if a vendor sells books with a list price. This is a multiplier factor to arrive at a final discounted price. A multiplier of .90 would be the factor if a 10% discount is given.
     """
 
-    item_acknowledgements: Optional[List["OrderItemAcknowledgement"]] = attrs.field()
+    item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field()
     """
     This is used to indicate acknowledged quantity.
     """
@@ -358,7 +358,7 @@ class OrderAcknowledgementItem:
 
     net_cost: Optional["Money"] = attrs.field()
 
-    ordered_quantity: Optional["ItemQuantity"] = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field()
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -385,7 +385,7 @@ class OrderDetails:
 
     import_details: Optional["ImportDetails"] = attrs.field()
 
-    items: Optional[List["OrderItem"]] = attrs.field()
+    items: List["OrderItem"] = attrs.field()
     """
     A list of items in this purchase order.
     """
@@ -405,7 +405,7 @@ class OrderDetails:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_date: Optional[datetime] = attrs.field()
+    purchase_order_date: datetime = attrs.field()
     """
     The date the purchase order was placed. Must be in ISO-8601 date/time format.
 
@@ -413,7 +413,7 @@ class OrderDetails:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_state_changed_date: Optional[datetime] = attrs.field()
+    purchase_order_state_changed_date: datetime = attrs.field()
     """
     The date when current purchase order state was changed. Current purchase order state is available in the field 'purchaseOrderState'. Must be in ISO-8601 date/time format.
 
@@ -445,12 +445,12 @@ class OrderItem:
     Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    is_back_order_allowed: Optional[bool] = attrs.field()
+    is_back_order_allowed: bool = attrs.field()
     """
     When true, we will accept backorder confirmations for this item.
     """
 
-    item_sequence_number: Optional[str] = attrs.field()
+    item_sequence_number: str = attrs.field()
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
@@ -459,7 +459,7 @@ class OrderItem:
 
     net_cost: Optional["Money"] = attrs.field()
 
-    ordered_quantity: Optional["ItemQuantity"] = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field()
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -470,11 +470,9 @@ class OrderItem:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemAcknowledgement:
 
-    acknowledged_quantity: Optional["ItemQuantity"] = attrs.field()
+    acknowledged_quantity: "ItemQuantity" = attrs.field()
 
-    acknowledgement_code: Optional[
-        Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]]
-    ] = attrs.field()
+    acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field()
     """
     This indicates the acknowledgement code.
     """
@@ -513,7 +511,7 @@ class OrderItemStatus:
     Buyer's Standard Identification Number (ASIN) of an item.
     """
 
-    item_sequence_number: Optional[str] = attrs.field()
+    item_sequence_number: str = attrs.field()
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
@@ -615,7 +613,7 @@ class OrderStatus:
     Current status of a purchase order.
     """
 
-    item_status: Optional["ItemStatus"] = attrs.field()
+    item_status: "ItemStatus" = attrs.field()
 
     last_updated_date: Optional[datetime] = attrs.field()
     """
@@ -625,7 +623,7 @@ class OrderStatus:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_date: Optional[datetime] = attrs.field()
+    purchase_order_date: datetime = attrs.field()
     """
     The date the purchase order was placed. Must be in ISO-8601 date/time format.
 
@@ -633,19 +631,19 @@ class OrderStatus:
     {'schema_format': 'date-time'}
     """
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     The buyer's purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    purchase_order_status: Optional[Union[Literal["OPEN"], Literal["CLOSED"]]] = attrs.field()
+    purchase_order_status: Union[Literal["OPEN"], Literal["CLOSED"]] = attrs.field()
     """
     The status of the buyer's purchase order for this order.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
-    ship_to_party: Optional["PartyIdentification"] = attrs.field()
+    ship_to_party: "PartyIdentification" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -681,7 +679,7 @@ class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
 
-    party_id: Optional[str] = attrs.field()
+    party_id: str = attrs.field()
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
@@ -715,12 +713,12 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
-    tax_registration_number: Optional[str] = attrs.field()
+    tax_registration_number: str = attrs.field()
     """
     Tax registration number for the entity. For example, VAT ID.
     """
 
-    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field()
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
     """
     Tax registration type for the entity.
     """

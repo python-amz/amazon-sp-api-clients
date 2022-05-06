@@ -19,7 +19,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
@@ -29,7 +29,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -61,7 +61,7 @@ class Marketplace:
     Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: str = attrs.field()
     """
     The ISO 3166-1 alpha-2 format country code of the marketplace.
 
@@ -69,27 +69,27 @@ class Marketplace:
     {'pattern': '^([A-Z]{2})$'}
     """
 
-    default_currency_code: Optional[str] = attrs.field()
+    default_currency_code: str = attrs.field()
     """
     The ISO 4217 format currency code of the marketplace.
     """
 
-    default_language_code: Optional[str] = attrs.field()
+    default_language_code: str = attrs.field()
     """
     The ISO 639-1 format language code of the marketplace.
     """
 
-    domain_name: Optional[str] = attrs.field()
+    domain_name: str = attrs.field()
     """
     The domain name of the marketplace.
     """
 
-    id: Optional[str] = attrs.field()
+    id: str = attrs.field()
     """
     The encrypted marketplace value.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     Marketplace name.
     """
@@ -98,9 +98,9 @@ class Marketplace:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class MarketplaceParticipation:
 
-    marketplace: Optional["Marketplace"] = attrs.field()
+    marketplace: "Marketplace" = attrs.field()
 
-    participation: Optional["Participation"] = attrs.field()
+    participation: "Participation" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -118,12 +118,12 @@ class Participation:
     Detailed information that is specific to a seller in a Marketplace.
     """
 
-    has_suspended_listings: Optional[bool] = attrs.field()
+    has_suspended_listings: bool = attrs.field()
     """
     Specifies if the seller has suspended listings. True if the seller Listing Status is set to Inactive, otherwise False.
     """
 
-    is_participating: Optional[bool] = attrs.field()
+    is_participating: bool = attrs.field()
 
 
 class SellersV1Client(BaseClient):

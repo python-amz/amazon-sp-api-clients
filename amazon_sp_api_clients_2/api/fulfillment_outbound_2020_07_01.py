@@ -28,7 +28,7 @@ class Address:
     A physical address.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: str = attrs.field()
     """
     The first line of the address.
     """
@@ -48,7 +48,7 @@ class Address:
     The city where the person, business, or institution is located.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: str = attrs.field()
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
     """
@@ -58,7 +58,7 @@ class Address:
     The district or county where the person, business, or institution is located.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the person, business or institution at the address.
     """
@@ -73,7 +73,7 @@ class Address:
     The postal code of the address.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: str = attrs.field()
     """
     The state or region where the person, business or institution is located.
     """
@@ -89,7 +89,7 @@ class CODSettings:
 
     cod_charge_tax: Optional["Money"] = attrs.field()
 
-    is_cod_required: Optional[bool] = attrs.field()
+    is_cod_required: bool = attrs.field()
     """
     When true, this fulfillment order requires a COD (Cash On Delivery) payment.
     """
@@ -141,9 +141,9 @@ class CreateFulfillmentOrderItem:
 
     per_unit_tax: Optional["Money"] = attrs.field()
 
-    quantity: Optional["Quantity"] = attrs.field()
+    quantity: "Quantity" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     A fulfillment order item identifier that the seller creates to track fulfillment order items. Used to disambiguate multiple fulfillment items that have the same SellerSKU. For example, the seller might assign different SellerFulfillmentOrderItemId values to two items in a fulfillment order that share the same SellerSKU but have different GiftMessage values.
 
@@ -151,7 +151,7 @@ class CreateFulfillmentOrderItem:
     {'maxLength': 50}
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: str = attrs.field()
     """
     The seller SKU of the item.
 
@@ -179,9 +179,9 @@ class CreateFulfillmentOrderRequest:
 
     delivery_window: Optional["DeliveryWindow"] = attrs.field()
 
-    destination_address: Optional["Address"] = attrs.field()
+    destination_address: "Address" = attrs.field()
 
-    displayable_order_comment: Optional[str] = attrs.field()
+    displayable_order_comment: str = attrs.field()
     """
     Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
 
@@ -189,9 +189,9 @@ class CreateFulfillmentOrderRequest:
     {'maxLength': 1000}
     """
 
-    displayable_order_date: Optional["Timestamp"] = attrs.field()
+    displayable_order_date: "Timestamp" = attrs.field()
 
-    displayable_order_id: Optional[str] = attrs.field()
+    displayable_order_id: str = attrs.field()
     """
     A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
         The value must be an alpha-numeric or ISO 8859-1 compliant string from one to 40 characters in length. Cannot contain two spaces in a row. Leading and trailing white space is removed.
@@ -209,7 +209,7 @@ class CreateFulfillmentOrderRequest:
 
     fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
 
-    items: Optional["CreateFulfillmentOrderItemList"] = attrs.field()
+    items: "CreateFulfillmentOrderItemList" = attrs.field()
 
     marketplace_id: Optional[str] = attrs.field()
     """
@@ -218,7 +218,7 @@ class CreateFulfillmentOrderRequest:
 
     notification_emails: Optional["NotificationEmailList"] = attrs.field()
 
-    seller_fulfillment_order_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_id: str = attrs.field()
     """
     A fulfillment order identifier that the seller creates to track their fulfillment order. The SellerFulfillmentOrderId must be unique for each fulfillment order that a seller creates. If the seller's system already creates unique order identifiers, then these might be good values for them to use.
 
@@ -231,7 +231,7 @@ class CreateFulfillmentOrderRequest:
     The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
     """
 
-    shipping_speed_category: Optional["ShippingSpeedCategory"] = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -249,7 +249,7 @@ class CreateFulfillmentReturnRequest:
     The createFulfillmentReturn operation creates a fulfillment return for items that were fulfilled using the createFulfillmentOrder operation. For calls to createFulfillmentReturn, you must include ReturnReasonCode values returned by a previous call to the listReturnReasonCodes operation.
     """
 
-    items: Optional["CreateReturnItemList"] = attrs.field()
+    items: "CreateReturnItemList" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -279,7 +279,7 @@ class CreateReturnItem:
     An item that Amazon accepted for return.
     """
 
-    amazon_shipment_id: Optional[str] = attrs.field()
+    amazon_shipment_id: str = attrs.field()
     """
     The identifier for the shipment that is associated with the return item.
     """
@@ -292,17 +292,17 @@ class CreateReturnItem:
     {'maxLength': 1000}
     """
 
-    return_reason_code: Optional[str] = attrs.field()
+    return_reason_code: str = attrs.field()
     """
     The return reason code assigned to the return item by the seller.
     """
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     The identifier assigned to the item by the seller when the fulfillment order was created.
     """
 
-    seller_return_item_id: Optional[str] = attrs.field()
+    seller_return_item_id: str = attrs.field()
     """
     An identifier assigned by the seller to the return item.
 
@@ -344,9 +344,9 @@ class DeliveryWindow:
     The time range within which a Scheduled Delivery fulfillment order should be delivered.
     """
 
-    end_date: Optional["Timestamp"] = attrs.field()
+    end_date: "Timestamp" = attrs.field()
 
-    start_date: Optional["Timestamp"] = attrs.field()
+    start_date: "Timestamp" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -364,7 +364,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -374,7 +374,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -404,12 +404,12 @@ class Feature:
     A Multi-Channel Fulfillment feature.
     """
 
-    feature_description: Optional[str] = attrs.field()
+    feature_description: str = attrs.field()
     """
     The feature description.
     """
 
-    feature_name: Optional[str] = attrs.field()
+    feature_name: str = attrs.field()
     """
     The feature name.
     """
@@ -484,15 +484,13 @@ class Fee:
     Fee type and cost.
     """
 
-    amount: Optional["Money"] = attrs.field()
+    amount: "Money" = attrs.field()
 
-    name: Optional[
-        Union[
-            Literal["FBAPerUnitFulfillmentFee"],
-            Literal["FBAPerOrderFulfillmentFee"],
-            Literal["FBATransportationFee"],
-            Literal["FBAFulfillmentCODFee"],
-        ]
+    name: Union[
+        Literal["FBAPerUnitFulfillmentFee"],
+        Literal["FBAPerOrderFulfillmentFee"],
+        Literal["FBATransportationFee"],
+        Literal["FBAFulfillmentCODFee"],
     ] = attrs.field()
     """
     The type of fee.
@@ -527,16 +525,16 @@ class FulfillmentOrder:
 
     delivery_window: Optional["DeliveryWindow"] = attrs.field()
 
-    destination_address: Optional["Address"] = attrs.field()
+    destination_address: "Address" = attrs.field()
 
-    displayable_order_comment: Optional[str] = attrs.field()
+    displayable_order_comment: str = attrs.field()
     """
     A text block submitted with the createFulfillmentOrder operation. Displays in recipient-facing materials such as the packing slip.
     """
 
-    displayable_order_date: Optional["Timestamp"] = attrs.field()
+    displayable_order_date: "Timestamp" = attrs.field()
 
-    displayable_order_id: Optional[str] = attrs.field()
+    displayable_order_id: str = attrs.field()
     """
     A fulfillment order identifier submitted with the createFulfillmentOrder operation. Displays as the order identifier in recipient-facing materials such as the packing slip.
     """
@@ -548,27 +546,27 @@ class FulfillmentOrder:
 
     fulfillment_action: Optional["FulfillmentAction"] = attrs.field()
 
-    fulfillment_order_status: Optional["FulfillmentOrderStatus"] = attrs.field()
+    fulfillment_order_status: "FulfillmentOrderStatus" = attrs.field()
 
     fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     The identifier for the marketplace the fulfillment order is placed against.
     """
 
     notification_emails: Optional["NotificationEmailList"] = attrs.field()
 
-    received_date: Optional["Timestamp"] = attrs.field()
+    received_date: "Timestamp" = attrs.field()
 
-    seller_fulfillment_order_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_id: str = attrs.field()
     """
     The fulfillment order identifier submitted with the createFulfillmentOrder operation.
     """
 
-    shipping_speed_category: Optional["ShippingSpeedCategory"] = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
 
-    status_updated_date: Optional["Timestamp"] = attrs.field()
+    status_updated_date: "Timestamp" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -577,7 +575,7 @@ class FulfillmentOrderItem:
     Item information for a fulfillment order.
     """
 
-    cancelled_quantity: Optional["Quantity"] = attrs.field()
+    cancelled_quantity: "Quantity" = attrs.field()
 
     displayable_comment: Optional[str] = attrs.field()
     """
@@ -609,19 +607,19 @@ class FulfillmentOrderItem:
 
     per_unit_tax: Optional["Money"] = attrs.field()
 
-    quantity: Optional["Quantity"] = attrs.field()
+    quantity: "Quantity" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     A fulfillment order item identifier submitted with a call to the createFulfillmentOrder operation.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: str = attrs.field()
     """
     The seller SKU of the item.
     """
 
-    unfulfillable_quantity: Optional["Quantity"] = attrs.field()
+    unfulfillable_quantity: "Quantity" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -668,17 +666,17 @@ class FulfillmentPreview:
 
     fulfillment_preview_shipments: Optional["FulfillmentPreviewShipmentList"] = attrs.field()
 
-    is_codcapable: Optional[bool] = attrs.field()
+    is_codcapable: bool = attrs.field()
     """
     When true, this fulfillment order preview is for COD (Cash On Delivery).
     """
 
-    is_fulfillable: Optional[bool] = attrs.field()
+    is_fulfillable: bool = attrs.field()
     """
     When true, this fulfillment order preview is fulfillable.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     The marketplace the fulfillment order is placed against.
     """
@@ -687,7 +685,7 @@ class FulfillmentPreview:
 
     scheduled_delivery_info: Optional["ScheduledDeliveryInfo"] = attrs.field()
 
-    shipping_speed_category: Optional["ShippingSpeedCategory"] = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
 
     unfulfillable_preview_items: Optional["UnfulfillablePreviewItemList"] = attrs.field()
 
@@ -700,14 +698,14 @@ class FulfillmentPreviewItem:
 
     estimated_shipping_weight: Optional["Weight"] = attrs.field()
 
-    quantity: Optional["Quantity"] = attrs.field()
+    quantity: "Quantity" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     A fulfillment order item identifier that the seller created with a call to the createFulfillmentOrder operation.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: str = attrs.field()
     """
     The seller SKU of the item.
     """
@@ -746,7 +744,7 @@ class FulfillmentPreviewShipment:
 
     earliest_ship_date: Optional["Timestamp"] = attrs.field()
 
-    fulfillment_preview_items: Optional["FulfillmentPreviewItemList"] = attrs.field()
+    fulfillment_preview_items: "FulfillmentPreviewItemList" = attrs.field()
 
     latest_arrival_date: Optional["Timestamp"] = attrs.field()
 
@@ -782,24 +780,24 @@ class FulfillmentShipment:
     Delivery and item information for a shipment in a fulfillment order.
     """
 
-    amazon_shipment_id: Optional[str] = attrs.field()
+    amazon_shipment_id: str = attrs.field()
     """
     A shipment identifier assigned by Amazon.
     """
 
     estimated_arrival_date: Optional["Timestamp"] = attrs.field()
 
-    fulfillment_center_id: Optional[str] = attrs.field()
+    fulfillment_center_id: str = attrs.field()
     """
     An identifier for the fulfillment center that the shipment will be sent from.
     """
 
-    fulfillment_shipment_item: Optional["FulfillmentShipmentItemList"] = attrs.field()
+    fulfillment_shipment_item: "FulfillmentShipmentItemList" = attrs.field()
 
     fulfillment_shipment_package: Optional["FulfillmentShipmentPackageList"] = attrs.field()
 
-    fulfillment_shipment_status: Optional[
-        Union[Literal["PENDING"], Literal["SHIPPED"], Literal["CANCELLED_BY_FULFILLER"], Literal["CANCELLED_BY_SELLER"]]
+    fulfillment_shipment_status: Union[
+        Literal["PENDING"], Literal["SHIPPED"], Literal["CANCELLED_BY_FULFILLER"], Literal["CANCELLED_BY_SELLER"]
     ] = attrs.field()
     """
     The current status of the shipment.
@@ -827,14 +825,14 @@ class FulfillmentShipmentItem:
     {'schema_format': 'int32'}
     """
 
-    quantity: Optional["Quantity"] = attrs.field()
+    quantity: "Quantity" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     The fulfillment order item identifier that the seller created and submitted with a call to the createFulfillmentOrder operation.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: str = attrs.field()
     """
     The seller SKU of the item.
     """
@@ -869,14 +867,14 @@ class FulfillmentShipmentPackage:
     Package information for a shipment in a fulfillment order.
     """
 
-    carrier_code: Optional[str] = attrs.field()
+    carrier_code: str = attrs.field()
     """
     Identifies the carrier who will deliver the shipment to the recipient.
     """
 
     estimated_arrival_date: Optional["Timestamp"] = attrs.field()
 
-    package_number: Optional[int] = attrs.field()
+    package_number: int = attrs.field()
     """
     Identifies a package in a shipment.
 
@@ -916,7 +914,7 @@ class GetFeatureInventoryResult:
     The payload for the getEligibileInventory operation.
     """
 
-    feature_name: Optional[str] = attrs.field()
+    feature_name: str = attrs.field()
     """
     The name of the feature.
     """
@@ -926,7 +924,7 @@ class GetFeatureInventoryResult:
     An array of SKUs eligible for this feature and the quantity available.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     The requested marketplace.
     """
@@ -954,7 +952,7 @@ class GetFeatureSkuResult:
     The payload for the getFeatureSKU operation.
     """
 
-    feature_name: Optional[str] = attrs.field()
+    feature_name: str = attrs.field()
     """
     The name of the feature.
     """
@@ -968,12 +966,12 @@ class GetFeatureSkuResult:
         * INVALID_SKU - There is an issue with the SKU provided.
     """
 
-    is_eligible: Optional[bool] = attrs.field()
+    is_eligible: bool = attrs.field()
     """
     When true, the seller SKU is eligible for the requested feature.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     The requested marketplace.
     """
@@ -998,7 +996,7 @@ class GetFeaturesResult:
     The payload for the getFeatures operation.
     """
 
-    features: Optional["Features"] = attrs.field()
+    features: "Features" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1015,15 +1013,15 @@ class GetFulfillmentOrderResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetFulfillmentOrderResult:
 
-    fulfillment_order: Optional["FulfillmentOrder"] = attrs.field()
+    fulfillment_order: "FulfillmentOrder" = attrs.field()
 
-    fulfillment_order_items: Optional["FulfillmentOrderItemList"] = attrs.field()
+    fulfillment_order_items: "FulfillmentOrderItemList" = attrs.field()
 
     fulfillment_shipments: Optional["FulfillmentShipmentList"] = attrs.field()
 
-    return_authorizations: Optional["ReturnAuthorizationList"] = attrs.field()
+    return_authorizations: "ReturnAuthorizationList" = attrs.field()
 
-    return_items: Optional["ReturnItemList"] = attrs.field()
+    return_items: "ReturnItemList" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1034,9 +1032,9 @@ class GetFulfillmentPreviewItem:
 
     per_unit_declared_value: Optional["Money"] = attrs.field()
 
-    quantity: Optional["Quantity"] = attrs.field()
+    quantity: "Quantity" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     A fulfillment order item identifier that the seller creates to track items in the fulfillment preview.
 
@@ -1044,7 +1042,7 @@ class GetFulfillmentPreviewItem:
     {'maxLength': 50}
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: str = attrs.field()
     """
     The seller SKU of the item.
 
@@ -1068,7 +1066,7 @@ class GetFulfillmentPreviewRequest:
     The request body schema for the getFulfillmentPreview operation.
     """
 
-    address: Optional["Address"] = attrs.field()
+    address: "Address" = attrs.field()
 
     feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
     """
@@ -1088,7 +1086,7 @@ class GetFulfillmentPreviewRequest:
     Specifies whether to return the ScheduledDeliveryInfo response object, which contains the available delivery windows for a Scheduled Delivery. The ScheduledDeliveryInfo response object can only be returned for fulfillment order previews with ShippingSpeedCategories = ScheduledDelivery.
     """
 
-    items: Optional["GetFulfillmentPreviewItemList"] = attrs.field()
+    items: "GetFulfillmentPreviewItemList" = attrs.field()
 
     marketplace_id: Optional[str] = attrs.field()
     """
@@ -1135,12 +1133,12 @@ class InvalidItemReason:
     The reason that the item is invalid for return.
     """
 
-    description: Optional[str] = attrs.field()
+    description: str = attrs.field()
     """
     A human readable description of the invalid item reason code.
     """
 
-    invalid_item_reason_code: Optional["InvalidItemReasonCode"] = attrs.field()
+    invalid_item_reason_code: "InvalidItemReasonCode" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1158,14 +1156,14 @@ class InvalidReturnItem:
     An item that is invalid for return.
     """
 
-    invalid_item_reason: Optional["InvalidItemReason"] = attrs.field()
+    invalid_item_reason: "InvalidItemReason" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     The identifier assigned to the item by the seller when the fulfillment order was created.
     """
 
-    seller_return_item_id: Optional[str] = attrs.field()
+    seller_return_item_id: str = attrs.field()
     """
     An identifier assigned by the seller to the return item.
     """
@@ -1228,12 +1226,12 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: str = attrs.field()
     """
     Three digit currency code in ISO 4217 format.
     """
 
-    value: Optional["Decimal"] = attrs.field()
+    value: "Decimal" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1279,7 +1277,7 @@ class PackageTrackingDetails:
 
     estimated_arrival_date: Optional["Timestamp"] = attrs.field()
 
-    package_number: Optional[int] = attrs.field()
+    package_number: int = attrs.field()
     """
     The package identifier.
 
@@ -1319,12 +1317,12 @@ class ReasonCodeDetails:
     A return reason code, a description, and an optional description translation.
     """
 
-    description: Optional[str] = attrs.field()
+    description: str = attrs.field()
     """
     A human readable description of the return reason code.
     """
 
-    return_reason_code: Optional[str] = attrs.field()
+    return_reason_code: str = attrs.field()
     """
     A code that indicates a valid return reason.
     """
@@ -1350,24 +1348,24 @@ class ReturnAuthorization:
     Return authorization information for items accepted for return.
     """
 
-    amazon_rma_id: Optional[str] = attrs.field()
+    amazon_rma_id: str = attrs.field()
     """
     The return merchandise authorization (RMA) that Amazon needs to process the return.
     """
 
-    fulfillment_center_id: Optional[str] = attrs.field()
+    fulfillment_center_id: str = attrs.field()
     """
     An identifier for the Amazon fulfillment center that the return items should be sent to.
     """
 
-    return_authorization_id: Optional[str] = attrs.field()
+    return_authorization_id: str = attrs.field()
     """
     An identifier for the return authorization. This identifier associates return items with the return authorization used to return them.
     """
 
-    return_to_address: Optional["Address"] = attrs.field()
+    return_to_address: "Address" = attrs.field()
 
-    rma_page_url: Optional[str] = attrs.field()
+    rma_page_url: str = attrs.field()
     """
     A URL for a web page that contains the return authorization barcode and the mailing label. This does not include pre-paid shipping.
     """
@@ -1393,7 +1391,7 @@ class ReturnItem:
     The return reason code that the Amazon fulfillment center assigned to the return item.
     """
 
-    amazon_shipment_id: Optional[str] = attrs.field()
+    amazon_shipment_id: str = attrs.field()
     """
     The identifier for the shipment that is associated with the return item.
     """
@@ -1415,24 +1413,24 @@ class ReturnItem:
 
     return_received_condition: Optional["ReturnItemDisposition"] = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     The identifier assigned to the item by the seller when the fulfillment order was created.
     """
 
-    seller_return_item_id: Optional[str] = attrs.field()
+    seller_return_item_id: str = attrs.field()
     """
     An identifier assigned by the seller to the return item.
     """
 
-    seller_return_reason_code: Optional[str] = attrs.field()
+    seller_return_reason_code: str = attrs.field()
     """
     The return reason code assigned to the return item by the seller.
     """
 
-    status: Optional["FulfillmentReturnItemStatus"] = attrs.field()
+    status: "FulfillmentReturnItemStatus" = attrs.field()
 
-    status_changed_date: Optional["Timestamp"] = attrs.field()
+    status_changed_date: "Timestamp" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1459,12 +1457,12 @@ class ScheduledDeliveryInfo:
     Delivery information for a scheduled delivery.
     """
 
-    delivery_time_zone: Optional[str] = attrs.field()
+    delivery_time_zone: str = attrs.field()
     """
     The time zone of the destination address for the fulfillment order preview. Must be an IANA time zone name. Example: Asia/Tokyo.
     """
 
-    delivery_windows: Optional["DeliveryWindowList"] = attrs.field()
+    delivery_windows: "DeliveryWindowList" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1500,7 +1498,7 @@ class TrackingAddress:
     Address information for tracking the package.
     """
 
-    city: Optional[str] = attrs.field()
+    city: str = attrs.field()
     """
     The city.
 
@@ -1508,7 +1506,7 @@ class TrackingAddress:
     {'maxLength': 150}
     """
 
-    country: Optional[str] = attrs.field()
+    country: str = attrs.field()
     """
     The country.
 
@@ -1516,7 +1514,7 @@ class TrackingAddress:
     {'maxLength': 6}
     """
 
-    state: Optional[str] = attrs.field()
+    state: str = attrs.field()
     """
     The state.
 
@@ -1531,13 +1529,13 @@ class TrackingEvent:
     Information for tracking package deliveries.
     """
 
-    event_address: Optional["TrackingAddress"] = attrs.field()
+    event_address: "TrackingAddress" = attrs.field()
 
-    event_code: Optional["EventCode"] = attrs.field()
+    event_code: "EventCode" = attrs.field()
 
-    event_date: Optional["Timestamp"] = attrs.field()
+    event_date: "Timestamp" = attrs.field()
 
-    event_description: Optional[str] = attrs.field()
+    event_description: str = attrs.field()
     """
     A description for the corresponding event code.
     """
@@ -1560,9 +1558,9 @@ class UnfulfillablePreviewItem:
 
     item_unfulfillable_reasons: Optional["StringList"] = attrs.field()
 
-    quantity: Optional["Quantity"] = attrs.field()
+    quantity: "Quantity" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     A fulfillment order item identifier created with a call to the getFulfillmentPreview operation.
 
@@ -1570,7 +1568,7 @@ class UnfulfillablePreviewItem:
     {'maxLength': 50}
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: str = attrs.field()
     """
     The seller SKU of the item.
 
@@ -1626,9 +1624,9 @@ class UpdateFulfillmentOrderItem:
 
     per_unit_tax: Optional["Money"] = attrs.field()
 
-    quantity: Optional["Quantity"] = attrs.field()
+    quantity: "Quantity" = attrs.field()
 
-    seller_fulfillment_order_item_id: Optional[str] = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field()
     """
     Identifies the fulfillment order item to update. Created with a previous call to the createFulfillmentOrder operation.
 
@@ -1715,12 +1713,12 @@ class Weight:
     The weight.
     """
 
-    unit: Optional[Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]]] = attrs.field()
+    unit: Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]] = attrs.field()
     """
     The unit of weight.
     """
 
-    value: Optional[str] = attrs.field()
+    value: str = attrs.field()
     """
     The weight value.
     """

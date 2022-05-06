@@ -21,12 +21,12 @@ class BrandRefinement:
     Description of a brand that can be used to get more fine-grained search results.
     """
 
-    brand_name: Optional[str] = attrs.field()
+    brand_name: str = attrs.field()
     """
     Brand name. For display and can be used as a search refinement.
     """
 
-    number_of_results: Optional[int] = attrs.field()
+    number_of_results: int = attrs.field()
     """
     The estimated number of results that would still be returned if refinement key applied.
     """
@@ -38,17 +38,17 @@ class ClassificationRefinement:
     Description of a classification that can be used to get more fine-grained search results.
     """
 
-    classification_id: Optional[str] = attrs.field()
+    classification_id: str = attrs.field()
     """
     Identifier for the classification that can be used for search refinement purposes.
     """
 
-    display_name: Optional[str] = attrs.field()
+    display_name: str = attrs.field()
     """
     Display name for the classification.
     """
 
-    number_of_results: Optional[int] = attrs.field()
+    number_of_results: int = attrs.field()
     """
     The estimated number of results that would still be returned if refinement key applied.
     """
@@ -60,7 +60,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -70,7 +70,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -82,7 +82,7 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: List["Error"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -91,7 +91,7 @@ class Item:
     An item in the Amazon catalog.
     """
 
-    asin: Optional["ItemAsin"] = attrs.field()
+    asin: "ItemAsin" = attrs.field()
 
     attributes: Optional["ItemAttributes"] = attrs.field()
 
@@ -134,12 +134,12 @@ class ItemIdentifier:
     Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
     """
 
-    identifier: Optional[str] = attrs.field()
+    identifier: str = attrs.field()
     """
     Identifier.
     """
 
-    identifier_type: Optional[str] = attrs.field()
+    identifier_type: str = attrs.field()
     """
     Type of identifier, such as UPC, EAN, or ISBN.
     """
@@ -160,12 +160,12 @@ class ItemIdentifiersByMarketplace:
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
-    identifiers: Optional[List["ItemIdentifier"]] = attrs.field()
+    identifiers: List["ItemIdentifier"] = attrs.field()
     """
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
     """
@@ -177,29 +177,27 @@ class ItemImage:
     Image for an item in the Amazon catalog.
     """
 
-    height: Optional[int] = attrs.field()
+    height: int = attrs.field()
     """
     Height of the image in pixels.
     """
 
-    link: Optional[str] = attrs.field()
+    link: str = attrs.field()
     """
     Link, or URL, for the image.
     """
 
-    variant: Optional[
-        Union[
-            Literal["MAIN"],
-            Literal["PT01"],
-            Literal["PT02"],
-            Literal["PT03"],
-            Literal["PT04"],
-            Literal["PT05"],
-            Literal["PT06"],
-            Literal["PT07"],
-            Literal["PT08"],
-            Literal["SWCH"],
-        ]
+    variant: Union[
+        Literal["MAIN"],
+        Literal["PT01"],
+        Literal["PT02"],
+        Literal["PT03"],
+        Literal["PT04"],
+        Literal["PT05"],
+        Literal["PT06"],
+        Literal["PT07"],
+        Literal["PT08"],
+        Literal["SWCH"],
     ] = attrs.field()
     """
     Variant of the image, such as MAIN or PT01.
@@ -208,7 +206,7 @@ class ItemImage:
     {'example': 'MAIN'}
     """
 
-    width: Optional[int] = attrs.field()
+    width: int = attrs.field()
     """
     Width of the image in pixels.
     """
@@ -229,12 +227,12 @@ class ItemImagesByMarketplace:
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
-    images: Optional[List["ItemImage"]] = attrs.field()
+    images: List["ItemImage"] = attrs.field()
     """
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
     """
@@ -280,12 +278,12 @@ class ItemSalesRank:
     Corresponding Amazon retail website link, or URL, for the sales rank.
     """
 
-    rank: Optional[int] = attrs.field()
+    rank: int = attrs.field()
     """
     Sales rank value.
     """
 
-    title: Optional[str] = attrs.field()
+    title: str = attrs.field()
     """
     Title, or name, of the sales rank.
     """
@@ -306,12 +304,12 @@ class ItemSalesRanksByMarketplace:
     Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
     """
 
-    ranks: Optional[List["ItemSalesRank"]] = attrs.field()
+    ranks: List["ItemSalesRank"] = attrs.field()
     """
     Sales ranks of an Amazon catalog item for an Amazon marketplace.
     """
@@ -323,20 +321,20 @@ class ItemSearchResults:
     Items in the Amazon catalog and search related metadata.
     """
 
-    items: Optional[List["Item"]] = attrs.field()
+    items: List["Item"] = attrs.field()
     """
     A list of items from the Amazon catalog.
     """
 
-    number_of_results: Optional[int] = attrs.field()
+    number_of_results: int = attrs.field()
     """
     The estimated total number of products matched by the search query (only results up to the page count limit will be returned per request regardless of the number found).
         Note: The maximum number of items (ASINs) that can be returned and paged through is 1000.
     """
 
-    pagination: Optional["Pagination"] = attrs.field()
+    pagination: "Pagination" = attrs.field()
 
-    refinements: Optional["Refinements"] = attrs.field()
+    refinements: "Refinements" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -379,7 +377,7 @@ class ItemSummaryByMarketplace:
     Name of the manufacturer associated with an Amazon catalog item.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
     """
@@ -415,17 +413,17 @@ class ItemVariationsByMarketplace:
     Variation details for the Amazon catalog item for the indicated Amazon marketplace.
     """
 
-    asins: Optional[List[str]] = attrs.field()
+    asins: List[str] = attrs.field()
     """
     Identifiers (ASINs) of the related items.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
     """
 
-    variation_type: Optional[Union[Literal["PARENT"], Literal["CHILD"]]] = attrs.field()
+    variation_type: Union[Literal["PARENT"], Literal["CHILD"]] = attrs.field()
     """
     Type of variation relationship of the Amazon catalog item in the request to the related item(s): "PARENT" or "CHILD".
 
@@ -469,7 +467,7 @@ class ItemVendorDetailsByMarketplace:
     Parent vendor code of the manufacturer code.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
     """
@@ -526,12 +524,12 @@ class Refinements:
     Search refinements.
     """
 
-    brands: Optional[List["BrandRefinement"]] = attrs.field()
+    brands: List["BrandRefinement"] = attrs.field()
     """
     Brand search refinements.
     """
 
-    classifications: Optional[List["ClassificationRefinement"]] = attrs.field()
+    classifications: List["ClassificationRefinement"] = attrs.field()
     """
     Classification search refinements.
     """

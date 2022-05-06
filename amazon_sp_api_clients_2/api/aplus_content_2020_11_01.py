@@ -64,7 +64,7 @@ class AsinMetadata:
     The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the listContentDocumentAsinRelations operation, the related ASINs are returned without metadata.
     """
 
-    asin: Optional["Asin"] = attrs.field()
+    asin: "Asin" = attrs.field()
 
     badge_set: Optional["AsinBadgeSet"] = attrs.field()
 
@@ -140,15 +140,15 @@ class ContentDocument:
     The A+ Content document. This is the enhanced content that is published to product detail pages.
     """
 
-    content_module_list: Optional["ContentModuleList"] = attrs.field()
+    content_module_list: "ContentModuleList" = attrs.field()
 
     content_sub_type: Optional["ContentSubType"] = attrs.field()
 
-    content_type: Optional["ContentType"] = attrs.field()
+    content_type: "ContentType" = attrs.field()
 
-    locale: Optional["LanguageTag"] = attrs.field()
+    locale: "LanguageTag" = attrs.field()
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The A+ Content document name.
 
@@ -163,11 +163,11 @@ class ContentMetadata:
     The metadata of an A+ Content document.
     """
 
-    badge_set: Optional["ContentBadgeSet"] = attrs.field()
+    badge_set: "ContentBadgeSet" = attrs.field()
 
-    marketplace_id: Optional["MarketplaceId"] = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The A+ Content document name.
 
@@ -175,9 +175,9 @@ class ContentMetadata:
     {'maxLength': 100, 'minLength': 1}
     """
 
-    status: Optional["ContentStatus"] = attrs.field()
+    status: "ContentStatus" = attrs.field()
 
-    update_time: Optional[datetime] = attrs.field()
+    update_time: datetime = attrs.field()
     """
     The approximate age of the A+ Content document and metadata.
 
@@ -192,9 +192,9 @@ class ContentMetadataRecord:
     The metadata for an A+ Content document, with additional information for content management.
     """
 
-    content_metadata: Optional["ContentMetadata"] = attrs.field()
+    content_metadata: "ContentMetadata" = attrs.field()
 
-    content_reference_key: Optional["ContentReferenceKey"] = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -212,7 +212,7 @@ class ContentModule:
     An A+ Content module. An A+ Content document is composed of content modules. The contentModuleType property selects which content module types to use.
     """
 
-    content_module_type: Optional["ContentModuleType"] = attrs.field()
+    content_module_type: "ContentModuleType" = attrs.field()
 
     standard_company_logo: Optional["StandardCompanyLogoModule"] = attrs.field()
 
@@ -273,7 +273,7 @@ class ContentRecord:
 
     content_metadata: Optional["ContentMetadata"] = attrs.field()
 
-    content_reference_key: Optional["ContentReferenceKey"] = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -378,7 +378,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     The code that identifies the type of error condition.
 
@@ -394,7 +394,7 @@ class Error:
     {'minLength': 1}
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A human readable description of the error condition.
 
@@ -409,7 +409,7 @@ class ErrorList:
     The error response for when a request is unsuccessful.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: List["Error"] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -427,7 +427,7 @@ class ImageComponent:
     A reference to an image, hosted in the A+ Content media library.
     """
 
-    alt_text: Optional[str] = attrs.field()
+    alt_text: str = attrs.field()
     """
     The alternative text for the image.
 
@@ -435,9 +435,9 @@ class ImageComponent:
     {'maxLength': 100, 'minLength': 1}
     """
 
-    image_crop_specification: Optional["ImageCropSpecification"] = attrs.field()
+    image_crop_specification: "ImageCropSpecification" = attrs.field()
 
-    upload_destination_id: Optional[str] = attrs.field()
+    upload_destination_id: str = attrs.field()
     """
     This identifier is provided by the Selling Partner API for Uploads.
 
@@ -454,7 +454,7 @@ class ImageCropSpecification:
 
     offset: Optional["ImageOffsets"] = attrs.field()
 
-    size: Optional["ImageDimensions"] = attrs.field()
+    size: "ImageDimensions" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -463,9 +463,9 @@ class ImageDimensions:
     The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
     """
 
-    height: Optional["IntegerWithUnits"] = attrs.field()
+    height: "IntegerWithUnits" = attrs.field()
 
-    width: Optional["IntegerWithUnits"] = attrs.field()
+    width: "IntegerWithUnits" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -474,9 +474,9 @@ class ImageOffsets:
     The top left corner of the cropped image, specified in the original image's coordinate space.
     """
 
-    x: Optional["IntegerWithUnits"] = attrs.field()
+    x: "IntegerWithUnits" = attrs.field()
 
-    y: Optional["IntegerWithUnits"] = attrs.field()
+    y: "IntegerWithUnits" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -485,12 +485,12 @@ class IntegerWithUnits:
     A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
     """
 
-    units: Optional[str] = attrs.field()
+    units: str = attrs.field()
     """
     The unit of measurement.
     """
 
-    value: Optional[int] = attrs.field()
+    value: int = attrs.field()
     """
     The dimension value.
     """
@@ -545,7 +545,7 @@ class ParagraphComponent:
     A list of rich text content, usually presented in a text box.
     """
 
-    text_list: Optional[List["TextComponent"]] = attrs.field()
+    text_list: List["TextComponent"] = attrs.field()
     """
 
     Extra fields:
@@ -559,7 +559,7 @@ class PlainTextItem:
     Plain positional text, used in collections of brief labels and descriptors.
     """
 
-    position: Optional[int] = attrs.field()
+    position: int = attrs.field()
     """
     The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
 
@@ -567,7 +567,7 @@ class PlainTextItem:
     {'maximum': 100.0, 'minimum': 1.0}
     """
 
-    value: Optional[str] = attrs.field()
+    value: str = attrs.field()
     """
     The actual plain text.
 
@@ -594,7 +594,7 @@ class PostContentDocumentApprovalSubmissionResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PostContentDocumentAsinRelationsRequest:
 
-    asin_set: Optional["AsinSet"] = attrs.field()
+    asin_set: "AsinSet" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -606,7 +606,7 @@ class PostContentDocumentAsinRelationsResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PostContentDocumentRequest:
 
-    content_document: Optional["ContentDocument"] = attrs.field()
+    content_document: "ContentDocument" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -627,17 +627,17 @@ class PublishRecord:
     The full context for an A+ Content publishing event.
     """
 
-    asin: Optional["Asin"] = attrs.field()
+    asin: "Asin" = attrs.field()
 
-    content_reference_key: Optional["ContentReferenceKey"] = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field()
 
     content_sub_type: Optional["ContentSubType"] = attrs.field()
 
-    content_type: Optional["ContentType"] = attrs.field()
+    content_type: "ContentType" = attrs.field()
 
-    locale: Optional["LanguageTag"] = attrs.field()
+    locale: "LanguageTag" = attrs.field()
 
-    marketplace_id: Optional["MarketplaceId"] = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -667,7 +667,7 @@ class StandardCompanyLogoModule:
     The standard company logo image.
     """
 
-    company_logo: Optional["ImageComponent"] = attrs.field()
+    company_logo: "ImageComponent" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -693,7 +693,7 @@ class StandardComparisonProductBlock:
     {'maxItems': 10, 'minItems': 0}
     """
 
-    position: Optional[int] = attrs.field()
+    position: int = attrs.field()
     """
     The rank or index of this comparison product block within the module. Different blocks cannot occupy the same position within a single module.
 
@@ -754,13 +754,13 @@ class StandardFourImageTextQuadrantModule:
     Four standard images with text, presented on a grid of four quadrants.
     """
 
-    block1: Optional["StandardImageTextBlock"] = attrs.field()
+    block1: "StandardImageTextBlock" = attrs.field()
 
-    block2: Optional["StandardImageTextBlock"] = attrs.field()
+    block2: "StandardImageTextBlock" = attrs.field()
 
-    block3: Optional["StandardImageTextBlock"] = attrs.field()
+    block3: "StandardImageTextBlock" = attrs.field()
 
-    block4: Optional["StandardImageTextBlock"] = attrs.field()
+    block4: "StandardImageTextBlock" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -847,7 +847,7 @@ class StandardImageTextOverlayModule:
 
     block: Optional["StandardImageTextBlock"] = attrs.field()
 
-    overlay_color_type: Optional["ColorType"] = attrs.field()
+    overlay_color_type: "ColorType" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -865,7 +865,7 @@ class StandardProductDescriptionModule:
     Standard product description text.
     """
 
-    body: Optional["ParagraphComponent"] = attrs.field()
+    body: "ParagraphComponent" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -918,7 +918,7 @@ class StandardSingleSideImageModule:
 
     block: Optional["StandardImageTextBlock"] = attrs.field()
 
-    image_position_type: Optional["PositionType"] = attrs.field()
+    image_position_type: "PositionType" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -929,7 +929,7 @@ class StandardTechSpecsModule:
 
     headline: Optional["TextComponent"] = attrs.field()
 
-    specification_list: Optional[List["StandardTextPairBlock"]] = attrs.field()
+    specification_list: List["StandardTextPairBlock"] = attrs.field()
     """
     The specification list.
 
@@ -963,7 +963,7 @@ class StandardTextListBlock:
     The A+ Content standard fixed length list of text, usually presented as bullet points.
     """
 
-    text_list: Optional[List["TextItem"]] = attrs.field()
+    text_list: List["TextItem"] = attrs.field()
     """
 
     Extra fields:
@@ -977,7 +977,7 @@ class StandardTextModule:
     A standard headline and body text.
     """
 
-    body: Optional["ParagraphComponent"] = attrs.field()
+    body: "ParagraphComponent" = attrs.field()
 
     headline: Optional["TextComponent"] = attrs.field()
 
@@ -1016,7 +1016,7 @@ class TextComponent:
 
     decorator_set: Optional["DecoratorSet"] = attrs.field()
 
-    value: Optional[str] = attrs.field()
+    value: str = attrs.field()
     """
     The actual plain text.
 
@@ -1031,7 +1031,7 @@ class TextItem:
     Rich positional text, usually presented as a collection of bullet points.
     """
 
-    position: Optional[int] = attrs.field()
+    position: int = attrs.field()
     """
     The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
 
@@ -1039,7 +1039,7 @@ class TextItem:
     {'maximum': 100.0, 'minimum': 1.0}
     """
 
-    text: Optional["TextComponent"] = attrs.field()
+    text: "TextComponent" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

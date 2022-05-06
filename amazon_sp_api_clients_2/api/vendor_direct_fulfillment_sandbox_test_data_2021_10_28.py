@@ -19,7 +19,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
@@ -29,7 +29,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -41,7 +41,7 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: List["Error"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -62,9 +62,9 @@ class OrderScenarioRequest:
     The party identifiers required to generate the test data.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
-    ship_from_party: Optional["PartyIdentification"] = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -82,7 +82,7 @@ class PartyIdentification:
     The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
-    party_id: Optional[str] = attrs.field()
+    party_id: str = attrs.field()
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
@@ -94,12 +94,12 @@ class Scenario:
     A scenario test case response returned when the request is successful.
     """
 
-    orders: Optional[List["TestOrder"]] = attrs.field()
+    orders: List["TestOrder"] = attrs.field()
     """
     A list of orders that can be used by the caller to test each life cycle or scenario.
     """
 
-    scenario_id: Optional[str] = attrs.field()
+    scenario_id: str = attrs.field()
     """
     An identifier that identifies the type of scenario that user can use for testing.
     """
@@ -123,7 +123,7 @@ class TestOrder:
     Error response returned when the request is unsuccessful.
     """
 
-    order_id: Optional[str] = attrs.field()
+    order_id: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -135,14 +135,14 @@ class Transaction:
     The transaction details including the status. If the transaction was successful, also includes the requested test order data.
     """
 
-    status: Optional[Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]]] = attrs.field()
+    status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]] = attrs.field()
     """
     The current processing status of the transaction.
     """
 
     test_case_data: Optional["TestCaseData"] = attrs.field()
 
-    transaction_id: Optional[str] = attrs.field()
+    transaction_id: str = attrs.field()
     """
     The unique identifier returned in the response to the generateOrderScenarios request.
     """

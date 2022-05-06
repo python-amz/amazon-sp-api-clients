@@ -79,12 +79,12 @@ class AdditionalSellerInputs:
     An additional set of seller inputs required to purchase shipping.
     """
 
-    additional_input_field_name: Optional[str] = attrs.field()
+    additional_input_field_name: str = attrs.field()
     """
     The name of the additional input field.
     """
 
-    additional_seller_input: Optional["AdditionalSellerInput"] = attrs.field()
+    additional_seller_input: "AdditionalSellerInput" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -102,25 +102,25 @@ class Address:
     The postal address information.
     """
 
-    address_line1: Optional["AddressLine1"] = attrs.field()
+    address_line1: "AddressLine1" = attrs.field()
 
     address_line2: Optional["AddressLine2"] = attrs.field()
 
     address_line3: Optional["AddressLine3"] = attrs.field()
 
-    city: Optional["City"] = attrs.field()
+    city: "City" = attrs.field()
 
-    country_code: Optional["CountryCode"] = attrs.field()
+    country_code: "CountryCode" = attrs.field()
 
     district_or_county: Optional["DistrictOrCounty"] = attrs.field()
 
-    email: Optional["EmailAddress"] = attrs.field()
+    email: "EmailAddress" = attrs.field()
 
-    name: Optional["AddressName"] = attrs.field()
+    name: "AddressName" = attrs.field()
 
-    phone: Optional["PhoneNumber"] = attrs.field()
+    phone: "PhoneNumber" = attrs.field()
 
-    postal_code: Optional["PostalCode"] = attrs.field()
+    postal_code: "PostalCode" = attrs.field()
 
     state_or_province_code: Optional["StateOrProvinceCode"] = attrs.field()
 
@@ -176,9 +176,9 @@ class AvailableCarrierWillPickUpOption:
     Indicates whether the carrier will pick up the package, and what fee is charged, if any.
     """
 
-    carrier_will_pick_up_option: Optional["CarrierWillPickUpOption"] = attrs.field()
+    carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field()
 
-    charge: Optional["CurrencyAmount"] = attrs.field()
+    charge: "CurrencyAmount" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -196,9 +196,9 @@ class AvailableDeliveryExperienceOption:
     The available delivery confirmation options, and the fee charged, if any.
     """
 
-    charge: Optional["CurrencyAmount"] = attrs.field()
+    charge: "CurrencyAmount" = attrs.field()
 
-    delivery_experience_option: Optional["DeliveryExperienceOption"] = attrs.field()
+    delivery_experience_option: "DeliveryExperienceOption" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -225,9 +225,9 @@ class AvailableShippingServiceOptions:
     The available shipping service options.
     """
 
-    available_carrier_will_pick_up_options: Optional["AvailableCarrierWillPickUpOptionsList"] = attrs.field()
+    available_carrier_will_pick_up_options: "AvailableCarrierWillPickUpOptionsList" = attrs.field()
 
-    available_delivery_experience_options: Optional["AvailableDeliveryExperienceOptionsList"] = attrs.field()
+    available_delivery_experience_options: "AvailableDeliveryExperienceOptionsList" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -270,7 +270,7 @@ class Constraint:
     A regular expression.
     """
 
-    validation_string: Optional[str] = attrs.field()
+    validation_string: str = attrs.field()
     """
     A validation string.
     """
@@ -306,9 +306,9 @@ class CreateShipmentRequest:
 
     shipment_level_seller_inputs_list: Optional["AdditionalSellerInputsList"] = attrs.field()
 
-    shipment_request_details: Optional["ShipmentRequestDetails"] = attrs.field()
+    shipment_request_details: "ShipmentRequestDetails" = attrs.field()
 
-    shipping_service_id: Optional["ShippingServiceIdentifier"] = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
 
     shipping_service_offer_id: Optional[str] = attrs.field()
     """
@@ -333,7 +333,7 @@ class CurrencyAmount:
     Currency type and amount.
     """
 
-    amount: Optional[float] = attrs.field()
+    amount: float = attrs.field()
     """
     The currency amount.
 
@@ -341,7 +341,7 @@ class CurrencyAmount:
     {'schema_format': 'double'}
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: str = attrs.field()
     """
     Three-digit currency code in ISO 4217 format.
 
@@ -403,7 +403,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
@@ -413,7 +413,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -434,17 +434,17 @@ class FileContents:
     The document data and checksum.
     """
 
-    checksum: Optional[str] = attrs.field()
+    checksum: str = attrs.field()
     """
     An MD5 hash to validate the PDF document data, in the form of a Base64-encoded string.
     """
 
-    contents: Optional[str] = attrs.field()
+    contents: str = attrs.field()
     """
     Data for printing labels, in the form of a Base64-encoded, GZip-compressed string.
     """
 
-    file_type: Optional["FileType"] = attrs.field()
+    file_type: "FileType" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -462,11 +462,11 @@ class GetAdditionalSellerInputsRequest:
     Request schema.
     """
 
-    order_id: Optional["AmazonOrderId"] = attrs.field()
+    order_id: "AmazonOrderId" = attrs.field()
 
-    ship_from_address: Optional["Address"] = attrs.field()
+    ship_from_address: "Address" = attrs.field()
 
-    shipping_service_id: Optional["ShippingServiceIdentifier"] = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -497,7 +497,7 @@ class GetEligibleShipmentServicesRequest:
     Request schema.
     """
 
-    shipment_request_details: Optional["ShipmentRequestDetails"] = attrs.field()
+    shipment_request_details: "ShipmentRequestDetails" = attrs.field()
 
     shipping_offering_filter: Optional["ShippingOfferingFilter"] = attrs.field()
 
@@ -521,7 +521,7 @@ class GetEligibleShipmentServicesResult:
 
     rejected_shipping_service_list: Optional["RejectedShippingServiceList"] = attrs.field()
 
-    shipping_service_list: Optional["ShippingServiceList"] = attrs.field()
+    shipping_service_list: "ShippingServiceList" = attrs.field()
 
     temporarily_unavailable_carrier_list: Optional["TemporarilyUnavailableCarrierList"] = attrs.field()
 
@@ -569,9 +569,9 @@ class Item:
 
     item_weight: Optional["Weight"] = attrs.field()
 
-    order_item_id: Optional["OrderItemId"] = attrs.field()
+    order_item_id: "OrderItemId" = attrs.field()
 
-    quantity: Optional["ItemQuantity"] = attrs.field()
+    quantity: "ItemQuantity" = attrs.field()
 
     transparency_code_list: Optional["TransparencyCodeList"] = attrs.field()
 
@@ -588,9 +588,9 @@ class ItemDescription:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemLevelFields:
 
-    additional_inputs: Optional["AdditionalInputsList"] = attrs.field()
+    additional_inputs: "AdditionalInputsList" = attrs.field()
 
-    asin: Optional[str] = attrs.field()
+    asin: str = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
@@ -631,9 +631,9 @@ class Label:
 
     custom_text_for_label: Optional["CustomTextForLabel"] = attrs.field()
 
-    dimensions: Optional["LabelDimensions"] = attrs.field()
+    dimensions: "LabelDimensions" = attrs.field()
 
-    file_contents: Optional["FileContents"] = attrs.field()
+    file_contents: "FileContents" = attrs.field()
 
     label_format: Optional["LabelFormat"] = attrs.field()
 
@@ -666,11 +666,11 @@ class LabelDimensions:
     Dimensions for printing a shipping label.
     """
 
-    length: Optional["LabelDimension"] = attrs.field()
+    length: "LabelDimension" = attrs.field()
 
-    unit: Optional["UnitOfLength"] = attrs.field()
+    unit: "UnitOfLength" = attrs.field()
 
-    width: Optional["LabelDimension"] = attrs.field()
+    width: "LabelDimension" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -798,12 +798,12 @@ class RejectedShippingService:
     Information about a rejected shipping service
     """
 
-    carrier_name: Optional[str] = attrs.field()
+    carrier_name: str = attrs.field()
     """
     The rejected shipping carrier name. e.g. USPS
     """
 
-    rejection_reason_code: Optional[str] = attrs.field()
+    rejection_reason_code: str = attrs.field()
     """
     A reason code meant to be consumed programatically. e.g. CARRIER_CANNOT_SHIP_TO_POBOX
     """
@@ -813,9 +813,9 @@ class RejectedShippingService:
     A localized human readable description of the rejected reason.
     """
 
-    shipping_service_id: Optional["ShippingServiceIdentifier"] = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
 
-    shipping_service_name: Optional[str] = attrs.field()
+    shipping_service_name: str = attrs.field()
     """
     The rejected shipping service localized name. e.g. FedEx Standard Overnight
     """
@@ -845,28 +845,28 @@ class SellerInputDefinition:
     Specifies characteristics that apply to a seller input.
     """
 
-    constraints: Optional["Constraints"] = attrs.field()
+    constraints: "Constraints" = attrs.field()
 
-    data_type: Optional[str] = attrs.field()
+    data_type: str = attrs.field()
     """
     The data type of the additional input field.
     """
 
-    input_display_text: Optional[str] = attrs.field()
+    input_display_text: str = attrs.field()
     """
     The display text for the additional input field.
     """
 
     input_target: Optional["InputTargetType"] = attrs.field()
 
-    is_required: Optional[bool] = attrs.field()
+    is_required: bool = attrs.field()
     """
     When true, the additional input field is required.
     """
 
     restricted_set_values: Optional["RestrictedSetValues"] = attrs.field()
 
-    stored_value: Optional["AdditionalSellerInput"] = attrs.field()
+    stored_value: "AdditionalSellerInput" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -884,35 +884,35 @@ class Shipment:
     The details of a shipment, including the shipment status.
     """
 
-    amazon_order_id: Optional["AmazonOrderId"] = attrs.field()
+    amazon_order_id: "AmazonOrderId" = attrs.field()
 
-    created_date: Optional["Timestamp"] = attrs.field()
+    created_date: "Timestamp" = attrs.field()
 
-    insurance: Optional["CurrencyAmount"] = attrs.field()
+    insurance: "CurrencyAmount" = attrs.field()
 
-    item_list: Optional["ItemList"] = attrs.field()
+    item_list: "ItemList" = attrs.field()
 
-    label: Optional["Label"] = attrs.field()
+    label: "Label" = attrs.field()
 
     last_updated_date: Optional["Timestamp"] = attrs.field()
 
-    package_dimensions: Optional["PackageDimensions"] = attrs.field()
+    package_dimensions: "PackageDimensions" = attrs.field()
 
     seller_order_id: Optional["SellerOrderId"] = attrs.field()
 
-    ship_from_address: Optional["Address"] = attrs.field()
+    ship_from_address: "Address" = attrs.field()
 
-    ship_to_address: Optional["Address"] = attrs.field()
+    ship_to_address: "Address" = attrs.field()
 
-    shipment_id: Optional["ShipmentId"] = attrs.field()
+    shipment_id: "ShipmentId" = attrs.field()
 
-    shipping_service: Optional["ShippingService"] = attrs.field()
+    shipping_service: "ShippingService" = attrs.field()
 
-    status: Optional["ShipmentStatus"] = attrs.field()
+    status: "ShipmentStatus" = attrs.field()
 
     tracking_id: Optional["TrackingId"] = attrs.field()
 
-    weight: Optional["Weight"] = attrs.field()
+    weight: "Weight" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -930,25 +930,25 @@ class ShipmentRequestDetails:
     Shipment information required for requesting shipping service offers or for creating a shipment.
     """
 
-    amazon_order_id: Optional["AmazonOrderId"] = attrs.field()
+    amazon_order_id: "AmazonOrderId" = attrs.field()
 
-    item_list: Optional["ItemList"] = attrs.field()
+    item_list: "ItemList" = attrs.field()
 
     label_customization: Optional["LabelCustomization"] = attrs.field()
 
     must_arrive_by_date: Optional["Timestamp"] = attrs.field()
 
-    package_dimensions: Optional["PackageDimensions"] = attrs.field()
+    package_dimensions: "PackageDimensions" = attrs.field()
 
     seller_order_id: Optional["SellerOrderId"] = attrs.field()
 
     ship_date: Optional["Timestamp"] = attrs.field()
 
-    ship_from_address: Optional["Address"] = attrs.field()
+    ship_from_address: "Address" = attrs.field()
 
-    shipping_service_options: Optional["ShippingServiceOptions"] = attrs.field()
+    shipping_service_options: "ShippingServiceOptions" = attrs.field()
 
-    weight: Optional["Weight"] = attrs.field()
+    weight: "Weight" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -993,7 +993,7 @@ class ShippingService:
 
     available_shipping_service_options: Optional["AvailableShippingServiceOptions"] = attrs.field()
 
-    carrier_name: Optional[str] = attrs.field()
+    carrier_name: str = attrs.field()
     """
     The name of the carrier.
     """
@@ -1002,28 +1002,28 @@ class ShippingService:
 
     latest_estimated_delivery_date: Optional["Timestamp"] = attrs.field()
 
-    rate: Optional["CurrencyAmount"] = attrs.field()
+    rate: "CurrencyAmount" = attrs.field()
 
-    requires_additional_seller_inputs: Optional[bool] = attrs.field()
+    requires_additional_seller_inputs: bool = attrs.field()
     """
     When true, additional seller inputs are required.
     """
 
-    ship_date: Optional["Timestamp"] = attrs.field()
+    ship_date: "Timestamp" = attrs.field()
 
-    shipping_service_id: Optional["ShippingServiceIdentifier"] = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
 
-    shipping_service_name: Optional[str] = attrs.field()
+    shipping_service_name: str = attrs.field()
     """
     A plain text representation of a carrier's shipping service. For example, "UPS Ground" or "FedEx Standard Overnight".
     """
 
-    shipping_service_offer_id: Optional[str] = attrs.field()
+    shipping_service_offer_id: str = attrs.field()
     """
     An Amazon-defined shipping service offer identifier.
     """
 
-    shipping_service_options: Optional["ShippingServiceOptions"] = attrs.field()
+    shipping_service_options: "ShippingServiceOptions" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1050,7 +1050,7 @@ class ShippingServiceOptions:
     Extra services provided by a carrier.
     """
 
-    carrier_will_pick_up: Optional[bool] = attrs.field()
+    carrier_will_pick_up: bool = attrs.field()
     """
     When true, the carrier will pick up the package.
         Note: Scheduled carrier pickup is available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
@@ -1060,7 +1060,7 @@ class ShippingServiceOptions:
 
     declared_value: Optional["CurrencyAmount"] = attrs.field()
 
-    delivery_experience: Optional["DeliveryExperienceType"] = attrs.field()
+    delivery_experience: "DeliveryExperienceType" = attrs.field()
 
     label_format: Optional["LabelFormat"] = attrs.field()
 
@@ -1089,7 +1089,7 @@ class TemporarilyUnavailableCarrier:
     A carrier who is temporarily unavailable, most likely due to a service outage experienced by the carrier.
     """
 
-    carrier_name: Optional[str] = attrs.field()
+    carrier_name: str = attrs.field()
     """
     The name of the carrier.
     """
@@ -1110,7 +1110,7 @@ class TermsAndConditionsNotAcceptedCarrier:
     A carrier whose terms and conditions have not been accepted by the seller.
     """
 
-    carrier_name: Optional[str] = attrs.field()
+    carrier_name: str = attrs.field()
     """
     The name of the carrier.
     """
@@ -1182,9 +1182,9 @@ class Weight:
     The weight.
     """
 
-    unit: Optional["UnitOfWeight"] = attrs.field()
+    unit: "UnitOfWeight" = attrs.field()
 
-    value: Optional["WeightValue"] = attrs.field()
+    value: "WeightValue" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

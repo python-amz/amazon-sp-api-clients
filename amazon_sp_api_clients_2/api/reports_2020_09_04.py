@@ -45,7 +45,7 @@ class CreateReportResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportResult:
 
-    report_id: Optional[str] = attrs.field()
+    report_id: str = attrs.field()
     """
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
@@ -65,7 +65,7 @@ class CreateReportScheduleResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportScheduleResult:
 
-    report_schedule_id: Optional[str] = attrs.field()
+    report_schedule_id: str = attrs.field()
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
@@ -74,7 +74,7 @@ class CreateReportScheduleResult:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportScheduleSpecification:
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: List[str] = attrs.field()
     """
     A list of marketplace identifiers for the report schedule.
 
@@ -90,27 +90,25 @@ class CreateReportScheduleSpecification:
     {'schema_format': 'date-time'}
     """
 
-    period: Optional[
-        Union[
-            Literal["PT5M"],
-            Literal["PT15M"],
-            Literal["PT30M"],
-            Literal["PT1H"],
-            Literal["PT2H"],
-            Literal["PT4H"],
-            Literal["PT8H"],
-            Literal["PT12H"],
-            Literal["P1D"],
-            Literal["P2D"],
-            Literal["P3D"],
-            Literal["PT84H"],
-            Literal["P7D"],
-            Literal["P14D"],
-            Literal["P15D"],
-            Literal["P18D"],
-            Literal["P30D"],
-            Literal["P1M"],
-        ]
+    period: Union[
+        Literal["PT5M"],
+        Literal["PT15M"],
+        Literal["PT30M"],
+        Literal["PT1H"],
+        Literal["PT2H"],
+        Literal["PT4H"],
+        Literal["PT8H"],
+        Literal["PT12H"],
+        Literal["P1D"],
+        Literal["P2D"],
+        Literal["P3D"],
+        Literal["PT84H"],
+        Literal["P7D"],
+        Literal["P14D"],
+        Literal["P15D"],
+        Literal["P18D"],
+        Literal["P30D"],
+        Literal["P1M"],
     ] = attrs.field()
     """
     One of a set of predefined ISO 8601 periods that specifies how often a report should be created.
@@ -118,7 +116,7 @@ class CreateReportScheduleSpecification:
 
     report_options: Optional["ReportOptions"] = attrs.field()
 
-    report_type: Optional[str] = attrs.field()
+    report_type: str = attrs.field()
     """
     The report type.
     """
@@ -143,7 +141,7 @@ class CreateReportSpecification:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: List[str] = attrs.field()
     """
     A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
 
@@ -153,7 +151,7 @@ class CreateReportSpecification:
 
     report_options: Optional["ReportOptions"] = attrs.field()
 
-    report_type: Optional[str] = attrs.field()
+    report_type: str = attrs.field()
     """
     The report type.
     """
@@ -165,7 +163,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -175,7 +173,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -253,7 +251,7 @@ class GetReportsResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Report:
 
-    created_time: Optional[datetime] = attrs.field()
+    created_time: datetime = attrs.field()
     """
     The date and time when the report was created.
 
@@ -298,8 +296,8 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    processing_status: Optional[
-        Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+    processing_status: Union[
+        Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
     ] = attrs.field()
     """
     The processing status of the report.
@@ -310,7 +308,7 @@ class Report:
     The identifier for the report document. Pass this into the getReportDocument operation to get the information you will need to retrieve and decrypt the report document's contents.
     """
 
-    report_id: Optional[str] = attrs.field()
+    report_id: str = attrs.field()
     """
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
@@ -320,7 +318,7 @@ class Report:
     The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
     """
 
-    report_type: Optional[str] = attrs.field()
+    report_type: str = attrs.field()
     """
     The report type.
     """
@@ -334,14 +332,14 @@ class ReportDocument:
     If present, the report document contents have been compressed with the provided algorithm.
     """
 
-    encryption_details: Optional["ReportDocumentEncryptionDetails"] = attrs.field()
+    encryption_details: "ReportDocumentEncryptionDetails" = attrs.field()
 
-    report_document_id: Optional[str] = attrs.field()
+    report_document_id: str = attrs.field()
     """
     The identifier for the report document. This identifier is unique only in combination with a seller ID.
     """
 
-    url: Optional[str] = attrs.field()
+    url: str = attrs.field()
     """
     A presigned URL for the report document. This URL expires after 5 minutes.
     """
@@ -353,17 +351,17 @@ class ReportDocumentEncryptionDetails:
     Encryption details required for decryption of a report document's contents.
     """
 
-    initialization_vector: Optional[str] = attrs.field()
+    initialization_vector: str = attrs.field()
     """
     The vector to decrypt the document contents using Cipher Block Chaining (CBC).
     """
 
-    key: Optional[str] = attrs.field()
+    key: str = attrs.field()
     """
     The encryption key used to decrypt the document contents.
     """
 
-    standard: Optional[Union[Literal["AES"]]] = attrs.field()
+    standard: Union[Literal["AES"]] = attrs.field()
     """
     The encryption standard required to decrypt the document contents.
     """
@@ -403,19 +401,19 @@ class ReportSchedule:
     {'schema_format': 'date-time'}
     """
 
-    period: Optional[str] = attrs.field()
+    period: str = attrs.field()
     """
     An ISO 8601 period value that indicates how often a report should be created.
     """
 
     report_options: Optional["ReportOptions"] = attrs.field()
 
-    report_schedule_id: Optional[str] = attrs.field()
+    report_schedule_id: str = attrs.field()
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
 
-    report_type: Optional[str] = attrs.field()
+    report_type: str = attrs.field()
     """
     The report type.
     """

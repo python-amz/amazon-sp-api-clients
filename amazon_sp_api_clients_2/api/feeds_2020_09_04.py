@@ -39,14 +39,14 @@ class CreateFeedDocumentResult:
     Information required to encrypt and upload a feed document's contents.
     """
 
-    encryption_details: Optional["FeedDocumentEncryptionDetails"] = attrs.field()
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
 
-    feed_document_id: Optional[str] = attrs.field()
+    feed_document_id: str = attrs.field()
     """
     The identifier of the feed document.
     """
 
-    url: Optional[str] = attrs.field()
+    url: str = attrs.field()
     """
     The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
     """
@@ -55,7 +55,7 @@ class CreateFeedDocumentResult:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedDocumentSpecification:
 
-    content_type: Optional[str] = attrs.field()
+    content_type: str = attrs.field()
     """
     The content type of the feed.
     """
@@ -75,7 +75,7 @@ class CreateFeedResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedResult:
 
-    feed_id: Optional[str] = attrs.field()
+    feed_id: str = attrs.field()
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
@@ -86,17 +86,17 @@ class CreateFeedSpecification:
 
     feed_options: Optional["FeedOptions"] = attrs.field()
 
-    feed_type: Optional[str] = attrs.field()
+    feed_type: str = attrs.field()
     """
     The feed type.
     """
 
-    input_feed_document_id: Optional[str] = attrs.field()
+    input_feed_document_id: str = attrs.field()
     """
     The document identifier returned by the createFeedDocument operation. Encrypt and upload the feed document contents before calling the createFeed operation.
     """
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: List[str] = attrs.field()
     """
     A list of identifiers for marketplaces that you want the feed to be applied to.
 
@@ -111,7 +111,7 @@ class Error:
     An error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -121,7 +121,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -139,7 +139,7 @@ class ErrorList:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Feed:
 
-    created_time: Optional[datetime] = attrs.field()
+    created_time: datetime = attrs.field()
     """
     The date and time when the feed was created, in ISO 8601 date time format.
 
@@ -147,12 +147,12 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    feed_id: Optional[str] = attrs.field()
+    feed_id: str = attrs.field()
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
 
-    feed_type: Optional[str] = attrs.field()
+    feed_type: str = attrs.field()
     """
     The feed type.
     """
@@ -178,8 +178,8 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    processing_status: Optional[
-        Union[Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]]
+    processing_status: Union[
+        Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
     ] = attrs.field()
     """
     The processing status of the feed.
@@ -199,14 +199,14 @@ class FeedDocument:
     If present, the feed document contents are compressed using the indicated algorithm.
     """
 
-    encryption_details: Optional["FeedDocumentEncryptionDetails"] = attrs.field()
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
 
-    feed_document_id: Optional[str] = attrs.field()
+    feed_document_id: str = attrs.field()
     """
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
 
-    url: Optional[str] = attrs.field()
+    url: str = attrs.field()
     """
     A presigned URL for the feed document. This URL expires after 5 minutes.
     """
@@ -218,17 +218,17 @@ class FeedDocumentEncryptionDetails:
     Encryption details for required client-side encryption and decryption of document contents.
     """
 
-    initialization_vector: Optional[str] = attrs.field()
+    initialization_vector: str = attrs.field()
     """
     The vector to encrypt or decrypt the document contents using Cipher Block Chaining (CBC).
     """
 
-    key: Optional[str] = attrs.field()
+    key: str = attrs.field()
     """
     The encryption key used to encrypt or decrypt the document contents.
     """
 
-    standard: Optional[Union[Literal["AES"]]] = attrs.field()
+    standard: Union[Literal["AES"]] = attrs.field()
     """
     The encryption standard required to encrypt or decrypt the document contents.
     """

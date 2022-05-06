@@ -120,7 +120,7 @@ class Error:
     An error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -130,7 +130,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -377,12 +377,12 @@ class SubmitInvoiceRequest:
     The request schema for the submitInvoice operation.
     """
 
-    content_md5value: Optional[str] = attrs.field()
+    content_md5value: str = attrs.field()
     """
     MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
     """
 
-    invoice_content: Optional["Blob"] = attrs.field()
+    invoice_content: "Blob" = attrs.field()
 
     marketplace_id: Optional[str] = attrs.field()
     """

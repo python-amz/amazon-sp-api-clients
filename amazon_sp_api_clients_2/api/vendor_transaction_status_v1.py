@@ -19,7 +19,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -29,7 +29,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -63,12 +63,12 @@ class Transaction:
 
     errors: Optional["ErrorList"] = attrs.field()
 
-    status: Optional[Union[Literal["Failure"], Literal["Processing"], Literal["Success"]]] = attrs.field()
+    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field()
     """
     Current processing status of the transaction.
     """
 
-    transaction_id: Optional[str] = attrs.field()
+    transaction_id: str = attrs.field()
     """
     The unique identifier returned in the 'transactionId' field in response to the post request of a specific transaction.
     """

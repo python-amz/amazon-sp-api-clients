@@ -19,7 +19,7 @@ class Address:
     Address of the party.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: str = attrs.field()
     """
     First line of the address.
     """
@@ -39,7 +39,7 @@ class Address:
     The city where the person, business or institution is located.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: str = attrs.field()
     """
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
@@ -54,7 +54,7 @@ class Address:
     The district where person, business or institution is located.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the person, business or institution at that address.
     """
@@ -83,7 +83,7 @@ class Container:
     Carrier required for EU VOC vendors only.
     """
 
-    container_identifier: Optional[str] = attrs.field()
+    container_identifier: str = attrs.field()
     """
     The container identifier.
     """
@@ -93,7 +93,7 @@ class Container:
     An integer that must be submitted for multi-box shipments only, where one item may come in separate packages.
     """
 
-    container_type: Optional[Union[Literal["Carton"], Literal["Pallet"]]] = attrs.field()
+    container_type: Union[Literal["Carton"], Literal["Pallet"]] = attrs.field()
     """
     The type of container.
     """
@@ -110,7 +110,7 @@ class Container:
     The manifest identifier.
     """
 
-    packed_items: Optional[List["PackedItem"]] = attrs.field()
+    packed_items: List["PackedItem"] = attrs.field()
     """
     A list of packed items.
     """
@@ -136,12 +136,12 @@ class Container:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CustomerInvoice:
 
-    content: Optional[str] = attrs.field()
+    content: str = attrs.field()
     """
     The Base64encoded customer invoice.
     """
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     The purchase order number for this order.
 
@@ -173,16 +173,16 @@ class Dimensions:
     Physical dimensional measurements of a container.
     """
 
-    height: Optional["Decimal"] = attrs.field()
+    height: "Decimal" = attrs.field()
 
-    length: Optional["Decimal"] = attrs.field()
+    length: "Decimal" = attrs.field()
 
-    unit_of_measure: Optional[Union[Literal["IN"], Literal["CM"]]] = attrs.field()
+    unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field()
     """
     The unit of measure for dimensions.
     """
 
-    width: Optional["Decimal"] = attrs.field()
+    width: "Decimal" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -191,7 +191,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -201,7 +201,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -213,7 +213,7 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: List["Error"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -271,12 +271,12 @@ class Item:
     Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
     """
 
-    item_sequence_number: Optional[int] = attrs.field()
+    item_sequence_number: int = attrs.field()
     """
     Item Sequence Number for the item. This must be the same value as sent in order for a given item.
     """
 
-    shipped_quantity: Optional["ItemQuantity"] = attrs.field()
+    shipped_quantity: "ItemQuantity" = attrs.field()
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -290,12 +290,12 @@ class ItemQuantity:
     Details of item quantity.
     """
 
-    amount: Optional[int] = attrs.field()
+    amount: int = attrs.field()
     """
     Quantity of units shipped for a specific item at a shipment level. If the item is present only in certain packages or pallets within the shipment, please provide this at the appropriate package or pallet level.
     """
 
-    unit_of_measure: Optional[str] = attrs.field()
+    unit_of_measure: str = attrs.field()
     """
     Unit of measure for the shipped quantity.
     """
@@ -307,7 +307,7 @@ class LabelData:
     Details of the shipment label.
     """
 
-    content: Optional[str] = attrs.field()
+    content: str = attrs.field()
     """
     This field will contain the Base64encoded string of the shipment label content.
     """
@@ -341,12 +341,12 @@ class PackedItem:
     Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
     """
 
-    item_sequence_number: Optional[int] = attrs.field()
+    item_sequence_number: int = attrs.field()
     """
     Item Sequence Number for the item. This must be the same value as sent in the order for a given item.
     """
 
-    packed_quantity: Optional["ItemQuantity"] = attrs.field()
+    packed_quantity: "ItemQuantity" = attrs.field()
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -368,7 +368,7 @@ class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
 
-    party_id: Optional[str] = attrs.field()
+    party_id: str = attrs.field()
     """
     Assigned Identification for the party.
     """
@@ -382,17 +382,17 @@ class PartyIdentification:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShippingLabel:
 
-    label_data: Optional[List["LabelData"]] = attrs.field()
+    label_data: List["LabelData"] = attrs.field()
     """
     Provides the details of the packages in this shipment.
     """
 
-    label_format: Optional[Union[Literal["PNG"], Literal["ZPL"]]] = attrs.field()
+    label_format: Union[Literal["PNG"], Literal["ZPL"]] = attrs.field()
     """
     Format of the label.
     """
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     This field will contain the Purchase Order Number for this order.
 
@@ -400,9 +400,9 @@ class ShippingLabel:
     {'pattern': '^[a-zA-Z0-9]+$'}
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
-    ship_from_party: Optional["PartyIdentification"] = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -421,7 +421,7 @@ class ShippingLabelRequest:
     A list of the packages in this shipment.
     """
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     Purchase order number of the order for which to create a shipping label.
 
@@ -429,9 +429,9 @@ class ShippingLabelRequest:
     {'pattern': '^[a-zA-Z0-9]+$'}
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
-    ship_from_party: Optional["PartyIdentification"] = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -464,7 +464,7 @@ class TaxRegistrationDetails:
     Tax registration message that can be used for additional tax related details.
     """
 
-    tax_registration_number: Optional[str] = attrs.field()
+    tax_registration_number: str = attrs.field()
     """
     Tax registration number for the party. For example, VAT ID.
     """
@@ -490,12 +490,12 @@ class Weight:
     The weight.
     """
 
-    unit_of_measure: Optional[Union[Literal["KG"], Literal["LB"]]] = attrs.field()
+    unit_of_measure: Union[Literal["KG"], Literal["LB"]] = attrs.field()
     """
     The unit of measurement.
     """
 
-    value: Optional["Decimal"] = attrs.field()
+    value: "Decimal" = attrs.field()
 
 
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):

@@ -30,7 +30,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -40,7 +40,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -52,7 +52,7 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: List["Error"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -61,7 +61,7 @@ class FulfillmentAvailability:
     Fulfillment availability details for the listings item.
     """
 
-    fulfillment_channel_code: Optional[str] = attrs.field()
+    fulfillment_channel_code: str = attrs.field()
     """
     Designates which fulfillment network will be used.
     """
@@ -86,17 +86,17 @@ class Issue:
     Names of the attributes associated with the issue, if applicable.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An issue code that identifies the type of issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the issue.
     """
 
-    severity: Optional[Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]] = attrs.field()
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field()
     """
     The severity of the issue.
     """
@@ -121,7 +121,7 @@ class Item:
 
     procurement: Optional["ItemProcurement"] = attrs.field()
 
-    sku: Optional[str] = attrs.field()
+    sku: str = attrs.field()
     """
     A selling partner provided identifier for an Amazon listing.
     """
@@ -144,17 +144,17 @@ class ItemImage:
     Image for the listings item.
     """
 
-    height: Optional[int] = attrs.field()
+    height: int = attrs.field()
     """
     Height of the image in pixels.
     """
 
-    link: Optional[str] = attrs.field()
+    link: str = attrs.field()
     """
     Link, or URL, for the image.
     """
 
-    width: Optional[int] = attrs.field()
+    width: int = attrs.field()
     """
     Width of the image in pixels.
     """
@@ -175,19 +175,19 @@ class ItemOfferByMarketplace:
     Offer details of a listings item for an Amazon marketplace.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
     """
 
-    offer_type: Optional[Union[Literal["B2C"], Literal["B2B"]]] = attrs.field()
+    offer_type: Union[Literal["B2C"], Literal["B2B"]] = attrs.field()
     """
     Type of offer for the listings item.
     """
 
     points: Optional["Points"] = attrs.field()
 
-    price: Optional["Money"] = attrs.field()
+    price: "Money" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -205,7 +205,7 @@ class ItemProcurement:
     Vendor procurement information for the listings item.
     """
 
-    cost_price: Optional["Money"] = attrs.field()
+    cost_price: "Money" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -223,7 +223,7 @@ class ItemSummaryByMarketplace:
     Summary details of a listings item for an Amazon marketplace.
     """
 
-    asin: Optional[str] = attrs.field()
+    asin: str = attrs.field()
     """
     Amazon Standard Identification Number (ASIN) of the listings item.
     """
@@ -249,7 +249,7 @@ class ItemSummaryByMarketplace:
     Identifies the condition of the listings item.
     """
 
-    created_date: Optional[datetime] = attrs.field()
+    created_date: datetime = attrs.field()
     """
     Date the listings item was created, in ISO 8601 format.
 
@@ -262,12 +262,12 @@ class ItemSummaryByMarketplace:
     Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item.
     """
 
-    item_name: Optional[str] = attrs.field()
+    item_name: str = attrs.field()
     """
     Name, or title, associated with an Amazon catalog item.
     """
 
-    last_updated_date: Optional[datetime] = attrs.field()
+    last_updated_date: datetime = attrs.field()
     """
     Date the listings item was last updated, in ISO 8601 format.
 
@@ -277,17 +277,17 @@ class ItemSummaryByMarketplace:
 
     main_image: Optional["ItemImage"] = attrs.field()
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     A marketplace identifier. Identifies the Amazon marketplace for the listings item.
     """
 
-    product_type: Optional[str] = attrs.field()
+    product_type: str = attrs.field()
     """
     The Amazon product type of the listings item.
     """
 
-    status: Optional[List[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]]] = attrs.field()
+    status: List[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]] = attrs.field()
     """
     Statuses that apply to the listings item.
     """
@@ -299,7 +299,7 @@ class ListingsItemPatchRequest:
     The request body schema for the patchListingsItem operation.
     """
 
-    patches: Optional[List["PatchOperation"]] = attrs.field()
+    patches: List["PatchOperation"] = attrs.field()
     """
     One or more JSON Patch operations to perform on the listings item.
 
@@ -307,7 +307,7 @@ class ListingsItemPatchRequest:
     {'minItems': 1}
     """
 
-    product_type: Optional[str] = attrs.field()
+    product_type: str = attrs.field()
     """
     The Amazon product type of the listings item.
     """
@@ -319,9 +319,9 @@ class ListingsItemPutRequest:
     The request body schema for the putListingsItem operation.
     """
 
-    attributes: Optional["ListingsItemPutRequestAttributes"] = attrs.field()
+    attributes: "ListingsItemPutRequestAttributes" = attrs.field()
 
-    product_type: Optional[str] = attrs.field()
+    product_type: str = attrs.field()
     """
     The Amazon product type of the listings item.
     """
@@ -354,17 +354,17 @@ class ListingsItemSubmissionResponse:
     Listings item issues related to the listings item submission.
     """
 
-    sku: Optional[str] = attrs.field()
+    sku: str = attrs.field()
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    status: Optional[Union[Literal["ACCEPTED"], Literal["INVALID"]]] = attrs.field()
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
     """
     The status of the listings item submission.
     """
 
-    submission_id: Optional[str] = attrs.field()
+    submission_id: str = attrs.field()
     """
     The unique identifier of the listings item submission.
     """
@@ -376,9 +376,9 @@ class Money:
     The currency type and the amount.
     """
 
-    amount: Optional["Decimal"] = attrs.field()
+    amount: "Decimal" = attrs.field()
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: str = attrs.field()
     """
     Three-digit currency code. In ISO 4217 format.
     """
@@ -390,12 +390,12 @@ class PatchOperation:
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
-    op: Optional[Union[Literal["add"], Literal["replace"], Literal["delete"]]] = attrs.field()
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
     """
     Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    path: Optional[str] = attrs.field()
+    path: str = attrs.field()
     """
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
@@ -418,7 +418,7 @@ class Points:
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
 
-    points_number: Optional[int] = attrs.field()
+    points_number: int = attrs.field()
 
 
 class ListingsItems20210801Client(BaseClient):

@@ -36,7 +36,7 @@ class Address:
     Address of the party.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: str = attrs.field()
     """
     First line of the address.
     """
@@ -61,7 +61,7 @@ class Address:
     The city where the person, business or institution is located.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: str = attrs.field()
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
     """
@@ -76,7 +76,7 @@ class Address:
     The district where person, business or institution is located.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the person, business or institution at that address.
     """
@@ -91,7 +91,7 @@ class Address:
     The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: str = attrs.field()
     """
     The state or region where person, business or institution is located.
     """
@@ -112,7 +112,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -122,7 +122,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -212,7 +212,7 @@ class Order:
 
     order_details: Optional["OrderDetails"] = attrs.field()
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     The purchase order number for this order. Formatting Notes: alpha-numeric code.
     """
@@ -224,7 +224,7 @@ class OrderAcknowledgementItem:
     Details of an individual order being acknowledged.
     """
 
-    acknowledgement_date: Optional[datetime] = attrs.field()
+    acknowledgement_date: datetime = attrs.field()
     """
     The date and time when the order is acknowledged, in ISO-8601 date/time format. For example: 2018-07-16T23:00:00Z / 2018-07-16T23:00:00-05:00 / 2018-07-16T23:00:00-08:00.
 
@@ -232,23 +232,23 @@ class OrderAcknowledgementItem:
     {'schema_format': 'date-time'}
     """
 
-    acknowledgement_status: Optional["AcknowledgementStatus"] = attrs.field()
+    acknowledgement_status: "AcknowledgementStatus" = attrs.field()
 
-    item_acknowledgements: Optional[List["OrderItemAcknowledgement"]] = attrs.field()
+    item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field()
     """
     Item details including acknowledged quantity.
     """
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     The purchase order number for this order. Formatting Notes: alpha-numeric code.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
-    ship_from_party: Optional["PartyIdentification"] = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
 
-    vendor_order_number: Optional[str] = attrs.field()
+    vendor_order_number: str = attrs.field()
     """
     The vendor's order number for this order.
     """
@@ -260,19 +260,19 @@ class OrderDetails:
     Details of an order.
     """
 
-    bill_to_party: Optional["PartyIdentification"] = attrs.field()
+    bill_to_party: "PartyIdentification" = attrs.field()
 
-    customer_order_number: Optional[str] = attrs.field()
+    customer_order_number: str = attrs.field()
     """
     The customer order number.
     """
 
-    items: Optional[List["OrderItem"]] = attrs.field()
+    items: List["OrderItem"] = attrs.field()
     """
     A list of items in this purchase order.
     """
 
-    order_date: Optional[datetime] = attrs.field()
+    order_date: datetime = attrs.field()
     """
     The date the order was placed. This field is expected to be in ISO-8601 date/time format, for example:2018-07-16T23:00:00Z/ 2018-07-16T23:00:00-05:00 /2018-07-16T23:00:00-08:00. If no time zone is specified, UTC should be assumed.
 
@@ -287,13 +287,13 @@ class OrderDetails:
     Current status of the order.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
-    ship_from_party: Optional["PartyIdentification"] = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
 
-    ship_to_party: Optional["Address"] = attrs.field()
+    ship_to_party: "Address" = attrs.field()
 
-    shipment_details: Optional["ShipmentDetails"] = attrs.field()
+    shipment_details: "ShipmentDetails" = attrs.field()
 
     tax_total: Optional["OrderDetailsTaxTotal"] = attrs.field()
 
@@ -314,14 +314,14 @@ class OrderItem:
 
     gift_details: Optional["GiftDetails"] = attrs.field()
 
-    item_sequence_number: Optional[str] = attrs.field()
+    item_sequence_number: str = attrs.field()
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    net_price: Optional["Money"] = attrs.field()
+    net_price: "Money" = attrs.field()
 
-    ordered_quantity: Optional["ItemQuantity"] = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field()
 
     scheduled_delivery_shipment: Optional["ScheduledDeliveryShipment"] = attrs.field()
 
@@ -343,14 +343,14 @@ class OrderItem:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemAcknowledgement:
 
-    acknowledged_quantity: Optional["ItemQuantity"] = attrs.field()
+    acknowledged_quantity: "ItemQuantity" = attrs.field()
 
     buyer_product_identifier: Optional[str] = attrs.field()
     """
     Buyer's standard identification number (ASIN) of an item.
     """
 
-    item_sequence_number: Optional[str] = attrs.field()
+    item_sequence_number: str = attrs.field()
     """
     Line item sequence number for the item.
     """
@@ -392,7 +392,7 @@ class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
 
-    party_id: Optional[str] = attrs.field()
+    party_id: str = attrs.field()
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
@@ -442,7 +442,7 @@ class ShipmentDates:
     {'schema_format': 'date-time'}
     """
 
-    required_ship_date: Optional[datetime] = attrs.field()
+    required_ship_date: datetime = attrs.field()
     """
     Time by which the vendor is required to ship the order.
 
@@ -462,12 +462,12 @@ class ShipmentDetails:
     When true, the order contain a gift. Include the gift message and gift wrap information.
     """
 
-    is_priority_shipment: Optional[bool] = attrs.field()
+    is_priority_shipment: bool = attrs.field()
     """
     When true, this is a priority shipment.
     """
 
-    is_pslip_required: Optional[bool] = attrs.field()
+    is_pslip_required: bool = attrs.field()
     """
     When true, a packing slip is required to be sent to the customer.
     """
@@ -477,17 +477,17 @@ class ShipmentDetails:
     When true, this order is part of a scheduled delivery program.
     """
 
-    message_to_customer: Optional[str] = attrs.field()
+    message_to_customer: str = attrs.field()
     """
     Message to customer for order status.
     """
 
-    ship_method: Optional[str] = attrs.field()
+    ship_method: str = attrs.field()
     """
     Ship method to be used for shipping the order. Amazon defines ship method codes indicating the shipping carrier and shipment service level. To see the full list of ship methods in use, including both the code and the friendly name, search the 'Help' section on Vendor Central for 'ship methods'.
     """
 
-    shipment_dates: Optional["ShipmentDates"] = attrs.field()
+    shipment_dates: "ShipmentDates" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -516,7 +516,7 @@ class SubmitAcknowledgementResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TaxDetails:
 
-    tax_amount: Optional["Money"] = attrs.field()
+    tax_amount: "Money" = attrs.field()
 
     tax_rate: Optional["Decimal"] = attrs.field()
 
@@ -560,7 +560,7 @@ class TaxRegistrationDetails:
     Tax registration message that can be used for additional tax related details.
     """
 
-    tax_registration_number: Optional[str] = attrs.field()
+    tax_registration_number: str = attrs.field()
     """
     Tax registration number for the party. For example, VAT ID.
     """

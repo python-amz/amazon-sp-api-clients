@@ -16,12 +16,12 @@ from datetime import date, datetime
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINIdentifier:
 
-    asin: Optional[str] = attrs.field()
+    asin: str = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     A marketplace identifier.
     """
@@ -549,7 +549,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -559,7 +559,7 @@ class Error:
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -614,7 +614,7 @@ class Item:
 
     attribute_sets: Optional["AttributeSetList"] = attrs.field()
 
-    identifiers: Optional["IdentifierType"] = attrs.field()
+    identifiers: "IdentifierType" = attrs.field()
 
     relationships: Optional["RelationshipList"] = attrs.field()
 
@@ -825,12 +825,12 @@ class SalesRankList:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SalesRankType:
 
-    product_category_id: Optional[str] = attrs.field()
+    product_category_id: str = attrs.field()
     """
     Identifies the item category from which the sales rank is taken.
     """
 
-    rank: Optional[int] = attrs.field()
+    rank: int = attrs.field()
     """
     The sales rank of the item within the item category.
 
@@ -842,17 +842,17 @@ class SalesRankType:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerSKUIdentifier:
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     A marketplace identifier.
     """
 
-    seller_id: Optional[str] = attrs.field()
+    seller_id: str = attrs.field()
     """
     The seller identifier submitted for the operation.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: str = attrs.field()
     """
     The seller stock keeping unit (SKU) of the item.
     """

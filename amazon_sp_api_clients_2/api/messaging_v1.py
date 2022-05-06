@@ -19,12 +19,12 @@ class Attachment:
     Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
     """
 
-    file_name: Optional[str] = attrs.field()
+    file_name: str = attrs.field()
     """
     The name of the file, including the extension. This is the file name that will appear in the message. This does not need to match the file name of the file that you uploaded.
     """
 
-    upload_destination_id: Optional[str] = attrs.field()
+    upload_destination_id: str = attrs.field()
     """
     The identifier of the upload destination. Get this value by calling the createUploadDestination operation of the Uploads API.
     """
@@ -278,7 +278,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -288,7 +288,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -350,9 +350,9 @@ class GetMessagingActionResponseEmbedded:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionResponseLinks:
 
-    schema: Optional["LinkObject"] = attrs.field()
+    schema: "LinkObject" = attrs.field()
 
-    self: Optional["LinkObject"] = attrs.field()
+    self: "LinkObject" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -371,18 +371,18 @@ class GetMessagingActionsForOrderResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionsForOrderResponseEmbedded:
 
-    actions: Optional[List["GetMessagingActionResponse"]] = attrs.field()
+    actions: List["GetMessagingActionResponse"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionsForOrderResponseLinks:
 
-    actions: Optional[List["LinkObject"]] = attrs.field()
+    actions: List["LinkObject"] = attrs.field()
     """
     Eligible actions for the specified amazonOrderId.
     """
 
-    self: Optional["LinkObject"] = attrs.field()
+    self: "LinkObject" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -398,7 +398,7 @@ class GetSchemaResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
 
-    self: Optional["LinkObject"] = attrs.field()
+    self: "LinkObject" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -407,7 +407,7 @@ class LinkObject:
     A Link object.
     """
 
-    href: Optional[str] = attrs.field()
+    href: str = attrs.field()
     """
     A URI for this object.
     """
@@ -424,7 +424,7 @@ class MessagingAction:
     A simple object containing the name of the template.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

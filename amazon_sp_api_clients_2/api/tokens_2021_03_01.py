@@ -21,7 +21,7 @@ class CreateRestrictedDataTokenRequest:
     The request schema for the createRestrictedDataToken operation.
     """
 
-    restricted_resources: Optional[List["RestrictedResource"]] = attrs.field()
+    restricted_resources: List["RestrictedResource"] = attrs.field()
     """
     A list of restricted resources.
         Maximum: 50
@@ -56,7 +56,7 @@ class Error:
     An error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -66,7 +66,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -95,12 +95,12 @@ class RestrictedResource:
         - **buyerTaxInformation**. This includes information for issuing tax invoices.
     """
 
-    method: Optional[Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]]] = attrs.field()
+    method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]] = attrs.field()
     """
     The HTTP method in the restricted resource.
     """
 
-    path: Optional[str] = attrs.field()
+    path: str = attrs.field()
     """
     The path in the restricted resource. Here are some path examples:
         - ```/orders/v0/orders```. For getting an RDT for the getOrders operation of the Orders API. For bulk orders.

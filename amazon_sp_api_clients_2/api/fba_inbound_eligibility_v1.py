@@ -19,7 +19,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -61,7 +61,7 @@ class ItemEligibilityPreview:
     The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
     """
 
-    asin: Optional[str] = attrs.field()
+    asin: str = attrs.field()
     """
     The ASIN for which eligibility was determined.
     """
@@ -115,7 +115,7 @@ class ItemEligibilityPreview:
     Potential Ineligibility Reason Codes.
     """
 
-    is_eligible_for_program: Optional[bool] = attrs.field()
+    is_eligible_for_program: bool = attrs.field()
     """
     Indicates if the item is eligible for the program.
     """
@@ -125,7 +125,7 @@ class ItemEligibilityPreview:
     The marketplace for which eligibility was determined.
     """
 
-    program: Optional[Union[Literal["INBOUND"], Literal["COMMINGLING"]]] = attrs.field()
+    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]] = attrs.field()
     """
     The program for which eligibility was determined.
     """

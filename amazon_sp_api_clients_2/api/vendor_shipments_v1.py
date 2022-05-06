@@ -19,7 +19,7 @@ class Address:
     Address of the party.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: str = attrs.field()
     """
     First line of the address.
     """
@@ -39,7 +39,7 @@ class Address:
     The city where the person, business or institution is located.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: str = attrs.field()
     """
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
@@ -54,7 +54,7 @@ class Address:
     The district where person, business or institution is located.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the person, business or institution at that address.
     """
@@ -86,14 +86,14 @@ class Carton:
     A list of carton identifiers.
     """
 
-    carton_sequence_number: Optional[str] = attrs.field()
+    carton_sequence_number: str = attrs.field()
     """
     Carton sequence number for the carton. The first carton will be 001, the second 002, and so on. This number is used as a reference to refer to this carton from the pallet level.
     """
 
     dimensions: Optional["Dimensions"] = attrs.field()
 
-    items: Optional[List["ContainerItem"]] = attrs.field()
+    items: List["ContainerItem"] = attrs.field()
     """
     A list of container item details.
     """
@@ -114,7 +114,7 @@ class CartonReferenceDetails:
     Pallet level carton count is mandatory for single item pallet and optional for mixed item pallet.
     """
 
-    carton_reference_numbers: Optional[List[str]] = attrs.field()
+    carton_reference_numbers: List[str] = attrs.field()
     """
     Array of reference numbers for the carton that are part of this pallet/shipment. Please provide the cartonSequenceNumber from the 'cartons' segment to refer to that carton's details here.
     """
@@ -123,13 +123,13 @@ class CartonReferenceDetails:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ContainerIdentification:
 
-    container_identification_number: Optional[str] = attrs.field()
+    container_identification_number: str = attrs.field()
     """
     Container identification number that adheres to the definition of the container identification type.
     """
 
-    container_identification_type: Optional[
-        Union[Literal["SSCC"], Literal["AMZNCC"], Literal["GTIN"], Literal["BPS"], Literal["CID"]]
+    container_identification_type: Union[
+        Literal["SSCC"], Literal["AMZNCC"], Literal["GTIN"], Literal["BPS"], Literal["CID"]
     ] = attrs.field()
     """
     The container identification type.
@@ -144,12 +144,12 @@ class ContainerItem:
 
     item_details: Optional["ItemDetails"] = attrs.field()
 
-    item_reference: Optional[str] = attrs.field()
+    item_reference: str = attrs.field()
     """
     The reference number for the item. Please provide the itemSequenceNumber from the 'items' segment to refer to that item's details here.
     """
 
-    shipped_quantity: Optional["ItemQuantity"] = attrs.field()
+    shipped_quantity: "ItemQuantity" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -167,27 +167,27 @@ class Dimensions:
     Physical dimensional measurements of a container.
     """
 
-    height: Optional["Decimal"] = attrs.field()
+    height: "Decimal" = attrs.field()
 
-    length: Optional["Decimal"] = attrs.field()
+    length: "Decimal" = attrs.field()
 
-    unit_of_measure: Optional[Union[Literal["In"], Literal["Ft"], Literal["Meter"], Literal["Yard"]]] = attrs.field()
+    unit_of_measure: Union[Literal["In"], Literal["Ft"], Literal["Meter"], Literal["Yard"]] = attrs.field()
     """
     The unit of measure for dimensions.
     """
 
-    width: Optional["Decimal"] = attrs.field()
+    width: "Decimal" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Duration:
 
-    duration_unit: Optional[Union[Literal["Days"], Literal["Months"]]] = attrs.field()
+    duration_unit: Union[Literal["Days"], Literal["Months"]] = attrs.field()
     """
     Unit for duration.
     """
 
-    duration_value: Optional[int] = attrs.field()
+    duration_value: int = attrs.field()
     """
     Value for the duration in terms of the durationUnit.
     """
@@ -199,7 +199,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -209,7 +209,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -302,12 +302,12 @@ class Item:
 
     item_details: Optional["ItemDetails"] = attrs.field()
 
-    item_sequence_number: Optional[str] = attrs.field()
+    item_sequence_number: str = attrs.field()
     """
     Item sequence number for the item. The first item will be 001, the second 002, and so on. This number is used as a reference to refer to this item from the carton or pallet level.
     """
 
-    shipped_quantity: Optional["ItemQuantity"] = attrs.field()
+    shipped_quantity: "ItemQuantity" = attrs.field()
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -349,12 +349,12 @@ class ItemQuantity:
     Details of item quantity.
     """
 
-    amount: Optional[int] = attrs.field()
+    amount: int = attrs.field()
     """
     Amount of units shipped for a specific item at a shipment level. If the item is present only in certain cartons or pallets within the shipment, please provide this at the appropriate carton or pallet level.
     """
 
-    unit_of_measure: Optional[Union[Literal["Cases"], Literal["Eaches"]]] = attrs.field()
+    unit_of_measure: Union[Literal["Cases"], Literal["Eaches"]] = attrs.field()
     """
     Unit of measure for the shipped quantity.
     """
@@ -393,9 +393,9 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
-    amount: Optional["Decimal"] = attrs.field()
+    amount: "Decimal" = attrs.field()
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: str = attrs.field()
     """
     Three digit currency code in ISO 4217 format.
     """
@@ -421,7 +421,7 @@ class Pallet:
     A list of container item details.
     """
 
-    pallet_identifiers: Optional[List["ContainerIdentification"]] = attrs.field()
+    pallet_identifiers: List["ContainerIdentification"] = attrs.field()
     """
     A list of pallet identifiers.
     """
@@ -439,7 +439,7 @@ class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
 
-    party_id: Optional[str] = attrs.field()
+    party_id: str = attrs.field()
     """
     Assigned identification for the party.
     """
@@ -456,7 +456,7 @@ class Route:
     This is used only for direct import shipment confirmations.
     """
 
-    stops: Optional[List["Stop"]] = attrs.field()
+    stops: List["Stop"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -487,13 +487,13 @@ class ShipmentConfirmation:
     A list of the pallets in this shipment.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
-    ship_from_party: Optional["PartyIdentification"] = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
 
-    ship_to_party: Optional["PartyIdentification"] = attrs.field()
+    ship_to_party: "PartyIdentification" = attrs.field()
 
-    shipment_confirmation_date: Optional[datetime] = attrs.field()
+    shipment_confirmation_date: datetime = attrs.field()
     """
     Date on which the shipment confirmation was submitted.
 
@@ -501,12 +501,12 @@ class ShipmentConfirmation:
     {'schema_format': 'date-time'}
     """
 
-    shipment_confirmation_type: Optional[Union[Literal["Original"], Literal["Replace"]]] = attrs.field()
+    shipment_confirmation_type: Union[Literal["Original"], Literal["Replace"]] = attrs.field()
     """
     Indicates if this shipment confirmation is the initial confirmation, or intended to replace an already posted shipment confirmation. If replacing an existing shipment confirmation, be sure to provide the identical shipmentIdentifier and sellingParty information as in the previous confirmation.
     """
 
-    shipment_identifier: Optional[str] = attrs.field()
+    shipment_identifier: str = attrs.field()
     """
     Unique shipment ID (not used over the last 365 days).
     """
@@ -543,7 +543,7 @@ class ShipmentConfirmation:
     {'schema_format': 'date-time'}
     """
 
-    shipped_items: Optional[List["Item"]] = attrs.field()
+    shipped_items: List["Item"] = attrs.field()
     """
     A list of the items in this shipment and their associated details. If any of the item detail fields are common at a carton or a pallet level, provide them at the corresponding carton or pallet level.
     """
@@ -594,8 +594,8 @@ class Stop:
     {'schema_format': 'date-time'}
     """
 
-    function_code: Optional[
-        Union[Literal["PortOfDischarge"], Literal["FreightPayableAt"], Literal["PortOfLoading"]]
+    function_code: Union[
+        Literal["PortOfDischarge"], Literal["FreightPayableAt"], Literal["PortOfLoading"]
     ] = attrs.field()
     """
     Provide the function code.
@@ -630,12 +630,12 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
-    tax_registration_number: Optional[str] = attrs.field()
+    tax_registration_number: str = attrs.field()
     """
     Tax registration number for the entity. For example, VAT ID.
     """
 
-    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field()
+    tax_registration_type: Union[Literal["VAT"], Literal["GST"]] = attrs.field()
     """
     Tax registration type for the entity.
     """
@@ -680,12 +680,12 @@ class Volume:
     The volume of the container.
     """
 
-    unit_of_measure: Optional[Union[Literal["CuFt"], Literal["CuIn"], Literal["CuM"], Literal["CuY"]]] = attrs.field()
+    unit_of_measure: Union[Literal["CuFt"], Literal["CuIn"], Literal["CuM"], Literal["CuY"]] = attrs.field()
     """
     The unit of measurement.
     """
 
-    value: Optional["Decimal"] = attrs.field()
+    value: "Decimal" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -694,12 +694,12 @@ class Weight:
     The weight.
     """
 
-    unit_of_measure: Optional[Union[Literal["G"], Literal["Kg"], Literal["Oz"], Literal["Lb"]]] = attrs.field()
+    unit_of_measure: Union[Literal["G"], Literal["Kg"], Literal["Oz"], Literal["Lb"]] = attrs.field()
     """
     The unit of measurement.
     """
 
-    value: Optional["Decimal"] = attrs.field()
+    value: "Decimal" = attrs.field()
 
 
 class VendorShipmentsV1Client(BaseClient):

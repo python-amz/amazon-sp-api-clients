@@ -19,7 +19,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -29,7 +29,7 @@ class Error:
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -50,15 +50,13 @@ class FeeLineItem:
     Fee details for a specific fee.
     """
 
-    fee_charge: Optional["MoneyType"] = attrs.field()
+    fee_charge: "MoneyType" = attrs.field()
 
-    fee_type: Optional[
-        Union[
-            Literal["FBAWeightBasedFee"],
-            Literal["FBAPerOrderFulfillmentFee"],
-            Literal["FBAPerUnitFulfillmentFee"],
-            Literal["Commission"],
-        ]
+    fee_type: Union[
+        Literal["FBAWeightBasedFee"],
+        Literal["FBAPerOrderFulfillmentFee"],
+        Literal["FBAPerUnitFulfillmentFee"],
+        Literal["Commission"],
     ] = attrs.field()
     """
     The type of fee charged to the seller.
@@ -97,12 +95,12 @@ class Item:
     An item to be sold.
     """
 
-    asin: Optional[str] = attrs.field()
+    asin: str = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) value used to identify the item.
     """
 
-    price: Optional["MoneyType"] = attrs.field()
+    price: "MoneyType" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -143,11 +141,11 @@ class SmallAndLightEligibility:
     The Small and Light eligibility status of the item indicated by the specified seller SKU.
     """
 
-    marketplace_id: Optional["MarketplaceId"] = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
 
-    seller_sku: Optional["SellerSKU"] = attrs.field()
+    seller_sku: "SellerSKU" = attrs.field()
 
-    status: Optional["SmallAndLightEligibilityStatus"] = attrs.field()
+    status: "SmallAndLightEligibilityStatus" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -165,11 +163,11 @@ class SmallAndLightEnrollment:
     The Small and Light enrollment status of the item indicated by the specified seller SKU.
     """
 
-    marketplace_id: Optional["MarketplaceId"] = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
 
-    seller_sku: Optional["SellerSKU"] = attrs.field()
+    seller_sku: "SellerSKU" = attrs.field()
 
-    status: Optional["SmallAndLightEnrollmentStatus"] = attrs.field()
+    status: "SmallAndLightEnrollmentStatus" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -187,7 +185,7 @@ class SmallAndLightFeePreviewRequest:
     Request schema for submitting items for which to retrieve fee estimates.
     """
 
-    items: Optional[List["Item"]] = attrs.field()
+    items: List["Item"] = attrs.field()
     """
     A list of items for which to retrieve fee estimates (limit: 25).
 
@@ -195,7 +193,7 @@ class SmallAndLightFeePreviewRequest:
     {'maxItems': 25}
     """
 
-    marketplace_id: Optional["MarketplaceId"] = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

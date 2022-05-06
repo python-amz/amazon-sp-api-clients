@@ -19,7 +19,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -29,7 +29,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -47,17 +47,17 @@ class ErrorList:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class InventoryUpdate:
 
-    is_full_update: Optional[bool] = attrs.field()
+    is_full_update: bool = attrs.field()
     """
     When true, this request contains a full feed. Otherwise, this request contains a partial feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in the full feed are updated as not available. When sending a partial feed, only include the items that need an update to inventory. The status of other items will remain unchanged.
     """
 
-    items: Optional[List["ItemDetails"]] = attrs.field()
+    items: List["ItemDetails"] = attrs.field()
     """
     A list of inventory items with updated details, including quantity available.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -66,7 +66,7 @@ class ItemDetails:
     Updated inventory details for an item.
     """
 
-    available_quantity: Optional["ItemQuantity"] = attrs.field()
+    available_quantity: "ItemQuantity" = attrs.field()
 
     buyer_product_identifier: Optional[str] = attrs.field()
     """
@@ -95,7 +95,7 @@ class ItemQuantity:
     Quantity of units available for a specific item.
     """
 
-    unit_of_measure: Optional[str] = attrs.field()
+    unit_of_measure: str = attrs.field()
     """
     Unit of measure for the available quantity.
     """
@@ -104,7 +104,7 @@ class ItemQuantity:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    party_id: Optional[str] = attrs.field()
+    party_id: str = attrs.field()
     """
     Assigned identification for the party.
     """

@@ -21,7 +21,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -31,7 +31,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -43,7 +43,7 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: List["Error"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -57,17 +57,17 @@ class Issue:
     Name of the attribute associated with the issue, if applicable.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An issue code that identifies the type of issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the issue.
     """
 
-    severity: Optional[Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]]] = attrs.field()
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field()
     """
     The severity of the issue.
     """
@@ -79,7 +79,7 @@ class ListingsItemPatchRequest:
     The request body schema for the patchListingsItem operation.
     """
 
-    patches: Optional[List["PatchOperation"]] = attrs.field()
+    patches: List["PatchOperation"] = attrs.field()
     """
     One or more JSON Patch operations to perform on the listings item.
 
@@ -87,7 +87,7 @@ class ListingsItemPatchRequest:
     {'minItems': 1}
     """
 
-    product_type: Optional[str] = attrs.field()
+    product_type: str = attrs.field()
     """
     The Amazon product type of the listings item.
     """
@@ -99,9 +99,9 @@ class ListingsItemPutRequest:
     The request body schema for the putListingsItem operation.
     """
 
-    attributes: Optional["ListingsItemPutRequestAttributes"] = attrs.field()
+    attributes: "ListingsItemPutRequestAttributes" = attrs.field()
 
-    product_type: Optional[str] = attrs.field()
+    product_type: str = attrs.field()
     """
     The Amazon product type of the listings item.
     """
@@ -134,17 +134,17 @@ class ListingsItemSubmissionResponse:
     Listings item issues related to the listings item submission.
     """
 
-    sku: Optional[str] = attrs.field()
+    sku: str = attrs.field()
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    status: Optional[Union[Literal["ACCEPTED"], Literal["INVALID"]]] = attrs.field()
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
     """
     The status of the listings item submission.
     """
 
-    submission_id: Optional[str] = attrs.field()
+    submission_id: str = attrs.field()
     """
     The unique identifier of the listings item submission.
     """
@@ -156,12 +156,12 @@ class PatchOperation:
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
-    op: Optional[Union[Literal["add"], Literal["replace"], Literal["delete"]]] = attrs.field()
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
     """
     Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    path: Optional[str] = attrs.field()
+    path: str = attrs.field()
     """
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """

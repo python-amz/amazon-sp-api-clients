@@ -19,7 +19,7 @@ class AddAppointmentRequest:
     Input for add appointment operation.
     """
 
-    appointment_time: Optional["AppointmentTimeInput"] = attrs.field()
+    appointment_time: "AppointmentTimeInput" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -28,7 +28,7 @@ class Address:
     The shipping address for the service job.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: str = attrs.field()
     """
     The first line of the address.
     """
@@ -63,7 +63,7 @@ class Address:
     The district.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the person, business, or institution.
     """
@@ -127,7 +127,7 @@ class AppointmentTime:
     The time of the appointment window.
     """
 
-    duration_in_minutes: Optional[int] = attrs.field()
+    duration_in_minutes: int = attrs.field()
     """
     The duration of the appointment window, in minutes.
 
@@ -135,7 +135,7 @@ class AppointmentTime:
     {'minimum': 1.0}
     """
 
-    start_time: Optional[datetime] = attrs.field()
+    start_time: datetime = attrs.field()
     """
     The date and time of the start of the appointment window, in ISO 8601 format.
 
@@ -155,7 +155,7 @@ class AppointmentTimeInput:
     The duration of an appointment in minutes.
     """
 
-    start_time: Optional[datetime] = attrs.field()
+    start_time: datetime = attrs.field()
     """
     The date, time in UTC for the start time of an appointment in ISO 8601 format.
 
@@ -256,7 +256,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -271,7 +271,7 @@ class Error:
     The type of error.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -435,9 +435,9 @@ class RescheduleAppointmentRequest:
     Input for rescheduled appointment operation.
     """
 
-    appointment_time: Optional["AppointmentTimeInput"] = attrs.field()
+    appointment_time: "AppointmentTimeInput" = attrs.field()
 
-    reschedule_reason_code: Optional["RescheduleReasonCode"] = attrs.field()
+    reschedule_reason_code: "RescheduleReasonCode" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -635,7 +635,7 @@ class Warning:
     Warning returned when the request is successful but execution have some important callouts on basis of which API clients should take defined actions.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An warning code that identifies the type of warning that occurred.
     """
@@ -645,7 +645,7 @@ class Warning:
     Additional details that can help the caller understand or address the warning.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the warning condition in a human-readable form.
     """

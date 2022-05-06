@@ -28,7 +28,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -38,7 +38,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -66,7 +66,7 @@ class GetSchemaResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
 
-    self: Optional["LinkObject"] = attrs.field()
+    self: "LinkObject" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -93,9 +93,9 @@ class GetSolicitationActionResponseEmbedded:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionResponseLinks:
 
-    schema: Optional["LinkObject"] = attrs.field()
+    schema: "LinkObject" = attrs.field()
 
-    self: Optional["LinkObject"] = attrs.field()
+    self: "LinkObject" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -114,18 +114,18 @@ class GetSolicitationActionsForOrderResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionsForOrderResponseEmbedded:
 
-    actions: Optional[List["GetSolicitationActionResponse"]] = attrs.field()
+    actions: List["GetSolicitationActionResponse"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionsForOrderResponseLinks:
 
-    actions: Optional[List["LinkObject"]] = attrs.field()
+    actions: List["LinkObject"] = attrs.field()
     """
     Eligible actions for the specified amazonOrderId.
     """
 
-    self: Optional["LinkObject"] = attrs.field()
+    self: "LinkObject" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -134,7 +134,7 @@ class LinkObject:
     A Link object.
     """
 
-    href: Optional[str] = attrs.field()
+    href: str = attrs.field()
     """
     A URI for this object.
     """
@@ -160,7 +160,7 @@ class SolicitationsAction:
     A simple object containing the name of the template.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
 
 
 class SolicitationsV1Client(BaseClient):

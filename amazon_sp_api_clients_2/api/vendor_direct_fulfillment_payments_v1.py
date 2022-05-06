@@ -19,7 +19,7 @@ class AdditionalDetails:
     A field where selling party can provide additional information for tax related or any other purposes.
     """
 
-    detail: Optional[str] = attrs.field()
+    detail: str = attrs.field()
     """
     The detail of the additional information provided by the selling party.
     """
@@ -29,7 +29,7 @@ class AdditionalDetails:
     The language code of the additional information detail.
     """
 
-    type: Optional[Union[Literal["SUR"], Literal["OCR"]]] = attrs.field()
+    type: Union[Literal["SUR"], Literal["OCR"]] = attrs.field()
     """
     The type of the additional information provided by the selling party.
     """
@@ -41,7 +41,7 @@ class Address:
     Address of the party.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: str = attrs.field()
     """
     First line of the address.
     """
@@ -56,12 +56,12 @@ class Address:
     Additional street address information, if required.
     """
 
-    city: Optional[str] = attrs.field()
+    city: str = attrs.field()
     """
     The city where the person, business or institution is located.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: str = attrs.field()
     """
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
@@ -76,7 +76,7 @@ class Address:
     The district where person, business or institution is located.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the person, business or institution at that address.
     """
@@ -86,12 +86,12 @@ class Address:
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: str = attrs.field()
     """
     The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: str = attrs.field()
     """
     The state or region where person, business or institution is located.
     """
@@ -103,23 +103,21 @@ class ChargeDetails:
     Monetary and tax details of the charge.
     """
 
-    charge_amount: Optional["Money"] = attrs.field()
+    charge_amount: "Money" = attrs.field()
 
     tax_details: Optional[List["TaxDetail"]] = attrs.field()
     """
     Individual tax details per line item.
     """
 
-    type: Optional[
-        Union[
-            Literal["GIFTWRAP"],
-            Literal["FULFILLMENT"],
-            Literal["MARKETINGINSERT"],
-            Literal["PACKAGING"],
-            Literal["LOADING"],
-            Literal["FREIGHTOUT"],
-            Literal["TAX_COLLECTED_AT_SOURCE"],
-        ]
+    type: Union[
+        Literal["GIFTWRAP"],
+        Literal["FULFILLMENT"],
+        Literal["MARKETINGINSERT"],
+        Literal["PACKAGING"],
+        Literal["LOADING"],
+        Literal["FREIGHTOUT"],
+        Literal["TAX_COLLECTED_AT_SOURCE"],
     ] = attrs.field()
     """
     Type of charge applied.
@@ -141,7 +139,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -151,7 +149,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -181,7 +179,7 @@ class InvoiceDetail:
     Total charge amount details for all line items.
     """
 
-    invoice_date: Optional[datetime] = attrs.field()
+    invoice_date: datetime = attrs.field()
     """
     Invoice date.
 
@@ -189,14 +187,14 @@ class InvoiceDetail:
     {'schema_format': 'date-time'}
     """
 
-    invoice_number: Optional[str] = attrs.field()
+    invoice_number: str = attrs.field()
     """
     The unique invoice number.
     """
 
-    invoice_total: Optional["Money"] = attrs.field()
+    invoice_total: "Money" = attrs.field()
 
-    items: Optional[List["InvoiceItem"]] = attrs.field()
+    items: List["InvoiceItem"] = attrs.field()
     """
     Provides the details of the items in this invoice.
     """
@@ -211,9 +209,9 @@ class InvoiceDetail:
     An additional unique reference number used for regulatory or other purposes.
     """
 
-    remit_to_party: Optional["PartyIdentification"] = attrs.field()
+    remit_to_party: "PartyIdentification" = attrs.field()
 
-    ship_from_party: Optional["PartyIdentification"] = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field()
 
     ship_to_country_code: Optional[str] = attrs.field()
     """
@@ -244,16 +242,16 @@ class InvoiceItem:
     HSN tax code. The HSN number cannot contain alphabets.
     """
 
-    invoiced_quantity: Optional["ItemQuantity"] = attrs.field()
+    invoiced_quantity: "ItemQuantity" = attrs.field()
 
-    item_sequence_number: Optional[str] = attrs.field()
+    item_sequence_number: str = attrs.field()
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    net_cost: Optional["Money"] = attrs.field()
+    net_cost: "Money" = attrs.field()
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: str = attrs.field()
     """
     The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
@@ -280,12 +278,12 @@ class ItemQuantity:
     Details of item quantity.
     """
 
-    amount: Optional[int] = attrs.field()
+    amount: int = attrs.field()
     """
     Quantity of units available for a specific item.
     """
 
-    unit_of_measure: Optional[str] = attrs.field()
+    unit_of_measure: str = attrs.field()
     """
     Unit of measure for the available quantity.
     """
@@ -297,9 +295,9 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
-    amount: Optional["Decimal"] = attrs.field()
+    amount: "Decimal" = attrs.field()
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: str = attrs.field()
     """
     Three digit currency code in ISO 4217 format.
     """
@@ -310,7 +308,7 @@ class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
 
-    party_id: Optional[str] = attrs.field()
+    party_id: str = attrs.field()
     """
     Assigned Identification for the party.
     """
@@ -347,27 +345,25 @@ class TaxDetail:
     Details of tax amount applied.
     """
 
-    tax_amount: Optional["Money"] = attrs.field()
+    tax_amount: "Money" = attrs.field()
 
     tax_rate: Optional["Decimal"] = attrs.field()
 
-    tax_type: Optional[
-        Union[
-            Literal["CGST"],
-            Literal["SGST"],
-            Literal["CESS"],
-            Literal["UTGST"],
-            Literal["IGST"],
-            Literal["MwSt."],
-            Literal["PST"],
-            Literal["TVA"],
-            Literal["VAT"],
-            Literal["GST"],
-            Literal["ST"],
-            Literal["Consumption"],
-            Literal["MutuallyDefined"],
-            Literal["DomesticVAT"],
-        ]
+    tax_type: Union[
+        Literal["CGST"],
+        Literal["SGST"],
+        Literal["CESS"],
+        Literal["UTGST"],
+        Literal["IGST"],
+        Literal["MwSt."],
+        Literal["PST"],
+        Literal["TVA"],
+        Literal["VAT"],
+        Literal["GST"],
+        Literal["ST"],
+        Literal["Consumption"],
+        Literal["MutuallyDefined"],
+        Literal["DomesticVAT"],
     ] = attrs.field()
     """
     Type of the tax applied.
@@ -389,7 +385,7 @@ class TaxRegistrationDetail:
     Tax registration message that can be used for additional tax related details.
     """
 
-    tax_registration_number: Optional[str] = attrs.field()
+    tax_registration_number: str = attrs.field()
     """
     Tax registration number for the party. For example, VAT ID.
     """

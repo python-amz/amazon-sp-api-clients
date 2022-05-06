@@ -64,7 +64,7 @@ class Address:
     The municipality.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name.
     """
@@ -220,7 +220,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -230,7 +230,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -401,7 +401,7 @@ class Order:
     Order information.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
@@ -498,7 +498,7 @@ class Order:
     When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller.
     """
 
-    last_update_date: Optional[str] = attrs.field()
+    last_update_date: str = attrs.field()
     """
     The date when the order was last updated.
         Note: LastUpdateDate is returned with an incorrect date for orders that were last updated before 2009-04-01.
@@ -537,17 +537,15 @@ class Order:
     The order channel of the first item in the order.
     """
 
-    order_status: Optional[
-        Union[
-            Literal["Pending"],
-            Literal["Unshipped"],
-            Literal["PartiallyShipped"],
-            Literal["Shipped"],
-            Literal["Canceled"],
-            Literal["Unfulfillable"],
-            Literal["InvoiceUnconfirmed"],
-            Literal["PendingAvailability"],
-        ]
+    order_status: Union[
+        Literal["Pending"],
+        Literal["Unshipped"],
+        Literal["PartiallyShipped"],
+        Literal["Shipped"],
+        Literal["Canceled"],
+        Literal["Unfulfillable"],
+        Literal["InvoiceUnconfirmed"],
+        Literal["PendingAvailability"],
     ] = attrs.field()
     """
     The current order status.
@@ -582,7 +580,7 @@ class Order:
     Indicates the date by which the seller must respond to the buyer with an estimated ship date. Returned only for Sourcing on Demand orders.
     """
 
-    purchase_date: Optional[str] = attrs.field()
+    purchase_date: str = attrs.field()
     """
     The date when the order was created.
     """
@@ -627,7 +625,7 @@ class OrderAddress:
     The shipping address for the order.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
@@ -641,7 +639,7 @@ class OrderBuyerInfo:
     Buyer information for an order.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
@@ -675,7 +673,7 @@ class OrderItem:
     A single order item.
     """
 
-    asin: Optional[str] = attrs.field()
+    asin: str = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
@@ -729,7 +727,7 @@ class OrderItem:
 
     item_tax: Optional["Money"] = attrs.field()
 
-    order_item_id: Optional[str] = attrs.field()
+    order_item_id: str = attrs.field()
     """
     An Amazon-defined order item identifier.
     """
@@ -750,7 +748,7 @@ class OrderItem:
 
     promotion_ids: Optional["PromotionIdList"] = attrs.field()
 
-    quantity_ordered: Optional[int] = attrs.field()
+    quantity_ordered: int = attrs.field()
     """
     The number of items in the order.
     """
@@ -824,7 +822,7 @@ class OrderItemBuyerInfo:
 
     gift_wrap_tax: Optional["Money"] = attrs.field()
 
-    order_item_id: Optional[str] = attrs.field()
+    order_item_id: str = attrs.field()
     """
     An Amazon-defined order item identifier.
     """
@@ -863,7 +861,7 @@ class OrderItemsBuyerInfoList:
     A single order item's buyer information list with the order ID.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
@@ -873,7 +871,7 @@ class OrderItemsBuyerInfoList:
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    order_items: Optional["OrderItemBuyerInfoList"] = attrs.field()
+    order_items: "OrderItemBuyerInfoList" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -896,7 +894,7 @@ class OrderItemsList:
     The order items list along with the order ID.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
@@ -906,7 +904,7 @@ class OrderItemsList:
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    order_items: Optional["OrderItemList"] = attrs.field()
+    order_items: "OrderItemList" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -924,16 +922,16 @@ class OrderRegulatedInfo:
     The order's regulated information along with its verification status.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    regulated_information: Optional["RegulatedInformation"] = attrs.field()
+    regulated_information: "RegulatedInformation" = attrs.field()
 
-    regulated_order_verification_status: Optional["RegulatedOrderVerificationStatus"] = attrs.field()
+    regulated_order_verification_status: "RegulatedOrderVerificationStatus" = attrs.field()
 
-    requires_dosage_label: Optional[bool] = attrs.field()
+    requires_dosage_label: bool = attrs.field()
     """
     Whether the order requires attaching a dosage information label when shipped.
     """
@@ -960,7 +958,7 @@ class OrdersList:
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    orders: Optional["OrderList"] = attrs.field()
+    orders: "OrderList" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -969,9 +967,9 @@ class PaymentExecutionDetailItem:
     Information about a sub-payment method used to pay for a COD order.
     """
 
-    payment: Optional["Money"] = attrs.field()
+    payment: "Money" = attrs.field()
 
-    payment_method: Optional[str] = attrs.field()
+    payment_method: str = attrs.field()
     """
     A sub-payment method for a COD order.
         Possible values:
@@ -1040,7 +1038,7 @@ class RegulatedInformation:
     The regulated information collected during purchase and used to verify the order.
     """
 
-    fields: Optional[List["RegulatedInformationField"]] = attrs.field()
+    fields: List["RegulatedInformationField"] = attrs.field()
     """
     A list of regulated information fields as collected from the regulatory form.
     """
@@ -1052,22 +1050,22 @@ class RegulatedInformationField:
     A field collected from the regulatory form.
     """
 
-    field_id: Optional[str] = attrs.field()
+    field_id: str = attrs.field()
     """
     The unique identifier for the field.
     """
 
-    field_label: Optional[str] = attrs.field()
+    field_label: str = attrs.field()
     """
     The human-readable name for the field.
     """
 
-    field_type: Optional[Union[Literal["Text"], Literal["FileAttachment"]]] = attrs.field()
+    field_type: Union[Literal["Text"], Literal["FileAttachment"]] = attrs.field()
     """
     The type of field the field.
     """
 
-    field_value: Optional[str] = attrs.field()
+    field_value: str = attrs.field()
     """
     The content of the field as collected in regulatory form. Note that FileAttachment type fields will contain an URL to download the attachment here.
     """
@@ -1086,7 +1084,7 @@ class RegulatedOrderVerificationStatus:
 
     rejection_reason: Optional["RejectionReason"] = attrs.field()
 
-    requires_merchant_action: Optional[bool] = attrs.field()
+    requires_merchant_action: bool = attrs.field()
     """
     Whether the regulated information provided in the order requires a review by the merchant.
     """
@@ -1096,14 +1094,14 @@ class RegulatedOrderVerificationStatus:
     The date the order was reviewed. In ISO 8601 date time format.
     """
 
-    status: Optional[
-        Union[Literal["Pending"], Literal["Approved"], Literal["Rejected"], Literal["Expired"], Literal["Cancelled"]]
+    status: Union[
+        Literal["Pending"], Literal["Approved"], Literal["Rejected"], Literal["Expired"], Literal["Cancelled"]
     ] = attrs.field()
     """
     The verification status of the order.
     """
 
-    valid_rejection_reasons: Optional[List["RejectionReason"]] = attrs.field()
+    valid_rejection_reasons: List["RejectionReason"] = attrs.field()
     """
     A list of valid rejection reasons that may be used to reject the order's regulated information.
     """
@@ -1115,12 +1113,12 @@ class RejectionReason:
     The reason for rejecting the order's regulated information. Not present if the order isn't rejected.
     """
 
-    rejection_reason_description: Optional[str] = attrs.field()
+    rejection_reason_description: str = attrs.field()
     """
     The human-readable description of this rejection reason.
     """
 
-    rejection_reason_id: Optional[str] = attrs.field()
+    rejection_reason_id: str = attrs.field()
     """
     The unique identifier for the rejection reason.
     """
@@ -1184,11 +1182,11 @@ class UpdateShipmentStatusRequest:
     Request to update the status of shipment of an order.
     """
 
-    marketplace_id: Optional["MarketplaceId"] = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field()
 
     order_items: Optional["OrderItems"] = attrs.field()
 
-    shipment_status: Optional["ShipmentStatus"] = attrs.field()
+    shipment_status: "ShipmentStatus" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1206,7 +1204,7 @@ class UpdateVerificationStatusRequest:
     Request to update the verification status of an order containing regulated products.
     """
 
-    regulated_order_verification_status: Optional["UpdateVerificationStatusRequestBody"] = attrs.field()
+    regulated_order_verification_status: "UpdateVerificationStatusRequestBody" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1215,7 +1213,7 @@ class UpdateVerificationStatusRequestBody:
     The updated values of the VerificationStatus field.
     """
 
-    external_reviewer_id: Optional[str] = attrs.field()
+    external_reviewer_id: str = attrs.field()
     """
     The identifier for the order's regulated information reviewer.
     """
@@ -1225,7 +1223,7 @@ class UpdateVerificationStatusRequestBody:
     The unique identifier for the rejection reason used for rejecting the order's regulated information. Only required if the new status is rejected.
     """
 
-    status: Optional[Union[Literal["Approved"], Literal["Rejected"]]] = attrs.field()
+    status: Union[Literal["Approved"], Literal["Rejected"]] = attrs.field()
     """
     The new verification status of the order.
     """

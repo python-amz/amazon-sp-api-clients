@@ -21,7 +21,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -31,7 +31,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -43,7 +43,7 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: List["Error"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -52,12 +52,12 @@ class ProductType:
     An Amazon product type with a definition available.
     """
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: List[str] = attrs.field()
     """
     The Amazon marketplace identifiers for which the product type definition is available.
     """
 
-    name: Optional[str] = attrs.field()
+    name: str = attrs.field()
     """
     The name of the Amazon product type.
     """
@@ -69,40 +69,40 @@ class ProductTypeDefinition:
     A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
     """
 
-    locale: Optional[str] = attrs.field()
+    locale: str = attrs.field()
     """
     Locale of the display elements contained in the product type definition.
     """
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: List[str] = attrs.field()
     """
     Amazon marketplace identifiers for which the product type definition is applicable.
     """
 
     meta_schema: Optional["SchemaLink"] = attrs.field()
 
-    product_type: Optional[str] = attrs.field()
+    product_type: str = attrs.field()
     """
     The name of the Amazon product type that this product type definition applies to.
     """
 
-    product_type_version: Optional["ProductTypeVersion"] = attrs.field()
+    product_type_version: "ProductTypeVersion" = attrs.field()
 
-    property_groups: Optional["ProductTypeDefinitionPropertyGroups"] = attrs.field()
+    property_groups: "ProductTypeDefinitionPropertyGroups" = attrs.field()
 
-    requirements: Optional[
-        Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
+    requirements: Union[
+        Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
     ] = attrs.field()
     """
     Name of the requirements set represented in this product type definition.
     """
 
-    requirements_enforced: Optional[Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]]] = attrs.field()
+    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = attrs.field()
     """
     Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).
     """
 
-    schema: Optional["SchemaLink"] = attrs.field()
+    schema: "SchemaLink" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=False)
@@ -120,7 +120,7 @@ class ProductTypeList:
     A list of Amazon product types with definitions available.
     """
 
-    product_types: Optional[List["ProductType"]] = attrs.field()
+    product_types: List["ProductType"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -129,7 +129,7 @@ class ProductTypeVersion:
     The version details for an Amazon product type.
     """
 
-    latest: Optional[bool] = attrs.field()
+    latest: bool = attrs.field()
     """
     When true, the version indicated by the version identifier is the latest available for the Amazon product type.
     """
@@ -139,7 +139,7 @@ class ProductTypeVersion:
     When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
     """
 
-    version: Optional[str] = attrs.field()
+    version: str = attrs.field()
     """
     Version identifier.
     """
@@ -170,12 +170,12 @@ class PropertyGroup:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SchemaLink:
 
-    checksum: Optional[str] = attrs.field()
+    checksum: str = attrs.field()
     """
     Checksum hash of the schema (Base64 MD5). Can be used to verify schema contents, identify changes between schema versions, and for caching.
     """
 
-    link: Optional["SchemaLinkLink"] = attrs.field()
+    link: "SchemaLinkLink" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -184,12 +184,12 @@ class SchemaLinkLink:
     Link to retrieve the schema.
     """
 
-    resource: Optional[str] = attrs.field()
+    resource: str = attrs.field()
     """
     URI resource for the link.
     """
 
-    verb: Optional[Union[Literal["GET"]]] = attrs.field()
+    verb: Union[Literal["GET"]] = attrs.field()
     """
     HTTP method for the link operation.
     """

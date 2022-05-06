@@ -28,7 +28,7 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occured.
     """
@@ -38,7 +38,7 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -70,9 +70,9 @@ class Money:
     The currency type and the amount.
     """
 
-    amount: Optional["Decimal"] = attrs.field()
+    amount: "Decimal" = attrs.field()
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: str = attrs.field()
     """
     Three-digit currency code. In ISO 4217 format.
     """
@@ -84,26 +84,26 @@ class OrderMetricsInterval:
     Contains order metrics.
     """
 
-    average_unit_price: Optional["Money"] = attrs.field()
+    average_unit_price: "Money" = attrs.field()
 
-    interval: Optional[str] = attrs.field()
+    interval: str = attrs.field()
     """
     The interval of time based on requested granularity (ex. Hour, Day, etc.) If this is the first or the last interval from the list, it might contain incomplete data if the requested interval doesn't align with the requested granularity (ex. request interval 2018-09-01T02:00:00Z--2018-09-04T19:00:00Z and granularity day will result in Sept 1st UTC day and Sept 4th UTC days having partial data).
     """
 
-    order_count: Optional[int] = attrs.field()
+    order_count: int = attrs.field()
     """
     The number of orders based on the specified filters.
     """
 
-    order_item_count: Optional[int] = attrs.field()
+    order_item_count: int = attrs.field()
     """
     The number of order items based on the specified filters.
     """
 
-    total_sales: Optional["Money"] = attrs.field()
+    total_sales: "Money" = attrs.field()
 
-    unit_count: Optional[int] = attrs.field()
+    unit_count: int = attrs.field()
     """
     The number of units in orders based on the specified filters.
     """

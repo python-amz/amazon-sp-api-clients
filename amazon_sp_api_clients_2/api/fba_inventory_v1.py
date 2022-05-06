@@ -19,7 +19,7 @@ class Error:
     An error response returned when the request is unsuccessful.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -63,9 +63,9 @@ class GetInventorySummariesResult:
     The payload schema for the getInventorySummaries operation.
     """
 
-    granularity: Optional["Granularity"] = attrs.field()
+    granularity: "Granularity" = attrs.field()
 
-    inventory_summaries: Optional["InventorySummaries"] = attrs.field()
+    inventory_summaries: "InventorySummaries" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -209,18 +209,16 @@ class ResearchingQuantityEntry:
     The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
     """
 
-    name: Optional[
-        Union[
-            Literal["researchingQuantityInShortTerm"],
-            Literal["researchingQuantityInMidTerm"],
-            Literal["researchingQuantityInLongTerm"],
-        ]
+    name: Union[
+        Literal["researchingQuantityInShortTerm"],
+        Literal["researchingQuantityInMidTerm"],
+        Literal["researchingQuantityInLongTerm"],
     ] = attrs.field()
     """
     The duration of the research.
     """
 
-    quantity: Optional[int] = attrs.field()
+    quantity: int = attrs.field()
     """
     The number of units.
     """

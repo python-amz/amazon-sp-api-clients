@@ -16,7 +16,7 @@ from datetime import date, datetime
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
@@ -26,7 +26,7 @@ class Error:
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
@@ -47,16 +47,16 @@ class FeeDetail:
     The type of fee, fee amount, and other details.
     """
 
-    fee_amount: Optional["MoneyType"] = attrs.field()
+    fee_amount: "MoneyType" = attrs.field()
 
     fee_promotion: Optional["MoneyType"] = attrs.field()
 
-    fee_type: Optional[str] = attrs.field()
+    fee_type: str = attrs.field()
     """
     The type of fee charged to a seller.
     """
 
-    final_fee: Optional["MoneyType"] = attrs.field()
+    final_fee: "MoneyType" = attrs.field()
 
     included_fee_detail_list: Optional["IncludedFeeDetailList"] = attrs.field()
 
@@ -80,7 +80,7 @@ class FeesEstimate:
 
     fee_detail_list: Optional["FeeDetailList"] = attrs.field()
 
-    time_of_fees_estimation: Optional[datetime] = attrs.field()
+    time_of_fees_estimation: datetime = attrs.field()
     """
     The time at which the fees were estimated. This defaults to the time the request is made.
 
@@ -97,19 +97,19 @@ class FeesEstimateError:
     An unexpected error occurred during this operation.
     """
 
-    code: Optional[str] = attrs.field()
+    code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
     """
 
-    detail: Optional["FeesEstimateErrorDetail"] = attrs.field()
+    detail: "FeesEstimateErrorDetail" = attrs.field()
 
-    message: Optional[str] = attrs.field()
+    message: str = attrs.field()
     """
     A message that describes the error condition.
     """
 
-    type: Optional[str] = attrs.field()
+    type: str = attrs.field()
     """
     An error type, identifying either the receiver or the sender as the originator of the error.
     """
@@ -174,7 +174,7 @@ class FeesEstimateIdentifier:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateRequest:
 
-    identifier: Optional[str] = attrs.field()
+    identifier: str = attrs.field()
     """
     A unique identifier provided by the caller to track this request.
     """
@@ -184,14 +184,14 @@ class FeesEstimateRequest:
     When true, the offer is fulfilled by Amazon.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: str = attrs.field()
     """
     A marketplace identifier.
     """
 
     optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field()
 
-    price_to_estimate_fees: Optional["PriceToEstimateFees"] = attrs.field()
+    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -244,16 +244,16 @@ class IncludedFeeDetail:
     The type of fee, fee amount, and other details.
     """
 
-    fee_amount: Optional["MoneyType"] = attrs.field()
+    fee_amount: "MoneyType" = attrs.field()
 
     fee_promotion: Optional["MoneyType"] = attrs.field()
 
-    fee_type: Optional[str] = attrs.field()
+    fee_type: str = attrs.field()
     """
     The type of fee charged to a seller.
     """
 
-    final_fee: Optional["MoneyType"] = attrs.field()
+    final_fee: "MoneyType" = attrs.field()
 
     tax_amount: Optional["MoneyType"] = attrs.field()
 
@@ -309,7 +309,7 @@ class PriceToEstimateFees:
     Price information for an item, used to estimate fees.
     """
 
-    listing_price: Optional["MoneyType"] = attrs.field()
+    listing_price: "MoneyType" = attrs.field()
 
     points: Optional["Points"] = attrs.field()
 
