@@ -19,47 +19,65 @@ class Address:
     The shipping address for the order.
     """
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The street address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_type: Optional[Union[Literal["Residential"], Literal["Commercial"]]] = attrs.field()
+    address_type: Optional[Union[Literal["Residential"], Literal["Commercial"]]] = attrs.field(
+        default=None,
+    )
     """
     The address type of the shipping address.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The country code. A two-character country code, in ISO 3166-1 alpha-2 format.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district.
     """
 
-    municipality: Optional[str] = attrs.field()
+    municipality: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The municipality.
     """
@@ -69,17 +87,23 @@ class Address:
     The name.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number. Not returned for Fulfillment by Amazon (FBA) orders.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state or region.
     """
@@ -228,7 +252,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -451,109 +477,151 @@ class Order:
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    automated_shipping_settings: Optional["AutomatedShippingSettings"] = attrs.field()
+    automated_shipping_settings: Optional["AutomatedShippingSettings"] = attrs.field(
+        default=None,
+    )
     """
     Contains information regarding the Shipping Settings Automation program, such as whether the order's shipping settings were generated automatically, and what those settings are.
     """
 
-    buyer_info: Optional["BuyerInfo"] = attrs.field()
+    buyer_info: Optional["BuyerInfo"] = attrs.field(
+        default=None,
+    )
     """
     Buyer information
     """
 
-    buyer_invoice_preference: Optional[Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]]] = attrs.field()
+    buyer_invoice_preference: Optional[Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]]] = attrs.field(
+        default=None,
+    )
     """
     The buyer's invoicing preference. Available only in the TR marketplace.
     """
 
-    buyer_tax_information: Optional["BuyerTaxInformation"] = attrs.field()
+    buyer_tax_information: Optional["BuyerTaxInformation"] = attrs.field(
+        default=None,
+    )
     """
     Contains the business invoice tax information. Available only in the TR marketplace.
     """
 
-    cba_displayable_shipping_label: Optional[str] = attrs.field()
+    cba_displayable_shipping_label: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Custom ship label for Checkout by Amazon (CBA).
     """
 
-    default_ship_from_location_address: Optional["Address"] = attrs.field()
+    default_ship_from_location_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     The shipping address for the order.
     """
 
-    earliest_delivery_date: Optional[str] = attrs.field()
+    earliest_delivery_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The start of the time period within which you have committed to fulfill the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.
     """
 
-    earliest_ship_date: Optional[str] = attrs.field()
+    earliest_ship_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The start of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.
         Note: EarliestShipDate might not be returned for orders placed before February 1, 2013.
     """
 
-    easy_ship_shipment_status: Optional[str] = attrs.field()
+    easy_ship_shipment_status: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship orders.
         Possible values: PendingPickUp, LabelCanceled, PickedUp, OutForDelivery, Damaged, Delivered, RejectedByBuyer, Undeliverable, ReturnedToSeller, ReturningToSeller.
     """
 
-    fulfillment_channel: Optional[Union[Literal["MFN"], Literal["AFN"]]] = attrs.field()
+    fulfillment_channel: Optional[Union[Literal["MFN"], Literal["AFN"]]] = attrs.field(
+        default=None,
+    )
     """
     Whether the order was fulfilled by Amazon (AFN) or by the seller (MFN).
     """
 
-    fulfillment_instruction: Optional["FulfillmentInstruction"] = attrs.field()
+    fulfillment_instruction: Optional["FulfillmentInstruction"] = attrs.field(
+        default=None,
+    )
     """
     Contains the instructions about the fulfillment like where should it be fulfilled from.
     """
 
-    has_regulated_items: Optional[bool] = attrs.field()
+    has_regulated_items: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Whether the order contains regulated items which may require additional approval steps before being fulfilled.
     """
 
-    is_business_order: Optional[bool] = attrs.field()
+    is_business_order: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the order is an Amazon Business order. An Amazon Business order is an order where the buyer is a Verified Business Buyer.
     """
 
-    is_estimated_ship_date_set: Optional[bool] = attrs.field()
+    is_estimated_ship_date_set: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the estimated ship date is set for the order. Returned only for Sourcing on Demand orders.
     """
 
-    is_global_express_enabled: Optional[bool] = attrs.field()
+    is_global_express_enabled: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the order is a GlobalExpress order.
     """
 
-    is_iba: Optional[bool] = attrs.field()
+    is_iba: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller.
     """
 
-    is_ispu: Optional[bool] = attrs.field()
+    is_ispu: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, this order is marked to be picked up from a store rather than delivered.
     """
 
-    is_premium_order: Optional[bool] = attrs.field()
+    is_premium_order: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the order has a Premium Shipping Service Level Agreement. For more information about Premium Shipping orders, see "Premium Shipping Options" in the Seller Central Help for your marketplace.
     """
 
-    is_prime: Optional[bool] = attrs.field()
+    is_prime: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the order is a seller-fulfilled Amazon Prime order.
     """
 
-    is_replacement_order: Optional[bool] = attrs.field()
+    is_replacement_order: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, this is a replacement order.
     """
 
-    is_sold_by_ab: Optional[bool] = attrs.field()
+    is_sold_by_ab: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller.
     """
@@ -564,38 +632,52 @@ class Order:
         Note: LastUpdateDate is returned with an incorrect date for orders that were last updated before 2009-04-01.
     """
 
-    latest_delivery_date: Optional[str] = attrs.field()
+    latest_delivery_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The end of the time period within which you have committed to fulfill the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders that do not have a PendingAvailability, Pending, or Canceled status.
     """
 
-    latest_ship_date: Optional[str] = attrs.field()
+    latest_ship_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The end of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.
         Note: LatestShipDate might not be returned for orders placed before February 1, 2013.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the marketplace where the order was placed.
     """
 
-    marketplace_tax_info: Optional["MarketplaceTaxInfo"] = attrs.field()
+    marketplace_tax_info: Optional["MarketplaceTaxInfo"] = attrs.field(
+        default=None,
+    )
     """
     Tax information about the marketplace.
     """
 
-    number_of_items_shipped: Optional[int] = attrs.field()
+    number_of_items_shipped: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of items shipped.
     """
 
-    number_of_items_unshipped: Optional[int] = attrs.field()
+    number_of_items_unshipped: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of items unshipped.
     """
 
-    order_channel: Optional[str] = attrs.field()
+    order_channel: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The order channel of the first item in the order.
     """
@@ -614,7 +696,9 @@ class Order:
     The current order status.
     """
 
-    order_total: Optional["Money"] = attrs.field()
+    order_total: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
@@ -627,27 +711,37 @@ class Order:
             Literal["BackOrder"],
             Literal["SourcingOnDemandOrder"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The type of the order.
     """
 
-    payment_execution_detail: Optional[List["PaymentExecutionDetailItem"]] = attrs.field()
+    payment_execution_detail: Optional[List["PaymentExecutionDetailItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of payment execution detail items.
     """
 
-    payment_method: Optional[Union[Literal["COD"], Literal["CVS"], Literal["Other"]]] = attrs.field()
+    payment_method: Optional[Union[Literal["COD"], Literal["CVS"], Literal["Other"]]] = attrs.field(
+        default=None,
+    )
     """
     The payment method for the order. This property is limited to Cash On Delivery (COD) and Convenience Store (CVS) payment methods. Unless you need the specific COD payment information provided by the PaymentExecutionDetailItem object, we recommend using the PaymentMethodDetails property to get payment method information.
     """
 
-    payment_method_details: Optional[List[str]] = attrs.field()
+    payment_method_details: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of payment method detail items.
     """
 
-    promise_response_due_date: Optional[str] = attrs.field()
+    promise_response_due_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates the date by which the seller must respond to the buyer with an estimated ship date. Returned only for Sourcing on Demand orders.
     """
@@ -657,38 +751,52 @@ class Order:
     The date when the order was created.
     """
 
-    replaced_order_id: Optional[str] = attrs.field()
+    replaced_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The order ID value for the order that is being replaced. Returned only if IsReplacementOrder = true.
     """
 
-    sales_channel: Optional[str] = attrs.field()
+    sales_channel: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The sales channel of the first item in the order.
     """
 
-    seller_display_name: Optional[str] = attrs.field()
+    seller_display_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller’s friendly name registered in the marketplace.
     """
 
-    seller_order_id: Optional[str] = attrs.field()
+    seller_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A seller-defined order identifier.
     """
 
-    ship_service_level: Optional[str] = attrs.field()
+    ship_service_level: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The shipment service level of the order.
     """
 
-    shipment_service_level_category: Optional[str] = attrs.field()
+    shipment_service_level_category: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The shipment service level category of the order.
         Possible values: Expedited, FreeEconomy, NextDay, SameDay, SecondDay, Scheduled, Standard.
     """
 
-    shipping_address: Optional["Address"] = attrs.field()
+    shipping_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     The shipping address for the order.
     """
@@ -705,7 +813,9 @@ class OrderAddress:
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    shipping_address: Optional["Address"] = attrs.field()
+    shipping_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     The shipping address for the order.
     """
@@ -722,27 +832,37 @@ class OrderBuyerInfo:
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    buyer_county: Optional[str] = attrs.field()
+    buyer_county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county of the buyer.
     """
 
-    buyer_email: Optional[str] = attrs.field()
+    buyer_email: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The anonymized email address of the buyer.
     """
 
-    buyer_name: Optional[str] = attrs.field()
+    buyer_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the buyer.
     """
 
-    buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field()
+    buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field(
+        default=None,
+    )
     """
     Tax information about the buyer.
     """
 
-    purchase_order_number: Optional[str] = attrs.field()
+    purchase_order_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The purchase order (PO) number entered by the buyer at checkout. Returned only for orders where the buyer entered a PO number at checkout.
     """
@@ -759,69 +879,95 @@ class OrderItem:
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    buyer_info: Optional["ItemBuyerInfo"] = attrs.field()
+    buyer_info: Optional["ItemBuyerInfo"] = attrs.field(
+        default=None,
+    )
     """
     A single item's buyer information.
     """
 
-    buyer_requested_cancel: Optional["BuyerRequestedCancel"] = attrs.field()
+    buyer_requested_cancel: Optional["BuyerRequestedCancel"] = attrs.field(
+        default=None,
+    )
     """
     Information about whether or not a buyer requested cancellation.
     """
 
-    codfee: Optional["Money"] = attrs.field()
+    codfee: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    codfee_discount: Optional["Money"] = attrs.field()
+    codfee_discount: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    condition_id: Optional[str] = attrs.field()
+    condition_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The condition of the item.
         Possible values: New, Used, Collectible, Refurbished, Preorder, Club.
     """
 
-    condition_note: Optional[str] = attrs.field()
+    condition_note: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The condition of the item as described by the seller.
     """
 
-    condition_subtype_id: Optional[str] = attrs.field()
+    condition_subtype_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The subcondition of the item.
         Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, Any, Other.
     """
 
-    deemed_reseller_category: Optional[Union[Literal["IOSS"], Literal["UOSS"]]] = attrs.field()
+    deemed_reseller_category: Optional[Union[Literal["IOSS"], Literal["UOSS"]]] = attrs.field(
+        default=None,
+    )
     """
     The category of deemed reseller. This applies to selling partners that are not based in the EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.
     """
 
-    ioss_number: Optional[str] = attrs.field()
+    ioss_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The IOSS number for the marketplace. Sellers shipping to the European Union (EU) from outside of the EU must provide this IOSS number to their carrier when Amazon has collected the VAT on the sale.
     """
 
-    is_gift: Optional[bool] = attrs.field()
+    is_gift: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the item is a gift.
     """
 
-    is_transparency: Optional[bool] = attrs.field()
+    is_transparency: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, transparency codes are required.
     """
 
-    item_price: Optional["Money"] = attrs.field()
+    item_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    item_tax: Optional["Money"] = attrs.field()
+    item_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
@@ -831,33 +977,45 @@ class OrderItem:
     An Amazon-defined order item identifier.
     """
 
-    points_granted: Optional["PointsGrantedDetail"] = attrs.field()
+    points_granted: Optional["PointsGrantedDetail"] = attrs.field(
+        default=None,
+    )
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value.
     """
 
-    price_designation: Optional[str] = attrs.field()
+    price_designation: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates that the selling price is a special price that is available only for Amazon Business orders. For more information about the Amazon Business Seller Program, see the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business).
         Possible values: BusinessPrice - A special price that is available only for Amazon Business orders.
     """
 
-    product_info: Optional["ProductInfoDetail"] = attrs.field()
+    product_info: Optional["ProductInfoDetail"] = attrs.field(
+        default=None,
+    )
     """
     Product information on the number of items.
     """
 
-    promotion_discount: Optional["Money"] = attrs.field()
+    promotion_discount: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    promotion_discount_tax: Optional["Money"] = attrs.field()
+    promotion_discount_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    promotion_ids: Optional[List[str]] = attrs.field()
+    promotion_ids: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of promotion identifiers provided by the seller when the promotions were created.
     """
@@ -867,63 +1025,87 @@ class OrderItem:
     The number of items in the order.
     """
 
-    quantity_shipped: Optional[int] = attrs.field()
+    quantity_shipped: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of items shipped.
     """
 
-    scheduled_delivery_end_date: Optional[str] = attrs.field()
+    scheduled_delivery_end_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The end date of the scheduled delivery window in the time zone of the order destination. In ISO 8601 date time format.
     """
 
-    scheduled_delivery_start_date: Optional[str] = attrs.field()
+    scheduled_delivery_start_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The start date of the scheduled delivery window in the time zone of the order destination. In ISO 8601 date time format.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller stock keeping unit (SKU) of the item.
     """
 
-    serial_number_required: Optional[bool] = attrs.field()
+    serial_number_required: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the product type for this item has a serial number.
         Returned only for Amazon Easy Ship orders.
     """
 
-    shipping_discount: Optional["Money"] = attrs.field()
+    shipping_discount: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    shipping_discount_tax: Optional["Money"] = attrs.field()
+    shipping_discount_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    shipping_price: Optional["Money"] = attrs.field()
+    shipping_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    shipping_tax: Optional["Money"] = attrs.field()
+    shipping_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    store_chain_store_id: Optional[str] = attrs.field()
+    store_chain_store_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The store chain store identifier. Linked to a specific store in a store chain.
     """
 
-    tax_collection: Optional["TaxCollection"] = attrs.field()
+    tax_collection: Optional["TaxCollection"] = attrs.field(
+        default=None,
+    )
     """
     Information about withheld taxes.
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the item.
     """
@@ -935,27 +1117,37 @@ class OrderItemBuyerInfo:
     A single order item's buyer information.
     """
 
-    buyer_customized_info: Optional["BuyerCustomizedInfoDetail"] = attrs.field()
+    buyer_customized_info: Optional["BuyerCustomizedInfoDetail"] = attrs.field(
+        default=None,
+    )
     """
     Buyer information for custom orders from the Amazon Custom program.
     """
 
-    gift_message_text: Optional[str] = attrs.field()
+    gift_message_text: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A gift message provided by the buyer.
     """
 
-    gift_wrap_level: Optional[str] = attrs.field()
+    gift_wrap_level: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The gift wrap level specified by the buyer.
     """
 
-    gift_wrap_price: Optional["Money"] = attrs.field()
+    gift_wrap_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
 
-    gift_wrap_tax: Optional["Money"] = attrs.field()
+    gift_wrap_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value of the order.
     """
@@ -977,7 +1169,9 @@ class OrderItemsBuyerInfoList:
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -1013,7 +1207,9 @@ class OrderItemsList:
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -1057,17 +1253,23 @@ class OrdersList:
     A list of orders along with additional information to make subsequent API calls.
     """
 
-    created_before: Optional[str] = attrs.field()
+    created_before: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A date used for selecting orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in ISO 8601 format.
     """
 
-    last_updated_before: Optional[str] = attrs.field()
+    last_updated_before: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A date used for selecting orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. All dates must be in ISO 8601 format.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -1173,12 +1375,16 @@ class RegulatedOrderVerificationStatus:
     The verification status of the order along with associated approval or rejection metadata.
     """
 
-    external_reviewer_id: Optional[str] = attrs.field()
+    external_reviewer_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the order's regulated information reviewer.
     """
 
-    rejection_reason: Optional["RejectionReason"] = attrs.field()
+    rejection_reason: Optional["RejectionReason"] = attrs.field(
+        default=None,
+    )
     """
     The reason for rejecting the order's regulated information. Not present if the order isn't rejected.
     """
@@ -1188,7 +1394,9 @@ class RegulatedOrderVerificationStatus:
     Whether the regulated information provided in the order requires a review by the merchant.
     """
 
-    review_date: Optional[str] = attrs.field()
+    review_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The date the order was reviewed. In ISO 8601 date time format.
     """
@@ -1289,7 +1497,9 @@ class UpdateShipmentStatusRequest:
     the unobfuscated marketplace ID
     """
 
-    order_items: Optional[List["OrderItemsItem"]] = attrs.field()
+    order_items: Optional[List["OrderItemsItem"]] = attrs.field(
+        default=None,
+    )
     """
     the list of order items and quantities when the seller wants to partially update the shipment status of the order
     """
@@ -1335,7 +1545,9 @@ class UpdateVerificationStatusRequestBody:
     The identifier for the order's regulated information reviewer.
     """
 
-    rejection_reason_id: Optional[str] = attrs.field()
+    rejection_reason_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The unique identifier for the rejection reason used for rejecting the order's regulated information. Only required if the new status is rejected.
     """
@@ -1374,7 +1586,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._get_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1382,13 +1594,13 @@ class OrdersV0Client(BaseClient):
     _get_order_params = (("orderId", "path"),)  # name, param in
 
     _get_order_responses = {
-        (200, "application/json"): GetOrderResponse,
-        (400, "application/json"): GetOrderResponse,
-        (403, "application/json"): GetOrderResponse,
-        (404, "application/json"): GetOrderResponse,
-        (429, "application/json"): GetOrderResponse,
-        (500, "application/json"): GetOrderResponse,
-        (503, "application/json"): GetOrderResponse,
+        200: GetOrderResponse,
+        400: GetOrderResponse,
+        403: GetOrderResponse,
+        404: GetOrderResponse,
+        429: GetOrderResponse,
+        500: GetOrderResponse,
+        503: GetOrderResponse,
     }
 
     def get_order_address(
@@ -1418,7 +1630,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._get_order_address_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_address_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1426,13 +1638,13 @@ class OrdersV0Client(BaseClient):
     _get_order_address_params = (("orderId", "path"),)  # name, param in
 
     _get_order_address_responses = {
-        (200, "application/json"): GetOrderAddressResponse,
-        (400, "application/json"): GetOrderAddressResponse,
-        (403, "application/json"): GetOrderAddressResponse,
-        (404, "application/json"): GetOrderAddressResponse,
-        (429, "application/json"): GetOrderAddressResponse,
-        (500, "application/json"): GetOrderAddressResponse,
-        (503, "application/json"): GetOrderAddressResponse,
+        200: GetOrderAddressResponse,
+        400: GetOrderAddressResponse,
+        403: GetOrderAddressResponse,
+        404: GetOrderAddressResponse,
+        429: GetOrderAddressResponse,
+        500: GetOrderAddressResponse,
+        503: GetOrderAddressResponse,
     }
 
     def get_order_buyer_info(
@@ -1462,7 +1674,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._get_order_buyer_info_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_buyer_info_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1470,13 +1682,13 @@ class OrdersV0Client(BaseClient):
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
 
     _get_order_buyer_info_responses = {
-        (200, "application/json"): GetOrderBuyerInfoResponse,
-        (400, "application/json"): GetOrderBuyerInfoResponse,
-        (403, "application/json"): GetOrderBuyerInfoResponse,
-        (404, "application/json"): GetOrderBuyerInfoResponse,
-        (429, "application/json"): GetOrderBuyerInfoResponse,
-        (500, "application/json"): GetOrderBuyerInfoResponse,
-        (503, "application/json"): GetOrderBuyerInfoResponse,
+        200: GetOrderBuyerInfoResponse,
+        400: GetOrderBuyerInfoResponse,
+        403: GetOrderBuyerInfoResponse,
+        404: GetOrderBuyerInfoResponse,
+        429: GetOrderBuyerInfoResponse,
+        500: GetOrderBuyerInfoResponse,
+        503: GetOrderBuyerInfoResponse,
     }
 
     def get_order_items(
@@ -1513,7 +1725,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._get_order_items_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_items_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1524,13 +1736,13 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_order_items_responses = {
-        (200, "application/json"): GetOrderItemsResponse,
-        (400, "application/json"): GetOrderItemsResponse,
-        (403, "application/json"): GetOrderItemsResponse,
-        (404, "application/json"): GetOrderItemsResponse,
-        (429, "application/json"): GetOrderItemsResponse,
-        (500, "application/json"): GetOrderItemsResponse,
-        (503, "application/json"): GetOrderItemsResponse,
+        200: GetOrderItemsResponse,
+        400: GetOrderItemsResponse,
+        403: GetOrderItemsResponse,
+        404: GetOrderItemsResponse,
+        429: GetOrderItemsResponse,
+        500: GetOrderItemsResponse,
+        503: GetOrderItemsResponse,
     }
 
     def get_order_items_buyer_info(
@@ -1565,7 +1777,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._get_order_items_buyer_info_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_items_buyer_info_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1576,13 +1788,13 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_order_items_buyer_info_responses = {
-        (200, "application/json"): GetOrderItemsBuyerInfoResponse,
-        (400, "application/json"): GetOrderItemsBuyerInfoResponse,
-        (403, "application/json"): GetOrderItemsBuyerInfoResponse,
-        (404, "application/json"): GetOrderItemsBuyerInfoResponse,
-        (429, "application/json"): GetOrderItemsBuyerInfoResponse,
-        (500, "application/json"): GetOrderItemsBuyerInfoResponse,
-        (503, "application/json"): GetOrderItemsBuyerInfoResponse,
+        200: GetOrderItemsBuyerInfoResponse,
+        400: GetOrderItemsBuyerInfoResponse,
+        403: GetOrderItemsBuyerInfoResponse,
+        404: GetOrderItemsBuyerInfoResponse,
+        429: GetOrderItemsBuyerInfoResponse,
+        500: GetOrderItemsBuyerInfoResponse,
+        503: GetOrderItemsBuyerInfoResponse,
     }
 
     def get_order_regulated_info(
@@ -1612,7 +1824,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._get_order_regulated_info_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_regulated_info_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1620,13 +1832,13 @@ class OrdersV0Client(BaseClient):
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
 
     _get_order_regulated_info_responses = {
-        (200, "application/json"): GetOrderRegulatedInfoResponse,
-        (400, "application/json"): GetOrderRegulatedInfoResponse,
-        (403, "application/json"): GetOrderRegulatedInfoResponse,
-        (404, "application/json"): GetOrderRegulatedInfoResponse,
-        (429, "application/json"): GetOrderRegulatedInfoResponse,
-        (500, "application/json"): GetOrderRegulatedInfoResponse,
-        (503, "application/json"): GetOrderRegulatedInfoResponse,
+        200: GetOrderRegulatedInfoResponse,
+        400: GetOrderRegulatedInfoResponse,
+        403: GetOrderRegulatedInfoResponse,
+        404: GetOrderRegulatedInfoResponse,
+        429: GetOrderRegulatedInfoResponse,
+        500: GetOrderRegulatedInfoResponse,
+        503: GetOrderRegulatedInfoResponse,
     }
 
     def get_orders(
@@ -1707,7 +1919,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._get_orders_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_orders_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1733,13 +1945,13 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_orders_responses = {
-        (200, "application/json"): GetOrdersResponse,
-        (400, "application/json"): GetOrdersResponse,
-        (403, "application/json"): GetOrdersResponse,
-        (404, "application/json"): GetOrdersResponse,
-        (429, "application/json"): GetOrdersResponse,
-        (500, "application/json"): GetOrdersResponse,
-        (503, "application/json"): GetOrdersResponse,
+        200: GetOrdersResponse,
+        400: GetOrdersResponse,
+        403: GetOrdersResponse,
+        404: GetOrdersResponse,
+        429: GetOrdersResponse,
+        500: GetOrdersResponse,
+        503: GetOrdersResponse,
     }
 
     def update_shipment_status(
@@ -1771,7 +1983,7 @@ class OrdersV0Client(BaseClient):
             values,
             self._update_shipment_status_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._update_shipment_status_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1784,14 +1996,14 @@ class OrdersV0Client(BaseClient):
     )
 
     _update_shipment_status_responses = {
-        (400, "application/json"): UpdateShipmentStatusErrorResponse,
-        (403, "application/json"): UpdateShipmentStatusErrorResponse,
-        (404, "application/json"): UpdateShipmentStatusErrorResponse,
-        (413, "application/json"): UpdateShipmentStatusErrorResponse,
-        (415, "application/json"): UpdateShipmentStatusErrorResponse,
-        (429, "application/json"): UpdateShipmentStatusErrorResponse,
-        (500, "application/json"): UpdateShipmentStatusErrorResponse,
-        (503, "application/json"): UpdateShipmentStatusErrorResponse,
+        400: UpdateShipmentStatusErrorResponse,
+        403: UpdateShipmentStatusErrorResponse,
+        404: UpdateShipmentStatusErrorResponse,
+        413: UpdateShipmentStatusErrorResponse,
+        415: UpdateShipmentStatusErrorResponse,
+        429: UpdateShipmentStatusErrorResponse,
+        500: UpdateShipmentStatusErrorResponse,
+        503: UpdateShipmentStatusErrorResponse,
     }
 
     def update_verification_status(
@@ -1837,12 +2049,12 @@ class OrdersV0Client(BaseClient):
     )
 
     _update_verification_status_responses = {
-        (400, "application/json"): UpdateVerificationStatusErrorResponse,
-        (403, "application/json"): UpdateVerificationStatusErrorResponse,
-        (404, "application/json"): UpdateVerificationStatusErrorResponse,
-        (413, "application/json"): UpdateVerificationStatusErrorResponse,
-        (415, "application/json"): UpdateVerificationStatusErrorResponse,
-        (429, "application/json"): UpdateVerificationStatusErrorResponse,
-        (500, "application/json"): UpdateVerificationStatusErrorResponse,
-        (503, "application/json"): UpdateVerificationStatusErrorResponse,
+        400: UpdateVerificationStatusErrorResponse,
+        403: UpdateVerificationStatusErrorResponse,
+        404: UpdateVerificationStatusErrorResponse,
+        413: UpdateVerificationStatusErrorResponse,
+        415: UpdateVerificationStatusErrorResponse,
+        429: UpdateVerificationStatusErrorResponse,
+        500: UpdateVerificationStatusErrorResponse,
+        503: UpdateVerificationStatusErrorResponse,
     }

@@ -33,7 +33,9 @@ class Error:
     An error code that identifies the type of error that occured.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -170,7 +172,7 @@ class SalesV1Client(BaseClient):
             values,
             self._get_order_metrics_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_metrics_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -188,13 +190,13 @@ class SalesV1Client(BaseClient):
     )
 
     _get_order_metrics_responses = {
-        (200, "application/json"): GetOrderMetricsResponse,
-        (400, "application/json"): GetOrderMetricsResponse,
-        (403, "application/json"): GetOrderMetricsResponse,
-        (404, "application/json"): GetOrderMetricsResponse,
-        (413, "application/json"): GetOrderMetricsResponse,
-        (415, "application/json"): GetOrderMetricsResponse,
-        (429, "application/json"): GetOrderMetricsResponse,
-        (500, "application/json"): GetOrderMetricsResponse,
-        (503, "application/json"): GetOrderMetricsResponse,
+        200: GetOrderMetricsResponse,
+        400: GetOrderMetricsResponse,
+        403: GetOrderMetricsResponse,
+        404: GetOrderMetricsResponse,
+        413: GetOrderMetricsResponse,
+        415: GetOrderMetricsResponse,
+        429: GetOrderMetricsResponse,
+        500: GetOrderMetricsResponse,
+        503: GetOrderMetricsResponse,
     }

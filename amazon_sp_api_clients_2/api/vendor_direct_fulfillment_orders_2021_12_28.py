@@ -41,22 +41,30 @@ class Address:
     First line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    attention: Optional[str] = attrs.field()
+    attention: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The attention name of the person at that address.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city where the person, business or institution is located.
     """
@@ -66,12 +74,16 @@ class Address:
     The two digit country code. In ISO 3166-1 alpha-2 format.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county where person, business or institution is located.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district where person, business or institution is located.
     """
@@ -81,12 +93,16 @@ class Address:
     The name of the person, business or institution at that address.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     """
@@ -117,7 +133,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -191,7 +209,9 @@ class Money:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Order:
 
-    order_details: Optional["OrderDetails"] = attrs.field()
+    order_details: Optional["OrderDetails"] = attrs.field(
+        default=None,
+    )
     """
     Details of an order.
     """
@@ -269,7 +289,9 @@ class OrderDetails:
 
     order_status: Optional[
         Union[Literal["NEW"], Literal["SHIPPED"], Literal["ACCEPTED"], Literal["CANCELLED"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Current status of the order.
     """
@@ -288,7 +310,9 @@ class OrderDetails:
     Shipment details required for the shipment.
     """
 
-    tax_total: Optional["TaxItemDetails"] = attrs.field()
+    tax_total: Optional["TaxItemDetails"] = attrs.field(
+        default=None,
+    )
     """
     Total tax details for the line item.
     """
@@ -297,12 +321,16 @@ class OrderDetails:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItem:
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's standard identification number (ASIN) of an item.
     """
 
-    gift_details: Optional["GiftDetails"] = attrs.field()
+    gift_details: Optional["GiftDetails"] = attrs.field(
+        default=None,
+    )
     """
     Gift details for the item.
     """
@@ -322,27 +350,37 @@ class OrderItem:
     Details of quantity ordered.
     """
 
-    scheduled_delivery_shipment: Optional["ScheduledDeliveryShipment"] = attrs.field()
+    scheduled_delivery_shipment: Optional["ScheduledDeliveryShipment"] = attrs.field(
+        default=None,
+    )
     """
     Dates for the scheduled delivery shipments.
     """
 
-    tax_details: Optional["TaxItemDetails"] = attrs.field()
+    tax_details: Optional["TaxItemDetails"] = attrs.field(
+        default=None,
+    )
     """
     Total tax details for the line item.
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Title for the item.
     """
 
-    total_price: Optional["Money"] = attrs.field()
+    total_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item.
     """
@@ -356,7 +394,9 @@ class OrderItemAcknowledgement:
     Details of quantity ordered.
     """
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's standard identification number (ASIN) of an item.
     """
@@ -366,7 +406,9 @@ class OrderItemAcknowledgement:
     Line item sequence number for the item.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Should be the same as was provided in the purchase order.
     """
@@ -392,7 +434,9 @@ class Pagination:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    address: Optional["Address"] = attrs.field()
+    address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
@@ -402,7 +446,9 @@ class PartyIdentification:
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
-    tax_info: Optional["TaxRegistrationDetails"] = attrs.field()
+    tax_info: Optional["TaxRegistrationDetails"] = attrs.field(
+        default=None,
+    )
     """
     Tax registration details of the entity.
     """
@@ -442,7 +488,9 @@ class ShipmentDates:
     Shipment dates.
     """
 
-    promised_delivery_date: Optional[datetime] = attrs.field()
+    promised_delivery_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Delivery date promised to the Amazon customer.
 
@@ -465,7 +513,9 @@ class ShipmentDetails:
     Shipment details required for the shipment.
     """
 
-    is_gift: Optional[bool] = attrs.field()
+    is_gift: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the order contain a gift. Include the gift message and gift wrap information.
     """
@@ -480,7 +530,9 @@ class ShipmentDetails:
     When true, a packing slip is required to be sent to the customer.
     """
 
-    is_scheduled_delivery_shipment: Optional[bool] = attrs.field()
+    is_scheduled_delivery_shipment: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, this order is part of a scheduled delivery program.
     """
@@ -535,12 +587,16 @@ class TaxDetails:
     An amount of money, including units in the form of currency.
     """
 
-    tax_rate: Optional["Decimal"] = attrs.field()
+    tax_rate: Optional["Decimal"] = attrs.field(
+        default=None,
+    )
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
     """
 
-    taxable_amount: Optional["Money"] = attrs.field()
+    taxable_amount: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -555,7 +611,9 @@ class TaxDetails:
             Literal["TVA"],
             Literal["VAT"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Tax type.
     """
@@ -579,12 +637,16 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
-    tax_registration_address: Optional["Address"] = attrs.field()
+    tax_registration_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
 
-    tax_registration_messages: Optional[str] = attrs.field()
+    tax_registration_messages: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Tax registration message that can be used for additional tax related details.
     """
@@ -594,7 +656,9 @@ class TaxRegistrationDetails:
     Tax registration number for the party. For example, VAT ID.
     """
 
-    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field()
+    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration type for the entity.
     """
@@ -636,7 +700,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             values,
             self._get_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -644,15 +708,15 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_order_responses = {
-        (200, "application/json"): Order,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: Order,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_orders(
@@ -704,7 +768,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             values,
             self._get_orders_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_orders_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -721,14 +785,14 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     )
 
     _get_orders_responses = {
-        (200, "application/json"): OrderList,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: OrderList,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def submit_acknowledgement(
@@ -757,7 +821,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             values,
             self._submit_acknowledgement_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_acknowledgement_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -765,13 +829,13 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     _submit_acknowledgement_params = (("orderAcknowledgements", "body"),)  # name, param in
 
     _submit_acknowledgement_responses = {
-        (202, "application/json"): TransactionId,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        202: TransactionId,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

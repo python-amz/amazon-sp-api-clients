@@ -94,22 +94,30 @@ class AffordabilityExpenseEvent:
     An expense related to an affordability promotion.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined identifier for an order.
     """
 
-    base_expense: Optional["Currency"] = attrs.field()
+    base_expense: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An encrypted, Amazon-defined marketplace identifier.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
     tax_type_cgst: "Currency" = attrs.field()
     """
@@ -126,12 +134,16 @@ class AffordabilityExpenseEvent:
     A currency type and amount.
     """
 
-    total_expense: Optional["Currency"] = attrs.field()
+    total_expense: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    transaction_type: Optional[str] = attrs.field()
+    transaction_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates the type of transaction.
         Possible values:
@@ -408,7 +420,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -1766,7 +1780,7 @@ class FinancesV0Client(BaseClient):
             values,
             self._list_financial_event_groups_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_financial_event_groups_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1779,13 +1793,13 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_event_groups_responses = {
-        (200, "application/json"): ListFinancialEventGroupsResponse,
-        (400, "application/json"): ListFinancialEventGroupsResponse,
-        (403, "application/json"): ListFinancialEventGroupsResponse,
-        (404, "application/json"): ListFinancialEventGroupsResponse,
-        (429, "application/json"): ListFinancialEventGroupsResponse,
-        (500, "application/json"): ListFinancialEventGroupsResponse,
-        (503, "application/json"): ListFinancialEventGroupsResponse,
+        200: ListFinancialEventGroupsResponse,
+        400: ListFinancialEventGroupsResponse,
+        403: ListFinancialEventGroupsResponse,
+        404: ListFinancialEventGroupsResponse,
+        429: ListFinancialEventGroupsResponse,
+        500: ListFinancialEventGroupsResponse,
+        503: ListFinancialEventGroupsResponse,
     }
 
     def list_financial_events(
@@ -1825,7 +1839,7 @@ class FinancesV0Client(BaseClient):
             values,
             self._list_financial_events_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_financial_events_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1838,13 +1852,13 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_events_responses = {
-        (200, "application/json"): ListFinancialEventsResponse,
-        (400, "application/json"): ListFinancialEventsResponse,
-        (403, "application/json"): ListFinancialEventsResponse,
-        (404, "application/json"): ListFinancialEventsResponse,
-        (429, "application/json"): ListFinancialEventsResponse,
-        (500, "application/json"): ListFinancialEventsResponse,
-        (503, "application/json"): ListFinancialEventsResponse,
+        200: ListFinancialEventsResponse,
+        400: ListFinancialEventsResponse,
+        403: ListFinancialEventsResponse,
+        404: ListFinancialEventsResponse,
+        429: ListFinancialEventsResponse,
+        500: ListFinancialEventsResponse,
+        503: ListFinancialEventsResponse,
     }
 
     def list_financial_events_by_group_id(
@@ -1881,7 +1895,7 @@ class FinancesV0Client(BaseClient):
             values,
             self._list_financial_events_by_group_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_financial_events_by_group_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1893,13 +1907,13 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_events_by_group_id_responses = {
-        (200, "application/json"): ListFinancialEventsResponse,
-        (400, "application/json"): ListFinancialEventsResponse,
-        (403, "application/json"): ListFinancialEventsResponse,
-        (404, "application/json"): ListFinancialEventsResponse,
-        (429, "application/json"): ListFinancialEventsResponse,
-        (500, "application/json"): ListFinancialEventsResponse,
-        (503, "application/json"): ListFinancialEventsResponse,
+        200: ListFinancialEventsResponse,
+        400: ListFinancialEventsResponse,
+        403: ListFinancialEventsResponse,
+        404: ListFinancialEventsResponse,
+        429: ListFinancialEventsResponse,
+        500: ListFinancialEventsResponse,
+        503: ListFinancialEventsResponse,
     }
 
     def list_financial_events_by_order_id(
@@ -1936,7 +1950,7 @@ class FinancesV0Client(BaseClient):
             values,
             self._list_financial_events_by_order_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_financial_events_by_order_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1948,11 +1962,11 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_events_by_order_id_responses = {
-        (200, "application/json"): ListFinancialEventsResponse,
-        (400, "application/json"): ListFinancialEventsResponse,
-        (403, "application/json"): ListFinancialEventsResponse,
-        (404, "application/json"): ListFinancialEventsResponse,
-        (429, "application/json"): ListFinancialEventsResponse,
-        (500, "application/json"): ListFinancialEventsResponse,
-        (503, "application/json"): ListFinancialEventsResponse,
+        200: ListFinancialEventsResponse,
+        400: ListFinancialEventsResponse,
+        403: ListFinancialEventsResponse,
+        404: ListFinancialEventsResponse,
+        429: ListFinancialEventsResponse,
+        500: ListFinancialEventsResponse,
+        503: ListFinancialEventsResponse,
     }

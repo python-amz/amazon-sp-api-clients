@@ -24,7 +24,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -62,17 +64,23 @@ class ItemDetails:
     Details of item quantity.
     """
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The buyer selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
     """
 
-    is_obsolete: Optional[bool] = attrs.field()
+    is_obsolete: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the item is permanently unavailable.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
     """
@@ -84,7 +92,9 @@ class ItemQuantity:
     Details of item quantity.
     """
 
-    amount: Optional[int] = attrs.field()
+    amount: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Quantity of units available for a specific item.
     """
@@ -169,7 +179,7 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
             values,
             self._submit_inventory_update_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_inventory_update_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -180,13 +190,13 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     )
 
     _submit_inventory_update_responses = {
-        (202, "application/json"): SubmitInventoryUpdateResponse,
-        (400, "application/json"): SubmitInventoryUpdateResponse,
-        (403, "application/json"): SubmitInventoryUpdateResponse,
-        (404, "application/json"): SubmitInventoryUpdateResponse,
-        (413, "application/json"): SubmitInventoryUpdateResponse,
-        (415, "application/json"): SubmitInventoryUpdateResponse,
-        (429, "application/json"): SubmitInventoryUpdateResponse,
-        (500, "application/json"): SubmitInventoryUpdateResponse,
-        (503, "application/json"): SubmitInventoryUpdateResponse,
+        202: SubmitInventoryUpdateResponse,
+        400: SubmitInventoryUpdateResponse,
+        403: SubmitInventoryUpdateResponse,
+        404: SubmitInventoryUpdateResponse,
+        413: SubmitInventoryUpdateResponse,
+        415: SubmitInventoryUpdateResponse,
+        429: SubmitInventoryUpdateResponse,
+        500: SubmitInventoryUpdateResponse,
+        503: SubmitInventoryUpdateResponse,
     }

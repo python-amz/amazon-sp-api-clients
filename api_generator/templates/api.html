@@ -22,7 +22,11 @@ class {{ schema.name }}:
     {% endif %}
 
     {% for property in schema.all_properties %}
-    {{ property.variable_name }}: {% if property.name in schema.required %}{{ property.type_hint }}{% else %}Optional[{{ property.type_hint }}]{% endif %} = attrs.field()
+    {{ property.variable_name }}: {% if property.name in schema.required %}{{ property.type_hint }}{% else %}Optional[{{ property.type_hint }}]{% endif %} = attrs.field(
+        {% if property.name not in schema.required %}
+            default={{ property.default }},
+        {% endif %}
+        )
     {% if property.parsed_description or property.fields %}"""{% if property.parsed_description %}
     {{ property.parsed_description }}{% endif %}{% if property.fields %}
 
@@ -63,7 +67,7 @@ Args:
         response = self._parse_args_and_request(url, '{{ operation.method | upper }}', values,
         self._{{ operation.method_name }}_params,
     )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._{{ operation.method_name }}_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -74,7 +78,7 @@ Args:
 
     _{{ operation.method_name }}_responses = {
     {% for response in operation.parsed_responses %}
-        ({{ response.status_code }}, '{{ response.media_type }}'): {{ response.type_hint }},
+        {{ response.status_code }}: {{ response.type_hint }},
     {% endfor %}
     }
 

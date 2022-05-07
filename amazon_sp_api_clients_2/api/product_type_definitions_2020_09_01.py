@@ -26,7 +26,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -79,7 +81,9 @@ class ProductTypeDefinition:
     Amazon marketplace identifiers for which the product type definition is applicable.
     """
 
-    meta_schema: Optional["SchemaLink"] = attrs.field()
+    meta_schema: Optional["SchemaLink"] = attrs.field(
+        default=None,
+    )
 
     product_type: str = attrs.field()
     """
@@ -140,7 +144,9 @@ class ProductTypeVersion:
     When true, the version indicated by the version identifier is the latest available for the Amazon product type.
     """
 
-    release_candidate: Optional[bool] = attrs.field()
+    release_candidate: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
     """
@@ -292,7 +298,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             values,
             self._get_definitions_product_type_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_definitions_product_type_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -308,15 +314,15 @@ class ProductTypeDefinitions20200901Client(BaseClient):
     )
 
     _get_definitions_product_type_responses = {
-        (200, "application/json"): ProductTypeDefinition,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ProductTypeDefinition,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def search_definitions_product_types(
@@ -351,7 +357,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             values,
             self._search_definitions_product_types_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._search_definitions_product_types_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -362,13 +368,13 @@ class ProductTypeDefinitions20200901Client(BaseClient):
     )
 
     _search_definitions_product_types_responses = {
-        (200, "application/json"): ProductTypeList,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ProductTypeList,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

@@ -107,12 +107,16 @@ class Address:
     The street address information.
     """
 
-    address_line2: Optional["AddressLine2"] = attrs.field()
+    address_line2: Optional["AddressLine2"] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information.
     """
 
-    address_line3: Optional["AddressLine3"] = attrs.field()
+    address_line3: Optional["AddressLine3"] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information.
     """
@@ -127,7 +131,9 @@ class Address:
     The country code. A two-character country code, in ISO 3166-1 alpha-2 format.
     """
 
-    district_or_county: Optional["DistrictOrCounty"] = attrs.field()
+    district_or_county: Optional["DistrictOrCounty"] = attrs.field(
+        default=None,
+    )
     """
     The district or county.
     """
@@ -152,7 +158,9 @@ class Address:
     The zip code or postal code.
     """
 
-    state_or_province_code: Optional["StateOrProvinceCode"] = attrs.field()
+    state_or_province_code: Optional["StateOrProvinceCode"] = attrs.field(
+        default=None,
+    )
     """
     The state or province code. **Note.** Required in the Canada, US, and UK marketplaces. Also required for shipments originating from China.
     """
@@ -295,7 +303,9 @@ class Constraint:
     A validation constraint.
     """
 
-    validation_reg_ex: Optional[str] = attrs.field()
+    validation_reg_ex: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A regular expression.
     """
@@ -321,17 +331,23 @@ class CreateShipmentRequest:
     Request schema.
     """
 
-    hazmat_type: Optional["HazmatType"] = attrs.field()
+    hazmat_type: Optional["HazmatType"] = attrs.field(
+        default=None,
+    )
     """
     Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information on hazardous materials.
     """
 
-    label_format_option: Optional["LabelFormatOptionRequest"] = attrs.field()
+    label_format_option: Optional["LabelFormatOptionRequest"] = attrs.field(
+        default=None,
+    )
     """
     Whether to include a packing slip.
     """
 
-    shipment_level_seller_inputs_list: Optional[List["AdditionalSellerInputs"]] = attrs.field()
+    shipment_level_seller_inputs_list: Optional[List["AdditionalSellerInputs"]] = attrs.field(
+        default=None,
+    )
     """
     A list of additional seller input pairs required to purchase shipping.
     """
@@ -346,7 +362,9 @@ class CreateShipmentRequest:
     An Amazon-defined shipping service identifier.
     """
 
-    shipping_service_offer_id: Optional[str] = attrs.field()
+    shipping_service_offer_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Identifies a shipping service order made by a carrier.
     """
@@ -449,7 +467,9 @@ class Error:
     An error code that identifies the type of error that occured.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -558,7 +578,9 @@ class GetEligibleShipmentServicesRequest:
     Shipment information required for requesting shipping service offers or for creating a shipment.
     """
 
-    shipping_offering_filter: Optional["ShippingOfferingFilter"] = attrs.field()
+    shipping_offering_filter: Optional["ShippingOfferingFilter"] = attrs.field(
+        default=None,
+    )
     """
     Filter for use when requesting eligible shipping services.
     """
@@ -587,7 +609,9 @@ class GetEligibleShipmentServicesResult:
     The payload for the getEligibleShipmentServices operation.
     """
 
-    rejected_shipping_service_list: Optional[List["RejectedShippingService"]] = attrs.field()
+    rejected_shipping_service_list: Optional[List["RejectedShippingService"]] = attrs.field(
+        default=None,
+    )
     """
     List of services that were for some reason unavailable for this request
     """
@@ -597,14 +621,18 @@ class GetEligibleShipmentServicesResult:
     A list of shipping services offers.
     """
 
-    temporarily_unavailable_carrier_list: Optional[List["TemporarilyUnavailableCarrier"]] = attrs.field()
+    temporarily_unavailable_carrier_list: Optional[List["TemporarilyUnavailableCarrier"]] = attrs.field(
+        default=None,
+    )
     """
     A list of temporarily unavailable carriers.
     """
 
     terms_and_conditions_not_accepted_carrier_list: Optional[
         List["TermsAndConditionsNotAcceptedCarrier"]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     List of carriers whose terms and conditions were not accepted by the seller.
     """
@@ -651,17 +679,23 @@ class Item:
     An Amazon order item identifier and a quantity.
     """
 
-    item_description: Optional["ItemDescription"] = attrs.field()
+    item_description: Optional["ItemDescription"] = attrs.field(
+        default=None,
+    )
     """
     The description of the item.
     """
 
-    item_level_seller_inputs_list: Optional[List["AdditionalSellerInputs"]] = attrs.field()
+    item_level_seller_inputs_list: Optional[List["AdditionalSellerInputs"]] = attrs.field(
+        default=None,
+    )
     """
     A list of additional seller input pairs required to purchase shipping.
     """
 
-    item_weight: Optional["Weight"] = attrs.field()
+    item_weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -676,7 +710,9 @@ class Item:
     The number of items.
     """
 
-    transparency_code_list: Optional[List["TransparencyCode"]] = attrs.field()
+    transparency_code_list: Optional[List["TransparencyCode"]] = attrs.field(
+        default=None,
+    )
     """
     A list of transparency codes.
     """
@@ -720,7 +756,9 @@ class Label:
     Data for creating a shipping label and dimensions for printing the label.
     """
 
-    custom_text_for_label: Optional["CustomTextForLabel"] = attrs.field()
+    custom_text_for_label: Optional["CustomTextForLabel"] = attrs.field(
+        default=None,
+    )
     """
     Custom text to print on the label.
         Note: Custom text is only included on labels that are in ZPL format (ZPL203). FedEx does not support CustomTextForLabel.
@@ -736,12 +774,16 @@ class Label:
     The document data and checksum.
     """
 
-    label_format: Optional["LabelFormat"] = attrs.field()
+    label_format: Optional["LabelFormat"] = attrs.field(
+        default=None,
+    )
     """
     The label format.
     """
 
-    standard_id_for_label: Optional["StandardIdForLabel"] = attrs.field()
+    standard_id_for_label: Optional["StandardIdForLabel"] = attrs.field(
+        default=None,
+    )
     """
     The type of standard identifier to print on the label.
     """
@@ -934,7 +976,9 @@ class RejectedShippingService:
     A reason code meant to be consumed programatically. e.g. CARRIER_CANNOT_SHIP_TO_POBOX
     """
 
-    rejection_reason_message: Optional[str] = attrs.field()
+    rejection_reason_message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A localized human readable description of the rejected reason.
     """
@@ -971,7 +1015,9 @@ class SellerInputDefinition:
     The display text for the additional input field.
     """
 
-    input_target: Optional["InputTargetType"] = attrs.field()
+    input_target: Optional["InputTargetType"] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the additional seller input is at the item or shipment level.
     """
@@ -981,7 +1027,9 @@ class SellerInputDefinition:
     When true, the additional input field is required.
     """
 
-    restricted_set_values: Optional[List[str]] = attrs.field()
+    restricted_set_values: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The set of fixed values in an additional seller input.
     """
@@ -1029,14 +1077,18 @@ class Shipment:
     Data for creating a shipping label and dimensions for printing the label.
     """
 
-    last_updated_date: Optional["Timestamp"] = attrs.field()
+    last_updated_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     package_dimensions: "PackageDimensions" = attrs.field()
     """
     The dimensions of a package contained in a shipment.
     """
 
-    seller_order_id: Optional["SellerOrderId"] = attrs.field()
+    seller_order_id: Optional["SellerOrderId"] = attrs.field(
+        default=None,
+    )
     """
     A seller-defined order identifier.
     """
@@ -1066,7 +1118,9 @@ class Shipment:
     The shipment status.
     """
 
-    tracking_id: Optional["TrackingId"] = attrs.field()
+    tracking_id: Optional["TrackingId"] = attrs.field(
+        default=None,
+    )
     """
     The shipment tracking identifier provided by the carrier.
     """
@@ -1102,24 +1156,32 @@ class ShipmentRequestDetails:
     The list of items to be included in a shipment.
     """
 
-    label_customization: Optional["LabelCustomization"] = attrs.field()
+    label_customization: Optional["LabelCustomization"] = attrs.field(
+        default=None,
+    )
     """
     Custom text for shipping labels.
     """
 
-    must_arrive_by_date: Optional["Timestamp"] = attrs.field()
+    must_arrive_by_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     package_dimensions: "PackageDimensions" = attrs.field()
     """
     The dimensions of a package contained in a shipment.
     """
 
-    seller_order_id: Optional["SellerOrderId"] = attrs.field()
+    seller_order_id: Optional["SellerOrderId"] = attrs.field(
+        default=None,
+    )
     """
     A seller-defined order identifier.
     """
 
-    ship_date: Optional["Timestamp"] = attrs.field()
+    ship_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     ship_from_address: "Address" = attrs.field()
     """
@@ -1179,17 +1241,23 @@ class ShippingService:
     A shipping service offer made by a carrier.
     """
 
-    available_format_options_for_label: Optional[List["LabelFormatOption"]] = attrs.field()
+    available_format_options_for_label: Optional[List["LabelFormatOption"]] = attrs.field(
+        default=None,
+    )
     """
     The available label formats.
     """
 
-    available_label_formats: Optional[List["LabelFormat"]] = attrs.field()
+    available_label_formats: Optional[List["LabelFormat"]] = attrs.field(
+        default=None,
+    )
     """
     List of label formats.
     """
 
-    available_shipping_service_options: Optional["AvailableShippingServiceOptions"] = attrs.field()
+    available_shipping_service_options: Optional["AvailableShippingServiceOptions"] = attrs.field(
+        default=None,
+    )
     """
     The available shipping service options.
     """
@@ -1199,9 +1267,13 @@ class ShippingService:
     The name of the carrier.
     """
 
-    earliest_estimated_delivery_date: Optional["Timestamp"] = attrs.field()
+    earliest_estimated_delivery_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    latest_estimated_delivery_date: Optional["Timestamp"] = attrs.field()
+    latest_estimated_delivery_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     rate: "CurrencyAmount" = attrs.field()
     """
@@ -1257,12 +1329,16 @@ class ShippingServiceOptions:
         Note: Scheduled carrier pickup is available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
     """
 
-    carrier_will_pick_up_option: Optional["CarrierWillPickUpOption"] = attrs.field()
+    carrier_will_pick_up_option: Optional["CarrierWillPickUpOption"] = attrs.field(
+        default=None,
+    )
     """
     Carrier will pick up option.
     """
 
-    declared_value: Optional["CurrencyAmount"] = attrs.field()
+    declared_value: Optional["CurrencyAmount"] = attrs.field(
+        default=None,
+    )
     """
     Currency type and amount.
     """
@@ -1272,7 +1348,9 @@ class ShippingServiceOptions:
     The delivery confirmation level.
     """
 
-    label_format: Optional["LabelFormat"] = attrs.field()
+    label_format: Optional["LabelFormat"] = attrs.field(
+        default=None,
+    )
     """
     The label format.
     """
@@ -1415,7 +1493,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._cancel_shipment_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1423,14 +1501,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _cancel_shipment_responses = {
-        (200, "application/json"): CancelShipmentResponse,
-        (400, "application/json"): CancelShipmentResponse,
-        (401, "application/json"): CancelShipmentResponse,
-        (403, "application/json"): CancelShipmentResponse,
-        (404, "application/json"): CancelShipmentResponse,
-        (429, "application/json"): CancelShipmentResponse,
-        (500, "application/json"): CancelShipmentResponse,
-        (503, "application/json"): CancelShipmentResponse,
+        200: CancelShipmentResponse,
+        400: CancelShipmentResponse,
+        401: CancelShipmentResponse,
+        403: CancelShipmentResponse,
+        404: CancelShipmentResponse,
+        429: CancelShipmentResponse,
+        500: CancelShipmentResponse,
+        503: CancelShipmentResponse,
     }
 
     def cancel_shipment_old(
@@ -1459,7 +1537,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._cancel_shipment_old_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_shipment_old_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1467,14 +1545,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     _cancel_shipment_old_params = (("shipmentId", "path"),)  # name, param in
 
     _cancel_shipment_old_responses = {
-        (200, "application/json"): CancelShipmentResponse,
-        (400, "application/json"): CancelShipmentResponse,
-        (401, "application/json"): CancelShipmentResponse,
-        (403, "application/json"): CancelShipmentResponse,
-        (404, "application/json"): CancelShipmentResponse,
-        (429, "application/json"): CancelShipmentResponse,
-        (500, "application/json"): CancelShipmentResponse,
-        (503, "application/json"): CancelShipmentResponse,
+        200: CancelShipmentResponse,
+        400: CancelShipmentResponse,
+        401: CancelShipmentResponse,
+        403: CancelShipmentResponse,
+        404: CancelShipmentResponse,
+        429: CancelShipmentResponse,
+        500: CancelShipmentResponse,
+        503: CancelShipmentResponse,
     }
 
     def create_shipment(
@@ -1520,7 +1598,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._create_shipment_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1535,14 +1613,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _create_shipment_responses = {
-        (200, "application/json"): CreateShipmentResponse,
-        (400, "application/json"): CreateShipmentResponse,
-        (401, "application/json"): CreateShipmentResponse,
-        (403, "application/json"): CreateShipmentResponse,
-        (404, "application/json"): CreateShipmentResponse,
-        (429, "application/json"): CreateShipmentResponse,
-        (500, "application/json"): CreateShipmentResponse,
-        (503, "application/json"): CreateShipmentResponse,
+        200: CreateShipmentResponse,
+        400: CreateShipmentResponse,
+        401: CreateShipmentResponse,
+        403: CreateShipmentResponse,
+        404: CreateShipmentResponse,
+        429: CreateShipmentResponse,
+        500: CreateShipmentResponse,
+        503: CreateShipmentResponse,
     }
 
     def get_additional_seller_inputs(
@@ -1579,7 +1657,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._get_additional_seller_inputs_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_additional_seller_inputs_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1591,14 +1669,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_additional_seller_inputs_responses = {
-        (200, "application/json"): GetAdditionalSellerInputsResponse,
-        (400, "application/json"): GetAdditionalSellerInputsResponse,
-        (401, "application/json"): GetAdditionalSellerInputsResponse,
-        (403, "application/json"): GetAdditionalSellerInputsResponse,
-        (404, "application/json"): GetAdditionalSellerInputsResponse,
-        (429, "application/json"): GetAdditionalSellerInputsResponse,
-        (500, "application/json"): GetAdditionalSellerInputsResponse,
-        (503, "application/json"): GetAdditionalSellerInputsResponse,
+        200: GetAdditionalSellerInputsResponse,
+        400: GetAdditionalSellerInputsResponse,
+        401: GetAdditionalSellerInputsResponse,
+        403: GetAdditionalSellerInputsResponse,
+        404: GetAdditionalSellerInputsResponse,
+        429: GetAdditionalSellerInputsResponse,
+        500: GetAdditionalSellerInputsResponse,
+        503: GetAdditionalSellerInputsResponse,
     }
 
     def get_additional_seller_inputs_old(
@@ -1635,7 +1713,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._get_additional_seller_inputs_old_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_additional_seller_inputs_old_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1647,14 +1725,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_additional_seller_inputs_old_responses = {
-        (200, "application/json"): GetAdditionalSellerInputsResponse,
-        (400, "application/json"): GetAdditionalSellerInputsResponse,
-        (401, "application/json"): GetAdditionalSellerInputsResponse,
-        (403, "application/json"): GetAdditionalSellerInputsResponse,
-        (404, "application/json"): GetAdditionalSellerInputsResponse,
-        (429, "application/json"): GetAdditionalSellerInputsResponse,
-        (500, "application/json"): GetAdditionalSellerInputsResponse,
-        (503, "application/json"): GetAdditionalSellerInputsResponse,
+        200: GetAdditionalSellerInputsResponse,
+        400: GetAdditionalSellerInputsResponse,
+        401: GetAdditionalSellerInputsResponse,
+        403: GetAdditionalSellerInputsResponse,
+        404: GetAdditionalSellerInputsResponse,
+        429: GetAdditionalSellerInputsResponse,
+        500: GetAdditionalSellerInputsResponse,
+        503: GetAdditionalSellerInputsResponse,
     }
 
     def get_eligible_shipment_services(
@@ -1688,7 +1766,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._get_eligible_shipment_services_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_eligible_shipment_services_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1699,14 +1777,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_eligible_shipment_services_responses = {
-        (200, "application/json"): GetEligibleShipmentServicesResponse,
-        (400, "application/json"): GetEligibleShipmentServicesResponse,
-        (401, "application/json"): GetEligibleShipmentServicesResponse,
-        (403, "application/json"): GetEligibleShipmentServicesResponse,
-        (404, "application/json"): GetEligibleShipmentServicesResponse,
-        (429, "application/json"): GetEligibleShipmentServicesResponse,
-        (500, "application/json"): GetEligibleShipmentServicesResponse,
-        (503, "application/json"): GetEligibleShipmentServicesResponse,
+        200: GetEligibleShipmentServicesResponse,
+        400: GetEligibleShipmentServicesResponse,
+        401: GetEligibleShipmentServicesResponse,
+        403: GetEligibleShipmentServicesResponse,
+        404: GetEligibleShipmentServicesResponse,
+        429: GetEligibleShipmentServicesResponse,
+        500: GetEligibleShipmentServicesResponse,
+        503: GetEligibleShipmentServicesResponse,
     }
 
     def get_eligible_shipment_services_old(
@@ -1740,7 +1818,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._get_eligible_shipment_services_old_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_eligible_shipment_services_old_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1751,14 +1829,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_eligible_shipment_services_old_responses = {
-        (200, "application/json"): GetEligibleShipmentServicesResponse,
-        (400, "application/json"): GetEligibleShipmentServicesResponse,
-        (401, "application/json"): GetEligibleShipmentServicesResponse,
-        (403, "application/json"): GetEligibleShipmentServicesResponse,
-        (404, "application/json"): GetEligibleShipmentServicesResponse,
-        (429, "application/json"): GetEligibleShipmentServicesResponse,
-        (500, "application/json"): GetEligibleShipmentServicesResponse,
-        (503, "application/json"): GetEligibleShipmentServicesResponse,
+        200: GetEligibleShipmentServicesResponse,
+        400: GetEligibleShipmentServicesResponse,
+        401: GetEligibleShipmentServicesResponse,
+        403: GetEligibleShipmentServicesResponse,
+        404: GetEligibleShipmentServicesResponse,
+        429: GetEligibleShipmentServicesResponse,
+        500: GetEligibleShipmentServicesResponse,
+        503: GetEligibleShipmentServicesResponse,
     }
 
     def get_shipment(
@@ -1787,7 +1865,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             values,
             self._get_shipment_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1795,12 +1873,12 @@ class MerchantFulfillmentV0Client(BaseClient):
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _get_shipment_responses = {
-        (200, "application/json"): GetShipmentResponse,
-        (400, "application/json"): GetShipmentResponse,
-        (401, "application/json"): GetShipmentResponse,
-        (403, "application/json"): GetShipmentResponse,
-        (404, "application/json"): GetShipmentResponse,
-        (429, "application/json"): GetShipmentResponse,
-        (500, "application/json"): GetShipmentResponse,
-        (503, "application/json"): GetShipmentResponse,
+        200: GetShipmentResponse,
+        400: GetShipmentResponse,
+        401: GetShipmentResponse,
+        403: GetShipmentResponse,
+        404: GetShipmentResponse,
+        429: GetShipmentResponse,
+        500: GetShipmentResponse,
+        503: GetShipmentResponse,
     }

@@ -60,7 +60,9 @@ class CreateFeedSpecification:
     Information required to create the feed.
     """
 
-    feed_options: Optional["FeedOptions"] = attrs.field()
+    feed_options: Optional["FeedOptions"] = attrs.field(
+        default=None,
+    )
     """
     Additional options to control the feed. These vary by feed type.
     """
@@ -95,7 +97,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -139,12 +143,16 @@ class Feed:
     The feed type.
     """
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of identifiers for the marketplaces that the feed is applied to.
     """
 
-    processing_end_time: Optional[datetime] = attrs.field()
+    processing_end_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when feed processing completed, in ISO 8601 date time format.
 
@@ -152,7 +160,9 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    processing_start_time: Optional[datetime] = attrs.field()
+    processing_start_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when feed processing started, in ISO 8601 date time format.
 
@@ -167,7 +177,9 @@ class Feed:
     The processing status of the feed.
     """
 
-    result_feed_document_id: Optional[str] = attrs.field()
+    result_feed_document_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
@@ -179,7 +191,9 @@ class FeedDocument:
     Information required for the feed document.
     """
 
-    compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field()
+    compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field(
+        default=None,
+    )
     """
     If present, the feed document contents are compressed using the indicated algorithm.
     """
@@ -215,7 +229,9 @@ class GetFeedsResponse:
     A list of feeds.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
     """
@@ -248,7 +264,7 @@ class Feeds20210630Client(BaseClient):
             values,
             self._cancel_feed_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_feed_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -256,14 +272,14 @@ class Feeds20210630Client(BaseClient):
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
     _cancel_feed_responses = {
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def create_feed(
@@ -303,7 +319,7 @@ class Feeds20210630Client(BaseClient):
             values,
             self._create_feed_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_feed_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -316,15 +332,15 @@ class Feeds20210630Client(BaseClient):
     )
 
     _create_feed_responses = {
-        (202, "application/json"): CreateFeedResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        202: CreateFeedResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def create_feed_document(
@@ -353,7 +369,7 @@ class Feeds20210630Client(BaseClient):
             values,
             self._create_feed_document_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_feed_document_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -361,15 +377,15 @@ class Feeds20210630Client(BaseClient):
     _create_feed_document_params = (("contentType", "body"),)  # name, param in
 
     _create_feed_document_responses = {
-        (201, "application/json"): CreateFeedDocumentResponse,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        201: CreateFeedDocumentResponse,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_feed(
@@ -398,7 +414,7 @@ class Feeds20210630Client(BaseClient):
             values,
             self._get_feed_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_feed_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -406,15 +422,15 @@ class Feeds20210630Client(BaseClient):
     _get_feed_params = (("feedId", "path"),)  # name, param in
 
     _get_feed_responses = {
-        (200, "application/json"): Feed,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: Feed,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_feed_document(
@@ -443,7 +459,7 @@ class Feeds20210630Client(BaseClient):
             values,
             self._get_feed_document_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_feed_document_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -451,15 +467,15 @@ class Feeds20210630Client(BaseClient):
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
     _get_feed_document_responses = {
-        (200, "application/json"): FeedDocument,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: FeedDocument,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_feeds(
@@ -510,7 +526,7 @@ class Feeds20210630Client(BaseClient):
             values,
             self._get_feeds_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_feeds_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -526,13 +542,13 @@ class Feeds20210630Client(BaseClient):
     )
 
     _get_feeds_responses = {
-        (200, "application/json"): GetFeedsResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: GetFeedsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

@@ -33,17 +33,23 @@ class Address:
     The first line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city where the person, business, or institution is located.
     """
@@ -53,7 +59,9 @@ class Address:
     The two digit country code. In ISO 3166-1 alpha-2 format.
     """
 
-    district_or_county: Optional[str] = attrs.field()
+    district_or_county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district or county where the person, business, or institution is located.
     """
@@ -63,12 +71,16 @@ class Address:
     The name of the person, business or institution at the address.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business, or institution located at the address.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code of the address.
     """
@@ -85,12 +97,16 @@ class CODSettings:
     The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
     """
 
-    cod_charge: Optional["Money"] = attrs.field()
+    cod_charge: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    cod_charge_tax: Optional["Money"] = attrs.field()
+    cod_charge_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -100,12 +116,16 @@ class CODSettings:
     When true, this fulfillment order requires a COD (Cash On Delivery) payment.
     """
 
-    shipping_charge: Optional["Money"] = attrs.field()
+    shipping_charge: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    shipping_charge_tax: Optional["Money"] = attrs.field()
+    shipping_charge_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -129,7 +149,9 @@ class CreateFulfillmentOrderItem:
     Item information for creating a fulfillment order.
     """
 
-    displayable_comment: Optional[str] = attrs.field()
+    displayable_comment: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Item-specific text that displays in recipient-facing materials such as the outbound shipment packing slip.
 
@@ -137,12 +159,16 @@ class CreateFulfillmentOrderItem:
     {'maxLength': 250}
     """
 
-    fulfillment_network_sku: Optional[str] = attrs.field()
+    fulfillment_network_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon's fulfillment network SKU of the item.
     """
 
-    gift_message: Optional[str] = attrs.field()
+    gift_message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A message to the gift recipient, if applicable.
 
@@ -150,17 +176,23 @@ class CreateFulfillmentOrderItem:
     {'maxLength': 512}
     """
 
-    per_unit_declared_value: Optional["Money"] = attrs.field()
+    per_unit_declared_value: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    per_unit_price: Optional["Money"] = attrs.field()
+    per_unit_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    per_unit_tax: Optional["Money"] = attrs.field()
+    per_unit_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -193,12 +225,16 @@ class CreateFulfillmentOrderRequest:
     The request body schema for the createFulfillmentOrder operation.
     """
 
-    cod_settings: Optional["CODSettings"] = attrs.field()
+    cod_settings: Optional["CODSettings"] = attrs.field(
+        default=None,
+    )
     """
     The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
     """
 
-    delivery_window: Optional["DeliveryWindow"] = attrs.field()
+    delivery_window: Optional["DeliveryWindow"] = attrs.field(
+        default=None,
+    )
     """
     The time range within which a Scheduled Delivery fulfillment order should be delivered.
     """
@@ -227,17 +263,23 @@ class CreateFulfillmentOrderRequest:
     {'maxLength': 40}
     """
 
-    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
+    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field(
+        default=None,
+    )
     """
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    fulfillment_action: Optional["FulfillmentAction"] = attrs.field()
+    fulfillment_action: Optional["FulfillmentAction"] = attrs.field(
+        default=None,
+    )
     """
     Specifies whether the fulfillment order should ship now or have an order hold put on it.
     """
 
-    fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
+    fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field(
+        default=None,
+    )
     """
     The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
     """
@@ -247,12 +289,16 @@ class CreateFulfillmentOrderRequest:
     An array of item information for creating a fulfillment order.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The marketplace the fulfillment order is placed against.
     """
 
-    notification_emails: Optional[List[str]] = attrs.field()
+    notification_emails: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
     """
@@ -265,7 +311,9 @@ class CreateFulfillmentOrderRequest:
     {'maxLength': 40}
     """
 
-    ship_from_country_code: Optional[str] = attrs.field()
+    ship_from_country_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
     """
@@ -344,7 +392,9 @@ class CreateReturnItem:
     The identifier for the shipment that is associated with the return item.
     """
 
-    return_comment: Optional[str] = attrs.field()
+    return_comment: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An optional comment about the return item.
 
@@ -411,7 +461,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -447,7 +499,9 @@ class Feature:
     The feature name.
     """
 
-    seller_eligible: Optional[bool] = attrs.field()
+    seller_eligible: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, indicates that the seller is eligible to use the feature.
     """
@@ -539,12 +593,16 @@ class FulfillmentOrder:
     General information about a fulfillment order, including its status.
     """
 
-    cod_settings: Optional["CODSettings"] = attrs.field()
+    cod_settings: Optional["CODSettings"] = attrs.field(
+        default=None,
+    )
     """
     The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
     """
 
-    delivery_window: Optional["DeliveryWindow"] = attrs.field()
+    delivery_window: Optional["DeliveryWindow"] = attrs.field(
+        default=None,
+    )
     """
     The time range within which a Scheduled Delivery fulfillment order should be delivered.
     """
@@ -566,12 +624,16 @@ class FulfillmentOrder:
     A fulfillment order identifier submitted with the createFulfillmentOrder operation. Displays as the order identifier in recipient-facing materials such as the packing slip.
     """
 
-    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
+    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field(
+        default=None,
+    )
     """
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    fulfillment_action: Optional["FulfillmentAction"] = attrs.field()
+    fulfillment_action: Optional["FulfillmentAction"] = attrs.field(
+        default=None,
+    )
     """
     Specifies whether the fulfillment order should ship now or have an order hold put on it.
     """
@@ -581,7 +643,9 @@ class FulfillmentOrder:
     The current status of the fulfillment order.
     """
 
-    fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
+    fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field(
+        default=None,
+    )
     """
     The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
     """
@@ -591,7 +655,9 @@ class FulfillmentOrder:
     The identifier for the marketplace the fulfillment order is placed against.
     """
 
-    notification_emails: Optional[List[str]] = attrs.field()
+    notification_emails: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
     """
@@ -622,41 +688,59 @@ class FulfillmentOrderItem:
     The item quantity.
     """
 
-    displayable_comment: Optional[str] = attrs.field()
+    displayable_comment: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Item-specific text that displays in recipient-facing materials such as the outbound shipment packing slip.
     """
 
-    estimated_arrival_date: Optional["Timestamp"] = attrs.field()
+    estimated_arrival_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    estimated_ship_date: Optional["Timestamp"] = attrs.field()
+    estimated_ship_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    fulfillment_network_sku: Optional[str] = attrs.field()
+    fulfillment_network_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon's fulfillment network SKU of the item.
     """
 
-    gift_message: Optional[str] = attrs.field()
+    gift_message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A message to the gift recipient, if applicable.
     """
 
-    order_item_disposition: Optional[str] = attrs.field()
+    order_item_disposition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the item is sellable or unsellable.
     """
 
-    per_unit_declared_value: Optional["Money"] = attrs.field()
+    per_unit_declared_value: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    per_unit_price: Optional["Money"] = attrs.field()
+    per_unit_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    per_unit_tax: Optional["Money"] = attrs.field()
+    per_unit_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -706,22 +790,30 @@ class FulfillmentPreview:
     Information about a fulfillment order preview, including delivery and fee information based on shipping method.
     """
 
-    estimated_fees: Optional[List["Fee"]] = attrs.field()
+    estimated_fees: Optional[List["Fee"]] = attrs.field(
+        default=None,
+    )
     """
     An array of fee type and cost pairs.
     """
 
-    estimated_shipping_weight: Optional["Weight"] = attrs.field()
+    estimated_shipping_weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
 
-    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
+    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field(
+        default=None,
+    )
     """
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    fulfillment_preview_shipments: Optional[List["FulfillmentPreviewShipment"]] = attrs.field()
+    fulfillment_preview_shipments: Optional[List["FulfillmentPreviewShipment"]] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment preview shipment information.
     """
@@ -741,9 +833,13 @@ class FulfillmentPreview:
     The marketplace the fulfillment order is placed against.
     """
 
-    order_unfulfillable_reasons: Optional[List[str]] = attrs.field()
+    order_unfulfillable_reasons: Optional[List[str]] = attrs.field(
+        default=None,
+    )
 
-    scheduled_delivery_info: Optional["ScheduledDeliveryInfo"] = attrs.field()
+    scheduled_delivery_info: Optional["ScheduledDeliveryInfo"] = attrs.field(
+        default=None,
+    )
     """
     Delivery information for a scheduled delivery.
     """
@@ -753,7 +849,9 @@ class FulfillmentPreview:
     The shipping method used for the fulfillment order.
     """
 
-    unfulfillable_preview_items: Optional[List["UnfulfillablePreviewItem"]] = attrs.field()
+    unfulfillable_preview_items: Optional[List["UnfulfillablePreviewItem"]] = attrs.field(
+        default=None,
+    )
     """
     An array of unfulfillable preview item information.
     """
@@ -765,7 +863,9 @@ class FulfillmentPreviewItem:
     Item information for a shipment in a fulfillment order preview.
     """
 
-    estimated_shipping_weight: Optional["Weight"] = attrs.field()
+    estimated_shipping_weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -785,7 +885,9 @@ class FulfillmentPreviewItem:
     The seller SKU of the item.
     """
 
-    shipping_weight_calculation_method: Optional[Union[Literal["Package"], Literal["Dimensional"]]] = attrs.field()
+    shipping_weight_calculation_method: Optional[Union[Literal["Package"], Literal["Dimensional"]]] = attrs.field(
+        default=None,
+    )
     """
     The method used to calculate the estimated shipping weight.
     """
@@ -797,20 +899,30 @@ class FulfillmentPreviewShipment:
     Delivery and item information for a shipment in a fulfillment order preview.
     """
 
-    earliest_arrival_date: Optional["Timestamp"] = attrs.field()
+    earliest_arrival_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    earliest_ship_date: Optional["Timestamp"] = attrs.field()
+    earliest_ship_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     fulfillment_preview_items: List["FulfillmentPreviewItem"] = attrs.field()
     """
     An array of fulfillment preview item information.
     """
 
-    latest_arrival_date: Optional["Timestamp"] = attrs.field()
+    latest_arrival_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    latest_ship_date: Optional["Timestamp"] = attrs.field()
+    latest_ship_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    shipping_notes: Optional[List[str]] = attrs.field()
+    shipping_notes: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     Provides additional insight into the shipment timeline when exact delivery dates are not able to be precomputed.
     """
@@ -836,7 +948,9 @@ class FulfillmentShipment:
     A shipment identifier assigned by Amazon.
     """
 
-    estimated_arrival_date: Optional["Timestamp"] = attrs.field()
+    estimated_arrival_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     fulfillment_center_id: str = attrs.field()
     """
@@ -848,7 +962,9 @@ class FulfillmentShipment:
     An array of fulfillment shipment item information.
     """
 
-    fulfillment_shipment_package: Optional[List["FulfillmentShipmentPackage"]] = attrs.field()
+    fulfillment_shipment_package: Optional[List["FulfillmentShipmentPackage"]] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment shipment package information.
     """
@@ -860,9 +976,13 @@ class FulfillmentShipment:
     The current status of the shipment.
     """
 
-    shipping_date: Optional["Timestamp"] = attrs.field()
+    shipping_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    shipping_notes: Optional[List[str]] = attrs.field()
+    shipping_notes: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     Provides additional insight into shipment timeline. Primairly used to communicate that actual delivery dates aren't available.
     """
@@ -874,7 +994,9 @@ class FulfillmentShipmentItem:
     Item information for a shipment in a fulfillment order.
     """
 
-    package_number: Optional[int] = attrs.field()
+    package_number: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     An identifier for the package that contains the item quantity.
 
@@ -897,7 +1019,9 @@ class FulfillmentShipmentItem:
     The seller SKU of the item.
     """
 
-    serial_number: Optional[str] = attrs.field()
+    serial_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The serial number of the shipped item.
     """
@@ -914,7 +1038,9 @@ class FulfillmentShipmentPackage:
     Identifies the carrier who will deliver the shipment to the recipient.
     """
 
-    estimated_arrival_date: Optional["Timestamp"] = attrs.field()
+    estimated_arrival_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     package_number: int = attrs.field()
     """
@@ -924,7 +1050,9 @@ class FulfillmentShipmentPackage:
     {'schema_format': 'int32'}
     """
 
-    tracking_number: Optional[str] = attrs.field()
+    tracking_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The tracking number, if provided, can be used to obtain tracking and delivery information.
     """
@@ -958,7 +1086,9 @@ class GetFeatureInventoryResult:
     The name of the feature.
     """
 
-    feature_skus: Optional[List["FeatureSku"]] = attrs.field()
+    feature_skus: Optional[List["FeatureSku"]] = attrs.field(
+        default=None,
+    )
     """
     An array of SKUs eligible for this feature and the quantity available.
     """
@@ -968,7 +1098,9 @@ class GetFeatureInventoryResult:
     The requested marketplace.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -1002,7 +1134,9 @@ class GetFeatureSkuResult:
     The name of the feature.
     """
 
-    ineligible_reasons: Optional[List[str]] = attrs.field()
+    ineligible_reasons: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of one or more reasons that the seller SKU is ineligibile for the feature.
         Possible values:
@@ -1021,7 +1155,9 @@ class GetFeatureSkuResult:
     The requested marketplace.
     """
 
-    sku_info: Optional["FeatureSku"] = attrs.field()
+    sku_info: Optional["FeatureSku"] = attrs.field(
+        default=None,
+    )
     """
     Information about an SKU, including the count available, identifiers, and a list of overlapping SKUs that share the same inventory pool.
     """
@@ -1083,7 +1219,9 @@ class GetFulfillmentOrderResult:
     An array of fulfillment order item information.
     """
 
-    fulfillment_shipments: Optional[List["FulfillmentShipment"]] = attrs.field()
+    fulfillment_shipments: Optional[List["FulfillmentShipment"]] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment shipment information.
     """
@@ -1105,7 +1243,9 @@ class GetFulfillmentPreviewItem:
     Item information for a fulfillment order preview.
     """
 
-    per_unit_declared_value: Optional["Money"] = attrs.field()
+    per_unit_declared_value: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -1143,12 +1283,16 @@ class GetFulfillmentPreviewRequest:
     A physical address.
     """
 
-    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
+    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field(
+        default=None,
+    )
     """
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    include_codfulfillment_preview: Optional[bool] = attrs.field()
+    include_codfulfillment_preview: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Specifies whether to return fulfillment order previews that are for COD (Cash On Delivery).
         Possible values:
@@ -1156,7 +1300,9 @@ class GetFulfillmentPreviewRequest:
         * false - Returns only fulfillment order previews that are not for COD.
     """
 
-    include_delivery_windows: Optional[bool] = attrs.field()
+    include_delivery_windows: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Specifies whether to return the ScheduledDeliveryInfo response object, which contains the available delivery windows for a Scheduled Delivery. The ScheduledDeliveryInfo response object can only be returned for fulfillment order previews with ShippingSpeedCategories = ScheduledDelivery.
     """
@@ -1166,12 +1312,16 @@ class GetFulfillmentPreviewRequest:
     An array of fulfillment preview item information.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The marketplace the fulfillment order is placed against.
     """
 
-    shipping_speed_categories: Optional[List["ShippingSpeedCategory"]] = attrs.field()
+    shipping_speed_categories: Optional[List["ShippingSpeedCategory"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1336,42 +1486,58 @@ class Money:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PackageTrackingDetails:
 
-    additional_location_info: Optional["AdditionalLocationInfo"] = attrs.field()
+    additional_location_info: Optional["AdditionalLocationInfo"] = attrs.field(
+        default=None,
+    )
     """
     Additional location information.
     """
 
-    carrier_code: Optional[str] = attrs.field()
+    carrier_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the carrier.
     """
 
-    carrier_phone_number: Optional[str] = attrs.field()
+    carrier_phone_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the carrier.
     """
 
-    carrier_url: Optional[str] = attrs.field()
+    carrier_url: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The URL of the carrier’s website.
     """
 
-    current_status: Optional["CurrentStatus"] = attrs.field()
+    current_status: Optional["CurrentStatus"] = attrs.field(
+        default=None,
+    )
     """
     The current delivery status of the package.
     """
 
-    current_status_description: Optional[str] = attrs.field()
+    current_status_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Description corresponding to the CurrentStatus value.
     """
 
-    customer_tracking_link: Optional[str] = attrs.field()
+    customer_tracking_link: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Link on swiship.com that allows customers to track the package.
     """
 
-    estimated_arrival_date: Optional["Timestamp"] = attrs.field()
+    estimated_arrival_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
     package_number: int = attrs.field()
     """
@@ -1381,24 +1547,34 @@ class PackageTrackingDetails:
     {'schema_format': 'int32'}
     """
 
-    ship_date: Optional["Timestamp"] = attrs.field()
+    ship_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    ship_to_address: Optional["TrackingAddress"] = attrs.field()
+    ship_to_address: Optional["TrackingAddress"] = attrs.field(
+        default=None,
+    )
     """
     Address information for tracking the package.
     """
 
-    signed_for_by: Optional[str] = attrs.field()
+    signed_for_by: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the person who signed for the package.
     """
 
-    tracking_events: Optional[List["TrackingEvent"]] = attrs.field()
+    tracking_events: Optional[List["TrackingEvent"]] = attrs.field(
+        default=None,
+    )
     """
     An array of tracking event information.
     """
 
-    tracking_number: Optional[str] = attrs.field()
+    tracking_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The tracking number for the package.
     """
@@ -1429,7 +1605,9 @@ class ReasonCodeDetails:
     A code that indicates a valid return reason.
     """
 
-    translated_description: Optional[str] = attrs.field()
+    translated_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A translation of the description. The translation is in the language specified in the Language request parameter.
     """
@@ -1473,7 +1651,9 @@ class ReturnItem:
     An item that Amazon accepted for return.
     """
 
-    amazon_return_reason_code: Optional[str] = attrs.field()
+    amazon_return_reason_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The return reason code that the Amazon fulfillment center assigned to the return item.
     """
@@ -1483,22 +1663,30 @@ class ReturnItem:
     The identifier for the shipment that is associated with the return item.
     """
 
-    fulfillment_center_id: Optional[str] = attrs.field()
+    fulfillment_center_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the Amazon fulfillment center that processed the return item.
     """
 
-    return_authorization_id: Optional[str] = attrs.field()
+    return_authorization_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Identifies the return authorization used to return this item. See ReturnAuthorization.
     """
 
-    return_comment: Optional[str] = attrs.field()
+    return_comment: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An optional comment about the return item.
     """
 
-    return_received_condition: Optional["ReturnItemDisposition"] = attrs.field()
+    return_received_condition: Optional["ReturnItemDisposition"] = attrs.field(
+        default=None,
+    )
     """
     The condition of the return item when received by an Amazon fulfillment center.
     """
@@ -1628,7 +1816,9 @@ class UnfulfillablePreviewItem:
     Information about unfulfillable items in a fulfillment order preview.
     """
 
-    item_unfulfillable_reasons: Optional[List[str]] = attrs.field()
+    item_unfulfillable_reasons: Optional[List[str]] = attrs.field(
+        default=None,
+    )
 
     quantity: "Quantity" = attrs.field()
     """
@@ -1658,7 +1848,9 @@ class UpdateFulfillmentOrderItem:
     Item information for updating a fulfillment order.
     """
 
-    displayable_comment: Optional[str] = attrs.field()
+    displayable_comment: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Item-specific text that displays in recipient-facing materials such as the outbound shipment packing slip.
 
@@ -1666,12 +1858,16 @@ class UpdateFulfillmentOrderItem:
     {'maxLength': 250}
     """
 
-    fulfillment_network_sku: Optional[str] = attrs.field()
+    fulfillment_network_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon's fulfillment network SKU of the item.
     """
 
-    gift_message: Optional[str] = attrs.field()
+    gift_message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A message to the gift recipient, if applicable.
 
@@ -1679,22 +1875,30 @@ class UpdateFulfillmentOrderItem:
     {'maxLength': 512}
     """
 
-    order_item_disposition: Optional[str] = attrs.field()
+    order_item_disposition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the item is sellable or unsellable.
     """
 
-    per_unit_declared_value: Optional["Money"] = attrs.field()
+    per_unit_declared_value: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    per_unit_price: Optional["Money"] = attrs.field()
+    per_unit_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    per_unit_tax: Optional["Money"] = attrs.field()
+    per_unit_tax: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -1712,7 +1916,9 @@ class UpdateFulfillmentOrderItem:
     {'maxLength': 50}
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -1841,7 +2047,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._cancel_fulfillment_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1849,14 +2055,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
     _cancel_fulfillment_order_responses = {
-        (200, "application/json"): CancelFulfillmentOrderResponse,
-        (400, "application/json"): CancelFulfillmentOrderResponse,
-        (401, "application/json"): CancelFulfillmentOrderResponse,
-        (403, "application/json"): CancelFulfillmentOrderResponse,
-        (404, "application/json"): CancelFulfillmentOrderResponse,
-        (429, "application/json"): CancelFulfillmentOrderResponse,
-        (500, "application/json"): CancelFulfillmentOrderResponse,
-        (503, "application/json"): CancelFulfillmentOrderResponse,
+        200: CancelFulfillmentOrderResponse,
+        400: CancelFulfillmentOrderResponse,
+        401: CancelFulfillmentOrderResponse,
+        403: CancelFulfillmentOrderResponse,
+        404: CancelFulfillmentOrderResponse,
+        429: CancelFulfillmentOrderResponse,
+        500: CancelFulfillmentOrderResponse,
+        503: CancelFulfillmentOrderResponse,
     }
 
     def create_fulfillment_order(
@@ -1932,7 +2138,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._create_fulfillment_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1956,14 +2162,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _create_fulfillment_order_responses = {
-        (200, "application/json"): CreateFulfillmentOrderResponse,
-        (400, "application/json"): CreateFulfillmentOrderResponse,
-        (401, "application/json"): CreateFulfillmentOrderResponse,
-        (403, "application/json"): CreateFulfillmentOrderResponse,
-        (404, "application/json"): CreateFulfillmentOrderResponse,
-        (429, "application/json"): CreateFulfillmentOrderResponse,
-        (500, "application/json"): CreateFulfillmentOrderResponse,
-        (503, "application/json"): CreateFulfillmentOrderResponse,
+        200: CreateFulfillmentOrderResponse,
+        400: CreateFulfillmentOrderResponse,
+        401: CreateFulfillmentOrderResponse,
+        403: CreateFulfillmentOrderResponse,
+        404: CreateFulfillmentOrderResponse,
+        429: CreateFulfillmentOrderResponse,
+        500: CreateFulfillmentOrderResponse,
+        503: CreateFulfillmentOrderResponse,
     }
 
     def create_fulfillment_return(
@@ -1997,7 +2203,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._create_fulfillment_return_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_fulfillment_return_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2008,14 +2214,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _create_fulfillment_return_responses = {
-        (200, "application/json"): CreateFulfillmentReturnResponse,
-        (400, "application/json"): CreateFulfillmentReturnResponse,
-        (401, "application/json"): CreateFulfillmentReturnResponse,
-        (403, "application/json"): CreateFulfillmentReturnResponse,
-        (404, "application/json"): CreateFulfillmentReturnResponse,
-        (429, "application/json"): CreateFulfillmentReturnResponse,
-        (500, "application/json"): CreateFulfillmentReturnResponse,
-        (503, "application/json"): CreateFulfillmentReturnResponse,
+        200: CreateFulfillmentReturnResponse,
+        400: CreateFulfillmentReturnResponse,
+        401: CreateFulfillmentReturnResponse,
+        403: CreateFulfillmentReturnResponse,
+        404: CreateFulfillmentReturnResponse,
+        429: CreateFulfillmentReturnResponse,
+        500: CreateFulfillmentReturnResponse,
+        503: CreateFulfillmentReturnResponse,
     }
 
     def get_feature_inventory(
@@ -2052,7 +2258,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._get_feature_inventory_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_feature_inventory_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2064,14 +2270,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _get_feature_inventory_responses = {
-        (200, "application/json"): GetFeatureInventoryResponse,
-        (400, "application/json"): GetFeatureInventoryResponse,
-        (401, "application/json"): GetFeatureInventoryResponse,
-        (403, "application/json"): GetFeatureInventoryResponse,
-        (404, "application/json"): GetFeatureInventoryResponse,
-        (429, "application/json"): GetFeatureInventoryResponse,
-        (500, "application/json"): GetFeatureInventoryResponse,
-        (503, "application/json"): GetFeatureInventoryResponse,
+        200: GetFeatureInventoryResponse,
+        400: GetFeatureInventoryResponse,
+        401: GetFeatureInventoryResponse,
+        403: GetFeatureInventoryResponse,
+        404: GetFeatureInventoryResponse,
+        429: GetFeatureInventoryResponse,
+        500: GetFeatureInventoryResponse,
+        503: GetFeatureInventoryResponse,
     }
 
     def get_feature_sku(
@@ -2108,7 +2314,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._get_feature_sku_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_feature_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2120,14 +2326,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _get_feature_sku_responses = {
-        (200, "application/json"): GetFeatureSkuResponse,
-        (400, "application/json"): GetFeatureSkuResponse,
-        (401, "application/json"): GetFeatureSkuResponse,
-        (403, "application/json"): GetFeatureSkuResponse,
-        (404, "application/json"): GetFeatureSkuResponse,
-        (429, "application/json"): GetFeatureSkuResponse,
-        (500, "application/json"): GetFeatureSkuResponse,
-        (503, "application/json"): GetFeatureSkuResponse,
+        200: GetFeatureSkuResponse,
+        400: GetFeatureSkuResponse,
+        401: GetFeatureSkuResponse,
+        403: GetFeatureSkuResponse,
+        404: GetFeatureSkuResponse,
+        429: GetFeatureSkuResponse,
+        500: GetFeatureSkuResponse,
+        503: GetFeatureSkuResponse,
     }
 
     def get_features(
@@ -2156,7 +2362,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._get_features_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_features_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2164,14 +2370,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _get_features_params = (("marketplaceId", "query"),)  # name, param in
 
     _get_features_responses = {
-        (200, "application/json"): GetFeaturesResponse,
-        (400, "application/json"): GetFeaturesResponse,
-        (401, "application/json"): GetFeaturesResponse,
-        (403, "application/json"): GetFeaturesResponse,
-        (404, "application/json"): GetFeaturesResponse,
-        (429, "application/json"): GetFeaturesResponse,
-        (500, "application/json"): GetFeaturesResponse,
-        (503, "application/json"): GetFeaturesResponse,
+        200: GetFeaturesResponse,
+        400: GetFeaturesResponse,
+        401: GetFeaturesResponse,
+        403: GetFeaturesResponse,
+        404: GetFeaturesResponse,
+        429: GetFeaturesResponse,
+        500: GetFeaturesResponse,
+        503: GetFeaturesResponse,
     }
 
     def get_fulfillment_order(
@@ -2200,7 +2406,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._get_fulfillment_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2208,14 +2414,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
     _get_fulfillment_order_responses = {
-        (200, "application/json"): GetFulfillmentOrderResponse,
-        (400, "application/json"): GetFulfillmentOrderResponse,
-        (401, "application/json"): GetFulfillmentOrderResponse,
-        (403, "application/json"): GetFulfillmentOrderResponse,
-        (404, "application/json"): GetFulfillmentOrderResponse,
-        (429, "application/json"): GetFulfillmentOrderResponse,
-        (500, "application/json"): GetFulfillmentOrderResponse,
-        (503, "application/json"): GetFulfillmentOrderResponse,
+        200: GetFulfillmentOrderResponse,
+        400: GetFulfillmentOrderResponse,
+        401: GetFulfillmentOrderResponse,
+        403: GetFulfillmentOrderResponse,
+        404: GetFulfillmentOrderResponse,
+        429: GetFulfillmentOrderResponse,
+        500: GetFulfillmentOrderResponse,
+        503: GetFulfillmentOrderResponse,
     }
 
     def get_fulfillment_preview(
@@ -2267,7 +2473,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._get_fulfillment_preview_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_fulfillment_preview_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2283,14 +2489,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _get_fulfillment_preview_responses = {
-        (200, "application/json"): GetFulfillmentPreviewResponse,
-        (400, "application/json"): GetFulfillmentPreviewResponse,
-        (401, "application/json"): GetFulfillmentPreviewResponse,
-        (403, "application/json"): GetFulfillmentPreviewResponse,
-        (404, "application/json"): GetFulfillmentPreviewResponse,
-        (429, "application/json"): GetFulfillmentPreviewResponse,
-        (500, "application/json"): GetFulfillmentPreviewResponse,
-        (503, "application/json"): GetFulfillmentPreviewResponse,
+        200: GetFulfillmentPreviewResponse,
+        400: GetFulfillmentPreviewResponse,
+        401: GetFulfillmentPreviewResponse,
+        403: GetFulfillmentPreviewResponse,
+        404: GetFulfillmentPreviewResponse,
+        429: GetFulfillmentPreviewResponse,
+        500: GetFulfillmentPreviewResponse,
+        503: GetFulfillmentPreviewResponse,
     }
 
     def get_package_tracking_details(
@@ -2319,7 +2525,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._get_package_tracking_details_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_package_tracking_details_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2327,14 +2533,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _get_package_tracking_details_params = (("packageNumber", "query"),)  # name, param in
 
     _get_package_tracking_details_responses = {
-        (200, "application/json"): GetPackageTrackingDetailsResponse,
-        (400, "application/json"): GetPackageTrackingDetailsResponse,
-        (401, "application/json"): GetPackageTrackingDetailsResponse,
-        (403, "application/json"): GetPackageTrackingDetailsResponse,
-        (404, "application/json"): GetPackageTrackingDetailsResponse,
-        (429, "application/json"): GetPackageTrackingDetailsResponse,
-        (500, "application/json"): GetPackageTrackingDetailsResponse,
-        (503, "application/json"): GetPackageTrackingDetailsResponse,
+        200: GetPackageTrackingDetailsResponse,
+        400: GetPackageTrackingDetailsResponse,
+        401: GetPackageTrackingDetailsResponse,
+        403: GetPackageTrackingDetailsResponse,
+        404: GetPackageTrackingDetailsResponse,
+        429: GetPackageTrackingDetailsResponse,
+        500: GetPackageTrackingDetailsResponse,
+        503: GetPackageTrackingDetailsResponse,
     }
 
     def list_all_fulfillment_orders(
@@ -2368,7 +2574,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._list_all_fulfillment_orders_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_all_fulfillment_orders_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2379,14 +2585,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _list_all_fulfillment_orders_responses = {
-        (200, "application/json"): ListAllFulfillmentOrdersResponse,
-        (400, "application/json"): ListAllFulfillmentOrdersResponse,
-        (401, "application/json"): ListAllFulfillmentOrdersResponse,
-        (403, "application/json"): ListAllFulfillmentOrdersResponse,
-        (404, "application/json"): ListAllFulfillmentOrdersResponse,
-        (429, "application/json"): ListAllFulfillmentOrdersResponse,
-        (500, "application/json"): ListAllFulfillmentOrdersResponse,
-        (503, "application/json"): ListAllFulfillmentOrdersResponse,
+        200: ListAllFulfillmentOrdersResponse,
+        400: ListAllFulfillmentOrdersResponse,
+        401: ListAllFulfillmentOrdersResponse,
+        403: ListAllFulfillmentOrdersResponse,
+        404: ListAllFulfillmentOrdersResponse,
+        429: ListAllFulfillmentOrdersResponse,
+        500: ListAllFulfillmentOrdersResponse,
+        503: ListAllFulfillmentOrdersResponse,
     }
 
     def list_return_reason_codes(
@@ -2426,7 +2632,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._list_return_reason_codes_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_return_reason_codes_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2439,14 +2645,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _list_return_reason_codes_responses = {
-        (200, "application/json"): ListReturnReasonCodesResponse,
-        (400, "application/json"): ListReturnReasonCodesResponse,
-        (401, "application/json"): ListReturnReasonCodesResponse,
-        (403, "application/json"): ListReturnReasonCodesResponse,
-        (404, "application/json"): ListReturnReasonCodesResponse,
-        (429, "application/json"): ListReturnReasonCodesResponse,
-        (500, "application/json"): ListReturnReasonCodesResponse,
-        (503, "application/json"): ListReturnReasonCodesResponse,
+        200: ListReturnReasonCodesResponse,
+        400: ListReturnReasonCodesResponse,
+        401: ListReturnReasonCodesResponse,
+        403: ListReturnReasonCodesResponse,
+        404: ListReturnReasonCodesResponse,
+        429: ListReturnReasonCodesResponse,
+        500: ListReturnReasonCodesResponse,
+        503: ListReturnReasonCodesResponse,
     }
 
     def update_fulfillment_order(
@@ -2515,7 +2721,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             values,
             self._update_fulfillment_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._update_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -2537,12 +2743,12 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _update_fulfillment_order_responses = {
-        (200, "application/json"): UpdateFulfillmentOrderResponse,
-        (400, "application/json"): UpdateFulfillmentOrderResponse,
-        (401, "application/json"): UpdateFulfillmentOrderResponse,
-        (403, "application/json"): UpdateFulfillmentOrderResponse,
-        (404, "application/json"): UpdateFulfillmentOrderResponse,
-        (429, "application/json"): UpdateFulfillmentOrderResponse,
-        (500, "application/json"): UpdateFulfillmentOrderResponse,
-        (503, "application/json"): UpdateFulfillmentOrderResponse,
+        200: UpdateFulfillmentOrderResponse,
+        400: UpdateFulfillmentOrderResponse,
+        401: UpdateFulfillmentOrderResponse,
+        403: UpdateFulfillmentOrderResponse,
+        404: UpdateFulfillmentOrderResponse,
+        429: UpdateFulfillmentOrderResponse,
+        500: UpdateFulfillmentOrderResponse,
+        503: UpdateFulfillmentOrderResponse,
     }

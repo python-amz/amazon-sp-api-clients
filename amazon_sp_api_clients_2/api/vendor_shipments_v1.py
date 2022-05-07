@@ -24,17 +24,23 @@ class Address:
     First line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city where the person, business or institution is located.
     """
@@ -44,12 +50,16 @@ class Address:
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county where person, business or institution is located.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district where person, business or institution is located.
     """
@@ -59,17 +69,23 @@ class Address:
     The name of the person, business or institution at that address.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state or region where person, business or institution is located.
     """
@@ -81,7 +97,9 @@ class Carton:
     Details of the carton/package being shipped.
     """
 
-    carton_identifiers: Optional[List["ContainerIdentification"]] = attrs.field()
+    carton_identifiers: Optional[List["ContainerIdentification"]] = attrs.field(
+        default=None,
+    )
     """
     A list of carton identifiers.
     """
@@ -91,7 +109,9 @@ class Carton:
     Carton sequence number for the carton. The first carton will be 001, the second 002, and so on. This number is used as a reference to refer to this carton from the pallet level.
     """
 
-    dimensions: Optional["Dimensions"] = attrs.field()
+    dimensions: Optional["Dimensions"] = attrs.field(
+        default=None,
+    )
     """
     Physical dimensional measurements of a container.
     """
@@ -101,12 +121,16 @@ class Carton:
     A list of container item details.
     """
 
-    tracking_number: Optional[str] = attrs.field()
+    tracking_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     This is required to be provided for every carton in the small parcel shipments.
     """
 
-    weight: Optional["Weight"] = attrs.field()
+    weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -115,7 +139,9 @@ class Carton:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CartonReferenceDetails:
 
-    carton_count: Optional[int] = attrs.field()
+    carton_count: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Pallet level carton count is mandatory for single item pallet and optional for mixed item pallet.
     """
@@ -148,7 +174,9 @@ class ContainerItem:
     Carton/Pallet level details for the item.
     """
 
-    item_details: Optional["ItemDetails"] = attrs.field()
+    item_details: Optional["ItemDetails"] = attrs.field(
+        default=None,
+    )
     """
     Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
     """
@@ -225,7 +253,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -313,12 +343,16 @@ class Item:
     Details of the item being shipped.
     """
 
-    amazon_product_identifier: Optional[str] = attrs.field()
+    amazon_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    item_details: Optional["ItemDetails"] = attrs.field()
+    item_details: Optional["ItemDetails"] = attrs.field(
+        default=None,
+    )
     """
     Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
     """
@@ -333,7 +367,9 @@ class Item:
     Details of item quantity.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the purchase order.
     """
@@ -386,7 +422,9 @@ class ItemQuantity:
     Unit of measure for the shipped quantity.
     """
 
-    unit_size: Optional[int] = attrs.field()
+    unit_size: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The case size, in the event that we ordered using cases. Otherwise, 1.
     """
@@ -437,19 +475,27 @@ class Pallet:
     Details of the Pallet/Tare being shipped.
     """
 
-    block: Optional[int] = attrs.field()
+    block: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Number of cartons per layer on the pallet.
     """
 
-    carton_reference_details: Optional["CartonReferenceDetails"] = attrs.field()
+    carton_reference_details: Optional["CartonReferenceDetails"] = attrs.field(
+        default=None,
+    )
 
-    dimensions: Optional["Dimensions"] = attrs.field()
+    dimensions: Optional["Dimensions"] = attrs.field(
+        default=None,
+    )
     """
     Physical dimensional measurements of a container.
     """
 
-    items: Optional[List["ContainerItem"]] = attrs.field()
+    items: Optional[List["ContainerItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of container item details.
     """
@@ -459,12 +505,16 @@ class Pallet:
     A list of pallet identifiers.
     """
 
-    tier: Optional[int] = attrs.field()
+    tier: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Number of layers per pallet.
     """
 
-    weight: Optional["Weight"] = attrs.field()
+    weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -473,7 +523,9 @@ class Pallet:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    address: Optional["Address"] = attrs.field()
+    address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
@@ -483,7 +535,9 @@ class PartyIdentification:
     Assigned identification for the party.
     """
 
-    tax_registration_details: Optional[List["TaxRegistrationDetails"]] = attrs.field()
+    tax_registration_details: Optional[List["TaxRegistrationDetails"]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration details of the entity.
     """
@@ -501,17 +555,23 @@ class Route:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentConfirmation:
 
-    amazon_reference_number: Optional[str] = attrs.field()
+    amazon_reference_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Reference Number is a unique identifier generated by Amazon for all Collect/WePay shipments when you submit  a routing request. This field is mandatory for Collect/WePay shipments.
     """
 
-    cartons: Optional[List["Carton"]] = attrs.field()
+    cartons: Optional[List["Carton"]] = attrs.field(
+        default=None,
+    )
     """
     A list of the cartons in this shipment.
     """
 
-    estimated_delivery_date: Optional[datetime] = attrs.field()
+    estimated_delivery_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time on which the shipment is expected to reach buyer's warehouse. It needs to be an estimate based on the average transit time between ship from location and the destination. The exact appointment time will be provided by the buyer and is potentially not known when creating the shipment confirmation.
 
@@ -519,9 +579,13 @@ class ShipmentConfirmation:
     {'schema_format': 'date-time'}
     """
 
-    import_details: Optional["ImportDetails"] = attrs.field()
+    import_details: Optional["ImportDetails"] = attrs.field(
+        default=None,
+    )
 
-    pallets: Optional[List["Pallet"]] = attrs.field()
+    pallets: Optional[List["Pallet"]] = attrs.field(
+        default=None,
+    )
     """
     A list of the pallets in this shipment.
     """
@@ -550,7 +614,9 @@ class ShipmentConfirmation:
     Unique shipment ID (not used over the last 365 days).
     """
 
-    shipment_measurements: Optional["ShipmentMeasurements"] = attrs.field()
+    shipment_measurements: Optional["ShipmentMeasurements"] = attrs.field(
+        default=None,
+    )
     """
     Shipment measurement details.
     """
@@ -565,19 +631,25 @@ class ShipmentConfirmation:
             Literal["MasterPallet"],
             Literal["MasterCase"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Shipment hierarchical structure.
     """
 
     shipment_type: Optional[
         Union[Literal["TruckLoad"], Literal["LessThanTruckLoad"], Literal["SmallParcel"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The type of shipment.
     """
 
-    shipped_date: Optional[datetime] = attrs.field()
+    shipped_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time of the departure of the shipment from the vendor's location. Vendors are requested to send ASNs within 30 minutes of departure from their warehouse/distribution center or at least 6 hours prior to the appointment time at the Amazon destination warehouse, whichever is sooner. Shipped date mentioned in the shipment confirmation should not be in the future.
 
@@ -590,7 +662,9 @@ class ShipmentConfirmation:
     A list of the items in this shipment and their associated details. If any of the item detail fields are common at a carton or a pallet level, provide them at the corresponding carton or pallet level.
     """
 
-    transportation_details: Optional["TransportationDetails"] = attrs.field()
+    transportation_details: Optional["TransportationDetails"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -626,7 +700,9 @@ class Stop:
     Contractual or operational port or point relevant to the movement of the cargo.
     """
 
-    arrival_time: Optional[datetime] = attrs.field()
+    arrival_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Date and time of the arrival of the cargo.
 
@@ -634,7 +710,9 @@ class Stop:
     {'schema_format': 'date-time'}
     """
 
-    departure_time: Optional[datetime] = attrs.field()
+    departure_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Date and time of the departure of the cargo.
 
@@ -649,7 +727,9 @@ class Stop:
     Provide the function code.
     """
 
-    location_identification: Optional["Location"] = attrs.field()
+    location_identification: Optional["Location"] = attrs.field(
+        default=None,
+    )
     """
     Location identifier.
     """
@@ -790,7 +870,7 @@ class VendorShipmentsV1Client(BaseClient):
             values,
             self._submit_shipment_confirmations_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_shipment_confirmations_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -798,13 +878,13 @@ class VendorShipmentsV1Client(BaseClient):
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
 
     _submit_shipment_confirmations_responses = {
-        (202, "application/json"): SubmitShipmentConfirmationsResponse,
-        (400, "application/json"): SubmitShipmentConfirmationsResponse,
-        (403, "application/json"): SubmitShipmentConfirmationsResponse,
-        (404, "application/json"): SubmitShipmentConfirmationsResponse,
-        (413, "application/json"): SubmitShipmentConfirmationsResponse,
-        (415, "application/json"): SubmitShipmentConfirmationsResponse,
-        (429, "application/json"): SubmitShipmentConfirmationsResponse,
-        (500, "application/json"): SubmitShipmentConfirmationsResponse,
-        (503, "application/json"): SubmitShipmentConfirmationsResponse,
+        202: SubmitShipmentConfirmationsResponse,
+        400: SubmitShipmentConfirmationsResponse,
+        403: SubmitShipmentConfirmationsResponse,
+        404: SubmitShipmentConfirmationsResponse,
+        413: SubmitShipmentConfirmationsResponse,
+        415: SubmitShipmentConfirmationsResponse,
+        429: SubmitShipmentConfirmationsResponse,
+        500: SubmitShipmentConfirmationsResponse,
+        503: SubmitShipmentConfirmationsResponse,
     }

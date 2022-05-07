@@ -36,7 +36,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -160,7 +162,9 @@ class LinkObject:
     A URI for this object.
     """
 
-    name: Optional[str] = attrs.field()
+    name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An identifier for this object.
     """
@@ -216,7 +220,7 @@ class SolicitationsV1Client(BaseClient):
             values,
             self._create_product_review_and_seller_feedback_solicitation_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_product_review_and_seller_feedback_solicitation_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -227,15 +231,15 @@ class SolicitationsV1Client(BaseClient):
     )
 
     _create_product_review_and_seller_feedback_solicitation_responses = {
-        (201, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (400, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (403, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (404, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (413, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (415, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (429, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (500, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
-        (503, "application/hal+json"): CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        201: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        400: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        403: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        404: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        413: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        415: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        429: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        500: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        503: CreateProductReviewAndSellerFeedbackSolicitationResponse,
     }
 
     def get_solicitation_actions_for_order(
@@ -269,7 +273,7 @@ class SolicitationsV1Client(BaseClient):
             values,
             self._get_solicitation_actions_for_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_solicitation_actions_for_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -280,13 +284,13 @@ class SolicitationsV1Client(BaseClient):
     )
 
     _get_solicitation_actions_for_order_responses = {
-        (200, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (400, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (403, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (404, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (413, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (415, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (429, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (500, "application/hal+json"): GetSolicitationActionsForOrderResponse,
-        (503, "application/hal+json"): GetSolicitationActionsForOrderResponse,
+        200: GetSolicitationActionsForOrderResponse,
+        400: GetSolicitationActionsForOrderResponse,
+        403: GetSolicitationActionsForOrderResponse,
+        404: GetSolicitationActionsForOrderResponse,
+        413: GetSolicitationActionsForOrderResponse,
+        415: GetSolicitationActionsForOrderResponse,
+        429: GetSolicitationActionsForOrderResponse,
+        500: GetSolicitationActionsForOrderResponse,
+        503: GetSolicitationActionsForOrderResponse,
     }

@@ -27,7 +27,9 @@ class CreateRestrictedDataTokenRequest:
         Maximum: 50
     """
 
-    target_application: Optional[str] = attrs.field()
+    target_application: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The application ID for the target application to which access is being delegated.
     """
@@ -61,7 +63,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -87,7 +91,9 @@ class RestrictedResource:
     Model of a restricted resource.
     """
 
-    data_elements: Optional[List[str]] = attrs.field()
+    data_elements: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     Indicates the type of Personally Identifiable Information requested. This parameter is required only when getting an RDT for use with the getOrder, getOrders, or getOrderItems operation of the Orders API. For more information, see the [Tokens API Use Case Guide](doc:tokens-api-use-case-guide). Possible values include:
         - **buyerInfo**. On the order level this includes general identifying information about the buyer and tax-related information. On the order item level this includes gift wrap information and custom order information, if available.
@@ -145,7 +151,7 @@ class Tokens20210301Client(BaseClient):
             values,
             self._create_restricted_data_token_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_restricted_data_token_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -156,13 +162,13 @@ class Tokens20210301Client(BaseClient):
     )
 
     _create_restricted_data_token_responses = {
-        (200, "application/json"): CreateRestrictedDataTokenResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: CreateRestrictedDataTokenResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

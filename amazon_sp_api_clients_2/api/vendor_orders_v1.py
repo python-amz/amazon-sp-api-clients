@@ -49,17 +49,23 @@ class Address:
     First line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city where the person, business or institution is located.
     """
@@ -72,12 +78,16 @@ class Address:
     {'maxLength': 2}
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county where person, business or institution is located.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district where person, business or institution is located.
     """
@@ -87,17 +97,23 @@ class Address:
     The name of the person, business or institution at that address.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state or region where person, business or institution is located.
     """
@@ -132,7 +148,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -291,7 +309,9 @@ class Money:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Order:
 
-    order_details: Optional["OrderDetails"] = attrs.field()
+    order_details: Optional["OrderDetails"] = attrs.field(
+        default=None,
+    )
     """
     Details of an order.
     """
@@ -337,12 +357,16 @@ class OrderAcknowledgementItem:
     Details of the item being acknowledged.
     """
 
-    amazon_product_identifier: Optional[str] = attrs.field()
+    amazon_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    discount_multiplier: Optional[str] = attrs.field()
+    discount_multiplier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The discount multiplier that should be applied to the price if a vendor sells books with a list price. This is a multiplier factor to arrive at a final discounted price. A multiplier of .90 would be the factor if a 10% discount is given.
     """
@@ -352,17 +376,23 @@ class OrderAcknowledgementItem:
     This is used to indicate acknowledged quantity.
     """
 
-    item_sequence_number: Optional[str] = attrs.field()
+    item_sequence_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Line item sequence number for the item.
     """
 
-    list_price: Optional["Money"] = attrs.field()
+    list_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    net_cost: Optional["Money"] = attrs.field()
+    net_cost: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -372,7 +402,9 @@ class OrderAcknowledgementItem:
     Details of quantity ordered.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the purchase order.
     """
@@ -384,21 +416,31 @@ class OrderDetails:
     Details of an order.
     """
 
-    bill_to_party: Optional["PartyIdentification"] = attrs.field()
+    bill_to_party: Optional["PartyIdentification"] = attrs.field(
+        default=None,
+    )
 
-    buying_party: Optional["PartyIdentification"] = attrs.field()
+    buying_party: Optional["PartyIdentification"] = attrs.field(
+        default=None,
+    )
 
-    deal_code: Optional[str] = attrs.field()
+    deal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     If requested by the recipient, this field will contain a promotional/deal number. The discount code line is optional. It is used to obtain a price discount on items on the order.
     """
 
-    delivery_window: Optional["DateTimeInterval"] = attrs.field()
+    delivery_window: Optional["DateTimeInterval"] = attrs.field(
+        default=None,
+    )
     """
     Defines a date time interval according to ISO8601. Interval is separated by double hyphen (--).
     """
 
-    import_details: Optional["ImportDetails"] = attrs.field()
+    import_details: Optional["ImportDetails"] = attrs.field(
+        default=None,
+    )
     """
     Import details for an import order.
     """
@@ -410,12 +452,16 @@ class OrderDetails:
 
     payment_method: Optional[
         Union[Literal["Invoice"], Literal["Consignment"], Literal["CreditCard"], Literal["Prepaid"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Payment method used.
     """
 
-    purchase_order_changed_date: Optional[datetime] = attrs.field()
+    purchase_order_changed_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date when purchase order was last changed by Amazon after the order was placed. This date will be greater than 'purchaseOrderDate'. This means the PO data was changed on that date and vendors are required to fulfill the  updated PO. The PO changes can be related to Item Quantity, Ship to Location, Ship Window etc. This field will not be present in orders that have not changed after creation. Must be in ISO-8601 date/time format.
 
@@ -443,16 +489,24 @@ class OrderDetails:
         Union[
             Literal["RegularOrder"], Literal["ConsignedOrder"], Literal["NewProductIntroduction"], Literal["RushOrder"]
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Type of purchase order.
     """
 
-    selling_party: Optional["PartyIdentification"] = attrs.field()
+    selling_party: Optional["PartyIdentification"] = attrs.field(
+        default=None,
+    )
 
-    ship_to_party: Optional["PartyIdentification"] = attrs.field()
+    ship_to_party: Optional["PartyIdentification"] = attrs.field(
+        default=None,
+    )
 
-    ship_window: Optional["DateTimeInterval"] = attrs.field()
+    ship_window: Optional["DateTimeInterval"] = attrs.field(
+        default=None,
+    )
     """
     Defines a date time interval according to ISO8601. Interval is separated by double hyphen (--).
     """
@@ -461,7 +515,9 @@ class OrderDetails:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItem:
 
-    amazon_product_identifier: Optional[str] = attrs.field()
+    amazon_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon Standard Identification Number (ASIN) of an item.
     """
@@ -476,12 +532,16 @@ class OrderItem:
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    list_price: Optional["Money"] = attrs.field()
+    list_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    net_cost: Optional["Money"] = attrs.field()
+    net_cost: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -491,7 +551,9 @@ class OrderItem:
     Details of quantity ordered.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item.
     """
@@ -512,12 +574,16 @@ class OrderItemAcknowledgement:
 
     rejection_reason: Optional[
         Union[Literal["TemporarilyUnavailable"], Literal["InvalidProductIdentifier"], Literal["ObsoleteProduct"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Indicates the reason for rejection.
     """
 
-    scheduled_delivery_date: Optional[datetime] = attrs.field()
+    scheduled_delivery_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Estimated delivery date per line item. Must be in ISO-8601 date/time format.
 
@@ -525,7 +591,9 @@ class OrderItemAcknowledgement:
     {'schema_format': 'date-time'}
     """
 
-    scheduled_ship_date: Optional[datetime] = attrs.field()
+    scheduled_ship_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Estimated ship date per line item. Must be in ISO-8601 date/time format.
 
@@ -537,12 +605,16 @@ class OrderItemAcknowledgement:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemStatus:
 
-    acknowledgement_status: Optional["OrderItemStatusAcknowledgementStatus"] = attrs.field()
+    acknowledgement_status: Optional["OrderItemStatusAcknowledgementStatus"] = attrs.field(
+        default=None,
+    )
     """
     Acknowledgement status information.
     """
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's Standard Identification Number (ASIN) of an item.
     """
@@ -552,27 +624,37 @@ class OrderItemStatus:
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    list_price: Optional["Money"] = attrs.field()
+    list_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    net_cost: Optional["Money"] = attrs.field()
+    net_cost: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    ordered_quantity: Optional["OrderItemStatusOrderedQuantity"] = attrs.field()
+    ordered_quantity: Optional["OrderItemStatusOrderedQuantity"] = attrs.field(
+        default=None,
+    )
     """
     Ordered quantity information.
     """
 
-    receiving_status: Optional["OrderItemStatusReceivingStatus"] = attrs.field()
+    receiving_status: Optional["OrderItemStatusReceivingStatus"] = attrs.field(
+        default=None,
+    )
     """
     Item receive status at the buyer's warehouse.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item.
     """
@@ -678,7 +760,9 @@ class OrderStatus:
     Detailed description of items order status.
     """
 
-    last_updated_date: Optional[datetime] = attrs.field()
+    last_updated_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date when the purchase order was last updated. Must be in ISO-8601 date/time format.
 
@@ -746,7 +830,9 @@ class Pagination:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    address: Optional["Address"] = attrs.field()
+    address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
@@ -756,7 +842,9 @@ class PartyIdentification:
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
-    tax_info: Optional["TaxRegistrationDetails"] = attrs.field()
+    tax_info: Optional["TaxRegistrationDetails"] = attrs.field(
+        default=None,
+    )
     """
     Tax registration details of the entity.
     """
@@ -839,7 +927,7 @@ class VendorOrdersV1Client(BaseClient):
             values,
             self._get_purchase_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_purchase_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -847,15 +935,15 @@ class VendorOrdersV1Client(BaseClient):
     _get_purchase_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_purchase_order_responses = {
-        (200, "application/json"): GetPurchaseOrderResponse,
-        (400, "application/json"): GetPurchaseOrderResponse,
-        (401, "application/json"): GetPurchaseOrderResponse,
-        (403, "application/json"): GetPurchaseOrderResponse,
-        (404, "application/json"): GetPurchaseOrderResponse,
-        (415, "application/json"): GetPurchaseOrderResponse,
-        (429, "application/json"): GetPurchaseOrderResponse,
-        (500, "application/json"): GetPurchaseOrderResponse,
-        (503, "application/json"): GetPurchaseOrderResponse,
+        200: GetPurchaseOrderResponse,
+        400: GetPurchaseOrderResponse,
+        401: GetPurchaseOrderResponse,
+        403: GetPurchaseOrderResponse,
+        404: GetPurchaseOrderResponse,
+        415: GetPurchaseOrderResponse,
+        429: GetPurchaseOrderResponse,
+        500: GetPurchaseOrderResponse,
+        503: GetPurchaseOrderResponse,
     }
 
     def get_purchase_orders(
@@ -920,7 +1008,7 @@ class VendorOrdersV1Client(BaseClient):
             values,
             self._get_purchase_orders_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_purchase_orders_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -941,14 +1029,14 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     _get_purchase_orders_responses = {
-        (200, "application/json"): GetPurchaseOrdersResponse,
-        (400, "application/json"): GetPurchaseOrdersResponse,
-        (403, "application/json"): GetPurchaseOrdersResponse,
-        (404, "application/json"): GetPurchaseOrdersResponse,
-        (415, "application/json"): GetPurchaseOrdersResponse,
-        (429, "application/json"): GetPurchaseOrdersResponse,
-        (500, "application/json"): GetPurchaseOrdersResponse,
-        (503, "application/json"): GetPurchaseOrdersResponse,
+        200: GetPurchaseOrdersResponse,
+        400: GetPurchaseOrdersResponse,
+        403: GetPurchaseOrdersResponse,
+        404: GetPurchaseOrdersResponse,
+        415: GetPurchaseOrdersResponse,
+        429: GetPurchaseOrdersResponse,
+        500: GetPurchaseOrdersResponse,
+        503: GetPurchaseOrdersResponse,
     }
 
     def get_purchase_orders_status(
@@ -1018,7 +1106,7 @@ class VendorOrdersV1Client(BaseClient):
             values,
             self._get_purchase_orders_status_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_purchase_orders_status_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1040,14 +1128,14 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     _get_purchase_orders_status_responses = {
-        (200, "application/json"): GetPurchaseOrdersStatusResponse,
-        (400, "application/json"): GetPurchaseOrdersStatusResponse,
-        (403, "application/json"): GetPurchaseOrdersStatusResponse,
-        (404, "application/json"): GetPurchaseOrdersStatusResponse,
-        (415, "application/json"): GetPurchaseOrdersStatusResponse,
-        (429, "application/json"): GetPurchaseOrdersStatusResponse,
-        (500, "application/json"): GetPurchaseOrdersStatusResponse,
-        (503, "application/json"): GetPurchaseOrdersStatusResponse,
+        200: GetPurchaseOrdersStatusResponse,
+        400: GetPurchaseOrdersStatusResponse,
+        403: GetPurchaseOrdersStatusResponse,
+        404: GetPurchaseOrdersStatusResponse,
+        415: GetPurchaseOrdersStatusResponse,
+        429: GetPurchaseOrdersStatusResponse,
+        500: GetPurchaseOrdersStatusResponse,
+        503: GetPurchaseOrdersStatusResponse,
     }
 
     def submit_acknowledgement(
@@ -1077,7 +1165,7 @@ class VendorOrdersV1Client(BaseClient):
             values,
             self._submit_acknowledgement_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_acknowledgement_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1085,13 +1173,13 @@ class VendorOrdersV1Client(BaseClient):
     _submit_acknowledgement_params = (("acknowledgements", "body"),)  # name, param in
 
     _submit_acknowledgement_responses = {
-        (202, "application/json"): SubmitAcknowledgementResponse,
-        (400, "application/json"): SubmitAcknowledgementResponse,
-        (403, "application/json"): SubmitAcknowledgementResponse,
-        (404, "application/json"): SubmitAcknowledgementResponse,
-        (413, "application/json"): SubmitAcknowledgementResponse,
-        (415, "application/json"): SubmitAcknowledgementResponse,
-        (429, "application/json"): SubmitAcknowledgementResponse,
-        (500, "application/json"): SubmitAcknowledgementResponse,
-        (503, "application/json"): SubmitAcknowledgementResponse,
+        202: SubmitAcknowledgementResponse,
+        400: SubmitAcknowledgementResponse,
+        403: SubmitAcknowledgementResponse,
+        404: SubmitAcknowledgementResponse,
+        413: SubmitAcknowledgementResponse,
+        415: SubmitAcknowledgementResponse,
+        429: SubmitAcknowledgementResponse,
+        500: SubmitAcknowledgementResponse,
+        503: SubmitAcknowledgementResponse,
     }

@@ -313,7 +313,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -466,7 +468,9 @@ class LinkObject:
     A URI for this object.
     """
 
-    name: Optional[str] = attrs.field()
+    name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An identifier for this object.
     """
@@ -525,7 +529,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_amazon_motors_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_amazon_motors_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -537,15 +541,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_amazon_motors_responses = {
-        (201, "application/hal+json"): CreateAmazonMotorsResponse,
-        (400, "application/hal+json"): CreateAmazonMotorsResponse,
-        (403, "application/hal+json"): CreateAmazonMotorsResponse,
-        (404, "application/hal+json"): CreateAmazonMotorsResponse,
-        (413, "application/hal+json"): CreateAmazonMotorsResponse,
-        (415, "application/hal+json"): CreateAmazonMotorsResponse,
-        (429, "application/hal+json"): CreateAmazonMotorsResponse,
-        (500, "application/hal+json"): CreateAmazonMotorsResponse,
-        (503, "application/hal+json"): CreateAmazonMotorsResponse,
+        201: CreateAmazonMotorsResponse,
+        400: CreateAmazonMotorsResponse,
+        403: CreateAmazonMotorsResponse,
+        404: CreateAmazonMotorsResponse,
+        413: CreateAmazonMotorsResponse,
+        415: CreateAmazonMotorsResponse,
+        429: CreateAmazonMotorsResponse,
+        500: CreateAmazonMotorsResponse,
+        503: CreateAmazonMotorsResponse,
     }
 
     def create_warranty(
@@ -588,7 +592,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_warranty_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_warranty_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -602,15 +606,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_warranty_responses = {
-        (201, "application/hal+json"): CreateWarrantyResponse,
-        (400, "application/hal+json"): CreateWarrantyResponse,
-        (403, "application/hal+json"): CreateWarrantyResponse,
-        (404, "application/hal+json"): CreateWarrantyResponse,
-        (413, "application/hal+json"): CreateWarrantyResponse,
-        (415, "application/hal+json"): CreateWarrantyResponse,
-        (429, "application/hal+json"): CreateWarrantyResponse,
-        (500, "application/hal+json"): CreateWarrantyResponse,
-        (503, "application/hal+json"): CreateWarrantyResponse,
+        201: CreateWarrantyResponse,
+        400: CreateWarrantyResponse,
+        403: CreateWarrantyResponse,
+        404: CreateWarrantyResponse,
+        413: CreateWarrantyResponse,
+        415: CreateWarrantyResponse,
+        429: CreateWarrantyResponse,
+        500: CreateWarrantyResponse,
+        503: CreateWarrantyResponse,
     }
 
     def get_attributes(
@@ -642,7 +646,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._get_attributes_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_attributes_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -653,15 +657,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _get_attributes_responses = {
-        (200, "application/hal+json"): GetAttributesResponse,
-        (400, "application/hal+json"): GetAttributesResponse,
-        (403, "application/hal+json"): GetAttributesResponse,
-        (404, "application/hal+json"): GetAttributesResponse,
-        (413, "application/hal+json"): GetAttributesResponse,
-        (415, "application/hal+json"): GetAttributesResponse,
-        (429, "application/hal+json"): GetAttributesResponse,
-        (500, "application/hal+json"): GetAttributesResponse,
-        (503, "application/hal+json"): GetAttributesResponse,
+        200: GetAttributesResponse,
+        400: GetAttributesResponse,
+        403: GetAttributesResponse,
+        404: GetAttributesResponse,
+        413: GetAttributesResponse,
+        415: GetAttributesResponse,
+        429: GetAttributesResponse,
+        500: GetAttributesResponse,
+        503: GetAttributesResponse,
     }
 
     def confirm_customization_details(
@@ -701,7 +705,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._confirm_customization_details_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._confirm_customization_details_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -714,15 +718,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _confirm_customization_details_responses = {
-        (201, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (400, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (403, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (404, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (413, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (415, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (429, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (500, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
-        (503, "application/hal+json"): CreateConfirmCustomizationDetailsResponse,
+        201: CreateConfirmCustomizationDetailsResponse,
+        400: CreateConfirmCustomizationDetailsResponse,
+        403: CreateConfirmCustomizationDetailsResponse,
+        404: CreateConfirmCustomizationDetailsResponse,
+        413: CreateConfirmCustomizationDetailsResponse,
+        415: CreateConfirmCustomizationDetailsResponse,
+        429: CreateConfirmCustomizationDetailsResponse,
+        500: CreateConfirmCustomizationDetailsResponse,
+        503: CreateConfirmCustomizationDetailsResponse,
     }
 
     def create_confirm_delivery_details(
@@ -759,7 +763,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_confirm_delivery_details_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_confirm_delivery_details_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -771,15 +775,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_confirm_delivery_details_responses = {
-        (201, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (400, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (403, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (404, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (413, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (415, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (429, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (500, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
-        (503, "application/hal+json"): CreateConfirmDeliveryDetailsResponse,
+        201: CreateConfirmDeliveryDetailsResponse,
+        400: CreateConfirmDeliveryDetailsResponse,
+        403: CreateConfirmDeliveryDetailsResponse,
+        404: CreateConfirmDeliveryDetailsResponse,
+        413: CreateConfirmDeliveryDetailsResponse,
+        415: CreateConfirmDeliveryDetailsResponse,
+        429: CreateConfirmDeliveryDetailsResponse,
+        500: CreateConfirmDeliveryDetailsResponse,
+        503: CreateConfirmDeliveryDetailsResponse,
     }
 
     def create_confirm_order_details(
@@ -816,7 +820,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_confirm_order_details_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_confirm_order_details_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -828,15 +832,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_confirm_order_details_responses = {
-        (201, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (400, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (403, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (404, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (413, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (415, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (429, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (500, "application/hal+json"): CreateConfirmOrderDetailsResponse,
-        (503, "application/hal+json"): CreateConfirmOrderDetailsResponse,
+        201: CreateConfirmOrderDetailsResponse,
+        400: CreateConfirmOrderDetailsResponse,
+        403: CreateConfirmOrderDetailsResponse,
+        404: CreateConfirmOrderDetailsResponse,
+        413: CreateConfirmOrderDetailsResponse,
+        415: CreateConfirmOrderDetailsResponse,
+        429: CreateConfirmOrderDetailsResponse,
+        500: CreateConfirmOrderDetailsResponse,
+        503: CreateConfirmOrderDetailsResponse,
     }
 
     def create_confirm_service_details(
@@ -873,7 +877,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_confirm_service_details_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_confirm_service_details_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -885,15 +889,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_confirm_service_details_responses = {
-        (201, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (400, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (403, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (404, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (413, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (415, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (429, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (500, "application/hal+json"): CreateConfirmServiceDetailsResponse,
-        (503, "application/hal+json"): CreateConfirmServiceDetailsResponse,
+        201: CreateConfirmServiceDetailsResponse,
+        400: CreateConfirmServiceDetailsResponse,
+        403: CreateConfirmServiceDetailsResponse,
+        404: CreateConfirmServiceDetailsResponse,
+        413: CreateConfirmServiceDetailsResponse,
+        415: CreateConfirmServiceDetailsResponse,
+        429: CreateConfirmServiceDetailsResponse,
+        500: CreateConfirmServiceDetailsResponse,
+        503: CreateConfirmServiceDetailsResponse,
     }
 
     def create_digital_access_key(
@@ -933,7 +937,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_digital_access_key_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_digital_access_key_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -946,15 +950,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_digital_access_key_responses = {
-        (201, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (400, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (403, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (404, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (413, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (415, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (429, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (500, "application/hal+json"): CreateDigitalAccessKeyResponse,
-        (503, "application/hal+json"): CreateDigitalAccessKeyResponse,
+        201: CreateDigitalAccessKeyResponse,
+        400: CreateDigitalAccessKeyResponse,
+        403: CreateDigitalAccessKeyResponse,
+        404: CreateDigitalAccessKeyResponse,
+        413: CreateDigitalAccessKeyResponse,
+        415: CreateDigitalAccessKeyResponse,
+        429: CreateDigitalAccessKeyResponse,
+        500: CreateDigitalAccessKeyResponse,
+        503: CreateDigitalAccessKeyResponse,
     }
 
     def create_legal_disclosure(
@@ -991,7 +995,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_legal_disclosure_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_legal_disclosure_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1003,15 +1007,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_legal_disclosure_responses = {
-        (201, "application/hal+json"): CreateLegalDisclosureResponse,
-        (400, "application/hal+json"): CreateLegalDisclosureResponse,
-        (403, "application/hal+json"): CreateLegalDisclosureResponse,
-        (404, "application/hal+json"): CreateLegalDisclosureResponse,
-        (413, "application/hal+json"): CreateLegalDisclosureResponse,
-        (415, "application/hal+json"): CreateLegalDisclosureResponse,
-        (429, "application/hal+json"): CreateLegalDisclosureResponse,
-        (500, "application/hal+json"): CreateLegalDisclosureResponse,
-        (503, "application/hal+json"): CreateLegalDisclosureResponse,
+        201: CreateLegalDisclosureResponse,
+        400: CreateLegalDisclosureResponse,
+        403: CreateLegalDisclosureResponse,
+        404: CreateLegalDisclosureResponse,
+        413: CreateLegalDisclosureResponse,
+        415: CreateLegalDisclosureResponse,
+        429: CreateLegalDisclosureResponse,
+        500: CreateLegalDisclosureResponse,
+        503: CreateLegalDisclosureResponse,
     }
 
     def create_negative_feedback_removal(
@@ -1045,7 +1049,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_negative_feedback_removal_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_negative_feedback_removal_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1056,15 +1060,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_negative_feedback_removal_responses = {
-        (201, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (400, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (403, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (404, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (413, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (415, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (429, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (500, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
-        (503, "application/hal+json"): CreateNegativeFeedbackRemovalResponse,
+        201: CreateNegativeFeedbackRemovalResponse,
+        400: CreateNegativeFeedbackRemovalResponse,
+        403: CreateNegativeFeedbackRemovalResponse,
+        404: CreateNegativeFeedbackRemovalResponse,
+        413: CreateNegativeFeedbackRemovalResponse,
+        415: CreateNegativeFeedbackRemovalResponse,
+        429: CreateNegativeFeedbackRemovalResponse,
+        500: CreateNegativeFeedbackRemovalResponse,
+        503: CreateNegativeFeedbackRemovalResponse,
     }
 
     def create_unexpected_problem(
@@ -1101,7 +1105,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._create_unexpected_problem_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_unexpected_problem_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1113,15 +1117,15 @@ class MessagingV1Client(BaseClient):
     )
 
     _create_unexpected_problem_responses = {
-        (201, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (400, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (403, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (404, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (413, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (415, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (429, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (500, "application/hal+json"): CreateUnexpectedProblemResponse,
-        (503, "application/hal+json"): CreateUnexpectedProblemResponse,
+        201: CreateUnexpectedProblemResponse,
+        400: CreateUnexpectedProblemResponse,
+        403: CreateUnexpectedProblemResponse,
+        404: CreateUnexpectedProblemResponse,
+        413: CreateUnexpectedProblemResponse,
+        415: CreateUnexpectedProblemResponse,
+        429: CreateUnexpectedProblemResponse,
+        500: CreateUnexpectedProblemResponse,
+        503: CreateUnexpectedProblemResponse,
     }
 
     def get_messaging_actions_for_order(
@@ -1155,7 +1159,7 @@ class MessagingV1Client(BaseClient):
             values,
             self._get_messaging_actions_for_order_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_messaging_actions_for_order_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1166,13 +1170,13 @@ class MessagingV1Client(BaseClient):
     )
 
     _get_messaging_actions_for_order_responses = {
-        (200, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (400, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (403, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (404, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (413, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (415, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (429, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (500, "application/hal+json"): GetMessagingActionsForOrderResponse,
-        (503, "application/hal+json"): GetMessagingActionsForOrderResponse,
+        200: GetMessagingActionsForOrderResponse,
+        400: GetMessagingActionsForOrderResponse,
+        403: GetMessagingActionsForOrderResponse,
+        404: GetMessagingActionsForOrderResponse,
+        413: GetMessagingActionsForOrderResponse,
+        415: GetMessagingActionsForOrderResponse,
+        429: GetMessagingActionsForOrderResponse,
+        500: GetMessagingActionsForOrderResponse,
+        503: GetMessagingActionsForOrderResponse,
     }

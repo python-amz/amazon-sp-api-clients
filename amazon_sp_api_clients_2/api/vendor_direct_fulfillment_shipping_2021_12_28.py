@@ -24,17 +24,23 @@ class Address:
     First line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city where the person, business or institution is located.
     """
@@ -44,12 +50,16 @@ class Address:
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county where person, business or institution is located.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district where person, business or institution is located.
     """
@@ -59,17 +69,23 @@ class Address:
     The name of the person, business or institution at that address.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state or region where person, business or institution is located.
     """
@@ -78,7 +94,9 @@ class Address:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Container:
 
-    carrier: Optional[str] = attrs.field()
+    carrier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Carrier required for EU VOC vendors only.
     """
@@ -88,7 +106,9 @@ class Container:
     The container identifier.
     """
 
-    container_sequence_number: Optional[int] = attrs.field()
+    container_sequence_number: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     An integer that must be submitted for multi-box shipments only, where one item may come in separate packages.
     """
@@ -98,17 +118,23 @@ class Container:
     The type of container.
     """
 
-    dimensions: Optional["Dimensions"] = attrs.field()
+    dimensions: Optional["Dimensions"] = attrs.field(
+        default=None,
+    )
     """
     Physical dimensional measurements of a container.
     """
 
-    manifest_date: Optional[str] = attrs.field()
+    manifest_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The date of the manifest.
     """
 
-    manifest_id: Optional[str] = attrs.field()
+    manifest_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The manifest identifier.
     """
@@ -118,22 +144,30 @@ class Container:
     A list of packed items.
     """
 
-    scac_code: Optional[str] = attrs.field()
+    scac_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     SCAC code required for NA VOC vendors only.
     """
 
-    ship_method: Optional[str] = attrs.field()
+    ship_method: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The shipment method.
     """
 
-    tracking_number: Optional[str] = attrs.field()
+    tracking_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The tracking number.
     """
 
-    weight: Optional["Weight"] = attrs.field()
+    weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -211,7 +245,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -293,7 +329,9 @@ class Item:
     Details of the item being shipped.
     """
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
     """
@@ -308,7 +346,9 @@ class Item:
     Details of item quantity.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the purchase order, like SKU Number.
     """
@@ -342,22 +382,30 @@ class LabelData:
     This field will contain the Base64encoded string of the shipment label content.
     """
 
-    package_identifier: Optional[str] = attrs.field()
+    package_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Identifier for the package. The first package will be 001, the second 002, and so on. This number is used as a reference to refer to this package from the pallet level.
     """
 
-    ship_method: Optional[str] = attrs.field()
+    ship_method: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Ship method to be used for shipping the order. Amazon defines Ship Method Codes indicating shipping carrier and shipment service level. Ship Method Codes are case and format sensitive. The same ship method code should returned on the shipment confirmation. Note that the Ship Method Codes are vendor specific and will be provided to each vendor during the implementation.
     """
 
-    ship_method_name: Optional[str] = attrs.field()
+    ship_method_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Shipping method name for internal reference.
     """
 
-    tracking_number: Optional[str] = attrs.field()
+    tracking_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Package tracking identifier from the shipping carrier.
     """
@@ -366,7 +414,9 @@ class LabelData:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PackedItem:
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
     """
@@ -381,7 +431,9 @@ class PackedItem:
     Details of item quantity.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the Purchase Order, like SKU Number.
     """
@@ -399,7 +451,9 @@ class Pagination:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    address: Optional["Address"] = attrs.field()
+    address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
@@ -409,7 +463,9 @@ class PartyIdentification:
     Assigned Identification for the party.
     """
 
-    tax_registration_details: Optional[List["TaxRegistrationDetails"]] = attrs.field()
+    tax_registration_details: Optional[List["TaxRegistrationDetails"]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration details of the entity.
     """
@@ -452,7 +508,9 @@ class ShippingLabelList:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShippingLabelRequest:
 
-    containers: Optional[List["Container"]] = attrs.field()
+    containers: Optional[List["Container"]] = attrs.field(
+        default=None,
+    )
     """
     A list of the packages in this shipment.
     """
@@ -496,12 +554,16 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
-    tax_registration_address: Optional["Address"] = attrs.field()
+    tax_registration_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
 
-    tax_registration_messages: Optional[str] = attrs.field()
+    tax_registration_messages: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Tax registration message that can be used for additional tax related details.
     """
@@ -511,7 +573,9 @@ class TaxRegistrationDetails:
     Tax registration number for the party. For example, VAT ID.
     """
 
-    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field()
+    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration type for the entity.
     """
@@ -570,7 +634,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             values,
             self._get_shipping_label_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_shipping_label_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -578,15 +642,15 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_shipping_label_responses = {
-        (200, "application/json"): ShippingLabel,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ShippingLabel,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_shipping_labels(
@@ -632,7 +696,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             values,
             self._get_shipping_labels_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_shipping_labels_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -647,14 +711,14 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     )
 
     _get_shipping_labels_responses = {
-        (200, "application/json"): ShippingLabelList,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ShippingLabelList,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def submit_shipping_label_request(
@@ -683,7 +747,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             values,
             self._submit_shipping_label_request_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_shipping_label_request_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -691,13 +755,13 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in
 
     _submit_shipping_label_request_responses = {
-        (202, "application/json"): TransactionReference,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        202: TransactionReference,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

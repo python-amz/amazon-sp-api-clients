@@ -26,7 +26,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -51,12 +53,16 @@ class Link:
     {'schema_format': 'uri'}
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The title of the related resource.
     """
 
-    type: Optional[str] = attrs.field()
+    type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The media type of the related resource.
     """
@@ -73,7 +79,9 @@ class Reason:
     A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
     """
 
-    links: Optional[List["Link"]] = attrs.field()
+    links: Optional[List["Link"]] = attrs.field(
+        default=None,
+    )
     """
     A list of path forward links that may allow Selling Partners to remove the restriction.
     """
@@ -85,7 +93,9 @@ class Reason:
 
     reason_code: Optional[
         Union[Literal["APPROVAL_REQUIRED"], Literal["ASIN_NOT_FOUND"], Literal["NOT_ELIGIBLE"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     A code indicating why the listing is restricted.
     """
@@ -113,7 +123,9 @@ class Restriction:
             Literal["collectible_acceptable"],
             Literal["club_club"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The condition that applies to the restriction.
     """
@@ -123,7 +135,9 @@ class Restriction:
     A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
     """
 
-    reasons: Optional[List["Reason"]] = attrs.field()
+    reasons: Optional[List["Reason"]] = attrs.field(
+        default=None,
+    )
     """
     A list of reasons for the restriction.
     """
@@ -193,7 +207,7 @@ class ListingsRestrictions20210801Client(BaseClient):
             values,
             self._get_listings_restrictions_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_listings_restrictions_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -207,13 +221,13 @@ class ListingsRestrictions20210801Client(BaseClient):
     )
 
     _get_listings_restrictions_responses = {
-        (200, "application/json"): RestrictionList,
-        (400, "application/json"): List["Error"],
-        (403, "application/json"): List["Error"],
-        (404, "application/json"): List["Error"],
-        (413, "application/json"): List["Error"],
-        (415, "application/json"): List["Error"],
-        (429, "application/json"): List["Error"],
-        (500, "application/json"): List["Error"],
-        (503, "application/json"): List["Error"],
+        200: RestrictionList,
+        400: List["Error"],
+        403: List["Error"],
+        404: List["Error"],
+        413: List["Error"],
+        415: List["Error"],
+        429: List["Error"],
+        500: List["Error"],
+        503: List["Error"],
     }

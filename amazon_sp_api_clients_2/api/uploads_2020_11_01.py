@@ -41,7 +41,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -121,7 +123,7 @@ class Uploads20201101Client(BaseClient):
             values,
             self._create_upload_destination_for_resource_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_upload_destination_for_resource_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -134,13 +136,13 @@ class Uploads20201101Client(BaseClient):
     )
 
     _create_upload_destination_for_resource_responses = {
-        (201, "application/json"): CreateUploadDestinationResponse,
-        (400, "application/json"): CreateUploadDestinationResponse,
-        (403, "application/json"): CreateUploadDestinationResponse,
-        (404, "application/json"): CreateUploadDestinationResponse,
-        (413, "application/json"): CreateUploadDestinationResponse,
-        (415, "application/json"): CreateUploadDestinationResponse,
-        (429, "application/json"): CreateUploadDestinationResponse,
-        (500, "application/json"): CreateUploadDestinationResponse,
-        (503, "application/json"): CreateUploadDestinationResponse,
+        201: CreateUploadDestinationResponse,
+        400: CreateUploadDestinationResponse,
+        403: CreateUploadDestinationResponse,
+        404: CreateUploadDestinationResponse,
+        413: CreateUploadDestinationResponse,
+        415: CreateUploadDestinationResponse,
+        429: CreateUploadDestinationResponse,
+        500: CreateUploadDestinationResponse,
+        503: CreateUploadDestinationResponse,
     }

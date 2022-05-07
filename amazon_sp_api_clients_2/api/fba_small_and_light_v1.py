@@ -24,7 +24,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional information that can help the caller understand or fix the issue.
     """
@@ -258,7 +260,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             values,
             self._delete_small_and_light_enrollment_by_seller_sku_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._delete_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -269,14 +271,14 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _delete_small_and_light_enrollment_by_seller_sku_responses = {
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_small_and_light_eligibility_by_seller_sku(
@@ -310,7 +312,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             values,
             self._get_small_and_light_eligibility_by_seller_sku_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_small_and_light_eligibility_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -321,15 +323,15 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _get_small_and_light_eligibility_by_seller_sku_responses = {
-        (200, "application/json"): SmallAndLightEligibility,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: SmallAndLightEligibility,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_small_and_light_enrollment_by_seller_sku(
@@ -363,7 +365,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             values,
             self._get_small_and_light_enrollment_by_seller_sku_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -374,15 +376,15 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _get_small_and_light_enrollment_by_seller_sku_responses = {
-        (200, "application/json"): SmallAndLightEnrollment,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: SmallAndLightEnrollment,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_small_and_light_fee_preview(
@@ -416,7 +418,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             values,
             self._get_small_and_light_fee_preview_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_small_and_light_fee_preview_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -427,14 +429,14 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _get_small_and_light_fee_preview_responses = {
-        (200, "application/json"): SmallAndLightFeePreviews,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: SmallAndLightFeePreviews,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def put_small_and_light_enrollment_by_seller_sku(
@@ -468,7 +470,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             values,
             self._put_small_and_light_enrollment_by_seller_sku_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._put_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -479,13 +481,13 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _put_small_and_light_enrollment_by_seller_sku_responses = {
-        (200, "application/json"): SmallAndLightEnrollment,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: SmallAndLightEnrollment,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

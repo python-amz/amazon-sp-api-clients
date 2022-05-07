@@ -24,7 +24,9 @@ class Error:
     An error code that identifies the type of error that occured.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -145,7 +147,7 @@ class SellersV1Client(BaseClient):
             values,
             self._get_marketplace_participations_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_marketplace_participations_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -153,13 +155,13 @@ class SellersV1Client(BaseClient):
     _get_marketplace_participations_params = ()  # name, param in
 
     _get_marketplace_participations_responses = {
-        (200, "application/json"): GetMarketplaceParticipationsResponse,
-        (400, "application/json"): GetMarketplaceParticipationsResponse,
-        (403, "application/json"): GetMarketplaceParticipationsResponse,
-        (404, "application/json"): GetMarketplaceParticipationsResponse,
-        (413, "application/json"): GetMarketplaceParticipationsResponse,
-        (415, "application/json"): GetMarketplaceParticipationsResponse,
-        (429, "application/json"): GetMarketplaceParticipationsResponse,
-        (500, "application/json"): GetMarketplaceParticipationsResponse,
-        (503, "application/json"): GetMarketplaceParticipationsResponse,
+        200: GetMarketplaceParticipationsResponse,
+        400: GetMarketplaceParticipationsResponse,
+        403: GetMarketplaceParticipationsResponse,
+        404: GetMarketplaceParticipationsResponse,
+        413: GetMarketplaceParticipationsResponse,
+        415: GetMarketplaceParticipationsResponse,
+        429: GetMarketplaceParticipationsResponse,
+        500: GetMarketplaceParticipationsResponse,
+        503: GetMarketplaceParticipationsResponse,
     }

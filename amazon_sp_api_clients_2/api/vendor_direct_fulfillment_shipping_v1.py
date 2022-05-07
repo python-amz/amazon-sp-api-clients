@@ -24,17 +24,23 @@ class Address:
     First line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city where the person, business or institution is located.
     """
@@ -44,12 +50,16 @@ class Address:
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county where person, business or institution is located.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district where person, business or institution is located.
     """
@@ -59,17 +69,23 @@ class Address:
     The name of the person, business or institution at that address.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state or region where person, business or institution is located.
     """
@@ -78,7 +94,9 @@ class Address:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Container:
 
-    carrier: Optional[str] = attrs.field()
+    carrier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Carrier required for EU VOC vendors only.
     """
@@ -88,7 +106,9 @@ class Container:
     The container identifier.
     """
 
-    container_sequence_number: Optional[int] = attrs.field()
+    container_sequence_number: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     An integer that must be submitted for multi-box shipments only, where one item may come in separate packages.
     """
@@ -98,17 +118,23 @@ class Container:
     The type of container.
     """
 
-    dimensions: Optional["Dimensions"] = attrs.field()
+    dimensions: Optional["Dimensions"] = attrs.field(
+        default=None,
+    )
     """
     Physical dimensional measurements of a container.
     """
 
-    manifest_date: Optional[str] = attrs.field()
+    manifest_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The date of the manifest.
     """
 
-    manifest_id: Optional[str] = attrs.field()
+    manifest_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The manifest identifier.
     """
@@ -118,22 +144,30 @@ class Container:
     A list of packed items.
     """
 
-    scac_code: Optional[str] = attrs.field()
+    scac_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     SCAC code required for NA VOC vendors only.
     """
 
-    ship_method: Optional[str] = attrs.field()
+    ship_method: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The shipment method.
     """
 
-    tracking_number: Optional[str] = attrs.field()
+    tracking_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The tracking number.
     """
 
-    weight: Optional["Weight"] = attrs.field()
+    weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -211,7 +245,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -312,7 +348,9 @@ class Item:
     Details of the item being shipped.
     """
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
     """
@@ -327,7 +365,9 @@ class Item:
     Details of item quantity.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the purchase order, like SKU Number.
     """
@@ -361,22 +401,30 @@ class LabelData:
     This field will contain the Base64encoded string of the shipment label content.
     """
 
-    package_identifier: Optional[str] = attrs.field()
+    package_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Identifier for the package. The first package will be 001, the second 002, and so on. This number is used as a reference to refer to this package from the pallet level.
     """
 
-    ship_method: Optional[str] = attrs.field()
+    ship_method: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Ship method to be used for shipping the order. Amazon defines Ship Method Codes indicating shipping carrier and shipment service level. Ship Method Codes are case and format sensitive. The same ship method code should returned on the shipment confirmation. Note that the Ship Method Codes are vendor specific and will be provided to each vendor during the implementation.
     """
 
-    ship_method_name: Optional[str] = attrs.field()
+    ship_method_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Shipping method name for internal reference.
     """
 
-    tracking_number: Optional[str] = attrs.field()
+    tracking_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Package tracking identifier from the shipping carrier.
     """
@@ -385,7 +433,9 @@ class LabelData:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PackedItem:
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or vendorProductIdentifier is required.
     """
@@ -400,7 +450,9 @@ class PackedItem:
     Details of item quantity.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item. Should be the same as was sent in the Purchase Order, like SKU Number.
     """
@@ -417,7 +469,9 @@ class PackingSlip:
     A Base64encoded string of the packing slip PDF.
     """
 
-    content_type: Optional[Union[Literal["application/pdf"]]] = attrs.field()
+    content_type: Optional[Union[Literal["application/pdf"]]] = attrs.field(
+        default=None,
+    )
     """
     The format of the file such as PDF, JPEG etc.
     """
@@ -454,7 +508,9 @@ class Pagination:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    address: Optional["Address"] = attrs.field()
+    address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
@@ -464,7 +520,9 @@ class PartyIdentification:
     Assigned Identification for the party.
     """
 
-    tax_registration_details: Optional[List["TaxRegistrationDetails"]] = attrs.field()
+    tax_registration_details: Optional[List["TaxRegistrationDetails"]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration details of the entity.
     """
@@ -473,7 +531,9 @@ class PartyIdentification:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentConfirmation:
 
-    containers: Optional[List["Container"]] = attrs.field()
+    containers: Optional[List["Container"]] = attrs.field(
+        default=None,
+    )
     """
     Provide the details of the items in this shipment. If any of the item details field is common at a package or a pallet level, then provide them at the corresponding package.
     """
@@ -507,7 +567,9 @@ class ShipmentDetails:
     Details about a shipment.
     """
 
-    estimated_delivery_date: Optional[datetime] = attrs.field()
+    estimated_delivery_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Date on which the shipment is expected to reach the buyer's warehouse. It needs to be an estimate based on the average transit time between the ship-from location and the destination. The exact appointment time will be provided by buyer and is potentially not known when creating the shipment confirmation.
 
@@ -515,7 +577,9 @@ class ShipmentDetails:
     {'schema_format': 'date-time'}
     """
 
-    is_priority_shipment: Optional[bool] = attrs.field()
+    is_priority_shipment: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Provide the priority of the shipment.
     """
@@ -533,7 +597,9 @@ class ShipmentDetails:
     {'schema_format': 'date-time'}
     """
 
-    vendor_order_number: Optional[str] = attrs.field()
+    vendor_order_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor order number is a unique identifier generated by a vendor for their reference.
     """
@@ -597,7 +663,9 @@ class ShippingLabelList:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShippingLabelRequest:
 
-    containers: Optional[List["Container"]] = attrs.field()
+    containers: Optional[List["Container"]] = attrs.field(
+        default=None,
+    )
     """
     A list of the packages in this shipment.
     """
@@ -626,7 +694,9 @@ class StatusUpdateDetails:
     Provides a reason code for the status of the package that will provide additional information about the transportation status.
     """
 
-    shipment_schedule: Optional["StatusUpdateDetailsShipmentSchedule"] = attrs.field()
+    shipment_schedule: Optional["StatusUpdateDetailsShipmentSchedule"] = attrs.field(
+        default=None,
+    )
 
     status_code: str = attrs.field()
     """
@@ -746,12 +816,16 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
-    tax_registration_address: Optional["Address"] = attrs.field()
+    tax_registration_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
 
-    tax_registration_messages: Optional[str] = attrs.field()
+    tax_registration_messages: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Tax registration message that can be used for additional tax related details.
     """
@@ -761,7 +835,9 @@ class TaxRegistrationDetails:
     Tax registration number for the party. For example, VAT ID.
     """
 
-    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field()
+    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration type for the entity.
     """
@@ -821,7 +897,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._get_customer_invoice_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_customer_invoice_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -829,15 +905,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_customer_invoice_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_customer_invoice_responses = {
-        (200, "application/json"): GetCustomerInvoiceResponse,
-        (400, "application/json"): GetCustomerInvoiceResponse,
-        (401, "application/json"): GetCustomerInvoiceResponse,
-        (403, "application/json"): GetCustomerInvoiceResponse,
-        (404, "application/json"): GetCustomerInvoiceResponse,
-        (415, "application/json"): GetCustomerInvoiceResponse,
-        (429, "application/json"): GetCustomerInvoiceResponse,
-        (500, "application/json"): GetCustomerInvoiceResponse,
-        (503, "application/json"): GetCustomerInvoiceResponse,
+        200: GetCustomerInvoiceResponse,
+        400: GetCustomerInvoiceResponse,
+        401: GetCustomerInvoiceResponse,
+        403: GetCustomerInvoiceResponse,
+        404: GetCustomerInvoiceResponse,
+        415: GetCustomerInvoiceResponse,
+        429: GetCustomerInvoiceResponse,
+        500: GetCustomerInvoiceResponse,
+        503: GetCustomerInvoiceResponse,
     }
 
     def get_customer_invoices(
@@ -884,7 +960,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._get_customer_invoices_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_customer_invoices_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -899,14 +975,14 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     _get_customer_invoices_responses = {
-        (200, "application/json"): GetCustomerInvoicesResponse,
-        (400, "application/json"): GetCustomerInvoiceResponse,
-        (403, "application/json"): GetCustomerInvoiceResponse,
-        (404, "application/json"): GetCustomerInvoiceResponse,
-        (415, "application/json"): GetCustomerInvoiceResponse,
-        (429, "application/json"): GetCustomerInvoiceResponse,
-        (500, "application/json"): GetCustomerInvoiceResponse,
-        (503, "application/json"): GetCustomerInvoiceResponse,
+        200: GetCustomerInvoicesResponse,
+        400: GetCustomerInvoiceResponse,
+        403: GetCustomerInvoiceResponse,
+        404: GetCustomerInvoiceResponse,
+        415: GetCustomerInvoiceResponse,
+        429: GetCustomerInvoiceResponse,
+        500: GetCustomerInvoiceResponse,
+        503: GetCustomerInvoiceResponse,
     }
 
     def get_packing_slip(
@@ -936,7 +1012,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._get_packing_slip_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_packing_slip_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -944,15 +1020,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_packing_slip_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_packing_slip_responses = {
-        (200, "application/json"): GetPackingSlipResponse,
-        (400, "application/json"): GetPackingSlipResponse,
-        (401, "application/json"): GetPackingSlipResponse,
-        (403, "application/json"): GetPackingSlipResponse,
-        (404, "application/json"): GetPackingSlipResponse,
-        (415, "application/json"): GetPackingSlipResponse,
-        (429, "application/json"): GetPackingSlipResponse,
-        (500, "application/json"): GetPackingSlipResponse,
-        (503, "application/json"): GetPackingSlipResponse,
+        200: GetPackingSlipResponse,
+        400: GetPackingSlipResponse,
+        401: GetPackingSlipResponse,
+        403: GetPackingSlipResponse,
+        404: GetPackingSlipResponse,
+        415: GetPackingSlipResponse,
+        429: GetPackingSlipResponse,
+        500: GetPackingSlipResponse,
+        503: GetPackingSlipResponse,
     }
 
     def get_packing_slips(
@@ -999,7 +1075,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._get_packing_slips_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_packing_slips_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1014,15 +1090,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     _get_packing_slips_responses = {
-        (200, "application/json"): GetPackingSlipListResponse,
-        (400, "application/json"): GetPackingSlipListResponse,
-        (401, "application/json"): GetPackingSlipListResponse,
-        (403, "application/json"): GetPackingSlipListResponse,
-        (404, "application/json"): GetPackingSlipListResponse,
-        (415, "application/json"): GetPackingSlipListResponse,
-        (429, "application/json"): GetPackingSlipListResponse,
-        (500, "application/json"): GetPackingSlipListResponse,
-        (503, "application/json"): GetPackingSlipListResponse,
+        200: GetPackingSlipListResponse,
+        400: GetPackingSlipListResponse,
+        401: GetPackingSlipListResponse,
+        403: GetPackingSlipListResponse,
+        404: GetPackingSlipListResponse,
+        415: GetPackingSlipListResponse,
+        429: GetPackingSlipListResponse,
+        500: GetPackingSlipListResponse,
+        503: GetPackingSlipListResponse,
     }
 
     def get_shipping_label(
@@ -1052,7 +1128,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._get_shipping_label_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_shipping_label_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1060,15 +1136,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_shipping_label_responses = {
-        (200, "application/json"): GetShippingLabelResponse,
-        (400, "application/json"): GetShippingLabelResponse,
-        (401, "application/json"): GetShippingLabelResponse,
-        (403, "application/json"): GetShippingLabelResponse,
-        (404, "application/json"): GetShippingLabelResponse,
-        (415, "application/json"): GetShippingLabelResponse,
-        (429, "application/json"): GetShippingLabelResponse,
-        (500, "application/json"): GetShippingLabelResponse,
-        (503, "application/json"): GetShippingLabelResponse,
+        200: GetShippingLabelResponse,
+        400: GetShippingLabelResponse,
+        401: GetShippingLabelResponse,
+        403: GetShippingLabelResponse,
+        404: GetShippingLabelResponse,
+        415: GetShippingLabelResponse,
+        429: GetShippingLabelResponse,
+        500: GetShippingLabelResponse,
+        503: GetShippingLabelResponse,
     }
 
     def get_shipping_labels(
@@ -1115,7 +1191,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._get_shipping_labels_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_shipping_labels_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1130,14 +1206,14 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     _get_shipping_labels_responses = {
-        (200, "application/json"): GetShippingLabelListResponse,
-        (400, "application/json"): GetShippingLabelListResponse,
-        (403, "application/json"): GetShippingLabelListResponse,
-        (404, "application/json"): GetShippingLabelListResponse,
-        (415, "application/json"): GetShippingLabelListResponse,
-        (429, "application/json"): GetShippingLabelListResponse,
-        (500, "application/json"): GetShippingLabelListResponse,
-        (503, "application/json"): GetShippingLabelListResponse,
+        200: GetShippingLabelListResponse,
+        400: GetShippingLabelListResponse,
+        403: GetShippingLabelListResponse,
+        404: GetShippingLabelListResponse,
+        415: GetShippingLabelListResponse,
+        429: GetShippingLabelListResponse,
+        500: GetShippingLabelListResponse,
+        503: GetShippingLabelListResponse,
     }
 
     def submit_shipment_confirmations(
@@ -1167,7 +1243,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._submit_shipment_confirmations_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_shipment_confirmations_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1175,15 +1251,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
 
     _submit_shipment_confirmations_responses = {
-        (202, "application/json"): SubmitShipmentConfirmationsResponse,
-        (400, "application/json"): SubmitShipmentConfirmationsResponse,
-        (403, "application/json"): SubmitShipmentConfirmationsResponse,
-        (404, "application/json"): SubmitShipmentConfirmationsResponse,
-        (413, "application/json"): SubmitShipmentConfirmationsResponse,
-        (415, "application/json"): SubmitShipmentConfirmationsResponse,
-        (429, "application/json"): SubmitShipmentConfirmationsResponse,
-        (500, "application/json"): SubmitShipmentConfirmationsResponse,
-        (503, "application/json"): SubmitShipmentConfirmationsResponse,
+        202: SubmitShipmentConfirmationsResponse,
+        400: SubmitShipmentConfirmationsResponse,
+        403: SubmitShipmentConfirmationsResponse,
+        404: SubmitShipmentConfirmationsResponse,
+        413: SubmitShipmentConfirmationsResponse,
+        415: SubmitShipmentConfirmationsResponse,
+        429: SubmitShipmentConfirmationsResponse,
+        500: SubmitShipmentConfirmationsResponse,
+        503: SubmitShipmentConfirmationsResponse,
     }
 
     def submit_shipment_status_updates(
@@ -1213,7 +1289,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._submit_shipment_status_updates_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_shipment_status_updates_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1221,15 +1297,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipment_status_updates_params = (("shipmentStatusUpdates", "body"),)  # name, param in
 
     _submit_shipment_status_updates_responses = {
-        (202, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (400, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (403, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (404, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (413, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (415, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (429, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (500, "application/json"): SubmitShipmentStatusUpdatesResponse,
-        (503, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        202: SubmitShipmentStatusUpdatesResponse,
+        400: SubmitShipmentStatusUpdatesResponse,
+        403: SubmitShipmentStatusUpdatesResponse,
+        404: SubmitShipmentStatusUpdatesResponse,
+        413: SubmitShipmentStatusUpdatesResponse,
+        415: SubmitShipmentStatusUpdatesResponse,
+        429: SubmitShipmentStatusUpdatesResponse,
+        500: SubmitShipmentStatusUpdatesResponse,
+        503: SubmitShipmentStatusUpdatesResponse,
     }
 
     def submit_shipping_label_request(
@@ -1259,7 +1335,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             values,
             self._submit_shipping_label_request_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_shipping_label_request_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1267,13 +1343,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in
 
     _submit_shipping_label_request_responses = {
-        (202, "application/json"): SubmitShippingLabelsResponse,
-        (400, "application/json"): SubmitShippingLabelsResponse,
-        (403, "application/json"): SubmitShippingLabelsResponse,
-        (404, "application/json"): SubmitShippingLabelsResponse,
-        (413, "application/json"): SubmitShippingLabelsResponse,
-        (415, "application/json"): SubmitShippingLabelsResponse,
-        (429, "application/json"): SubmitShippingLabelsResponse,
-        (500, "application/json"): SubmitShippingLabelsResponse,
-        (503, "application/json"): SubmitShippingLabelsResponse,
+        202: SubmitShippingLabelsResponse,
+        400: SubmitShippingLabelsResponse,
+        403: SubmitShippingLabelsResponse,
+        404: SubmitShippingLabelsResponse,
+        413: SubmitShippingLabelsResponse,
+        415: SubmitShippingLabelsResponse,
+        429: SubmitShippingLabelsResponse,
+        500: SubmitShippingLabelsResponse,
+        503: SubmitShippingLabelsResponse,
     }

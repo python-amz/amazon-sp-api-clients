@@ -24,7 +24,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -50,7 +52,9 @@ class Transaction:
     The transaction status details.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional["ErrorList"] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -105,7 +109,7 @@ class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
             values,
             self._get_transaction_status_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_transaction_status_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -113,13 +117,13 @@ class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
     _get_transaction_status_params = (("transactionId", "path"),)  # name, param in
 
     _get_transaction_status_responses = {
-        (200, "application/json"): TransactionStatus,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): Error,
-        (403, "application/json"): Error,
-        (404, "application/json"): Error,
-        (415, "application/json"): Error,
-        (429, "application/json"): Error,
-        (500, "application/json"): Error,
-        (503, "application/json"): Error,
+        200: TransactionStatus,
+        400: ErrorList,
+        401: Error,
+        403: Error,
+        404: Error,
+        415: Error,
+        429: Error,
+        500: Error,
+        503: Error,
     }

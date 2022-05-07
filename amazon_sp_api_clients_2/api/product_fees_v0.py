@@ -21,7 +21,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional information that can help the caller understand or fix the issue.
     """
@@ -40,7 +42,9 @@ class FeeDetail:
 
     fee_amount: "MoneyType" = attrs.field()
 
-    fee_promotion: Optional["MoneyType"] = attrs.field()
+    fee_promotion: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
     fee_type: str = attrs.field()
     """
@@ -49,12 +53,16 @@ class FeeDetail:
 
     final_fee: "MoneyType" = attrs.field()
 
-    included_fee_detail_list: Optional[List["IncludedFeeDetail"]] = attrs.field()
+    included_fee_detail_list: Optional[List["IncludedFeeDetail"]] = attrs.field(
+        default=None,
+    )
     """
     A list of other fees that contribute to a given fee.
     """
 
-    tax_amount: Optional["MoneyType"] = attrs.field()
+    tax_amount: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -63,7 +71,9 @@ class FeesEstimate:
     The total estimated fees for an item and a list of details.
     """
 
-    fee_detail_list: Optional[List["FeeDetail"]] = attrs.field()
+    fee_detail_list: Optional[List["FeeDetail"]] = attrs.field(
+        default=None,
+    )
     """
     A list of other fees that contribute to a given fee.
     """
@@ -76,7 +86,9 @@ class FeesEstimate:
     {'schema_format': 'date-time'}
     """
 
-    total_fees_estimate: Optional["MoneyType"] = attrs.field()
+    total_fees_estimate: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -167,7 +179,9 @@ class FeesEstimateRequest:
     A unique identifier provided by the caller to track this request.
     """
 
-    is_amazon_fulfilled: Optional[bool] = attrs.field()
+    is_amazon_fulfilled: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the offer is fulfilled by Amazon.
     """
@@ -177,7 +191,9 @@ class FeesEstimateRequest:
     A marketplace identifier.
     """
 
-    optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field()
+    optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field(
+        default=None,
+    )
     """
     An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
     """
@@ -258,7 +274,9 @@ class IncludedFeeDetail:
 
     fee_amount: "MoneyType" = attrs.field()
 
-    fee_promotion: Optional["MoneyType"] = attrs.field()
+    fee_promotion: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
     fee_type: str = attrs.field()
     """
@@ -267,7 +285,9 @@ class IncludedFeeDetail:
 
     final_fee: "MoneyType" = attrs.field()
 
-    tax_amount: Optional["MoneyType"] = attrs.field()
+    tax_amount: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -314,9 +334,13 @@ class PriceToEstimateFees:
 
     listing_price: "MoneyType" = attrs.field()
 
-    points: Optional["Points"] = attrs.field()
+    points: Optional["Points"] = attrs.field(
+        default=None,
+    )
 
-    shipping: Optional["MoneyType"] = attrs.field()
+    shipping: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
 
 class ProductFeesV0Client(BaseClient):
@@ -356,7 +380,7 @@ class ProductFeesV0Client(BaseClient):
             values,
             self._get_my_fees_estimate_for_asin_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_my_fees_estimate_for_asin_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -367,14 +391,14 @@ class ProductFeesV0Client(BaseClient):
     )
 
     _get_my_fees_estimate_for_asin_responses = {
-        (200, "application/json"): GetMyFeesEstimateResponse,
-        (400, "application/json"): GetMyFeesEstimateResponse,
-        (401, "application/json"): GetMyFeesEstimateResponse,
-        (403, "application/json"): GetMyFeesEstimateResponse,
-        (404, "application/json"): GetMyFeesEstimateResponse,
-        (429, "application/json"): GetMyFeesEstimateResponse,
-        (500, "application/json"): GetMyFeesEstimateResponse,
-        (503, "application/json"): GetMyFeesEstimateResponse,
+        200: GetMyFeesEstimateResponse,
+        400: GetMyFeesEstimateResponse,
+        401: GetMyFeesEstimateResponse,
+        403: GetMyFeesEstimateResponse,
+        404: GetMyFeesEstimateResponse,
+        429: GetMyFeesEstimateResponse,
+        500: GetMyFeesEstimateResponse,
+        503: GetMyFeesEstimateResponse,
     }
 
     def get_my_fees_estimate_for_sku(
@@ -413,7 +437,7 @@ class ProductFeesV0Client(BaseClient):
             values,
             self._get_my_fees_estimate_for_sku_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_my_fees_estimate_for_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -424,12 +448,12 @@ class ProductFeesV0Client(BaseClient):
     )
 
     _get_my_fees_estimate_for_sku_responses = {
-        (200, "application/json"): GetMyFeesEstimateResponse,
-        (400, "application/json"): GetMyFeesEstimateResponse,
-        (401, "application/json"): GetMyFeesEstimateResponse,
-        (403, "application/json"): GetMyFeesEstimateResponse,
-        (404, "application/json"): GetMyFeesEstimateResponse,
-        (429, "application/json"): GetMyFeesEstimateResponse,
-        (500, "application/json"): GetMyFeesEstimateResponse,
-        (503, "application/json"): GetMyFeesEstimateResponse,
+        200: GetMyFeesEstimateResponse,
+        400: GetMyFeesEstimateResponse,
+        401: GetMyFeesEstimateResponse,
+        403: GetMyFeesEstimateResponse,
+        404: GetMyFeesEstimateResponse,
+        429: GetMyFeesEstimateResponse,
+        500: GetMyFeesEstimateResponse,
+        503: GetMyFeesEstimateResponse,
     }

@@ -614,7 +614,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional information that can help the caller understand or fix the issue.
     """
@@ -675,19 +677,25 @@ class Item:
     An item in the Amazon catalog.
     """
 
-    attribute_sets: Optional[List["AttributeSetListType"]] = attrs.field()
+    attribute_sets: Optional[List["AttributeSetListType"]] = attrs.field(
+        default=None,
+    )
     """
     A list of attributes for the item.
     """
 
     identifiers: "IdentifierType" = attrs.field()
 
-    relationships: Optional[List["RelationshipType"]] = attrs.field()
+    relationships: Optional[List["RelationshipType"]] = attrs.field(
+        default=None,
+    )
     """
     A list of variation relationship information, if applicable for the item.
     """
 
-    sales_rankings: Optional[List["SalesRankType"]] = attrs.field()
+    sales_rankings: Optional[List["SalesRankType"]] = attrs.field(
+        default=None,
+    )
     """
     A list of sales rank information for the item by category.
     """
@@ -951,7 +959,7 @@ class CatalogItemsV0Client(BaseClient):
             values,
             self._get_catalog_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_catalog_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -962,14 +970,14 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     _get_catalog_item_responses = {
-        (200, "application/json"): GetCatalogItemResponse,
-        (400, "application/json"): GetCatalogItemResponse,
-        (401, "application/json"): GetCatalogItemResponse,
-        (403, "application/json"): GetCatalogItemResponse,
-        (404, "application/json"): GetCatalogItemResponse,
-        (429, "application/json"): GetCatalogItemResponse,
-        (500, "application/json"): GetCatalogItemResponse,
-        (503, "application/json"): GetCatalogItemResponse,
+        200: GetCatalogItemResponse,
+        400: GetCatalogItemResponse,
+        401: GetCatalogItemResponse,
+        403: GetCatalogItemResponse,
+        404: GetCatalogItemResponse,
+        429: GetCatalogItemResponse,
+        500: GetCatalogItemResponse,
+        503: GetCatalogItemResponse,
     }
 
     def list_catalog_categories(
@@ -1007,7 +1015,7 @@ class CatalogItemsV0Client(BaseClient):
             values,
             self._list_catalog_categories_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_catalog_categories_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1019,14 +1027,14 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     _list_catalog_categories_responses = {
-        (200, "application/json"): ListCatalogCategoriesResponse,
-        (400, "application/json"): ListCatalogCategoriesResponse,
-        (401, "application/json"): ListCatalogCategoriesResponse,
-        (403, "application/json"): ListCatalogCategoriesResponse,
-        (404, "application/json"): ListCatalogCategoriesResponse,
-        (429, "application/json"): ListCatalogCategoriesResponse,
-        (500, "application/json"): ListCatalogCategoriesResponse,
-        (503, "application/json"): ListCatalogCategoriesResponse,
+        200: ListCatalogCategoriesResponse,
+        400: ListCatalogCategoriesResponse,
+        401: ListCatalogCategoriesResponse,
+        403: ListCatalogCategoriesResponse,
+        404: ListCatalogCategoriesResponse,
+        429: ListCatalogCategoriesResponse,
+        500: ListCatalogCategoriesResponse,
+        503: ListCatalogCategoriesResponse,
     }
 
     def list_catalog_items(
@@ -1083,7 +1091,7 @@ class CatalogItemsV0Client(BaseClient):
             values,
             self._list_catalog_items_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_catalog_items_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1100,12 +1108,12 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     _list_catalog_items_responses = {
-        (200, "application/json"): ListCatalogItemsResponse,
-        (400, "application/json"): ListCatalogItemsResponse,
-        (401, "application/json"): ListCatalogItemsResponse,
-        (403, "application/json"): ListCatalogItemsResponse,
-        (404, "application/json"): ListCatalogItemsResponse,
-        (429, "application/json"): ListCatalogItemsResponse,
-        (500, "application/json"): ListCatalogItemsResponse,
-        (503, "application/json"): ListCatalogItemsResponse,
+        200: ListCatalogItemsResponse,
+        400: ListCatalogItemsResponse,
+        401: ListCatalogItemsResponse,
+        403: ListCatalogItemsResponse,
+        404: ListCatalogItemsResponse,
+        429: ListCatalogItemsResponse,
+        500: ListCatalogItemsResponse,
+        503: ListCatalogItemsResponse,
     }

@@ -12,4 +12,4 @@ def test_get_orders():
         marketplace_ids=[marketplace.market_place],
         created_after=datetime(2000, 1, 1).isoformat(),
     )
-    pprint(orders.json())
+    pprint(orders.payload.orders[0].amazon_order_id)

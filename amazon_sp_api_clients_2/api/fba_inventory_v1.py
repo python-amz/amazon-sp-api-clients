@@ -24,12 +24,16 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -353,7 +357,7 @@ class FbaInventoryV1Client(BaseClient):
             values,
             self._get_inventory_summaries_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_inventory_summaries_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -369,11 +373,11 @@ class FbaInventoryV1Client(BaseClient):
     )
 
     _get_inventory_summaries_responses = {
-        (200, "application/json"): GetInventorySummariesResponse,
-        (400, "application/json"): GetInventorySummariesResponse,
-        (403, "application/json"): GetInventorySummariesResponse,
-        (404, "application/json"): GetInventorySummariesResponse,
-        (429, "application/json"): GetInventorySummariesResponse,
-        (500, "application/json"): GetInventorySummariesResponse,
-        (503, "application/json"): GetInventorySummariesResponse,
+        200: GetInventorySummariesResponse,
+        400: GetInventorySummariesResponse,
+        403: GetInventorySummariesResponse,
+        404: GetInventorySummariesResponse,
+        429: GetInventorySummariesResponse,
+        500: GetInventorySummariesResponse,
+        503: GetInventorySummariesResponse,
     }

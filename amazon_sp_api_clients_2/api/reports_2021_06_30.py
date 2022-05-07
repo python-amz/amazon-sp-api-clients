@@ -48,7 +48,9 @@ class CreateReportScheduleSpecification:
     {'maxItems': 25, 'minItems': 1}
     """
 
-    next_report_creation_time: Optional[datetime] = attrs.field()
+    next_report_creation_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when the schedule will create its next report, in ISO 8601 date time format.
 
@@ -80,7 +82,9 @@ class CreateReportScheduleSpecification:
     One of a set of predefined ISO 8601 periods that specifies how often a report should be created.
     """
 
-    report_options: Optional["ReportOptions"] = attrs.field()
+    report_options: Optional["ReportOptions"] = attrs.field(
+        default=None,
+    )
     """
     Additional information passed to reports. This varies by report type.
     """
@@ -97,7 +101,9 @@ class CreateReportSpecification:
     Information required to create the report.
     """
 
-    data_end_time: Optional[datetime] = attrs.field()
+    data_end_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The end of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
 
@@ -105,7 +111,9 @@ class CreateReportSpecification:
     {'schema_format': 'date-time'}
     """
 
-    data_start_time: Optional[datetime] = attrs.field()
+    data_start_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The start of a date and time range, in ISO 8601 date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
 
@@ -121,7 +129,9 @@ class CreateReportSpecification:
     {'maxItems': 25, 'minItems': 1}
     """
 
-    report_options: Optional["ReportOptions"] = attrs.field()
+    report_options: Optional["ReportOptions"] = attrs.field(
+        default=None,
+    )
     """
     Additional information passed to reports. This varies by report type.
     """
@@ -143,7 +153,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -169,7 +181,9 @@ class GetReportsResponse:
     The response for the getReports operation.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call getReports with this token as the only parameter.
     """
@@ -194,7 +208,9 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    data_end_time: Optional[datetime] = attrs.field()
+    data_end_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The end of a date and time range used for selecting the data to report.
 
@@ -202,7 +218,9 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    data_start_time: Optional[datetime] = attrs.field()
+    data_start_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The start of a date and time range used for selecting the data to report.
 
@@ -210,12 +228,16 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of marketplace identifiers for the report.
     """
 
-    processing_end_time: Optional[datetime] = attrs.field()
+    processing_end_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when the report processing completed, in ISO 8601 date time format.
 
@@ -223,7 +245,9 @@ class Report:
     {'schema_format': 'date-time'}
     """
 
-    processing_start_time: Optional[datetime] = attrs.field()
+    processing_start_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when the report processing started, in ISO 8601 date time format.
 
@@ -238,7 +262,9 @@ class Report:
     The processing status of the report.
     """
 
-    report_document_id: Optional[str] = attrs.field()
+    report_document_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the report document. Pass this into the getReportDocument operation to get the information you will need to retrieve the report document's contents.
     """
@@ -248,7 +274,9 @@ class Report:
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
 
-    report_schedule_id: Optional[str] = attrs.field()
+    report_schedule_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
     """
@@ -265,7 +293,9 @@ class ReportDocument:
     Information required for the report document.
     """
 
-    compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field()
+    compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field(
+        default=None,
+    )
     """
     If present, the report document contents have been compressed with the provided algorithm.
     """
@@ -296,12 +326,16 @@ class ReportSchedule:
     Detailed information about a report schedule.
     """
 
-    marketplace_ids: Optional[List[str]] = attrs.field()
+    marketplace_ids: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
     """
 
-    next_report_creation_time: Optional[datetime] = attrs.field()
+    next_report_creation_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when the schedule will create its next report, in ISO 8601 date time format.
 
@@ -314,7 +348,9 @@ class ReportSchedule:
     An ISO 8601 period value that indicates how often a report should be created.
     """
 
-    report_options: Optional["ReportOptions"] = attrs.field()
+    report_options: Optional["ReportOptions"] = attrs.field(
+        default=None,
+    )
     """
     Additional information passed to reports. This varies by report type.
     """
@@ -366,7 +402,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._cancel_report_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_report_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -374,14 +410,14 @@ class Reports20210630Client(BaseClient):
     _cancel_report_params = (("reportId", "path"),)  # name, param in
 
     _cancel_report_responses = {
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def cancel_report_schedule(
@@ -410,7 +446,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._cancel_report_schedule_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_report_schedule_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -418,14 +454,14 @@ class Reports20210630Client(BaseClient):
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     _cancel_report_schedule_responses = {
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def create_report(
@@ -468,7 +504,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._create_report_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_report_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -482,15 +518,15 @@ class Reports20210630Client(BaseClient):
     )
 
     _create_report_responses = {
-        (202, "application/json"): CreateReportResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        202: CreateReportResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def create_report_schedule(
@@ -552,7 +588,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._create_report_schedule_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_report_schedule_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -566,15 +602,15 @@ class Reports20210630Client(BaseClient):
     )
 
     _create_report_schedule_responses = {
-        (201, "application/json"): CreateReportScheduleResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        201: CreateReportScheduleResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_report(
@@ -603,7 +639,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._get_report_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_report_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -611,15 +647,15 @@ class Reports20210630Client(BaseClient):
     _get_report_params = (("reportId", "path"),)  # name, param in
 
     _get_report_responses = {
-        (200, "application/json"): Report,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: Report,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_report_document(
@@ -648,7 +684,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._get_report_document_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_report_document_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -656,15 +692,15 @@ class Reports20210630Client(BaseClient):
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
     _get_report_document_responses = {
-        (200, "application/json"): ReportDocument,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ReportDocument,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_report_schedule(
@@ -693,7 +729,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._get_report_schedule_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_report_schedule_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -701,15 +737,15 @@ class Reports20210630Client(BaseClient):
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     _get_report_schedule_responses = {
-        (200, "application/json"): ReportSchedule,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ReportSchedule,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_report_schedules(
@@ -738,7 +774,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._get_report_schedules_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_report_schedules_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -746,15 +782,15 @@ class Reports20210630Client(BaseClient):
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
     _get_report_schedules_responses = {
-        (200, "application/json"): ReportScheduleList,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ReportScheduleList,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_reports(
@@ -805,7 +841,7 @@ class Reports20210630Client(BaseClient):
             values,
             self._get_reports_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_reports_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -821,13 +857,13 @@ class Reports20210630Client(BaseClient):
     )
 
     _get_reports_responses = {
-        (200, "application/json"): GetReportsResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: GetReportsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

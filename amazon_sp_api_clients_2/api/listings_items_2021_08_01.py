@@ -35,7 +35,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -66,7 +68,9 @@ class FulfillmentAvailability:
     Designates which fulfillment network will be used.
     """
 
-    quantity: Optional[int] = attrs.field()
+    quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The quantity of the item you are making available for sale.
 
@@ -81,7 +85,9 @@ class Issue:
     An issue with a listings item.
     """
 
-    attribute_names: Optional[List[str]] = attrs.field()
+    attribute_names: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     Names of the attributes associated with the issue, if applicable.
     """
@@ -108,27 +114,37 @@ class Item:
     A listings item.
     """
 
-    attributes: Optional["ItemAttributes"] = attrs.field()
+    attributes: Optional["ItemAttributes"] = attrs.field(
+        default=None,
+    )
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
-    fulfillment_availability: Optional[List["FulfillmentAvailability"]] = attrs.field()
+    fulfillment_availability: Optional[List["FulfillmentAvailability"]] = attrs.field(
+        default=None,
+    )
     """
     Fulfillment availability for the listings item.
     """
 
-    issues: Optional[List["Issue"]] = attrs.field()
+    issues: Optional[List["Issue"]] = attrs.field(
+        default=None,
+    )
     """
     Issues associated with the listings item.
     """
 
-    offers: Optional[List["ItemOfferByMarketplace"]] = attrs.field()
+    offers: Optional[List["ItemOfferByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Offer details for the listings item.
     """
 
-    procurement: Optional["ItemProcurement"] = attrs.field()
+    procurement: Optional["ItemProcurement"] = attrs.field(
+        default=None,
+    )
     """
     Vendor procurement information for the listings item.
     """
@@ -138,7 +154,9 @@ class Item:
     A selling partner provided identifier for an Amazon listing.
     """
 
-    summaries: Optional[List["ItemSummaryByMarketplace"]] = attrs.field()
+    summaries: Optional[List["ItemSummaryByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Summary details of a listings item.
     """
@@ -191,7 +209,9 @@ class ItemOfferByMarketplace:
     Type of offer for the listings item.
     """
 
-    points: Optional["Points"] = attrs.field()
+    points: Optional["Points"] = attrs.field(
+        default=None,
+    )
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
@@ -241,7 +261,9 @@ class ItemSummaryByMarketplace:
             Literal["collectible_acceptable"],
             Literal["club_club"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Identifies the condition of the listings item.
     """
@@ -254,7 +276,9 @@ class ItemSummaryByMarketplace:
     {'schema_format': 'date-time'}
     """
 
-    fn_sku: Optional[str] = attrs.field()
+    fn_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item.
     """
@@ -272,7 +296,9 @@ class ItemSummaryByMarketplace:
     {'schema_format': 'date-time'}
     """
 
-    main_image: Optional["ItemImage"] = attrs.field()
+    main_image: Optional["ItemImage"] = attrs.field(
+        default=None,
+    )
     """
     Image for the listings item.
     """
@@ -331,7 +357,9 @@ class ListingsItemPutRequest:
 
     requirements: Optional[
         Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The name of the requirements set for the provided data.
     """
@@ -352,7 +380,9 @@ class ListingsItemSubmissionResponse:
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
 
-    issues: Optional[List["Issue"]] = attrs.field()
+    issues: Optional[List["Issue"]] = attrs.field(
+        default=None,
+    )
     """
     Listings item issues related to the listings item submission.
     """
@@ -406,7 +436,9 @@ class PatchOperation:
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    value: Optional[List["PatchOperationValueItem"]] = attrs.field()
+    value: Optional[List["PatchOperationValueItem"]] = attrs.field(
+        default=None,
+    )
     """
     JSON value to add, replace, or delete.
     """
@@ -465,7 +497,7 @@ class ListingsItems20210801Client(BaseClient):
             values,
             self._delete_listings_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._delete_listings_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -478,14 +510,14 @@ class ListingsItems20210801Client(BaseClient):
     )
 
     _delete_listings_item_responses = {
-        (200, "application/json"): ListingsItemSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_listings_item(
@@ -537,7 +569,7 @@ class ListingsItems20210801Client(BaseClient):
             values,
             self._get_listings_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_listings_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -551,15 +583,15 @@ class ListingsItems20210801Client(BaseClient):
     )
 
     _get_listings_item_responses = {
-        (200, "application/json"): Item,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: Item,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def patch_listings_item(
@@ -605,7 +637,7 @@ class ListingsItems20210801Client(BaseClient):
             values,
             self._patch_listings_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._patch_listings_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -620,14 +652,14 @@ class ListingsItems20210801Client(BaseClient):
     )
 
     _patch_listings_item_responses = {
-        (200, "application/json"): ListingsItemSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def put_listings_item(
@@ -676,7 +708,7 @@ class ListingsItems20210801Client(BaseClient):
             values,
             self._put_listings_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._put_listings_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -692,12 +724,12 @@ class ListingsItems20210801Client(BaseClient):
     )
 
     _put_listings_item_responses = {
-        (200, "application/json"): ListingsItemSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

@@ -36,32 +36,44 @@ class Address:
     The first line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The two digit country code, in ISO 3166-1 alpha-2 format.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district.
     """
@@ -71,17 +83,23 @@ class Address:
     The name of the person, business, or institution.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code. This can contain letters, digits, spaces, and/or punctuation.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state or region.
     """
@@ -165,7 +183,9 @@ class AppointmentTimeInput:
     The input appointment time details.
     """
 
-    duration_in_minutes: Optional[int] = attrs.field()
+    duration_in_minutes: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The duration of an appointment in minutes.
     """
@@ -288,12 +308,16 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
 
-    error_level: Optional[Union[Literal["ERROR"], Literal["WARNING"]]] = attrs.field()
+    error_level: Optional[Union[Literal["ERROR"], Literal["WARNING"]]] = attrs.field(
+        default=None,
+    )
     """
     The type of error.
     """
@@ -715,7 +739,9 @@ class Warning:
     An warning code that identifies the type of warning that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or address the warning.
     """
@@ -758,7 +784,7 @@ class ServicesV1Client(BaseClient):
             values,
             self._add_appointment_for_service_job_by_service_job_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._add_appointment_for_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -769,16 +795,16 @@ class ServicesV1Client(BaseClient):
     )
 
     _add_appointment_for_service_job_by_service_job_id_responses = {
-        (200, "application/json"): SetAppointmentResponse,
-        (400, "application/json"): SetAppointmentResponse,
-        (403, "application/json"): SetAppointmentResponse,
-        (404, "application/json"): SetAppointmentResponse,
-        (413, "application/json"): SetAppointmentResponse,
-        (415, "application/json"): SetAppointmentResponse,
-        (422, "application/json"): SetAppointmentResponse,
-        (429, "application/json"): SetAppointmentResponse,
-        (500, "application/json"): SetAppointmentResponse,
-        (503, "application/json"): SetAppointmentResponse,
+        200: SetAppointmentResponse,
+        400: SetAppointmentResponse,
+        403: SetAppointmentResponse,
+        404: SetAppointmentResponse,
+        413: SetAppointmentResponse,
+        415: SetAppointmentResponse,
+        422: SetAppointmentResponse,
+        429: SetAppointmentResponse,
+        500: SetAppointmentResponse,
+        503: SetAppointmentResponse,
     }
 
     def cancel_service_job_by_service_job_id(
@@ -812,7 +838,7 @@ class ServicesV1Client(BaseClient):
             values,
             self._cancel_service_job_by_service_job_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -823,16 +849,16 @@ class ServicesV1Client(BaseClient):
     )
 
     _cancel_service_job_by_service_job_id_responses = {
-        (200, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (400, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (403, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (404, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (413, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (415, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (422, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (429, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (500, "application/json"): CancelServiceJobByServiceJobIdResponse,
-        (503, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        200: CancelServiceJobByServiceJobIdResponse,
+        400: CancelServiceJobByServiceJobIdResponse,
+        403: CancelServiceJobByServiceJobIdResponse,
+        404: CancelServiceJobByServiceJobIdResponse,
+        413: CancelServiceJobByServiceJobIdResponse,
+        415: CancelServiceJobByServiceJobIdResponse,
+        422: CancelServiceJobByServiceJobIdResponse,
+        429: CancelServiceJobByServiceJobIdResponse,
+        500: CancelServiceJobByServiceJobIdResponse,
+        503: CancelServiceJobByServiceJobIdResponse,
     }
 
     def complete_service_job_by_service_job_id(
@@ -861,7 +887,7 @@ class ServicesV1Client(BaseClient):
             values,
             self._complete_service_job_by_service_job_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._complete_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -869,16 +895,16 @@ class ServicesV1Client(BaseClient):
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     _complete_service_job_by_service_job_id_responses = {
-        (200, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (400, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (403, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (404, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (413, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (415, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (422, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (429, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (500, "application/json"): CompleteServiceJobByServiceJobIdResponse,
-        (503, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        200: CompleteServiceJobByServiceJobIdResponse,
+        400: CompleteServiceJobByServiceJobIdResponse,
+        403: CompleteServiceJobByServiceJobIdResponse,
+        404: CompleteServiceJobByServiceJobIdResponse,
+        413: CompleteServiceJobByServiceJobIdResponse,
+        415: CompleteServiceJobByServiceJobIdResponse,
+        422: CompleteServiceJobByServiceJobIdResponse,
+        429: CompleteServiceJobByServiceJobIdResponse,
+        500: CompleteServiceJobByServiceJobIdResponse,
+        503: CompleteServiceJobByServiceJobIdResponse,
     }
 
     def get_service_job_by_service_job_id(
@@ -907,7 +933,7 @@ class ServicesV1Client(BaseClient):
             values,
             self._get_service_job_by_service_job_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -915,16 +941,16 @@ class ServicesV1Client(BaseClient):
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     _get_service_job_by_service_job_id_responses = {
-        (200, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (400, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (403, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (404, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (413, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (415, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (422, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (429, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (500, "application/json"): GetServiceJobByServiceJobIdResponse,
-        (503, "application/json"): GetServiceJobByServiceJobIdResponse,
+        200: GetServiceJobByServiceJobIdResponse,
+        400: GetServiceJobByServiceJobIdResponse,
+        403: GetServiceJobByServiceJobIdResponse,
+        404: GetServiceJobByServiceJobIdResponse,
+        413: GetServiceJobByServiceJobIdResponse,
+        415: GetServiceJobByServiceJobIdResponse,
+        422: GetServiceJobByServiceJobIdResponse,
+        429: GetServiceJobByServiceJobIdResponse,
+        500: GetServiceJobByServiceJobIdResponse,
+        503: GetServiceJobByServiceJobIdResponse,
     }
 
     def get_service_jobs(
@@ -1001,7 +1027,7 @@ class ServicesV1Client(BaseClient):
             values,
             self._get_service_jobs_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_service_jobs_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1023,15 +1049,15 @@ class ServicesV1Client(BaseClient):
     )
 
     _get_service_jobs_responses = {
-        (200, "application/json"): GetServiceJobsResponse,
-        (400, "application/json"): GetServiceJobsResponse,
-        (403, "application/json"): GetServiceJobsResponse,
-        (404, "application/json"): GetServiceJobsResponse,
-        (413, "application/json"): GetServiceJobsResponse,
-        (415, "application/json"): GetServiceJobsResponse,
-        (429, "application/json"): GetServiceJobsResponse,
-        (500, "application/json"): GetServiceJobsResponse,
-        (503, "application/json"): GetServiceJobsResponse,
+        200: GetServiceJobsResponse,
+        400: GetServiceJobsResponse,
+        403: GetServiceJobsResponse,
+        404: GetServiceJobsResponse,
+        413: GetServiceJobsResponse,
+        415: GetServiceJobsResponse,
+        429: GetServiceJobsResponse,
+        500: GetServiceJobsResponse,
+        503: GetServiceJobsResponse,
     }
 
     def reschedule_appointment_for_service_job_by_service_job_id(
@@ -1071,7 +1097,7 @@ class ServicesV1Client(BaseClient):
             values,
             self._reschedule_appointment_for_service_job_by_service_job_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._reschedule_appointment_for_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1084,14 +1110,14 @@ class ServicesV1Client(BaseClient):
     )
 
     _reschedule_appointment_for_service_job_by_service_job_id_responses = {
-        (200, "application/json"): SetAppointmentResponse,
-        (400, "application/json"): SetAppointmentResponse,
-        (403, "application/json"): SetAppointmentResponse,
-        (404, "application/json"): SetAppointmentResponse,
-        (413, "application/json"): SetAppointmentResponse,
-        (415, "application/json"): SetAppointmentResponse,
-        (422, "application/json"): SetAppointmentResponse,
-        (429, "application/json"): SetAppointmentResponse,
-        (500, "application/json"): SetAppointmentResponse,
-        (503, "application/json"): SetAppointmentResponse,
+        200: SetAppointmentResponse,
+        400: SetAppointmentResponse,
+        403: SetAppointmentResponse,
+        404: SetAppointmentResponse,
+        413: SetAppointmentResponse,
+        415: SetAppointmentResponse,
+        422: SetAppointmentResponse,
+        429: SetAppointmentResponse,
+        500: SetAppointmentResponse,
+        503: SetAppointmentResponse,
     }

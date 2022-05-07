@@ -36,7 +36,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -99,7 +101,7 @@ class AuthorizationV1Client(BaseClient):
             values,
             self._get_authorization_code_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_authorization_code_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -111,13 +113,13 @@ class AuthorizationV1Client(BaseClient):
     )
 
     _get_authorization_code_responses = {
-        (200, "application/json"): GetAuthorizationCodeResponse,
-        (400, "application/json"): GetAuthorizationCodeResponse,
-        (403, "application/json"): GetAuthorizationCodeResponse,
-        (404, "application/json"): GetAuthorizationCodeResponse,
-        (413, "application/json"): GetAuthorizationCodeResponse,
-        (415, "application/json"): GetAuthorizationCodeResponse,
-        (429, "application/json"): GetAuthorizationCodeResponse,
-        (500, "application/json"): GetAuthorizationCodeResponse,
-        (503, "application/json"): GetAuthorizationCodeResponse,
+        200: GetAuthorizationCodeResponse,
+        400: GetAuthorizationCodeResponse,
+        403: GetAuthorizationCodeResponse,
+        404: GetAuthorizationCodeResponse,
+        413: GetAuthorizationCodeResponse,
+        415: GetAuthorizationCodeResponse,
+        429: GetAuthorizationCodeResponse,
+        500: GetAuthorizationCodeResponse,
+        503: GetAuthorizationCodeResponse,
     }

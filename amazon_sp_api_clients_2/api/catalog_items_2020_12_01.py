@@ -65,7 +65,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -96,42 +98,58 @@ class Item:
     Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
     """
 
-    attributes: Optional["ItemAttributes"] = attrs.field()
+    attributes: Optional["ItemAttributes"] = attrs.field(
+        default=None,
+    )
     """
     A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
     """
 
-    identifiers: Optional[List["ItemIdentifiersByMarketplace"]] = attrs.field()
+    identifiers: Optional[List["ItemIdentifiersByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
     """
 
-    images: Optional[List["ItemImagesByMarketplace"]] = attrs.field()
+    images: Optional[List["ItemImagesByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a thumbnail of the "MAIN" image variant is provided.
     """
 
-    product_types: Optional[List["ItemProductTypeByMarketplace"]] = attrs.field()
+    product_types: Optional[List["ItemProductTypeByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Product types associated with the Amazon catalog item.
     """
 
-    sales_ranks: Optional[List["ItemSalesRanksByMarketplace"]] = attrs.field()
+    sales_ranks: Optional[List["ItemSalesRanksByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Sales ranks of an Amazon catalog item.
     """
 
-    summaries: Optional[List["ItemSummaryByMarketplace"]] = attrs.field()
+    summaries: Optional[List["ItemSummaryByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Summary details of an Amazon catalog item.
     """
 
-    variations: Optional[List["ItemVariationsByMarketplace"]] = attrs.field()
+    variations: Optional[List["ItemVariationsByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Variation details by marketplace for an Amazon catalog item (variation relationships).
     """
 
-    vendor_details: Optional[List["ItemVendorDetailsByMarketplace"]] = attrs.field()
+    vendor_details: Optional[List["ItemVendorDetailsByMarketplace"]] = attrs.field(
+        default=None,
+    )
     """
     Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.
     """
@@ -273,7 +291,9 @@ class ItemSalesRank:
     Sales rank of an Amazon catalog item.
     """
 
-    link: Optional[str] = attrs.field()
+    link: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Corresponding Amazon retail website link, or URL, for the sales rank.
     """
@@ -340,27 +360,37 @@ class ItemSummaryByMarketplace:
     Summary details of an Amazon catalog item for the indicated Amazon marketplace.
     """
 
-    brand_name: Optional[str] = attrs.field()
+    brand_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name of the brand associated with an Amazon catalog item.
     """
 
-    browse_node: Optional[str] = attrs.field()
+    browse_node: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Identifier of the browse node associated with an Amazon catalog item.
     """
 
-    color_name: Optional[str] = attrs.field()
+    color_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name of the color associated with an Amazon catalog item.
     """
 
-    item_name: Optional[str] = attrs.field()
+    item_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name, or title, associated with an Amazon catalog item.
     """
 
-    manufacturer: Optional[str] = attrs.field()
+    manufacturer: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name of the manufacturer associated with an Amazon catalog item.
     """
@@ -370,17 +400,23 @@ class ItemSummaryByMarketplace:
     Amazon marketplace identifier.
     """
 
-    model_number: Optional[str] = attrs.field()
+    model_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Model number associated with an Amazon catalog item.
     """
 
-    size_name: Optional[str] = attrs.field()
+    size_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name of the size associated with an Amazon catalog item.
     """
 
-    style_name: Optional[str] = attrs.field()
+    style_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name of the style associated with an Amazon catalog item.
     """
@@ -417,22 +453,30 @@ class ItemVendorDetailsByMarketplace:
     Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
     """
 
-    brand_code: Optional[str] = attrs.field()
+    brand_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Brand code associated with an Amazon catalog item.
     """
 
-    category_code: Optional[str] = attrs.field()
+    category_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Product category associated with an Amazon catalog item.
     """
 
-    manufacturer_code: Optional[str] = attrs.field()
+    manufacturer_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Manufacturer code associated with an Amazon catalog item.
     """
 
-    manufacturer_code_parent: Optional[str] = attrs.field()
+    manufacturer_code_parent: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Parent vendor code of the manufacturer code.
     """
@@ -442,7 +486,9 @@ class ItemVendorDetailsByMarketplace:
     Amazon marketplace identifier.
     """
 
-    product_group: Optional[str] = attrs.field()
+    product_group: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Product group associated with an Amazon catalog item.
     """
@@ -460,12 +506,16 @@ class ItemVendorDetailsByMarketplace:
             Literal["OBSOLETE"],
             Literal["PLANNED_REPLENISHMENT"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Replenishment category associated with an Amazon catalog item.
     """
 
-    subcategory_code: Optional[str] = attrs.field()
+    subcategory_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Product subcategory associated with an Amazon catalog item.
     """
@@ -555,7 +605,7 @@ class CatalogItems20201201Client(BaseClient):
             values,
             self._get_catalog_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_catalog_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -568,15 +618,15 @@ class CatalogItems20201201Client(BaseClient):
     )
 
     _get_catalog_item_responses = {
-        (200, "application/json"): Item,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: Item,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def search_catalog_items(
@@ -642,7 +692,7 @@ class CatalogItems20201201Client(BaseClient):
             values,
             self._search_catalog_items_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._search_catalog_items_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -660,13 +710,13 @@ class CatalogItems20201201Client(BaseClient):
     )
 
     _search_catalog_items_responses = {
-        (200, "application/json"): ItemSearchResults,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ItemSearchResults,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

@@ -63,17 +63,23 @@ class AsinMetadata:
     The Amazon Standard Identification Number (ASIN).
     """
 
-    badge_set: Optional[List["AsinBadge"]] = attrs.field()
+    badge_set: Optional[List["AsinBadge"]] = attrs.field(
+        default=None,
+    )
     """
     The set of ASIN badges.
     """
 
-    content_reference_key_set: Optional[List["ContentReferenceKey"]] = attrs.field()
+    content_reference_key_set: Optional[List["ContentReferenceKey"]] = attrs.field(
+        default=None,
+    )
     """
     A set of content reference keys.
     """
 
-    image_url: Optional[str] = attrs.field()
+    image_url: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The default image for the ASIN in the Amazon catalog.
 
@@ -81,12 +87,16 @@ class AsinMetadata:
     {'minLength': 1}
     """
 
-    parent: Optional["Asin"] = attrs.field()
+    parent: Optional["Asin"] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN).
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The title for the ASIN in the Amazon catalog.
 
@@ -124,7 +134,9 @@ class ContentDocument:
     A list of A+ Content modules.
     """
 
-    content_sub_type: Optional["ContentSubType"] = attrs.field()
+    content_sub_type: Optional["ContentSubType"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
     """
@@ -215,77 +227,107 @@ class ContentModule:
     The type of A+ Content module.
     """
 
-    standard_company_logo: Optional["StandardCompanyLogoModule"] = attrs.field()
+    standard_company_logo: Optional["StandardCompanyLogoModule"] = attrs.field(
+        default=None,
+    )
     """
     The standard company logo image.
     """
 
-    standard_comparison_table: Optional["StandardComparisonTableModule"] = attrs.field()
+    standard_comparison_table: Optional["StandardComparisonTableModule"] = attrs.field(
+        default=None,
+    )
     """
     The standard product comparison table.
     """
 
-    standard_four_image_text: Optional["StandardFourImageTextModule"] = attrs.field()
+    standard_four_image_text: Optional["StandardFourImageTextModule"] = attrs.field(
+        default=None,
+    )
     """
     Four standard images with text, presented across a single row.
     """
 
-    standard_four_image_text_quadrant: Optional["StandardFourImageTextQuadrantModule"] = attrs.field()
+    standard_four_image_text_quadrant: Optional["StandardFourImageTextQuadrantModule"] = attrs.field(
+        default=None,
+    )
     """
     Four standard images with text, presented on a grid of four quadrants.
     """
 
-    standard_header_image_text: Optional["StandardHeaderImageTextModule"] = attrs.field()
+    standard_header_image_text: Optional["StandardHeaderImageTextModule"] = attrs.field(
+        default=None,
+    )
     """
     Standard headline text, an image, and body text.
     """
 
-    standard_image_sidebar: Optional["StandardImageSidebarModule"] = attrs.field()
+    standard_image_sidebar: Optional["StandardImageSidebarModule"] = attrs.field(
+        default=None,
+    )
     """
     Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
     """
 
-    standard_image_text_overlay: Optional["StandardImageTextOverlayModule"] = attrs.field()
+    standard_image_text_overlay: Optional["StandardImageTextOverlayModule"] = attrs.field(
+        default=None,
+    )
     """
     A standard background image with a floating text box.
     """
 
-    standard_multiple_image_text: Optional["StandardMultipleImageTextModule"] = attrs.field()
+    standard_multiple_image_text: Optional["StandardMultipleImageTextModule"] = attrs.field(
+        default=None,
+    )
     """
     Standard images with text, presented one at a time. The user clicks on thumbnails to view each block.
     """
 
-    standard_product_description: Optional["StandardProductDescriptionModule"] = attrs.field()
+    standard_product_description: Optional["StandardProductDescriptionModule"] = attrs.field(
+        default=None,
+    )
     """
     Standard product description text.
     """
 
-    standard_single_image_highlights: Optional["StandardSingleImageHighlightsModule"] = attrs.field()
+    standard_single_image_highlights: Optional["StandardSingleImageHighlightsModule"] = attrs.field(
+        default=None,
+    )
     """
     A standard image with several paragraphs and a bulleted list.
     """
 
-    standard_single_image_specs_detail: Optional["StandardSingleImageSpecsDetailModule"] = attrs.field()
+    standard_single_image_specs_detail: Optional["StandardSingleImageSpecsDetailModule"] = attrs.field(
+        default=None,
+    )
     """
     A standard image with paragraphs and a bulleted list, and extra space for technical details.
     """
 
-    standard_single_side_image: Optional["StandardSingleSideImageModule"] = attrs.field()
+    standard_single_side_image: Optional["StandardSingleSideImageModule"] = attrs.field(
+        default=None,
+    )
     """
     A standard headline and body text with an image on the side.
     """
 
-    standard_tech_specs: Optional["StandardTechSpecsModule"] = attrs.field()
+    standard_tech_specs: Optional["StandardTechSpecsModule"] = attrs.field(
+        default=None,
+    )
     """
     The standard table of technical feature names and definitions.
     """
 
-    standard_text: Optional["StandardTextModule"] = attrs.field()
+    standard_text: Optional["StandardTextModule"] = attrs.field(
+        default=None,
+    )
     """
     A standard headline and body text.
     """
 
-    standard_three_image_text: Optional["StandardThreeImageTextModule"] = attrs.field()
+    standard_three_image_text: Optional["StandardThreeImageTextModule"] = attrs.field(
+        default=None,
+    )
     """
     Three standard images with text, presented across a single row.
     """
@@ -306,12 +348,16 @@ class ContentRecord:
     A content document with additional information for content management.
     """
 
-    content_document: Optional["ContentDocument"] = attrs.field()
+    content_document: Optional["ContentDocument"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document. This is the enhanced content that is published to product detail pages.
     """
 
-    content_metadata: Optional["ContentMetadata"] = attrs.field()
+    content_metadata: Optional["ContentMetadata"] = attrs.field(
+        default=None,
+    )
     """
     The metadata of an A+ Content document.
     """
@@ -417,7 +463,9 @@ class Error:
     {'minLength': 1}
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional information, if available, to clarify the error condition.
 
@@ -486,7 +534,9 @@ class ImageCropSpecification:
     The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
     """
 
-    offset: Optional["ImageOffsets"] = attrs.field()
+    offset: Optional["ImageOffsets"] = attrs.field(
+        default=None,
+    )
     """
     The top left corner of the cropped image, specified in the original image's coordinate space.
     """
@@ -681,7 +731,9 @@ class PublishRecord:
     A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
     """
 
-    content_sub_type: Optional["ContentSubType"] = attrs.field()
+    content_sub_type: Optional["ContentSubType"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
     """
@@ -733,22 +785,30 @@ class StandardComparisonProductBlock:
     The A+ Content standard comparison product block.
     """
 
-    asin: Optional["Asin"] = attrs.field()
+    asin: Optional["Asin"] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN).
     """
 
-    highlight: Optional[bool] = attrs.field()
+    highlight: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Determines whether this block of content is visually highlighted.
     """
 
-    image: Optional["ImageComponent"] = attrs.field()
+    image: Optional["ImageComponent"] = attrs.field(
+        default=None,
+    )
     """
     A reference to an image, hosted in the A+ Content media library.
     """
 
-    metrics: Optional[List["PlainTextItem"]] = attrs.field()
+    metrics: Optional[List["PlainTextItem"]] = attrs.field(
+        default=None,
+    )
     """
     Comparison metrics for the product.
 
@@ -764,7 +824,9 @@ class StandardComparisonProductBlock:
     {'maximum': 6.0, 'minimum': 1.0}
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The comparison product title.
 
@@ -976,7 +1038,9 @@ class StandardImageTextOverlayModule:
     A standard background image with a floating text box.
     """
 
-    block: Optional["StandardImageTextBlock"] = attrs.field()
+    block: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
@@ -1098,7 +1162,9 @@ class StandardSingleSideImageModule:
     A standard headline and body text with an image on the side.
     """
 
-    block: Optional["StandardImageTextBlock"] = attrs.field()
+    block: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
@@ -1115,7 +1181,9 @@ class StandardTechSpecsModule:
     The standard table of technical feature names and definitions.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1128,7 +1196,9 @@ class StandardTechSpecsModule:
     {'maxItems': 16, 'minItems': 4}
     """
 
-    table_count: Optional[int] = attrs.field()
+    table_count: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of tables to present. Features are evenly divided between the tables.
 
@@ -1174,7 +1244,9 @@ class StandardTextModule:
     A list of rich text content, usually presented in a text box.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1230,7 +1302,9 @@ class TextComponent:
     Rich text content.
     """
 
-    decorator_set: Optional[List["Decorator"]] = attrs.field()
+    decorator_set: Optional[List["Decorator"]] = attrs.field(
+        default=None,
+    )
     """
     A set of content decorators.
     """
@@ -1303,7 +1377,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._create_content_document_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_content_document_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1314,14 +1388,14 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _create_content_document_responses = {
-        (200, "application/json"): PostContentDocumentResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: PostContentDocumentResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def get_content_document(
@@ -1359,7 +1433,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._get_content_document_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_content_document_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1371,15 +1445,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _get_content_document_responses = {
-        (200, "application/json"): GetContentDocumentResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (410, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: GetContentDocumentResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def list_content_document_asin_relations(
@@ -1423,7 +1497,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._list_content_document_asin_relations_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._list_content_document_asin_relations_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1437,15 +1511,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _list_content_document_asin_relations_responses = {
-        (200, "application/json"): ListContentDocumentAsinRelationsResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (410, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ListContentDocumentAsinRelationsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def post_content_document_approval_submission(
@@ -1480,7 +1554,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._post_content_document_approval_submission_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._post_content_document_approval_submission_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1491,15 +1565,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _post_content_document_approval_submission_responses = {
-        (200, "application/json"): PostContentDocumentApprovalSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (410, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: PostContentDocumentApprovalSubmissionResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def post_content_document_asin_relations(
@@ -1537,7 +1611,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._post_content_document_asin_relations_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._post_content_document_asin_relations_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1549,15 +1623,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _post_content_document_asin_relations_responses = {
-        (200, "application/json"): PostContentDocumentAsinRelationsResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (410, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: PostContentDocumentAsinRelationsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def post_content_document_suspend_submission(
@@ -1592,7 +1666,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._post_content_document_suspend_submission_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._post_content_document_suspend_submission_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1603,15 +1677,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _post_content_document_suspend_submission_responses = {
-        (200, "application/json"): PostContentDocumentSuspendSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (410, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: PostContentDocumentSuspendSubmissionResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def search_content_documents(
@@ -1646,7 +1720,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._search_content_documents_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._search_content_documents_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1657,15 +1731,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _search_content_documents_responses = {
-        (200, "application/json"): SearchContentDocumentsResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (410, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: SearchContentDocumentsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def search_content_publish_records(
@@ -1703,7 +1777,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._search_content_publish_records_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._search_content_publish_records_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1715,14 +1789,14 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _search_content_publish_records_responses = {
-        (200, "application/json"): SearchContentPublishRecordsResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: SearchContentPublishRecordsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def update_content_document(
@@ -1760,7 +1834,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._update_content_document_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._update_content_document_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1772,15 +1846,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _update_content_document_responses = {
-        (200, "application/json"): PostContentDocumentResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (410, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: PostContentDocumentResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def validate_content_document_asin_relations(
@@ -1818,7 +1892,7 @@ class AplusContent20201101Client(BaseClient):
             values,
             self._validate_content_document_asin_relations_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._validate_content_document_asin_relations_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1830,12 +1904,12 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _validate_content_document_asin_relations_responses = {
-        (200, "application/json"): ValidateContentDocumentAsinRelationsResponse,
-        (400, "application/json"): ErrorList,
-        (401, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (404, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ValidateContentDocumentAsinRelationsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

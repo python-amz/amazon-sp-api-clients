@@ -24,7 +24,9 @@ class AdditionalDetails:
     The detail of the additional information provided by the selling party.
     """
 
-    language_code: Optional[str] = attrs.field()
+    language_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The language code of the additional information detail.
     """
@@ -46,12 +48,16 @@ class Address:
     First line of the address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
@@ -66,12 +72,16 @@ class Address:
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county where person, business or institution is located.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district where person, business or institution is located.
     """
@@ -81,7 +91,9 @@ class Address:
     The name of the person, business or institution at that address.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business or institution located at that address.
     """
@@ -108,7 +120,9 @@ class ChargeDetails:
     An amount of money, including units in the form of currency.
     """
 
-    tax_details: Optional[List["TaxDetail"]] = attrs.field()
+    tax_details: Optional[List["TaxDetail"]] = attrs.field(
+        default=None,
+    )
     """
     Individual tax details per line item.
     """
@@ -147,7 +161,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -161,14 +177,20 @@ class Error:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class InvoiceDetail:
 
-    additional_details: Optional[List["AdditionalDetails"]] = attrs.field()
+    additional_details: Optional[List["AdditionalDetails"]] = attrs.field(
+        default=None,
+    )
     """
     Additional details provided by the selling party, for tax related or other purposes.
     """
 
-    bill_to_party: Optional["PartyIdentification"] = attrs.field()
+    bill_to_party: Optional["PartyIdentification"] = attrs.field(
+        default=None,
+    )
 
-    charge_details: Optional[List["ChargeDetails"]] = attrs.field()
+    charge_details: Optional[List["ChargeDetails"]] = attrs.field(
+        default=None,
+    )
     """
     Total charge amount details for all line items.
     """
@@ -196,12 +218,16 @@ class InvoiceDetail:
     Provides the details of the items in this invoice.
     """
 
-    payment_terms_code: Optional[str] = attrs.field()
+    payment_terms_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The payment terms for the invoice.
     """
 
-    reference_number: Optional[str] = attrs.field()
+    reference_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An additional unique reference number used for regulatory or other purposes.
     """
@@ -210,12 +236,16 @@ class InvoiceDetail:
 
     ship_from_party: "PartyIdentification" = attrs.field()
 
-    ship_to_country_code: Optional[str] = attrs.field()
+    ship_to_country_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Ship-to country code.
     """
 
-    tax_totals: Optional[List["TaxDetail"]] = attrs.field()
+    tax_totals: Optional[List["TaxDetail"]] = attrs.field(
+        default=None,
+    )
     """
     Individual tax details per line item.
     """
@@ -224,17 +254,23 @@ class InvoiceDetail:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class InvoiceItem:
 
-    buyer_product_identifier: Optional[str] = attrs.field()
+    buyer_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Buyer's standard identification number (ASIN) of an item.
     """
 
-    charge_details: Optional[List["ChargeDetails"]] = attrs.field()
+    charge_details: Optional[List["ChargeDetails"]] = attrs.field(
+        default=None,
+    )
     """
     Individual charge details per line item.
     """
 
-    hsn_code: Optional[str] = attrs.field()
+    hsn_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     HSN tax code. The HSN number cannot contain alphabets.
     """
@@ -259,17 +295,23 @@ class InvoiceItem:
     The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
 
-    tax_details: Optional[List["TaxDetail"]] = attrs.field()
+    tax_details: Optional[List["TaxDetail"]] = attrs.field(
+        default=None,
+    )
     """
     Individual tax details per line item.
     """
 
-    vendor_order_number: Optional[str] = attrs.field()
+    vendor_order_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor's order number for this order.
     """
 
-    vendor_product_identifier: Optional[str] = attrs.field()
+    vendor_product_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The vendor selected product identification of the item.
     """
@@ -312,7 +354,9 @@ class Money:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
-    address: Optional["Address"] = attrs.field()
+    address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
@@ -322,7 +366,9 @@ class PartyIdentification:
     Assigned Identification for the party.
     """
 
-    tax_registration_details: Optional[List["TaxRegistrationDetail"]] = attrs.field()
+    tax_registration_details: Optional[List["TaxRegistrationDetail"]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration details of the entity.
     """
@@ -362,7 +408,9 @@ class TaxDetail:
     An amount of money, including units in the form of currency.
     """
 
-    tax_rate: Optional["Decimal"] = attrs.field()
+    tax_rate: Optional["Decimal"] = attrs.field(
+        default=None,
+    )
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
     """
@@ -387,7 +435,9 @@ class TaxDetail:
     Type of the tax applied.
     """
 
-    taxable_amount: Optional["Money"] = attrs.field()
+    taxable_amount: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -399,12 +449,16 @@ class TaxRegistrationDetail:
     Tax registration details of the entity.
     """
 
-    tax_registration_address: Optional["Address"] = attrs.field()
+    tax_registration_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
 
-    tax_registration_message: Optional[str] = attrs.field()
+    tax_registration_message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Tax registration message that can be used for additional tax related details.
     """
@@ -414,7 +468,9 @@ class TaxRegistrationDetail:
     Tax registration number for the party. For example, VAT ID.
     """
 
-    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field()
+    tax_registration_type: Optional[Union[Literal["VAT"], Literal["GST"]]] = attrs.field(
+        default=None,
+    )
     """
     Tax registration type for the entity.
     """
@@ -457,7 +513,7 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
             values,
             self._submit_invoice_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._submit_invoice_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -465,13 +521,13 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
     _submit_invoice_params = (("invoices", "body"),)  # name, param in
 
     _submit_invoice_responses = {
-        (202, "application/json"): SubmitInvoiceResponse,
-        (400, "application/json"): SubmitInvoiceResponse,
-        (403, "application/json"): SubmitInvoiceResponse,
-        (404, "application/json"): SubmitInvoiceResponse,
-        (413, "application/json"): SubmitInvoiceResponse,
-        (415, "application/json"): SubmitInvoiceResponse,
-        (429, "application/json"): SubmitInvoiceResponse,
-        (500, "application/json"): SubmitInvoiceResponse,
-        (503, "application/json"): SubmitInvoiceResponse,
+        202: SubmitInvoiceResponse,
+        400: SubmitInvoiceResponse,
+        403: SubmitInvoiceResponse,
+        404: SubmitInvoiceResponse,
+        413: SubmitInvoiceResponse,
+        415: SubmitInvoiceResponse,
+        429: SubmitInvoiceResponse,
+        500: SubmitInvoiceResponse,
+        503: SubmitInvoiceResponse,
     }

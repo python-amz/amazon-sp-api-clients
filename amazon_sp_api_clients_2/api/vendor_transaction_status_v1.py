@@ -24,7 +24,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -55,7 +57,9 @@ class Transaction:
     The transaction status.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -108,7 +112,7 @@ class VendorTransactionStatusV1Client(BaseClient):
             values,
             self._get_transaction_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_transaction_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -116,13 +120,13 @@ class VendorTransactionStatusV1Client(BaseClient):
     _get_transaction_params = (("transactionId", "path"),)  # name, param in
 
     _get_transaction_responses = {
-        (200, "application/json"): GetTransactionResponse,
-        (400, "application/json"): GetTransactionResponse,
-        (401, "application/json"): GetTransactionResponse,
-        (403, "application/json"): GetTransactionResponse,
-        (404, "application/json"): GetTransactionResponse,
-        (415, "application/json"): GetTransactionResponse,
-        (429, "application/json"): GetTransactionResponse,
-        (500, "application/json"): GetTransactionResponse,
-        (503, "application/json"): GetTransactionResponse,
+        200: GetTransactionResponse,
+        400: GetTransactionResponse,
+        401: GetTransactionResponse,
+        403: GetTransactionResponse,
+        404: GetTransactionResponse,
+        415: GetTransactionResponse,
+        429: GetTransactionResponse,
+        500: GetTransactionResponse,
+        503: GetTransactionResponse,
     }

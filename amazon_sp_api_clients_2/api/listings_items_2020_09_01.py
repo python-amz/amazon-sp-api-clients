@@ -26,7 +26,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -52,7 +54,9 @@ class Issue:
     An issue with a listings item.
     """
 
-    attribute_name: Optional[str] = attrs.field()
+    attribute_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name of the attribute associated with the issue, if applicable.
     """
@@ -111,7 +115,9 @@ class ListingsItemPutRequest:
 
     requirements: Optional[
         Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The name of the requirements set for the provided data.
     """
@@ -132,7 +138,9 @@ class ListingsItemSubmissionResponse:
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
 
-    issues: Optional[List["Issue"]] = attrs.field()
+    issues: Optional[List["Issue"]] = attrs.field(
+        default=None,
+    )
     """
     Listings item issues related to the listings item submission.
     """
@@ -169,7 +177,9 @@ class PatchOperation:
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    value: Optional[List["PatchOperationValueItem"]] = attrs.field()
+    value: Optional[List["PatchOperationValueItem"]] = attrs.field(
+        default=None,
+    )
     """
     JSON value to add, replace, or delete.
     """
@@ -220,7 +230,7 @@ class ListingsItems20200901Client(BaseClient):
             values,
             self._delete_listings_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._delete_listings_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -233,14 +243,14 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     _delete_listings_item_responses = {
-        (200, "application/json"): ListingsItemSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def patch_listings_item(
@@ -287,7 +297,7 @@ class ListingsItems20200901Client(BaseClient):
             values,
             self._patch_listings_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._patch_listings_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -302,14 +312,14 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     _patch_listings_item_responses = {
-        (200, "application/json"): ListingsItemSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }
 
     def put_listings_item(
@@ -359,7 +369,7 @@ class ListingsItems20200901Client(BaseClient):
             values,
             self._put_listings_item_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._put_listings_item_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -375,12 +385,12 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     _put_listings_item_responses = {
-        (200, "application/json"): ListingsItemSubmissionResponse,
-        (400, "application/json"): ErrorList,
-        (403, "application/json"): ErrorList,
-        (413, "application/json"): ErrorList,
-        (415, "application/json"): ErrorList,
-        (429, "application/json"): ErrorList,
-        (500, "application/json"): ErrorList,
-        (503, "application/json"): ErrorList,
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
     }

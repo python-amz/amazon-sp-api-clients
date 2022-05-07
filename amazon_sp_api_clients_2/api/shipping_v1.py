@@ -75,7 +75,9 @@ class Address:
     {'maxLength': 60, 'minLength': 1}
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
 
@@ -83,7 +85,9 @@ class Address:
     {'maxLength': 60, 'minLength': 1}
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional address information, if required.
 
@@ -96,7 +100,9 @@ class Address:
     The city where the person, business or institution is located.
     """
 
-    copy_emails: Optional[List[str]] = attrs.field()
+    copy_emails: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The email cc addresses of the contact associated with the address.
 
@@ -109,7 +115,9 @@ class Address:
     The two digit country code. In ISO 3166-1 alpha-2 format.
     """
 
-    email: Optional[str] = attrs.field()
+    email: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The email address of the contact associated with the address.
 
@@ -125,7 +133,9 @@ class Address:
     {'maxLength': 50, 'minLength': 1}
     """
 
-    phone_number: Optional[str] = attrs.field()
+    phone_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the person, business or institution located at that address.
 
@@ -185,7 +195,9 @@ class Container:
     An identifier for the container. This must be unique within all the containers in the same shipment.
     """
 
-    container_type: Optional[Union[Literal["PACKAGE"]]] = attrs.field()
+    container_type: Optional[Union[Literal["PACKAGE"]]] = attrs.field(
+        default=None,
+    )
     """
     The type of physical container being used. (always 'PACKAGE')
     """
@@ -395,7 +407,9 @@ class Error:
     An error code that identifies the type of error that occured.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -425,7 +439,9 @@ class Event:
     {'schema_format': 'date-time'}
     """
 
-    location: Optional["Location"] = attrs.field()
+    location: Optional["Location"] = attrs.field(
+        default=None,
+    )
     """
     The location where the person, business or institution is located.
     """
@@ -473,7 +489,9 @@ class GetRatesRequest:
     A list of service types that can be used to send the shipment.
     """
 
-    ship_date: Optional[datetime] = attrs.field()
+    ship_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The start date and time. This defaults to the current date and time.
 
@@ -722,7 +740,9 @@ class PurchaseLabelsResult:
     The specific rate purchased for the shipment, or null if unpurchased.
     """
 
-    client_reference_id: Optional["ClientReferenceId"] = attrs.field()
+    client_reference_id: Optional["ClientReferenceId"] = attrs.field(
+        default=None,
+    )
     """
     Client reference id.
     """
@@ -764,7 +784,9 @@ class PurchaseShipmentRequest:
     The type of shipping service that will be used for the service offering.
     """
 
-    ship_date: Optional[datetime] = attrs.field()
+    ship_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The start date and time. This defaults to the current date and time.
 
@@ -959,7 +981,9 @@ class Shipment:
     The shipment related data.
     """
 
-    accepted_rate: Optional["AcceptedRate"] = attrs.field()
+    accepted_rate: Optional["AcceptedRate"] = attrs.field(
+        default=None,
+    )
     """
     The specific rate purchased for the shipment, or null if unpurchased.
     """
@@ -989,7 +1013,9 @@ class Shipment:
     The unique shipment identifier.
     """
 
-    shipper: Optional["Party"] = attrs.field()
+    shipper: Optional["Party"] = attrs.field(
+        default=None,
+    )
     """
     The account related with the shipment.
     """
@@ -1148,7 +1174,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._cancel_shipment_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._cancel_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1156,14 +1182,14 @@ class ShippingV1Client(BaseClient):
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _cancel_shipment_responses = {
-        (200, "application/json"): CancelShipmentResponse,
-        (400, "application/json"): CancelShipmentResponse,
-        (401, "application/json"): CancelShipmentResponse,
-        (403, "application/json"): CancelShipmentResponse,
-        (404, "application/json"): CancelShipmentResponse,
-        (429, "application/json"): CancelShipmentResponse,
-        (500, "application/json"): CancelShipmentResponse,
-        (503, "application/json"): CancelShipmentResponse,
+        200: CancelShipmentResponse,
+        400: CancelShipmentResponse,
+        401: CancelShipmentResponse,
+        403: CancelShipmentResponse,
+        404: CancelShipmentResponse,
+        429: CancelShipmentResponse,
+        500: CancelShipmentResponse,
+        503: CancelShipmentResponse,
     }
 
     def create_shipment(
@@ -1203,7 +1229,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._create_shipment_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1216,14 +1242,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _create_shipment_responses = {
-        (200, "application/json"): CreateShipmentResponse,
-        (400, "application/json"): CreateShipmentResponse,
-        (401, "application/json"): CreateShipmentResponse,
-        (403, "application/json"): CreateShipmentResponse,
-        (404, "application/json"): CreateShipmentResponse,
-        (429, "application/json"): CreateShipmentResponse,
-        (500, "application/json"): CreateShipmentResponse,
-        (503, "application/json"): CreateShipmentResponse,
+        200: CreateShipmentResponse,
+        400: CreateShipmentResponse,
+        401: CreateShipmentResponse,
+        403: CreateShipmentResponse,
+        404: CreateShipmentResponse,
+        429: CreateShipmentResponse,
+        500: CreateShipmentResponse,
+        503: CreateShipmentResponse,
     }
 
     def get_account(
@@ -1250,7 +1276,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._get_account_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_account_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1258,14 +1284,14 @@ class ShippingV1Client(BaseClient):
     _get_account_params = ()  # name, param in
 
     _get_account_responses = {
-        (200, "application/json"): GetAccountResponse,
-        (400, "application/json"): GetAccountResponse,
-        (401, "application/json"): GetAccountResponse,
-        (403, "application/json"): GetAccountResponse,
-        (404, "application/json"): GetAccountResponse,
-        (429, "application/json"): GetAccountResponse,
-        (500, "application/json"): GetAccountResponse,
-        (503, "application/json"): GetAccountResponse,
+        200: GetAccountResponse,
+        400: GetAccountResponse,
+        401: GetAccountResponse,
+        403: GetAccountResponse,
+        404: GetAccountResponse,
+        429: GetAccountResponse,
+        500: GetAccountResponse,
+        503: GetAccountResponse,
     }
 
     def get_rates(
@@ -1308,7 +1334,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._get_rates_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_rates_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1322,14 +1348,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _get_rates_responses = {
-        (200, "application/json"): GetRatesResponse,
-        (400, "application/json"): GetRatesResponse,
-        (401, "application/json"): GetRatesResponse,
-        (403, "application/json"): GetRatesResponse,
-        (404, "application/json"): GetRatesResponse,
-        (429, "application/json"): GetRatesResponse,
-        (500, "application/json"): GetRatesResponse,
-        (503, "application/json"): GetRatesResponse,
+        200: GetRatesResponse,
+        400: GetRatesResponse,
+        401: GetRatesResponse,
+        403: GetRatesResponse,
+        404: GetRatesResponse,
+        429: GetRatesResponse,
+        500: GetRatesResponse,
+        503: GetRatesResponse,
     }
 
     def get_shipment(
@@ -1358,7 +1384,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._get_shipment_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1366,14 +1392,14 @@ class ShippingV1Client(BaseClient):
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _get_shipment_responses = {
-        (200, "application/json"): GetShipmentResponse,
-        (400, "application/json"): GetShipmentResponse,
-        (401, "application/json"): GetShipmentResponse,
-        (403, "application/json"): GetShipmentResponse,
-        (404, "application/json"): GetShipmentResponse,
-        (429, "application/json"): GetShipmentResponse,
-        (500, "application/json"): GetShipmentResponse,
-        (503, "application/json"): GetShipmentResponse,
+        200: GetShipmentResponse,
+        400: GetShipmentResponse,
+        401: GetShipmentResponse,
+        403: GetShipmentResponse,
+        404: GetShipmentResponse,
+        429: GetShipmentResponse,
+        500: GetShipmentResponse,
+        503: GetShipmentResponse,
     }
 
     def get_tracking_information(
@@ -1402,7 +1428,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._get_tracking_information_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_tracking_information_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1410,14 +1436,14 @@ class ShippingV1Client(BaseClient):
     _get_tracking_information_params = (("trackingId", "path"),)  # name, param in
 
     _get_tracking_information_responses = {
-        (200, "application/json"): GetTrackingInformationResponse,
-        (400, "application/json"): GetTrackingInformationResponse,
-        (401, "application/json"): GetTrackingInformationResponse,
-        (403, "application/json"): GetTrackingInformationResponse,
-        (404, "application/json"): GetTrackingInformationResponse,
-        (429, "application/json"): GetTrackingInformationResponse,
-        (500, "application/json"): GetTrackingInformationResponse,
-        (503, "application/json"): GetTrackingInformationResponse,
+        200: GetTrackingInformationResponse,
+        400: GetTrackingInformationResponse,
+        401: GetTrackingInformationResponse,
+        403: GetTrackingInformationResponse,
+        404: GetTrackingInformationResponse,
+        429: GetTrackingInformationResponse,
+        500: GetTrackingInformationResponse,
+        503: GetTrackingInformationResponse,
     }
 
     def purchase_labels(
@@ -1454,7 +1480,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._purchase_labels_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._purchase_labels_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1466,14 +1492,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _purchase_labels_responses = {
-        (200, "application/json"): PurchaseLabelsResponse,
-        (400, "application/json"): PurchaseLabelsResponse,
-        (401, "application/json"): PurchaseLabelsResponse,
-        (403, "application/json"): PurchaseLabelsResponse,
-        (404, "application/json"): PurchaseLabelsResponse,
-        (429, "application/json"): PurchaseLabelsResponse,
-        (500, "application/json"): PurchaseLabelsResponse,
-        (503, "application/json"): PurchaseLabelsResponse,
+        200: PurchaseLabelsResponse,
+        400: PurchaseLabelsResponse,
+        401: PurchaseLabelsResponse,
+        403: PurchaseLabelsResponse,
+        404: PurchaseLabelsResponse,
+        429: PurchaseLabelsResponse,
+        500: PurchaseLabelsResponse,
+        503: PurchaseLabelsResponse,
     }
 
     def purchase_shipment(
@@ -1524,7 +1550,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._purchase_shipment_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._purchase_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1540,14 +1566,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _purchase_shipment_responses = {
-        (200, "application/json"): PurchaseShipmentResponse,
-        (400, "application/json"): PurchaseShipmentResponse,
-        (401, "application/json"): PurchaseShipmentResponse,
-        (403, "application/json"): PurchaseShipmentResponse,
-        (404, "application/json"): PurchaseShipmentResponse,
-        (429, "application/json"): PurchaseShipmentResponse,
-        (500, "application/json"): PurchaseShipmentResponse,
-        (503, "application/json"): PurchaseShipmentResponse,
+        200: PurchaseShipmentResponse,
+        400: PurchaseShipmentResponse,
+        401: PurchaseShipmentResponse,
+        403: PurchaseShipmentResponse,
+        404: PurchaseShipmentResponse,
+        429: PurchaseShipmentResponse,
+        500: PurchaseShipmentResponse,
+        503: PurchaseShipmentResponse,
     }
 
     def retrieve_shipping_label(
@@ -1584,7 +1610,7 @@ class ShippingV1Client(BaseClient):
             values,
             self._retrieve_shipping_label_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._retrieve_shipping_label_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1596,12 +1622,12 @@ class ShippingV1Client(BaseClient):
     )
 
     _retrieve_shipping_label_responses = {
-        (200, "application/json"): RetrieveShippingLabelResponse,
-        (400, "application/json"): RetrieveShippingLabelResponse,
-        (401, "application/json"): RetrieveShippingLabelResponse,
-        (403, "application/json"): RetrieveShippingLabelResponse,
-        (404, "application/json"): RetrieveShippingLabelResponse,
-        (429, "application/json"): RetrieveShippingLabelResponse,
-        (500, "application/json"): RetrieveShippingLabelResponse,
-        (503, "application/json"): RetrieveShippingLabelResponse,
+        200: RetrieveShippingLabelResponse,
+        400: RetrieveShippingLabelResponse,
+        401: RetrieveShippingLabelResponse,
+        403: RetrieveShippingLabelResponse,
+        404: RetrieveShippingLabelResponse,
+        429: RetrieveShippingLabelResponse,
+        500: RetrieveShippingLabelResponse,
+        503: RetrieveShippingLabelResponse,
     }

@@ -40,7 +40,9 @@ class BuyBoxPriceType:
 
     listing_price: "MoneyType" = attrs.field()
 
-    points: Optional["Points"] = attrs.field()
+    points: Optional["Points"] = attrs.field(
+        default=None,
+    )
 
     shipping: "MoneyType" = attrs.field()
 
@@ -49,11 +51,17 @@ class BuyBoxPriceType:
     Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     """
 
-    offer_type: Optional["OfferCustomerType"] = attrs.field()
+    offer_type: Optional["OfferCustomerType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field()
+    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_tier: Optional[int] = attrs.field()
+    quantity_tier: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Indicates at what quantity this price becomes active.
 
@@ -61,7 +69,9 @@ class BuyBoxPriceType:
     {'schema_format': 'int32'}
     """
 
-    seller_id: Optional[str] = attrs.field()
+    seller_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller identifier for the offer.
     """
@@ -80,21 +90,31 @@ class CompetitivePriceType:
 
     price: "PriceType" = attrs.field()
 
-    belongs_to_requester: Optional[bool] = attrs.field()
+    belongs_to_requester: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether or not the pricing information is for an offer listing that belongs to the requester. The requester is the seller associated with the SellerId that was submitted with the request. Possible values are: true and false.
     """
 
-    condition: Optional[str] = attrs.field()
+    condition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates the condition of the item whose pricing information is returned. Possible values are: New, Used, Collectible, Refurbished, or Club.
     """
 
-    offer_type: Optional["OfferCustomerType"] = attrs.field()
+    offer_type: Optional["OfferCustomerType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field()
+    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_tier: Optional[int] = attrs.field()
+    quantity_tier: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Indicates at what quantity this price becomes active.
 
@@ -102,12 +122,16 @@ class CompetitivePriceType:
     {'schema_format': 'int32'}
     """
 
-    seller_id: Optional[str] = attrs.field()
+    seller_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller identifier for the offer.
     """
 
-    subcondition: Optional[str] = attrs.field()
+    subcondition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates the subcondition of the item whose pricing information is returned. Possible values are: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
@@ -129,7 +153,9 @@ class CompetitivePricingType:
     The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
     """
 
-    trade_in_value: Optional["MoneyType"] = attrs.field()
+    trade_in_value: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -187,7 +213,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional information that can help the caller understand or fix the issue.
     """
@@ -224,7 +252,9 @@ class GetOffersResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetOffersResult:
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
@@ -246,7 +276,9 @@ class GetOffersResult:
 
     offers: List["OfferDetail"] = attrs.field()
 
-    sku: Optional[str] = attrs.field()
+    sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The stock keeping unit (SKU) of the item.
     """
@@ -284,7 +316,9 @@ class IdentifierType:
 
     marketplace_asin: "ASINIdentifier" = attrs.field()
 
-    skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field()
+    skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -293,7 +327,9 @@ class ItemIdentifier:
     Information that identifies an item.
     """
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
@@ -308,7 +344,9 @@ class ItemIdentifier:
     A marketplace identifier. Specifies the marketplace from which prices are returned.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller stock keeping unit (SKU) of the item.
     """
@@ -321,7 +359,9 @@ class LowestPriceType:
 
     listing_price: "MoneyType" = attrs.field()
 
-    points: Optional["Points"] = attrs.field()
+    points: Optional["Points"] = attrs.field(
+        default=None,
+    )
 
     shipping: "MoneyType" = attrs.field()
 
@@ -335,11 +375,17 @@ class LowestPriceType:
     Indicates whether the item is fulfilled by Amazon or by the seller.
     """
 
-    offer_type: Optional["OfferCustomerType"] = attrs.field()
+    offer_type: Optional["OfferCustomerType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field()
+    quantity_discount_type: Optional["QuantityDiscountType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_tier: Optional[int] = attrs.field()
+    quantity_tier: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Indicates at what quantity this price becomes active.
 
@@ -396,17 +442,23 @@ class OfferCustomerType:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferDetail:
 
-    condition_notes: Optional[str] = attrs.field()
+    condition_notes: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Information about the condition of the item.
     """
 
-    is_buy_box_winner: Optional[bool] = attrs.field()
+    is_buy_box_winner: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.
     """
 
-    is_featured_merchant: Optional[bool] = attrs.field()
+    is_featured_merchant: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the seller of the item is eligible to win the Buy Box.
     """
@@ -418,24 +470,34 @@ class OfferDetail:
 
     listing_price: "MoneyType" = attrs.field()
 
-    my_offer: Optional[bool] = attrs.field()
+    my_offer: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, this is the seller's offer.
     """
 
-    points: Optional["Points"] = attrs.field()
+    points: Optional["Points"] = attrs.field(
+        default=None,
+    )
 
-    prime_information: Optional["PrimeInformationType"] = attrs.field()
+    prime_information: Optional["PrimeInformationType"] = attrs.field(
+        default=None,
+    )
     """
     Amazon Prime information.
     """
 
-    seller_feedback_rating: Optional["SellerFeedbackType"] = attrs.field()
+    seller_feedback_rating: Optional["SellerFeedbackType"] = attrs.field(
+        default=None,
+    )
     """
     Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
     """
 
-    seller_id: Optional[str] = attrs.field()
+    seller_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller identifier for the offer.
     """
@@ -447,7 +509,9 @@ class OfferDetail:
     The time range in which an item will likely be shipped once an order has been placed.
     """
 
-    ships_from: Optional["ShipsFromType"] = attrs.field()
+    ships_from: Optional["ShipsFromType"] = attrs.field(
+        default=None,
+    )
     """
     The state and country from where the item is shipped.
     """
@@ -457,9 +521,13 @@ class OfferDetail:
     The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
 
-    offer_type: Optional["OfferCustomerType"] = attrs.field()
+    offer_type: Optional["OfferCustomerType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_discount_prices: Optional[List["QuantityDiscountPriceType"]] = attrs.field()
+    quantity_discount_prices: Optional[List["QuantityDiscountPriceType"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -511,11 +579,17 @@ class OfferType:
     The seller stock keeping unit (SKU) of the item.
     """
 
-    business_price: Optional["MoneyType"] = attrs.field()
+    business_price: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
-    offer_type: Optional["OfferCustomerType"] = attrs.field()
+    offer_type: Optional["OfferCustomerType"] = attrs.field(
+        default=None,
+    )
 
-    quantity_discount_prices: Optional[List["QuantityDiscountPriceType"]] = attrs.field()
+    quantity_discount_prices: Optional[List["QuantityDiscountPriceType"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -535,17 +609,23 @@ class Points:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Price:
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    product: Optional["Product"] = attrs.field()
+    product: Optional["Product"] = attrs.field(
+        default=None,
+    )
     """
     An item.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller stock keeping unit (SKU) of the item.
     """
@@ -559,13 +639,19 @@ class Price:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PriceType:
 
-    landed_price: Optional["MoneyType"] = attrs.field()
+    landed_price: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
     listing_price: "MoneyType" = attrs.field()
 
-    points: Optional["Points"] = attrs.field()
+    points: Optional["Points"] = attrs.field(
+        default=None,
+    )
 
-    shipping: Optional["MoneyType"] = attrs.field()
+    shipping: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -591,12 +677,16 @@ class Product:
     An item.
     """
 
-    attribute_sets: Optional[List["AttributeSetListItem"]] = attrs.field()
+    attribute_sets: Optional[List["AttributeSetListItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of product attributes if they are applicable to the product that is returned.
     """
 
-    competitive_pricing: Optional["CompetitivePricingType"] = attrs.field()
+    competitive_pricing: Optional["CompetitivePricingType"] = attrs.field(
+        default=None,
+    )
     """
     Competitive pricing information for the item.
     """
@@ -606,17 +696,23 @@ class Product:
     Specifies the identifiers used to uniquely identify an item.
     """
 
-    offers: Optional[List["OfferType"]] = attrs.field()
+    offers: Optional[List["OfferType"]] = attrs.field(
+        default=None,
+    )
     """
     A list of offers.
     """
 
-    relationships: Optional[List["RelationshipListItem"]] = attrs.field()
+    relationships: Optional[List["RelationshipListItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list that contains product variation information, if applicable.
     """
 
-    sales_rankings: Optional[List["SalesRankType"]] = attrs.field()
+    sales_rankings: Optional[List["SalesRankType"]] = attrs.field(
+        default=None,
+    )
     """
     A list of sales rank information for the item, by category.
     """
@@ -684,7 +780,9 @@ class SellerFeedbackType:
     {'schema_format': 'int64'}
     """
 
-    seller_positive_feedback_rating: Optional[float] = attrs.field()
+    seller_positive_feedback_rating: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The percentage of positive feedback for the seller in the past 365 days.
 
@@ -735,19 +833,33 @@ class Summary:
     Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
     """
 
-    buy_box_eligible_offers: Optional[List["OfferCountType"]] = attrs.field()
+    buy_box_eligible_offers: Optional[List["OfferCountType"]] = attrs.field(
+        default=None,
+    )
 
-    buy_box_prices: Optional[List["BuyBoxPriceType"]] = attrs.field()
+    buy_box_prices: Optional[List["BuyBoxPriceType"]] = attrs.field(
+        default=None,
+    )
 
-    competitive_price_threshold: Optional["MoneyType"] = attrs.field()
+    competitive_price_threshold: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
-    list_price: Optional["MoneyType"] = attrs.field()
+    list_price: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
-    lowest_prices: Optional[List["LowestPriceType"]] = attrs.field()
+    lowest_prices: Optional[List["LowestPriceType"]] = attrs.field(
+        default=None,
+    )
 
-    number_of_offers: Optional[List["OfferCountType"]] = attrs.field()
+    number_of_offers: Optional[List["OfferCountType"]] = attrs.field(
+        default=None,
+    )
 
-    offers_available_time: Optional[datetime] = attrs.field()
+    offers_available_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     When the status is ActiveButTooSoonForProcessing, this is the time when the offers will be available for processing.
 
@@ -755,12 +867,16 @@ class Summary:
     {'schema_format': 'date-time'}
     """
 
-    sales_rankings: Optional[List["SalesRankType"]] = attrs.field()
+    sales_rankings: Optional[List["SalesRankType"]] = attrs.field(
+        default=None,
+    )
     """
     A list of sales rank information for the item, by category.
     """
 
-    suggested_lower_price_plus_shipping: Optional["MoneyType"] = attrs.field()
+    suggested_lower_price_plus_shipping: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
     total_offer_count: int = attrs.field()
     """
@@ -813,7 +929,7 @@ class ProductPricingV0Client(BaseClient):
             values,
             self._get_competitive_pricing_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_competitive_pricing_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -827,14 +943,14 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_competitive_pricing_responses = {
-        (200, "application/json"): GetPricingResponse,
-        (400, "application/json"): GetPricingResponse,
-        (401, "application/json"): GetPricingResponse,
-        (403, "application/json"): GetPricingResponse,
-        (404, "application/json"): GetPricingResponse,
-        (429, "application/json"): GetPricingResponse,
-        (500, "application/json"): GetPricingResponse,
-        (503, "application/json"): GetPricingResponse,
+        200: GetPricingResponse,
+        400: GetPricingResponse,
+        401: GetPricingResponse,
+        403: GetPricingResponse,
+        404: GetPricingResponse,
+        429: GetPricingResponse,
+        500: GetPricingResponse,
+        503: GetPricingResponse,
     }
 
     def get_item_offers(
@@ -877,7 +993,7 @@ class ProductPricingV0Client(BaseClient):
             values,
             self._get_item_offers_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_item_offers_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -890,14 +1006,14 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_item_offers_responses = {
-        (200, "application/json"): GetOffersResponse,
-        (400, "application/json"): GetOffersResponse,
-        (401, "application/json"): GetOffersResponse,
-        (403, "application/json"): GetOffersResponse,
-        (404, "application/json"): GetOffersResponse,
-        (429, "application/json"): GetOffersResponse,
-        (500, "application/json"): GetOffersResponse,
-        (503, "application/json"): GetOffersResponse,
+        200: GetOffersResponse,
+        400: GetOffersResponse,
+        401: GetOffersResponse,
+        403: GetOffersResponse,
+        404: GetOffersResponse,
+        429: GetOffersResponse,
+        500: GetOffersResponse,
+        503: GetOffersResponse,
     }
 
     def get_listing_offers(
@@ -940,7 +1056,7 @@ class ProductPricingV0Client(BaseClient):
             values,
             self._get_listing_offers_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_listing_offers_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -953,14 +1069,14 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_listing_offers_responses = {
-        (200, "application/json"): GetOffersResponse,
-        (400, "application/json"): GetOffersResponse,
-        (401, "application/json"): GetOffersResponse,
-        (403, "application/json"): GetOffersResponse,
-        (404, "application/json"): GetOffersResponse,
-        (429, "application/json"): GetOffersResponse,
-        (500, "application/json"): GetOffersResponse,
-        (503, "application/json"): GetOffersResponse,
+        200: GetOffersResponse,
+        400: GetOffersResponse,
+        401: GetOffersResponse,
+        403: GetOffersResponse,
+        404: GetOffersResponse,
+        429: GetOffersResponse,
+        500: GetOffersResponse,
+        503: GetOffersResponse,
     }
 
     def get_pricing(
@@ -1009,7 +1125,7 @@ class ProductPricingV0Client(BaseClient):
             values,
             self._get_pricing_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_pricing_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -1024,12 +1140,12 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_pricing_responses = {
-        (200, "application/json"): GetPricingResponse,
-        (400, "application/json"): GetPricingResponse,
-        (401, "application/json"): GetPricingResponse,
-        (403, "application/json"): GetPricingResponse,
-        (404, "application/json"): GetPricingResponse,
-        (429, "application/json"): GetPricingResponse,
-        (500, "application/json"): GetPricingResponse,
-        (503, "application/json"): GetPricingResponse,
+        200: GetPricingResponse,
+        400: GetPricingResponse,
+        401: GetPricingResponse,
+        403: GetPricingResponse,
+        404: GetPricingResponse,
+        429: GetPricingResponse,
+        500: GetPricingResponse,
+        503: GetPricingResponse,
     }

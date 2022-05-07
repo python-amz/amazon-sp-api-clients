@@ -177,7 +177,9 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional details that can help the caller understand or fix the issue.
     """
@@ -367,7 +369,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._create_destination_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_destination_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -378,16 +380,16 @@ class NotificationsV1Client(BaseClient):
     )
 
     _create_destination_responses = {
-        (200, "application/json"): CreateDestinationResponse,
-        (400, "application/json"): CreateDestinationResponse,
-        (403, "application/json"): CreateDestinationResponse,
-        (404, "application/json"): CreateDestinationResponse,
-        (409, "application/json"): CreateDestinationResponse,
-        (413, "application/json"): CreateDestinationResponse,
-        (415, "application/json"): CreateDestinationResponse,
-        (429, "application/json"): CreateDestinationResponse,
-        (500, "application/json"): CreateDestinationResponse,
-        (503, "application/json"): CreateDestinationResponse,
+        200: CreateDestinationResponse,
+        400: CreateDestinationResponse,
+        403: CreateDestinationResponse,
+        404: CreateDestinationResponse,
+        409: CreateDestinationResponse,
+        413: CreateDestinationResponse,
+        415: CreateDestinationResponse,
+        429: CreateDestinationResponse,
+        500: CreateDestinationResponse,
+        503: CreateDestinationResponse,
     }
 
     def create_subscription(
@@ -425,7 +427,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._create_subscription_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._create_subscription_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -437,16 +439,16 @@ class NotificationsV1Client(BaseClient):
     )
 
     _create_subscription_responses = {
-        (200, "application/json"): CreateSubscriptionResponse,
-        (400, "application/json"): CreateSubscriptionResponse,
-        (403, "application/json"): CreateSubscriptionResponse,
-        (404, "application/json"): CreateSubscriptionResponse,
-        (409, "application/json"): CreateSubscriptionResponse,
-        (413, "application/json"): CreateSubscriptionResponse,
-        (415, "application/json"): CreateSubscriptionResponse,
-        (429, "application/json"): CreateSubscriptionResponse,
-        (500, "application/json"): CreateSubscriptionResponse,
-        (503, "application/json"): CreateSubscriptionResponse,
+        200: CreateSubscriptionResponse,
+        400: CreateSubscriptionResponse,
+        403: CreateSubscriptionResponse,
+        404: CreateSubscriptionResponse,
+        409: CreateSubscriptionResponse,
+        413: CreateSubscriptionResponse,
+        415: CreateSubscriptionResponse,
+        429: CreateSubscriptionResponse,
+        500: CreateSubscriptionResponse,
+        503: CreateSubscriptionResponse,
     }
 
     def delete_destination(
@@ -475,7 +477,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._delete_destination_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._delete_destination_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -483,16 +485,16 @@ class NotificationsV1Client(BaseClient):
     _delete_destination_params = (("destinationId", "path"),)  # name, param in
 
     _delete_destination_responses = {
-        (200, "application/json"): DeleteDestinationResponse,
-        (400, "application/json"): DeleteDestinationResponse,
-        (403, "application/json"): DeleteDestinationResponse,
-        (404, "application/json"): DeleteDestinationResponse,
-        (409, "application/json"): DeleteDestinationResponse,
-        (413, "application/json"): DeleteDestinationResponse,
-        (415, "application/json"): DeleteDestinationResponse,
-        (429, "application/json"): DeleteDestinationResponse,
-        (500, "application/json"): DeleteDestinationResponse,
-        (503, "application/json"): DeleteDestinationResponse,
+        200: DeleteDestinationResponse,
+        400: DeleteDestinationResponse,
+        403: DeleteDestinationResponse,
+        404: DeleteDestinationResponse,
+        409: DeleteDestinationResponse,
+        413: DeleteDestinationResponse,
+        415: DeleteDestinationResponse,
+        429: DeleteDestinationResponse,
+        500: DeleteDestinationResponse,
+        503: DeleteDestinationResponse,
     }
 
     def delete_subscription_by_id(
@@ -527,7 +529,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._delete_subscription_by_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._delete_subscription_by_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -538,16 +540,16 @@ class NotificationsV1Client(BaseClient):
     )
 
     _delete_subscription_by_id_responses = {
-        (200, "application/json"): DeleteSubscriptionByIdResponse,
-        (400, "application/json"): DeleteSubscriptionByIdResponse,
-        (403, "application/json"): DeleteSubscriptionByIdResponse,
-        (404, "application/json"): DeleteSubscriptionByIdResponse,
-        (409, "application/json"): DeleteSubscriptionByIdResponse,
-        (413, "application/json"): DeleteSubscriptionByIdResponse,
-        (415, "application/json"): DeleteSubscriptionByIdResponse,
-        (429, "application/json"): DeleteSubscriptionByIdResponse,
-        (500, "application/json"): DeleteSubscriptionByIdResponse,
-        (503, "application/json"): DeleteSubscriptionByIdResponse,
+        200: DeleteSubscriptionByIdResponse,
+        400: DeleteSubscriptionByIdResponse,
+        403: DeleteSubscriptionByIdResponse,
+        404: DeleteSubscriptionByIdResponse,
+        409: DeleteSubscriptionByIdResponse,
+        413: DeleteSubscriptionByIdResponse,
+        415: DeleteSubscriptionByIdResponse,
+        429: DeleteSubscriptionByIdResponse,
+        500: DeleteSubscriptionByIdResponse,
+        503: DeleteSubscriptionByIdResponse,
     }
 
     def get_destination(
@@ -576,7 +578,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._get_destination_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_destination_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -584,16 +586,16 @@ class NotificationsV1Client(BaseClient):
     _get_destination_params = (("destinationId", "path"),)  # name, param in
 
     _get_destination_responses = {
-        (200, "application/json"): GetDestinationResponse,
-        (400, "application/json"): GetDestinationResponse,
-        (403, "application/json"): GetDestinationResponse,
-        (404, "application/json"): GetDestinationResponse,
-        (409, "application/json"): GetDestinationResponse,
-        (413, "application/json"): GetDestinationResponse,
-        (415, "application/json"): GetDestinationResponse,
-        (429, "application/json"): GetDestinationResponse,
-        (500, "application/json"): GetDestinationResponse,
-        (503, "application/json"): GetDestinationResponse,
+        200: GetDestinationResponse,
+        400: GetDestinationResponse,
+        403: GetDestinationResponse,
+        404: GetDestinationResponse,
+        409: GetDestinationResponse,
+        413: GetDestinationResponse,
+        415: GetDestinationResponse,
+        429: GetDestinationResponse,
+        500: GetDestinationResponse,
+        503: GetDestinationResponse,
     }
 
     def get_destinations(
@@ -620,7 +622,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._get_destinations_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_destinations_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -628,16 +630,16 @@ class NotificationsV1Client(BaseClient):
     _get_destinations_params = ()  # name, param in
 
     _get_destinations_responses = {
-        (200, "application/json"): GetDestinationsResponse,
-        (400, "application/json"): GetDestinationsResponse,
-        (403, "application/json"): GetDestinationsResponse,
-        (404, "application/json"): GetDestinationsResponse,
-        (409, "application/json"): GetDestinationsResponse,
-        (413, "application/json"): GetDestinationsResponse,
-        (415, "application/json"): GetDestinationsResponse,
-        (429, "application/json"): GetDestinationsResponse,
-        (500, "application/json"): GetDestinationsResponse,
-        (503, "application/json"): GetDestinationsResponse,
+        200: GetDestinationsResponse,
+        400: GetDestinationsResponse,
+        403: GetDestinationsResponse,
+        404: GetDestinationsResponse,
+        409: GetDestinationsResponse,
+        413: GetDestinationsResponse,
+        415: GetDestinationsResponse,
+        429: GetDestinationsResponse,
+        500: GetDestinationsResponse,
+        503: GetDestinationsResponse,
     }
 
     def get_subscription(
@@ -667,7 +669,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._get_subscription_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_subscription_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -675,15 +677,15 @@ class NotificationsV1Client(BaseClient):
     _get_subscription_params = (("notificationType", "path"),)  # name, param in
 
     _get_subscription_responses = {
-        (200, "application/json"): GetSubscriptionResponse,
-        (400, "application/json"): GetSubscriptionResponse,
-        (403, "application/json"): GetSubscriptionResponse,
-        (404, "application/json"): GetSubscriptionResponse,
-        (413, "application/json"): GetSubscriptionResponse,
-        (415, "application/json"): GetSubscriptionResponse,
-        (429, "application/json"): GetSubscriptionResponse,
-        (500, "application/json"): GetSubscriptionResponse,
-        (503, "application/json"): GetSubscriptionResponse,
+        200: GetSubscriptionResponse,
+        400: GetSubscriptionResponse,
+        403: GetSubscriptionResponse,
+        404: GetSubscriptionResponse,
+        413: GetSubscriptionResponse,
+        415: GetSubscriptionResponse,
+        429: GetSubscriptionResponse,
+        500: GetSubscriptionResponse,
+        503: GetSubscriptionResponse,
     }
 
     def get_subscription_by_id(
@@ -718,7 +720,7 @@ class NotificationsV1Client(BaseClient):
             values,
             self._get_subscription_by_id_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_subscription_by_id_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -729,14 +731,14 @@ class NotificationsV1Client(BaseClient):
     )
 
     _get_subscription_by_id_responses = {
-        (200, "application/json"): GetSubscriptionByIdResponse,
-        (400, "application/json"): GetSubscriptionByIdResponse,
-        (403, "application/json"): GetSubscriptionByIdResponse,
-        (404, "application/json"): GetSubscriptionResponse,
-        (409, "application/json"): GetSubscriptionByIdResponse,
-        (413, "application/json"): GetSubscriptionByIdResponse,
-        (415, "application/json"): GetSubscriptionByIdResponse,
-        (429, "application/json"): GetSubscriptionByIdResponse,
-        (500, "application/json"): GetSubscriptionByIdResponse,
-        (503, "application/json"): GetSubscriptionByIdResponse,
+        200: GetSubscriptionByIdResponse,
+        400: GetSubscriptionByIdResponse,
+        403: GetSubscriptionByIdResponse,
+        404: GetSubscriptionResponse,
+        409: GetSubscriptionByIdResponse,
+        413: GetSubscriptionByIdResponse,
+        415: GetSubscriptionByIdResponse,
+        429: GetSubscriptionByIdResponse,
+        500: GetSubscriptionByIdResponse,
+        503: GetSubscriptionByIdResponse,
     }

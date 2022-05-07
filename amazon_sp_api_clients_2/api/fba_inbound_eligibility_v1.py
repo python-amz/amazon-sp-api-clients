@@ -24,12 +24,16 @@ class Error:
     An error code that identifies the type of error that occurred.
     """
 
-    details: Optional[str] = attrs.field()
+    details: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: Optional[str] = attrs.field()
+    message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -107,7 +111,9 @@ class ItemEligibilityPreview:
                 Literal["UNKNOWN_INB_ERROR_CODE"],
             ]
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Potential Ineligibility Reason Codes.
     """
@@ -117,7 +123,9 @@ class ItemEligibilityPreview:
     Indicates if the item is eligible for the program.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The marketplace for which eligibility was determined.
     """
@@ -163,7 +171,7 @@ class FbaInboundEligibilityV1Client(BaseClient):
             values,
             self._get_item_eligibility_preview_params,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
+        klass = self._get_item_eligibility_preview_responses.get(response.status_code)
         # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
@@ -175,12 +183,12 @@ class FbaInboundEligibilityV1Client(BaseClient):
     )
 
     _get_item_eligibility_preview_responses = {
-        (200, "application/json"): GetItemEligibilityPreviewResponse,
-        (400, "application/json"): GetItemEligibilityPreviewResponse,
-        (401, "application/json"): GetItemEligibilityPreviewResponse,
-        (403, "application/json"): GetItemEligibilityPreviewResponse,
-        (404, "application/json"): GetItemEligibilityPreviewResponse,
-        (429, "application/json"): GetItemEligibilityPreviewResponse,
-        (500, "application/json"): GetItemEligibilityPreviewResponse,
-        (503, "application/json"): GetItemEligibilityPreviewResponse,
+        200: GetItemEligibilityPreviewResponse,
+        400: GetItemEligibilityPreviewResponse,
+        401: GetItemEligibilityPreviewResponse,
+        403: GetItemEligibilityPreviewResponse,
+        404: GetItemEligibilityPreviewResponse,
+        429: GetItemEligibilityPreviewResponse,
+        500: GetItemEligibilityPreviewResponse,
+        503: GetItemEligibilityPreviewResponse,
     }
