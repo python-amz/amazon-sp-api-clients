@@ -141,6 +141,9 @@ class BuyerInfo:
     """
 
     buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field()
+    """
+    Tax information about the buyer.
+    """
 
     purchase_order_number: Optional[str] = attrs.field()
     """
@@ -237,15 +240,6 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class FulfillmentInstruction:
     """
     Contains the instructions about the fulfillment like where should it be fulfilled from.
@@ -263,9 +257,15 @@ class GetOrderAddressResponse:
     The response schema for the getOrderAddress operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrderAddress"] = attrs.field()
+    """
+    The shipping address for the order.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -274,9 +274,15 @@ class GetOrderBuyerInfoResponse:
     The response schema for the getOrderBuyerInfo operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrderBuyerInfo"] = attrs.field()
+    """
+    Buyer information for an order.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -285,9 +291,15 @@ class GetOrderItemsBuyerInfoResponse:
     The response schema for the getOrderItemsBuyerInfo operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrderItemsBuyerInfoList"] = attrs.field()
+    """
+    A single order item's buyer information list with the order ID.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -296,9 +308,15 @@ class GetOrderItemsResponse:
     The response schema for the getOrderItems operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrderItemsList"] = attrs.field()
+    """
+    The order items list along with the order ID.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -307,9 +325,15 @@ class GetOrderRegulatedInfoResponse:
     The response schema for the getOrderRegulatedInfo operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrderRegulatedInfo"] = attrs.field()
+    """
+    The order's regulated information along with its verification status.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -318,9 +342,15 @@ class GetOrderResponse:
     The response schema for the getOrder operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Order"] = attrs.field()
+    """
+    Order information.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -329,9 +359,15 @@ class GetOrdersResponse:
     The response schema for the getOrders operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrdersList"] = attrs.field()
+    """
+    A list of orders along with additional information to make subsequent API calls.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -341,6 +377,9 @@ class ItemBuyerInfo:
     """
 
     buyer_customized_info: Optional["BuyerCustomizedInfoDetail"] = attrs.field()
+    """
+    Buyer information for custom orders from the Amazon Custom program.
+    """
 
     gift_message_text: Optional[str] = attrs.field()
     """
@@ -353,8 +392,14 @@ class ItemBuyerInfo:
     """
 
     gift_wrap_price: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     gift_wrap_tax: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -407,8 +452,14 @@ class Order:
     """
 
     automated_shipping_settings: Optional["AutomatedShippingSettings"] = attrs.field()
+    """
+    Contains information regarding the Shipping Settings Automation program, such as whether the order's shipping settings were generated automatically, and what those settings are.
+    """
 
     buyer_info: Optional["BuyerInfo"] = attrs.field()
+    """
+    Buyer information
+    """
 
     buyer_invoice_preference: Optional[Union[Literal["INDIVIDUAL"], Literal["BUSINESS"]]] = attrs.field()
     """
@@ -416,6 +467,9 @@ class Order:
     """
 
     buyer_tax_information: Optional["BuyerTaxInformation"] = attrs.field()
+    """
+    Contains the business invoice tax information. Available only in the TR marketplace.
+    """
 
     cba_displayable_shipping_label: Optional[str] = attrs.field()
     """
@@ -423,6 +477,9 @@ class Order:
     """
 
     default_ship_from_location_address: Optional["Address"] = attrs.field()
+    """
+    The shipping address for the order.
+    """
 
     earliest_delivery_date: Optional[str] = attrs.field()
     """
@@ -447,6 +504,9 @@ class Order:
     """
 
     fulfillment_instruction: Optional["FulfillmentInstruction"] = attrs.field()
+    """
+    Contains the instructions about the fulfillment like where should it be fulfilled from.
+    """
 
     has_regulated_items: Optional[bool] = attrs.field()
     """
@@ -521,6 +581,9 @@ class Order:
     """
 
     marketplace_tax_info: Optional["MarketplaceTaxInfo"] = attrs.field()
+    """
+    Tax information about the marketplace.
+    """
 
     number_of_items_shipped: Optional[int] = attrs.field()
     """
@@ -552,6 +615,9 @@ class Order:
     """
 
     order_total: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     order_type: Optional[
         Union[
@@ -566,14 +632,20 @@ class Order:
     The type of the order.
     """
 
-    payment_execution_detail: Optional["PaymentExecutionDetailItemList"] = attrs.field()
+    payment_execution_detail: Optional[List["PaymentExecutionDetailItem"]] = attrs.field()
+    """
+    A list of payment execution detail items.
+    """
 
     payment_method: Optional[Union[Literal["COD"], Literal["CVS"], Literal["Other"]]] = attrs.field()
     """
     The payment method for the order. This property is limited to Cash On Delivery (COD) and Convenience Store (CVS) payment methods. Unless you need the specific COD payment information provided by the PaymentExecutionDetailItem object, we recommend using the PaymentMethodDetails property to get payment method information.
     """
 
-    payment_method_details: Optional["PaymentMethodDetailItemList"] = attrs.field()
+    payment_method_details: Optional[List[str]] = attrs.field()
+    """
+    A list of payment method detail items.
+    """
 
     promise_response_due_date: Optional[str] = attrs.field()
     """
@@ -617,6 +689,9 @@ class Order:
     """
 
     shipping_address: Optional["Address"] = attrs.field()
+    """
+    The shipping address for the order.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -631,6 +706,9 @@ class OrderAddress:
     """
 
     shipping_address: Optional["Address"] = attrs.field()
+    """
+    The shipping address for the order.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -660,6 +738,9 @@ class OrderBuyerInfo:
     """
 
     buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field()
+    """
+    Tax information about the buyer.
+    """
 
     purchase_order_number: Optional[str] = attrs.field()
     """
@@ -679,12 +760,24 @@ class OrderItem:
     """
 
     buyer_info: Optional["ItemBuyerInfo"] = attrs.field()
+    """
+    A single item's buyer information.
+    """
 
     buyer_requested_cancel: Optional["BuyerRequestedCancel"] = attrs.field()
+    """
+    Information about whether or not a buyer requested cancellation.
+    """
 
     codfee: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     codfee_discount: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     condition_id: Optional[str] = attrs.field()
     """
@@ -724,8 +817,14 @@ class OrderItem:
     """
 
     item_price: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     item_tax: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     order_item_id: str = attrs.field()
     """
@@ -733,6 +832,9 @@ class OrderItem:
     """
 
     points_granted: Optional["PointsGrantedDetail"] = attrs.field()
+    """
+    The number of Amazon Points offered with the purchase of an item, and their monetary value.
+    """
 
     price_designation: Optional[str] = attrs.field()
     """
@@ -741,12 +843,24 @@ class OrderItem:
     """
 
     product_info: Optional["ProductInfoDetail"] = attrs.field()
+    """
+    Product information on the number of items.
+    """
 
     promotion_discount: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     promotion_discount_tax: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
-    promotion_ids: Optional["PromotionIdList"] = attrs.field()
+    promotion_ids: Optional[List[str]] = attrs.field()
+    """
+    A list of promotion identifiers provided by the seller when the promotions were created.
+    """
 
     quantity_ordered: int = attrs.field()
     """
@@ -780,12 +894,24 @@ class OrderItem:
     """
 
     shipping_discount: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     shipping_discount_tax: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     shipping_price: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     shipping_tax: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     store_chain_store_id: Optional[str] = attrs.field()
     """
@@ -793,6 +919,9 @@ class OrderItem:
     """
 
     tax_collection: Optional["TaxCollection"] = attrs.field()
+    """
+    Information about withheld taxes.
+    """
 
     title: Optional[str] = attrs.field()
     """
@@ -807,6 +936,9 @@ class OrderItemBuyerInfo:
     """
 
     buyer_customized_info: Optional["BuyerCustomizedInfoDetail"] = attrs.field()
+    """
+    Buyer information for custom orders from the Amazon Custom program.
+    """
 
     gift_message_text: Optional[str] = attrs.field()
     """
@@ -819,40 +951,19 @@ class OrderItemBuyerInfo:
     """
 
     gift_wrap_price: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     gift_wrap_tax: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     order_item_id: str = attrs.field()
     """
     An Amazon-defined order item identifier.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class OrderItemBuyerInfoList:
-    """
-    A single order item's buyer information list.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class OrderItemList:
-    """
-    A list of order items.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class OrderItems:
-    """
-    the list of order items and quantities when the seller wants to partially update the shipment status of the order
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -871,7 +982,10 @@ class OrderItemsBuyerInfoList:
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    order_items: "OrderItemBuyerInfoList" = attrs.field()
+    order_items: List["OrderItemBuyerInfo"] = attrs.field()
+    """
+    A single order item's buyer information list.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -904,16 +1018,10 @@ class OrderItemsList:
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    order_items: "OrderItemList" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class OrderList:
+    order_items: List["OrderItem"] = attrs.field()
     """
-    A list of orders.
+    A list of order items.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -928,8 +1036,14 @@ class OrderRegulatedInfo:
     """
 
     regulated_information: "RegulatedInformation" = attrs.field()
+    """
+    The regulated information collected during purchase and used to verify the order.
+    """
 
     regulated_order_verification_status: "RegulatedOrderVerificationStatus" = attrs.field()
+    """
+    The verification status of the order along with associated approval or rejection metadata.
+    """
 
     requires_dosage_label: bool = attrs.field()
     """
@@ -958,7 +1072,10 @@ class OrdersList:
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    orders: "OrderList" = attrs.field()
+    orders: List["Order"] = attrs.field()
+    """
+    A list of orders.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -968,6 +1085,9 @@ class PaymentExecutionDetailItem:
     """
 
     payment: "Money" = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     payment_method: str = attrs.field()
     """
@@ -980,30 +1100,15 @@ class PaymentExecutionDetailItem:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class PaymentExecutionDetailItemList:
-    """
-    A list of payment execution detail items.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class PaymentMethodDetailItemList:
-    """
-    A list of payment method detail items.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class PointsGrantedDetail:
     """
     The number of Amazon Points offered with the purchase of an item, and their monetary value.
     """
 
     points_monetary_value: Optional["Money"] = attrs.field()
+    """
+    The monetary value of the order.
+    """
 
     points_number: Optional[int] = attrs.field()
     """
@@ -1021,15 +1126,6 @@ class ProductInfoDetail:
     """
     The total number of items that are included in the ASIN.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class PromotionIdList:
-    """
-    A list of promotion identifiers provided by the seller when the promotions were created.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1083,6 +1179,9 @@ class RegulatedOrderVerificationStatus:
     """
 
     rejection_reason: Optional["RejectionReason"] = attrs.field()
+    """
+    The reason for rejecting the order's regulated information. Not present if the order isn't rejected.
+    """
 
     requires_merchant_action: bool = attrs.field()
     """
@@ -1173,7 +1272,10 @@ class UpdateShipmentStatusErrorResponse:
     The error response schema for the UpdateShipmentStatus operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1183,10 +1285,19 @@ class UpdateShipmentStatusRequest:
     """
 
     marketplace_id: "MarketplaceId" = attrs.field()
+    """
+    the unobfuscated marketplace ID
+    """
 
-    order_items: Optional["OrderItems"] = attrs.field()
+    order_items: Optional[List["OrderItemsItem"]] = attrs.field()
+    """
+    the list of order items and quantities when the seller wants to partially update the shipment status of the order
+    """
 
     shipment_status: "ShipmentStatus" = attrs.field()
+    """
+    the status of the shipment of the order to be updated
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1195,7 +1306,10 @@ class UpdateVerificationStatusErrorResponse:
     The error response schema for the UpdateVerificationStatus operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1205,6 +1319,9 @@ class UpdateVerificationStatusRequest:
     """
 
     regulated_order_verification_status: "UpdateVerificationStatusRequestBody" = attrs.field()
+    """
+    The updated values of the VerificationStatus field.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

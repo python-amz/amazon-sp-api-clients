@@ -36,15 +36,6 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class InventoryUpdate:
 
     is_full_update: bool = attrs.field()
@@ -67,6 +58,9 @@ class ItemDetails:
     """
 
     available_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of item quantity.
+    """
 
     buyer_product_identifier: Optional[str] = attrs.field()
     """
@@ -125,7 +119,10 @@ class SubmitInventoryUpdateResponse:
     The response schema for the submitInventoryUpdate operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionReference"] = attrs.field()
 

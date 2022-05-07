@@ -86,8 +86,14 @@ class CODSettings:
     """
 
     cod_charge: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     cod_charge_tax: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     is_cod_required: bool = attrs.field()
     """
@@ -95,8 +101,14 @@ class CODSettings:
     """
 
     shipping_charge: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     shipping_charge_tax: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -105,7 +117,10 @@ class CancelFulfillmentOrderResponse:
     The response schema for the cancelFulfillmentOrder operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -136,12 +151,24 @@ class CreateFulfillmentOrderItem:
     """
 
     per_unit_declared_value: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     per_unit_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     per_unit_tax: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -161,25 +188,25 @@ class CreateFulfillmentOrderItem:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class CreateFulfillmentOrderItemList:
-    """
-    An array of item information for creating a fulfillment order.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFulfillmentOrderRequest:
     """
     The request body schema for the createFulfillmentOrder operation.
     """
 
     cod_settings: Optional["CODSettings"] = attrs.field()
+    """
+    The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
+    """
 
     delivery_window: Optional["DeliveryWindow"] = attrs.field()
+    """
+    The time range within which a Scheduled Delivery fulfillment order should be delivered.
+    """
 
     destination_address: "Address" = attrs.field()
+    """
+    A physical address.
+    """
 
     displayable_order_comment: str = attrs.field()
     """
@@ -206,17 +233,29 @@ class CreateFulfillmentOrderRequest:
     """
 
     fulfillment_action: Optional["FulfillmentAction"] = attrs.field()
+    """
+    Specifies whether the fulfillment order should ship now or have an order hold put on it.
+    """
 
     fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
+    """
+    The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
+    """
 
-    items: "CreateFulfillmentOrderItemList" = attrs.field()
+    items: List["CreateFulfillmentOrderItem"] = attrs.field()
+    """
+    An array of item information for creating a fulfillment order.
+    """
 
     marketplace_id: Optional[str] = attrs.field()
     """
     The marketplace the fulfillment order is placed against.
     """
 
-    notification_emails: Optional["NotificationEmailList"] = attrs.field()
+    notification_emails: Optional[List[str]] = attrs.field()
+    """
+    A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+    """
 
     seller_fulfillment_order_id: str = attrs.field()
     """
@@ -232,6 +271,9 @@ class CreateFulfillmentOrderRequest:
     """
 
     shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    """
+    The shipping method used for the fulfillment order.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -240,7 +282,10 @@ class CreateFulfillmentOrderResponse:
     The response schema for the createFulfillmentOrder operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -249,7 +294,10 @@ class CreateFulfillmentReturnRequest:
     The createFulfillmentReturn operation creates a fulfillment return for items that were fulfilled using the createFulfillmentOrder operation. For calls to createFulfillmentReturn, you must include ReturnReasonCode values returned by a previous call to the listReturnReasonCodes operation.
     """
 
-    items: "CreateReturnItemList" = attrs.field()
+    items: List["CreateReturnItem"] = attrs.field()
+    """
+    An array of items to be returned.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -258,7 +306,10 @@ class CreateFulfillmentReturnResponse:
     The response schema for the createFulfillmentReturn operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["CreateFulfillmentReturnResult"] = attrs.field()
 
@@ -266,11 +317,20 @@ class CreateFulfillmentReturnResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFulfillmentReturnResult:
 
-    invalid_return_items: Optional["InvalidReturnItemList"] = attrs.field()
+    invalid_return_items: Optional[List["InvalidReturnItem"]] = attrs.field()
+    """
+    An array of invalid return item information.
+    """
 
-    return_authorizations: Optional["ReturnAuthorizationList"] = attrs.field()
+    return_authorizations: Optional[List["ReturnAuthorization"]] = attrs.field()
+    """
+    An array of return authorization information.
+    """
 
-    return_items: Optional["ReturnItemList"] = attrs.field()
+    return_items: Optional[List["ReturnItem"]] = attrs.field()
+    """
+    An array of items that Amazon accepted for return. Returns empty if no items were accepted for return.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -312,15 +372,6 @@ class CreateReturnItem:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class CreateReturnItemList:
-    """
-    An array of items to be returned.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class CurrentStatus:
     """
     The current delivery status of the package.
@@ -350,15 +401,6 @@ class DeliveryWindow:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class DeliveryWindowList:
-    """
-    An array of delivery windows.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
     """
     Error response returned when the request is unsuccessful.
@@ -378,15 +420,6 @@ class Error:
     """
     A message that describes the error condition.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -470,21 +503,15 @@ class FeatureSku:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class Features:
-    """
-    An array of features.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class Fee:
     """
     Fee type and cost.
     """
 
     amount: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     name: Union[
         Literal["FBAPerUnitFulfillmentFee"],
@@ -495,15 +522,6 @@ class Fee:
     """
     The type of fee.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FeeList:
-    """
-    An array of fee type and cost pairs.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -522,10 +540,19 @@ class FulfillmentOrder:
     """
 
     cod_settings: Optional["CODSettings"] = attrs.field()
+    """
+    The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
+    """
 
     delivery_window: Optional["DeliveryWindow"] = attrs.field()
+    """
+    The time range within which a Scheduled Delivery fulfillment order should be delivered.
+    """
 
     destination_address: "Address" = attrs.field()
+    """
+    A physical address.
+    """
 
     displayable_order_comment: str = attrs.field()
     """
@@ -545,17 +572,29 @@ class FulfillmentOrder:
     """
 
     fulfillment_action: Optional["FulfillmentAction"] = attrs.field()
+    """
+    Specifies whether the fulfillment order should ship now or have an order hold put on it.
+    """
 
     fulfillment_order_status: "FulfillmentOrderStatus" = attrs.field()
+    """
+    The current status of the fulfillment order.
+    """
 
     fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
+    """
+    The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
+    """
 
     marketplace_id: str = attrs.field()
     """
     The identifier for the marketplace the fulfillment order is placed against.
     """
 
-    notification_emails: Optional["NotificationEmailList"] = attrs.field()
+    notification_emails: Optional[List[str]] = attrs.field()
+    """
+    A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+    """
 
     received_date: "Timestamp" = attrs.field()
 
@@ -565,6 +604,9 @@ class FulfillmentOrder:
     """
 
     shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    """
+    The shipping method used for the fulfillment order.
+    """
 
     status_updated_date: "Timestamp" = attrs.field()
 
@@ -576,6 +618,9 @@ class FulfillmentOrderItem:
     """
 
     cancelled_quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     displayable_comment: Optional[str] = attrs.field()
     """
@@ -602,12 +647,24 @@ class FulfillmentOrderItem:
     """
 
     per_unit_declared_value: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     per_unit_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     per_unit_tax: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -620,15 +677,9 @@ class FulfillmentOrderItem:
     """
 
     unfulfillable_quantity: "Quantity" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FulfillmentOrderItemList:
     """
-    An array of fulfillment order item information.
+    The item quantity.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -655,16 +706,25 @@ class FulfillmentPreview:
     Information about a fulfillment order preview, including delivery and fee information based on shipping method.
     """
 
-    estimated_fees: Optional["FeeList"] = attrs.field()
+    estimated_fees: Optional[List["Fee"]] = attrs.field()
+    """
+    An array of fee type and cost pairs.
+    """
 
     estimated_shipping_weight: Optional["Weight"] = attrs.field()
+    """
+    The weight.
+    """
 
     feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
     """
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    fulfillment_preview_shipments: Optional["FulfillmentPreviewShipmentList"] = attrs.field()
+    fulfillment_preview_shipments: Optional[List["FulfillmentPreviewShipment"]] = attrs.field()
+    """
+    An array of fulfillment preview shipment information.
+    """
 
     is_codcapable: bool = attrs.field()
     """
@@ -681,13 +741,22 @@ class FulfillmentPreview:
     The marketplace the fulfillment order is placed against.
     """
 
-    order_unfulfillable_reasons: Optional["StringList"] = attrs.field()
+    order_unfulfillable_reasons: Optional[List[str]] = attrs.field()
 
     scheduled_delivery_info: Optional["ScheduledDeliveryInfo"] = attrs.field()
+    """
+    Delivery information for a scheduled delivery.
+    """
 
     shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    """
+    The shipping method used for the fulfillment order.
+    """
 
-    unfulfillable_preview_items: Optional["UnfulfillablePreviewItemList"] = attrs.field()
+    unfulfillable_preview_items: Optional[List["UnfulfillablePreviewItem"]] = attrs.field()
+    """
+    An array of unfulfillable preview item information.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -697,8 +766,14 @@ class FulfillmentPreviewItem:
     """
 
     estimated_shipping_weight: Optional["Weight"] = attrs.field()
+    """
+    The weight.
+    """
 
     quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -717,24 +792,6 @@ class FulfillmentPreviewItem:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class FulfillmentPreviewItemList:
-    """
-    An array of fulfillment preview item information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FulfillmentPreviewList:
-    """
-    An array of fulfillment preview information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class FulfillmentPreviewShipment:
     """
     Delivery and item information for a shipment in a fulfillment order preview.
@@ -744,7 +801,10 @@ class FulfillmentPreviewShipment:
 
     earliest_ship_date: Optional["Timestamp"] = attrs.field()
 
-    fulfillment_preview_items: "FulfillmentPreviewItemList" = attrs.field()
+    fulfillment_preview_items: List["FulfillmentPreviewItem"] = attrs.field()
+    """
+    An array of fulfillment preview item information.
+    """
 
     latest_arrival_date: Optional["Timestamp"] = attrs.field()
 
@@ -754,15 +814,6 @@ class FulfillmentPreviewShipment:
     """
     Provides additional insight into the shipment timeline when exact delivery dates are not able to be precomputed.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FulfillmentPreviewShipmentList:
-    """
-    An array of fulfillment preview shipment information.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -792,9 +843,15 @@ class FulfillmentShipment:
     An identifier for the fulfillment center that the shipment will be sent from.
     """
 
-    fulfillment_shipment_item: "FulfillmentShipmentItemList" = attrs.field()
+    fulfillment_shipment_item: List["FulfillmentShipmentItem"] = attrs.field()
+    """
+    An array of fulfillment shipment item information.
+    """
 
-    fulfillment_shipment_package: Optional["FulfillmentShipmentPackageList"] = attrs.field()
+    fulfillment_shipment_package: Optional[List["FulfillmentShipmentPackage"]] = attrs.field()
+    """
+    An array of fulfillment shipment package information.
+    """
 
     fulfillment_shipment_status: Union[
         Literal["PENDING"], Literal["SHIPPED"], Literal["CANCELLED_BY_FULFILLER"], Literal["CANCELLED_BY_SELLER"]
@@ -826,6 +883,9 @@ class FulfillmentShipmentItem:
     """
 
     quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -841,24 +901,6 @@ class FulfillmentShipmentItem:
     """
     The serial number of the shipped item.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FulfillmentShipmentItemList:
-    """
-    An array of fulfillment shipment item information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FulfillmentShipmentList:
-    """
-    An array of fulfillment shipment information.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -889,23 +931,20 @@ class FulfillmentShipmentPackage:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class FulfillmentShipmentPackageList:
-    """
-    An array of fulfillment shipment package information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetFeatureInventoryResponse:
     """
     The breakdown of eligibility inventory by feature.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["GetFeatureInventoryResult"] = attrs.field()
+    """
+    The payload for the getEligibileInventory operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -941,9 +980,15 @@ class GetFeatureSkuResponse:
     The response schema for the getFeatureSKU operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["GetFeatureSkuResult"] = attrs.field()
+    """
+    The payload for the getFeatureSKU operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -977,6 +1022,9 @@ class GetFeatureSkuResult:
     """
 
     sku_info: Optional["FeatureSku"] = attrs.field()
+    """
+    Information about an SKU, including the count available, identifiers, and a list of overlapping SKUs that share the same inventory pool.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -985,9 +1033,15 @@ class GetFeaturesResponse:
     The response schema for the getFeatures operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["GetFeaturesResult"] = attrs.field()
+    """
+    The payload for the getFeatures operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -996,7 +1050,10 @@ class GetFeaturesResult:
     The payload for the getFeatures operation.
     """
 
-    features: "Features" = attrs.field()
+    features: List["Feature"] = attrs.field()
+    """
+    An array of features.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1005,7 +1062,10 @@ class GetFulfillmentOrderResponse:
     The response schema for the getFulfillmentOrder operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["GetFulfillmentOrderResult"] = attrs.field()
 
@@ -1014,14 +1074,29 @@ class GetFulfillmentOrderResponse:
 class GetFulfillmentOrderResult:
 
     fulfillment_order: "FulfillmentOrder" = attrs.field()
+    """
+    General information about a fulfillment order, including its status.
+    """
 
-    fulfillment_order_items: "FulfillmentOrderItemList" = attrs.field()
+    fulfillment_order_items: List["FulfillmentOrderItem"] = attrs.field()
+    """
+    An array of fulfillment order item information.
+    """
 
-    fulfillment_shipments: Optional["FulfillmentShipmentList"] = attrs.field()
+    fulfillment_shipments: Optional[List["FulfillmentShipment"]] = attrs.field()
+    """
+    An array of fulfillment shipment information.
+    """
 
-    return_authorizations: "ReturnAuthorizationList" = attrs.field()
+    return_authorizations: List["ReturnAuthorization"] = attrs.field()
+    """
+    An array of return authorization information.
+    """
 
-    return_items: "ReturnItemList" = attrs.field()
+    return_items: List["ReturnItem"] = attrs.field()
+    """
+    An array of items that Amazon accepted for return. Returns empty if no items were accepted for return.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1031,8 +1106,14 @@ class GetFulfillmentPreviewItem:
     """
 
     per_unit_declared_value: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -1052,21 +1133,15 @@ class GetFulfillmentPreviewItem:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class GetFulfillmentPreviewItemList:
-    """
-    An array of fulfillment preview item information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetFulfillmentPreviewRequest:
     """
     The request body schema for the getFulfillmentPreview operation.
     """
 
     address: "Address" = attrs.field()
+    """
+    A physical address.
+    """
 
     feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
     """
@@ -1086,14 +1161,17 @@ class GetFulfillmentPreviewRequest:
     Specifies whether to return the ScheduledDeliveryInfo response object, which contains the available delivery windows for a Scheduled Delivery. The ScheduledDeliveryInfo response object can only be returned for fulfillment order previews with ShippingSpeedCategories = ScheduledDelivery.
     """
 
-    items: "GetFulfillmentPreviewItemList" = attrs.field()
+    items: List["GetFulfillmentPreviewItem"] = attrs.field()
+    """
+    An array of fulfillment preview item information.
+    """
 
     marketplace_id: Optional[str] = attrs.field()
     """
     The marketplace the fulfillment order is placed against.
     """
 
-    shipping_speed_categories: Optional["ShippingSpeedCategoryList"] = attrs.field()
+    shipping_speed_categories: Optional[List["ShippingSpeedCategory"]] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1102,9 +1180,15 @@ class GetFulfillmentPreviewResponse:
     The response schema for the getFulfillmentPreview operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["GetFulfillmentPreviewResult"] = attrs.field()
+    """
+    A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and estimated ship dates and arrival dates.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1113,7 +1197,10 @@ class GetFulfillmentPreviewResult:
     A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and estimated ship dates and arrival dates.
     """
 
-    fulfillment_previews: Optional["FulfillmentPreviewList"] = attrs.field()
+    fulfillment_previews: Optional[List["FulfillmentPreview"]] = attrs.field()
+    """
+    An array of fulfillment preview information.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1122,7 +1209,10 @@ class GetPackageTrackingDetailsResponse:
     The response schema for the getPackageTrackingDetails operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["PackageTrackingDetails"] = attrs.field()
 
@@ -1139,6 +1229,9 @@ class InvalidItemReason:
     """
 
     invalid_item_reason_code: "InvalidItemReasonCode" = attrs.field()
+    """
+    A code for why the item is invalid for return.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1157,6 +1250,9 @@ class InvalidReturnItem:
     """
 
     invalid_item_reason: "InvalidItemReason" = attrs.field()
+    """
+    The reason that the item is invalid for return.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -1170,21 +1266,15 @@ class InvalidReturnItem:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class InvalidReturnItemList:
-    """
-    An array of invalid return item information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListAllFulfillmentOrdersResponse:
     """
     The response schema for the listAllFulfillmentOrders operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ListAllFulfillmentOrdersResult"] = attrs.field()
 
@@ -1209,7 +1299,10 @@ class ListReturnReasonCodesResponse:
     The response schema for the listReturnReasonCodes operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ListReturnReasonCodesResult"] = attrs.field()
 
@@ -1217,7 +1310,10 @@ class ListReturnReasonCodesResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListReturnReasonCodesResult:
 
-    reason_code_details: Optional["ReasonCodeDetailsList"] = attrs.field()
+    reason_code_details: Optional[List["ReasonCodeDetails"]] = attrs.field()
+    """
+    An array of return reason code details.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1232,21 +1328,18 @@ class Money:
     """
 
     value: "Decimal" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class NotificationEmailList:
     """
-    A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PackageTrackingDetails:
 
     additional_location_info: Optional["AdditionalLocationInfo"] = attrs.field()
+    """
+    Additional location information.
+    """
 
     carrier_code: Optional[str] = attrs.field()
     """
@@ -1264,6 +1357,9 @@ class PackageTrackingDetails:
     """
 
     current_status: Optional["CurrentStatus"] = attrs.field()
+    """
+    The current delivery status of the package.
+    """
 
     current_status_description: Optional[str] = attrs.field()
     """
@@ -1288,13 +1384,19 @@ class PackageTrackingDetails:
     ship_date: Optional["Timestamp"] = attrs.field()
 
     ship_to_address: Optional["TrackingAddress"] = attrs.field()
+    """
+    Address information for tracking the package.
+    """
 
     signed_for_by: Optional[str] = attrs.field()
     """
     The name of the person who signed for the package.
     """
 
-    tracking_events: Optional["TrackingEventList"] = attrs.field()
+    tracking_events: Optional[List["TrackingEvent"]] = attrs.field()
+    """
+    An array of tracking event information.
+    """
 
     tracking_number: Optional[str] = attrs.field()
     """
@@ -1334,15 +1436,6 @@ class ReasonCodeDetails:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ReasonCodeDetailsList:
-    """
-    An array of return reason code details.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ReturnAuthorization:
     """
     Return authorization information for items accepted for return.
@@ -1364,20 +1457,14 @@ class ReturnAuthorization:
     """
 
     return_to_address: "Address" = attrs.field()
+    """
+    A physical address.
+    """
 
     rma_page_url: str = attrs.field()
     """
     A URL for a web page that contains the return authorization barcode and the mailing label. This does not include pre-paid shipping.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ReturnAuthorizationList:
-    """
-    An array of return authorization information.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1412,6 +1499,9 @@ class ReturnItem:
     """
 
     return_received_condition: Optional["ReturnItemDisposition"] = attrs.field()
+    """
+    The condition of the return item when received by an Amazon fulfillment center.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -1429,6 +1519,9 @@ class ReturnItem:
     """
 
     status: "FulfillmentReturnItemStatus" = attrs.field()
+    """
+    Indicates if the return item has been processed by a fulfillment center.
+    """
 
     status_changed_date: "Timestamp" = attrs.field()
 
@@ -1437,15 +1530,6 @@ class ReturnItem:
 class ReturnItemDisposition:
     """
     The condition of the return item when received by an Amazon fulfillment center.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ReturnItemList:
-    """
-    An array of items that Amazon accepted for return. Returns empty if no items were accepted for return.
     """
 
     pass
@@ -1462,7 +1546,10 @@ class ScheduledDeliveryInfo:
     The time zone of the destination address for the fulfillment order preview. Must be an IANA time zone name. Example: Asia/Tokyo.
     """
 
-    delivery_windows: "DeliveryWindowList" = attrs.field()
+    delivery_windows: List["DeliveryWindow"] = attrs.field()
+    """
+    An array of delivery windows.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1470,18 +1557,6 @@ class ShippingSpeedCategory:
     """
     The shipping method used for the fulfillment order.
     """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ShippingSpeedCategoryList:
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class StringList:
 
     pass
 
@@ -1530,8 +1605,14 @@ class TrackingEvent:
     """
 
     event_address: "TrackingAddress" = attrs.field()
+    """
+    Address information for tracking the package.
+    """
 
     event_code: "EventCode" = attrs.field()
+    """
+    The event code for the delivery event.
+    """
 
     event_date: "Timestamp" = attrs.field()
 
@@ -1542,23 +1623,17 @@ class TrackingEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class TrackingEventList:
-    """
-    An array of tracking event information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class UnfulfillablePreviewItem:
     """
     Information about unfulfillable items in a fulfillment order preview.
     """
 
-    item_unfulfillable_reasons: Optional["StringList"] = attrs.field()
+    item_unfulfillable_reasons: Optional[List[str]] = attrs.field()
 
     quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -1575,15 +1650,6 @@ class UnfulfillablePreviewItem:
     Extra fields:
     {'maxLength': 50}
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class UnfulfillablePreviewItemList:
-    """
-    An array of unfulfillable preview item information.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1619,12 +1685,24 @@ class UpdateFulfillmentOrderItem:
     """
 
     per_unit_declared_value: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     per_unit_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     per_unit_tax: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     quantity: "Quantity" = attrs.field()
+    """
+    The item quantity.
+    """
 
     seller_fulfillment_order_item_id: str = attrs.field()
     """
@@ -1641,18 +1719,12 @@ class UpdateFulfillmentOrderItem:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class UpdateFulfillmentOrderItemList:
-    """
-    An array of fulfillment order item information for updating a fulfillment order.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class UpdateFulfillmentOrderRequest:
 
     destination_address: Optional["Address"] = attrs.field()
+    """
+    A physical address.
+    """
 
     displayable_order_comment: Optional[str] = attrs.field()
     """
@@ -1678,17 +1750,29 @@ class UpdateFulfillmentOrderRequest:
     """
 
     fulfillment_action: Optional["FulfillmentAction"] = attrs.field()
+    """
+    Specifies whether the fulfillment order should ship now or have an order hold put on it.
+    """
 
     fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
+    """
+    The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
+    """
 
-    items: Optional["UpdateFulfillmentOrderItemList"] = attrs.field()
+    items: Optional[List["UpdateFulfillmentOrderItem"]] = attrs.field()
+    """
+    An array of fulfillment order item information for updating a fulfillment order.
+    """
 
     marketplace_id: Optional[str] = attrs.field()
     """
     The marketplace the fulfillment order is placed against.
     """
 
-    notification_emails: Optional["NotificationEmailList"] = attrs.field()
+    notification_emails: Optional[List[str]] = attrs.field()
+    """
+    A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
+    """
 
     ship_from_country_code: Optional[str] = attrs.field()
     """
@@ -1696,6 +1780,9 @@ class UpdateFulfillmentOrderRequest:
     """
 
     shipping_speed_category: Optional["ShippingSpeedCategory"] = attrs.field()
+    """
+    The shipping method used for the fulfillment order.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1704,7 +1791,10 @@ class UpdateFulfillmentOrderResponse:
     The response schema for the updateFulfillmentOrder operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

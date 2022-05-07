@@ -19,9 +19,15 @@ class CreateUploadDestinationResponse:
     The response schema for the createUploadDestination operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["UploadDestination"] = attrs.field()
+    """
+    Information about an upload destination.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -47,21 +53,15 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class UploadDestination:
     """
     Information about an upload destination.
     """
 
     headers: Optional["UploadDestinationHeaders"] = attrs.field()
+    """
+    The headers to include in the upload request.
+    """
 
     upload_destination_id: Optional[str] = attrs.field()
     """

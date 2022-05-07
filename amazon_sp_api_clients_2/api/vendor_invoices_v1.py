@@ -107,6 +107,9 @@ class AllowanceDetails:
     """
 
     allowance_amount: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     description: Optional[str] = attrs.field()
     """
@@ -138,6 +141,9 @@ class ChargeDetails:
     """
 
     charge_amount: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     description: Optional[str] = attrs.field()
     """
@@ -189,6 +195,9 @@ class CreditNoteDetails:
     """
 
     goods_return_date: Optional["DateTime"] = attrs.field()
+    """
+    Defines a date and time according to ISO8601.
+    """
 
     reference_invoice_number: Optional[str] = attrs.field()
     """
@@ -247,15 +256,6 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class Invoice:
 
     additional_details: Optional[List["AdditionalDetails"]] = attrs.field()
@@ -276,6 +276,9 @@ class Invoice:
     """
 
     date: "DateTime" = attrs.field()
+    """
+    Defines a date and time according to ISO8601.
+    """
 
     id: str = attrs.field()
     """
@@ -283,6 +286,9 @@ class Invoice:
     """
 
     invoice_total: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     invoice_type: Union[Literal["Invoice"], Literal["CreditNote"]] = attrs.field()
     """
@@ -295,6 +301,9 @@ class Invoice:
     """
 
     payment_terms: Optional["PaymentTerms"] = attrs.field()
+    """
+    Terms of the payment for the invoice. The basis of the payment terms is the invoice date.
+    """
 
     reference_number: Optional[str] = attrs.field()
     """
@@ -335,6 +344,9 @@ class InvoiceItem:
     """
 
     credit_note_details: Optional["CreditNoteDetails"] = attrs.field()
+    """
+    References required in order to process a credit note. This information is required only if InvoiceType is CreditNote.
+    """
 
     hsn_code: Optional[str] = attrs.field()
     """
@@ -342,6 +354,9 @@ class InvoiceItem:
     """
 
     invoiced_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of quantity.
+    """
 
     item_sequence_number: int = attrs.field()
     """
@@ -349,6 +364,9 @@ class InvoiceItem:
     """
 
     net_cost: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     purchase_order_number: Optional[str] = attrs.field()
     """
@@ -395,6 +413,9 @@ class Money:
     """
 
     amount: Optional["Decimal"] = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     currency_code: Optional[str] = attrs.field()
     """
@@ -406,6 +427,9 @@ class Money:
 class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
+    """
+    A physical address.
+    """
 
     party_id: str = attrs.field()
     """
@@ -430,6 +454,9 @@ class PaymentTerms:
     """
 
     discount_percent: Optional["Decimal"] = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     net_due_days: Optional[float] = attrs.field()
     """
@@ -466,7 +493,10 @@ class SubmitInvoicesResponse:
     The response schema for the submitInvoices operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionId"] = attrs.field()
 
@@ -478,8 +508,14 @@ class TaxDetails:
     """
 
     tax_amount: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     tax_rate: Optional["Decimal"] = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     tax_type: Union[
         Literal["CGST"],
@@ -502,6 +538,9 @@ class TaxDetails:
     """
 
     taxable_amount: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

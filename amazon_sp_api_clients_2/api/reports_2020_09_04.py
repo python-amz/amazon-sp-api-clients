@@ -19,7 +19,10 @@ class CancelReportResponse:
     The response for the cancelReport operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -28,7 +31,10 @@ class CancelReportScheduleResponse:
     The response for the cancelReportSchedule operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -37,7 +43,10 @@ class CreateReportResponse:
     The response for the createReport operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["CreateReportResult"] = attrs.field()
 
@@ -57,7 +66,10 @@ class CreateReportScheduleResponse:
     The response for the createReportSchedule operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["CreateReportScheduleResult"] = attrs.field()
 
@@ -115,6 +127,9 @@ class CreateReportScheduleSpecification:
     """
 
     report_options: Optional["ReportOptions"] = attrs.field()
+    """
+    Additional information passed to reports. This varies by report type.
+    """
 
     report_type: str = attrs.field()
     """
@@ -150,6 +165,9 @@ class CreateReportSpecification:
     """
 
     report_options: Optional["ReportOptions"] = attrs.field()
+    """
+    Additional information passed to reports. This varies by report type.
+    """
 
     report_type: str = attrs.field()
     """
@@ -180,21 +198,15 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetReportDocumentResponse:
     """
     Response schema.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ReportDocument"] = attrs.field()
 
@@ -205,7 +217,10 @@ class GetReportResponse:
     The response for the getReport operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Report"] = attrs.field()
 
@@ -216,9 +231,15 @@ class GetReportScheduleResponse:
     The response for the getReportSchedule operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ReportSchedule"] = attrs.field()
+    """
+    Detailed information about a report schedule.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -227,9 +248,12 @@ class GetReportSchedulesResponse:
     The response for the getReportSchedules operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
-    payload: Optional["ReportScheduleList"] = attrs.field()
+    payload: Optional[List["ReportSchedule"]] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -238,14 +262,17 @@ class GetReportsResponse:
     The response for the getReports operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     next_token: Optional[str] = attrs.field()
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call getReports with this token as the only parameter.
     """
 
-    payload: Optional["ReportList"] = attrs.field()
+    payload: Optional[List["Report"]] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -333,6 +360,9 @@ class ReportDocument:
     """
 
     encryption_details: "ReportDocumentEncryptionDetails" = attrs.field()
+    """
+    Encryption details required for decryption of a report document's contents.
+    """
 
     report_document_id: str = attrs.field()
     """
@@ -365,12 +395,6 @@ class ReportDocumentEncryptionDetails:
     """
     The encryption standard required to decrypt the document contents.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ReportList:
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=False)
@@ -407,6 +431,9 @@ class ReportSchedule:
     """
 
     report_options: Optional["ReportOptions"] = attrs.field()
+    """
+    Additional information passed to reports. This varies by report type.
+    """
 
     report_schedule_id: str = attrs.field()
     """
@@ -417,12 +444,6 @@ class ReportSchedule:
     """
     The report type.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ReportScheduleList:
-
-    pass
 
 
 class Reports20200904Client(BaseClient):

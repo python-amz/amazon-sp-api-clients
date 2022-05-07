@@ -20,6 +20,9 @@ class AddAppointmentRequest:
     """
 
     appointment_time: "AppointmentTimeInput" = attrs.field()
+    """
+    The input appointment time details.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -91,6 +94,9 @@ class Appointment:
     """
 
     appointment_id: Optional["AppointmentId"] = attrs.field()
+    """
+    The appointment identifier.
+    """
 
     appointment_status: Optional[Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]]] = attrs.field()
     """
@@ -98,6 +104,9 @@ class Appointment:
     """
 
     appointment_time: Optional["AppointmentTime"] = attrs.field()
+    """
+    The time of the appointment window.
+    """
 
     assigned_technicians: Optional[List["Technician"]] = attrs.field()
     """
@@ -108,8 +117,14 @@ class Appointment:
     """
 
     poa: Optional["Poa"] = attrs.field()
+    """
+    Proof of Appointment (POA) details.
+    """
 
     rescheduled_appointment_id: Optional["AppointmentId"] = attrs.field()
+    """
+    The appointment identifier.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -181,6 +196,9 @@ class AssociatedItem:
     """
 
     item_delivery: Optional["ItemDelivery"] = attrs.field()
+    """
+    Delivery information for the item.
+    """
 
     item_status: Optional[
         Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]]
@@ -190,6 +208,9 @@ class AssociatedItem:
     """
 
     order_id: Optional["OrderId"] = attrs.field()
+    """
+    The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
+    """
 
     quantity: Optional[int] = attrs.field()
     """
@@ -238,7 +259,10 @@ class CancelServiceJobByServiceJobIdResponse:
     Response schema for CancelServiceJobByServiceJobId operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -247,7 +271,10 @@ class CompleteServiceJobByServiceJobIdResponse:
     Response schema for CompleteServiceJobByServiceJobId operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -278,23 +305,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetServiceJobByServiceJobIdResponse:
     """
     The response schema for the GetServiceJobByServiceJobId operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ServiceJob"] = attrs.field()
+    """
+    The job details of a service.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -303,9 +327,15 @@ class GetServiceJobsResponse:
     Response schema for GetJobs operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["JobListing"] = attrs.field()
+    """
+    The payload for the GetJobs operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -323,6 +353,9 @@ class ItemDelivery:
     """
 
     item_delivery_promise: Optional["ItemDeliveryPromise"] = attrs.field()
+    """
+    Promised delivery information for the item.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -391,6 +424,9 @@ class Poa:
     """
 
     appointment_time: Optional["AppointmentTime"] = attrs.field()
+    """
+    The time of the appointment window.
+    """
 
     poa_type: Optional[
         Union[
@@ -436,8 +472,14 @@ class RescheduleAppointmentRequest:
     """
 
     appointment_time: "AppointmentTimeInput" = attrs.field()
+    """
+    The input appointment time details.
+    """
 
     reschedule_reason_code: "RescheduleReasonCode" = attrs.field()
+    """
+    Appointment reschedule reason code.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -508,6 +550,9 @@ class ServiceJob:
     """
 
     buyer: Optional["Buyer"] = attrs.field()
+    """
+    Information about the buyer.
+    """
 
     create_time: Optional[datetime] = attrs.field()
     """
@@ -531,12 +576,24 @@ class ServiceJob:
     """
 
     scope_of_work: Optional["ScopeOfWork"] = attrs.field()
+    """
+    The scope of work for the order.
+    """
 
     seller: Optional["Seller"] = attrs.field()
+    """
+    Information about the seller of the service job.
+    """
 
     service_job_id: Optional["ServiceJobId"] = attrs.field()
+    """
+    Amazon identifier for the service job.
+    """
 
     service_job_provider: Optional["ServiceJobProvider"] = attrs.field()
+    """
+    Information about the service job provider.
+    """
 
     service_job_status: Optional[
         Union[
@@ -554,8 +611,14 @@ class ServiceJob:
     """
 
     service_location: Optional["ServiceLocation"] = attrs.field()
+    """
+    Information about the location of the service job.
+    """
 
     service_order_id: Optional["OrderId"] = attrs.field()
+    """
+    The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -589,6 +652,9 @@ class ServiceLocation:
     """
 
     address: Optional["Address"] = attrs.field()
+    """
+    The shipping address for the service job.
+    """
 
     service_location_type: Optional[Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]]] = attrs.field()
     """
@@ -603,10 +669,19 @@ class SetAppointmentResponse:
     """
 
     appointment_id: Optional["AppointmentId"] = attrs.field()
+    """
+    The appointment identifier.
+    """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
-    warnings: Optional["WarningList"] = attrs.field()
+    warnings: Optional[List["Warning"]] = attrs.field()
+    """
+    A list of warnings returned in the sucessful execution response of an API request.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -649,15 +724,6 @@ class Warning:
     """
     A message that describes the warning condition in a human-readable form.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class WarningList:
-    """
-    A list of warnings returned in the sucessful execution response of an API request.
-    """
-
-    pass
 
 
 class ServicesV1Client(BaseClient):

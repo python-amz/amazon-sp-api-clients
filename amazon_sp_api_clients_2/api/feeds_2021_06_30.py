@@ -61,6 +61,9 @@ class CreateFeedSpecification:
     """
 
     feed_options: Optional["FeedOptions"] = attrs.field()
+    """
+    Additional options to control the feed. These vary by feed type.
+    """
 
     feed_type: str = attrs.field()
     """
@@ -192,15 +195,6 @@ class FeedDocument:
     """
 
 
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FeedList:
-    """
-    A list of feeds.
-    """
-
-    pass
-
-
 @attrs.define(kw_only=True, frozen=True, slots=False)
 class FeedOptions:
     """
@@ -216,7 +210,10 @@ class GetFeedsResponse:
     Response schema.
     """
 
-    feeds: "FeedList" = attrs.field()
+    feeds: List["Feed"] = attrs.field()
+    """
+    A list of feeds.
+    """
 
     next_token: Optional[str] = attrs.field()
     """

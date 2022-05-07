@@ -87,8 +87,14 @@ class ProductTypeDefinition:
     """
 
     product_type_version: "ProductTypeVersion" = attrs.field()
+    """
+    The version details for an Amazon product type.
+    """
 
     property_groups: "ProductTypeDefinitionPropertyGroups" = attrs.field()
+    """
+    Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
+    """
 
     requirements: Union[
         Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
@@ -176,6 +182,9 @@ class SchemaLink:
     """
 
     link: "SchemaLinkLink" = attrs.field()
+    """
+    Link to retrieve the schema.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

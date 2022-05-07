@@ -16,8 +16,8 @@ from datetime import date, datetime
 {% for schema in data.schemas %}
 @attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
 class {{ schema.name }}:
-    {% if schema.description %}"""
-    {{ schema.description }}
+    {% if schema.parsed_description %}"""
+    {{ schema.parsed_description }}
     """
     {% endif %}
 

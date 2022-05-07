@@ -28,15 +28,6 @@ class ASINIdentifier:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class AttributeSetList:
-    """
-    A list of attributes for the item.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class AttributeSetListType:
     """
     The attributes of the item.
@@ -118,6 +109,9 @@ class AttributeSetListType:
     """
 
     cpu_speed: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     cpu_type: Optional[str] = attrs.field()
     """
@@ -140,6 +134,9 @@ class AttributeSetListType:
     """
 
     display_size: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     edition: Optional[str] = attrs.field()
     """
@@ -187,6 +184,9 @@ class AttributeSetListType:
     """
 
     golf_club_loft: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     hand_orientation: Optional[str] = attrs.field()
     """
@@ -199,6 +199,9 @@ class AttributeSetListType:
     """
 
     hard_disk_size: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     hardware_platform: Optional[str] = attrs.field()
     """
@@ -236,6 +239,9 @@ class AttributeSetListType:
     """
 
     item_dimensions: Optional["DimensionType"] = attrs.field()
+    """
+    The dimension type attribute of an item.
+    """
 
     item_part_number: Optional[str] = attrs.field()
     """
@@ -258,6 +264,9 @@ class AttributeSetListType:
     """
 
     list_price: Optional["Price"] = attrs.field()
+    """
+    The price attribute of the item.
+    """
 
     manufacturer: Optional[str] = attrs.field()
     """
@@ -265,8 +274,14 @@ class AttributeSetListType:
     """
 
     manufacturer_maximum_age: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     manufacturer_minimum_age: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     manufacturer_parts_warranty_description: Optional[str] = attrs.field()
     """
@@ -279,6 +294,9 @@ class AttributeSetListType:
     """
 
     maximum_resolution: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     media_type: Optional[List[str]] = attrs.field()
     """
@@ -331,8 +349,14 @@ class AttributeSetListType:
     """
 
     optical_zoom: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     package_dimensions: Optional["DimensionType"] = attrs.field()
+    """
+    The dimension type attribute of an item.
+    """
 
     package_quantity: Optional[int] = attrs.field()
     """
@@ -400,6 +424,9 @@ class AttributeSetListType:
     """
 
     running_time: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     scent: Optional[str] = attrs.field()
     """
@@ -432,6 +459,9 @@ class AttributeSetListType:
     """
 
     small_image: Optional["Image"] = attrs.field()
+    """
+    The image attribute of the item.
+    """
 
     studio: Optional[str] = attrs.field()
     """
@@ -439,8 +469,14 @@ class AttributeSetListType:
     """
 
     subscription_length: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     system_memory_size: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     system_memory_type: Optional[str] = attrs.field()
     """
@@ -458,8 +494,14 @@ class AttributeSetListType:
     """
 
     total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     total_gem_weight: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     warranty: Optional[str] = attrs.field()
     """
@@ -467,6 +509,9 @@ class AttributeSetListType:
     """
 
     weee_tax_value: Optional["Price"] = attrs.field()
+    """
+    The price attribute of the item.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -483,6 +528,9 @@ class Categories:
     """
 
     parent: Optional["CategoriesParent"] = attrs.field()
+    """
+    The parent product category.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -535,12 +583,24 @@ class DimensionType:
     """
 
     height: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     length: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     weight: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     width: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -566,20 +626,17 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
+class GetCatalogItemResponse:
+
+    errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class GetCatalogItemResponse:
-
-    errors: Optional["ErrorList"] = attrs.field()
-
     payload: Optional["Item"] = attrs.field()
+    """
+    An item in the Amazon catalog.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -597,6 +654,9 @@ class Image:
     """
 
     height: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     url: Optional[str] = attrs.field()
     """
@@ -604,6 +664,9 @@ class Image:
     """
 
     width: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -612,22 +675,22 @@ class Item:
     An item in the Amazon catalog.
     """
 
-    attribute_sets: Optional["AttributeSetList"] = attrs.field()
+    attribute_sets: Optional[List["AttributeSetListType"]] = attrs.field()
+    """
+    A list of attributes for the item.
+    """
 
     identifiers: "IdentifierType" = attrs.field()
 
-    relationships: Optional["RelationshipList"] = attrs.field()
-
-    sales_rankings: Optional["SalesRankList"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemList:
+    relationships: Optional[List["RelationshipType"]] = attrs.field()
     """
-    A list of items.
+    A list of variation relationship information, if applicable for the item.
     """
 
-    pass
+    sales_rankings: Optional[List["SalesRankType"]] = attrs.field()
+    """
+    A list of sales rank information for the item by category.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -655,15 +718,21 @@ class LanguageType:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListCatalogCategoriesResponse:
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
-    payload: Optional["ListOfCategories"] = attrs.field()
+    payload: Optional[List["Categories"]] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListCatalogItemsResponse:
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ListMatchingItemsResponse"] = attrs.field()
 
@@ -671,13 +740,10 @@ class ListCatalogItemsResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListMatchingItemsResponse:
 
-    items: Optional["ItemList"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ListOfCategories:
-
-    pass
+    items: Optional[List["Item"]] = attrs.field()
+    """
+    A list of items.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -695,15 +761,6 @@ class Price:
     """
     The currency code of the amount.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class RelationshipList:
-    """
-    A list of variation relationship information, if applicable for the item.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -738,6 +795,9 @@ class RelationshipType:
     """
 
     golf_club_loft: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     hand_orientation: Optional[str] = attrs.field()
     """
@@ -752,6 +812,9 @@ class RelationshipType:
     identifiers: Optional["IdentifierType"] = attrs.field()
 
     item_dimensions: Optional["DimensionType"] = attrs.field()
+    """
+    The dimension type attribute of an item.
+    """
 
     material_type: Optional[List[str]] = attrs.field()
     """
@@ -809,17 +872,14 @@ class RelationshipType:
     """
 
     total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field()
+    """
+    The decimal value and unit.
+    """
 
     total_gem_weight: Optional["DecimalWithUnits"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class SalesRankList:
     """
-    A list of sales rank information for the item by category.
+    The decimal value and unit.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

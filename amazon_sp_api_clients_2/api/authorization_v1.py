@@ -48,23 +48,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetAuthorizationCodeResponse:
     """
     The response schema for the GetAuthorizationCode operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["AuthorizationCode"] = attrs.field()
+    """
+    A Login with Amazon (LWA) authorization code.
+    """
 
 
 class AuthorizationV1Client(BaseClient):

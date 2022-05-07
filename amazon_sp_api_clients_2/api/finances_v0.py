@@ -20,8 +20,14 @@ class AdjustmentEvent:
     """
 
     adjustment_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
-    adjustment_item_list: Optional["AdjustmentItemList"] = attrs.field()
+    adjustment_item_list: Optional[List["AdjustmentItem"]] = attrs.field()
+    """
+    A list of information about items in an adjustment to the seller's account.
+    """
 
     adjustment_type: Optional[str] = attrs.field()
     """
@@ -41,15 +47,6 @@ class AdjustmentEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class AdjustmentEventList:
-    """
-    A list of adjustment event information for the seller's account.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class AdjustmentItem:
     """
     An item in an adjustment to the seller's account.
@@ -66,6 +63,9 @@ class AdjustmentItem:
     """
 
     per_unit_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     product_description: Optional[str] = attrs.field()
     """
@@ -83,15 +83,9 @@ class AdjustmentItem:
     """
 
     total_amount: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class AdjustmentItemList:
     """
-    A list of information about items in an adjustment to the seller's account.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -106,6 +100,9 @@ class AffordabilityExpenseEvent:
     """
 
     base_expense: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     marketplace_id: Optional[str] = attrs.field()
     """
@@ -115,12 +112,24 @@ class AffordabilityExpenseEvent:
     posted_date: Optional["Date"] = attrs.field()
 
     tax_type_cgst: "Currency" = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     tax_type_igst: "Currency" = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     tax_type_sgst: "Currency" = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     total_expense: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     transaction_type: Optional[str] = attrs.field()
     """
@@ -132,15 +141,6 @@ class AffordabilityExpenseEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class AffordabilityExpenseEventList:
-    """
-    A list of expense information related to an affordability promotion.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class BigDecimal:
 
     pass
@@ -149,88 +149,50 @@ class BigDecimal:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ChargeComponent:
     """
-        A charge on the seller's account.
-
-    Possible values:
-
-    * Principal - The selling price of the order item, equal to the selling price of the item multiplied by the quantity ordered.
-
-    * Tax - The tax collected by the seller on the Principal.
-
-    * MarketplaceFacilitatorTax-Principal - The tax withheld on the Principal.
-
-    * MarketplaceFacilitatorTax-Shipping - The tax withheld on the ShippingCharge.
-
-    * MarketplaceFacilitatorTax-Giftwrap - The tax withheld on the Giftwrap charge.
-
-    * MarketplaceFacilitatorTax-Other - The tax withheld on other miscellaneous charges.
-
-    * Discount - The promotional discount for an order item.
-
-    * TaxDiscount - The tax amount deducted for promotional rebates.
-
-    * CODItemCharge - The COD charge for an order item.
-
-    * CODItemTaxCharge - The tax collected by the seller on a CODItemCharge.
-
-    * CODOrderCharge - The COD charge for an order.
-
-    * CODOrderTaxCharge - The tax collected by the seller on a CODOrderCharge.
-
-    * CODShippingCharge - Shipping charges for a COD order.
-
-    * CODShippingTaxCharge - The tax collected by the seller on a CODShippingCharge.
-
-    * ShippingCharge - The shipping charge.
-
-    * ShippingTax - The tax collected by the seller on a ShippingCharge.
-
-    * Goodwill - The amount given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
-
-    * Giftwrap - The gift wrap charge.
-
-    * GiftwrapTax - The tax collected by the seller on a Giftwrap charge.
-
-    * RestockingFee - The charge applied to the buyer when returning a product in certain categories.
-
-    * ReturnShipping - The amount given to the buyer to compensate for shipping the item back in the event we are at fault.
-
-    * PointsFee - The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
-
-    * GenericDeduction - A generic bad debt deduction.
-
-    * FreeReplacementReturnShipping - The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
-
-    * PaymentMethodFee - The fee collected for certain payment methods in certain marketplaces.
-
-    * ExportCharge - The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
-
-    * SAFE-TReimbursement - The SAFE-T claim amount for the item.
-
-    * TCS-CGST - Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
-
-    * TCS-SGST - Tax Collected at Source for State Goods and Services Tax (SGST).
-
-    * TCS-IGST - Tax Collected at Source for Integrated Goods and Services Tax (IGST).
-
-    * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+    A charge on the seller's account.
+        Possible values:
+        * Principal - The selling price of the order item, equal to the selling price of the item multiplied by the quantity ordered.
+        * Tax - The tax collected by the seller on the Principal.
+        * MarketplaceFacilitatorTax-Principal - The tax withheld on the Principal.
+        * MarketplaceFacilitatorTax-Shipping - The tax withheld on the ShippingCharge.
+        * MarketplaceFacilitatorTax-Giftwrap - The tax withheld on the Giftwrap charge.
+        * MarketplaceFacilitatorTax-Other - The tax withheld on other miscellaneous charges.
+        * Discount - The promotional discount for an order item.
+        * TaxDiscount - The tax amount deducted for promotional rebates.
+        * CODItemCharge - The COD charge for an order item.
+        * CODItemTaxCharge - The tax collected by the seller on a CODItemCharge.
+        * CODOrderCharge - The COD charge for an order.
+        * CODOrderTaxCharge - The tax collected by the seller on a CODOrderCharge.
+        * CODShippingCharge - Shipping charges for a COD order.
+        * CODShippingTaxCharge - The tax collected by the seller on a CODShippingCharge.
+        * ShippingCharge - The shipping charge.
+        * ShippingTax - The tax collected by the seller on a ShippingCharge.
+        * Goodwill - The amount given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+        * Giftwrap - The gift wrap charge.
+        * GiftwrapTax - The tax collected by the seller on a Giftwrap charge.
+        * RestockingFee - The charge applied to the buyer when returning a product in certain categories.
+        * ReturnShipping - The amount given to the buyer to compensate for shipping the item back in the event we are at fault.
+        * PointsFee - The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+        * GenericDeduction - A generic bad debt deduction.
+        * FreeReplacementReturnShipping - The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+        * PaymentMethodFee - The fee collected for certain payment methods in certain marketplaces.
+        * ExportCharge - The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+        * SAFE-TReimbursement - The SAFE-T claim amount for the item.
+        * TCS-CGST - Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+        * TCS-SGST - Tax Collected at Source for State Goods and Services Tax (SGST).
+        * TCS-IGST - Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+        * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
     """
 
     charge_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     charge_type: Optional[str] = attrs.field()
     """
     The type of charge.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ChargeComponentList:
-    """
-    A list of charge information on the seller's account.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -240,6 +202,9 @@ class ChargeInstrument:
     """
 
     amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     description: Optional[str] = attrs.field()
     """
@@ -253,21 +218,47 @@ class ChargeInstrument:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ChargeInstrumentList:
-    """
-    A list of payment instruments.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class CouponPaymentEvent:
     """
     An event related to coupon payments.
     """
 
     charge_component: Optional["ChargeComponent"] = attrs.field()
+    """
+    A charge on the seller's account.
+        Possible values:
+        * Principal - The selling price of the order item, equal to the selling price of the item multiplied by the quantity ordered.
+        * Tax - The tax collected by the seller on the Principal.
+        * MarketplaceFacilitatorTax-Principal - The tax withheld on the Principal.
+        * MarketplaceFacilitatorTax-Shipping - The tax withheld on the ShippingCharge.
+        * MarketplaceFacilitatorTax-Giftwrap - The tax withheld on the Giftwrap charge.
+        * MarketplaceFacilitatorTax-Other - The tax withheld on other miscellaneous charges.
+        * Discount - The promotional discount for an order item.
+        * TaxDiscount - The tax amount deducted for promotional rebates.
+        * CODItemCharge - The COD charge for an order item.
+        * CODItemTaxCharge - The tax collected by the seller on a CODItemCharge.
+        * CODOrderCharge - The COD charge for an order.
+        * CODOrderTaxCharge - The tax collected by the seller on a CODOrderCharge.
+        * CODShippingCharge - Shipping charges for a COD order.
+        * CODShippingTaxCharge - The tax collected by the seller on a CODShippingCharge.
+        * ShippingCharge - The shipping charge.
+        * ShippingTax - The tax collected by the seller on a ShippingCharge.
+        * Goodwill - The amount given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+        * Giftwrap - The gift wrap charge.
+        * GiftwrapTax - The tax collected by the seller on a Giftwrap charge.
+        * RestockingFee - The charge applied to the buyer when returning a product in certain categories.
+        * ReturnShipping - The amount given to the buyer to compensate for shipping the item back in the event we are at fault.
+        * PointsFee - The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+        * GenericDeduction - A generic bad debt deduction.
+        * FreeReplacementReturnShipping - The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+        * PaymentMethodFee - The fee collected for certain payment methods in certain marketplaces.
+        * ExportCharge - The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+        * SAFE-TReimbursement - The SAFE-T claim amount for the item.
+        * TCS-CGST - Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+        * TCS-SGST - Tax Collected at Source for State Goods and Services Tax (SGST).
+        * TCS-IGST - Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+        * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+    """
 
     clip_or_redemption_count: Optional[int] = attrs.field()
     """
@@ -283,6 +274,9 @@ class CouponPaymentEvent:
     """
 
     fee_component: Optional["FeeComponent"] = attrs.field()
+    """
+    A fee associated with the event.
+    """
 
     payment_event_id: Optional[str] = attrs.field()
     """
@@ -297,15 +291,9 @@ class CouponPaymentEvent:
     """
 
     total_amount: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class CouponPaymentEventList:
     """
-    A list of coupon payment event information.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -334,9 +322,15 @@ class DebtRecoveryEvent:
     A debt payment or debt adjustment.
     """
 
-    charge_instrument_list: Optional["ChargeInstrumentList"] = attrs.field()
+    charge_instrument_list: Optional[List["ChargeInstrument"]] = attrs.field()
+    """
+    A list of payment instruments.
+    """
 
-    debt_recovery_item_list: Optional["DebtRecoveryItemList"] = attrs.field()
+    debt_recovery_item_list: Optional[List["DebtRecoveryItem"]] = attrs.field()
+    """
+    A list of debt recovery item information.
+    """
 
     debt_recovery_type: Optional[str] = attrs.field()
     """
@@ -348,17 +342,14 @@ class DebtRecoveryEvent:
     """
 
     over_payment_credit: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     recovery_amount: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class DebtRecoveryEventList:
     """
-    A list of debt recovery event information.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -372,17 +363,14 @@ class DebtRecoveryItem:
     group_end_date: Optional["Date"] = attrs.field()
 
     original_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     recovery_amount: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class DebtRecoveryItemList:
     """
-    A list of debt recovery item information.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -392,6 +380,9 @@ class DirectPayment:
     """
 
     direct_payment_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     direct_payment_type: Optional[str] = attrs.field()
     """
@@ -404,15 +395,6 @@ class DirectPayment:
         * CollectOnDeliveryRevenue - The COD amount that the seller collected directly from the buyer.
         * CollectOnDeliveryRefund - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class DirectPaymentList:
-    """
-    A list of direct payment information.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -438,23 +420,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class FBALiquidationEvent:
     """
     A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
     """
 
     liquidation_fee_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     liquidation_proceeds_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     original_removal_order_id: Optional[str] = attrs.field()
     """
@@ -465,35 +444,20 @@ class FBALiquidationEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class FBALiquidationEventList:
-    """
-    A list of FBA inventory liquidation payment events.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeeComponent:
     """
     A fee associated with the event.
     """
 
     fee_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     fee_type: Optional[str] = attrs.field()
     """
     The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FeeComponentList:
-    """
-    A list of fee component information.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -508,8 +472,14 @@ class FinancialEventGroup:
     """
 
     beginning_balance: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     converted_total: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     financial_event_group_end: Optional["Date"] = attrs.field()
 
@@ -528,6 +498,9 @@ class FinancialEventGroup:
     """
 
     original_total: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     processing_status: Optional[str] = attrs.field()
     """
@@ -544,73 +517,145 @@ class FinancialEventGroup:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class FinancialEventGroupList:
-    """
-    A list of financial event group information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class FinancialEvents:
     """
     Contains all information related to a financial event.
     """
 
-    adjustment_event_list: Optional["AdjustmentEventList"] = attrs.field()
+    adjustment_event_list: Optional[List["AdjustmentEvent"]] = attrs.field()
+    """
+    A list of adjustment event information for the seller's account.
+    """
 
-    affordability_expense_event_list: Optional["AffordabilityExpenseEventList"] = attrs.field()
+    affordability_expense_event_list: Optional[List["AffordabilityExpenseEvent"]] = attrs.field()
+    """
+    A list of expense information related to an affordability promotion.
+    """
 
-    affordability_expense_reversal_event_list: Optional["AffordabilityExpenseEventList"] = attrs.field()
+    affordability_expense_reversal_event_list: Optional[List["AffordabilityExpenseEvent"]] = attrs.field()
+    """
+    A list of expense information related to an affordability promotion.
+    """
 
-    chargeback_event_list: Optional["ShipmentEventList"] = attrs.field()
+    chargeback_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    """
+    A list of shipment event information.
+    """
 
-    coupon_payment_event_list: Optional["CouponPaymentEventList"] = attrs.field()
+    coupon_payment_event_list: Optional[List["CouponPaymentEvent"]] = attrs.field()
+    """
+    A list of coupon payment event information.
+    """
 
-    debt_recovery_event_list: Optional["DebtRecoveryEventList"] = attrs.field()
+    debt_recovery_event_list: Optional[List["DebtRecoveryEvent"]] = attrs.field()
+    """
+    A list of debt recovery event information.
+    """
 
-    fbaliquidation_event_list: Optional["FBALiquidationEventList"] = attrs.field()
+    fbaliquidation_event_list: Optional[List["FBALiquidationEvent"]] = attrs.field()
+    """
+    A list of FBA inventory liquidation payment events.
+    """
 
-    guarantee_claim_event_list: Optional["ShipmentEventList"] = attrs.field()
+    guarantee_claim_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    """
+    A list of shipment event information.
+    """
 
-    imaging_services_fee_event_list: Optional["ImagingServicesFeeEventList"] = attrs.field()
+    imaging_services_fee_event_list: Optional[List["ImagingServicesFeeEvent"]] = attrs.field()
+    """
+    A list of fee events related to Amazon Imaging services.
+    """
 
-    loan_servicing_event_list: Optional["LoanServicingEventList"] = attrs.field()
+    loan_servicing_event_list: Optional[List["LoanServicingEvent"]] = attrs.field()
+    """
+    A list of loan servicing events.
+    """
 
-    network_commingling_transaction_event_list: Optional["NetworkComminglingTransactionEventList"] = attrs.field()
+    network_commingling_transaction_event_list: Optional[List["NetworkComminglingTransactionEvent"]] = attrs.field()
+    """
+    A list of network commingling transaction events.
+    """
 
-    pay_with_amazon_event_list: Optional["PayWithAmazonEventList"] = attrs.field()
+    pay_with_amazon_event_list: Optional[List["PayWithAmazonEvent"]] = attrs.field()
+    """
+    A list of events related to the seller's Pay with Amazon account.
+    """
 
-    product_ads_payment_event_list: Optional["ProductAdsPaymentEventList"] = attrs.field()
+    product_ads_payment_event_list: Optional[List["ProductAdsPaymentEvent"]] = attrs.field()
+    """
+    A list of sponsored products payment events.
+    """
 
-    refund_event_list: Optional["ShipmentEventList"] = attrs.field()
+    refund_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    """
+    A list of shipment event information.
+    """
 
-    removal_shipment_adjustment_event_list: Optional["RemovalShipmentAdjustmentEventList"] = attrs.field()
+    removal_shipment_adjustment_event_list: Optional[List["RemovalShipmentAdjustmentEvent"]] = attrs.field()
+    """
+    A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.
+    """
 
-    removal_shipment_event_list: Optional["RemovalShipmentEventList"] = attrs.field()
+    removal_shipment_event_list: Optional[List["RemovalShipmentEvent"]] = attrs.field()
+    """
+    A list of removal shipment event information.
+    """
 
-    rental_transaction_event_list: Optional["RentalTransactionEventList"] = attrs.field()
+    rental_transaction_event_list: Optional[List["RentalTransactionEvent"]] = attrs.field()
+    """
+    A list of rental transaction event information.
+    """
 
-    retrocharge_event_list: Optional["RetrochargeEventList"] = attrs.field()
+    retrocharge_event_list: Optional[List["RetrochargeEvent"]] = attrs.field()
+    """
+    A list of information about Retrocharge or RetrochargeReversal events.
+    """
 
-    safetreimbursement_event_list: Optional["SAFETReimbursementEventList"] = attrs.field()
+    safetreimbursement_event_list: Optional[List["SAFETReimbursementEvent"]] = attrs.field()
+    """
+    A list of SAFETReimbursementEvents.
+    """
 
-    seller_deal_payment_event_list: Optional["SellerDealPaymentEventList"] = attrs.field()
+    seller_deal_payment_event_list: Optional[List["SellerDealPaymentEvent"]] = attrs.field()
+    """
+    A list of payment events for deal-related fees.
+    """
 
-    seller_review_enrollment_payment_event_list: Optional["SellerReviewEnrollmentPaymentEventList"] = attrs.field()
+    seller_review_enrollment_payment_event_list: Optional[List["SellerReviewEnrollmentPaymentEvent"]] = attrs.field()
+    """
+    A list of information about fee events for the Early Reviewer Program.
+    """
 
-    service_fee_event_list: Optional["ServiceFeeEventList"] = attrs.field()
+    service_fee_event_list: Optional[List["ServiceFeeEvent"]] = attrs.field()
+    """
+    A list of information about service fee events.
+    """
 
-    service_provider_credit_event_list: Optional["SolutionProviderCreditEventList"] = attrs.field()
+    service_provider_credit_event_list: Optional[List["SolutionProviderCreditEvent"]] = attrs.field()
+    """
+    A list of information about solution provider credits.
+    """
 
-    shipment_event_list: Optional["ShipmentEventList"] = attrs.field()
+    shipment_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    """
+    A list of shipment event information.
+    """
 
-    shipment_settle_event_list: Optional["ShipmentSettleEventList"] = attrs.field()
+    shipment_settle_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    """
+    A list of information about shipment settle financial events.
+    """
 
-    tax_withholding_event_list: Optional["TaxWithholdingEventList"] = attrs.field()
+    tax_withholding_event_list: Optional[List["TaxWithholdingEvent"]] = attrs.field()
+    """
+    List of TaxWithholding events.
+    """
 
-    trial_shipment_event_list: Optional["TrialShipmentEventList"] = attrs.field()
+    trial_shipment_event_list: Optional[List["TrialShipmentEvent"]] = attrs.field()
+    """
+    A list of information about trial shipment financial events.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -624,7 +669,10 @@ class ImagingServicesFeeEvent:
     The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
     """
 
-    fee_list: Optional["FeeComponentList"] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
     imaging_request_billing_item_id: Optional[str] = attrs.field()
     """
@@ -635,21 +683,15 @@ class ImagingServicesFeeEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ImagingServicesFeeEventList:
-    """
-    A list of fee events related to Amazon Imaging services.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ListFinancialEventGroupsPayload:
     """
     The payload for the listFinancialEventGroups operation.
     """
 
-    financial_event_group_list: Optional["FinancialEventGroupList"] = attrs.field()
+    financial_event_group_list: Optional[List["FinancialEventGroup"]] = attrs.field()
+    """
+    A list of financial event group information.
+    """
 
     next_token: Optional[str] = attrs.field()
     """
@@ -663,9 +705,15 @@ class ListFinancialEventGroupsResponse:
     The response schema for the listFinancialEventGroups operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ListFinancialEventGroupsPayload"] = attrs.field()
+    """
+    The payload for the listFinancialEventGroups operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -675,6 +723,9 @@ class ListFinancialEventsPayload:
     """
 
     financial_events: Optional["FinancialEvents"] = attrs.field()
+    """
+    Contains all information related to a financial event.
+    """
 
     next_token: Optional[str] = attrs.field()
     """
@@ -688,9 +739,15 @@ class ListFinancialEventsResponse:
     The response schema for the listFinancialEvents operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ListFinancialEventsPayload"] = attrs.field()
+    """
+    The payload for the listFinancialEvents operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -700,6 +757,9 @@ class LoanServicingEvent:
     """
 
     loan_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     source_business_event_type: Optional[str] = attrs.field()
     """
@@ -709,15 +769,6 @@ class LoanServicingEvent:
         * LoanPayment
         * LoanRefund
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class LoanServicingEventList:
-    """
-    A list of loan servicing events.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -749,8 +800,14 @@ class NetworkComminglingTransactionEvent:
     """
 
     tax_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     tax_exclusive_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     transaction_type: Optional[str] = attrs.field()
     """
@@ -759,15 +816,6 @@ class NetworkComminglingTransactionEvent:
         * NetCo - A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
         * ComminglingVAT - A commingling VAT transaction. Available only in the UK, Spain, France, Germany, and Italy marketplaces.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class NetworkComminglingTransactionEventList:
-    """
-    A list of network commingling transaction events.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -787,8 +835,46 @@ class PayWithAmazonEvent:
     """
 
     charge: Optional["ChargeComponent"] = attrs.field()
+    """
+    A charge on the seller's account.
+        Possible values:
+        * Principal - The selling price of the order item, equal to the selling price of the item multiplied by the quantity ordered.
+        * Tax - The tax collected by the seller on the Principal.
+        * MarketplaceFacilitatorTax-Principal - The tax withheld on the Principal.
+        * MarketplaceFacilitatorTax-Shipping - The tax withheld on the ShippingCharge.
+        * MarketplaceFacilitatorTax-Giftwrap - The tax withheld on the Giftwrap charge.
+        * MarketplaceFacilitatorTax-Other - The tax withheld on other miscellaneous charges.
+        * Discount - The promotional discount for an order item.
+        * TaxDiscount - The tax amount deducted for promotional rebates.
+        * CODItemCharge - The COD charge for an order item.
+        * CODItemTaxCharge - The tax collected by the seller on a CODItemCharge.
+        * CODOrderCharge - The COD charge for an order.
+        * CODOrderTaxCharge - The tax collected by the seller on a CODOrderCharge.
+        * CODShippingCharge - Shipping charges for a COD order.
+        * CODShippingTaxCharge - The tax collected by the seller on a CODShippingCharge.
+        * ShippingCharge - The shipping charge.
+        * ShippingTax - The tax collected by the seller on a ShippingCharge.
+        * Goodwill - The amount given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+        * Giftwrap - The gift wrap charge.
+        * GiftwrapTax - The tax collected by the seller on a Giftwrap charge.
+        * RestockingFee - The charge applied to the buyer when returning a product in certain categories.
+        * ReturnShipping - The amount given to the buyer to compensate for shipping the item back in the event we are at fault.
+        * PointsFee - The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+        * GenericDeduction - A generic bad debt deduction.
+        * FreeReplacementReturnShipping - The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+        * PaymentMethodFee - The fee collected for certain payment methods in certain marketplaces.
+        * ExportCharge - The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+        * SAFE-TReimbursement - The SAFE-T claim amount for the item.
+        * TCS-CGST - Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+        * TCS-SGST - Tax Collected at Source for State Goods and Services Tax (SGST).
+        * TCS-IGST - Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+        * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+    """
 
-    fee_list: Optional["FeeComponentList"] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
     fulfillment_channel: Optional[str] = attrs.field()
     """
@@ -824,21 +910,15 @@ class PayWithAmazonEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class PayWithAmazonEventList:
-    """
-    A list of events related to the seller's Pay with Amazon account.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ProductAdsPaymentEvent:
     """
     A Sponsored Products payment event.
     """
 
     base_value: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     invoice_id: Optional[str] = attrs.field()
     """
@@ -848,6 +928,9 @@ class ProductAdsPaymentEvent:
     posted_date: Optional["Date"] = attrs.field()
 
     tax_value: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     transaction_type: Optional[str] = attrs.field()
     """
@@ -858,15 +941,9 @@ class ProductAdsPaymentEvent:
     """
 
     transaction_value: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ProductAdsPaymentEventList:
     """
-    A list of sponsored products payment events.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -876,6 +953,9 @@ class Promotion:
     """
 
     promotion_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     promotion_id: Optional[str] = attrs.field()
     """
@@ -886,15 +966,6 @@ class Promotion:
     """
     The type of promotion.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class PromotionList:
-    """
-    A list of promotions.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -934,15 +1005,6 @@ class RemovalShipmentAdjustmentEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class RemovalShipmentAdjustmentEventList:
-    """
-    A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class RemovalShipmentEvent:
     """
     A removal shipment event for a removal order.
@@ -960,7 +1022,10 @@ class RemovalShipmentEvent:
 
     posted_date: Optional["Date"] = attrs.field()
 
-    removal_shipment_item_list: Optional["RemovalShipmentItemList"] = attrs.field()
+    removal_shipment_item_list: Optional[List["RemovalShipmentItem"]] = attrs.field()
+    """
+    A list of information about removal shipment items.
+    """
 
     transaction_type: Optional[str] = attrs.field()
     """
@@ -971,21 +1036,15 @@ class RemovalShipmentEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class RemovalShipmentEventList:
-    """
-    A list of removal shipment event information.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class RemovalShipmentItem:
     """
     Item-level information for a removal shipment.
     """
 
     fee_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     fulfillment_network_sku: Optional[str] = attrs.field()
     """
@@ -1006,8 +1065,14 @@ class RemovalShipmentItem:
     """
 
     revenue: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     tax_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     tax_collection_model: Optional[str] = attrs.field()
     """
@@ -1018,6 +1083,9 @@ class RemovalShipmentItem:
     """
 
     tax_withheld: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1045,8 +1113,14 @@ class RemovalShipmentItemAdjustment:
     """
 
     revenue_adjustment: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     tax_amount_adjustment: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     tax_collection_model: Optional[str] = attrs.field()
     """
@@ -1057,15 +1131,9 @@ class RemovalShipmentItemAdjustment:
     """
 
     tax_withheld_adjustment: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class RemovalShipmentItemList:
     """
-    A list of information about removal shipment items.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1094,7 +1162,10 @@ class RentalTransactionEvent:
 
     posted_date: Optional["Date"] = attrs.field()
 
-    rental_charge_list: Optional["ChargeComponentList"] = attrs.field()
+    rental_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    """
+    A list of charge information on the seller's account.
+    """
 
     rental_event_type: Optional[str] = attrs.field()
     """
@@ -1109,22 +1180,25 @@ class RentalTransactionEvent:
         * RentalLostItemReimbursement - Transaction type that represents when Amazon sends money to the seller to compensate for a lost item.
     """
 
-    rental_fee_list: Optional["FeeComponentList"] = attrs.field()
+    rental_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
     rental_initial_value: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     rental_reimbursement: Optional["Currency"] = attrs.field()
-
-    rental_tax_withheld_list: Optional["TaxWithheldComponentList"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class RentalTransactionEventList:
     """
-    A list of rental transaction event information.
+    A currency type and amount.
     """
 
-    pass
+    rental_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field()
+    """
+    A list of information about taxes withheld.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1139,6 +1213,9 @@ class RetrochargeEvent:
     """
 
     base_tax: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     marketplace_name: Optional[str] = attrs.field()
     """
@@ -1155,18 +1232,15 @@ class RetrochargeEvent:
         * RetrochargeReversal
     """
 
-    retrocharge_tax_withheld_list: Optional["TaxWithheldComponentList"] = attrs.field()
+    retrocharge_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field()
+    """
+    A list of information about taxes withheld.
+    """
 
     shipping_tax: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class RetrochargeEventList:
     """
-    A list of information about Retrocharge or RetrochargeReversal events.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1183,22 +1257,19 @@ class SAFETReimbursementEvent:
     """
 
     reimbursed_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     safetclaim_id: Optional[str] = attrs.field()
     """
     A SAFE-T claim identifier.
     """
 
-    safetreimbursement_item_list: Optional["SAFETReimbursementItemList"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class SAFETReimbursementEventList:
+    safetreimbursement_item_list: Optional[List["SAFETReimbursementItem"]] = attrs.field()
     """
-    A list of SAFETReimbursementEvents.
+    A list of SAFETReimbursementItems.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1207,7 +1278,10 @@ class SAFETReimbursementItem:
     An item from a SAFE-T claim reimbursement.
     """
 
-    item_charge_list: Optional["ChargeComponentList"] = attrs.field()
+    item_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    """
+    A list of charge information on the seller's account.
+    """
 
     product_description: Optional[str] = attrs.field()
     """
@@ -1218,15 +1292,6 @@ class SAFETReimbursementItem:
     """
     The number of units of the item being reimbursed.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class SAFETReimbursementItemList:
-    """
-    A list of SAFETReimbursementItems.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1251,6 +1316,9 @@ class SellerDealPaymentEvent:
     """
 
     fee_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     fee_type: Optional[str] = attrs.field()
     """
@@ -1260,17 +1328,14 @@ class SellerDealPaymentEvent:
     posted_date: Optional["Date"] = attrs.field()
 
     tax_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     total_amount: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class SellerDealPaymentEventList:
     """
-    A list of payment events for deal-related fees.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1280,6 +1345,41 @@ class SellerReviewEnrollmentPaymentEvent:
     """
 
     charge_component: Optional["ChargeComponent"] = attrs.field()
+    """
+    A charge on the seller's account.
+        Possible values:
+        * Principal - The selling price of the order item, equal to the selling price of the item multiplied by the quantity ordered.
+        * Tax - The tax collected by the seller on the Principal.
+        * MarketplaceFacilitatorTax-Principal - The tax withheld on the Principal.
+        * MarketplaceFacilitatorTax-Shipping - The tax withheld on the ShippingCharge.
+        * MarketplaceFacilitatorTax-Giftwrap - The tax withheld on the Giftwrap charge.
+        * MarketplaceFacilitatorTax-Other - The tax withheld on other miscellaneous charges.
+        * Discount - The promotional discount for an order item.
+        * TaxDiscount - The tax amount deducted for promotional rebates.
+        * CODItemCharge - The COD charge for an order item.
+        * CODItemTaxCharge - The tax collected by the seller on a CODItemCharge.
+        * CODOrderCharge - The COD charge for an order.
+        * CODOrderTaxCharge - The tax collected by the seller on a CODOrderCharge.
+        * CODShippingCharge - Shipping charges for a COD order.
+        * CODShippingTaxCharge - The tax collected by the seller on a CODShippingCharge.
+        * ShippingCharge - The shipping charge.
+        * ShippingTax - The tax collected by the seller on a ShippingCharge.
+        * Goodwill - The amount given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+        * Giftwrap - The gift wrap charge.
+        * GiftwrapTax - The tax collected by the seller on a Giftwrap charge.
+        * RestockingFee - The charge applied to the buyer when returning a product in certain categories.
+        * ReturnShipping - The amount given to the buyer to compensate for shipping the item back in the event we are at fault.
+        * PointsFee - The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+        * GenericDeduction - A generic bad debt deduction.
+        * FreeReplacementReturnShipping - The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+        * PaymentMethodFee - The fee collected for certain payment methods in certain marketplaces.
+        * ExportCharge - The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+        * SAFE-TReimbursement - The SAFE-T claim amount for the item.
+        * TCS-CGST - Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+        * TCS-SGST - Tax Collected at Source for State Goods and Services Tax (SGST).
+        * TCS-IGST - Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+        * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+    """
 
     enrollment_id: Optional[str] = attrs.field()
     """
@@ -1287,6 +1387,9 @@ class SellerReviewEnrollmentPaymentEvent:
     """
 
     fee_component: Optional["FeeComponent"] = attrs.field()
+    """
+    A fee associated with the event.
+    """
 
     parent_asin: Optional[str] = attrs.field()
     """
@@ -1296,15 +1399,9 @@ class SellerReviewEnrollmentPaymentEvent:
     posted_date: Optional["Date"] = attrs.field()
 
     total_amount: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class SellerReviewEnrollmentPaymentEventList:
     """
-    A list of information about fee events for the Early Reviewer Program.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1328,7 +1425,10 @@ class ServiceFeeEvent:
     A short description of the service fee event.
     """
 
-    fee_list: Optional["FeeComponentList"] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
     fee_reason: Optional[str] = attrs.field()
     """
@@ -1347,15 +1447,6 @@ class ServiceFeeEvent:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ServiceFeeEventList:
-    """
-    A list of information about service fee events.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentEvent:
     """
     A shipment, refund, guarantee claim, or chargeback.
@@ -1366,20 +1457,35 @@ class ShipmentEvent:
     An Amazon-defined identifier for an order.
     """
 
-    direct_payment_list: Optional["DirectPaymentList"] = attrs.field()
+    direct_payment_list: Optional[List["DirectPayment"]] = attrs.field()
+    """
+    A list of direct payment information.
+    """
 
     marketplace_name: Optional[str] = attrs.field()
     """
     The name of the marketplace where the event occurred.
     """
 
-    order_charge_adjustment_list: Optional["ChargeComponentList"] = attrs.field()
+    order_charge_adjustment_list: Optional[List["ChargeComponent"]] = attrs.field()
+    """
+    A list of charge information on the seller's account.
+    """
 
-    order_charge_list: Optional["ChargeComponentList"] = attrs.field()
+    order_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    """
+    A list of charge information on the seller's account.
+    """
 
-    order_fee_adjustment_list: Optional["FeeComponentList"] = attrs.field()
+    order_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
-    order_fee_list: Optional["FeeComponentList"] = attrs.field()
+    order_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
     posted_date: Optional["Date"] = attrs.field()
 
@@ -1388,22 +1494,25 @@ class ShipmentEvent:
     A seller-defined identifier for an order.
     """
 
-    shipment_fee_adjustment_list: Optional["FeeComponentList"] = attrs.field()
-
-    shipment_fee_list: Optional["FeeComponentList"] = attrs.field()
-
-    shipment_item_adjustment_list: Optional["ShipmentItemList"] = attrs.field()
-
-    shipment_item_list: Optional["ShipmentItemList"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ShipmentEventList:
+    shipment_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field()
     """
-    A list of shipment event information.
+    A list of fee component information.
     """
 
-    pass
+    shipment_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
+
+    shipment_item_adjustment_list: Optional[List["ShipmentItem"]] = attrs.field()
+    """
+    A list of shipment items.
+    """
+
+    shipment_item_list: Optional[List["ShipmentItem"]] = attrs.field()
+    """
+    A list of shipment items.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1413,18 +1522,39 @@ class ShipmentItem:
     """
 
     cost_of_points_granted: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     cost_of_points_returned: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
-    item_charge_adjustment_list: Optional["ChargeComponentList"] = attrs.field()
+    item_charge_adjustment_list: Optional[List["ChargeComponent"]] = attrs.field()
+    """
+    A list of charge information on the seller's account.
+    """
 
-    item_charge_list: Optional["ChargeComponentList"] = attrs.field()
+    item_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    """
+    A list of charge information on the seller's account.
+    """
 
-    item_fee_adjustment_list: Optional["FeeComponentList"] = attrs.field()
+    item_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
-    item_fee_list: Optional["FeeComponentList"] = attrs.field()
+    item_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
-    item_tax_withheld_list: Optional["TaxWithheldComponentList"] = attrs.field()
+    item_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field()
+    """
+    A list of information about taxes withheld.
+    """
 
     order_adjustment_item_id: Optional[str] = attrs.field()
     """
@@ -1436,9 +1566,15 @@ class ShipmentItem:
     An Amazon-defined order item identifier.
     """
 
-    promotion_adjustment_list: Optional["PromotionList"] = attrs.field()
+    promotion_adjustment_list: Optional[List["Promotion"]] = attrs.field()
+    """
+    A list of promotions.
+    """
 
-    promotion_list: Optional["PromotionList"] = attrs.field()
+    promotion_list: Optional[List["Promotion"]] = attrs.field()
+    """
+    A list of promotions.
+    """
 
     quantity_shipped: Optional[int] = attrs.field()
     """
@@ -1452,24 +1588,6 @@ class ShipmentItem:
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ShipmentItemList:
-    """
-    A list of shipment items.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ShipmentSettleEventList:
-    """
-    A list of information about shipment settle financial events.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1519,17 +1637,11 @@ class SolutionProviderCreditEvent:
     """
 
     transaction_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     transaction_creation_date: Optional["Date"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class SolutionProviderCreditEventList:
-    """
-    A list of information about solution provider credits.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1546,16 +1658,10 @@ class TaxWithheldComponent:
         * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     """
 
-    taxes_withheld: Optional["ChargeComponentList"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class TaxWithheldComponentList:
+    taxes_withheld: Optional[List["ChargeComponent"]] = attrs.field()
     """
-    A list of information about taxes withheld.
+    A list of charge information on the seller's account.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1565,21 +1671,21 @@ class TaxWithholdingEvent:
     """
 
     base_amount: Optional["Currency"] = attrs.field()
+    """
+    A currency type and amount.
+    """
 
     posted_date: Optional["Date"] = attrs.field()
 
     tax_withholding_period: Optional["TaxWithholdingPeriod"] = attrs.field()
+    """
+    Period which taxwithholding on seller's account is calculated.
+    """
 
     withheld_amount: Optional["Currency"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class TaxWithholdingEventList:
     """
-    List of TaxWithholding events.
+    A currency type and amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1604,7 +1710,10 @@ class TrialShipmentEvent:
     An Amazon-defined identifier for an order.
     """
 
-    fee_list: Optional["FeeComponentList"] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    """
+    A list of fee component information.
+    """
 
     financial_event_group_id: Optional[str] = attrs.field()
     """
@@ -1617,15 +1726,6 @@ class TrialShipmentEvent:
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class TrialShipmentEventList:
-    """
-    A list of information about trial shipment financial events.
-    """
-
-    pass
 
 
 class FinancesV0Client(BaseClient):

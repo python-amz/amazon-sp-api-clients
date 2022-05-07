@@ -48,7 +48,10 @@ class CreateAmazonMotorsResponse:
     The response schema for the createAmazonMotors operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -77,7 +80,10 @@ class CreateConfirmCustomizationDetailsResponse:
     The response schema for the confirmCustomizationDetails operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -101,7 +107,10 @@ class CreateConfirmDeliveryDetailsResponse:
     The response schema for the createConfirmDeliveryDetails operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -125,7 +134,10 @@ class CreateConfirmOrderDetailsResponse:
     The response schema for the createConfirmOrderDetails operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -149,7 +161,10 @@ class CreateConfirmServiceDetailsResponse:
     The response schema for the createConfirmServiceDetails operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -178,7 +193,10 @@ class CreateDigitalAccessKeyResponse:
     The response schema for the createDigitalAccessKey operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -199,7 +217,10 @@ class CreateLegalDisclosureResponse:
     The response schema for the createLegalDisclosure operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -208,7 +229,10 @@ class CreateNegativeFeedbackRemovalResponse:
     The response schema for the createNegativeFeedbackRemoval operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -232,7 +256,10 @@ class CreateUnexpectedProblemResponse:
     The response schema for the createUnexpectedProblem operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -269,7 +296,10 @@ class CreateWarrantyResponse:
     The response schema for the createWarranty operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -295,23 +325,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetAttributesResponse:
     """
     The response schema for the GetAttributes operation.
     """
 
     buyer: Optional["GetAttributesResponseBuyer"] = attrs.field()
+    """
+    The list of attributes related to the buyer.
+    """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -336,9 +363,15 @@ class GetMessagingActionResponse:
 
     _links: Optional["GetMessagingActionResponseLinks"] = attrs.field()
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["MessagingAction"] = attrs.field()
+    """
+    A simple object containing the name of the template.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -351,8 +384,14 @@ class GetMessagingActionResponseEmbedded:
 class GetMessagingActionResponseLinks:
 
     schema: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
     self: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -365,7 +404,10 @@ class GetMessagingActionsForOrderResponse:
 
     _links: Optional["GetMessagingActionsForOrderResponseLinks"] = attrs.field()
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -383,6 +425,9 @@ class GetMessagingActionsForOrderResponseLinks:
     """
 
     self: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -390,15 +435,24 @@ class GetSchemaResponse:
 
     _links: Optional["GetSchemaResponseLinks"] = attrs.field()
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Schema"] = attrs.field()
+    """
+    A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
 
     self: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

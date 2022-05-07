@@ -35,6 +35,9 @@ class Address:
     """
 
     address_type: Optional["AddressTypeEnum"] = attrs.field()
+    """
+    The shipping address type.
+    """
 
     city: Optional[str] = attrs.field()
     """
@@ -106,7 +109,10 @@ class BuyerTaxInfo:
     The legal name of the company.
     """
 
-    tax_classifications: Optional["TaxClassificationList"] = attrs.field()
+    tax_classifications: Optional[List["TaxClassification"]] = attrs.field()
+    """
+    The list of tax classifications.
+    """
 
     taxing_region: Optional[str] = attrs.field()
     """
@@ -137,23 +143,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetInvoiceStatusResponse:
     """
     The response schema for the getInvoiceStatus operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ShipmentInvoiceStatusResponse"] = attrs.field()
+    """
+    The shipment invoice status response.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -162,9 +165,15 @@ class GetShipmentDetailsResponse:
     The response schema for the getShipmentDetails operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ShipmentDetail"] = attrs.field()
+    """
+    The information required by a selling partner to issue a shipment invoice.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -178,7 +187,10 @@ class MarketplaceTaxInfo:
     The legal name of the company.
     """
 
-    tax_classifications: Optional["TaxClassificationList"] = attrs.field()
+    tax_classifications: Optional[List["TaxClassification"]] = attrs.field()
+    """
+    The list of tax classifications.
+    """
 
     taxing_region: Optional[str] = attrs.field()
     """
@@ -201,24 +213,6 @@ class Money:
     """
     Three-digit currency code in ISO 4217 format.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class PaymentMethodDetailItemList:
-    """
-    The list of payment method details.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class SerialNumbersList:
-    """
-    The list of serial numbers.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -248,6 +242,9 @@ class ShipmentDetail:
     """
 
     buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field()
+    """
+    Tax information about the buyer.
+    """
 
     marketplace_id: Optional[str] = attrs.field()
     """
@@ -255,8 +252,14 @@ class ShipmentDetail:
     """
 
     marketplace_tax_info: Optional["MarketplaceTaxInfo"] = attrs.field()
+    """
+    Tax information about the marketplace.
+    """
 
-    payment_method_details: Optional["PaymentMethodDetailItemList"] = attrs.field()
+    payment_method_details: Optional[List[str]] = attrs.field()
+    """
+    The list of payment method details.
+    """
 
     purchase_date: Optional[datetime] = attrs.field()
     """
@@ -276,9 +279,15 @@ class ShipmentDetail:
     The seller identifier.
     """
 
-    shipment_items: Optional["ShipmentItems"] = attrs.field()
+    shipment_items: Optional[List["ShipmentItem"]] = attrs.field()
+    """
+    A list of shipment items.
+    """
 
     shipping_address: Optional["Address"] = attrs.field()
+    """
+    The shipping address details of the shipment.
+    """
 
     warehouse_id: Optional[str] = attrs.field()
     """
@@ -307,6 +316,9 @@ class ShipmentInvoiceStatusInfo:
     """
 
     invoice_status: Optional["ShipmentInvoiceStatus"] = attrs.field()
+    """
+    The shipment invoice status.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -316,6 +328,9 @@ class ShipmentInvoiceStatusResponse:
     """
 
     shipments: Optional["ShipmentInvoiceStatusInfo"] = attrs.field()
+    """
+    The shipment invoice status information.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -330,8 +345,14 @@ class ShipmentItem:
     """
 
     gift_wrap_price: Optional["Money"] = attrs.field()
+    """
+    The currency type and amount.
+    """
 
     item_price: Optional["Money"] = attrs.field()
+    """
+    The currency type and amount.
+    """
 
     order_item_id: Optional[str] = attrs.field()
     """
@@ -339,6 +360,9 @@ class ShipmentItem:
     """
 
     promotion_discount: Optional["Money"] = attrs.field()
+    """
+    The currency type and amount.
+    """
 
     quantity_ordered: Optional[float] = attrs.field()
     """
@@ -350,25 +374,25 @@ class ShipmentItem:
     The seller SKU of the item.
     """
 
-    serial_numbers: Optional["SerialNumbersList"] = attrs.field()
+    serial_numbers: Optional[List[str]] = attrs.field()
+    """
+    The list of serial numbers.
+    """
 
     shipping_discount: Optional["Money"] = attrs.field()
+    """
+    The currency type and amount.
+    """
 
     shipping_price: Optional["Money"] = attrs.field()
+    """
+    The currency type and amount.
+    """
 
     title: Optional[str] = attrs.field()
     """
     The name of the item.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ShipmentItems:
-    """
-    A list of shipment items.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -383,6 +407,9 @@ class SubmitInvoiceRequest:
     """
 
     invoice_content: "Blob" = attrs.field()
+    """
+    Shipment invoice document content.
+    """
 
     marketplace_id: Optional[str] = attrs.field()
     """
@@ -396,7 +423,10 @@ class SubmitInvoiceResponse:
     The response schema for the submitInvoice operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -414,15 +444,6 @@ class TaxClassification:
     """
     The entity's tax identifier.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class TaxClassificationList:
-    """
-    The list of tax classifications.
-    """
-
-    pass
 
 
 class ShipmentInvoicingV0Client(BaseClient):

@@ -63,8 +63,14 @@ class OrderScenarioRequest:
     """
 
     selling_party: "PartyIdentification" = attrs.field()
+    """
+    The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
+    """
 
     ship_from_party: "PartyIdentification" = attrs.field()
+    """
+    The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -141,6 +147,9 @@ class Transaction:
     """
 
     test_case_data: Optional["TestCaseData"] = attrs.field()
+    """
+    The set of test case data returned in response to the test data request.
+    """
 
     transaction_id: str = attrs.field()
     """
@@ -164,6 +173,9 @@ class TransactionStatus:
     """
 
     transaction_status: Optional["Transaction"] = attrs.field()
+    """
+    The transaction details including the status. If the transaction was successful, also includes the requested test order data.
+    """
 
 
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):

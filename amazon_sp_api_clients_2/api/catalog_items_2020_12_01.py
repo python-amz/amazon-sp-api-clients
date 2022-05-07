@@ -92,22 +92,49 @@ class Item:
     """
 
     asin: "ItemAsin" = attrs.field()
+    """
+    Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
+    """
 
     attributes: Optional["ItemAttributes"] = attrs.field()
+    """
+    A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
+    """
 
-    identifiers: Optional["ItemIdentifiers"] = attrs.field()
+    identifiers: Optional[List["ItemIdentifiersByMarketplace"]] = attrs.field()
+    """
+    Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
+    """
 
-    images: Optional["ItemImages"] = attrs.field()
+    images: Optional[List["ItemImagesByMarketplace"]] = attrs.field()
+    """
+    Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a thumbnail of the "MAIN" image variant is provided.
+    """
 
-    product_types: Optional["ItemProductTypes"] = attrs.field()
+    product_types: Optional[List["ItemProductTypeByMarketplace"]] = attrs.field()
+    """
+    Product types associated with the Amazon catalog item.
+    """
 
-    sales_ranks: Optional["ItemSalesRanks"] = attrs.field()
+    sales_ranks: Optional[List["ItemSalesRanksByMarketplace"]] = attrs.field()
+    """
+    Sales ranks of an Amazon catalog item.
+    """
 
-    summaries: Optional["ItemSummaries"] = attrs.field()
+    summaries: Optional[List["ItemSummaryByMarketplace"]] = attrs.field()
+    """
+    Summary details of an Amazon catalog item.
+    """
 
-    variations: Optional["ItemVariations"] = attrs.field()
+    variations: Optional[List["ItemVariationsByMarketplace"]] = attrs.field()
+    """
+    Variation details by marketplace for an Amazon catalog item (variation relationships).
+    """
 
-    vendor_details: Optional["ItemVendorDetails"] = attrs.field()
+    vendor_details: Optional[List["ItemVendorDetailsByMarketplace"]] = attrs.field()
+    """
+    Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -143,15 +170,6 @@ class ItemIdentifier:
     """
     Type of identifier, such as UPC, EAN, or ISBN.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemIdentifiers:
-    """
-    Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -213,15 +231,6 @@ class ItemImage:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemImages:
-    """
-    Images for an item in the Amazon catalog. All image variants are provided to brand owners. Otherwise, a thumbnail of the "MAIN" image variant is provided.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemImagesByMarketplace:
     """
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
@@ -259,15 +268,6 @@ class ItemProductTypeByMarketplace:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemProductTypes:
-    """
-    Product types associated with the Amazon catalog item.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemSalesRank:
     """
     Sales rank of an Amazon catalog item.
@@ -287,15 +287,6 @@ class ItemSalesRank:
     """
     Title, or name, of the sales rank.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemSalesRanks:
-    """
-    Sales ranks of an Amazon catalog item.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -333,17 +324,14 @@ class ItemSearchResults:
     """
 
     pagination: "Pagination" = attrs.field()
+    """
+    When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
+    """
 
     refinements: "Refinements" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemSummaries:
     """
-    Summary details of an Amazon catalog item.
+    Search refinements.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -399,15 +387,6 @@ class ItemSummaryByMarketplace:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemVariations:
-    """
-    Variation details by marketplace for an Amazon catalog item (variation relationships).
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemVariationsByMarketplace:
     """
     Variation details for the Amazon catalog item for the indicated Amazon marketplace.
@@ -430,15 +409,6 @@ class ItemVariationsByMarketplace:
     Extra fields:
     {'example': 'PARENT'}
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemVendorDetails:
-    """
-    Vendor details associated with an Amazon catalog item. Vendor details are available to vendors only.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

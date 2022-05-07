@@ -51,6 +51,9 @@ class Transaction:
     """
 
     errors: Optional["ErrorList"] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field()
     """
@@ -70,6 +73,9 @@ class TransactionStatus:
     """
 
     transaction_status: Optional["Transaction"] = attrs.field()
+    """
+    The transaction status details.
+    """
 
 
 class VendorDirectFulfillmentTransactions20211228Client(BaseClient):

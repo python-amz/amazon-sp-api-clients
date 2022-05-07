@@ -19,7 +19,10 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
     The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -45,28 +48,28 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponse:
 
     _links: Optional["GetSchemaResponseLinks"] = attrs.field()
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Schema"] = attrs.field()
+    """
+    A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
 
     self: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -79,9 +82,15 @@ class GetSolicitationActionResponse:
 
     _links: Optional["GetSolicitationActionResponseLinks"] = attrs.field()
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["SolicitationsAction"] = attrs.field()
+    """
+    A simple object containing the name of the template.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -94,8 +103,14 @@ class GetSolicitationActionResponseEmbedded:
 class GetSolicitationActionResponseLinks:
 
     schema: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
     self: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -108,7 +123,10 @@ class GetSolicitationActionsForOrderResponse:
 
     _links: Optional["GetSolicitationActionsForOrderResponseLinks"] = attrs.field()
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -126,6 +144,9 @@ class GetSolicitationActionsForOrderResponseLinks:
     """
 
     self: "LinkObject" = attrs.field()
+    """
+    A Link object.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

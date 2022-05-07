@@ -33,15 +33,6 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class FeeDetail:
     """
     The type of fee, fee amount, and other details.
@@ -58,18 +49,12 @@ class FeeDetail:
 
     final_fee: "MoneyType" = attrs.field()
 
-    included_fee_detail_list: Optional["IncludedFeeDetailList"] = attrs.field()
-
-    tax_amount: Optional["MoneyType"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FeeDetailList:
+    included_fee_detail_list: Optional[List["IncludedFeeDetail"]] = attrs.field()
     """
     A list of other fees that contribute to a given fee.
     """
 
-    pass
+    tax_amount: Optional["MoneyType"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -78,7 +63,10 @@ class FeesEstimate:
     The total estimated fees for an item and a list of details.
     """
 
-    fee_detail_list: Optional["FeeDetailList"] = attrs.field()
+    fee_detail_list: Optional[List["FeeDetail"]] = attrs.field()
+    """
+    A list of other fees that contribute to a given fee.
+    """
 
     time_of_fees_estimation: datetime = attrs.field()
     """
@@ -102,7 +90,10 @@ class FeesEstimateError:
     An error code that identifies the type of error that occurred.
     """
 
-    detail: "FeesEstimateErrorDetail" = attrs.field()
+    detail: List["FeesEstimateErrorDetailItem"] = attrs.field()
+    """
+    Additional information that can help the caller understand or fix the issue.
+    """
 
     message: str = attrs.field()
     """
@@ -113,15 +104,6 @@ class FeesEstimateError:
     """
     An error type, identifying either the receiver or the sender as the originator of the error.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FeesEstimateErrorDetail:
-    """
-    Additional information that can help the caller understand or fix the issue.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -157,8 +139,14 @@ class FeesEstimateIdentifier:
     """
 
     optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field()
+    """
+    An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+    """
 
     price_to_estimate_fees: Optional["PriceToEstimateFees"] = attrs.field()
+    """
+    Price information for an item, used to estimate fees.
+    """
 
     seller_id: Optional[str] = attrs.field()
     """
@@ -190,8 +178,14 @@ class FeesEstimateRequest:
     """
 
     optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field()
+    """
+    An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+    """
 
     price_to_estimate_fees: "PriceToEstimateFees" = attrs.field()
+    """
+    Price information for an item, used to estimate fees.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -201,10 +195,19 @@ class FeesEstimateResult:
     """
 
     error: Optional["FeesEstimateError"] = attrs.field()
+    """
+    An unexpected error occurred during this operation.
+    """
 
     fees_estimate: Optional["FeesEstimate"] = attrs.field()
+    """
+    The total estimated fees for an item and a list of details.
+    """
 
     fees_estimate_identifier: Optional["FeesEstimateIdentifier"] = attrs.field()
+    """
+    An item identifier, marketplace, time of request, and other details that identify an estimate.
+    """
 
     status: Optional[str] = attrs.field()
     """
@@ -224,9 +227,15 @@ class GetMyFeesEstimateRequest:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMyFeesEstimateResponse:
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["GetMyFeesEstimateResult"] = attrs.field()
+    """
+    Response schema.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -236,6 +245,9 @@ class GetMyFeesEstimateResult:
     """
 
     fees_estimate_result: Optional["FeesEstimateResult"] = attrs.field()
+    """
+    An item identifier and the estimated fees for the item.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -256,15 +268,6 @@ class IncludedFeeDetail:
     final_fee: "MoneyType" = attrs.field()
 
     tax_amount: Optional["MoneyType"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class IncludedFeeDetailList:
-    """
-    A list of other fees that contribute to a given fee.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

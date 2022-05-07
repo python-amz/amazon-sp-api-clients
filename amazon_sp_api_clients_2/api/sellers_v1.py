@@ -36,23 +36,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMarketplaceParticipationsResponse:
     """
     The response schema for the getMarketplaceParticipations operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
-    payload: Optional["MarketplaceParticipationList"] = attrs.field()
+    payload: Optional[List["MarketplaceParticipation"]] = attrs.field()
+    """
+    List of marketplace participations.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -99,17 +96,14 @@ class Marketplace:
 class MarketplaceParticipation:
 
     marketplace: "Marketplace" = attrs.field()
+    """
+    Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
+    """
 
     participation: "Participation" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class MarketplaceParticipationList:
     """
-    List of marketplace participations.
+    Detailed information that is specific to a seller in a Marketplace.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

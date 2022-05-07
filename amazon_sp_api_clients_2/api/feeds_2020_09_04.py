@@ -19,7 +19,10 @@ class CancelFeedResponse:
     Response schema.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -28,9 +31,15 @@ class CreateFeedDocumentResponse:
     The response for the createFeedDocument operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["CreateFeedDocumentResult"] = attrs.field()
+    """
+    Information required to encrypt and upload a feed document's contents.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -40,6 +49,9 @@ class CreateFeedDocumentResult:
     """
 
     encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
+    """
+    Encryption details for required client-side encryption and decryption of document contents.
+    """
 
     feed_document_id: str = attrs.field()
     """
@@ -67,7 +79,10 @@ class CreateFeedResponse:
     Response schema.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["CreateFeedResult"] = attrs.field()
 
@@ -85,6 +100,9 @@ class CreateFeedResult:
 class CreateFeedSpecification:
 
     feed_options: Optional["FeedOptions"] = attrs.field()
+    """
+    Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
+    """
 
     feed_type: str = attrs.field()
     """
@@ -125,15 +143,6 @@ class Error:
     """
     A message that describes the error condition in a human-readable form.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -200,6 +209,9 @@ class FeedDocument:
     """
 
     encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
+    """
+    Encryption details for required client-side encryption and decryption of document contents.
+    """
 
     feed_document_id: str = attrs.field()
     """
@@ -234,12 +246,6 @@ class FeedDocumentEncryptionDetails:
     """
 
 
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FeedList:
-
-    pass
-
-
 @attrs.define(kw_only=True, frozen=True, slots=False)
 class FeedOptions:
     """
@@ -255,7 +261,10 @@ class GetFeedDocumentResponse:
     Response schema.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["FeedDocument"] = attrs.field()
 
@@ -266,7 +275,10 @@ class GetFeedResponse:
     Response schema.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Feed"] = attrs.field()
 
@@ -277,14 +289,17 @@ class GetFeedsResponse:
     Response schema.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     next_token: Optional[str] = attrs.field()
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
     """
 
-    payload: Optional["FeedList"] = attrs.field()
+    payload: Optional[List["Feed"]] = attrs.field()
 
 
 class Feeds20200904Client(BaseClient):

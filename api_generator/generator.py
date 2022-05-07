@@ -37,6 +37,7 @@ class SchemaBase(Schema):
 
     @property
     def schema_obj(self) -> Schema:
+        self.generator.resolve_ref(self)
         return self
 
     @property
@@ -49,7 +50,10 @@ class SchemaBase(Schema):
 
     @property
     def parsed_description(self):
-        result = '' if self.description is None else self.description
+        obj = self
+        obj = self.generator.resolve_ref(obj) if isinstance(obj, Reference) else obj
+        result = obj.description if obj.description else ''
+        result = obj.items.description if not result and obj.items and obj.items.description else result
         result = result.splitlines()
         result = [line.strip() for line in result]
         result = [line for line in result if line]
@@ -247,6 +251,7 @@ class Generator:
         values = [v.dict() | {'name': k, 'generator': self} for k, v in schemas]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
+        dst = [v for v in dst if v.type != 'array']  # do not render array type as standalone class
         return dst
 
     @cached_property
@@ -263,6 +268,9 @@ class Generator:
 
         # for ``Reference`` components, which will be created as dataclasses, the type is itself.
         if isinstance(schema, Reference):
+            resolved = self.resolve_ref(schema)
+            if resolved.type == 'array':
+                return self.get_type_hint_of_schema(resolved)
             assert (match := re.match(r'^#/components/(.*?)/(.*?)$', schema.ref))
             name = match.group(2)
             return f"'{name}'"

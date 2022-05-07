@@ -92,6 +92,9 @@ class Carton:
     """
 
     dimensions: Optional["Dimensions"] = attrs.field()
+    """
+    Physical dimensional measurements of a container.
+    """
 
     items: List["ContainerItem"] = attrs.field()
     """
@@ -104,6 +107,9 @@ class Carton:
     """
 
     weight: Optional["Weight"] = attrs.field()
+    """
+    The weight.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -143,6 +149,9 @@ class ContainerItem:
     """
 
     item_details: Optional["ItemDetails"] = attrs.field()
+    """
+    Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
+    """
 
     item_reference: str = attrs.field()
     """
@@ -150,6 +159,9 @@ class ContainerItem:
     """
 
     shipped_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of item quantity.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -168,8 +180,14 @@ class Dimensions:
     """
 
     height: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     length: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     unit_of_measure: Union[Literal["In"], Literal["Ft"], Literal["Meter"], Literal["Yard"]] = attrs.field()
     """
@@ -177,6 +195,9 @@ class Dimensions:
     """
 
     width: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -216,15 +237,6 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class Expiry:
 
     expiry_after_duration: Optional["Duration"] = attrs.field()
@@ -250,6 +262,9 @@ class Expiry:
 class ImportDetails:
 
     billable_weight: Optional["Weight"] = attrs.field()
+    """
+    The weight.
+    """
 
     estimated_ship_by_date: Optional[datetime] = attrs.field()
     """
@@ -282,6 +297,9 @@ class ImportDetails:
     """
 
     route: Optional["Route"] = attrs.field()
+    """
+    This is used only for direct import shipment confirmations.
+    """
 
     seal_number: Optional[str] = attrs.field()
     """
@@ -301,6 +319,9 @@ class Item:
     """
 
     item_details: Optional["ItemDetails"] = attrs.field()
+    """
+    Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
+    """
 
     item_sequence_number: str = attrs.field()
     """
@@ -308,6 +329,9 @@ class Item:
     """
 
     shipped_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of item quantity.
+    """
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -336,6 +360,9 @@ class ItemDetails:
     """
 
     maximum_retail_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     purchase_order_number: Optional[str] = attrs.field()
     """
@@ -394,6 +421,9 @@ class Money:
     """
 
     amount: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     currency_code: str = attrs.field()
     """
@@ -415,6 +445,9 @@ class Pallet:
     carton_reference_details: Optional["CartonReferenceDetails"] = attrs.field()
 
     dimensions: Optional["Dimensions"] = attrs.field()
+    """
+    Physical dimensional measurements of a container.
+    """
 
     items: Optional[List["ContainerItem"]] = attrs.field()
     """
@@ -432,12 +465,18 @@ class Pallet:
     """
 
     weight: Optional["Weight"] = attrs.field()
+    """
+    The weight.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     party_id: str = attrs.field()
     """
@@ -512,6 +551,9 @@ class ShipmentConfirmation:
     """
 
     shipment_measurements: Optional["ShipmentMeasurements"] = attrs.field()
+    """
+    Shipment measurement details.
+    """
 
     shipment_structure: Optional[
         Union[
@@ -563,6 +605,9 @@ class ShipmentMeasurements:
     """
 
     gross_shipment_weight: Optional["Weight"] = attrs.field()
+    """
+    The weight.
+    """
 
     pallet_count: Optional[int] = attrs.field()
     """
@@ -570,6 +615,9 @@ class ShipmentMeasurements:
     """
 
     shipment_volume: Optional["Volume"] = attrs.field()
+    """
+    The volume of the container.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -602,6 +650,9 @@ class Stop:
     """
 
     location_identification: Optional["Location"] = attrs.field()
+    """
+    Location identifier.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -619,7 +670,10 @@ class SubmitShipmentConfirmationsResponse:
     The response schema for the SubmitShipmentConfirmations operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionReference"] = attrs.field()
 
@@ -686,6 +740,9 @@ class Volume:
     """
 
     value: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -700,6 +757,9 @@ class Weight:
     """
 
     value: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
 
 class VendorShipmentsV1Client(BaseClient):

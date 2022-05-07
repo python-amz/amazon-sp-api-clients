@@ -178,6 +178,9 @@ class Money:
     """
 
     amount: Optional["Decimal"] = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+    """
 
     currency_code: Optional[str] = attrs.field()
     """
@@ -189,6 +192,9 @@ class Money:
 class Order:
 
     order_details: Optional["OrderDetails"] = attrs.field()
+    """
+    Details of an order.
+    """
 
     purchase_order_number: str = attrs.field()
     """
@@ -211,6 +217,9 @@ class OrderAcknowledgementItem:
     """
 
     acknowledgement_status: "AcknowledgementStatus" = attrs.field()
+    """
+    Status of acknowledgement.
+    """
 
     item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field()
     """
@@ -270,10 +279,19 @@ class OrderDetails:
     ship_from_party: "PartyIdentification" = attrs.field()
 
     ship_to_party: "Address" = attrs.field()
+    """
+    Address of the party.
+    """
 
     shipment_details: "ShipmentDetails" = attrs.field()
+    """
+    Shipment details required for the shipment.
+    """
 
     tax_total: Optional["TaxItemDetails"] = attrs.field()
+    """
+    Total tax details for the line item.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -285,6 +303,9 @@ class OrderItem:
     """
 
     gift_details: Optional["GiftDetails"] = attrs.field()
+    """
+    Gift details for the item.
+    """
 
     item_sequence_number: str = attrs.field()
     """
@@ -292,12 +313,24 @@ class OrderItem:
     """
 
     net_price: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     ordered_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     scheduled_delivery_shipment: Optional["ScheduledDeliveryShipment"] = attrs.field()
+    """
+    Dates for the scheduled delivery shipments.
+    """
 
     tax_details: Optional["TaxItemDetails"] = attrs.field()
+    """
+    Total tax details for the line item.
+    """
 
     title: Optional[str] = attrs.field()
     """
@@ -305,6 +338,9 @@ class OrderItem:
     """
 
     total_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -316,6 +352,9 @@ class OrderItem:
 class OrderItemAcknowledgement:
 
     acknowledged_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     buyer_product_identifier: Optional[str] = attrs.field()
     """
@@ -354,6 +393,9 @@ class Pagination:
 class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     party_id: str = attrs.field()
     """
@@ -361,6 +403,9 @@ class PartyIdentification:
     """
 
     tax_info: Optional["TaxRegistrationDetails"] = attrs.field()
+    """
+    Tax registration details of the entity.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -451,6 +496,9 @@ class ShipmentDetails:
     """
 
     shipment_dates: "ShipmentDates" = attrs.field()
+    """
+    Shipment dates.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -472,6 +520,9 @@ class SubmitAcknowledgementResponse:
     """
 
     errors: Optional["ErrorList"] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionId"] = attrs.field()
 
@@ -480,10 +531,19 @@ class SubmitAcknowledgementResponse:
 class TaxDetails:
 
     tax_amount: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     tax_rate: Optional["Decimal"] = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+    """
 
     taxable_amount: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     type: Optional[
         Union[
@@ -507,16 +567,10 @@ class TaxItemDetails:
     Total tax details for the line item.
     """
 
-    tax_line_item: Optional["TaxLineItem"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class TaxLineItem:
+    tax_line_item: Optional[List["TaxDetails"]] = attrs.field()
     """
     A list of tax line items.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -526,6 +580,9 @@ class TaxRegistrationDetails:
     """
 
     tax_registration_address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     tax_registration_messages: Optional[str] = attrs.field()
     """

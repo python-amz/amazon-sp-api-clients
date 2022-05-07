@@ -36,23 +36,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetTransactionResponse:
     """
     The response schema for the getTransactionStatus operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionStatus"] = attrs.field()
+    """
+    The payload for the getTransactionStatus operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -61,7 +58,10 @@ class Transaction:
     The transaction status details.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field()
     """
@@ -81,6 +81,9 @@ class TransactionStatus:
     """
 
     transaction_status: Optional["Transaction"] = attrs.field()
+    """
+    The transaction status details.
+    """
 
 
 class VendorDirectFulfillmentTransactionsV1Client(BaseClient):

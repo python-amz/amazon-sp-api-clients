@@ -99,6 +99,9 @@ class Container:
     """
 
     dimensions: Optional["Dimensions"] = attrs.field()
+    """
+    Physical dimensional measurements of a container.
+    """
 
     manifest_date: Optional[str] = attrs.field()
     """
@@ -131,6 +134,9 @@ class Container:
     """
 
     weight: Optional["Weight"] = attrs.field()
+    """
+    The weight.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -174,8 +180,14 @@ class Dimensions:
     """
 
     height: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
+    """
 
     length: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
+    """
 
     unit_of_measure: Union[Literal["IN"], Literal["CM"]] = attrs.field()
     """
@@ -183,6 +195,9 @@ class Dimensions:
     """
 
     width: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -223,6 +238,9 @@ class GetCustomerInvoiceResponse:
     """
 
     errors: Optional["ErrorList"] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["CustomerInvoice"] = attrs.field()
 
@@ -234,6 +252,9 @@ class GetCustomerInvoicesResponse:
     """
 
     errors: Optional["ErrorList"] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["CustomerInvoiceList"] = attrs.field()
 
@@ -245,6 +266,9 @@ class GetShippingLabelListResponse:
     """
 
     errors: Optional["ErrorList"] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ShippingLabelList"] = attrs.field()
 
@@ -256,6 +280,9 @@ class GetShippingLabelResponse:
     """
 
     errors: Optional["ErrorList"] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["ShippingLabel"] = attrs.field()
 
@@ -277,6 +304,9 @@ class Item:
     """
 
     shipped_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of item quantity.
+    """
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -347,6 +377,9 @@ class PackedItem:
     """
 
     packed_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of item quantity.
+    """
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -367,6 +400,9 @@ class Pagination:
 class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     party_id: str = attrs.field()
     """
@@ -447,6 +483,9 @@ class SubmitShippingLabelsResponse:
     """
 
     errors: Optional["ErrorList"] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionReference"] = attrs.field()
 
@@ -458,6 +497,9 @@ class TaxRegistrationDetails:
     """
 
     tax_registration_address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     tax_registration_messages: Optional[str] = attrs.field()
     """
@@ -496,6 +538,9 @@ class Weight:
     """
 
     value: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
+    """
 
 
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):

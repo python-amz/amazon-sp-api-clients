@@ -100,6 +100,9 @@ class ListingsItemPutRequest:
     """
 
     attributes: "ListingsItemPutRequestAttributes" = attrs.field()
+    """
+    JSON object containing structured listings item attribute data keyed by attribute name.
+    """
 
     product_type: str = attrs.field()
     """

@@ -142,10 +142,19 @@ class SmallAndLightEligibility:
     """
 
     marketplace_id: "MarketplaceId" = attrs.field()
+    """
+    A marketplace identifier.
+    """
 
     seller_sku: "SellerSKU" = attrs.field()
+    """
+    Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+    """
 
     status: "SmallAndLightEligibilityStatus" = attrs.field()
+    """
+    The Small and Light eligibility status of the item.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -164,10 +173,19 @@ class SmallAndLightEnrollment:
     """
 
     marketplace_id: "MarketplaceId" = attrs.field()
+    """
+    A marketplace identifier.
+    """
 
     seller_sku: "SellerSKU" = attrs.field()
+    """
+    Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+    """
 
     status: "SmallAndLightEnrollmentStatus" = attrs.field()
+    """
+    The Small and Light enrollment status of the item.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -194,6 +212,9 @@ class SmallAndLightFeePreviewRequest:
     """
 
     marketplace_id: "MarketplaceId" = attrs.field()
+    """
+    A marketplace identifier.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

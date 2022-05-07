@@ -109,24 +109,39 @@ class Item:
     """
 
     attributes: Optional["ItemAttributes"] = attrs.field()
+    """
+    JSON object containing structured listings item attribute data keyed by attribute name.
+    """
 
     fulfillment_availability: Optional[List["FulfillmentAvailability"]] = attrs.field()
     """
     Fulfillment availability for the listings item.
     """
 
-    issues: Optional["ItemIssues"] = attrs.field()
+    issues: Optional[List["Issue"]] = attrs.field()
+    """
+    Issues associated with the listings item.
+    """
 
-    offers: Optional["ItemOffers"] = attrs.field()
+    offers: Optional[List["ItemOfferByMarketplace"]] = attrs.field()
+    """
+    Offer details for the listings item.
+    """
 
     procurement: Optional["ItemProcurement"] = attrs.field()
+    """
+    Vendor procurement information for the listings item.
+    """
 
     sku: str = attrs.field()
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    summaries: Optional["ItemSummaries"] = attrs.field()
+    summaries: Optional[List["ItemSummaryByMarketplace"]] = attrs.field()
+    """
+    Summary details of a listings item.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -161,15 +176,6 @@ class ItemImage:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemIssues:
-    """
-    Issues associated with the listings item.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ItemOfferByMarketplace:
     """
     Offer details of a listings item for an Amazon marketplace.
@@ -186,17 +192,14 @@ class ItemOfferByMarketplace:
     """
 
     points: Optional["Points"] = attrs.field()
+    """
+    The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
+    """
 
     price: "Money" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemOffers:
     """
-    Offer details for the listings item.
+    The currency type and the amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -206,15 +209,9 @@ class ItemProcurement:
     """
 
     cost_price: "Money" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemSummaries:
     """
-    Summary details of a listings item.
+    The currency type and the amount.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -276,6 +273,9 @@ class ItemSummaryByMarketplace:
     """
 
     main_image: Optional["ItemImage"] = attrs.field()
+    """
+    Image for the listings item.
+    """
 
     marketplace_id: str = attrs.field()
     """
@@ -320,6 +320,9 @@ class ListingsItemPutRequest:
     """
 
     attributes: "ListingsItemPutRequestAttributes" = attrs.field()
+    """
+    JSON object containing structured listings item attribute data keyed by attribute name.
+    """
 
     product_type: str = attrs.field()
     """
@@ -377,6 +380,9 @@ class Money:
     """
 
     amount: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
+    """
 
     currency_code: str = attrs.field()
     """

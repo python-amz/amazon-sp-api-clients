@@ -27,6 +27,9 @@ class CreateDestinationRequest:
     """
 
     resource_specification: "DestinationResourceSpecification" = attrs.field()
+    """
+    The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -35,9 +38,15 @@ class CreateDestinationResponse:
     The response schema for the createDestination operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Destination"] = attrs.field()
+    """
+    Represents a destination created when you call the createDestination operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -63,9 +72,15 @@ class CreateSubscriptionResponse:
     The response schema for the createSubscription operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Subscription"] = attrs.field()
+    """
+    Represents a subscription to receive notifications.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -74,7 +89,10 @@ class DeleteDestinationResponse:
     The response schema for the deleteDestination operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -83,7 +101,10 @@ class DeleteSubscriptionByIdResponse:
     The response schema for the deleteSubscriptionById operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -106,15 +127,9 @@ class Destination:
     """
 
     resource: "DestinationResource" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class DestinationList:
     """
-    A list of destinations.
+    The destination resource types.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -124,8 +139,14 @@ class DestinationResource:
     """
 
     event_bridge: Optional["EventBridgeResource"] = attrs.field()
+    """
+    Represents an Amazon EventBridge destination.
+    """
 
     sqs: Optional["SqsResource"] = attrs.field()
+    """
+    The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -135,8 +156,14 @@ class DestinationResourceSpecification:
     """
 
     event_bridge: Optional["EventBridgeResourceSpecification"] = attrs.field()
+    """
+    The information required to create an Amazon EventBridge destination.
+    """
 
     sqs: Optional["SqsResource"] = attrs.field()
+    """
+    The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -159,15 +186,6 @@ class Error:
     """
     A message that describes the error condition in a human-readable form.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -218,9 +236,15 @@ class GetDestinationResponse:
     The response schema for the getDestination operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Destination"] = attrs.field()
+    """
+    Represents a destination created when you call the createDestination operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -229,9 +253,15 @@ class GetDestinationsResponse:
     The response schema for the getDestinations operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
-    payload: Optional["DestinationList"] = attrs.field()
+    payload: Optional[List["Destination"]] = attrs.field()
+    """
+    A list of destinations.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -240,9 +270,15 @@ class GetSubscriptionByIdResponse:
     The response schema for the getSubscriptionById operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Subscription"] = attrs.field()
+    """
+    Represents a subscription to receive notifications.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -251,9 +287,15 @@ class GetSubscriptionResponse:
     The response schema for the getSubscription operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Subscription"] = attrs.field()
+    """
+    Represents a subscription to receive notifications.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

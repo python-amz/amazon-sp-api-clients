@@ -36,25 +36,25 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetInventorySummariesResponse:
     """
     The Response schema.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     pagination: Optional["Pagination"] = attrs.field()
+    """
+    The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
+    """
 
     payload: Optional["GetInventorySummariesResult"] = attrs.field()
+    """
+    The payload schema for the getInventorySummaries operation.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -64,8 +64,14 @@ class GetInventorySummariesResult:
     """
 
     granularity: "Granularity" = attrs.field()
+    """
+    Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
+    """
 
-    inventory_summaries: "InventorySummaries" = attrs.field()
+    inventory_summaries: List["InventorySummary"] = attrs.field()
+    """
+    A list of inventory summaries.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -112,19 +118,19 @@ class InventoryDetails:
     """
 
     researching_quantity: Optional["ResearchingQuantity"] = attrs.field()
+    """
+    The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
+    """
 
     reserved_quantity: Optional["ReservedQuantity"] = attrs.field()
+    """
+    The quantity of reserved inventory.
+    """
 
     unfulfillable_quantity: Optional["UnfulfillableQuantity"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class InventorySummaries:
     """
-    A list of inventory summaries.
+    The quantity of unfulfillable inventory.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -149,6 +155,9 @@ class InventorySummary:
     """
 
     inventory_details: Optional["InventoryDetails"] = attrs.field()
+    """
+    Summarized inventory details. This object will not appear if the details parameter in the request is false.
+    """
 
     last_updated_time: Optional[datetime] = attrs.field()
     """

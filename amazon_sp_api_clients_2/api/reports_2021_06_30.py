@@ -81,6 +81,9 @@ class CreateReportScheduleSpecification:
     """
 
     report_options: Optional["ReportOptions"] = attrs.field()
+    """
+    Additional information passed to reports. This varies by report type.
+    """
 
     report_type: str = attrs.field()
     """
@@ -119,6 +122,9 @@ class CreateReportSpecification:
     """
 
     report_options: Optional["ReportOptions"] = attrs.field()
+    """
+    Additional information passed to reports. This varies by report type.
+    """
 
     report_type: str = attrs.field()
     """
@@ -168,7 +174,10 @@ class GetReportsResponse:
     Returned when the number of results exceeds pageSize. To get the next page of results, call getReports with this token as the only parameter.
     """
 
-    reports: "ReportList" = attrs.field()
+    reports: List["Report"] = attrs.field()
+    """
+    A list of reports.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -272,15 +281,6 @@ class ReportDocument:
     """
 
 
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ReportList:
-    """
-    A list of reports.
-    """
-
-    pass
-
-
 @attrs.define(kw_only=True, frozen=True, slots=False)
 class ReportOptions:
     """
@@ -315,6 +315,9 @@ class ReportSchedule:
     """
 
     report_options: Optional["ReportOptions"] = attrs.field()
+    """
+    Additional information passed to reports. This varies by report type.
+    """
 
     report_schedule_id: str = attrs.field()
     """

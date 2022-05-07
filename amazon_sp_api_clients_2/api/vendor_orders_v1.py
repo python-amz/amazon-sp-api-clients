@@ -20,6 +20,9 @@ class AcknowledgementStatusDetails:
     """
 
     accepted_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     acknowledgement_date: Optional[datetime] = attrs.field()
     """
@@ -30,6 +33,9 @@ class AcknowledgementStatusDetails:
     """
 
     rejected_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -138,21 +144,15 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetPurchaseOrderResponse:
     """
     The response schema for the getPurchaseOrder operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["Order"] = attrs.field()
 
@@ -163,7 +163,10 @@ class GetPurchaseOrdersResponse:
     The response schema for the getPurchaseOrders operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrderList"] = attrs.field()
 
@@ -174,7 +177,10 @@ class GetPurchaseOrdersStatusResponse:
     The response schema for the getPurchaseOrdersStatus operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["OrderListStatus"] = attrs.field()
 
@@ -263,21 +269,15 @@ class ItemQuantity:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ItemStatus:
-    """
-    Detailed description of items order status.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class Money:
     """
     An amount of money, including units in the form of currency.
     """
 
     amount: Optional["Decimal"] = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     currency_code: Optional[str] = attrs.field()
     """
@@ -292,6 +292,9 @@ class Money:
 class Order:
 
     order_details: Optional["OrderDetails"] = attrs.field()
+    """
+    Details of an order.
+    """
 
     purchase_order_number: str = attrs.field()
     """
@@ -355,10 +358,19 @@ class OrderAcknowledgementItem:
     """
 
     list_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     net_cost: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     ordered_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -382,8 +394,14 @@ class OrderDetails:
     """
 
     delivery_window: Optional["DateTimeInterval"] = attrs.field()
+    """
+    Defines a date time interval according to ISO8601. Interval is separated by double hyphen (--).
+    """
 
     import_details: Optional["ImportDetails"] = attrs.field()
+    """
+    Import details for an import order.
+    """
 
     items: List["OrderItem"] = attrs.field()
     """
@@ -435,6 +453,9 @@ class OrderDetails:
     ship_to_party: Optional["PartyIdentification"] = attrs.field()
 
     ship_window: Optional["DateTimeInterval"] = attrs.field()
+    """
+    Defines a date time interval according to ISO8601. Interval is separated by double hyphen (--).
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -456,10 +477,19 @@ class OrderItem:
     """
 
     list_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     net_cost: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     ordered_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -471,6 +501,9 @@ class OrderItem:
 class OrderItemAcknowledgement:
 
     acknowledged_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     acknowledgement_code: Union[Literal["Accepted"], Literal["Backordered"], Literal["Rejected"]] = attrs.field()
     """
@@ -505,6 +538,9 @@ class OrderItemAcknowledgement:
 class OrderItemStatus:
 
     acknowledgement_status: Optional["OrderItemStatusAcknowledgementStatus"] = attrs.field()
+    """
+    Acknowledgement status information.
+    """
 
     buyer_product_identifier: Optional[str] = attrs.field()
     """
@@ -517,12 +553,24 @@ class OrderItemStatus:
     """
 
     list_price: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     net_cost: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     ordered_quantity: Optional["OrderItemStatusOrderedQuantity"] = attrs.field()
+    """
+    Ordered quantity information.
+    """
 
     receiving_status: Optional["OrderItemStatusReceivingStatus"] = attrs.field()
+    """
+    Item receive status at the buyer's warehouse.
+    """
 
     vendor_product_identifier: Optional[str] = attrs.field()
     """
@@ -537,6 +585,9 @@ class OrderItemStatusAcknowledgementStatus:
     """
 
     accepted_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     acknowledgement_status_details: Optional[List["AcknowledgementStatusDetails"]] = attrs.field()
     """
@@ -551,6 +602,9 @@ class OrderItemStatusAcknowledgementStatus:
     """
 
     rejected_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -560,6 +614,9 @@ class OrderItemStatusOrderedQuantity:
     """
 
     ordered_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     ordered_quantity_details: Optional[List["OrderedQuantityDetails"]] = attrs.field()
     """
@@ -589,6 +646,9 @@ class OrderItemStatusReceivingStatus:
     """
 
     received_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -613,7 +673,10 @@ class OrderStatus:
     Current status of a purchase order.
     """
 
-    item_status: "ItemStatus" = attrs.field()
+    item_status: List["OrderItemStatus"] = attrs.field()
+    """
+    Detailed description of items order status.
+    """
 
     last_updated_date: Optional[datetime] = attrs.field()
     """
@@ -653,8 +716,14 @@ class OrderedQuantityDetails:
     """
 
     cancelled_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     ordered_quantity: Optional["ItemQuantity"] = attrs.field()
+    """
+    Details of quantity ordered.
+    """
 
     updated_date: Optional[datetime] = attrs.field()
     """
@@ -678,6 +747,9 @@ class Pagination:
 class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     party_id: str = attrs.field()
     """
@@ -685,6 +757,9 @@ class PartyIdentification:
     """
 
     tax_info: Optional["TaxRegistrationDetails"] = attrs.field()
+    """
+    Tax registration details of the entity.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -702,7 +777,10 @@ class SubmitAcknowledgementResponse:
     The response schema for the submitAcknowledgement operation
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionId"] = attrs.field()
 

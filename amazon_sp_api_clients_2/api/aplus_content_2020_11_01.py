@@ -28,7 +28,10 @@ class AplusResponse:
     The base response data for all A+ Content operations when a request is successful or partially successful. Individual operations may extend this with additional data.
     """
 
-    warnings: Optional["MessageSet"] = attrs.field()
+    warnings: Optional[List["Error"]] = attrs.field()
+    """
+    A set of messages to the user, such as warnings or comments.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -50,25 +53,25 @@ class AsinBadge:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class AsinBadgeSet:
-    """
-    The set of ASIN badges.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class AsinMetadata:
     """
     The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the listContentDocumentAsinRelations operation, the related ASINs are returned without metadata.
     """
 
     asin: "Asin" = attrs.field()
+    """
+    The Amazon Standard Identification Number (ASIN).
+    """
 
-    badge_set: Optional["AsinBadgeSet"] = attrs.field()
+    badge_set: Optional[List["AsinBadge"]] = attrs.field()
+    """
+    The set of ASIN badges.
+    """
 
-    content_reference_key_set: Optional["ContentReferenceKeySet"] = attrs.field()
+    content_reference_key_set: Optional[List["ContentReferenceKey"]] = attrs.field()
+    """
+    A set of content reference keys.
+    """
 
     image_url: Optional[str] = attrs.field()
     """
@@ -79,6 +82,9 @@ class AsinMetadata:
     """
 
     parent: Optional["Asin"] = attrs.field()
+    """
+    The Amazon Standard Identification Number (ASIN).
+    """
 
     title: Optional[str] = attrs.field()
     """
@@ -87,24 +93,6 @@ class AsinMetadata:
     Extra fields:
     {'minLength': 1}
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class AsinMetadataSet:
-    """
-    The set of ASIN metadata.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class AsinSet:
-    """
-    The set of ASINs.
-    """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -126,27 +114,31 @@ class ContentBadge:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ContentBadgeSet:
-    """
-    The set of content badges.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class ContentDocument:
     """
     The A+ Content document. This is the enhanced content that is published to product detail pages.
     """
 
-    content_module_list: "ContentModuleList" = attrs.field()
+    content_module_list: List["ContentModule"] = attrs.field()
+    """
+    A list of A+ Content modules.
+    """
 
     content_sub_type: Optional["ContentSubType"] = attrs.field()
+    """
+    The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
+    """
 
     content_type: "ContentType" = attrs.field()
+    """
+    The A+ Content document type.
+    """
 
     locale: "LanguageTag" = attrs.field()
+    """
+    The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
+        **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
+    """
 
     name: str = attrs.field()
     """
@@ -163,9 +155,15 @@ class ContentMetadata:
     The metadata of an A+ Content document.
     """
 
-    badge_set: "ContentBadgeSet" = attrs.field()
+    badge_set: List["ContentBadge"] = attrs.field()
+    """
+    The set of content badges.
+    """
 
     marketplace_id: "MarketplaceId" = attrs.field()
+    """
+    The identifier for the marketplace where the A+ Content is published.
+    """
 
     name: str = attrs.field()
     """
@@ -176,6 +174,9 @@ class ContentMetadata:
     """
 
     status: "ContentStatus" = attrs.field()
+    """
+    The submission status of the content document.
+    """
 
     update_time: datetime = attrs.field()
     """
@@ -193,17 +194,14 @@ class ContentMetadataRecord:
     """
 
     content_metadata: "ContentMetadata" = attrs.field()
+    """
+    The metadata of an A+ Content document.
+    """
 
     content_reference_key: "ContentReferenceKey" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ContentMetadataRecordList:
     """
-    A list of A+ Content metadata records.
+    A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -213,45 +211,84 @@ class ContentModule:
     """
 
     content_module_type: "ContentModuleType" = attrs.field()
+    """
+    The type of A+ Content module.
+    """
 
     standard_company_logo: Optional["StandardCompanyLogoModule"] = attrs.field()
+    """
+    The standard company logo image.
+    """
 
     standard_comparison_table: Optional["StandardComparisonTableModule"] = attrs.field()
+    """
+    The standard product comparison table.
+    """
 
     standard_four_image_text: Optional["StandardFourImageTextModule"] = attrs.field()
+    """
+    Four standard images with text, presented across a single row.
+    """
 
     standard_four_image_text_quadrant: Optional["StandardFourImageTextQuadrantModule"] = attrs.field()
+    """
+    Four standard images with text, presented on a grid of four quadrants.
+    """
 
     standard_header_image_text: Optional["StandardHeaderImageTextModule"] = attrs.field()
+    """
+    Standard headline text, an image, and body text.
+    """
 
     standard_image_sidebar: Optional["StandardImageSidebarModule"] = attrs.field()
+    """
+    Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
+    """
 
     standard_image_text_overlay: Optional["StandardImageTextOverlayModule"] = attrs.field()
+    """
+    A standard background image with a floating text box.
+    """
 
     standard_multiple_image_text: Optional["StandardMultipleImageTextModule"] = attrs.field()
+    """
+    Standard images with text, presented one at a time. The user clicks on thumbnails to view each block.
+    """
 
     standard_product_description: Optional["StandardProductDescriptionModule"] = attrs.field()
+    """
+    Standard product description text.
+    """
 
     standard_single_image_highlights: Optional["StandardSingleImageHighlightsModule"] = attrs.field()
+    """
+    A standard image with several paragraphs and a bulleted list.
+    """
 
     standard_single_image_specs_detail: Optional["StandardSingleImageSpecsDetailModule"] = attrs.field()
+    """
+    A standard image with paragraphs and a bulleted list, and extra space for technical details.
+    """
 
     standard_single_side_image: Optional["StandardSingleSideImageModule"] = attrs.field()
+    """
+    A standard headline and body text with an image on the side.
+    """
 
     standard_tech_specs: Optional["StandardTechSpecsModule"] = attrs.field()
+    """
+    The standard table of technical feature names and definitions.
+    """
 
     standard_text: Optional["StandardTextModule"] = attrs.field()
+    """
+    A standard headline and body text.
+    """
 
     standard_three_image_text: Optional["StandardThreeImageTextModule"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ContentModuleList:
     """
-    A list of A+ Content modules.
+    Three standard images with text, presented across a single row.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -270,25 +307,25 @@ class ContentRecord:
     """
 
     content_document: Optional["ContentDocument"] = attrs.field()
+    """
+    The A+ Content document. This is the enhanced content that is published to product detail pages.
+    """
 
     content_metadata: Optional["ContentMetadata"] = attrs.field()
+    """
+    The metadata of an A+ Content document.
+    """
 
     content_reference_key: "ContentReferenceKey" = attrs.field()
+    """
+    A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ContentReferenceKey:
     """
     A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ContentReferenceKeySet:
-    """
-    A set of content reference keys.
     """
 
     pass
@@ -352,15 +389,9 @@ class Decorator:
     """
 
     type: Optional["DecoratorType"] = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class DecoratorSet:
     """
-    A set of content decorators.
+    The type of rich text decorator.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -436,6 +467,9 @@ class ImageComponent:
     """
 
     image_crop_specification: "ImageCropSpecification" = attrs.field()
+    """
+    The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
+    """
 
     upload_destination_id: str = attrs.field()
     """
@@ -453,8 +487,14 @@ class ImageCropSpecification:
     """
 
     offset: Optional["ImageOffsets"] = attrs.field()
+    """
+    The top left corner of the cropped image, specified in the original image's coordinate space.
+    """
 
     size: "ImageDimensions" = attrs.field()
+    """
+    The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -464,8 +504,14 @@ class ImageDimensions:
     """
 
     height: "IntegerWithUnits" = attrs.field()
+    """
+    A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
+    """
 
     width: "IntegerWithUnits" = attrs.field()
+    """
+    A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -475,8 +521,14 @@ class ImageOffsets:
     """
 
     x: "IntegerWithUnits" = attrs.field()
+    """
+    A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
+    """
 
     y: "IntegerWithUnits" = attrs.field()
+    """
+    A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -499,8 +551,8 @@ class IntegerWithUnits:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class LanguageTag:
     """
-        The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
-    **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
+    The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
+        **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
     """
 
     pass
@@ -522,15 +574,6 @@ class MarketplaceId:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class MessageSet:
-    """
-    A set of messages to the user, such as warnings or comments.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class PageToken:
     """
     A page token that is returned when the results of the call exceed the page size. To get another page of results, call the operation again, passing in this value with the pageToken parameter.
@@ -546,11 +589,6 @@ class ParagraphComponent:
     """
 
     text_list: List["TextComponent"] = attrs.field()
-    """
-
-    Extra fields:
-    {'maxItems': 100, 'minItems': 1}
-    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -594,7 +632,10 @@ class PostContentDocumentApprovalSubmissionResponse:
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PostContentDocumentAsinRelationsRequest:
 
-    asin_set: "AsinSet" = attrs.field()
+    asin_set: List["Asin"] = attrs.field()
+    """
+    The set of ASINs.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -607,6 +648,9 @@ class PostContentDocumentAsinRelationsResponse:
 class PostContentDocumentRequest:
 
     content_document: "ContentDocument" = attrs.field()
+    """
+    The A+ Content document. This is the enhanced content that is published to product detail pages.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -628,25 +672,35 @@ class PublishRecord:
     """
 
     asin: "Asin" = attrs.field()
+    """
+    The Amazon Standard Identification Number (ASIN).
+    """
 
     content_reference_key: "ContentReferenceKey" = attrs.field()
+    """
+    A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
+    """
 
     content_sub_type: Optional["ContentSubType"] = attrs.field()
+    """
+    The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
+    """
 
     content_type: "ContentType" = attrs.field()
+    """
+    The A+ Content document type.
+    """
 
     locale: "LanguageTag" = attrs.field()
+    """
+    The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
+        **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
+    """
 
     marketplace_id: "MarketplaceId" = attrs.field()
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class PublishRecordList:
     """
-    A list of A+ Content publishing records.
+    The identifier for the marketplace where the A+ Content is published.
     """
-
-    pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -668,6 +722,9 @@ class StandardCompanyLogoModule:
     """
 
     company_logo: "ImageComponent" = attrs.field()
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -677,6 +734,9 @@ class StandardComparisonProductBlock:
     """
 
     asin: Optional["Asin"] = attrs.field()
+    """
+    The Amazon Standard Identification Number (ASIN).
+    """
 
     highlight: Optional[bool] = attrs.field()
     """
@@ -684,6 +744,9 @@ class StandardComparisonProductBlock:
     """
 
     image: Optional["ImageComponent"] = attrs.field()
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
 
     metrics: Optional[List["PlainTextItem"]] = attrs.field()
     """
@@ -717,18 +780,8 @@ class StandardComparisonTableModule:
     """
 
     metric_row_labels: Optional[List["PlainTextItem"]] = attrs.field()
-    """
-
-    Extra fields:
-    {'maxItems': 10, 'minItems': 0}
-    """
 
     product_columns: Optional[List["StandardComparisonProductBlock"]] = attrs.field()
-    """
-
-    Extra fields:
-    {'maxItems': 6, 'minItems': 0}
-    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -738,14 +791,29 @@ class StandardFourImageTextModule:
     """
 
     block1: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block2: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block3: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block4: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -755,12 +823,24 @@ class StandardFourImageTextQuadrantModule:
     """
 
     block1: "StandardImageTextBlock" = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block2: "StandardImageTextBlock" = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block3: "StandardImageTextBlock" = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block4: "StandardImageTextBlock" = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -770,8 +850,14 @@ class StandardHeaderImageTextModule:
     """
 
     block: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -781,8 +867,14 @@ class StandardHeaderTextListBlock:
     """
 
     block: Optional["StandardTextListBlock"] = attrs.field()
+    """
+    The A+ Content standard fixed length list of text, usually presented as bullet points.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -792,8 +884,14 @@ class StandardImageCaptionBlock:
     """
 
     caption: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     image: Optional["ImageComponent"] = attrs.field()
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -803,16 +901,34 @@ class StandardImageSidebarModule:
     """
 
     description_list_block: Optional["StandardTextListBlock"] = attrs.field()
+    """
+    The A+ Content standard fixed length list of text, usually presented as bullet points.
+    """
 
     description_text_block: Optional["StandardTextBlock"] = attrs.field()
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     image_caption_block: Optional["StandardImageCaptionBlock"] = attrs.field()
+    """
+    The A+ Content standard image and caption block.
+    """
 
     sidebar_image_text_block: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     sidebar_list_block: Optional["StandardTextListBlock"] = attrs.field()
+    """
+    The A+ Content standard fixed length list of text, usually presented as bullet points.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -822,10 +938,19 @@ class StandardImageTextBlock:
     """
 
     body: Optional["ParagraphComponent"] = attrs.field()
+    """
+    A list of rich text content, usually presented in a text box.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     image: Optional["ImageComponent"] = attrs.field()
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -835,8 +960,14 @@ class StandardImageTextCaptionBlock:
     """
 
     block: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     caption: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -846,8 +977,14 @@ class StandardImageTextOverlayModule:
     """
 
     block: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     overlay_color_type: "ColorType" = attrs.field()
+    """
+    The relative color scheme of content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -866,6 +1003,9 @@ class StandardProductDescriptionModule:
     """
 
     body: "ParagraphComponent" = attrs.field()
+    """
+    A list of rich text content, usually presented in a text box.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -875,16 +1015,34 @@ class StandardSingleImageHighlightsModule:
     """
 
     bulleted_list_block: Optional["StandardHeaderTextListBlock"] = attrs.field()
+    """
+    The A+ standard fixed-length list of text, with a related headline.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     image: Optional["ImageComponent"] = attrs.field()
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
 
     text_block1: Optional["StandardTextBlock"] = attrs.field()
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
 
     text_block2: Optional["StandardTextBlock"] = attrs.field()
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
 
     text_block3: Optional["StandardTextBlock"] = attrs.field()
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -894,20 +1052,44 @@ class StandardSingleImageSpecsDetailModule:
     """
 
     description_block1: Optional["StandardTextBlock"] = attrs.field()
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
 
     description_block2: Optional["StandardTextBlock"] = attrs.field()
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
 
     description_headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     image: Optional["ImageComponent"] = attrs.field()
+    """
+    A reference to an image, hosted in the A+ Content media library.
+    """
 
     specification_headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     specification_list_block: Optional["StandardHeaderTextListBlock"] = attrs.field()
+    """
+    The A+ standard fixed-length list of text, with a related headline.
+    """
 
     specification_text_block: Optional["StandardTextBlock"] = attrs.field()
+    """
+    The A+ Content standard text box block, comprised of a paragraph with a headline.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -917,8 +1099,14 @@ class StandardSingleSideImageModule:
     """
 
     block: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     image_position_type: "PositionType" = attrs.field()
+    """
+    The relative positioning of content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -928,6 +1116,9 @@ class StandardTechSpecsModule:
     """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     specification_list: List["StandardTextPairBlock"] = attrs.field()
     """
@@ -953,8 +1144,14 @@ class StandardTextBlock:
     """
 
     body: Optional["ParagraphComponent"] = attrs.field()
+    """
+    A list of rich text content, usually presented in a text box.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -964,11 +1161,6 @@ class StandardTextListBlock:
     """
 
     text_list: List["TextItem"] = attrs.field()
-    """
-
-    Extra fields:
-    {'maxItems': 8, 'minItems': 0}
-    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -978,8 +1170,14 @@ class StandardTextModule:
     """
 
     body: "ParagraphComponent" = attrs.field()
+    """
+    A list of rich text content, usually presented in a text box.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -989,8 +1187,14 @@ class StandardTextPairBlock:
     """
 
     description: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
     label: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1000,12 +1204,24 @@ class StandardThreeImageTextModule:
     """
 
     block1: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block2: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     block3: Optional["StandardImageTextBlock"] = attrs.field()
+    """
+    The A+ Content standard image and text box block.
+    """
 
     headline: Optional["TextComponent"] = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1014,7 +1230,10 @@ class TextComponent:
     Rich text content.
     """
 
-    decorator_set: Optional["DecoratorSet"] = attrs.field()
+    decorator_set: Optional[List["Decorator"]] = attrs.field()
+    """
+    A set of content decorators.
+    """
 
     value: str = attrs.field()
     """
@@ -1040,6 +1259,9 @@ class TextItem:
     """
 
     text: "TextComponent" = attrs.field()
+    """
+    Rich text content.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)

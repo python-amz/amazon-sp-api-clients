@@ -104,6 +104,9 @@ class ChargeDetails:
     """
 
     charge_amount: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     tax_details: Optional[List["TaxDetail"]] = attrs.field()
     """
@@ -156,15 +159,6 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class InvoiceDetail:
 
     additional_details: Optional[List["AdditionalDetails"]] = attrs.field()
@@ -193,6 +187,9 @@ class InvoiceDetail:
     """
 
     invoice_total: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     items: List["InvoiceItem"] = attrs.field()
     """
@@ -243,6 +240,9 @@ class InvoiceItem:
     """
 
     invoiced_quantity: "ItemQuantity" = attrs.field()
+    """
+    Details of item quantity.
+    """
 
     item_sequence_number: str = attrs.field()
     """
@@ -250,6 +250,9 @@ class InvoiceItem:
     """
 
     net_cost: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     purchase_order_number: str = attrs.field()
     """
@@ -296,6 +299,9 @@ class Money:
     """
 
     amount: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     currency_code: str = attrs.field()
     """
@@ -307,6 +313,9 @@ class Money:
 class PartyIdentification:
 
     address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     party_id: str = attrs.field()
     """
@@ -334,7 +343,10 @@ class SubmitInvoiceResponse:
     The response schema for the submitInvoice operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
     payload: Optional["TransactionReference"] = attrs.field()
 
@@ -346,8 +358,14 @@ class TaxDetail:
     """
 
     tax_amount: "Money" = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
     tax_rate: Optional["Decimal"] = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+    """
 
     tax_type: Union[
         Literal["CGST"],
@@ -370,6 +388,9 @@ class TaxDetail:
     """
 
     taxable_amount: Optional["Money"] = attrs.field()
+    """
+    An amount of money, including units in the form of currency.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -379,6 +400,9 @@ class TaxRegistrationDetail:
     """
 
     tax_registration_address: Optional["Address"] = attrs.field()
+    """
+    Address of the party.
+    """
 
     tax_registration_message: Optional[str] = attrs.field()
     """

@@ -45,23 +45,20 @@ class Error:
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class ErrorList:
-    """
-    A list of error responses returned when a request is unsuccessful.
-    """
-
-    pass
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class GetOrderMetricsResponse:
     """
     The response schema for the getOrderMetrics operation.
     """
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field()
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
 
-    payload: Optional["OrderMetricsList"] = attrs.field()
+    payload: Optional[List["OrderMetricsInterval"]] = attrs.field()
+    """
+    A set of order metrics, each scoped to a particular time interval.
+    """
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -71,6 +68,9 @@ class Money:
     """
 
     amount: "Decimal" = attrs.field()
+    """
+    A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
+    """
 
     currency_code: str = attrs.field()
     """
@@ -85,6 +85,9 @@ class OrderMetricsInterval:
     """
 
     average_unit_price: "Money" = attrs.field()
+    """
+    The currency type and the amount.
+    """
 
     interval: str = attrs.field()
     """
@@ -102,20 +105,14 @@ class OrderMetricsInterval:
     """
 
     total_sales: "Money" = attrs.field()
+    """
+    The currency type and the amount.
+    """
 
     unit_count: int = attrs.field()
     """
     The number of units in orders based on the specified filters.
     """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class OrderMetricsList:
-    """
-    A set of order metrics, each scoped to a particular time interval.
-    """
-
-    pass
 
 
 class SalesV1Client(BaseClient):
