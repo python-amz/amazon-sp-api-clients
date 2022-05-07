@@ -815,7 +815,7 @@ class VendorOrdersV1Client(BaseClient):
     def get_purchase_order(
         self,
         purchase_order_number: str,
-    ):
+    ) -> Union[GetPurchaseOrderResponse]:
         """
         Returns a purchase order based on the purchaseOrderNumber value that you specify.
 
@@ -840,6 +840,7 @@ class VendorOrdersV1Client(BaseClient):
             self._get_purchase_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -871,7 +872,7 @@ class VendorOrdersV1Client(BaseClient):
         is_pochanged: bool = None,
         purchase_order_state: Union[Literal["New"], Literal["Acknowledged"], Literal["Closed"]] = None,
         ordering_vendor_code: str = None,
-    ):
+    ) -> Union[GetPurchaseOrdersResponse]:
         """
         Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the createdAfter, createdBefore, changedAfter and changedBefore parameters. The date range to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting includeDetails to false. You can then use the getPurchaseOrder operation to receive details for a specific purchase order.
 
@@ -920,6 +921,7 @@ class VendorOrdersV1Client(BaseClient):
             self._get_purchase_orders_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -966,7 +968,7 @@ class VendorOrdersV1Client(BaseClient):
         item_receive_status: Union[Literal["NOT_RECEIVED"], Literal["PARTIALLY_RECEIVED"], Literal["RECEIVED"]] = None,
         ordering_vendor_code: str = None,
         ship_to_party_id: str = None,
-    ):
+    ) -> Union[GetPurchaseOrdersStatusResponse]:
         """
         Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
 
@@ -1017,6 +1019,7 @@ class VendorOrdersV1Client(BaseClient):
             self._get_purchase_orders_status_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1050,7 +1053,7 @@ class VendorOrdersV1Client(BaseClient):
     def submit_acknowledgement(
         self,
         acknowledgements: List["OrderAcknowledgement"] = None,
-    ):
+    ) -> Union[SubmitAcknowledgementResponse]:
         """
         Submits acknowledgements for one or more purchase orders.
 
@@ -1075,6 +1078,7 @@ class VendorOrdersV1Client(BaseClient):
             self._submit_acknowledgement_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

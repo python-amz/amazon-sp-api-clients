@@ -731,7 +731,7 @@ class ServicesV1Client(BaseClient):
         self,
         service_job_id: str,
         appointment_time: Dict[str, Any],
-    ):
+    ) -> Union[SetAppointmentResponse]:
         """
         Adds an appointment to the service job indicated by the service job identifier you specify.
 
@@ -759,6 +759,7 @@ class ServicesV1Client(BaseClient):
             self._add_appointment_for_service_job_by_service_job_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -784,7 +785,7 @@ class ServicesV1Client(BaseClient):
         self,
         service_job_id: str,
         cancellation_reason_code: str,
-    ):
+    ) -> Union[CancelServiceJobByServiceJobIdResponse]:
         """
         Cancels the service job indicated by the service job identifier you specify.
 
@@ -812,6 +813,7 @@ class ServicesV1Client(BaseClient):
             self._cancel_service_job_by_service_job_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -836,7 +838,7 @@ class ServicesV1Client(BaseClient):
     def complete_service_job_by_service_job_id(
         self,
         service_job_id: str,
-    ):
+    ) -> Union[CompleteServiceJobByServiceJobIdResponse]:
         """
         Completes the service job indicated by the service job identifier you specify.
 
@@ -860,6 +862,7 @@ class ServicesV1Client(BaseClient):
             self._complete_service_job_by_service_job_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -881,7 +884,7 @@ class ServicesV1Client(BaseClient):
     def get_service_job_by_service_job_id(
         self,
         service_job_id: str,
-    ):
+    ) -> Union[GetServiceJobByServiceJobIdResponse]:
         """
         Gets service job details for the service job indicated by the service job identifier you specify.
 
@@ -905,6 +908,7 @@ class ServicesV1Client(BaseClient):
             self._get_service_job_by_service_job_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -948,7 +952,7 @@ class ServicesV1Client(BaseClient):
         last_updated_before: str = None,
         schedule_start_date: str = None,
         schedule_end_date: str = None,
-    ):
+    ) -> Union[GetServiceJobsResponse]:
         """
         Gets service job details for the specified filter query.
 
@@ -998,6 +1002,7 @@ class ServicesV1Client(BaseClient):
             self._get_service_jobs_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1035,7 +1040,7 @@ class ServicesV1Client(BaseClient):
         appointment_id: str,
         appointment_time: Dict[str, Any],
         reschedule_reason_code: str,
-    ):
+    ) -> Union[SetAppointmentResponse]:
         """
         Reschedules an appointment for the service job indicated by the service job identifier you specify.
 
@@ -1067,6 +1072,7 @@ class ServicesV1Client(BaseClient):
             self._reschedule_appointment_for_service_job_by_service_job_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

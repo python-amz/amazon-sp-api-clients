@@ -343,7 +343,7 @@ class Reports20210630Client(BaseClient):
     def cancel_report(
         self,
         report_id: str,
-    ):
+    ) -> Union[ErrorList]:
         """
         Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
 
@@ -367,6 +367,7 @@ class Reports20210630Client(BaseClient):
             self._cancel_report_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -386,7 +387,7 @@ class Reports20210630Client(BaseClient):
     def cancel_report_schedule(
         self,
         report_schedule_id: str,
-    ):
+    ) -> Union[ErrorList]:
         """
         Cancels the report schedule that you specify.
 
@@ -410,6 +411,7 @@ class Reports20210630Client(BaseClient):
             self._cancel_report_schedule_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -433,7 +435,7 @@ class Reports20210630Client(BaseClient):
         data_end_time: datetime = None,
         data_start_time: datetime = None,
         report_options: Dict[str, Any] = None,
-    ):
+    ) -> Union[CreateReportResponse, ErrorList]:
         """
         Creates a report.
 
@@ -467,6 +469,7 @@ class Reports20210630Client(BaseClient):
             self._create_report_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -516,7 +519,7 @@ class Reports20210630Client(BaseClient):
         report_type: str,
         next_report_creation_time: datetime = None,
         report_options: Dict[str, Any] = None,
-    ):
+    ) -> Union[CreateReportScheduleResponse, ErrorList]:
         """
         Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
 
@@ -550,6 +553,7 @@ class Reports20210630Client(BaseClient):
             self._create_report_schedule_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -576,7 +580,7 @@ class Reports20210630Client(BaseClient):
     def get_report(
         self,
         report_id: str,
-    ):
+    ) -> Union[ErrorList, Report]:
         """
         Returns report details (including the reportDocumentId, if available) for the report that you specify.
 
@@ -600,6 +604,7 @@ class Reports20210630Client(BaseClient):
             self._get_report_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -620,7 +625,7 @@ class Reports20210630Client(BaseClient):
     def get_report_document(
         self,
         report_document_id: str,
-    ):
+    ) -> Union[ErrorList, ReportDocument]:
         """
         Returns the information required for retrieving a report document's contents.
 
@@ -644,6 +649,7 @@ class Reports20210630Client(BaseClient):
             self._get_report_document_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -664,7 +670,7 @@ class Reports20210630Client(BaseClient):
     def get_report_schedule(
         self,
         report_schedule_id: str,
-    ):
+    ) -> Union[ErrorList, ReportSchedule]:
         """
         Returns report schedule details for the report schedule that you specify.
 
@@ -688,6 +694,7 @@ class Reports20210630Client(BaseClient):
             self._get_report_schedule_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -708,7 +715,7 @@ class Reports20210630Client(BaseClient):
     def get_report_schedules(
         self,
         report_types: List[str],
-    ):
+    ) -> Union[ErrorList, ReportScheduleList]:
         """
         Returns report schedule details that match the filters that you specify.
 
@@ -732,6 +739,7 @@ class Reports20210630Client(BaseClient):
             self._get_report_schedules_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -760,7 +768,7 @@ class Reports20210630Client(BaseClient):
         created_since: datetime = None,
         created_until: datetime = None,
         next_token: str = None,
-    ):
+    ) -> Union[ErrorList, GetReportsResponse]:
         """
         Returns report details for the reports that match the filters that you specify.
 
@@ -798,6 +806,7 @@ class Reports20210630Client(BaseClient):
             self._get_reports_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

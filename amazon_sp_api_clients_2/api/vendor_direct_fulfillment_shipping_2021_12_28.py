@@ -547,7 +547,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     def get_shipping_label(
         self,
         purchase_order_number: str,
-    ):
+    ) -> Union[ErrorList, ShippingLabel]:
         """
         Returns a shipping label for the purchaseOrderNumber that you specify.
 
@@ -571,6 +571,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             self._get_shipping_label_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -596,7 +597,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
-    ):
+    ) -> Union[ErrorList, ShippingLabelList]:
         """
         Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
 
@@ -632,6 +633,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             self._get_shipping_labels_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -658,7 +660,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
     def submit_shipping_label_request(
         self,
         shipping_label_requests: List["ShippingLabelRequest"] = None,
-    ):
+    ) -> Union[ErrorList, TransactionReference]:
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.
 
@@ -682,6 +684,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             self._submit_shipping_label_request_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

@@ -1392,7 +1392,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     def cancel_shipment(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[CancelShipmentResponse]:
         """
         Cancel the shipment indicated by the specified shipment identifier.
 
@@ -1416,6 +1416,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._cancel_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1435,7 +1436,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     def cancel_shipment_old(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[CancelShipmentResponse]:
         """
         Cancel the shipment indicated by the specified shipment identifer.
 
@@ -1459,6 +1460,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._cancel_shipment_old_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1483,7 +1485,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         label_format_option: Dict[str, Any] = None,
         shipment_level_seller_inputs_list: List["AdditionalSellerInputs"] = None,
         shipping_service_offer_id: str = None,
-    ):
+    ) -> Union[CreateShipmentResponse]:
         """
         Create a shipment with the information provided.
 
@@ -1519,6 +1521,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._create_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1547,7 +1550,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         order_id: str,
         ship_from_address: Dict[str, Any],
         shipping_service_id: str,
-    ):
+    ) -> Union[GetAdditionalSellerInputsResponse]:
         """
         Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
 
@@ -1577,6 +1580,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._get_additional_seller_inputs_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1602,7 +1606,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         order_id: str,
         ship_from_address: Dict[str, Any],
         shipping_service_id: str,
-    ):
+    ) -> Union[GetAdditionalSellerInputsResponse]:
         """
         Get a list of additional seller inputs required for a ship method. This is generally used for international shipping.
 
@@ -1632,6 +1636,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._get_additional_seller_inputs_old_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1656,7 +1661,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         self,
         shipment_request_details: Dict[str, Any],
         shipping_offering_filter: Dict[str, Any] = None,
-    ):
+    ) -> Union[GetEligibleShipmentServicesResponse]:
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.
 
@@ -1684,6 +1689,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._get_eligible_shipment_services_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1707,7 +1713,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         self,
         shipment_request_details: Dict[str, Any],
         shipping_offering_filter: Dict[str, Any] = None,
-    ):
+    ) -> Union[GetEligibleShipmentServicesResponse]:
         """
         Returns a list of shipping service offers that satisfy the specified shipment request details.
 
@@ -1735,6 +1741,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._get_eligible_shipment_services_old_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1757,7 +1764,7 @@ class MerchantFulfillmentV0Client(BaseClient):
     def get_shipment(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[GetShipmentResponse]:
         """
         Returns the shipment information for an existing shipment.
 
@@ -1781,6 +1788,7 @@ class MerchantFulfillmentV0Client(BaseClient):
             self._get_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

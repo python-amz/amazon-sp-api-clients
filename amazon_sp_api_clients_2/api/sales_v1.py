@@ -129,7 +129,7 @@ class SalesV1Client(BaseClient):
         first_day_of_week: Union[Literal["Monday"], Literal["Sunday"]] = None,
         asin: str = None,
         sku: str = None,
-    ):
+    ) -> Union[GetOrderMetricsResponse]:
         """
         Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
 
@@ -171,6 +171,7 @@ class SalesV1Client(BaseClient):
             self._get_order_metrics_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

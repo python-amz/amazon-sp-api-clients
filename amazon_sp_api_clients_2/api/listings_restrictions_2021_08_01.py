@@ -160,7 +160,7 @@ class ListingsRestrictions20210801Client(BaseClient):
             Literal["club_club"],
         ] = None,
         reason_locale: str = None,
-    ):
+    ) -> Union[List["Error"], RestrictionList]:
         """
         Returns listing restrictions for an item in the Amazon Catalog.
 
@@ -194,6 +194,7 @@ class ListingsRestrictions20210801Client(BaseClient):
             self._get_listings_restrictions_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

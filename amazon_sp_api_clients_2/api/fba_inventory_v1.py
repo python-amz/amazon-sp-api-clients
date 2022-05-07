@@ -312,7 +312,7 @@ class FbaInventoryV1Client(BaseClient):
         start_date_time: datetime = None,
         seller_skus: List[str] = None,
         next_token: str = None,
-    ):
+    ) -> Union[GetInventorySummariesResponse]:
         """
         Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:
 
@@ -354,6 +354,7 @@ class FbaInventoryV1Client(BaseClient):
             self._get_inventory_summaries_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

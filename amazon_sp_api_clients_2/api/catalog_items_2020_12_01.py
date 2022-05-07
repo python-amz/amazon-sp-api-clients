@@ -523,7 +523,7 @@ class CatalogItems20201201Client(BaseClient):
             ]
         ] = None,
         locale: str = None,
-    ):
+    ) -> Union[ErrorList, Item]:
         """
         Retrieves details for an item in the Amazon catalog.
 
@@ -556,6 +556,7 @@ class CatalogItems20201201Client(BaseClient):
             self._get_catalog_item_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -599,7 +600,7 @@ class CatalogItems20201201Client(BaseClient):
         page_token: str = None,
         keywords_locale: str = None,
         locale: str = None,
-    ):
+    ) -> Union[ErrorList, ItemSearchResults]:
         """
         Search for and return a list of Amazon catalog items and associated information.
 
@@ -642,6 +643,7 @@ class CatalogItems20201201Client(BaseClient):
             self._search_catalog_items_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

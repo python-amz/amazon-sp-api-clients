@@ -450,7 +450,7 @@ class ShipmentInvoicingV0Client(BaseClient):
     def get_invoice_status(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[GetInvoiceStatusResponse]:
         """
         Returns the invoice status for the shipment you specify.
 
@@ -475,6 +475,7 @@ class ShipmentInvoicingV0Client(BaseClient):
             self._get_invoice_status_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -495,7 +496,7 @@ class ShipmentInvoicingV0Client(BaseClient):
     def get_shipment_details(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[GetShipmentDetailsResponse]:
         """
         Returns the shipment details required to issue an invoice for the specified shipment.
 
@@ -520,6 +521,7 @@ class ShipmentInvoicingV0Client(BaseClient):
             self._get_shipment_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -543,7 +545,7 @@ class ShipmentInvoicingV0Client(BaseClient):
         content_md5value: str,
         invoice_content: bytes,
         marketplace_id: str = None,
-    ):
+    ) -> Union[SubmitInvoiceResponse]:
         """
         Submits a shipment invoice document for a given shipment.
 
@@ -576,6 +578,7 @@ class ShipmentInvoicingV0Client(BaseClient):
             self._submit_invoice_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

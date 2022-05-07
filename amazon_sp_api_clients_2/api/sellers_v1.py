@@ -123,7 +123,7 @@ class Participation:
 class SellersV1Client(BaseClient):
     def get_marketplace_participations(
         self,
-    ):
+    ) -> Union[GetMarketplaceParticipationsResponse]:
         """
         Returns a list of marketplaces that the seller submitting the request can sell in and information about the seller's participation in those marketplaces.
 
@@ -146,6 +146,7 @@ class SellersV1Client(BaseClient):
             self._get_marketplace_participations_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

@@ -231,7 +231,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         self,
         seller_sku: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[ErrorList]:
         """
         Removes the item indicated by the specified seller SKU from the Small and Light program in the specified marketplace. If the item is not eligible for disenrollment, the ineligibility reasons are returned.
 
@@ -259,6 +259,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             self._delete_small_and_light_enrollment_by_seller_sku_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -282,7 +283,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         self,
         seller_sku: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[ErrorList, SmallAndLightEligibility]:
         """
         Returns the Small and Light program eligibility status of the item indicated by the specified seller SKU in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
 
@@ -310,6 +311,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             self._get_small_and_light_eligibility_by_seller_sku_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -334,7 +336,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         self,
         seller_sku: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[ErrorList, SmallAndLightEnrollment]:
         """
         Returns the Small and Light enrollment status for the item indicated by the specified seller SKU in the specified marketplace.
 
@@ -362,6 +364,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             self._get_small_and_light_enrollment_by_seller_sku_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -386,7 +389,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         self,
         items: List["Item"],
         marketplace_id: str,
-    ):
+    ) -> Union[ErrorList, SmallAndLightFeePreviews]:
         """
         Returns the Small and Light fee estimates for the specified items. You must include a marketplaceId parameter to retrieve the proper fee estimates for items to be sold in that marketplace. The ordering of items in the response will mirror the order of the items in the request. Duplicate ASIN/price combinations are removed.
 
@@ -414,6 +417,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             self._get_small_and_light_fee_preview_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -437,7 +441,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         self,
         seller_sku: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[ErrorList, SmallAndLightEnrollment]:
         """
         Enrolls the item indicated by the specified seller SKU in the Small and Light program in the specified marketplace. If the item is not eligible, the ineligibility reasons are returned.
 
@@ -465,6 +469,7 @@ class FbaSmallAndLightV1Client(BaseClient):
             self._put_small_and_light_enrollment_by_seller_sku_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

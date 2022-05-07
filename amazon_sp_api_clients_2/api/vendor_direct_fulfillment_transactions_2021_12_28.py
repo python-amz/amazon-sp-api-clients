@@ -82,7 +82,7 @@ class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
     def get_transaction_status(
         self,
         transaction_id: str,
-    ):
+    ) -> Union[Error, ErrorList, TransactionStatus]:
         """
         Returns the status of the transaction indicated by the specified transactionId.
 
@@ -106,6 +106,7 @@ class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
             self._get_transaction_status_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

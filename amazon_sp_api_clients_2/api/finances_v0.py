@@ -1735,7 +1735,7 @@ class FinancesV0Client(BaseClient):
         financial_event_group_started_before: datetime = None,
         financial_event_group_started_after: datetime = None,
         next_token: str = None,
-    ):
+    ) -> Union[ListFinancialEventGroupsResponse]:
         """
         Returns financial event groups for a given date range.
 
@@ -1767,6 +1767,7 @@ class FinancesV0Client(BaseClient):
             self._list_financial_event_groups_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1793,7 +1794,7 @@ class FinancesV0Client(BaseClient):
         posted_after: datetime = None,
         posted_before: datetime = None,
         next_token: str = None,
-    ):
+    ) -> Union[ListFinancialEventsResponse]:
         """
         Returns financial events for the specified data range.
 
@@ -1825,6 +1826,7 @@ class FinancesV0Client(BaseClient):
             self._list_financial_events_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1850,7 +1852,7 @@ class FinancesV0Client(BaseClient):
         event_group_id: str,
         max_results_per_page: int = None,
         next_token: str = None,
-    ):
+    ) -> Union[ListFinancialEventsResponse]:
         """
         Returns all financial events for the specified financial event group.
 
@@ -1880,6 +1882,7 @@ class FinancesV0Client(BaseClient):
             self._list_financial_events_by_group_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1904,7 +1907,7 @@ class FinancesV0Client(BaseClient):
         order_id: str,
         max_results_per_page: int = None,
         next_token: str = None,
-    ):
+    ) -> Union[ListFinancialEventsResponse]:
         """
         Returns all financial events for the specified order.
 
@@ -1934,6 +1937,7 @@ class FinancesV0Client(BaseClient):
             self._list_financial_events_by_order_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

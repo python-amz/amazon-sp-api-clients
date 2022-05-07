@@ -188,7 +188,7 @@ class ListingsItems20200901Client(BaseClient):
         sku: str,
         marketplace_ids: List[str],
         issue_locale: str = None,
-    ):
+    ) -> Union[ErrorList, ListingsItemSubmissionResponse]:
         """
         Delete a listings item for a selling partner.
 
@@ -221,6 +221,7 @@ class ListingsItems20200901Client(BaseClient):
             self._delete_listings_item_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -250,7 +251,7 @@ class ListingsItems20200901Client(BaseClient):
         patches: List["PatchOperation"],
         product_type: str,
         issue_locale: str = None,
-    ):
+    ) -> Union[ErrorList, ListingsItemSubmissionResponse]:
         """
         Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
 
@@ -287,6 +288,7 @@ class ListingsItems20200901Client(BaseClient):
             self._patch_listings_item_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -319,7 +321,7 @@ class ListingsItems20200901Client(BaseClient):
         product_type: str,
         issue_locale: str = None,
         requirements: Union[Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]] = None,
-    ):
+    ) -> Union[ErrorList, ListingsItemSubmissionResponse]:
         """
         Creates a new or fully-updates an existing listings item for a selling partner.
 
@@ -358,6 +360,7 @@ class ListingsItems20200901Client(BaseClient):
             self._put_listings_item_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

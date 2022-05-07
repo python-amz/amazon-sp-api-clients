@@ -253,7 +253,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             Literal["zh_CN"],
             Literal["zh_TW"],
         ] = None,
-    ):
+    ) -> Union[ErrorList, ProductTypeDefinition]:
         """
         Retrieve an Amazon product type definition.
 
@@ -293,6 +293,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             self._get_definitions_product_type_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -322,7 +323,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
         self,
         marketplace_ids: List[str],
         keywords: List[str] = None,
-    ):
+    ) -> Union[ErrorList, ProductTypeList]:
         """
         Search for and return a list of Amazon product types that have definitions available.
 
@@ -351,6 +352,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             self._search_definitions_product_types_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

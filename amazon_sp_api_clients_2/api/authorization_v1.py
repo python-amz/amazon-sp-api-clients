@@ -70,7 +70,7 @@ class AuthorizationV1Client(BaseClient):
         selling_partner_id: str,
         developer_id: str,
         mws_auth_token: str,
-    ):
+    ) -> Union[GetAuthorizationCodeResponse]:
         """
         With the getAuthorizationCode operation, you can request a Login With Amazon (LWA) authorization code that will allow you to call a Selling Partner API on behalf of a seller who has already authorized you to call Amazon Marketplace Web Service (Amazon MWS). You specify a developer ID, an MWS auth token, and a seller ID. Taken together, these represent the Amazon MWS authorization that the seller previously granted you. The operation returns an LWA authorization code that can be exchanged for a refresh token and access token representing authorization to call the Selling Partner API on the seller's behalf. By using this API, sellers who have already authorized you for Amazon MWS do not need to re-authorize you for the Selling Partner API.
 
@@ -100,6 +100,7 @@ class AuthorizationV1Client(BaseClient):
             self._get_authorization_code_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

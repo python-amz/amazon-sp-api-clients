@@ -496,7 +496,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: List[str],
         attachments: List["Attachment"] = None,
-    ):
+    ) -> Union[CreateAmazonMotorsResponse]:
         """
         Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by Amazon Motors sellers.
 
@@ -526,6 +526,7 @@ class MessagingV1Client(BaseClient):
             self._create_amazon_motors_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -554,7 +555,7 @@ class MessagingV1Client(BaseClient):
         attachments: List["Attachment"] = None,
         coverage_end_date: datetime = None,
         coverage_start_date: datetime = None,
-    ):
+    ) -> Union[CreateWarrantyResponse]:
         """
         Sends a message to a buyer to provide details about warranty information on a purchase in their order.
 
@@ -588,6 +589,7 @@ class MessagingV1Client(BaseClient):
             self._create_warranty_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -615,7 +617,7 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[GetAttributesResponse]:
         """
         Returns a response containing attributes related to an order. This includes buyer preferences.
 
@@ -641,6 +643,7 @@ class MessagingV1Client(BaseClient):
             self._get_attributes_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -667,7 +670,7 @@ class MessagingV1Client(BaseClient):
         marketplace_ids: List[str],
         attachments: List["Attachment"] = None,
         text: str = None,
-    ):
+    ) -> Union[CreateConfirmCustomizationDetailsResponse]:
         """
         Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
 
@@ -699,6 +702,7 @@ class MessagingV1Client(BaseClient):
             self._confirm_customization_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -726,7 +730,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: List[str],
         text: str = None,
-    ):
+    ) -> Union[CreateConfirmDeliveryDetailsResponse]:
         """
         Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
 
@@ -756,6 +760,7 @@ class MessagingV1Client(BaseClient):
             self._create_confirm_delivery_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -782,7 +787,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: List[str],
         text: str = None,
-    ):
+    ) -> Union[CreateConfirmOrderDetailsResponse]:
         """
         Sends a message to ask a buyer an order-related question prior to shipping their order.
 
@@ -812,6 +817,7 @@ class MessagingV1Client(BaseClient):
             self._create_confirm_order_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -838,7 +844,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: List[str],
         text: str = None,
-    ):
+    ) -> Union[CreateConfirmServiceDetailsResponse]:
         """
         Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a service call.
 
@@ -868,6 +874,7 @@ class MessagingV1Client(BaseClient):
             self._create_confirm_service_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -895,7 +902,7 @@ class MessagingV1Client(BaseClient):
         marketplace_ids: List[str],
         attachments: List["Attachment"] = None,
         text: str = None,
-    ):
+    ) -> Union[CreateDigitalAccessKeyResponse]:
         """
         Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
 
@@ -927,6 +934,7 @@ class MessagingV1Client(BaseClient):
             self._create_digital_access_key_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -954,7 +962,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: List[str],
         attachments: List["Attachment"] = None,
-    ):
+    ) -> Union[CreateLegalDisclosureResponse]:
         """
         Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
 
@@ -984,6 +992,7 @@ class MessagingV1Client(BaseClient):
             self._create_legal_disclosure_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1009,7 +1018,7 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[CreateNegativeFeedbackRemovalResponse]:
         """
         Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be sent after the seller has resolved the buyer's problem.
 
@@ -1037,6 +1046,7 @@ class MessagingV1Client(BaseClient):
             self._create_negative_feedback_removal_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1062,7 +1072,7 @@ class MessagingV1Client(BaseClient):
         amazon_order_id: str,
         marketplace_ids: List[str],
         text: str = None,
-    ):
+    ) -> Union[CreateUnexpectedProblemResponse]:
         """
         Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the order.
 
@@ -1092,6 +1102,7 @@ class MessagingV1Client(BaseClient):
             self._create_unexpected_problem_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1117,7 +1128,7 @@ class MessagingV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[GetMessagingActionsForOrderResponse]:
         """
         Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.
 
@@ -1145,6 +1156,7 @@ class MessagingV1Client(BaseClient):
             self._get_messaging_actions_for_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

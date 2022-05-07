@@ -189,7 +189,7 @@ class SolicitationsV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[CreateProductReviewAndSellerFeedbackSolicitationResponse]:
         """
         Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send only one productReviewAndSellerFeedback or free form proactive message per order.
 
@@ -217,6 +217,7 @@ class SolicitationsV1Client(BaseClient):
             self._create_product_review_and_seller_feedback_solicitation_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -241,7 +242,7 @@ class SolicitationsV1Client(BaseClient):
         self,
         amazon_order_id: str,
         marketplace_ids: List[str],
-    ):
+    ) -> Union[GetSolicitationActionsForOrderResponse]:
         """
         Returns a list of solicitation types that are available for an order that you specify. A solicitation type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a solicitation. Currently only the productReviewAndSellerFeedbackSolicitation solicitation type is available.
 
@@ -269,6 +270,7 @@ class SolicitationsV1Client(BaseClient):
             self._get_solicitation_actions_for_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

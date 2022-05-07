@@ -433,7 +433,7 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
     def submit_invoice(
         self,
         invoices: List["InvoiceDetail"] = None,
-    ):
+    ) -> Union[SubmitInvoiceResponse]:
         """
         Submits one or more invoices for a vendor's direct fulfillment orders.
 
@@ -458,6 +458,7 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
             self._submit_invoice_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

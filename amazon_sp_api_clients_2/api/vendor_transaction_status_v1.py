@@ -84,7 +84,7 @@ class VendorTransactionStatusV1Client(BaseClient):
     def get_transaction(
         self,
         transaction_id: str,
-    ):
+    ) -> Union[GetTransactionResponse]:
         """
         Returns the status of the transaction that you specify.
 
@@ -109,6 +109,7 @@ class VendorTransactionStatusV1Client(BaseClient):
             self._get_transaction_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

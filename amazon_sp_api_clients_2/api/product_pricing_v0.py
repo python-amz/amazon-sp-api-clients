@@ -779,7 +779,7 @@ class ProductPricingV0Client(BaseClient):
         asins: List[str] = None,
         skus: List[str] = None,
         customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
-    ):
+    ) -> Union[GetPricingResponse]:
         """
         Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
 
@@ -814,6 +814,7 @@ class ProductPricingV0Client(BaseClient):
             self._get_competitive_pricing_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -844,7 +845,7 @@ class ProductPricingV0Client(BaseClient):
         ],
         asin: str,
         customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
-    ):
+    ) -> Union[GetOffersResponse]:
         """
         Returns the lowest priced offers for a single item based on ASIN.
 
@@ -877,6 +878,7 @@ class ProductPricingV0Client(BaseClient):
             self._get_item_offers_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -906,7 +908,7 @@ class ProductPricingV0Client(BaseClient):
         ],
         seller_sku: str,
         customer_type: Union[Literal["Consumer"], Literal["Business"]] = None,
-    ):
+    ) -> Union[GetOffersResponse]:
         """
         Returns the lowest priced offers for a single SKU listing.
 
@@ -939,6 +941,7 @@ class ProductPricingV0Client(BaseClient):
             self._get_listing_offers_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -970,7 +973,7 @@ class ProductPricingV0Client(BaseClient):
             Literal["New"], Literal["Used"], Literal["Collectible"], Literal["Refurbished"], Literal["Club"]
         ] = None,
         offer_type: Union[Literal["B2C"], Literal["B2B"]] = None,
-    ):
+    ) -> Union[GetPricingResponse]:
         """
         Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
 
@@ -1007,6 +1010,7 @@ class ProductPricingV0Client(BaseClient):
             self._get_pricing_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

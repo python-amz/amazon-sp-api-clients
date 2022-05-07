@@ -225,7 +225,7 @@ class Feeds20210630Client(BaseClient):
     def cancel_feed(
         self,
         feed_id: str,
-    ):
+    ) -> Union[ErrorList]:
         """
         Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
 
@@ -249,6 +249,7 @@ class Feeds20210630Client(BaseClient):
             self._cancel_feed_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -271,7 +272,7 @@ class Feeds20210630Client(BaseClient):
         input_feed_document_id: str,
         marketplace_ids: List[str],
         feed_options: Dict[str, Any] = None,
-    ):
+    ) -> Union[CreateFeedResponse, ErrorList]:
         """
         Creates a feed. Upload the contents of the feed document before calling this operation.
 
@@ -303,6 +304,7 @@ class Feeds20210630Client(BaseClient):
             self._create_feed_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -328,7 +330,7 @@ class Feeds20210630Client(BaseClient):
     def create_feed_document(
         self,
         content_type: str,
-    ):
+    ) -> Union[CreateFeedDocumentResponse, ErrorList]:
         """
         Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
 
@@ -352,6 +354,7 @@ class Feeds20210630Client(BaseClient):
             self._create_feed_document_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -372,7 +375,7 @@ class Feeds20210630Client(BaseClient):
     def get_feed(
         self,
         feed_id: str,
-    ):
+    ) -> Union[ErrorList, Feed]:
         """
         Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
 
@@ -396,6 +399,7 @@ class Feeds20210630Client(BaseClient):
             self._get_feed_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -416,7 +420,7 @@ class Feeds20210630Client(BaseClient):
     def get_feed_document(
         self,
         feed_document_id: str,
-    ):
+    ) -> Union[ErrorList, FeedDocument]:
         """
         Returns the information required for retrieving a feed document's contents.
 
@@ -440,6 +444,7 @@ class Feeds20210630Client(BaseClient):
             self._get_feed_document_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -468,7 +473,7 @@ class Feeds20210630Client(BaseClient):
         created_since: datetime = None,
         created_until: datetime = None,
         next_token: str = None,
-    ):
+    ) -> Union[ErrorList, GetFeedsResponse]:
         """
         Returns feed details for the feeds that match the filters that you specify.
 
@@ -506,6 +511,7 @@ class Feeds20210630Client(BaseClient):
             self._get_feeds_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

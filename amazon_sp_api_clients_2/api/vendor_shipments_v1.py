@@ -766,7 +766,7 @@ class VendorShipmentsV1Client(BaseClient):
     def submit_shipment_confirmations(
         self,
         shipment_confirmations: List["ShipmentConfirmation"] = None,
-    ):
+    ) -> Union[SubmitShipmentConfirmationsResponse]:
         """
         Submits one or more shipment confirmations for vendor orders.
 
@@ -791,6 +791,7 @@ class VendorShipmentsV1Client(BaseClient):
             self._submit_shipment_confirmations_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

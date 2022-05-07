@@ -613,7 +613,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     def get_order(
         self,
         purchase_order_number: str,
-    ):
+    ) -> Union[ErrorList, Order]:
         """
         Returns purchase order information for the purchaseOrderNumber that you specify.
 
@@ -637,6 +637,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             self._get_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -664,7 +665,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
         include_details: bool = None,
-    ):
+    ) -> Union[ErrorList, OrderList]:
         """
         Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
 
@@ -704,6 +705,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             self._get_orders_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -732,7 +734,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
     def submit_acknowledgement(
         self,
         order_acknowledgements: List["OrderAcknowledgementItem"] = None,
-    ):
+    ) -> Union[ErrorList, TransactionId]:
         """
         Submits acknowledgements for one or more purchase orders.
 
@@ -756,6 +758,7 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             self._submit_acknowledgement_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

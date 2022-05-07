@@ -134,7 +134,7 @@ class FbaInboundEligibilityV1Client(BaseClient):
         asin: str,
         program: Union[Literal["INBOUND"], Literal["COMMINGLING"]],
         marketplace_ids: List[str] = None,
-    ):
+    ) -> Union[GetItemEligibilityPreviewResponse]:
         """
         This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
 
@@ -164,6 +164,7 @@ class FbaInboundEligibilityV1Client(BaseClient):
             self._get_item_eligibility_preview_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

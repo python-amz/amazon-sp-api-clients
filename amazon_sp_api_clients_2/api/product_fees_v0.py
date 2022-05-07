@@ -324,7 +324,7 @@ class ProductFeesV0Client(BaseClient):
         self,
         asin: str,
         fees_estimate_request: Dict[str, Any] = None,
-    ):
+    ) -> Union[GetMyFeesEstimateResponse]:
         """
         Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
 
@@ -357,6 +357,7 @@ class ProductFeesV0Client(BaseClient):
             self._get_my_fees_estimate_for_asin_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -380,7 +381,7 @@ class ProductFeesV0Client(BaseClient):
         self,
         seller_sku: str,
         fees_estimate_request: Dict[str, Any] = None,
-    ):
+    ) -> Union[GetMyFeesEstimateResponse]:
         """
         Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.
 
@@ -413,6 +414,7 @@ class ProductFeesV0Client(BaseClient):
             self._get_my_fees_estimate_for_sku_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

@@ -923,7 +923,7 @@ class CatalogItemsV0Client(BaseClient):
         self,
         marketplace_id: str,
         asin: str,
-    ):
+    ) -> Union[GetCatalogItemResponse]:
         """
         Returns a specified item and its attributes.
 
@@ -952,6 +952,7 @@ class CatalogItemsV0Client(BaseClient):
             self._get_catalog_item_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -976,7 +977,7 @@ class CatalogItemsV0Client(BaseClient):
         marketplace_id: str,
         asin: str = None,
         seller_sku: str = None,
-    ):
+    ) -> Union[ListCatalogCategoriesResponse]:
         """
         Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
 
@@ -1007,6 +1008,7 @@ class CatalogItemsV0Client(BaseClient):
             self._list_catalog_categories_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1037,7 +1039,7 @@ class CatalogItemsV0Client(BaseClient):
         ean: str = None,
         isbn: str = None,
         jan: str = None,
-    ):
+    ) -> Union[ListCatalogItemsResponse]:
         """
         Returns a list of items and their attributes, based on a search query or item identifiers that you specify. When based on a search query, provide the Query parameter and optionally, the QueryContextId parameter. When based on item identifiers, provide a single appropriate parameter based on the identifier type, and specify the associated item value.
 
@@ -1082,6 +1084,7 @@ class CatalogItemsV0Client(BaseClient):
             self._list_catalog_items_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

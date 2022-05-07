@@ -116,7 +116,7 @@ class Tokens20210301Client(BaseClient):
         self,
         restricted_resources: List["RestrictedResource"],
         target_application: str = None,
-    ):
+    ) -> Union[CreateRestrictedDataTokenResponse, ErrorList]:
         """
         Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.
 
@@ -146,6 +146,7 @@ class Tokens20210301Client(BaseClient):
             self._create_restricted_data_token_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

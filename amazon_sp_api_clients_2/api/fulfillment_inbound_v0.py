@@ -1756,7 +1756,7 @@ class FulfillmentInboundV0Client(BaseClient):
         shipment_id: str,
         need_by_date: date,
         marketplace_id: str,
-    ):
+    ) -> Union[ConfirmPreorderResponse]:
         """
         Returns information needed to confirm a shipment for pre-order. Call this operation after calling the getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment.
 
@@ -1786,6 +1786,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._confirm_preorder_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1809,7 +1810,7 @@ class FulfillmentInboundV0Client(BaseClient):
     def confirm_transport(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[ConfirmTransportResponse]:
         """
         Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment.
 
@@ -1837,6 +1838,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._confirm_transport_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1859,7 +1861,7 @@ class FulfillmentInboundV0Client(BaseClient):
         inbound_shipment_header: Dict[str, Any],
         inbound_shipment_items: List["InboundShipmentItem"],
         marketplace_id: str,
-    ):
+    ) -> Union[InboundShipmentResponse]:
         """
         Returns a new inbound shipment based on the specified shipmentId that was returned by the createInboundShipmentPlan operation.
 
@@ -1891,6 +1893,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._create_inbound_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1921,7 +1924,7 @@ class FulfillmentInboundV0Client(BaseClient):
         ship_from_address: Dict[str, Any],
         ship_to_country_code: str = None,
         ship_to_country_subdivision_code: str = None,
-    ):
+    ) -> Union[CreateInboundShipmentPlanResponse]:
         """
         Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans require different processing—for example, items that require labels must be shipped separately from stickerless, commingled inventory.
 
@@ -1969,6 +1972,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._create_inbound_shipment_plan_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1994,7 +1998,7 @@ class FulfillmentInboundV0Client(BaseClient):
     def estimate_transport(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[EstimateTransportResponse]:
         """
         Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
 
@@ -2020,6 +2024,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._estimate_transport_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2039,7 +2044,7 @@ class FulfillmentInboundV0Client(BaseClient):
     def get_bill_of_lading(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[GetBillOfLadingResponse]:
         """
         Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
 
@@ -2063,6 +2068,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_bill_of_lading_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2084,7 +2090,7 @@ class FulfillmentInboundV0Client(BaseClient):
         marketplace_id: str,
         seller_skulist: List[str] = None,
         asinlist: List[str] = None,
-    ):
+    ) -> Union[GetInboundGuidanceResponse]:
         """
         Returns information that lets a seller know if Amazon recommends sending an item to a given marketplace. In some cases, Amazon provides guidance for why a given SellerSKU or ASIN is not recommended for shipment to Amazon's fulfillment network. Sellers may still ship items that are not recommended, at their discretion.
 
@@ -2114,6 +2120,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_inbound_guidance_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2157,7 +2164,7 @@ class FulfillmentInboundV0Client(BaseClient):
         number_of_pallets: int = None,
         page_size: int = None,
         page_start_index: int = None,
-    ):
+    ) -> Union[GetLabelsResponse]:
         """
         Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
 
@@ -2198,6 +2205,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_labels_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2227,7 +2235,7 @@ class FulfillmentInboundV0Client(BaseClient):
         self,
         shipment_id: str,
         marketplace_id: str,
-    ):
+    ) -> Union[GetPreorderInfoResponse]:
         """
         Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order.
 
@@ -2255,6 +2263,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_preorder_info_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2279,7 +2288,7 @@ class FulfillmentInboundV0Client(BaseClient):
         ship_to_country_code: str,
         seller_skulist: List[str] = None,
         asinlist: List[str] = None,
-    ):
+    ) -> Union[GetPrepInstructionsResponse]:
         """
         Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's fulfillment network.
 
@@ -2311,6 +2320,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_prep_instructions_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2338,7 +2348,7 @@ class FulfillmentInboundV0Client(BaseClient):
         last_updated_after: datetime = None,
         last_updated_before: datetime = None,
         next_token: str = None,
-    ):
+    ) -> Union[GetShipmentItemsResponse]:
         """
         Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
 
@@ -2372,6 +2382,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_shipment_items_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2398,7 +2409,7 @@ class FulfillmentInboundV0Client(BaseClient):
         self,
         shipment_id: str,
         marketplace_id: str,
-    ):
+    ) -> Union[GetShipmentItemsResponse]:
         """
         Returns a list of items in a specified inbound shipment.
 
@@ -2426,6 +2437,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_shipment_items_by_shipment_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2467,7 +2479,7 @@ class FulfillmentInboundV0Client(BaseClient):
         last_updated_after: datetime = None,
         last_updated_before: datetime = None,
         next_token: str = None,
-    ):
+    ) -> Union[GetShipmentsResponse]:
         """
         Returns a list of inbound shipments based on criteria that you specify.
 
@@ -2505,6 +2517,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_shipments_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2532,7 +2545,7 @@ class FulfillmentInboundV0Client(BaseClient):
     def get_transport_details(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[GetTransportDetailsResponse]:
         """
         Returns current transportation information about an inbound shipment.
 
@@ -2556,6 +2569,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._get_transport_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2578,7 +2592,7 @@ class FulfillmentInboundV0Client(BaseClient):
         is_partnered: bool,
         shipment_type: Union[Literal["SP"], Literal["LTL"]],
         transport_details: Dict[str, Any],
-    ):
+    ) -> Union[PutTransportDetailsResponse]:
         """
         Sends transportation information to Amazon about an inbound shipment.
 
@@ -2610,6 +2624,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._put_transport_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2637,7 +2652,7 @@ class FulfillmentInboundV0Client(BaseClient):
         inbound_shipment_header: Dict[str, Any],
         inbound_shipment_items: List["InboundShipmentItem"],
         marketplace_id: str,
-    ):
+    ) -> Union[InboundShipmentResponse]:
         """
         Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new items is not supported.
 
@@ -2669,6 +2684,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._update_inbound_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2693,7 +2709,7 @@ class FulfillmentInboundV0Client(BaseClient):
     def void_transport(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[VoidTransportResponse]:
         """
         Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier.
 
@@ -2721,6 +2737,7 @@ class FulfillmentInboundV0Client(BaseClient):
             self._void_transport_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

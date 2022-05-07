@@ -141,7 +141,7 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
         self,
         warehouse_id: str,
         inventory: Dict[str, Any] = None,
-    ):
+    ) -> Union[SubmitInventoryUpdateResponse]:
         """
         Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
 
@@ -170,6 +170,7 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
             self._submit_inventory_update_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

@@ -573,7 +573,7 @@ class VendorInvoicesV1Client(BaseClient):
     def submit_invoices(
         self,
         invoices: List["Invoice"] = None,
-    ):
+    ) -> Union[SubmitInvoicesResponse]:
         """
         Submit new invoices to Amazon.
 
@@ -598,6 +598,7 @@ class VendorInvoicesV1Client(BaseClient):
             self._submit_invoices_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

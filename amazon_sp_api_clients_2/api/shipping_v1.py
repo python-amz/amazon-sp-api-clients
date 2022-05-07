@@ -1125,7 +1125,7 @@ class ShippingV1Client(BaseClient):
     def cancel_shipment(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[CancelShipmentResponse]:
         """
         Cancel a shipment by the given shipmentId.
 
@@ -1149,6 +1149,7 @@ class ShippingV1Client(BaseClient):
             self._cancel_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1171,7 +1172,7 @@ class ShippingV1Client(BaseClient):
         containers: List["Container"],
         ship_from: Dict[str, Any],
         ship_to: Dict[str, Any],
-    ):
+    ) -> Union[CreateShipmentResponse]:
         """
         Create a new shipment.
 
@@ -1203,6 +1204,7 @@ class ShippingV1Client(BaseClient):
             self._create_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1226,7 +1228,7 @@ class ShippingV1Client(BaseClient):
 
     def get_account(
         self,
-    ):
+    ) -> Union[GetAccountResponse]:
         """
         Verify if the current account is valid.
 
@@ -1249,6 +1251,7 @@ class ShippingV1Client(BaseClient):
             self._get_account_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1272,7 +1275,7 @@ class ShippingV1Client(BaseClient):
         ship_from: Dict[str, Any],
         ship_to: Dict[str, Any],
         ship_date: datetime = None,
-    ):
+    ) -> Union[GetRatesResponse]:
         """
         Get service rates.
 
@@ -1306,6 +1309,7 @@ class ShippingV1Client(BaseClient):
             self._get_rates_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1331,7 +1335,7 @@ class ShippingV1Client(BaseClient):
     def get_shipment(
         self,
         shipment_id: str,
-    ):
+    ) -> Union[GetShipmentResponse]:
         """
         Return the entire shipment object for the shipmentId.
 
@@ -1355,6 +1359,7 @@ class ShippingV1Client(BaseClient):
             self._get_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1374,7 +1379,7 @@ class ShippingV1Client(BaseClient):
     def get_tracking_information(
         self,
         tracking_id: str,
-    ):
+    ) -> Union[GetTrackingInformationResponse]:
         """
         Return the tracking information of a shipment.
 
@@ -1398,6 +1403,7 @@ class ShippingV1Client(BaseClient):
             self._get_tracking_information_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1419,7 +1425,7 @@ class ShippingV1Client(BaseClient):
         shipment_id: str,
         label_specification: Dict[str, Any],
         rate_id: str,
-    ):
+    ) -> Union[PurchaseLabelsResponse]:
         """
         Purchase shipping labels based on a given rate.
 
@@ -1449,6 +1455,7 @@ class ShippingV1Client(BaseClient):
             self._purchase_labels_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1480,7 +1487,7 @@ class ShippingV1Client(BaseClient):
         ship_from: Dict[str, Any],
         ship_to: Dict[str, Any],
         ship_date: datetime = None,
-    ):
+    ) -> Union[PurchaseShipmentResponse]:
         """
         Purchase shipping labels.
 
@@ -1518,6 +1525,7 @@ class ShippingV1Client(BaseClient):
             self._purchase_shipment_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1547,7 +1555,7 @@ class ShippingV1Client(BaseClient):
         shipment_id: str,
         tracking_id: str,
         label_specification: Dict[str, Any],
-    ):
+    ) -> Union[RetrieveShippingLabelResponse]:
         """
         Retrieve shipping label based on the shipment id and tracking id.
 
@@ -1577,6 +1585,7 @@ class ShippingV1Client(BaseClient):
             self._retrieve_shipping_label_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

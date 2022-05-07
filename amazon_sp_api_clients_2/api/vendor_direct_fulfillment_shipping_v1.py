@@ -797,7 +797,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     def get_customer_invoice(
         self,
         purchase_order_number: str,
-    ):
+    ) -> Union[GetCustomerInvoiceResponse]:
         """
         Returns a customer invoice based on the purchaseOrderNumber that you specify.
 
@@ -822,6 +822,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._get_customer_invoice_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -847,7 +848,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
-    ):
+    ) -> Union[GetCustomerInvoiceResponse, GetCustomerInvoicesResponse]:
         """
         Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
 
@@ -884,6 +885,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._get_customer_invoices_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -910,7 +912,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     def get_packing_slip(
         self,
         purchase_order_number: str,
-    ):
+    ) -> Union[GetPackingSlipResponse]:
         """
         Returns a packing slip based on the purchaseOrderNumber that you specify.
 
@@ -935,6 +937,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._get_packing_slip_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -960,7 +963,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
-    ):
+    ) -> Union[GetPackingSlipListResponse]:
         """
         Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
 
@@ -997,6 +1000,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._get_packing_slips_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1024,7 +1028,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     def get_shipping_label(
         self,
         purchase_order_number: str,
-    ):
+    ) -> Union[GetShippingLabelResponse]:
         """
         Returns a shipping label for the purchaseOrderNumber that you specify.
 
@@ -1049,6 +1053,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._get_shipping_label_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1074,7 +1079,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         limit: int = None,
         sort_order: Union[Literal["ASC"], Literal["DESC"]] = None,
         next_token: str = None,
-    ):
+    ) -> Union[GetShippingLabelListResponse]:
         """
         Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
 
@@ -1111,6 +1116,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._get_shipping_labels_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1137,7 +1143,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     def submit_shipment_confirmations(
         self,
         shipment_confirmations: List["ShipmentConfirmation"] = None,
-    ):
+    ) -> Union[SubmitShipmentConfirmationsResponse]:
         """
         Submits one or more shipment confirmations for vendor orders.
 
@@ -1162,6 +1168,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._submit_shipment_confirmations_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1182,7 +1189,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     def submit_shipment_status_updates(
         self,
         shipment_status_updates: List["ShipmentStatusUpdate"] = None,
-    ):
+    ) -> Union[SubmitShipmentStatusUpdatesResponse]:
         """
         This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
 
@@ -1207,6 +1214,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._submit_shipment_status_updates_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1227,7 +1235,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     def submit_shipping_label_request(
         self,
         shipping_label_requests: List["ShippingLabelRequest"] = None,
-    ):
+    ) -> Union[SubmitShippingLabelsResponse]:
         """
         Creates a shipping label for a purchase order and returns a transactionId for reference.
 
@@ -1252,6 +1260,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             self._submit_shipping_label_request_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

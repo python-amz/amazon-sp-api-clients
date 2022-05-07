@@ -198,6 +198,13 @@ class ParsedOperation(Operation):
             'status_code': status, 'media_type': name, 'generator': self.generator})
                 for status, name, response in response]
 
+    @property
+    def result_type(self):
+        result_types = {r.type_hint for r in self.parsed_responses}
+        result_types = list(sorted(result_types))
+        result_types = ', '.join(result_types)
+        return f'Union[{result_types}]'
+
 
 class Generator:
     def __init__(self, path: Path):

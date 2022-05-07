@@ -340,7 +340,7 @@ class NotificationsV1Client(BaseClient):
         self,
         name: str,
         resource_specification: Dict[str, Any],
-    ):
+    ) -> Union[CreateDestinationResponse]:
         """
         Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 
@@ -368,6 +368,7 @@ class NotificationsV1Client(BaseClient):
             self._create_destination_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -394,7 +395,7 @@ class NotificationsV1Client(BaseClient):
         notification_type: str,
         destination_id: str = None,
         payload_version: str = None,
-    ):
+    ) -> Union[CreateSubscriptionResponse]:
         """
         Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the createDestination operation.
 
@@ -425,6 +426,7 @@ class NotificationsV1Client(BaseClient):
             self._create_subscription_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -450,7 +452,7 @@ class NotificationsV1Client(BaseClient):
     def delete_destination(
         self,
         destination_id: str,
-    ):
+    ) -> Union[DeleteDestinationResponse]:
         """
         Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 
@@ -474,6 +476,7 @@ class NotificationsV1Client(BaseClient):
             self._delete_destination_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -496,7 +499,7 @@ class NotificationsV1Client(BaseClient):
         self,
         subscription_id: str,
         notification_type: str,
-    ):
+    ) -> Union[DeleteSubscriptionByIdResponse]:
         """
         Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 
@@ -525,6 +528,7 @@ class NotificationsV1Client(BaseClient):
             self._delete_subscription_by_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -549,7 +553,7 @@ class NotificationsV1Client(BaseClient):
     def get_destination(
         self,
         destination_id: str,
-    ):
+    ) -> Union[GetDestinationResponse]:
         """
         Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 
@@ -573,6 +577,7 @@ class NotificationsV1Client(BaseClient):
             self._get_destination_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -593,7 +598,7 @@ class NotificationsV1Client(BaseClient):
 
     def get_destinations(
         self,
-    ):
+    ) -> Union[GetDestinationsResponse]:
         """
         Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 
@@ -616,6 +621,7 @@ class NotificationsV1Client(BaseClient):
             self._get_destinations_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -637,7 +643,7 @@ class NotificationsV1Client(BaseClient):
     def get_subscription(
         self,
         notification_type: str,
-    ):
+    ) -> Union[GetSubscriptionResponse]:
         """
         Returns information about subscriptions of the specified notification type. You can use this API to get subscription information when you do not have a subscription identifier.
 
@@ -662,6 +668,7 @@ class NotificationsV1Client(BaseClient):
             self._get_subscription_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -683,7 +690,7 @@ class NotificationsV1Client(BaseClient):
         self,
         subscription_id: str,
         notification_type: str,
-    ):
+    ) -> Union[GetSubscriptionByIdResponse, GetSubscriptionResponse]:
         """
         Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 
@@ -712,6 +719,7 @@ class NotificationsV1Client(BaseClient):
             self._get_subscription_by_id_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

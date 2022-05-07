@@ -1275,7 +1275,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         marketplace_id: str,
         content_document: Dict[str, Any],
-    ):
+    ) -> Union[ErrorList, PostContentDocumentResponse]:
         """
         Creates a new A+ Content document.
 
@@ -1304,6 +1304,7 @@ class AplusContent20201101Client(BaseClient):
             self._create_content_document_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1328,7 +1329,7 @@ class AplusContent20201101Client(BaseClient):
         content_reference_key: str,
         marketplace_id: str,
         included_data_set: List[Union[Literal["CONTENTS"], Literal["METADATA"]]],
-    ):
+    ) -> Union[ErrorList, GetContentDocumentResponse]:
         """
         Returns an A+ Content document, if available.
 
@@ -1359,6 +1360,7 @@ class AplusContent20201101Client(BaseClient):
             self._get_content_document_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1387,7 +1389,7 @@ class AplusContent20201101Client(BaseClient):
         included_data_set: List[Union[Literal["METADATA"]]] = None,
         asin_set: List[str] = None,
         page_token: str = None,
-    ):
+    ) -> Union[ErrorList, ListContentDocumentAsinRelationsResponse]:
         """
         Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the asinSet parameter, the operation returns all ASINs related to the content document.
 
@@ -1422,6 +1424,7 @@ class AplusContent20201101Client(BaseClient):
             self._list_content_document_asin_relations_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1449,7 +1452,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
-    ):
+    ) -> Union[ErrorList, PostContentDocumentApprovalSubmissionResponse]:
         """
         Submits an A+ Content document for review, approval, and publishing.
 
@@ -1478,6 +1481,7 @@ class AplusContent20201101Client(BaseClient):
             self._post_content_document_approval_submission_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1503,7 +1507,7 @@ class AplusContent20201101Client(BaseClient):
         content_reference_key: str,
         marketplace_id: str,
         asin_set: List["Asin"],
-    ):
+    ) -> Union[ErrorList, PostContentDocumentAsinRelationsResponse]:
         """
         Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
 
@@ -1534,6 +1538,7 @@ class AplusContent20201101Client(BaseClient):
             self._post_content_document_asin_relations_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1559,7 +1564,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         content_reference_key: str,
         marketplace_id: str,
-    ):
+    ) -> Union[ErrorList, PostContentDocumentSuspendSubmissionResponse]:
         """
         Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
 
@@ -1588,6 +1593,7 @@ class AplusContent20201101Client(BaseClient):
             self._post_content_document_suspend_submission_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1612,7 +1618,7 @@ class AplusContent20201101Client(BaseClient):
         self,
         marketplace_id: str,
         page_token: str = None,
-    ):
+    ) -> Union[ErrorList, SearchContentDocumentsResponse]:
         """
         Returns a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the getContentDocument operation to get the actual contents of the A+ Content documents.
 
@@ -1641,6 +1647,7 @@ class AplusContent20201101Client(BaseClient):
             self._search_content_documents_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1666,7 +1673,7 @@ class AplusContent20201101Client(BaseClient):
         marketplace_id: str,
         asin: str,
         page_token: str = None,
-    ):
+    ) -> Union[ErrorList, SearchContentPublishRecordsResponse]:
         """
         Searches for A+ Content publishing records, if available.
 
@@ -1697,6 +1704,7 @@ class AplusContent20201101Client(BaseClient):
             self._search_content_publish_records_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1722,7 +1730,7 @@ class AplusContent20201101Client(BaseClient):
         content_reference_key: str,
         marketplace_id: str,
         content_document: Dict[str, Any],
-    ):
+    ) -> Union[ErrorList, PostContentDocumentResponse]:
         """
         Updates an existing A+ Content document.
 
@@ -1753,6 +1761,7 @@ class AplusContent20201101Client(BaseClient):
             self._update_content_document_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1779,7 +1788,7 @@ class AplusContent20201101Client(BaseClient):
         marketplace_id: str,
         content_document: Dict[str, Any],
         asin_set: List[str] = None,
-    ):
+    ) -> Union[ErrorList, ValidateContentDocumentAsinRelationsResponse]:
         """
         Checks if the A+ Content document is valid for use on a set of ASINs.
 
@@ -1810,6 +1819,7 @@ class AplusContent20201101Client(BaseClient):
             self._validate_content_document_asin_relations_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

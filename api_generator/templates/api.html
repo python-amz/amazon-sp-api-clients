@@ -50,7 +50,7 @@ class {{ data.class_name }}Client(BaseClient):
             {{ param.variable_name }}: {{ param.type_hint }}{% if not param.required %}=None{% endif %},
             {% endif %}
         {% endfor %}
-    ):
+    ) -> {{ operation.result_type }}:
         """
 {{ operation.description }}
 
@@ -64,6 +64,7 @@ Args:
         self._{{ operation.method_name }}_params,
     )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
     _{{ operation.method_name }}_params = ( # name, param in

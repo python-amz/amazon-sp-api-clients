@@ -1818,7 +1818,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def cancel_fulfillment_order(
         self,
         seller_fulfillment_order_id: str,
-    ):
+    ) -> Union[CancelFulfillmentOrderResponse]:
         """
         Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
 
@@ -1842,6 +1842,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._cancel_fulfillment_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1877,7 +1878,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         marketplace_id: str = None,
         notification_emails: List[str] = None,
         ship_from_country_code: str = None,
-    ):
+    ) -> Union[CreateFulfillmentOrderResponse]:
         """
         Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
 
@@ -1932,6 +1933,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._create_fulfillment_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1968,7 +1970,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         self,
         seller_fulfillment_order_id: str,
         items: List["CreateReturnItem"],
-    ):
+    ) -> Union[CreateFulfillmentReturnResponse]:
         """
         Creates a fulfillment return.
 
@@ -1996,6 +1998,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._create_fulfillment_return_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2020,7 +2023,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         marketplace_id: str,
         feature_name: str,
         next_token: str = None,
-    ):
+    ) -> Union[GetFeatureInventoryResponse]:
         """
         Returns a list of inventory items that are eligible for the fulfillment feature you specify.
 
@@ -2050,6 +2053,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._get_feature_inventory_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2075,7 +2079,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         marketplace_id: str,
         feature_name: str,
         seller_sku: str,
-    ):
+    ) -> Union[GetFeatureSkuResponse]:
         """
         Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object.
 
@@ -2105,6 +2109,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._get_feature_sku_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2128,7 +2133,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def get_features(
         self,
         marketplace_id: str,
-    ):
+    ) -> Union[GetFeaturesResponse]:
         """
         Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
 
@@ -2152,6 +2157,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._get_features_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2171,7 +2177,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def get_fulfillment_order(
         self,
         seller_fulfillment_order_id: str,
-    ):
+    ) -> Union[GetFulfillmentOrderResponse]:
         """
         Returns the fulfillment order indicated by the specified order identifier.
 
@@ -2195,6 +2201,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._get_fulfillment_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2220,7 +2227,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         include_delivery_windows: bool = None,
         marketplace_id: str = None,
         shipping_speed_categories: List["ShippingSpeedCategory"] = None,
-    ):
+    ) -> Union[GetFulfillmentPreviewResponse]:
         """
         Returns a list of fulfillment order previews based on shipping criteria that you specify.
 
@@ -2261,6 +2268,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._get_fulfillment_preview_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2288,7 +2296,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
     def get_package_tracking_details(
         self,
         package_number: int,
-    ):
+    ) -> Union[GetPackageTrackingDetailsResponse]:
         """
         Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
 
@@ -2312,6 +2320,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._get_package_tracking_details_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2332,7 +2341,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         self,
         query_start_date: datetime = None,
         next_token: str = None,
-    ):
+    ) -> Union[ListAllFulfillmentOrdersResponse]:
         """
         Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next token parameter.
 
@@ -2360,6 +2369,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._list_all_fulfillment_orders_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2385,7 +2395,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         language: str,
         marketplace_id: str = None,
         seller_fulfillment_order_id: str = None,
-    ):
+    ) -> Union[ListReturnReasonCodesResponse]:
         """
         Returns a list of return reason codes for a seller SKU in a given marketplace.
 
@@ -2417,6 +2427,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._list_return_reason_codes_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -2455,7 +2466,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         shipping_speed_category: Union[
             Literal["Standard"], Literal["Expedited"], Literal["Priority"], Literal["ScheduledDelivery"]
         ] = None,
-    ):
+    ) -> Union[UpdateFulfillmentOrderResponse]:
         """
         Updates and/or requests shipment for a fulfillment order with an order hold on it.
 
@@ -2505,6 +2516,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
             self._update_fulfillment_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

@@ -90,7 +90,7 @@ class Uploads20201101Client(BaseClient):
         content_md5: str,
         resource: str,
         content_type: str = None,
-    ):
+    ) -> Union[CreateUploadDestinationResponse]:
         """
         Creates an upload destination, returning the information required to upload a file to the destination and to programmatically access the file.
 
@@ -122,6 +122,7 @@ class Uploads20201101Client(BaseClient):
             self._create_upload_destination_for_resource_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

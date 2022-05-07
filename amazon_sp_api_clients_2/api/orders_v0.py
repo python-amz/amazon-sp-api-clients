@@ -1350,7 +1350,7 @@ class OrdersV0Client(BaseClient):
     def get_order(
         self,
         order_id: str,
-    ):
+    ) -> Union[GetOrderResponse]:
         """
         Returns the order indicated by the specified order ID.
 
@@ -1375,6 +1375,7 @@ class OrdersV0Client(BaseClient):
             self._get_order_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1393,7 +1394,7 @@ class OrdersV0Client(BaseClient):
     def get_order_address(
         self,
         order_id: str,
-    ):
+    ) -> Union[GetOrderAddressResponse]:
         """
         Returns the shipping address for the specified order.
 
@@ -1418,6 +1419,7 @@ class OrdersV0Client(BaseClient):
             self._get_order_address_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1436,7 +1438,7 @@ class OrdersV0Client(BaseClient):
     def get_order_buyer_info(
         self,
         order_id: str,
-    ):
+    ) -> Union[GetOrderBuyerInfoResponse]:
         """
         Returns buyer information for the specified order.
 
@@ -1461,6 +1463,7 @@ class OrdersV0Client(BaseClient):
             self._get_order_buyer_info_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1480,7 +1483,7 @@ class OrdersV0Client(BaseClient):
         self,
         order_id: str,
         next_token: str = None,
-    ):
+    ) -> Union[GetOrderItemsResponse]:
         """
         Returns detailed order item information for the order indicated by the specified order ID. If NextToken is provided, it's used to retrieve the next page of order items.
 
@@ -1511,6 +1514,7 @@ class OrdersV0Client(BaseClient):
             self._get_order_items_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1533,7 +1537,7 @@ class OrdersV0Client(BaseClient):
         self,
         order_id: str,
         next_token: str = None,
-    ):
+    ) -> Union[GetOrderItemsBuyerInfoResponse]:
         """
         Returns buyer information for the order items in the specified order.
 
@@ -1562,6 +1566,7 @@ class OrdersV0Client(BaseClient):
             self._get_order_items_buyer_info_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1583,7 +1588,7 @@ class OrdersV0Client(BaseClient):
     def get_order_regulated_info(
         self,
         order_id: str,
-    ):
+    ) -> Union[GetOrderRegulatedInfoResponse]:
         """
         Returns regulated information for the order indicated by the specified order ID.
 
@@ -1608,6 +1613,7 @@ class OrdersV0Client(BaseClient):
             self._get_order_regulated_info_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1642,7 +1648,7 @@ class OrdersV0Client(BaseClient):
         actual_fulfillment_supply_source_id: str = None,
         is_ispu: bool = None,
         store_chain_store_id: str = None,
-    ):
+    ) -> Union[GetOrdersResponse]:
         """
         Returns orders created or updated during the time frame indicated by the specified parameters. You can also apply a range of filtering criteria to narrow the list of orders returned. If NextToken is present, that will be used to retrieve the orders instead of other criteria.
 
@@ -1702,6 +1708,7 @@ class OrdersV0Client(BaseClient):
             self._get_orders_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1741,7 +1748,7 @@ class OrdersV0Client(BaseClient):
         marketplace_id: str,
         shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]],
         order_items: List["OrderItemsItem"] = None,
-    ):
+    ) -> Union[UpdateShipmentStatusErrorResponse]:
         """
         Update the shipment status.
 
@@ -1765,6 +1772,7 @@ class OrdersV0Client(BaseClient):
             self._update_shipment_status_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -1790,7 +1798,7 @@ class OrdersV0Client(BaseClient):
         self,
         order_id: str,
         regulated_order_verification_status: Dict[str, Any],
-    ):
+    ) -> Union[UpdateVerificationStatusErrorResponse]:
         """
         Updates (approves or rejects) the verification status of an order containing regulated products.
 
@@ -1819,6 +1827,7 @@ class OrdersV0Client(BaseClient):
             self._update_verification_status_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 

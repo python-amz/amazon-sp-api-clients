@@ -182,7 +182,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
     def generate_order_scenarios(
         self,
         orders: List["OrderScenarioRequest"] = None,
-    ):
+    ) -> Union[ErrorList, TransactionReference]:
         """
         Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
 
@@ -198,6 +198,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
             self._generate_order_scenarios_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
@@ -218,7 +219,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
     def get_order_scenarios(
         self,
         transaction_id: str,
-    ):
+    ) -> Union[ErrorList, TransactionStatus]:
         """
         Returns the status of the transaction indicated by the specified transactionId. If the transaction was successful, also returns the requested test order data.
 
@@ -234,6 +235,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
             self._get_order_scenarios_params,
         )
         klass = self._update_verification_status_responses.get(response.status_code)
+        # noinspection PyArgumentList
         obj = klass(**response.json())
         return obj
 
