@@ -549,8 +549,15 @@ class CatalogItems20201201Client(BaseClient):
             included_data,
             locale,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_catalog_item_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_catalog_item_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_catalog_item_params = (  # name, param in
         ("asin", "path"),
@@ -558,6 +565,18 @@ class CatalogItems20201201Client(BaseClient):
         ("includedData", "query"),
         ("locale", "query"),
     )
+
+    _get_catalog_item_responses = {
+        200: Item,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def search_catalog_items(
         self,
@@ -616,8 +635,15 @@ class CatalogItems20201201Client(BaseClient):
             keywords_locale,
             locale,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._search_catalog_items_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._search_catalog_items_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _search_catalog_items_params = (  # name, param in
         ("keywords", "query"),
@@ -630,3 +656,15 @@ class CatalogItems20201201Client(BaseClient):
         ("keywordsLocale", "query"),
         ("locale", "query"),
     )
+
+    _search_catalog_items_responses = {
+        200: ItemSearchResults,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

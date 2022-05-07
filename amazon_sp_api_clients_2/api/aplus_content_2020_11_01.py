@@ -1297,13 +1297,31 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             content_document,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_content_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_content_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_content_document_params = (  # name, param in
         ("marketplaceId", "query"),
         ("contentDocument", "body"),
     )
+
+    _create_content_document_responses = {
+        200: PostContentDocumentResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_content_document(
         self,
@@ -1334,14 +1352,33 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             included_data_set,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_content_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_content_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_content_document_params = (  # name, param in
         ("contentReferenceKey", "path"),
         ("marketplaceId", "query"),
         ("includedDataSet", "query"),
     )
+
+    _get_content_document_responses = {
+        200: GetContentDocumentResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def list_content_document_asin_relations(
         self,
@@ -1378,8 +1415,15 @@ class AplusContent20201101Client(BaseClient):
             asin_set,
             page_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_content_document_asin_relations_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_content_document_asin_relations_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_content_document_asin_relations_params = (  # name, param in
         ("contentReferenceKey", "path"),
@@ -1388,6 +1432,18 @@ class AplusContent20201101Client(BaseClient):
         ("asinSet", "query"),
         ("pageToken", "query"),
     )
+
+    _list_content_document_asin_relations_responses = {
+        200: ListContentDocumentAsinRelationsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def post_content_document_approval_submission(
         self,
@@ -1416,14 +1472,31 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
         )
         response = self._parse_args_and_request(
-            url, "POST", values, self._post_content_document_approval_submission_params
+            url,
+            "POST",
+            values,
+            self._post_content_document_approval_submission_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _post_content_document_approval_submission_params = (  # name, param in
         ("contentReferenceKey", "path"),
         ("marketplaceId", "query"),
     )
+
+    _post_content_document_approval_submission_responses = {
+        200: PostContentDocumentApprovalSubmissionResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def post_content_document_asin_relations(
         self,
@@ -1454,14 +1527,33 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             asin_set,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._post_content_document_asin_relations_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._post_content_document_asin_relations_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _post_content_document_asin_relations_params = (  # name, param in
         ("contentReferenceKey", "path"),
         ("marketplaceId", "query"),
         ("asinSet", "body"),
     )
+
+    _post_content_document_asin_relations_responses = {
+        200: PostContentDocumentAsinRelationsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def post_content_document_suspend_submission(
         self,
@@ -1490,14 +1582,31 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
         )
         response = self._parse_args_and_request(
-            url, "POST", values, self._post_content_document_suspend_submission_params
+            url,
+            "POST",
+            values,
+            self._post_content_document_suspend_submission_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _post_content_document_suspend_submission_params = (  # name, param in
         ("contentReferenceKey", "path"),
         ("marketplaceId", "query"),
     )
+
+    _post_content_document_suspend_submission_responses = {
+        200: PostContentDocumentSuspendSubmissionResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def search_content_documents(
         self,
@@ -1525,13 +1634,32 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             page_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._search_content_documents_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._search_content_documents_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _search_content_documents_params = (  # name, param in
         ("marketplaceId", "query"),
         ("pageToken", "query"),
     )
+
+    _search_content_documents_responses = {
+        200: SearchContentDocumentsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def search_content_publish_records(
         self,
@@ -1562,14 +1690,32 @@ class AplusContent20201101Client(BaseClient):
             asin,
             page_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._search_content_publish_records_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._search_content_publish_records_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _search_content_publish_records_params = (  # name, param in
         ("marketplaceId", "query"),
         ("asin", "query"),
         ("pageToken", "query"),
     )
+
+    _search_content_publish_records_responses = {
+        200: SearchContentPublishRecordsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def update_content_document(
         self,
@@ -1600,14 +1746,33 @@ class AplusContent20201101Client(BaseClient):
             marketplace_id,
             content_document,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._update_content_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._update_content_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _update_content_document_params = (  # name, param in
         ("contentReferenceKey", "path"),
         ("marketplaceId", "query"),
         ("contentDocument", "body"),
     )
+
+    _update_content_document_responses = {
+        200: PostContentDocumentResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        410: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def validate_content_document_asin_relations(
         self,
@@ -1639,12 +1804,28 @@ class AplusContent20201101Client(BaseClient):
             content_document,
         )
         response = self._parse_args_and_request(
-            url, "POST", values, self._validate_content_document_asin_relations_params
+            url,
+            "POST",
+            values,
+            self._validate_content_document_asin_relations_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _validate_content_document_asin_relations_params = (  # name, param in
         ("marketplaceId", "query"),
         ("asinSet", "query"),
         ("contentDocument", "body"),
     )
+
+    _validate_content_document_asin_relations_responses = {
+        200: ValidateContentDocumentAsinRelationsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

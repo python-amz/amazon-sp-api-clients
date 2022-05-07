@@ -630,10 +630,29 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         """
         url = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/{purchaseOrderNumber}"
         values = (purchase_order_number,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
+
+    _get_order_responses = {
+        200: Order,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_orders(
         self,
@@ -678,8 +697,15 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
             next_token,
             include_details,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_orders_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_orders_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_orders_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -691,6 +717,17 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         ("nextToken", "query"),
         ("includeDetails", "query"),
     )
+
+    _get_orders_responses = {
+        200: OrderList,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def submit_acknowledgement(
         self,
@@ -712,7 +749,26 @@ class VendorDirectFulfillmentOrders20211228Client(BaseClient):
         """
         url = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
         values = (order_acknowledgements,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_acknowledgement_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_acknowledgement_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_acknowledgement_params = (("orderAcknowledgements", "body"),)  # name, param in
+
+    _submit_acknowledgement_responses = {
+        202: TransactionId,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

@@ -1409,10 +1409,28 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/shipments/{shipmentId}"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._cancel_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
+
+    _cancel_shipment_responses = {
+        200: CancelShipmentResponse,
+        400: CancelShipmentResponse,
+        401: CancelShipmentResponse,
+        403: CancelShipmentResponse,
+        404: CancelShipmentResponse,
+        429: CancelShipmentResponse,
+        500: CancelShipmentResponse,
+        503: CancelShipmentResponse,
+    }
 
     def cancel_shipment_old(
         self,
@@ -1434,10 +1452,28 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/shipments/{shipmentId}/cancel"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "PUT", values, self._cancel_shipment_old_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._cancel_shipment_old_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_shipment_old_params = (("shipmentId", "path"),)  # name, param in
+
+    _cancel_shipment_old_responses = {
+        200: CancelShipmentResponse,
+        400: CancelShipmentResponse,
+        401: CancelShipmentResponse,
+        403: CancelShipmentResponse,
+        404: CancelShipmentResponse,
+        429: CancelShipmentResponse,
+        500: CancelShipmentResponse,
+        503: CancelShipmentResponse,
+    }
 
     def create_shipment(
         self,
@@ -1476,8 +1512,15 @@ class MerchantFulfillmentV0Client(BaseClient):
             shipping_service_id,
             shipping_service_offer_id,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_shipment_params = (  # name, param in
         ("HazmatType", "body"),
@@ -1487,6 +1530,17 @@ class MerchantFulfillmentV0Client(BaseClient):
         ("ShippingServiceId", "body"),
         ("ShippingServiceOfferId", "body"),
     )
+
+    _create_shipment_responses = {
+        200: CreateShipmentResponse,
+        400: CreateShipmentResponse,
+        401: CreateShipmentResponse,
+        403: CreateShipmentResponse,
+        404: CreateShipmentResponse,
+        429: CreateShipmentResponse,
+        500: CreateShipmentResponse,
+        503: CreateShipmentResponse,
+    }
 
     def get_additional_seller_inputs(
         self,
@@ -1516,14 +1570,32 @@ class MerchantFulfillmentV0Client(BaseClient):
             ship_from_address,
             shipping_service_id,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_additional_seller_inputs_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_additional_seller_inputs_params = (  # name, param in
         ("OrderId", "body"),
         ("ShipFromAddress", "body"),
         ("ShippingServiceId", "body"),
     )
+
+    _get_additional_seller_inputs_responses = {
+        200: GetAdditionalSellerInputsResponse,
+        400: GetAdditionalSellerInputsResponse,
+        401: GetAdditionalSellerInputsResponse,
+        403: GetAdditionalSellerInputsResponse,
+        404: GetAdditionalSellerInputsResponse,
+        429: GetAdditionalSellerInputsResponse,
+        500: GetAdditionalSellerInputsResponse,
+        503: GetAdditionalSellerInputsResponse,
+    }
 
     def get_additional_seller_inputs_old(
         self,
@@ -1553,14 +1625,32 @@ class MerchantFulfillmentV0Client(BaseClient):
             ship_from_address,
             shipping_service_id,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_additional_seller_inputs_old_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_additional_seller_inputs_old_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_additional_seller_inputs_old_params = (  # name, param in
         ("OrderId", "body"),
         ("ShipFromAddress", "body"),
         ("ShippingServiceId", "body"),
     )
+
+    _get_additional_seller_inputs_old_responses = {
+        200: GetAdditionalSellerInputsResponse,
+        400: GetAdditionalSellerInputsResponse,
+        401: GetAdditionalSellerInputsResponse,
+        403: GetAdditionalSellerInputsResponse,
+        404: GetAdditionalSellerInputsResponse,
+        429: GetAdditionalSellerInputsResponse,
+        500: GetAdditionalSellerInputsResponse,
+        503: GetAdditionalSellerInputsResponse,
+    }
 
     def get_eligible_shipment_services(
         self,
@@ -1587,13 +1677,31 @@ class MerchantFulfillmentV0Client(BaseClient):
             shipment_request_details,
             shipping_offering_filter,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_eligible_shipment_services_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_eligible_shipment_services_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_eligible_shipment_services_params = (  # name, param in
         ("ShipmentRequestDetails", "body"),
         ("ShippingOfferingFilter", "body"),
     )
+
+    _get_eligible_shipment_services_responses = {
+        200: GetEligibleShipmentServicesResponse,
+        400: GetEligibleShipmentServicesResponse,
+        401: GetEligibleShipmentServicesResponse,
+        403: GetEligibleShipmentServicesResponse,
+        404: GetEligibleShipmentServicesResponse,
+        429: GetEligibleShipmentServicesResponse,
+        500: GetEligibleShipmentServicesResponse,
+        503: GetEligibleShipmentServicesResponse,
+    }
 
     def get_eligible_shipment_services_old(
         self,
@@ -1620,13 +1728,31 @@ class MerchantFulfillmentV0Client(BaseClient):
             shipment_request_details,
             shipping_offering_filter,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_eligible_shipment_services_old_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_eligible_shipment_services_old_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_eligible_shipment_services_old_params = (  # name, param in
         ("ShipmentRequestDetails", "body"),
         ("ShippingOfferingFilter", "body"),
     )
+
+    _get_eligible_shipment_services_old_responses = {
+        200: GetEligibleShipmentServicesResponse,
+        400: GetEligibleShipmentServicesResponse,
+        401: GetEligibleShipmentServicesResponse,
+        403: GetEligibleShipmentServicesResponse,
+        404: GetEligibleShipmentServicesResponse,
+        429: GetEligibleShipmentServicesResponse,
+        500: GetEligibleShipmentServicesResponse,
+        503: GetEligibleShipmentServicesResponse,
+    }
 
     def get_shipment(
         self,
@@ -1648,7 +1774,25 @@ class MerchantFulfillmentV0Client(BaseClient):
         """
         url = "/mfn/v0/shipments/{shipmentId}"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
+
+    _get_shipment_responses = {
+        200: GetShipmentResponse,
+        400: GetShipmentResponse,
+        401: GetShipmentResponse,
+        403: GetShipmentResponse,
+        404: GetShipmentResponse,
+        429: GetShipmentResponse,
+        500: GetShipmentResponse,
+        503: GetShipmentResponse,
+    }

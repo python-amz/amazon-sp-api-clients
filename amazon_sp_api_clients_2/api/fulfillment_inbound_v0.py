@@ -1779,14 +1779,32 @@ class FulfillmentInboundV0Client(BaseClient):
             need_by_date,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "PUT", values, self._confirm_preorder_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._confirm_preorder_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _confirm_preorder_params = (  # name, param in
         ("shipmentId", "path"),
         ("NeedByDate", "query"),
         ("MarketplaceId", "query"),
     )
+
+    _confirm_preorder_responses = {
+        200: ConfirmPreorderResponse,
+        400: ConfirmPreorderResponse,
+        401: ConfirmPreorderResponse,
+        403: ConfirmPreorderResponse,
+        404: ConfirmPreorderResponse,
+        429: ConfirmPreorderResponse,
+        500: ConfirmPreorderResponse,
+        503: ConfirmPreorderResponse,
+    }
 
     def confirm_transport(
         self,
@@ -1812,10 +1830,28 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/confirm"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "POST", values, self._confirm_transport_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._confirm_transport_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _confirm_transport_params = (("shipmentId", "path"),)  # name, param in
+
+    _confirm_transport_responses = {
+        200: ConfirmTransportResponse,
+        400: ConfirmTransportResponse,
+        401: ConfirmTransportResponse,
+        403: ConfirmTransportResponse,
+        404: ConfirmTransportResponse,
+        429: ConfirmTransportResponse,
+        500: ConfirmTransportResponse,
+        503: ConfirmTransportResponse,
+    }
 
     def create_inbound_shipment(
         self,
@@ -1848,8 +1884,15 @@ class FulfillmentInboundV0Client(BaseClient):
             inbound_shipment_items,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_inbound_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_inbound_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_inbound_shipment_params = (  # name, param in
         ("shipmentId", "path"),
@@ -1857,6 +1900,17 @@ class FulfillmentInboundV0Client(BaseClient):
         ("InboundShipmentItems", "body"),
         ("MarketplaceId", "body"),
     )
+
+    _create_inbound_shipment_responses = {
+        200: InboundShipmentResponse,
+        400: InboundShipmentResponse,
+        401: InboundShipmentResponse,
+        403: InboundShipmentResponse,
+        404: InboundShipmentResponse,
+        429: InboundShipmentResponse,
+        500: InboundShipmentResponse,
+        503: InboundShipmentResponse,
+    }
 
     def create_inbound_shipment_plan(
         self,
@@ -1908,8 +1962,15 @@ class FulfillmentInboundV0Client(BaseClient):
             ship_to_country_code,
             ship_to_country_subdivision_code,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_inbound_shipment_plan_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_inbound_shipment_plan_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_inbound_shipment_plan_params = (  # name, param in
         ("InboundShipmentPlanRequestItems", "body"),
@@ -1918,6 +1979,17 @@ class FulfillmentInboundV0Client(BaseClient):
         ("ShipToCountryCode", "body"),
         ("ShipToCountrySubdivisionCode", "body"),
     )
+
+    _create_inbound_shipment_plan_responses = {
+        200: CreateInboundShipmentPlanResponse,
+        400: CreateInboundShipmentPlanResponse,
+        401: CreateInboundShipmentPlanResponse,
+        403: CreateInboundShipmentPlanResponse,
+        404: CreateInboundShipmentPlanResponse,
+        429: CreateInboundShipmentPlanResponse,
+        500: CreateInboundShipmentPlanResponse,
+        503: CreateInboundShipmentPlanResponse,
+    }
 
     def estimate_transport(
         self,
@@ -1941,10 +2013,28 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/estimate"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "POST", values, self._estimate_transport_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._estimate_transport_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _estimate_transport_params = (("shipmentId", "path"),)  # name, param in
+
+    _estimate_transport_responses = {
+        200: EstimateTransportResponse,
+        400: EstimateTransportResponse,
+        401: EstimateTransportResponse,
+        403: EstimateTransportResponse,
+        404: EstimateTransportResponse,
+        429: EstimateTransportResponse,
+        500: EstimateTransportResponse,
+        503: EstimateTransportResponse,
+    }
 
     def get_bill_of_lading(
         self,
@@ -1966,10 +2056,28 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/billOfLading"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_bill_of_lading_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_bill_of_lading_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_bill_of_lading_params = (("shipmentId", "path"),)  # name, param in
+
+    _get_bill_of_lading_responses = {
+        200: GetBillOfLadingResponse,
+        400: GetBillOfLadingResponse,
+        401: GetBillOfLadingResponse,
+        403: GetBillOfLadingResponse,
+        404: GetBillOfLadingResponse,
+        429: GetBillOfLadingResponse,
+        500: GetBillOfLadingResponse,
+        503: GetBillOfLadingResponse,
+    }
 
     def get_inbound_guidance(
         self,
@@ -1999,14 +2107,32 @@ class FulfillmentInboundV0Client(BaseClient):
             seller_skulist,
             asinlist,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_inbound_guidance_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_inbound_guidance_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_inbound_guidance_params = (  # name, param in
         ("MarketplaceId", "query"),
         ("SellerSKUList", "query"),
         ("ASINList", "query"),
     )
+
+    _get_inbound_guidance_responses = {
+        200: GetInboundGuidanceResponse,
+        400: GetInboundGuidanceResponse,
+        401: GetInboundGuidanceResponse,
+        403: GetInboundGuidanceResponse,
+        404: GetInboundGuidanceResponse,
+        429: GetInboundGuidanceResponse,
+        500: GetInboundGuidanceResponse,
+        503: GetInboundGuidanceResponse,
+    }
 
     def get_labels(
         self,
@@ -2065,8 +2191,15 @@ class FulfillmentInboundV0Client(BaseClient):
             page_size,
             page_start_index,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_labels_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_labels_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_labels_params = (  # name, param in
         ("shipmentId", "path"),
@@ -2078,6 +2211,17 @@ class FulfillmentInboundV0Client(BaseClient):
         ("PageSize", "query"),
         ("PageStartIndex", "query"),
     )
+
+    _get_labels_responses = {
+        200: GetLabelsResponse,
+        400: GetLabelsResponse,
+        401: GetLabelsResponse,
+        403: GetLabelsResponse,
+        404: GetLabelsResponse,
+        429: GetLabelsResponse,
+        500: GetLabelsResponse,
+        503: GetLabelsResponse,
+    }
 
     def get_preorder_info(
         self,
@@ -2104,13 +2248,31 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_id,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_preorder_info_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_preorder_info_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_preorder_info_params = (  # name, param in
         ("shipmentId", "path"),
         ("MarketplaceId", "query"),
     )
+
+    _get_preorder_info_responses = {
+        200: GetPreorderInfoResponse,
+        400: GetPreorderInfoResponse,
+        401: GetPreorderInfoResponse,
+        403: GetPreorderInfoResponse,
+        404: GetPreorderInfoResponse,
+        429: GetPreorderInfoResponse,
+        500: GetPreorderInfoResponse,
+        503: GetPreorderInfoResponse,
+    }
 
     def get_prep_instructions(
         self,
@@ -2142,14 +2304,32 @@ class FulfillmentInboundV0Client(BaseClient):
             seller_skulist,
             asinlist,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_prep_instructions_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_prep_instructions_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_prep_instructions_params = (  # name, param in
         ("ShipToCountryCode", "query"),
         ("SellerSKUList", "query"),
         ("ASINList", "query"),
     )
+
+    _get_prep_instructions_responses = {
+        200: GetPrepInstructionsResponse,
+        400: GetPrepInstructionsResponse,
+        401: GetPrepInstructionsResponse,
+        403: GetPrepInstructionsResponse,
+        404: GetPrepInstructionsResponse,
+        429: GetPrepInstructionsResponse,
+        500: GetPrepInstructionsResponse,
+        503: GetPrepInstructionsResponse,
+    }
 
     def get_shipment_items(
         self,
@@ -2185,8 +2365,15 @@ class FulfillmentInboundV0Client(BaseClient):
             next_token,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_items_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipment_items_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipment_items_params = (  # name, param in
         ("LastUpdatedAfter", "query"),
@@ -2195,6 +2382,17 @@ class FulfillmentInboundV0Client(BaseClient):
         ("NextToken", "query"),
         ("MarketplaceId", "query"),
     )
+
+    _get_shipment_items_responses = {
+        200: GetShipmentItemsResponse,
+        400: GetShipmentItemsResponse,
+        401: GetShipmentItemsResponse,
+        403: GetShipmentItemsResponse,
+        404: GetShipmentItemsResponse,
+        429: GetShipmentItemsResponse,
+        500: GetShipmentItemsResponse,
+        503: GetShipmentItemsResponse,
+    }
 
     def get_shipment_items_by_shipment_id(
         self,
@@ -2221,13 +2419,31 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_id,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_items_by_shipment_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipment_items_by_shipment_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipment_items_by_shipment_id_params = (  # name, param in
         ("shipmentId", "path"),
         ("MarketplaceId", "query"),
     )
+
+    _get_shipment_items_by_shipment_id_responses = {
+        200: GetShipmentItemsResponse,
+        400: GetShipmentItemsResponse,
+        401: GetShipmentItemsResponse,
+        403: GetShipmentItemsResponse,
+        404: GetShipmentItemsResponse,
+        429: GetShipmentItemsResponse,
+        500: GetShipmentItemsResponse,
+        503: GetShipmentItemsResponse,
+    }
 
     def get_shipments(
         self,
@@ -2282,8 +2498,15 @@ class FulfillmentInboundV0Client(BaseClient):
             next_token,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipments_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipments_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipments_params = (  # name, param in
         ("ShipmentStatusList", "query"),
@@ -2294,6 +2517,17 @@ class FulfillmentInboundV0Client(BaseClient):
         ("NextToken", "query"),
         ("MarketplaceId", "query"),
     )
+
+    _get_shipments_responses = {
+        200: GetShipmentsResponse,
+        400: GetShipmentsResponse,
+        401: GetShipmentsResponse,
+        403: GetShipmentsResponse,
+        404: GetShipmentsResponse,
+        429: GetShipmentsResponse,
+        500: GetShipmentsResponse,
+        503: GetShipmentsResponse,
+    }
 
     def get_transport_details(
         self,
@@ -2315,10 +2549,28 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_transport_details_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_transport_details_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_transport_details_params = (("shipmentId", "path"),)  # name, param in
+
+    _get_transport_details_responses = {
+        200: GetTransportDetailsResponse,
+        400: GetTransportDetailsResponse,
+        401: GetTransportDetailsResponse,
+        403: GetTransportDetailsResponse,
+        404: GetTransportDetailsResponse,
+        429: GetTransportDetailsResponse,
+        500: GetTransportDetailsResponse,
+        503: GetTransportDetailsResponse,
+    }
 
     def put_transport_details(
         self,
@@ -2351,8 +2603,15 @@ class FulfillmentInboundV0Client(BaseClient):
             shipment_type,
             transport_details,
         )
-        response = self._parse_args_and_request(url, "PUT", values, self._put_transport_details_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._put_transport_details_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _put_transport_details_params = (  # name, param in
         ("shipmentId", "path"),
@@ -2360,6 +2619,17 @@ class FulfillmentInboundV0Client(BaseClient):
         ("ShipmentType", "body"),
         ("TransportDetails", "body"),
     )
+
+    _put_transport_details_responses = {
+        200: PutTransportDetailsResponse,
+        400: PutTransportDetailsResponse,
+        401: PutTransportDetailsResponse,
+        403: PutTransportDetailsResponse,
+        404: PutTransportDetailsResponse,
+        429: PutTransportDetailsResponse,
+        500: PutTransportDetailsResponse,
+        503: PutTransportDetailsResponse,
+    }
 
     def update_inbound_shipment(
         self,
@@ -2392,8 +2662,15 @@ class FulfillmentInboundV0Client(BaseClient):
             inbound_shipment_items,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "PUT", values, self._update_inbound_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._update_inbound_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _update_inbound_shipment_params = (  # name, param in
         ("shipmentId", "path"),
@@ -2401,6 +2678,17 @@ class FulfillmentInboundV0Client(BaseClient):
         ("InboundShipmentItems", "body"),
         ("MarketplaceId", "body"),
     )
+
+    _update_inbound_shipment_responses = {
+        200: InboundShipmentResponse,
+        400: InboundShipmentResponse,
+        401: InboundShipmentResponse,
+        403: InboundShipmentResponse,
+        404: InboundShipmentResponse,
+        429: InboundShipmentResponse,
+        500: InboundShipmentResponse,
+        503: InboundShipmentResponse,
+    }
 
     def void_transport(
         self,
@@ -2426,7 +2714,25 @@ class FulfillmentInboundV0Client(BaseClient):
         """
         url = "/fba/inbound/v0/shipments/{shipmentId}/transport/void"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "POST", values, self._void_transport_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._void_transport_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _void_transport_params = (("shipmentId", "path"),)  # name, param in
+
+    _void_transport_responses = {
+        200: VoidTransportResponse,
+        400: VoidTransportResponse,
+        401: VoidTransportResponse,
+        403: VoidTransportResponse,
+        404: VoidTransportResponse,
+        429: VoidTransportResponse,
+        500: VoidTransportResponse,
+        503: VoidTransportResponse,
+    }

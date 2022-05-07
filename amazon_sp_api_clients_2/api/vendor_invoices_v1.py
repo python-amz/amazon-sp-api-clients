@@ -591,7 +591,26 @@ class VendorInvoicesV1Client(BaseClient):
         """
         url = "/vendor/payments/v1/invoices"
         values = (invoices,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_invoices_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_invoices_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_invoices_params = (("invoices", "body"),)  # name, param in
+
+    _submit_invoices_responses = {
+        202: SubmitInvoicesResponse,
+        400: SubmitInvoicesResponse,
+        403: SubmitInvoicesResponse,
+        404: SubmitInvoicesResponse,
+        413: SubmitInvoicesResponse,
+        415: SubmitInvoicesResponse,
+        429: SubmitInvoicesResponse,
+        500: SubmitInvoicesResponse,
+        503: SubmitInvoicesResponse,
+    }

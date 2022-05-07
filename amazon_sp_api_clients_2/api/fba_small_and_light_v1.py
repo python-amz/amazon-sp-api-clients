@@ -253,14 +253,30 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
         response = self._parse_args_and_request(
-            url, "DELETE", values, self._delete_small_and_light_enrollment_by_seller_sku_params
+            url,
+            "DELETE",
+            values,
+            self._delete_small_and_light_enrollment_by_seller_sku_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _delete_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
         ("marketplaceIds", "query"),
     )
+
+    _delete_small_and_light_enrollment_by_seller_sku_responses = {
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_small_and_light_eligibility_by_seller_sku(
         self,
@@ -288,14 +304,31 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
         response = self._parse_args_and_request(
-            url, "GET", values, self._get_small_and_light_eligibility_by_seller_sku_params
+            url,
+            "GET",
+            values,
+            self._get_small_and_light_eligibility_by_seller_sku_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_small_and_light_eligibility_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
         ("marketplaceIds", "query"),
     )
+
+    _get_small_and_light_eligibility_by_seller_sku_responses = {
+        200: SmallAndLightEligibility,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_small_and_light_enrollment_by_seller_sku(
         self,
@@ -323,14 +356,31 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
         response = self._parse_args_and_request(
-            url, "GET", values, self._get_small_and_light_enrollment_by_seller_sku_params
+            url,
+            "GET",
+            values,
+            self._get_small_and_light_enrollment_by_seller_sku_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
         ("marketplaceIds", "query"),
     )
+
+    _get_small_and_light_enrollment_by_seller_sku_responses = {
+        200: SmallAndLightEnrollment,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_small_and_light_fee_preview(
         self,
@@ -357,13 +407,31 @@ class FbaSmallAndLightV1Client(BaseClient):
             items,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_small_and_light_fee_preview_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_small_and_light_fee_preview_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_small_and_light_fee_preview_params = (  # name, param in
         ("items", "body"),
         ("marketplaceId", "body"),
     )
+
+    _get_small_and_light_fee_preview_responses = {
+        200: SmallAndLightFeePreviews,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def put_small_and_light_enrollment_by_seller_sku(
         self,
@@ -391,11 +459,28 @@ class FbaSmallAndLightV1Client(BaseClient):
             marketplace_ids,
         )
         response = self._parse_args_and_request(
-            url, "PUT", values, self._put_small_and_light_enrollment_by_seller_sku_params
+            url,
+            "PUT",
+            values,
+            self._put_small_and_light_enrollment_by_seller_sku_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _put_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
         ("marketplaceIds", "query"),
     )
+
+    _put_small_and_light_enrollment_by_seller_sku_responses = {
+        200: SmallAndLightEnrollment,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

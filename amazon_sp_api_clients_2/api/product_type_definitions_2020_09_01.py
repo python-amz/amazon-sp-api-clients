@@ -286,8 +286,15 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             requirements_enforced,
             locale,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_definitions_product_type_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_definitions_product_type_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_definitions_product_type_params = (  # name, param in
         ("productType", "path"),
@@ -298,6 +305,18 @@ class ProductTypeDefinitions20200901Client(BaseClient):
         ("requirementsEnforced", "query"),
         ("locale", "query"),
     )
+
+    _get_definitions_product_type_responses = {
+        200: ProductTypeDefinition,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def search_definitions_product_types(
         self,
@@ -325,10 +344,29 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             keywords,
             marketplace_ids,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._search_definitions_product_types_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._search_definitions_product_types_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _search_definitions_product_types_params = (  # name, param in
         ("keywords", "query"),
         ("marketplaceIds", "query"),
     )
+
+    _search_definitions_product_types_responses = {
+        200: ProductTypeList,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

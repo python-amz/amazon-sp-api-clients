@@ -350,13 +350,31 @@ class ProductFeesV0Client(BaseClient):
             asin,
             fees_estimate_request,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_my_fees_estimate_for_asin_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_my_fees_estimate_for_asin_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_my_fees_estimate_for_asin_params = (  # name, param in
         ("Asin", "path"),
         ("FeesEstimateRequest", "body"),
     )
+
+    _get_my_fees_estimate_for_asin_responses = {
+        200: GetMyFeesEstimateResponse,
+        400: GetMyFeesEstimateResponse,
+        401: GetMyFeesEstimateResponse,
+        403: GetMyFeesEstimateResponse,
+        404: GetMyFeesEstimateResponse,
+        429: GetMyFeesEstimateResponse,
+        500: GetMyFeesEstimateResponse,
+        503: GetMyFeesEstimateResponse,
+    }
 
     def get_my_fees_estimate_for_sku(
         self,
@@ -388,10 +406,28 @@ class ProductFeesV0Client(BaseClient):
             seller_sku,
             fees_estimate_request,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_my_fees_estimate_for_sku_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_my_fees_estimate_for_sku_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_my_fees_estimate_for_sku_params = (  # name, param in
         ("SellerSKU", "path"),
         ("FeesEstimateRequest", "body"),
     )
+
+    _get_my_fees_estimate_for_sku_responses = {
+        200: GetMyFeesEstimateResponse,
+        400: GetMyFeesEstimateResponse,
+        401: GetMyFeesEstimateResponse,
+        403: GetMyFeesEstimateResponse,
+        404: GetMyFeesEstimateResponse,
+        429: GetMyFeesEstimateResponse,
+        500: GetMyFeesEstimateResponse,
+        503: GetMyFeesEstimateResponse,
+    }

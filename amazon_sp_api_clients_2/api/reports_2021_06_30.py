@@ -360,10 +360,28 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/reports/{reportId}"
         values = (report_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_report_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._cancel_report_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_report_params = (("reportId", "path"),)  # name, param in
+
+    _cancel_report_responses = {
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def cancel_report_schedule(
         self,
@@ -385,10 +403,28 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_report_schedule_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._cancel_report_schedule_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
+
+    _cancel_report_schedule_responses = {
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def create_report(
         self,
@@ -424,8 +460,15 @@ class Reports20210630Client(BaseClient):
             report_options,
             report_type,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_report_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_report_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_report_params = (  # name, param in
         ("dataEndTime", "body"),
@@ -434,6 +477,18 @@ class Reports20210630Client(BaseClient):
         ("reportOptions", "body"),
         ("reportType", "body"),
     )
+
+    _create_report_responses = {
+        202: CreateReportResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def create_report_schedule(
         self,
@@ -488,8 +543,15 @@ class Reports20210630Client(BaseClient):
             report_options,
             report_type,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_report_schedule_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_report_schedule_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_report_schedule_params = (  # name, param in
         ("marketplaceIds", "body"),
@@ -498,6 +560,18 @@ class Reports20210630Client(BaseClient):
         ("reportOptions", "body"),
         ("reportType", "body"),
     )
+
+    _create_report_schedule_responses = {
+        201: CreateReportScheduleResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_report(
         self,
@@ -519,10 +593,29 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/reports/{reportId}"
         values = (report_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_params = (("reportId", "path"),)  # name, param in
+
+    _get_report_responses = {
+        200: Report,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_report_document(
         self,
@@ -544,10 +637,29 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/documents/{reportDocumentId}"
         values = (report_document_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
+
+    _get_report_document_responses = {
+        200: ReportDocument,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_report_schedule(
         self,
@@ -569,10 +681,29 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_schedule_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_schedule_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
+
+    _get_report_schedule_responses = {
+        200: ReportSchedule,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_report_schedules(
         self,
@@ -594,10 +725,29 @@ class Reports20210630Client(BaseClient):
         """
         url = "/reports/2021-06-30/schedules"
         values = (report_types,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_schedules_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_schedules_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
+
+    _get_report_schedules_responses = {
+        200: ReportScheduleList,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_reports(
         self,
@@ -641,8 +791,15 @@ class Reports20210630Client(BaseClient):
             created_until,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_reports_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_reports_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_reports_params = (  # name, param in
         ("reportTypes", "query"),
@@ -653,3 +810,15 @@ class Reports20210630Client(BaseClient):
         ("createdUntil", "query"),
         ("nextToken", "query"),
     )
+
+    _get_reports_responses = {
+        200: GetReportsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

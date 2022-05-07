@@ -451,7 +451,26 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/payments/v1/invoices"
         values = (invoices,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_invoice_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_invoice_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_invoice_params = (("invoices", "body"),)  # name, param in
+
+    _submit_invoice_responses = {
+        202: SubmitInvoiceResponse,
+        400: SubmitInvoiceResponse,
+        403: SubmitInvoiceResponse,
+        404: SubmitInvoiceResponse,
+        413: SubmitInvoiceResponse,
+        415: SubmitInvoiceResponse,
+        429: SubmitInvoiceResponse,
+        500: SubmitInvoiceResponse,
+        503: SubmitInvoiceResponse,
+    }

@@ -187,8 +187,15 @@ class ListingsRestrictions20210801Client(BaseClient):
             marketplace_ids,
             reason_locale,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_listings_restrictions_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_listings_restrictions_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_listings_restrictions_params = (  # name, param in
         ("asin", "query"),
@@ -197,3 +204,15 @@ class ListingsRestrictions20210801Client(BaseClient):
         ("marketplaceIds", "query"),
         ("reasonLocale", "query"),
     )
+
+    _get_listings_restrictions_responses = {
+        200: RestrictionList,
+        400: List["Error"],
+        403: List["Error"],
+        404: List["Error"],
+        413: List["Error"],
+        415: List["Error"],
+        429: List["Error"],
+        500: List["Error"],
+        503: List["Error"],
+    }

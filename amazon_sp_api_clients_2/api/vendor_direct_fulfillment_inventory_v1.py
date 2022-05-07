@@ -163,10 +163,29 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
             warehouse_id,
             inventory,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._submit_inventory_update_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_inventory_update_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_inventory_update_params = (  # name, param in
         ("warehouseId", "path"),
         ("inventory", "body"),
     )
+
+    _submit_inventory_update_responses = {
+        202: SubmitInventoryUpdateResponse,
+        400: SubmitInventoryUpdateResponse,
+        403: SubmitInventoryUpdateResponse,
+        404: SubmitInventoryUpdateResponse,
+        413: SubmitInventoryUpdateResponse,
+        415: SubmitInventoryUpdateResponse,
+        429: SubmitInventoryUpdateResponse,
+        500: SubmitInventoryUpdateResponse,
+        503: SubmitInventoryUpdateResponse,
+    }

@@ -347,8 +347,15 @@ class FbaInventoryV1Client(BaseClient):
             next_token,
             marketplace_ids,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_inventory_summaries_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_inventory_summaries_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_inventory_summaries_params = (  # name, param in
         ("details", "query"),
@@ -359,3 +366,13 @@ class FbaInventoryV1Client(BaseClient):
         ("nextToken", "query"),
         ("marketplaceIds", "query"),
     )
+
+    _get_inventory_summaries_responses = {
+        200: GetInventorySummariesResponse,
+        400: GetInventorySummariesResponse,
+        403: GetInventorySummariesResponse,
+        404: GetInventorySummariesResponse,
+        429: GetInventorySummariesResponse,
+        500: GetInventorySummariesResponse,
+        503: GetInventorySummariesResponse,
+    }

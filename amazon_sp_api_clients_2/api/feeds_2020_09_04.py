@@ -323,10 +323,29 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/feeds/{feedId}"
         values = (feed_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_feed_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._cancel_feed_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
+
+    _cancel_feed_responses = {
+        200: CancelFeedResponse,
+        400: CancelFeedResponse,
+        401: CancelFeedResponse,
+        403: CancelFeedResponse,
+        404: CancelFeedResponse,
+        415: CancelFeedResponse,
+        429: CancelFeedResponse,
+        500: CancelFeedResponse,
+        503: CancelFeedResponse,
+    }
 
     def create_feed(
         self,
@@ -359,8 +378,15 @@ class Feeds20200904Client(BaseClient):
             input_feed_document_id,
             marketplace_ids,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_feed_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_feed_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_feed_params = (  # name, param in
         ("feedOptions", "body"),
@@ -368,6 +394,18 @@ class Feeds20200904Client(BaseClient):
         ("inputFeedDocumentId", "body"),
         ("marketplaceIds", "body"),
     )
+
+    _create_feed_responses = {
+        202: CreateFeedResponse,
+        400: CreateFeedResponse,
+        401: CreateFeedResponse,
+        403: CreateFeedResponse,
+        404: CreateFeedResponse,
+        415: CreateFeedResponse,
+        429: CreateFeedResponse,
+        500: CreateFeedResponse,
+        503: CreateFeedResponse,
+    }
 
     def create_feed_document(
         self,
@@ -389,10 +427,29 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/documents"
         values = (content_type,)
-        response = self._parse_args_and_request(url, "POST", values, self._create_feed_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_feed_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_feed_document_params = (("contentType", "body"),)  # name, param in
+
+    _create_feed_document_responses = {
+        201: CreateFeedDocumentResponse,
+        400: CreateFeedDocumentResponse,
+        403: CreateFeedDocumentResponse,
+        404: CreateFeedDocumentResponse,
+        413: CreateFeedDocumentResponse,
+        415: CreateFeedDocumentResponse,
+        429: CreateFeedDocumentResponse,
+        500: CreateFeedDocumentResponse,
+        503: CreateFeedDocumentResponse,
+    }
 
     def get_feed(
         self,
@@ -414,10 +471,29 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/feeds/{feedId}"
         values = (feed_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_feed_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feed_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feed_params = (("feedId", "path"),)  # name, param in
+
+    _get_feed_responses = {
+        200: GetFeedResponse,
+        400: GetFeedResponse,
+        401: GetFeedResponse,
+        403: GetFeedResponse,
+        404: GetFeedResponse,
+        415: GetFeedResponse,
+        429: GetFeedResponse,
+        500: GetFeedResponse,
+        503: GetFeedResponse,
+    }
 
     def get_feed_document(
         self,
@@ -439,10 +515,29 @@ class Feeds20200904Client(BaseClient):
         """
         url = "/feeds/2020-09-04/documents/{feedDocumentId}"
         values = (feed_document_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_feed_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feed_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
+
+    _get_feed_document_responses = {
+        200: GetFeedDocumentResponse,
+        400: GetFeedDocumentResponse,
+        401: GetFeedDocumentResponse,
+        403: GetFeedDocumentResponse,
+        404: GetFeedDocumentResponse,
+        415: GetFeedDocumentResponse,
+        429: GetFeedDocumentResponse,
+        500: GetFeedDocumentResponse,
+        503: GetFeedDocumentResponse,
+    }
 
     def get_feeds(
         self,
@@ -486,8 +581,15 @@ class Feeds20200904Client(BaseClient):
             created_until,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_feeds_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feeds_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feeds_params = (  # name, param in
         ("feedTypes", "query"),
@@ -498,3 +600,15 @@ class Feeds20200904Client(BaseClient):
         ("createdUntil", "query"),
         ("nextToken", "query"),
     )
+
+    _get_feeds_responses = {
+        200: GetFeedsResponse,
+        400: GetFeedsResponse,
+        401: GetFeedsResponse,
+        403: GetFeedsResponse,
+        404: GetFeedsResponse,
+        415: GetFeedsResponse,
+        429: GetFeedsResponse,
+        500: GetFeedsResponse,
+        503: GetFeedsResponse,
+    }

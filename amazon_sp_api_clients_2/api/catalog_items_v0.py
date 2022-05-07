@@ -945,13 +945,31 @@ class CatalogItemsV0Client(BaseClient):
             marketplace_id,
             asin,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_catalog_item_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_catalog_item_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_catalog_item_params = (  # name, param in
         ("MarketplaceId", "query"),
         ("asin", "path"),
     )
+
+    _get_catalog_item_responses = {
+        200: GetCatalogItemResponse,
+        400: GetCatalogItemResponse,
+        401: GetCatalogItemResponse,
+        403: GetCatalogItemResponse,
+        404: GetCatalogItemResponse,
+        429: GetCatalogItemResponse,
+        500: GetCatalogItemResponse,
+        503: GetCatalogItemResponse,
+    }
 
     def list_catalog_categories(
         self,
@@ -982,14 +1000,32 @@ class CatalogItemsV0Client(BaseClient):
             asin,
             seller_sku,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_catalog_categories_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_catalog_categories_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_catalog_categories_params = (  # name, param in
         ("MarketplaceId", "query"),
         ("ASIN", "query"),
         ("SellerSKU", "query"),
     )
+
+    _list_catalog_categories_responses = {
+        200: ListCatalogCategoriesResponse,
+        400: ListCatalogCategoriesResponse,
+        401: ListCatalogCategoriesResponse,
+        403: ListCatalogCategoriesResponse,
+        404: ListCatalogCategoriesResponse,
+        429: ListCatalogCategoriesResponse,
+        500: ListCatalogCategoriesResponse,
+        503: ListCatalogCategoriesResponse,
+    }
 
     def list_catalog_items(
         self,
@@ -1039,8 +1075,15 @@ class CatalogItemsV0Client(BaseClient):
             isbn,
             jan,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_catalog_items_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_catalog_items_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_catalog_items_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -1052,3 +1095,14 @@ class CatalogItemsV0Client(BaseClient):
         ("ISBN", "query"),
         ("JAN", "query"),
     )
+
+    _list_catalog_items_responses = {
+        200: ListCatalogItemsResponse,
+        400: ListCatalogItemsResponse,
+        401: ListCatalogItemsResponse,
+        403: ListCatalogItemsResponse,
+        404: ListCatalogItemsResponse,
+        429: ListCatalogItemsResponse,
+        500: ListCatalogItemsResponse,
+        503: ListCatalogItemsResponse,
+    }

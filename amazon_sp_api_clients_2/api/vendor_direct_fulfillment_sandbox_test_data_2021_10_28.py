@@ -191,10 +191,29 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         """
         url = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
         values = (orders,)
-        response = self._parse_args_and_request(url, "POST", values, self._generate_order_scenarios_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._generate_order_scenarios_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _generate_order_scenarios_params = (("orders", "body"),)  # name, param in
+
+    _generate_order_scenarios_responses = {
+        202: TransactionReference,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_order_scenarios(
         self,
@@ -208,7 +227,26 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         """
         url = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}"
         values = (transaction_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_scenarios_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_scenarios_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_scenarios_params = (("transactionId", "path"),)  # name, param in
+
+    _get_order_scenarios_responses = {
+        200: TransactionStatus,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

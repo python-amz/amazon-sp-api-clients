@@ -139,7 +139,26 @@ class SellersV1Client(BaseClient):
         """
         url = "/sellers/v1/marketplaceParticipations"
         values = ()
-        response = self._parse_args_and_request(url, "GET", values, self._get_marketplace_participations_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_marketplace_participations_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_marketplace_participations_params = ()  # name, param in
+
+    _get_marketplace_participations_responses = {
+        200: GetMarketplaceParticipationsResponse,
+        400: GetMarketplaceParticipationsResponse,
+        403: GetMarketplaceParticipationsResponse,
+        404: GetMarketplaceParticipationsResponse,
+        413: GetMarketplaceParticipationsResponse,
+        415: GetMarketplaceParticipationsResponse,
+        429: GetMarketplaceParticipationsResponse,
+        500: GetMarketplaceParticipationsResponse,
+        503: GetMarketplaceParticipationsResponse,
+    }

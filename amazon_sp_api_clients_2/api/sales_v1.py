@@ -164,8 +164,15 @@ class SalesV1Client(BaseClient):
             asin,
             sku,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_metrics_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_metrics_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_metrics_params = (  # name, param in
         ("marketplaceIds", "query"),
@@ -178,3 +185,15 @@ class SalesV1Client(BaseClient):
         ("asin", "query"),
         ("sku", "query"),
     )
+
+    _get_order_metrics_responses = {
+        200: GetOrderMetricsResponse,
+        400: GetOrderMetricsResponse,
+        403: GetOrderMetricsResponse,
+        404: GetOrderMetricsResponse,
+        413: GetOrderMetricsResponse,
+        415: GetOrderMetricsResponse,
+        429: GetOrderMetricsResponse,
+        500: GetOrderMetricsResponse,
+        503: GetOrderMetricsResponse,
+    }

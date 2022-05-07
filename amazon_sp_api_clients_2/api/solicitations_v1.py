@@ -211,14 +211,31 @@ class SolicitationsV1Client(BaseClient):
             marketplace_ids,
         )
         response = self._parse_args_and_request(
-            url, "POST", values, self._create_product_review_and_seller_feedback_solicitation_params
+            url,
+            "POST",
+            values,
+            self._create_product_review_and_seller_feedback_solicitation_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_product_review_and_seller_feedback_solicitation_params = (  # name, param in
         ("amazonOrderId", "path"),
         ("marketplaceIds", "query"),
     )
+
+    _create_product_review_and_seller_feedback_solicitation_responses = {
+        201: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        400: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        403: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        404: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        413: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        415: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        429: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        500: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+        503: CreateProductReviewAndSellerFeedbackSolicitationResponse,
+    }
 
     def get_solicitation_actions_for_order(
         self,
@@ -245,10 +262,29 @@ class SolicitationsV1Client(BaseClient):
             amazon_order_id,
             marketplace_ids,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_solicitation_actions_for_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_solicitation_actions_for_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_solicitation_actions_for_order_params = (  # name, param in
         ("amazonOrderId", "path"),
         ("marketplaceIds", "query"),
     )
+
+    _get_solicitation_actions_for_order_responses = {
+        200: GetSolicitationActionsForOrderResponse,
+        400: GetSolicitationActionsForOrderResponse,
+        403: GetSolicitationActionsForOrderResponse,
+        404: GetSolicitationActionsForOrderResponse,
+        413: GetSolicitationActionsForOrderResponse,
+        415: GetSolicitationActionsForOrderResponse,
+        429: GetSolicitationActionsForOrderResponse,
+        500: GetSolicitationActionsForOrderResponse,
+        503: GetSolicitationActionsForOrderResponse,
+    }

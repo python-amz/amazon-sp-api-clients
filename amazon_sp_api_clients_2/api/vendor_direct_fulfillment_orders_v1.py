@@ -656,10 +656,29 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/orders/v1/purchaseOrders/{purchaseOrderNumber}"
         values = (purchase_order_number,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
+
+    _get_order_responses = {
+        200: GetOrderResponse,
+        400: GetOrderResponse,
+        401: GetOrderResponse,
+        403: GetOrderResponse,
+        404: GetOrderResponse,
+        415: GetOrderResponse,
+        429: GetOrderResponse,
+        500: GetOrderResponse,
+        503: GetOrderResponse,
+    }
 
     def get_orders(
         self,
@@ -705,8 +724,15 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
             next_token,
             include_details,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_orders_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_orders_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_orders_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -718,6 +744,17 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         ("nextToken", "query"),
         ("includeDetails", "query"),
     )
+
+    _get_orders_responses = {
+        200: GetOrdersResponse,
+        400: GetOrdersResponse,
+        403: GetOrdersResponse,
+        404: GetOrdersResponse,
+        415: GetOrdersResponse,
+        429: GetOrdersResponse,
+        500: GetOrdersResponse,
+        503: GetOrdersResponse,
+    }
 
     def submit_acknowledgement(
         self,
@@ -740,7 +777,26 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/orders/v1/acknowledgements"
         values = (order_acknowledgements,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_acknowledgement_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_acknowledgement_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_acknowledgement_params = (("orderAcknowledgements", "body"),)  # name, param in
+
+    _submit_acknowledgement_responses = {
+        202: SubmitAcknowledgementResponse,
+        400: SubmitAcknowledgementResponse,
+        403: SubmitAcknowledgementResponse,
+        404: SubmitAcknowledgementResponse,
+        413: SubmitAcknowledgementResponse,
+        415: SubmitAcknowledgementResponse,
+        429: SubmitAcknowledgementResponse,
+        500: SubmitAcknowledgementResponse,
+        503: SubmitAcknowledgementResponse,
+    }

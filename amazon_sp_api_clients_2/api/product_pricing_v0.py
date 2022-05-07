@@ -807,8 +807,15 @@ class ProductPricingV0Client(BaseClient):
             item_type,
             customer_type,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_competitive_pricing_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_competitive_pricing_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_competitive_pricing_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -817,6 +824,17 @@ class ProductPricingV0Client(BaseClient):
         ("ItemType", "query"),
         ("CustomerType", "query"),
     )
+
+    _get_competitive_pricing_responses = {
+        200: GetPricingResponse,
+        400: GetPricingResponse,
+        401: GetPricingResponse,
+        403: GetPricingResponse,
+        404: GetPricingResponse,
+        429: GetPricingResponse,
+        500: GetPricingResponse,
+        503: GetPricingResponse,
+    }
 
     def get_item_offers(
         self,
@@ -852,8 +870,15 @@ class ProductPricingV0Client(BaseClient):
             asin,
             customer_type,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_item_offers_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_item_offers_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_item_offers_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -861,6 +886,17 @@ class ProductPricingV0Client(BaseClient):
         ("Asin", "path"),
         ("CustomerType", "query"),
     )
+
+    _get_item_offers_responses = {
+        200: GetOffersResponse,
+        400: GetOffersResponse,
+        401: GetOffersResponse,
+        403: GetOffersResponse,
+        404: GetOffersResponse,
+        429: GetOffersResponse,
+        500: GetOffersResponse,
+        503: GetOffersResponse,
+    }
 
     def get_listing_offers(
         self,
@@ -896,8 +932,15 @@ class ProductPricingV0Client(BaseClient):
             seller_sku,
             customer_type,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_listing_offers_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_listing_offers_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_listing_offers_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -905,6 +948,17 @@ class ProductPricingV0Client(BaseClient):
         ("SellerSKU", "path"),
         ("CustomerType", "query"),
     )
+
+    _get_listing_offers_responses = {
+        200: GetOffersResponse,
+        400: GetOffersResponse,
+        401: GetOffersResponse,
+        403: GetOffersResponse,
+        404: GetOffersResponse,
+        429: GetOffersResponse,
+        500: GetOffersResponse,
+        503: GetOffersResponse,
+    }
 
     def get_pricing(
         self,
@@ -946,8 +1000,15 @@ class ProductPricingV0Client(BaseClient):
             item_condition,
             offer_type,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_pricing_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_pricing_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_pricing_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -957,3 +1018,14 @@ class ProductPricingV0Client(BaseClient):
         ("ItemCondition", "query"),
         ("OfferType", "query"),
     )
+
+    _get_pricing_responses = {
+        200: GetPricingResponse,
+        400: GetPricingResponse,
+        401: GetPricingResponse,
+        403: GetPricingResponse,
+        404: GetPricingResponse,
+        429: GetPricingResponse,
+        500: GetPricingResponse,
+        503: GetPricingResponse,
+    }

@@ -467,10 +467,29 @@ class Reports20200904Client(BaseClient):
         """
         url = "/reports/2020-09-04/reports/{reportId}"
         values = (report_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_report_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._cancel_report_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_report_params = (("reportId", "path"),)  # name, param in
+
+    _cancel_report_responses = {
+        200: CancelReportResponse,
+        400: CancelReportResponse,
+        401: CancelReportResponse,
+        403: CancelReportResponse,
+        404: CancelReportResponse,
+        415: CancelReportResponse,
+        429: CancelReportResponse,
+        500: CancelReportResponse,
+        503: CancelReportResponse,
+    }
 
     def cancel_report_schedule(
         self,
@@ -492,10 +511,29 @@ class Reports20200904Client(BaseClient):
         """
         url = "/reports/2020-09-04/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_report_schedule_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._cancel_report_schedule_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
+
+    _cancel_report_schedule_responses = {
+        200: CancelReportScheduleResponse,
+        400: CancelReportScheduleResponse,
+        401: CancelReportScheduleResponse,
+        403: CancelReportScheduleResponse,
+        404: CancelReportScheduleResponse,
+        415: CancelReportScheduleResponse,
+        429: CancelReportScheduleResponse,
+        500: CancelReportScheduleResponse,
+        503: CancelReportScheduleResponse,
+    }
 
     def create_report(
         self,
@@ -531,8 +569,15 @@ class Reports20200904Client(BaseClient):
             report_options,
             report_type,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_report_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_report_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_report_params = (  # name, param in
         ("dataEndTime", "body"),
@@ -541,6 +586,18 @@ class Reports20200904Client(BaseClient):
         ("reportOptions", "body"),
         ("reportType", "body"),
     )
+
+    _create_report_responses = {
+        202: CreateReportResponse,
+        400: CreateReportResponse,
+        401: CreateReportResponse,
+        403: CreateReportResponse,
+        404: CreateReportResponse,
+        415: CreateReportResponse,
+        429: CreateReportResponse,
+        500: CreateReportResponse,
+        503: CreateReportResponse,
+    }
 
     def create_report_schedule(
         self,
@@ -595,8 +652,15 @@ class Reports20200904Client(BaseClient):
             report_options,
             report_type,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_report_schedule_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_report_schedule_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_report_schedule_params = (  # name, param in
         ("marketplaceIds", "body"),
@@ -605,6 +669,18 @@ class Reports20200904Client(BaseClient):
         ("reportOptions", "body"),
         ("reportType", "body"),
     )
+
+    _create_report_schedule_responses = {
+        201: CreateReportScheduleResponse,
+        400: CreateReportScheduleResponse,
+        401: CreateReportScheduleResponse,
+        403: CreateReportScheduleResponse,
+        404: CreateReportScheduleResponse,
+        415: CreateReportScheduleResponse,
+        429: CreateReportScheduleResponse,
+        500: CreateReportScheduleResponse,
+        503: CreateReportScheduleResponse,
+    }
 
     def get_report(
         self,
@@ -626,10 +702,29 @@ class Reports20200904Client(BaseClient):
         """
         url = "/reports/2020-09-04/reports/{reportId}"
         values = (report_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_params = (("reportId", "path"),)  # name, param in
+
+    _get_report_responses = {
+        200: GetReportResponse,
+        400: GetReportResponse,
+        401: GetReportResponse,
+        403: GetReportResponse,
+        404: GetReportResponse,
+        415: GetReportResponse,
+        429: GetReportResponse,
+        500: GetReportResponse,
+        503: GetReportResponse,
+    }
 
     def get_report_document(
         self,
@@ -651,10 +746,29 @@ class Reports20200904Client(BaseClient):
         """
         url = "/reports/2020-09-04/documents/{reportDocumentId}"
         values = (report_document_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
+
+    _get_report_document_responses = {
+        200: GetReportDocumentResponse,
+        400: GetReportDocumentResponse,
+        401: GetReportDocumentResponse,
+        403: GetReportDocumentResponse,
+        404: GetReportDocumentResponse,
+        415: GetReportDocumentResponse,
+        429: GetReportDocumentResponse,
+        500: GetReportDocumentResponse,
+        503: GetReportDocumentResponse,
+    }
 
     def get_report_schedule(
         self,
@@ -676,10 +790,29 @@ class Reports20200904Client(BaseClient):
         """
         url = "/reports/2020-09-04/schedules/{reportScheduleId}"
         values = (report_schedule_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_schedule_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_schedule_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
+
+    _get_report_schedule_responses = {
+        200: GetReportScheduleResponse,
+        400: GetReportScheduleResponse,
+        401: GetReportScheduleResponse,
+        403: GetReportScheduleResponse,
+        404: GetReportScheduleResponse,
+        415: GetReportScheduleResponse,
+        429: GetReportScheduleResponse,
+        500: GetReportScheduleResponse,
+        503: GetReportScheduleResponse,
+    }
 
     def get_report_schedules(
         self,
@@ -701,10 +834,29 @@ class Reports20200904Client(BaseClient):
         """
         url = "/reports/2020-09-04/schedules"
         values = (report_types,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_report_schedules_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_report_schedules_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
+
+    _get_report_schedules_responses = {
+        200: GetReportSchedulesResponse,
+        400: GetReportSchedulesResponse,
+        401: GetReportSchedulesResponse,
+        403: GetReportSchedulesResponse,
+        404: GetReportSchedulesResponse,
+        415: GetReportSchedulesResponse,
+        429: GetReportSchedulesResponse,
+        500: GetReportSchedulesResponse,
+        503: GetReportSchedulesResponse,
+    }
 
     def get_reports(
         self,
@@ -748,8 +900,15 @@ class Reports20200904Client(BaseClient):
             created_until,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_reports_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_reports_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_reports_params = (  # name, param in
         ("reportTypes", "query"),
@@ -760,3 +919,15 @@ class Reports20200904Client(BaseClient):
         ("createdUntil", "query"),
         ("nextToken", "query"),
     )
+
+    _get_reports_responses = {
+        200: GetReportsResponse,
+        400: GetReportsResponse,
+        401: GetReportsResponse,
+        403: GetReportsResponse,
+        404: GetReportsResponse,
+        415: GetReportsResponse,
+        429: GetReportsResponse,
+        500: GetReportsResponse,
+        503: GetReportsResponse,
+    }

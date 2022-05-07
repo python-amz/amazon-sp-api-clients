@@ -784,7 +784,26 @@ class VendorShipmentsV1Client(BaseClient):
         """
         url = "/vendor/shipping/v1/shipmentConfirmations"
         values = (shipment_confirmations,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_confirmations_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_shipment_confirmations_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
+
+    _submit_shipment_confirmations_responses = {
+        202: SubmitShipmentConfirmationsResponse,
+        400: SubmitShipmentConfirmationsResponse,
+        403: SubmitShipmentConfirmationsResponse,
+        404: SubmitShipmentConfirmationsResponse,
+        413: SubmitShipmentConfirmationsResponse,
+        415: SubmitShipmentConfirmationsResponse,
+        429: SubmitShipmentConfirmationsResponse,
+        500: SubmitShipmentConfirmationsResponse,
+        503: SubmitShipmentConfirmationsResponse,
+    }

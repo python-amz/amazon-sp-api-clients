@@ -12,7 +12,8 @@ import django.template
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Components
+from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Components, \
+    Response
 
 settings.configure(TEMPLATES=[{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -114,6 +115,18 @@ class ParsedParameter(Parameter):
         return '\n        '.join(result)
 
 
+class ParsedResponse(Response):
+    status_code: str
+    generator: Any
+    media_type: str
+
+    @property
+    def type_hint(self):
+        schema = self.content.get(self.media_type).media_type_schema
+        assert isinstance(schema, Reference), type(schema)
+        return self.generator.get_type_hint_of_schema(schema).strip('"').strip("'")
+
+
 class ParsedOperation(Operation):
     path: str
     method: str
@@ -169,6 +182,21 @@ class ParsedOperation(Operation):
         # Currently, there is no parameter in header or cookie
         assert all(p.param_in in ('query', 'path', 'body') for p in parsed_params)
         return parsed_params
+
+    @property
+    def parsed_responses(self) -> list[ParsedResponse]:
+        assert all({f for f in media.__fields_set__ if getattr(media, f) is not None}.issubset(
+            {'example', 'media_type_schema'} if name in {'application/json', 'application/hal+json'} else {'example'})
+                   for status, response in self.responses.items()
+                   for name, media in response.content.items())
+        response = ((status, name, response)
+                    for status, response in self.responses.items()
+                    for name, media in response.content.items()
+                    if name in {'application/json', 'application/hal+json'})
+
+        return [ParsedResponse.parse_obj(response.dict() | {
+            'status_code': status, 'media_type': name, 'generator': self.generator})
+                for status, name, response in response]
 
 
 class Generator:

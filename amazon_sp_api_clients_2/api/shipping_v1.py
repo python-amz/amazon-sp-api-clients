@@ -1142,10 +1142,28 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/shipments/{shipmentId}/cancel"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "POST", values, self._cancel_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._cancel_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
+
+    _cancel_shipment_responses = {
+        200: CancelShipmentResponse,
+        400: CancelShipmentResponse,
+        401: CancelShipmentResponse,
+        403: CancelShipmentResponse,
+        404: CancelShipmentResponse,
+        429: CancelShipmentResponse,
+        500: CancelShipmentResponse,
+        503: CancelShipmentResponse,
+    }
 
     def create_shipment(
         self,
@@ -1178,8 +1196,15 @@ class ShippingV1Client(BaseClient):
             ship_from,
             ship_to,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_shipment_params = (  # name, param in
         ("clientReferenceId", "body"),
@@ -1187,6 +1212,17 @@ class ShippingV1Client(BaseClient):
         ("shipFrom", "body"),
         ("shipTo", "body"),
     )
+
+    _create_shipment_responses = {
+        200: CreateShipmentResponse,
+        400: CreateShipmentResponse,
+        401: CreateShipmentResponse,
+        403: CreateShipmentResponse,
+        404: CreateShipmentResponse,
+        429: CreateShipmentResponse,
+        500: CreateShipmentResponse,
+        503: CreateShipmentResponse,
+    }
 
     def get_account(
         self,
@@ -1206,10 +1242,28 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/account"
         values = ()
-        response = self._parse_args_and_request(url, "GET", values, self._get_account_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_account_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_account_params = ()  # name, param in
+
+    _get_account_responses = {
+        200: GetAccountResponse,
+        400: GetAccountResponse,
+        401: GetAccountResponse,
+        403: GetAccountResponse,
+        404: GetAccountResponse,
+        429: GetAccountResponse,
+        500: GetAccountResponse,
+        503: GetAccountResponse,
+    }
 
     def get_rates(
         self,
@@ -1245,8 +1299,15 @@ class ShippingV1Client(BaseClient):
             ship_from,
             ship_to,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_rates_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_rates_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_rates_params = (  # name, param in
         ("containerSpecifications", "body"),
@@ -1255,6 +1316,17 @@ class ShippingV1Client(BaseClient):
         ("shipFrom", "body"),
         ("shipTo", "body"),
     )
+
+    _get_rates_responses = {
+        200: GetRatesResponse,
+        400: GetRatesResponse,
+        401: GetRatesResponse,
+        403: GetRatesResponse,
+        404: GetRatesResponse,
+        429: GetRatesResponse,
+        500: GetRatesResponse,
+        503: GetRatesResponse,
+    }
 
     def get_shipment(
         self,
@@ -1276,10 +1348,28 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/shipments/{shipmentId}"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
+
+    _get_shipment_responses = {
+        200: GetShipmentResponse,
+        400: GetShipmentResponse,
+        401: GetShipmentResponse,
+        403: GetShipmentResponse,
+        404: GetShipmentResponse,
+        429: GetShipmentResponse,
+        500: GetShipmentResponse,
+        503: GetShipmentResponse,
+    }
 
     def get_tracking_information(
         self,
@@ -1301,10 +1391,28 @@ class ShippingV1Client(BaseClient):
         """
         url = "/shipping/v1/tracking/{trackingId}"
         values = (tracking_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_tracking_information_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_tracking_information_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_tracking_information_params = (("trackingId", "path"),)  # name, param in
+
+    _get_tracking_information_responses = {
+        200: GetTrackingInformationResponse,
+        400: GetTrackingInformationResponse,
+        401: GetTrackingInformationResponse,
+        403: GetTrackingInformationResponse,
+        404: GetTrackingInformationResponse,
+        429: GetTrackingInformationResponse,
+        500: GetTrackingInformationResponse,
+        503: GetTrackingInformationResponse,
+    }
 
     def purchase_labels(
         self,
@@ -1334,14 +1442,32 @@ class ShippingV1Client(BaseClient):
             label_specification,
             rate_id,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._purchase_labels_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._purchase_labels_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _purchase_labels_params = (  # name, param in
         ("shipmentId", "path"),
         ("labelSpecification", "body"),
         ("rateId", "body"),
     )
+
+    _purchase_labels_responses = {
+        200: PurchaseLabelsResponse,
+        400: PurchaseLabelsResponse,
+        401: PurchaseLabelsResponse,
+        403: PurchaseLabelsResponse,
+        404: PurchaseLabelsResponse,
+        429: PurchaseLabelsResponse,
+        500: PurchaseLabelsResponse,
+        503: PurchaseLabelsResponse,
+    }
 
     def purchase_shipment(
         self,
@@ -1385,8 +1511,15 @@ class ShippingV1Client(BaseClient):
             ship_from,
             ship_to,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._purchase_shipment_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._purchase_shipment_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _purchase_shipment_params = (  # name, param in
         ("clientReferenceId", "body"),
@@ -1397,6 +1530,17 @@ class ShippingV1Client(BaseClient):
         ("shipFrom", "body"),
         ("shipTo", "body"),
     )
+
+    _purchase_shipment_responses = {
+        200: PurchaseShipmentResponse,
+        400: PurchaseShipmentResponse,
+        401: PurchaseShipmentResponse,
+        403: PurchaseShipmentResponse,
+        404: PurchaseShipmentResponse,
+        429: PurchaseShipmentResponse,
+        500: PurchaseShipmentResponse,
+        503: PurchaseShipmentResponse,
+    }
 
     def retrieve_shipping_label(
         self,
@@ -1426,11 +1570,29 @@ class ShippingV1Client(BaseClient):
             tracking_id,
             label_specification,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._retrieve_shipping_label_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._retrieve_shipping_label_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _retrieve_shipping_label_params = (  # name, param in
         ("shipmentId", "path"),
         ("trackingId", "path"),
         ("labelSpecification", "body"),
     )
+
+    _retrieve_shipping_label_responses = {
+        200: RetrieveShippingLabelResponse,
+        400: RetrieveShippingLabelResponse,
+        401: RetrieveShippingLabelResponse,
+        403: RetrieveShippingLabelResponse,
+        404: RetrieveShippingLabelResponse,
+        429: RetrieveShippingLabelResponse,
+        500: RetrieveShippingLabelResponse,
+        503: RetrieveShippingLabelResponse,
+    }

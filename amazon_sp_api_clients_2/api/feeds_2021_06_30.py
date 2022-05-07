@@ -242,10 +242,28 @@ class Feeds20210630Client(BaseClient):
         """
         url = "/feeds/2021-06-30/feeds/{feedId}"
         values = (feed_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._cancel_feed_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._cancel_feed_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
+
+    _cancel_feed_responses = {
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def create_feed(
         self,
@@ -278,8 +296,15 @@ class Feeds20210630Client(BaseClient):
             input_feed_document_id,
             marketplace_ids,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_feed_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_feed_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_feed_params = (  # name, param in
         ("feedOptions", "body"),
@@ -287,6 +312,18 @@ class Feeds20210630Client(BaseClient):
         ("inputFeedDocumentId", "body"),
         ("marketplaceIds", "body"),
     )
+
+    _create_feed_responses = {
+        202: CreateFeedResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def create_feed_document(
         self,
@@ -308,10 +345,29 @@ class Feeds20210630Client(BaseClient):
         """
         url = "/feeds/2021-06-30/documents"
         values = (content_type,)
-        response = self._parse_args_and_request(url, "POST", values, self._create_feed_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_feed_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_feed_document_params = (("contentType", "body"),)  # name, param in
+
+    _create_feed_document_responses = {
+        201: CreateFeedDocumentResponse,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_feed(
         self,
@@ -333,10 +389,29 @@ class Feeds20210630Client(BaseClient):
         """
         url = "/feeds/2021-06-30/feeds/{feedId}"
         values = (feed_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_feed_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feed_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feed_params = (("feedId", "path"),)  # name, param in
+
+    _get_feed_responses = {
+        200: Feed,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_feed_document(
         self,
@@ -358,10 +433,29 @@ class Feeds20210630Client(BaseClient):
         """
         url = "/feeds/2021-06-30/documents/{feedDocumentId}"
         values = (feed_document_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_feed_document_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feed_document_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
+
+    _get_feed_document_responses = {
+        200: FeedDocument,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_feeds(
         self,
@@ -405,8 +499,15 @@ class Feeds20210630Client(BaseClient):
             created_until,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_feeds_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feeds_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feeds_params = (  # name, param in
         ("feedTypes", "query"),
@@ -417,3 +518,15 @@ class Feeds20210630Client(BaseClient):
         ("createdUntil", "query"),
         ("nextToken", "query"),
     )
+
+    _get_feeds_responses = {
+        200: GetFeedsResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

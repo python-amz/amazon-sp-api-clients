@@ -1835,10 +1835,28 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
         values = (seller_fulfillment_order_id,)
-        response = self._parse_args_and_request(url, "PUT", values, self._cancel_fulfillment_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._cancel_fulfillment_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
+
+    _cancel_fulfillment_order_responses = {
+        200: CancelFulfillmentOrderResponse,
+        400: CancelFulfillmentOrderResponse,
+        401: CancelFulfillmentOrderResponse,
+        403: CancelFulfillmentOrderResponse,
+        404: CancelFulfillmentOrderResponse,
+        429: CancelFulfillmentOrderResponse,
+        500: CancelFulfillmentOrderResponse,
+        503: CancelFulfillmentOrderResponse,
+    }
 
     def create_fulfillment_order(
         self,
@@ -1907,8 +1925,15 @@ class FulfillmentOutbound20200701Client(BaseClient):
             ship_from_country_code,
             shipping_speed_category,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_fulfillment_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_fulfillment_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_fulfillment_order_params = (  # name, param in
         ("codSettings", "body"),
@@ -1927,6 +1952,17 @@ class FulfillmentOutbound20200701Client(BaseClient):
         ("shipFromCountryCode", "body"),
         ("shippingSpeedCategory", "body"),
     )
+
+    _create_fulfillment_order_responses = {
+        200: CreateFulfillmentOrderResponse,
+        400: CreateFulfillmentOrderResponse,
+        401: CreateFulfillmentOrderResponse,
+        403: CreateFulfillmentOrderResponse,
+        404: CreateFulfillmentOrderResponse,
+        429: CreateFulfillmentOrderResponse,
+        500: CreateFulfillmentOrderResponse,
+        503: CreateFulfillmentOrderResponse,
+    }
 
     def create_fulfillment_return(
         self,
@@ -1953,13 +1989,31 @@ class FulfillmentOutbound20200701Client(BaseClient):
             seller_fulfillment_order_id,
             items,
         )
-        response = self._parse_args_and_request(url, "PUT", values, self._create_fulfillment_return_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._create_fulfillment_return_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_fulfillment_return_params = (  # name, param in
         ("sellerFulfillmentOrderId", "path"),
         ("items", "body"),
     )
+
+    _create_fulfillment_return_responses = {
+        200: CreateFulfillmentReturnResponse,
+        400: CreateFulfillmentReturnResponse,
+        401: CreateFulfillmentReturnResponse,
+        403: CreateFulfillmentReturnResponse,
+        404: CreateFulfillmentReturnResponse,
+        429: CreateFulfillmentReturnResponse,
+        500: CreateFulfillmentReturnResponse,
+        503: CreateFulfillmentReturnResponse,
+    }
 
     def get_feature_inventory(
         self,
@@ -1989,14 +2043,32 @@ class FulfillmentOutbound20200701Client(BaseClient):
             feature_name,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_feature_inventory_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feature_inventory_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feature_inventory_params = (  # name, param in
         ("marketplaceId", "query"),
         ("featureName", "path"),
         ("nextToken", "query"),
     )
+
+    _get_feature_inventory_responses = {
+        200: GetFeatureInventoryResponse,
+        400: GetFeatureInventoryResponse,
+        401: GetFeatureInventoryResponse,
+        403: GetFeatureInventoryResponse,
+        404: GetFeatureInventoryResponse,
+        429: GetFeatureInventoryResponse,
+        500: GetFeatureInventoryResponse,
+        503: GetFeatureInventoryResponse,
+    }
 
     def get_feature_sku(
         self,
@@ -2026,14 +2098,32 @@ class FulfillmentOutbound20200701Client(BaseClient):
             feature_name,
             seller_sku,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_feature_sku_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_feature_sku_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_feature_sku_params = (  # name, param in
         ("marketplaceId", "query"),
         ("featureName", "path"),
         ("sellerSku", "path"),
     )
+
+    _get_feature_sku_responses = {
+        200: GetFeatureSkuResponse,
+        400: GetFeatureSkuResponse,
+        401: GetFeatureSkuResponse,
+        403: GetFeatureSkuResponse,
+        404: GetFeatureSkuResponse,
+        429: GetFeatureSkuResponse,
+        500: GetFeatureSkuResponse,
+        503: GetFeatureSkuResponse,
+    }
 
     def get_features(
         self,
@@ -2055,10 +2145,28 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/features"
         values = (marketplace_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_features_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_features_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_features_params = (("marketplaceId", "query"),)  # name, param in
+
+    _get_features_responses = {
+        200: GetFeaturesResponse,
+        400: GetFeaturesResponse,
+        401: GetFeaturesResponse,
+        403: GetFeaturesResponse,
+        404: GetFeaturesResponse,
+        429: GetFeaturesResponse,
+        500: GetFeaturesResponse,
+        503: GetFeaturesResponse,
+    }
 
     def get_fulfillment_order(
         self,
@@ -2080,10 +2188,28 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         values = (seller_fulfillment_order_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_fulfillment_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_fulfillment_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
+
+    _get_fulfillment_order_responses = {
+        200: GetFulfillmentOrderResponse,
+        400: GetFulfillmentOrderResponse,
+        401: GetFulfillmentOrderResponse,
+        403: GetFulfillmentOrderResponse,
+        404: GetFulfillmentOrderResponse,
+        429: GetFulfillmentOrderResponse,
+        500: GetFulfillmentOrderResponse,
+        503: GetFulfillmentOrderResponse,
+    }
 
     def get_fulfillment_preview(
         self,
@@ -2128,8 +2254,15 @@ class FulfillmentOutbound20200701Client(BaseClient):
             marketplace_id,
             shipping_speed_categories,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._get_fulfillment_preview_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._get_fulfillment_preview_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_fulfillment_preview_params = (  # name, param in
         ("address", "body"),
@@ -2140,6 +2273,17 @@ class FulfillmentOutbound20200701Client(BaseClient):
         ("marketplaceId", "body"),
         ("shippingSpeedCategories", "body"),
     )
+
+    _get_fulfillment_preview_responses = {
+        200: GetFulfillmentPreviewResponse,
+        400: GetFulfillmentPreviewResponse,
+        401: GetFulfillmentPreviewResponse,
+        403: GetFulfillmentPreviewResponse,
+        404: GetFulfillmentPreviewResponse,
+        429: GetFulfillmentPreviewResponse,
+        500: GetFulfillmentPreviewResponse,
+        503: GetFulfillmentPreviewResponse,
+    }
 
     def get_package_tracking_details(
         self,
@@ -2161,10 +2305,28 @@ class FulfillmentOutbound20200701Client(BaseClient):
         """
         url = "/fba/outbound/2020-07-01/tracking"
         values = (package_number,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_package_tracking_details_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_package_tracking_details_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_package_tracking_details_params = (("packageNumber", "query"),)  # name, param in
+
+    _get_package_tracking_details_responses = {
+        200: GetPackageTrackingDetailsResponse,
+        400: GetPackageTrackingDetailsResponse,
+        401: GetPackageTrackingDetailsResponse,
+        403: GetPackageTrackingDetailsResponse,
+        404: GetPackageTrackingDetailsResponse,
+        429: GetPackageTrackingDetailsResponse,
+        500: GetPackageTrackingDetailsResponse,
+        503: GetPackageTrackingDetailsResponse,
+    }
 
     def list_all_fulfillment_orders(
         self,
@@ -2191,13 +2353,31 @@ class FulfillmentOutbound20200701Client(BaseClient):
             query_start_date,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_all_fulfillment_orders_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_all_fulfillment_orders_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_all_fulfillment_orders_params = (  # name, param in
         ("queryStartDate", "query"),
         ("nextToken", "query"),
     )
+
+    _list_all_fulfillment_orders_responses = {
+        200: ListAllFulfillmentOrdersResponse,
+        400: ListAllFulfillmentOrdersResponse,
+        401: ListAllFulfillmentOrdersResponse,
+        403: ListAllFulfillmentOrdersResponse,
+        404: ListAllFulfillmentOrdersResponse,
+        429: ListAllFulfillmentOrdersResponse,
+        500: ListAllFulfillmentOrdersResponse,
+        503: ListAllFulfillmentOrdersResponse,
+    }
 
     def list_return_reason_codes(
         self,
@@ -2230,8 +2410,15 @@ class FulfillmentOutbound20200701Client(BaseClient):
             seller_fulfillment_order_id,
             language,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_return_reason_codes_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_return_reason_codes_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_return_reason_codes_params = (  # name, param in
         ("sellerSku", "query"),
@@ -2239,6 +2426,17 @@ class FulfillmentOutbound20200701Client(BaseClient):
         ("sellerFulfillmentOrderId", "query"),
         ("language", "query"),
     )
+
+    _list_return_reason_codes_responses = {
+        200: ListReturnReasonCodesResponse,
+        400: ListReturnReasonCodesResponse,
+        401: ListReturnReasonCodesResponse,
+        403: ListReturnReasonCodesResponse,
+        404: ListReturnReasonCodesResponse,
+        429: ListReturnReasonCodesResponse,
+        500: ListReturnReasonCodesResponse,
+        503: ListReturnReasonCodesResponse,
+    }
 
     def update_fulfillment_order(
         self,
@@ -2300,8 +2498,15 @@ class FulfillmentOutbound20200701Client(BaseClient):
             ship_from_country_code,
             shipping_speed_category,
         )
-        response = self._parse_args_and_request(url, "PUT", values, self._update_fulfillment_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._update_fulfillment_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _update_fulfillment_order_params = (  # name, param in
         ("sellerFulfillmentOrderId", "path"),
@@ -2318,3 +2523,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
         ("shipFromCountryCode", "body"),
         ("shippingSpeedCategory", "body"),
     )
+
+    _update_fulfillment_order_responses = {
+        200: UpdateFulfillmentOrderResponse,
+        400: UpdateFulfillmentOrderResponse,
+        401: UpdateFulfillmentOrderResponse,
+        403: UpdateFulfillmentOrderResponse,
+        404: UpdateFulfillmentOrderResponse,
+        429: UpdateFulfillmentOrderResponse,
+        500: UpdateFulfillmentOrderResponse,
+        503: UpdateFulfillmentOrderResponse,
+    }

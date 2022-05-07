@@ -157,11 +157,29 @@ class FbaInboundEligibilityV1Client(BaseClient):
             asin,
             program,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_item_eligibility_preview_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_item_eligibility_preview_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_item_eligibility_preview_params = (  # name, param in
         ("marketplaceIds", "query"),
         ("asin", "query"),
         ("program", "query"),
     )
+
+    _get_item_eligibility_preview_responses = {
+        200: GetItemEligibilityPreviewResponse,
+        400: GetItemEligibilityPreviewResponse,
+        401: GetItemEligibilityPreviewResponse,
+        403: GetItemEligibilityPreviewResponse,
+        404: GetItemEligibilityPreviewResponse,
+        429: GetItemEligibilityPreviewResponse,
+        500: GetItemEligibilityPreviewResponse,
+        503: GetItemEligibilityPreviewResponse,
+    }

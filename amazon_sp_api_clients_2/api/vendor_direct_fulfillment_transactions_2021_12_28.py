@@ -99,7 +99,26 @@ class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
         """
         url = "/vendor/directFulfillment/transactions/2021-12-28/transactions/{transactionId}"
         values = (transaction_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_transaction_status_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_transaction_status_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_transaction_status_params = (("transactionId", "path"),)  # name, param in
+
+    _get_transaction_status_responses = {
+        200: TransactionStatus,
+        400: ErrorList,
+        401: Error,
+        403: Error,
+        404: Error,
+        415: Error,
+        429: Error,
+        500: Error,
+        503: Error,
+    }

@@ -1760,8 +1760,15 @@ class FinancesV0Client(BaseClient):
             financial_event_group_started_after,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_financial_event_groups_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_financial_event_groups_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_financial_event_groups_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -1769,6 +1776,16 @@ class FinancesV0Client(BaseClient):
         ("FinancialEventGroupStartedAfter", "query"),
         ("NextToken", "query"),
     )
+
+    _list_financial_event_groups_responses = {
+        200: ListFinancialEventGroupsResponse,
+        400: ListFinancialEventGroupsResponse,
+        403: ListFinancialEventGroupsResponse,
+        404: ListFinancialEventGroupsResponse,
+        429: ListFinancialEventGroupsResponse,
+        500: ListFinancialEventGroupsResponse,
+        503: ListFinancialEventGroupsResponse,
+    }
 
     def list_financial_events(
         self,
@@ -1801,8 +1818,15 @@ class FinancesV0Client(BaseClient):
             posted_before,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_financial_events_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_financial_events_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_financial_events_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -1810,6 +1834,16 @@ class FinancesV0Client(BaseClient):
         ("PostedBefore", "query"),
         ("NextToken", "query"),
     )
+
+    _list_financial_events_responses = {
+        200: ListFinancialEventsResponse,
+        400: ListFinancialEventsResponse,
+        403: ListFinancialEventsResponse,
+        404: ListFinancialEventsResponse,
+        429: ListFinancialEventsResponse,
+        500: ListFinancialEventsResponse,
+        503: ListFinancialEventsResponse,
+    }
 
     def list_financial_events_by_group_id(
         self,
@@ -1839,14 +1873,31 @@ class FinancesV0Client(BaseClient):
             event_group_id,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_financial_events_by_group_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_financial_events_by_group_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_financial_events_by_group_id_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
         ("eventGroupId", "path"),
         ("NextToken", "query"),
     )
+
+    _list_financial_events_by_group_id_responses = {
+        200: ListFinancialEventsResponse,
+        400: ListFinancialEventsResponse,
+        403: ListFinancialEventsResponse,
+        404: ListFinancialEventsResponse,
+        429: ListFinancialEventsResponse,
+        500: ListFinancialEventsResponse,
+        503: ListFinancialEventsResponse,
+    }
 
     def list_financial_events_by_order_id(
         self,
@@ -1876,11 +1927,28 @@ class FinancesV0Client(BaseClient):
             max_results_per_page,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._list_financial_events_by_order_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._list_financial_events_by_order_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _list_financial_events_by_order_id_params = (  # name, param in
         ("orderId", "path"),
         ("MaxResultsPerPage", "query"),
         ("NextToken", "query"),
     )
+
+    _list_financial_events_by_order_id_responses = {
+        200: ListFinancialEventsResponse,
+        400: ListFinancialEventsResponse,
+        403: ListFinancialEventsResponse,
+        404: ListFinancialEventsResponse,
+        429: ListFinancialEventsResponse,
+        500: ListFinancialEventsResponse,
+        503: ListFinancialEventsResponse,
+    }

@@ -93,11 +93,30 @@ class AuthorizationV1Client(BaseClient):
             developer_id,
             mws_auth_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_authorization_code_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_authorization_code_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_authorization_code_params = (  # name, param in
         ("sellingPartnerId", "query"),
         ("developerId", "query"),
         ("mwsAuthToken", "query"),
     )
+
+    _get_authorization_code_responses = {
+        200: GetAuthorizationCodeResponse,
+        400: GetAuthorizationCodeResponse,
+        403: GetAuthorizationCodeResponse,
+        404: GetAuthorizationCodeResponse,
+        413: GetAuthorizationCodeResponse,
+        415: GetAuthorizationCodeResponse,
+        429: GetAuthorizationCodeResponse,
+        500: GetAuthorizationCodeResponse,
+        503: GetAuthorizationCodeResponse,
+    }

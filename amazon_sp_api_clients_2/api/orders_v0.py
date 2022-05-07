@@ -1368,10 +1368,27 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}"
         values = (order_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_params = (("orderId", "path"),)  # name, param in
+
+    _get_order_responses = {
+        200: GetOrderResponse,
+        400: GetOrderResponse,
+        403: GetOrderResponse,
+        404: GetOrderResponse,
+        429: GetOrderResponse,
+        500: GetOrderResponse,
+        503: GetOrderResponse,
+    }
 
     def get_order_address(
         self,
@@ -1394,10 +1411,27 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}/address"
         values = (order_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_address_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_address_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_address_params = (("orderId", "path"),)  # name, param in
+
+    _get_order_address_responses = {
+        200: GetOrderAddressResponse,
+        400: GetOrderAddressResponse,
+        403: GetOrderAddressResponse,
+        404: GetOrderAddressResponse,
+        429: GetOrderAddressResponse,
+        500: GetOrderAddressResponse,
+        503: GetOrderAddressResponse,
+    }
 
     def get_order_buyer_info(
         self,
@@ -1420,10 +1454,27 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}/buyerInfo"
         values = (order_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_buyer_info_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_buyer_info_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
+
+    _get_order_buyer_info_responses = {
+        200: GetOrderBuyerInfoResponse,
+        400: GetOrderBuyerInfoResponse,
+        403: GetOrderBuyerInfoResponse,
+        404: GetOrderBuyerInfoResponse,
+        429: GetOrderBuyerInfoResponse,
+        500: GetOrderBuyerInfoResponse,
+        503: GetOrderBuyerInfoResponse,
+    }
 
     def get_order_items(
         self,
@@ -1453,13 +1504,30 @@ class OrdersV0Client(BaseClient):
             order_id,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_items_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_items_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_items_params = (  # name, param in
         ("orderId", "path"),
         ("NextToken", "query"),
     )
+
+    _get_order_items_responses = {
+        200: GetOrderItemsResponse,
+        400: GetOrderItemsResponse,
+        403: GetOrderItemsResponse,
+        404: GetOrderItemsResponse,
+        429: GetOrderItemsResponse,
+        500: GetOrderItemsResponse,
+        503: GetOrderItemsResponse,
+    }
 
     def get_order_items_buyer_info(
         self,
@@ -1487,13 +1555,30 @@ class OrdersV0Client(BaseClient):
             order_id,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_items_buyer_info_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_items_buyer_info_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_items_buyer_info_params = (  # name, param in
         ("orderId", "path"),
         ("NextToken", "query"),
     )
+
+    _get_order_items_buyer_info_responses = {
+        200: GetOrderItemsBuyerInfoResponse,
+        400: GetOrderItemsBuyerInfoResponse,
+        403: GetOrderItemsBuyerInfoResponse,
+        404: GetOrderItemsBuyerInfoResponse,
+        429: GetOrderItemsBuyerInfoResponse,
+        500: GetOrderItemsBuyerInfoResponse,
+        503: GetOrderItemsBuyerInfoResponse,
+    }
 
     def get_order_regulated_info(
         self,
@@ -1516,10 +1601,27 @@ class OrdersV0Client(BaseClient):
         """
         url = "/orders/v0/orders/{orderId}/regulatedInfo"
         values = (order_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_order_regulated_info_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_order_regulated_info_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
+
+    _get_order_regulated_info_responses = {
+        200: GetOrderRegulatedInfoResponse,
+        400: GetOrderRegulatedInfoResponse,
+        403: GetOrderRegulatedInfoResponse,
+        404: GetOrderRegulatedInfoResponse,
+        429: GetOrderRegulatedInfoResponse,
+        500: GetOrderRegulatedInfoResponse,
+        503: GetOrderRegulatedInfoResponse,
+    }
 
     def get_orders(
         self,
@@ -1593,8 +1695,15 @@ class OrdersV0Client(BaseClient):
             is_ispu,
             store_chain_store_id,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_orders_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_orders_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_orders_params = (  # name, param in
         ("CreatedAfter", "query"),
@@ -1615,6 +1724,16 @@ class OrdersV0Client(BaseClient):
         ("IsISPU", "query"),
         ("StoreChainStoreId", "query"),
     )
+
+    _get_orders_responses = {
+        200: GetOrdersResponse,
+        400: GetOrdersResponse,
+        403: GetOrdersResponse,
+        404: GetOrdersResponse,
+        429: GetOrdersResponse,
+        500: GetOrdersResponse,
+        503: GetOrdersResponse,
+    }
 
     def update_shipment_status(
         self,
@@ -1639,8 +1758,15 @@ class OrdersV0Client(BaseClient):
             order_items,
             shipment_status,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._update_shipment_status_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._update_shipment_status_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _update_shipment_status_params = (  # name, param in
         ("orderId", "path"),
@@ -1648,6 +1774,17 @@ class OrdersV0Client(BaseClient):
         ("orderItems", "body"),
         ("shipmentStatus", "body"),
     )
+
+    _update_shipment_status_responses = {
+        400: UpdateShipmentStatusErrorResponse,
+        403: UpdateShipmentStatusErrorResponse,
+        404: UpdateShipmentStatusErrorResponse,
+        413: UpdateShipmentStatusErrorResponse,
+        415: UpdateShipmentStatusErrorResponse,
+        429: UpdateShipmentStatusErrorResponse,
+        500: UpdateShipmentStatusErrorResponse,
+        503: UpdateShipmentStatusErrorResponse,
+    }
 
     def update_verification_status(
         self,
@@ -1675,10 +1812,28 @@ class OrdersV0Client(BaseClient):
             order_id,
             regulated_order_verification_status,
         )
-        response = self._parse_args_and_request(url, "PATCH", values, self._update_verification_status_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PATCH",
+            values,
+            self._update_verification_status_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _update_verification_status_params = (  # name, param in
         ("orderId", "path"),
         ("regulatedOrderVerificationStatus", "body"),
     )
+
+    _update_verification_status_responses = {
+        400: UpdateVerificationStatusErrorResponse,
+        403: UpdateVerificationStatusErrorResponse,
+        404: UpdateVerificationStatusErrorResponse,
+        413: UpdateVerificationStatusErrorResponse,
+        415: UpdateVerificationStatusErrorResponse,
+        429: UpdateVerificationStatusErrorResponse,
+        500: UpdateVerificationStatusErrorResponse,
+        503: UpdateVerificationStatusErrorResponse,
+    }

@@ -361,13 +361,33 @@ class NotificationsV1Client(BaseClient):
             name,
             resource_specification,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_destination_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_destination_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_destination_params = (  # name, param in
         ("name", "body"),
         ("resourceSpecification", "body"),
     )
+
+    _create_destination_responses = {
+        200: CreateDestinationResponse,
+        400: CreateDestinationResponse,
+        403: CreateDestinationResponse,
+        404: CreateDestinationResponse,
+        409: CreateDestinationResponse,
+        413: CreateDestinationResponse,
+        415: CreateDestinationResponse,
+        429: CreateDestinationResponse,
+        500: CreateDestinationResponse,
+        503: CreateDestinationResponse,
+    }
 
     def create_subscription(
         self,
@@ -398,14 +418,34 @@ class NotificationsV1Client(BaseClient):
             destination_id,
             payload_version,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_subscription_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_subscription_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_subscription_params = (  # name, param in
         ("notificationType", "path"),
         ("destinationId", "body"),
         ("payloadVersion", "body"),
     )
+
+    _create_subscription_responses = {
+        200: CreateSubscriptionResponse,
+        400: CreateSubscriptionResponse,
+        403: CreateSubscriptionResponse,
+        404: CreateSubscriptionResponse,
+        409: CreateSubscriptionResponse,
+        413: CreateSubscriptionResponse,
+        415: CreateSubscriptionResponse,
+        429: CreateSubscriptionResponse,
+        500: CreateSubscriptionResponse,
+        503: CreateSubscriptionResponse,
+    }
 
     def delete_destination(
         self,
@@ -427,10 +467,30 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/destinations/{destinationId}"
         values = (destination_id,)
-        response = self._parse_args_and_request(url, "DELETE", values, self._delete_destination_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._delete_destination_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _delete_destination_params = (("destinationId", "path"),)  # name, param in
+
+    _delete_destination_responses = {
+        200: DeleteDestinationResponse,
+        400: DeleteDestinationResponse,
+        403: DeleteDestinationResponse,
+        404: DeleteDestinationResponse,
+        409: DeleteDestinationResponse,
+        413: DeleteDestinationResponse,
+        415: DeleteDestinationResponse,
+        429: DeleteDestinationResponse,
+        500: DeleteDestinationResponse,
+        503: DeleteDestinationResponse,
+    }
 
     def delete_subscription_by_id(
         self,
@@ -458,13 +518,33 @@ class NotificationsV1Client(BaseClient):
             subscription_id,
             notification_type,
         )
-        response = self._parse_args_and_request(url, "DELETE", values, self._delete_subscription_by_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._delete_subscription_by_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _delete_subscription_by_id_params = (  # name, param in
         ("subscriptionId", "path"),
         ("notificationType", "path"),
     )
+
+    _delete_subscription_by_id_responses = {
+        200: DeleteSubscriptionByIdResponse,
+        400: DeleteSubscriptionByIdResponse,
+        403: DeleteSubscriptionByIdResponse,
+        404: DeleteSubscriptionByIdResponse,
+        409: DeleteSubscriptionByIdResponse,
+        413: DeleteSubscriptionByIdResponse,
+        415: DeleteSubscriptionByIdResponse,
+        429: DeleteSubscriptionByIdResponse,
+        500: DeleteSubscriptionByIdResponse,
+        503: DeleteSubscriptionByIdResponse,
+    }
 
     def get_destination(
         self,
@@ -486,10 +566,30 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/destinations/{destinationId}"
         values = (destination_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_destination_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_destination_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_destination_params = (("destinationId", "path"),)  # name, param in
+
+    _get_destination_responses = {
+        200: GetDestinationResponse,
+        400: GetDestinationResponse,
+        403: GetDestinationResponse,
+        404: GetDestinationResponse,
+        409: GetDestinationResponse,
+        413: GetDestinationResponse,
+        415: GetDestinationResponse,
+        429: GetDestinationResponse,
+        500: GetDestinationResponse,
+        503: GetDestinationResponse,
+    }
 
     def get_destinations(
         self,
@@ -509,10 +609,30 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/destinations"
         values = ()
-        response = self._parse_args_and_request(url, "GET", values, self._get_destinations_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_destinations_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_destinations_params = ()  # name, param in
+
+    _get_destinations_responses = {
+        200: GetDestinationsResponse,
+        400: GetDestinationsResponse,
+        403: GetDestinationsResponse,
+        404: GetDestinationsResponse,
+        409: GetDestinationsResponse,
+        413: GetDestinationsResponse,
+        415: GetDestinationsResponse,
+        429: GetDestinationsResponse,
+        500: GetDestinationsResponse,
+        503: GetDestinationsResponse,
+    }
 
     def get_subscription(
         self,
@@ -535,10 +655,29 @@ class NotificationsV1Client(BaseClient):
         """
         url = "/notifications/v1/subscriptions/{notificationType}"
         values = (notification_type,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_subscription_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_subscription_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_subscription_params = (("notificationType", "path"),)  # name, param in
+
+    _get_subscription_responses = {
+        200: GetSubscriptionResponse,
+        400: GetSubscriptionResponse,
+        403: GetSubscriptionResponse,
+        404: GetSubscriptionResponse,
+        413: GetSubscriptionResponse,
+        415: GetSubscriptionResponse,
+        429: GetSubscriptionResponse,
+        500: GetSubscriptionResponse,
+        503: GetSubscriptionResponse,
+    }
 
     def get_subscription_by_id(
         self,
@@ -566,10 +705,30 @@ class NotificationsV1Client(BaseClient):
             subscription_id,
             notification_type,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_subscription_by_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_subscription_by_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_subscription_by_id_params = (  # name, param in
         ("subscriptionId", "path"),
         ("notificationType", "path"),
     )
+
+    _get_subscription_by_id_responses = {
+        200: GetSubscriptionByIdResponse,
+        400: GetSubscriptionByIdResponse,
+        403: GetSubscriptionByIdResponse,
+        404: GetSubscriptionResponse,
+        409: GetSubscriptionByIdResponse,
+        413: GetSubscriptionByIdResponse,
+        415: GetSubscriptionByIdResponse,
+        429: GetSubscriptionByIdResponse,
+        500: GetSubscriptionByIdResponse,
+        503: GetSubscriptionByIdResponse,
+    }

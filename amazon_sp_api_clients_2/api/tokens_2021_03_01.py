@@ -139,10 +139,29 @@ class Tokens20210301Client(BaseClient):
             restricted_resources,
             target_application,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._create_restricted_data_token_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._create_restricted_data_token_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_restricted_data_token_params = (  # name, param in
         ("restrictedResources", "body"),
         ("targetApplication", "body"),
     )
+
+    _create_restricted_data_token_responses = {
+        200: CreateRestrictedDataTokenResponse,
+        400: ErrorList,
+        401: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

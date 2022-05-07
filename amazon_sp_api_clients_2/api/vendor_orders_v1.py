@@ -833,10 +833,29 @@ class VendorOrdersV1Client(BaseClient):
         """
         url = "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}"
         values = (purchase_order_number,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_purchase_order_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_purchase_order_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_purchase_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
+
+    _get_purchase_order_responses = {
+        200: GetPurchaseOrderResponse,
+        400: GetPurchaseOrderResponse,
+        401: GetPurchaseOrderResponse,
+        403: GetPurchaseOrderResponse,
+        404: GetPurchaseOrderResponse,
+        415: GetPurchaseOrderResponse,
+        429: GetPurchaseOrderResponse,
+        500: GetPurchaseOrderResponse,
+        503: GetPurchaseOrderResponse,
+    }
 
     def get_purchase_orders(
         self,
@@ -894,8 +913,15 @@ class VendorOrdersV1Client(BaseClient):
             purchase_order_state,
             ordering_vendor_code,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_purchase_orders_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_purchase_orders_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_purchase_orders_params = (  # name, param in
         ("limit", "query"),
@@ -911,6 +937,17 @@ class VendorOrdersV1Client(BaseClient):
         ("purchaseOrderState", "query"),
         ("orderingVendorCode", "query"),
     )
+
+    _get_purchase_orders_responses = {
+        200: GetPurchaseOrdersResponse,
+        400: GetPurchaseOrdersResponse,
+        403: GetPurchaseOrdersResponse,
+        404: GetPurchaseOrdersResponse,
+        415: GetPurchaseOrdersResponse,
+        429: GetPurchaseOrdersResponse,
+        500: GetPurchaseOrdersResponse,
+        503: GetPurchaseOrdersResponse,
+    }
 
     def get_purchase_orders_status(
         self,
@@ -973,8 +1010,15 @@ class VendorOrdersV1Client(BaseClient):
             ordering_vendor_code,
             ship_to_party_id,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_purchase_orders_status_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_purchase_orders_status_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_purchase_orders_status_params = (  # name, param in
         ("limit", "query"),
@@ -991,6 +1035,17 @@ class VendorOrdersV1Client(BaseClient):
         ("orderingVendorCode", "query"),
         ("shipToPartyId", "query"),
     )
+
+    _get_purchase_orders_status_responses = {
+        200: GetPurchaseOrdersStatusResponse,
+        400: GetPurchaseOrdersStatusResponse,
+        403: GetPurchaseOrdersStatusResponse,
+        404: GetPurchaseOrdersStatusResponse,
+        415: GetPurchaseOrdersStatusResponse,
+        429: GetPurchaseOrdersStatusResponse,
+        500: GetPurchaseOrdersStatusResponse,
+        503: GetPurchaseOrdersStatusResponse,
+    }
 
     def submit_acknowledgement(
         self,
@@ -1013,7 +1068,26 @@ class VendorOrdersV1Client(BaseClient):
         """
         url = "/vendor/orders/v1/acknowledgements"
         values = (acknowledgements,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_acknowledgement_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_acknowledgement_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_acknowledgement_params = (("acknowledgements", "body"),)  # name, param in
+
+    _submit_acknowledgement_responses = {
+        202: SubmitAcknowledgementResponse,
+        400: SubmitAcknowledgementResponse,
+        403: SubmitAcknowledgementResponse,
+        404: SubmitAcknowledgementResponse,
+        413: SubmitAcknowledgementResponse,
+        415: SubmitAcknowledgementResponse,
+        429: SubmitAcknowledgementResponse,
+        500: SubmitAcknowledgementResponse,
+        503: SubmitAcknowledgementResponse,
+    }

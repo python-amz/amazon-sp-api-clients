@@ -102,7 +102,26 @@ class VendorTransactionStatusV1Client(BaseClient):
         """
         url = "/vendor/transactions/v1/transactions/{transactionId}"
         values = (transaction_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_transaction_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_transaction_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_transaction_params = (("transactionId", "path"),)  # name, param in
+
+    _get_transaction_responses = {
+        200: GetTransactionResponse,
+        400: GetTransactionResponse,
+        401: GetTransactionResponse,
+        403: GetTransactionResponse,
+        404: GetTransactionResponse,
+        415: GetTransactionResponse,
+        429: GetTransactionResponse,
+        500: GetTransactionResponse,
+        503: GetTransactionResponse,
+    }

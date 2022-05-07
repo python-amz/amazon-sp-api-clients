@@ -459,8 +459,15 @@ class ListingsItems20210801Client(BaseClient):
             marketplace_ids,
             issue_locale,
         )
-        response = self._parse_args_and_request(url, "DELETE", values, self._delete_listings_item_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "DELETE",
+            values,
+            self._delete_listings_item_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _delete_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -468,6 +475,17 @@ class ListingsItems20210801Client(BaseClient):
         ("marketplaceIds", "query"),
         ("issueLocale", "query"),
     )
+
+    _delete_listings_item_responses = {
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def get_listings_item(
         self,
@@ -512,8 +530,15 @@ class ListingsItems20210801Client(BaseClient):
             issue_locale,
             included_data,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_listings_item_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_listings_item_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -522,6 +547,18 @@ class ListingsItems20210801Client(BaseClient):
         ("issueLocale", "query"),
         ("includedData", "query"),
     )
+
+    _get_listings_item_responses = {
+        200: Item,
+        400: ErrorList,
+        403: ErrorList,
+        404: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def patch_listings_item(
         self,
@@ -560,8 +597,15 @@ class ListingsItems20210801Client(BaseClient):
             patches,
             product_type,
         )
-        response = self._parse_args_and_request(url, "PATCH", values, self._patch_listings_item_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PATCH",
+            values,
+            self._patch_listings_item_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _patch_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -571,6 +615,17 @@ class ListingsItems20210801Client(BaseClient):
         ("patches", "body"),
         ("productType", "body"),
     )
+
+    _patch_listings_item_responses = {
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }
 
     def put_listings_item(
         self,
@@ -612,8 +667,15 @@ class ListingsItems20210801Client(BaseClient):
             product_type,
             requirements,
         )
-        response = self._parse_args_and_request(url, "PUT", values, self._put_listings_item_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._put_listings_item_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _put_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -624,3 +686,14 @@ class ListingsItems20210801Client(BaseClient):
         ("productType", "body"),
         ("requirements", "body"),
     )
+
+    _put_listings_item_responses = {
+        200: ListingsItemSubmissionResponse,
+        400: ErrorList,
+        403: ErrorList,
+        413: ErrorList,
+        415: ErrorList,
+        429: ErrorList,
+        500: ErrorList,
+        503: ErrorList,
+    }

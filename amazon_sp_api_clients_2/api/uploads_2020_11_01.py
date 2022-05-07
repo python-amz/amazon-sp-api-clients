@@ -116,9 +116,14 @@ class Uploads20201101Client(BaseClient):
             content_type,
         )
         response = self._parse_args_and_request(
-            url, "POST", values, self._create_upload_destination_for_resource_params
+            url,
+            "POST",
+            values,
+            self._create_upload_destination_for_resource_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _create_upload_destination_for_resource_params = (  # name, param in
         ("marketplaceIds", "query"),
@@ -126,3 +131,15 @@ class Uploads20201101Client(BaseClient):
         ("resource", "path"),
         ("contentType", "query"),
     )
+
+    _create_upload_destination_for_resource_responses = {
+        201: CreateUploadDestinationResponse,
+        400: CreateUploadDestinationResponse,
+        403: CreateUploadDestinationResponse,
+        404: CreateUploadDestinationResponse,
+        413: CreateUploadDestinationResponse,
+        415: CreateUploadDestinationResponse,
+        429: CreateUploadDestinationResponse,
+        500: CreateUploadDestinationResponse,
+        503: CreateUploadDestinationResponse,
+    }

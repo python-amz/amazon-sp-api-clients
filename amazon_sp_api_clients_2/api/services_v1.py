@@ -753,14 +753,32 @@ class ServicesV1Client(BaseClient):
             appointment_time,
         )
         response = self._parse_args_and_request(
-            url, "POST", values, self._add_appointment_for_service_job_by_service_job_id_params
+            url,
+            "POST",
+            values,
+            self._add_appointment_for_service_job_by_service_job_id_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),
         ("appointmentTime", "body"),
     )
+
+    _add_appointment_for_service_job_by_service_job_id_responses = {
+        200: SetAppointmentResponse,
+        400: SetAppointmentResponse,
+        403: SetAppointmentResponse,
+        404: SetAppointmentResponse,
+        413: SetAppointmentResponse,
+        415: SetAppointmentResponse,
+        422: SetAppointmentResponse,
+        429: SetAppointmentResponse,
+        500: SetAppointmentResponse,
+        503: SetAppointmentResponse,
+    }
 
     def cancel_service_job_by_service_job_id(
         self,
@@ -787,13 +805,33 @@ class ServicesV1Client(BaseClient):
             service_job_id,
             cancellation_reason_code,
         )
-        response = self._parse_args_and_request(url, "PUT", values, self._cancel_service_job_by_service_job_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._cancel_service_job_by_service_job_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _cancel_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),
         ("cancellationReasonCode", "query"),
     )
+
+    _cancel_service_job_by_service_job_id_responses = {
+        200: CancelServiceJobByServiceJobIdResponse,
+        400: CancelServiceJobByServiceJobIdResponse,
+        403: CancelServiceJobByServiceJobIdResponse,
+        404: CancelServiceJobByServiceJobIdResponse,
+        413: CancelServiceJobByServiceJobIdResponse,
+        415: CancelServiceJobByServiceJobIdResponse,
+        422: CancelServiceJobByServiceJobIdResponse,
+        429: CancelServiceJobByServiceJobIdResponse,
+        500: CancelServiceJobByServiceJobIdResponse,
+        503: CancelServiceJobByServiceJobIdResponse,
+    }
 
     def complete_service_job_by_service_job_id(
         self,
@@ -815,10 +853,30 @@ class ServicesV1Client(BaseClient):
         """
         url = "/service/v1/serviceJobs/{serviceJobId}/completions"
         values = (service_job_id,)
-        response = self._parse_args_and_request(url, "PUT", values, self._complete_service_job_by_service_job_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "PUT",
+            values,
+            self._complete_service_job_by_service_job_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
+
+    _complete_service_job_by_service_job_id_responses = {
+        200: CompleteServiceJobByServiceJobIdResponse,
+        400: CompleteServiceJobByServiceJobIdResponse,
+        403: CompleteServiceJobByServiceJobIdResponse,
+        404: CompleteServiceJobByServiceJobIdResponse,
+        413: CompleteServiceJobByServiceJobIdResponse,
+        415: CompleteServiceJobByServiceJobIdResponse,
+        422: CompleteServiceJobByServiceJobIdResponse,
+        429: CompleteServiceJobByServiceJobIdResponse,
+        500: CompleteServiceJobByServiceJobIdResponse,
+        503: CompleteServiceJobByServiceJobIdResponse,
+    }
 
     def get_service_job_by_service_job_id(
         self,
@@ -840,10 +898,30 @@ class ServicesV1Client(BaseClient):
         """
         url = "/service/v1/serviceJobs/{serviceJobId}"
         values = (service_job_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_service_job_by_service_job_id_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_service_job_by_service_job_id_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
+
+    _get_service_job_by_service_job_id_responses = {
+        200: GetServiceJobByServiceJobIdResponse,
+        400: GetServiceJobByServiceJobIdResponse,
+        403: GetServiceJobByServiceJobIdResponse,
+        404: GetServiceJobByServiceJobIdResponse,
+        413: GetServiceJobByServiceJobIdResponse,
+        415: GetServiceJobByServiceJobIdResponse,
+        422: GetServiceJobByServiceJobIdResponse,
+        429: GetServiceJobByServiceJobIdResponse,
+        500: GetServiceJobByServiceJobIdResponse,
+        503: GetServiceJobByServiceJobIdResponse,
+    }
 
     def get_service_jobs(
         self,
@@ -913,8 +991,15 @@ class ServicesV1Client(BaseClient):
             schedule_end_date,
             marketplace_ids,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_service_jobs_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_service_jobs_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_service_jobs_params = (  # name, param in
         ("serviceOrderIds", "query"),
@@ -931,6 +1016,18 @@ class ServicesV1Client(BaseClient):
         ("scheduleEndDate", "query"),
         ("marketplaceIds", "query"),
     )
+
+    _get_service_jobs_responses = {
+        200: GetServiceJobsResponse,
+        400: GetServiceJobsResponse,
+        403: GetServiceJobsResponse,
+        404: GetServiceJobsResponse,
+        413: GetServiceJobsResponse,
+        415: GetServiceJobsResponse,
+        429: GetServiceJobsResponse,
+        500: GetServiceJobsResponse,
+        503: GetServiceJobsResponse,
+    }
 
     def reschedule_appointment_for_service_job_by_service_job_id(
         self,
@@ -964,9 +1061,14 @@ class ServicesV1Client(BaseClient):
             reschedule_reason_code,
         )
         response = self._parse_args_and_request(
-            url, "POST", values, self._reschedule_appointment_for_service_job_by_service_job_id_params
+            url,
+            "POST",
+            values,
+            self._reschedule_appointment_for_service_job_by_service_job_id_params,
         )
-        return response
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),
@@ -974,3 +1076,16 @@ class ServicesV1Client(BaseClient):
         ("appointmentTime", "body"),
         ("rescheduleReasonCode", "body"),
     )
+
+    _reschedule_appointment_for_service_job_by_service_job_id_responses = {
+        200: SetAppointmentResponse,
+        400: SetAppointmentResponse,
+        403: SetAppointmentResponse,
+        404: SetAppointmentResponse,
+        413: SetAppointmentResponse,
+        415: SetAppointmentResponse,
+        422: SetAppointmentResponse,
+        429: SetAppointmentResponse,
+        500: SetAppointmentResponse,
+        503: SetAppointmentResponse,
+    }

@@ -468,10 +468,29 @@ class ShipmentInvoicingV0Client(BaseClient):
         """
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_invoice_status_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_invoice_status_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_invoice_status_params = (("shipmentId", "path"),)  # name, param in
+
+    _get_invoice_status_responses = {
+        200: GetInvoiceStatusResponse,
+        400: GetInvoiceStatusResponse,
+        401: GetInvoiceStatusResponse,
+        403: GetInvoiceStatusResponse,
+        404: GetInvoiceStatusResponse,
+        415: GetInvoiceStatusResponse,
+        429: GetInvoiceStatusResponse,
+        500: GetInvoiceStatusResponse,
+        503: GetInvoiceStatusResponse,
+    }
 
     def get_shipment_details(
         self,
@@ -494,10 +513,29 @@ class ShipmentInvoicingV0Client(BaseClient):
         """
         url = "/fba/outbound/brazil/v0/shipments/{shipmentId}"
         values = (shipment_id,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipment_details_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipment_details_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipment_details_params = (("shipmentId", "path"),)  # name, param in
+
+    _get_shipment_details_responses = {
+        200: GetShipmentDetailsResponse,
+        400: GetShipmentDetailsResponse,
+        401: GetShipmentDetailsResponse,
+        403: GetShipmentDetailsResponse,
+        404: GetShipmentDetailsResponse,
+        415: GetShipmentDetailsResponse,
+        429: GetShipmentDetailsResponse,
+        500: GetShipmentDetailsResponse,
+        503: GetShipmentDetailsResponse,
+    }
 
     def submit_invoice(
         self,
@@ -531,8 +569,15 @@ class ShipmentInvoicingV0Client(BaseClient):
             invoice_content,
             marketplace_id,
         )
-        response = self._parse_args_and_request(url, "POST", values, self._submit_invoice_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_invoice_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_invoice_params = (  # name, param in
         ("shipmentId", "path"),
@@ -540,3 +585,15 @@ class ShipmentInvoicingV0Client(BaseClient):
         ("InvoiceContent", "body"),
         ("MarketplaceId", "body"),
     )
+
+    _submit_invoice_responses = {
+        200: SubmitInvoiceResponse,
+        400: SubmitInvoiceResponse,
+        401: SubmitInvoiceResponse,
+        403: SubmitInvoiceResponse,
+        404: SubmitInvoiceResponse,
+        415: SubmitInvoiceResponse,
+        429: SubmitInvoiceResponse,
+        500: SubmitInvoiceResponse,
+        503: SubmitInvoiceResponse,
+    }

@@ -815,10 +815,29 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}"
         values = (purchase_order_number,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_customer_invoice_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_customer_invoice_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_customer_invoice_params = (("purchaseOrderNumber", "path"),)  # name, param in
+
+    _get_customer_invoice_responses = {
+        200: GetCustomerInvoiceResponse,
+        400: GetCustomerInvoiceResponse,
+        401: GetCustomerInvoiceResponse,
+        403: GetCustomerInvoiceResponse,
+        404: GetCustomerInvoiceResponse,
+        415: GetCustomerInvoiceResponse,
+        429: GetCustomerInvoiceResponse,
+        500: GetCustomerInvoiceResponse,
+        503: GetCustomerInvoiceResponse,
+    }
 
     def get_customer_invoices(
         self,
@@ -858,8 +877,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_customer_invoices_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_customer_invoices_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_customer_invoices_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -869,6 +895,17 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         ("sortOrder", "query"),
         ("nextToken", "query"),
     )
+
+    _get_customer_invoices_responses = {
+        200: GetCustomerInvoicesResponse,
+        400: GetCustomerInvoiceResponse,
+        403: GetCustomerInvoiceResponse,
+        404: GetCustomerInvoiceResponse,
+        415: GetCustomerInvoiceResponse,
+        429: GetCustomerInvoiceResponse,
+        500: GetCustomerInvoiceResponse,
+        503: GetCustomerInvoiceResponse,
+    }
 
     def get_packing_slip(
         self,
@@ -891,10 +928,29 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}"
         values = (purchase_order_number,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_packing_slip_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_packing_slip_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_packing_slip_params = (("purchaseOrderNumber", "path"),)  # name, param in
+
+    _get_packing_slip_responses = {
+        200: GetPackingSlipResponse,
+        400: GetPackingSlipResponse,
+        401: GetPackingSlipResponse,
+        403: GetPackingSlipResponse,
+        404: GetPackingSlipResponse,
+        415: GetPackingSlipResponse,
+        429: GetPackingSlipResponse,
+        500: GetPackingSlipResponse,
+        503: GetPackingSlipResponse,
+    }
 
     def get_packing_slips(
         self,
@@ -934,8 +990,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_packing_slips_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_packing_slips_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_packing_slips_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -945,6 +1008,18 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         ("sortOrder", "query"),
         ("nextToken", "query"),
     )
+
+    _get_packing_slips_responses = {
+        200: GetPackingSlipListResponse,
+        400: GetPackingSlipListResponse,
+        401: GetPackingSlipListResponse,
+        403: GetPackingSlipListResponse,
+        404: GetPackingSlipListResponse,
+        415: GetPackingSlipListResponse,
+        429: GetPackingSlipListResponse,
+        500: GetPackingSlipListResponse,
+        503: GetPackingSlipListResponse,
+    }
 
     def get_shipping_label(
         self,
@@ -967,10 +1042,29 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}"
         values = (purchase_order_number,)
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipping_label_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipping_label_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
+
+    _get_shipping_label_responses = {
+        200: GetShippingLabelResponse,
+        400: GetShippingLabelResponse,
+        401: GetShippingLabelResponse,
+        403: GetShippingLabelResponse,
+        404: GetShippingLabelResponse,
+        415: GetShippingLabelResponse,
+        429: GetShippingLabelResponse,
+        500: GetShippingLabelResponse,
+        503: GetShippingLabelResponse,
+    }
 
     def get_shipping_labels(
         self,
@@ -1010,8 +1104,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
             sort_order,
             next_token,
         )
-        response = self._parse_args_and_request(url, "GET", values, self._get_shipping_labels_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "GET",
+            values,
+            self._get_shipping_labels_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _get_shipping_labels_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -1021,6 +1122,17 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         ("sortOrder", "query"),
         ("nextToken", "query"),
     )
+
+    _get_shipping_labels_responses = {
+        200: GetShippingLabelListResponse,
+        400: GetShippingLabelListResponse,
+        403: GetShippingLabelListResponse,
+        404: GetShippingLabelListResponse,
+        415: GetShippingLabelListResponse,
+        429: GetShippingLabelListResponse,
+        500: GetShippingLabelListResponse,
+        503: GetShippingLabelListResponse,
+    }
 
     def submit_shipment_confirmations(
         self,
@@ -1043,10 +1155,29 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
         values = (shipment_confirmations,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_confirmations_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_shipment_confirmations_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
+
+    _submit_shipment_confirmations_responses = {
+        202: SubmitShipmentConfirmationsResponse,
+        400: SubmitShipmentConfirmationsResponse,
+        403: SubmitShipmentConfirmationsResponse,
+        404: SubmitShipmentConfirmationsResponse,
+        413: SubmitShipmentConfirmationsResponse,
+        415: SubmitShipmentConfirmationsResponse,
+        429: SubmitShipmentConfirmationsResponse,
+        500: SubmitShipmentConfirmationsResponse,
+        503: SubmitShipmentConfirmationsResponse,
+    }
 
     def submit_shipment_status_updates(
         self,
@@ -1069,10 +1200,29 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
         values = (shipment_status_updates,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_shipment_status_updates_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_shipment_status_updates_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_shipment_status_updates_params = (("shipmentStatusUpdates", "body"),)  # name, param in
+
+    _submit_shipment_status_updates_responses = {
+        202: SubmitShipmentStatusUpdatesResponse,
+        400: SubmitShipmentStatusUpdatesResponse,
+        403: SubmitShipmentStatusUpdatesResponse,
+        404: SubmitShipmentStatusUpdatesResponse,
+        413: SubmitShipmentStatusUpdatesResponse,
+        415: SubmitShipmentStatusUpdatesResponse,
+        429: SubmitShipmentStatusUpdatesResponse,
+        500: SubmitShipmentStatusUpdatesResponse,
+        503: SubmitShipmentStatusUpdatesResponse,
+    }
 
     def submit_shipping_label_request(
         self,
@@ -1095,7 +1245,26 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         """
         url = "/vendor/directFulfillment/shipping/v1/shippingLabels"
         values = (shipping_label_requests,)
-        response = self._parse_args_and_request(url, "POST", values, self._submit_shipping_label_request_params)
-        return response
+        response = self._parse_args_and_request(
+            url,
+            "POST",
+            values,
+            self._submit_shipping_label_request_params,
+        )
+        klass = self._update_verification_status_responses.get(response.status_code)
+        obj = klass(**response.json())
+        return obj
 
     _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in
+
+    _submit_shipping_label_request_responses = {
+        202: SubmitShippingLabelsResponse,
+        400: SubmitShippingLabelsResponse,
+        403: SubmitShippingLabelsResponse,
+        404: SubmitShippingLabelsResponse,
+        413: SubmitShippingLabelsResponse,
+        415: SubmitShippingLabelsResponse,
+        429: SubmitShippingLabelsResponse,
+        500: SubmitShippingLabelsResponse,
+        503: SubmitShippingLabelsResponse,
+    }
