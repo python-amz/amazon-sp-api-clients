@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -531,7 +532,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_amazon_motors_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_amazon_motors_params = (  # name, param in
@@ -594,7 +595,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_warranty_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_warranty_params = (  # name, param in
@@ -648,7 +649,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._get_attributes_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_attributes_params = (  # name, param in
@@ -707,7 +708,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._confirm_customization_details_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _confirm_customization_details_params = (  # name, param in
@@ -765,7 +766,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_confirm_delivery_details_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_confirm_delivery_details_params = (  # name, param in
@@ -822,7 +823,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_confirm_order_details_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_confirm_order_details_params = (  # name, param in
@@ -879,7 +880,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_confirm_service_details_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_confirm_service_details_params = (  # name, param in
@@ -939,7 +940,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_digital_access_key_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_digital_access_key_params = (  # name, param in
@@ -997,7 +998,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_legal_disclosure_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_legal_disclosure_params = (  # name, param in
@@ -1051,7 +1052,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_negative_feedback_removal_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_negative_feedback_removal_params = (  # name, param in
@@ -1107,7 +1108,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._create_unexpected_problem_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_unexpected_problem_params = (  # name, param in
@@ -1161,7 +1162,7 @@ class MessagingV1Client(BaseClient):
         )
         klass = self._get_messaging_actions_for_order_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_messaging_actions_for_order_params = (  # name, param in

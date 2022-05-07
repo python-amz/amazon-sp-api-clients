@@ -13,6 +13,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -300,7 +301,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
         )
         klass = self._get_definitions_product_type_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_definitions_product_type_params = (  # name, param in
@@ -359,7 +360,7 @@ class ProductTypeDefinitions20200901Client(BaseClient):
         )
         klass = self._search_definitions_product_types_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _search_definitions_product_types_params = (  # name, param in

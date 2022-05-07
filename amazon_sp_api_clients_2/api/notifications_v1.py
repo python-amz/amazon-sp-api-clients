@@ -13,6 +13,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -371,7 +372,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._create_destination_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_destination_params = (  # name, param in
@@ -429,7 +430,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._create_subscription_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_subscription_params = (  # name, param in
@@ -479,7 +480,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._delete_destination_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _delete_destination_params = (("destinationId", "path"),)  # name, param in
@@ -531,7 +532,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._delete_subscription_by_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _delete_subscription_by_id_params = (  # name, param in
@@ -580,7 +581,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._get_destination_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_destination_params = (("destinationId", "path"),)  # name, param in
@@ -624,7 +625,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._get_destinations_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_destinations_params = ()  # name, param in
@@ -671,7 +672,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._get_subscription_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_subscription_params = (("notificationType", "path"),)  # name, param in
@@ -722,7 +723,7 @@ class NotificationsV1Client(BaseClient):
         )
         klass = self._get_subscription_by_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_subscription_by_id_params = (  # name, param in

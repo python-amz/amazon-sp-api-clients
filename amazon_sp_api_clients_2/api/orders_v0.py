@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1588,7 +1589,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._get_order_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_order_params = (("orderId", "path"),)  # name, param in
@@ -1632,7 +1633,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._get_order_address_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_order_address_params = (("orderId", "path"),)  # name, param in
@@ -1676,7 +1677,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._get_order_buyer_info_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
@@ -1727,7 +1728,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._get_order_items_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_order_items_params = (  # name, param in
@@ -1779,7 +1780,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._get_order_items_buyer_info_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_order_items_buyer_info_params = (  # name, param in
@@ -1826,7 +1827,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._get_order_regulated_info_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
@@ -1921,7 +1922,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._get_orders_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_orders_params = (  # name, param in
@@ -1985,7 +1986,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._update_shipment_status_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _update_shipment_status_params = (  # name, param in
@@ -2040,7 +2041,7 @@ class OrdersV0Client(BaseClient):
         )
         klass = self._update_verification_status_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _update_verification_status_params = (  # name, param in

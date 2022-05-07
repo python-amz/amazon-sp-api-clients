@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -262,7 +263,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         )
         klass = self._delete_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _delete_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
@@ -314,7 +315,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         )
         klass = self._get_small_and_light_eligibility_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_small_and_light_eligibility_by_seller_sku_params = (  # name, param in
@@ -367,7 +368,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         )
         klass = self._get_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
@@ -420,7 +421,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         )
         klass = self._get_small_and_light_fee_preview_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_small_and_light_fee_preview_params = (  # name, param in
@@ -472,7 +473,7 @@ class FbaSmallAndLightV1Client(BaseClient):
         )
         klass = self._put_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _put_small_and_light_enrollment_by_seller_sku_params = (  # name, param in

@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -404,7 +405,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._cancel_report_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_report_params = (("reportId", "path"),)  # name, param in
@@ -448,7 +449,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._cancel_report_schedule_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
@@ -506,7 +507,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._create_report_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_report_params = (  # name, param in
@@ -590,7 +591,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._create_report_schedule_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_report_schedule_params = (  # name, param in
@@ -641,7 +642,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._get_report_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_report_params = (("reportId", "path"),)  # name, param in
@@ -686,7 +687,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._get_report_document_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
@@ -731,7 +732,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._get_report_schedule_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
@@ -776,7 +777,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._get_report_schedules_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
@@ -843,7 +844,7 @@ class Reports20210630Client(BaseClient):
         )
         klass = self._get_reports_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_reports_params = (  # name, param in

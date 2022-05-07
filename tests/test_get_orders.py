@@ -1,5 +1,4 @@
 from datetime import datetime
-from pprint import pprint
 
 import amazon_sp_api_clients_2
 from .client_config import client_config, marketplace
@@ -12,4 +11,5 @@ def test_get_orders():
         marketplace_ids=[marketplace.market_place],
         created_after=datetime(2000, 1, 1).isoformat(),
     )
-    pprint(orders.payload.orders[0].amazon_order_id)
+    for o in orders.payload.orders:
+        print(f'{o.amazon_order_id} | {o.purchase_date} | {o.buyer_info}')

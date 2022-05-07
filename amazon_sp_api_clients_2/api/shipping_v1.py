@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1176,7 +1177,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._cancel_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
@@ -1231,7 +1232,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._create_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_shipment_params = (  # name, param in
@@ -1278,7 +1279,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._get_account_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_account_params = ()  # name, param in
@@ -1336,7 +1337,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._get_rates_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_rates_params = (  # name, param in
@@ -1386,7 +1387,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._get_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
@@ -1430,7 +1431,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._get_tracking_information_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_tracking_information_params = (("trackingId", "path"),)  # name, param in
@@ -1482,7 +1483,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._purchase_labels_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _purchase_labels_params = (  # name, param in
@@ -1552,7 +1553,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._purchase_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _purchase_shipment_params = (  # name, param in
@@ -1612,7 +1613,7 @@ class ShippingV1Client(BaseClient):
         )
         klass = self._retrieve_shipping_label_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _retrieve_shipping_label_params = (  # name, param in

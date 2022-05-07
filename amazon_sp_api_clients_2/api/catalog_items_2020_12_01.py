@@ -13,6 +13,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -607,7 +608,7 @@ class CatalogItems20201201Client(BaseClient):
         )
         klass = self._get_catalog_item_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_catalog_item_params = (  # name, param in
@@ -694,7 +695,7 @@ class CatalogItems20201201Client(BaseClient):
         )
         klass = self._search_catalog_items_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _search_catalog_items_params = (  # name, param in

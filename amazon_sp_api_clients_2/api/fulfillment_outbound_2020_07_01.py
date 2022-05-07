@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2049,7 +2050,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._cancel_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
@@ -2140,7 +2141,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._create_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_fulfillment_order_params = (  # name, param in
@@ -2205,7 +2206,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._create_fulfillment_return_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_fulfillment_return_params = (  # name, param in
@@ -2260,7 +2261,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._get_feature_inventory_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_feature_inventory_params = (  # name, param in
@@ -2316,7 +2317,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._get_feature_sku_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_feature_sku_params = (  # name, param in
@@ -2364,7 +2365,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._get_features_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_features_params = (("marketplaceId", "query"),)  # name, param in
@@ -2408,7 +2409,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._get_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
@@ -2475,7 +2476,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._get_fulfillment_preview_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_fulfillment_preview_params = (  # name, param in
@@ -2527,7 +2528,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._get_package_tracking_details_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_package_tracking_details_params = (("packageNumber", "query"),)  # name, param in
@@ -2576,7 +2577,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._list_all_fulfillment_orders_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _list_all_fulfillment_orders_params = (  # name, param in
@@ -2634,7 +2635,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._list_return_reason_codes_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _list_return_reason_codes_params = (  # name, param in
@@ -2723,7 +2724,7 @@ class FulfillmentOutbound20200701Client(BaseClient):
         )
         klass = self._update_fulfillment_order_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _update_fulfillment_order_params = (  # name, param in

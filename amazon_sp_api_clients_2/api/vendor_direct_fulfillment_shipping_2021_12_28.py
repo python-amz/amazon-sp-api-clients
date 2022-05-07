@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -636,7 +637,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         )
         klass = self._get_shipping_label_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
@@ -698,7 +699,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         )
         klass = self._get_shipping_labels_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_shipping_labels_params = (  # name, param in
@@ -749,7 +750,7 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
         )
         klass = self._submit_shipping_label_request_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in

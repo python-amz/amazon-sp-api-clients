@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -203,7 +204,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         )
         klass = self._generate_order_scenarios_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _generate_order_scenarios_params = (("orders", "body"),)  # name, param in
@@ -240,7 +241,7 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
         )
         klass = self._get_order_scenarios_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_order_scenarios_params = (("transactionId", "path"),)  # name, param in

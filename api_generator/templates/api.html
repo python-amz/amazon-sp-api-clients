@@ -11,7 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-
+import cattrs
 
 {% for schema in data.schemas %}
 @attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
@@ -69,7 +69,7 @@ Args:
     )
         klass = self._{{ operation.method_name }}_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
     _{{ operation.method_name }}_params = ( # name, param in
         {% for p in operation.parsed_parameters %}

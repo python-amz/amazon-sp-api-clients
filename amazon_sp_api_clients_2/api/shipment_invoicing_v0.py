@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -480,7 +481,7 @@ class ShipmentInvoicingV0Client(BaseClient):
         )
         klass = self._get_invoice_status_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_invoice_status_params = (("shipmentId", "path"),)  # name, param in
@@ -526,7 +527,7 @@ class ShipmentInvoicingV0Client(BaseClient):
         )
         klass = self._get_shipment_details_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_shipment_details_params = (("shipmentId", "path"),)  # name, param in
@@ -583,7 +584,7 @@ class ShipmentInvoicingV0Client(BaseClient):
         )
         klass = self._submit_invoice_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _submit_invoice_params = (  # name, param in

@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -786,7 +787,7 @@ class ServicesV1Client(BaseClient):
         )
         klass = self._add_appointment_for_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in
@@ -840,7 +841,7 @@ class ServicesV1Client(BaseClient):
         )
         klass = self._cancel_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_service_job_by_service_job_id_params = (  # name, param in
@@ -889,7 +890,7 @@ class ServicesV1Client(BaseClient):
         )
         klass = self._complete_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
@@ -935,7 +936,7 @@ class ServicesV1Client(BaseClient):
         )
         klass = self._get_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
@@ -1029,7 +1030,7 @@ class ServicesV1Client(BaseClient):
         )
         klass = self._get_service_jobs_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_service_jobs_params = (  # name, param in
@@ -1099,7 +1100,7 @@ class ServicesV1Client(BaseClient):
         )
         klass = self._reschedule_appointment_for_service_job_by_service_job_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in

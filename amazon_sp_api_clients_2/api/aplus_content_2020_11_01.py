@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1379,7 +1380,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._create_content_document_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_content_document_params = (  # name, param in
@@ -1435,7 +1436,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._get_content_document_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_content_document_params = (  # name, param in
@@ -1499,7 +1500,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._list_content_document_asin_relations_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _list_content_document_asin_relations_params = (  # name, param in
@@ -1556,7 +1557,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._post_content_document_approval_submission_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _post_content_document_approval_submission_params = (  # name, param in
@@ -1613,7 +1614,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._post_content_document_asin_relations_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _post_content_document_asin_relations_params = (  # name, param in
@@ -1668,7 +1669,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._post_content_document_suspend_submission_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _post_content_document_suspend_submission_params = (  # name, param in
@@ -1722,7 +1723,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._search_content_documents_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _search_content_documents_params = (  # name, param in
@@ -1779,7 +1780,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._search_content_publish_records_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _search_content_publish_records_params = (  # name, param in
@@ -1836,7 +1837,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._update_content_document_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _update_content_document_params = (  # name, param in
@@ -1894,7 +1895,7 @@ class AplusContent20201101Client(BaseClient):
         )
         klass = self._validate_content_document_asin_relations_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _validate_content_document_asin_relations_params = (  # name, param in

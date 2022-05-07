@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1782,7 +1783,7 @@ class FinancesV0Client(BaseClient):
         )
         klass = self._list_financial_event_groups_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _list_financial_event_groups_params = (  # name, param in
@@ -1841,7 +1842,7 @@ class FinancesV0Client(BaseClient):
         )
         klass = self._list_financial_events_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _list_financial_events_params = (  # name, param in
@@ -1897,7 +1898,7 @@ class FinancesV0Client(BaseClient):
         )
         klass = self._list_financial_events_by_group_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _list_financial_events_by_group_id_params = (  # name, param in
@@ -1952,7 +1953,7 @@ class FinancesV0Client(BaseClient):
         )
         klass = self._list_financial_events_by_order_id_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _list_financial_events_by_order_id_params = (  # name, param in

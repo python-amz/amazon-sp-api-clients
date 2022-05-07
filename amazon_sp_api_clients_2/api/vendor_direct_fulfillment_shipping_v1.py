@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -899,7 +900,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._get_customer_invoice_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_customer_invoice_params = (("purchaseOrderNumber", "path"),)  # name, param in
@@ -962,7 +963,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._get_customer_invoices_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_customer_invoices_params = (  # name, param in
@@ -1014,7 +1015,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._get_packing_slip_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_packing_slip_params = (("purchaseOrderNumber", "path"),)  # name, param in
@@ -1077,7 +1078,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._get_packing_slips_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_packing_slips_params = (  # name, param in
@@ -1130,7 +1131,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._get_shipping_label_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
@@ -1193,7 +1194,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._get_shipping_labels_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_shipping_labels_params = (  # name, param in
@@ -1245,7 +1246,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._submit_shipment_confirmations_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
@@ -1291,7 +1292,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._submit_shipment_status_updates_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _submit_shipment_status_updates_params = (("shipmentStatusUpdates", "body"),)  # name, param in
@@ -1337,7 +1338,7 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
         )
         klass = self._submit_shipping_label_request_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in

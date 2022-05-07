@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -931,7 +932,7 @@ class ProductPricingV0Client(BaseClient):
         )
         klass = self._get_competitive_pricing_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_competitive_pricing_params = (  # name, param in
@@ -995,7 +996,7 @@ class ProductPricingV0Client(BaseClient):
         )
         klass = self._get_item_offers_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_item_offers_params = (  # name, param in
@@ -1058,7 +1059,7 @@ class ProductPricingV0Client(BaseClient):
         )
         klass = self._get_listing_offers_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_listing_offers_params = (  # name, param in
@@ -1127,7 +1128,7 @@ class ProductPricingV0Client(BaseClient):
         )
         klass = self._get_pricing_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_pricing_params = (  # name, param in

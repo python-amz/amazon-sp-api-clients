@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1495,7 +1496,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._cancel_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
@@ -1539,7 +1540,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._cancel_shipment_old_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_shipment_old_params = (("shipmentId", "path"),)  # name, param in
@@ -1600,7 +1601,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._create_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_shipment_params = (  # name, param in
@@ -1659,7 +1660,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._get_additional_seller_inputs_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_additional_seller_inputs_params = (  # name, param in
@@ -1715,7 +1716,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._get_additional_seller_inputs_old_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_additional_seller_inputs_old_params = (  # name, param in
@@ -1768,7 +1769,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._get_eligible_shipment_services_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_eligible_shipment_services_params = (  # name, param in
@@ -1820,7 +1821,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._get_eligible_shipment_services_old_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_eligible_shipment_services_old_params = (  # name, param in
@@ -1867,7 +1868,7 @@ class MerchantFulfillmentV0Client(BaseClient):
         )
         klass = self._get_shipment_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in

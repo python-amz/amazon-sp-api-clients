@@ -11,6 +11,7 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
+import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -266,7 +267,7 @@ class Feeds20210630Client(BaseClient):
         )
         klass = self._cancel_feed_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
@@ -321,7 +322,7 @@ class Feeds20210630Client(BaseClient):
         )
         klass = self._create_feed_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_feed_params = (  # name, param in
@@ -371,7 +372,7 @@ class Feeds20210630Client(BaseClient):
         )
         klass = self._create_feed_document_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _create_feed_document_params = (("contentType", "body"),)  # name, param in
@@ -416,7 +417,7 @@ class Feeds20210630Client(BaseClient):
         )
         klass = self._get_feed_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_feed_params = (("feedId", "path"),)  # name, param in
@@ -461,7 +462,7 @@ class Feeds20210630Client(BaseClient):
         )
         klass = self._get_feed_document_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
@@ -528,7 +529,7 @@ class Feeds20210630Client(BaseClient):
         )
         klass = self._get_feeds_responses.get(response.status_code)
         # noinspection PyArgumentList
-        obj = klass(**response.json())
+        obj = cattrs.structure(response.json(), klass)
         return obj
 
     _get_feeds_params = (  # name, param in
