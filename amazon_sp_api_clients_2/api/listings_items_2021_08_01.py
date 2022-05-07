@@ -13,7 +13,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -21,6 +20,12 @@ class Decimal:
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Decimal(**data)
 
     pass
 
@@ -30,6 +35,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -55,6 +66,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: List["Error"] = attrs.field()
 
 
@@ -63,6 +80,12 @@ class FulfillmentAvailability:
     """
     Fulfillment availability details for the listings item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_availability_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentAvailability(**data)
 
     fulfillment_channel_code: str = attrs.field()
     """
@@ -85,6 +108,12 @@ class Issue:
     """
     An issue with a listings item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _issue_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Issue(**data)
 
     attribute_names: Optional[List[str]] = attrs.field(
         default=None,
@@ -114,6 +143,12 @@ class Item:
     """
     A listings item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Item(**data)
 
     attributes: Optional["ItemAttributes"] = attrs.field(
         default=None,
@@ -169,6 +204,12 @@ class ItemAttributes:
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_attributes_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemAttributes(**data)
+
     pass
 
 
@@ -177,6 +218,12 @@ class ItemImage:
     """
     Image for the listings item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_image_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemImage(**data)
 
     height: int = attrs.field()
     """
@@ -199,6 +246,12 @@ class ItemOfferByMarketplace:
     """
     Offer details of a listings item for an Amazon marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_offer_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemOfferByMarketplace(**data)
 
     marketplace_id: str = attrs.field()
     """
@@ -229,6 +282,12 @@ class ItemProcurement:
     Vendor procurement information for the listings item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_procurement_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemProcurement(**data)
+
     cost_price: "Money" = attrs.field()
     """
     The currency type and the amount.
@@ -240,6 +299,12 @@ class ItemSummaryByMarketplace:
     """
     Summary details of a listings item for an Amazon marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_summary_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemSummaryByMarketplace(**data)
 
     asin: str = attrs.field()
     """
@@ -326,6 +391,12 @@ class ListingsItemPatchRequest:
     The request body schema for the patchListingsItem operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_patch_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemPatchRequest(**data)
+
     patches: List["PatchOperation"] = attrs.field()
     """
     One or more JSON Patch operations to perform on the listings item.
@@ -345,6 +416,12 @@ class ListingsItemPutRequest:
     """
     The request body schema for the putListingsItem operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_put_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemPutRequest(**data)
 
     attributes: "ListingsItemPutRequestAttributes" = attrs.field()
     """
@@ -372,6 +449,12 @@ class ListingsItemPutRequestAttributes:
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_put_request_attributes_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemPutRequestAttributes(**data)
+
     pass
 
 
@@ -380,6 +463,12 @@ class ListingsItemSubmissionResponse:
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_submission_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemSubmissionResponse(**data)
 
     issues: Optional[List["Issue"]] = attrs.field(
         default=None,
@@ -410,6 +499,12 @@ class Money:
     The currency type and the amount.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
+
     amount: "Decimal" = attrs.field()
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
@@ -426,6 +521,12 @@ class PatchOperation:
     """
     Individual JSON Patch operation for an HTTP PATCH request.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _patch_operation_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PatchOperation(**data)
 
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
     """
@@ -447,6 +548,11 @@ class PatchOperation:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PatchOperationValueItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _patch_operation_value_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PatchOperationValueItem(**data)
 
     pass
 
@@ -457,7 +563,117 @@ class Points:
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _points_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Points(**data)
+
     points_number: int = attrs.field()
+
+
+_decimal_name_convert = {}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_fulfillment_availability_name_convert = {
+    "fulfillmentChannelCode": "fulfillment_channel_code",
+    "quantity": "quantity",
+}
+
+_issue_name_convert = {
+    "attributeNames": "attribute_names",
+    "code": "code",
+    "message": "message",
+    "severity": "severity",
+}
+
+_item_name_convert = {
+    "attributes": "attributes",
+    "fulfillmentAvailability": "fulfillment_availability",
+    "issues": "issues",
+    "offers": "offers",
+    "procurement": "procurement",
+    "sku": "sku",
+    "summaries": "summaries",
+}
+
+_item_attributes_name_convert = {}
+
+_item_image_name_convert = {
+    "height": "height",
+    "link": "link",
+    "width": "width",
+}
+
+_item_offer_by_marketplace_name_convert = {
+    "marketplaceId": "marketplace_id",
+    "offerType": "offer_type",
+    "points": "points",
+    "price": "price",
+}
+
+_item_procurement_name_convert = {
+    "costPrice": "cost_price",
+}
+
+_item_summary_by_marketplace_name_convert = {
+    "asin": "asin",
+    "conditionType": "condition_type",
+    "createdDate": "created_date",
+    "fnSku": "fn_sku",
+    "itemName": "item_name",
+    "lastUpdatedDate": "last_updated_date",
+    "mainImage": "main_image",
+    "marketplaceId": "marketplace_id",
+    "productType": "product_type",
+    "status": "status",
+}
+
+_listings_item_patch_request_name_convert = {
+    "patches": "patches",
+    "productType": "product_type",
+}
+
+_listings_item_put_request_name_convert = {
+    "attributes": "attributes",
+    "productType": "product_type",
+    "requirements": "requirements",
+}
+
+_listings_item_put_request_attributes_name_convert = {}
+
+_listings_item_submission_response_name_convert = {
+    "issues": "issues",
+    "sku": "sku",
+    "status": "status",
+    "submissionId": "submission_id",
+}
+
+_money_name_convert = {
+    "amount": "amount",
+    "currencyCode": "currency_code",
+}
+
+_patch_operation_name_convert = {
+    "op": "op",
+    "path": "path",
+    "value": "value",
+}
+
+_patch_operation_value_item_name_convert = {}
+
+_points_name_convert = {
+    "pointsNumber": "points_number",
+}
 
 
 class ListingsItems20210801Client(BaseClient):
@@ -497,11 +713,9 @@ class ListingsItems20210801Client(BaseClient):
             "DELETE",
             values,
             self._delete_listings_item_params,
+            self._delete_listings_item_responses,
         )
-        klass = self._delete_listings_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _delete_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -569,11 +783,9 @@ class ListingsItems20210801Client(BaseClient):
             "GET",
             values,
             self._get_listings_item_params,
+            self._get_listings_item_responses,
         )
-        klass = self._get_listings_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -637,11 +849,9 @@ class ListingsItems20210801Client(BaseClient):
             "PATCH",
             values,
             self._patch_listings_item_params,
+            self._patch_listings_item_responses,
         )
-        klass = self._patch_listings_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _patch_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -708,11 +918,9 @@ class ListingsItems20210801Client(BaseClient):
             "PUT",
             values,
             self._put_listings_item_params,
+            self._put_listings_item_responses,
         )
-        klass = self._put_listings_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _put_listings_item_params = (  # name, param in
         ("sellerId", "path"),

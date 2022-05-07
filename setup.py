@@ -23,7 +23,6 @@ setuptools.setup(
         'pycryptodome',
         'chardet',
         'attrs',
-        'cattrs',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

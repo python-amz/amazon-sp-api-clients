@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Address:
     """
     Address of the party.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: str = attrs.field()
     """
@@ -94,6 +99,11 @@ class Address:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Container:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _container_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Container(**data)
 
     carrier: Optional[str] = attrs.field(
         default=None,
@@ -176,6 +186,11 @@ class Container:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CustomerInvoice:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _customer_invoice_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CustomerInvoice(**data)
 
     content: str = attrs.field()
     """
@@ -193,6 +208,11 @@ class CustomerInvoice:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CustomerInvoiceList:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _customer_invoice_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CustomerInvoiceList(**data)
 
     customer_invoices: Optional[List["CustomerInvoice"]] = attrs.field()
 
@@ -205,6 +225,12 @@ class Decimal:
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Decimal(**data)
+
     pass
 
 
@@ -213,6 +239,12 @@ class Dimensions:
     """
     Physical dimensional measurements of a container.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _dimensions_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Dimensions(**data)
 
     height: "Decimal" = attrs.field()
     """
@@ -241,6 +273,12 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -265,6 +303,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: List["Error"] = attrs.field()
 
 
@@ -273,6 +317,12 @@ class GetCustomerInvoiceResponse:
     """
     The response schema for the getCustomerInvoice operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_customer_invoice_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetCustomerInvoiceResponse(**data)
 
     errors: Optional["ErrorList"] = attrs.field()
     """
@@ -288,6 +338,12 @@ class GetCustomerInvoicesResponse:
     The response schema for the getCustomerInvoices operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_customer_invoices_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetCustomerInvoicesResponse(**data)
+
     errors: Optional["ErrorList"] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -301,6 +357,12 @@ class GetShippingLabelListResponse:
     """
     The response schema for the getShippingLabels operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_shipping_label_list_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetShippingLabelListResponse(**data)
 
     errors: Optional["ErrorList"] = attrs.field()
     """
@@ -316,6 +378,12 @@ class GetShippingLabelResponse:
     The response schema for the getShippingLabel operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_shipping_label_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetShippingLabelResponse(**data)
+
     errors: Optional["ErrorList"] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -329,6 +397,12 @@ class Item:
     """
     Details of the item being shipped.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Item(**data)
 
     buyer_product_identifier: Optional[str] = attrs.field(
         default=None,
@@ -361,6 +435,12 @@ class ItemQuantity:
     Details of item quantity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemQuantity(**data)
+
     amount: int = attrs.field()
     """
     Quantity of units shipped for a specific item at a shipment level. If the item is present only in certain packages or pallets within the shipment, please provide this at the appropriate package or pallet level.
@@ -377,6 +457,12 @@ class LabelData:
     """
     Details of the shipment label.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _label_data_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return LabelData(**data)
 
     content: str = attrs.field()
     """
@@ -414,6 +500,11 @@ class LabelData:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PackedItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _packed_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PackedItem(**data)
 
     buyer_product_identifier: Optional[str] = attrs.field(
         default=None,
@@ -442,6 +533,11 @@ class PackedItem:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Pagination:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _pagination_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Pagination(**data)
 
     next_token: Optional[str] = attrs.field()
     """
@@ -451,6 +547,11 @@ class Pagination:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _party_identification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PartyIdentification(**data)
 
     address: Optional["Address"] = attrs.field(
         default=None,
@@ -474,6 +575,11 @@ class PartyIdentification:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShippingLabel:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipping_label_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShippingLabel(**data)
 
     label_data: List["LabelData"] = attrs.field()
     """
@@ -500,6 +606,11 @@ class ShippingLabel:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShippingLabelList:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipping_label_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShippingLabelList(**data)
 
     pagination: Optional["Pagination"] = attrs.field()
 
@@ -508,6 +619,11 @@ class ShippingLabelList:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShippingLabelRequest:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipping_label_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShippingLabelRequest(**data)
 
     containers: Optional[List["Container"]] = attrs.field(
         default=None,
@@ -531,6 +647,11 @@ class ShippingLabelRequest:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SubmitShippingLabelsRequest:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_shipping_labels_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitShippingLabelsRequest(**data)
 
     shipping_label_requests: Optional[List["ShippingLabelRequest"]] = attrs.field()
 
@@ -540,6 +661,12 @@ class SubmitShippingLabelsResponse:
     """
     The response schema for the submitShippingLabelRequest operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_shipping_labels_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitShippingLabelsResponse(**data)
 
     errors: Optional["ErrorList"] = attrs.field()
     """
@@ -554,6 +681,12 @@ class TaxRegistrationDetails:
     """
     Tax registration details of the entity.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_registration_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxRegistrationDetails(**data)
 
     tax_registration_address: Optional["Address"] = attrs.field(
         default=None,
@@ -584,6 +717,11 @@ class TaxRegistrationDetails:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionReference:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_reference_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransactionReference(**data)
 
     transaction_id: Optional[str] = attrs.field()
     """
@@ -597,6 +735,12 @@ class Weight:
     The weight.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _weight_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Weight(**data)
+
     unit_of_measure: Union[Literal["KG"], Literal["LB"]] = attrs.field()
     """
     The unit of measurement.
@@ -606,6 +750,167 @@ class Weight:
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
     """
+
+
+_address_name_convert = {
+    "addressLine1": "address_line1",
+    "addressLine2": "address_line2",
+    "addressLine3": "address_line3",
+    "city": "city",
+    "countryCode": "country_code",
+    "county": "county",
+    "district": "district",
+    "name": "name",
+    "phone": "phone",
+    "postalCode": "postal_code",
+    "stateOrRegion": "state_or_region",
+}
+
+_container_name_convert = {
+    "carrier": "carrier",
+    "containerIdentifier": "container_identifier",
+    "containerSequenceNumber": "container_sequence_number",
+    "containerType": "container_type",
+    "dimensions": "dimensions",
+    "manifestDate": "manifest_date",
+    "manifestId": "manifest_id",
+    "packedItems": "packed_items",
+    "scacCode": "scac_code",
+    "shipMethod": "ship_method",
+    "trackingNumber": "tracking_number",
+    "weight": "weight",
+}
+
+_customer_invoice_name_convert = {
+    "content": "content",
+    "purchaseOrderNumber": "purchase_order_number",
+}
+
+_customer_invoice_list_name_convert = {
+    "customerInvoices": "customer_invoices",
+    "pagination": "pagination",
+}
+
+_decimal_name_convert = {}
+
+_dimensions_name_convert = {
+    "height": "height",
+    "length": "length",
+    "unitOfMeasure": "unit_of_measure",
+    "width": "width",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_get_customer_invoice_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_customer_invoices_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_shipping_label_list_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_shipping_label_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_item_name_convert = {
+    "buyerProductIdentifier": "buyer_product_identifier",
+    "itemSequenceNumber": "item_sequence_number",
+    "shippedQuantity": "shipped_quantity",
+    "vendorProductIdentifier": "vendor_product_identifier",
+}
+
+_item_quantity_name_convert = {
+    "amount": "amount",
+    "unitOfMeasure": "unit_of_measure",
+}
+
+_label_data_name_convert = {
+    "content": "content",
+    "packageIdentifier": "package_identifier",
+    "shipMethod": "ship_method",
+    "shipMethodName": "ship_method_name",
+    "trackingNumber": "tracking_number",
+}
+
+_packed_item_name_convert = {
+    "buyerProductIdentifier": "buyer_product_identifier",
+    "itemSequenceNumber": "item_sequence_number",
+    "packedQuantity": "packed_quantity",
+    "vendorProductIdentifier": "vendor_product_identifier",
+}
+
+_pagination_name_convert = {
+    "nextToken": "next_token",
+}
+
+_party_identification_name_convert = {
+    "address": "address",
+    "partyId": "party_id",
+    "taxRegistrationDetails": "tax_registration_details",
+}
+
+_shipping_label_name_convert = {
+    "labelData": "label_data",
+    "labelFormat": "label_format",
+    "purchaseOrderNumber": "purchase_order_number",
+    "sellingParty": "selling_party",
+    "shipFromParty": "ship_from_party",
+}
+
+_shipping_label_list_name_convert = {
+    "pagination": "pagination",
+    "shippingLabels": "shipping_labels",
+}
+
+_shipping_label_request_name_convert = {
+    "containers": "containers",
+    "purchaseOrderNumber": "purchase_order_number",
+    "sellingParty": "selling_party",
+    "shipFromParty": "ship_from_party",
+}
+
+_submit_shipping_labels_request_name_convert = {
+    "shippingLabelRequests": "shipping_label_requests",
+}
+
+_submit_shipping_labels_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_tax_registration_details_name_convert = {
+    "taxRegistrationAddress": "tax_registration_address",
+    "taxRegistrationMessages": "tax_registration_messages",
+    "taxRegistrationNumber": "tax_registration_number",
+    "taxRegistrationType": "tax_registration_type",
+}
+
+_transaction_reference_name_convert = {
+    "transactionId": "transaction_id",
+}
+
+_weight_name_convert = {
+    "unitOfMeasure": "unit_of_measure",
+    "value": "value",
+}
 
 
 class VendorDirectFulfillmentShipping20211228Client(BaseClient):
@@ -634,11 +939,9 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             "GET",
             values,
             self._get_shipping_label_params,
+            self._get_shipping_label_responses,
         )
-        klass = self._get_shipping_label_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -696,11 +999,9 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             "GET",
             values,
             self._get_shipping_labels_params,
+            self._get_shipping_labels_responses,
         )
-        klass = self._get_shipping_labels_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_shipping_labels_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -747,11 +1048,9 @@ class VendorDirectFulfillmentShipping20211228Client(BaseClient):
             "POST",
             values,
             self._submit_shipping_label_request_params,
+            self._submit_shipping_label_request_responses,
         )
-        klass = self._submit_shipping_label_request_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in
 

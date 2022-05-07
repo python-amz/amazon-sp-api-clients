@@ -11,11 +11,15 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Error:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -40,6 +44,12 @@ class FeeDetail:
     """
     The type of fee, fee amount, and other details.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fee_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeeDetail(**data)
 
     fee_amount: "MoneyType" = attrs.field()
 
@@ -72,6 +82,12 @@ class FeesEstimate:
     The total estimated fees for an item and a list of details.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fees_estimate_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeesEstimate(**data)
+
     fee_detail_list: Optional[List["FeeDetail"]] = attrs.field(
         default=None,
     )
@@ -98,6 +114,12 @@ class FeesEstimateError:
     An unexpected error occurred during this operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fees_estimate_error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeesEstimateError(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -121,6 +143,11 @@ class FeesEstimateError:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateErrorDetailItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fees_estimate_error_detail_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeesEstimateErrorDetailItem(**data)
 
     pass
 
@@ -130,6 +157,12 @@ class FeesEstimateIdentifier:
     """
     An item identifier, marketplace, time of request, and other details that identify an estimate.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fees_estimate_identifier_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeesEstimateIdentifier(**data)
 
     id_type: Optional[str] = attrs.field()
     """
@@ -174,6 +207,11 @@ class FeesEstimateIdentifier:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class FeesEstimateRequest:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fees_estimate_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeesEstimateRequest(**data)
 
     identifier: str = attrs.field()
     """
@@ -211,6 +249,12 @@ class FeesEstimateResult:
     An item identifier and the estimated fees for the item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fees_estimate_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeesEstimateResult(**data)
+
     error: Optional["FeesEstimateError"] = attrs.field()
     """
     An unexpected error occurred during this operation.
@@ -238,11 +282,22 @@ class GetMyFeesEstimateRequest:
     Request schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_my_fees_estimate_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMyFeesEstimateRequest(**data)
+
     fees_estimate_request: Optional["FeesEstimateRequest"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMyFeesEstimateResponse:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_my_fees_estimate_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMyFeesEstimateResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -261,6 +316,12 @@ class GetMyFeesEstimateResult:
     Response schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_my_fees_estimate_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMyFeesEstimateResult(**data)
+
     fees_estimate_result: Optional["FeesEstimateResult"] = attrs.field()
     """
     An item identifier and the estimated fees for the item.
@@ -272,6 +333,12 @@ class IncludedFeeDetail:
     """
     The type of fee, fee amount, and other details.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _included_fee_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return IncludedFeeDetail(**data)
 
     fee_amount: "MoneyType" = attrs.field()
 
@@ -293,6 +360,11 @@ class IncludedFeeDetail:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class MoneyType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MoneyType(**data)
 
     amount: Optional[float] = attrs.field()
     """
@@ -311,11 +383,22 @@ class OptionalFulfillmentProgram:
     An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _optional_fulfillment_program_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OptionalFulfillmentProgram(**data)
+
     pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Points:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _points_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Points(**data)
 
     points_monetary_value: Optional["MoneyType"] = attrs.field()
 
@@ -333,6 +416,12 @@ class PriceToEstimateFees:
     Price information for an item, used to estimate fees.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _price_to_estimate_fees_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PriceToEstimateFees(**data)
+
     listing_price: "MoneyType" = attrs.field()
 
     points: Optional["Points"] = attrs.field(
@@ -342,6 +431,102 @@ class PriceToEstimateFees:
     shipping: Optional["MoneyType"] = attrs.field(
         default=None,
     )
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_fee_detail_name_convert = {
+    "FeeAmount": "fee_amount",
+    "FeePromotion": "fee_promotion",
+    "FeeType": "fee_type",
+    "FinalFee": "final_fee",
+    "IncludedFeeDetailList": "included_fee_detail_list",
+    "TaxAmount": "tax_amount",
+}
+
+_fees_estimate_name_convert = {
+    "FeeDetailList": "fee_detail_list",
+    "TimeOfFeesEstimation": "time_of_fees_estimation",
+    "TotalFeesEstimate": "total_fees_estimate",
+}
+
+_fees_estimate_error_name_convert = {
+    "Code": "code",
+    "Detail": "detail",
+    "Message": "message",
+    "Type": "type",
+}
+
+_fees_estimate_error_detail_item_name_convert = {}
+
+_fees_estimate_identifier_name_convert = {
+    "IdType": "id_type",
+    "IdValue": "id_value",
+    "IsAmazonFulfilled": "is_amazon_fulfilled",
+    "MarketplaceId": "marketplace_id",
+    "OptionalFulfillmentProgram": "optional_fulfillment_program",
+    "PriceToEstimateFees": "price_to_estimate_fees",
+    "SellerId": "seller_id",
+    "SellerInputIdentifier": "seller_input_identifier",
+}
+
+_fees_estimate_request_name_convert = {
+    "Identifier": "identifier",
+    "IsAmazonFulfilled": "is_amazon_fulfilled",
+    "MarketplaceId": "marketplace_id",
+    "OptionalFulfillmentProgram": "optional_fulfillment_program",
+    "PriceToEstimateFees": "price_to_estimate_fees",
+}
+
+_fees_estimate_result_name_convert = {
+    "Error": "error",
+    "FeesEstimate": "fees_estimate",
+    "FeesEstimateIdentifier": "fees_estimate_identifier",
+    "Status": "status",
+}
+
+_get_my_fees_estimate_request_name_convert = {
+    "FeesEstimateRequest": "fees_estimate_request",
+}
+
+_get_my_fees_estimate_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_my_fees_estimate_result_name_convert = {
+    "FeesEstimateResult": "fees_estimate_result",
+}
+
+_included_fee_detail_name_convert = {
+    "FeeAmount": "fee_amount",
+    "FeePromotion": "fee_promotion",
+    "FeeType": "fee_type",
+    "FinalFee": "final_fee",
+    "TaxAmount": "tax_amount",
+}
+
+_money_type_name_convert = {
+    "Amount": "amount",
+    "CurrencyCode": "currency_code",
+}
+
+_optional_fulfillment_program_name_convert = {}
+
+_points_name_convert = {
+    "PointsMonetaryValue": "points_monetary_value",
+    "PointsNumber": "points_number",
+}
+
+_price_to_estimate_fees_name_convert = {
+    "ListingPrice": "listing_price",
+    "Points": "points",
+    "Shipping": "shipping",
+}
 
 
 class ProductFeesV0Client(BaseClient):
@@ -380,11 +565,9 @@ class ProductFeesV0Client(BaseClient):
             "POST",
             values,
             self._get_my_fees_estimate_for_asin_params,
+            self._get_my_fees_estimate_for_asin_responses,
         )
-        klass = self._get_my_fees_estimate_for_asin_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_my_fees_estimate_for_asin_params = (  # name, param in
         ("Asin", "path"),
@@ -437,11 +620,9 @@ class ProductFeesV0Client(BaseClient):
             "POST",
             values,
             self._get_my_fees_estimate_for_sku_params,
+            self._get_my_fees_estimate_for_sku_responses,
         )
-        klass = self._get_my_fees_estimate_for_sku_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_my_fees_estimate_for_sku_params = (  # name, param in
         ("SellerSKU", "path"),

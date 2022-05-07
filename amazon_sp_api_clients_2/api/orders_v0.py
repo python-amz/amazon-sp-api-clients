@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Address:
     """
     The shipping address for the order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: Optional[str] = attrs.field(
         default=None,
@@ -116,6 +121,12 @@ class AutomatedShippingSettings:
     Contains information regarding the Shipping Settings Automation program, such as whether the order's shipping settings were generated automatically, and what those settings are.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _automated_shipping_settings_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AutomatedShippingSettings(**data)
+
     automated_carrier: Optional[str] = attrs.field()
     """
     Auto-generated carrier for SSA orders.
@@ -138,6 +149,12 @@ class BuyerCustomizedInfoDetail:
     Buyer information for custom orders from the Amazon Custom program.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buyer_customized_info_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BuyerCustomizedInfoDetail(**data)
+
     customized_url: Optional[str] = attrs.field()
     """
     The location of a zip file containing Amazon Custom data.
@@ -149,6 +166,12 @@ class BuyerInfo:
     """
     Buyer information
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buyer_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BuyerInfo(**data)
 
     buyer_county: Optional[str] = attrs.field()
     """
@@ -182,6 +205,12 @@ class BuyerRequestedCancel:
     Information about whether or not a buyer requested cancellation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buyer_requested_cancel_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BuyerRequestedCancel(**data)
+
     buyer_cancel_reason: Optional[str] = attrs.field()
     """
     Reason for buyer requesting cancel
@@ -198,6 +227,12 @@ class BuyerTaxInfo:
     """
     Tax information about the buyer.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buyer_tax_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BuyerTaxInfo(**data)
 
     company_legal_name: Optional[str] = attrs.field()
     """
@@ -220,6 +255,12 @@ class BuyerTaxInformation:
     """
     Contains the business invoice tax information. Available only in the TR marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buyer_tax_information_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BuyerTaxInformation(**data)
 
     buyer_business_address: Optional[str] = attrs.field()
     """
@@ -248,6 +289,12 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -272,6 +319,12 @@ class FulfillmentInstruction:
     Contains the instructions about the fulfillment like where should it be fulfilled from.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_instruction_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentInstruction(**data)
+
     fulfillment_supply_source_id: Optional[str] = attrs.field()
     """
     Denotes the recommended sourceId where the order should be fulfilled from.
@@ -283,6 +336,12 @@ class GetOrderAddressResponse:
     """
     The response schema for the getOrderAddress operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_address_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderAddressResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -301,6 +360,12 @@ class GetOrderBuyerInfoResponse:
     The response schema for the getOrderBuyerInfo operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_buyer_info_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderBuyerInfoResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -317,6 +382,12 @@ class GetOrderItemsBuyerInfoResponse:
     """
     The response schema for the getOrderItemsBuyerInfo operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_items_buyer_info_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderItemsBuyerInfoResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -335,6 +406,12 @@ class GetOrderItemsResponse:
     The response schema for the getOrderItems operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_items_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderItemsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -351,6 +428,12 @@ class GetOrderRegulatedInfoResponse:
     """
     The response schema for the getOrderRegulatedInfo operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_regulated_info_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderRegulatedInfoResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -369,6 +452,12 @@ class GetOrderResponse:
     The response schema for the getOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -386,6 +475,12 @@ class GetOrdersResponse:
     The response schema for the getOrders operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_orders_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrdersResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -402,6 +497,12 @@ class ItemBuyerInfo:
     """
     A single item's buyer information.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_buyer_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemBuyerInfo(**data)
 
     buyer_customized_info: Optional["BuyerCustomizedInfoDetail"] = attrs.field()
     """
@@ -435,6 +536,12 @@ class MarketplaceId:
     the unobfuscated marketplace ID
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _marketplace_id_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MarketplaceId(**data)
+
     pass
 
 
@@ -443,6 +550,12 @@ class MarketplaceTaxInfo:
     """
     Tax information about the marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _marketplace_tax_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MarketplaceTaxInfo(**data)
 
     tax_classifications: Optional[List["TaxClassification"]] = attrs.field()
     """
@@ -455,6 +568,12 @@ class Money:
     """
     The monetary value of the order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
 
     amount: Optional[str] = attrs.field()
     """
@@ -472,6 +591,12 @@ class Order:
     """
     Order information.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Order(**data)
 
     amazon_order_id: str = attrs.field()
     """
@@ -809,6 +934,12 @@ class OrderAddress:
     The shipping address for the order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderAddress(**data)
+
     amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
@@ -827,6 +958,12 @@ class OrderBuyerInfo:
     """
     Buyer information for an order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_buyer_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderBuyerInfo(**data)
 
     amazon_order_id: str = attrs.field()
     """
@@ -874,6 +1011,12 @@ class OrderItem:
     """
     A single order item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItem(**data)
 
     asin: str = attrs.field()
     """
@@ -1118,6 +1261,12 @@ class OrderItemBuyerInfo:
     A single order item's buyer information.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_item_buyer_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItemBuyerInfo(**data)
+
     buyer_customized_info: Optional["BuyerCustomizedInfoDetail"] = attrs.field(
         default=None,
     )
@@ -1165,6 +1314,12 @@ class OrderItemsBuyerInfoList:
     A single order item's buyer information list with the order ID.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_items_buyer_info_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItemsBuyerInfoList(**data)
+
     amazon_order_id: str = attrs.field()
     """
     An Amazon-defined order identifier, in 3-7-7 format.
@@ -1185,6 +1340,11 @@ class OrderItemsBuyerInfoList:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemsItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_items_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItemsItem(**data)
 
     order_item_id: Optional[str] = attrs.field()
     """
@@ -1202,6 +1362,12 @@ class OrderItemsList:
     """
     The order items list along with the order ID.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_items_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItemsList(**data)
 
     amazon_order_id: str = attrs.field()
     """
@@ -1226,6 +1392,12 @@ class OrderRegulatedInfo:
     """
     The order's regulated information along with its verification status.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_regulated_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderRegulatedInfo(**data)
 
     amazon_order_id: str = attrs.field()
     """
@@ -1253,6 +1425,12 @@ class OrdersList:
     """
     A list of orders along with additional information to make subsequent API calls.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _orders_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrdersList(**data)
 
     created_before: Optional[str] = attrs.field(
         default=None,
@@ -1287,6 +1465,12 @@ class PaymentExecutionDetailItem:
     Information about a sub-payment method used to pay for a COD order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _payment_execution_detail_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PaymentExecutionDetailItem(**data)
+
     payment: "Money" = attrs.field()
     """
     The monetary value of the order.
@@ -1308,6 +1492,12 @@ class PointsGrantedDetail:
     The number of Amazon Points offered with the purchase of an item, and their monetary value.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _points_granted_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PointsGrantedDetail(**data)
+
     points_monetary_value: Optional["Money"] = attrs.field()
     """
     The monetary value of the order.
@@ -1325,6 +1515,12 @@ class ProductInfoDetail:
     Product information on the number of items.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_info_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ProductInfoDetail(**data)
+
     number_of_items: Optional[int] = attrs.field()
     """
     The total number of items that are included in the ASIN.
@@ -1337,6 +1533,12 @@ class RegulatedInformation:
     The regulated information collected during purchase and used to verify the order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _regulated_information_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RegulatedInformation(**data)
+
     fields: List["RegulatedInformationField"] = attrs.field()
     """
     A list of regulated information fields as collected from the regulatory form.
@@ -1348,6 +1550,12 @@ class RegulatedInformationField:
     """
     A field collected from the regulatory form.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _regulated_information_field_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RegulatedInformationField(**data)
 
     field_id: str = attrs.field()
     """
@@ -1375,6 +1583,12 @@ class RegulatedOrderVerificationStatus:
     """
     The verification status of the order along with associated approval or rejection metadata.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _regulated_order_verification_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RegulatedOrderVerificationStatus(**data)
 
     external_reviewer_id: Optional[str] = attrs.field(
         default=None,
@@ -1421,6 +1635,12 @@ class RejectionReason:
     The reason for rejecting the order's regulated information. Not present if the order isn't rejected.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _rejection_reason_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RejectionReason(**data)
+
     rejection_reason_description: str = attrs.field()
     """
     The human-readable description of this rejection reason.
@@ -1438,6 +1658,12 @@ class ShipmentStatus:
     the status of the shipment of the order to be updated
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentStatus(**data)
+
     pass
 
 
@@ -1446,6 +1672,12 @@ class TaxClassification:
     """
     The tax classification for the order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_classification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxClassification(**data)
 
     name: Optional[str] = attrs.field()
     """
@@ -1464,6 +1696,12 @@ class TaxCollection:
     Information about withheld taxes.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_collection_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxCollection(**data)
+
     model: Optional[Union[Literal["MarketplaceFacilitator"]]] = attrs.field()
     """
     The tax collection model applied to the item.
@@ -1481,6 +1719,12 @@ class UpdateShipmentStatusErrorResponse:
     The error response schema for the UpdateShipmentStatus operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_shipment_status_error_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateShipmentStatusErrorResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1492,6 +1736,12 @@ class UpdateShipmentStatusRequest:
     """
     Request to update the status of shipment of an order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_shipment_status_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateShipmentStatusRequest(**data)
 
     marketplace_id: "MarketplaceId" = attrs.field()
     """
@@ -1517,6 +1767,12 @@ class UpdateVerificationStatusErrorResponse:
     The error response schema for the UpdateVerificationStatus operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_verification_status_error_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateVerificationStatusErrorResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1529,6 +1785,12 @@ class UpdateVerificationStatusRequest:
     Request to update the verification status of an order containing regulated products.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_verification_status_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateVerificationStatusRequest(**data)
+
     regulated_order_verification_status: "UpdateVerificationStatusRequestBody" = attrs.field()
     """
     The updated values of the VerificationStatus field.
@@ -1540,6 +1802,12 @@ class UpdateVerificationStatusRequestBody:
     """
     The updated values of the VerificationStatus field.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_verification_status_request_body_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateVerificationStatusRequestBody(**data)
 
     external_reviewer_id: str = attrs.field()
     """
@@ -1557,6 +1825,337 @@ class UpdateVerificationStatusRequestBody:
     """
     The new verification status of the order.
     """
+
+
+_address_name_convert = {
+    "AddressLine1": "address_line1",
+    "AddressLine2": "address_line2",
+    "AddressLine3": "address_line3",
+    "AddressType": "address_type",
+    "City": "city",
+    "CountryCode": "country_code",
+    "County": "county",
+    "District": "district",
+    "Municipality": "municipality",
+    "Name": "name",
+    "Phone": "phone",
+    "PostalCode": "postal_code",
+    "StateOrRegion": "state_or_region",
+}
+
+_automated_shipping_settings_name_convert = {
+    "AutomatedCarrier": "automated_carrier",
+    "AutomatedShipMethod": "automated_ship_method",
+    "HasAutomatedShippingSettings": "has_automated_shipping_settings",
+}
+
+_buyer_customized_info_detail_name_convert = {
+    "CustomizedURL": "customized_url",
+}
+
+_buyer_info_name_convert = {
+    "BuyerCounty": "buyer_county",
+    "BuyerEmail": "buyer_email",
+    "BuyerName": "buyer_name",
+    "BuyerTaxInfo": "buyer_tax_info",
+    "PurchaseOrderNumber": "purchase_order_number",
+}
+
+_buyer_requested_cancel_name_convert = {
+    "BuyerCancelReason": "buyer_cancel_reason",
+    "IsBuyerRequestedCancel": "is_buyer_requested_cancel",
+}
+
+_buyer_tax_info_name_convert = {
+    "CompanyLegalName": "company_legal_name",
+    "TaxClassifications": "tax_classifications",
+    "TaxingRegion": "taxing_region",
+}
+
+_buyer_tax_information_name_convert = {
+    "BuyerBusinessAddress": "buyer_business_address",
+    "BuyerLegalCompanyName": "buyer_legal_company_name",
+    "BuyerTaxOffice": "buyer_tax_office",
+    "BuyerTaxRegistrationId": "buyer_tax_registration_id",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_fulfillment_instruction_name_convert = {
+    "FulfillmentSupplySourceId": "fulfillment_supply_source_id",
+}
+
+_get_order_address_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_order_buyer_info_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_order_items_buyer_info_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_order_items_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_order_regulated_info_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_order_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_orders_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_item_buyer_info_name_convert = {
+    "BuyerCustomizedInfo": "buyer_customized_info",
+    "GiftMessageText": "gift_message_text",
+    "GiftWrapLevel": "gift_wrap_level",
+    "GiftWrapPrice": "gift_wrap_price",
+    "GiftWrapTax": "gift_wrap_tax",
+}
+
+_marketplace_id_name_convert = {}
+
+_marketplace_tax_info_name_convert = {
+    "TaxClassifications": "tax_classifications",
+}
+
+_money_name_convert = {
+    "Amount": "amount",
+    "CurrencyCode": "currency_code",
+}
+
+_order_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "AutomatedShippingSettings": "automated_shipping_settings",
+    "BuyerInfo": "buyer_info",
+    "BuyerInvoicePreference": "buyer_invoice_preference",
+    "BuyerTaxInformation": "buyer_tax_information",
+    "CbaDisplayableShippingLabel": "cba_displayable_shipping_label",
+    "DefaultShipFromLocationAddress": "default_ship_from_location_address",
+    "EarliestDeliveryDate": "earliest_delivery_date",
+    "EarliestShipDate": "earliest_ship_date",
+    "EasyShipShipmentStatus": "easy_ship_shipment_status",
+    "FulfillmentChannel": "fulfillment_channel",
+    "FulfillmentInstruction": "fulfillment_instruction",
+    "HasRegulatedItems": "has_regulated_items",
+    "IsBusinessOrder": "is_business_order",
+    "IsEstimatedShipDateSet": "is_estimated_ship_date_set",
+    "IsGlobalExpressEnabled": "is_global_express_enabled",
+    "IsIBA": "is_iba",
+    "IsISPU": "is_ispu",
+    "IsPremiumOrder": "is_premium_order",
+    "IsPrime": "is_prime",
+    "IsReplacementOrder": "is_replacement_order",
+    "IsSoldByAB": "is_sold_by_ab",
+    "LastUpdateDate": "last_update_date",
+    "LatestDeliveryDate": "latest_delivery_date",
+    "LatestShipDate": "latest_ship_date",
+    "MarketplaceId": "marketplace_id",
+    "MarketplaceTaxInfo": "marketplace_tax_info",
+    "NumberOfItemsShipped": "number_of_items_shipped",
+    "NumberOfItemsUnshipped": "number_of_items_unshipped",
+    "OrderChannel": "order_channel",
+    "OrderStatus": "order_status",
+    "OrderTotal": "order_total",
+    "OrderType": "order_type",
+    "PaymentExecutionDetail": "payment_execution_detail",
+    "PaymentMethod": "payment_method",
+    "PaymentMethodDetails": "payment_method_details",
+    "PromiseResponseDueDate": "promise_response_due_date",
+    "PurchaseDate": "purchase_date",
+    "ReplacedOrderId": "replaced_order_id",
+    "SalesChannel": "sales_channel",
+    "SellerDisplayName": "seller_display_name",
+    "SellerOrderId": "seller_order_id",
+    "ShipServiceLevel": "ship_service_level",
+    "ShipmentServiceLevelCategory": "shipment_service_level_category",
+    "ShippingAddress": "shipping_address",
+}
+
+_order_address_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "ShippingAddress": "shipping_address",
+}
+
+_order_buyer_info_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "BuyerCounty": "buyer_county",
+    "BuyerEmail": "buyer_email",
+    "BuyerName": "buyer_name",
+    "BuyerTaxInfo": "buyer_tax_info",
+    "PurchaseOrderNumber": "purchase_order_number",
+}
+
+_order_item_name_convert = {
+    "ASIN": "asin",
+    "BuyerInfo": "buyer_info",
+    "BuyerRequestedCancel": "buyer_requested_cancel",
+    "CODFee": "codfee",
+    "CODFeeDiscount": "codfee_discount",
+    "ConditionId": "condition_id",
+    "ConditionNote": "condition_note",
+    "ConditionSubtypeId": "condition_subtype_id",
+    "DeemedResellerCategory": "deemed_reseller_category",
+    "IossNumber": "ioss_number",
+    "IsGift": "is_gift",
+    "IsTransparency": "is_transparency",
+    "ItemPrice": "item_price",
+    "ItemTax": "item_tax",
+    "OrderItemId": "order_item_id",
+    "PointsGranted": "points_granted",
+    "PriceDesignation": "price_designation",
+    "ProductInfo": "product_info",
+    "PromotionDiscount": "promotion_discount",
+    "PromotionDiscountTax": "promotion_discount_tax",
+    "PromotionIds": "promotion_ids",
+    "QuantityOrdered": "quantity_ordered",
+    "QuantityShipped": "quantity_shipped",
+    "ScheduledDeliveryEndDate": "scheduled_delivery_end_date",
+    "ScheduledDeliveryStartDate": "scheduled_delivery_start_date",
+    "SellerSKU": "seller_sku",
+    "SerialNumberRequired": "serial_number_required",
+    "ShippingDiscount": "shipping_discount",
+    "ShippingDiscountTax": "shipping_discount_tax",
+    "ShippingPrice": "shipping_price",
+    "ShippingTax": "shipping_tax",
+    "StoreChainStoreId": "store_chain_store_id",
+    "TaxCollection": "tax_collection",
+    "Title": "title",
+}
+
+_order_item_buyer_info_name_convert = {
+    "BuyerCustomizedInfo": "buyer_customized_info",
+    "GiftMessageText": "gift_message_text",
+    "GiftWrapLevel": "gift_wrap_level",
+    "GiftWrapPrice": "gift_wrap_price",
+    "GiftWrapTax": "gift_wrap_tax",
+    "OrderItemId": "order_item_id",
+}
+
+_order_items_buyer_info_list_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "NextToken": "next_token",
+    "OrderItems": "order_items",
+}
+
+_order_items_item_name_convert = {
+    "orderItemId": "order_item_id",
+    "quantity": "quantity",
+}
+
+_order_items_list_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "NextToken": "next_token",
+    "OrderItems": "order_items",
+}
+
+_order_regulated_info_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "RegulatedInformation": "regulated_information",
+    "RegulatedOrderVerificationStatus": "regulated_order_verification_status",
+    "RequiresDosageLabel": "requires_dosage_label",
+}
+
+_orders_list_name_convert = {
+    "CreatedBefore": "created_before",
+    "LastUpdatedBefore": "last_updated_before",
+    "NextToken": "next_token",
+    "Orders": "orders",
+}
+
+_payment_execution_detail_item_name_convert = {
+    "Payment": "payment",
+    "PaymentMethod": "payment_method",
+}
+
+_points_granted_detail_name_convert = {
+    "PointsMonetaryValue": "points_monetary_value",
+    "PointsNumber": "points_number",
+}
+
+_product_info_detail_name_convert = {
+    "NumberOfItems": "number_of_items",
+}
+
+_regulated_information_name_convert = {
+    "Fields": "fields",
+}
+
+_regulated_information_field_name_convert = {
+    "FieldId": "field_id",
+    "FieldLabel": "field_label",
+    "FieldType": "field_type",
+    "FieldValue": "field_value",
+}
+
+_regulated_order_verification_status_name_convert = {
+    "ExternalReviewerId": "external_reviewer_id",
+    "RejectionReason": "rejection_reason",
+    "RequiresMerchantAction": "requires_merchant_action",
+    "ReviewDate": "review_date",
+    "Status": "status",
+    "ValidRejectionReasons": "valid_rejection_reasons",
+}
+
+_rejection_reason_name_convert = {
+    "RejectionReasonDescription": "rejection_reason_description",
+    "RejectionReasonId": "rejection_reason_id",
+}
+
+_shipment_status_name_convert = {}
+
+_tax_classification_name_convert = {
+    "Name": "name",
+    "Value": "value",
+}
+
+_tax_collection_name_convert = {
+    "Model": "model",
+    "ResponsibleParty": "responsible_party",
+}
+
+_update_shipment_status_error_response_name_convert = {
+    "errors": "errors",
+}
+
+_update_shipment_status_request_name_convert = {
+    "marketplaceId": "marketplace_id",
+    "orderItems": "order_items",
+    "shipmentStatus": "shipment_status",
+}
+
+_update_verification_status_error_response_name_convert = {
+    "errors": "errors",
+}
+
+_update_verification_status_request_name_convert = {
+    "regulatedOrderVerificationStatus": "regulated_order_verification_status",
+}
+
+_update_verification_status_request_body_name_convert = {
+    "externalReviewerId": "external_reviewer_id",
+    "rejectionReasonId": "rejection_reason_id",
+    "status": "status",
+}
 
 
 class OrdersV0Client(BaseClient):
@@ -1586,11 +2185,9 @@ class OrdersV0Client(BaseClient):
             "GET",
             values,
             self._get_order_params,
+            self._get_order_responses,
         )
-        klass = self._get_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_params = (("orderId", "path"),)  # name, param in
 
@@ -1630,11 +2227,9 @@ class OrdersV0Client(BaseClient):
             "GET",
             values,
             self._get_order_address_params,
+            self._get_order_address_responses,
         )
-        klass = self._get_order_address_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_address_params = (("orderId", "path"),)  # name, param in
 
@@ -1674,11 +2269,9 @@ class OrdersV0Client(BaseClient):
             "GET",
             values,
             self._get_order_buyer_info_params,
+            self._get_order_buyer_info_responses,
         )
-        klass = self._get_order_buyer_info_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
 
@@ -1725,11 +2318,9 @@ class OrdersV0Client(BaseClient):
             "GET",
             values,
             self._get_order_items_params,
+            self._get_order_items_responses,
         )
-        klass = self._get_order_items_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_items_params = (  # name, param in
         ("orderId", "path"),
@@ -1777,11 +2368,9 @@ class OrdersV0Client(BaseClient):
             "GET",
             values,
             self._get_order_items_buyer_info_params,
+            self._get_order_items_buyer_info_responses,
         )
-        klass = self._get_order_items_buyer_info_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_items_buyer_info_params = (  # name, param in
         ("orderId", "path"),
@@ -1824,11 +2413,9 @@ class OrdersV0Client(BaseClient):
             "GET",
             values,
             self._get_order_regulated_info_params,
+            self._get_order_regulated_info_responses,
         )
-        klass = self._get_order_regulated_info_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
 
@@ -1919,11 +2506,9 @@ class OrdersV0Client(BaseClient):
             "GET",
             values,
             self._get_orders_params,
+            self._get_orders_responses,
         )
-        klass = self._get_orders_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_orders_params = (  # name, param in
         ("CreatedAfter", "query"),
@@ -1983,11 +2568,9 @@ class OrdersV0Client(BaseClient):
             "POST",
             values,
             self._update_shipment_status_params,
+            self._update_shipment_status_responses,
         )
-        klass = self._update_shipment_status_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _update_shipment_status_params = (  # name, param in
         ("orderId", "path"),
@@ -2038,11 +2621,9 @@ class OrdersV0Client(BaseClient):
             "PATCH",
             values,
             self._update_verification_status_params,
+            self._update_verification_status_responses,
         )
-        klass = self._update_verification_status_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _update_verification_status_params = (  # name, param in
         ("orderId", "path"),

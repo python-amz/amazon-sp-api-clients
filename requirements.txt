@@ -20,4 +20,3 @@ openapi-schema-pydantic
 demjson
 django
 attrs
-cattrs

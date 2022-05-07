@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class CreateUploadDestinationResponse:
     """
     The response schema for the createUploadDestination operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_upload_destination_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateUploadDestinationResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -36,6 +41,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -61,6 +72,12 @@ class UploadDestination:
     Information about an upload destination.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _upload_destination_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UploadDestination(**data)
+
     headers: Optional["UploadDestinationHeaders"] = attrs.field()
     """
     The headers to include in the upload request.
@@ -83,7 +100,33 @@ class UploadDestinationHeaders:
     The headers to include in the upload request.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _upload_destination_headers_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UploadDestinationHeaders(**data)
+
     pass
+
+
+_create_upload_destination_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_upload_destination_name_convert = {
+    "headers": "headers",
+    "uploadDestinationId": "upload_destination_id",
+    "url": "url",
+}
+
+_upload_destination_headers_name_convert = {}
 
 
 class Uploads20201101Client(BaseClient):
@@ -123,11 +166,9 @@ class Uploads20201101Client(BaseClient):
             "POST",
             values,
             self._create_upload_destination_for_resource_params,
+            self._create_upload_destination_for_resource_responses,
         )
-        klass = self._create_upload_destination_for_resource_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_upload_destination_for_resource_params = (  # name, param in
         ("marketplaceIds", "query"),

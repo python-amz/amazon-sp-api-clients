@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Decimal:
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Decimal(**data)
 
     pass
 
@@ -28,6 +33,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -53,6 +64,12 @@ class GetOrderMetricsResponse:
     The response schema for the getOrderMetrics operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_metrics_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderMetricsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -70,6 +87,12 @@ class Money:
     The currency type and the amount.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
+
     amount: "Decimal" = attrs.field()
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
@@ -86,6 +109,12 @@ class OrderMetricsInterval:
     """
     Contains order metrics.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_metrics_interval_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderMetricsInterval(**data)
 
     average_unit_price: "Money" = attrs.field()
     """
@@ -116,6 +145,34 @@ class OrderMetricsInterval:
     """
     The number of units in orders based on the specified filters.
     """
+
+
+_decimal_name_convert = {}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_order_metrics_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_money_name_convert = {
+    "amount": "amount",
+    "currencyCode": "currency_code",
+}
+
+_order_metrics_interval_name_convert = {
+    "averageUnitPrice": "average_unit_price",
+    "interval": "interval",
+    "orderCount": "order_count",
+    "orderItemCount": "order_item_count",
+    "totalSales": "total_sales",
+    "unitCount": "unit_count",
+}
 
 
 class SalesV1Client(BaseClient):
@@ -172,11 +229,9 @@ class SalesV1Client(BaseClient):
             "GET",
             values,
             self._get_order_metrics_params,
+            self._get_order_metrics_responses,
         )
-        klass = self._get_order_metrics_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_metrics_params = (  # name, param in
         ("marketplaceIds", "query"),

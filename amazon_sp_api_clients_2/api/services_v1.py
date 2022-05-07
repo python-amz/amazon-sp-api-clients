@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class AddAppointmentRequest:
     """
     Input for add appointment operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _add_appointment_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AddAppointmentRequest(**data)
 
     appointment_time: "AppointmentTimeInput" = attrs.field()
     """
@@ -31,6 +36,12 @@ class Address:
     """
     The shipping address for the service job.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: str = attrs.field()
     """
@@ -112,6 +123,12 @@ class Appointment:
     The details of an appointment.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _appointment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Appointment(**data)
+
     appointment_id: Optional["AppointmentId"] = attrs.field()
     """
     The appointment identifier.
@@ -152,6 +169,12 @@ class AppointmentId:
     The appointment identifier.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _appointment_id_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AppointmentId(**data)
+
     pass
 
 
@@ -160,6 +183,12 @@ class AppointmentTime:
     """
     The time of the appointment window.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _appointment_time_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AppointmentTime(**data)
 
     duration_in_minutes: int = attrs.field()
     """
@@ -184,6 +213,12 @@ class AppointmentTimeInput:
     The input appointment time details.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _appointment_time_input_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AppointmentTimeInput(**data)
+
     duration_in_minutes: Optional[int] = attrs.field(
         default=None,
     )
@@ -205,6 +240,12 @@ class AssociatedItem:
     """
     Information about an item associated with the service job.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _associated_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AssociatedItem(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -250,6 +291,12 @@ class Buyer:
     Information about the buyer.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buyer_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Buyer(**data)
+
     buyer_id: Optional[str] = attrs.field()
     """
     The identifier of the buyer.
@@ -280,6 +327,12 @@ class CancelServiceJobByServiceJobIdResponse:
     Response schema for CancelServiceJobByServiceJobId operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _cancel_service_job_by_service_job_id_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CancelServiceJobByServiceJobIdResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -292,6 +345,12 @@ class CompleteServiceJobByServiceJobIdResponse:
     Response schema for CompleteServiceJobByServiceJobId operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _complete_service_job_by_service_job_id_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CompleteServiceJobByServiceJobIdResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -303,6 +362,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -335,6 +400,12 @@ class GetServiceJobByServiceJobIdResponse:
     The response schema for the GetServiceJobByServiceJobId operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_service_job_by_service_job_id_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetServiceJobByServiceJobIdResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -352,6 +423,12 @@ class GetServiceJobsResponse:
     Response schema for GetJobs operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_service_jobs_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetServiceJobsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -368,6 +445,12 @@ class ItemDelivery:
     """
     Delivery information for the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_delivery_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemDelivery(**data)
 
     estimated_delivery_date: Optional[datetime] = attrs.field()
     """
@@ -388,6 +471,12 @@ class ItemDeliveryPromise:
     """
     Promised delivery information for the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_delivery_promise_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemDeliveryPromise(**data)
 
     end_time: Optional[datetime] = attrs.field()
     """
@@ -411,6 +500,12 @@ class JobListing:
     """
     The payload for the GetJobs operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _job_listing_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return JobListing(**data)
 
     jobs: Optional[List["ServiceJob"]] = attrs.field()
     """
@@ -439,6 +534,12 @@ class OrderId:
     The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_id_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderId(**data)
+
     pass
 
 
@@ -447,6 +548,12 @@ class Poa:
     """
     Proof of Appointment (POA) details.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _poa_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Poa(**data)
 
     appointment_time: Optional["AppointmentTime"] = attrs.field()
     """
@@ -496,6 +603,12 @@ class RescheduleAppointmentRequest:
     Input for rescheduled appointment operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _reschedule_appointment_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RescheduleAppointmentRequest(**data)
+
     appointment_time: "AppointmentTimeInput" = attrs.field()
     """
     The input appointment time details.
@@ -513,6 +626,12 @@ class RescheduleReasonCode:
     Appointment reschedule reason code.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _reschedule_reason_code_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RescheduleReasonCode(**data)
+
     pass
 
 
@@ -521,6 +640,12 @@ class ScopeOfWork:
     """
     The scope of work for the order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _scope_of_work_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ScopeOfWork(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -549,6 +674,12 @@ class Seller:
     Information about the seller of the service job.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _seller_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Seller(**data)
+
     seller_id: Optional[str] = attrs.field()
     """
     The identifier of the seller of the service job.
@@ -563,6 +694,12 @@ class ServiceJob:
     """
     The job details of a service.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _service_job_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ServiceJob(**data)
 
     appointments: Optional[List["Appointment"]] = attrs.field()
     """
@@ -652,6 +789,12 @@ class ServiceJobId:
     Amazon identifier for the service job.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _service_job_id_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ServiceJobId(**data)
+
     pass
 
 
@@ -660,6 +803,12 @@ class ServiceJobProvider:
     """
     Information about the service job provider.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _service_job_provider_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ServiceJobProvider(**data)
 
     service_job_provider_id: Optional[str] = attrs.field()
     """
@@ -675,6 +824,12 @@ class ServiceLocation:
     """
     Information about the location of the service job.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _service_location_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ServiceLocation(**data)
 
     address: Optional["Address"] = attrs.field()
     """
@@ -692,6 +847,12 @@ class SetAppointmentResponse:
     """
     Response schema for add or reschedule appointment operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _set_appointment_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SetAppointmentResponse(**data)
 
     appointment_id: Optional["AppointmentId"] = attrs.field()
     """
@@ -715,6 +876,12 @@ class Technician:
     A technician who is assigned to perform the service job in part or in full.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _technician_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Technician(**data)
+
     name: Optional[str] = attrs.field()
     """
     The name of the technician.
@@ -735,6 +902,12 @@ class Warning:
     Warning returned when the request is successful but execution have some important callouts on basis of which API clients should take defined actions.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _warning_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Warning(**data)
+
     code: str = attrs.field()
     """
     An warning code that identifies the type of warning that occurred.
@@ -751,6 +924,177 @@ class Warning:
     """
     A message that describes the warning condition in a human-readable form.
     """
+
+
+_add_appointment_request_name_convert = {
+    "appointmentTime": "appointment_time",
+}
+
+_address_name_convert = {
+    "addressLine1": "address_line1",
+    "addressLine2": "address_line2",
+    "addressLine3": "address_line3",
+    "city": "city",
+    "countryCode": "country_code",
+    "county": "county",
+    "district": "district",
+    "name": "name",
+    "phone": "phone",
+    "postalCode": "postal_code",
+    "stateOrRegion": "state_or_region",
+}
+
+_appointment_name_convert = {
+    "appointmentId": "appointment_id",
+    "appointmentStatus": "appointment_status",
+    "appointmentTime": "appointment_time",
+    "assignedTechnicians": "assigned_technicians",
+    "poa": "poa",
+    "rescheduledAppointmentId": "rescheduled_appointment_id",
+}
+
+_appointment_id_name_convert = {}
+
+_appointment_time_name_convert = {
+    "durationInMinutes": "duration_in_minutes",
+    "startTime": "start_time",
+}
+
+_appointment_time_input_name_convert = {
+    "durationInMinutes": "duration_in_minutes",
+    "startTime": "start_time",
+}
+
+_associated_item_name_convert = {
+    "asin": "asin",
+    "brandName": "brand_name",
+    "itemDelivery": "item_delivery",
+    "itemStatus": "item_status",
+    "orderId": "order_id",
+    "quantity": "quantity",
+    "title": "title",
+}
+
+_buyer_name_convert = {
+    "buyerId": "buyer_id",
+    "isPrimeMember": "is_prime_member",
+    "name": "name",
+    "phone": "phone",
+}
+
+_cancel_service_job_by_service_job_id_response_name_convert = {
+    "errors": "errors",
+}
+
+_complete_service_job_by_service_job_id_response_name_convert = {
+    "errors": "errors",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "errorLevel": "error_level",
+    "message": "message",
+}
+
+_get_service_job_by_service_job_id_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_service_jobs_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_item_delivery_name_convert = {
+    "estimatedDeliveryDate": "estimated_delivery_date",
+    "itemDeliveryPromise": "item_delivery_promise",
+}
+
+_item_delivery_promise_name_convert = {
+    "endTime": "end_time",
+    "startTime": "start_time",
+}
+
+_job_listing_name_convert = {
+    "jobs": "jobs",
+    "nextPageToken": "next_page_token",
+    "previousPageToken": "previous_page_token",
+    "totalResultSize": "total_result_size",
+}
+
+_order_id_name_convert = {}
+
+_poa_name_convert = {
+    "appointmentTime": "appointment_time",
+    "poaType": "poa_type",
+    "technicians": "technicians",
+    "uploadTime": "upload_time",
+    "uploadingTechnician": "uploading_technician",
+}
+
+_reschedule_appointment_request_name_convert = {
+    "appointmentTime": "appointment_time",
+    "rescheduleReasonCode": "reschedule_reason_code",
+}
+
+_reschedule_reason_code_name_convert = {}
+
+_scope_of_work_name_convert = {
+    "asin": "asin",
+    "quantity": "quantity",
+    "requiredSkills": "required_skills",
+    "title": "title",
+}
+
+_seller_name_convert = {
+    "sellerId": "seller_id",
+}
+
+_service_job_name_convert = {
+    "appointments": "appointments",
+    "associatedItems": "associated_items",
+    "buyer": "buyer",
+    "createTime": "create_time",
+    "marketplaceId": "marketplace_id",
+    "preferredAppointmentTimes": "preferred_appointment_times",
+    "scopeOfWork": "scope_of_work",
+    "seller": "seller",
+    "serviceJobId": "service_job_id",
+    "serviceJobProvider": "service_job_provider",
+    "serviceJobStatus": "service_job_status",
+    "serviceLocation": "service_location",
+    "serviceOrderId": "service_order_id",
+}
+
+_service_job_id_name_convert = {}
+
+_service_job_provider_name_convert = {
+    "serviceJobProviderId": "service_job_provider_id",
+}
+
+_service_location_name_convert = {
+    "address": "address",
+    "serviceLocationType": "service_location_type",
+}
+
+_set_appointment_response_name_convert = {
+    "appointmentId": "appointment_id",
+    "errors": "errors",
+    "warnings": "warnings",
+}
+
+_technician_name_convert = {
+    "name": "name",
+    "technicianId": "technician_id",
+}
+
+_warning_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
 
 
 class ServicesV1Client(BaseClient):
@@ -784,11 +1128,9 @@ class ServicesV1Client(BaseClient):
             "POST",
             values,
             self._add_appointment_for_service_job_by_service_job_id_params,
+            self._add_appointment_for_service_job_by_service_job_id_responses,
         )
-        klass = self._add_appointment_for_service_job_by_service_job_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _add_appointment_for_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),
@@ -838,11 +1180,9 @@ class ServicesV1Client(BaseClient):
             "PUT",
             values,
             self._cancel_service_job_by_service_job_id_params,
+            self._cancel_service_job_by_service_job_id_responses,
         )
-        klass = self._cancel_service_job_by_service_job_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _cancel_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),
@@ -887,11 +1227,9 @@ class ServicesV1Client(BaseClient):
             "PUT",
             values,
             self._complete_service_job_by_service_job_id_params,
+            self._complete_service_job_by_service_job_id_responses,
         )
-        klass = self._complete_service_job_by_service_job_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
@@ -933,11 +1271,9 @@ class ServicesV1Client(BaseClient):
             "GET",
             values,
             self._get_service_job_by_service_job_id_params,
+            self._get_service_job_by_service_job_id_responses,
         )
-        klass = self._get_service_job_by_service_job_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
@@ -1027,11 +1363,9 @@ class ServicesV1Client(BaseClient):
             "GET",
             values,
             self._get_service_jobs_params,
+            self._get_service_jobs_responses,
         )
-        klass = self._get_service_jobs_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_service_jobs_params = (  # name, param in
         ("serviceOrderIds", "query"),
@@ -1097,11 +1431,9 @@ class ServicesV1Client(BaseClient):
             "POST",
             values,
             self._reschedule_appointment_for_service_job_by_service_job_id_params,
+            self._reschedule_appointment_for_service_job_by_service_job_id_responses,
         )
-        klass = self._reschedule_appointment_for_service_job_by_service_job_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _reschedule_appointment_for_service_job_by_service_job_id_params = (  # name, param in
         ("serviceJobId", "path"),

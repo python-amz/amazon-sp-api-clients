@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -40,6 +45,11 @@ class Error:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class InventoryUpdate:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _inventory_update_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InventoryUpdate(**data)
 
     is_full_update: bool = attrs.field()
     """
@@ -59,6 +69,12 @@ class ItemDetails:
     """
     Updated inventory details for an item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemDetails(**data)
 
     available_quantity: "ItemQuantity" = attrs.field()
     """
@@ -93,6 +109,12 @@ class ItemQuantity:
     Details of item quantity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemQuantity(**data)
+
     amount: Optional[int] = attrs.field(
         default=None,
     )
@@ -108,6 +130,11 @@ class ItemQuantity:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _party_identification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PartyIdentification(**data)
 
     party_id: str = attrs.field()
     """
@@ -121,6 +148,12 @@ class SubmitInventoryUpdateRequest:
     The request body for the submitInventoryUpdate operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_inventory_update_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitInventoryUpdateRequest(**data)
+
     inventory: Optional["InventoryUpdate"] = attrs.field()
 
 
@@ -129,6 +162,12 @@ class SubmitInventoryUpdateResponse:
     """
     The response schema for the submitInventoryUpdate operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_inventory_update_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitInventoryUpdateResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -140,11 +179,58 @@ class SubmitInventoryUpdateResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionReference:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_reference_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransactionReference(**data)
 
     transaction_id: Optional[str] = attrs.field()
     """
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_inventory_update_name_convert = {
+    "isFullUpdate": "is_full_update",
+    "items": "items",
+    "sellingParty": "selling_party",
+}
+
+_item_details_name_convert = {
+    "availableQuantity": "available_quantity",
+    "buyerProductIdentifier": "buyer_product_identifier",
+    "isObsolete": "is_obsolete",
+    "vendorProductIdentifier": "vendor_product_identifier",
+}
+
+_item_quantity_name_convert = {
+    "amount": "amount",
+    "unitOfMeasure": "unit_of_measure",
+}
+
+_party_identification_name_convert = {
+    "partyId": "party_id",
+}
+
+_submit_inventory_update_request_name_convert = {
+    "inventory": "inventory",
+}
+
+_submit_inventory_update_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_transaction_reference_name_convert = {
+    "transactionId": "transaction_id",
+}
 
 
 class VendorDirectFulfillmentInventoryV1Client(BaseClient):
@@ -179,11 +265,9 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
             "POST",
             values,
             self._submit_inventory_update_params,
+            self._submit_inventory_update_responses,
         )
-        klass = self._submit_inventory_update_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _submit_inventory_update_params = (  # name, param in
         ("warehouseId", "path"),

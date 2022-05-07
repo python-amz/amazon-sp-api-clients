@@ -11,11 +11,15 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINIdentifier:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _asinidentifier_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ASINIdentifier(**data)
 
     asin: str = attrs.field()
     """
@@ -33,6 +37,12 @@ class AttributeSetListType:
     """
     The attributes of the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _attribute_set_list_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AttributeSetListType(**data)
 
     actor: Optional[List[str]] = attrs.field()
     """
@@ -517,6 +527,11 @@ class AttributeSetListType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Categories:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _categories_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Categories(**data)
 
     product_category_id: Optional[str] = attrs.field()
     """
@@ -540,6 +555,12 @@ class CategoriesParent:
     The parent product category.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _categories_parent_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CategoriesParent(**data)
+
     pass
 
 
@@ -548,6 +569,12 @@ class CreatorType:
     """
     The creator type attribute of an item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _creator_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreatorType(**data)
 
     role: Optional[str] = attrs.field()
     """
@@ -566,6 +593,12 @@ class DecimalWithUnits:
     The decimal value and unit.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_with_units_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DecimalWithUnits(**data)
+
     units: Optional[str] = attrs.field()
     """
     The unit of the decimal value.
@@ -582,6 +615,12 @@ class DimensionType:
     """
     The dimension type attribute of an item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _dimension_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DimensionType(**data)
 
     height: Optional["DecimalWithUnits"] = attrs.field()
     """
@@ -610,6 +649,12 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -630,6 +675,11 @@ class Error:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetCatalogItemResponse:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_catalog_item_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetCatalogItemResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -644,6 +694,11 @@ class GetCatalogItemResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class IdentifierType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _identifier_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return IdentifierType(**data)
 
     marketplace_asin: Optional["ASINIdentifier"] = attrs.field()
 
@@ -655,6 +710,12 @@ class Image:
     """
     The image attribute of the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _image_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Image(**data)
 
     height: Optional["DecimalWithUnits"] = attrs.field()
     """
@@ -677,6 +738,12 @@ class Item:
     """
     An item in the Amazon catalog.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Item(**data)
 
     attribute_sets: Optional[List["AttributeSetListType"]] = attrs.field(
         default=None,
@@ -708,6 +775,12 @@ class LanguageType:
     The language type attribute of an item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _language_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return LanguageType(**data)
+
     audio_format: Optional[str] = attrs.field()
     """
     The audio format attribute of the item.
@@ -726,6 +799,11 @@ class LanguageType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListCatalogCategoriesResponse:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_catalog_categories_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListCatalogCategoriesResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -737,6 +815,11 @@ class ListCatalogCategoriesResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListCatalogItemsResponse:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_catalog_items_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListCatalogItemsResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -748,6 +831,11 @@ class ListCatalogItemsResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListMatchingItemsResponse:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_matching_items_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListMatchingItemsResponse(**data)
 
     items: Optional[List["Item"]] = attrs.field()
     """
@@ -760,6 +848,12 @@ class Price:
     """
     The price attribute of the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _price_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Price(**data)
 
     amount: Optional[float] = attrs.field()
     """
@@ -777,6 +871,12 @@ class RelationshipType:
     """
     Specific variations of the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _relationship_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RelationshipType(**data)
 
     color: Optional[str] = attrs.field()
     """
@@ -893,6 +993,11 @@ class RelationshipType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SalesRankType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _sales_rank_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SalesRankType(**data)
 
     product_category_id: str = attrs.field()
     """
@@ -910,6 +1015,11 @@ class SalesRankType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerSKUIdentifier:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _seller_skuidentifier_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SellerSKUIdentifier(**data)
 
     marketplace_id: str = attrs.field()
     """
@@ -925,6 +1035,227 @@ class SellerSKUIdentifier:
     """
     The seller stock keeping unit (SKU) of the item.
     """
+
+
+_asinidentifier_name_convert = {
+    "ASIN": "asin",
+    "MarketplaceId": "marketplace_id",
+}
+
+_attribute_set_list_type_name_convert = {
+    "Actor": "actor",
+    "Artist": "artist",
+    "AspectRatio": "aspect_ratio",
+    "AudienceRating": "audience_rating",
+    "Author": "author",
+    "BackFinding": "back_finding",
+    "BandMaterialType": "band_material_type",
+    "Binding": "binding",
+    "BlurayRegion": "bluray_region",
+    "Brand": "brand",
+    "CeroAgeRating": "cero_age_rating",
+    "ChainType": "chain_type",
+    "ClaspType": "clasp_type",
+    "Color": "color",
+    "CpuManufacturer": "cpu_manufacturer",
+    "CpuSpeed": "cpu_speed",
+    "CpuType": "cpu_type",
+    "Creator": "creator",
+    "Department": "department",
+    "Director": "director",
+    "DisplaySize": "display_size",
+    "Edition": "edition",
+    "EpisodeSequence": "episode_sequence",
+    "EsrbAgeRating": "esrb_age_rating",
+    "Feature": "feature",
+    "Flavor": "flavor",
+    "Format": "format",
+    "GemType": "gem_type",
+    "Genre": "genre",
+    "GolfClubFlex": "golf_club_flex",
+    "GolfClubLoft": "golf_club_loft",
+    "HandOrientation": "hand_orientation",
+    "HardDiskInterface": "hard_disk_interface",
+    "HardDiskSize": "hard_disk_size",
+    "HardwarePlatform": "hardware_platform",
+    "HazardousMaterialType": "hazardous_material_type",
+    "IsAdultProduct": "is_adult_product",
+    "IsAutographed": "is_autographed",
+    "IsEligibleForTradeIn": "is_eligible_for_trade_in",
+    "IsMemorabilia": "is_memorabilia",
+    "IssuesPerYear": "issues_per_year",
+    "ItemDimensions": "item_dimensions",
+    "ItemPartNumber": "item_part_number",
+    "Label": "label",
+    "Languages": "languages",
+    "LegalDisclaimer": "legal_disclaimer",
+    "ListPrice": "list_price",
+    "Manufacturer": "manufacturer",
+    "ManufacturerMaximumAge": "manufacturer_maximum_age",
+    "ManufacturerMinimumAge": "manufacturer_minimum_age",
+    "ManufacturerPartsWarrantyDescription": "manufacturer_parts_warranty_description",
+    "MaterialType": "material_type",
+    "MaximumResolution": "maximum_resolution",
+    "MediaType": "media_type",
+    "MetalStamp": "metal_stamp",
+    "MetalType": "metal_type",
+    "Model": "model",
+    "NumberOfDiscs": "number_of_discs",
+    "NumberOfIssues": "number_of_issues",
+    "NumberOfItems": "number_of_items",
+    "NumberOfPages": "number_of_pages",
+    "NumberOfTracks": "number_of_tracks",
+    "OperatingSystem": "operating_system",
+    "OpticalZoom": "optical_zoom",
+    "PackageDimensions": "package_dimensions",
+    "PackageQuantity": "package_quantity",
+    "PartNumber": "part_number",
+    "PegiRating": "pegi_rating",
+    "Platform": "platform",
+    "ProcessorCount": "processor_count",
+    "ProductGroup": "product_group",
+    "ProductTypeName": "product_type_name",
+    "ProductTypeSubcategory": "product_type_subcategory",
+    "PublicationDate": "publication_date",
+    "Publisher": "publisher",
+    "RegionCode": "region_code",
+    "ReleaseDate": "release_date",
+    "RingSize": "ring_size",
+    "RunningTime": "running_time",
+    "Scent": "scent",
+    "SeasonSequence": "season_sequence",
+    "SeikodoProductCode": "seikodo_product_code",
+    "ShaftMaterial": "shaft_material",
+    "Size": "size",
+    "SizePerPearl": "size_per_pearl",
+    "SmallImage": "small_image",
+    "Studio": "studio",
+    "SubscriptionLength": "subscription_length",
+    "SystemMemorySize": "system_memory_size",
+    "SystemMemoryType": "system_memory_type",
+    "TheatricalReleaseDate": "theatrical_release_date",
+    "Title": "title",
+    "TotalDiamondWeight": "total_diamond_weight",
+    "TotalGemWeight": "total_gem_weight",
+    "Warranty": "warranty",
+    "WeeeTaxValue": "weee_tax_value",
+}
+
+_categories_name_convert = {
+    "ProductCategoryId": "product_category_id",
+    "ProductCategoryName": "product_category_name",
+    "parent": "parent",
+}
+
+_categories_parent_name_convert = {}
+
+_creator_type_name_convert = {
+    "Role": "role",
+    "value": "value",
+}
+
+_decimal_with_units_name_convert = {
+    "Units": "units",
+    "value": "value",
+}
+
+_dimension_type_name_convert = {
+    "Height": "height",
+    "Length": "length",
+    "Weight": "weight",
+    "Width": "width",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_catalog_item_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_identifier_type_name_convert = {
+    "MarketplaceASIN": "marketplace_asin",
+    "SKUIdentifier": "skuidentifier",
+}
+
+_image_name_convert = {
+    "Height": "height",
+    "URL": "url",
+    "Width": "width",
+}
+
+_item_name_convert = {
+    "AttributeSets": "attribute_sets",
+    "Identifiers": "identifiers",
+    "Relationships": "relationships",
+    "SalesRankings": "sales_rankings",
+}
+
+_language_type_name_convert = {
+    "AudioFormat": "audio_format",
+    "Name": "name",
+    "Type": "type",
+}
+
+_list_catalog_categories_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_list_catalog_items_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_list_matching_items_response_name_convert = {
+    "Items": "items",
+}
+
+_price_name_convert = {
+    "Amount": "amount",
+    "CurrencyCode": "currency_code",
+}
+
+_relationship_type_name_convert = {
+    "Color": "color",
+    "Edition": "edition",
+    "Flavor": "flavor",
+    "GemType": "gem_type",
+    "GolfClubFlex": "golf_club_flex",
+    "GolfClubLoft": "golf_club_loft",
+    "HandOrientation": "hand_orientation",
+    "HardwarePlatform": "hardware_platform",
+    "Identifiers": "identifiers",
+    "ItemDimensions": "item_dimensions",
+    "MaterialType": "material_type",
+    "MetalType": "metal_type",
+    "Model": "model",
+    "OperatingSystem": "operating_system",
+    "PackageQuantity": "package_quantity",
+    "ProductTypeSubcategory": "product_type_subcategory",
+    "RingSize": "ring_size",
+    "Scent": "scent",
+    "ShaftMaterial": "shaft_material",
+    "Size": "size",
+    "SizePerPearl": "size_per_pearl",
+    "TotalDiamondWeight": "total_diamond_weight",
+    "TotalGemWeight": "total_gem_weight",
+}
+
+_sales_rank_type_name_convert = {
+    "ProductCategoryId": "product_category_id",
+    "Rank": "rank",
+}
+
+_seller_skuidentifier_name_convert = {
+    "MarketplaceId": "marketplace_id",
+    "SellerId": "seller_id",
+    "SellerSKU": "seller_sku",
+}
 
 
 class CatalogItemsV0Client(BaseClient):
@@ -959,11 +1290,9 @@ class CatalogItemsV0Client(BaseClient):
             "GET",
             values,
             self._get_catalog_item_params,
+            self._get_catalog_item_responses,
         )
-        klass = self._get_catalog_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_catalog_item_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -1015,11 +1344,9 @@ class CatalogItemsV0Client(BaseClient):
             "GET",
             values,
             self._list_catalog_categories_params,
+            self._list_catalog_categories_responses,
         )
-        klass = self._list_catalog_categories_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_catalog_categories_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -1091,11 +1418,9 @@ class CatalogItemsV0Client(BaseClient):
             "GET",
             values,
             self._list_catalog_items_params,
+            self._list_catalog_items_responses,
         )
-        klass = self._list_catalog_items_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_catalog_items_params = (  # name, param in
         ("MarketplaceId", "query"),

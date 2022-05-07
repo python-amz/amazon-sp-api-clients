@@ -13,7 +13,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -21,6 +20,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -46,6 +51,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: List["Error"] = attrs.field()
 
 
@@ -54,6 +65,12 @@ class Issue:
     """
     An issue with a listings item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _issue_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Issue(**data)
 
     attribute_name: Optional[str] = attrs.field(
         default=None,
@@ -84,6 +101,12 @@ class ListingsItemPatchRequest:
     The request body schema for the patchListingsItem operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_patch_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemPatchRequest(**data)
+
     patches: List["PatchOperation"] = attrs.field()
     """
     One or more JSON Patch operations to perform on the listings item.
@@ -103,6 +126,12 @@ class ListingsItemPutRequest:
     """
     The request body schema for the putListingsItem operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_put_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemPutRequest(**data)
 
     attributes: "ListingsItemPutRequestAttributes" = attrs.field()
     """
@@ -130,6 +159,12 @@ class ListingsItemPutRequestAttributes:
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_put_request_attributes_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemPutRequestAttributes(**data)
+
     pass
 
 
@@ -138,6 +173,12 @@ class ListingsItemSubmissionResponse:
     """
     Response containing the results of a submission to the Selling Partner API for Listings Items.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _listings_item_submission_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListingsItemSubmissionResponse(**data)
 
     issues: Optional[List["Issue"]] = attrs.field(
         default=None,
@@ -168,6 +209,12 @@ class PatchOperation:
     Individual JSON Patch operation for an HTTP PATCH request.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _patch_operation_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PatchOperation(**data)
+
     op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
     """
     Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
@@ -188,8 +235,59 @@ class PatchOperation:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PatchOperationValueItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _patch_operation_value_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PatchOperationValueItem(**data)
 
     pass
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_issue_name_convert = {
+    "attributeName": "attribute_name",
+    "code": "code",
+    "message": "message",
+    "severity": "severity",
+}
+
+_listings_item_patch_request_name_convert = {
+    "patches": "patches",
+    "productType": "product_type",
+}
+
+_listings_item_put_request_name_convert = {
+    "attributes": "attributes",
+    "productType": "product_type",
+    "requirements": "requirements",
+}
+
+_listings_item_put_request_attributes_name_convert = {}
+
+_listings_item_submission_response_name_convert = {
+    "issues": "issues",
+    "sku": "sku",
+    "status": "status",
+    "submissionId": "submission_id",
+}
+
+_patch_operation_name_convert = {
+    "op": "op",
+    "path": "path",
+    "value": "value",
+}
+
+_patch_operation_value_item_name_convert = {}
 
 
 class ListingsItems20200901Client(BaseClient):
@@ -230,11 +328,9 @@ class ListingsItems20200901Client(BaseClient):
             "DELETE",
             values,
             self._delete_listings_item_params,
+            self._delete_listings_item_responses,
         )
-        klass = self._delete_listings_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _delete_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -297,11 +393,9 @@ class ListingsItems20200901Client(BaseClient):
             "PATCH",
             values,
             self._patch_listings_item_params,
+            self._patch_listings_item_responses,
         )
-        klass = self._patch_listings_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _patch_listings_item_params = (  # name, param in
         ("sellerId", "path"),
@@ -369,11 +463,9 @@ class ListingsItems20200901Client(BaseClient):
             "PUT",
             values,
             self._put_listings_item_params,
+            self._put_listings_item_responses,
         )
-        klass = self._put_listings_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _put_listings_item_params = (  # name, param in
         ("sellerId", "path"),

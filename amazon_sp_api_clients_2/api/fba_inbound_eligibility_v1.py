@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -46,6 +51,12 @@ class GetItemEligibilityPreviewResponse:
     The response schema for the getItemEligibilityPreview operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_item_eligibility_preview_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetItemEligibilityPreviewResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -62,6 +73,12 @@ class ItemEligibilityPreview:
     """
     The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_eligibility_preview_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemEligibilityPreview(**data)
 
     asin: str = attrs.field()
     """
@@ -137,6 +154,26 @@ class ItemEligibilityPreview:
     """
 
 
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_item_eligibility_preview_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_item_eligibility_preview_name_convert = {
+    "asin": "asin",
+    "ineligibilityReasonList": "ineligibility_reason_list",
+    "isEligibleForProgram": "is_eligible_for_program",
+    "marketplaceId": "marketplace_id",
+    "program": "program",
+}
+
+
 class FbaInboundEligibilityV1Client(BaseClient):
     def get_item_eligibility_preview(
         self,
@@ -171,11 +208,9 @@ class FbaInboundEligibilityV1Client(BaseClient):
             "GET",
             values,
             self._get_item_eligibility_preview_params,
+            self._get_item_eligibility_preview_responses,
         )
-        klass = self._get_item_eligibility_preview_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_item_eligibility_preview_params = (  # name, param in
         ("marketplaceIds", "query"),

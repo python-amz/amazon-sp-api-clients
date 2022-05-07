@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -44,6 +49,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
 
 
@@ -52,6 +63,12 @@ class FeeLineItem:
     """
     Fee details for a specific fee.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fee_line_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeeLineItem(**data)
 
     fee_charge: "MoneyType" = attrs.field()
 
@@ -71,6 +88,12 @@ class FeePreview:
     """
     The fee estimate for a specific item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fee_preview_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeePreview(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -98,6 +121,12 @@ class Item:
     An item to be sold.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Item(**data)
+
     asin: str = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) value used to identify the item.
@@ -112,11 +141,22 @@ class MarketplaceId:
     A marketplace identifier.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _marketplace_id_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MarketplaceId(**data)
+
     pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class MoneyType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MoneyType(**data)
 
     amount: Optional[float] = attrs.field()
     """
@@ -135,6 +175,12 @@ class SellerSKU:
     Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _seller_sku_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SellerSKU(**data)
+
     pass
 
 
@@ -143,6 +189,12 @@ class SmallAndLightEligibility:
     """
     The Small and Light eligibility status of the item indicated by the specified seller SKU.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _small_and_light_eligibility_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SmallAndLightEligibility(**data)
 
     marketplace_id: "MarketplaceId" = attrs.field()
     """
@@ -166,6 +218,12 @@ class SmallAndLightEligibilityStatus:
     The Small and Light eligibility status of the item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _small_and_light_eligibility_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SmallAndLightEligibilityStatus(**data)
+
     pass
 
 
@@ -174,6 +232,12 @@ class SmallAndLightEnrollment:
     """
     The Small and Light enrollment status of the item indicated by the specified seller SKU.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _small_and_light_enrollment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SmallAndLightEnrollment(**data)
 
     marketplace_id: "MarketplaceId" = attrs.field()
     """
@@ -197,6 +261,12 @@ class SmallAndLightEnrollmentStatus:
     The Small and Light enrollment status of the item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _small_and_light_enrollment_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SmallAndLightEnrollmentStatus(**data)
+
     pass
 
 
@@ -205,6 +275,12 @@ class SmallAndLightFeePreviewRequest:
     """
     Request schema for submitting items for which to retrieve fee estimates.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _small_and_light_fee_preview_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SmallAndLightFeePreviewRequest(**data)
 
     items: List["Item"] = attrs.field()
     """
@@ -222,11 +298,79 @@ class SmallAndLightFeePreviewRequest:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SmallAndLightFeePreviews:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _small_and_light_fee_previews_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SmallAndLightFeePreviews(**data)
 
     data: Optional[List["FeePreview"]] = attrs.field()
     """
     A list of fee estimates for the requested items. The order of the fee estimates will follow the same order as the items in the request, with duplicates removed.
     """
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_fee_line_item_name_convert = {
+    "feeCharge": "fee_charge",
+    "feeType": "fee_type",
+}
+
+_fee_preview_name_convert = {
+    "asin": "asin",
+    "errors": "errors",
+    "feeBreakdown": "fee_breakdown",
+    "price": "price",
+    "totalFees": "total_fees",
+}
+
+_item_name_convert = {
+    "asin": "asin",
+    "price": "price",
+}
+
+_marketplace_id_name_convert = {}
+
+_money_type_name_convert = {
+    "amount": "amount",
+    "currencyCode": "currency_code",
+}
+
+_seller_sku_name_convert = {}
+
+_small_and_light_eligibility_name_convert = {
+    "marketplaceId": "marketplace_id",
+    "sellerSKU": "seller_sku",
+    "status": "status",
+}
+
+_small_and_light_eligibility_status_name_convert = {}
+
+_small_and_light_enrollment_name_convert = {
+    "marketplaceId": "marketplace_id",
+    "sellerSKU": "seller_sku",
+    "status": "status",
+}
+
+_small_and_light_enrollment_status_name_convert = {}
+
+_small_and_light_fee_preview_request_name_convert = {
+    "items": "items",
+    "marketplaceId": "marketplace_id",
+}
+
+_small_and_light_fee_previews_name_convert = {
+    "data": "data",
+}
 
 
 class FbaSmallAndLightV1Client(BaseClient):
@@ -260,11 +404,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             "DELETE",
             values,
             self._delete_small_and_light_enrollment_by_seller_sku_params,
+            self._delete_small_and_light_enrollment_by_seller_sku_responses,
         )
-        klass = self._delete_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _delete_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
@@ -312,11 +454,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             "GET",
             values,
             self._get_small_and_light_eligibility_by_seller_sku_params,
+            self._get_small_and_light_eligibility_by_seller_sku_responses,
         )
-        klass = self._get_small_and_light_eligibility_by_seller_sku_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_small_and_light_eligibility_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
@@ -365,11 +505,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             "GET",
             values,
             self._get_small_and_light_enrollment_by_seller_sku_params,
+            self._get_small_and_light_enrollment_by_seller_sku_responses,
         )
-        klass = self._get_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),
@@ -418,11 +556,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             "POST",
             values,
             self._get_small_and_light_fee_preview_params,
+            self._get_small_and_light_fee_preview_responses,
         )
-        klass = self._get_small_and_light_fee_preview_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_small_and_light_fee_preview_params = (  # name, param in
         ("items", "body"),
@@ -470,11 +606,9 @@ class FbaSmallAndLightV1Client(BaseClient):
             "PUT",
             values,
             self._put_small_and_light_enrollment_by_seller_sku_params,
+            self._put_small_and_light_enrollment_by_seller_sku_responses,
         )
-        klass = self._put_small_and_light_enrollment_by_seller_sku_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _put_small_and_light_enrollment_by_seller_sku_params = (  # name, param in
         ("sellerSKU", "path"),

@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class AdditionalDetails:
     """
     A field where selling party can provide additional information for tax related or any other purposes.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _additional_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AdditionalDetails(**data)
 
     detail: str = attrs.field()
     """
@@ -43,6 +48,12 @@ class Address:
     """
     Address of the party.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: str = attrs.field()
     """
@@ -116,6 +127,12 @@ class ChargeDetails:
     Monetary and tax details of the charge.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _charge_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ChargeDetails(**data)
+
     charge_amount: "Money" = attrs.field()
     """
     An amount of money, including units in the form of currency.
@@ -148,6 +165,12 @@ class Decimal:
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Decimal(**data)
+
     pass
 
 
@@ -156,6 +179,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -177,6 +206,11 @@ class Error:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class InvoiceDetail:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _invoice_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InvoiceDetail(**data)
 
     additional_details: Optional[List["AdditionalDetails"]] = attrs.field(
         default=None,
@@ -254,6 +288,11 @@ class InvoiceDetail:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class InvoiceItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _invoice_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InvoiceItem(**data)
 
     buyer_product_identifier: Optional[str] = attrs.field(
         default=None,
@@ -324,6 +363,12 @@ class ItemQuantity:
     Details of item quantity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemQuantity(**data)
+
     amount: int = attrs.field()
     """
     Quantity of units available for a specific item.
@@ -341,6 +386,12 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
+
     amount: "Decimal" = attrs.field()
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
@@ -354,6 +405,11 @@ class Money:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _party_identification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PartyIdentification(**data)
 
     address: Optional["Address"] = attrs.field(
         default=None,
@@ -381,6 +437,12 @@ class SubmitInvoiceRequest:
     The request schema for the submitInvoice operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_invoice_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitInvoiceRequest(**data)
+
     invoices: Optional[List["InvoiceDetail"]] = attrs.field()
 
 
@@ -389,6 +451,12 @@ class SubmitInvoiceResponse:
     """
     The response schema for the submitInvoice operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_invoice_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitInvoiceResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -403,6 +471,12 @@ class TaxDetail:
     """
     Details of tax amount applied.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxDetail(**data)
 
     tax_amount: "Money" = attrs.field()
     """
@@ -450,6 +524,12 @@ class TaxRegistrationDetail:
     Tax registration details of the entity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_registration_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxRegistrationDetail(**data)
+
     tax_registration_address: Optional["Address"] = attrs.field(
         default=None,
     )
@@ -479,11 +559,123 @@ class TaxRegistrationDetail:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionReference:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_reference_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransactionReference(**data)
 
     transaction_id: Optional[str] = attrs.field()
     """
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
+
+
+_additional_details_name_convert = {
+    "detail": "detail",
+    "languageCode": "language_code",
+    "type": "type",
+}
+
+_address_name_convert = {
+    "addressLine1": "address_line1",
+    "addressLine2": "address_line2",
+    "addressLine3": "address_line3",
+    "city": "city",
+    "countryCode": "country_code",
+    "county": "county",
+    "district": "district",
+    "name": "name",
+    "phone": "phone",
+    "postalCode": "postal_code",
+    "stateOrRegion": "state_or_region",
+}
+
+_charge_details_name_convert = {
+    "chargeAmount": "charge_amount",
+    "taxDetails": "tax_details",
+    "type": "type",
+}
+
+_decimal_name_convert = {}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_invoice_detail_name_convert = {
+    "additionalDetails": "additional_details",
+    "billToParty": "bill_to_party",
+    "chargeDetails": "charge_details",
+    "invoiceDate": "invoice_date",
+    "invoiceNumber": "invoice_number",
+    "invoiceTotal": "invoice_total",
+    "items": "items",
+    "paymentTermsCode": "payment_terms_code",
+    "referenceNumber": "reference_number",
+    "remitToParty": "remit_to_party",
+    "shipFromParty": "ship_from_party",
+    "shipToCountryCode": "ship_to_country_code",
+    "taxTotals": "tax_totals",
+}
+
+_invoice_item_name_convert = {
+    "buyerProductIdentifier": "buyer_product_identifier",
+    "chargeDetails": "charge_details",
+    "hsnCode": "hsn_code",
+    "invoicedQuantity": "invoiced_quantity",
+    "itemSequenceNumber": "item_sequence_number",
+    "netCost": "net_cost",
+    "purchaseOrderNumber": "purchase_order_number",
+    "taxDetails": "tax_details",
+    "vendorOrderNumber": "vendor_order_number",
+    "vendorProductIdentifier": "vendor_product_identifier",
+}
+
+_item_quantity_name_convert = {
+    "amount": "amount",
+    "unitOfMeasure": "unit_of_measure",
+}
+
+_money_name_convert = {
+    "amount": "amount",
+    "currencyCode": "currency_code",
+}
+
+_party_identification_name_convert = {
+    "address": "address",
+    "partyId": "party_id",
+    "taxRegistrationDetails": "tax_registration_details",
+}
+
+_submit_invoice_request_name_convert = {
+    "invoices": "invoices",
+}
+
+_submit_invoice_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_tax_detail_name_convert = {
+    "taxAmount": "tax_amount",
+    "taxRate": "tax_rate",
+    "taxType": "tax_type",
+    "taxableAmount": "taxable_amount",
+}
+
+_tax_registration_detail_name_convert = {
+    "taxRegistrationAddress": "tax_registration_address",
+    "taxRegistrationMessage": "tax_registration_message",
+    "taxRegistrationNumber": "tax_registration_number",
+    "taxRegistrationType": "tax_registration_type",
+}
+
+_transaction_reference_name_convert = {
+    "transactionId": "transaction_id",
+}
 
 
 class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
@@ -513,11 +705,9 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
             "POST",
             values,
             self._submit_invoice_params,
+            self._submit_invoice_responses,
         )
-        klass = self._submit_invoice_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _submit_invoice_params = (("invoices", "body"),)  # name, param in
 

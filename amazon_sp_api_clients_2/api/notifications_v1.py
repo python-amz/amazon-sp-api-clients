@@ -13,7 +13,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -21,6 +20,12 @@ class CreateDestinationRequest:
     """
     The request schema for the createDestination operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_destination_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateDestinationRequest(**data)
 
     name: str = attrs.field()
     """
@@ -39,6 +44,12 @@ class CreateDestinationResponse:
     The response schema for the createDestination operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_destination_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateDestinationResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -55,6 +66,12 @@ class CreateSubscriptionRequest:
     """
     The request schema for the createSubscription operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_subscription_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateSubscriptionRequest(**data)
 
     destination_id: Optional[str] = attrs.field()
     """
@@ -73,6 +90,12 @@ class CreateSubscriptionResponse:
     The response schema for the createSubscription operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_subscription_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateSubscriptionResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -90,6 +113,12 @@ class DeleteDestinationResponse:
     The response schema for the deleteDestination operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _delete_destination_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DeleteDestinationResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -102,6 +131,12 @@ class DeleteSubscriptionByIdResponse:
     The response schema for the deleteSubscriptionById operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _delete_subscription_by_id_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DeleteSubscriptionByIdResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -113,6 +148,12 @@ class Destination:
     """
     Represents a destination created when you call the createDestination operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _destination_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Destination(**data)
 
     destination_id: str = attrs.field()
     """
@@ -139,6 +180,12 @@ class DestinationResource:
     The destination resource types.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _destination_resource_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DestinationResource(**data)
+
     event_bridge: Optional["EventBridgeResource"] = attrs.field()
     """
     Represents an Amazon EventBridge destination.
@@ -156,6 +203,12 @@ class DestinationResourceSpecification:
     The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _destination_resource_specification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DestinationResourceSpecification(**data)
+
     event_bridge: Optional["EventBridgeResourceSpecification"] = attrs.field()
     """
     The information required to create an Amazon EventBridge destination.
@@ -172,6 +225,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -196,6 +255,12 @@ class EventBridgeResource:
     """
     Represents an Amazon EventBridge destination.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _event_bridge_resource_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return EventBridgeResource(**data)
 
     account_id: str = attrs.field()
     """
@@ -222,6 +287,12 @@ class EventBridgeResourceSpecification:
     The information required to create an Amazon EventBridge destination.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _event_bridge_resource_specification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return EventBridgeResourceSpecification(**data)
+
     account_id: str = attrs.field()
     """
     The identifier for the AWS account that is responsible for charges related to receiving notifications.
@@ -238,6 +309,12 @@ class GetDestinationResponse:
     """
     The response schema for the getDestination operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_destination_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetDestinationResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -256,6 +333,12 @@ class GetDestinationsResponse:
     The response schema for the getDestinations operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_destinations_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetDestinationsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -272,6 +355,12 @@ class GetSubscriptionByIdResponse:
     """
     The response schema for the getSubscriptionById operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_subscription_by_id_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSubscriptionByIdResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -290,6 +379,12 @@ class GetSubscriptionResponse:
     The response schema for the getSubscription operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_subscription_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSubscriptionResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -307,6 +402,12 @@ class SqsResource:
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _sqs_resource_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SqsResource(**data)
+
     arn: str = attrs.field()
     """
     The Amazon Resource Name (ARN) associated with the SQS queue.
@@ -322,6 +423,12 @@ class Subscription:
     Represents a subscription to receive notifications.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _subscription_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Subscription(**data)
+
     destination_id: str = attrs.field()
     """
     The identifier for the destination where notifications will be delivered.
@@ -336,6 +443,98 @@ class Subscription:
     """
     The subscription identifier generated when the subscription is created.
     """
+
+
+_create_destination_request_name_convert = {
+    "name": "name",
+    "resourceSpecification": "resource_specification",
+}
+
+_create_destination_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_create_subscription_request_name_convert = {
+    "destinationId": "destination_id",
+    "payloadVersion": "payload_version",
+}
+
+_create_subscription_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_delete_destination_response_name_convert = {
+    "errors": "errors",
+}
+
+_delete_subscription_by_id_response_name_convert = {
+    "errors": "errors",
+}
+
+_destination_name_convert = {
+    "destinationId": "destination_id",
+    "name": "name",
+    "resource": "resource",
+}
+
+_destination_resource_name_convert = {
+    "eventBridge": "event_bridge",
+    "sqs": "sqs",
+}
+
+_destination_resource_specification_name_convert = {
+    "eventBridge": "event_bridge",
+    "sqs": "sqs",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_event_bridge_resource_name_convert = {
+    "accountId": "account_id",
+    "name": "name",
+    "region": "region",
+}
+
+_event_bridge_resource_specification_name_convert = {
+    "accountId": "account_id",
+    "region": "region",
+}
+
+_get_destination_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_destinations_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_subscription_by_id_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_subscription_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_sqs_resource_name_convert = {
+    "arn": "arn",
+}
+
+_subscription_name_convert = {
+    "destinationId": "destination_id",
+    "payloadVersion": "payload_version",
+    "subscriptionId": "subscription_id",
+}
 
 
 class NotificationsV1Client(BaseClient):
@@ -369,11 +568,9 @@ class NotificationsV1Client(BaseClient):
             "POST",
             values,
             self._create_destination_params,
+            self._create_destination_responses,
         )
-        klass = self._create_destination_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_destination_params = (  # name, param in
         ("name", "body"),
@@ -427,11 +624,9 @@ class NotificationsV1Client(BaseClient):
             "POST",
             values,
             self._create_subscription_params,
+            self._create_subscription_responses,
         )
-        klass = self._create_subscription_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_subscription_params = (  # name, param in
         ("notificationType", "path"),
@@ -477,11 +672,9 @@ class NotificationsV1Client(BaseClient):
             "DELETE",
             values,
             self._delete_destination_params,
+            self._delete_destination_responses,
         )
-        klass = self._delete_destination_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _delete_destination_params = (("destinationId", "path"),)  # name, param in
 
@@ -529,11 +722,9 @@ class NotificationsV1Client(BaseClient):
             "DELETE",
             values,
             self._delete_subscription_by_id_params,
+            self._delete_subscription_by_id_responses,
         )
-        klass = self._delete_subscription_by_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _delete_subscription_by_id_params = (  # name, param in
         ("subscriptionId", "path"),
@@ -578,11 +769,9 @@ class NotificationsV1Client(BaseClient):
             "GET",
             values,
             self._get_destination_params,
+            self._get_destination_responses,
         )
-        klass = self._get_destination_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_destination_params = (("destinationId", "path"),)  # name, param in
 
@@ -622,11 +811,9 @@ class NotificationsV1Client(BaseClient):
             "GET",
             values,
             self._get_destinations_params,
+            self._get_destinations_responses,
         )
-        klass = self._get_destinations_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_destinations_params = ()  # name, param in
 
@@ -669,11 +856,9 @@ class NotificationsV1Client(BaseClient):
             "GET",
             values,
             self._get_subscription_params,
+            self._get_subscription_responses,
         )
-        klass = self._get_subscription_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_subscription_params = (("notificationType", "path"),)  # name, param in
 
@@ -720,11 +905,9 @@ class NotificationsV1Client(BaseClient):
             "GET",
             values,
             self._get_subscription_by_id_params,
+            self._get_subscription_by_id_responses,
         )
-        klass = self._get_subscription_by_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_subscription_by_id_params = (  # name, param in
         ("subscriptionId", "path"),

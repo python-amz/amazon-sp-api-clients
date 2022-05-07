@@ -13,7 +13,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -21,6 +20,12 @@ class BrandRefinement:
     """
     Description of a brand that can be used to get more fine-grained search results.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _brand_refinement_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BrandRefinement(**data)
 
     brand_name: str = attrs.field()
     """
@@ -38,6 +43,12 @@ class ClassificationRefinement:
     """
     Description of a classification that can be used to get more fine-grained search results.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _classification_refinement_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ClassificationRefinement(**data)
 
     classification_id: str = attrs.field()
     """
@@ -60,6 +71,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -85,6 +102,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: List["Error"] = attrs.field()
 
 
@@ -93,6 +116,12 @@ class Item:
     """
     An item in the Amazon catalog.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Item(**data)
 
     asin: "ItemAsin" = attrs.field()
     """
@@ -162,6 +191,12 @@ class ItemAsin:
     Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_asin_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemAsin(**data)
+
     pass
 
 
@@ -171,6 +206,12 @@ class ItemAttributes:
     A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_attributes_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemAttributes(**data)
+
     pass
 
 
@@ -179,6 +220,12 @@ class ItemIdentifier:
     """
     Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_identifier_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemIdentifier(**data)
 
     identifier: str = attrs.field()
     """
@@ -197,6 +244,12 @@ class ItemIdentifiersByMarketplace:
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_identifiers_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemIdentifiersByMarketplace(**data)
+
     identifiers: List["ItemIdentifier"] = attrs.field()
     """
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
@@ -213,6 +266,12 @@ class ItemImage:
     """
     Image for an item in the Amazon catalog.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_image_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemImage(**data)
 
     height: int = attrs.field()
     """
@@ -255,6 +314,12 @@ class ItemImagesByMarketplace:
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_images_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemImagesByMarketplace(**data)
+
     images: List["ItemImage"] = attrs.field()
     """
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
@@ -271,6 +336,12 @@ class ItemProductTypeByMarketplace:
     """
     Product type associated with the Amazon catalog item for the indicated Amazon marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_product_type_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemProductTypeByMarketplace(**data)
 
     marketplace_id: Optional[str] = attrs.field()
     """
@@ -291,6 +362,12 @@ class ItemSalesRank:
     """
     Sales rank of an Amazon catalog item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_sales_rank_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemSalesRank(**data)
 
     link: Optional[str] = attrs.field(
         default=None,
@@ -316,6 +393,12 @@ class ItemSalesRanksByMarketplace:
     Sales ranks of an Amazon catalog item for the indicated Amazon marketplace.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_sales_ranks_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemSalesRanksByMarketplace(**data)
+
     marketplace_id: str = attrs.field()
     """
     Amazon marketplace identifier.
@@ -332,6 +415,12 @@ class ItemSearchResults:
     """
     Items in the Amazon catalog and search related metadata.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_search_results_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemSearchResults(**data)
 
     items: List["Item"] = attrs.field()
     """
@@ -360,6 +449,12 @@ class ItemSummaryByMarketplace:
     """
     Summary details of an Amazon catalog item for the indicated Amazon marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_summary_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemSummaryByMarketplace(**data)
 
     brand_name: Optional[str] = attrs.field(
         default=None,
@@ -429,6 +524,12 @@ class ItemVariationsByMarketplace:
     Variation details for the Amazon catalog item for the indicated Amazon marketplace.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_variations_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemVariationsByMarketplace(**data)
+
     asins: List[str] = attrs.field()
     """
     Identifiers (ASINs) of the related items.
@@ -453,6 +554,12 @@ class ItemVendorDetailsByMarketplace:
     """
     Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_vendor_details_by_marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemVendorDetailsByMarketplace(**data)
 
     brand_code: Optional[str] = attrs.field(
         default=None,
@@ -528,6 +635,12 @@ class Pagination:
     When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _pagination_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Pagination(**data)
+
     next_token: Optional[str] = attrs.field()
     """
     A token that can be used to fetch the next page.
@@ -545,6 +658,12 @@ class Refinements:
     Search refinements.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _refinements_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Refinements(**data)
+
     brands: List["BrandRefinement"] = attrs.field()
     """
     Brand search refinements.
@@ -554,6 +673,128 @@ class Refinements:
     """
     Classification search refinements.
     """
+
+
+_brand_refinement_name_convert = {
+    "brandName": "brand_name",
+    "numberOfResults": "number_of_results",
+}
+
+_classification_refinement_name_convert = {
+    "classificationId": "classification_id",
+    "displayName": "display_name",
+    "numberOfResults": "number_of_results",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_item_name_convert = {
+    "asin": "asin",
+    "attributes": "attributes",
+    "identifiers": "identifiers",
+    "images": "images",
+    "productTypes": "product_types",
+    "salesRanks": "sales_ranks",
+    "summaries": "summaries",
+    "variations": "variations",
+    "vendorDetails": "vendor_details",
+}
+
+_item_asin_name_convert = {}
+
+_item_attributes_name_convert = {}
+
+_item_identifier_name_convert = {
+    "identifier": "identifier",
+    "identifierType": "identifier_type",
+}
+
+_item_identifiers_by_marketplace_name_convert = {
+    "identifiers": "identifiers",
+    "marketplaceId": "marketplace_id",
+}
+
+_item_image_name_convert = {
+    "height": "height",
+    "link": "link",
+    "variant": "variant",
+    "width": "width",
+}
+
+_item_images_by_marketplace_name_convert = {
+    "images": "images",
+    "marketplaceId": "marketplace_id",
+}
+
+_item_product_type_by_marketplace_name_convert = {
+    "marketplaceId": "marketplace_id",
+    "productType": "product_type",
+}
+
+_item_sales_rank_name_convert = {
+    "link": "link",
+    "rank": "rank",
+    "title": "title",
+}
+
+_item_sales_ranks_by_marketplace_name_convert = {
+    "marketplaceId": "marketplace_id",
+    "ranks": "ranks",
+}
+
+_item_search_results_name_convert = {
+    "items": "items",
+    "numberOfResults": "number_of_results",
+    "pagination": "pagination",
+    "refinements": "refinements",
+}
+
+_item_summary_by_marketplace_name_convert = {
+    "brandName": "brand_name",
+    "browseNode": "browse_node",
+    "colorName": "color_name",
+    "itemName": "item_name",
+    "manufacturer": "manufacturer",
+    "marketplaceId": "marketplace_id",
+    "modelNumber": "model_number",
+    "sizeName": "size_name",
+    "styleName": "style_name",
+}
+
+_item_variations_by_marketplace_name_convert = {
+    "asins": "asins",
+    "marketplaceId": "marketplace_id",
+    "variationType": "variation_type",
+}
+
+_item_vendor_details_by_marketplace_name_convert = {
+    "brandCode": "brand_code",
+    "categoryCode": "category_code",
+    "manufacturerCode": "manufacturer_code",
+    "manufacturerCodeParent": "manufacturer_code_parent",
+    "marketplaceId": "marketplace_id",
+    "productGroup": "product_group",
+    "replenishmentCategory": "replenishment_category",
+    "subcategoryCode": "subcategory_code",
+}
+
+_pagination_name_convert = {
+    "nextToken": "next_token",
+    "previousToken": "previous_token",
+}
+
+_refinements_name_convert = {
+    "brands": "brands",
+    "classifications": "classifications",
+}
 
 
 class CatalogItems20201201Client(BaseClient):
@@ -605,11 +846,9 @@ class CatalogItems20201201Client(BaseClient):
             "GET",
             values,
             self._get_catalog_item_params,
+            self._get_catalog_item_responses,
         )
-        klass = self._get_catalog_item_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_catalog_item_params = (  # name, param in
         ("asin", "path"),
@@ -692,11 +931,9 @@ class CatalogItems20201201Client(BaseClient):
             "GET",
             values,
             self._search_catalog_items_params,
+            self._search_catalog_items_responses,
         )
-        klass = self._search_catalog_items_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _search_catalog_items_params = (  # name, param in
         ("keywords", "query"),

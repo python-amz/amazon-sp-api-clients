@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Error:
     """
     An error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -46,6 +51,12 @@ class GetInventorySummariesResponse:
     The Response schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_inventory_summaries_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetInventorySummariesResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -68,6 +79,12 @@ class GetInventorySummariesResult:
     The payload schema for the getInventorySummaries operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_inventory_summaries_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetInventorySummariesResult(**data)
+
     granularity: "Granularity" = attrs.field()
     """
     Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
@@ -85,6 +102,12 @@ class Granularity:
     Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _granularity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Granularity(**data)
+
     granularity_id: Optional[str] = attrs.field()
     """
     The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
@@ -101,6 +124,12 @@ class InventoryDetails:
     """
     Summarized inventory details. This object will not appear if the details parameter in the request is false.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _inventory_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InventoryDetails(**data)
 
     fulfillable_quantity: Optional[int] = attrs.field()
     """
@@ -143,6 +172,12 @@ class InventorySummary:
     """
     Inventory summary for a specific item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _inventory_summary_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InventorySummary(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -194,6 +229,12 @@ class Pagination:
     The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _pagination_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Pagination(**data)
+
     next_token: Optional[str] = attrs.field()
     """
     A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
@@ -205,6 +246,12 @@ class ResearchingQuantity:
     """
     The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _researching_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ResearchingQuantity(**data)
 
     researching_quantity_breakdown: Optional[List["ResearchingQuantityEntry"]] = attrs.field()
     """
@@ -222,6 +269,12 @@ class ResearchingQuantityEntry:
     """
     The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _researching_quantity_entry_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ResearchingQuantityEntry(**data)
 
     name: Union[
         Literal["researchingQuantityInShortTerm"],
@@ -243,6 +296,12 @@ class ReservedQuantity:
     """
     The quantity of reserved inventory.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _reserved_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReservedQuantity(**data)
 
     fc_processing_quantity: Optional[int] = attrs.field()
     """
@@ -270,6 +329,12 @@ class UnfulfillableQuantity:
     """
     The quantity of unfulfillable inventory.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _unfulfillable_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UnfulfillableQuantity(**data)
 
     carrier_damaged_quantity: Optional[int] = attrs.field()
     """
@@ -305,6 +370,81 @@ class UnfulfillableQuantity:
     """
     The number of units in warehouse damaged disposition.
     """
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_inventory_summaries_response_name_convert = {
+    "errors": "errors",
+    "pagination": "pagination",
+    "payload": "payload",
+}
+
+_get_inventory_summaries_result_name_convert = {
+    "granularity": "granularity",
+    "inventorySummaries": "inventory_summaries",
+}
+
+_granularity_name_convert = {
+    "granularityId": "granularity_id",
+    "granularityType": "granularity_type",
+}
+
+_inventory_details_name_convert = {
+    "fulfillableQuantity": "fulfillable_quantity",
+    "inboundReceivingQuantity": "inbound_receiving_quantity",
+    "inboundShippedQuantity": "inbound_shipped_quantity",
+    "inboundWorkingQuantity": "inbound_working_quantity",
+    "researchingQuantity": "researching_quantity",
+    "reservedQuantity": "reserved_quantity",
+    "unfulfillableQuantity": "unfulfillable_quantity",
+}
+
+_inventory_summary_name_convert = {
+    "asin": "asin",
+    "condition": "condition",
+    "fnSku": "fn_sku",
+    "inventoryDetails": "inventory_details",
+    "lastUpdatedTime": "last_updated_time",
+    "productName": "product_name",
+    "sellerSku": "seller_sku",
+    "totalQuantity": "total_quantity",
+}
+
+_pagination_name_convert = {
+    "nextToken": "next_token",
+}
+
+_researching_quantity_name_convert = {
+    "researchingQuantityBreakdown": "researching_quantity_breakdown",
+    "totalResearchingQuantity": "total_researching_quantity",
+}
+
+_researching_quantity_entry_name_convert = {
+    "name": "name",
+    "quantity": "quantity",
+}
+
+_reserved_quantity_name_convert = {
+    "fcProcessingQuantity": "fc_processing_quantity",
+    "pendingCustomerOrderQuantity": "pending_customer_order_quantity",
+    "pendingTransshipmentQuantity": "pending_transshipment_quantity",
+    "totalReservedQuantity": "total_reserved_quantity",
+}
+
+_unfulfillable_quantity_name_convert = {
+    "carrierDamagedQuantity": "carrier_damaged_quantity",
+    "customerDamagedQuantity": "customer_damaged_quantity",
+    "defectiveQuantity": "defective_quantity",
+    "distributorDamagedQuantity": "distributor_damaged_quantity",
+    "expiredQuantity": "expired_quantity",
+    "totalUnfulfillableQuantity": "total_unfulfillable_quantity",
+    "warehouseDamagedQuantity": "warehouse_damaged_quantity",
+}
 
 
 class FbaInventoryV1Client(BaseClient):
@@ -357,11 +497,9 @@ class FbaInventoryV1Client(BaseClient):
             "GET",
             values,
             self._get_inventory_summaries_params,
+            self._get_inventory_summaries_responses,
         )
-        klass = self._get_inventory_summaries_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_inventory_summaries_params = (  # name, param in
         ("details", "query"),

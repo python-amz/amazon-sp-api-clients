@@ -17,7 +17,7 @@ import os
 import urllib
 from datetime import datetime
 from functools import reduce
-from typing import Union, Type, TYPE_CHECKING, Any, Tuple
+from typing import Union, Type, TYPE_CHECKING, Any, Tuple, Dict
 from urllib.parse import urlparse
 
 import boto3
@@ -211,7 +211,9 @@ class BaseClient:
             url: str,
             method: str,
             values: Tuple[Any, ...],
-            definitions: Tuple[Tuple[str, str], ...]):
+            definitions: Tuple[Tuple[str, str], ...],
+            responses: Dict[int, Type],
+    ):
         """Match values and definitions, build request parameters, and send request.
 
         Args:
@@ -219,6 +221,7 @@ class BaseClient:
             method: get, post, patch, etc.
             values: parameters for request.
             definitions: definition of the parameters.
+            responses: response objects
 
         Returns:
             response
@@ -231,7 +234,10 @@ class BaseClient:
         body = {name: value for value, name, param_in in data if param_in == 'body'}
         url = url.format(**path)
         response = self.request(url, method=method, params=query, data=body)
-        return response
+        data = response.json()
+        klass = responses.get(response.status_code)
+        obj = klass(data)
+        return obj
 
 
 class BaseAmazonSpApiClients(BaseClient):

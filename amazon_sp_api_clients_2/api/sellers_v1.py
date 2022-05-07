@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -44,6 +49,12 @@ class GetMarketplaceParticipationsResponse:
     The response schema for the getMarketplaceParticipations operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_marketplace_participations_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMarketplaceParticipationsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -60,6 +71,12 @@ class Marketplace:
     """
     Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _marketplace_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Marketplace(**data)
 
     country_code: str = attrs.field()
     """
@@ -97,6 +114,11 @@ class Marketplace:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class MarketplaceParticipation:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _marketplace_participation_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MarketplaceParticipation(**data)
 
     marketplace: "Marketplace" = attrs.field()
     """
@@ -115,12 +137,49 @@ class Participation:
     Detailed information that is specific to a seller in a Marketplace.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _participation_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Participation(**data)
+
     has_suspended_listings: bool = attrs.field()
     """
     Specifies if the seller has suspended listings. True if the seller Listing Status is set to Inactive, otherwise False.
     """
 
     is_participating: bool = attrs.field()
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_marketplace_participations_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_marketplace_name_convert = {
+    "countryCode": "country_code",
+    "defaultCurrencyCode": "default_currency_code",
+    "defaultLanguageCode": "default_language_code",
+    "domainName": "domain_name",
+    "id": "id",
+    "name": "name",
+}
+
+_marketplace_participation_name_convert = {
+    "marketplace": "marketplace",
+    "participation": "participation",
+}
+
+_participation_name_convert = {
+    "hasSuspendedListings": "has_suspended_listings",
+    "isParticipating": "is_participating",
+}
 
 
 class SellersV1Client(BaseClient):
@@ -147,11 +206,9 @@ class SellersV1Client(BaseClient):
             "GET",
             values,
             self._get_marketplace_participations_params,
+            self._get_marketplace_participations_responses,
         )
-        klass = self._get_marketplace_participations_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_marketplace_participations_params = ()  # name, param in
 

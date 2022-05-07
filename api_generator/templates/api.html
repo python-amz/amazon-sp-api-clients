@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 {% for schema in data.schemas %}
 @attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
@@ -20,6 +19,12 @@ class {{ schema.name }}:
     {{ schema.parsed_description }}
     """
     {% endif %}
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _{{ schema.variable_name }}_name_convert
+        data = {name_convert[k]: v for k,v in data}
+        return {{ schema.name }}(**data)
 
     {% for property in schema.all_properties %}
     {{ property.variable_name }}: {% if property.name in schema.required %}{{ property.type_hint }}{% else %}Optional[{{ property.type_hint }}]{% endif %} = attrs.field(
@@ -39,6 +44,14 @@ class {{ schema.name }}:
     {% if not schema.properties %}
     pass
     {% endif %}
+{% endfor %}
+
+{% for schema in data.schemas %}
+_{{ schema.variable_name }}_name_convert = {
+    {% for property in schema.all_properties %}
+        "{{ property.name }}": "{{ property.variable_name }}",
+    {% endfor %}
+}
 {% endfor %}
 
 class {{ data.class_name }}Client(BaseClient):
@@ -66,11 +79,9 @@ Args:
         values = ({% for p in operation.parsed_parameters %}{{ p.variable_name }},{% endfor %})
         response = self._parse_args_and_request(url, '{{ operation.method | upper }}', values,
         self._{{ operation.method_name }}_params,
+        self._{{ operation.method_name }}_responses,
     )
-        klass = self._{{ operation.method_name }}_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
     _{{ operation.method_name }}_params = ( # name, param in
         {% for p in operation.parsed_parameters %}
             ("{{ p.name }}", "{{ p.param_in }}"),{% endfor %}

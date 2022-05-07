@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class AdjustmentEvent:
     """
     An adjustment to the seller's account.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _adjustment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AdjustmentEvent(**data)
 
     adjustment_amount: Optional["Currency"] = attrs.field()
     """
@@ -52,6 +57,12 @@ class AdjustmentItem:
     """
     An item in an adjustment to the seller's account.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _adjustment_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AdjustmentItem(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -94,6 +105,12 @@ class AffordabilityExpenseEvent:
     """
     An expense related to an affordability promotion.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _affordability_expense_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AffordabilityExpenseEvent(**data)
 
     amazon_order_id: Optional[str] = attrs.field(
         default=None,
@@ -155,6 +172,11 @@ class AffordabilityExpenseEvent:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class BigDecimal:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _big_decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BigDecimal(**data)
 
     pass
 
@@ -197,6 +219,12 @@ class ChargeComponent:
         * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _charge_component_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ChargeComponent(**data)
+
     charge_amount: Optional["Currency"] = attrs.field()
     """
     A currency type and amount.
@@ -213,6 +241,12 @@ class ChargeInstrument:
     """
     A payment instrument.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _charge_instrument_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ChargeInstrument(**data)
 
     amount: Optional["Currency"] = attrs.field()
     """
@@ -235,6 +269,12 @@ class CouponPaymentEvent:
     """
     An event related to coupon payments.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _coupon_payment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CouponPaymentEvent(**data)
 
     charge_component: Optional["ChargeComponent"] = attrs.field()
     """
@@ -315,6 +355,12 @@ class Currency:
     A currency type and amount.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _currency_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Currency(**data)
+
     currency_amount: Optional["BigDecimal"] = attrs.field()
 
     currency_code: Optional[str] = attrs.field()
@@ -325,6 +371,11 @@ class Currency:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Date:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _date_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Date(**data)
 
     pass
 
@@ -334,6 +385,12 @@ class DebtRecoveryEvent:
     """
     A debt payment or debt adjustment.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _debt_recovery_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DebtRecoveryEvent(**data)
 
     charge_instrument_list: Optional[List["ChargeInstrument"]] = attrs.field()
     """
@@ -371,6 +428,12 @@ class DebtRecoveryItem:
     An item of a debt payment or debt adjustment.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _debt_recovery_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DebtRecoveryItem(**data)
+
     group_begin_date: Optional["Date"] = attrs.field()
 
     group_end_date: Optional["Date"] = attrs.field()
@@ -391,6 +454,12 @@ class DirectPayment:
     """
     A payment made directly to a seller.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _direct_payment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DirectPayment(**data)
 
     direct_payment_amount: Optional["Currency"] = attrs.field()
     """
@@ -416,6 +485,12 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -439,6 +514,12 @@ class FBALiquidationEvent:
     """
     A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fbaliquidation_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FBALiquidationEvent(**data)
 
     liquidation_fee_amount: Optional["Currency"] = attrs.field()
     """
@@ -464,6 +545,12 @@ class FeeComponent:
     A fee associated with the event.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fee_component_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeeComponent(**data)
+
     fee_amount: Optional["Currency"] = attrs.field()
     """
     A currency type and amount.
@@ -480,6 +567,12 @@ class FinancialEventGroup:
     """
     Information related to a financial event group.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _financial_event_group_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FinancialEventGroup(**data)
 
     account_tail: Optional[str] = attrs.field()
     """
@@ -536,6 +629,12 @@ class FinancialEvents:
     """
     Contains all information related to a financial event.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _financial_events_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FinancialEvents(**data)
 
     adjustment_event_list: Optional[List["AdjustmentEvent"]] = attrs.field()
     """
@@ -679,6 +778,12 @@ class ImagingServicesFeeEvent:
     A fee event related to Amazon Imaging services.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _imaging_services_fee_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ImagingServicesFeeEvent(**data)
+
     asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
@@ -703,6 +808,12 @@ class ListFinancialEventGroupsPayload:
     The payload for the listFinancialEventGroups operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_financial_event_groups_payload_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListFinancialEventGroupsPayload(**data)
+
     financial_event_group_list: Optional[List["FinancialEventGroup"]] = attrs.field()
     """
     A list of financial event group information.
@@ -719,6 +830,12 @@ class ListFinancialEventGroupsResponse:
     """
     The response schema for the listFinancialEventGroups operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_financial_event_groups_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListFinancialEventGroupsResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -737,6 +854,12 @@ class ListFinancialEventsPayload:
     The payload for the listFinancialEvents operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_financial_events_payload_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListFinancialEventsPayload(**data)
+
     financial_events: Optional["FinancialEvents"] = attrs.field()
     """
     Contains all information related to a financial event.
@@ -754,6 +877,12 @@ class ListFinancialEventsResponse:
     The response schema for the listFinancialEvents operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_financial_events_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListFinancialEventsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -770,6 +899,12 @@ class LoanServicingEvent:
     """
     A loan advance, loan payment, or loan refund.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _loan_servicing_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return LoanServicingEvent(**data)
 
     loan_amount: Optional["Currency"] = attrs.field()
     """
@@ -791,6 +926,12 @@ class NetworkComminglingTransactionEvent:
     """
     A network commingling transaction event.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _network_commingling_transaction_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return NetworkComminglingTransactionEvent(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -838,6 +979,12 @@ class PayWithAmazonEvent:
     """
     An event related to the seller's Pay with Amazon account.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _pay_with_amazon_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PayWithAmazonEvent(**data)
 
     amount_description: Optional[str] = attrs.field()
     """
@@ -930,6 +1077,12 @@ class ProductAdsPaymentEvent:
     A Sponsored Products payment event.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_ads_payment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ProductAdsPaymentEvent(**data)
+
     base_value: Optional["Currency"] = attrs.field()
     """
     A currency type and amount.
@@ -967,6 +1120,12 @@ class Promotion:
     A promotion applied to an item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _promotion_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Promotion(**data)
+
     promotion_amount: Optional["Currency"] = attrs.field()
     """
     A currency type and amount.
@@ -988,6 +1147,12 @@ class RemovalShipmentAdjustmentEvent:
     """
     A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or fewer items than ordered).
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _removal_shipment_adjustment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RemovalShipmentAdjustmentEvent(**data)
 
     adjustment_event_id: Optional[str] = attrs.field()
     """
@@ -1025,6 +1190,12 @@ class RemovalShipmentEvent:
     A removal shipment event for a removal order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _removal_shipment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RemovalShipmentEvent(**data)
+
     merchant_order_id: Optional[str] = attrs.field()
     """
     The merchant removal orderId.
@@ -1055,6 +1226,12 @@ class RemovalShipmentItem:
     """
     Item-level information for a removal shipment.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _removal_shipment_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RemovalShipmentItem(**data)
 
     fee_amount: Optional["Currency"] = attrs.field()
     """
@@ -1109,6 +1286,12 @@ class RemovalShipmentItemAdjustment:
     Item-level information for a removal shipment item adjustment.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _removal_shipment_item_adjustment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RemovalShipmentItemAdjustment(**data)
+
     adjusted_quantity: Optional[int] = attrs.field()
     """
     Adjusted quantity of removal shipmentItemAdjustment items.
@@ -1156,6 +1339,12 @@ class RentalTransactionEvent:
     """
     An event related to a rental transaction.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _rental_transaction_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RentalTransactionEvent(**data)
 
     amazon_order_id: Optional[str] = attrs.field()
     """
@@ -1222,6 +1411,12 @@ class RetrochargeEvent:
     A retrocharge or retrocharge reversal.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _retrocharge_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RetrochargeEvent(**data)
+
     amazon_order_id: Optional[str] = attrs.field()
     """
     An Amazon-defined identifier for an order.
@@ -1264,6 +1459,12 @@ class SAFETReimbursementEvent:
     A SAFE-T claim reimbursement on the seller's account.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _safetreimbursement_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SAFETReimbursementEvent(**data)
+
     posted_date: Optional["Date"] = attrs.field()
 
     reason_code: Optional[str] = attrs.field()
@@ -1293,6 +1494,12 @@ class SAFETReimbursementItem:
     An item from a SAFE-T claim reimbursement.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _safetreimbursement_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SAFETReimbursementItem(**data)
+
     item_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
     """
     A list of charge information on the seller's account.
@@ -1314,6 +1521,12 @@ class SellerDealPaymentEvent:
     """
     An event linked to the payment of a fee related to the specified deal.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _seller_deal_payment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SellerDealPaymentEvent(**data)
 
     deal_description: Optional[str] = attrs.field()
     """
@@ -1358,6 +1571,12 @@ class SellerReviewEnrollmentPaymentEvent:
     """
     A fee payment event for the Early Reviewer Program.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _seller_review_enrollment_payment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SellerReviewEnrollmentPaymentEvent(**data)
 
     charge_component: Optional["ChargeComponent"] = attrs.field()
     """
@@ -1425,6 +1644,12 @@ class ServiceFeeEvent:
     A service fee on the seller's account.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _service_fee_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ServiceFeeEvent(**data)
+
     asin: Optional[str] = attrs.field()
     """
     The Amazon Standard Identification Number (ASIN) of the item.
@@ -1466,6 +1691,12 @@ class ShipmentEvent:
     """
     A shipment, refund, guarantee claim, or chargeback.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentEvent(**data)
 
     amazon_order_id: Optional[str] = attrs.field()
     """
@@ -1535,6 +1766,12 @@ class ShipmentItem:
     """
     An item of a shipment, refund, guarantee claim, or chargeback.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentItem(**data)
 
     cost_of_points_granted: Optional["Currency"] = attrs.field()
     """
@@ -1611,6 +1848,12 @@ class SolutionProviderCreditEvent:
     A credit given to a solution provider.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _solution_provider_credit_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SolutionProviderCreditEvent(**data)
+
     marketplace_country_code: Optional[str] = attrs.field()
     """
     The two-letter country code of the country associated with the marketplace where the order was placed.
@@ -1665,6 +1908,12 @@ class TaxWithheldComponent:
     Information about the taxes withheld.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_withheld_component_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxWithheldComponent(**data)
+
     tax_collection_model: Optional[str] = attrs.field()
     """
     The tax collection model applied to the item.
@@ -1684,6 +1933,12 @@ class TaxWithholdingEvent:
     """
     A TaxWithholding event on seller's account.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_withholding_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxWithholdingEvent(**data)
 
     base_amount: Optional["Currency"] = attrs.field()
     """
@@ -1709,6 +1964,12 @@ class TaxWithholdingPeriod:
     Period which taxwithholding on seller's account is calculated.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_withholding_period_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxWithholdingPeriod(**data)
+
     end_date: Optional["Date"] = attrs.field()
 
     start_date: Optional["Date"] = attrs.field()
@@ -1719,6 +1980,12 @@ class TrialShipmentEvent:
     """
     An event related to a trial shipment.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _trial_shipment_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TrialShipmentEvent(**data)
 
     amazon_order_id: Optional[str] = attrs.field()
     """
@@ -1741,6 +2008,395 @@ class TrialShipmentEvent:
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
+
+
+_adjustment_event_name_convert = {
+    "AdjustmentAmount": "adjustment_amount",
+    "AdjustmentItemList": "adjustment_item_list",
+    "AdjustmentType": "adjustment_type",
+    "PostedDate": "posted_date",
+}
+
+_adjustment_item_name_convert = {
+    "ASIN": "asin",
+    "FnSKU": "fn_sku",
+    "PerUnitAmount": "per_unit_amount",
+    "ProductDescription": "product_description",
+    "Quantity": "quantity",
+    "SellerSKU": "seller_sku",
+    "TotalAmount": "total_amount",
+}
+
+_affordability_expense_event_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "BaseExpense": "base_expense",
+    "MarketplaceId": "marketplace_id",
+    "PostedDate": "posted_date",
+    "TaxTypeCGST": "tax_type_cgst",
+    "TaxTypeIGST": "tax_type_igst",
+    "TaxTypeSGST": "tax_type_sgst",
+    "TotalExpense": "total_expense",
+    "TransactionType": "transaction_type",
+}
+
+_big_decimal_name_convert = {}
+
+_charge_component_name_convert = {
+    "ChargeAmount": "charge_amount",
+    "ChargeType": "charge_type",
+}
+
+_charge_instrument_name_convert = {
+    "Amount": "amount",
+    "Description": "description",
+    "Tail": "tail",
+}
+
+_coupon_payment_event_name_convert = {
+    "ChargeComponent": "charge_component",
+    "ClipOrRedemptionCount": "clip_or_redemption_count",
+    "CouponId": "coupon_id",
+    "FeeComponent": "fee_component",
+    "PaymentEventId": "payment_event_id",
+    "PostedDate": "posted_date",
+    "SellerCouponDescription": "seller_coupon_description",
+    "TotalAmount": "total_amount",
+}
+
+_currency_name_convert = {
+    "CurrencyAmount": "currency_amount",
+    "CurrencyCode": "currency_code",
+}
+
+_date_name_convert = {}
+
+_debt_recovery_event_name_convert = {
+    "ChargeInstrumentList": "charge_instrument_list",
+    "DebtRecoveryItemList": "debt_recovery_item_list",
+    "DebtRecoveryType": "debt_recovery_type",
+    "OverPaymentCredit": "over_payment_credit",
+    "RecoveryAmount": "recovery_amount",
+}
+
+_debt_recovery_item_name_convert = {
+    "GroupBeginDate": "group_begin_date",
+    "GroupEndDate": "group_end_date",
+    "OriginalAmount": "original_amount",
+    "RecoveryAmount": "recovery_amount",
+}
+
+_direct_payment_name_convert = {
+    "DirectPaymentAmount": "direct_payment_amount",
+    "DirectPaymentType": "direct_payment_type",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_fbaliquidation_event_name_convert = {
+    "LiquidationFeeAmount": "liquidation_fee_amount",
+    "LiquidationProceedsAmount": "liquidation_proceeds_amount",
+    "OriginalRemovalOrderId": "original_removal_order_id",
+    "PostedDate": "posted_date",
+}
+
+_fee_component_name_convert = {
+    "FeeAmount": "fee_amount",
+    "FeeType": "fee_type",
+}
+
+_financial_event_group_name_convert = {
+    "AccountTail": "account_tail",
+    "BeginningBalance": "beginning_balance",
+    "ConvertedTotal": "converted_total",
+    "FinancialEventGroupEnd": "financial_event_group_end",
+    "FinancialEventGroupId": "financial_event_group_id",
+    "FinancialEventGroupStart": "financial_event_group_start",
+    "FundTransferDate": "fund_transfer_date",
+    "FundTransferStatus": "fund_transfer_status",
+    "OriginalTotal": "original_total",
+    "ProcessingStatus": "processing_status",
+    "TraceId": "trace_id",
+}
+
+_financial_events_name_convert = {
+    "AdjustmentEventList": "adjustment_event_list",
+    "AffordabilityExpenseEventList": "affordability_expense_event_list",
+    "AffordabilityExpenseReversalEventList": "affordability_expense_reversal_event_list",
+    "ChargebackEventList": "chargeback_event_list",
+    "CouponPaymentEventList": "coupon_payment_event_list",
+    "DebtRecoveryEventList": "debt_recovery_event_list",
+    "FBALiquidationEventList": "fbaliquidation_event_list",
+    "GuaranteeClaimEventList": "guarantee_claim_event_list",
+    "ImagingServicesFeeEventList": "imaging_services_fee_event_list",
+    "LoanServicingEventList": "loan_servicing_event_list",
+    "NetworkComminglingTransactionEventList": "network_commingling_transaction_event_list",
+    "PayWithAmazonEventList": "pay_with_amazon_event_list",
+    "ProductAdsPaymentEventList": "product_ads_payment_event_list",
+    "RefundEventList": "refund_event_list",
+    "RemovalShipmentAdjustmentEventList": "removal_shipment_adjustment_event_list",
+    "RemovalShipmentEventList": "removal_shipment_event_list",
+    "RentalTransactionEventList": "rental_transaction_event_list",
+    "RetrochargeEventList": "retrocharge_event_list",
+    "SAFETReimbursementEventList": "safetreimbursement_event_list",
+    "SellerDealPaymentEventList": "seller_deal_payment_event_list",
+    "SellerReviewEnrollmentPaymentEventList": "seller_review_enrollment_payment_event_list",
+    "ServiceFeeEventList": "service_fee_event_list",
+    "ServiceProviderCreditEventList": "service_provider_credit_event_list",
+    "ShipmentEventList": "shipment_event_list",
+    "ShipmentSettleEventList": "shipment_settle_event_list",
+    "TaxWithholdingEventList": "tax_withholding_event_list",
+    "TrialShipmentEventList": "trial_shipment_event_list",
+}
+
+_imaging_services_fee_event_name_convert = {
+    "ASIN": "asin",
+    "FeeList": "fee_list",
+    "ImagingRequestBillingItemID": "imaging_request_billing_item_id",
+    "PostedDate": "posted_date",
+}
+
+_list_financial_event_groups_payload_name_convert = {
+    "FinancialEventGroupList": "financial_event_group_list",
+    "NextToken": "next_token",
+}
+
+_list_financial_event_groups_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_list_financial_events_payload_name_convert = {
+    "FinancialEvents": "financial_events",
+    "NextToken": "next_token",
+}
+
+_list_financial_events_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_loan_servicing_event_name_convert = {
+    "LoanAmount": "loan_amount",
+    "SourceBusinessEventType": "source_business_event_type",
+}
+
+_network_commingling_transaction_event_name_convert = {
+    "ASIN": "asin",
+    "MarketplaceId": "marketplace_id",
+    "NetCoTransactionID": "net_co_transaction_id",
+    "PostedDate": "posted_date",
+    "SwapReason": "swap_reason",
+    "TaxAmount": "tax_amount",
+    "TaxExclusiveAmount": "tax_exclusive_amount",
+    "TransactionType": "transaction_type",
+}
+
+_pay_with_amazon_event_name_convert = {
+    "AmountDescription": "amount_description",
+    "BusinessObjectType": "business_object_type",
+    "Charge": "charge",
+    "FeeList": "fee_list",
+    "FulfillmentChannel": "fulfillment_channel",
+    "PaymentAmountType": "payment_amount_type",
+    "SalesChannel": "sales_channel",
+    "SellerOrderId": "seller_order_id",
+    "StoreName": "store_name",
+    "TransactionPostedDate": "transaction_posted_date",
+}
+
+_product_ads_payment_event_name_convert = {
+    "baseValue": "base_value",
+    "invoiceId": "invoice_id",
+    "postedDate": "posted_date",
+    "taxValue": "tax_value",
+    "transactionType": "transaction_type",
+    "transactionValue": "transaction_value",
+}
+
+_promotion_name_convert = {
+    "PromotionAmount": "promotion_amount",
+    "PromotionId": "promotion_id",
+    "PromotionType": "promotion_type",
+}
+
+_removal_shipment_adjustment_event_name_convert = {
+    "AdjustmentEventId": "adjustment_event_id",
+    "MerchantOrderId": "merchant_order_id",
+    "OrderId": "order_id",
+    "PostedDate": "posted_date",
+    "RemovalShipmentItemAdjustmentList": "removal_shipment_item_adjustment_list",
+    "TransactionType": "transaction_type",
+}
+
+_removal_shipment_event_name_convert = {
+    "MerchantOrderId": "merchant_order_id",
+    "OrderId": "order_id",
+    "PostedDate": "posted_date",
+    "RemovalShipmentItemList": "removal_shipment_item_list",
+    "TransactionType": "transaction_type",
+}
+
+_removal_shipment_item_name_convert = {
+    "FeeAmount": "fee_amount",
+    "FulfillmentNetworkSKU": "fulfillment_network_sku",
+    "Quantity": "quantity",
+    "RemovalShipmentItemId": "removal_shipment_item_id",
+    "Revenue": "revenue",
+    "TaxAmount": "tax_amount",
+    "TaxCollectionModel": "tax_collection_model",
+    "TaxWithheld": "tax_withheld",
+}
+
+_removal_shipment_item_adjustment_name_convert = {
+    "AdjustedQuantity": "adjusted_quantity",
+    "FulfillmentNetworkSKU": "fulfillment_network_sku",
+    "RemovalShipmentItemId": "removal_shipment_item_id",
+    "RevenueAdjustment": "revenue_adjustment",
+    "TaxAmountAdjustment": "tax_amount_adjustment",
+    "TaxCollectionModel": "tax_collection_model",
+    "TaxWithheldAdjustment": "tax_withheld_adjustment",
+}
+
+_rental_transaction_event_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "ExtensionLength": "extension_length",
+    "MarketplaceName": "marketplace_name",
+    "PostedDate": "posted_date",
+    "RentalChargeList": "rental_charge_list",
+    "RentalEventType": "rental_event_type",
+    "RentalFeeList": "rental_fee_list",
+    "RentalInitialValue": "rental_initial_value",
+    "RentalReimbursement": "rental_reimbursement",
+    "RentalTaxWithheldList": "rental_tax_withheld_list",
+}
+
+_retrocharge_event_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "BaseTax": "base_tax",
+    "MarketplaceName": "marketplace_name",
+    "PostedDate": "posted_date",
+    "RetrochargeEventType": "retrocharge_event_type",
+    "RetrochargeTaxWithheldList": "retrocharge_tax_withheld_list",
+    "ShippingTax": "shipping_tax",
+}
+
+_safetreimbursement_event_name_convert = {
+    "PostedDate": "posted_date",
+    "ReasonCode": "reason_code",
+    "ReimbursedAmount": "reimbursed_amount",
+    "SAFETClaimId": "safetclaim_id",
+    "SAFETReimbursementItemList": "safetreimbursement_item_list",
+}
+
+_safetreimbursement_item_name_convert = {
+    "itemChargeList": "item_charge_list",
+    "productDescription": "product_description",
+    "quantity": "quantity",
+}
+
+_seller_deal_payment_event_name_convert = {
+    "dealDescription": "deal_description",
+    "dealId": "deal_id",
+    "eventType": "event_type",
+    "feeAmount": "fee_amount",
+    "feeType": "fee_type",
+    "postedDate": "posted_date",
+    "taxAmount": "tax_amount",
+    "totalAmount": "total_amount",
+}
+
+_seller_review_enrollment_payment_event_name_convert = {
+    "ChargeComponent": "charge_component",
+    "EnrollmentId": "enrollment_id",
+    "FeeComponent": "fee_component",
+    "ParentASIN": "parent_asin",
+    "PostedDate": "posted_date",
+    "TotalAmount": "total_amount",
+}
+
+_service_fee_event_name_convert = {
+    "ASIN": "asin",
+    "AmazonOrderId": "amazon_order_id",
+    "FeeDescription": "fee_description",
+    "FeeList": "fee_list",
+    "FeeReason": "fee_reason",
+    "FnSKU": "fn_sku",
+    "SellerSKU": "seller_sku",
+}
+
+_shipment_event_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "DirectPaymentList": "direct_payment_list",
+    "MarketplaceName": "marketplace_name",
+    "OrderChargeAdjustmentList": "order_charge_adjustment_list",
+    "OrderChargeList": "order_charge_list",
+    "OrderFeeAdjustmentList": "order_fee_adjustment_list",
+    "OrderFeeList": "order_fee_list",
+    "PostedDate": "posted_date",
+    "SellerOrderId": "seller_order_id",
+    "ShipmentFeeAdjustmentList": "shipment_fee_adjustment_list",
+    "ShipmentFeeList": "shipment_fee_list",
+    "ShipmentItemAdjustmentList": "shipment_item_adjustment_list",
+    "ShipmentItemList": "shipment_item_list",
+}
+
+_shipment_item_name_convert = {
+    "CostOfPointsGranted": "cost_of_points_granted",
+    "CostOfPointsReturned": "cost_of_points_returned",
+    "ItemChargeAdjustmentList": "item_charge_adjustment_list",
+    "ItemChargeList": "item_charge_list",
+    "ItemFeeAdjustmentList": "item_fee_adjustment_list",
+    "ItemFeeList": "item_fee_list",
+    "ItemTaxWithheldList": "item_tax_withheld_list",
+    "OrderAdjustmentItemId": "order_adjustment_item_id",
+    "OrderItemId": "order_item_id",
+    "PromotionAdjustmentList": "promotion_adjustment_list",
+    "PromotionList": "promotion_list",
+    "QuantityShipped": "quantity_shipped",
+    "SellerSKU": "seller_sku",
+}
+
+_solution_provider_credit_event_name_convert = {
+    "MarketplaceCountryCode": "marketplace_country_code",
+    "MarketplaceId": "marketplace_id",
+    "ProviderId": "provider_id",
+    "ProviderStoreName": "provider_store_name",
+    "ProviderTransactionType": "provider_transaction_type",
+    "SellerId": "seller_id",
+    "SellerOrderId": "seller_order_id",
+    "SellerStoreName": "seller_store_name",
+    "TransactionAmount": "transaction_amount",
+    "TransactionCreationDate": "transaction_creation_date",
+}
+
+_tax_withheld_component_name_convert = {
+    "TaxCollectionModel": "tax_collection_model",
+    "TaxesWithheld": "taxes_withheld",
+}
+
+_tax_withholding_event_name_convert = {
+    "BaseAmount": "base_amount",
+    "PostedDate": "posted_date",
+    "TaxWithholdingPeriod": "tax_withholding_period",
+    "WithheldAmount": "withheld_amount",
+}
+
+_tax_withholding_period_name_convert = {
+    "EndDate": "end_date",
+    "StartDate": "start_date",
+}
+
+_trial_shipment_event_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "FeeList": "fee_list",
+    "FinancialEventGroupId": "financial_event_group_id",
+    "PostedDate": "posted_date",
+    "SKU": "sku",
+}
 
 
 class FinancesV0Client(BaseClient):
@@ -1780,11 +2436,9 @@ class FinancesV0Client(BaseClient):
             "GET",
             values,
             self._list_financial_event_groups_params,
+            self._list_financial_event_groups_responses,
         )
-        klass = self._list_financial_event_groups_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_financial_event_groups_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -1839,11 +2493,9 @@ class FinancesV0Client(BaseClient):
             "GET",
             values,
             self._list_financial_events_params,
+            self._list_financial_events_responses,
         )
-        klass = self._list_financial_events_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_financial_events_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -1895,11 +2547,9 @@ class FinancesV0Client(BaseClient):
             "GET",
             values,
             self._list_financial_events_by_group_id_params,
+            self._list_financial_events_by_group_id_responses,
         )
-        klass = self._list_financial_events_by_group_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_financial_events_by_group_id_params = (  # name, param in
         ("MaxResultsPerPage", "query"),
@@ -1950,11 +2600,9 @@ class FinancesV0Client(BaseClient):
             "GET",
             values,
             self._list_financial_events_by_order_id_params,
+            self._list_financial_events_by_order_id_responses,
         )
-        klass = self._list_financial_events_by_order_id_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_financial_events_by_order_id_params = (  # name, param in
         ("orderId", "path"),

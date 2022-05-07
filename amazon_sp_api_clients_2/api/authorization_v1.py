@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class AuthorizationCode:
     """
     A Login with Amazon (LWA) authorization code.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _authorization_code_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AuthorizationCode(**data)
 
     authorization_code: Optional[str] = attrs.field()
     """
@@ -31,6 +36,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -56,6 +67,12 @@ class GetAuthorizationCodeResponse:
     The response schema for the GetAuthorizationCode operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_authorization_code_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetAuthorizationCodeResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -65,6 +82,22 @@ class GetAuthorizationCodeResponse:
     """
     A Login with Amazon (LWA) authorization code.
     """
+
+
+_authorization_code_name_convert = {
+    "authorizationCode": "authorization_code",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_authorization_code_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
 
 
 class AuthorizationV1Client(BaseClient):
@@ -101,11 +134,9 @@ class AuthorizationV1Client(BaseClient):
             "GET",
             values,
             self._get_authorization_code_params,
+            self._get_authorization_code_responses,
         )
-        klass = self._get_authorization_code_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_authorization_code_params = (  # name, param in
         ("sellingPartnerId", "query"),

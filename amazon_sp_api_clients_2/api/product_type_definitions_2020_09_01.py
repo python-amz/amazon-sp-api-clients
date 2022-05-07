@@ -13,7 +13,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -21,6 +20,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -46,6 +51,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: List["Error"] = attrs.field()
 
 
@@ -54,6 +65,12 @@ class ProductType:
     """
     An Amazon product type with a definition available.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ProductType(**data)
 
     marketplace_ids: List[str] = attrs.field()
     """
@@ -71,6 +88,12 @@ class ProductTypeDefinition:
     """
     A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_type_definition_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ProductTypeDefinition(**data)
 
     locale: str = attrs.field()
     """
@@ -122,6 +145,12 @@ class ProductTypeDefinitionPropertyGroups:
     Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_type_definition_property_groups_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ProductTypeDefinitionPropertyGroups(**data)
+
     pass
 
 
@@ -131,6 +160,12 @@ class ProductTypeList:
     A list of Amazon product types with definitions available.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_type_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ProductTypeList(**data)
+
     product_types: List["ProductType"] = attrs.field()
 
 
@@ -139,6 +174,12 @@ class ProductTypeVersion:
     """
     The version details for an Amazon product type.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_type_version_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ProductTypeVersion(**data)
 
     latest: bool = attrs.field()
     """
@@ -164,6 +205,12 @@ class PropertyGroup:
     A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _property_group_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PropertyGroup(**data)
+
     description: Optional[str] = attrs.field()
     """
     The description of the property group.
@@ -182,6 +229,11 @@ class PropertyGroup:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SchemaLink:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _schema_link_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SchemaLink(**data)
 
     checksum: str = attrs.field()
     """
@@ -200,6 +252,12 @@ class SchemaLinkLink:
     Link to retrieve the schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _schema_link_link_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SchemaLinkLink(**data)
+
     resource: str = attrs.field()
     """
     URI resource for the link.
@@ -209,6 +267,62 @@ class SchemaLinkLink:
     """
     HTTP method for the link operation.
     """
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_product_type_name_convert = {
+    "marketplaceIds": "marketplace_ids",
+    "name": "name",
+}
+
+_product_type_definition_name_convert = {
+    "locale": "locale",
+    "marketplaceIds": "marketplace_ids",
+    "metaSchema": "meta_schema",
+    "productType": "product_type",
+    "productTypeVersion": "product_type_version",
+    "propertyGroups": "property_groups",
+    "requirements": "requirements",
+    "requirementsEnforced": "requirements_enforced",
+    "schema": "schema",
+}
+
+_product_type_definition_property_groups_name_convert = {}
+
+_product_type_list_name_convert = {
+    "productTypes": "product_types",
+}
+
+_product_type_version_name_convert = {
+    "latest": "latest",
+    "releaseCandidate": "release_candidate",
+    "version": "version",
+}
+
+_property_group_name_convert = {
+    "description": "description",
+    "propertyNames": "property_names",
+    "title": "title",
+}
+
+_schema_link_name_convert = {
+    "checksum": "checksum",
+    "link": "link",
+}
+
+_schema_link_link_name_convert = {
+    "resource": "resource",
+    "verb": "verb",
+}
 
 
 class ProductTypeDefinitions20200901Client(BaseClient):
@@ -298,11 +412,9 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             "GET",
             values,
             self._get_definitions_product_type_params,
+            self._get_definitions_product_type_responses,
         )
-        klass = self._get_definitions_product_type_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_definitions_product_type_params = (  # name, param in
         ("productType", "path"),
@@ -357,11 +469,9 @@ class ProductTypeDefinitions20200901Client(BaseClient):
             "GET",
             values,
             self._search_definitions_product_types_params,
+            self._search_definitions_product_types_responses,
         )
-        klass = self._search_definitions_product_types_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _search_definitions_product_types_params = (  # name, param in
         ("keywords", "query"),

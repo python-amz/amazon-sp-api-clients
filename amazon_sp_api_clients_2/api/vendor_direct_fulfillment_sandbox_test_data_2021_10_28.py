@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -44,6 +49,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: List["Error"] = attrs.field()
 
 
@@ -52,6 +63,12 @@ class GenerateOrderScenarioRequest:
     """
     The request body for the generateOrderScenarios operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _generate_order_scenario_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GenerateOrderScenarioRequest(**data)
 
     orders: Optional[List["OrderScenarioRequest"]] = attrs.field()
     """
@@ -64,6 +81,12 @@ class OrderScenarioRequest:
     """
     The party identifiers required to generate the test data.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_scenario_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderScenarioRequest(**data)
 
     selling_party: "PartyIdentification" = attrs.field()
     """
@@ -82,6 +105,12 @@ class Pagination:
     A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _pagination_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Pagination(**data)
+
     next_token: Optional[str] = attrs.field()
 
 
@@ -90,6 +119,12 @@ class PartyIdentification:
     """
     The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _party_identification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PartyIdentification(**data)
 
     party_id: str = attrs.field()
     """
@@ -102,6 +137,12 @@ class Scenario:
     """
     A scenario test case response returned when the request is successful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _scenario_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Scenario(**data)
 
     orders: List["TestOrder"] = attrs.field()
     """
@@ -120,6 +161,12 @@ class TestCaseData:
     The set of test case data returned in response to the test data request.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _test_case_data_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TestCaseData(**data)
+
     scenarios: Optional[List["Scenario"]] = attrs.field()
     """
     Set of use cases that describes the possible test scenarios.
@@ -132,6 +179,12 @@ class TestOrder:
     Error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _test_order_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TestOrder(**data)
+
     order_id: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -143,6 +196,12 @@ class Transaction:
     """
     The transaction details including the status. If the transaction was successful, also includes the requested test order data.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Transaction(**data)
 
     status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]] = attrs.field()
     """
@@ -168,6 +227,12 @@ class TransactionReference:
     A GUID assigned by Amazon to identify this transaction.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_reference_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransactionReference(**data)
+
     transaction_id: Optional[str] = attrs.field()
 
 
@@ -177,10 +242,71 @@ class TransactionStatus:
     The payload for the getOrderScenarios operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransactionStatus(**data)
+
     transaction_status: Optional["Transaction"] = attrs.field()
     """
     The transaction details including the status. If the transaction was successful, also includes the requested test order data.
     """
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_generate_order_scenario_request_name_convert = {
+    "orders": "orders",
+}
+
+_order_scenario_request_name_convert = {
+    "sellingParty": "selling_party",
+    "shipFromParty": "ship_from_party",
+}
+
+_pagination_name_convert = {
+    "nextToken": "next_token",
+}
+
+_party_identification_name_convert = {
+    "partyId": "party_id",
+}
+
+_scenario_name_convert = {
+    "orders": "orders",
+    "scenarioId": "scenario_id",
+}
+
+_test_case_data_name_convert = {
+    "scenarios": "scenarios",
+}
+
+_test_order_name_convert = {
+    "orderId": "order_id",
+}
+
+_transaction_name_convert = {
+    "status": "status",
+    "testCaseData": "test_case_data",
+    "transactionId": "transaction_id",
+}
+
+_transaction_reference_name_convert = {
+    "transactionId": "transaction_id",
+}
+
+_transaction_status_name_convert = {
+    "transactionStatus": "transaction_status",
+}
 
 
 class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
@@ -201,11 +327,9 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
             "POST",
             values,
             self._generate_order_scenarios_params,
+            self._generate_order_scenarios_responses,
         )
-        klass = self._generate_order_scenarios_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _generate_order_scenarios_params = (("orders", "body"),)  # name, param in
 
@@ -238,11 +362,9 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
             "GET",
             values,
             self._get_order_scenarios_params,
+            self._get_order_scenarios_responses,
         )
-        klass = self._get_order_scenarios_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_scenarios_params = (("transactionId", "path"),)  # name, param in
 

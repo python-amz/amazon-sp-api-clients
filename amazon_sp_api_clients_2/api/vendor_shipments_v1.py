@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Address:
     """
     Address of the party.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: str = attrs.field()
     """
@@ -98,6 +103,12 @@ class Carton:
     Details of the carton/package being shipped.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _carton_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Carton(**data)
+
     carton_identifiers: Optional[List["ContainerIdentification"]] = attrs.field(
         default=None,
     )
@@ -139,6 +150,11 @@ class Carton:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CartonReferenceDetails:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _carton_reference_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CartonReferenceDetails(**data)
 
     carton_count: Optional[int] = attrs.field(
         default=None,
@@ -155,6 +171,11 @@ class CartonReferenceDetails:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ContainerIdentification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _container_identification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ContainerIdentification(**data)
 
     container_identification_number: str = attrs.field()
     """
@@ -174,6 +195,12 @@ class ContainerItem:
     """
     Carton/Pallet level details for the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _container_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ContainerItem(**data)
 
     item_details: Optional["ItemDetails"] = attrs.field(
         default=None,
@@ -199,6 +226,12 @@ class Decimal:
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Decimal(**data)
+
     pass
 
 
@@ -207,6 +240,12 @@ class Dimensions:
     """
     Physical dimensional measurements of a container.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _dimensions_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Dimensions(**data)
 
     height: "Decimal" = attrs.field()
     """
@@ -231,6 +270,11 @@ class Dimensions:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Duration:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _duration_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Duration(**data)
 
     duration_unit: Union[Literal["Days"], Literal["Months"]] = attrs.field()
     """
@@ -248,6 +292,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -269,6 +319,11 @@ class Error:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Expiry:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _expiry_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Expiry(**data)
 
     expiry_after_duration: Optional["Duration"] = attrs.field()
 
@@ -291,6 +346,11 @@ class Expiry:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ImportDetails:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _import_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ImportDetails(**data)
 
     billable_weight: Optional["Weight"] = attrs.field()
     """
@@ -344,6 +404,12 @@ class Item:
     Details of the item being shipped.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Item(**data)
+
     amazon_product_identifier: Optional[str] = attrs.field(
         default=None,
     )
@@ -382,6 +448,12 @@ class ItemDetails:
     Item details for be provided for every item in shipment at either the item or carton or pallet level, whichever is appropriate.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemDetails(**data)
+
     expiry: Optional["Expiry"] = attrs.field()
 
     handling_code: Optional[
@@ -413,6 +485,12 @@ class ItemQuantity:
     Details of item quantity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemQuantity(**data)
+
     amount: int = attrs.field()
     """
     Amount of units shipped for a specific item at a shipment level. If the item is present only in certain cartons or pallets within the shipment, please provide this at the appropriate carton or pallet level.
@@ -437,6 +515,12 @@ class Location:
     Location identifier.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _location_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Location(**data)
+
     country_code: Optional[str] = attrs.field()
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
@@ -459,6 +543,12 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
+
     amount: "Decimal" = attrs.field()
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
@@ -475,6 +565,12 @@ class Pallet:
     """
     Details of the Pallet/Tare being shipped.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _pallet_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Pallet(**data)
 
     block: Optional[int] = attrs.field(
         default=None,
@@ -523,6 +619,11 @@ class Pallet:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _party_identification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PartyIdentification(**data)
 
     address: Optional["Address"] = attrs.field(
         default=None,
@@ -550,11 +651,22 @@ class Route:
     This is used only for direct import shipment confirmations.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _route_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Route(**data)
+
     stops: List["Stop"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ShipmentConfirmation:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_confirmation_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentConfirmation(**data)
 
     amazon_reference_number: Optional[str] = attrs.field(
         default=None,
@@ -674,6 +786,12 @@ class ShipmentMeasurements:
     Shipment measurement details.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_measurements_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentMeasurements(**data)
+
     carton_count: Optional[int] = attrs.field()
     """
     Number of cartons present in the shipment. Provide the cartonCount only for unpalletized shipments.
@@ -700,6 +818,12 @@ class Stop:
     """
     Contractual or operational port or point relevant to the movement of the cargo.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _stop_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Stop(**data)
 
     arrival_time: Optional[datetime] = attrs.field(
         default=None,
@@ -742,6 +866,12 @@ class SubmitShipmentConfirmationsRequest:
     The request schema for the SubmitShipmentConfirmations operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_shipment_confirmations_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitShipmentConfirmationsRequest(**data)
+
     shipment_confirmations: Optional[List["ShipmentConfirmation"]] = attrs.field()
 
 
@@ -750,6 +880,12 @@ class SubmitShipmentConfirmationsResponse:
     """
     The response schema for the SubmitShipmentConfirmations operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_shipment_confirmations_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitShipmentConfirmationsResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -765,6 +901,12 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_registration_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxRegistrationDetails(**data)
+
     tax_registration_number: str = attrs.field()
     """
     Tax registration number for the entity. For example, VAT ID.
@@ -778,6 +920,11 @@ class TaxRegistrationDetails:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionReference:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_reference_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransactionReference(**data)
 
     transaction_id: Optional[str] = attrs.field()
     """
@@ -787,6 +934,11 @@ class TransactionReference:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TransportationDetails:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transportation_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransportationDetails(**data)
 
     bill_of_lading_number: Optional[str] = attrs.field()
     """
@@ -815,6 +967,12 @@ class Volume:
     The volume of the container.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _volume_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Volume(**data)
+
     unit_of_measure: Union[Literal["CuFt"], Literal["CuIn"], Literal["CuM"], Literal["CuY"]] = attrs.field()
     """
     The unit of measurement.
@@ -832,6 +990,12 @@ class Weight:
     The weight.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _weight_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Weight(**data)
+
     unit_of_measure: Union[Literal["G"], Literal["Kg"], Literal["Oz"], Literal["Lb"]] = attrs.field()
     """
     The unit of measurement.
@@ -841,6 +1005,203 @@ class Weight:
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
     """
+
+
+_address_name_convert = {
+    "addressLine1": "address_line1",
+    "addressLine2": "address_line2",
+    "addressLine3": "address_line3",
+    "city": "city",
+    "countryCode": "country_code",
+    "county": "county",
+    "district": "district",
+    "name": "name",
+    "phone": "phone",
+    "postalCode": "postal_code",
+    "stateOrRegion": "state_or_region",
+}
+
+_carton_name_convert = {
+    "cartonIdentifiers": "carton_identifiers",
+    "cartonSequenceNumber": "carton_sequence_number",
+    "dimensions": "dimensions",
+    "items": "items",
+    "trackingNumber": "tracking_number",
+    "weight": "weight",
+}
+
+_carton_reference_details_name_convert = {
+    "cartonCount": "carton_count",
+    "cartonReferenceNumbers": "carton_reference_numbers",
+}
+
+_container_identification_name_convert = {
+    "containerIdentificationNumber": "container_identification_number",
+    "containerIdentificationType": "container_identification_type",
+}
+
+_container_item_name_convert = {
+    "itemDetails": "item_details",
+    "itemReference": "item_reference",
+    "shippedQuantity": "shipped_quantity",
+}
+
+_decimal_name_convert = {}
+
+_dimensions_name_convert = {
+    "height": "height",
+    "length": "length",
+    "unitOfMeasure": "unit_of_measure",
+    "width": "width",
+}
+
+_duration_name_convert = {
+    "durationUnit": "duration_unit",
+    "durationValue": "duration_value",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_expiry_name_convert = {
+    "expiryAfterDuration": "expiry_after_duration",
+    "expiryDate": "expiry_date",
+    "manufacturerDate": "manufacturer_date",
+}
+
+_import_details_name_convert = {
+    "billableWeight": "billable_weight",
+    "estimatedShipByDate": "estimated_ship_by_date",
+    "importContainers": "import_containers",
+    "methodOfPayment": "method_of_payment",
+    "route": "route",
+    "sealNumber": "seal_number",
+}
+
+_item_name_convert = {
+    "amazonProductIdentifier": "amazon_product_identifier",
+    "itemDetails": "item_details",
+    "itemSequenceNumber": "item_sequence_number",
+    "shippedQuantity": "shipped_quantity",
+    "vendorProductIdentifier": "vendor_product_identifier",
+}
+
+_item_details_name_convert = {
+    "expiry": "expiry",
+    "handlingCode": "handling_code",
+    "lotNumber": "lot_number",
+    "maximumRetailPrice": "maximum_retail_price",
+    "purchaseOrderNumber": "purchase_order_number",
+}
+
+_item_quantity_name_convert = {
+    "amount": "amount",
+    "unitOfMeasure": "unit_of_measure",
+    "unitSize": "unit_size",
+}
+
+_location_name_convert = {
+    "countryCode": "country_code",
+    "locationCode": "location_code",
+    "type": "type",
+}
+
+_money_name_convert = {
+    "amount": "amount",
+    "currencyCode": "currency_code",
+}
+
+_pallet_name_convert = {
+    "block": "block",
+    "cartonReferenceDetails": "carton_reference_details",
+    "dimensions": "dimensions",
+    "items": "items",
+    "palletIdentifiers": "pallet_identifiers",
+    "tier": "tier",
+    "weight": "weight",
+}
+
+_party_identification_name_convert = {
+    "address": "address",
+    "partyId": "party_id",
+    "taxRegistrationDetails": "tax_registration_details",
+}
+
+_route_name_convert = {
+    "stops": "stops",
+}
+
+_shipment_confirmation_name_convert = {
+    "amazonReferenceNumber": "amazon_reference_number",
+    "cartons": "cartons",
+    "estimatedDeliveryDate": "estimated_delivery_date",
+    "importDetails": "import_details",
+    "pallets": "pallets",
+    "sellingParty": "selling_party",
+    "shipFromParty": "ship_from_party",
+    "shipToParty": "ship_to_party",
+    "shipmentConfirmationDate": "shipment_confirmation_date",
+    "shipmentConfirmationType": "shipment_confirmation_type",
+    "shipmentIdentifier": "shipment_identifier",
+    "shipmentMeasurements": "shipment_measurements",
+    "shipmentStructure": "shipment_structure",
+    "shipmentType": "shipment_type",
+    "shippedDate": "shipped_date",
+    "shippedItems": "shipped_items",
+    "transportationDetails": "transportation_details",
+}
+
+_shipment_measurements_name_convert = {
+    "cartonCount": "carton_count",
+    "grossShipmentWeight": "gross_shipment_weight",
+    "palletCount": "pallet_count",
+    "shipmentVolume": "shipment_volume",
+}
+
+_stop_name_convert = {
+    "arrivalTime": "arrival_time",
+    "departureTime": "departure_time",
+    "functionCode": "function_code",
+    "locationIdentification": "location_identification",
+}
+
+_submit_shipment_confirmations_request_name_convert = {
+    "shipmentConfirmations": "shipment_confirmations",
+}
+
+_submit_shipment_confirmations_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_tax_registration_details_name_convert = {
+    "taxRegistrationNumber": "tax_registration_number",
+    "taxRegistrationType": "tax_registration_type",
+}
+
+_transaction_reference_name_convert = {
+    "transactionId": "transaction_id",
+}
+
+_transportation_details_name_convert = {
+    "billOfLadingNumber": "bill_of_lading_number",
+    "carrierScac": "carrier_scac",
+    "carrierShipmentReferenceNumber": "carrier_shipment_reference_number",
+    "transportationMode": "transportation_mode",
+}
+
+_volume_name_convert = {
+    "unitOfMeasure": "unit_of_measure",
+    "value": "value",
+}
+
+_weight_name_convert = {
+    "unitOfMeasure": "unit_of_measure",
+    "value": "value",
+}
 
 
 class VendorShipmentsV1Client(BaseClient):
@@ -870,11 +1231,9 @@ class VendorShipmentsV1Client(BaseClient):
             "POST",
             values,
             self._submit_shipment_confirmations_params,
+            self._submit_shipment_confirmations_responses,
         )
-        klass = self._submit_shipment_confirmations_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
 

@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class CreateReportResponse:
     """
     Response schema.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_report_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateReportResponse(**data)
 
     report_id: str = attrs.field()
     """
@@ -32,6 +37,12 @@ class CreateReportScheduleResponse:
     Response schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_report_schedule_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateReportScheduleResponse(**data)
+
     report_schedule_id: str = attrs.field()
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
@@ -40,6 +51,11 @@ class CreateReportScheduleResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateReportScheduleSpecification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_report_schedule_specification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateReportScheduleSpecification(**data)
 
     marketplace_ids: List[str] = attrs.field()
     """
@@ -102,6 +118,12 @@ class CreateReportSpecification:
     Information required to create the report.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_report_specification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateReportSpecification(**data)
+
     data_end_time: Optional[datetime] = attrs.field(
         default=None,
     )
@@ -149,6 +171,12 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -173,6 +201,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: List["Error"] = attrs.field()
 
 
@@ -181,6 +215,12 @@ class GetReportsResponse:
     """
     The response for the getReports operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_reports_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetReportsResponse(**data)
 
     next_token: Optional[str] = attrs.field(
         default=None,
@@ -200,6 +240,12 @@ class Report:
     """
     Detailed information about the report.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _report_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Report(**data)
 
     created_time: datetime = attrs.field()
     """
@@ -294,6 +340,12 @@ class ReportDocument:
     Information required for the report document.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _report_document_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReportDocument(**data)
+
     compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field(
         default=None,
     )
@@ -318,6 +370,12 @@ class ReportOptions:
     Additional information passed to reports. This varies by report type.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _report_options_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReportOptions(**data)
+
     pass
 
 
@@ -326,6 +384,12 @@ class ReportSchedule:
     """
     Detailed information about a report schedule.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _report_schedule_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReportSchedule(**data)
 
     marketplace_ids: Optional[List[str]] = attrs.field(
         default=None,
@@ -373,7 +437,88 @@ class ReportScheduleList:
     A list of report schedules.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _report_schedule_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReportScheduleList(**data)
+
     report_schedules: List["ReportSchedule"] = attrs.field()
+
+
+_create_report_response_name_convert = {
+    "reportId": "report_id",
+}
+
+_create_report_schedule_response_name_convert = {
+    "reportScheduleId": "report_schedule_id",
+}
+
+_create_report_schedule_specification_name_convert = {
+    "marketplaceIds": "marketplace_ids",
+    "nextReportCreationTime": "next_report_creation_time",
+    "period": "period",
+    "reportOptions": "report_options",
+    "reportType": "report_type",
+}
+
+_create_report_specification_name_convert = {
+    "dataEndTime": "data_end_time",
+    "dataStartTime": "data_start_time",
+    "marketplaceIds": "marketplace_ids",
+    "reportOptions": "report_options",
+    "reportType": "report_type",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_get_reports_response_name_convert = {
+    "nextToken": "next_token",
+    "reports": "reports",
+}
+
+_report_name_convert = {
+    "createdTime": "created_time",
+    "dataEndTime": "data_end_time",
+    "dataStartTime": "data_start_time",
+    "marketplaceIds": "marketplace_ids",
+    "processingEndTime": "processing_end_time",
+    "processingStartTime": "processing_start_time",
+    "processingStatus": "processing_status",
+    "reportDocumentId": "report_document_id",
+    "reportId": "report_id",
+    "reportScheduleId": "report_schedule_id",
+    "reportType": "report_type",
+}
+
+_report_document_name_convert = {
+    "compressionAlgorithm": "compression_algorithm",
+    "reportDocumentId": "report_document_id",
+    "url": "url",
+}
+
+_report_options_name_convert = {}
+
+_report_schedule_name_convert = {
+    "marketplaceIds": "marketplace_ids",
+    "nextReportCreationTime": "next_report_creation_time",
+    "period": "period",
+    "reportOptions": "report_options",
+    "reportScheduleId": "report_schedule_id",
+    "reportType": "report_type",
+}
+
+_report_schedule_list_name_convert = {
+    "reportSchedules": "report_schedules",
+}
 
 
 class Reports20210630Client(BaseClient):
@@ -402,11 +547,9 @@ class Reports20210630Client(BaseClient):
             "DELETE",
             values,
             self._cancel_report_params,
+            self._cancel_report_responses,
         )
-        klass = self._cancel_report_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _cancel_report_params = (("reportId", "path"),)  # name, param in
 
@@ -446,11 +589,9 @@ class Reports20210630Client(BaseClient):
             "DELETE",
             values,
             self._cancel_report_schedule_params,
+            self._cancel_report_schedule_responses,
         )
-        klass = self._cancel_report_schedule_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
@@ -504,11 +645,9 @@ class Reports20210630Client(BaseClient):
             "POST",
             values,
             self._create_report_params,
+            self._create_report_responses,
         )
-        klass = self._create_report_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_report_params = (  # name, param in
         ("dataEndTime", "body"),
@@ -588,11 +727,9 @@ class Reports20210630Client(BaseClient):
             "POST",
             values,
             self._create_report_schedule_params,
+            self._create_report_schedule_responses,
         )
-        klass = self._create_report_schedule_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_report_schedule_params = (  # name, param in
         ("marketplaceIds", "body"),
@@ -639,11 +776,9 @@ class Reports20210630Client(BaseClient):
             "GET",
             values,
             self._get_report_params,
+            self._get_report_responses,
         )
-        klass = self._get_report_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_report_params = (("reportId", "path"),)  # name, param in
 
@@ -684,11 +819,9 @@ class Reports20210630Client(BaseClient):
             "GET",
             values,
             self._get_report_document_params,
+            self._get_report_document_responses,
         )
-        klass = self._get_report_document_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
@@ -729,11 +862,9 @@ class Reports20210630Client(BaseClient):
             "GET",
             values,
             self._get_report_schedule_params,
+            self._get_report_schedule_responses,
         )
-        klass = self._get_report_schedule_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
@@ -774,11 +905,9 @@ class Reports20210630Client(BaseClient):
             "GET",
             values,
             self._get_report_schedules_params,
+            self._get_report_schedules_responses,
         )
-        klass = self._get_report_schedules_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
@@ -841,11 +970,9 @@ class Reports20210630Client(BaseClient):
             "GET",
             values,
             self._get_reports_params,
+            self._get_reports_responses,
         )
-        klass = self._get_reports_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_reports_params = (  # name, param in
         ("reportTypes", "query"),

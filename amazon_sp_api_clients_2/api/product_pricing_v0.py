@@ -11,11 +11,15 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ASINIdentifier:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _asinidentifier_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ASINIdentifier(**data)
 
     asin: str = attrs.field()
     """
@@ -30,12 +34,22 @@ class ASINIdentifier:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class AttributeSetListItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _attribute_set_list_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AttributeSetListItem(**data)
 
     pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class BuyBoxPriceType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buy_box_price_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BuyBoxPriceType(**data)
 
     landed_price: "MoneyType" = attrs.field()
 
@@ -80,6 +94,11 @@ class BuyBoxPriceType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CompetitivePriceType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _competitive_price_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CompetitivePriceType(**data)
 
     competitive_price_id: str = attrs.field()
     """
@@ -144,6 +163,12 @@ class CompetitivePricingType:
     Competitive pricing information for the item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _competitive_pricing_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CompetitivePricingType(**data)
+
     competitive_prices: List["CompetitivePriceType"] = attrs.field()
     """
     A list of competitive pricing information.
@@ -165,6 +190,12 @@ class ConditionType:
     Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _condition_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ConditionType(**data)
+
     pass
 
 
@@ -173,6 +204,12 @@ class DetailedShippingTimeType:
     """
     The time range in which an item will likely be shipped once an order has been placed.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _detailed_shipping_time_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DetailedShippingTimeType(**data)
 
     availability_type: Optional[
         Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]]
@@ -209,6 +246,12 @@ class Error:
     Error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -233,6 +276,12 @@ class FulfillmentChannelType:
     Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_channel_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentChannelType(**data)
+
     pass
 
 
@@ -241,6 +290,12 @@ class GetOffersResponse:
     """
     The response schema for the getListingOffers and getItemOffers operations.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_offers_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOffersResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -252,6 +307,11 @@ class GetOffersResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetOffersResult:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_offers_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOffersResult(**data)
 
     asin: Optional[str] = attrs.field(
         default=None,
@@ -301,6 +361,12 @@ class GetPricingResponse:
     The response schema for the getPricing and getCompetitivePricing operations.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_pricing_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetPricingResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -315,6 +381,12 @@ class IdentifierType:
     Specifies the identifiers used to uniquely identify an item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _identifier_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return IdentifierType(**data)
+
     marketplace_asin: "ASINIdentifier" = attrs.field()
 
     skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field(
@@ -327,6 +399,12 @@ class ItemIdentifier:
     """
     Information that identifies an item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_identifier_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemIdentifier(**data)
 
     asin: Optional[str] = attrs.field(
         default=None,
@@ -355,6 +433,11 @@ class ItemIdentifier:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class LowestPriceType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _lowest_price_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return LowestPriceType(**data)
 
     landed_price: "MoneyType" = attrs.field()
 
@@ -397,6 +480,11 @@ class LowestPriceType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class MoneyType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MoneyType(**data)
 
     amount: Optional[float] = attrs.field()
     """
@@ -414,6 +502,12 @@ class OfferCountType:
     """
     The total number of offers for the specified condition and fulfillment channel.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _offer_count_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OfferCountType(**data)
 
     offer_count: Optional[int] = attrs.field()
     """
@@ -436,12 +530,22 @@ class OfferCountType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferCustomerType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _offer_customer_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OfferCustomerType(**data)
 
     pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferDetail:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _offer_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OfferDetail(**data)
 
     condition_notes: Optional[str] = attrs.field(
         default=None,
@@ -537,6 +641,12 @@ class OfferListingCountType:
     The number of offer listings with the specified condition.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _offer_listing_count_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OfferListingCountType(**data)
+
     count: int = attrs.field()
     """
     The number of offer listings.
@@ -553,6 +663,11 @@ class OfferListingCountType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OfferType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _offer_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OfferType(**data)
 
     buying_price: "PriceType" = attrs.field()
 
@@ -595,6 +710,11 @@ class OfferType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Points:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _points_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Points(**data)
 
     points_monetary_value: Optional["MoneyType"] = attrs.field()
 
@@ -609,6 +729,11 @@ class Points:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Price:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _price_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Price(**data)
 
     asin: Optional[str] = attrs.field(
         default=None,
@@ -639,6 +764,11 @@ class Price:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PriceType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _price_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PriceType(**data)
 
     landed_price: Optional["MoneyType"] = attrs.field(
         default=None,
@@ -661,6 +791,12 @@ class PrimeInformationType:
     Amazon Prime information.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _prime_information_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PrimeInformationType(**data)
+
     is_national_prime: bool = attrs.field()
     """
     Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed.
@@ -677,6 +813,12 @@ class Product:
     """
     An item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _product_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Product(**data)
 
     attribute_sets: Optional[List["AttributeSetListItem"]] = attrs.field(
         default=None,
@@ -725,6 +867,12 @@ class QuantityDiscountPriceType:
     Contains pricing information that includes special pricing when buying in bulk.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _quantity_discount_price_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return QuantityDiscountPriceType(**data)
+
     listing_price: "MoneyType" = attrs.field()
 
     quantity_discount_type: "QuantityDiscountType" = attrs.field()
@@ -740,18 +888,33 @@ class QuantityDiscountPriceType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class QuantityDiscountType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _quantity_discount_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return QuantityDiscountType(**data)
 
     pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class RelationshipListItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _relationship_list_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RelationshipListItem(**data)
 
     pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SalesRankType:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _sales_rank_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SalesRankType(**data)
 
     product_category_id: str = attrs.field()
     """
@@ -772,6 +935,12 @@ class SellerFeedbackType:
     """
     Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _seller_feedback_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SellerFeedbackType(**data)
 
     feedback_count: int = attrs.field()
     """
@@ -794,6 +963,11 @@ class SellerFeedbackType:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class SellerSKUIdentifier:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _seller_skuidentifier_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SellerSKUIdentifier(**data)
 
     marketplace_id: str = attrs.field()
     """
@@ -817,6 +991,12 @@ class ShipsFromType:
     The state and country from where the item is shipped.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _ships_from_type_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipsFromType(**data)
+
     country: Optional[str] = attrs.field()
     """
     The country from where the item is shipped.
@@ -833,6 +1013,12 @@ class Summary:
     """
     Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _summary_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Summary(**data)
 
     buy_box_eligible_offers: Optional[List["OfferCountType"]] = attrs.field(
         default=None,
@@ -888,6 +1074,232 @@ class Summary:
     """
 
 
+_asinidentifier_name_convert = {
+    "ASIN": "asin",
+    "MarketplaceId": "marketplace_id",
+}
+
+_attribute_set_list_item_name_convert = {}
+
+_buy_box_price_type_name_convert = {
+    "LandedPrice": "landed_price",
+    "ListingPrice": "listing_price",
+    "Points": "points",
+    "Shipping": "shipping",
+    "condition": "condition",
+    "offerType": "offer_type",
+    "quantityDiscountType": "quantity_discount_type",
+    "quantityTier": "quantity_tier",
+    "sellerId": "seller_id",
+}
+
+_competitive_price_type_name_convert = {
+    "CompetitivePriceId": "competitive_price_id",
+    "Price": "price",
+    "belongsToRequester": "belongs_to_requester",
+    "condition": "condition",
+    "offerType": "offer_type",
+    "quantityDiscountType": "quantity_discount_type",
+    "quantityTier": "quantity_tier",
+    "sellerId": "seller_id",
+    "subcondition": "subcondition",
+}
+
+_competitive_pricing_type_name_convert = {
+    "CompetitivePrices": "competitive_prices",
+    "NumberOfOfferListings": "number_of_offer_listings",
+    "TradeInValue": "trade_in_value",
+}
+
+_condition_type_name_convert = {}
+
+_detailed_shipping_time_type_name_convert = {
+    "availabilityType": "availability_type",
+    "availableDate": "available_date",
+    "maximumHours": "maximum_hours",
+    "minimumHours": "minimum_hours",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_fulfillment_channel_type_name_convert = {}
+
+_get_offers_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_offers_result_name_convert = {
+    "ASIN": "asin",
+    "Identifier": "identifier",
+    "ItemCondition": "item_condition",
+    "MarketplaceID": "marketplace_id",
+    "Offers": "offers",
+    "SKU": "sku",
+    "Summary": "summary",
+    "status": "status",
+}
+
+_get_pricing_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_identifier_type_name_convert = {
+    "MarketplaceASIN": "marketplace_asin",
+    "SKUIdentifier": "skuidentifier",
+}
+
+_item_identifier_name_convert = {
+    "ASIN": "asin",
+    "ItemCondition": "item_condition",
+    "MarketplaceId": "marketplace_id",
+    "SellerSKU": "seller_sku",
+}
+
+_lowest_price_type_name_convert = {
+    "LandedPrice": "landed_price",
+    "ListingPrice": "listing_price",
+    "Points": "points",
+    "Shipping": "shipping",
+    "condition": "condition",
+    "fulfillmentChannel": "fulfillment_channel",
+    "offerType": "offer_type",
+    "quantityDiscountType": "quantity_discount_type",
+    "quantityTier": "quantity_tier",
+}
+
+_money_type_name_convert = {
+    "Amount": "amount",
+    "CurrencyCode": "currency_code",
+}
+
+_offer_count_type_name_convert = {
+    "OfferCount": "offer_count",
+    "condition": "condition",
+    "fulfillmentChannel": "fulfillment_channel",
+}
+
+_offer_customer_type_name_convert = {}
+
+_offer_detail_name_convert = {
+    "ConditionNotes": "condition_notes",
+    "IsBuyBoxWinner": "is_buy_box_winner",
+    "IsFeaturedMerchant": "is_featured_merchant",
+    "IsFulfilledByAmazon": "is_fulfilled_by_amazon",
+    "ListingPrice": "listing_price",
+    "MyOffer": "my_offer",
+    "Points": "points",
+    "PrimeInformation": "prime_information",
+    "SellerFeedbackRating": "seller_feedback_rating",
+    "SellerId": "seller_id",
+    "Shipping": "shipping",
+    "ShippingTime": "shipping_time",
+    "ShipsFrom": "ships_from",
+    "SubCondition": "sub_condition",
+    "offerType": "offer_type",
+    "quantityDiscountPrices": "quantity_discount_prices",
+}
+
+_offer_listing_count_type_name_convert = {
+    "Count": "count",
+    "condition": "condition",
+}
+
+_offer_type_name_convert = {
+    "BuyingPrice": "buying_price",
+    "FulfillmentChannel": "fulfillment_channel",
+    "ItemCondition": "item_condition",
+    "ItemSubCondition": "item_sub_condition",
+    "RegularPrice": "regular_price",
+    "SellerSKU": "seller_sku",
+    "businessPrice": "business_price",
+    "offerType": "offer_type",
+    "quantityDiscountPrices": "quantity_discount_prices",
+}
+
+_points_name_convert = {
+    "PointsMonetaryValue": "points_monetary_value",
+    "PointsNumber": "points_number",
+}
+
+_price_name_convert = {
+    "ASIN": "asin",
+    "Product": "product",
+    "SellerSKU": "seller_sku",
+    "status": "status",
+}
+
+_price_type_name_convert = {
+    "LandedPrice": "landed_price",
+    "ListingPrice": "listing_price",
+    "Points": "points",
+    "Shipping": "shipping",
+}
+
+_prime_information_type_name_convert = {
+    "IsNationalPrime": "is_national_prime",
+    "IsPrime": "is_prime",
+}
+
+_product_name_convert = {
+    "AttributeSets": "attribute_sets",
+    "CompetitivePricing": "competitive_pricing",
+    "Identifiers": "identifiers",
+    "Offers": "offers",
+    "Relationships": "relationships",
+    "SalesRankings": "sales_rankings",
+}
+
+_quantity_discount_price_type_name_convert = {
+    "listingPrice": "listing_price",
+    "quantityDiscountType": "quantity_discount_type",
+    "quantityTier": "quantity_tier",
+}
+
+_quantity_discount_type_name_convert = {}
+
+_relationship_list_item_name_convert = {}
+
+_sales_rank_type_name_convert = {
+    "ProductCategoryId": "product_category_id",
+    "Rank": "rank",
+}
+
+_seller_feedback_type_name_convert = {
+    "FeedbackCount": "feedback_count",
+    "SellerPositiveFeedbackRating": "seller_positive_feedback_rating",
+}
+
+_seller_skuidentifier_name_convert = {
+    "MarketplaceId": "marketplace_id",
+    "SellerId": "seller_id",
+    "SellerSKU": "seller_sku",
+}
+
+_ships_from_type_name_convert = {
+    "Country": "country",
+    "State": "state",
+}
+
+_summary_name_convert = {
+    "BuyBoxEligibleOffers": "buy_box_eligible_offers",
+    "BuyBoxPrices": "buy_box_prices",
+    "CompetitivePriceThreshold": "competitive_price_threshold",
+    "ListPrice": "list_price",
+    "LowestPrices": "lowest_prices",
+    "NumberOfOffers": "number_of_offers",
+    "OffersAvailableTime": "offers_available_time",
+    "SalesRankings": "sales_rankings",
+    "SuggestedLowerPricePlusShipping": "suggested_lower_price_plus_shipping",
+    "TotalOfferCount": "total_offer_count",
+}
+
+
 class ProductPricingV0Client(BaseClient):
     def get_competitive_pricing(
         self,
@@ -929,11 +1341,9 @@ class ProductPricingV0Client(BaseClient):
             "GET",
             values,
             self._get_competitive_pricing_params,
+            self._get_competitive_pricing_responses,
         )
-        klass = self._get_competitive_pricing_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_competitive_pricing_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -993,11 +1403,9 @@ class ProductPricingV0Client(BaseClient):
             "GET",
             values,
             self._get_item_offers_params,
+            self._get_item_offers_responses,
         )
-        klass = self._get_item_offers_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_item_offers_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -1056,11 +1464,9 @@ class ProductPricingV0Client(BaseClient):
             "GET",
             values,
             self._get_listing_offers_params,
+            self._get_listing_offers_responses,
         )
-        klass = self._get_listing_offers_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_listing_offers_params = (  # name, param in
         ("MarketplaceId", "query"),
@@ -1125,11 +1531,9 @@ class ProductPricingV0Client(BaseClient):
             "GET",
             values,
             self._get_pricing_params,
+            self._get_pricing_responses,
         )
-        klass = self._get_pricing_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_pricing_params = (  # name, param in
         ("MarketplaceId", "query"),

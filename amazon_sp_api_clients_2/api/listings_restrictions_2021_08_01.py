@@ -13,7 +13,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -21,6 +20,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -45,6 +50,12 @@ class Link:
     """
     A link to resources related to a listing restriction.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _link_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Link(**data)
 
     resource: str = attrs.field()
     """
@@ -80,6 +91,12 @@ class Reason:
     A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _reason_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Reason(**data)
+
     links: Optional[List["Link"]] = attrs.field(
         default=None,
     )
@@ -107,6 +124,12 @@ class Restriction:
     """
     A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _restriction_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Restriction(**data)
 
     condition_type: Optional[
         Union[
@@ -150,7 +173,43 @@ class RestrictionList:
     A list of restrictions for the specified Amazon catalog item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _restriction_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RestrictionList(**data)
+
     restrictions: List["Restriction"] = attrs.field()
+
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_link_name_convert = {
+    "resource": "resource",
+    "title": "title",
+    "type": "type",
+    "verb": "verb",
+}
+
+_reason_name_convert = {
+    "links": "links",
+    "message": "message",
+    "reasonCode": "reason_code",
+}
+
+_restriction_name_convert = {
+    "conditionType": "condition_type",
+    "marketplaceId": "marketplace_id",
+    "reasons": "reasons",
+}
+
+_restriction_list_name_convert = {
+    "restrictions": "restrictions",
+}
 
 
 class ListingsRestrictions20210801Client(BaseClient):
@@ -207,11 +266,9 @@ class ListingsRestrictions20210801Client(BaseClient):
             "GET",
             values,
             self._get_listings_restrictions_params,
+            self._get_listings_restrictions_responses,
         )
-        klass = self._get_listings_restrictions_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_listings_restrictions_params = (  # name, param in
         ("asin", "query"),

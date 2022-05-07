@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class CancelFeedResponse:
     """
     Response schema.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _cancel_feed_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CancelFeedResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -31,6 +36,12 @@ class CreateFeedDocumentResponse:
     """
     The response for the createFeedDocument operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_feed_document_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFeedDocumentResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -48,6 +59,12 @@ class CreateFeedDocumentResult:
     """
     Information required to encrypt and upload a feed document's contents.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_feed_document_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFeedDocumentResult(**data)
 
     encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
     """
@@ -67,6 +84,11 @@ class CreateFeedDocumentResult:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedDocumentSpecification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_feed_document_specification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFeedDocumentSpecification(**data)
 
     content_type: str = attrs.field()
     """
@@ -80,6 +102,12 @@ class CreateFeedResponse:
     Response schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_feed_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFeedResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -90,6 +118,11 @@ class CreateFeedResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedResult:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_feed_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFeedResult(**data)
 
     feed_id: str = attrs.field()
     """
@@ -99,6 +132,11 @@ class CreateFeedResult:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFeedSpecification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_feed_specification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFeedSpecification(**data)
 
     feed_options: Optional["FeedOptions"] = attrs.field(
         default=None,
@@ -132,6 +170,12 @@ class Error:
     An error response returned when the request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
+
     code: str = attrs.field()
     """
     An error code that identifies the type of error that occurred.
@@ -152,6 +196,11 @@ class Error:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Feed:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _feed_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Feed(**data)
 
     created_time: datetime = attrs.field()
     """
@@ -215,6 +264,11 @@ class Feed:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class FeedDocument:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _feed_document_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeedDocument(**data)
 
     compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field(
         default=None,
@@ -245,6 +299,12 @@ class FeedDocumentEncryptionDetails:
     Encryption details for required client-side encryption and decryption of document contents.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _feed_document_encryption_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeedDocumentEncryptionDetails(**data)
+
     initialization_vector: str = attrs.field()
     """
     The vector to encrypt or decrypt the document contents using Cipher Block Chaining (CBC).
@@ -267,6 +327,12 @@ class FeedOptions:
     Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _feed_options_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeedOptions(**data)
+
     pass
 
 
@@ -275,6 +341,12 @@ class GetFeedDocumentResponse:
     """
     Response schema.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_feed_document_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeedDocumentResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -290,6 +362,12 @@ class GetFeedResponse:
     Response schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_feed_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeedResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -304,6 +382,12 @@ class GetFeedsResponse:
     Response schema.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_feeds_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeedsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -315,6 +399,90 @@ class GetFeedsResponse:
     """
 
     payload: Optional[List["Feed"]] = attrs.field()
+
+
+_cancel_feed_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_feed_document_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_create_feed_document_result_name_convert = {
+    "encryptionDetails": "encryption_details",
+    "feedDocumentId": "feed_document_id",
+    "url": "url",
+}
+
+_create_feed_document_specification_name_convert = {
+    "contentType": "content_type",
+}
+
+_create_feed_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_create_feed_result_name_convert = {
+    "feedId": "feed_id",
+}
+
+_create_feed_specification_name_convert = {
+    "feedOptions": "feed_options",
+    "feedType": "feed_type",
+    "inputFeedDocumentId": "input_feed_document_id",
+    "marketplaceIds": "marketplace_ids",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_feed_name_convert = {
+    "createdTime": "created_time",
+    "feedId": "feed_id",
+    "feedType": "feed_type",
+    "marketplaceIds": "marketplace_ids",
+    "processingEndTime": "processing_end_time",
+    "processingStartTime": "processing_start_time",
+    "processingStatus": "processing_status",
+    "resultFeedDocumentId": "result_feed_document_id",
+}
+
+_feed_document_name_convert = {
+    "compressionAlgorithm": "compression_algorithm",
+    "encryptionDetails": "encryption_details",
+    "feedDocumentId": "feed_document_id",
+    "url": "url",
+}
+
+_feed_document_encryption_details_name_convert = {
+    "initializationVector": "initialization_vector",
+    "key": "key",
+    "standard": "standard",
+}
+
+_feed_options_name_convert = {}
+
+_get_feed_document_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_feed_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_feeds_response_name_convert = {
+    "errors": "errors",
+    "nextToken": "next_token",
+    "payload": "payload",
+}
 
 
 class Feeds20200904Client(BaseClient):
@@ -343,11 +511,9 @@ class Feeds20200904Client(BaseClient):
             "DELETE",
             values,
             self._cancel_feed_params,
+            self._cancel_feed_responses,
         )
-        klass = self._cancel_feed_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
@@ -399,11 +565,9 @@ class Feeds20200904Client(BaseClient):
             "POST",
             values,
             self._create_feed_params,
+            self._create_feed_responses,
         )
-        klass = self._create_feed_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_feed_params = (  # name, param in
         ("feedOptions", "body"),
@@ -449,11 +613,9 @@ class Feeds20200904Client(BaseClient):
             "POST",
             values,
             self._create_feed_document_params,
+            self._create_feed_document_responses,
         )
-        klass = self._create_feed_document_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_feed_document_params = (("contentType", "body"),)  # name, param in
 
@@ -494,11 +656,9 @@ class Feeds20200904Client(BaseClient):
             "GET",
             values,
             self._get_feed_params,
+            self._get_feed_responses,
         )
-        klass = self._get_feed_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_feed_params = (("feedId", "path"),)  # name, param in
 
@@ -539,11 +699,9 @@ class Feeds20200904Client(BaseClient):
             "GET",
             values,
             self._get_feed_document_params,
+            self._get_feed_document_responses,
         )
-        klass = self._get_feed_document_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
@@ -606,11 +764,9 @@ class Feeds20200904Client(BaseClient):
             "GET",
             values,
             self._get_feeds_params,
+            self._get_feeds_responses,
         )
-        klass = self._get_feeds_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_feeds_params = (  # name, param in
         ("feedTypes", "query"),

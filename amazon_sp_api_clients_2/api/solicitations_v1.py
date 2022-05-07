@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
     """
     The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_product_review_and_seller_feedback_solicitation_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateProductReviewAndSellerFeedbackSolicitationResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -31,6 +36,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -52,6 +63,11 @@ class Error:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponse:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_schema_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSchemaResponse(**data)
 
     _links: Optional["GetSchemaResponseLinks"] = attrs.field()
 
@@ -68,6 +84,11 @@ class GetSchemaResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_schema_response_links_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSchemaResponseLinks(**data)
 
     self: "LinkObject" = attrs.field()
     """
@@ -80,6 +101,12 @@ class GetSolicitationActionResponse:
     """
     Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_solicitation_action_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSolicitationActionResponse(**data)
 
     _embedded: Optional["GetSolicitationActionResponseEmbedded"] = attrs.field()
 
@@ -98,12 +125,22 @@ class GetSolicitationActionResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionResponseEmbedded:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_solicitation_action_response_embedded_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSolicitationActionResponseEmbedded(**data)
 
     schema: Optional["GetSchemaResponse"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionResponseLinks:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_solicitation_action_response_links_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSolicitationActionResponseLinks(**data)
 
     schema: "LinkObject" = attrs.field()
     """
@@ -122,6 +159,12 @@ class GetSolicitationActionsForOrderResponse:
     The response schema for the getSolicitationActionsForOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_solicitation_actions_for_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSolicitationActionsForOrderResponse(**data)
+
     _embedded: Optional["GetSolicitationActionsForOrderResponseEmbedded"] = attrs.field()
 
     _links: Optional["GetSolicitationActionsForOrderResponseLinks"] = attrs.field()
@@ -134,12 +177,22 @@ class GetSolicitationActionsForOrderResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionsForOrderResponseEmbedded:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_solicitation_actions_for_order_response_embedded_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSolicitationActionsForOrderResponseEmbedded(**data)
 
     actions: List["GetSolicitationActionResponse"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSolicitationActionsForOrderResponseLinks:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_solicitation_actions_for_order_response_links_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSolicitationActionsForOrderResponseLinks(**data)
 
     actions: List["LinkObject"] = attrs.field()
     """
@@ -157,6 +210,12 @@ class LinkObject:
     """
     A Link object.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _link_object_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return LinkObject(**data)
 
     href: str = attrs.field()
     """
@@ -177,6 +236,12 @@ class Schema:
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _schema_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Schema(**data)
+
     pass
 
 
@@ -186,7 +251,76 @@ class SolicitationsAction:
     A simple object containing the name of the template.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _solicitations_action_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SolicitationsAction(**data)
+
     name: str = attrs.field()
+
+
+_create_product_review_and_seller_feedback_solicitation_response_name_convert = {
+    "errors": "errors",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_schema_response_name_convert = {
+    "_links": "_links",
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_schema_response_links_name_convert = {
+    "self": "self",
+}
+
+_get_solicitation_action_response_name_convert = {
+    "_embedded": "_embedded",
+    "_links": "_links",
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_solicitation_action_response_embedded_name_convert = {
+    "schema": "schema",
+}
+
+_get_solicitation_action_response_links_name_convert = {
+    "schema": "schema",
+    "self": "self",
+}
+
+_get_solicitation_actions_for_order_response_name_convert = {
+    "_embedded": "_embedded",
+    "_links": "_links",
+    "errors": "errors",
+}
+
+_get_solicitation_actions_for_order_response_embedded_name_convert = {
+    "actions": "actions",
+}
+
+_get_solicitation_actions_for_order_response_links_name_convert = {
+    "actions": "actions",
+    "self": "self",
+}
+
+_link_object_name_convert = {
+    "href": "href",
+    "name": "name",
+}
+
+_schema_name_convert = {}
+
+_solicitations_action_name_convert = {
+    "name": "name",
+}
 
 
 class SolicitationsV1Client(BaseClient):
@@ -220,11 +354,9 @@ class SolicitationsV1Client(BaseClient):
             "POST",
             values,
             self._create_product_review_and_seller_feedback_solicitation_params,
+            self._create_product_review_and_seller_feedback_solicitation_responses,
         )
-        klass = self._create_product_review_and_seller_feedback_solicitation_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_product_review_and_seller_feedback_solicitation_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -273,11 +405,9 @@ class SolicitationsV1Client(BaseClient):
             "GET",
             values,
             self._get_solicitation_actions_for_order_params,
+            self._get_solicitation_actions_for_order_responses,
         )
-        klass = self._get_solicitation_actions_for_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_solicitation_actions_for_order_params = (  # name, param in
         ("amazonOrderId", "path"),

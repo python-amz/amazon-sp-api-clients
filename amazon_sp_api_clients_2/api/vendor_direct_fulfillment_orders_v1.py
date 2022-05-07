@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class AcknowledgementStatus:
     """
     Status of acknowledgement.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _acknowledgement_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AcknowledgementStatus(**data)
 
     code: Optional[str] = attrs.field()
     """
@@ -36,6 +41,12 @@ class Address:
     """
     Address of the party.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: str = attrs.field()
     """
@@ -120,6 +131,12 @@ class Decimal:
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Decimal(**data)
+
     pass
 
 
@@ -128,6 +145,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -153,6 +176,12 @@ class GetOrderResponse:
     The response schema for the getOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrderResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -167,6 +196,12 @@ class GetOrdersResponse:
     The response schema for the getOrders operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_orders_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetOrdersResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -180,6 +215,12 @@ class GiftDetails:
     """
     Gift details for the item.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _gift_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GiftDetails(**data)
 
     gift_message: Optional[str] = attrs.field()
     """
@@ -198,6 +239,12 @@ class ItemQuantity:
     Details of quantity ordered.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _item_quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ItemQuantity(**data)
+
     amount: Optional[int] = attrs.field()
     """
     Acknowledged quantity. This value should not be zero.
@@ -215,6 +262,12 @@ class Money:
     An amount of money, including units in the form of currency.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
+
     amount: Optional["Decimal"] = attrs.field()
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
@@ -228,6 +281,11 @@ class Money:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Order:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Order(**data)
 
     order_details: Optional["OrderDetails"] = attrs.field(
         default=None,
@@ -247,6 +305,12 @@ class OrderAcknowledgementItem:
     """
     Details of an individual order being acknowledged.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_acknowledgement_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderAcknowledgementItem(**data)
 
     acknowledgement_date: datetime = attrs.field()
     """
@@ -286,6 +350,12 @@ class OrderDetails:
     """
     Details of an order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderDetails(**data)
 
     bill_to_party: "PartyIdentification" = attrs.field()
 
@@ -337,6 +407,11 @@ class OrderDetails:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderDetailsTaxTotal:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_details_tax_total_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderDetailsTaxTotal(**data)
 
     tax_line_item: Optional[List["TaxDetails"]] = attrs.field()
     """
@@ -346,6 +421,11 @@ class OrderDetailsTaxTotal:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItem:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItem(**data)
 
     buyer_product_identifier: Optional[str] = attrs.field(
         default=None,
@@ -414,6 +494,11 @@ class OrderItem:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderItemAcknowledgement:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_item_acknowledgement_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItemAcknowledgement(**data)
 
     acknowledged_quantity: "ItemQuantity" = attrs.field()
     """
@@ -446,6 +531,12 @@ class OrderItemTaxDetails:
     Total tax details for the line item.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_item_tax_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderItemTaxDetails(**data)
+
     tax_line_item: Optional[List["TaxDetails"]] = attrs.field()
     """
     A list of tax line items.
@@ -454,6 +545,11 @@ class OrderItemTaxDetails:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class OrderList:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _order_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return OrderList(**data)
 
     orders: Optional[List["Order"]] = attrs.field()
 
@@ -462,6 +558,11 @@ class OrderList:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Pagination:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _pagination_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Pagination(**data)
 
     next_token: Optional[str] = attrs.field()
     """
@@ -471,6 +572,11 @@ class Pagination:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PartyIdentification:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _party_identification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PartyIdentification(**data)
 
     address: Optional["Address"] = attrs.field(
         default=None,
@@ -497,6 +603,12 @@ class ScheduledDeliveryShipment:
     """
     Dates for the scheduled delivery shipments.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _scheduled_delivery_shipment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ScheduledDeliveryShipment(**data)
 
     earliest_nominated_delivery_date: Optional[datetime] = attrs.field()
     """
@@ -526,6 +638,12 @@ class ShipmentDates:
     Shipment dates.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_dates_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentDates(**data)
+
     promised_delivery_date: Optional[datetime] = attrs.field(
         default=None,
     )
@@ -550,6 +668,12 @@ class ShipmentDetails:
     """
     Shipment details required for the shipment.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentDetails(**data)
 
     is_gift: Optional[bool] = attrs.field(
         default=None,
@@ -597,6 +721,12 @@ class SubmitAcknowledgementRequest:
     The request schema for the submitAcknowledgement operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_acknowledgement_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitAcknowledgementRequest(**data)
+
     order_acknowledgements: Optional[List["OrderAcknowledgementItem"]] = attrs.field()
     """
     A list of one or more purchase orders.
@@ -609,6 +739,12 @@ class SubmitAcknowledgementResponse:
     The response schema for the submitAcknowledgement operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_acknowledgement_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitAcknowledgementResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -619,6 +755,11 @@ class SubmitAcknowledgementResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TaxDetails:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxDetails(**data)
 
     tax_amount: "Money" = attrs.field()
     """
@@ -663,6 +804,12 @@ class TaxRegistrationDetails:
     Tax registration details of the entity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_registration_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxRegistrationDetails(**data)
+
     tax_registration_address: Optional["Address"] = attrs.field(
         default=None,
     )
@@ -692,11 +839,189 @@ class TaxRegistrationDetails:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class TransactionId:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _transaction_id_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TransactionId(**data)
 
     transaction_id: Optional[str] = attrs.field()
     """
     GUID assigned by Amazon to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """
+
+
+_acknowledgement_status_name_convert = {
+    "code": "code",
+    "description": "description",
+}
+
+_address_name_convert = {
+    "addressLine1": "address_line1",
+    "addressLine2": "address_line2",
+    "addressLine3": "address_line3",
+    "attention": "attention",
+    "city": "city",
+    "countryCode": "country_code",
+    "county": "county",
+    "district": "district",
+    "name": "name",
+    "phone": "phone",
+    "postalCode": "postal_code",
+    "stateOrRegion": "state_or_region",
+}
+
+_decimal_name_convert = {}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_order_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_orders_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_gift_details_name_convert = {
+    "giftMessage": "gift_message",
+    "giftWrapId": "gift_wrap_id",
+}
+
+_item_quantity_name_convert = {
+    "amount": "amount",
+    "unitOfMeasure": "unit_of_measure",
+}
+
+_money_name_convert = {
+    "amount": "amount",
+    "currencyCode": "currency_code",
+}
+
+_order_name_convert = {
+    "orderDetails": "order_details",
+    "purchaseOrderNumber": "purchase_order_number",
+}
+
+_order_acknowledgement_item_name_convert = {
+    "acknowledgementDate": "acknowledgement_date",
+    "acknowledgementStatus": "acknowledgement_status",
+    "itemAcknowledgements": "item_acknowledgements",
+    "purchaseOrderNumber": "purchase_order_number",
+    "sellingParty": "selling_party",
+    "shipFromParty": "ship_from_party",
+    "vendorOrderNumber": "vendor_order_number",
+}
+
+_order_details_name_convert = {
+    "billToParty": "bill_to_party",
+    "customerOrderNumber": "customer_order_number",
+    "items": "items",
+    "orderDate": "order_date",
+    "orderStatus": "order_status",
+    "sellingParty": "selling_party",
+    "shipFromParty": "ship_from_party",
+    "shipToParty": "ship_to_party",
+    "shipmentDetails": "shipment_details",
+    "taxTotal": "tax_total",
+}
+
+_order_details_tax_total_name_convert = {
+    "taxLineItem": "tax_line_item",
+}
+
+_order_item_name_convert = {
+    "buyerProductIdentifier": "buyer_product_identifier",
+    "giftDetails": "gift_details",
+    "itemSequenceNumber": "item_sequence_number",
+    "netPrice": "net_price",
+    "orderedQuantity": "ordered_quantity",
+    "scheduledDeliveryShipment": "scheduled_delivery_shipment",
+    "taxDetails": "tax_details",
+    "title": "title",
+    "totalPrice": "total_price",
+    "vendorProductIdentifier": "vendor_product_identifier",
+}
+
+_order_item_acknowledgement_name_convert = {
+    "acknowledgedQuantity": "acknowledged_quantity",
+    "buyerProductIdentifier": "buyer_product_identifier",
+    "itemSequenceNumber": "item_sequence_number",
+    "vendorProductIdentifier": "vendor_product_identifier",
+}
+
+_order_item_tax_details_name_convert = {
+    "taxLineItem": "tax_line_item",
+}
+
+_order_list_name_convert = {
+    "orders": "orders",
+    "pagination": "pagination",
+}
+
+_pagination_name_convert = {
+    "nextToken": "next_token",
+}
+
+_party_identification_name_convert = {
+    "address": "address",
+    "partyId": "party_id",
+    "taxInfo": "tax_info",
+}
+
+_scheduled_delivery_shipment_name_convert = {
+    "earliestNominatedDeliveryDate": "earliest_nominated_delivery_date",
+    "latestNominatedDeliveryDate": "latest_nominated_delivery_date",
+    "scheduledDeliveryServiceType": "scheduled_delivery_service_type",
+}
+
+_shipment_dates_name_convert = {
+    "promisedDeliveryDate": "promised_delivery_date",
+    "requiredShipDate": "required_ship_date",
+}
+
+_shipment_details_name_convert = {
+    "isGift": "is_gift",
+    "isPriorityShipment": "is_priority_shipment",
+    "isPslipRequired": "is_pslip_required",
+    "isScheduledDeliveryShipment": "is_scheduled_delivery_shipment",
+    "messageToCustomer": "message_to_customer",
+    "shipMethod": "ship_method",
+    "shipmentDates": "shipment_dates",
+}
+
+_submit_acknowledgement_request_name_convert = {
+    "orderAcknowledgements": "order_acknowledgements",
+}
+
+_submit_acknowledgement_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_tax_details_name_convert = {
+    "taxAmount": "tax_amount",
+    "taxRate": "tax_rate",
+    "taxableAmount": "taxable_amount",
+    "type": "type",
+}
+
+_tax_registration_details_name_convert = {
+    "taxRegistrationAddress": "tax_registration_address",
+    "taxRegistrationMessages": "tax_registration_messages",
+    "taxRegistrationNumber": "tax_registration_number",
+    "taxRegistrationType": "tax_registration_type",
+}
+
+_transaction_id_name_convert = {
+    "transactionId": "transaction_id",
+}
 
 
 class VendorDirectFulfillmentOrdersV1Client(BaseClient):
@@ -726,11 +1051,9 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
             "GET",
             values,
             self._get_order_params,
+            self._get_order_responses,
         )
-        klass = self._get_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
@@ -795,11 +1118,9 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
             "GET",
             values,
             self._get_orders_params,
+            self._get_orders_responses,
         )
-        klass = self._get_orders_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_orders_params = (  # name, param in
         ("shipFromPartyId", "query"),
@@ -849,11 +1170,9 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
             "POST",
             values,
             self._submit_acknowledgement_params,
+            self._submit_acknowledgement_responses,
         )
-        klass = self._submit_acknowledgement_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _submit_acknowledgement_params = (("orderAcknowledgements", "body"),)  # name, param in
 

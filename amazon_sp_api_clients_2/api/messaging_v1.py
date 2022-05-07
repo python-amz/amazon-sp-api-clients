@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Attachment:
     """
     Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _attachment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Attachment(**data)
 
     file_name: str = attrs.field()
     """
@@ -37,6 +42,12 @@ class CreateAmazonMotorsRequest:
     The request schema for the createAmazonMotors operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_amazon_motors_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateAmazonMotorsRequest(**data)
+
     attachments: Optional[List["Attachment"]] = attrs.field()
     """
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
@@ -49,6 +60,12 @@ class CreateAmazonMotorsResponse:
     The response schema for the createAmazonMotors operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_amazon_motors_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateAmazonMotorsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -60,6 +77,12 @@ class CreateConfirmCustomizationDetailsRequest:
     """
     The request schema for the confirmCustomizationDetails operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_customization_details_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmCustomizationDetailsRequest(**data)
 
     attachments: Optional[List["Attachment"]] = attrs.field()
     """
@@ -81,6 +104,12 @@ class CreateConfirmCustomizationDetailsResponse:
     The response schema for the confirmCustomizationDetails operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_customization_details_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmCustomizationDetailsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -92,6 +121,12 @@ class CreateConfirmDeliveryDetailsRequest:
     """
     The request schema for the createConfirmDeliveryDetails operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_delivery_details_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmDeliveryDetailsRequest(**data)
 
     text: Optional[str] = attrs.field()
     """
@@ -108,6 +143,12 @@ class CreateConfirmDeliveryDetailsResponse:
     The response schema for the createConfirmDeliveryDetails operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_delivery_details_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmDeliveryDetailsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -119,6 +160,12 @@ class CreateConfirmOrderDetailsRequest:
     """
     The request schema for the createConfirmOrderDetails operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_order_details_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmOrderDetailsRequest(**data)
 
     text: Optional[str] = attrs.field()
     """
@@ -135,6 +182,12 @@ class CreateConfirmOrderDetailsResponse:
     The response schema for the createConfirmOrderDetails operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_order_details_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmOrderDetailsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -146,6 +199,12 @@ class CreateConfirmServiceDetailsRequest:
     """
     The request schema for the createConfirmServiceDetails operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_service_details_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmServiceDetailsRequest(**data)
 
     text: Optional[str] = attrs.field()
     """
@@ -162,6 +221,12 @@ class CreateConfirmServiceDetailsResponse:
     The response schema for the createConfirmServiceDetails operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_confirm_service_details_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateConfirmServiceDetailsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -173,6 +238,12 @@ class CreateDigitalAccessKeyRequest:
     """
     The request schema for the createDigitalAccessKey operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_digital_access_key_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateDigitalAccessKeyRequest(**data)
 
     attachments: Optional[List["Attachment"]] = attrs.field()
     """
@@ -194,6 +265,12 @@ class CreateDigitalAccessKeyResponse:
     The response schema for the createDigitalAccessKey operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_digital_access_key_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateDigitalAccessKeyResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -205,6 +282,12 @@ class CreateLegalDisclosureRequest:
     """
     The request schema for the createLegalDisclosure operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_legal_disclosure_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateLegalDisclosureRequest(**data)
 
     attachments: Optional[List["Attachment"]] = attrs.field()
     """
@@ -218,6 +301,12 @@ class CreateLegalDisclosureResponse:
     The response schema for the createLegalDisclosure operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_legal_disclosure_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateLegalDisclosureResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -230,6 +319,12 @@ class CreateNegativeFeedbackRemovalResponse:
     The response schema for the createNegativeFeedbackRemoval operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_negative_feedback_removal_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateNegativeFeedbackRemovalResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -241,6 +336,12 @@ class CreateUnexpectedProblemRequest:
     """
     The request schema for the createUnexpectedProblem operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_unexpected_problem_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateUnexpectedProblemRequest(**data)
 
     text: Optional[str] = attrs.field()
     """
@@ -257,6 +358,12 @@ class CreateUnexpectedProblemResponse:
     The response schema for the createUnexpectedProblem operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_unexpected_problem_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateUnexpectedProblemResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -268,6 +375,12 @@ class CreateWarrantyRequest:
     """
     The request schema for the createWarranty operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_warranty_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateWarrantyRequest(**data)
 
     attachments: Optional[List["Attachment"]] = attrs.field()
     """
@@ -297,6 +410,12 @@ class CreateWarrantyResponse:
     The response schema for the createWarranty operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_warranty_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateWarrantyResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -308,6 +427,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -333,6 +458,12 @@ class GetAttributesResponse:
     The response schema for the GetAttributes operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_attributes_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetAttributesResponse(**data)
+
     buyer: Optional["GetAttributesResponseBuyer"] = attrs.field()
     """
     The list of attributes related to the buyer.
@@ -350,6 +481,12 @@ class GetAttributesResponseBuyer:
     The list of attributes related to the buyer.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_attributes_response_buyer_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetAttributesResponseBuyer(**data)
+
     locale: Optional[str] = attrs.field()
     """
     The buyer's language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".
@@ -361,6 +498,12 @@ class GetMessagingActionResponse:
     """
     Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_messaging_action_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMessagingActionResponse(**data)
 
     _embedded: Optional["GetMessagingActionResponseEmbedded"] = attrs.field()
 
@@ -379,12 +522,22 @@ class GetMessagingActionResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionResponseEmbedded:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_messaging_action_response_embedded_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMessagingActionResponseEmbedded(**data)
 
     schema: Optional["GetSchemaResponse"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionResponseLinks:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_messaging_action_response_links_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMessagingActionResponseLinks(**data)
 
     schema: "LinkObject" = attrs.field()
     """
@@ -403,6 +556,12 @@ class GetMessagingActionsForOrderResponse:
     The response schema for the getMessagingActionsForOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_messaging_actions_for_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMessagingActionsForOrderResponse(**data)
+
     _embedded: Optional["GetMessagingActionsForOrderResponseEmbedded"] = attrs.field()
 
     _links: Optional["GetMessagingActionsForOrderResponseLinks"] = attrs.field()
@@ -415,12 +574,22 @@ class GetMessagingActionsForOrderResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionsForOrderResponseEmbedded:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_messaging_actions_for_order_response_embedded_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMessagingActionsForOrderResponseEmbedded(**data)
 
     actions: List["GetMessagingActionResponse"] = attrs.field()
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetMessagingActionsForOrderResponseLinks:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_messaging_actions_for_order_response_links_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetMessagingActionsForOrderResponseLinks(**data)
 
     actions: List["LinkObject"] = attrs.field()
     """
@@ -435,6 +604,11 @@ class GetMessagingActionsForOrderResponseLinks:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponse:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_schema_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSchemaResponse(**data)
 
     _links: Optional["GetSchemaResponseLinks"] = attrs.field()
 
@@ -451,6 +625,11 @@ class GetSchemaResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetSchemaResponseLinks:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_schema_response_links_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetSchemaResponseLinks(**data)
 
     self: "LinkObject" = attrs.field()
     """
@@ -463,6 +642,12 @@ class LinkObject:
     """
     A Link object.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _link_object_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return LinkObject(**data)
 
     href: str = attrs.field()
     """
@@ -483,6 +668,12 @@ class MessagingAction:
     A simple object containing the name of the template.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _messaging_action_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MessagingAction(**data)
+
     name: str = attrs.field()
 
 
@@ -492,7 +683,166 @@ class Schema:
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _schema_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Schema(**data)
+
     pass
+
+
+_attachment_name_convert = {
+    "fileName": "file_name",
+    "uploadDestinationId": "upload_destination_id",
+}
+
+_create_amazon_motors_request_name_convert = {
+    "attachments": "attachments",
+}
+
+_create_amazon_motors_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_confirm_customization_details_request_name_convert = {
+    "attachments": "attachments",
+    "text": "text",
+}
+
+_create_confirm_customization_details_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_confirm_delivery_details_request_name_convert = {
+    "text": "text",
+}
+
+_create_confirm_delivery_details_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_confirm_order_details_request_name_convert = {
+    "text": "text",
+}
+
+_create_confirm_order_details_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_confirm_service_details_request_name_convert = {
+    "text": "text",
+}
+
+_create_confirm_service_details_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_digital_access_key_request_name_convert = {
+    "attachments": "attachments",
+    "text": "text",
+}
+
+_create_digital_access_key_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_legal_disclosure_request_name_convert = {
+    "attachments": "attachments",
+}
+
+_create_legal_disclosure_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_negative_feedback_removal_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_unexpected_problem_request_name_convert = {
+    "text": "text",
+}
+
+_create_unexpected_problem_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_warranty_request_name_convert = {
+    "attachments": "attachments",
+    "coverageEndDate": "coverage_end_date",
+    "coverageStartDate": "coverage_start_date",
+}
+
+_create_warranty_response_name_convert = {
+    "errors": "errors",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_attributes_response_name_convert = {
+    "buyer": "buyer",
+    "errors": "errors",
+}
+
+_get_attributes_response_buyer_name_convert = {
+    "locale": "locale",
+}
+
+_get_messaging_action_response_name_convert = {
+    "_embedded": "_embedded",
+    "_links": "_links",
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_messaging_action_response_embedded_name_convert = {
+    "schema": "schema",
+}
+
+_get_messaging_action_response_links_name_convert = {
+    "schema": "schema",
+    "self": "self",
+}
+
+_get_messaging_actions_for_order_response_name_convert = {
+    "_embedded": "_embedded",
+    "_links": "_links",
+    "errors": "errors",
+}
+
+_get_messaging_actions_for_order_response_embedded_name_convert = {
+    "actions": "actions",
+}
+
+_get_messaging_actions_for_order_response_links_name_convert = {
+    "actions": "actions",
+    "self": "self",
+}
+
+_get_schema_response_name_convert = {
+    "_links": "_links",
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_schema_response_links_name_convert = {
+    "self": "self",
+}
+
+_link_object_name_convert = {
+    "href": "href",
+    "name": "name",
+}
+
+_messaging_action_name_convert = {
+    "name": "name",
+}
+
+_schema_name_convert = {}
 
 
 class MessagingV1Client(BaseClient):
@@ -529,11 +879,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_amazon_motors_params,
+            self._create_amazon_motors_responses,
         )
-        klass = self._create_amazon_motors_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_amazon_motors_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -592,11 +940,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_warranty_params,
+            self._create_warranty_responses,
         )
-        klass = self._create_warranty_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_warranty_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -646,11 +992,9 @@ class MessagingV1Client(BaseClient):
             "GET",
             values,
             self._get_attributes_params,
+            self._get_attributes_responses,
         )
-        klass = self._get_attributes_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_attributes_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -705,11 +1049,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._confirm_customization_details_params,
+            self._confirm_customization_details_responses,
         )
-        klass = self._confirm_customization_details_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _confirm_customization_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -763,11 +1105,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_confirm_delivery_details_params,
+            self._create_confirm_delivery_details_responses,
         )
-        klass = self._create_confirm_delivery_details_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_confirm_delivery_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -820,11 +1160,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_confirm_order_details_params,
+            self._create_confirm_order_details_responses,
         )
-        klass = self._create_confirm_order_details_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_confirm_order_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -877,11 +1215,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_confirm_service_details_params,
+            self._create_confirm_service_details_responses,
         )
-        klass = self._create_confirm_service_details_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_confirm_service_details_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -937,11 +1273,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_digital_access_key_params,
+            self._create_digital_access_key_responses,
         )
-        klass = self._create_digital_access_key_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_digital_access_key_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -995,11 +1329,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_legal_disclosure_params,
+            self._create_legal_disclosure_responses,
         )
-        klass = self._create_legal_disclosure_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_legal_disclosure_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -1049,11 +1381,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_negative_feedback_removal_params,
+            self._create_negative_feedback_removal_responses,
         )
-        klass = self._create_negative_feedback_removal_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_negative_feedback_removal_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -1105,11 +1435,9 @@ class MessagingV1Client(BaseClient):
             "POST",
             values,
             self._create_unexpected_problem_params,
+            self._create_unexpected_problem_responses,
         )
-        klass = self._create_unexpected_problem_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_unexpected_problem_params = (  # name, param in
         ("amazonOrderId", "path"),
@@ -1159,11 +1487,9 @@ class MessagingV1Client(BaseClient):
             "GET",
             values,
             self._get_messaging_actions_for_order_params,
+            self._get_messaging_actions_for_order_responses,
         )
-        klass = self._get_messaging_actions_for_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_messaging_actions_for_order_params = (  # name, param in
         ("amazonOrderId", "path"),

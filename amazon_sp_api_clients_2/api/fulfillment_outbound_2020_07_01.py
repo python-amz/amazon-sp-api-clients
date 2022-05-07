@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class AdditionalLocationInfo:
     """
     Additional location information.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _additional_location_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AdditionalLocationInfo(**data)
 
     pass
 
@@ -28,6 +33,12 @@ class Address:
     """
     A physical address.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: str = attrs.field()
     """
@@ -98,6 +109,12 @@ class CODSettings:
     The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _codsettings_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CODSettings(**data)
+
     cod_charge: Optional["Money"] = attrs.field(
         default=None,
     )
@@ -138,6 +155,12 @@ class CancelFulfillmentOrderResponse:
     The response schema for the cancelFulfillmentOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _cancel_fulfillment_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CancelFulfillmentOrderResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -149,6 +172,12 @@ class CreateFulfillmentOrderItem:
     """
     Item information for creating a fulfillment order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_fulfillment_order_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFulfillmentOrderItem(**data)
 
     displayable_comment: Optional[str] = attrs.field(
         default=None,
@@ -225,6 +254,12 @@ class CreateFulfillmentOrderRequest:
     """
     The request body schema for the createFulfillmentOrder operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_fulfillment_order_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFulfillmentOrderRequest(**data)
 
     cod_settings: Optional["CODSettings"] = attrs.field(
         default=None,
@@ -331,6 +366,12 @@ class CreateFulfillmentOrderResponse:
     The response schema for the createFulfillmentOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_fulfillment_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFulfillmentOrderResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -342,6 +383,12 @@ class CreateFulfillmentReturnRequest:
     """
     The createFulfillmentReturn operation creates a fulfillment return for items that were fulfilled using the createFulfillmentOrder operation. For calls to createFulfillmentReturn, you must include ReturnReasonCode values returned by a previous call to the listReturnReasonCodes operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_fulfillment_return_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFulfillmentReturnRequest(**data)
 
     items: List["CreateReturnItem"] = attrs.field()
     """
@@ -355,6 +402,12 @@ class CreateFulfillmentReturnResponse:
     The response schema for the createFulfillmentReturn operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_fulfillment_return_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFulfillmentReturnResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -365,6 +418,11 @@ class CreateFulfillmentReturnResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class CreateFulfillmentReturnResult:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_fulfillment_return_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateFulfillmentReturnResult(**data)
 
     invalid_return_items: Optional[List["InvalidReturnItem"]] = attrs.field()
     """
@@ -387,6 +445,12 @@ class CreateReturnItem:
     """
     An item that Amazon accepted for return.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_return_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateReturnItem(**data)
 
     amazon_shipment_id: str = attrs.field()
     """
@@ -428,6 +492,12 @@ class CurrentStatus:
     The current delivery status of the package.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _current_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CurrentStatus(**data)
+
     pass
 
 
@@ -437,6 +507,12 @@ class Decimal:
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _decimal_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Decimal(**data)
+
     pass
 
 
@@ -445,6 +521,12 @@ class DeliveryWindow:
     """
     The time range within which a Scheduled Delivery fulfillment order should be delivered.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _delivery_window_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return DeliveryWindow(**data)
 
     end_date: "Timestamp" = attrs.field()
 
@@ -456,6 +538,12 @@ class Error:
     """
     Error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -481,6 +569,12 @@ class EventCode:
     The event code for the delivery event.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _event_code_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return EventCode(**data)
+
     pass
 
 
@@ -489,6 +583,12 @@ class Feature:
     """
     A Multi-Channel Fulfillment feature.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _feature_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Feature(**data)
 
     feature_description: str = attrs.field()
     """
@@ -514,6 +614,12 @@ class FeatureSettings:
     FeatureSettings allows users to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, use featureName as BLOCK_AMZL and featureFulfillmentPolicy as Required. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using BLOCK_AMZL in an order request will take precedence over your Seller Central account setting.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _feature_settings_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeatureSettings(**data)
+
     feature_fulfillment_policy: Optional[Union[Literal["Required"], Literal["NotRequired"]]] = attrs.field()
     """
     Specifies the policy to use when fulfilling an order.
@@ -530,6 +636,12 @@ class FeatureSku:
     """
     Information about an SKU, including the count available, identifiers, and a list of overlapping SKUs that share the same inventory pool.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _feature_sku_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FeatureSku(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -563,6 +675,12 @@ class Fee:
     Fee type and cost.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fee_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Fee(**data)
+
     amount: "Money" = attrs.field()
     """
     An amount of money, including units in the form of currency.
@@ -585,6 +703,12 @@ class FulfillmentAction:
     Specifies whether the fulfillment order should ship now or have an order hold put on it.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_action_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentAction(**data)
+
     pass
 
 
@@ -593,6 +717,12 @@ class FulfillmentOrder:
     """
     General information about a fulfillment order, including its status.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_order_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentOrder(**data)
 
     cod_settings: Optional["CODSettings"] = attrs.field(
         default=None,
@@ -684,6 +814,12 @@ class FulfillmentOrderItem:
     Item information for a fulfillment order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_order_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentOrderItem(**data)
+
     cancelled_quantity: "Quantity" = attrs.field()
     """
     The item quantity.
@@ -773,6 +909,12 @@ class FulfillmentOrderStatus:
     The current status of the fulfillment order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_order_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentOrderStatus(**data)
+
     pass
 
 
@@ -782,6 +924,12 @@ class FulfillmentPolicy:
     The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_policy_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentPolicy(**data)
+
     pass
 
 
@@ -790,6 +938,12 @@ class FulfillmentPreview:
     """
     Information about a fulfillment order preview, including delivery and fee information based on shipping method.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_preview_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentPreview(**data)
 
     estimated_fees: Optional[List["Fee"]] = attrs.field(
         default=None,
@@ -864,6 +1018,12 @@ class FulfillmentPreviewItem:
     Item information for a shipment in a fulfillment order preview.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_preview_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentPreviewItem(**data)
+
     estimated_shipping_weight: Optional["Weight"] = attrs.field(
         default=None,
     )
@@ -900,6 +1060,12 @@ class FulfillmentPreviewShipment:
     Delivery and item information for a shipment in a fulfillment order preview.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_preview_shipment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentPreviewShipment(**data)
+
     earliest_arrival_date: Optional["Timestamp"] = attrs.field(
         default=None,
     )
@@ -935,6 +1101,12 @@ class FulfillmentReturnItemStatus:
     Indicates if the return item has been processed by a fulfillment center.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_return_item_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentReturnItemStatus(**data)
+
     pass
 
 
@@ -943,6 +1115,12 @@ class FulfillmentShipment:
     """
     Delivery and item information for a shipment in a fulfillment order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_shipment_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentShipment(**data)
 
     amazon_shipment_id: str = attrs.field()
     """
@@ -995,6 +1173,12 @@ class FulfillmentShipmentItem:
     Item information for a shipment in a fulfillment order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_shipment_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentShipmentItem(**data)
+
     package_number: Optional[int] = attrs.field(
         default=None,
     )
@@ -1034,6 +1218,12 @@ class FulfillmentShipmentPackage:
     Package information for a shipment in a fulfillment order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fulfillment_shipment_package_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return FulfillmentShipmentPackage(**data)
+
     carrier_code: str = attrs.field()
     """
     Identifies the carrier who will deliver the shipment to the recipient.
@@ -1065,6 +1255,12 @@ class GetFeatureInventoryResponse:
     The breakdown of eligibility inventory by feature.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_feature_inventory_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeatureInventoryResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1081,6 +1277,12 @@ class GetFeatureInventoryResult:
     """
     The payload for the getEligibileInventory operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_feature_inventory_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeatureInventoryResult(**data)
 
     feature_name: str = attrs.field()
     """
@@ -1113,6 +1315,12 @@ class GetFeatureSkuResponse:
     The response schema for the getFeatureSKU operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_feature_sku_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeatureSkuResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1129,6 +1337,12 @@ class GetFeatureSkuResult:
     """
     The payload for the getFeatureSKU operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_feature_sku_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeatureSkuResult(**data)
 
     feature_name: str = attrs.field()
     """
@@ -1170,6 +1384,12 @@ class GetFeaturesResponse:
     The response schema for the getFeatures operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_features_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeaturesResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1187,6 +1407,12 @@ class GetFeaturesResult:
     The payload for the getFeatures operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_features_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFeaturesResult(**data)
+
     features: List["Feature"] = attrs.field()
     """
     An array of features.
@@ -1199,6 +1425,12 @@ class GetFulfillmentOrderResponse:
     The response schema for the getFulfillmentOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_fulfillment_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFulfillmentOrderResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1209,6 +1441,11 @@ class GetFulfillmentOrderResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class GetFulfillmentOrderResult:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_fulfillment_order_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFulfillmentOrderResult(**data)
 
     fulfillment_order: "FulfillmentOrder" = attrs.field()
     """
@@ -1244,6 +1481,12 @@ class GetFulfillmentPreviewItem:
     Item information for a fulfillment order preview.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_fulfillment_preview_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFulfillmentPreviewItem(**data)
+
     per_unit_declared_value: Optional["Money"] = attrs.field(
         default=None,
     )
@@ -1278,6 +1521,12 @@ class GetFulfillmentPreviewRequest:
     """
     The request body schema for the getFulfillmentPreview operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_fulfillment_preview_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFulfillmentPreviewRequest(**data)
 
     address: "Address" = attrs.field()
     """
@@ -1331,6 +1580,12 @@ class GetFulfillmentPreviewResponse:
     The response schema for the getFulfillmentPreview operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_fulfillment_preview_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFulfillmentPreviewResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1348,6 +1603,12 @@ class GetFulfillmentPreviewResult:
     A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and estimated ship dates and arrival dates.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_fulfillment_preview_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetFulfillmentPreviewResult(**data)
+
     fulfillment_previews: Optional[List["FulfillmentPreview"]] = attrs.field()
     """
     An array of fulfillment preview information.
@@ -1359,6 +1620,12 @@ class GetPackageTrackingDetailsResponse:
     """
     The response schema for the getPackageTrackingDetails operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_package_tracking_details_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetPackageTrackingDetailsResponse(**data)
 
     errors: Optional[List["Error"]] = attrs.field()
     """
@@ -1373,6 +1640,12 @@ class InvalidItemReason:
     """
     The reason that the item is invalid for return.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _invalid_item_reason_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InvalidItemReason(**data)
 
     description: str = attrs.field()
     """
@@ -1391,6 +1664,12 @@ class InvalidItemReasonCode:
     A code for why the item is invalid for return.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _invalid_item_reason_code_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InvalidItemReasonCode(**data)
+
     pass
 
 
@@ -1399,6 +1678,12 @@ class InvalidReturnItem:
     """
     An item that is invalid for return.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _invalid_return_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return InvalidReturnItem(**data)
 
     invalid_item_reason: "InvalidItemReason" = attrs.field()
     """
@@ -1422,6 +1707,12 @@ class ListAllFulfillmentOrdersResponse:
     The response schema for the listAllFulfillmentOrders operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_all_fulfillment_orders_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListAllFulfillmentOrdersResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1432,6 +1723,11 @@ class ListAllFulfillmentOrdersResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListAllFulfillmentOrdersResult:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_all_fulfillment_orders_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListAllFulfillmentOrdersResult(**data)
 
     fulfillment_orders: Optional[List["FulfillmentOrder"]] = attrs.field()
     """
@@ -1450,6 +1746,12 @@ class ListReturnReasonCodesResponse:
     The response schema for the listReturnReasonCodes operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_return_reason_codes_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListReturnReasonCodesResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1460,6 +1762,11 @@ class ListReturnReasonCodesResponse:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class ListReturnReasonCodesResult:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _list_return_reason_codes_result_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ListReturnReasonCodesResult(**data)
 
     reason_code_details: Optional[List["ReasonCodeDetails"]] = attrs.field()
     """
@@ -1472,6 +1779,12 @@ class Money:
     """
     An amount of money, including units in the form of currency.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
 
     currency_code: str = attrs.field()
     """
@@ -1486,6 +1799,11 @@ class Money:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class PackageTrackingDetails:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _package_tracking_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return PackageTrackingDetails(**data)
 
     additional_location_info: Optional["AdditionalLocationInfo"] = attrs.field(
         default=None,
@@ -1587,6 +1905,12 @@ class Quantity:
     The item quantity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _quantity_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Quantity(**data)
+
     pass
 
 
@@ -1595,6 +1919,12 @@ class ReasonCodeDetails:
     """
     A return reason code, a description, and an optional description translation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _reason_code_details_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReasonCodeDetails(**data)
 
     description: str = attrs.field()
     """
@@ -1619,6 +1949,12 @@ class ReturnAuthorization:
     """
     Return authorization information for items accepted for return.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _return_authorization_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReturnAuthorization(**data)
 
     amazon_rma_id: str = attrs.field()
     """
@@ -1651,6 +1987,12 @@ class ReturnItem:
     """
     An item that Amazon accepted for return.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _return_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReturnItem(**data)
 
     amazon_return_reason_code: Optional[str] = attrs.field(
         default=None,
@@ -1721,6 +2063,12 @@ class ReturnItemDisposition:
     The condition of the return item when received by an Amazon fulfillment center.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _return_item_disposition_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ReturnItemDisposition(**data)
+
     pass
 
 
@@ -1729,6 +2077,12 @@ class ScheduledDeliveryInfo:
     """
     Delivery information for a scheduled delivery.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _scheduled_delivery_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ScheduledDeliveryInfo(**data)
 
     delivery_time_zone: str = attrs.field()
     """
@@ -1747,11 +2101,22 @@ class ShippingSpeedCategory:
     The shipping method used for the fulfillment order.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipping_speed_category_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShippingSpeedCategory(**data)
+
     pass
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class Timestamp:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _timestamp_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Timestamp(**data)
 
     pass
 
@@ -1761,6 +2126,12 @@ class TrackingAddress:
     """
     Address information for tracking the package.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tracking_address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TrackingAddress(**data)
 
     city: str = attrs.field()
     """
@@ -1793,6 +2164,12 @@ class TrackingEvent:
     Information for tracking package deliveries.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tracking_event_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TrackingEvent(**data)
+
     event_address: "TrackingAddress" = attrs.field()
     """
     Address information for tracking the package.
@@ -1816,6 +2193,12 @@ class UnfulfillablePreviewItem:
     """
     Information about unfulfillable items in a fulfillment order preview.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _unfulfillable_preview_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UnfulfillablePreviewItem(**data)
 
     item_unfulfillable_reasons: Optional[List[str]] = attrs.field(
         default=None,
@@ -1848,6 +2231,12 @@ class UpdateFulfillmentOrderItem:
     """
     Item information for updating a fulfillment order.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_fulfillment_order_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateFulfillmentOrderItem(**data)
 
     displayable_comment: Optional[str] = attrs.field(
         default=None,
@@ -1927,6 +2316,11 @@ class UpdateFulfillmentOrderItem:
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
 class UpdateFulfillmentOrderRequest:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_fulfillment_order_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateFulfillmentOrderRequest(**data)
 
     destination_address: Optional["Address"] = attrs.field()
     """
@@ -1998,6 +2392,12 @@ class UpdateFulfillmentOrderResponse:
     The response schema for the updateFulfillmentOrder operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _update_fulfillment_order_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return UpdateFulfillmentOrderResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -2010,6 +2410,12 @@ class Weight:
     The weight.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _weight_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Weight(**data)
+
     unit: Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]] = attrs.field()
     """
     The unit of weight.
@@ -2019,6 +2425,463 @@ class Weight:
     """
     The weight value.
     """
+
+
+_additional_location_info_name_convert = {}
+
+_address_name_convert = {
+    "addressLine1": "address_line1",
+    "addressLine2": "address_line2",
+    "addressLine3": "address_line3",
+    "city": "city",
+    "countryCode": "country_code",
+    "districtOrCounty": "district_or_county",
+    "name": "name",
+    "phone": "phone",
+    "postalCode": "postal_code",
+    "stateOrRegion": "state_or_region",
+}
+
+_codsettings_name_convert = {
+    "codCharge": "cod_charge",
+    "codChargeTax": "cod_charge_tax",
+    "isCodRequired": "is_cod_required",
+    "shippingCharge": "shipping_charge",
+    "shippingChargeTax": "shipping_charge_tax",
+}
+
+_cancel_fulfillment_order_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_fulfillment_order_item_name_convert = {
+    "displayableComment": "displayable_comment",
+    "fulfillmentNetworkSku": "fulfillment_network_sku",
+    "giftMessage": "gift_message",
+    "perUnitDeclaredValue": "per_unit_declared_value",
+    "perUnitPrice": "per_unit_price",
+    "perUnitTax": "per_unit_tax",
+    "quantity": "quantity",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerSku": "seller_sku",
+}
+
+_create_fulfillment_order_request_name_convert = {
+    "codSettings": "cod_settings",
+    "deliveryWindow": "delivery_window",
+    "destinationAddress": "destination_address",
+    "displayableOrderComment": "displayable_order_comment",
+    "displayableOrderDate": "displayable_order_date",
+    "displayableOrderId": "displayable_order_id",
+    "featureConstraints": "feature_constraints",
+    "fulfillmentAction": "fulfillment_action",
+    "fulfillmentPolicy": "fulfillment_policy",
+    "items": "items",
+    "marketplaceId": "marketplace_id",
+    "notificationEmails": "notification_emails",
+    "sellerFulfillmentOrderId": "seller_fulfillment_order_id",
+    "shipFromCountryCode": "ship_from_country_code",
+    "shippingSpeedCategory": "shipping_speed_category",
+}
+
+_create_fulfillment_order_response_name_convert = {
+    "errors": "errors",
+}
+
+_create_fulfillment_return_request_name_convert = {
+    "items": "items",
+}
+
+_create_fulfillment_return_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_create_fulfillment_return_result_name_convert = {
+    "invalidReturnItems": "invalid_return_items",
+    "returnAuthorizations": "return_authorizations",
+    "returnItems": "return_items",
+}
+
+_create_return_item_name_convert = {
+    "amazonShipmentId": "amazon_shipment_id",
+    "returnComment": "return_comment",
+    "returnReasonCode": "return_reason_code",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerReturnItemId": "seller_return_item_id",
+}
+
+_current_status_name_convert = {}
+
+_decimal_name_convert = {}
+
+_delivery_window_name_convert = {
+    "endDate": "end_date",
+    "startDate": "start_date",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_event_code_name_convert = {}
+
+_feature_name_convert = {
+    "featureDescription": "feature_description",
+    "featureName": "feature_name",
+    "sellerEligible": "seller_eligible",
+}
+
+_feature_settings_name_convert = {
+    "featureFulfillmentPolicy": "feature_fulfillment_policy",
+    "featureName": "feature_name",
+}
+
+_feature_sku_name_convert = {
+    "asin": "asin",
+    "fnSku": "fn_sku",
+    "overlappingSkus": "overlapping_skus",
+    "sellerSku": "seller_sku",
+    "skuCount": "sku_count",
+}
+
+_fee_name_convert = {
+    "amount": "amount",
+    "name": "name",
+}
+
+_fulfillment_action_name_convert = {}
+
+_fulfillment_order_name_convert = {
+    "codSettings": "cod_settings",
+    "deliveryWindow": "delivery_window",
+    "destinationAddress": "destination_address",
+    "displayableOrderComment": "displayable_order_comment",
+    "displayableOrderDate": "displayable_order_date",
+    "displayableOrderId": "displayable_order_id",
+    "featureConstraints": "feature_constraints",
+    "fulfillmentAction": "fulfillment_action",
+    "fulfillmentOrderStatus": "fulfillment_order_status",
+    "fulfillmentPolicy": "fulfillment_policy",
+    "marketplaceId": "marketplace_id",
+    "notificationEmails": "notification_emails",
+    "receivedDate": "received_date",
+    "sellerFulfillmentOrderId": "seller_fulfillment_order_id",
+    "shippingSpeedCategory": "shipping_speed_category",
+    "statusUpdatedDate": "status_updated_date",
+}
+
+_fulfillment_order_item_name_convert = {
+    "cancelledQuantity": "cancelled_quantity",
+    "displayableComment": "displayable_comment",
+    "estimatedArrivalDate": "estimated_arrival_date",
+    "estimatedShipDate": "estimated_ship_date",
+    "fulfillmentNetworkSku": "fulfillment_network_sku",
+    "giftMessage": "gift_message",
+    "orderItemDisposition": "order_item_disposition",
+    "perUnitDeclaredValue": "per_unit_declared_value",
+    "perUnitPrice": "per_unit_price",
+    "perUnitTax": "per_unit_tax",
+    "quantity": "quantity",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerSku": "seller_sku",
+    "unfulfillableQuantity": "unfulfillable_quantity",
+}
+
+_fulfillment_order_status_name_convert = {}
+
+_fulfillment_policy_name_convert = {}
+
+_fulfillment_preview_name_convert = {
+    "estimatedFees": "estimated_fees",
+    "estimatedShippingWeight": "estimated_shipping_weight",
+    "featureConstraints": "feature_constraints",
+    "fulfillmentPreviewShipments": "fulfillment_preview_shipments",
+    "isCODCapable": "is_codcapable",
+    "isFulfillable": "is_fulfillable",
+    "marketplaceId": "marketplace_id",
+    "orderUnfulfillableReasons": "order_unfulfillable_reasons",
+    "scheduledDeliveryInfo": "scheduled_delivery_info",
+    "shippingSpeedCategory": "shipping_speed_category",
+    "unfulfillablePreviewItems": "unfulfillable_preview_items",
+}
+
+_fulfillment_preview_item_name_convert = {
+    "estimatedShippingWeight": "estimated_shipping_weight",
+    "quantity": "quantity",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerSku": "seller_sku",
+    "shippingWeightCalculationMethod": "shipping_weight_calculation_method",
+}
+
+_fulfillment_preview_shipment_name_convert = {
+    "earliestArrivalDate": "earliest_arrival_date",
+    "earliestShipDate": "earliest_ship_date",
+    "fulfillmentPreviewItems": "fulfillment_preview_items",
+    "latestArrivalDate": "latest_arrival_date",
+    "latestShipDate": "latest_ship_date",
+    "shippingNotes": "shipping_notes",
+}
+
+_fulfillment_return_item_status_name_convert = {}
+
+_fulfillment_shipment_name_convert = {
+    "amazonShipmentId": "amazon_shipment_id",
+    "estimatedArrivalDate": "estimated_arrival_date",
+    "fulfillmentCenterId": "fulfillment_center_id",
+    "fulfillmentShipmentItem": "fulfillment_shipment_item",
+    "fulfillmentShipmentPackage": "fulfillment_shipment_package",
+    "fulfillmentShipmentStatus": "fulfillment_shipment_status",
+    "shippingDate": "shipping_date",
+    "shippingNotes": "shipping_notes",
+}
+
+_fulfillment_shipment_item_name_convert = {
+    "packageNumber": "package_number",
+    "quantity": "quantity",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerSku": "seller_sku",
+    "serialNumber": "serial_number",
+}
+
+_fulfillment_shipment_package_name_convert = {
+    "carrierCode": "carrier_code",
+    "estimatedArrivalDate": "estimated_arrival_date",
+    "packageNumber": "package_number",
+    "trackingNumber": "tracking_number",
+}
+
+_get_feature_inventory_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_feature_inventory_result_name_convert = {
+    "featureName": "feature_name",
+    "featureSkus": "feature_skus",
+    "marketplaceId": "marketplace_id",
+    "nextToken": "next_token",
+}
+
+_get_feature_sku_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_feature_sku_result_name_convert = {
+    "featureName": "feature_name",
+    "ineligibleReasons": "ineligible_reasons",
+    "isEligible": "is_eligible",
+    "marketplaceId": "marketplace_id",
+    "skuInfo": "sku_info",
+}
+
+_get_features_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_features_result_name_convert = {
+    "features": "features",
+}
+
+_get_fulfillment_order_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_fulfillment_order_result_name_convert = {
+    "fulfillmentOrder": "fulfillment_order",
+    "fulfillmentOrderItems": "fulfillment_order_items",
+    "fulfillmentShipments": "fulfillment_shipments",
+    "returnAuthorizations": "return_authorizations",
+    "returnItems": "return_items",
+}
+
+_get_fulfillment_preview_item_name_convert = {
+    "perUnitDeclaredValue": "per_unit_declared_value",
+    "quantity": "quantity",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerSku": "seller_sku",
+}
+
+_get_fulfillment_preview_request_name_convert = {
+    "address": "address",
+    "featureConstraints": "feature_constraints",
+    "includeCODFulfillmentPreview": "include_codfulfillment_preview",
+    "includeDeliveryWindows": "include_delivery_windows",
+    "items": "items",
+    "marketplaceId": "marketplace_id",
+    "shippingSpeedCategories": "shipping_speed_categories",
+}
+
+_get_fulfillment_preview_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_fulfillment_preview_result_name_convert = {
+    "fulfillmentPreviews": "fulfillment_previews",
+}
+
+_get_package_tracking_details_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_invalid_item_reason_name_convert = {
+    "description": "description",
+    "invalidItemReasonCode": "invalid_item_reason_code",
+}
+
+_invalid_item_reason_code_name_convert = {}
+
+_invalid_return_item_name_convert = {
+    "invalidItemReason": "invalid_item_reason",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerReturnItemId": "seller_return_item_id",
+}
+
+_list_all_fulfillment_orders_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_list_all_fulfillment_orders_result_name_convert = {
+    "fulfillmentOrders": "fulfillment_orders",
+    "nextToken": "next_token",
+}
+
+_list_return_reason_codes_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_list_return_reason_codes_result_name_convert = {
+    "reasonCodeDetails": "reason_code_details",
+}
+
+_money_name_convert = {
+    "currencyCode": "currency_code",
+    "value": "value",
+}
+
+_package_tracking_details_name_convert = {
+    "additionalLocationInfo": "additional_location_info",
+    "carrierCode": "carrier_code",
+    "carrierPhoneNumber": "carrier_phone_number",
+    "carrierURL": "carrier_url",
+    "currentStatus": "current_status",
+    "currentStatusDescription": "current_status_description",
+    "customerTrackingLink": "customer_tracking_link",
+    "estimatedArrivalDate": "estimated_arrival_date",
+    "packageNumber": "package_number",
+    "shipDate": "ship_date",
+    "shipToAddress": "ship_to_address",
+    "signedForBy": "signed_for_by",
+    "trackingEvents": "tracking_events",
+    "trackingNumber": "tracking_number",
+}
+
+_quantity_name_convert = {}
+
+_reason_code_details_name_convert = {
+    "description": "description",
+    "returnReasonCode": "return_reason_code",
+    "translatedDescription": "translated_description",
+}
+
+_return_authorization_name_convert = {
+    "amazonRmaId": "amazon_rma_id",
+    "fulfillmentCenterId": "fulfillment_center_id",
+    "returnAuthorizationId": "return_authorization_id",
+    "returnToAddress": "return_to_address",
+    "rmaPageURL": "rma_page_url",
+}
+
+_return_item_name_convert = {
+    "amazonReturnReasonCode": "amazon_return_reason_code",
+    "amazonShipmentId": "amazon_shipment_id",
+    "fulfillmentCenterId": "fulfillment_center_id",
+    "returnAuthorizationId": "return_authorization_id",
+    "returnComment": "return_comment",
+    "returnReceivedCondition": "return_received_condition",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerReturnItemId": "seller_return_item_id",
+    "sellerReturnReasonCode": "seller_return_reason_code",
+    "status": "status",
+    "statusChangedDate": "status_changed_date",
+}
+
+_return_item_disposition_name_convert = {}
+
+_scheduled_delivery_info_name_convert = {
+    "deliveryTimeZone": "delivery_time_zone",
+    "deliveryWindows": "delivery_windows",
+}
+
+_shipping_speed_category_name_convert = {}
+
+_timestamp_name_convert = {}
+
+_tracking_address_name_convert = {
+    "city": "city",
+    "country": "country",
+    "state": "state",
+}
+
+_tracking_event_name_convert = {
+    "eventAddress": "event_address",
+    "eventCode": "event_code",
+    "eventDate": "event_date",
+    "eventDescription": "event_description",
+}
+
+_unfulfillable_preview_item_name_convert = {
+    "itemUnfulfillableReasons": "item_unfulfillable_reasons",
+    "quantity": "quantity",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerSku": "seller_sku",
+}
+
+_update_fulfillment_order_item_name_convert = {
+    "displayableComment": "displayable_comment",
+    "fulfillmentNetworkSku": "fulfillment_network_sku",
+    "giftMessage": "gift_message",
+    "orderItemDisposition": "order_item_disposition",
+    "perUnitDeclaredValue": "per_unit_declared_value",
+    "perUnitPrice": "per_unit_price",
+    "perUnitTax": "per_unit_tax",
+    "quantity": "quantity",
+    "sellerFulfillmentOrderItemId": "seller_fulfillment_order_item_id",
+    "sellerSku": "seller_sku",
+}
+
+_update_fulfillment_order_request_name_convert = {
+    "destinationAddress": "destination_address",
+    "displayableOrderComment": "displayable_order_comment",
+    "displayableOrderDate": "displayable_order_date",
+    "displayableOrderId": "displayable_order_id",
+    "featureConstraints": "feature_constraints",
+    "fulfillmentAction": "fulfillment_action",
+    "fulfillmentPolicy": "fulfillment_policy",
+    "items": "items",
+    "marketplaceId": "marketplace_id",
+    "notificationEmails": "notification_emails",
+    "shipFromCountryCode": "ship_from_country_code",
+    "shippingSpeedCategory": "shipping_speed_category",
+}
+
+_update_fulfillment_order_response_name_convert = {
+    "errors": "errors",
+}
+
+_weight_name_convert = {
+    "unit": "unit",
+    "value": "value",
+}
 
 
 class FulfillmentOutbound20200701Client(BaseClient):
@@ -2047,11 +2910,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "PUT",
             values,
             self._cancel_fulfillment_order_params,
+            self._cancel_fulfillment_order_responses,
         )
-        klass = self._cancel_fulfillment_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
@@ -2138,11 +2999,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "POST",
             values,
             self._create_fulfillment_order_params,
+            self._create_fulfillment_order_responses,
         )
-        klass = self._create_fulfillment_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_fulfillment_order_params = (  # name, param in
         ("codSettings", "body"),
@@ -2203,11 +3062,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "PUT",
             values,
             self._create_fulfillment_return_params,
+            self._create_fulfillment_return_responses,
         )
-        klass = self._create_fulfillment_return_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_fulfillment_return_params = (  # name, param in
         ("sellerFulfillmentOrderId", "path"),
@@ -2258,11 +3115,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "GET",
             values,
             self._get_feature_inventory_params,
+            self._get_feature_inventory_responses,
         )
-        klass = self._get_feature_inventory_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_feature_inventory_params = (  # name, param in
         ("marketplaceId", "query"),
@@ -2314,11 +3169,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "GET",
             values,
             self._get_feature_sku_params,
+            self._get_feature_sku_responses,
         )
-        klass = self._get_feature_sku_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_feature_sku_params = (  # name, param in
         ("marketplaceId", "query"),
@@ -2362,11 +3215,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "GET",
             values,
             self._get_features_params,
+            self._get_features_responses,
         )
-        klass = self._get_features_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_features_params = (("marketplaceId", "query"),)  # name, param in
 
@@ -2406,11 +3257,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "GET",
             values,
             self._get_fulfillment_order_params,
+            self._get_fulfillment_order_responses,
         )
-        klass = self._get_fulfillment_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
@@ -2473,11 +3322,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "POST",
             values,
             self._get_fulfillment_preview_params,
+            self._get_fulfillment_preview_responses,
         )
-        klass = self._get_fulfillment_preview_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_fulfillment_preview_params = (  # name, param in
         ("address", "body"),
@@ -2525,11 +3372,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "GET",
             values,
             self._get_package_tracking_details_params,
+            self._get_package_tracking_details_responses,
         )
-        klass = self._get_package_tracking_details_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_package_tracking_details_params = (("packageNumber", "query"),)  # name, param in
 
@@ -2574,11 +3419,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "GET",
             values,
             self._list_all_fulfillment_orders_params,
+            self._list_all_fulfillment_orders_responses,
         )
-        klass = self._list_all_fulfillment_orders_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_all_fulfillment_orders_params = (  # name, param in
         ("queryStartDate", "query"),
@@ -2632,11 +3475,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "GET",
             values,
             self._list_return_reason_codes_params,
+            self._list_return_reason_codes_responses,
         )
-        klass = self._list_return_reason_codes_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _list_return_reason_codes_params = (  # name, param in
         ("sellerSku", "query"),
@@ -2721,11 +3562,9 @@ class FulfillmentOutbound20200701Client(BaseClient):
             "PUT",
             values,
             self._update_fulfillment_order_params,
+            self._update_fulfillment_order_responses,
         )
-        klass = self._update_fulfillment_order_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _update_fulfillment_order_params = (  # name, param in
         ("sellerFulfillmentOrderId", "path"),

@@ -13,7 +13,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -21,6 +20,12 @@ class CreateRestrictedDataTokenRequest:
     """
     The request schema for the createRestrictedDataToken operation.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_restricted_data_token_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateRestrictedDataTokenRequest(**data)
 
     restricted_resources: List["RestrictedResource"] = attrs.field()
     """
@@ -42,6 +47,12 @@ class CreateRestrictedDataTokenResponse:
     The response schema for the createRestrictedDataToken operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _create_restricted_data_token_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return CreateRestrictedDataTokenResponse(**data)
+
     expires_in: Optional[int] = attrs.field()
     """
     The lifetime of the Restricted Data Token, in seconds.
@@ -58,6 +69,12 @@ class Error:
     """
     An error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -83,6 +100,12 @@ class ErrorList:
     A list of error responses returned when a request is unsuccessful.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_list_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ErrorList(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
 
 
@@ -91,6 +114,12 @@ class RestrictedResource:
     """
     Model of a restricted resource.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _restricted_resource_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return RestrictedResource(**data)
 
     data_elements: Optional[List[str]] = attrs.field(
         default=None,
@@ -116,6 +145,33 @@ class RestrictedResource:
         - ```/mfn/v0/shipments/FBA1234ABC5D```. For getting an RDT for the getShipment operation of the Shipping API. For a specific shipment.
         - ```/mfn/v0/shipments/{shipmentId}```. For getting an RDT for the getShipment operation of the Shipping API. For any of a selling partner's shipments that you specify when you call the getShipment operation.
     """
+
+
+_create_restricted_data_token_request_name_convert = {
+    "restrictedResources": "restricted_resources",
+    "targetApplication": "target_application",
+}
+
+_create_restricted_data_token_response_name_convert = {
+    "expiresIn": "expires_in",
+    "restrictedDataToken": "restricted_data_token",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_error_list_name_convert = {
+    "errors": "errors",
+}
+
+_restricted_resource_name_convert = {
+    "dataElements": "data_elements",
+    "method": "method",
+    "path": "path",
+}
 
 
 class Tokens20210301Client(BaseClient):
@@ -151,11 +207,9 @@ class Tokens20210301Client(BaseClient):
             "POST",
             values,
             self._create_restricted_data_token_params,
+            self._create_restricted_data_token_responses,
         )
-        klass = self._create_restricted_data_token_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _create_restricted_data_token_params = (  # name, param in
         ("restrictedResources", "body"),

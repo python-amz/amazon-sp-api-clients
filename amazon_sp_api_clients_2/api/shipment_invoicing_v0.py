@@ -11,7 +11,6 @@ import attrs
 from ..utils.base_client import BaseClient
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
-import cattrs
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -19,6 +18,12 @@ class Address:
     """
     The shipping address details of the shipment.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Address(**data)
 
     address_line1: Optional[str] = attrs.field()
     """
@@ -87,6 +92,12 @@ class AddressTypeEnum:
     The shipping address type.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _address_type_enum_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return AddressTypeEnum(**data)
+
     pass
 
 
@@ -96,6 +107,12 @@ class Blob:
     Shipment invoice document content.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _blob_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Blob(**data)
+
     pass
 
 
@@ -104,6 +121,12 @@ class BuyerTaxInfo:
     """
     Tax information about the buyer.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _buyer_tax_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return BuyerTaxInfo(**data)
 
     company_legal_name: Optional[str] = attrs.field()
     """
@@ -126,6 +149,12 @@ class Error:
     """
     An error response returned when the request is unsuccessful.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _error_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Error(**data)
 
     code: str = attrs.field()
     """
@@ -151,6 +180,12 @@ class GetInvoiceStatusResponse:
     The response schema for the getInvoiceStatus operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_invoice_status_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetInvoiceStatusResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -168,6 +203,12 @@ class GetShipmentDetailsResponse:
     The response schema for the getShipmentDetails operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _get_shipment_details_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return GetShipmentDetailsResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -184,6 +225,12 @@ class MarketplaceTaxInfo:
     """
     Tax information about the marketplace.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _marketplace_tax_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return MarketplaceTaxInfo(**data)
 
     company_legal_name: Optional[str] = attrs.field()
     """
@@ -207,6 +254,12 @@ class Money:
     The currency type and amount.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _money_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return Money(**data)
+
     amount: Optional[str] = attrs.field()
     """
     The currency amount.
@@ -223,6 +276,12 @@ class ShipmentDetail:
     """
     The information required by a selling partner to issue a shipment invoice.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_detail_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentDetail(**data)
 
     amazon_order_id: Optional[str] = attrs.field()
     """
@@ -304,6 +363,12 @@ class ShipmentInvoiceStatus:
     The shipment invoice status.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_invoice_status_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentInvoiceStatus(**data)
+
     pass
 
 
@@ -312,6 +377,12 @@ class ShipmentInvoiceStatusInfo:
     """
     The shipment invoice status information.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_invoice_status_info_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentInvoiceStatusInfo(**data)
 
     amazon_shipment_id: Optional[str] = attrs.field()
     """
@@ -330,6 +401,12 @@ class ShipmentInvoiceStatusResponse:
     The shipment invoice status response.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_invoice_status_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentInvoiceStatusResponse(**data)
+
     shipments: Optional["ShipmentInvoiceStatusInfo"] = attrs.field()
     """
     The shipment invoice status information.
@@ -341,6 +418,12 @@ class ShipmentItem:
     """
     The shipment item information required by a seller to issue a shipment invoice.
     """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _shipment_item_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return ShipmentItem(**data)
 
     asin: Optional[str] = attrs.field()
     """
@@ -404,6 +487,12 @@ class SubmitInvoiceRequest:
     The request schema for the submitInvoice operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_invoice_request_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitInvoiceRequest(**data)
+
     content_md5value: str = attrs.field()
     """
     MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
@@ -428,6 +517,12 @@ class SubmitInvoiceResponse:
     The response schema for the submitInvoice operation.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _submit_invoice_response_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return SubmitInvoiceResponse(**data)
+
     errors: Optional[List["Error"]] = attrs.field()
     """
     A list of error responses returned when a request is unsuccessful.
@@ -440,6 +535,12 @@ class TaxClassification:
     The tax classification for the entity.
     """
 
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _tax_classification_name_convert
+        data = {name_convert[k]: v for k, v in data}
+        return TaxClassification(**data)
+
     name: Optional[str] = attrs.field()
     """
     The type of tax.
@@ -449,6 +550,116 @@ class TaxClassification:
     """
     The entity's tax identifier.
     """
+
+
+_address_name_convert = {
+    "AddressLine1": "address_line1",
+    "AddressLine2": "address_line2",
+    "AddressLine3": "address_line3",
+    "AddressType": "address_type",
+    "City": "city",
+    "CountryCode": "country_code",
+    "County": "county",
+    "District": "district",
+    "Name": "name",
+    "Phone": "phone",
+    "PostalCode": "postal_code",
+    "StateOrRegion": "state_or_region",
+}
+
+_address_type_enum_name_convert = {}
+
+_blob_name_convert = {}
+
+_buyer_tax_info_name_convert = {
+    "CompanyLegalName": "company_legal_name",
+    "TaxClassifications": "tax_classifications",
+    "TaxingRegion": "taxing_region",
+}
+
+_error_name_convert = {
+    "code": "code",
+    "details": "details",
+    "message": "message",
+}
+
+_get_invoice_status_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_get_shipment_details_response_name_convert = {
+    "errors": "errors",
+    "payload": "payload",
+}
+
+_marketplace_tax_info_name_convert = {
+    "CompanyLegalName": "company_legal_name",
+    "TaxClassifications": "tax_classifications",
+    "TaxingRegion": "taxing_region",
+}
+
+_money_name_convert = {
+    "Amount": "amount",
+    "CurrencyCode": "currency_code",
+}
+
+_shipment_detail_name_convert = {
+    "AmazonOrderId": "amazon_order_id",
+    "AmazonShipmentId": "amazon_shipment_id",
+    "BuyerCounty": "buyer_county",
+    "BuyerName": "buyer_name",
+    "BuyerTaxInfo": "buyer_tax_info",
+    "MarketplaceId": "marketplace_id",
+    "MarketplaceTaxInfo": "marketplace_tax_info",
+    "PaymentMethodDetails": "payment_method_details",
+    "PurchaseDate": "purchase_date",
+    "SellerDisplayName": "seller_display_name",
+    "SellerId": "seller_id",
+    "ShipmentItems": "shipment_items",
+    "ShippingAddress": "shipping_address",
+    "WarehouseId": "warehouse_id",
+}
+
+_shipment_invoice_status_name_convert = {}
+
+_shipment_invoice_status_info_name_convert = {
+    "AmazonShipmentId": "amazon_shipment_id",
+    "InvoiceStatus": "invoice_status",
+}
+
+_shipment_invoice_status_response_name_convert = {
+    "Shipments": "shipments",
+}
+
+_shipment_item_name_convert = {
+    "ASIN": "asin",
+    "GiftWrapPrice": "gift_wrap_price",
+    "ItemPrice": "item_price",
+    "OrderItemId": "order_item_id",
+    "PromotionDiscount": "promotion_discount",
+    "QuantityOrdered": "quantity_ordered",
+    "SellerSKU": "seller_sku",
+    "SerialNumbers": "serial_numbers",
+    "ShippingDiscount": "shipping_discount",
+    "ShippingPrice": "shipping_price",
+    "Title": "title",
+}
+
+_submit_invoice_request_name_convert = {
+    "ContentMD5Value": "content_md5value",
+    "InvoiceContent": "invoice_content",
+    "MarketplaceId": "marketplace_id",
+}
+
+_submit_invoice_response_name_convert = {
+    "errors": "errors",
+}
+
+_tax_classification_name_convert = {
+    "Name": "name",
+    "Value": "value",
+}
 
 
 class ShipmentInvoicingV0Client(BaseClient):
@@ -478,11 +689,9 @@ class ShipmentInvoicingV0Client(BaseClient):
             "GET",
             values,
             self._get_invoice_status_params,
+            self._get_invoice_status_responses,
         )
-        klass = self._get_invoice_status_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_invoice_status_params = (("shipmentId", "path"),)  # name, param in
 
@@ -524,11 +733,9 @@ class ShipmentInvoicingV0Client(BaseClient):
             "GET",
             values,
             self._get_shipment_details_params,
+            self._get_shipment_details_responses,
         )
-        klass = self._get_shipment_details_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _get_shipment_details_params = (("shipmentId", "path"),)  # name, param in
 
@@ -581,11 +788,9 @@ class ShipmentInvoicingV0Client(BaseClient):
             "POST",
             values,
             self._submit_invoice_params,
+            self._submit_invoice_responses,
         )
-        klass = self._submit_invoice_responses.get(response.status_code)
-        # noinspection PyArgumentList
-        obj = cattrs.structure(response.json(), klass)
-        return obj
+        return response
 
     _submit_invoice_params = (  # name, param in
         ("shipmentId", "path"),
