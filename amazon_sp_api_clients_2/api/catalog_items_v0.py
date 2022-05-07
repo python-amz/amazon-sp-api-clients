@@ -961,14 +961,14 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     _get_catalog_item_responses = {
-        200: GetCatalogItemResponse,
-        400: GetCatalogItemResponse,
-        401: GetCatalogItemResponse,
-        403: GetCatalogItemResponse,
-        404: GetCatalogItemResponse,
-        429: GetCatalogItemResponse,
-        500: GetCatalogItemResponse,
-        503: GetCatalogItemResponse,
+        (200, "application/json"): GetCatalogItemResponse,
+        (400, "application/json"): GetCatalogItemResponse,
+        (401, "application/json"): GetCatalogItemResponse,
+        (403, "application/json"): GetCatalogItemResponse,
+        (404, "application/json"): GetCatalogItemResponse,
+        (429, "application/json"): GetCatalogItemResponse,
+        (500, "application/json"): GetCatalogItemResponse,
+        (503, "application/json"): GetCatalogItemResponse,
     }
 
     def list_catalog_categories(
@@ -1017,14 +1017,14 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     _list_catalog_categories_responses = {
-        200: ListCatalogCategoriesResponse,
-        400: ListCatalogCategoriesResponse,
-        401: ListCatalogCategoriesResponse,
-        403: ListCatalogCategoriesResponse,
-        404: ListCatalogCategoriesResponse,
-        429: ListCatalogCategoriesResponse,
-        500: ListCatalogCategoriesResponse,
-        503: ListCatalogCategoriesResponse,
+        (200, "application/json"): ListCatalogCategoriesResponse,
+        (400, "application/json"): ListCatalogCategoriesResponse,
+        (401, "application/json"): ListCatalogCategoriesResponse,
+        (403, "application/json"): ListCatalogCategoriesResponse,
+        (404, "application/json"): ListCatalogCategoriesResponse,
+        (429, "application/json"): ListCatalogCategoriesResponse,
+        (500, "application/json"): ListCatalogCategoriesResponse,
+        (503, "application/json"): ListCatalogCategoriesResponse,
     }
 
     def list_catalog_items(
@@ -1097,12 +1097,12 @@ class CatalogItemsV0Client(BaseClient):
     )
 
     _list_catalog_items_responses = {
-        200: ListCatalogItemsResponse,
-        400: ListCatalogItemsResponse,
-        401: ListCatalogItemsResponse,
-        403: ListCatalogItemsResponse,
-        404: ListCatalogItemsResponse,
-        429: ListCatalogItemsResponse,
-        500: ListCatalogItemsResponse,
-        503: ListCatalogItemsResponse,
+        (200, "application/json"): ListCatalogItemsResponse,
+        (400, "application/json"): ListCatalogItemsResponse,
+        (401, "application/json"): ListCatalogItemsResponse,
+        (403, "application/json"): ListCatalogItemsResponse,
+        (404, "application/json"): ListCatalogItemsResponse,
+        (429, "application/json"): ListCatalogItemsResponse,
+        (500, "application/json"): ListCatalogItemsResponse,
+        (503, "application/json"): ListCatalogItemsResponse,
     }

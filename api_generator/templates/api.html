@@ -73,7 +73,7 @@ Args:
 
     _{{ operation.method_name }}_responses = {
     {% for response in operation.parsed_responses %}
-        {{ response.status_code }}: {{ response.type_hint }},
+        ({{ response.status_code }}, '{{ response.media_type }}'): {{ response.type_hint }},
     {% endfor %}
     }
 

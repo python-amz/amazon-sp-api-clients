@@ -1848,14 +1848,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _cancel_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
     _cancel_fulfillment_order_responses = {
-        200: CancelFulfillmentOrderResponse,
-        400: CancelFulfillmentOrderResponse,
-        401: CancelFulfillmentOrderResponse,
-        403: CancelFulfillmentOrderResponse,
-        404: CancelFulfillmentOrderResponse,
-        429: CancelFulfillmentOrderResponse,
-        500: CancelFulfillmentOrderResponse,
-        503: CancelFulfillmentOrderResponse,
+        (200, "application/json"): CancelFulfillmentOrderResponse,
+        (400, "application/json"): CancelFulfillmentOrderResponse,
+        (401, "application/json"): CancelFulfillmentOrderResponse,
+        (403, "application/json"): CancelFulfillmentOrderResponse,
+        (404, "application/json"): CancelFulfillmentOrderResponse,
+        (429, "application/json"): CancelFulfillmentOrderResponse,
+        (500, "application/json"): CancelFulfillmentOrderResponse,
+        (503, "application/json"): CancelFulfillmentOrderResponse,
     }
 
     def create_fulfillment_order(
@@ -1954,14 +1954,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _create_fulfillment_order_responses = {
-        200: CreateFulfillmentOrderResponse,
-        400: CreateFulfillmentOrderResponse,
-        401: CreateFulfillmentOrderResponse,
-        403: CreateFulfillmentOrderResponse,
-        404: CreateFulfillmentOrderResponse,
-        429: CreateFulfillmentOrderResponse,
-        500: CreateFulfillmentOrderResponse,
-        503: CreateFulfillmentOrderResponse,
+        (200, "application/json"): CreateFulfillmentOrderResponse,
+        (400, "application/json"): CreateFulfillmentOrderResponse,
+        (401, "application/json"): CreateFulfillmentOrderResponse,
+        (403, "application/json"): CreateFulfillmentOrderResponse,
+        (404, "application/json"): CreateFulfillmentOrderResponse,
+        (429, "application/json"): CreateFulfillmentOrderResponse,
+        (500, "application/json"): CreateFulfillmentOrderResponse,
+        (503, "application/json"): CreateFulfillmentOrderResponse,
     }
 
     def create_fulfillment_return(
@@ -2005,14 +2005,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _create_fulfillment_return_responses = {
-        200: CreateFulfillmentReturnResponse,
-        400: CreateFulfillmentReturnResponse,
-        401: CreateFulfillmentReturnResponse,
-        403: CreateFulfillmentReturnResponse,
-        404: CreateFulfillmentReturnResponse,
-        429: CreateFulfillmentReturnResponse,
-        500: CreateFulfillmentReturnResponse,
-        503: CreateFulfillmentReturnResponse,
+        (200, "application/json"): CreateFulfillmentReturnResponse,
+        (400, "application/json"): CreateFulfillmentReturnResponse,
+        (401, "application/json"): CreateFulfillmentReturnResponse,
+        (403, "application/json"): CreateFulfillmentReturnResponse,
+        (404, "application/json"): CreateFulfillmentReturnResponse,
+        (429, "application/json"): CreateFulfillmentReturnResponse,
+        (500, "application/json"): CreateFulfillmentReturnResponse,
+        (503, "application/json"): CreateFulfillmentReturnResponse,
     }
 
     def get_feature_inventory(
@@ -2060,14 +2060,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _get_feature_inventory_responses = {
-        200: GetFeatureInventoryResponse,
-        400: GetFeatureInventoryResponse,
-        401: GetFeatureInventoryResponse,
-        403: GetFeatureInventoryResponse,
-        404: GetFeatureInventoryResponse,
-        429: GetFeatureInventoryResponse,
-        500: GetFeatureInventoryResponse,
-        503: GetFeatureInventoryResponse,
+        (200, "application/json"): GetFeatureInventoryResponse,
+        (400, "application/json"): GetFeatureInventoryResponse,
+        (401, "application/json"): GetFeatureInventoryResponse,
+        (403, "application/json"): GetFeatureInventoryResponse,
+        (404, "application/json"): GetFeatureInventoryResponse,
+        (429, "application/json"): GetFeatureInventoryResponse,
+        (500, "application/json"): GetFeatureInventoryResponse,
+        (503, "application/json"): GetFeatureInventoryResponse,
     }
 
     def get_feature_sku(
@@ -2115,14 +2115,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _get_feature_sku_responses = {
-        200: GetFeatureSkuResponse,
-        400: GetFeatureSkuResponse,
-        401: GetFeatureSkuResponse,
-        403: GetFeatureSkuResponse,
-        404: GetFeatureSkuResponse,
-        429: GetFeatureSkuResponse,
-        500: GetFeatureSkuResponse,
-        503: GetFeatureSkuResponse,
+        (200, "application/json"): GetFeatureSkuResponse,
+        (400, "application/json"): GetFeatureSkuResponse,
+        (401, "application/json"): GetFeatureSkuResponse,
+        (403, "application/json"): GetFeatureSkuResponse,
+        (404, "application/json"): GetFeatureSkuResponse,
+        (429, "application/json"): GetFeatureSkuResponse,
+        (500, "application/json"): GetFeatureSkuResponse,
+        (503, "application/json"): GetFeatureSkuResponse,
     }
 
     def get_features(
@@ -2158,14 +2158,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _get_features_params = (("marketplaceId", "query"),)  # name, param in
 
     _get_features_responses = {
-        200: GetFeaturesResponse,
-        400: GetFeaturesResponse,
-        401: GetFeaturesResponse,
-        403: GetFeaturesResponse,
-        404: GetFeaturesResponse,
-        429: GetFeaturesResponse,
-        500: GetFeaturesResponse,
-        503: GetFeaturesResponse,
+        (200, "application/json"): GetFeaturesResponse,
+        (400, "application/json"): GetFeaturesResponse,
+        (401, "application/json"): GetFeaturesResponse,
+        (403, "application/json"): GetFeaturesResponse,
+        (404, "application/json"): GetFeaturesResponse,
+        (429, "application/json"): GetFeaturesResponse,
+        (500, "application/json"): GetFeaturesResponse,
+        (503, "application/json"): GetFeaturesResponse,
     }
 
     def get_fulfillment_order(
@@ -2201,14 +2201,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _get_fulfillment_order_params = (("sellerFulfillmentOrderId", "path"),)  # name, param in
 
     _get_fulfillment_order_responses = {
-        200: GetFulfillmentOrderResponse,
-        400: GetFulfillmentOrderResponse,
-        401: GetFulfillmentOrderResponse,
-        403: GetFulfillmentOrderResponse,
-        404: GetFulfillmentOrderResponse,
-        429: GetFulfillmentOrderResponse,
-        500: GetFulfillmentOrderResponse,
-        503: GetFulfillmentOrderResponse,
+        (200, "application/json"): GetFulfillmentOrderResponse,
+        (400, "application/json"): GetFulfillmentOrderResponse,
+        (401, "application/json"): GetFulfillmentOrderResponse,
+        (403, "application/json"): GetFulfillmentOrderResponse,
+        (404, "application/json"): GetFulfillmentOrderResponse,
+        (429, "application/json"): GetFulfillmentOrderResponse,
+        (500, "application/json"): GetFulfillmentOrderResponse,
+        (503, "application/json"): GetFulfillmentOrderResponse,
     }
 
     def get_fulfillment_preview(
@@ -2275,14 +2275,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _get_fulfillment_preview_responses = {
-        200: GetFulfillmentPreviewResponse,
-        400: GetFulfillmentPreviewResponse,
-        401: GetFulfillmentPreviewResponse,
-        403: GetFulfillmentPreviewResponse,
-        404: GetFulfillmentPreviewResponse,
-        429: GetFulfillmentPreviewResponse,
-        500: GetFulfillmentPreviewResponse,
-        503: GetFulfillmentPreviewResponse,
+        (200, "application/json"): GetFulfillmentPreviewResponse,
+        (400, "application/json"): GetFulfillmentPreviewResponse,
+        (401, "application/json"): GetFulfillmentPreviewResponse,
+        (403, "application/json"): GetFulfillmentPreviewResponse,
+        (404, "application/json"): GetFulfillmentPreviewResponse,
+        (429, "application/json"): GetFulfillmentPreviewResponse,
+        (500, "application/json"): GetFulfillmentPreviewResponse,
+        (503, "application/json"): GetFulfillmentPreviewResponse,
     }
 
     def get_package_tracking_details(
@@ -2318,14 +2318,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     _get_package_tracking_details_params = (("packageNumber", "query"),)  # name, param in
 
     _get_package_tracking_details_responses = {
-        200: GetPackageTrackingDetailsResponse,
-        400: GetPackageTrackingDetailsResponse,
-        401: GetPackageTrackingDetailsResponse,
-        403: GetPackageTrackingDetailsResponse,
-        404: GetPackageTrackingDetailsResponse,
-        429: GetPackageTrackingDetailsResponse,
-        500: GetPackageTrackingDetailsResponse,
-        503: GetPackageTrackingDetailsResponse,
+        (200, "application/json"): GetPackageTrackingDetailsResponse,
+        (400, "application/json"): GetPackageTrackingDetailsResponse,
+        (401, "application/json"): GetPackageTrackingDetailsResponse,
+        (403, "application/json"): GetPackageTrackingDetailsResponse,
+        (404, "application/json"): GetPackageTrackingDetailsResponse,
+        (429, "application/json"): GetPackageTrackingDetailsResponse,
+        (500, "application/json"): GetPackageTrackingDetailsResponse,
+        (503, "application/json"): GetPackageTrackingDetailsResponse,
     }
 
     def list_all_fulfillment_orders(
@@ -2369,14 +2369,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _list_all_fulfillment_orders_responses = {
-        200: ListAllFulfillmentOrdersResponse,
-        400: ListAllFulfillmentOrdersResponse,
-        401: ListAllFulfillmentOrdersResponse,
-        403: ListAllFulfillmentOrdersResponse,
-        404: ListAllFulfillmentOrdersResponse,
-        429: ListAllFulfillmentOrdersResponse,
-        500: ListAllFulfillmentOrdersResponse,
-        503: ListAllFulfillmentOrdersResponse,
+        (200, "application/json"): ListAllFulfillmentOrdersResponse,
+        (400, "application/json"): ListAllFulfillmentOrdersResponse,
+        (401, "application/json"): ListAllFulfillmentOrdersResponse,
+        (403, "application/json"): ListAllFulfillmentOrdersResponse,
+        (404, "application/json"): ListAllFulfillmentOrdersResponse,
+        (429, "application/json"): ListAllFulfillmentOrdersResponse,
+        (500, "application/json"): ListAllFulfillmentOrdersResponse,
+        (503, "application/json"): ListAllFulfillmentOrdersResponse,
     }
 
     def list_return_reason_codes(
@@ -2428,14 +2428,14 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _list_return_reason_codes_responses = {
-        200: ListReturnReasonCodesResponse,
-        400: ListReturnReasonCodesResponse,
-        401: ListReturnReasonCodesResponse,
-        403: ListReturnReasonCodesResponse,
-        404: ListReturnReasonCodesResponse,
-        429: ListReturnReasonCodesResponse,
-        500: ListReturnReasonCodesResponse,
-        503: ListReturnReasonCodesResponse,
+        (200, "application/json"): ListReturnReasonCodesResponse,
+        (400, "application/json"): ListReturnReasonCodesResponse,
+        (401, "application/json"): ListReturnReasonCodesResponse,
+        (403, "application/json"): ListReturnReasonCodesResponse,
+        (404, "application/json"): ListReturnReasonCodesResponse,
+        (429, "application/json"): ListReturnReasonCodesResponse,
+        (500, "application/json"): ListReturnReasonCodesResponse,
+        (503, "application/json"): ListReturnReasonCodesResponse,
     }
 
     def update_fulfillment_order(
@@ -2525,12 +2525,12 @@ class FulfillmentOutbound20200701Client(BaseClient):
     )
 
     _update_fulfillment_order_responses = {
-        200: UpdateFulfillmentOrderResponse,
-        400: UpdateFulfillmentOrderResponse,
-        401: UpdateFulfillmentOrderResponse,
-        403: UpdateFulfillmentOrderResponse,
-        404: UpdateFulfillmentOrderResponse,
-        429: UpdateFulfillmentOrderResponse,
-        500: UpdateFulfillmentOrderResponse,
-        503: UpdateFulfillmentOrderResponse,
+        (200, "application/json"): UpdateFulfillmentOrderResponse,
+        (400, "application/json"): UpdateFulfillmentOrderResponse,
+        (401, "application/json"): UpdateFulfillmentOrderResponse,
+        (403, "application/json"): UpdateFulfillmentOrderResponse,
+        (404, "application/json"): UpdateFulfillmentOrderResponse,
+        (429, "application/json"): UpdateFulfillmentOrderResponse,
+        (500, "application/json"): UpdateFulfillmentOrderResponse,
+        (503, "application/json"): UpdateFulfillmentOrderResponse,
     }

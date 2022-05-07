@@ -204,15 +204,15 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
     _generate_order_scenarios_params = (("orders", "body"),)  # name, param in
 
     _generate_order_scenarios_responses = {
-        202: TransactionReference,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (202, "application/json"): TransactionReference,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_order_scenarios(
@@ -240,13 +240,13 @@ class VendorDirectFulfillmentSandboxTestData20211028Client(BaseClient):
     _get_order_scenarios_params = (("transactionId", "path"),)  # name, param in
 
     _get_order_scenarios_responses = {
-        200: TransactionStatus,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): TransactionStatus,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }

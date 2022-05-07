@@ -1381,13 +1381,13 @@ class OrdersV0Client(BaseClient):
     _get_order_params = (("orderId", "path"),)  # name, param in
 
     _get_order_responses = {
-        200: GetOrderResponse,
-        400: GetOrderResponse,
-        403: GetOrderResponse,
-        404: GetOrderResponse,
-        429: GetOrderResponse,
-        500: GetOrderResponse,
-        503: GetOrderResponse,
+        (200, "application/json"): GetOrderResponse,
+        (400, "application/json"): GetOrderResponse,
+        (403, "application/json"): GetOrderResponse,
+        (404, "application/json"): GetOrderResponse,
+        (429, "application/json"): GetOrderResponse,
+        (500, "application/json"): GetOrderResponse,
+        (503, "application/json"): GetOrderResponse,
     }
 
     def get_order_address(
@@ -1424,13 +1424,13 @@ class OrdersV0Client(BaseClient):
     _get_order_address_params = (("orderId", "path"),)  # name, param in
 
     _get_order_address_responses = {
-        200: GetOrderAddressResponse,
-        400: GetOrderAddressResponse,
-        403: GetOrderAddressResponse,
-        404: GetOrderAddressResponse,
-        429: GetOrderAddressResponse,
-        500: GetOrderAddressResponse,
-        503: GetOrderAddressResponse,
+        (200, "application/json"): GetOrderAddressResponse,
+        (400, "application/json"): GetOrderAddressResponse,
+        (403, "application/json"): GetOrderAddressResponse,
+        (404, "application/json"): GetOrderAddressResponse,
+        (429, "application/json"): GetOrderAddressResponse,
+        (500, "application/json"): GetOrderAddressResponse,
+        (503, "application/json"): GetOrderAddressResponse,
     }
 
     def get_order_buyer_info(
@@ -1467,13 +1467,13 @@ class OrdersV0Client(BaseClient):
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
 
     _get_order_buyer_info_responses = {
-        200: GetOrderBuyerInfoResponse,
-        400: GetOrderBuyerInfoResponse,
-        403: GetOrderBuyerInfoResponse,
-        404: GetOrderBuyerInfoResponse,
-        429: GetOrderBuyerInfoResponse,
-        500: GetOrderBuyerInfoResponse,
-        503: GetOrderBuyerInfoResponse,
+        (200, "application/json"): GetOrderBuyerInfoResponse,
+        (400, "application/json"): GetOrderBuyerInfoResponse,
+        (403, "application/json"): GetOrderBuyerInfoResponse,
+        (404, "application/json"): GetOrderBuyerInfoResponse,
+        (429, "application/json"): GetOrderBuyerInfoResponse,
+        (500, "application/json"): GetOrderBuyerInfoResponse,
+        (503, "application/json"): GetOrderBuyerInfoResponse,
     }
 
     def get_order_items(
@@ -1520,13 +1520,13 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_order_items_responses = {
-        200: GetOrderItemsResponse,
-        400: GetOrderItemsResponse,
-        403: GetOrderItemsResponse,
-        404: GetOrderItemsResponse,
-        429: GetOrderItemsResponse,
-        500: GetOrderItemsResponse,
-        503: GetOrderItemsResponse,
+        (200, "application/json"): GetOrderItemsResponse,
+        (400, "application/json"): GetOrderItemsResponse,
+        (403, "application/json"): GetOrderItemsResponse,
+        (404, "application/json"): GetOrderItemsResponse,
+        (429, "application/json"): GetOrderItemsResponse,
+        (500, "application/json"): GetOrderItemsResponse,
+        (503, "application/json"): GetOrderItemsResponse,
     }
 
     def get_order_items_buyer_info(
@@ -1571,13 +1571,13 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_order_items_buyer_info_responses = {
-        200: GetOrderItemsBuyerInfoResponse,
-        400: GetOrderItemsBuyerInfoResponse,
-        403: GetOrderItemsBuyerInfoResponse,
-        404: GetOrderItemsBuyerInfoResponse,
-        429: GetOrderItemsBuyerInfoResponse,
-        500: GetOrderItemsBuyerInfoResponse,
-        503: GetOrderItemsBuyerInfoResponse,
+        (200, "application/json"): GetOrderItemsBuyerInfoResponse,
+        (400, "application/json"): GetOrderItemsBuyerInfoResponse,
+        (403, "application/json"): GetOrderItemsBuyerInfoResponse,
+        (404, "application/json"): GetOrderItemsBuyerInfoResponse,
+        (429, "application/json"): GetOrderItemsBuyerInfoResponse,
+        (500, "application/json"): GetOrderItemsBuyerInfoResponse,
+        (503, "application/json"): GetOrderItemsBuyerInfoResponse,
     }
 
     def get_order_regulated_info(
@@ -1614,13 +1614,13 @@ class OrdersV0Client(BaseClient):
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
 
     _get_order_regulated_info_responses = {
-        200: GetOrderRegulatedInfoResponse,
-        400: GetOrderRegulatedInfoResponse,
-        403: GetOrderRegulatedInfoResponse,
-        404: GetOrderRegulatedInfoResponse,
-        429: GetOrderRegulatedInfoResponse,
-        500: GetOrderRegulatedInfoResponse,
-        503: GetOrderRegulatedInfoResponse,
+        (200, "application/json"): GetOrderRegulatedInfoResponse,
+        (400, "application/json"): GetOrderRegulatedInfoResponse,
+        (403, "application/json"): GetOrderRegulatedInfoResponse,
+        (404, "application/json"): GetOrderRegulatedInfoResponse,
+        (429, "application/json"): GetOrderRegulatedInfoResponse,
+        (500, "application/json"): GetOrderRegulatedInfoResponse,
+        (503, "application/json"): GetOrderRegulatedInfoResponse,
     }
 
     def get_orders(
@@ -1726,13 +1726,13 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_orders_responses = {
-        200: GetOrdersResponse,
-        400: GetOrdersResponse,
-        403: GetOrdersResponse,
-        404: GetOrdersResponse,
-        429: GetOrdersResponse,
-        500: GetOrdersResponse,
-        503: GetOrdersResponse,
+        (200, "application/json"): GetOrdersResponse,
+        (400, "application/json"): GetOrdersResponse,
+        (403, "application/json"): GetOrdersResponse,
+        (404, "application/json"): GetOrdersResponse,
+        (429, "application/json"): GetOrdersResponse,
+        (500, "application/json"): GetOrdersResponse,
+        (503, "application/json"): GetOrdersResponse,
     }
 
     def update_shipment_status(
@@ -1776,14 +1776,14 @@ class OrdersV0Client(BaseClient):
     )
 
     _update_shipment_status_responses = {
-        400: UpdateShipmentStatusErrorResponse,
-        403: UpdateShipmentStatusErrorResponse,
-        404: UpdateShipmentStatusErrorResponse,
-        413: UpdateShipmentStatusErrorResponse,
-        415: UpdateShipmentStatusErrorResponse,
-        429: UpdateShipmentStatusErrorResponse,
-        500: UpdateShipmentStatusErrorResponse,
-        503: UpdateShipmentStatusErrorResponse,
+        (400, "application/json"): UpdateShipmentStatusErrorResponse,
+        (403, "application/json"): UpdateShipmentStatusErrorResponse,
+        (404, "application/json"): UpdateShipmentStatusErrorResponse,
+        (413, "application/json"): UpdateShipmentStatusErrorResponse,
+        (415, "application/json"): UpdateShipmentStatusErrorResponse,
+        (429, "application/json"): UpdateShipmentStatusErrorResponse,
+        (500, "application/json"): UpdateShipmentStatusErrorResponse,
+        (503, "application/json"): UpdateShipmentStatusErrorResponse,
     }
 
     def update_verification_status(
@@ -1828,12 +1828,12 @@ class OrdersV0Client(BaseClient):
     )
 
     _update_verification_status_responses = {
-        400: UpdateVerificationStatusErrorResponse,
-        403: UpdateVerificationStatusErrorResponse,
-        404: UpdateVerificationStatusErrorResponse,
-        413: UpdateVerificationStatusErrorResponse,
-        415: UpdateVerificationStatusErrorResponse,
-        429: UpdateVerificationStatusErrorResponse,
-        500: UpdateVerificationStatusErrorResponse,
-        503: UpdateVerificationStatusErrorResponse,
+        (400, "application/json"): UpdateVerificationStatusErrorResponse,
+        (403, "application/json"): UpdateVerificationStatusErrorResponse,
+        (404, "application/json"): UpdateVerificationStatusErrorResponse,
+        (413, "application/json"): UpdateVerificationStatusErrorResponse,
+        (415, "application/json"): UpdateVerificationStatusErrorResponse,
+        (429, "application/json"): UpdateVerificationStatusErrorResponse,
+        (500, "application/json"): UpdateVerificationStatusErrorResponse,
+        (503, "application/json"): UpdateVerificationStatusErrorResponse,
     }

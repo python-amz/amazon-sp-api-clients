@@ -187,13 +187,13 @@ class SalesV1Client(BaseClient):
     )
 
     _get_order_metrics_responses = {
-        200: GetOrderMetricsResponse,
-        400: GetOrderMetricsResponse,
-        403: GetOrderMetricsResponse,
-        404: GetOrderMetricsResponse,
-        413: GetOrderMetricsResponse,
-        415: GetOrderMetricsResponse,
-        429: GetOrderMetricsResponse,
-        500: GetOrderMetricsResponse,
-        503: GetOrderMetricsResponse,
+        (200, "application/json"): GetOrderMetricsResponse,
+        (400, "application/json"): GetOrderMetricsResponse,
+        (403, "application/json"): GetOrderMetricsResponse,
+        (404, "application/json"): GetOrderMetricsResponse,
+        (413, "application/json"): GetOrderMetricsResponse,
+        (415, "application/json"): GetOrderMetricsResponse,
+        (429, "application/json"): GetOrderMetricsResponse,
+        (500, "application/json"): GetOrderMetricsResponse,
+        (503, "application/json"): GetOrderMetricsResponse,
     }

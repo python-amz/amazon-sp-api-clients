@@ -373,14 +373,14 @@ class Reports20210630Client(BaseClient):
     _cancel_report_params = (("reportId", "path"),)  # name, param in
 
     _cancel_report_responses = {
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def cancel_report_schedule(
@@ -416,14 +416,14 @@ class Reports20210630Client(BaseClient):
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     _cancel_report_schedule_responses = {
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def create_report(
@@ -479,15 +479,15 @@ class Reports20210630Client(BaseClient):
     )
 
     _create_report_responses = {
-        202: CreateReportResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (202, "application/json"): CreateReportResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def create_report_schedule(
@@ -562,15 +562,15 @@ class Reports20210630Client(BaseClient):
     )
 
     _create_report_schedule_responses = {
-        201: CreateReportScheduleResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (201, "application/json"): CreateReportScheduleResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_report(
@@ -606,15 +606,15 @@ class Reports20210630Client(BaseClient):
     _get_report_params = (("reportId", "path"),)  # name, param in
 
     _get_report_responses = {
-        200: Report,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): Report,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_report_document(
@@ -650,15 +650,15 @@ class Reports20210630Client(BaseClient):
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
     _get_report_document_responses = {
-        200: ReportDocument,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ReportDocument,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_report_schedule(
@@ -694,15 +694,15 @@ class Reports20210630Client(BaseClient):
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     _get_report_schedule_responses = {
-        200: ReportSchedule,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ReportSchedule,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_report_schedules(
@@ -738,15 +738,15 @@ class Reports20210630Client(BaseClient):
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
     _get_report_schedules_responses = {
-        200: ReportScheduleList,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ReportScheduleList,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_reports(
@@ -812,13 +812,13 @@ class Reports20210630Client(BaseClient):
     )
 
     _get_reports_responses = {
-        200: GetReportsResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): GetReportsResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }

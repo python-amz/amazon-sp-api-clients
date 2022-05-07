@@ -268,14 +268,14 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _delete_small_and_light_enrollment_by_seller_sku_responses = {
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_small_and_light_eligibility_by_seller_sku(
@@ -319,15 +319,15 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _get_small_and_light_eligibility_by_seller_sku_responses = {
-        200: SmallAndLightEligibility,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): SmallAndLightEligibility,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_small_and_light_enrollment_by_seller_sku(
@@ -371,15 +371,15 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _get_small_and_light_enrollment_by_seller_sku_responses = {
-        200: SmallAndLightEnrollment,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): SmallAndLightEnrollment,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_small_and_light_fee_preview(
@@ -423,14 +423,14 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _get_small_and_light_fee_preview_responses = {
-        200: SmallAndLightFeePreviews,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): SmallAndLightFeePreviews,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def put_small_and_light_enrollment_by_seller_sku(
@@ -474,13 +474,13 @@ class FbaSmallAndLightV1Client(BaseClient):
     )
 
     _put_small_and_light_enrollment_by_seller_sku_responses = {
-        200: SmallAndLightEnrollment,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): SmallAndLightEnrollment,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }

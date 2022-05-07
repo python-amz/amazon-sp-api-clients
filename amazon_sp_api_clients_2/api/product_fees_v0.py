@@ -366,14 +366,14 @@ class ProductFeesV0Client(BaseClient):
     )
 
     _get_my_fees_estimate_for_asin_responses = {
-        200: GetMyFeesEstimateResponse,
-        400: GetMyFeesEstimateResponse,
-        401: GetMyFeesEstimateResponse,
-        403: GetMyFeesEstimateResponse,
-        404: GetMyFeesEstimateResponse,
-        429: GetMyFeesEstimateResponse,
-        500: GetMyFeesEstimateResponse,
-        503: GetMyFeesEstimateResponse,
+        (200, "application/json"): GetMyFeesEstimateResponse,
+        (400, "application/json"): GetMyFeesEstimateResponse,
+        (401, "application/json"): GetMyFeesEstimateResponse,
+        (403, "application/json"): GetMyFeesEstimateResponse,
+        (404, "application/json"): GetMyFeesEstimateResponse,
+        (429, "application/json"): GetMyFeesEstimateResponse,
+        (500, "application/json"): GetMyFeesEstimateResponse,
+        (503, "application/json"): GetMyFeesEstimateResponse,
     }
 
     def get_my_fees_estimate_for_sku(
@@ -422,12 +422,12 @@ class ProductFeesV0Client(BaseClient):
     )
 
     _get_my_fees_estimate_for_sku_responses = {
-        200: GetMyFeesEstimateResponse,
-        400: GetMyFeesEstimateResponse,
-        401: GetMyFeesEstimateResponse,
-        403: GetMyFeesEstimateResponse,
-        404: GetMyFeesEstimateResponse,
-        429: GetMyFeesEstimateResponse,
-        500: GetMyFeesEstimateResponse,
-        503: GetMyFeesEstimateResponse,
+        (200, "application/json"): GetMyFeesEstimateResponse,
+        (400, "application/json"): GetMyFeesEstimateResponse,
+        (401, "application/json"): GetMyFeesEstimateResponse,
+        (403, "application/json"): GetMyFeesEstimateResponse,
+        (404, "application/json"): GetMyFeesEstimateResponse,
+        (429, "application/json"): GetMyFeesEstimateResponse,
+        (500, "application/json"): GetMyFeesEstimateResponse,
+        (503, "application/json"): GetMyFeesEstimateResponse,
     }

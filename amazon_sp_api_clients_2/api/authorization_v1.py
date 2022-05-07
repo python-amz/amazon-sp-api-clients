@@ -110,13 +110,13 @@ class AuthorizationV1Client(BaseClient):
     )
 
     _get_authorization_code_responses = {
-        200: GetAuthorizationCodeResponse,
-        400: GetAuthorizationCodeResponse,
-        403: GetAuthorizationCodeResponse,
-        404: GetAuthorizationCodeResponse,
-        413: GetAuthorizationCodeResponse,
-        415: GetAuthorizationCodeResponse,
-        429: GetAuthorizationCodeResponse,
-        500: GetAuthorizationCodeResponse,
-        503: GetAuthorizationCodeResponse,
+        (200, "application/json"): GetAuthorizationCodeResponse,
+        (400, "application/json"): GetAuthorizationCodeResponse,
+        (403, "application/json"): GetAuthorizationCodeResponse,
+        (404, "application/json"): GetAuthorizationCodeResponse,
+        (413, "application/json"): GetAuthorizationCodeResponse,
+        (415, "application/json"): GetAuthorizationCodeResponse,
+        (429, "application/json"): GetAuthorizationCodeResponse,
+        (500, "application/json"): GetAuthorizationCodeResponse,
+        (503, "application/json"): GetAuthorizationCodeResponse,
     }

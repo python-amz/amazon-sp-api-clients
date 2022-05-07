@@ -1778,13 +1778,13 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_event_groups_responses = {
-        200: ListFinancialEventGroupsResponse,
-        400: ListFinancialEventGroupsResponse,
-        403: ListFinancialEventGroupsResponse,
-        404: ListFinancialEventGroupsResponse,
-        429: ListFinancialEventGroupsResponse,
-        500: ListFinancialEventGroupsResponse,
-        503: ListFinancialEventGroupsResponse,
+        (200, "application/json"): ListFinancialEventGroupsResponse,
+        (400, "application/json"): ListFinancialEventGroupsResponse,
+        (403, "application/json"): ListFinancialEventGroupsResponse,
+        (404, "application/json"): ListFinancialEventGroupsResponse,
+        (429, "application/json"): ListFinancialEventGroupsResponse,
+        (500, "application/json"): ListFinancialEventGroupsResponse,
+        (503, "application/json"): ListFinancialEventGroupsResponse,
     }
 
     def list_financial_events(
@@ -1836,13 +1836,13 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_events_responses = {
-        200: ListFinancialEventsResponse,
-        400: ListFinancialEventsResponse,
-        403: ListFinancialEventsResponse,
-        404: ListFinancialEventsResponse,
-        429: ListFinancialEventsResponse,
-        500: ListFinancialEventsResponse,
-        503: ListFinancialEventsResponse,
+        (200, "application/json"): ListFinancialEventsResponse,
+        (400, "application/json"): ListFinancialEventsResponse,
+        (403, "application/json"): ListFinancialEventsResponse,
+        (404, "application/json"): ListFinancialEventsResponse,
+        (429, "application/json"): ListFinancialEventsResponse,
+        (500, "application/json"): ListFinancialEventsResponse,
+        (503, "application/json"): ListFinancialEventsResponse,
     }
 
     def list_financial_events_by_group_id(
@@ -1890,13 +1890,13 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_events_by_group_id_responses = {
-        200: ListFinancialEventsResponse,
-        400: ListFinancialEventsResponse,
-        403: ListFinancialEventsResponse,
-        404: ListFinancialEventsResponse,
-        429: ListFinancialEventsResponse,
-        500: ListFinancialEventsResponse,
-        503: ListFinancialEventsResponse,
+        (200, "application/json"): ListFinancialEventsResponse,
+        (400, "application/json"): ListFinancialEventsResponse,
+        (403, "application/json"): ListFinancialEventsResponse,
+        (404, "application/json"): ListFinancialEventsResponse,
+        (429, "application/json"): ListFinancialEventsResponse,
+        (500, "application/json"): ListFinancialEventsResponse,
+        (503, "application/json"): ListFinancialEventsResponse,
     }
 
     def list_financial_events_by_order_id(
@@ -1944,11 +1944,11 @@ class FinancesV0Client(BaseClient):
     )
 
     _list_financial_events_by_order_id_responses = {
-        200: ListFinancialEventsResponse,
-        400: ListFinancialEventsResponse,
-        403: ListFinancialEventsResponse,
-        404: ListFinancialEventsResponse,
-        429: ListFinancialEventsResponse,
-        500: ListFinancialEventsResponse,
-        503: ListFinancialEventsResponse,
+        (200, "application/json"): ListFinancialEventsResponse,
+        (400, "application/json"): ListFinancialEventsResponse,
+        (403, "application/json"): ListFinancialEventsResponse,
+        (404, "application/json"): ListFinancialEventsResponse,
+        (429, "application/json"): ListFinancialEventsResponse,
+        (500, "application/json"): ListFinancialEventsResponse,
+        (503, "application/json"): ListFinancialEventsResponse,
     }

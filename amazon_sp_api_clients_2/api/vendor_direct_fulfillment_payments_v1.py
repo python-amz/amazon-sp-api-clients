@@ -464,13 +464,13 @@ class VendorDirectFulfillmentPaymentsV1Client(BaseClient):
     _submit_invoice_params = (("invoices", "body"),)  # name, param in
 
     _submit_invoice_responses = {
-        202: SubmitInvoiceResponse,
-        400: SubmitInvoiceResponse,
-        403: SubmitInvoiceResponse,
-        404: SubmitInvoiceResponse,
-        413: SubmitInvoiceResponse,
-        415: SubmitInvoiceResponse,
-        429: SubmitInvoiceResponse,
-        500: SubmitInvoiceResponse,
-        503: SubmitInvoiceResponse,
+        (202, "application/json"): SubmitInvoiceResponse,
+        (400, "application/json"): SubmitInvoiceResponse,
+        (403, "application/json"): SubmitInvoiceResponse,
+        (404, "application/json"): SubmitInvoiceResponse,
+        (413, "application/json"): SubmitInvoiceResponse,
+        (415, "application/json"): SubmitInvoiceResponse,
+        (429, "application/json"): SubmitInvoiceResponse,
+        (500, "application/json"): SubmitInvoiceResponse,
+        (503, "application/json"): SubmitInvoiceResponse,
     }

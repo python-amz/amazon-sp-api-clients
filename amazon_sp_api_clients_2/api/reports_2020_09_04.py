@@ -480,15 +480,15 @@ class Reports20200904Client(BaseClient):
     _cancel_report_params = (("reportId", "path"),)  # name, param in
 
     _cancel_report_responses = {
-        200: CancelReportResponse,
-        400: CancelReportResponse,
-        401: CancelReportResponse,
-        403: CancelReportResponse,
-        404: CancelReportResponse,
-        415: CancelReportResponse,
-        429: CancelReportResponse,
-        500: CancelReportResponse,
-        503: CancelReportResponse,
+        (200, "application/json"): CancelReportResponse,
+        (400, "application/json"): CancelReportResponse,
+        (401, "application/json"): CancelReportResponse,
+        (403, "application/json"): CancelReportResponse,
+        (404, "application/json"): CancelReportResponse,
+        (415, "application/json"): CancelReportResponse,
+        (429, "application/json"): CancelReportResponse,
+        (500, "application/json"): CancelReportResponse,
+        (503, "application/json"): CancelReportResponse,
     }
 
     def cancel_report_schedule(
@@ -524,15 +524,15 @@ class Reports20200904Client(BaseClient):
     _cancel_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     _cancel_report_schedule_responses = {
-        200: CancelReportScheduleResponse,
-        400: CancelReportScheduleResponse,
-        401: CancelReportScheduleResponse,
-        403: CancelReportScheduleResponse,
-        404: CancelReportScheduleResponse,
-        415: CancelReportScheduleResponse,
-        429: CancelReportScheduleResponse,
-        500: CancelReportScheduleResponse,
-        503: CancelReportScheduleResponse,
+        (200, "application/json"): CancelReportScheduleResponse,
+        (400, "application/json"): CancelReportScheduleResponse,
+        (401, "application/json"): CancelReportScheduleResponse,
+        (403, "application/json"): CancelReportScheduleResponse,
+        (404, "application/json"): CancelReportScheduleResponse,
+        (415, "application/json"): CancelReportScheduleResponse,
+        (429, "application/json"): CancelReportScheduleResponse,
+        (500, "application/json"): CancelReportScheduleResponse,
+        (503, "application/json"): CancelReportScheduleResponse,
     }
 
     def create_report(
@@ -588,15 +588,15 @@ class Reports20200904Client(BaseClient):
     )
 
     _create_report_responses = {
-        202: CreateReportResponse,
-        400: CreateReportResponse,
-        401: CreateReportResponse,
-        403: CreateReportResponse,
-        404: CreateReportResponse,
-        415: CreateReportResponse,
-        429: CreateReportResponse,
-        500: CreateReportResponse,
-        503: CreateReportResponse,
+        (202, "application/json"): CreateReportResponse,
+        (400, "application/json"): CreateReportResponse,
+        (401, "application/json"): CreateReportResponse,
+        (403, "application/json"): CreateReportResponse,
+        (404, "application/json"): CreateReportResponse,
+        (415, "application/json"): CreateReportResponse,
+        (429, "application/json"): CreateReportResponse,
+        (500, "application/json"): CreateReportResponse,
+        (503, "application/json"): CreateReportResponse,
     }
 
     def create_report_schedule(
@@ -671,15 +671,15 @@ class Reports20200904Client(BaseClient):
     )
 
     _create_report_schedule_responses = {
-        201: CreateReportScheduleResponse,
-        400: CreateReportScheduleResponse,
-        401: CreateReportScheduleResponse,
-        403: CreateReportScheduleResponse,
-        404: CreateReportScheduleResponse,
-        415: CreateReportScheduleResponse,
-        429: CreateReportScheduleResponse,
-        500: CreateReportScheduleResponse,
-        503: CreateReportScheduleResponse,
+        (201, "application/json"): CreateReportScheduleResponse,
+        (400, "application/json"): CreateReportScheduleResponse,
+        (401, "application/json"): CreateReportScheduleResponse,
+        (403, "application/json"): CreateReportScheduleResponse,
+        (404, "application/json"): CreateReportScheduleResponse,
+        (415, "application/json"): CreateReportScheduleResponse,
+        (429, "application/json"): CreateReportScheduleResponse,
+        (500, "application/json"): CreateReportScheduleResponse,
+        (503, "application/json"): CreateReportScheduleResponse,
     }
 
     def get_report(
@@ -715,15 +715,15 @@ class Reports20200904Client(BaseClient):
     _get_report_params = (("reportId", "path"),)  # name, param in
 
     _get_report_responses = {
-        200: GetReportResponse,
-        400: GetReportResponse,
-        401: GetReportResponse,
-        403: GetReportResponse,
-        404: GetReportResponse,
-        415: GetReportResponse,
-        429: GetReportResponse,
-        500: GetReportResponse,
-        503: GetReportResponse,
+        (200, "application/json"): GetReportResponse,
+        (400, "application/json"): GetReportResponse,
+        (401, "application/json"): GetReportResponse,
+        (403, "application/json"): GetReportResponse,
+        (404, "application/json"): GetReportResponse,
+        (415, "application/json"): GetReportResponse,
+        (429, "application/json"): GetReportResponse,
+        (500, "application/json"): GetReportResponse,
+        (503, "application/json"): GetReportResponse,
     }
 
     def get_report_document(
@@ -759,15 +759,15 @@ class Reports20200904Client(BaseClient):
     _get_report_document_params = (("reportDocumentId", "path"),)  # name, param in
 
     _get_report_document_responses = {
-        200: GetReportDocumentResponse,
-        400: GetReportDocumentResponse,
-        401: GetReportDocumentResponse,
-        403: GetReportDocumentResponse,
-        404: GetReportDocumentResponse,
-        415: GetReportDocumentResponse,
-        429: GetReportDocumentResponse,
-        500: GetReportDocumentResponse,
-        503: GetReportDocumentResponse,
+        (200, "application/json"): GetReportDocumentResponse,
+        (400, "application/json"): GetReportDocumentResponse,
+        (401, "application/json"): GetReportDocumentResponse,
+        (403, "application/json"): GetReportDocumentResponse,
+        (404, "application/json"): GetReportDocumentResponse,
+        (415, "application/json"): GetReportDocumentResponse,
+        (429, "application/json"): GetReportDocumentResponse,
+        (500, "application/json"): GetReportDocumentResponse,
+        (503, "application/json"): GetReportDocumentResponse,
     }
 
     def get_report_schedule(
@@ -803,15 +803,15 @@ class Reports20200904Client(BaseClient):
     _get_report_schedule_params = (("reportScheduleId", "path"),)  # name, param in
 
     _get_report_schedule_responses = {
-        200: GetReportScheduleResponse,
-        400: GetReportScheduleResponse,
-        401: GetReportScheduleResponse,
-        403: GetReportScheduleResponse,
-        404: GetReportScheduleResponse,
-        415: GetReportScheduleResponse,
-        429: GetReportScheduleResponse,
-        500: GetReportScheduleResponse,
-        503: GetReportScheduleResponse,
+        (200, "application/json"): GetReportScheduleResponse,
+        (400, "application/json"): GetReportScheduleResponse,
+        (401, "application/json"): GetReportScheduleResponse,
+        (403, "application/json"): GetReportScheduleResponse,
+        (404, "application/json"): GetReportScheduleResponse,
+        (415, "application/json"): GetReportScheduleResponse,
+        (429, "application/json"): GetReportScheduleResponse,
+        (500, "application/json"): GetReportScheduleResponse,
+        (503, "application/json"): GetReportScheduleResponse,
     }
 
     def get_report_schedules(
@@ -847,15 +847,15 @@ class Reports20200904Client(BaseClient):
     _get_report_schedules_params = (("reportTypes", "query"),)  # name, param in
 
     _get_report_schedules_responses = {
-        200: GetReportSchedulesResponse,
-        400: GetReportSchedulesResponse,
-        401: GetReportSchedulesResponse,
-        403: GetReportSchedulesResponse,
-        404: GetReportSchedulesResponse,
-        415: GetReportSchedulesResponse,
-        429: GetReportSchedulesResponse,
-        500: GetReportSchedulesResponse,
-        503: GetReportSchedulesResponse,
+        (200, "application/json"): GetReportSchedulesResponse,
+        (400, "application/json"): GetReportSchedulesResponse,
+        (401, "application/json"): GetReportSchedulesResponse,
+        (403, "application/json"): GetReportSchedulesResponse,
+        (404, "application/json"): GetReportSchedulesResponse,
+        (415, "application/json"): GetReportSchedulesResponse,
+        (429, "application/json"): GetReportSchedulesResponse,
+        (500, "application/json"): GetReportSchedulesResponse,
+        (503, "application/json"): GetReportSchedulesResponse,
     }
 
     def get_reports(
@@ -921,13 +921,13 @@ class Reports20200904Client(BaseClient):
     )
 
     _get_reports_responses = {
-        200: GetReportsResponse,
-        400: GetReportsResponse,
-        401: GetReportsResponse,
-        403: GetReportsResponse,
-        404: GetReportsResponse,
-        415: GetReportsResponse,
-        429: GetReportsResponse,
-        500: GetReportsResponse,
-        503: GetReportsResponse,
+        (200, "application/json"): GetReportsResponse,
+        (400, "application/json"): GetReportsResponse,
+        (401, "application/json"): GetReportsResponse,
+        (403, "application/json"): GetReportsResponse,
+        (404, "application/json"): GetReportsResponse,
+        (415, "application/json"): GetReportsResponse,
+        (429, "application/json"): GetReportsResponse,
+        (500, "application/json"): GetReportsResponse,
+        (503, "application/json"): GetReportsResponse,
     }

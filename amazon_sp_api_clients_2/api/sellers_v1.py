@@ -152,13 +152,13 @@ class SellersV1Client(BaseClient):
     _get_marketplace_participations_params = ()  # name, param in
 
     _get_marketplace_participations_responses = {
-        200: GetMarketplaceParticipationsResponse,
-        400: GetMarketplaceParticipationsResponse,
-        403: GetMarketplaceParticipationsResponse,
-        404: GetMarketplaceParticipationsResponse,
-        413: GetMarketplaceParticipationsResponse,
-        415: GetMarketplaceParticipationsResponse,
-        429: GetMarketplaceParticipationsResponse,
-        500: GetMarketplaceParticipationsResponse,
-        503: GetMarketplaceParticipationsResponse,
+        (200, "application/json"): GetMarketplaceParticipationsResponse,
+        (400, "application/json"): GetMarketplaceParticipationsResponse,
+        (403, "application/json"): GetMarketplaceParticipationsResponse,
+        (404, "application/json"): GetMarketplaceParticipationsResponse,
+        (413, "application/json"): GetMarketplaceParticipationsResponse,
+        (415, "application/json"): GetMarketplaceParticipationsResponse,
+        (429, "application/json"): GetMarketplaceParticipationsResponse,
+        (500, "application/json"): GetMarketplaceParticipationsResponse,
+        (503, "application/json"): GetMarketplaceParticipationsResponse,
     }

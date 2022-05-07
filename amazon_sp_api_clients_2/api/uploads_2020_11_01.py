@@ -133,13 +133,13 @@ class Uploads20201101Client(BaseClient):
     )
 
     _create_upload_destination_for_resource_responses = {
-        201: CreateUploadDestinationResponse,
-        400: CreateUploadDestinationResponse,
-        403: CreateUploadDestinationResponse,
-        404: CreateUploadDestinationResponse,
-        413: CreateUploadDestinationResponse,
-        415: CreateUploadDestinationResponse,
-        429: CreateUploadDestinationResponse,
-        500: CreateUploadDestinationResponse,
-        503: CreateUploadDestinationResponse,
+        (201, "application/json"): CreateUploadDestinationResponse,
+        (400, "application/json"): CreateUploadDestinationResponse,
+        (403, "application/json"): CreateUploadDestinationResponse,
+        (404, "application/json"): CreateUploadDestinationResponse,
+        (413, "application/json"): CreateUploadDestinationResponse,
+        (415, "application/json"): CreateUploadDestinationResponse,
+        (429, "application/json"): CreateUploadDestinationResponse,
+        (500, "application/json"): CreateUploadDestinationResponse,
+        (503, "application/json"): CreateUploadDestinationResponse,
     }

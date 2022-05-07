@@ -604,13 +604,13 @@ class VendorInvoicesV1Client(BaseClient):
     _submit_invoices_params = (("invoices", "body"),)  # name, param in
 
     _submit_invoices_responses = {
-        202: SubmitInvoicesResponse,
-        400: SubmitInvoicesResponse,
-        403: SubmitInvoicesResponse,
-        404: SubmitInvoicesResponse,
-        413: SubmitInvoicesResponse,
-        415: SubmitInvoicesResponse,
-        429: SubmitInvoicesResponse,
-        500: SubmitInvoicesResponse,
-        503: SubmitInvoicesResponse,
+        (202, "application/json"): SubmitInvoicesResponse,
+        (400, "application/json"): SubmitInvoicesResponse,
+        (403, "application/json"): SubmitInvoicesResponse,
+        (404, "application/json"): SubmitInvoicesResponse,
+        (413, "application/json"): SubmitInvoicesResponse,
+        (415, "application/json"): SubmitInvoicesResponse,
+        (429, "application/json"): SubmitInvoicesResponse,
+        (500, "application/json"): SubmitInvoicesResponse,
+        (503, "application/json"): SubmitInvoicesResponse,
     }

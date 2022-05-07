@@ -1796,14 +1796,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _confirm_preorder_responses = {
-        200: ConfirmPreorderResponse,
-        400: ConfirmPreorderResponse,
-        401: ConfirmPreorderResponse,
-        403: ConfirmPreorderResponse,
-        404: ConfirmPreorderResponse,
-        429: ConfirmPreorderResponse,
-        500: ConfirmPreorderResponse,
-        503: ConfirmPreorderResponse,
+        (200, "application/json"): ConfirmPreorderResponse,
+        (400, "application/json"): ConfirmPreorderResponse,
+        (401, "application/json"): ConfirmPreorderResponse,
+        (403, "application/json"): ConfirmPreorderResponse,
+        (404, "application/json"): ConfirmPreorderResponse,
+        (429, "application/json"): ConfirmPreorderResponse,
+        (500, "application/json"): ConfirmPreorderResponse,
+        (503, "application/json"): ConfirmPreorderResponse,
     }
 
     def confirm_transport(
@@ -1843,14 +1843,14 @@ class FulfillmentInboundV0Client(BaseClient):
     _confirm_transport_params = (("shipmentId", "path"),)  # name, param in
 
     _confirm_transport_responses = {
-        200: ConfirmTransportResponse,
-        400: ConfirmTransportResponse,
-        401: ConfirmTransportResponse,
-        403: ConfirmTransportResponse,
-        404: ConfirmTransportResponse,
-        429: ConfirmTransportResponse,
-        500: ConfirmTransportResponse,
-        503: ConfirmTransportResponse,
+        (200, "application/json"): ConfirmTransportResponse,
+        (400, "application/json"): ConfirmTransportResponse,
+        (401, "application/json"): ConfirmTransportResponse,
+        (403, "application/json"): ConfirmTransportResponse,
+        (404, "application/json"): ConfirmTransportResponse,
+        (429, "application/json"): ConfirmTransportResponse,
+        (500, "application/json"): ConfirmTransportResponse,
+        (503, "application/json"): ConfirmTransportResponse,
     }
 
     def create_inbound_shipment(
@@ -1902,14 +1902,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _create_inbound_shipment_responses = {
-        200: InboundShipmentResponse,
-        400: InboundShipmentResponse,
-        401: InboundShipmentResponse,
-        403: InboundShipmentResponse,
-        404: InboundShipmentResponse,
-        429: InboundShipmentResponse,
-        500: InboundShipmentResponse,
-        503: InboundShipmentResponse,
+        (200, "application/json"): InboundShipmentResponse,
+        (400, "application/json"): InboundShipmentResponse,
+        (401, "application/json"): InboundShipmentResponse,
+        (403, "application/json"): InboundShipmentResponse,
+        (404, "application/json"): InboundShipmentResponse,
+        (429, "application/json"): InboundShipmentResponse,
+        (500, "application/json"): InboundShipmentResponse,
+        (503, "application/json"): InboundShipmentResponse,
     }
 
     def create_inbound_shipment_plan(
@@ -1981,14 +1981,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _create_inbound_shipment_plan_responses = {
-        200: CreateInboundShipmentPlanResponse,
-        400: CreateInboundShipmentPlanResponse,
-        401: CreateInboundShipmentPlanResponse,
-        403: CreateInboundShipmentPlanResponse,
-        404: CreateInboundShipmentPlanResponse,
-        429: CreateInboundShipmentPlanResponse,
-        500: CreateInboundShipmentPlanResponse,
-        503: CreateInboundShipmentPlanResponse,
+        (200, "application/json"): CreateInboundShipmentPlanResponse,
+        (400, "application/json"): CreateInboundShipmentPlanResponse,
+        (401, "application/json"): CreateInboundShipmentPlanResponse,
+        (403, "application/json"): CreateInboundShipmentPlanResponse,
+        (404, "application/json"): CreateInboundShipmentPlanResponse,
+        (429, "application/json"): CreateInboundShipmentPlanResponse,
+        (500, "application/json"): CreateInboundShipmentPlanResponse,
+        (503, "application/json"): CreateInboundShipmentPlanResponse,
     }
 
     def estimate_transport(
@@ -2026,14 +2026,14 @@ class FulfillmentInboundV0Client(BaseClient):
     _estimate_transport_params = (("shipmentId", "path"),)  # name, param in
 
     _estimate_transport_responses = {
-        200: EstimateTransportResponse,
-        400: EstimateTransportResponse,
-        401: EstimateTransportResponse,
-        403: EstimateTransportResponse,
-        404: EstimateTransportResponse,
-        429: EstimateTransportResponse,
-        500: EstimateTransportResponse,
-        503: EstimateTransportResponse,
+        (200, "application/json"): EstimateTransportResponse,
+        (400, "application/json"): EstimateTransportResponse,
+        (401, "application/json"): EstimateTransportResponse,
+        (403, "application/json"): EstimateTransportResponse,
+        (404, "application/json"): EstimateTransportResponse,
+        (429, "application/json"): EstimateTransportResponse,
+        (500, "application/json"): EstimateTransportResponse,
+        (503, "application/json"): EstimateTransportResponse,
     }
 
     def get_bill_of_lading(
@@ -2069,14 +2069,14 @@ class FulfillmentInboundV0Client(BaseClient):
     _get_bill_of_lading_params = (("shipmentId", "path"),)  # name, param in
 
     _get_bill_of_lading_responses = {
-        200: GetBillOfLadingResponse,
-        400: GetBillOfLadingResponse,
-        401: GetBillOfLadingResponse,
-        403: GetBillOfLadingResponse,
-        404: GetBillOfLadingResponse,
-        429: GetBillOfLadingResponse,
-        500: GetBillOfLadingResponse,
-        503: GetBillOfLadingResponse,
+        (200, "application/json"): GetBillOfLadingResponse,
+        (400, "application/json"): GetBillOfLadingResponse,
+        (401, "application/json"): GetBillOfLadingResponse,
+        (403, "application/json"): GetBillOfLadingResponse,
+        (404, "application/json"): GetBillOfLadingResponse,
+        (429, "application/json"): GetBillOfLadingResponse,
+        (500, "application/json"): GetBillOfLadingResponse,
+        (503, "application/json"): GetBillOfLadingResponse,
     }
 
     def get_inbound_guidance(
@@ -2124,14 +2124,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _get_inbound_guidance_responses = {
-        200: GetInboundGuidanceResponse,
-        400: GetInboundGuidanceResponse,
-        401: GetInboundGuidanceResponse,
-        403: GetInboundGuidanceResponse,
-        404: GetInboundGuidanceResponse,
-        429: GetInboundGuidanceResponse,
-        500: GetInboundGuidanceResponse,
-        503: GetInboundGuidanceResponse,
+        (200, "application/json"): GetInboundGuidanceResponse,
+        (400, "application/json"): GetInboundGuidanceResponse,
+        (401, "application/json"): GetInboundGuidanceResponse,
+        (403, "application/json"): GetInboundGuidanceResponse,
+        (404, "application/json"): GetInboundGuidanceResponse,
+        (429, "application/json"): GetInboundGuidanceResponse,
+        (500, "application/json"): GetInboundGuidanceResponse,
+        (503, "application/json"): GetInboundGuidanceResponse,
     }
 
     def get_labels(
@@ -2213,14 +2213,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _get_labels_responses = {
-        200: GetLabelsResponse,
-        400: GetLabelsResponse,
-        401: GetLabelsResponse,
-        403: GetLabelsResponse,
-        404: GetLabelsResponse,
-        429: GetLabelsResponse,
-        500: GetLabelsResponse,
-        503: GetLabelsResponse,
+        (200, "application/json"): GetLabelsResponse,
+        (400, "application/json"): GetLabelsResponse,
+        (401, "application/json"): GetLabelsResponse,
+        (403, "application/json"): GetLabelsResponse,
+        (404, "application/json"): GetLabelsResponse,
+        (429, "application/json"): GetLabelsResponse,
+        (500, "application/json"): GetLabelsResponse,
+        (503, "application/json"): GetLabelsResponse,
     }
 
     def get_preorder_info(
@@ -2264,14 +2264,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _get_preorder_info_responses = {
-        200: GetPreorderInfoResponse,
-        400: GetPreorderInfoResponse,
-        401: GetPreorderInfoResponse,
-        403: GetPreorderInfoResponse,
-        404: GetPreorderInfoResponse,
-        429: GetPreorderInfoResponse,
-        500: GetPreorderInfoResponse,
-        503: GetPreorderInfoResponse,
+        (200, "application/json"): GetPreorderInfoResponse,
+        (400, "application/json"): GetPreorderInfoResponse,
+        (401, "application/json"): GetPreorderInfoResponse,
+        (403, "application/json"): GetPreorderInfoResponse,
+        (404, "application/json"): GetPreorderInfoResponse,
+        (429, "application/json"): GetPreorderInfoResponse,
+        (500, "application/json"): GetPreorderInfoResponse,
+        (503, "application/json"): GetPreorderInfoResponse,
     }
 
     def get_prep_instructions(
@@ -2321,14 +2321,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _get_prep_instructions_responses = {
-        200: GetPrepInstructionsResponse,
-        400: GetPrepInstructionsResponse,
-        401: GetPrepInstructionsResponse,
-        403: GetPrepInstructionsResponse,
-        404: GetPrepInstructionsResponse,
-        429: GetPrepInstructionsResponse,
-        500: GetPrepInstructionsResponse,
-        503: GetPrepInstructionsResponse,
+        (200, "application/json"): GetPrepInstructionsResponse,
+        (400, "application/json"): GetPrepInstructionsResponse,
+        (401, "application/json"): GetPrepInstructionsResponse,
+        (403, "application/json"): GetPrepInstructionsResponse,
+        (404, "application/json"): GetPrepInstructionsResponse,
+        (429, "application/json"): GetPrepInstructionsResponse,
+        (500, "application/json"): GetPrepInstructionsResponse,
+        (503, "application/json"): GetPrepInstructionsResponse,
     }
 
     def get_shipment_items(
@@ -2384,14 +2384,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _get_shipment_items_responses = {
-        200: GetShipmentItemsResponse,
-        400: GetShipmentItemsResponse,
-        401: GetShipmentItemsResponse,
-        403: GetShipmentItemsResponse,
-        404: GetShipmentItemsResponse,
-        429: GetShipmentItemsResponse,
-        500: GetShipmentItemsResponse,
-        503: GetShipmentItemsResponse,
+        (200, "application/json"): GetShipmentItemsResponse,
+        (400, "application/json"): GetShipmentItemsResponse,
+        (401, "application/json"): GetShipmentItemsResponse,
+        (403, "application/json"): GetShipmentItemsResponse,
+        (404, "application/json"): GetShipmentItemsResponse,
+        (429, "application/json"): GetShipmentItemsResponse,
+        (500, "application/json"): GetShipmentItemsResponse,
+        (503, "application/json"): GetShipmentItemsResponse,
     }
 
     def get_shipment_items_by_shipment_id(
@@ -2435,14 +2435,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _get_shipment_items_by_shipment_id_responses = {
-        200: GetShipmentItemsResponse,
-        400: GetShipmentItemsResponse,
-        401: GetShipmentItemsResponse,
-        403: GetShipmentItemsResponse,
-        404: GetShipmentItemsResponse,
-        429: GetShipmentItemsResponse,
-        500: GetShipmentItemsResponse,
-        503: GetShipmentItemsResponse,
+        (200, "application/json"): GetShipmentItemsResponse,
+        (400, "application/json"): GetShipmentItemsResponse,
+        (401, "application/json"): GetShipmentItemsResponse,
+        (403, "application/json"): GetShipmentItemsResponse,
+        (404, "application/json"): GetShipmentItemsResponse,
+        (429, "application/json"): GetShipmentItemsResponse,
+        (500, "application/json"): GetShipmentItemsResponse,
+        (503, "application/json"): GetShipmentItemsResponse,
     }
 
     def get_shipments(
@@ -2519,14 +2519,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _get_shipments_responses = {
-        200: GetShipmentsResponse,
-        400: GetShipmentsResponse,
-        401: GetShipmentsResponse,
-        403: GetShipmentsResponse,
-        404: GetShipmentsResponse,
-        429: GetShipmentsResponse,
-        500: GetShipmentsResponse,
-        503: GetShipmentsResponse,
+        (200, "application/json"): GetShipmentsResponse,
+        (400, "application/json"): GetShipmentsResponse,
+        (401, "application/json"): GetShipmentsResponse,
+        (403, "application/json"): GetShipmentsResponse,
+        (404, "application/json"): GetShipmentsResponse,
+        (429, "application/json"): GetShipmentsResponse,
+        (500, "application/json"): GetShipmentsResponse,
+        (503, "application/json"): GetShipmentsResponse,
     }
 
     def get_transport_details(
@@ -2562,14 +2562,14 @@ class FulfillmentInboundV0Client(BaseClient):
     _get_transport_details_params = (("shipmentId", "path"),)  # name, param in
 
     _get_transport_details_responses = {
-        200: GetTransportDetailsResponse,
-        400: GetTransportDetailsResponse,
-        401: GetTransportDetailsResponse,
-        403: GetTransportDetailsResponse,
-        404: GetTransportDetailsResponse,
-        429: GetTransportDetailsResponse,
-        500: GetTransportDetailsResponse,
-        503: GetTransportDetailsResponse,
+        (200, "application/json"): GetTransportDetailsResponse,
+        (400, "application/json"): GetTransportDetailsResponse,
+        (401, "application/json"): GetTransportDetailsResponse,
+        (403, "application/json"): GetTransportDetailsResponse,
+        (404, "application/json"): GetTransportDetailsResponse,
+        (429, "application/json"): GetTransportDetailsResponse,
+        (500, "application/json"): GetTransportDetailsResponse,
+        (503, "application/json"): GetTransportDetailsResponse,
     }
 
     def put_transport_details(
@@ -2621,14 +2621,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _put_transport_details_responses = {
-        200: PutTransportDetailsResponse,
-        400: PutTransportDetailsResponse,
-        401: PutTransportDetailsResponse,
-        403: PutTransportDetailsResponse,
-        404: PutTransportDetailsResponse,
-        429: PutTransportDetailsResponse,
-        500: PutTransportDetailsResponse,
-        503: PutTransportDetailsResponse,
+        (200, "application/json"): PutTransportDetailsResponse,
+        (400, "application/json"): PutTransportDetailsResponse,
+        (401, "application/json"): PutTransportDetailsResponse,
+        (403, "application/json"): PutTransportDetailsResponse,
+        (404, "application/json"): PutTransportDetailsResponse,
+        (429, "application/json"): PutTransportDetailsResponse,
+        (500, "application/json"): PutTransportDetailsResponse,
+        (503, "application/json"): PutTransportDetailsResponse,
     }
 
     def update_inbound_shipment(
@@ -2680,14 +2680,14 @@ class FulfillmentInboundV0Client(BaseClient):
     )
 
     _update_inbound_shipment_responses = {
-        200: InboundShipmentResponse,
-        400: InboundShipmentResponse,
-        401: InboundShipmentResponse,
-        403: InboundShipmentResponse,
-        404: InboundShipmentResponse,
-        429: InboundShipmentResponse,
-        500: InboundShipmentResponse,
-        503: InboundShipmentResponse,
+        (200, "application/json"): InboundShipmentResponse,
+        (400, "application/json"): InboundShipmentResponse,
+        (401, "application/json"): InboundShipmentResponse,
+        (403, "application/json"): InboundShipmentResponse,
+        (404, "application/json"): InboundShipmentResponse,
+        (429, "application/json"): InboundShipmentResponse,
+        (500, "application/json"): InboundShipmentResponse,
+        (503, "application/json"): InboundShipmentResponse,
     }
 
     def void_transport(
@@ -2727,12 +2727,12 @@ class FulfillmentInboundV0Client(BaseClient):
     _void_transport_params = (("shipmentId", "path"),)  # name, param in
 
     _void_transport_responses = {
-        200: VoidTransportResponse,
-        400: VoidTransportResponse,
-        401: VoidTransportResponse,
-        403: VoidTransportResponse,
-        404: VoidTransportResponse,
-        429: VoidTransportResponse,
-        500: VoidTransportResponse,
-        503: VoidTransportResponse,
+        (200, "application/json"): VoidTransportResponse,
+        (400, "application/json"): VoidTransportResponse,
+        (401, "application/json"): VoidTransportResponse,
+        (403, "application/json"): VoidTransportResponse,
+        (404, "application/json"): VoidTransportResponse,
+        (429, "application/json"): VoidTransportResponse,
+        (500, "application/json"): VoidTransportResponse,
+        (503, "application/json"): VoidTransportResponse,
     }

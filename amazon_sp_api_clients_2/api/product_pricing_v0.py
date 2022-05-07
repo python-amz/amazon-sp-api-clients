@@ -826,14 +826,14 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_competitive_pricing_responses = {
-        200: GetPricingResponse,
-        400: GetPricingResponse,
-        401: GetPricingResponse,
-        403: GetPricingResponse,
-        404: GetPricingResponse,
-        429: GetPricingResponse,
-        500: GetPricingResponse,
-        503: GetPricingResponse,
+        (200, "application/json"): GetPricingResponse,
+        (400, "application/json"): GetPricingResponse,
+        (401, "application/json"): GetPricingResponse,
+        (403, "application/json"): GetPricingResponse,
+        (404, "application/json"): GetPricingResponse,
+        (429, "application/json"): GetPricingResponse,
+        (500, "application/json"): GetPricingResponse,
+        (503, "application/json"): GetPricingResponse,
     }
 
     def get_item_offers(
@@ -888,14 +888,14 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_item_offers_responses = {
-        200: GetOffersResponse,
-        400: GetOffersResponse,
-        401: GetOffersResponse,
-        403: GetOffersResponse,
-        404: GetOffersResponse,
-        429: GetOffersResponse,
-        500: GetOffersResponse,
-        503: GetOffersResponse,
+        (200, "application/json"): GetOffersResponse,
+        (400, "application/json"): GetOffersResponse,
+        (401, "application/json"): GetOffersResponse,
+        (403, "application/json"): GetOffersResponse,
+        (404, "application/json"): GetOffersResponse,
+        (429, "application/json"): GetOffersResponse,
+        (500, "application/json"): GetOffersResponse,
+        (503, "application/json"): GetOffersResponse,
     }
 
     def get_listing_offers(
@@ -950,14 +950,14 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_listing_offers_responses = {
-        200: GetOffersResponse,
-        400: GetOffersResponse,
-        401: GetOffersResponse,
-        403: GetOffersResponse,
-        404: GetOffersResponse,
-        429: GetOffersResponse,
-        500: GetOffersResponse,
-        503: GetOffersResponse,
+        (200, "application/json"): GetOffersResponse,
+        (400, "application/json"): GetOffersResponse,
+        (401, "application/json"): GetOffersResponse,
+        (403, "application/json"): GetOffersResponse,
+        (404, "application/json"): GetOffersResponse,
+        (429, "application/json"): GetOffersResponse,
+        (500, "application/json"): GetOffersResponse,
+        (503, "application/json"): GetOffersResponse,
     }
 
     def get_pricing(
@@ -1020,12 +1020,12 @@ class ProductPricingV0Client(BaseClient):
     )
 
     _get_pricing_responses = {
-        200: GetPricingResponse,
-        400: GetPricingResponse,
-        401: GetPricingResponse,
-        403: GetPricingResponse,
-        404: GetPricingResponse,
-        429: GetPricingResponse,
-        500: GetPricingResponse,
-        503: GetPricingResponse,
+        (200, "application/json"): GetPricingResponse,
+        (400, "application/json"): GetPricingResponse,
+        (401, "application/json"): GetPricingResponse,
+        (403, "application/json"): GetPricingResponse,
+        (404, "application/json"): GetPricingResponse,
+        (429, "application/json"): GetPricingResponse,
+        (500, "application/json"): GetPricingResponse,
+        (503, "application/json"): GetPricingResponse,
     }

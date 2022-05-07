@@ -232,14 +232,14 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     _delete_listings_item_responses = {
-        200: ListingsItemSubmissionResponse,
-        400: ErrorList,
-        403: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ListingsItemSubmissionResponse,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def patch_listings_item(
@@ -300,14 +300,14 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     _patch_listings_item_responses = {
-        200: ListingsItemSubmissionResponse,
-        400: ErrorList,
-        403: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ListingsItemSubmissionResponse,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def put_listings_item(
@@ -372,12 +372,12 @@ class ListingsItems20200901Client(BaseClient):
     )
 
     _put_listings_item_responses = {
-        200: ListingsItemSubmissionResponse,
-        400: ErrorList,
-        403: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ListingsItemSubmissionResponse,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }

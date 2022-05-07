@@ -828,15 +828,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_customer_invoice_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_customer_invoice_responses = {
-        200: GetCustomerInvoiceResponse,
-        400: GetCustomerInvoiceResponse,
-        401: GetCustomerInvoiceResponse,
-        403: GetCustomerInvoiceResponse,
-        404: GetCustomerInvoiceResponse,
-        415: GetCustomerInvoiceResponse,
-        429: GetCustomerInvoiceResponse,
-        500: GetCustomerInvoiceResponse,
-        503: GetCustomerInvoiceResponse,
+        (200, "application/json"): GetCustomerInvoiceResponse,
+        (400, "application/json"): GetCustomerInvoiceResponse,
+        (401, "application/json"): GetCustomerInvoiceResponse,
+        (403, "application/json"): GetCustomerInvoiceResponse,
+        (404, "application/json"): GetCustomerInvoiceResponse,
+        (415, "application/json"): GetCustomerInvoiceResponse,
+        (429, "application/json"): GetCustomerInvoiceResponse,
+        (500, "application/json"): GetCustomerInvoiceResponse,
+        (503, "application/json"): GetCustomerInvoiceResponse,
     }
 
     def get_customer_invoices(
@@ -897,14 +897,14 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     _get_customer_invoices_responses = {
-        200: GetCustomerInvoicesResponse,
-        400: GetCustomerInvoiceResponse,
-        403: GetCustomerInvoiceResponse,
-        404: GetCustomerInvoiceResponse,
-        415: GetCustomerInvoiceResponse,
-        429: GetCustomerInvoiceResponse,
-        500: GetCustomerInvoiceResponse,
-        503: GetCustomerInvoiceResponse,
+        (200, "application/json"): GetCustomerInvoicesResponse,
+        (400, "application/json"): GetCustomerInvoiceResponse,
+        (403, "application/json"): GetCustomerInvoiceResponse,
+        (404, "application/json"): GetCustomerInvoiceResponse,
+        (415, "application/json"): GetCustomerInvoiceResponse,
+        (429, "application/json"): GetCustomerInvoiceResponse,
+        (500, "application/json"): GetCustomerInvoiceResponse,
+        (503, "application/json"): GetCustomerInvoiceResponse,
     }
 
     def get_packing_slip(
@@ -941,15 +941,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_packing_slip_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_packing_slip_responses = {
-        200: GetPackingSlipResponse,
-        400: GetPackingSlipResponse,
-        401: GetPackingSlipResponse,
-        403: GetPackingSlipResponse,
-        404: GetPackingSlipResponse,
-        415: GetPackingSlipResponse,
-        429: GetPackingSlipResponse,
-        500: GetPackingSlipResponse,
-        503: GetPackingSlipResponse,
+        (200, "application/json"): GetPackingSlipResponse,
+        (400, "application/json"): GetPackingSlipResponse,
+        (401, "application/json"): GetPackingSlipResponse,
+        (403, "application/json"): GetPackingSlipResponse,
+        (404, "application/json"): GetPackingSlipResponse,
+        (415, "application/json"): GetPackingSlipResponse,
+        (429, "application/json"): GetPackingSlipResponse,
+        (500, "application/json"): GetPackingSlipResponse,
+        (503, "application/json"): GetPackingSlipResponse,
     }
 
     def get_packing_slips(
@@ -1010,15 +1010,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     _get_packing_slips_responses = {
-        200: GetPackingSlipListResponse,
-        400: GetPackingSlipListResponse,
-        401: GetPackingSlipListResponse,
-        403: GetPackingSlipListResponse,
-        404: GetPackingSlipListResponse,
-        415: GetPackingSlipListResponse,
-        429: GetPackingSlipListResponse,
-        500: GetPackingSlipListResponse,
-        503: GetPackingSlipListResponse,
+        (200, "application/json"): GetPackingSlipListResponse,
+        (400, "application/json"): GetPackingSlipListResponse,
+        (401, "application/json"): GetPackingSlipListResponse,
+        (403, "application/json"): GetPackingSlipListResponse,
+        (404, "application/json"): GetPackingSlipListResponse,
+        (415, "application/json"): GetPackingSlipListResponse,
+        (429, "application/json"): GetPackingSlipListResponse,
+        (500, "application/json"): GetPackingSlipListResponse,
+        (503, "application/json"): GetPackingSlipListResponse,
     }
 
     def get_shipping_label(
@@ -1055,15 +1055,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _get_shipping_label_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_shipping_label_responses = {
-        200: GetShippingLabelResponse,
-        400: GetShippingLabelResponse,
-        401: GetShippingLabelResponse,
-        403: GetShippingLabelResponse,
-        404: GetShippingLabelResponse,
-        415: GetShippingLabelResponse,
-        429: GetShippingLabelResponse,
-        500: GetShippingLabelResponse,
-        503: GetShippingLabelResponse,
+        (200, "application/json"): GetShippingLabelResponse,
+        (400, "application/json"): GetShippingLabelResponse,
+        (401, "application/json"): GetShippingLabelResponse,
+        (403, "application/json"): GetShippingLabelResponse,
+        (404, "application/json"): GetShippingLabelResponse,
+        (415, "application/json"): GetShippingLabelResponse,
+        (429, "application/json"): GetShippingLabelResponse,
+        (500, "application/json"): GetShippingLabelResponse,
+        (503, "application/json"): GetShippingLabelResponse,
     }
 
     def get_shipping_labels(
@@ -1124,14 +1124,14 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     )
 
     _get_shipping_labels_responses = {
-        200: GetShippingLabelListResponse,
-        400: GetShippingLabelListResponse,
-        403: GetShippingLabelListResponse,
-        404: GetShippingLabelListResponse,
-        415: GetShippingLabelListResponse,
-        429: GetShippingLabelListResponse,
-        500: GetShippingLabelListResponse,
-        503: GetShippingLabelListResponse,
+        (200, "application/json"): GetShippingLabelListResponse,
+        (400, "application/json"): GetShippingLabelListResponse,
+        (403, "application/json"): GetShippingLabelListResponse,
+        (404, "application/json"): GetShippingLabelListResponse,
+        (415, "application/json"): GetShippingLabelListResponse,
+        (429, "application/json"): GetShippingLabelListResponse,
+        (500, "application/json"): GetShippingLabelListResponse,
+        (503, "application/json"): GetShippingLabelListResponse,
     }
 
     def submit_shipment_confirmations(
@@ -1168,15 +1168,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
 
     _submit_shipment_confirmations_responses = {
-        202: SubmitShipmentConfirmationsResponse,
-        400: SubmitShipmentConfirmationsResponse,
-        403: SubmitShipmentConfirmationsResponse,
-        404: SubmitShipmentConfirmationsResponse,
-        413: SubmitShipmentConfirmationsResponse,
-        415: SubmitShipmentConfirmationsResponse,
-        429: SubmitShipmentConfirmationsResponse,
-        500: SubmitShipmentConfirmationsResponse,
-        503: SubmitShipmentConfirmationsResponse,
+        (202, "application/json"): SubmitShipmentConfirmationsResponse,
+        (400, "application/json"): SubmitShipmentConfirmationsResponse,
+        (403, "application/json"): SubmitShipmentConfirmationsResponse,
+        (404, "application/json"): SubmitShipmentConfirmationsResponse,
+        (413, "application/json"): SubmitShipmentConfirmationsResponse,
+        (415, "application/json"): SubmitShipmentConfirmationsResponse,
+        (429, "application/json"): SubmitShipmentConfirmationsResponse,
+        (500, "application/json"): SubmitShipmentConfirmationsResponse,
+        (503, "application/json"): SubmitShipmentConfirmationsResponse,
     }
 
     def submit_shipment_status_updates(
@@ -1213,15 +1213,15 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipment_status_updates_params = (("shipmentStatusUpdates", "body"),)  # name, param in
 
     _submit_shipment_status_updates_responses = {
-        202: SubmitShipmentStatusUpdatesResponse,
-        400: SubmitShipmentStatusUpdatesResponse,
-        403: SubmitShipmentStatusUpdatesResponse,
-        404: SubmitShipmentStatusUpdatesResponse,
-        413: SubmitShipmentStatusUpdatesResponse,
-        415: SubmitShipmentStatusUpdatesResponse,
-        429: SubmitShipmentStatusUpdatesResponse,
-        500: SubmitShipmentStatusUpdatesResponse,
-        503: SubmitShipmentStatusUpdatesResponse,
+        (202, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (400, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (403, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (404, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (413, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (415, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (429, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (500, "application/json"): SubmitShipmentStatusUpdatesResponse,
+        (503, "application/json"): SubmitShipmentStatusUpdatesResponse,
     }
 
     def submit_shipping_label_request(
@@ -1258,13 +1258,13 @@ class VendorDirectFulfillmentShippingV1Client(BaseClient):
     _submit_shipping_label_request_params = (("shippingLabelRequests", "body"),)  # name, param in
 
     _submit_shipping_label_request_responses = {
-        202: SubmitShippingLabelsResponse,
-        400: SubmitShippingLabelsResponse,
-        403: SubmitShippingLabelsResponse,
-        404: SubmitShippingLabelsResponse,
-        413: SubmitShippingLabelsResponse,
-        415: SubmitShippingLabelsResponse,
-        429: SubmitShippingLabelsResponse,
-        500: SubmitShippingLabelsResponse,
-        503: SubmitShippingLabelsResponse,
+        (202, "application/json"): SubmitShippingLabelsResponse,
+        (400, "application/json"): SubmitShippingLabelsResponse,
+        (403, "application/json"): SubmitShippingLabelsResponse,
+        (404, "application/json"): SubmitShippingLabelsResponse,
+        (413, "application/json"): SubmitShippingLabelsResponse,
+        (415, "application/json"): SubmitShippingLabelsResponse,
+        (429, "application/json"): SubmitShippingLabelsResponse,
+        (500, "application/json"): SubmitShippingLabelsResponse,
+        (503, "application/json"): SubmitShippingLabelsResponse,
     }

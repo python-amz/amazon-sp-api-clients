@@ -336,15 +336,15 @@ class Feeds20200904Client(BaseClient):
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
     _cancel_feed_responses = {
-        200: CancelFeedResponse,
-        400: CancelFeedResponse,
-        401: CancelFeedResponse,
-        403: CancelFeedResponse,
-        404: CancelFeedResponse,
-        415: CancelFeedResponse,
-        429: CancelFeedResponse,
-        500: CancelFeedResponse,
-        503: CancelFeedResponse,
+        (200, "application/json"): CancelFeedResponse,
+        (400, "application/json"): CancelFeedResponse,
+        (401, "application/json"): CancelFeedResponse,
+        (403, "application/json"): CancelFeedResponse,
+        (404, "application/json"): CancelFeedResponse,
+        (415, "application/json"): CancelFeedResponse,
+        (429, "application/json"): CancelFeedResponse,
+        (500, "application/json"): CancelFeedResponse,
+        (503, "application/json"): CancelFeedResponse,
     }
 
     def create_feed(
@@ -396,15 +396,15 @@ class Feeds20200904Client(BaseClient):
     )
 
     _create_feed_responses = {
-        202: CreateFeedResponse,
-        400: CreateFeedResponse,
-        401: CreateFeedResponse,
-        403: CreateFeedResponse,
-        404: CreateFeedResponse,
-        415: CreateFeedResponse,
-        429: CreateFeedResponse,
-        500: CreateFeedResponse,
-        503: CreateFeedResponse,
+        (202, "application/json"): CreateFeedResponse,
+        (400, "application/json"): CreateFeedResponse,
+        (401, "application/json"): CreateFeedResponse,
+        (403, "application/json"): CreateFeedResponse,
+        (404, "application/json"): CreateFeedResponse,
+        (415, "application/json"): CreateFeedResponse,
+        (429, "application/json"): CreateFeedResponse,
+        (500, "application/json"): CreateFeedResponse,
+        (503, "application/json"): CreateFeedResponse,
     }
 
     def create_feed_document(
@@ -440,15 +440,15 @@ class Feeds20200904Client(BaseClient):
     _create_feed_document_params = (("contentType", "body"),)  # name, param in
 
     _create_feed_document_responses = {
-        201: CreateFeedDocumentResponse,
-        400: CreateFeedDocumentResponse,
-        403: CreateFeedDocumentResponse,
-        404: CreateFeedDocumentResponse,
-        413: CreateFeedDocumentResponse,
-        415: CreateFeedDocumentResponse,
-        429: CreateFeedDocumentResponse,
-        500: CreateFeedDocumentResponse,
-        503: CreateFeedDocumentResponse,
+        (201, "application/json"): CreateFeedDocumentResponse,
+        (400, "application/json"): CreateFeedDocumentResponse,
+        (403, "application/json"): CreateFeedDocumentResponse,
+        (404, "application/json"): CreateFeedDocumentResponse,
+        (413, "application/json"): CreateFeedDocumentResponse,
+        (415, "application/json"): CreateFeedDocumentResponse,
+        (429, "application/json"): CreateFeedDocumentResponse,
+        (500, "application/json"): CreateFeedDocumentResponse,
+        (503, "application/json"): CreateFeedDocumentResponse,
     }
 
     def get_feed(
@@ -484,15 +484,15 @@ class Feeds20200904Client(BaseClient):
     _get_feed_params = (("feedId", "path"),)  # name, param in
 
     _get_feed_responses = {
-        200: GetFeedResponse,
-        400: GetFeedResponse,
-        401: GetFeedResponse,
-        403: GetFeedResponse,
-        404: GetFeedResponse,
-        415: GetFeedResponse,
-        429: GetFeedResponse,
-        500: GetFeedResponse,
-        503: GetFeedResponse,
+        (200, "application/json"): GetFeedResponse,
+        (400, "application/json"): GetFeedResponse,
+        (401, "application/json"): GetFeedResponse,
+        (403, "application/json"): GetFeedResponse,
+        (404, "application/json"): GetFeedResponse,
+        (415, "application/json"): GetFeedResponse,
+        (429, "application/json"): GetFeedResponse,
+        (500, "application/json"): GetFeedResponse,
+        (503, "application/json"): GetFeedResponse,
     }
 
     def get_feed_document(
@@ -528,15 +528,15 @@ class Feeds20200904Client(BaseClient):
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
     _get_feed_document_responses = {
-        200: GetFeedDocumentResponse,
-        400: GetFeedDocumentResponse,
-        401: GetFeedDocumentResponse,
-        403: GetFeedDocumentResponse,
-        404: GetFeedDocumentResponse,
-        415: GetFeedDocumentResponse,
-        429: GetFeedDocumentResponse,
-        500: GetFeedDocumentResponse,
-        503: GetFeedDocumentResponse,
+        (200, "application/json"): GetFeedDocumentResponse,
+        (400, "application/json"): GetFeedDocumentResponse,
+        (401, "application/json"): GetFeedDocumentResponse,
+        (403, "application/json"): GetFeedDocumentResponse,
+        (404, "application/json"): GetFeedDocumentResponse,
+        (415, "application/json"): GetFeedDocumentResponse,
+        (429, "application/json"): GetFeedDocumentResponse,
+        (500, "application/json"): GetFeedDocumentResponse,
+        (503, "application/json"): GetFeedDocumentResponse,
     }
 
     def get_feeds(
@@ -602,13 +602,13 @@ class Feeds20200904Client(BaseClient):
     )
 
     _get_feeds_responses = {
-        200: GetFeedsResponse,
-        400: GetFeedsResponse,
-        401: GetFeedsResponse,
-        403: GetFeedsResponse,
-        404: GetFeedsResponse,
-        415: GetFeedsResponse,
-        429: GetFeedsResponse,
-        500: GetFeedsResponse,
-        503: GetFeedsResponse,
+        (200, "application/json"): GetFeedsResponse,
+        (400, "application/json"): GetFeedsResponse,
+        (401, "application/json"): GetFeedsResponse,
+        (403, "application/json"): GetFeedsResponse,
+        (404, "application/json"): GetFeedsResponse,
+        (415, "application/json"): GetFeedsResponse,
+        (429, "application/json"): GetFeedsResponse,
+        (500, "application/json"): GetFeedsResponse,
+        (503, "application/json"): GetFeedsResponse,
     }

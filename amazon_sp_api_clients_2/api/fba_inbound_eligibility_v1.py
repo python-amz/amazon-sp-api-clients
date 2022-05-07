@@ -174,12 +174,12 @@ class FbaInboundEligibilityV1Client(BaseClient):
     )
 
     _get_item_eligibility_preview_responses = {
-        200: GetItemEligibilityPreviewResponse,
-        400: GetItemEligibilityPreviewResponse,
-        401: GetItemEligibilityPreviewResponse,
-        403: GetItemEligibilityPreviewResponse,
-        404: GetItemEligibilityPreviewResponse,
-        429: GetItemEligibilityPreviewResponse,
-        500: GetItemEligibilityPreviewResponse,
-        503: GetItemEligibilityPreviewResponse,
+        (200, "application/json"): GetItemEligibilityPreviewResponse,
+        (400, "application/json"): GetItemEligibilityPreviewResponse,
+        (401, "application/json"): GetItemEligibilityPreviewResponse,
+        (403, "application/json"): GetItemEligibilityPreviewResponse,
+        (404, "application/json"): GetItemEligibilityPreviewResponse,
+        (429, "application/json"): GetItemEligibilityPreviewResponse,
+        (500, "application/json"): GetItemEligibilityPreviewResponse,
+        (503, "application/json"): GetItemEligibilityPreviewResponse,
     }

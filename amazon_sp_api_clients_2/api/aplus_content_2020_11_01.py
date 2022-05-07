@@ -1313,14 +1313,14 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _create_content_document_responses = {
-        200: PostContentDocumentResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): PostContentDocumentResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_content_document(
@@ -1369,15 +1369,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _get_content_document_responses = {
-        200: GetContentDocumentResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        410: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): GetContentDocumentResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (410, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def list_content_document_asin_relations(
@@ -1434,15 +1434,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _list_content_document_asin_relations_responses = {
-        200: ListContentDocumentAsinRelationsResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        410: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ListContentDocumentAsinRelationsResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (410, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def post_content_document_approval_submission(
@@ -1487,15 +1487,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _post_content_document_approval_submission_responses = {
-        200: PostContentDocumentApprovalSubmissionResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        410: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): PostContentDocumentApprovalSubmissionResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (410, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def post_content_document_asin_relations(
@@ -1544,15 +1544,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _post_content_document_asin_relations_responses = {
-        200: PostContentDocumentAsinRelationsResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        410: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): PostContentDocumentAsinRelationsResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (410, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def post_content_document_suspend_submission(
@@ -1597,15 +1597,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _post_content_document_suspend_submission_responses = {
-        200: PostContentDocumentSuspendSubmissionResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        410: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): PostContentDocumentSuspendSubmissionResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (410, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def search_content_documents(
@@ -1650,15 +1650,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _search_content_documents_responses = {
-        200: SearchContentDocumentsResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        410: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): SearchContentDocumentsResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (410, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def search_content_publish_records(
@@ -1707,14 +1707,14 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _search_content_publish_records_responses = {
-        200: SearchContentPublishRecordsResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): SearchContentPublishRecordsResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def update_content_document(
@@ -1763,15 +1763,15 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _update_content_document_responses = {
-        200: PostContentDocumentResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        410: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): PostContentDocumentResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (410, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def validate_content_document_asin_relations(
@@ -1820,12 +1820,12 @@ class AplusContent20201101Client(BaseClient):
     )
 
     _validate_content_document_asin_relations_responses = {
-        200: ValidateContentDocumentAsinRelationsResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ValidateContentDocumentAsinRelationsResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }

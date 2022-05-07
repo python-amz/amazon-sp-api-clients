@@ -255,14 +255,14 @@ class Feeds20210630Client(BaseClient):
     _cancel_feed_params = (("feedId", "path"),)  # name, param in
 
     _cancel_feed_responses = {
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def create_feed(
@@ -314,15 +314,15 @@ class Feeds20210630Client(BaseClient):
     )
 
     _create_feed_responses = {
-        202: CreateFeedResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (202, "application/json"): CreateFeedResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def create_feed_document(
@@ -358,15 +358,15 @@ class Feeds20210630Client(BaseClient):
     _create_feed_document_params = (("contentType", "body"),)  # name, param in
 
     _create_feed_document_responses = {
-        201: CreateFeedDocumentResponse,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (201, "application/json"): CreateFeedDocumentResponse,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_feed(
@@ -402,15 +402,15 @@ class Feeds20210630Client(BaseClient):
     _get_feed_params = (("feedId", "path"),)  # name, param in
 
     _get_feed_responses = {
-        200: Feed,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): Feed,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_feed_document(
@@ -446,15 +446,15 @@ class Feeds20210630Client(BaseClient):
     _get_feed_document_params = (("feedDocumentId", "path"),)  # name, param in
 
     _get_feed_document_responses = {
-        200: FeedDocument,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): FeedDocument,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def get_feeds(
@@ -520,13 +520,13 @@ class Feeds20210630Client(BaseClient):
     )
 
     _get_feeds_responses = {
-        200: GetFeedsResponse,
-        400: ErrorList,
-        401: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): GetFeedsResponse,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }

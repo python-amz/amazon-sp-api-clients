@@ -1155,14 +1155,14 @@ class ShippingV1Client(BaseClient):
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _cancel_shipment_responses = {
-        200: CancelShipmentResponse,
-        400: CancelShipmentResponse,
-        401: CancelShipmentResponse,
-        403: CancelShipmentResponse,
-        404: CancelShipmentResponse,
-        429: CancelShipmentResponse,
-        500: CancelShipmentResponse,
-        503: CancelShipmentResponse,
+        (200, "application/json"): CancelShipmentResponse,
+        (400, "application/json"): CancelShipmentResponse,
+        (401, "application/json"): CancelShipmentResponse,
+        (403, "application/json"): CancelShipmentResponse,
+        (404, "application/json"): CancelShipmentResponse,
+        (429, "application/json"): CancelShipmentResponse,
+        (500, "application/json"): CancelShipmentResponse,
+        (503, "application/json"): CancelShipmentResponse,
     }
 
     def create_shipment(
@@ -1214,14 +1214,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _create_shipment_responses = {
-        200: CreateShipmentResponse,
-        400: CreateShipmentResponse,
-        401: CreateShipmentResponse,
-        403: CreateShipmentResponse,
-        404: CreateShipmentResponse,
-        429: CreateShipmentResponse,
-        500: CreateShipmentResponse,
-        503: CreateShipmentResponse,
+        (200, "application/json"): CreateShipmentResponse,
+        (400, "application/json"): CreateShipmentResponse,
+        (401, "application/json"): CreateShipmentResponse,
+        (403, "application/json"): CreateShipmentResponse,
+        (404, "application/json"): CreateShipmentResponse,
+        (429, "application/json"): CreateShipmentResponse,
+        (500, "application/json"): CreateShipmentResponse,
+        (503, "application/json"): CreateShipmentResponse,
     }
 
     def get_account(
@@ -1255,14 +1255,14 @@ class ShippingV1Client(BaseClient):
     _get_account_params = ()  # name, param in
 
     _get_account_responses = {
-        200: GetAccountResponse,
-        400: GetAccountResponse,
-        401: GetAccountResponse,
-        403: GetAccountResponse,
-        404: GetAccountResponse,
-        429: GetAccountResponse,
-        500: GetAccountResponse,
-        503: GetAccountResponse,
+        (200, "application/json"): GetAccountResponse,
+        (400, "application/json"): GetAccountResponse,
+        (401, "application/json"): GetAccountResponse,
+        (403, "application/json"): GetAccountResponse,
+        (404, "application/json"): GetAccountResponse,
+        (429, "application/json"): GetAccountResponse,
+        (500, "application/json"): GetAccountResponse,
+        (503, "application/json"): GetAccountResponse,
     }
 
     def get_rates(
@@ -1318,14 +1318,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _get_rates_responses = {
-        200: GetRatesResponse,
-        400: GetRatesResponse,
-        401: GetRatesResponse,
-        403: GetRatesResponse,
-        404: GetRatesResponse,
-        429: GetRatesResponse,
-        500: GetRatesResponse,
-        503: GetRatesResponse,
+        (200, "application/json"): GetRatesResponse,
+        (400, "application/json"): GetRatesResponse,
+        (401, "application/json"): GetRatesResponse,
+        (403, "application/json"): GetRatesResponse,
+        (404, "application/json"): GetRatesResponse,
+        (429, "application/json"): GetRatesResponse,
+        (500, "application/json"): GetRatesResponse,
+        (503, "application/json"): GetRatesResponse,
     }
 
     def get_shipment(
@@ -1361,14 +1361,14 @@ class ShippingV1Client(BaseClient):
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _get_shipment_responses = {
-        200: GetShipmentResponse,
-        400: GetShipmentResponse,
-        401: GetShipmentResponse,
-        403: GetShipmentResponse,
-        404: GetShipmentResponse,
-        429: GetShipmentResponse,
-        500: GetShipmentResponse,
-        503: GetShipmentResponse,
+        (200, "application/json"): GetShipmentResponse,
+        (400, "application/json"): GetShipmentResponse,
+        (401, "application/json"): GetShipmentResponse,
+        (403, "application/json"): GetShipmentResponse,
+        (404, "application/json"): GetShipmentResponse,
+        (429, "application/json"): GetShipmentResponse,
+        (500, "application/json"): GetShipmentResponse,
+        (503, "application/json"): GetShipmentResponse,
     }
 
     def get_tracking_information(
@@ -1404,14 +1404,14 @@ class ShippingV1Client(BaseClient):
     _get_tracking_information_params = (("trackingId", "path"),)  # name, param in
 
     _get_tracking_information_responses = {
-        200: GetTrackingInformationResponse,
-        400: GetTrackingInformationResponse,
-        401: GetTrackingInformationResponse,
-        403: GetTrackingInformationResponse,
-        404: GetTrackingInformationResponse,
-        429: GetTrackingInformationResponse,
-        500: GetTrackingInformationResponse,
-        503: GetTrackingInformationResponse,
+        (200, "application/json"): GetTrackingInformationResponse,
+        (400, "application/json"): GetTrackingInformationResponse,
+        (401, "application/json"): GetTrackingInformationResponse,
+        (403, "application/json"): GetTrackingInformationResponse,
+        (404, "application/json"): GetTrackingInformationResponse,
+        (429, "application/json"): GetTrackingInformationResponse,
+        (500, "application/json"): GetTrackingInformationResponse,
+        (503, "application/json"): GetTrackingInformationResponse,
     }
 
     def purchase_labels(
@@ -1459,14 +1459,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _purchase_labels_responses = {
-        200: PurchaseLabelsResponse,
-        400: PurchaseLabelsResponse,
-        401: PurchaseLabelsResponse,
-        403: PurchaseLabelsResponse,
-        404: PurchaseLabelsResponse,
-        429: PurchaseLabelsResponse,
-        500: PurchaseLabelsResponse,
-        503: PurchaseLabelsResponse,
+        (200, "application/json"): PurchaseLabelsResponse,
+        (400, "application/json"): PurchaseLabelsResponse,
+        (401, "application/json"): PurchaseLabelsResponse,
+        (403, "application/json"): PurchaseLabelsResponse,
+        (404, "application/json"): PurchaseLabelsResponse,
+        (429, "application/json"): PurchaseLabelsResponse,
+        (500, "application/json"): PurchaseLabelsResponse,
+        (503, "application/json"): PurchaseLabelsResponse,
     }
 
     def purchase_shipment(
@@ -1532,14 +1532,14 @@ class ShippingV1Client(BaseClient):
     )
 
     _purchase_shipment_responses = {
-        200: PurchaseShipmentResponse,
-        400: PurchaseShipmentResponse,
-        401: PurchaseShipmentResponse,
-        403: PurchaseShipmentResponse,
-        404: PurchaseShipmentResponse,
-        429: PurchaseShipmentResponse,
-        500: PurchaseShipmentResponse,
-        503: PurchaseShipmentResponse,
+        (200, "application/json"): PurchaseShipmentResponse,
+        (400, "application/json"): PurchaseShipmentResponse,
+        (401, "application/json"): PurchaseShipmentResponse,
+        (403, "application/json"): PurchaseShipmentResponse,
+        (404, "application/json"): PurchaseShipmentResponse,
+        (429, "application/json"): PurchaseShipmentResponse,
+        (500, "application/json"): PurchaseShipmentResponse,
+        (503, "application/json"): PurchaseShipmentResponse,
     }
 
     def retrieve_shipping_label(
@@ -1587,12 +1587,12 @@ class ShippingV1Client(BaseClient):
     )
 
     _retrieve_shipping_label_responses = {
-        200: RetrieveShippingLabelResponse,
-        400: RetrieveShippingLabelResponse,
-        401: RetrieveShippingLabelResponse,
-        403: RetrieveShippingLabelResponse,
-        404: RetrieveShippingLabelResponse,
-        429: RetrieveShippingLabelResponse,
-        500: RetrieveShippingLabelResponse,
-        503: RetrieveShippingLabelResponse,
+        (200, "application/json"): RetrieveShippingLabelResponse,
+        (400, "application/json"): RetrieveShippingLabelResponse,
+        (401, "application/json"): RetrieveShippingLabelResponse,
+        (403, "application/json"): RetrieveShippingLabelResponse,
+        (404, "application/json"): RetrieveShippingLabelResponse,
+        (429, "application/json"): RetrieveShippingLabelResponse,
+        (500, "application/json"): RetrieveShippingLabelResponse,
+        (503, "application/json"): RetrieveShippingLabelResponse,
     }

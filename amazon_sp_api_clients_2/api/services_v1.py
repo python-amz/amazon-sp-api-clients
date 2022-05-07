@@ -768,16 +768,16 @@ class ServicesV1Client(BaseClient):
     )
 
     _add_appointment_for_service_job_by_service_job_id_responses = {
-        200: SetAppointmentResponse,
-        400: SetAppointmentResponse,
-        403: SetAppointmentResponse,
-        404: SetAppointmentResponse,
-        413: SetAppointmentResponse,
-        415: SetAppointmentResponse,
-        422: SetAppointmentResponse,
-        429: SetAppointmentResponse,
-        500: SetAppointmentResponse,
-        503: SetAppointmentResponse,
+        (200, "application/json"): SetAppointmentResponse,
+        (400, "application/json"): SetAppointmentResponse,
+        (403, "application/json"): SetAppointmentResponse,
+        (404, "application/json"): SetAppointmentResponse,
+        (413, "application/json"): SetAppointmentResponse,
+        (415, "application/json"): SetAppointmentResponse,
+        (422, "application/json"): SetAppointmentResponse,
+        (429, "application/json"): SetAppointmentResponse,
+        (500, "application/json"): SetAppointmentResponse,
+        (503, "application/json"): SetAppointmentResponse,
     }
 
     def cancel_service_job_by_service_job_id(
@@ -821,16 +821,16 @@ class ServicesV1Client(BaseClient):
     )
 
     _cancel_service_job_by_service_job_id_responses = {
-        200: CancelServiceJobByServiceJobIdResponse,
-        400: CancelServiceJobByServiceJobIdResponse,
-        403: CancelServiceJobByServiceJobIdResponse,
-        404: CancelServiceJobByServiceJobIdResponse,
-        413: CancelServiceJobByServiceJobIdResponse,
-        415: CancelServiceJobByServiceJobIdResponse,
-        422: CancelServiceJobByServiceJobIdResponse,
-        429: CancelServiceJobByServiceJobIdResponse,
-        500: CancelServiceJobByServiceJobIdResponse,
-        503: CancelServiceJobByServiceJobIdResponse,
+        (200, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (400, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (403, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (404, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (413, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (415, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (422, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (429, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (500, "application/json"): CancelServiceJobByServiceJobIdResponse,
+        (503, "application/json"): CancelServiceJobByServiceJobIdResponse,
     }
 
     def complete_service_job_by_service_job_id(
@@ -866,16 +866,16 @@ class ServicesV1Client(BaseClient):
     _complete_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     _complete_service_job_by_service_job_id_responses = {
-        200: CompleteServiceJobByServiceJobIdResponse,
-        400: CompleteServiceJobByServiceJobIdResponse,
-        403: CompleteServiceJobByServiceJobIdResponse,
-        404: CompleteServiceJobByServiceJobIdResponse,
-        413: CompleteServiceJobByServiceJobIdResponse,
-        415: CompleteServiceJobByServiceJobIdResponse,
-        422: CompleteServiceJobByServiceJobIdResponse,
-        429: CompleteServiceJobByServiceJobIdResponse,
-        500: CompleteServiceJobByServiceJobIdResponse,
-        503: CompleteServiceJobByServiceJobIdResponse,
+        (200, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (400, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (403, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (404, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (413, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (415, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (422, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (429, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (500, "application/json"): CompleteServiceJobByServiceJobIdResponse,
+        (503, "application/json"): CompleteServiceJobByServiceJobIdResponse,
     }
 
     def get_service_job_by_service_job_id(
@@ -911,16 +911,16 @@ class ServicesV1Client(BaseClient):
     _get_service_job_by_service_job_id_params = (("serviceJobId", "path"),)  # name, param in
 
     _get_service_job_by_service_job_id_responses = {
-        200: GetServiceJobByServiceJobIdResponse,
-        400: GetServiceJobByServiceJobIdResponse,
-        403: GetServiceJobByServiceJobIdResponse,
-        404: GetServiceJobByServiceJobIdResponse,
-        413: GetServiceJobByServiceJobIdResponse,
-        415: GetServiceJobByServiceJobIdResponse,
-        422: GetServiceJobByServiceJobIdResponse,
-        429: GetServiceJobByServiceJobIdResponse,
-        500: GetServiceJobByServiceJobIdResponse,
-        503: GetServiceJobByServiceJobIdResponse,
+        (200, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (400, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (403, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (404, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (413, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (415, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (422, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (429, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (500, "application/json"): GetServiceJobByServiceJobIdResponse,
+        (503, "application/json"): GetServiceJobByServiceJobIdResponse,
     }
 
     def get_service_jobs(
@@ -1018,15 +1018,15 @@ class ServicesV1Client(BaseClient):
     )
 
     _get_service_jobs_responses = {
-        200: GetServiceJobsResponse,
-        400: GetServiceJobsResponse,
-        403: GetServiceJobsResponse,
-        404: GetServiceJobsResponse,
-        413: GetServiceJobsResponse,
-        415: GetServiceJobsResponse,
-        429: GetServiceJobsResponse,
-        500: GetServiceJobsResponse,
-        503: GetServiceJobsResponse,
+        (200, "application/json"): GetServiceJobsResponse,
+        (400, "application/json"): GetServiceJobsResponse,
+        (403, "application/json"): GetServiceJobsResponse,
+        (404, "application/json"): GetServiceJobsResponse,
+        (413, "application/json"): GetServiceJobsResponse,
+        (415, "application/json"): GetServiceJobsResponse,
+        (429, "application/json"): GetServiceJobsResponse,
+        (500, "application/json"): GetServiceJobsResponse,
+        (503, "application/json"): GetServiceJobsResponse,
     }
 
     def reschedule_appointment_for_service_job_by_service_job_id(
@@ -1078,14 +1078,14 @@ class ServicesV1Client(BaseClient):
     )
 
     _reschedule_appointment_for_service_job_by_service_job_id_responses = {
-        200: SetAppointmentResponse,
-        400: SetAppointmentResponse,
-        403: SetAppointmentResponse,
-        404: SetAppointmentResponse,
-        413: SetAppointmentResponse,
-        415: SetAppointmentResponse,
-        422: SetAppointmentResponse,
-        429: SetAppointmentResponse,
-        500: SetAppointmentResponse,
-        503: SetAppointmentResponse,
+        (200, "application/json"): SetAppointmentResponse,
+        (400, "application/json"): SetAppointmentResponse,
+        (403, "application/json"): SetAppointmentResponse,
+        (404, "application/json"): SetAppointmentResponse,
+        (413, "application/json"): SetAppointmentResponse,
+        (415, "application/json"): SetAppointmentResponse,
+        (422, "application/json"): SetAppointmentResponse,
+        (429, "application/json"): SetAppointmentResponse,
+        (500, "application/json"): SetAppointmentResponse,
+        (503, "application/json"): SetAppointmentResponse,
     }

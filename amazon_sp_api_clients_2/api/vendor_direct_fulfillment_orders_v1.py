@@ -669,15 +669,15 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
     _get_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_order_responses = {
-        200: GetOrderResponse,
-        400: GetOrderResponse,
-        401: GetOrderResponse,
-        403: GetOrderResponse,
-        404: GetOrderResponse,
-        415: GetOrderResponse,
-        429: GetOrderResponse,
-        500: GetOrderResponse,
-        503: GetOrderResponse,
+        (200, "application/json"): GetOrderResponse,
+        (400, "application/json"): GetOrderResponse,
+        (401, "application/json"): GetOrderResponse,
+        (403, "application/json"): GetOrderResponse,
+        (404, "application/json"): GetOrderResponse,
+        (415, "application/json"): GetOrderResponse,
+        (429, "application/json"): GetOrderResponse,
+        (500, "application/json"): GetOrderResponse,
+        (503, "application/json"): GetOrderResponse,
     }
 
     def get_orders(
@@ -746,14 +746,14 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
     )
 
     _get_orders_responses = {
-        200: GetOrdersResponse,
-        400: GetOrdersResponse,
-        403: GetOrdersResponse,
-        404: GetOrdersResponse,
-        415: GetOrdersResponse,
-        429: GetOrdersResponse,
-        500: GetOrdersResponse,
-        503: GetOrdersResponse,
+        (200, "application/json"): GetOrdersResponse,
+        (400, "application/json"): GetOrdersResponse,
+        (403, "application/json"): GetOrdersResponse,
+        (404, "application/json"): GetOrdersResponse,
+        (415, "application/json"): GetOrdersResponse,
+        (429, "application/json"): GetOrdersResponse,
+        (500, "application/json"): GetOrdersResponse,
+        (503, "application/json"): GetOrdersResponse,
     }
 
     def submit_acknowledgement(
@@ -790,13 +790,13 @@ class VendorDirectFulfillmentOrdersV1Client(BaseClient):
     _submit_acknowledgement_params = (("orderAcknowledgements", "body"),)  # name, param in
 
     _submit_acknowledgement_responses = {
-        202: SubmitAcknowledgementResponse,
-        400: SubmitAcknowledgementResponse,
-        403: SubmitAcknowledgementResponse,
-        404: SubmitAcknowledgementResponse,
-        413: SubmitAcknowledgementResponse,
-        415: SubmitAcknowledgementResponse,
-        429: SubmitAcknowledgementResponse,
-        500: SubmitAcknowledgementResponse,
-        503: SubmitAcknowledgementResponse,
+        (202, "application/json"): SubmitAcknowledgementResponse,
+        (400, "application/json"): SubmitAcknowledgementResponse,
+        (403, "application/json"): SubmitAcknowledgementResponse,
+        (404, "application/json"): SubmitAcknowledgementResponse,
+        (413, "application/json"): SubmitAcknowledgementResponse,
+        (415, "application/json"): SubmitAcknowledgementResponse,
+        (429, "application/json"): SubmitAcknowledgementResponse,
+        (500, "application/json"): SubmitAcknowledgementResponse,
+        (503, "application/json"): SubmitAcknowledgementResponse,
     }

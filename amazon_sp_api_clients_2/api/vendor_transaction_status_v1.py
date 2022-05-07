@@ -115,13 +115,13 @@ class VendorTransactionStatusV1Client(BaseClient):
     _get_transaction_params = (("transactionId", "path"),)  # name, param in
 
     _get_transaction_responses = {
-        200: GetTransactionResponse,
-        400: GetTransactionResponse,
-        401: GetTransactionResponse,
-        403: GetTransactionResponse,
-        404: GetTransactionResponse,
-        415: GetTransactionResponse,
-        429: GetTransactionResponse,
-        500: GetTransactionResponse,
-        503: GetTransactionResponse,
+        (200, "application/json"): GetTransactionResponse,
+        (400, "application/json"): GetTransactionResponse,
+        (401, "application/json"): GetTransactionResponse,
+        (403, "application/json"): GetTransactionResponse,
+        (404, "application/json"): GetTransactionResponse,
+        (415, "application/json"): GetTransactionResponse,
+        (429, "application/json"): GetTransactionResponse,
+        (500, "application/json"): GetTransactionResponse,
+        (503, "application/json"): GetTransactionResponse,
     }

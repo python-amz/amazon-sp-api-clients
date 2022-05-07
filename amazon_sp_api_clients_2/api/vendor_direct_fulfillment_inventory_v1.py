@@ -179,13 +179,13 @@ class VendorDirectFulfillmentInventoryV1Client(BaseClient):
     )
 
     _submit_inventory_update_responses = {
-        202: SubmitInventoryUpdateResponse,
-        400: SubmitInventoryUpdateResponse,
-        403: SubmitInventoryUpdateResponse,
-        404: SubmitInventoryUpdateResponse,
-        413: SubmitInventoryUpdateResponse,
-        415: SubmitInventoryUpdateResponse,
-        429: SubmitInventoryUpdateResponse,
-        500: SubmitInventoryUpdateResponse,
-        503: SubmitInventoryUpdateResponse,
+        (202, "application/json"): SubmitInventoryUpdateResponse,
+        (400, "application/json"): SubmitInventoryUpdateResponse,
+        (403, "application/json"): SubmitInventoryUpdateResponse,
+        (404, "application/json"): SubmitInventoryUpdateResponse,
+        (413, "application/json"): SubmitInventoryUpdateResponse,
+        (415, "application/json"): SubmitInventoryUpdateResponse,
+        (429, "application/json"): SubmitInventoryUpdateResponse,
+        (500, "application/json"): SubmitInventoryUpdateResponse,
+        (503, "application/json"): SubmitInventoryUpdateResponse,
     }

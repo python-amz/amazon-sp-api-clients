@@ -846,15 +846,15 @@ class VendorOrdersV1Client(BaseClient):
     _get_purchase_order_params = (("purchaseOrderNumber", "path"),)  # name, param in
 
     _get_purchase_order_responses = {
-        200: GetPurchaseOrderResponse,
-        400: GetPurchaseOrderResponse,
-        401: GetPurchaseOrderResponse,
-        403: GetPurchaseOrderResponse,
-        404: GetPurchaseOrderResponse,
-        415: GetPurchaseOrderResponse,
-        429: GetPurchaseOrderResponse,
-        500: GetPurchaseOrderResponse,
-        503: GetPurchaseOrderResponse,
+        (200, "application/json"): GetPurchaseOrderResponse,
+        (400, "application/json"): GetPurchaseOrderResponse,
+        (401, "application/json"): GetPurchaseOrderResponse,
+        (403, "application/json"): GetPurchaseOrderResponse,
+        (404, "application/json"): GetPurchaseOrderResponse,
+        (415, "application/json"): GetPurchaseOrderResponse,
+        (429, "application/json"): GetPurchaseOrderResponse,
+        (500, "application/json"): GetPurchaseOrderResponse,
+        (503, "application/json"): GetPurchaseOrderResponse,
     }
 
     def get_purchase_orders(
@@ -939,14 +939,14 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     _get_purchase_orders_responses = {
-        200: GetPurchaseOrdersResponse,
-        400: GetPurchaseOrdersResponse,
-        403: GetPurchaseOrdersResponse,
-        404: GetPurchaseOrdersResponse,
-        415: GetPurchaseOrdersResponse,
-        429: GetPurchaseOrdersResponse,
-        500: GetPurchaseOrdersResponse,
-        503: GetPurchaseOrdersResponse,
+        (200, "application/json"): GetPurchaseOrdersResponse,
+        (400, "application/json"): GetPurchaseOrdersResponse,
+        (403, "application/json"): GetPurchaseOrdersResponse,
+        (404, "application/json"): GetPurchaseOrdersResponse,
+        (415, "application/json"): GetPurchaseOrdersResponse,
+        (429, "application/json"): GetPurchaseOrdersResponse,
+        (500, "application/json"): GetPurchaseOrdersResponse,
+        (503, "application/json"): GetPurchaseOrdersResponse,
     }
 
     def get_purchase_orders_status(
@@ -1037,14 +1037,14 @@ class VendorOrdersV1Client(BaseClient):
     )
 
     _get_purchase_orders_status_responses = {
-        200: GetPurchaseOrdersStatusResponse,
-        400: GetPurchaseOrdersStatusResponse,
-        403: GetPurchaseOrdersStatusResponse,
-        404: GetPurchaseOrdersStatusResponse,
-        415: GetPurchaseOrdersStatusResponse,
-        429: GetPurchaseOrdersStatusResponse,
-        500: GetPurchaseOrdersStatusResponse,
-        503: GetPurchaseOrdersStatusResponse,
+        (200, "application/json"): GetPurchaseOrdersStatusResponse,
+        (400, "application/json"): GetPurchaseOrdersStatusResponse,
+        (403, "application/json"): GetPurchaseOrdersStatusResponse,
+        (404, "application/json"): GetPurchaseOrdersStatusResponse,
+        (415, "application/json"): GetPurchaseOrdersStatusResponse,
+        (429, "application/json"): GetPurchaseOrdersStatusResponse,
+        (500, "application/json"): GetPurchaseOrdersStatusResponse,
+        (503, "application/json"): GetPurchaseOrdersStatusResponse,
     }
 
     def submit_acknowledgement(
@@ -1081,13 +1081,13 @@ class VendorOrdersV1Client(BaseClient):
     _submit_acknowledgement_params = (("acknowledgements", "body"),)  # name, param in
 
     _submit_acknowledgement_responses = {
-        202: SubmitAcknowledgementResponse,
-        400: SubmitAcknowledgementResponse,
-        403: SubmitAcknowledgementResponse,
-        404: SubmitAcknowledgementResponse,
-        413: SubmitAcknowledgementResponse,
-        415: SubmitAcknowledgementResponse,
-        429: SubmitAcknowledgementResponse,
-        500: SubmitAcknowledgementResponse,
-        503: SubmitAcknowledgementResponse,
+        (202, "application/json"): SubmitAcknowledgementResponse,
+        (400, "application/json"): SubmitAcknowledgementResponse,
+        (403, "application/json"): SubmitAcknowledgementResponse,
+        (404, "application/json"): SubmitAcknowledgementResponse,
+        (413, "application/json"): SubmitAcknowledgementResponse,
+        (415, "application/json"): SubmitAcknowledgementResponse,
+        (429, "application/json"): SubmitAcknowledgementResponse,
+        (500, "application/json"): SubmitAcknowledgementResponse,
+        (503, "application/json"): SubmitAcknowledgementResponse,
     }

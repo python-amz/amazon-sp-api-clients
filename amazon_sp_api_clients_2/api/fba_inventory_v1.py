@@ -368,11 +368,11 @@ class FbaInventoryV1Client(BaseClient):
     )
 
     _get_inventory_summaries_responses = {
-        200: GetInventorySummariesResponse,
-        400: GetInventorySummariesResponse,
-        403: GetInventorySummariesResponse,
-        404: GetInventorySummariesResponse,
-        429: GetInventorySummariesResponse,
-        500: GetInventorySummariesResponse,
-        503: GetInventorySummariesResponse,
+        (200, "application/json"): GetInventorySummariesResponse,
+        (400, "application/json"): GetInventorySummariesResponse,
+        (403, "application/json"): GetInventorySummariesResponse,
+        (404, "application/json"): GetInventorySummariesResponse,
+        (429, "application/json"): GetInventorySummariesResponse,
+        (500, "application/json"): GetInventorySummariesResponse,
+        (503, "application/json"): GetInventorySummariesResponse,
     }

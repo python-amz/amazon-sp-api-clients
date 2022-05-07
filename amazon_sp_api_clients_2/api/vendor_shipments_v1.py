@@ -797,13 +797,13 @@ class VendorShipmentsV1Client(BaseClient):
     _submit_shipment_confirmations_params = (("shipmentConfirmations", "body"),)  # name, param in
 
     _submit_shipment_confirmations_responses = {
-        202: SubmitShipmentConfirmationsResponse,
-        400: SubmitShipmentConfirmationsResponse,
-        403: SubmitShipmentConfirmationsResponse,
-        404: SubmitShipmentConfirmationsResponse,
-        413: SubmitShipmentConfirmationsResponse,
-        415: SubmitShipmentConfirmationsResponse,
-        429: SubmitShipmentConfirmationsResponse,
-        500: SubmitShipmentConfirmationsResponse,
-        503: SubmitShipmentConfirmationsResponse,
+        (202, "application/json"): SubmitShipmentConfirmationsResponse,
+        (400, "application/json"): SubmitShipmentConfirmationsResponse,
+        (403, "application/json"): SubmitShipmentConfirmationsResponse,
+        (404, "application/json"): SubmitShipmentConfirmationsResponse,
+        (413, "application/json"): SubmitShipmentConfirmationsResponse,
+        (415, "application/json"): SubmitShipmentConfirmationsResponse,
+        (429, "application/json"): SubmitShipmentConfirmationsResponse,
+        (500, "application/json"): SubmitShipmentConfirmationsResponse,
+        (503, "application/json"): SubmitShipmentConfirmationsResponse,
     }

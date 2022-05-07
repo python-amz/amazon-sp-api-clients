@@ -112,13 +112,13 @@ class VendorDirectFulfillmentTransactions20211228Client(BaseClient):
     _get_transaction_status_params = (("transactionId", "path"),)  # name, param in
 
     _get_transaction_status_responses = {
-        200: TransactionStatus,
-        400: ErrorList,
-        401: Error,
-        403: Error,
-        404: Error,
-        415: Error,
-        429: Error,
-        500: Error,
-        503: Error,
+        (200, "application/json"): TransactionStatus,
+        (400, "application/json"): ErrorList,
+        (401, "application/json"): Error,
+        (403, "application/json"): Error,
+        (404, "application/json"): Error,
+        (415, "application/json"): Error,
+        (429, "application/json"): Error,
+        (500, "application/json"): Error,
+        (503, "application/json"): Error,
     }

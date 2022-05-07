@@ -307,15 +307,15 @@ class ProductTypeDefinitions20200901Client(BaseClient):
     )
 
     _get_definitions_product_type_responses = {
-        200: ProductTypeDefinition,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ProductTypeDefinition,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def search_definitions_product_types(
@@ -360,13 +360,13 @@ class ProductTypeDefinitions20200901Client(BaseClient):
     )
 
     _search_definitions_product_types_responses = {
-        200: ProductTypeList,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ProductTypeList,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }

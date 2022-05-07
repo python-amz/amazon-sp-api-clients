@@ -206,13 +206,13 @@ class ListingsRestrictions20210801Client(BaseClient):
     )
 
     _get_listings_restrictions_responses = {
-        200: RestrictionList,
-        400: List["Error"],
-        403: List["Error"],
-        404: List["Error"],
-        413: List["Error"],
-        415: List["Error"],
-        429: List["Error"],
-        500: List["Error"],
-        503: List["Error"],
+        (200, "application/json"): RestrictionList,
+        (400, "application/json"): List["Error"],
+        (403, "application/json"): List["Error"],
+        (404, "application/json"): List["Error"],
+        (413, "application/json"): List["Error"],
+        (415, "application/json"): List["Error"],
+        (429, "application/json"): List["Error"],
+        (500, "application/json"): List["Error"],
+        (503, "application/json"): List["Error"],
     }

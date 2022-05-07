@@ -481,15 +481,15 @@ class ShipmentInvoicingV0Client(BaseClient):
     _get_invoice_status_params = (("shipmentId", "path"),)  # name, param in
 
     _get_invoice_status_responses = {
-        200: GetInvoiceStatusResponse,
-        400: GetInvoiceStatusResponse,
-        401: GetInvoiceStatusResponse,
-        403: GetInvoiceStatusResponse,
-        404: GetInvoiceStatusResponse,
-        415: GetInvoiceStatusResponse,
-        429: GetInvoiceStatusResponse,
-        500: GetInvoiceStatusResponse,
-        503: GetInvoiceStatusResponse,
+        (200, "application/json"): GetInvoiceStatusResponse,
+        (400, "application/json"): GetInvoiceStatusResponse,
+        (401, "application/json"): GetInvoiceStatusResponse,
+        (403, "application/json"): GetInvoiceStatusResponse,
+        (404, "application/json"): GetInvoiceStatusResponse,
+        (415, "application/json"): GetInvoiceStatusResponse,
+        (429, "application/json"): GetInvoiceStatusResponse,
+        (500, "application/json"): GetInvoiceStatusResponse,
+        (503, "application/json"): GetInvoiceStatusResponse,
     }
 
     def get_shipment_details(
@@ -526,15 +526,15 @@ class ShipmentInvoicingV0Client(BaseClient):
     _get_shipment_details_params = (("shipmentId", "path"),)  # name, param in
 
     _get_shipment_details_responses = {
-        200: GetShipmentDetailsResponse,
-        400: GetShipmentDetailsResponse,
-        401: GetShipmentDetailsResponse,
-        403: GetShipmentDetailsResponse,
-        404: GetShipmentDetailsResponse,
-        415: GetShipmentDetailsResponse,
-        429: GetShipmentDetailsResponse,
-        500: GetShipmentDetailsResponse,
-        503: GetShipmentDetailsResponse,
+        (200, "application/json"): GetShipmentDetailsResponse,
+        (400, "application/json"): GetShipmentDetailsResponse,
+        (401, "application/json"): GetShipmentDetailsResponse,
+        (403, "application/json"): GetShipmentDetailsResponse,
+        (404, "application/json"): GetShipmentDetailsResponse,
+        (415, "application/json"): GetShipmentDetailsResponse,
+        (429, "application/json"): GetShipmentDetailsResponse,
+        (500, "application/json"): GetShipmentDetailsResponse,
+        (503, "application/json"): GetShipmentDetailsResponse,
     }
 
     def submit_invoice(
@@ -587,13 +587,13 @@ class ShipmentInvoicingV0Client(BaseClient):
     )
 
     _submit_invoice_responses = {
-        200: SubmitInvoiceResponse,
-        400: SubmitInvoiceResponse,
-        401: SubmitInvoiceResponse,
-        403: SubmitInvoiceResponse,
-        404: SubmitInvoiceResponse,
-        415: SubmitInvoiceResponse,
-        429: SubmitInvoiceResponse,
-        500: SubmitInvoiceResponse,
-        503: SubmitInvoiceResponse,
+        (200, "application/json"): SubmitInvoiceResponse,
+        (400, "application/json"): SubmitInvoiceResponse,
+        (401, "application/json"): SubmitInvoiceResponse,
+        (403, "application/json"): SubmitInvoiceResponse,
+        (404, "application/json"): SubmitInvoiceResponse,
+        (415, "application/json"): SubmitInvoiceResponse,
+        (429, "application/json"): SubmitInvoiceResponse,
+        (500, "application/json"): SubmitInvoiceResponse,
+        (503, "application/json"): SubmitInvoiceResponse,
     }

@@ -1422,14 +1422,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     _cancel_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _cancel_shipment_responses = {
-        200: CancelShipmentResponse,
-        400: CancelShipmentResponse,
-        401: CancelShipmentResponse,
-        403: CancelShipmentResponse,
-        404: CancelShipmentResponse,
-        429: CancelShipmentResponse,
-        500: CancelShipmentResponse,
-        503: CancelShipmentResponse,
+        (200, "application/json"): CancelShipmentResponse,
+        (400, "application/json"): CancelShipmentResponse,
+        (401, "application/json"): CancelShipmentResponse,
+        (403, "application/json"): CancelShipmentResponse,
+        (404, "application/json"): CancelShipmentResponse,
+        (429, "application/json"): CancelShipmentResponse,
+        (500, "application/json"): CancelShipmentResponse,
+        (503, "application/json"): CancelShipmentResponse,
     }
 
     def cancel_shipment_old(
@@ -1465,14 +1465,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     _cancel_shipment_old_params = (("shipmentId", "path"),)  # name, param in
 
     _cancel_shipment_old_responses = {
-        200: CancelShipmentResponse,
-        400: CancelShipmentResponse,
-        401: CancelShipmentResponse,
-        403: CancelShipmentResponse,
-        404: CancelShipmentResponse,
-        429: CancelShipmentResponse,
-        500: CancelShipmentResponse,
-        503: CancelShipmentResponse,
+        (200, "application/json"): CancelShipmentResponse,
+        (400, "application/json"): CancelShipmentResponse,
+        (401, "application/json"): CancelShipmentResponse,
+        (403, "application/json"): CancelShipmentResponse,
+        (404, "application/json"): CancelShipmentResponse,
+        (429, "application/json"): CancelShipmentResponse,
+        (500, "application/json"): CancelShipmentResponse,
+        (503, "application/json"): CancelShipmentResponse,
     }
 
     def create_shipment(
@@ -1532,14 +1532,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _create_shipment_responses = {
-        200: CreateShipmentResponse,
-        400: CreateShipmentResponse,
-        401: CreateShipmentResponse,
-        403: CreateShipmentResponse,
-        404: CreateShipmentResponse,
-        429: CreateShipmentResponse,
-        500: CreateShipmentResponse,
-        503: CreateShipmentResponse,
+        (200, "application/json"): CreateShipmentResponse,
+        (400, "application/json"): CreateShipmentResponse,
+        (401, "application/json"): CreateShipmentResponse,
+        (403, "application/json"): CreateShipmentResponse,
+        (404, "application/json"): CreateShipmentResponse,
+        (429, "application/json"): CreateShipmentResponse,
+        (500, "application/json"): CreateShipmentResponse,
+        (503, "application/json"): CreateShipmentResponse,
     }
 
     def get_additional_seller_inputs(
@@ -1587,14 +1587,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_additional_seller_inputs_responses = {
-        200: GetAdditionalSellerInputsResponse,
-        400: GetAdditionalSellerInputsResponse,
-        401: GetAdditionalSellerInputsResponse,
-        403: GetAdditionalSellerInputsResponse,
-        404: GetAdditionalSellerInputsResponse,
-        429: GetAdditionalSellerInputsResponse,
-        500: GetAdditionalSellerInputsResponse,
-        503: GetAdditionalSellerInputsResponse,
+        (200, "application/json"): GetAdditionalSellerInputsResponse,
+        (400, "application/json"): GetAdditionalSellerInputsResponse,
+        (401, "application/json"): GetAdditionalSellerInputsResponse,
+        (403, "application/json"): GetAdditionalSellerInputsResponse,
+        (404, "application/json"): GetAdditionalSellerInputsResponse,
+        (429, "application/json"): GetAdditionalSellerInputsResponse,
+        (500, "application/json"): GetAdditionalSellerInputsResponse,
+        (503, "application/json"): GetAdditionalSellerInputsResponse,
     }
 
     def get_additional_seller_inputs_old(
@@ -1642,14 +1642,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_additional_seller_inputs_old_responses = {
-        200: GetAdditionalSellerInputsResponse,
-        400: GetAdditionalSellerInputsResponse,
-        401: GetAdditionalSellerInputsResponse,
-        403: GetAdditionalSellerInputsResponse,
-        404: GetAdditionalSellerInputsResponse,
-        429: GetAdditionalSellerInputsResponse,
-        500: GetAdditionalSellerInputsResponse,
-        503: GetAdditionalSellerInputsResponse,
+        (200, "application/json"): GetAdditionalSellerInputsResponse,
+        (400, "application/json"): GetAdditionalSellerInputsResponse,
+        (401, "application/json"): GetAdditionalSellerInputsResponse,
+        (403, "application/json"): GetAdditionalSellerInputsResponse,
+        (404, "application/json"): GetAdditionalSellerInputsResponse,
+        (429, "application/json"): GetAdditionalSellerInputsResponse,
+        (500, "application/json"): GetAdditionalSellerInputsResponse,
+        (503, "application/json"): GetAdditionalSellerInputsResponse,
     }
 
     def get_eligible_shipment_services(
@@ -1693,14 +1693,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_eligible_shipment_services_responses = {
-        200: GetEligibleShipmentServicesResponse,
-        400: GetEligibleShipmentServicesResponse,
-        401: GetEligibleShipmentServicesResponse,
-        403: GetEligibleShipmentServicesResponse,
-        404: GetEligibleShipmentServicesResponse,
-        429: GetEligibleShipmentServicesResponse,
-        500: GetEligibleShipmentServicesResponse,
-        503: GetEligibleShipmentServicesResponse,
+        (200, "application/json"): GetEligibleShipmentServicesResponse,
+        (400, "application/json"): GetEligibleShipmentServicesResponse,
+        (401, "application/json"): GetEligibleShipmentServicesResponse,
+        (403, "application/json"): GetEligibleShipmentServicesResponse,
+        (404, "application/json"): GetEligibleShipmentServicesResponse,
+        (429, "application/json"): GetEligibleShipmentServicesResponse,
+        (500, "application/json"): GetEligibleShipmentServicesResponse,
+        (503, "application/json"): GetEligibleShipmentServicesResponse,
     }
 
     def get_eligible_shipment_services_old(
@@ -1744,14 +1744,14 @@ class MerchantFulfillmentV0Client(BaseClient):
     )
 
     _get_eligible_shipment_services_old_responses = {
-        200: GetEligibleShipmentServicesResponse,
-        400: GetEligibleShipmentServicesResponse,
-        401: GetEligibleShipmentServicesResponse,
-        403: GetEligibleShipmentServicesResponse,
-        404: GetEligibleShipmentServicesResponse,
-        429: GetEligibleShipmentServicesResponse,
-        500: GetEligibleShipmentServicesResponse,
-        503: GetEligibleShipmentServicesResponse,
+        (200, "application/json"): GetEligibleShipmentServicesResponse,
+        (400, "application/json"): GetEligibleShipmentServicesResponse,
+        (401, "application/json"): GetEligibleShipmentServicesResponse,
+        (403, "application/json"): GetEligibleShipmentServicesResponse,
+        (404, "application/json"): GetEligibleShipmentServicesResponse,
+        (429, "application/json"): GetEligibleShipmentServicesResponse,
+        (500, "application/json"): GetEligibleShipmentServicesResponse,
+        (503, "application/json"): GetEligibleShipmentServicesResponse,
     }
 
     def get_shipment(
@@ -1787,12 +1787,12 @@ class MerchantFulfillmentV0Client(BaseClient):
     _get_shipment_params = (("shipmentId", "path"),)  # name, param in
 
     _get_shipment_responses = {
-        200: GetShipmentResponse,
-        400: GetShipmentResponse,
-        401: GetShipmentResponse,
-        403: GetShipmentResponse,
-        404: GetShipmentResponse,
-        429: GetShipmentResponse,
-        500: GetShipmentResponse,
-        503: GetShipmentResponse,
+        (200, "application/json"): GetShipmentResponse,
+        (400, "application/json"): GetShipmentResponse,
+        (401, "application/json"): GetShipmentResponse,
+        (403, "application/json"): GetShipmentResponse,
+        (404, "application/json"): GetShipmentResponse,
+        (429, "application/json"): GetShipmentResponse,
+        (500, "application/json"): GetShipmentResponse,
+        (503, "application/json"): GetShipmentResponse,
     }

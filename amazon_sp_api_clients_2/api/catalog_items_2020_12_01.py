@@ -567,15 +567,15 @@ class CatalogItems20201201Client(BaseClient):
     )
 
     _get_catalog_item_responses = {
-        200: Item,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): Item,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
 
     def search_catalog_items(
@@ -658,13 +658,13 @@ class CatalogItems20201201Client(BaseClient):
     )
 
     _search_catalog_items_responses = {
-        200: ItemSearchResults,
-        400: ErrorList,
-        403: ErrorList,
-        404: ErrorList,
-        413: ErrorList,
-        415: ErrorList,
-        429: ErrorList,
-        500: ErrorList,
-        503: ErrorList,
+        (200, "application/json"): ItemSearchResults,
+        (400, "application/json"): ErrorList,
+        (403, "application/json"): ErrorList,
+        (404, "application/json"): ErrorList,
+        (413, "application/json"): ErrorList,
+        (415, "application/json"): ErrorList,
+        (429, "application/json"): ErrorList,
+        (500, "application/json"): ErrorList,
+        (503, "application/json"): ErrorList,
     }
