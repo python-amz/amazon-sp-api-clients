@@ -60,6 +60,14 @@ class SchemaBase(Schema):
         result = [line for line in result if line]
         return '\n        '.join(result)
 
+    @property
+    def is_list(self):
+        return self.type == 'array'
+
+    @property
+    def is_dict(self):
+        return self.type == 'object'
+
 
 class ParsedReferenceProperty(SchemaBase, Reference):
     schema_type = 'reference'
@@ -452,10 +460,10 @@ class Generator:
         glob_pattern = 'order*.json' if debug else '*.json'
         files = list((Path(__file__).parent.parent / 'swagger3_apis').glob(glob_pattern))
         if debug:
+            generators = [cls.worker(f) for f in files]
+        else:
             with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
                 generators = pool.map(cls.worker, files)
-        else:
-            generators = [cls.worker(f) for f in files]
         [g.generate() for g in generators]
         content = render(RequestFactory(), 'init.html', {'data': generators}).content.decode('utf-8')
         content = cls.format_python_file(content)
