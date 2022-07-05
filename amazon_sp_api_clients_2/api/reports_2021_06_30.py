@@ -22,10 +22,12 @@ class CreateReportResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_report_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateReportResponse(**data)
 
-    report_id: str = attrs.field()
+    report_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
@@ -40,10 +42,12 @@ class CreateReportScheduleResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_report_schedule_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateReportScheduleResponse(**data)
 
-    report_schedule_id: str = attrs.field()
+    report_schedule_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
@@ -54,10 +58,12 @@ class CreateReportScheduleSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_report_schedule_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateReportScheduleSpecification(**data)
 
-    marketplace_ids: List[str] = attrs.field()
+    marketplace_ids: List[str] = attrs.field(
+        default=None,
+    )
     """
     A list of marketplace identifiers for the report schedule.
 
@@ -94,7 +100,9 @@ class CreateReportScheduleSpecification:
         Literal["P18D"],
         Literal["P30D"],
         Literal["P1M"],
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     One of a set of predefined ISO 8601 periods that specifies how often a report should be created.
     """
@@ -106,7 +114,9 @@ class CreateReportScheduleSpecification:
     Additional information passed to reports. This varies by report type.
     """
 
-    report_type: str = attrs.field()
+    report_type: str = attrs.field(
+        default=None,
+    )
     """
     The report type.
     """
@@ -121,7 +131,7 @@ class CreateReportSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_report_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateReportSpecification(**data)
 
     data_end_time: Optional[datetime] = attrs.field(
@@ -144,7 +154,9 @@ class CreateReportSpecification:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_ids: List[str] = attrs.field()
+    marketplace_ids: List[str] = attrs.field(
+        default=None,
+    )
     """
     A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
 
@@ -159,7 +171,9 @@ class CreateReportSpecification:
     Additional information passed to reports. This varies by report type.
     """
 
-    report_type: str = attrs.field()
+    report_type: str = attrs.field(
+        default=None,
+    )
     """
     The report type.
     """
@@ -174,10 +188,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -189,7 +205,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -204,10 +222,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -219,7 +239,7 @@ class GetReportsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_reports_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetReportsResponse(**data)
 
     next_token: Optional[str] = attrs.field(
@@ -229,7 +249,9 @@ class GetReportsResponse:
     Returned when the number of results exceeds pageSize. To get the next page of results, call getReports with this token as the only parameter.
     """
 
-    reports: List["Report"] = attrs.field()
+    reports: List["Report"] = attrs.field(
+        default=None,
+    )
     """
     A list of reports.
     """
@@ -244,10 +266,12 @@ class Report:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _report_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Report(**data)
 
-    created_time: datetime = attrs.field()
+    created_time: datetime = attrs.field(
+        default=None,
+    )
     """
     The date and time when the report was created.
 
@@ -304,7 +328,9 @@ class Report:
 
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The processing status of the report.
     """
@@ -316,7 +342,9 @@ class Report:
     The identifier for the report document. Pass this into the getReportDocument operation to get the information you will need to retrieve the report document's contents.
     """
 
-    report_id: str = attrs.field()
+    report_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the report. This identifier is unique only in combination with a seller ID.
     """
@@ -328,7 +356,9 @@ class Report:
     The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
     """
 
-    report_type: str = attrs.field()
+    report_type: str = attrs.field(
+        default=None,
+    )
     """
     The report type.
     """
@@ -343,7 +373,7 @@ class ReportDocument:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _report_document_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReportDocument(**data)
 
     compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field(
@@ -353,12 +383,16 @@ class ReportDocument:
     If present, the report document contents have been compressed with the provided algorithm.
     """
 
-    report_document_id: str = attrs.field()
+    report_document_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the report document. This identifier is unique only in combination with a seller ID.
     """
 
-    url: str = attrs.field()
+    url: str = attrs.field(
+        default=None,
+    )
     """
     A presigned URL for the report document. This URL expires after 5 minutes.
     """
@@ -373,7 +407,7 @@ class ReportOptions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _report_options_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReportOptions(**data)
 
     pass
@@ -388,7 +422,7 @@ class ReportSchedule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _report_schedule_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReportSchedule(**data)
 
     marketplace_ids: Optional[List[str]] = attrs.field(
@@ -408,7 +442,9 @@ class ReportSchedule:
     {'schema_format': 'date-time'}
     """
 
-    period: str = attrs.field()
+    period: str = attrs.field(
+        default=None,
+    )
     """
     An ISO 8601 period value that indicates how often a report should be created.
     """
@@ -420,12 +456,16 @@ class ReportSchedule:
     Additional information passed to reports. This varies by report type.
     """
 
-    report_schedule_id: str = attrs.field()
+    report_schedule_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     """
 
-    report_type: str = attrs.field()
+    report_type: str = attrs.field(
+        default=None,
+    )
     """
     The report type.
     """
@@ -440,10 +480,12 @@ class ReportScheduleList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _report_schedule_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReportScheduleList(**data)
 
-    report_schedules: List["ReportSchedule"] = attrs.field()
+    report_schedules: List["ReportSchedule"] = attrs.field(
+        default=None,
+    )
 
 
 _create_report_response_name_convert = {

@@ -22,10 +22,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -54,15 +56,19 @@ class GetItemEligibilityPreviewResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_item_eligibility_preview_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetItemEligibilityPreviewResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ItemEligibilityPreview"] = attrs.field()
+    payload: Optional["ItemEligibilityPreview"] = attrs.field(
+        default=None,
+    )
     """
     The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
     """
@@ -77,10 +83,12 @@ class ItemEligibilityPreview:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_eligibility_preview_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemEligibilityPreview(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The ASIN for which eligibility was determined.
     """
@@ -136,7 +144,9 @@ class ItemEligibilityPreview:
     Potential Ineligibility Reason Codes.
     """
 
-    is_eligible_for_program: bool = attrs.field()
+    is_eligible_for_program: bool = attrs.field(
+        default=None,
+    )
     """
     Indicates if the item is eligible for the program.
     """
@@ -148,7 +158,9 @@ class ItemEligibilityPreview:
     The marketplace for which eligibility was determined.
     """
 
-    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]] = attrs.field()
+    program: Union[Literal["INBOUND"], Literal["COMMINGLING"]] = attrs.field(
+        default=None,
+    )
     """
     The program for which eligibility was determined.
     """

@@ -24,10 +24,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -39,7 +41,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -54,10 +58,12 @@ class Link:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _link_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Link(**data)
 
-    resource: str = attrs.field()
+    resource: str = attrs.field(
+        default=None,
+    )
     """
     The URI of the related resource.
 
@@ -79,7 +85,9 @@ class Link:
     The media type of the related resource.
     """
 
-    verb: Union[Literal["GET"]] = attrs.field()
+    verb: Union[Literal["GET"]] = attrs.field(
+        default=None,
+    )
     """
     The HTTP verb used to interact with the related resource.
     """
@@ -94,7 +102,7 @@ class Reason:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _reason_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Reason(**data)
 
     links: Optional[List["Link"]] = attrs.field(
@@ -104,7 +112,9 @@ class Reason:
     A list of path forward links that may allow Selling Partners to remove the restriction.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message describing the reason for the restriction.
     """
@@ -128,7 +138,7 @@ class Restriction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _restriction_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Restriction(**data)
 
     condition_type: Optional[
@@ -154,7 +164,9 @@ class Restriction:
     The condition that applies to the restriction.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
     """
@@ -176,10 +188,12 @@ class RestrictionList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _restriction_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RestrictionList(**data)
 
-    restrictions: List["Restriction"] = attrs.field()
+    restrictions: List["Restriction"] = attrs.field(
+        default=None,
+    )
 
 
 _error_name_convert = {

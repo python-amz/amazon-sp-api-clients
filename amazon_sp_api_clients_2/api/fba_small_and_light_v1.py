@@ -22,10 +22,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -37,7 +39,9 @@ class Error:
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -52,10 +56,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -67,17 +73,21 @@ class FeeLineItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fee_line_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeeLineItem(**data)
 
-    fee_charge: "MoneyType" = attrs.field()
+    fee_charge: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     fee_type: Union[
         Literal["FBAWeightBasedFee"],
         Literal["FBAPerOrderFulfillmentFee"],
         Literal["FBAPerUnitFulfillmentFee"],
         Literal["Commission"],
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The type of fee charged to the seller.
     """
@@ -92,27 +102,37 @@ class FeePreview:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fee_preview_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeePreview(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) value used to identify the item.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     One or more unexpected errors occurred during the getSmallAndLightFeePreview operation.
     """
 
-    fee_breakdown: Optional[List["FeeLineItem"]] = attrs.field()
+    fee_breakdown: Optional[List["FeeLineItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of the Small and Light fees for the item.
     """
 
-    price: Optional["MoneyType"] = attrs.field()
+    price: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
-    total_fees: Optional["MoneyType"] = attrs.field()
+    total_fees: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -124,15 +144,19 @@ class Item:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Item(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) value used to identify the item.
     """
 
-    price: "MoneyType" = attrs.field()
+    price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -144,7 +168,7 @@ class MarketplaceId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _marketplace_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MarketplaceId(**data)
 
     pass
@@ -155,15 +179,19 @@ class MoneyType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MoneyType(**data)
 
-    amount: Optional[float] = attrs.field()
+    amount: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The monetary value.
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The currency code in ISO 4217 format.
     """
@@ -178,7 +206,7 @@ class SellerSKU:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_sku_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerSKU(**data)
 
     pass
@@ -193,20 +221,26 @@ class SmallAndLightEligibility:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _small_and_light_eligibility_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SmallAndLightEligibility(**data)
 
-    marketplace_id: "MarketplaceId" = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
 
-    seller_sku: "SellerSKU" = attrs.field()
+    seller_sku: "SellerSKU" = attrs.field(
+        default=None,
+    )
     """
     Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     """
 
-    status: "SmallAndLightEligibilityStatus" = attrs.field()
+    status: "SmallAndLightEligibilityStatus" = attrs.field(
+        default=None,
+    )
     """
     The Small and Light eligibility status of the item.
     """
@@ -221,7 +255,7 @@ class SmallAndLightEligibilityStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _small_and_light_eligibility_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SmallAndLightEligibilityStatus(**data)
 
     pass
@@ -236,20 +270,26 @@ class SmallAndLightEnrollment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _small_and_light_enrollment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SmallAndLightEnrollment(**data)
 
-    marketplace_id: "MarketplaceId" = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
 
-    seller_sku: "SellerSKU" = attrs.field()
+    seller_sku: "SellerSKU" = attrs.field(
+        default=None,
+    )
     """
     Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     """
 
-    status: "SmallAndLightEnrollmentStatus" = attrs.field()
+    status: "SmallAndLightEnrollmentStatus" = attrs.field(
+        default=None,
+    )
     """
     The Small and Light enrollment status of the item.
     """
@@ -264,7 +304,7 @@ class SmallAndLightEnrollmentStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _small_and_light_enrollment_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SmallAndLightEnrollmentStatus(**data)
 
     pass
@@ -279,10 +319,12 @@ class SmallAndLightFeePreviewRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _small_and_light_fee_preview_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SmallAndLightFeePreviewRequest(**data)
 
-    items: List["Item"] = attrs.field()
+    items: List["Item"] = attrs.field(
+        default=None,
+    )
     """
     A list of items for which to retrieve fee estimates (limit: 25).
 
@@ -290,7 +332,9 @@ class SmallAndLightFeePreviewRequest:
     {'maxItems': 25}
     """
 
-    marketplace_id: "MarketplaceId" = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
@@ -301,10 +345,12 @@ class SmallAndLightFeePreviews:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _small_and_light_fee_previews_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SmallAndLightFeePreviews(**data)
 
-    data: Optional[List["FeePreview"]] = attrs.field()
+    data: Optional[List["FeePreview"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee estimates for the requested items. The order of the fee estimates will follow the same order as the items in the request, with duplicates removed.
     """

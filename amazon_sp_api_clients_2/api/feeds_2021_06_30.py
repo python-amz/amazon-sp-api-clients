@@ -22,15 +22,19 @@ class CreateFeedDocumentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_document_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedDocumentResponse(**data)
 
-    feed_document_id: str = attrs.field()
+    feed_document_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier of the feed document.
     """
 
-    url: str = attrs.field()
+    url: str = attrs.field(
+        default=None,
+    )
     """
     The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
     """
@@ -45,10 +49,12 @@ class CreateFeedDocumentSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_document_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedDocumentSpecification(**data)
 
-    content_type: str = attrs.field()
+    content_type: str = attrs.field(
+        default=None,
+    )
     """
     The content type of the feed.
     """
@@ -63,10 +69,12 @@ class CreateFeedResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedResponse(**data)
 
-    feed_id: str = attrs.field()
+    feed_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
@@ -81,7 +89,7 @@ class CreateFeedSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedSpecification(**data)
 
     feed_options: Optional["FeedOptions"] = attrs.field(
@@ -91,17 +99,23 @@ class CreateFeedSpecification:
     Additional options to control the feed. These vary by feed type.
     """
 
-    feed_type: str = attrs.field()
+    feed_type: str = attrs.field(
+        default=None,
+    )
     """
     The feed type.
     """
 
-    input_feed_document_id: str = attrs.field()
+    input_feed_document_id: str = attrs.field(
+        default=None,
+    )
     """
     The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
     """
 
-    marketplace_ids: List[str] = attrs.field()
+    marketplace_ids: List[str] = attrs.field(
+        default=None,
+    )
     """
     A list of identifiers for marketplaces that you want the feed to be applied to.
 
@@ -119,10 +133,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -134,7 +150,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -149,10 +167,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -164,10 +184,12 @@ class Feed:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feed_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Feed(**data)
 
-    created_time: datetime = attrs.field()
+    created_time: datetime = attrs.field(
+        default=None,
+    )
     """
     The date and time when the feed was created, in ISO 8601 date time format.
 
@@ -175,12 +197,16 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    feed_id: str = attrs.field()
+    feed_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
 
-    feed_type: str = attrs.field()
+    feed_type: str = attrs.field(
+        default=None,
+    )
     """
     The feed type.
     """
@@ -214,7 +240,9 @@ class Feed:
 
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The processing status of the feed.
     """
@@ -236,7 +264,7 @@ class FeedDocument:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feed_document_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeedDocument(**data)
 
     compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field(
@@ -246,12 +274,16 @@ class FeedDocument:
     If present, the feed document contents are compressed using the indicated algorithm.
     """
 
-    feed_document_id: str = attrs.field()
+    feed_document_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
 
-    url: str = attrs.field()
+    url: str = attrs.field(
+        default=None,
+    )
     """
     A presigned URL for the feed document. This URL expires after 5 minutes.
     """
@@ -266,7 +298,7 @@ class FeedOptions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feed_options_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeedOptions(**data)
 
     pass
@@ -281,10 +313,12 @@ class GetFeedsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feeds_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeedsResponse(**data)
 
-    feeds: List["Feed"] = attrs.field()
+    feeds: List["Feed"] = attrs.field(
+        default=None,
+    )
     """
     A list of feeds.
     """

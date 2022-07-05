@@ -23,20 +23,25 @@ class {{ schema.name }}:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _{{ schema.variable_name }}_name_convert
-        data = {name_convert[k]: v for k,v in data}
+        data = {name_convert[k]: v for k,v in data.items()}
         return {{ schema.name }}(**data)
 
-    {% for property in schema.all_properties %}
-    {{ property.variable_name }}: {% if property.name in schema.required %}{{ property.type_hint }}{% else %}Optional[{{ property.type_hint }}]{% endif %} = attrs.field(
-        {% if property.name not in schema.required %}
-            default={{ property.default }},
-        {% endif %}
+    {% for p in schema.all_properties %}
+    {{ p.variable_name }}: {% if p.name in schema.required %}{{ p.type_hint }}{% else %}Optional[{{ p.type_hint }}]{% endif %} = attrs.field(
+
+        {# default value #}
+        default=
+            {% if p.name in schema.required %}
+                None
+            {% else %}
+                {{ p.default }}
+            {% endif %},
         )
-    {% if property.parsed_description or property.fields %}"""{% if property.parsed_description %}
-    {{ property.parsed_description }}{% endif %}{% if property.fields %}
+    {% if p.parsed_description or p.fields %}"""{% if p.parsed_description %}
+    {{ p.parsed_description }}{% endif %}{% if p.fields %}
 
     Extra fields:
-    {{ property.fields }}{% endif %}
+    {{ p.fields }}{% endif %}
     """
         {% endif %}
     {% endfor %}

@@ -22,15 +22,19 @@ class CreateUploadDestinationResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_upload_destination_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateUploadDestinationResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["UploadDestination"] = attrs.field()
+    payload: Optional["UploadDestination"] = attrs.field(
+        default=None,
+    )
     """
     Information about an upload destination.
     """
@@ -45,10 +49,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -60,7 +66,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -75,20 +83,26 @@ class UploadDestination:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _upload_destination_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UploadDestination(**data)
 
-    headers: Optional["UploadDestinationHeaders"] = attrs.field()
+    headers: Optional["UploadDestinationHeaders"] = attrs.field(
+        default=None,
+    )
     """
     The headers to include in the upload request.
     """
 
-    upload_destination_id: Optional[str] = attrs.field()
+    upload_destination_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The unique identifier for the upload destination.
     """
 
-    url: Optional[str] = attrs.field()
+    url: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The URL for the upload destination.
     """
@@ -103,7 +117,7 @@ class UploadDestinationHeaders:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _upload_destination_headers_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UploadDestinationHeaders(**data)
 
     pass

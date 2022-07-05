@@ -22,15 +22,19 @@ class Attachment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _attachment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Attachment(**data)
 
-    file_name: str = attrs.field()
+    file_name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the file, including the extension. This is the file name that will appear in the message. This does not need to match the file name of the file that you uploaded.
     """
 
-    upload_destination_id: str = attrs.field()
+    upload_destination_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier of the upload destination. Get this value by calling the createUploadDestination operation of the Uploads API.
     """
@@ -45,10 +49,12 @@ class CreateAmazonMotorsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_amazon_motors_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateAmazonMotorsRequest(**data)
 
-    attachments: Optional[List["Attachment"]] = attrs.field()
+    attachments: Optional[List["Attachment"]] = attrs.field(
+        default=None,
+    )
     """
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
@@ -63,10 +69,12 @@ class CreateAmazonMotorsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_amazon_motors_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateAmazonMotorsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -81,15 +89,19 @@ class CreateConfirmCustomizationDetailsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_customization_details_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmCustomizationDetailsRequest(**data)
 
-    attachments: Optional[List["Attachment"]] = attrs.field()
+    attachments: Optional[List["Attachment"]] = attrs.field(
+        default=None,
+    )
     """
     Attachments to include in the message to the buyer.
     """
 
-    text: Optional[str] = attrs.field()
+    text: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -107,10 +119,12 @@ class CreateConfirmCustomizationDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_customization_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmCustomizationDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -125,10 +139,12 @@ class CreateConfirmDeliveryDetailsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_delivery_details_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmDeliveryDetailsRequest(**data)
 
-    text: Optional[str] = attrs.field()
+    text: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The text to be sent to the buyer. Only links related to order delivery are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -146,10 +162,12 @@ class CreateConfirmDeliveryDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_delivery_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmDeliveryDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -164,10 +182,12 @@ class CreateConfirmOrderDetailsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_order_details_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmOrderDetailsRequest(**data)
 
-    text: Optional[str] = attrs.field()
+    text: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The text to be sent to the buyer. Only links related to order completion are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -185,10 +205,12 @@ class CreateConfirmOrderDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_order_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmOrderDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -203,10 +225,12 @@ class CreateConfirmServiceDetailsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_service_details_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmServiceDetailsRequest(**data)
 
-    text: Optional[str] = attrs.field()
+    text: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The text to be sent to the buyer. Only links related to Home Service calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -224,10 +248,12 @@ class CreateConfirmServiceDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_confirm_service_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateConfirmServiceDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -242,15 +268,19 @@ class CreateDigitalAccessKeyRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_digital_access_key_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateDigitalAccessKeyRequest(**data)
 
-    attachments: Optional[List["Attachment"]] = attrs.field()
+    attachments: Optional[List["Attachment"]] = attrs.field(
+        default=None,
+    )
     """
     Attachments to include in the message to the buyer.
     """
 
-    text: Optional[str] = attrs.field()
+    text: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The text to be sent to the buyer. Only links related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -268,10 +298,12 @@ class CreateDigitalAccessKeyResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_digital_access_key_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateDigitalAccessKeyResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -286,10 +318,12 @@ class CreateLegalDisclosureRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_legal_disclosure_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateLegalDisclosureRequest(**data)
 
-    attachments: Optional[List["Attachment"]] = attrs.field()
+    attachments: Optional[List["Attachment"]] = attrs.field(
+        default=None,
+    )
     """
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
@@ -304,10 +338,12 @@ class CreateLegalDisclosureResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_legal_disclosure_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateLegalDisclosureResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -322,10 +358,12 @@ class CreateNegativeFeedbackRemovalResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_negative_feedback_removal_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateNegativeFeedbackRemovalResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -340,10 +378,12 @@ class CreateUnexpectedProblemRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_unexpected_problem_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateUnexpectedProblemRequest(**data)
 
-    text: Optional[str] = attrs.field()
+    text: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The text to be sent to the buyer. Only links related to unexpected problem calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 
@@ -361,10 +401,12 @@ class CreateUnexpectedProblemResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_unexpected_problem_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateUnexpectedProblemResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -379,15 +421,19 @@ class CreateWarrantyRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_warranty_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateWarrantyRequest(**data)
 
-    attachments: Optional[List["Attachment"]] = attrs.field()
+    attachments: Optional[List["Attachment"]] = attrs.field(
+        default=None,
+    )
     """
     Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     """
 
-    coverage_end_date: Optional[datetime] = attrs.field()
+    coverage_end_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The end date of the warranty coverage to include in the message to the buyer.
 
@@ -395,7 +441,9 @@ class CreateWarrantyRequest:
     {'schema_format': 'date-time'}
     """
 
-    coverage_start_date: Optional[datetime] = attrs.field()
+    coverage_start_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The start date of the warranty coverage to include in the message to the buyer.
 
@@ -413,10 +461,12 @@ class CreateWarrantyResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_warranty_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateWarrantyResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -431,10 +481,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -446,7 +498,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -461,15 +515,19 @@ class GetAttributesResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_attributes_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetAttributesResponse(**data)
 
-    buyer: Optional["GetAttributesResponseBuyer"] = attrs.field()
+    buyer: Optional["GetAttributesResponseBuyer"] = attrs.field(
+        default=None,
+    )
     """
     The list of attributes related to the buyer.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -484,10 +542,12 @@ class GetAttributesResponseBuyer:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_attributes_response_buyer_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetAttributesResponseBuyer(**data)
 
-    locale: Optional[str] = attrs.field()
+    locale: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The buyer's language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".
     """
@@ -502,19 +562,27 @@ class GetMessagingActionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_messaging_action_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMessagingActionResponse(**data)
 
-    _embedded: Optional["GetMessagingActionResponseEmbedded"] = attrs.field()
+    _embedded: Optional["GetMessagingActionResponseEmbedded"] = attrs.field(
+        default=None,
+    )
 
-    _links: Optional["GetMessagingActionResponseLinks"] = attrs.field()
+    _links: Optional["GetMessagingActionResponseLinks"] = attrs.field(
+        default=None,
+    )
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["MessagingAction"] = attrs.field()
+    payload: Optional["MessagingAction"] = attrs.field(
+        default=None,
+    )
     """
     A simple object containing the name of the template.
     """
@@ -525,10 +593,12 @@ class GetMessagingActionResponseEmbedded:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_messaging_action_response_embedded_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMessagingActionResponseEmbedded(**data)
 
-    schema: Optional["GetSchemaResponse"] = attrs.field()
+    schema: Optional["GetSchemaResponse"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -536,15 +606,19 @@ class GetMessagingActionResponseLinks:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_messaging_action_response_links_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMessagingActionResponseLinks(**data)
 
-    schema: "LinkObject" = attrs.field()
+    schema: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
 
-    self: "LinkObject" = attrs.field()
+    self: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
@@ -559,14 +633,20 @@ class GetMessagingActionsForOrderResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_messaging_actions_for_order_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMessagingActionsForOrderResponse(**data)
 
-    _embedded: Optional["GetMessagingActionsForOrderResponseEmbedded"] = attrs.field()
+    _embedded: Optional["GetMessagingActionsForOrderResponseEmbedded"] = attrs.field(
+        default=None,
+    )
 
-    _links: Optional["GetMessagingActionsForOrderResponseLinks"] = attrs.field()
+    _links: Optional["GetMessagingActionsForOrderResponseLinks"] = attrs.field(
+        default=None,
+    )
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -577,10 +657,12 @@ class GetMessagingActionsForOrderResponseEmbedded:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_messaging_actions_for_order_response_embedded_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMessagingActionsForOrderResponseEmbedded(**data)
 
-    actions: List["GetMessagingActionResponse"] = attrs.field()
+    actions: List["GetMessagingActionResponse"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -588,15 +670,19 @@ class GetMessagingActionsForOrderResponseLinks:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_messaging_actions_for_order_response_links_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMessagingActionsForOrderResponseLinks(**data)
 
-    actions: List["LinkObject"] = attrs.field()
+    actions: List["LinkObject"] = attrs.field(
+        default=None,
+    )
     """
     Eligible actions for the specified amazonOrderId.
     """
 
-    self: "LinkObject" = attrs.field()
+    self: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
@@ -607,17 +693,23 @@ class GetSchemaResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_schema_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSchemaResponse(**data)
 
-    _links: Optional["GetSchemaResponseLinks"] = attrs.field()
+    _links: Optional["GetSchemaResponseLinks"] = attrs.field(
+        default=None,
+    )
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Schema"] = attrs.field()
+    payload: Optional["Schema"] = attrs.field(
+        default=None,
+    )
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
@@ -628,10 +720,12 @@ class GetSchemaResponseLinks:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_schema_response_links_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSchemaResponseLinks(**data)
 
-    self: "LinkObject" = attrs.field()
+    self: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
@@ -646,10 +740,12 @@ class LinkObject:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _link_object_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LinkObject(**data)
 
-    href: str = attrs.field()
+    href: str = attrs.field(
+        default=None,
+    )
     """
     A URI for this object.
     """
@@ -671,10 +767,12 @@ class MessagingAction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _messaging_action_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MessagingAction(**data)
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -686,7 +784,7 @@ class Schema:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _schema_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Schema(**data)
 
     pass

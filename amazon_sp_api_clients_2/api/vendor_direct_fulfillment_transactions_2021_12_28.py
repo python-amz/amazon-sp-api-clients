@@ -22,10 +22,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -37,7 +39,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -52,10 +56,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -67,7 +73,7 @@ class Transaction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Transaction(**data)
 
     errors: Optional["ErrorList"] = attrs.field(
@@ -77,12 +83,16 @@ class Transaction:
     A list of error responses returned when a request is unsuccessful.
     """
 
-    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field()
+    status: Union[Literal["Failure"], Literal["Processing"], Literal["Success"]] = attrs.field(
+        default=None,
+    )
     """
     Current processing status of the transaction.
     """
 
-    transaction_id: str = attrs.field()
+    transaction_id: str = attrs.field(
+        default=None,
+    )
     """
     The unique identifier sent in the 'transactionId' field in response to the post request of a specific transaction.
     """
@@ -97,10 +107,12 @@ class TransactionStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransactionStatus(**data)
 
-    transaction_status: Optional["Transaction"] = attrs.field()
+    transaction_status: Optional["Transaction"] = attrs.field(
+        default=None,
+    )
     """
     The transaction status details.
     """

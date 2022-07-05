@@ -22,10 +22,12 @@ class AuthorizationCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _authorization_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AuthorizationCode(**data)
 
-    authorization_code: Optional[str] = attrs.field()
+    authorization_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A Login with Amazon (LWA) authorization code that can be exchanged for a refresh token and access token that authorize you to make calls to a Selling Partner API.
     """
@@ -40,10 +42,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -55,7 +59,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -70,15 +76,19 @@ class GetAuthorizationCodeResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_authorization_code_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetAuthorizationCodeResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["AuthorizationCode"] = attrs.field()
+    payload: Optional["AuthorizationCode"] = attrs.field(
+        default=None,
+    )
     """
     A Login with Amazon (LWA) authorization code.
     """

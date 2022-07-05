@@ -24,10 +24,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -39,7 +41,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -54,10 +58,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -69,7 +75,7 @@ class Issue:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _issue_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Issue(**data)
 
     attribute_name: Optional[str] = attrs.field(
@@ -79,17 +85,23 @@ class Issue:
     Name of the attribute associated with the issue, if applicable.
     """
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An issue code that identifies the type of issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the issue.
     """
 
-    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field()
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field(
+        default=None,
+    )
     """
     The severity of the issue.
     """
@@ -104,10 +116,12 @@ class ListingsItemPatchRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_patch_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemPatchRequest(**data)
 
-    patches: List["PatchOperation"] = attrs.field()
+    patches: List["PatchOperation"] = attrs.field(
+        default=None,
+    )
     """
     One or more JSON Patch operations to perform on the listings item.
 
@@ -115,7 +129,9 @@ class ListingsItemPatchRequest:
     {'minItems': 1}
     """
 
-    product_type: str = attrs.field()
+    product_type: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon product type of the listings item.
     """
@@ -130,15 +146,19 @@ class ListingsItemPutRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_put_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemPutRequest(**data)
 
-    attributes: "ListingsItemPutRequestAttributes" = attrs.field()
+    attributes: "ListingsItemPutRequestAttributes" = attrs.field(
+        default=None,
+    )
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
-    product_type: str = attrs.field()
+    product_type: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon product type of the listings item.
     """
@@ -162,7 +182,7 @@ class ListingsItemPutRequestAttributes:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_put_request_attributes_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemPutRequestAttributes(**data)
 
     pass
@@ -177,7 +197,7 @@ class ListingsItemSubmissionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_submission_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemSubmissionResponse(**data)
 
     issues: Optional[List["Issue"]] = attrs.field(
@@ -187,17 +207,23 @@ class ListingsItemSubmissionResponse:
     Listings item issues related to the listings item submission.
     """
 
-    sku: str = attrs.field()
+    sku: str = attrs.field(
+        default=None,
+    )
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field(
+        default=None,
+    )
     """
     The status of the listings item submission.
     """
 
-    submission_id: str = attrs.field()
+    submission_id: str = attrs.field(
+        default=None,
+    )
     """
     The unique identifier of the listings item submission.
     """
@@ -212,15 +238,19 @@ class PatchOperation:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _patch_operation_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PatchOperation(**data)
 
-    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field(
+        default=None,
+    )
     """
     Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    path: str = attrs.field()
+    path: str = attrs.field(
+        default=None,
+    )
     """
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
@@ -238,7 +268,7 @@ class PatchOperationValueItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _patch_operation_value_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PatchOperationValueItem(**data)
 
     pass

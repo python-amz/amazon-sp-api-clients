@@ -22,15 +22,19 @@ class AcknowledgementStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _acknowledgement_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AcknowledgementStatus(**data)
 
-    code: Optional[str] = attrs.field()
+    code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Acknowledgement code is a unique two digit value which indicates the status of the acknowledgement. For a list of acknowledgement codes that Amazon supports, see the Vendor Direct Fulfillment APIs Use Case Guide.
     """
 
-    description: Optional[str] = attrs.field()
+    description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Reason for the acknowledgement code.
     """
@@ -45,10 +49,12 @@ class Address:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Address(**data)
 
-    address_line1: str = attrs.field()
+    address_line1: str = attrs.field(
+        default=None,
+    )
     """
     First line of the address.
     """
@@ -81,7 +87,9 @@ class Address:
     The city where the person, business or institution is located.
     """
 
-    country_code: str = attrs.field()
+    country_code: str = attrs.field(
+        default=None,
+    )
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
     """
@@ -100,7 +108,9 @@ class Address:
     The district where person, business or institution is located.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the person, business or institution at that address.
     """
@@ -119,7 +129,9 @@ class Address:
     The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: str = attrs.field()
+    state_or_region: str = attrs.field(
+        default=None,
+    )
     """
     The state or region where person, business or institution is located.
     """
@@ -134,7 +146,7 @@ class Decimal:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _decimal_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Decimal(**data)
 
     pass
@@ -149,10 +161,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -164,7 +178,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -179,10 +195,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -194,15 +212,19 @@ class GiftDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _gift_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GiftDetails(**data)
 
-    gift_message: Optional[str] = attrs.field()
+    gift_message: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Gift message to be printed in shipment.
     """
 
-    gift_wrap_id: Optional[str] = attrs.field()
+    gift_wrap_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Gift wrap identifier for the gift wrapping, if any.
     """
@@ -217,15 +239,19 @@ class ItemQuantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemQuantity(**data)
 
-    amount: Optional[int] = attrs.field()
+    amount: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Acknowledged quantity. This value should not be zero.
     """
 
-    unit_of_measure: Optional[Union[Literal["Each"]]] = attrs.field()
+    unit_of_measure: Optional[Union[Literal["Each"]]] = attrs.field(
+        default=None,
+    )
     """
     Unit of measure for the acknowledged quantity.
     """
@@ -240,15 +266,19 @@ class Money:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Money(**data)
 
-    amount: Optional["Decimal"] = attrs.field()
+    amount: Optional["Decimal"] = attrs.field(
+        default=None,
+    )
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Three digit currency code in ISO 4217 format. String of length 3.
     """
@@ -259,7 +289,7 @@ class Order:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Order(**data)
 
     order_details: Optional["OrderDetails"] = attrs.field(
@@ -269,7 +299,9 @@ class Order:
     Details of an order.
     """
 
-    purchase_order_number: str = attrs.field()
+    purchase_order_number: str = attrs.field(
+        default=None,
+    )
     """
     The purchase order number for this order. Formatting Notes: alpha-numeric code.
     """
@@ -284,10 +316,12 @@ class OrderAcknowledgementItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_acknowledgement_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderAcknowledgementItem(**data)
 
-    acknowledgement_date: datetime = attrs.field()
+    acknowledgement_date: datetime = attrs.field(
+        default=None,
+    )
     """
     The date and time when the order is acknowledged, in ISO-8601 date/time format. For example: 2018-07-16T23:00:00Z / 2018-07-16T23:00:00-05:00 / 2018-07-16T23:00:00-08:00.
 
@@ -295,26 +329,38 @@ class OrderAcknowledgementItem:
     {'schema_format': 'date-time'}
     """
 
-    acknowledgement_status: "AcknowledgementStatus" = attrs.field()
+    acknowledgement_status: "AcknowledgementStatus" = attrs.field(
+        default=None,
+    )
     """
     Status of acknowledgement.
     """
 
-    item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field()
+    item_acknowledgements: List["OrderItemAcknowledgement"] = attrs.field(
+        default=None,
+    )
     """
     Item details including acknowledged quantity.
     """
 
-    purchase_order_number: str = attrs.field()
+    purchase_order_number: str = attrs.field(
+        default=None,
+    )
     """
     The purchase order number for this order. Formatting Notes: alpha-numeric code.
     """
 
-    selling_party: "PartyIdentification" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
-    ship_from_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
-    vendor_order_number: str = attrs.field()
+    vendor_order_number: str = attrs.field(
+        default=None,
+    )
     """
     The vendor's order number for this order.
     """
@@ -329,22 +375,30 @@ class OrderDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderDetails(**data)
 
-    bill_to_party: "PartyIdentification" = attrs.field()
+    bill_to_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
-    customer_order_number: str = attrs.field()
+    customer_order_number: str = attrs.field(
+        default=None,
+    )
     """
     The customer order number.
     """
 
-    items: List["OrderItem"] = attrs.field()
+    items: List["OrderItem"] = attrs.field(
+        default=None,
+    )
     """
     A list of items in this purchase order.
     """
 
-    order_date: datetime = attrs.field()
+    order_date: datetime = attrs.field(
+        default=None,
+    )
     """
     The date the order was placed. This  field is expected to be in ISO-8601 date/time format, for example:2018-07-16T23:00:00Z/ 2018-07-16T23:00:00-05:00 /2018-07-16T23:00:00-08:00. If no time zone is specified, UTC should be assumed.
 
@@ -361,16 +415,24 @@ class OrderDetails:
     Current status of the order.
     """
 
-    selling_party: "PartyIdentification" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
-    ship_from_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
-    ship_to_party: "Address" = attrs.field()
+    ship_to_party: "Address" = attrs.field(
+        default=None,
+    )
     """
     Address of the party.
     """
 
-    shipment_details: "ShipmentDetails" = attrs.field()
+    shipment_details: "ShipmentDetails" = attrs.field(
+        default=None,
+    )
     """
     Shipment details required for the shipment.
     """
@@ -388,7 +450,7 @@ class OrderItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderItem(**data)
 
     buyer_product_identifier: Optional[str] = attrs.field(
@@ -405,17 +467,23 @@ class OrderItem:
     Gift details for the item.
     """
 
-    item_sequence_number: str = attrs.field()
+    item_sequence_number: str = attrs.field(
+        default=None,
+    )
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    net_price: "Money" = attrs.field()
+    net_price: "Money" = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    ordered_quantity: "ItemQuantity" = attrs.field()
+    ordered_quantity: "ItemQuantity" = attrs.field(
+        default=None,
+    )
     """
     Details of quantity ordered.
     """
@@ -461,10 +529,12 @@ class OrderItemAcknowledgement:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_item_acknowledgement_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderItemAcknowledgement(**data)
 
-    acknowledged_quantity: "ItemQuantity" = attrs.field()
+    acknowledged_quantity: "ItemQuantity" = attrs.field(
+        default=None,
+    )
     """
     Details of quantity ordered.
     """
@@ -476,7 +546,9 @@ class OrderItemAcknowledgement:
     Buyer's standard identification number (ASIN) of an item.
     """
 
-    item_sequence_number: str = attrs.field()
+    item_sequence_number: str = attrs.field(
+        default=None,
+    )
     """
     Line item sequence number for the item.
     """
@@ -494,12 +566,16 @@ class OrderList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderList(**data)
 
-    orders: Optional[List["Order"]] = attrs.field()
+    orders: Optional[List["Order"]] = attrs.field(
+        default=None,
+    )
 
-    pagination: Optional["Pagination"] = attrs.field()
+    pagination: Optional["Pagination"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -507,10 +583,12 @@ class Pagination:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _pagination_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Pagination(**data)
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A generated string used to pass information to your next request. If NextToken is returned, pass the value of NextToken to the next request. If NextToken is not returned, there are no more order items to return.
     """
@@ -521,7 +599,7 @@ class PartyIdentification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _party_identification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartyIdentification(**data)
 
     address: Optional["Address"] = attrs.field(
@@ -531,7 +609,9 @@ class PartyIdentification:
     Address of the party.
     """
 
-    party_id: str = attrs.field()
+    party_id: str = attrs.field(
+        default=None,
+    )
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
@@ -553,10 +633,12 @@ class ScheduledDeliveryShipment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _scheduled_delivery_shipment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ScheduledDeliveryShipment(**data)
 
-    earliest_nominated_delivery_date: Optional[datetime] = attrs.field()
+    earliest_nominated_delivery_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Earliest nominated delivery date for the scheduled delivery.
 
@@ -564,7 +646,9 @@ class ScheduledDeliveryShipment:
     {'schema_format': 'date-time'}
     """
 
-    latest_nominated_delivery_date: Optional[datetime] = attrs.field()
+    latest_nominated_delivery_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     Latest nominated delivery date for the scheduled delivery.
 
@@ -572,7 +656,9 @@ class ScheduledDeliveryShipment:
     {'schema_format': 'date-time'}
     """
 
-    scheduled_delivery_service_type: Optional[str] = attrs.field()
+    scheduled_delivery_service_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Scheduled delivery service type.
     """
@@ -587,7 +673,7 @@ class ShipmentDates:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_dates_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentDates(**data)
 
     promised_delivery_date: Optional[datetime] = attrs.field(
@@ -600,7 +686,9 @@ class ShipmentDates:
     {'schema_format': 'date-time'}
     """
 
-    required_ship_date: datetime = attrs.field()
+    required_ship_date: datetime = attrs.field(
+        default=None,
+    )
     """
     Time by which the vendor is required to ship the order.
 
@@ -618,7 +706,7 @@ class ShipmentDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentDetails(**data)
 
     is_gift: Optional[bool] = attrs.field(
@@ -628,12 +716,16 @@ class ShipmentDetails:
     When true, the order contain a gift. Include the gift message and gift wrap information.
     """
 
-    is_priority_shipment: bool = attrs.field()
+    is_priority_shipment: bool = attrs.field(
+        default=None,
+    )
     """
     When true, this is a priority shipment.
     """
 
-    is_pslip_required: bool = attrs.field()
+    is_pslip_required: bool = attrs.field(
+        default=None,
+    )
     """
     When true, a packing slip is required to be sent to the customer.
     """
@@ -645,17 +737,23 @@ class ShipmentDetails:
     When true, this order is part of a scheduled delivery program.
     """
 
-    message_to_customer: str = attrs.field()
+    message_to_customer: str = attrs.field(
+        default=None,
+    )
     """
     Message to customer for order status.
     """
 
-    ship_method: str = attrs.field()
+    ship_method: str = attrs.field(
+        default=None,
+    )
     """
     Ship method to be used for shipping the order. Amazon defines ship method codes indicating the shipping carrier and shipment service level. To see the full list of ship methods in use, including both the code and the friendly name, search the 'Help' section on Vendor Central for 'ship methods'.
     """
 
-    shipment_dates: "ShipmentDates" = attrs.field()
+    shipment_dates: "ShipmentDates" = attrs.field(
+        default=None,
+    )
     """
     Shipment dates.
     """
@@ -670,10 +768,12 @@ class SubmitAcknowledgementRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_acknowledgement_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitAcknowledgementRequest(**data)
 
-    order_acknowledgements: Optional[List["OrderAcknowledgementItem"]] = attrs.field()
+    order_acknowledgements: Optional[List["OrderAcknowledgementItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of one or more purchase orders.
     """
@@ -688,15 +788,19 @@ class SubmitAcknowledgementResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_acknowledgement_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitAcknowledgementResponse(**data)
 
-    errors: Optional["ErrorList"] = attrs.field()
+    errors: Optional["ErrorList"] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["TransactionId"] = attrs.field()
+    payload: Optional["TransactionId"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -704,10 +808,12 @@ class TaxDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxDetails(**data)
 
-    tax_amount: "Money" = attrs.field()
+    tax_amount: "Money" = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -753,10 +859,12 @@ class TaxItemDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_item_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxItemDetails(**data)
 
-    tax_line_item: Optional[List["TaxDetails"]] = attrs.field()
+    tax_line_item: Optional[List["TaxDetails"]] = attrs.field(
+        default=None,
+    )
     """
     A list of tax line items.
     """
@@ -771,7 +879,7 @@ class TaxRegistrationDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_registration_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxRegistrationDetails(**data)
 
     tax_registration_address: Optional["Address"] = attrs.field(
@@ -788,7 +896,9 @@ class TaxRegistrationDetails:
     Tax registration message that can be used for additional tax related details.
     """
 
-    tax_registration_number: str = attrs.field()
+    tax_registration_number: str = attrs.field(
+        default=None,
+    )
     """
     Tax registration number for the party. For example, VAT ID.
     """
@@ -806,10 +916,12 @@ class TransactionId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransactionId(**data)
 
-    transaction_id: Optional[str] = attrs.field()
+    transaction_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     GUID assigned by Amazon to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """

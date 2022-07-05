@@ -22,10 +22,12 @@ class CreateProductReviewAndSellerFeedbackSolicitationResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_product_review_and_seller_feedback_solicitation_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateProductReviewAndSellerFeedbackSolicitationResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -40,10 +42,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -55,7 +59,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -66,17 +72,23 @@ class GetSchemaResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_schema_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSchemaResponse(**data)
 
-    _links: Optional["GetSchemaResponseLinks"] = attrs.field()
+    _links: Optional["GetSchemaResponseLinks"] = attrs.field(
+        default=None,
+    )
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Schema"] = attrs.field()
+    payload: Optional["Schema"] = attrs.field(
+        default=None,
+    )
     """
     A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
     """
@@ -87,10 +99,12 @@ class GetSchemaResponseLinks:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_schema_response_links_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSchemaResponseLinks(**data)
 
-    self: "LinkObject" = attrs.field()
+    self: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
@@ -105,19 +119,27 @@ class GetSolicitationActionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_solicitation_action_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSolicitationActionResponse(**data)
 
-    _embedded: Optional["GetSolicitationActionResponseEmbedded"] = attrs.field()
+    _embedded: Optional["GetSolicitationActionResponseEmbedded"] = attrs.field(
+        default=None,
+    )
 
-    _links: Optional["GetSolicitationActionResponseLinks"] = attrs.field()
+    _links: Optional["GetSolicitationActionResponseLinks"] = attrs.field(
+        default=None,
+    )
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["SolicitationsAction"] = attrs.field()
+    payload: Optional["SolicitationsAction"] = attrs.field(
+        default=None,
+    )
     """
     A simple object containing the name of the template.
     """
@@ -128,10 +150,12 @@ class GetSolicitationActionResponseEmbedded:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_solicitation_action_response_embedded_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSolicitationActionResponseEmbedded(**data)
 
-    schema: Optional["GetSchemaResponse"] = attrs.field()
+    schema: Optional["GetSchemaResponse"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -139,15 +163,19 @@ class GetSolicitationActionResponseLinks:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_solicitation_action_response_links_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSolicitationActionResponseLinks(**data)
 
-    schema: "LinkObject" = attrs.field()
+    schema: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
 
-    self: "LinkObject" = attrs.field()
+    self: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
@@ -162,14 +190,20 @@ class GetSolicitationActionsForOrderResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_solicitation_actions_for_order_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSolicitationActionsForOrderResponse(**data)
 
-    _embedded: Optional["GetSolicitationActionsForOrderResponseEmbedded"] = attrs.field()
+    _embedded: Optional["GetSolicitationActionsForOrderResponseEmbedded"] = attrs.field(
+        default=None,
+    )
 
-    _links: Optional["GetSolicitationActionsForOrderResponseLinks"] = attrs.field()
+    _links: Optional["GetSolicitationActionsForOrderResponseLinks"] = attrs.field(
+        default=None,
+    )
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -180,10 +214,12 @@ class GetSolicitationActionsForOrderResponseEmbedded:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_solicitation_actions_for_order_response_embedded_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSolicitationActionsForOrderResponseEmbedded(**data)
 
-    actions: List["GetSolicitationActionResponse"] = attrs.field()
+    actions: List["GetSolicitationActionResponse"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -191,15 +227,19 @@ class GetSolicitationActionsForOrderResponseLinks:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_solicitation_actions_for_order_response_links_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSolicitationActionsForOrderResponseLinks(**data)
 
-    actions: List["LinkObject"] = attrs.field()
+    actions: List["LinkObject"] = attrs.field(
+        default=None,
+    )
     """
     Eligible actions for the specified amazonOrderId.
     """
 
-    self: "LinkObject" = attrs.field()
+    self: "LinkObject" = attrs.field(
+        default=None,
+    )
     """
     A Link object.
     """
@@ -214,10 +254,12 @@ class LinkObject:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _link_object_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LinkObject(**data)
 
-    href: str = attrs.field()
+    href: str = attrs.field(
+        default=None,
+    )
     """
     A URI for this object.
     """
@@ -239,7 +281,7 @@ class Schema:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _schema_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Schema(**data)
 
     pass
@@ -254,10 +296,12 @@ class SolicitationsAction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _solicitations_action_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SolicitationsAction(**data)
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
 
 
 _create_product_review_and_seller_feedback_solicitation_response_name_convert = {

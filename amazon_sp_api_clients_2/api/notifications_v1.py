@@ -24,15 +24,19 @@ class CreateDestinationRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_destination_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateDestinationRequest(**data)
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     A developer-defined name to help identify this destination.
     """
 
-    resource_specification: "DestinationResourceSpecification" = attrs.field()
+    resource_specification: "DestinationResourceSpecification" = attrs.field(
+        default=None,
+    )
     """
     The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
     """
@@ -47,15 +51,19 @@ class CreateDestinationResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_destination_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateDestinationResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Destination"] = attrs.field()
+    payload: Optional["Destination"] = attrs.field(
+        default=None,
+    )
     """
     Represents a destination created when you call the createDestination operation.
     """
@@ -70,15 +78,19 @@ class CreateSubscriptionRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_subscription_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateSubscriptionRequest(**data)
 
-    destination_id: Optional[str] = attrs.field()
+    destination_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the destination where notifications will be delivered.
     """
 
-    payload_version: Optional[str] = attrs.field()
+    payload_version: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The version of the payload object to be used in the notification.
     """
@@ -93,15 +105,19 @@ class CreateSubscriptionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_subscription_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateSubscriptionResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Subscription"] = attrs.field()
+    payload: Optional["Subscription"] = attrs.field(
+        default=None,
+    )
     """
     Represents a subscription to receive notifications.
     """
@@ -116,10 +132,12 @@ class DeleteDestinationResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _delete_destination_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DeleteDestinationResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -134,10 +152,12 @@ class DeleteSubscriptionByIdResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _delete_subscription_by_id_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DeleteSubscriptionByIdResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -152,15 +172,19 @@ class Destination:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _destination_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Destination(**data)
 
-    destination_id: str = attrs.field()
+    destination_id: str = attrs.field(
+        default=None,
+    )
     """
     The destination identifier generated when you created the destination.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The developer-defined name for this destination.
 
@@ -168,7 +192,9 @@ class Destination:
     {'maxLength': 256}
     """
 
-    resource: "DestinationResource" = attrs.field()
+    resource: "DestinationResource" = attrs.field(
+        default=None,
+    )
     """
     The destination resource types.
     """
@@ -183,15 +209,19 @@ class DestinationResource:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _destination_resource_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DestinationResource(**data)
 
-    event_bridge: Optional["EventBridgeResource"] = attrs.field()
+    event_bridge: Optional["EventBridgeResource"] = attrs.field(
+        default=None,
+    )
     """
     Represents an Amazon EventBridge destination.
     """
 
-    sqs: Optional["SqsResource"] = attrs.field()
+    sqs: Optional["SqsResource"] = attrs.field(
+        default=None,
+    )
     """
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
@@ -206,15 +236,19 @@ class DestinationResourceSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _destination_resource_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DestinationResourceSpecification(**data)
 
-    event_bridge: Optional["EventBridgeResourceSpecification"] = attrs.field()
+    event_bridge: Optional["EventBridgeResourceSpecification"] = attrs.field(
+        default=None,
+    )
     """
     The information required to create an Amazon EventBridge destination.
     """
 
-    sqs: Optional["SqsResource"] = attrs.field()
+    sqs: Optional["SqsResource"] = attrs.field(
+        default=None,
+    )
     """
     The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
     """
@@ -229,10 +263,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -244,7 +280,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -259,15 +297,19 @@ class EventBridgeResource:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _event_bridge_resource_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return EventBridgeResource(**data)
 
-    account_id: str = attrs.field()
+    account_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the AWS account that is responsible for charges related to receiving notifications.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the partner event source associated with the destination.
 
@@ -275,7 +317,9 @@ class EventBridgeResource:
     {'maxLength': 256}
     """
 
-    region: str = attrs.field()
+    region: str = attrs.field(
+        default=None,
+    )
     """
     The AWS region in which you receive the notifications. For AWS regions that are supported in Amazon EventBridge, see https://docs.aws.amazon.com/general/latest/gr/ev.html.
     """
@@ -290,15 +334,19 @@ class EventBridgeResourceSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _event_bridge_resource_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return EventBridgeResourceSpecification(**data)
 
-    account_id: str = attrs.field()
+    account_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the AWS account that is responsible for charges related to receiving notifications.
     """
 
-    region: str = attrs.field()
+    region: str = attrs.field(
+        default=None,
+    )
     """
     The AWS region in which you will be receiving the notifications.
     """
@@ -313,15 +361,19 @@ class GetDestinationResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_destination_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetDestinationResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Destination"] = attrs.field()
+    payload: Optional["Destination"] = attrs.field(
+        default=None,
+    )
     """
     Represents a destination created when you call the createDestination operation.
     """
@@ -336,15 +388,19 @@ class GetDestinationsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_destinations_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetDestinationsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional[List["Destination"]] = attrs.field()
+    payload: Optional[List["Destination"]] = attrs.field(
+        default=None,
+    )
     """
     A list of destinations.
     """
@@ -359,15 +415,19 @@ class GetSubscriptionByIdResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_subscription_by_id_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSubscriptionByIdResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Subscription"] = attrs.field()
+    payload: Optional["Subscription"] = attrs.field(
+        default=None,
+    )
     """
     Represents a subscription to receive notifications.
     """
@@ -382,15 +442,19 @@ class GetSubscriptionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_subscription_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetSubscriptionResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Subscription"] = attrs.field()
+    payload: Optional["Subscription"] = attrs.field(
+        default=None,
+    )
     """
     Represents a subscription to receive notifications.
     """
@@ -405,10 +469,12 @@ class SqsResource:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _sqs_resource_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SqsResource(**data)
 
-    arn: str = attrs.field()
+    arn: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Resource Name (ARN) associated with the SQS queue.
 
@@ -426,20 +492,26 @@ class Subscription:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _subscription_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Subscription(**data)
 
-    destination_id: str = attrs.field()
+    destination_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the destination where notifications will be delivered.
     """
 
-    payload_version: str = attrs.field()
+    payload_version: str = attrs.field(
+        default=None,
+    )
     """
     The version of the payload object to be used in the notification.
     """
 
-    subscription_id: str = attrs.field()
+    subscription_id: str = attrs.field(
+        default=None,
+    )
     """
     The subscription identifier generated when the subscription is created.
     """

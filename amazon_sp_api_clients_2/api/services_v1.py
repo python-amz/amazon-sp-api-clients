@@ -22,10 +22,12 @@ class AddAppointmentRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _add_appointment_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AddAppointmentRequest(**data)
 
-    appointment_time: "AppointmentTimeInput" = attrs.field()
+    appointment_time: "AppointmentTimeInput" = attrs.field(
+        default=None,
+    )
     """
     The input appointment time details.
     """
@@ -40,10 +42,12 @@ class Address:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Address(**data)
 
-    address_line1: str = attrs.field()
+    address_line1: str = attrs.field(
+        default=None,
+    )
     """
     The first line of the address.
     """
@@ -90,7 +94,9 @@ class Address:
     The district.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the person, business, or institution.
     """
@@ -126,25 +132,33 @@ class Appointment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _appointment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Appointment(**data)
 
-    appointment_id: Optional["AppointmentId"] = attrs.field()
+    appointment_id: Optional["AppointmentId"] = attrs.field(
+        default=None,
+    )
     """
     The appointment identifier.
     """
 
-    appointment_status: Optional[Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]]] = attrs.field()
+    appointment_status: Optional[Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["COMPLETED"]]] = attrs.field(
+        default=None,
+    )
     """
     The status of the appointment.
     """
 
-    appointment_time: Optional["AppointmentTime"] = attrs.field()
+    appointment_time: Optional["AppointmentTime"] = attrs.field(
+        default=None,
+    )
     """
     The time of the appointment window.
     """
 
-    assigned_technicians: Optional[List["Technician"]] = attrs.field()
+    assigned_technicians: Optional[List["Technician"]] = attrs.field(
+        default=None,
+    )
     """
     A list of technicians assigned to the service job.
 
@@ -152,12 +166,16 @@ class Appointment:
     {'minItems': 1}
     """
 
-    poa: Optional["Poa"] = attrs.field()
+    poa: Optional["Poa"] = attrs.field(
+        default=None,
+    )
     """
     Proof of Appointment (POA) details.
     """
 
-    rescheduled_appointment_id: Optional["AppointmentId"] = attrs.field()
+    rescheduled_appointment_id: Optional["AppointmentId"] = attrs.field(
+        default=None,
+    )
     """
     The appointment identifier.
     """
@@ -172,7 +190,7 @@ class AppointmentId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _appointment_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AppointmentId(**data)
 
     pass
@@ -187,10 +205,12 @@ class AppointmentTime:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _appointment_time_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AppointmentTime(**data)
 
-    duration_in_minutes: int = attrs.field()
+    duration_in_minutes: int = attrs.field(
+        default=None,
+    )
     """
     The duration of the appointment window, in minutes.
 
@@ -198,7 +218,9 @@ class AppointmentTime:
     {'minimum': 1.0}
     """
 
-    start_time: datetime = attrs.field()
+    start_time: datetime = attrs.field(
+        default=None,
+    )
     """
     The date and time of the start of the appointment window, in ISO 8601 format.
 
@@ -216,7 +238,7 @@ class AppointmentTimeInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _appointment_time_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AppointmentTimeInput(**data)
 
     duration_in_minutes: Optional[int] = attrs.field(
@@ -226,7 +248,9 @@ class AppointmentTimeInput:
     The duration of an appointment in minutes.
     """
 
-    start_time: datetime = attrs.field()
+    start_time: datetime = attrs.field(
+        default=None,
+    )
     """
     The date, time in UTC for the start time of an appointment in ISO 8601 format.
 
@@ -244,42 +268,56 @@ class AssociatedItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _associated_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AssociatedItem(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    brand_name: Optional[str] = attrs.field()
+    brand_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The brand name of the item.
     """
 
-    item_delivery: Optional["ItemDelivery"] = attrs.field()
+    item_delivery: Optional["ItemDelivery"] = attrs.field(
+        default=None,
+    )
     """
     Delivery information for the item.
     """
 
     item_status: Optional[
         Union[Literal["ACTIVE"], Literal["CANCELLED"], Literal["SHIPPED"], Literal["DELIVERED"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The status of the item.
     """
 
-    order_id: Optional["OrderId"] = attrs.field()
+    order_id: Optional["OrderId"] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
     """
 
-    quantity: Optional[int] = attrs.field()
+    quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The total number of items included in the order.
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The title of the item.
     """
@@ -294,10 +332,12 @@ class Buyer:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _buyer_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Buyer(**data)
 
-    buyer_id: Optional[str] = attrs.field()
+    buyer_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier of the buyer.
 
@@ -305,17 +345,23 @@ class Buyer:
     {'pattern': '^[A-Z0-9]*$'}
     """
 
-    is_prime_member: Optional[bool] = attrs.field()
+    is_prime_member: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, the service is for an Amazon Prime buyer.
     """
 
-    name: Optional[str] = attrs.field()
+    name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the buyer.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number of the buyer.
     """
@@ -330,10 +376,12 @@ class CancelServiceJobByServiceJobIdResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _cancel_service_job_by_service_job_id_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CancelServiceJobByServiceJobIdResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -348,10 +396,12 @@ class CompleteServiceJobByServiceJobIdResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _complete_service_job_by_service_job_id_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CompleteServiceJobByServiceJobIdResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -366,10 +416,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -388,7 +440,9 @@ class Error:
     The type of error.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -403,15 +457,19 @@ class GetServiceJobByServiceJobIdResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_service_job_by_service_job_id_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetServiceJobByServiceJobIdResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ServiceJob"] = attrs.field()
+    payload: Optional["ServiceJob"] = attrs.field(
+        default=None,
+    )
     """
     The job details of a service.
     """
@@ -426,15 +484,19 @@ class GetServiceJobsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_service_jobs_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetServiceJobsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["JobListing"] = attrs.field()
+    payload: Optional["JobListing"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the GetJobs operation.
     """
@@ -449,10 +511,12 @@ class ItemDelivery:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_delivery_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemDelivery(**data)
 
-    estimated_delivery_date: Optional[datetime] = attrs.field()
+    estimated_delivery_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time of the latest Estimated Delivery Date (EDD) of all the items with an EDD. In ISO 8601 format.
 
@@ -460,7 +524,9 @@ class ItemDelivery:
     {'schema_format': 'date-time'}
     """
 
-    item_delivery_promise: Optional["ItemDeliveryPromise"] = attrs.field()
+    item_delivery_promise: Optional["ItemDeliveryPromise"] = attrs.field(
+        default=None,
+    )
     """
     Promised delivery information for the item.
     """
@@ -475,10 +541,12 @@ class ItemDeliveryPromise:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_delivery_promise_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemDeliveryPromise(**data)
 
-    end_time: Optional[datetime] = attrs.field()
+    end_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time of the end of the promised delivery window, in ISO 8601 format.
 
@@ -486,7 +554,9 @@ class ItemDeliveryPromise:
     {'schema_format': 'date-time'}
     """
 
-    start_time: Optional[datetime] = attrs.field()
+    start_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time of the start of the promised delivery window, in ISO 8601 format.
 
@@ -504,25 +574,33 @@ class JobListing:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _job_listing_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return JobListing(**data)
 
-    jobs: Optional[List["ServiceJob"]] = attrs.field()
+    jobs: Optional[List["ServiceJob"]] = attrs.field(
+        default=None,
+    )
     """
     List of job details for the given input.
     """
 
-    next_page_token: Optional[str] = attrs.field()
+    next_page_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A generated string used to pass information to your next request.If nextPageToken is returned, pass the value of nextPageToken to the pageToken to get next results.
     """
 
-    previous_page_token: Optional[str] = attrs.field()
+    previous_page_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A generated string used to pass information to your next request.If previousPageToken is returned, pass the value of previousPageToken to the pageToken to get previous page results.
     """
 
-    total_result_size: Optional[int] = attrs.field()
+    total_result_size: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Total result size of the query result.
     """
@@ -537,7 +615,7 @@ class OrderId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderId(**data)
 
     pass
@@ -552,10 +630,12 @@ class Poa:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _poa_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Poa(**data)
 
-    appointment_time: Optional["AppointmentTime"] = attrs.field()
+    appointment_time: Optional["AppointmentTime"] = attrs.field(
+        default=None,
+    )
     """
     The time of the appointment window.
     """
@@ -567,12 +647,16 @@ class Poa:
             Literal["DUMMY_RECEIPT"],
             Literal["POA_RECEIPT"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The type of POA uploaded.
     """
 
-    technicians: Optional[List["Technician"]] = attrs.field()
+    technicians: Optional[List["Technician"]] = attrs.field(
+        default=None,
+    )
     """
     A list of technicians.
 
@@ -580,7 +664,9 @@ class Poa:
     {'minItems': 1}
     """
 
-    upload_time: Optional[datetime] = attrs.field()
+    upload_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when the POA was uploaded, in ISO 8601 format.
 
@@ -588,7 +674,9 @@ class Poa:
     {'schema_format': 'date-time'}
     """
 
-    uploading_technician: Optional[str] = attrs.field()
+    uploading_technician: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier of the technician who uploaded the POA.
 
@@ -606,15 +694,19 @@ class RescheduleAppointmentRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _reschedule_appointment_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RescheduleAppointmentRequest(**data)
 
-    appointment_time: "AppointmentTimeInput" = attrs.field()
+    appointment_time: "AppointmentTimeInput" = attrs.field(
+        default=None,
+    )
     """
     The input appointment time details.
     """
 
-    reschedule_reason_code: "RescheduleReasonCode" = attrs.field()
+    reschedule_reason_code: "RescheduleReasonCode" = attrs.field(
+        default=None,
+    )
     """
     Appointment reschedule reason code.
     """
@@ -629,7 +721,7 @@ class RescheduleReasonCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _reschedule_reason_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RescheduleReasonCode(**data)
 
     pass
@@ -644,25 +736,33 @@ class ScopeOfWork:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _scope_of_work_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ScopeOfWork(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the service job.
     """
 
-    quantity: Optional[int] = attrs.field()
+    quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of service jobs.
     """
 
-    required_skills: Optional[List[str]] = attrs.field()
+    required_skills: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of skills required to perform the job.
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The title of the service job.
     """
@@ -677,10 +777,12 @@ class Seller:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Seller(**data)
 
-    seller_id: Optional[str] = attrs.field()
+    seller_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier of the seller of the service job.
 
@@ -698,25 +800,33 @@ class ServiceJob:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _service_job_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ServiceJob(**data)
 
-    appointments: Optional[List["Appointment"]] = attrs.field()
+    appointments: Optional[List["Appointment"]] = attrs.field(
+        default=None,
+    )
     """
     A list of appointments.
     """
 
-    associated_items: Optional[List["AssociatedItem"]] = attrs.field()
+    associated_items: Optional[List["AssociatedItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of items associated with the service job.
     """
 
-    buyer: Optional["Buyer"] = attrs.field()
+    buyer: Optional["Buyer"] = attrs.field(
+        default=None,
+    )
     """
     Information about the buyer.
     """
 
-    create_time: Optional[datetime] = attrs.field()
+    create_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time of the creation of the job, in ISO 8601 format.
 
@@ -724,7 +834,9 @@ class ServiceJob:
     {'schema_format': 'date-time'}
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The marketplace identifier.
 
@@ -732,27 +844,37 @@ class ServiceJob:
     {'pattern': '^[A-Z0-9]*$'}
     """
 
-    preferred_appointment_times: Optional[List["AppointmentTime"]] = attrs.field()
+    preferred_appointment_times: Optional[List["AppointmentTime"]] = attrs.field(
+        default=None,
+    )
     """
     A list of appointment windows preferred by the buyer. Included only if the buyer selected appointment windows when creating the order.
     """
 
-    scope_of_work: Optional["ScopeOfWork"] = attrs.field()
+    scope_of_work: Optional["ScopeOfWork"] = attrs.field(
+        default=None,
+    )
     """
     The scope of work for the order.
     """
 
-    seller: Optional["Seller"] = attrs.field()
+    seller: Optional["Seller"] = attrs.field(
+        default=None,
+    )
     """
     Information about the seller of the service job.
     """
 
-    service_job_id: Optional["ServiceJobId"] = attrs.field()
+    service_job_id: Optional["ServiceJobId"] = attrs.field(
+        default=None,
+    )
     """
     Amazon identifier for the service job.
     """
 
-    service_job_provider: Optional["ServiceJobProvider"] = attrs.field()
+    service_job_provider: Optional["ServiceJobProvider"] = attrs.field(
+        default=None,
+    )
     """
     Information about the service job provider.
     """
@@ -767,17 +889,23 @@ class ServiceJob:
             Literal["HOLD"],
             Literal["PAYMENT_DECLINED"],
         ]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The status of the service job.
     """
 
-    service_location: Optional["ServiceLocation"] = attrs.field()
+    service_location: Optional["ServiceLocation"] = attrs.field(
+        default=None,
+    )
     """
     Information about the location of the service job.
     """
 
-    service_order_id: Optional["OrderId"] = attrs.field()
+    service_order_id: Optional["OrderId"] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
     """
@@ -792,7 +920,7 @@ class ServiceJobId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _service_job_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ServiceJobId(**data)
 
     pass
@@ -807,10 +935,12 @@ class ServiceJobProvider:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _service_job_provider_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ServiceJobProvider(**data)
 
-    service_job_provider_id: Optional[str] = attrs.field()
+    service_job_provider_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier of the service job provider.
 
@@ -828,15 +958,19 @@ class ServiceLocation:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _service_location_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ServiceLocation(**data)
 
-    address: Optional["Address"] = attrs.field()
+    address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     The shipping address for the service job.
     """
 
-    service_location_type: Optional[Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]]] = attrs.field()
+    service_location_type: Optional[Union[Literal["IN_HOME"], Literal["IN_STORE"], Literal["ONLINE"]]] = attrs.field(
+        default=None,
+    )
     """
     The location of the service job.
     """
@@ -851,20 +985,26 @@ class SetAppointmentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _set_appointment_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SetAppointmentResponse(**data)
 
-    appointment_id: Optional["AppointmentId"] = attrs.field()
+    appointment_id: Optional["AppointmentId"] = attrs.field(
+        default=None,
+    )
     """
     The appointment identifier.
     """
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    warnings: Optional[List["Warning"]] = attrs.field()
+    warnings: Optional[List["Warning"]] = attrs.field(
+        default=None,
+    )
     """
     A list of warnings returned in the sucessful execution response of an API request.
     """
@@ -879,15 +1019,19 @@ class Technician:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _technician_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Technician(**data)
 
-    name: Optional[str] = attrs.field()
+    name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the technician.
     """
 
-    technician_id: Optional[str] = attrs.field()
+    technician_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The technician identifier.
 
@@ -905,10 +1049,12 @@ class Warning:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _warning_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Warning(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An warning code that identifies the type of warning that occurred.
     """
@@ -920,7 +1066,9 @@ class Warning:
     Additional details that can help the caller understand or address the warning.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the warning condition in a human-readable form.
     """

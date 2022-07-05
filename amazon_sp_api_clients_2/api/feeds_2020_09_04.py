@@ -22,10 +22,12 @@ class CancelFeedResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _cancel_feed_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CancelFeedResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -40,15 +42,19 @@ class CreateFeedDocumentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_document_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedDocumentResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CreateFeedDocumentResult"] = attrs.field()
+    payload: Optional["CreateFeedDocumentResult"] = attrs.field(
+        default=None,
+    )
     """
     Information required to encrypt and upload a feed document's contents.
     """
@@ -63,20 +69,26 @@ class CreateFeedDocumentResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_document_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedDocumentResult(**data)
 
-    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
+        default=None,
+    )
     """
     Encryption details for required client-side encryption and decryption of document contents.
     """
 
-    feed_document_id: str = attrs.field()
+    feed_document_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier of the feed document.
     """
 
-    url: str = attrs.field()
+    url: str = attrs.field(
+        default=None,
+    )
     """
     The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
     """
@@ -87,10 +99,12 @@ class CreateFeedDocumentSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_document_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedDocumentSpecification(**data)
 
-    content_type: str = attrs.field()
+    content_type: str = attrs.field(
+        default=None,
+    )
     """
     The content type of the feed.
     """
@@ -105,15 +119,19 @@ class CreateFeedResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CreateFeedResult"] = attrs.field()
+    payload: Optional["CreateFeedResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -121,10 +139,12 @@ class CreateFeedResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedResult(**data)
 
-    feed_id: str = attrs.field()
+    feed_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
@@ -135,7 +155,7 @@ class CreateFeedSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_feed_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFeedSpecification(**data)
 
     feed_options: Optional["FeedOptions"] = attrs.field(
@@ -145,17 +165,23 @@ class CreateFeedSpecification:
     Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
     """
 
-    feed_type: str = attrs.field()
+    feed_type: str = attrs.field(
+        default=None,
+    )
     """
     The feed type.
     """
 
-    input_feed_document_id: str = attrs.field()
+    input_feed_document_id: str = attrs.field(
+        default=None,
+    )
     """
     The document identifier returned by the createFeedDocument operation. Encrypt and upload the feed document contents before calling the createFeed operation.
     """
 
-    marketplace_ids: List[str] = attrs.field()
+    marketplace_ids: List[str] = attrs.field(
+        default=None,
+    )
     """
     A list of identifiers for marketplaces that you want the feed to be applied to.
 
@@ -173,10 +199,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -188,7 +216,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -199,10 +229,12 @@ class Feed:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feed_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Feed(**data)
 
-    created_time: datetime = attrs.field()
+    created_time: datetime = attrs.field(
+        default=None,
+    )
     """
     The date and time when the feed was created, in ISO 8601 date time format.
 
@@ -210,12 +242,16 @@ class Feed:
     {'schema_format': 'date-time'}
     """
 
-    feed_id: str = attrs.field()
+    feed_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the feed. This identifier is unique only in combination with a seller ID.
     """
 
-    feed_type: str = attrs.field()
+    feed_type: str = attrs.field(
+        default=None,
+    )
     """
     The feed type.
     """
@@ -249,7 +285,9 @@ class Feed:
 
     processing_status: Union[
         Literal["CANCELLED"], Literal["DONE"], Literal["FATAL"], Literal["IN_PROGRESS"], Literal["IN_QUEUE"]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The processing status of the feed.
     """
@@ -267,7 +305,7 @@ class FeedDocument:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feed_document_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeedDocument(**data)
 
     compression_algorithm: Optional[Union[Literal["GZIP"]]] = attrs.field(
@@ -277,17 +315,23 @@ class FeedDocument:
     If present, the feed document contents are compressed using the indicated algorithm.
     """
 
-    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field()
+    encryption_details: "FeedDocumentEncryptionDetails" = attrs.field(
+        default=None,
+    )
     """
     Encryption details for required client-side encryption and decryption of document contents.
     """
 
-    feed_document_id: str = attrs.field()
+    feed_document_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     """
 
-    url: str = attrs.field()
+    url: str = attrs.field(
+        default=None,
+    )
     """
     A presigned URL for the feed document. This URL expires after 5 minutes.
     """
@@ -302,20 +346,26 @@ class FeedDocumentEncryptionDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feed_document_encryption_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeedDocumentEncryptionDetails(**data)
 
-    initialization_vector: str = attrs.field()
+    initialization_vector: str = attrs.field(
+        default=None,
+    )
     """
     The vector to encrypt or decrypt the document contents using Cipher Block Chaining (CBC).
     """
 
-    key: str = attrs.field()
+    key: str = attrs.field(
+        default=None,
+    )
     """
     The encryption key used to encrypt or decrypt the document contents.
     """
 
-    standard: Union[Literal["AES"]] = attrs.field()
+    standard: Union[Literal["AES"]] = attrs.field(
+        default=None,
+    )
     """
     The encryption standard required to encrypt or decrypt the document contents.
     """
@@ -330,7 +380,7 @@ class FeedOptions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feed_options_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeedOptions(**data)
 
     pass
@@ -345,15 +395,19 @@ class GetFeedDocumentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feed_document_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeedDocumentResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["FeedDocument"] = attrs.field()
+    payload: Optional["FeedDocument"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -365,15 +419,19 @@ class GetFeedResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feed_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeedResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Feed"] = attrs.field()
+    payload: Optional["Feed"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -385,20 +443,26 @@ class GetFeedsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feeds_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeedsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
     """
 
-    payload: Optional[List["Feed"]] = attrs.field()
+    payload: Optional[List["Feed"]] = attrs.field(
+        default=None,
+    )
 
 
 _cancel_feed_response_name_convert = {

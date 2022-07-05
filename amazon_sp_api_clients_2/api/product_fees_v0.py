@@ -18,10 +18,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -33,7 +35,9 @@ class Error:
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -48,21 +52,27 @@ class FeeDetail:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fee_detail_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeeDetail(**data)
 
-    fee_amount: "MoneyType" = attrs.field()
+    fee_amount: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     fee_promotion: Optional["MoneyType"] = attrs.field(
         default=None,
     )
 
-    fee_type: str = attrs.field()
+    fee_type: str = attrs.field(
+        default=None,
+    )
     """
     The type of fee charged to a seller.
     """
 
-    final_fee: "MoneyType" = attrs.field()
+    final_fee: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     included_fee_detail_list: Optional[List["IncludedFeeDetail"]] = attrs.field(
         default=None,
@@ -85,7 +95,7 @@ class FeesEstimate:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fees_estimate_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeesEstimate(**data)
 
     fee_detail_list: Optional[List["FeeDetail"]] = attrs.field(
@@ -95,7 +105,9 @@ class FeesEstimate:
     A list of other fees that contribute to a given fee.
     """
 
-    time_of_fees_estimation: datetime = attrs.field()
+    time_of_fees_estimation: datetime = attrs.field(
+        default=None,
+    )
     """
     The time at which the fees were estimated. This defaults to the time the request is made.
 
@@ -117,25 +129,33 @@ class FeesEstimateError:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fees_estimate_error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeesEstimateError(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
 
-    detail: List["FeesEstimateErrorDetailItem"] = attrs.field()
+    detail: List["FeesEstimateErrorDetailItem"] = attrs.field(
+        default=None,
+    )
     """
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
 
-    type: str = attrs.field()
+    type: str = attrs.field(
+        default=None,
+    )
     """
     An error type, identifying either the receiver or the sender as the originator of the error.
     """
@@ -146,7 +166,7 @@ class FeesEstimateErrorDetailItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fees_estimate_error_detail_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeesEstimateErrorDetailItem(**data)
 
     pass
@@ -161,61 +181,21 @@ class FeesEstimateIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fees_estimate_identifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeesEstimateIdentifier(**data)
 
-    id_type: Optional[str] = attrs.field()
+    id_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of item identifier specified.
     """
 
-    id_value: Optional[str] = attrs.field()
+    id_value: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The item identifier.
-    """
-
-    is_amazon_fulfilled: Optional[bool] = attrs.field()
-    """
-    When true, the offer is fulfilled by Amazon.
-    """
-
-    marketplace_id: Optional[str] = attrs.field()
-    """
-    A marketplace identifier.
-    """
-
-    optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field()
-    """
-    An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
-    """
-
-    price_to_estimate_fees: Optional["PriceToEstimateFees"] = attrs.field()
-    """
-    Price information for an item, used to estimate fees.
-    """
-
-    seller_id: Optional[str] = attrs.field()
-    """
-    The seller identifier.
-    """
-
-    seller_input_identifier: Optional[str] = attrs.field()
-    """
-    A unique identifier provided by the caller to track this request.
-    """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class FeesEstimateRequest:
-    @classmethod
-    def from_json(cls, data: dict):
-        name_convert = _fees_estimate_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
-        return FeesEstimateRequest(**data)
-
-    identifier: str = attrs.field()
-    """
-    A unique identifier provided by the caller to track this request.
     """
 
     is_amazon_fulfilled: Optional[bool] = attrs.field(
@@ -225,7 +205,9 @@ class FeesEstimateRequest:
     When true, the offer is fulfilled by Amazon.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
@@ -237,7 +219,67 @@ class FeesEstimateRequest:
     An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
     """
 
-    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field()
+    price_to_estimate_fees: Optional["PriceToEstimateFees"] = attrs.field(
+        default=None,
+    )
+    """
+    Price information for an item, used to estimate fees.
+    """
+
+    seller_id: Optional[str] = attrs.field(
+        default=None,
+    )
+    """
+    The seller identifier.
+    """
+
+    seller_input_identifier: Optional[str] = attrs.field(
+        default=None,
+    )
+    """
+    A unique identifier provided by the caller to track this request.
+    """
+
+
+@attrs.define(kw_only=True, frozen=True, slots=True)
+class FeesEstimateRequest:
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _fees_estimate_request_name_convert
+        data = {name_convert[k]: v for k, v in data.items()}
+        return FeesEstimateRequest(**data)
+
+    identifier: str = attrs.field(
+        default=None,
+    )
+    """
+    A unique identifier provided by the caller to track this request.
+    """
+
+    is_amazon_fulfilled: Optional[bool] = attrs.field(
+        default=None,
+    )
+    """
+    When true, the offer is fulfilled by Amazon.
+    """
+
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
+    """
+    A marketplace identifier.
+    """
+
+    optional_fulfillment_program: Optional["OptionalFulfillmentProgram"] = attrs.field(
+        default=None,
+    )
+    """
+    An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+    """
+
+    price_to_estimate_fees: "PriceToEstimateFees" = attrs.field(
+        default=None,
+    )
     """
     Price information for an item, used to estimate fees.
     """
@@ -252,25 +294,33 @@ class FeesEstimateResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fees_estimate_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeesEstimateResult(**data)
 
-    error: Optional["FeesEstimateError"] = attrs.field()
+    error: Optional["FeesEstimateError"] = attrs.field(
+        default=None,
+    )
     """
     An unexpected error occurred during this operation.
     """
 
-    fees_estimate: Optional["FeesEstimate"] = attrs.field()
+    fees_estimate: Optional["FeesEstimate"] = attrs.field(
+        default=None,
+    )
     """
     The total estimated fees for an item and a list of details.
     """
 
-    fees_estimate_identifier: Optional["FeesEstimateIdentifier"] = attrs.field()
+    fees_estimate_identifier: Optional["FeesEstimateIdentifier"] = attrs.field(
+        default=None,
+    )
     """
     An item identifier, marketplace, time of request, and other details that identify an estimate.
     """
 
-    status: Optional[str] = attrs.field()
+    status: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The status of the fee request. Possible values: Success, ClientError, ServiceError.
     """
@@ -285,10 +335,12 @@ class GetMyFeesEstimateRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_my_fees_estimate_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMyFeesEstimateRequest(**data)
 
-    fees_estimate_request: Optional["FeesEstimateRequest"] = attrs.field()
+    fees_estimate_request: Optional["FeesEstimateRequest"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -296,15 +348,19 @@ class GetMyFeesEstimateResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_my_fees_estimate_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMyFeesEstimateResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetMyFeesEstimateResult"] = attrs.field()
+    payload: Optional["GetMyFeesEstimateResult"] = attrs.field(
+        default=None,
+    )
     """
     Response schema.
     """
@@ -319,10 +375,12 @@ class GetMyFeesEstimateResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_my_fees_estimate_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMyFeesEstimateResult(**data)
 
-    fees_estimate_result: Optional["FeesEstimateResult"] = attrs.field()
+    fees_estimate_result: Optional["FeesEstimateResult"] = attrs.field(
+        default=None,
+    )
     """
     An item identifier and the estimated fees for the item.
     """
@@ -337,21 +395,27 @@ class IncludedFeeDetail:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _included_fee_detail_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return IncludedFeeDetail(**data)
 
-    fee_amount: "MoneyType" = attrs.field()
+    fee_amount: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     fee_promotion: Optional["MoneyType"] = attrs.field(
         default=None,
     )
 
-    fee_type: str = attrs.field()
+    fee_type: str = attrs.field(
+        default=None,
+    )
     """
     The type of fee charged to a seller.
     """
 
-    final_fee: "MoneyType" = attrs.field()
+    final_fee: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     tax_amount: Optional["MoneyType"] = attrs.field(
         default=None,
@@ -363,15 +427,19 @@ class MoneyType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MoneyType(**data)
 
-    amount: Optional[float] = attrs.field()
+    amount: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The monetary value.
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The currency code in ISO 4217 format.
     """
@@ -386,7 +454,7 @@ class OptionalFulfillmentProgram:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _optional_fulfillment_program_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OptionalFulfillmentProgram(**data)
 
     pass
@@ -397,12 +465,16 @@ class Points:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _points_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Points(**data)
 
-    points_monetary_value: Optional["MoneyType"] = attrs.field()
+    points_monetary_value: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
-    points_number: Optional[int] = attrs.field()
+    points_number: Optional[int] = attrs.field(
+        default=None,
+    )
     """
 
     Extra fields:
@@ -419,10 +491,12 @@ class PriceToEstimateFees:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _price_to_estimate_fees_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PriceToEstimateFees(**data)
 
-    listing_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     points: Optional["Points"] = attrs.field(
         default=None,

@@ -18,15 +18,19 @@ class ASINIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _asinidentifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ASINIdentifier(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
@@ -41,485 +45,677 @@ class AttributeSetListType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _attribute_set_list_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AttributeSetListType(**data)
 
-    actor: Optional[List[str]] = attrs.field()
+    actor: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The actor attributes of the item.
     """
 
-    artist: Optional[List[str]] = attrs.field()
+    artist: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The artist attributes of the item.
     """
 
-    aspect_ratio: Optional[str] = attrs.field()
+    aspect_ratio: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The aspect ratio attribute of the item.
     """
 
-    audience_rating: Optional[str] = attrs.field()
+    audience_rating: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The audience rating attribute of the item.
     """
 
-    author: Optional[List[str]] = attrs.field()
+    author: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The author attributes of the item.
     """
 
-    back_finding: Optional[str] = attrs.field()
+    back_finding: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The back finding attribute of the item.
     """
 
-    band_material_type: Optional[str] = attrs.field()
+    band_material_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The band material type attribute of the item.
     """
 
-    binding: Optional[str] = attrs.field()
+    binding: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The binding attribute of the item.
     """
 
-    bluray_region: Optional[str] = attrs.field()
+    bluray_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Bluray region attribute of the item.
     """
 
-    brand: Optional[str] = attrs.field()
+    brand: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The brand attribute of the item.
     """
 
-    cero_age_rating: Optional[str] = attrs.field()
+    cero_age_rating: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The CERO age rating attribute of the item.
     """
 
-    chain_type: Optional[str] = attrs.field()
+    chain_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The chain type attribute of the item.
     """
 
-    clasp_type: Optional[str] = attrs.field()
+    clasp_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The clasp type attribute of the item.
     """
 
-    color: Optional[str] = attrs.field()
+    color: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The color attribute of the item.
     """
 
-    cpu_manufacturer: Optional[str] = attrs.field()
+    cpu_manufacturer: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The CPU manufacturer attribute of the item.
     """
 
-    cpu_speed: Optional["DecimalWithUnits"] = attrs.field()
+    cpu_speed: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    cpu_type: Optional[str] = attrs.field()
+    cpu_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The CPU type attribute of the item.
     """
 
-    creator: Optional[List["CreatorType"]] = attrs.field()
+    creator: Optional[List["CreatorType"]] = attrs.field(
+        default=None,
+    )
     """
     The creator attributes of the item.
     """
 
-    department: Optional[str] = attrs.field()
+    department: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The department attribute of the item.
     """
 
-    director: Optional[List[str]] = attrs.field()
+    director: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The director attributes of the item.
     """
 
-    display_size: Optional["DecimalWithUnits"] = attrs.field()
+    display_size: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    edition: Optional[str] = attrs.field()
+    edition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The edition attribute of the item.
     """
 
-    episode_sequence: Optional[str] = attrs.field()
+    episode_sequence: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The episode sequence attribute of the item.
     """
 
-    esrb_age_rating: Optional[str] = attrs.field()
+    esrb_age_rating: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The ESRB age rating attribute of the item.
     """
 
-    feature: Optional[List[str]] = attrs.field()
+    feature: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The feature attributes of the item
     """
 
-    flavor: Optional[str] = attrs.field()
+    flavor: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The flavor attribute of the item.
     """
 
-    format: Optional[List[str]] = attrs.field()
+    format: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The format attributes of the item.
     """
 
-    gem_type: Optional[List[str]] = attrs.field()
+    gem_type: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The gem type attributes of the item.
     """
 
-    genre: Optional[str] = attrs.field()
+    genre: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The genre attribute of the item.
     """
 
-    golf_club_flex: Optional[str] = attrs.field()
+    golf_club_flex: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The golf club flex attribute of the item.
     """
 
-    golf_club_loft: Optional["DecimalWithUnits"] = attrs.field()
+    golf_club_loft: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    hand_orientation: Optional[str] = attrs.field()
+    hand_orientation: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The hand orientation attribute of the item.
     """
 
-    hard_disk_interface: Optional[str] = attrs.field()
+    hard_disk_interface: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The hard disk interface attribute of the item.
     """
 
-    hard_disk_size: Optional["DecimalWithUnits"] = attrs.field()
+    hard_disk_size: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    hardware_platform: Optional[str] = attrs.field()
+    hardware_platform: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The hardware platform attribute of the item.
     """
 
-    hazardous_material_type: Optional[str] = attrs.field()
+    hazardous_material_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The hazardous material type attribute of the item.
     """
 
-    is_adult_product: Optional[bool] = attrs.field()
+    is_adult_product: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     The adult product attribute of the item.
     """
 
-    is_autographed: Optional[bool] = attrs.field()
+    is_autographed: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     The autographed attribute of the item.
     """
 
-    is_eligible_for_trade_in: Optional[bool] = attrs.field()
+    is_eligible_for_trade_in: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     The is eligible for trade in attribute of the item.
     """
 
-    is_memorabilia: Optional[bool] = attrs.field()
+    is_memorabilia: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     The is memorabilia attribute of the item.
     """
 
-    issues_per_year: Optional[str] = attrs.field()
+    issues_per_year: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The issues per year attribute of the item.
     """
 
-    item_dimensions: Optional["DimensionType"] = attrs.field()
+    item_dimensions: Optional["DimensionType"] = attrs.field(
+        default=None,
+    )
     """
     The dimension type attribute of an item.
     """
 
-    item_part_number: Optional[str] = attrs.field()
+    item_part_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The item part number attribute of the item.
     """
 
-    label: Optional[str] = attrs.field()
+    label: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The label attribute of the item.
     """
 
-    languages: Optional[List["LanguageType"]] = attrs.field()
+    languages: Optional[List["LanguageType"]] = attrs.field(
+        default=None,
+    )
     """
     The languages attribute of the item.
     """
 
-    legal_disclaimer: Optional[str] = attrs.field()
+    legal_disclaimer: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The legal disclaimer attribute of the item.
     """
 
-    list_price: Optional["Price"] = attrs.field()
+    list_price: Optional["Price"] = attrs.field(
+        default=None,
+    )
     """
     The price attribute of the item.
     """
 
-    manufacturer: Optional[str] = attrs.field()
+    manufacturer: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The manufacturer attribute of the item.
     """
 
-    manufacturer_maximum_age: Optional["DecimalWithUnits"] = attrs.field()
+    manufacturer_maximum_age: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    manufacturer_minimum_age: Optional["DecimalWithUnits"] = attrs.field()
+    manufacturer_minimum_age: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    manufacturer_parts_warranty_description: Optional[str] = attrs.field()
+    manufacturer_parts_warranty_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The manufacturer parts warranty description attribute of the item.
     """
 
-    material_type: Optional[List[str]] = attrs.field()
+    material_type: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The material type attributes of the item.
     """
 
-    maximum_resolution: Optional["DecimalWithUnits"] = attrs.field()
+    maximum_resolution: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    media_type: Optional[List[str]] = attrs.field()
+    media_type: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The media type attributes of the item.
     """
 
-    metal_stamp: Optional[str] = attrs.field()
+    metal_stamp: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The metal stamp attribute of the item.
     """
 
-    metal_type: Optional[str] = attrs.field()
+    metal_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The metal type attribute of the item.
     """
 
-    model: Optional[str] = attrs.field()
+    model: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The model attribute of the item.
     """
 
-    number_of_discs: Optional[int] = attrs.field()
+    number_of_discs: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of discs attribute of the item.
     """
 
-    number_of_issues: Optional[int] = attrs.field()
+    number_of_issues: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of issues attribute of the item.
     """
 
-    number_of_items: Optional[int] = attrs.field()
+    number_of_items: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of items attribute of the item.
     """
 
-    number_of_pages: Optional[int] = attrs.field()
+    number_of_pages: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of pages attribute of the item.
     """
 
-    number_of_tracks: Optional[int] = attrs.field()
+    number_of_tracks: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of tracks attribute of the item.
     """
 
-    operating_system: Optional[List[str]] = attrs.field()
+    operating_system: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The operating system attributes of the item.
     """
 
-    optical_zoom: Optional["DecimalWithUnits"] = attrs.field()
+    optical_zoom: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    package_dimensions: Optional["DimensionType"] = attrs.field()
+    package_dimensions: Optional["DimensionType"] = attrs.field(
+        default=None,
+    )
     """
     The dimension type attribute of an item.
     """
 
-    package_quantity: Optional[int] = attrs.field()
+    package_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The package quantity attribute of the item.
     """
 
-    part_number: Optional[str] = attrs.field()
+    part_number: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The part number attribute of the item.
     """
 
-    pegi_rating: Optional[str] = attrs.field()
+    pegi_rating: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The PEGI rating attribute of the item.
     """
 
-    platform: Optional[List[str]] = attrs.field()
+    platform: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The platform attributes of the item.
     """
 
-    processor_count: Optional[int] = attrs.field()
+    processor_count: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The processor count attribute of the item.
     """
 
-    product_group: Optional[str] = attrs.field()
+    product_group: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The product group attribute of the item.
     """
 
-    product_type_name: Optional[str] = attrs.field()
+    product_type_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The product type name attribute of the item.
     """
 
-    product_type_subcategory: Optional[str] = attrs.field()
+    product_type_subcategory: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The product type subcategory attribute of the item.
     """
 
-    publication_date: Optional[str] = attrs.field()
+    publication_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The publication date attribute of the item.
     """
 
-    publisher: Optional[str] = attrs.field()
+    publisher: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The publisher attribute of the item.
     """
 
-    region_code: Optional[str] = attrs.field()
+    region_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The region code attribute of the item.
     """
 
-    release_date: Optional[str] = attrs.field()
+    release_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The release date attribute of the item.
     """
 
-    ring_size: Optional[str] = attrs.field()
+    ring_size: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The ring size attribute of the item.
     """
 
-    running_time: Optional["DecimalWithUnits"] = attrs.field()
+    running_time: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    scent: Optional[str] = attrs.field()
+    scent: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The scent attribute of the item.
     """
 
-    season_sequence: Optional[str] = attrs.field()
+    season_sequence: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The season sequence attribute of the item.
     """
 
-    seikodo_product_code: Optional[str] = attrs.field()
+    seikodo_product_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Seikodo product code attribute of the item.
     """
 
-    shaft_material: Optional[str] = attrs.field()
+    shaft_material: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The shaft material attribute of the item.
     """
 
-    size: Optional[str] = attrs.field()
+    size: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The size attribute of the item.
     """
 
-    size_per_pearl: Optional[str] = attrs.field()
+    size_per_pearl: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The size per pearl attribute of the item.
     """
 
-    small_image: Optional["Image"] = attrs.field()
+    small_image: Optional["Image"] = attrs.field(
+        default=None,
+    )
     """
     The image attribute of the item.
     """
 
-    studio: Optional[str] = attrs.field()
+    studio: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The studio attribute of the item.
     """
 
-    subscription_length: Optional["DecimalWithUnits"] = attrs.field()
+    subscription_length: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    system_memory_size: Optional["DecimalWithUnits"] = attrs.field()
+    system_memory_size: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    system_memory_type: Optional[str] = attrs.field()
+    system_memory_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The system memory type attribute of the item.
     """
 
-    theatrical_release_date: Optional[str] = attrs.field()
+    theatrical_release_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The theatrical release date attribute of the item.
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The title attribute of the item.
     """
 
-    total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field()
+    total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    total_gem_weight: Optional["DecimalWithUnits"] = attrs.field()
+    total_gem_weight: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    warranty: Optional[str] = attrs.field()
+    warranty: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The warranty attribute of the item.
     """
 
-    weee_tax_value: Optional["Price"] = attrs.field()
+    weee_tax_value: Optional["Price"] = attrs.field(
+        default=None,
+    )
     """
     The price attribute of the item.
     """
@@ -530,20 +726,26 @@ class Categories:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _categories_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Categories(**data)
 
-    product_category_id: Optional[str] = attrs.field()
+    product_category_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the product category (or browse node).
     """
 
-    product_category_name: Optional[str] = attrs.field()
+    product_category_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the product category (or browse node).
     """
 
-    parent: Optional["CategoriesParent"] = attrs.field()
+    parent: Optional["CategoriesParent"] = attrs.field(
+        default=None,
+    )
     """
     The parent product category.
     """
@@ -558,7 +760,7 @@ class CategoriesParent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _categories_parent_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CategoriesParent(**data)
 
     pass
@@ -573,15 +775,19 @@ class CreatorType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _creator_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreatorType(**data)
 
-    role: Optional[str] = attrs.field()
+    role: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The role of the value.
     """
 
-    value: Optional[str] = attrs.field()
+    value: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The value of the attribute.
     """
@@ -596,15 +802,19 @@ class DecimalWithUnits:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _decimal_with_units_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DecimalWithUnits(**data)
 
-    units: Optional[str] = attrs.field()
+    units: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The unit of the decimal value.
     """
 
-    value: Optional[float] = attrs.field()
+    value: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The decimal value.
     """
@@ -619,25 +829,33 @@ class DimensionType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _dimension_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DimensionType(**data)
 
-    height: Optional["DecimalWithUnits"] = attrs.field()
+    height: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    length: Optional["DecimalWithUnits"] = attrs.field()
+    length: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    weight: Optional["DecimalWithUnits"] = attrs.field()
+    weight: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    width: Optional["DecimalWithUnits"] = attrs.field()
+    width: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
@@ -652,10 +870,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -667,7 +887,9 @@ class Error:
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -678,15 +900,19 @@ class GetCatalogItemResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_catalog_item_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetCatalogItemResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Item"] = attrs.field()
+    payload: Optional["Item"] = attrs.field(
+        default=None,
+    )
     """
     An item in the Amazon catalog.
     """
@@ -697,12 +923,16 @@ class IdentifierType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _identifier_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return IdentifierType(**data)
 
-    marketplace_asin: Optional["ASINIdentifier"] = attrs.field()
+    marketplace_asin: Optional["ASINIdentifier"] = attrs.field(
+        default=None,
+    )
 
-    skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field()
+    skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -714,20 +944,26 @@ class Image:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _image_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Image(**data)
 
-    height: Optional["DecimalWithUnits"] = attrs.field()
+    height: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    url: Optional[str] = attrs.field()
+    url: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The image URL attribute of the item.
     """
 
-    width: Optional["DecimalWithUnits"] = attrs.field()
+    width: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
@@ -742,7 +978,7 @@ class Item:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Item(**data)
 
     attribute_sets: Optional[List["AttributeSetListType"]] = attrs.field(
@@ -752,7 +988,9 @@ class Item:
     A list of attributes for the item.
     """
 
-    identifiers: "IdentifierType" = attrs.field()
+    identifiers: "IdentifierType" = attrs.field(
+        default=None,
+    )
 
     relationships: Optional[List["RelationshipType"]] = attrs.field(
         default=None,
@@ -778,20 +1016,26 @@ class LanguageType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _language_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LanguageType(**data)
 
-    audio_format: Optional[str] = attrs.field()
+    audio_format: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The audio format attribute of the item.
     """
 
-    name: Optional[str] = attrs.field()
+    name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name attribute of the item.
     """
 
-    type: Optional[str] = attrs.field()
+    type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type attribute of the item.
     """
@@ -802,15 +1046,19 @@ class ListCatalogCategoriesResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_catalog_categories_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListCatalogCategoriesResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional[List["Categories"]] = attrs.field()
+    payload: Optional[List["Categories"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -818,15 +1066,19 @@ class ListCatalogItemsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_catalog_items_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListCatalogItemsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ListMatchingItemsResponse"] = attrs.field()
+    payload: Optional["ListMatchingItemsResponse"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -834,10 +1086,12 @@ class ListMatchingItemsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_matching_items_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListMatchingItemsResponse(**data)
 
-    items: Optional[List["Item"]] = attrs.field()
+    items: Optional[List["Item"]] = attrs.field(
+        default=None,
+    )
     """
     A list of items.
     """
@@ -852,15 +1106,19 @@ class Price:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _price_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Price(**data)
 
-    amount: Optional[float] = attrs.field()
+    amount: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The amount.
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The currency code of the amount.
     """
@@ -875,117 +1133,163 @@ class RelationshipType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _relationship_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RelationshipType(**data)
 
-    color: Optional[str] = attrs.field()
+    color: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The color variation of the item.
     """
 
-    edition: Optional[str] = attrs.field()
+    edition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The edition variation of the item.
     """
 
-    flavor: Optional[str] = attrs.field()
+    flavor: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The flavor variation of the item.
     """
 
-    gem_type: Optional[List[str]] = attrs.field()
+    gem_type: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The gem type variations of the item.
     """
 
-    golf_club_flex: Optional[str] = attrs.field()
+    golf_club_flex: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The golf club flex variation of an item.
     """
 
-    golf_club_loft: Optional["DecimalWithUnits"] = attrs.field()
+    golf_club_loft: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    hand_orientation: Optional[str] = attrs.field()
+    hand_orientation: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The hand orientation variation of an item.
     """
 
-    hardware_platform: Optional[str] = attrs.field()
+    hardware_platform: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The hardware platform variation of an item.
     """
 
-    identifiers: Optional["IdentifierType"] = attrs.field()
+    identifiers: Optional["IdentifierType"] = attrs.field(
+        default=None,
+    )
 
-    item_dimensions: Optional["DimensionType"] = attrs.field()
+    item_dimensions: Optional["DimensionType"] = attrs.field(
+        default=None,
+    )
     """
     The dimension type attribute of an item.
     """
 
-    material_type: Optional[List[str]] = attrs.field()
+    material_type: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The material type variations of an item.
     """
 
-    metal_type: Optional[str] = attrs.field()
+    metal_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The metal type variation of an item.
     """
 
-    model: Optional[str] = attrs.field()
+    model: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The model variation of an item.
     """
 
-    operating_system: Optional[List[str]] = attrs.field()
+    operating_system: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The operating system variations of an item.
     """
 
-    package_quantity: Optional[int] = attrs.field()
+    package_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The package quantity variation of an item.
     """
 
-    product_type_subcategory: Optional[str] = attrs.field()
+    product_type_subcategory: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The product type subcategory variation of an item.
     """
 
-    ring_size: Optional[str] = attrs.field()
+    ring_size: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The ring size variation of an item.
     """
 
-    scent: Optional[str] = attrs.field()
+    scent: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The scent variation of an item.
     """
 
-    shaft_material: Optional[str] = attrs.field()
+    shaft_material: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The shaft material variation of an item.
     """
 
-    size: Optional[str] = attrs.field()
+    size: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The size variation of an item.
     """
 
-    size_per_pearl: Optional[str] = attrs.field()
+    size_per_pearl: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The size per pearl variation of an item.
     """
 
-    total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field()
+    total_diamond_weight: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
 
-    total_gem_weight: Optional["DecimalWithUnits"] = attrs.field()
+    total_gem_weight: Optional["DecimalWithUnits"] = attrs.field(
+        default=None,
+    )
     """
     The decimal value and unit.
     """
@@ -996,15 +1300,19 @@ class SalesRankType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _sales_rank_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SalesRankType(**data)
 
-    product_category_id: str = attrs.field()
+    product_category_id: str = attrs.field(
+        default=None,
+    )
     """
     Identifies the item category from which the sales rank is taken.
     """
 
-    rank: int = attrs.field()
+    rank: int = attrs.field(
+        default=None,
+    )
     """
     The sales rank of the item within the item category.
 
@@ -1018,20 +1326,26 @@ class SellerSKUIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_skuidentifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerSKUIdentifier(**data)
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
 
-    seller_id: str = attrs.field()
+    seller_id: str = attrs.field(
+        default=None,
+    )
     """
     The seller identifier submitted for the operation.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller stock keeping unit (SKU) of the item.
     """

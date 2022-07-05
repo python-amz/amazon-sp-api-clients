@@ -22,15 +22,19 @@ class AdditionalInputs:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _additional_inputs_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AdditionalInputs(**data)
 
-    additional_input_field_name: Optional[str] = attrs.field()
+    additional_input_field_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The field name.
     """
 
-    seller_input_definition: Optional["SellerInputDefinition"] = attrs.field()
+    seller_input_definition: Optional["SellerInputDefinition"] = attrs.field(
+        default=None,
+    )
     """
     Specifies characteristics that apply to a seller input.
     """
@@ -45,47 +49,65 @@ class AdditionalSellerInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _additional_seller_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AdditionalSellerInput(**data)
 
-    data_type: Optional[str] = attrs.field()
+    data_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The data type of the additional information.
     """
 
-    value_as_address: Optional["Address"] = attrs.field()
+    value_as_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     The postal address information.
     """
 
-    value_as_boolean: Optional[bool] = attrs.field()
+    value_as_boolean: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     The value when the data type is boolean.
     """
 
-    value_as_currency: Optional["CurrencyAmount"] = attrs.field()
+    value_as_currency: Optional["CurrencyAmount"] = attrs.field(
+        default=None,
+    )
     """
     Currency type and amount.
     """
 
-    value_as_dimension: Optional["Length"] = attrs.field()
+    value_as_dimension: Optional["Length"] = attrs.field(
+        default=None,
+    )
     """
     The length.
     """
 
-    value_as_integer: Optional[int] = attrs.field()
+    value_as_integer: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The value when the data type is integer.
     """
 
-    value_as_string: Optional[str] = attrs.field()
+    value_as_string: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The value when the data type is string.
     """
 
-    value_as_timestamp: Optional["Timestamp"] = attrs.field()
+    value_as_timestamp: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    value_as_weight: Optional["Weight"] = attrs.field()
+    value_as_weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -100,15 +122,19 @@ class AdditionalSellerInputs:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _additional_seller_inputs_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AdditionalSellerInputs(**data)
 
-    additional_input_field_name: str = attrs.field()
+    additional_input_field_name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the additional input field.
     """
 
-    additional_seller_input: "AdditionalSellerInput" = attrs.field()
+    additional_seller_input: "AdditionalSellerInput" = attrs.field(
+        default=None,
+    )
     """
     Additional information required to purchase shipping.
     """
@@ -123,10 +149,12 @@ class Address:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Address(**data)
 
-    address_line1: "AddressLine1" = attrs.field()
+    address_line1: "AddressLine1" = attrs.field(
+        default=None,
+    )
     """
     The street address information.
     """
@@ -145,12 +173,16 @@ class Address:
     Additional street address information.
     """
 
-    city: "City" = attrs.field()
+    city: "City" = attrs.field(
+        default=None,
+    )
     """
     The city.
     """
 
-    country_code: "CountryCode" = attrs.field()
+    country_code: "CountryCode" = attrs.field(
+        default=None,
+    )
     """
     The country code. A two-character country code, in ISO 3166-1 alpha-2 format.
     """
@@ -162,22 +194,30 @@ class Address:
     The district or county.
     """
 
-    email: "EmailAddress" = attrs.field()
+    email: "EmailAddress" = attrs.field(
+        default=None,
+    )
     """
     The email address.
     """
 
-    name: "AddressName" = attrs.field()
+    name: "AddressName" = attrs.field(
+        default=None,
+    )
     """
     The name of the addressee, or business name.
     """
 
-    phone: "PhoneNumber" = attrs.field()
+    phone: "PhoneNumber" = attrs.field(
+        default=None,
+    )
     """
     The phone number.
     """
 
-    postal_code: "PostalCode" = attrs.field()
+    postal_code: "PostalCode" = attrs.field(
+        default=None,
+    )
     """
     The zip code or postal code.
     """
@@ -199,7 +239,7 @@ class AddressLine1:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_line1_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AddressLine1(**data)
 
     pass
@@ -214,7 +254,7 @@ class AddressLine2:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_line2_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AddressLine2(**data)
 
     pass
@@ -229,7 +269,7 @@ class AddressLine3:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_line3_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AddressLine3(**data)
 
     pass
@@ -244,7 +284,7 @@ class AddressName:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AddressName(**data)
 
     pass
@@ -259,7 +299,7 @@ class AmazonOrderId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _amazon_order_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AmazonOrderId(**data)
 
     pass
@@ -274,15 +314,19 @@ class AvailableCarrierWillPickUpOption:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _available_carrier_will_pick_up_option_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AvailableCarrierWillPickUpOption(**data)
 
-    carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field()
+    carrier_will_pick_up_option: "CarrierWillPickUpOption" = attrs.field(
+        default=None,
+    )
     """
     Carrier will pick up option.
     """
 
-    charge: "CurrencyAmount" = attrs.field()
+    charge: "CurrencyAmount" = attrs.field(
+        default=None,
+    )
     """
     Currency type and amount.
     """
@@ -297,15 +341,19 @@ class AvailableDeliveryExperienceOption:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _available_delivery_experience_option_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AvailableDeliveryExperienceOption(**data)
 
-    charge: "CurrencyAmount" = attrs.field()
+    charge: "CurrencyAmount" = attrs.field(
+        default=None,
+    )
     """
     Currency type and amount.
     """
 
-    delivery_experience_option: "DeliveryExperienceOption" = attrs.field()
+    delivery_experience_option: "DeliveryExperienceOption" = attrs.field(
+        default=None,
+    )
     """
     The delivery confirmation level.
     """
@@ -320,15 +368,19 @@ class AvailableShippingServiceOptions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _available_shipping_service_options_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AvailableShippingServiceOptions(**data)
 
-    available_carrier_will_pick_up_options: List["AvailableCarrierWillPickUpOption"] = attrs.field()
+    available_carrier_will_pick_up_options: List["AvailableCarrierWillPickUpOption"] = attrs.field(
+        default=None,
+    )
     """
     List of available carrier pickup options.
     """
 
-    available_delivery_experience_options: List["AvailableDeliveryExperienceOption"] = attrs.field()
+    available_delivery_experience_options: List["AvailableDeliveryExperienceOption"] = attrs.field(
+        default=None,
+    )
     """
     List of available delivery experience options.
     """
@@ -343,15 +395,19 @@ class CancelShipmentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _cancel_shipment_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CancelShipmentResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Shipment"] = attrs.field()
+    payload: Optional["Shipment"] = attrs.field(
+        default=None,
+    )
     """
     The details of a shipment, including the shipment status.
     """
@@ -366,7 +422,7 @@ class CarrierWillPickUpOption:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _carrier_will_pick_up_option_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CarrierWillPickUpOption(**data)
 
     pass
@@ -381,7 +437,7 @@ class City:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _city_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return City(**data)
 
     pass
@@ -396,7 +452,7 @@ class Constraint:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _constraint_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Constraint(**data)
 
     validation_reg_ex: Optional[str] = attrs.field(
@@ -406,7 +462,9 @@ class Constraint:
     A regular expression.
     """
 
-    validation_string: str = attrs.field()
+    validation_string: str = attrs.field(
+        default=None,
+    )
     """
     A validation string.
     """
@@ -421,7 +479,7 @@ class CountryCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _country_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CountryCode(**data)
 
     pass
@@ -436,7 +494,7 @@ class CreateShipmentRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_shipment_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateShipmentRequest(**data)
 
     hazmat_type: Optional["HazmatType"] = attrs.field(
@@ -460,12 +518,16 @@ class CreateShipmentRequest:
     A list of additional seller input pairs required to purchase shipping.
     """
 
-    shipment_request_details: "ShipmentRequestDetails" = attrs.field()
+    shipment_request_details: "ShipmentRequestDetails" = attrs.field(
+        default=None,
+    )
     """
     Shipment information required for requesting shipping service offers or for creating a shipment.
     """
 
-    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined shipping service identifier.
     """
@@ -487,15 +549,19 @@ class CreateShipmentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_shipment_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateShipmentResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Shipment"] = attrs.field()
+    payload: Optional["Shipment"] = attrs.field(
+        default=None,
+    )
     """
     The details of a shipment, including the shipment status.
     """
@@ -510,10 +576,12 @@ class CurrencyAmount:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _currency_amount_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CurrencyAmount(**data)
 
-    amount: float = attrs.field()
+    amount: float = attrs.field(
+        default=None,
+    )
     """
     The currency amount.
 
@@ -521,7 +589,9 @@ class CurrencyAmount:
     {'schema_format': 'double'}
     """
 
-    currency_code: str = attrs.field()
+    currency_code: str = attrs.field(
+        default=None,
+    )
     """
     Three-digit currency code in ISO 4217 format.
 
@@ -540,7 +610,7 @@ class CustomTextForLabel:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _custom_text_for_label_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CustomTextForLabel(**data)
 
     pass
@@ -555,7 +625,7 @@ class DeliveryExperienceOption:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _delivery_experience_option_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DeliveryExperienceOption(**data)
 
     pass
@@ -570,7 +640,7 @@ class DeliveryExperienceType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _delivery_experience_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DeliveryExperienceType(**data)
 
     pass
@@ -585,7 +655,7 @@ class DistrictOrCounty:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _district_or_county_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DistrictOrCounty(**data)
 
     pass
@@ -600,7 +670,7 @@ class EmailAddress:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _email_address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return EmailAddress(**data)
 
     pass
@@ -615,10 +685,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occured.
     """
@@ -630,7 +702,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -645,20 +719,26 @@ class FileContents:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _file_contents_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FileContents(**data)
 
-    checksum: str = attrs.field()
+    checksum: str = attrs.field(
+        default=None,
+    )
     """
     An MD5 hash to validate the PDF document data, in the form of a Base64-encoded string.
     """
 
-    contents: str = attrs.field()
+    contents: str = attrs.field(
+        default=None,
+    )
     """
     Data for printing labels, in the form of a Base64-encoded, GZip-compressed string.
     """
 
-    file_type: "FileType" = attrs.field()
+    file_type: "FileType" = attrs.field(
+        default=None,
+    )
     """
     The file type for a label.
     """
@@ -673,7 +753,7 @@ class FileType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _file_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FileType(**data)
 
     pass
@@ -688,20 +768,26 @@ class GetAdditionalSellerInputsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_additional_seller_inputs_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetAdditionalSellerInputsRequest(**data)
 
-    order_id: "AmazonOrderId" = attrs.field()
+    order_id: "AmazonOrderId" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    ship_from_address: "Address" = attrs.field()
+    ship_from_address: "Address" = attrs.field(
+        default=None,
+    )
     """
     The postal address information.
     """
 
-    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined shipping service identifier.
     """
@@ -716,15 +802,19 @@ class GetAdditionalSellerInputsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_additional_seller_inputs_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetAdditionalSellerInputsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetAdditionalSellerInputsResult"] = attrs.field()
+    payload: Optional["GetAdditionalSellerInputsResult"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the getAdditionalSellerInputs operation.
     """
@@ -739,15 +829,19 @@ class GetAdditionalSellerInputsResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_additional_seller_inputs_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetAdditionalSellerInputsResult(**data)
 
-    item_level_fields_list: Optional[List["ItemLevelFields"]] = attrs.field()
+    item_level_fields_list: Optional[List["ItemLevelFields"]] = attrs.field(
+        default=None,
+    )
     """
     A list of item level fields.
     """
 
-    shipment_level_fields: Optional[List["AdditionalInputs"]] = attrs.field()
+    shipment_level_fields: Optional[List["AdditionalInputs"]] = attrs.field(
+        default=None,
+    )
     """
     A list of additional inputs.
     """
@@ -762,10 +856,12 @@ class GetEligibleShipmentServicesRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_eligible_shipment_services_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetEligibleShipmentServicesRequest(**data)
 
-    shipment_request_details: "ShipmentRequestDetails" = attrs.field()
+    shipment_request_details: "ShipmentRequestDetails" = attrs.field(
+        default=None,
+    )
     """
     Shipment information required for requesting shipping service offers or for creating a shipment.
     """
@@ -787,15 +883,19 @@ class GetEligibleShipmentServicesResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_eligible_shipment_services_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetEligibleShipmentServicesResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetEligibleShipmentServicesResult"] = attrs.field()
+    payload: Optional["GetEligibleShipmentServicesResult"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the getEligibleShipmentServices operation.
     """
@@ -810,7 +910,7 @@ class GetEligibleShipmentServicesResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_eligible_shipment_services_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetEligibleShipmentServicesResult(**data)
 
     rejected_shipping_service_list: Optional[List["RejectedShippingService"]] = attrs.field(
@@ -820,7 +920,9 @@ class GetEligibleShipmentServicesResult:
     List of services that were for some reason unavailable for this request
     """
 
-    shipping_service_list: List["ShippingService"] = attrs.field()
+    shipping_service_list: List["ShippingService"] = attrs.field(
+        default=None,
+    )
     """
     A list of shipping services offers.
     """
@@ -851,15 +953,19 @@ class GetShipmentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_shipment_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetShipmentResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["Shipment"] = attrs.field()
+    payload: Optional["Shipment"] = attrs.field(
+        default=None,
+    )
     """
     The details of a shipment, including the shipment status.
     """
@@ -874,7 +980,7 @@ class HazmatType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _hazmat_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return HazmatType(**data)
 
     pass
@@ -889,7 +995,7 @@ class InputTargetType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _input_target_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InputTargetType(**data)
 
     pass
@@ -904,7 +1010,7 @@ class Item:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Item(**data)
 
     item_description: Optional["ItemDescription"] = attrs.field(
@@ -928,12 +1034,16 @@ class Item:
     The weight.
     """
 
-    order_item_id: "OrderItemId" = attrs.field()
+    order_item_id: "OrderItemId" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined identifier for an individual item in an order.
     """
 
-    quantity: "ItemQuantity" = attrs.field()
+    quantity: "ItemQuantity" = attrs.field(
+        default=None,
+    )
     """
     The number of items.
     """
@@ -955,7 +1065,7 @@ class ItemDescription:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_description_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemDescription(**data)
 
     pass
@@ -966,15 +1076,19 @@ class ItemLevelFields:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_level_fields_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemLevelFields(**data)
 
-    additional_inputs: List["AdditionalInputs"] = attrs.field()
+    additional_inputs: List["AdditionalInputs"] = attrs.field(
+        default=None,
+    )
     """
     A list of additional inputs.
     """
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
@@ -989,7 +1103,7 @@ class ItemQuantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemQuantity(**data)
 
     pass
@@ -1004,7 +1118,7 @@ class Label:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Label(**data)
 
     custom_text_for_label: Optional["CustomTextForLabel"] = attrs.field(
@@ -1015,12 +1129,16 @@ class Label:
         Note: Custom text is only included on labels that are in ZPL format (ZPL203). FedEx does not support CustomTextForLabel.
     """
 
-    dimensions: "LabelDimensions" = attrs.field()
+    dimensions: "LabelDimensions" = attrs.field(
+        default=None,
+    )
     """
     Dimensions for printing a shipping label.
     """
 
-    file_contents: "FileContents" = attrs.field()
+    file_contents: "FileContents" = attrs.field(
+        default=None,
+    )
     """
     The document data and checksum.
     """
@@ -1049,16 +1167,20 @@ class LabelCustomization:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_customization_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelCustomization(**data)
 
-    custom_text_for_label: Optional["CustomTextForLabel"] = attrs.field()
+    custom_text_for_label: Optional["CustomTextForLabel"] = attrs.field(
+        default=None,
+    )
     """
     Custom text to print on the label.
         Note: Custom text is only included on labels that are in ZPL format (ZPL203). FedEx does not support CustomTextForLabel.
     """
 
-    standard_id_for_label: Optional["StandardIdForLabel"] = attrs.field()
+    standard_id_for_label: Optional["StandardIdForLabel"] = attrs.field(
+        default=None,
+    )
     """
     The type of standard identifier to print on the label.
     """
@@ -1073,7 +1195,7 @@ class LabelDimension:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_dimension_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelDimension(**data)
 
     pass
@@ -1088,20 +1210,26 @@ class LabelDimensions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_dimensions_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelDimensions(**data)
 
-    length: "LabelDimension" = attrs.field()
+    length: "LabelDimension" = attrs.field(
+        default=None,
+    )
     """
     A label dimension.
     """
 
-    unit: "UnitOfLength" = attrs.field()
+    unit: "UnitOfLength" = attrs.field(
+        default=None,
+    )
     """
     The unit of length.
     """
 
-    width: "LabelDimension" = attrs.field()
+    width: "LabelDimension" = attrs.field(
+        default=None,
+    )
     """
     A label dimension.
     """
@@ -1116,7 +1244,7 @@ class LabelFormat:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_format_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelFormat(**data)
 
     pass
@@ -1131,15 +1259,19 @@ class LabelFormatOption:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_format_option_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelFormatOption(**data)
 
-    include_packing_slip_with_label: Optional[bool] = attrs.field()
+    include_packing_slip_with_label: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, include a packing slip with the label.
     """
 
-    label_format: Optional["LabelFormat"] = attrs.field()
+    label_format: Optional["LabelFormat"] = attrs.field(
+        default=None,
+    )
     """
     The label format.
     """
@@ -1154,10 +1286,12 @@ class LabelFormatOptionRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_format_option_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelFormatOptionRequest(**data)
 
-    include_packing_slip_with_label: Optional[bool] = attrs.field()
+    include_packing_slip_with_label: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, include a packing slip with the label.
     """
@@ -1172,15 +1306,19 @@ class Length:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _length_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Length(**data)
 
-    unit: Optional["UnitOfLength"] = attrs.field()
+    unit: Optional["UnitOfLength"] = attrs.field(
+        default=None,
+    )
     """
     The unit of length.
     """
 
-    value: Optional[float] = attrs.field()
+    value: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The value in units.
     """
@@ -1195,7 +1333,7 @@ class OrderItemId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_item_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderItemId(**data)
 
     pass
@@ -1206,7 +1344,7 @@ class PackageDimension:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _package_dimension_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PackageDimension(**data)
 
     pass
@@ -1221,25 +1359,35 @@ class PackageDimensions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _package_dimensions_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PackageDimensions(**data)
 
-    height: Optional["PackageDimension"] = attrs.field()
+    height: Optional["PackageDimension"] = attrs.field(
+        default=None,
+    )
 
-    length: Optional["PackageDimension"] = attrs.field()
+    length: Optional["PackageDimension"] = attrs.field(
+        default=None,
+    )
 
-    predefined_package_dimensions: Optional["PredefinedPackageDimensions"] = attrs.field()
+    predefined_package_dimensions: Optional["PredefinedPackageDimensions"] = attrs.field(
+        default=None,
+    )
     """
     An enumeration of predefined parcel tokens. If you specify a PredefinedPackageDimensions token, you are not obligated to use a branded package from a carrier. For example, if you specify the FedEx_Box_10kg token, you do not have to use that particular package from FedEx. You are only obligated to use a box that matches the dimensions specified by the token.
         Note: Please note that carriers can have restrictions on the type of package allowed for certain ship methods. Check the carrier website for all details. Example: Flat rate pricing is available when materials are sent by USPS in a USPS-produced Flat Rate Envelope or Box.
     """
 
-    unit: Optional["UnitOfLength"] = attrs.field()
+    unit: Optional["UnitOfLength"] = attrs.field(
+        default=None,
+    )
     """
     The unit of length.
     """
 
-    width: Optional["PackageDimension"] = attrs.field()
+    width: Optional["PackageDimension"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1251,7 +1399,7 @@ class PhoneNumber:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _phone_number_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PhoneNumber(**data)
 
     pass
@@ -1266,7 +1414,7 @@ class PostalCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _postal_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PostalCode(**data)
 
     pass
@@ -1282,7 +1430,7 @@ class PredefinedPackageDimensions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _predefined_package_dimensions_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PredefinedPackageDimensions(**data)
 
     pass
@@ -1297,15 +1445,19 @@ class RejectedShippingService:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _rejected_shipping_service_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RejectedShippingService(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The rejected shipping carrier name. e.g. USPS
     """
 
-    rejection_reason_code: str = attrs.field()
+    rejection_reason_code: str = attrs.field(
+        default=None,
+    )
     """
     A reason code meant to be consumed programatically. e.g. CARRIER_CANNOT_SHIP_TO_POBOX
     """
@@ -1317,12 +1469,16 @@ class RejectedShippingService:
     A localized human readable description of the rejected reason.
     """
 
-    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined shipping service identifier.
     """
 
-    shipping_service_name: str = attrs.field()
+    shipping_service_name: str = attrs.field(
+        default=None,
+    )
     """
     The rejected shipping service localized name. e.g. FedEx Standard Overnight
     """
@@ -1337,20 +1493,26 @@ class SellerInputDefinition:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_input_definition_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerInputDefinition(**data)
 
-    constraints: List["Constraint"] = attrs.field()
+    constraints: List["Constraint"] = attrs.field(
+        default=None,
+    )
     """
     List of constraints.
     """
 
-    data_type: str = attrs.field()
+    data_type: str = attrs.field(
+        default=None,
+    )
     """
     The data type of the additional input field.
     """
 
-    input_display_text: str = attrs.field()
+    input_display_text: str = attrs.field(
+        default=None,
+    )
     """
     The display text for the additional input field.
     """
@@ -1362,7 +1524,9 @@ class SellerInputDefinition:
     Indicates whether the additional seller input is at the item or shipment level.
     """
 
-    is_required: bool = attrs.field()
+    is_required: bool = attrs.field(
+        default=None,
+    )
     """
     When true, the additional input field is required.
     """
@@ -1374,7 +1538,9 @@ class SellerInputDefinition:
     The set of fixed values in an additional seller input.
     """
 
-    stored_value: "AdditionalSellerInput" = attrs.field()
+    stored_value: "AdditionalSellerInput" = attrs.field(
+        default=None,
+    )
     """
     Additional information required to purchase shipping.
     """
@@ -1389,7 +1555,7 @@ class SellerOrderId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_order_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerOrderId(**data)
 
     pass
@@ -1404,27 +1570,37 @@ class Shipment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Shipment(**data)
 
-    amazon_order_id: "AmazonOrderId" = attrs.field()
+    amazon_order_id: "AmazonOrderId" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    created_date: "Timestamp" = attrs.field()
+    created_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
-    insurance: "CurrencyAmount" = attrs.field()
+    insurance: "CurrencyAmount" = attrs.field(
+        default=None,
+    )
     """
     Currency type and amount.
     """
 
-    item_list: List["Item"] = attrs.field()
+    item_list: List["Item"] = attrs.field(
+        default=None,
+    )
     """
     The list of items to be included in a shipment.
     """
 
-    label: "Label" = attrs.field()
+    label: "Label" = attrs.field(
+        default=None,
+    )
     """
     Data for creating a shipping label and dimensions for printing the label.
     """
@@ -1433,7 +1609,9 @@ class Shipment:
         default=None,
     )
 
-    package_dimensions: "PackageDimensions" = attrs.field()
+    package_dimensions: "PackageDimensions" = attrs.field(
+        default=None,
+    )
     """
     The dimensions of a package contained in a shipment.
     """
@@ -1445,27 +1623,37 @@ class Shipment:
     A seller-defined order identifier.
     """
 
-    ship_from_address: "Address" = attrs.field()
+    ship_from_address: "Address" = attrs.field(
+        default=None,
+    )
     """
     The postal address information.
     """
 
-    ship_to_address: "Address" = attrs.field()
+    ship_to_address: "Address" = attrs.field(
+        default=None,
+    )
     """
     The postal address information.
     """
 
-    shipment_id: "ShipmentId" = attrs.field()
+    shipment_id: "ShipmentId" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined shipment identifier.
     """
 
-    shipping_service: "ShippingService" = attrs.field()
+    shipping_service: "ShippingService" = attrs.field(
+        default=None,
+    )
     """
     A shipping service offer made by a carrier.
     """
 
-    status: "ShipmentStatus" = attrs.field()
+    status: "ShipmentStatus" = attrs.field(
+        default=None,
+    )
     """
     The shipment status.
     """
@@ -1477,7 +1665,9 @@ class Shipment:
     The shipment tracking identifier provided by the carrier.
     """
 
-    weight: "Weight" = attrs.field()
+    weight: "Weight" = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -1492,7 +1682,7 @@ class ShipmentId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentId(**data)
 
     pass
@@ -1507,15 +1697,19 @@ class ShipmentRequestDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_request_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentRequestDetails(**data)
 
-    amazon_order_id: "AmazonOrderId" = attrs.field()
+    amazon_order_id: "AmazonOrderId" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined order identifier, in 3-7-7 format.
     """
 
-    item_list: List["Item"] = attrs.field()
+    item_list: List["Item"] = attrs.field(
+        default=None,
+    )
     """
     The list of items to be included in a shipment.
     """
@@ -1531,7 +1725,9 @@ class ShipmentRequestDetails:
         default=None,
     )
 
-    package_dimensions: "PackageDimensions" = attrs.field()
+    package_dimensions: "PackageDimensions" = attrs.field(
+        default=None,
+    )
     """
     The dimensions of a package contained in a shipment.
     """
@@ -1547,17 +1743,23 @@ class ShipmentRequestDetails:
         default=None,
     )
 
-    ship_from_address: "Address" = attrs.field()
+    ship_from_address: "Address" = attrs.field(
+        default=None,
+    )
     """
     The postal address information.
     """
 
-    shipping_service_options: "ShippingServiceOptions" = attrs.field()
+    shipping_service_options: "ShippingServiceOptions" = attrs.field(
+        default=None,
+    )
     """
     Extra services provided by a carrier.
     """
 
-    weight: "Weight" = attrs.field()
+    weight: "Weight" = attrs.field(
+        default=None,
+    )
     """
     The weight.
     """
@@ -1572,7 +1774,7 @@ class ShipmentStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentStatus(**data)
 
     pass
@@ -1587,25 +1789,33 @@ class ShippingOfferingFilter:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipping_offering_filter_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShippingOfferingFilter(**data)
 
-    carrier_will_pick_up: Optional["CarrierWillPickUpOption"] = attrs.field()
+    carrier_will_pick_up: Optional["CarrierWillPickUpOption"] = attrs.field(
+        default=None,
+    )
     """
     Carrier will pick up option.
     """
 
-    delivery_experience: Optional["DeliveryExperienceOption"] = attrs.field()
+    delivery_experience: Optional["DeliveryExperienceOption"] = attrs.field(
+        default=None,
+    )
     """
     The delivery confirmation level.
     """
 
-    include_complex_shipping_options: Optional[bool] = attrs.field()
+    include_complex_shipping_options: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, include complex shipping options.
     """
 
-    include_packing_slip_with_label: Optional[bool] = attrs.field()
+    include_packing_slip_with_label: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     When true, include a packing slip with the label.
     """
@@ -1620,7 +1830,7 @@ class ShippingService:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipping_service_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShippingService(**data)
 
     available_format_options_for_label: Optional[List["LabelFormatOption"]] = attrs.field(
@@ -1644,7 +1854,9 @@ class ShippingService:
     The available shipping service options.
     """
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the carrier.
     """
@@ -1657,34 +1869,48 @@ class ShippingService:
         default=None,
     )
 
-    rate: "CurrencyAmount" = attrs.field()
+    rate: "CurrencyAmount" = attrs.field(
+        default=None,
+    )
     """
     Currency type and amount.
     """
 
-    requires_additional_seller_inputs: bool = attrs.field()
+    requires_additional_seller_inputs: bool = attrs.field(
+        default=None,
+    )
     """
     When true, additional seller inputs are required.
     """
 
-    ship_date: "Timestamp" = attrs.field()
+    ship_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
-    shipping_service_id: "ShippingServiceIdentifier" = attrs.field()
+    shipping_service_id: "ShippingServiceIdentifier" = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined shipping service identifier.
     """
 
-    shipping_service_name: str = attrs.field()
+    shipping_service_name: str = attrs.field(
+        default=None,
+    )
     """
     A plain text representation of a carrier's shipping service. For example, "UPS Ground" or "FedEx Standard Overnight".
     """
 
-    shipping_service_offer_id: str = attrs.field()
+    shipping_service_offer_id: str = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined shipping service offer identifier.
     """
 
-    shipping_service_options: "ShippingServiceOptions" = attrs.field()
+    shipping_service_options: "ShippingServiceOptions" = attrs.field(
+        default=None,
+    )
     """
     Extra services provided by a carrier.
     """
@@ -1699,7 +1925,7 @@ class ShippingServiceIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipping_service_identifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShippingServiceIdentifier(**data)
 
     pass
@@ -1714,10 +1940,12 @@ class ShippingServiceOptions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipping_service_options_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShippingServiceOptions(**data)
 
-    carrier_will_pick_up: bool = attrs.field()
+    carrier_will_pick_up: bool = attrs.field(
+        default=None,
+    )
     """
     When true, the carrier will pick up the package.
         Note: Scheduled carrier pickup is available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
@@ -1737,7 +1965,9 @@ class ShippingServiceOptions:
     Currency type and amount.
     """
 
-    delivery_experience: "DeliveryExperienceType" = attrs.field()
+    delivery_experience: "DeliveryExperienceType" = attrs.field(
+        default=None,
+    )
     """
     The delivery confirmation level.
     """
@@ -1759,7 +1989,7 @@ class StandardIdForLabel:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_id_for_label_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardIdForLabel(**data)
 
     pass
@@ -1774,7 +2004,7 @@ class StateOrProvinceCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _state_or_province_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StateOrProvinceCode(**data)
 
     pass
@@ -1789,10 +2019,12 @@ class TemporarilyUnavailableCarrier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _temporarily_unavailable_carrier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TemporarilyUnavailableCarrier(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the carrier.
     """
@@ -1807,10 +2039,12 @@ class TermsAndConditionsNotAcceptedCarrier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _terms_and_conditions_not_accepted_carrier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TermsAndConditionsNotAcceptedCarrier(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the carrier.
     """
@@ -1821,7 +2055,7 @@ class Timestamp:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _timestamp_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Timestamp(**data)
 
     pass
@@ -1836,7 +2070,7 @@ class TrackingId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tracking_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TrackingId(**data)
 
     pass
@@ -1851,7 +2085,7 @@ class TransparencyCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transparency_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransparencyCode(**data)
 
     pass
@@ -1866,7 +2100,7 @@ class UnitOfLength:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _unit_of_length_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UnitOfLength(**data)
 
     pass
@@ -1881,7 +2115,7 @@ class UnitOfWeight:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _unit_of_weight_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UnitOfWeight(**data)
 
     pass
@@ -1896,15 +2130,19 @@ class Weight:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _weight_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Weight(**data)
 
-    unit: "UnitOfWeight" = attrs.field()
+    unit: "UnitOfWeight" = attrs.field(
+        default=None,
+    )
     """
     The unit of weight.
     """
 
-    value: "WeightValue" = attrs.field()
+    value: "WeightValue" = attrs.field(
+        default=None,
+    )
     """
     The weight value.
     """
@@ -1919,7 +2157,7 @@ class WeightValue:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _weight_value_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return WeightValue(**data)
 
     pass

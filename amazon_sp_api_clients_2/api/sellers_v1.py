@@ -22,10 +22,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occured.
     """
@@ -37,7 +39,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -52,15 +56,19 @@ class GetMarketplaceParticipationsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_marketplace_participations_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetMarketplaceParticipationsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional[List["MarketplaceParticipation"]] = attrs.field()
+    payload: Optional[List["MarketplaceParticipation"]] = attrs.field(
+        default=None,
+    )
     """
     List of marketplace participations.
     """
@@ -75,10 +83,12 @@ class Marketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Marketplace(**data)
 
-    country_code: str = attrs.field()
+    country_code: str = attrs.field(
+        default=None,
+    )
     """
     The ISO 3166-1 alpha-2 format country code of the marketplace.
 
@@ -86,27 +96,37 @@ class Marketplace:
     {'pattern': '^([A-Z]{2})$'}
     """
 
-    default_currency_code: str = attrs.field()
+    default_currency_code: str = attrs.field(
+        default=None,
+    )
     """
     The ISO 4217 format currency code of the marketplace.
     """
 
-    default_language_code: str = attrs.field()
+    default_language_code: str = attrs.field(
+        default=None,
+    )
     """
     The ISO 639-1 format language code of the marketplace.
     """
 
-    domain_name: str = attrs.field()
+    domain_name: str = attrs.field(
+        default=None,
+    )
     """
     The domain name of the marketplace.
     """
 
-    id: str = attrs.field()
+    id: str = attrs.field(
+        default=None,
+    )
     """
     The encrypted marketplace value.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     Marketplace name.
     """
@@ -117,15 +137,19 @@ class MarketplaceParticipation:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _marketplace_participation_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MarketplaceParticipation(**data)
 
-    marketplace: "Marketplace" = attrs.field()
+    marketplace: "Marketplace" = attrs.field(
+        default=None,
+    )
     """
     Detailed information about an Amazon market where a seller can list items for sale and customers can view and purchase items.
     """
 
-    participation: "Participation" = attrs.field()
+    participation: "Participation" = attrs.field(
+        default=None,
+    )
     """
     Detailed information that is specific to a seller in a Marketplace.
     """
@@ -140,15 +164,19 @@ class Participation:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _participation_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Participation(**data)
 
-    has_suspended_listings: bool = attrs.field()
+    has_suspended_listings: bool = attrs.field(
+        default=None,
+    )
     """
     Specifies if the seller has suspended listings. True if the seller Listing Status is set to Inactive, otherwise False.
     """
 
-    is_participating: bool = attrs.field()
+    is_participating: bool = attrs.field(
+        default=None,
+    )
 
 
 _error_name_convert = {

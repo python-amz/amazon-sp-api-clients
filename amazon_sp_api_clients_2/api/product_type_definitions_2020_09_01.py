@@ -24,10 +24,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -39,7 +41,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -54,10 +58,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -69,15 +75,19 @@ class ProductType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _product_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ProductType(**data)
 
-    marketplace_ids: List[str] = attrs.field()
+    marketplace_ids: List[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon marketplace identifiers for which the product type definition is available.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the Amazon product type.
     """
@@ -92,15 +102,19 @@ class ProductTypeDefinition:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _product_type_definition_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ProductTypeDefinition(**data)
 
-    locale: str = attrs.field()
+    locale: str = attrs.field(
+        default=None,
+    )
     """
     Locale of the display elements contained in the product type definition.
     """
 
-    marketplace_ids: List[str] = attrs.field()
+    marketplace_ids: List[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifiers for which the product type definition is applicable.
     """
@@ -109,34 +123,46 @@ class ProductTypeDefinition:
         default=None,
     )
 
-    product_type: str = attrs.field()
+    product_type: str = attrs.field(
+        default=None,
+    )
     """
     The name of the Amazon product type that this product type definition applies to.
     """
 
-    product_type_version: "ProductTypeVersion" = attrs.field()
+    product_type_version: "ProductTypeVersion" = attrs.field(
+        default=None,
+    )
     """
     The version details for an Amazon product type.
     """
 
-    property_groups: "ProductTypeDefinitionPropertyGroups" = attrs.field()
+    property_groups: "ProductTypeDefinitionPropertyGroups" = attrs.field(
+        default=None,
+    )
     """
     Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
     """
 
     requirements: Union[
         Literal["LISTING"], Literal["LISTING_PRODUCT_ONLY"], Literal["LISTING_OFFER_ONLY"]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Name of the requirements set represented in this product type definition.
     """
 
-    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = attrs.field()
+    requirements_enforced: Union[Literal["ENFORCED"], Literal["NOT_ENFORCED"]] = attrs.field(
+        default=None,
+    )
     """
     Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).
     """
 
-    schema: "SchemaLink" = attrs.field()
+    schema: "SchemaLink" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=False)
@@ -148,7 +174,7 @@ class ProductTypeDefinitionPropertyGroups:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _product_type_definition_property_groups_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ProductTypeDefinitionPropertyGroups(**data)
 
     pass
@@ -163,10 +189,12 @@ class ProductTypeList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _product_type_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ProductTypeList(**data)
 
-    product_types: List["ProductType"] = attrs.field()
+    product_types: List["ProductType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -178,10 +206,12 @@ class ProductTypeVersion:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _product_type_version_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ProductTypeVersion(**data)
 
-    latest: bool = attrs.field()
+    latest: bool = attrs.field(
+        default=None,
+    )
     """
     When true, the version indicated by the version identifier is the latest available for the Amazon product type.
     """
@@ -193,7 +223,9 @@ class ProductTypeVersion:
     When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
     """
 
-    version: str = attrs.field()
+    version: str = attrs.field(
+        default=None,
+    )
     """
     Version identifier.
     """
@@ -208,20 +240,26 @@ class PropertyGroup:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _property_group_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PropertyGroup(**data)
 
-    description: Optional[str] = attrs.field()
+    description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The description of the property group.
     """
 
-    property_names: Optional[List[str]] = attrs.field()
+    property_names: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The names of the schema properties for the property group.
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The display label of the property group.
     """
@@ -232,15 +270,19 @@ class SchemaLink:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _schema_link_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SchemaLink(**data)
 
-    checksum: str = attrs.field()
+    checksum: str = attrs.field(
+        default=None,
+    )
     """
     Checksum hash of the schema (Base64 MD5). Can be used to verify schema contents, identify changes between schema versions, and for caching.
     """
 
-    link: "SchemaLinkLink" = attrs.field()
+    link: "SchemaLinkLink" = attrs.field(
+        default=None,
+    )
     """
     Link to retrieve the schema.
     """
@@ -255,15 +297,19 @@ class SchemaLinkLink:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _schema_link_link_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SchemaLinkLink(**data)
 
-    resource: str = attrs.field()
+    resource: str = attrs.field(
+        default=None,
+    )
     """
     URI resource for the link.
     """
 
-    verb: Union[Literal["GET"]] = attrs.field()
+    verb: Union[Literal["GET"]] = attrs.field(
+        default=None,
+    )
     """
     HTTP method for the link operation.
     """

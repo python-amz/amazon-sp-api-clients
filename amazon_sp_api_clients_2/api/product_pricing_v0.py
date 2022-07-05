@@ -18,15 +18,19 @@ class ASINIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _asinidentifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ASINIdentifier(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
@@ -37,7 +41,7 @@ class AttributeSetListItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _attribute_set_list_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AttributeSetListItem(**data)
 
     pass
@@ -48,20 +52,28 @@ class BuyBoxPriceType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _buy_box_price_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BuyBoxPriceType(**data)
 
-    landed_price: "MoneyType" = attrs.field()
+    landed_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
-    listing_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     points: Optional["Points"] = attrs.field(
         default=None,
     )
 
-    shipping: "MoneyType" = attrs.field()
+    shipping: "MoneyType" = attrs.field(
+        default=None,
+    )
 
-    condition: str = attrs.field()
+    condition: str = attrs.field(
+        default=None,
+    )
     """
     Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     """
@@ -97,10 +109,12 @@ class CompetitivePriceType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _competitive_price_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CompetitivePriceType(**data)
 
-    competitive_price_id: str = attrs.field()
+    competitive_price_id: str = attrs.field(
+        default=None,
+    )
     """
     The pricing model for each price that is returned.
         Possible values:
@@ -108,7 +122,9 @@ class CompetitivePriceType:
         * 2 - Used Buy Box Price.
     """
 
-    price: "PriceType" = attrs.field()
+    price: "PriceType" = attrs.field(
+        default=None,
+    )
 
     belongs_to_requester: Optional[bool] = attrs.field(
         default=None,
@@ -166,15 +182,19 @@ class CompetitivePricingType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _competitive_pricing_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CompetitivePricingType(**data)
 
-    competitive_prices: List["CompetitivePriceType"] = attrs.field()
+    competitive_prices: List["CompetitivePriceType"] = attrs.field(
+        default=None,
+    )
     """
     A list of competitive pricing information.
     """
 
-    number_of_offer_listings: List["OfferListingCountType"] = attrs.field()
+    number_of_offer_listings: List["OfferListingCountType"] = attrs.field(
+        default=None,
+    )
     """
     The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
     """
@@ -193,7 +213,7 @@ class ConditionType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _condition_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ConditionType(**data)
 
     pass
@@ -208,22 +228,28 @@ class DetailedShippingTimeType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _detailed_shipping_time_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DetailedShippingTimeType(**data)
 
     availability_type: Optional[
         Union[Literal["NOW"], Literal["FUTURE_WITHOUT_DATE"], Literal["FUTURE_WITH_DATE"]]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the item is available for shipping now, or on a known or an unknown date in the future. If known, the availableDate property indicates the date that the item will be available for shipping. Possible values: NOW, FUTURE_WITHOUT_DATE, FUTURE_WITH_DATE.
     """
 
-    available_date: Optional[str] = attrs.field()
+    available_date: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping.
     """
 
-    maximum_hours: Optional[int] = attrs.field()
+    maximum_hours: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The maximum time, in hours, that the item will likely be shipped after the order has been placed.
 
@@ -231,7 +257,9 @@ class DetailedShippingTimeType:
     {'schema_format': 'int64'}
     """
 
-    minimum_hours: Optional[int] = attrs.field()
+    minimum_hours: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The minimum time, in hours, that the item will likely be shipped after the order has been placed.
 
@@ -249,10 +277,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -264,7 +294,9 @@ class Error:
     Additional information that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -279,7 +311,7 @@ class FulfillmentChannelType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_channel_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentChannelType(**data)
 
     pass
@@ -294,15 +326,19 @@ class GetOffersResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_offers_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetOffersResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetOffersResult"] = attrs.field()
+    payload: Optional["GetOffersResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -310,7 +346,7 @@ class GetOffersResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_offers_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetOffersResult(**data)
 
     asin: Optional[str] = attrs.field(
@@ -320,22 +356,30 @@ class GetOffersResult:
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    identifier: "ItemIdentifier" = attrs.field()
+    identifier: "ItemIdentifier" = attrs.field(
+        default=None,
+    )
     """
     Information that identifies an item.
     """
 
-    item_condition: "ConditionType" = attrs.field()
+    item_condition: "ConditionType" = attrs.field(
+        default=None,
+    )
     """
     Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
 
-    offers: List["OfferDetail"] = attrs.field()
+    offers: List["OfferDetail"] = attrs.field(
+        default=None,
+    )
 
     sku: Optional[str] = attrs.field(
         default=None,
@@ -344,12 +388,16 @@ class GetOffersResult:
     The stock keeping unit (SKU) of the item.
     """
 
-    summary: "Summary" = attrs.field()
+    summary: "Summary" = attrs.field(
+        default=None,
+    )
     """
     Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
     """
 
-    status: str = attrs.field()
+    status: str = attrs.field(
+        default=None,
+    )
     """
     The status of the operation.
     """
@@ -364,15 +412,19 @@ class GetPricingResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_pricing_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetPricingResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional[List["Price"]] = attrs.field()
+    payload: Optional[List["Price"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -384,10 +436,12 @@ class IdentifierType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _identifier_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return IdentifierType(**data)
 
-    marketplace_asin: "ASINIdentifier" = attrs.field()
+    marketplace_asin: "ASINIdentifier" = attrs.field(
+        default=None,
+    )
 
     skuidentifier: Optional["SellerSKUIdentifier"] = attrs.field(
         default=None,
@@ -403,7 +457,7 @@ class ItemIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_identifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemIdentifier(**data)
 
     asin: Optional[str] = attrs.field(
@@ -413,12 +467,16 @@ class ItemIdentifier:
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    item_condition: "ConditionType" = attrs.field()
+    item_condition: "ConditionType" = attrs.field(
+        default=None,
+    )
     """
     Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier. Specifies the marketplace from which prices are returned.
     """
@@ -436,25 +494,35 @@ class LowestPriceType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _lowest_price_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LowestPriceType(**data)
 
-    landed_price: "MoneyType" = attrs.field()
+    landed_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
-    listing_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     points: Optional["Points"] = attrs.field(
         default=None,
     )
 
-    shipping: "MoneyType" = attrs.field()
+    shipping: "MoneyType" = attrs.field(
+        default=None,
+    )
 
-    condition: str = attrs.field()
+    condition: str = attrs.field(
+        default=None,
+    )
     """
     Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     """
 
-    fulfillment_channel: str = attrs.field()
+    fulfillment_channel: str = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the item is fulfilled by Amazon or by the seller.
     """
@@ -483,15 +551,19 @@ class MoneyType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MoneyType(**data)
 
-    amount: Optional[float] = attrs.field()
+    amount: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The monetary value.
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The currency code in ISO 4217 format.
     """
@@ -506,10 +578,12 @@ class OfferCountType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _offer_count_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OfferCountType(**data)
 
-    offer_count: Optional[int] = attrs.field()
+    offer_count: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of offers in a fulfillment channel that meet a specific condition.
 
@@ -517,12 +591,16 @@ class OfferCountType:
     {'schema_format': 'int32'}
     """
 
-    condition: Optional[str] = attrs.field()
+    condition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     """
 
-    fulfillment_channel: Optional["FulfillmentChannelType"] = attrs.field()
+    fulfillment_channel: Optional["FulfillmentChannelType"] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
     """
@@ -533,7 +611,7 @@ class OfferCustomerType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _offer_customer_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OfferCustomerType(**data)
 
     pass
@@ -544,7 +622,7 @@ class OfferDetail:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _offer_detail_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OfferDetail(**data)
 
     condition_notes: Optional[str] = attrs.field(
@@ -568,12 +646,16 @@ class OfferDetail:
     When true, the seller of the item is eligible to win the Buy Box.
     """
 
-    is_fulfilled_by_amazon: bool = attrs.field()
+    is_fulfilled_by_amazon: bool = attrs.field(
+        default=None,
+    )
     """
     When true, the offer is fulfilled by Amazon.
     """
 
-    listing_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     my_offer: Optional[bool] = attrs.field(
         default=None,
@@ -607,9 +689,13 @@ class OfferDetail:
     The seller identifier for the offer.
     """
 
-    shipping: "MoneyType" = attrs.field()
+    shipping: "MoneyType" = attrs.field(
+        default=None,
+    )
 
-    shipping_time: "DetailedShippingTimeType" = attrs.field()
+    shipping_time: "DetailedShippingTimeType" = attrs.field(
+        default=None,
+    )
     """
     The time range in which an item will likely be shipped once an order has been placed.
     """
@@ -621,7 +707,9 @@ class OfferDetail:
     The state and country from where the item is shipped.
     """
 
-    sub_condition: str = attrs.field()
+    sub_condition: str = attrs.field(
+        default=None,
+    )
     """
     The subcondition of the item. Subcondition values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
@@ -644,10 +732,12 @@ class OfferListingCountType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _offer_listing_count_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OfferListingCountType(**data)
 
-    count: int = attrs.field()
+    count: int = attrs.field(
+        default=None,
+    )
     """
     The number of offer listings.
 
@@ -655,7 +745,9 @@ class OfferListingCountType:
     {'schema_format': 'int32'}
     """
 
-    condition: str = attrs.field()
+    condition: str = attrs.field(
+        default=None,
+    )
     """
     The condition of the item.
     """
@@ -666,31 +758,43 @@ class OfferType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _offer_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OfferType(**data)
 
-    buying_price: "PriceType" = attrs.field()
+    buying_price: "PriceType" = attrs.field(
+        default=None,
+    )
 
-    fulfillment_channel: str = attrs.field()
+    fulfillment_channel: str = attrs.field(
+        default=None,
+    )
     """
     The fulfillment channel for the offer listing. Possible values:
         * Amazon - Fulfilled by Amazon.
         * Merchant - Fulfilled by the seller.
     """
 
-    item_condition: str = attrs.field()
+    item_condition: str = attrs.field(
+        default=None,
+    )
     """
     The item condition for the offer listing. Possible values: New, Used, Collectible, Refurbished, or Club.
     """
 
-    item_sub_condition: str = attrs.field()
+    item_sub_condition: str = attrs.field(
+        default=None,
+    )
     """
     The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     """
 
-    regular_price: "MoneyType" = attrs.field()
+    regular_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller stock keeping unit (SKU) of the item.
     """
@@ -713,12 +817,16 @@ class Points:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _points_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Points(**data)
 
-    points_monetary_value: Optional["MoneyType"] = attrs.field()
+    points_monetary_value: Optional["MoneyType"] = attrs.field(
+        default=None,
+    )
 
-    points_number: Optional[int] = attrs.field()
+    points_number: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of points.
 
@@ -732,7 +840,7 @@ class Price:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _price_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Price(**data)
 
     asin: Optional[str] = attrs.field(
@@ -756,7 +864,9 @@ class Price:
     The seller stock keeping unit (SKU) of the item.
     """
 
-    status: str = attrs.field()
+    status: str = attrs.field(
+        default=None,
+    )
     """
     The status of the operation.
     """
@@ -767,14 +877,16 @@ class PriceType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _price_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PriceType(**data)
 
     landed_price: Optional["MoneyType"] = attrs.field(
         default=None,
     )
 
-    listing_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
     points: Optional["Points"] = attrs.field(
         default=None,
@@ -794,15 +906,19 @@ class PrimeInformationType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _prime_information_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PrimeInformationType(**data)
 
-    is_national_prime: bool = attrs.field()
+    is_national_prime: bool = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed.
     """
 
-    is_prime: bool = attrs.field()
+    is_prime: bool = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the offer is an Amazon Prime offer.
     """
@@ -817,7 +933,7 @@ class Product:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _product_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Product(**data)
 
     attribute_sets: Optional[List["AttributeSetListItem"]] = attrs.field(
@@ -834,7 +950,9 @@ class Product:
     Competitive pricing information for the item.
     """
 
-    identifiers: "IdentifierType" = attrs.field()
+    identifiers: "IdentifierType" = attrs.field(
+        default=None,
+    )
     """
     Specifies the identifiers used to uniquely identify an item.
     """
@@ -870,14 +988,20 @@ class QuantityDiscountPriceType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _quantity_discount_price_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return QuantityDiscountPriceType(**data)
 
-    listing_price: "MoneyType" = attrs.field()
+    listing_price: "MoneyType" = attrs.field(
+        default=None,
+    )
 
-    quantity_discount_type: "QuantityDiscountType" = attrs.field()
+    quantity_discount_type: "QuantityDiscountType" = attrs.field(
+        default=None,
+    )
 
-    quantity_tier: int = attrs.field()
+    quantity_tier: int = attrs.field(
+        default=None,
+    )
     """
     Indicates at what quantity this price becomes active.
 
@@ -891,7 +1015,7 @@ class QuantityDiscountType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _quantity_discount_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return QuantityDiscountType(**data)
 
     pass
@@ -902,7 +1026,7 @@ class RelationshipListItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _relationship_list_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RelationshipListItem(**data)
 
     pass
@@ -913,15 +1037,19 @@ class SalesRankType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _sales_rank_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SalesRankType(**data)
 
-    product_category_id: str = attrs.field()
+    product_category_id: str = attrs.field(
+        default=None,
+    )
     """
     Identifies the item category from which the sales rank is taken.
     """
 
-    rank: int = attrs.field()
+    rank: int = attrs.field(
+        default=None,
+    )
     """
     The sales rank of the item within the item category.
 
@@ -939,10 +1067,12 @@ class SellerFeedbackType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_feedback_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerFeedbackType(**data)
 
-    feedback_count: int = attrs.field()
+    feedback_count: int = attrs.field(
+        default=None,
+    )
     """
     The number of ratings received about the seller.
 
@@ -966,20 +1096,26 @@ class SellerSKUIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_skuidentifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerSKUIdentifier(**data)
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier.
     """
 
-    seller_id: str = attrs.field()
+    seller_id: str = attrs.field(
+        default=None,
+    )
     """
     The seller identifier submitted for the operation.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller stock keeping unit (SKU) of the item.
     """
@@ -994,15 +1130,19 @@ class ShipsFromType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _ships_from_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipsFromType(**data)
 
-    country: Optional[str] = attrs.field()
+    country: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The country from where the item is shipped.
     """
 
-    state: Optional[str] = attrs.field()
+    state: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state from where the item is shipped.
     """
@@ -1017,7 +1157,7 @@ class Summary:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _summary_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Summary(**data)
 
     buy_box_eligible_offers: Optional[List["OfferCountType"]] = attrs.field(
@@ -1065,7 +1205,9 @@ class Summary:
         default=None,
     )
 
-    total_offer_count: int = attrs.field()
+    total_offer_count: int = attrs.field(
+        default=None,
+    )
     """
     The number of unique offers contained in NumberOfOffers.
 

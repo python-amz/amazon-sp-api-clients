@@ -22,10 +22,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occured.
     """
@@ -37,7 +39,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -52,10 +56,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -67,10 +73,12 @@ class GenerateOrderScenarioRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _generate_order_scenario_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GenerateOrderScenarioRequest(**data)
 
-    orders: Optional[List["OrderScenarioRequest"]] = attrs.field()
+    orders: Optional[List["OrderScenarioRequest"]] = attrs.field(
+        default=None,
+    )
     """
     The list of test orders requested as indicated by party identifiers.
     """
@@ -85,15 +93,19 @@ class OrderScenarioRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _order_scenario_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return OrderScenarioRequest(**data)
 
-    selling_party: "PartyIdentification" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
     """
     The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
 
-    ship_from_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
     """
     The identification object for the party information. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
@@ -108,10 +120,12 @@ class Pagination:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _pagination_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Pagination(**data)
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -123,10 +137,12 @@ class PartyIdentification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _party_identification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartyIdentification(**data)
 
-    party_id: str = attrs.field()
+    party_id: str = attrs.field(
+        default=None,
+    )
     """
     Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific party for more details.
     """
@@ -141,15 +157,19 @@ class Scenario:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _scenario_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Scenario(**data)
 
-    orders: List["TestOrder"] = attrs.field()
+    orders: List["TestOrder"] = attrs.field(
+        default=None,
+    )
     """
     A list of orders that can be used by the caller to test each life cycle or scenario.
     """
 
-    scenario_id: str = attrs.field()
+    scenario_id: str = attrs.field(
+        default=None,
+    )
     """
     An identifier that identifies the type of scenario that user can use for testing.
     """
@@ -164,10 +184,12 @@ class TestCaseData:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _test_case_data_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TestCaseData(**data)
 
-    scenarios: Optional[List["Scenario"]] = attrs.field()
+    scenarios: Optional[List["Scenario"]] = attrs.field(
+        default=None,
+    )
     """
     Set of use cases that describes the possible test scenarios.
     """
@@ -182,10 +204,12 @@ class TestOrder:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _test_order_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TestOrder(**data)
 
-    order_id: str = attrs.field()
+    order_id: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -200,10 +224,12 @@ class Transaction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Transaction(**data)
 
-    status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]] = attrs.field()
+    status: Union[Literal["FAILURE"], Literal["PROCESSING"], Literal["SUCCESS"]] = attrs.field(
+        default=None,
+    )
     """
     The current processing status of the transaction.
     """
@@ -215,7 +241,9 @@ class Transaction:
     The set of test case data returned in response to the test data request.
     """
 
-    transaction_id: str = attrs.field()
+    transaction_id: str = attrs.field(
+        default=None,
+    )
     """
     The unique identifier returned in the response to the generateOrderScenarios request.
     """
@@ -230,10 +258,12 @@ class TransactionReference:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_reference_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransactionReference(**data)
 
-    transaction_id: Optional[str] = attrs.field()
+    transaction_id: Optional[str] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -245,10 +275,12 @@ class TransactionStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransactionStatus(**data)
 
-    transaction_status: Optional["Transaction"] = attrs.field()
+    transaction_status: Optional["Transaction"] = attrs.field(
+        default=None,
+    )
     """
     The transaction details including the status. If the transaction was successful, also includes the requested test order data.
     """

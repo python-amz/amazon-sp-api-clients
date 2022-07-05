@@ -22,10 +22,12 @@ class ASINInboundGuidance:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _asininbound_guidance_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ASINInboundGuidance(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
@@ -37,7 +39,9 @@ class ASINInboundGuidance:
     A list of inbound guidance reason information.
     """
 
-    inbound_guidance: "InboundGuidance" = attrs.field()
+    inbound_guidance: "InboundGuidance" = attrs.field(
+        default=None,
+    )
     """
     Specific inbound guidance for an item.
     """
@@ -52,25 +56,33 @@ class ASINPrepInstructions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _asinprep_instructions_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ASINPrepInstructions(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    barcode_instruction: Optional["BarcodeInstruction"] = attrs.field()
+    barcode_instruction: Optional["BarcodeInstruction"] = attrs.field(
+        default=None,
+    )
     """
     Labeling requirements for the item. For more information about FBA labeling requirements, see the Seller Central Help for your marketplace.
     """
 
-    prep_guidance: Optional["PrepGuidance"] = attrs.field()
+    prep_guidance: Optional["PrepGuidance"] = attrs.field(
+        default=None,
+    )
     """
     Item preparation instructions.
     """
 
-    prep_instruction_list: Optional[List["PrepInstruction"]] = attrs.field()
+    prep_instruction_list: Optional[List["PrepInstruction"]] = attrs.field(
+        default=None,
+    )
     """
     A list of preparation instructions to help with item sourcing decisions.
     """
@@ -81,10 +93,12 @@ class Address:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Address(**data)
 
-    address_line1: str = attrs.field()
+    address_line1: str = attrs.field(
+        default=None,
+    )
     """
     The street address information.
 
@@ -102,7 +116,9 @@ class Address:
     {'maxLength': 60}
     """
 
-    city: str = attrs.field()
+    city: str = attrs.field(
+        default=None,
+    )
     """
     The city.
 
@@ -110,7 +126,9 @@ class Address:
     {'maxLength': 30}
     """
 
-    country_code: str = attrs.field()
+    country_code: str = attrs.field(
+        default=None,
+    )
     """
     The country code in two-character ISO 3166-1 alpha-2 format.
     """
@@ -125,7 +143,9 @@ class Address:
     {'maxLength': 25}
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     Name of the individual or business.
 
@@ -133,7 +153,9 @@ class Address:
     {'maxLength': 50}
     """
 
-    postal_code: str = attrs.field()
+    postal_code: str = attrs.field(
+        default=None,
+    )
     """
     The postal code.
         If postal codes are used in your marketplace, we recommended that you include one with your request. This helps Amazon select the most appropriate Amazon fulfillment center for the inbound shipment plan.
@@ -142,7 +164,9 @@ class Address:
     {'maxLength': 30}
     """
 
-    state_or_province_code: str = attrs.field()
+    state_or_province_code: str = attrs.field(
+        default=None,
+    )
     """
     The state or province code.
         If state or province codes are used in your marketplace, it is recommended that you include one with your request. This helps Amazon to select the most appropriate Amazon fulfillment center for your inbound shipment plan.
@@ -158,15 +182,19 @@ class AmazonPrepFeesDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _amazon_prep_fees_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AmazonPrepFeesDetails(**data)
 
-    fee_per_unit: Optional["Amount"] = attrs.field()
+    fee_per_unit: Optional["Amount"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value.
     """
 
-    prep_instruction: Optional["PrepInstruction"] = attrs.field()
+    prep_instruction: Optional["PrepInstruction"] = attrs.field(
+        default=None,
+    )
     """
     Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, see the Seller Central Help for your marketplace.
     """
@@ -181,15 +209,19 @@ class Amount:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _amount_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Amount(**data)
 
-    currency_code: "CurrencyCode" = attrs.field()
+    currency_code: "CurrencyCode" = attrs.field(
+        default=None,
+    )
     """
     The currency code.
     """
 
-    value: "BigDecimalType" = attrs.field()
+    value: "BigDecimalType" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -201,7 +233,7 @@ class BarcodeInstruction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _barcode_instruction_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BarcodeInstruction(**data)
 
     pass
@@ -212,7 +244,7 @@ class BigDecimalType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _big_decimal_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BigDecimalType(**data)
 
     pass
@@ -223,10 +255,12 @@ class BillOfLadingDownloadURL:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _bill_of_lading_download_url_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BillOfLadingDownloadURL(**data)
 
-    download_url: Optional[str] = attrs.field()
+    download_url: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     URL to download the bill of lading for the package. Note: The URL will only be valid for 15 seconds
     """
@@ -241,20 +275,26 @@ class BoxContentsFeeDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _box_contents_fee_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BoxContentsFeeDetails(**data)
 
-    fee_per_unit: Optional["Amount"] = attrs.field()
+    fee_per_unit: Optional["Amount"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value.
     """
 
-    total_fee: Optional["Amount"] = attrs.field()
+    total_fee: Optional["Amount"] = attrs.field(
+        default=None,
+    )
     """
     The monetary value.
     """
 
-    total_units: Optional["Quantity"] = attrs.field()
+    total_units: Optional["Quantity"] = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
@@ -269,7 +309,7 @@ class BoxContentsSource:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _box_contents_source_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BoxContentsSource(**data)
 
     pass
@@ -280,10 +320,12 @@ class CommonTransportResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _common_transport_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CommonTransportResult(**data)
 
-    transport_result: Optional["TransportResult"] = attrs.field()
+    transport_result: Optional["TransportResult"] = attrs.field(
+        default=None,
+    )
     """
     The workflow status for a shipment with an Amazon-partnered carrier.
     """
@@ -298,7 +340,7 @@ class Condition:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _condition_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Condition(**data)
 
     pass
@@ -313,15 +355,19 @@ class ConfirmPreorderResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _confirm_preorder_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ConfirmPreorderResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ConfirmPreorderResult"] = attrs.field()
+    payload: Optional["ConfirmPreorderResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -329,12 +375,16 @@ class ConfirmPreorderResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _confirm_preorder_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ConfirmPreorderResult(**data)
 
-    confirmed_fulfillable_date: Optional["DateStringType"] = attrs.field()
+    confirmed_fulfillable_date: Optional["DateStringType"] = attrs.field(
+        default=None,
+    )
 
-    confirmed_need_by_date: Optional["DateStringType"] = attrs.field()
+    confirmed_need_by_date: Optional["DateStringType"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -346,15 +396,19 @@ class ConfirmTransportResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _confirm_transport_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ConfirmTransportResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CommonTransportResult"] = attrs.field()
+    payload: Optional["CommonTransportResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -366,10 +420,12 @@ class Contact:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _contact_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Contact(**data)
 
-    email: str = attrs.field()
+    email: str = attrs.field(
+        default=None,
+    )
     """
     The email address of the contact person.
 
@@ -387,7 +443,9 @@ class Contact:
     {'maxLength': 20}
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the contact person.
 
@@ -395,7 +453,9 @@ class Contact:
     {'maxLength': 50}
     """
 
-    phone: str = attrs.field()
+    phone: str = attrs.field(
+        default=None,
+    )
     """
     The phone number of the contact person.
 
@@ -413,17 +473,23 @@ class CreateInboundShipmentPlanRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_inbound_shipment_plan_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateInboundShipmentPlanRequest(**data)
 
-    inbound_shipment_plan_request_items: List["InboundShipmentPlanRequestItem"] = attrs.field()
+    inbound_shipment_plan_request_items: List["InboundShipmentPlanRequestItem"] = attrs.field(
+        default=None,
+    )
 
-    label_prep_preference: "LabelPrepPreference" = attrs.field()
+    label_prep_preference: "LabelPrepPreference" = attrs.field(
+        default=None,
+    )
     """
     The preference for label preparation for an inbound shipment.
     """
 
-    ship_from_address: "Address" = attrs.field()
+    ship_from_address: "Address" = attrs.field(
+        default=None,
+    )
 
     ship_to_country_code: Optional[str] = attrs.field(
         default=None,
@@ -463,15 +529,19 @@ class CreateInboundShipmentPlanResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_inbound_shipment_plan_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateInboundShipmentPlanResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CreateInboundShipmentPlanResult"] = attrs.field()
+    payload: Optional["CreateInboundShipmentPlanResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -479,10 +549,12 @@ class CreateInboundShipmentPlanResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_inbound_shipment_plan_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateInboundShipmentPlanResult(**data)
 
-    inbound_shipment_plans: Optional[List["InboundShipmentPlan"]] = attrs.field()
+    inbound_shipment_plans: Optional[List["InboundShipmentPlan"]] = attrs.field(
+        default=None,
+    )
     """
     A list of inbound shipment plan information
     """
@@ -497,7 +569,7 @@ class CurrencyCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _currency_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CurrencyCode(**data)
 
     pass
@@ -508,7 +580,7 @@ class DateStringType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _date_string_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DateStringType(**data)
 
     pass
@@ -523,19 +595,27 @@ class Dimensions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _dimensions_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Dimensions(**data)
 
-    height: "BigDecimalType" = attrs.field()
+    height: "BigDecimalType" = attrs.field(
+        default=None,
+    )
 
-    length: "BigDecimalType" = attrs.field()
+    length: "BigDecimalType" = attrs.field(
+        default=None,
+    )
 
-    unit: "UnitOfMeasurement" = attrs.field()
+    unit: "UnitOfMeasurement" = attrs.field(
+        default=None,
+    )
     """
     Indicates the unit of measurement.
     """
 
-    width: "BigDecimalType" = attrs.field()
+    width: "BigDecimalType" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -547,10 +627,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occured.
     """
@@ -562,7 +644,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -577,7 +661,7 @@ class ErrorReason:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_reason_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorReason(**data)
 
     pass
@@ -592,15 +676,19 @@ class EstimateTransportResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _estimate_transport_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return EstimateTransportResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CommonTransportResult"] = attrs.field()
+    payload: Optional["CommonTransportResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -612,15 +700,19 @@ class GetBillOfLadingResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_bill_of_lading_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetBillOfLadingResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["BillOfLadingDownloadURL"] = attrs.field()
+    payload: Optional["BillOfLadingDownloadURL"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -632,15 +724,19 @@ class GetInboundGuidanceResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_inbound_guidance_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetInboundGuidanceResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetInboundGuidanceResult"] = attrs.field()
+    payload: Optional["GetInboundGuidanceResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -648,25 +744,33 @@ class GetInboundGuidanceResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_inbound_guidance_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetInboundGuidanceResult(**data)
 
-    asininbound_guidance_list: Optional[List["ASINInboundGuidance"]] = attrs.field()
+    asininbound_guidance_list: Optional[List["ASINInboundGuidance"]] = attrs.field(
+        default=None,
+    )
     """
     A list of ASINs and their associated inbound guidance.
     """
 
-    invalid_asinlist: Optional[List["InvalidASIN"]] = attrs.field()
+    invalid_asinlist: Optional[List["InvalidASIN"]] = attrs.field(
+        default=None,
+    )
     """
     A list of invalid ASIN values and the reasons they are invalid.
     """
 
-    invalid_skulist: Optional[List["InvalidSKU"]] = attrs.field()
+    invalid_skulist: Optional[List["InvalidSKU"]] = attrs.field(
+        default=None,
+    )
     """
     A list of invalid SKU values and the reason they are invalid.
     """
 
-    skuinbound_guidance_list: Optional[List["SKUInboundGuidance"]] = attrs.field()
+    skuinbound_guidance_list: Optional[List["SKUInboundGuidance"]] = attrs.field(
+        default=None,
+    )
     """
     A list of SKU inbound guidance information.
     """
@@ -681,15 +785,19 @@ class GetLabelsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_labels_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetLabelsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["LabelDownloadURL"] = attrs.field()
+    payload: Optional["LabelDownloadURL"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -701,15 +809,19 @@ class GetPreorderInfoResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_preorder_info_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetPreorderInfoResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetPreorderInfoResult"] = attrs.field()
+    payload: Optional["GetPreorderInfoResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -717,19 +829,27 @@ class GetPreorderInfoResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_preorder_info_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetPreorderInfoResult(**data)
 
-    confirmed_fulfillable_date: Optional["DateStringType"] = attrs.field()
+    confirmed_fulfillable_date: Optional["DateStringType"] = attrs.field(
+        default=None,
+    )
 
-    need_by_date: Optional["DateStringType"] = attrs.field()
+    need_by_date: Optional["DateStringType"] = attrs.field(
+        default=None,
+    )
 
-    shipment_confirmed_for_preorder: Optional[bool] = attrs.field()
+    shipment_confirmed_for_preorder: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether this shipment has been confirmed for pre-order.
     """
 
-    shipment_contains_preorderable_items: Optional[bool] = attrs.field()
+    shipment_contains_preorderable_items: Optional[bool] = attrs.field(
+        default=None,
+    )
     """
     Indicates whether the shipment contains items that have been enabled for pre-order. For more information about enabling items for pre-order, see the Seller Central Help.
     """
@@ -744,15 +864,19 @@ class GetPrepInstructionsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_prep_instructions_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetPrepInstructionsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetPrepInstructionsResult"] = attrs.field()
+    payload: Optional["GetPrepInstructionsResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -760,25 +884,33 @@ class GetPrepInstructionsResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_prep_instructions_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetPrepInstructionsResult(**data)
 
-    asinprep_instructions_list: Optional[List["ASINPrepInstructions"]] = attrs.field()
+    asinprep_instructions_list: Optional[List["ASINPrepInstructions"]] = attrs.field(
+        default=None,
+    )
     """
     A list of item preparation instructions.
     """
 
-    invalid_asinlist: Optional[List["InvalidASIN"]] = attrs.field()
+    invalid_asinlist: Optional[List["InvalidASIN"]] = attrs.field(
+        default=None,
+    )
     """
     A list of invalid ASIN values and the reasons they are invalid.
     """
 
-    invalid_skulist: Optional[List["InvalidSKU"]] = attrs.field()
+    invalid_skulist: Optional[List["InvalidSKU"]] = attrs.field(
+        default=None,
+    )
     """
     A list of invalid SKU values and the reason they are invalid.
     """
 
-    skuprep_instructions_list: Optional[List["SKUPrepInstructions"]] = attrs.field()
+    skuprep_instructions_list: Optional[List["SKUPrepInstructions"]] = attrs.field(
+        default=None,
+    )
     """
     A list of SKU labeling requirements and item preparation instructions.
     """
@@ -793,15 +925,19 @@ class GetShipmentItemsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_shipment_items_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetShipmentItemsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetShipmentItemsResult"] = attrs.field()
+    payload: Optional["GetShipmentItemsResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -809,15 +945,19 @@ class GetShipmentItemsResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_shipment_items_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetShipmentItemsResult(**data)
 
-    item_data: Optional[List["InboundShipmentItem"]] = attrs.field()
+    item_data: Optional[List["InboundShipmentItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of inbound shipment item information.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -832,15 +972,19 @@ class GetShipmentsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_shipments_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetShipmentsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetShipmentsResult"] = attrs.field()
+    payload: Optional["GetShipmentsResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -848,15 +992,19 @@ class GetShipmentsResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_shipments_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetShipmentsResult(**data)
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
 
-    shipment_data: Optional[List["InboundShipmentInfo"]] = attrs.field()
+    shipment_data: Optional[List["InboundShipmentInfo"]] = attrs.field(
+        default=None,
+    )
     """
     A list of inbound shipment information.
     """
@@ -871,15 +1019,19 @@ class GetTransportDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_transport_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetTransportDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetTransportDetailsResult"] = attrs.field()
+    payload: Optional["GetTransportDetailsResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -887,10 +1039,12 @@ class GetTransportDetailsResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_transport_details_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetTransportDetailsResult(**data)
 
-    transport_content: Optional["TransportContent"] = attrs.field()
+    transport_content: Optional["TransportContent"] = attrs.field(
+        default=None,
+    )
     """
     Inbound shipment information, including carrier details, shipment status, and the workflow status for a request for shipment with an Amazon-partnered carrier.
     """
@@ -905,7 +1059,7 @@ class GuidanceReason:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _guidance_reason_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GuidanceReason(**data)
 
     pass
@@ -920,7 +1074,7 @@ class InboundGuidance:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_guidance_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundGuidance(**data)
 
     pass
@@ -935,7 +1089,7 @@ class InboundShipmentHeader:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_header_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentHeader(**data)
 
     are_cases_required: Optional[bool] = attrs.field(
@@ -949,7 +1103,9 @@ class InboundShipmentHeader:
         Note: If AreCasesRequired = true for an inbound shipment, then the value of QuantityInCase must be greater than zero for every item in the shipment. Otherwise the service returns an error.
     """
 
-    destination_fulfillment_center_id: str = attrs.field()
+    destination_fulfillment_center_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the fulfillment center to which the shipment will be shipped. Get this value from the InboundShipmentPlan object in the response returned by the createInboundShipmentPlan operation.
     """
@@ -961,19 +1117,27 @@ class InboundShipmentHeader:
     How the seller intends to provide box contents information for a shipment.
     """
 
-    label_prep_preference: "LabelPrepPreference" = attrs.field()
+    label_prep_preference: "LabelPrepPreference" = attrs.field(
+        default=None,
+    )
     """
     The preference for label preparation for an inbound shipment.
     """
 
-    ship_from_address: "Address" = attrs.field()
+    ship_from_address: "Address" = attrs.field(
+        default=None,
+    )
 
-    shipment_name: str = attrs.field()
+    shipment_name: str = attrs.field(
+        default=None,
+    )
     """
     The name for the shipment. Use a naming convention that helps distinguish between shipments over time, such as the date the shipment was created.
     """
 
-    shipment_status: "ShipmentStatus" = attrs.field()
+    shipment_status: "ShipmentStatus" = attrs.field(
+        default=None,
+    )
     """
     Indicates the status of the inbound shipment. When used with the createInboundShipment operation, WORKING is the only valid value. When used with the updateInboundShipment operation, possible values are WORKING, SHIPPED or CANCELLED.
     """
@@ -988,10 +1152,12 @@ class InboundShipmentInfo:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_info_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentInfo(**data)
 
-    are_cases_required: bool = attrs.field()
+    are_cases_required: bool = attrs.field(
+        default=None,
+    )
     """
     Indicates whether or not an inbound shipment contains case-packed boxes. When AreCasesRequired = true for an inbound shipment, all items in the inbound shipment must be case packed.
     """
@@ -1028,7 +1194,9 @@ class InboundShipmentInfo:
     The type of label preparation that is required for the inbound shipment.
     """
 
-    ship_from_address: "Address" = attrs.field()
+    ship_from_address: "Address" = attrs.field(
+        default=None,
+    )
 
     shipment_id: Optional[str] = attrs.field(
         default=None,
@@ -1061,7 +1229,7 @@ class InboundShipmentItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentItem(**data)
 
     fulfillment_network_sku: Optional[str] = attrs.field(
@@ -1092,7 +1260,9 @@ class InboundShipmentItem:
     The item quantity.
     """
 
-    quantity_shipped: "Quantity" = attrs.field()
+    quantity_shipped: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
@@ -1101,7 +1271,9 @@ class InboundShipmentItem:
         default=None,
     )
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -1123,10 +1295,12 @@ class InboundShipmentPlan:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_plan_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentPlan(**data)
 
-    destination_fulfillment_center_id: str = attrs.field()
+    destination_fulfillment_center_id: str = attrs.field(
+        default=None,
+    )
     """
     An Amazon fulfillment center identifier created by Amazon.
     """
@@ -1138,19 +1312,27 @@ class InboundShipmentPlan:
     The manual processing fee per unit and total fee for a shipment.
     """
 
-    items: List["InboundShipmentPlanItem"] = attrs.field()
+    items: List["InboundShipmentPlanItem"] = attrs.field(
+        default=None,
+    )
     """
     A list of inbound shipment plan item information.
     """
 
-    label_prep_type: "LabelPrepType" = attrs.field()
+    label_prep_type: "LabelPrepType" = attrs.field(
+        default=None,
+    )
     """
     The type of label preparation that is required for the inbound shipment.
     """
 
-    ship_to_address: "Address" = attrs.field()
+    ship_to_address: "Address" = attrs.field(
+        default=None,
+    )
 
-    shipment_id: str = attrs.field()
+    shipment_id: str = attrs.field(
+        default=None,
+    )
     """
     A shipment identifier originally returned by the createInboundShipmentPlan operation.
     """
@@ -1165,10 +1347,12 @@ class InboundShipmentPlanItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_plan_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentPlanItem(**data)
 
-    fulfillment_network_sku: str = attrs.field()
+    fulfillment_network_sku: str = attrs.field(
+        default=None,
+    )
     """
     Amazon's fulfillment network SKU of the item.
     """
@@ -1180,12 +1364,16 @@ class InboundShipmentPlanItem:
     A list of preparation instructions and who is responsible for that preparation.
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -1200,15 +1388,19 @@ class InboundShipmentPlanRequestItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_plan_request_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentPlanRequestItem(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    condition: "Condition" = attrs.field()
+    condition: "Condition" = attrs.field(
+        default=None,
+    )
     """
     The condition of the item.
     """
@@ -1220,7 +1412,9 @@ class InboundShipmentPlanRequestItem:
     A list of preparation instructions and who is responsible for that preparation.
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
@@ -1232,7 +1426,9 @@ class InboundShipmentPlanRequestItem:
     The item quantity.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -1247,20 +1443,26 @@ class InboundShipmentRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentRequest(**data)
 
-    inbound_shipment_header: "InboundShipmentHeader" = attrs.field()
+    inbound_shipment_header: "InboundShipmentHeader" = attrs.field(
+        default=None,
+    )
     """
     Inbound shipment information used to create and update inbound shipments.
     """
 
-    inbound_shipment_items: List["InboundShipmentItem"] = attrs.field()
+    inbound_shipment_items: List["InboundShipmentItem"] = attrs.field(
+        default=None,
+    )
     """
     A list of inbound shipment item information.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier. Specifies the marketplace where the product would be stored.
     """
@@ -1275,15 +1477,19 @@ class InboundShipmentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["InboundShipmentResult"] = attrs.field()
+    payload: Optional["InboundShipmentResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1291,10 +1497,12 @@ class InboundShipmentResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inbound_shipment_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InboundShipmentResult(**data)
 
-    shipment_id: str = attrs.field()
+    shipment_id: str = attrs.field(
+        default=None,
+    )
     """
     The shipment identifier submitted in the request.
     """
@@ -1309,7 +1517,7 @@ class IntendedBoxContentsSource:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _intended_box_contents_source_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return IntendedBoxContentsSource(**data)
 
     pass
@@ -1320,15 +1528,19 @@ class InvalidASIN:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _invalid_asin_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InvalidASIN(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    error_reason: Optional["ErrorReason"] = attrs.field()
+    error_reason: Optional["ErrorReason"] = attrs.field(
+        default=None,
+    )
     """
     The reason that the ASIN is invalid.
     """
@@ -1339,15 +1551,19 @@ class InvalidSKU:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _invalid_sku_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InvalidSKU(**data)
 
-    error_reason: Optional["ErrorReason"] = attrs.field()
+    error_reason: Optional["ErrorReason"] = attrs.field(
+        default=None,
+    )
     """
     The reason that the ASIN is invalid.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -1358,10 +1574,12 @@ class LabelDownloadURL:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_download_url_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelDownloadURL(**data)
 
-    download_url: Optional[str] = attrs.field()
+    download_url: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     URL to download the label for the package. Note: The URL will only be valid for 15 seconds
     """
@@ -1376,7 +1594,7 @@ class LabelPrepPreference:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_prep_preference_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelPrepPreference(**data)
 
     pass
@@ -1391,7 +1609,7 @@ class LabelPrepType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _label_prep_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LabelPrepType(**data)
 
     pass
@@ -1406,15 +1624,19 @@ class NonPartneredLtlDataInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _non_partnered_ltl_data_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return NonPartneredLtlDataInput(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    pro_number: "ProNumber" = attrs.field()
+    pro_number: "ProNumber" = attrs.field(
+        default=None,
+    )
     """
     The PRO number ("progressive number" or "progressive ID") assigned to the shipment by the carrier.
     """
@@ -1429,15 +1651,19 @@ class NonPartneredLtlDataOutput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _non_partnered_ltl_data_output_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return NonPartneredLtlDataOutput(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    pro_number: "ProNumber" = attrs.field()
+    pro_number: "ProNumber" = attrs.field(
+        default=None,
+    )
     """
     The PRO number ("progressive number" or "progressive ID") assigned to the shipment by the carrier.
     """
@@ -1452,15 +1678,19 @@ class NonPartneredSmallParcelDataInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _non_partnered_small_parcel_data_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return NonPartneredSmallParcelDataInput(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    package_list: List["NonPartneredSmallParcelPackageInput"] = attrs.field()
+    package_list: List["NonPartneredSmallParcelPackageInput"] = attrs.field(
+        default=None,
+    )
     """
     A list of package tracking information.
     """
@@ -1475,10 +1705,12 @@ class NonPartneredSmallParcelDataOutput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _non_partnered_small_parcel_data_output_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return NonPartneredSmallParcelDataOutput(**data)
 
-    package_list: List["NonPartneredSmallParcelPackageOutput"] = attrs.field()
+    package_list: List["NonPartneredSmallParcelPackageOutput"] = attrs.field(
+        default=None,
+    )
     """
     A list of packages, including carrier, tracking number, and status information for each package.
     """
@@ -1493,10 +1725,12 @@ class NonPartneredSmallParcelPackageInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _non_partnered_small_parcel_package_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return NonPartneredSmallParcelPackageInput(**data)
 
-    tracking_id: "TrackingId" = attrs.field()
+    tracking_id: "TrackingId" = attrs.field(
+        default=None,
+    )
     """
     The tracking number of the package, provided by the carrier.
     """
@@ -1511,20 +1745,26 @@ class NonPartneredSmallParcelPackageOutput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _non_partnered_small_parcel_package_output_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return NonPartneredSmallParcelPackageOutput(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The carrier that you are using for the inbound shipment.
     """
 
-    package_status: "PackageStatus" = attrs.field()
+    package_status: "PackageStatus" = attrs.field(
+        default=None,
+    )
     """
     The shipment status of the package.
     """
 
-    tracking_id: "TrackingId" = attrs.field()
+    tracking_id: "TrackingId" = attrs.field(
+        default=None,
+    )
     """
     The tracking number of the package, provided by the carrier.
     """
@@ -1539,7 +1779,7 @@ class PackageStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _package_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PackageStatus(**data)
 
     pass
@@ -1554,15 +1794,19 @@ class Pallet:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _pallet_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Pallet(**data)
 
-    dimensions: "Dimensions" = attrs.field()
+    dimensions: "Dimensions" = attrs.field(
+        default=None,
+    )
     """
     The dimension values and unit of measurement.
     """
 
-    is_stacked: bool = attrs.field()
+    is_stacked: bool = attrs.field(
+        default=None,
+    )
     """
     Indicates whether pallets will be stacked when carrier arrives for pick-up.
     """
@@ -1584,10 +1828,12 @@ class PartneredEstimate:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _partnered_estimate_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartneredEstimate(**data)
 
-    amount: "Amount" = attrs.field()
+    amount: "Amount" = attrs.field(
+        default=None,
+    )
     """
     The monetary value.
     """
@@ -1610,102 +1856,30 @@ class PartneredLtlDataInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _partnered_ltl_data_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartneredLtlDataInput(**data)
 
-    box_count: Optional["UnsignedIntType"] = attrs.field()
+    box_count: Optional["UnsignedIntType"] = attrs.field(
+        default=None,
+    )
 
-    contact: Optional["Contact"] = attrs.field()
+    contact: Optional["Contact"] = attrs.field(
+        default=None,
+    )
     """
     Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
     """
 
-    freight_ready_date: Optional["DateStringType"] = attrs.field()
+    freight_ready_date: Optional["DateStringType"] = attrs.field(
+        default=None,
+    )
 
-    pallet_list: Optional[List["Pallet"]] = attrs.field()
-    """
-    A list of pallet information.
-    """
-
-    seller_declared_value: Optional["Amount"] = attrs.field()
-    """
-    The monetary value.
-    """
-
-    seller_freight_class: Optional["SellerFreightClass"] = attrs.field()
-    """
-    The freight class of the shipment. For information about determining the freight class, contact the carrier.
-    """
-
-    total_weight: Optional["Weight"] = attrs.field()
-    """
-    The weight of the package.
-    """
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class PartneredLtlDataOutput:
-    """
-    Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
-    """
-
-    @classmethod
-    def from_json(cls, data: dict):
-        name_convert = _partnered_ltl_data_output_name_convert
-        data = {name_convert[k]: v for k, v in data}
-        return PartneredLtlDataOutput(**data)
-
-    amazon_calculated_value: Optional["Amount"] = attrs.field(
+    pallet_list: Optional[List["Pallet"]] = attrs.field(
         default=None,
     )
     """
-    The monetary value.
-    """
-
-    amazon_reference_id: str = attrs.field()
-    """
-    A unique identifier created by Amazon that identifies this Amazon-partnered, Less Than Truckload/Full Truckload (LTL/FTL) shipment.
-    """
-
-    box_count: "UnsignedIntType" = attrs.field()
-
-    carrier_name: str = attrs.field()
-    """
-    The carrier for the inbound shipment.
-    """
-
-    contact: "Contact" = attrs.field()
-    """
-    Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
-    """
-
-    freight_ready_date: "DateStringType" = attrs.field()
-
-    is_bill_of_lading_available: bool = attrs.field()
-    """
-    Indicates whether the bill of lading for the shipment is available.
-    """
-
-    pallet_list: List["Pallet"] = attrs.field()
-    """
     A list of pallet information.
     """
-
-    partnered_estimate: Optional["PartneredEstimate"] = attrs.field(
-        default=None,
-    )
-    """
-    The estimated shipping cost for a shipment using an Amazon-partnered carrier.
-    """
-
-    preview_delivery_date: "DateStringType" = attrs.field()
-
-    preview_freight_class: "SellerFreightClass" = attrs.field()
-    """
-    The freight class of the shipment. For information about determining the freight class, contact the carrier.
-    """
-
-    preview_pickup_date: "DateStringType" = attrs.field()
 
     seller_declared_value: Optional["Amount"] = attrs.field(
         default=None,
@@ -1721,7 +1895,115 @@ class PartneredLtlDataOutput:
     The freight class of the shipment. For information about determining the freight class, contact the carrier.
     """
 
-    total_weight: "Weight" = attrs.field()
+    total_weight: Optional["Weight"] = attrs.field(
+        default=None,
+    )
+    """
+    The weight of the package.
+    """
+
+
+@attrs.define(kw_only=True, frozen=True, slots=True)
+class PartneredLtlDataOutput:
+    """
+    Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
+    """
+
+    @classmethod
+    def from_json(cls, data: dict):
+        name_convert = _partnered_ltl_data_output_name_convert
+        data = {name_convert[k]: v for k, v in data.items()}
+        return PartneredLtlDataOutput(**data)
+
+    amazon_calculated_value: Optional["Amount"] = attrs.field(
+        default=None,
+    )
+    """
+    The monetary value.
+    """
+
+    amazon_reference_id: str = attrs.field(
+        default=None,
+    )
+    """
+    A unique identifier created by Amazon that identifies this Amazon-partnered, Less Than Truckload/Full Truckload (LTL/FTL) shipment.
+    """
+
+    box_count: "UnsignedIntType" = attrs.field(
+        default=None,
+    )
+
+    carrier_name: str = attrs.field(
+        default=None,
+    )
+    """
+    The carrier for the inbound shipment.
+    """
+
+    contact: "Contact" = attrs.field(
+        default=None,
+    )
+    """
+    Contact information for the person in the seller's organization who is responsible for a Less Than Truckload/Full Truckload (LTL/FTL) shipment.
+    """
+
+    freight_ready_date: "DateStringType" = attrs.field(
+        default=None,
+    )
+
+    is_bill_of_lading_available: bool = attrs.field(
+        default=None,
+    )
+    """
+    Indicates whether the bill of lading for the shipment is available.
+    """
+
+    pallet_list: List["Pallet"] = attrs.field(
+        default=None,
+    )
+    """
+    A list of pallet information.
+    """
+
+    partnered_estimate: Optional["PartneredEstimate"] = attrs.field(
+        default=None,
+    )
+    """
+    The estimated shipping cost for a shipment using an Amazon-partnered carrier.
+    """
+
+    preview_delivery_date: "DateStringType" = attrs.field(
+        default=None,
+    )
+
+    preview_freight_class: "SellerFreightClass" = attrs.field(
+        default=None,
+    )
+    """
+    The freight class of the shipment. For information about determining the freight class, contact the carrier.
+    """
+
+    preview_pickup_date: "DateStringType" = attrs.field(
+        default=None,
+    )
+
+    seller_declared_value: Optional["Amount"] = attrs.field(
+        default=None,
+    )
+    """
+    The monetary value.
+    """
+
+    seller_freight_class: Optional["SellerFreightClass"] = attrs.field(
+        default=None,
+    )
+    """
+    The freight class of the shipment. For information about determining the freight class, contact the carrier.
+    """
+
+    total_weight: "Weight" = attrs.field(
+        default=None,
+    )
     """
     The weight of the package.
     """
@@ -1736,15 +2018,19 @@ class PartneredSmallParcelDataInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _partnered_small_parcel_data_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartneredSmallParcelDataInput(**data)
 
-    carrier_name: Optional[str] = attrs.field()
+    carrier_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-partnered carrier to use for the inbound shipment.
     """
 
-    package_list: Optional[List["PartneredSmallParcelPackageInput"]] = attrs.field()
+    package_list: Optional[List["PartneredSmallParcelPackageInput"]] = attrs.field(
+        default=None,
+    )
     """
     A list of dimensions and weight information for packages.
     """
@@ -1759,10 +2045,12 @@ class PartneredSmallParcelDataOutput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _partnered_small_parcel_data_output_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartneredSmallParcelDataOutput(**data)
 
-    package_list: List["PartneredSmallParcelPackageOutput"] = attrs.field()
+    package_list: List["PartneredSmallParcelPackageOutput"] = attrs.field(
+        default=None,
+    )
     """
     A list of packages, including shipping information from the Amazon-partnered carrier.
     """
@@ -1784,15 +2072,19 @@ class PartneredSmallParcelPackageInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _partnered_small_parcel_package_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartneredSmallParcelPackageInput(**data)
 
-    dimensions: "Dimensions" = attrs.field()
+    dimensions: "Dimensions" = attrs.field(
+        default=None,
+    )
     """
     The dimension values and unit of measurement.
     """
 
-    weight: "Weight" = attrs.field()
+    weight: "Weight" = attrs.field(
+        default=None,
+    )
     """
     The weight of the package.
     """
@@ -1807,30 +2099,40 @@ class PartneredSmallParcelPackageOutput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _partnered_small_parcel_package_output_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartneredSmallParcelPackageOutput(**data)
 
-    carrier_name: str = attrs.field()
+    carrier_name: str = attrs.field(
+        default=None,
+    )
     """
     The carrier specified with a previous call to putTransportDetails.
     """
 
-    dimensions: "Dimensions" = attrs.field()
+    dimensions: "Dimensions" = attrs.field(
+        default=None,
+    )
     """
     The dimension values and unit of measurement.
     """
 
-    package_status: "PackageStatus" = attrs.field()
+    package_status: "PackageStatus" = attrs.field(
+        default=None,
+    )
     """
     The shipment status of the package.
     """
 
-    tracking_id: "TrackingId" = attrs.field()
+    tracking_id: "TrackingId" = attrs.field(
+        default=None,
+    )
     """
     The tracking number of the package, provided by the carrier.
     """
 
-    weight: "Weight" = attrs.field()
+    weight: "Weight" = attrs.field(
+        default=None,
+    )
     """
     The weight of the package.
     """
@@ -1845,15 +2147,19 @@ class PrepDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _prep_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PrepDetails(**data)
 
-    prep_instruction: "PrepInstruction" = attrs.field()
+    prep_instruction: "PrepInstruction" = attrs.field(
+        default=None,
+    )
     """
     Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, see the Seller Central Help for your marketplace.
     """
 
-    prep_owner: "PrepOwner" = attrs.field()
+    prep_owner: "PrepOwner" = attrs.field(
+        default=None,
+    )
     """
     Indicates who will prepare the item.
     """
@@ -1868,7 +2174,7 @@ class PrepGuidance:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _prep_guidance_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PrepGuidance(**data)
 
     pass
@@ -1883,7 +2189,7 @@ class PrepInstruction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _prep_instruction_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PrepInstruction(**data)
 
     pass
@@ -1898,7 +2204,7 @@ class PrepOwner:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _prep_owner_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PrepOwner(**data)
 
     pass
@@ -1913,7 +2219,7 @@ class ProNumber:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _pro_number_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ProNumber(**data)
 
     pass
@@ -1928,20 +2234,26 @@ class PutTransportDetailsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _put_transport_details_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PutTransportDetailsRequest(**data)
 
-    is_partnered: bool = attrs.field()
+    is_partnered: bool = attrs.field(
+        default=None,
+    )
     """
     Indicates whether a putTransportDetails request is for an Amazon-partnered carrier.
     """
 
-    shipment_type: "ShipmentType" = attrs.field()
+    shipment_type: "ShipmentType" = attrs.field(
+        default=None,
+    )
     """
     Specifies the carrier shipment type in a putTransportDetails request.
     """
 
-    transport_details: "TransportDetailInput" = attrs.field()
+    transport_details: "TransportDetailInput" = attrs.field(
+        default=None,
+    )
     """
     Information required to create an Amazon-partnered carrier shipping estimate, or to alert the Amazon fulfillment center to the arrival of an inbound shipment by a non-Amazon-partnered carrier.
     """
@@ -1956,15 +2268,19 @@ class PutTransportDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _put_transport_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PutTransportDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CommonTransportResult"] = attrs.field()
+    payload: Optional["CommonTransportResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1976,7 +2292,7 @@ class Quantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Quantity(**data)
 
     pass
@@ -1991,10 +2307,12 @@ class SKUInboundGuidance:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _skuinbound_guidance_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SKUInboundGuidance(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
@@ -2006,12 +2324,16 @@ class SKUInboundGuidance:
     A list of inbound guidance reason information.
     """
 
-    inbound_guidance: "InboundGuidance" = attrs.field()
+    inbound_guidance: "InboundGuidance" = attrs.field(
+        default=None,
+    )
     """
     Specific inbound guidance for an item.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -2026,35 +2348,47 @@ class SKUPrepInstructions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _skuprep_instructions_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SKUPrepInstructions(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    amazon_prep_fees_details_list: Optional[List["AmazonPrepFeesDetails"]] = attrs.field()
+    amazon_prep_fees_details_list: Optional[List["AmazonPrepFeesDetails"]] = attrs.field(
+        default=None,
+    )
     """
     A list of preparation instructions and fees for Amazon to prep goods for shipment.
     """
 
-    barcode_instruction: Optional["BarcodeInstruction"] = attrs.field()
+    barcode_instruction: Optional["BarcodeInstruction"] = attrs.field(
+        default=None,
+    )
     """
     Labeling requirements for the item. For more information about FBA labeling requirements, see the Seller Central Help for your marketplace.
     """
 
-    prep_guidance: Optional["PrepGuidance"] = attrs.field()
+    prep_guidance: Optional["PrepGuidance"] = attrs.field(
+        default=None,
+    )
     """
     Item preparation instructions.
     """
 
-    prep_instruction_list: Optional[List["PrepInstruction"]] = attrs.field()
+    prep_instruction_list: Optional[List["PrepInstruction"]] = attrs.field(
+        default=None,
+    )
     """
     A list of preparation instructions to help with item sourcing decisions.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -2069,7 +2403,7 @@ class SellerFreightClass:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_freight_class_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerFreightClass(**data)
 
     pass
@@ -2084,7 +2418,7 @@ class ShipmentStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentStatus(**data)
 
     pass
@@ -2099,7 +2433,7 @@ class ShipmentType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentType(**data)
 
     pass
@@ -2110,7 +2444,7 @@ class TimeStampStringType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _time_stamp_string_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TimeStampStringType(**data)
 
     pass
@@ -2125,7 +2459,7 @@ class TrackingId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tracking_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TrackingId(**data)
 
     pass
@@ -2140,20 +2474,26 @@ class TransportContent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transport_content_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransportContent(**data)
 
-    transport_details: "TransportDetailOutput" = attrs.field()
+    transport_details: "TransportDetailOutput" = attrs.field(
+        default=None,
+    )
     """
     Inbound shipment information, including carrier details and shipment status.
     """
 
-    transport_header: "TransportHeader" = attrs.field()
+    transport_header: "TransportHeader" = attrs.field(
+        default=None,
+    )
     """
     The shipping identifier, information about whether the shipment is by an Amazon-partnered carrier, and information about whether the shipment is Small Parcel or Less Than Truckload/Full Truckload (LTL/FTL).
     """
 
-    transport_result: "TransportResult" = attrs.field()
+    transport_result: "TransportResult" = attrs.field(
+        default=None,
+    )
     """
     The workflow status for a shipment with an Amazon-partnered carrier.
     """
@@ -2168,25 +2508,33 @@ class TransportDetailInput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transport_detail_input_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransportDetailInput(**data)
 
-    non_partnered_ltl_data: Optional["NonPartneredLtlDataInput"] = attrs.field()
+    non_partnered_ltl_data: Optional["NonPartneredLtlDataInput"] = attrs.field(
+        default=None,
+    )
     """
     Information that you provide to Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by a carrier that has not partnered with Amazon.
     """
 
-    non_partnered_small_parcel_data: Optional["NonPartneredSmallParcelDataInput"] = attrs.field()
+    non_partnered_small_parcel_data: Optional["NonPartneredSmallParcelDataInput"] = attrs.field(
+        default=None,
+    )
     """
     Information that you provide to Amazon about a Small Parcel shipment shipped by a carrier that has not partnered with Amazon.
     """
 
-    partnered_ltl_data: Optional["PartneredLtlDataInput"] = attrs.field()
+    partnered_ltl_data: Optional["PartneredLtlDataInput"] = attrs.field(
+        default=None,
+    )
     """
     Information that is required by an Amazon-partnered carrier to ship a Less Than Truckload/Full Truckload (LTL/FTL) inbound shipment.
     """
 
-    partnered_small_parcel_data: Optional["PartneredSmallParcelDataInput"] = attrs.field()
+    partnered_small_parcel_data: Optional["PartneredSmallParcelDataInput"] = attrs.field(
+        default=None,
+    )
     """
     Information that is required by an Amazon-partnered carrier to ship a Small Parcel inbound shipment.
     """
@@ -2201,25 +2549,33 @@ class TransportDetailOutput:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transport_detail_output_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransportDetailOutput(**data)
 
-    non_partnered_ltl_data: Optional["NonPartneredLtlDataOutput"] = attrs.field()
+    non_partnered_ltl_data: Optional["NonPartneredLtlDataOutput"] = attrs.field(
+        default=None,
+    )
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment shipped by a carrier that has not partnered with Amazon.
     """
 
-    non_partnered_small_parcel_data: Optional["NonPartneredSmallParcelDataOutput"] = attrs.field()
+    non_partnered_small_parcel_data: Optional["NonPartneredSmallParcelDataOutput"] = attrs.field(
+        default=None,
+    )
     """
     Information returned by Amazon about a Small Parcel shipment by a carrier that has not partnered with Amazon.
     """
 
-    partnered_ltl_data: Optional["PartneredLtlDataOutput"] = attrs.field()
+    partnered_ltl_data: Optional["PartneredLtlDataOutput"] = attrs.field(
+        default=None,
+    )
     """
     Information returned by Amazon about a Less Than Truckload/Full Truckload (LTL/FTL) shipment by an Amazon-partnered carrier.
     """
 
-    partnered_small_parcel_data: Optional["PartneredSmallParcelDataOutput"] = attrs.field()
+    partnered_small_parcel_data: Optional["PartneredSmallParcelDataOutput"] = attrs.field(
+        default=None,
+    )
     """
     Information returned by Amazon about a Small Parcel shipment by an Amazon-partnered carrier.
     """
@@ -2234,10 +2590,12 @@ class TransportHeader:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transport_header_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransportHeader(**data)
 
-    is_partnered: bool = attrs.field()
+    is_partnered: bool = attrs.field(
+        default=None,
+    )
     """
     Indicates whether a putTransportDetails request is for a partnered carrier.
         Possible values:
@@ -2245,17 +2603,23 @@ class TransportHeader:
         * false – Request is for a non-Amazon-partnered carrier.
     """
 
-    seller_id: str = attrs.field()
+    seller_id: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon seller identifier.
     """
 
-    shipment_id: str = attrs.field()
+    shipment_id: str = attrs.field(
+        default=None,
+    )
     """
     A shipment identifier originally returned by the createInboundShipmentPlan operation.
     """
 
-    shipment_type: "ShipmentType" = attrs.field()
+    shipment_type: "ShipmentType" = attrs.field(
+        default=None,
+    )
     """
     Specifies the carrier shipment type in a putTransportDetails request.
     """
@@ -2270,7 +2634,7 @@ class TransportResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transport_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransportResult(**data)
 
     error_code: Optional[str] = attrs.field(
@@ -2287,7 +2651,9 @@ class TransportResult:
     A message that describes the error condition.
     """
 
-    transport_status: "TransportStatus" = attrs.field()
+    transport_status: "TransportStatus" = attrs.field(
+        default=None,
+    )
     """
     Indicates the status of the Amazon-partnered carrier shipment.
     """
@@ -2302,7 +2668,7 @@ class TransportStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transport_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransportStatus(**data)
 
     pass
@@ -2317,7 +2683,7 @@ class UnitOfMeasurement:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _unit_of_measurement_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UnitOfMeasurement(**data)
 
     pass
@@ -2332,7 +2698,7 @@ class UnitOfWeight:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _unit_of_weight_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UnitOfWeight(**data)
 
     pass
@@ -2343,7 +2709,7 @@ class UnsignedIntType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _unsigned_int_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UnsignedIntType(**data)
 
     pass
@@ -2358,15 +2724,19 @@ class VoidTransportResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _void_transport_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return VoidTransportResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CommonTransportResult"] = attrs.field()
+    payload: Optional["CommonTransportResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2378,15 +2748,19 @@ class Weight:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _weight_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Weight(**data)
 
-    unit: "UnitOfWeight" = attrs.field()
+    unit: "UnitOfWeight" = attrs.field(
+        default=None,
+    )
     """
     Indicates the unit of weight.
     """
 
-    value: "BigDecimalType" = attrs.field()
+    value: "BigDecimalType" = attrs.field(
+        default=None,
+    )
 
 
 _asininbound_guidance_name_convert = {

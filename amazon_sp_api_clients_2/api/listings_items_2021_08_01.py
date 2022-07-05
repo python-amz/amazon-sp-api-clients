@@ -24,7 +24,7 @@ class Decimal:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _decimal_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Decimal(**data)
 
     pass
@@ -39,10 +39,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -54,7 +56,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -69,10 +73,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -84,10 +90,12 @@ class FulfillmentAvailability:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_availability_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentAvailability(**data)
 
-    fulfillment_channel_code: str = attrs.field()
+    fulfillment_channel_code: str = attrs.field(
+        default=None,
+    )
     """
     Designates which fulfillment network will be used.
     """
@@ -112,7 +120,7 @@ class Issue:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _issue_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Issue(**data)
 
     attribute_names: Optional[List[str]] = attrs.field(
@@ -122,17 +130,23 @@ class Issue:
     Names of the attributes associated with the issue, if applicable.
     """
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An issue code that identifies the type of issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the issue.
     """
 
-    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field()
+    severity: Union[Literal["ERROR"], Literal["WARNING"], Literal["INFO"]] = attrs.field(
+        default=None,
+    )
     """
     The severity of the issue.
     """
@@ -147,7 +161,7 @@ class Item:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Item(**data)
 
     attributes: Optional["ItemAttributes"] = attrs.field(
@@ -185,7 +199,9 @@ class Item:
     Vendor procurement information for the listings item.
     """
 
-    sku: str = attrs.field()
+    sku: str = attrs.field(
+        default=None,
+    )
     """
     A selling partner provided identifier for an Amazon listing.
     """
@@ -207,7 +223,7 @@ class ItemAttributes:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_attributes_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemAttributes(**data)
 
     pass
@@ -222,20 +238,26 @@ class ItemImage:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_image_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemImage(**data)
 
-    height: int = attrs.field()
+    height: int = attrs.field(
+        default=None,
+    )
     """
     Height of the image in pixels.
     """
 
-    link: str = attrs.field()
+    link: str = attrs.field(
+        default=None,
+    )
     """
     Link, or URL, for the image.
     """
 
-    width: int = attrs.field()
+    width: int = attrs.field(
+        default=None,
+    )
     """
     Width of the image in pixels.
     """
@@ -250,15 +272,19 @@ class ItemOfferByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_offer_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemOfferByMarketplace(**data)
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
 
-    offer_type: Union[Literal["B2C"], Literal["B2B"]] = attrs.field()
+    offer_type: Union[Literal["B2C"], Literal["B2B"]] = attrs.field(
+        default=None,
+    )
     """
     Type of offer for the listings item.
     """
@@ -270,7 +296,9 @@ class ItemOfferByMarketplace:
     The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the Points element is only returned in Japan (JP).
     """
 
-    price: "Money" = attrs.field()
+    price: "Money" = attrs.field(
+        default=None,
+    )
     """
     The currency type and the amount.
     """
@@ -285,10 +313,12 @@ class ItemProcurement:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_procurement_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemProcurement(**data)
 
-    cost_price: "Money" = attrs.field()
+    cost_price: "Money" = attrs.field(
+        default=None,
+    )
     """
     The currency type and the amount.
     """
@@ -303,10 +333,12 @@ class ItemSummaryByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_summary_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemSummaryByMarketplace(**data)
 
-    asin: str = attrs.field()
+    asin: str = attrs.field(
+        default=None,
+    )
     """
     Amazon Standard Identification Number (ASIN) of the listings item.
     """
@@ -334,7 +366,9 @@ class ItemSummaryByMarketplace:
     Identifies the condition of the listings item.
     """
 
-    created_date: datetime = attrs.field()
+    created_date: datetime = attrs.field(
+        default=None,
+    )
     """
     Date the listings item was created, in ISO 8601 format.
 
@@ -349,12 +383,16 @@ class ItemSummaryByMarketplace:
     Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item.
     """
 
-    item_name: str = attrs.field()
+    item_name: str = attrs.field(
+        default=None,
+    )
     """
     Name, or title, associated with an Amazon catalog item.
     """
 
-    last_updated_date: datetime = attrs.field()
+    last_updated_date: datetime = attrs.field(
+        default=None,
+    )
     """
     Date the listings item was last updated, in ISO 8601 format.
 
@@ -369,17 +407,23 @@ class ItemSummaryByMarketplace:
     Image for the listings item.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     A marketplace identifier. Identifies the Amazon marketplace for the listings item.
     """
 
-    product_type: str = attrs.field()
+    product_type: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon product type of the listings item.
     """
 
-    status: List[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]] = attrs.field()
+    status: List[Union[Literal["BUYABLE"], Literal["DISCOVERABLE"]]] = attrs.field(
+        default=None,
+    )
     """
     Statuses that apply to the listings item.
     """
@@ -394,10 +438,12 @@ class ListingsItemPatchRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_patch_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemPatchRequest(**data)
 
-    patches: List["PatchOperation"] = attrs.field()
+    patches: List["PatchOperation"] = attrs.field(
+        default=None,
+    )
     """
     One or more JSON Patch operations to perform on the listings item.
 
@@ -405,7 +451,9 @@ class ListingsItemPatchRequest:
     {'minItems': 1}
     """
 
-    product_type: str = attrs.field()
+    product_type: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon product type of the listings item.
     """
@@ -420,15 +468,19 @@ class ListingsItemPutRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_put_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemPutRequest(**data)
 
-    attributes: "ListingsItemPutRequestAttributes" = attrs.field()
+    attributes: "ListingsItemPutRequestAttributes" = attrs.field(
+        default=None,
+    )
     """
     JSON object containing structured listings item attribute data keyed by attribute name.
     """
 
-    product_type: str = attrs.field()
+    product_type: str = attrs.field(
+        default=None,
+    )
     """
     The Amazon product type of the listings item.
     """
@@ -452,7 +504,7 @@ class ListingsItemPutRequestAttributes:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_put_request_attributes_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemPutRequestAttributes(**data)
 
     pass
@@ -467,7 +519,7 @@ class ListingsItemSubmissionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _listings_item_submission_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListingsItemSubmissionResponse(**data)
 
     issues: Optional[List["Issue"]] = attrs.field(
@@ -477,17 +529,23 @@ class ListingsItemSubmissionResponse:
     Listings item issues related to the listings item submission.
     """
 
-    sku: str = attrs.field()
+    sku: str = attrs.field(
+        default=None,
+    )
     """
     A selling partner provided identifier for an Amazon listing.
     """
 
-    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field()
+    status: Union[Literal["ACCEPTED"], Literal["INVALID"]] = attrs.field(
+        default=None,
+    )
     """
     The status of the listings item submission.
     """
 
-    submission_id: str = attrs.field()
+    submission_id: str = attrs.field(
+        default=None,
+    )
     """
     The unique identifier of the listings item submission.
     """
@@ -502,15 +560,19 @@ class Money:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Money(**data)
 
-    amount: "Decimal" = attrs.field()
+    amount: "Decimal" = attrs.field(
+        default=None,
+    )
     """
     A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
     """
 
-    currency_code: str = attrs.field()
+    currency_code: str = attrs.field(
+        default=None,
+    )
     """
     Three-digit currency code. In ISO 4217 format.
     """
@@ -525,15 +587,19 @@ class PatchOperation:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _patch_operation_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PatchOperation(**data)
 
-    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field()
+    op: Union[Literal["add"], Literal["replace"], Literal["delete"]] = attrs.field(
+        default=None,
+    )
     """
     Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
     """
 
-    path: str = attrs.field()
+    path: str = attrs.field(
+        default=None,
+    )
     """
     JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     """
@@ -551,7 +617,7 @@ class PatchOperationValueItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _patch_operation_value_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PatchOperationValueItem(**data)
 
     pass
@@ -566,10 +632,12 @@ class Points:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _points_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Points(**data)
 
-    points_number: int = attrs.field()
+    points_number: int = attrs.field(
+        default=None,
+    )
 
 
 _decimal_name_convert = {}

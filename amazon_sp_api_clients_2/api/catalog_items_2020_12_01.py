@@ -24,15 +24,19 @@ class BrandRefinement:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _brand_refinement_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BrandRefinement(**data)
 
-    brand_name: str = attrs.field()
+    brand_name: str = attrs.field(
+        default=None,
+    )
     """
     Brand name. For display and can be used as a search refinement.
     """
 
-    number_of_results: int = attrs.field()
+    number_of_results: int = attrs.field(
+        default=None,
+    )
     """
     The estimated number of results that would still be returned if refinement key applied.
     """
@@ -47,20 +51,26 @@ class ClassificationRefinement:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _classification_refinement_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ClassificationRefinement(**data)
 
-    classification_id: str = attrs.field()
+    classification_id: str = attrs.field(
+        default=None,
+    )
     """
     Identifier for the classification that can be used for search refinement purposes.
     """
 
-    display_name: str = attrs.field()
+    display_name: str = attrs.field(
+        default=None,
+    )
     """
     Display name for the classification.
     """
 
-    number_of_results: int = attrs.field()
+    number_of_results: int = attrs.field(
+        default=None,
+    )
     """
     The estimated number of results that would still be returned if refinement key applied.
     """
@@ -75,10 +85,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -90,7 +102,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -105,10 +119,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -120,10 +136,12 @@ class Item:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Item(**data)
 
-    asin: "ItemAsin" = attrs.field()
+    asin: "ItemAsin" = attrs.field(
+        default=None,
+    )
     """
     Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
     """
@@ -194,7 +212,7 @@ class ItemAsin:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_asin_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemAsin(**data)
 
     pass
@@ -209,7 +227,7 @@ class ItemAttributes:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_attributes_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemAttributes(**data)
 
     pass
@@ -224,15 +242,19 @@ class ItemIdentifier:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_identifier_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemIdentifier(**data)
 
-    identifier: str = attrs.field()
+    identifier: str = attrs.field(
+        default=None,
+    )
     """
     Identifier.
     """
 
-    identifier_type: str = attrs.field()
+    identifier_type: str = attrs.field(
+        default=None,
+    )
     """
     Type of identifier, such as UPC, EAN, or ISBN.
     """
@@ -247,15 +269,19 @@ class ItemIdentifiersByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_identifiers_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemIdentifiersByMarketplace(**data)
 
-    identifiers: List["ItemIdentifier"] = attrs.field()
+    identifiers: List["ItemIdentifier"] = attrs.field(
+        default=None,
+    )
     """
     Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
@@ -270,15 +296,19 @@ class ItemImage:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_image_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemImage(**data)
 
-    height: int = attrs.field()
+    height: int = attrs.field(
+        default=None,
+    )
     """
     Height of the image in pixels.
     """
 
-    link: str = attrs.field()
+    link: str = attrs.field(
+        default=None,
+    )
     """
     Link, or URL, for the image.
     """
@@ -294,7 +324,9 @@ class ItemImage:
         Literal["PT07"],
         Literal["PT08"],
         Literal["SWCH"],
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Variant of the image, such as MAIN or PT01.
 
@@ -302,7 +334,9 @@ class ItemImage:
     {'example': 'MAIN'}
     """
 
-    width: int = attrs.field()
+    width: int = attrs.field(
+        default=None,
+    )
     """
     Width of the image in pixels.
     """
@@ -317,15 +351,19 @@ class ItemImagesByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_images_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemImagesByMarketplace(**data)
 
-    images: List["ItemImage"] = attrs.field()
+    images: List["ItemImage"] = attrs.field(
+        default=None,
+    )
     """
     Images for an item in the Amazon catalog for the indicated Amazon marketplace.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
@@ -340,15 +378,19 @@ class ItemProductTypeByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_product_type_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemProductTypeByMarketplace(**data)
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
 
-    product_type: Optional[str] = attrs.field()
+    product_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Name of the product type associated with the Amazon catalog item.
 
@@ -366,7 +408,7 @@ class ItemSalesRank:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_sales_rank_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemSalesRank(**data)
 
     link: Optional[str] = attrs.field(
@@ -376,12 +418,16 @@ class ItemSalesRank:
     Corresponding Amazon retail website link, or URL, for the sales rank.
     """
 
-    rank: int = attrs.field()
+    rank: int = attrs.field(
+        default=None,
+    )
     """
     Sales rank value.
     """
 
-    title: str = attrs.field()
+    title: str = attrs.field(
+        default=None,
+    )
     """
     Title, or name, of the sales rank.
     """
@@ -396,15 +442,19 @@ class ItemSalesRanksByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_sales_ranks_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemSalesRanksByMarketplace(**data)
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
 
-    ranks: List["ItemSalesRank"] = attrs.field()
+    ranks: List["ItemSalesRank"] = attrs.field(
+        default=None,
+    )
     """
     Sales ranks of an Amazon catalog item for an Amazon marketplace.
     """
@@ -419,26 +469,34 @@ class ItemSearchResults:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_search_results_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemSearchResults(**data)
 
-    items: List["Item"] = attrs.field()
+    items: List["Item"] = attrs.field(
+        default=None,
+    )
     """
     A list of items from the Amazon catalog.
     """
 
-    number_of_results: int = attrs.field()
+    number_of_results: int = attrs.field(
+        default=None,
+    )
     """
     The estimated total number of products matched by the search query (only results up to the page count limit will be returned per request regardless of the number found).
         Note: The maximum number of items (ASINs) that can be returned and paged through is 1000.
     """
 
-    pagination: "Pagination" = attrs.field()
+    pagination: "Pagination" = attrs.field(
+        default=None,
+    )
     """
     When a request produces a response that exceeds the pageSize, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the nextToken value or the previousToken value as the pageToken parameter in the next request. When you receive the last page, there will be no nextToken key in the pagination object.
     """
 
-    refinements: "Refinements" = attrs.field()
+    refinements: "Refinements" = attrs.field(
+        default=None,
+    )
     """
     Search refinements.
     """
@@ -453,7 +511,7 @@ class ItemSummaryByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_summary_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemSummaryByMarketplace(**data)
 
     brand_name: Optional[str] = attrs.field(
@@ -491,7 +549,9 @@ class ItemSummaryByMarketplace:
     Name of the manufacturer associated with an Amazon catalog item.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
@@ -527,20 +587,26 @@ class ItemVariationsByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_variations_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemVariationsByMarketplace(**data)
 
-    asins: List[str] = attrs.field()
+    asins: List[str] = attrs.field(
+        default=None,
+    )
     """
     Identifiers (ASINs) of the related items.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
 
-    variation_type: Union[Literal["PARENT"], Literal["CHILD"]] = attrs.field()
+    variation_type: Union[Literal["PARENT"], Literal["CHILD"]] = attrs.field(
+        default=None,
+    )
     """
     Type of variation relationship of the Amazon catalog item in the request to the related item(s): "PARENT" or "CHILD".
 
@@ -558,7 +624,7 @@ class ItemVendorDetailsByMarketplace:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_vendor_details_by_marketplace_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemVendorDetailsByMarketplace(**data)
 
     brand_code: Optional[str] = attrs.field(
@@ -589,7 +655,9 @@ class ItemVendorDetailsByMarketplace:
     Parent vendor code of the manufacturer code.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     Amazon marketplace identifier.
     """
@@ -638,15 +706,19 @@ class Pagination:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _pagination_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Pagination(**data)
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A token that can be used to fetch the next page.
     """
 
-    previous_token: Optional[str] = attrs.field()
+    previous_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A token that can be used to fetch the previous page.
     """
@@ -661,15 +733,19 @@ class Refinements:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _refinements_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Refinements(**data)
 
-    brands: List["BrandRefinement"] = attrs.field()
+    brands: List["BrandRefinement"] = attrs.field(
+        default=None,
+    )
     """
     Brand search refinements.
     """
 
-    classifications: List["ClassificationRefinement"] = attrs.field()
+    classifications: List["ClassificationRefinement"] = attrs.field(
+        default=None,
+    )
     """
     Classification search refinements.
     """

@@ -22,10 +22,12 @@ class AdditionalDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _additional_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AdditionalDetails(**data)
 
-    detail: str = attrs.field()
+    detail: str = attrs.field(
+        default=None,
+    )
     """
     The detail of the additional information provided by the selling party.
     """
@@ -37,7 +39,9 @@ class AdditionalDetails:
     The language code of the additional information detail.
     """
 
-    type: Union[Literal["SUR"], Literal["OCR"]] = attrs.field()
+    type: Union[Literal["SUR"], Literal["OCR"]] = attrs.field(
+        default=None,
+    )
     """
     The type of the additional information provided by the selling party.
     """
@@ -52,10 +56,12 @@ class Address:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Address(**data)
 
-    address_line1: str = attrs.field()
+    address_line1: str = attrs.field(
+        default=None,
+    )
     """
     First line of the address.
     """
@@ -74,12 +80,16 @@ class Address:
     Additional street address information, if required.
     """
 
-    city: str = attrs.field()
+    city: str = attrs.field(
+        default=None,
+    )
     """
     The city where the person, business or institution is located.
     """
 
-    country_code: str = attrs.field()
+    country_code: str = attrs.field(
+        default=None,
+    )
     """
     The two digit country code in ISO 3166-1 alpha-2 format.
     """
@@ -98,7 +108,9 @@ class Address:
     The district where person, business or institution is located.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the person, business or institution at that address.
     """
@@ -110,12 +122,16 @@ class Address:
     The phone number of the person, business or institution located at that address.
     """
 
-    postal_code: str = attrs.field()
+    postal_code: str = attrs.field(
+        default=None,
+    )
     """
     The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     """
 
-    state_or_region: str = attrs.field()
+    state_or_region: str = attrs.field(
+        default=None,
+    )
     """
     The state or region where person, business or institution is located.
     """
@@ -130,10 +146,12 @@ class ChargeDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _charge_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ChargeDetails(**data)
 
-    charge_amount: "Money" = attrs.field()
+    charge_amount: "Money" = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -153,7 +171,9 @@ class ChargeDetails:
         Literal["LOADING"],
         Literal["FREIGHTOUT"],
         Literal["TAX_COLLECTED_AT_SOURCE"],
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Type of charge applied.
     """
@@ -168,7 +188,7 @@ class Decimal:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _decimal_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Decimal(**data)
 
     pass
@@ -183,10 +203,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -198,7 +220,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -209,7 +233,7 @@ class InvoiceDetail:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _invoice_detail_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InvoiceDetail(**data)
 
     additional_details: Optional[List["AdditionalDetails"]] = attrs.field(
@@ -230,7 +254,9 @@ class InvoiceDetail:
     Total charge amount details for all line items.
     """
 
-    invoice_date: datetime = attrs.field()
+    invoice_date: datetime = attrs.field(
+        default=None,
+    )
     """
     Invoice date.
 
@@ -238,17 +264,23 @@ class InvoiceDetail:
     {'schema_format': 'date-time'}
     """
 
-    invoice_number: str = attrs.field()
+    invoice_number: str = attrs.field(
+        default=None,
+    )
     """
     The unique invoice number.
     """
 
-    invoice_total: "Money" = attrs.field()
+    invoice_total: "Money" = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    items: List["InvoiceItem"] = attrs.field()
+    items: List["InvoiceItem"] = attrs.field(
+        default=None,
+    )
     """
     Provides the details of the items in this invoice.
     """
@@ -267,9 +299,13 @@ class InvoiceDetail:
     An additional unique reference number used for regulatory or other purposes.
     """
 
-    remit_to_party: "PartyIdentification" = attrs.field()
+    remit_to_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
-    ship_from_party: "PartyIdentification" = attrs.field()
+    ship_from_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
     ship_to_country_code: Optional[str] = attrs.field(
         default=None,
@@ -291,7 +327,7 @@ class InvoiceItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _invoice_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InvoiceItem(**data)
 
     buyer_product_identifier: Optional[str] = attrs.field(
@@ -315,22 +351,30 @@ class InvoiceItem:
     HSN tax code. The HSN number cannot contain alphabets.
     """
 
-    invoiced_quantity: "ItemQuantity" = attrs.field()
+    invoiced_quantity: "ItemQuantity" = attrs.field(
+        default=None,
+    )
     """
     Details of item quantity.
     """
 
-    item_sequence_number: str = attrs.field()
+    item_sequence_number: str = attrs.field(
+        default=None,
+    )
     """
     Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     """
 
-    net_cost: "Money" = attrs.field()
+    net_cost: "Money" = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
 
-    purchase_order_number: str = attrs.field()
+    purchase_order_number: str = attrs.field(
+        default=None,
+    )
     """
     The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     """
@@ -366,15 +410,19 @@ class ItemQuantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemQuantity(**data)
 
-    amount: int = attrs.field()
+    amount: int = attrs.field(
+        default=None,
+    )
     """
     Quantity of units available for a specific item.
     """
 
-    unit_of_measure: str = attrs.field()
+    unit_of_measure: str = attrs.field(
+        default=None,
+    )
     """
     Unit of measure for the available quantity.
     """
@@ -389,15 +437,19 @@ class Money:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Money(**data)
 
-    amount: "Decimal" = attrs.field()
+    amount: "Decimal" = attrs.field(
+        default=None,
+    )
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
     """
 
-    currency_code: str = attrs.field()
+    currency_code: str = attrs.field(
+        default=None,
+    )
     """
     Three digit currency code in ISO 4217 format.
     """
@@ -408,7 +460,7 @@ class PartyIdentification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _party_identification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartyIdentification(**data)
 
     address: Optional["Address"] = attrs.field(
@@ -418,7 +470,9 @@ class PartyIdentification:
     Address of the party.
     """
 
-    party_id: str = attrs.field()
+    party_id: str = attrs.field(
+        default=None,
+    )
     """
     Assigned Identification for the party.
     """
@@ -440,10 +494,12 @@ class SubmitInvoiceRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_invoice_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitInvoiceRequest(**data)
 
-    invoices: Optional[List["InvoiceDetail"]] = attrs.field()
+    invoices: Optional[List["InvoiceDetail"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -455,15 +511,19 @@ class SubmitInvoiceResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_invoice_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitInvoiceResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["TransactionReference"] = attrs.field()
+    payload: Optional["TransactionReference"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -475,10 +535,12 @@ class TaxDetail:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_detail_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxDetail(**data)
 
-    tax_amount: "Money" = attrs.field()
+    tax_amount: "Money" = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -505,7 +567,9 @@ class TaxDetail:
         Literal["Consumption"],
         Literal["MutuallyDefined"],
         Literal["DomesticVAT"],
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     Type of the tax applied.
     """
@@ -527,7 +591,7 @@ class TaxRegistrationDetail:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_registration_detail_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxRegistrationDetail(**data)
 
     tax_registration_address: Optional["Address"] = attrs.field(
@@ -544,7 +608,9 @@ class TaxRegistrationDetail:
     Tax registration message that can be used for additional tax related details.
     """
 
-    tax_registration_number: str = attrs.field()
+    tax_registration_number: str = attrs.field(
+        default=None,
+    )
     """
     Tax registration number for the party. For example, VAT ID.
     """
@@ -562,10 +628,12 @@ class TransactionReference:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_reference_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransactionReference(**data)
 
-    transaction_id: Optional[str] = attrs.field()
+    transaction_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """

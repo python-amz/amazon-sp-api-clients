@@ -22,7 +22,7 @@ class AdditionalLocationInfo:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _additional_location_info_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AdditionalLocationInfo(**data)
 
     pass
@@ -37,10 +37,12 @@ class Address:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Address(**data)
 
-    address_line1: str = attrs.field()
+    address_line1: str = attrs.field(
+        default=None,
+    )
     """
     The first line of the address.
     """
@@ -66,7 +68,9 @@ class Address:
     The city where the person, business, or institution is located.
     """
 
-    country_code: str = attrs.field()
+    country_code: str = attrs.field(
+        default=None,
+    )
     """
     The two digit country code. In ISO 3166-1 alpha-2 format.
     """
@@ -78,7 +82,9 @@ class Address:
     The district or county where the person, business, or institution is located.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the person, business or institution at the address.
     """
@@ -97,7 +103,9 @@ class Address:
     The postal code of the address.
     """
 
-    state_or_region: str = attrs.field()
+    state_or_region: str = attrs.field(
+        default=None,
+    )
     """
     The state or region where the person, business or institution is located.
     """
@@ -112,7 +120,7 @@ class CODSettings:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _codsettings_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CODSettings(**data)
 
     cod_charge: Optional["Money"] = attrs.field(
@@ -129,7 +137,9 @@ class CODSettings:
     An amount of money, including units in the form of currency.
     """
 
-    is_cod_required: bool = attrs.field()
+    is_cod_required: bool = attrs.field(
+        default=None,
+    )
     """
     When true, this fulfillment order requires a COD (Cash On Delivery) payment.
     """
@@ -158,10 +168,12 @@ class CancelFulfillmentOrderResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _cancel_fulfillment_order_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CancelFulfillmentOrderResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -176,7 +188,7 @@ class CreateFulfillmentOrderItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_fulfillment_order_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFulfillmentOrderItem(**data)
 
     displayable_comment: Optional[str] = attrs.field(
@@ -227,12 +239,16 @@ class CreateFulfillmentOrderItem:
     An amount of money, including units in the form of currency.
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order item identifier that the seller creates to track fulfillment order items. Used to disambiguate multiple fulfillment items that have the same SellerSKU. For example, the seller might assign different SellerFulfillmentOrderItemId values to two items in a fulfillment order that share the same SellerSKU but have different GiftMessage values.
 
@@ -240,7 +256,9 @@ class CreateFulfillmentOrderItem:
     {'maxLength': 50}
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
 
@@ -258,7 +276,7 @@ class CreateFulfillmentOrderRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_fulfillment_order_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFulfillmentOrderRequest(**data)
 
     cod_settings: Optional["CODSettings"] = attrs.field(
@@ -275,12 +293,16 @@ class CreateFulfillmentOrderRequest:
     The time range within which a Scheduled Delivery fulfillment order should be delivered.
     """
 
-    destination_address: "Address" = attrs.field()
+    destination_address: "Address" = attrs.field(
+        default=None,
+    )
     """
     A physical address.
     """
 
-    displayable_order_comment: str = attrs.field()
+    displayable_order_comment: str = attrs.field(
+        default=None,
+    )
     """
     Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
 
@@ -288,9 +310,13 @@ class CreateFulfillmentOrderRequest:
     {'maxLength': 1000}
     """
 
-    displayable_order_date: "Timestamp" = attrs.field()
+    displayable_order_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
-    displayable_order_id: str = attrs.field()
+    displayable_order_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
         The value must be an alpha-numeric or ISO 8859-1 compliant string from one to 40 characters in length. Cannot contain two spaces in a row. Leading and trailing white space is removed.
@@ -320,7 +346,9 @@ class CreateFulfillmentOrderRequest:
     The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
     """
 
-    items: List["CreateFulfillmentOrderItem"] = attrs.field()
+    items: List["CreateFulfillmentOrderItem"] = attrs.field(
+        default=None,
+    )
     """
     An array of item information for creating a fulfillment order.
     """
@@ -339,7 +367,9 @@ class CreateFulfillmentOrderRequest:
     A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
     """
 
-    seller_fulfillment_order_id: str = attrs.field()
+    seller_fulfillment_order_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order identifier that the seller creates to track their fulfillment order. The SellerFulfillmentOrderId must be unique for each fulfillment order that a seller creates. If the seller's system already creates unique order identifiers, then these might be good values for them to use.
 
@@ -354,7 +384,9 @@ class CreateFulfillmentOrderRequest:
     The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
     """
 
-    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field(
+        default=None,
+    )
     """
     The shipping method used for the fulfillment order.
     """
@@ -369,10 +401,12 @@ class CreateFulfillmentOrderResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_fulfillment_order_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFulfillmentOrderResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -387,10 +421,12 @@ class CreateFulfillmentReturnRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_fulfillment_return_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFulfillmentReturnRequest(**data)
 
-    items: List["CreateReturnItem"] = attrs.field()
+    items: List["CreateReturnItem"] = attrs.field(
+        default=None,
+    )
     """
     An array of items to be returned.
     """
@@ -405,15 +441,19 @@ class CreateFulfillmentReturnResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_fulfillment_return_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFulfillmentReturnResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["CreateFulfillmentReturnResult"] = attrs.field()
+    payload: Optional["CreateFulfillmentReturnResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -421,20 +461,26 @@ class CreateFulfillmentReturnResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_fulfillment_return_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateFulfillmentReturnResult(**data)
 
-    invalid_return_items: Optional[List["InvalidReturnItem"]] = attrs.field()
+    invalid_return_items: Optional[List["InvalidReturnItem"]] = attrs.field(
+        default=None,
+    )
     """
     An array of invalid return item information.
     """
 
-    return_authorizations: Optional[List["ReturnAuthorization"]] = attrs.field()
+    return_authorizations: Optional[List["ReturnAuthorization"]] = attrs.field(
+        default=None,
+    )
     """
     An array of return authorization information.
     """
 
-    return_items: Optional[List["ReturnItem"]] = attrs.field()
+    return_items: Optional[List["ReturnItem"]] = attrs.field(
+        default=None,
+    )
     """
     An array of items that Amazon accepted for return. Returns empty if no items were accepted for return.
     """
@@ -449,10 +495,12 @@ class CreateReturnItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_return_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateReturnItem(**data)
 
-    amazon_shipment_id: str = attrs.field()
+    amazon_shipment_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the shipment that is associated with the return item.
     """
@@ -467,17 +515,23 @@ class CreateReturnItem:
     {'maxLength': 1000}
     """
 
-    return_reason_code: str = attrs.field()
+    return_reason_code: str = attrs.field(
+        default=None,
+    )
     """
     The return reason code assigned to the return item by the seller.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier assigned to the item by the seller when the fulfillment order was created.
     """
 
-    seller_return_item_id: str = attrs.field()
+    seller_return_item_id: str = attrs.field(
+        default=None,
+    )
     """
     An identifier assigned by the seller to the return item.
 
@@ -495,7 +549,7 @@ class CurrentStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _current_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CurrentStatus(**data)
 
     pass
@@ -510,7 +564,7 @@ class Decimal:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _decimal_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Decimal(**data)
 
     pass
@@ -525,12 +579,16 @@ class DeliveryWindow:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _delivery_window_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DeliveryWindow(**data)
 
-    end_date: "Timestamp" = attrs.field()
+    end_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
-    start_date: "Timestamp" = attrs.field()
+    start_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -542,10 +600,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -557,7 +617,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -572,7 +634,7 @@ class EventCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _event_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return EventCode(**data)
 
     pass
@@ -587,15 +649,19 @@ class Feature:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feature_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Feature(**data)
 
-    feature_description: str = attrs.field()
+    feature_description: str = attrs.field(
+        default=None,
+    )
     """
     The feature description.
     """
 
-    feature_name: str = attrs.field()
+    feature_name: str = attrs.field(
+        default=None,
+    )
     """
     The feature name.
     """
@@ -617,15 +683,19 @@ class FeatureSettings:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feature_settings_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeatureSettings(**data)
 
-    feature_fulfillment_policy: Optional[Union[Literal["Required"], Literal["NotRequired"]]] = attrs.field()
+    feature_fulfillment_policy: Optional[Union[Literal["Required"], Literal["NotRequired"]]] = attrs.field(
+        default=None,
+    )
     """
     Specifies the policy to use when fulfilling an order.
     """
 
-    feature_name: Optional[str] = attrs.field()
+    feature_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the feature.
     """
@@ -640,30 +710,40 @@ class FeatureSku:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _feature_sku_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeatureSku(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    fn_sku: Optional[str] = attrs.field()
+    fn_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The unique SKU used by Amazon's fulfillment network.
     """
 
-    overlapping_skus: Optional[List[str]] = attrs.field()
+    overlapping_skus: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     Other seller SKUs that are shared across the same inventory.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     """
 
-    sku_count: Optional[float] = attrs.field()
+    sku_count: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The number of SKUs available for this service.
     """
@@ -678,10 +758,12 @@ class Fee:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fee_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Fee(**data)
 
-    amount: "Money" = attrs.field()
+    amount: "Money" = attrs.field(
+        default=None,
+    )
     """
     An amount of money, including units in the form of currency.
     """
@@ -691,7 +773,9 @@ class Fee:
         Literal["FBAPerOrderFulfillmentFee"],
         Literal["FBATransportationFee"],
         Literal["FBAFulfillmentCODFee"],
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The type of fee.
     """
@@ -706,7 +790,7 @@ class FulfillmentAction:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_action_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentAction(**data)
 
     pass
@@ -721,7 +805,7 @@ class FulfillmentOrder:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_order_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentOrder(**data)
 
     cod_settings: Optional["CODSettings"] = attrs.field(
@@ -738,19 +822,27 @@ class FulfillmentOrder:
     The time range within which a Scheduled Delivery fulfillment order should be delivered.
     """
 
-    destination_address: "Address" = attrs.field()
+    destination_address: "Address" = attrs.field(
+        default=None,
+    )
     """
     A physical address.
     """
 
-    displayable_order_comment: str = attrs.field()
+    displayable_order_comment: str = attrs.field(
+        default=None,
+    )
     """
     A text block submitted with the createFulfillmentOrder operation. Displays in recipient-facing materials such as the packing slip.
     """
 
-    displayable_order_date: "Timestamp" = attrs.field()
+    displayable_order_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
-    displayable_order_id: str = attrs.field()
+    displayable_order_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order identifier submitted with the createFulfillmentOrder operation. Displays as the order identifier in recipient-facing materials such as the packing slip.
     """
@@ -769,7 +861,9 @@ class FulfillmentOrder:
     Specifies whether the fulfillment order should ship now or have an order hold put on it.
     """
 
-    fulfillment_order_status: "FulfillmentOrderStatus" = attrs.field()
+    fulfillment_order_status: "FulfillmentOrderStatus" = attrs.field(
+        default=None,
+    )
     """
     The current status of the fulfillment order.
     """
@@ -781,7 +875,9 @@ class FulfillmentOrder:
     The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the marketplace the fulfillment order is placed against.
     """
@@ -793,19 +889,27 @@ class FulfillmentOrder:
     A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
     """
 
-    received_date: "Timestamp" = attrs.field()
+    received_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
-    seller_fulfillment_order_id: str = attrs.field()
+    seller_fulfillment_order_id: str = attrs.field(
+        default=None,
+    )
     """
     The fulfillment order identifier submitted with the createFulfillmentOrder operation.
     """
 
-    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field(
+        default=None,
+    )
     """
     The shipping method used for the fulfillment order.
     """
 
-    status_updated_date: "Timestamp" = attrs.field()
+    status_updated_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -817,10 +921,12 @@ class FulfillmentOrderItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_order_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentOrderItem(**data)
 
-    cancelled_quantity: "Quantity" = attrs.field()
+    cancelled_quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
@@ -882,22 +988,30 @@ class FulfillmentOrderItem:
     An amount of money, including units in the form of currency.
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order item identifier submitted with a call to the createFulfillmentOrder operation.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
 
-    unfulfillable_quantity: "Quantity" = attrs.field()
+    unfulfillable_quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
@@ -912,7 +1026,7 @@ class FulfillmentOrderStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_order_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentOrderStatus(**data)
 
     pass
@@ -927,7 +1041,7 @@ class FulfillmentPolicy:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_policy_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentPolicy(**data)
 
     pass
@@ -942,7 +1056,7 @@ class FulfillmentPreview:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_preview_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentPreview(**data)
 
     estimated_fees: Optional[List["Fee"]] = attrs.field(
@@ -973,17 +1087,23 @@ class FulfillmentPreview:
     An array of fulfillment preview shipment information.
     """
 
-    is_codcapable: bool = attrs.field()
+    is_codcapable: bool = attrs.field(
+        default=None,
+    )
     """
     When true, this fulfillment order preview is for COD (Cash On Delivery).
     """
 
-    is_fulfillable: bool = attrs.field()
+    is_fulfillable: bool = attrs.field(
+        default=None,
+    )
     """
     When true, this fulfillment order preview is fulfillable.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     The marketplace the fulfillment order is placed against.
     """
@@ -999,7 +1119,9 @@ class FulfillmentPreview:
     Delivery information for a scheduled delivery.
     """
 
-    shipping_speed_category: "ShippingSpeedCategory" = attrs.field()
+    shipping_speed_category: "ShippingSpeedCategory" = attrs.field(
+        default=None,
+    )
     """
     The shipping method used for the fulfillment order.
     """
@@ -1021,7 +1143,7 @@ class FulfillmentPreviewItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_preview_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentPreviewItem(**data)
 
     estimated_shipping_weight: Optional["Weight"] = attrs.field(
@@ -1031,17 +1153,23 @@ class FulfillmentPreviewItem:
     The weight.
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order item identifier that the seller created with a call to the createFulfillmentOrder operation.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -1063,7 +1191,7 @@ class FulfillmentPreviewShipment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_preview_shipment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentPreviewShipment(**data)
 
     earliest_arrival_date: Optional["Timestamp"] = attrs.field(
@@ -1074,7 +1202,9 @@ class FulfillmentPreviewShipment:
         default=None,
     )
 
-    fulfillment_preview_items: List["FulfillmentPreviewItem"] = attrs.field()
+    fulfillment_preview_items: List["FulfillmentPreviewItem"] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment preview item information.
     """
@@ -1104,7 +1234,7 @@ class FulfillmentReturnItemStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_return_item_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentReturnItemStatus(**data)
 
     pass
@@ -1119,10 +1249,12 @@ class FulfillmentShipment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_shipment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentShipment(**data)
 
-    amazon_shipment_id: str = attrs.field()
+    amazon_shipment_id: str = attrs.field(
+        default=None,
+    )
     """
     A shipment identifier assigned by Amazon.
     """
@@ -1131,12 +1263,16 @@ class FulfillmentShipment:
         default=None,
     )
 
-    fulfillment_center_id: str = attrs.field()
+    fulfillment_center_id: str = attrs.field(
+        default=None,
+    )
     """
     An identifier for the fulfillment center that the shipment will be sent from.
     """
 
-    fulfillment_shipment_item: List["FulfillmentShipmentItem"] = attrs.field()
+    fulfillment_shipment_item: List["FulfillmentShipmentItem"] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment shipment item information.
     """
@@ -1150,7 +1286,9 @@ class FulfillmentShipment:
 
     fulfillment_shipment_status: Union[
         Literal["PENDING"], Literal["SHIPPED"], Literal["CANCELLED_BY_FULFILLER"], Literal["CANCELLED_BY_SELLER"]
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The current status of the shipment.
     """
@@ -1176,7 +1314,7 @@ class FulfillmentShipmentItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_shipment_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentShipmentItem(**data)
 
     package_number: Optional[int] = attrs.field(
@@ -1189,17 +1327,23 @@ class FulfillmentShipmentItem:
     {'schema_format': 'int32'}
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     The fulfillment order item identifier that the seller created and submitted with a call to the createFulfillmentOrder operation.
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
@@ -1221,10 +1365,12 @@ class FulfillmentShipmentPackage:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fulfillment_shipment_package_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FulfillmentShipmentPackage(**data)
 
-    carrier_code: str = attrs.field()
+    carrier_code: str = attrs.field(
+        default=None,
+    )
     """
     Identifies the carrier who will deliver the shipment to the recipient.
     """
@@ -1233,7 +1379,9 @@ class FulfillmentShipmentPackage:
         default=None,
     )
 
-    package_number: int = attrs.field()
+    package_number: int = attrs.field(
+        default=None,
+    )
     """
     Identifies a package in a shipment.
 
@@ -1258,15 +1406,19 @@ class GetFeatureInventoryResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feature_inventory_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeatureInventoryResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetFeatureInventoryResult"] = attrs.field()
+    payload: Optional["GetFeatureInventoryResult"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the getEligibileInventory operation.
     """
@@ -1281,10 +1433,12 @@ class GetFeatureInventoryResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feature_inventory_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeatureInventoryResult(**data)
 
-    feature_name: str = attrs.field()
+    feature_name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the feature.
     """
@@ -1296,7 +1450,9 @@ class GetFeatureInventoryResult:
     An array of SKUs eligible for this feature and the quantity available.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     The requested marketplace.
     """
@@ -1318,15 +1474,19 @@ class GetFeatureSkuResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feature_sku_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeatureSkuResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetFeatureSkuResult"] = attrs.field()
+    payload: Optional["GetFeatureSkuResult"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the getFeatureSKU operation.
     """
@@ -1341,10 +1501,12 @@ class GetFeatureSkuResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_feature_sku_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeatureSkuResult(**data)
 
-    feature_name: str = attrs.field()
+    feature_name: str = attrs.field(
+        default=None,
+    )
     """
     The name of the feature.
     """
@@ -1360,12 +1522,16 @@ class GetFeatureSkuResult:
         * INVALID_SKU - There is an issue with the SKU provided.
     """
 
-    is_eligible: bool = attrs.field()
+    is_eligible: bool = attrs.field(
+        default=None,
+    )
     """
     When true, the seller SKU is eligible for the requested feature.
     """
 
-    marketplace_id: str = attrs.field()
+    marketplace_id: str = attrs.field(
+        default=None,
+    )
     """
     The requested marketplace.
     """
@@ -1387,15 +1553,19 @@ class GetFeaturesResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_features_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeaturesResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetFeaturesResult"] = attrs.field()
+    payload: Optional["GetFeaturesResult"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the getFeatures operation.
     """
@@ -1410,10 +1580,12 @@ class GetFeaturesResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_features_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFeaturesResult(**data)
 
-    features: List["Feature"] = attrs.field()
+    features: List["Feature"] = attrs.field(
+        default=None,
+    )
     """
     An array of features.
     """
@@ -1428,15 +1600,19 @@ class GetFulfillmentOrderResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_fulfillment_order_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFulfillmentOrderResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetFulfillmentOrderResult"] = attrs.field()
+    payload: Optional["GetFulfillmentOrderResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1444,15 +1620,19 @@ class GetFulfillmentOrderResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_fulfillment_order_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFulfillmentOrderResult(**data)
 
-    fulfillment_order: "FulfillmentOrder" = attrs.field()
+    fulfillment_order: "FulfillmentOrder" = attrs.field(
+        default=None,
+    )
     """
     General information about a fulfillment order, including its status.
     """
 
-    fulfillment_order_items: List["FulfillmentOrderItem"] = attrs.field()
+    fulfillment_order_items: List["FulfillmentOrderItem"] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment order item information.
     """
@@ -1464,12 +1644,16 @@ class GetFulfillmentOrderResult:
     An array of fulfillment shipment information.
     """
 
-    return_authorizations: List["ReturnAuthorization"] = attrs.field()
+    return_authorizations: List["ReturnAuthorization"] = attrs.field(
+        default=None,
+    )
     """
     An array of return authorization information.
     """
 
-    return_items: List["ReturnItem"] = attrs.field()
+    return_items: List["ReturnItem"] = attrs.field(
+        default=None,
+    )
     """
     An array of items that Amazon accepted for return. Returns empty if no items were accepted for return.
     """
@@ -1484,7 +1668,7 @@ class GetFulfillmentPreviewItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_fulfillment_preview_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFulfillmentPreviewItem(**data)
 
     per_unit_declared_value: Optional["Money"] = attrs.field(
@@ -1494,12 +1678,16 @@ class GetFulfillmentPreviewItem:
     An amount of money, including units in the form of currency.
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order item identifier that the seller creates to track items in the fulfillment preview.
 
@@ -1507,7 +1695,9 @@ class GetFulfillmentPreviewItem:
     {'maxLength': 50}
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
 
@@ -1525,10 +1715,12 @@ class GetFulfillmentPreviewRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_fulfillment_preview_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFulfillmentPreviewRequest(**data)
 
-    address: "Address" = attrs.field()
+    address: "Address" = attrs.field(
+        default=None,
+    )
     """
     A physical address.
     """
@@ -1557,7 +1749,9 @@ class GetFulfillmentPreviewRequest:
     Specifies whether to return the ScheduledDeliveryInfo response object, which contains the available delivery windows for a Scheduled Delivery. The ScheduledDeliveryInfo response object can only be returned for fulfillment order previews with ShippingSpeedCategories = ScheduledDelivery.
     """
 
-    items: List["GetFulfillmentPreviewItem"] = attrs.field()
+    items: List["GetFulfillmentPreviewItem"] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment preview item information.
     """
@@ -1583,15 +1777,19 @@ class GetFulfillmentPreviewResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_fulfillment_preview_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFulfillmentPreviewResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["GetFulfillmentPreviewResult"] = attrs.field()
+    payload: Optional["GetFulfillmentPreviewResult"] = attrs.field(
+        default=None,
+    )
     """
     A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and estimated ship dates and arrival dates.
     """
@@ -1606,10 +1804,12 @@ class GetFulfillmentPreviewResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_fulfillment_preview_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetFulfillmentPreviewResult(**data)
 
-    fulfillment_previews: Optional[List["FulfillmentPreview"]] = attrs.field()
+    fulfillment_previews: Optional[List["FulfillmentPreview"]] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment preview information.
     """
@@ -1624,15 +1824,19 @@ class GetPackageTrackingDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_package_tracking_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetPackageTrackingDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["PackageTrackingDetails"] = attrs.field()
+    payload: Optional["PackageTrackingDetails"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1644,15 +1848,19 @@ class InvalidItemReason:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _invalid_item_reason_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InvalidItemReason(**data)
 
-    description: str = attrs.field()
+    description: str = attrs.field(
+        default=None,
+    )
     """
     A human readable description of the invalid item reason code.
     """
 
-    invalid_item_reason_code: "InvalidItemReasonCode" = attrs.field()
+    invalid_item_reason_code: "InvalidItemReasonCode" = attrs.field(
+        default=None,
+    )
     """
     A code for why the item is invalid for return.
     """
@@ -1667,7 +1875,7 @@ class InvalidItemReasonCode:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _invalid_item_reason_code_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InvalidItemReasonCode(**data)
 
     pass
@@ -1682,20 +1890,26 @@ class InvalidReturnItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _invalid_return_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InvalidReturnItem(**data)
 
-    invalid_item_reason: "InvalidItemReason" = attrs.field()
+    invalid_item_reason: "InvalidItemReason" = attrs.field(
+        default=None,
+    )
     """
     The reason that the item is invalid for return.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier assigned to the item by the seller when the fulfillment order was created.
     """
 
-    seller_return_item_id: str = attrs.field()
+    seller_return_item_id: str = attrs.field(
+        default=None,
+    )
     """
     An identifier assigned by the seller to the return item.
     """
@@ -1710,15 +1924,19 @@ class ListAllFulfillmentOrdersResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_all_fulfillment_orders_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListAllFulfillmentOrdersResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ListAllFulfillmentOrdersResult"] = attrs.field()
+    payload: Optional["ListAllFulfillmentOrdersResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1726,15 +1944,19 @@ class ListAllFulfillmentOrdersResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_all_fulfillment_orders_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListAllFulfillmentOrdersResult(**data)
 
-    fulfillment_orders: Optional[List["FulfillmentOrder"]] = attrs.field()
+    fulfillment_orders: Optional[List["FulfillmentOrder"]] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment order information.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -1749,15 +1971,19 @@ class ListReturnReasonCodesResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_return_reason_codes_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListReturnReasonCodesResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ListReturnReasonCodesResult"] = attrs.field()
+    payload: Optional["ListReturnReasonCodesResult"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1765,10 +1991,12 @@ class ListReturnReasonCodesResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_return_reason_codes_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListReturnReasonCodesResult(**data)
 
-    reason_code_details: Optional[List["ReasonCodeDetails"]] = attrs.field()
+    reason_code_details: Optional[List["ReasonCodeDetails"]] = attrs.field(
+        default=None,
+    )
     """
     An array of return reason code details.
     """
@@ -1783,15 +2011,19 @@ class Money:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Money(**data)
 
-    currency_code: str = attrs.field()
+    currency_code: str = attrs.field(
+        default=None,
+    )
     """
     Three digit currency code in ISO 4217 format.
     """
 
-    value: "Decimal" = attrs.field()
+    value: "Decimal" = attrs.field(
+        default=None,
+    )
     """
     A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
     """
@@ -1802,7 +2034,7 @@ class PackageTrackingDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _package_tracking_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PackageTrackingDetails(**data)
 
     additional_location_info: Optional["AdditionalLocationInfo"] = attrs.field(
@@ -1858,7 +2090,9 @@ class PackageTrackingDetails:
         default=None,
     )
 
-    package_number: int = attrs.field()
+    package_number: int = attrs.field(
+        default=None,
+    )
     """
     The package identifier.
 
@@ -1908,7 +2142,7 @@ class Quantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Quantity(**data)
 
     pass
@@ -1923,15 +2157,19 @@ class ReasonCodeDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _reason_code_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReasonCodeDetails(**data)
 
-    description: str = attrs.field()
+    description: str = attrs.field(
+        default=None,
+    )
     """
     A human readable description of the return reason code.
     """
 
-    return_reason_code: str = attrs.field()
+    return_reason_code: str = attrs.field(
+        default=None,
+    )
     """
     A code that indicates a valid return reason.
     """
@@ -1953,30 +2191,40 @@ class ReturnAuthorization:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _return_authorization_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReturnAuthorization(**data)
 
-    amazon_rma_id: str = attrs.field()
+    amazon_rma_id: str = attrs.field(
+        default=None,
+    )
     """
     The return merchandise authorization (RMA) that Amazon needs to process the return.
     """
 
-    fulfillment_center_id: str = attrs.field()
+    fulfillment_center_id: str = attrs.field(
+        default=None,
+    )
     """
     An identifier for the Amazon fulfillment center that the return items should be sent to.
     """
 
-    return_authorization_id: str = attrs.field()
+    return_authorization_id: str = attrs.field(
+        default=None,
+    )
     """
     An identifier for the return authorization. This identifier associates return items with the return authorization used to return them.
     """
 
-    return_to_address: "Address" = attrs.field()
+    return_to_address: "Address" = attrs.field(
+        default=None,
+    )
     """
     A physical address.
     """
 
-    rma_page_url: str = attrs.field()
+    rma_page_url: str = attrs.field(
+        default=None,
+    )
     """
     A URL for a web page that contains the return authorization barcode and the mailing label. This does not include pre-paid shipping.
     """
@@ -1991,7 +2239,7 @@ class ReturnItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _return_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReturnItem(**data)
 
     amazon_return_reason_code: Optional[str] = attrs.field(
@@ -2001,7 +2249,9 @@ class ReturnItem:
     The return reason code that the Amazon fulfillment center assigned to the return item.
     """
 
-    amazon_shipment_id: str = attrs.field()
+    amazon_shipment_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier for the shipment that is associated with the return item.
     """
@@ -2034,27 +2284,37 @@ class ReturnItem:
     The condition of the return item when received by an Amazon fulfillment center.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     The identifier assigned to the item by the seller when the fulfillment order was created.
     """
 
-    seller_return_item_id: str = attrs.field()
+    seller_return_item_id: str = attrs.field(
+        default=None,
+    )
     """
     An identifier assigned by the seller to the return item.
     """
 
-    seller_return_reason_code: str = attrs.field()
+    seller_return_reason_code: str = attrs.field(
+        default=None,
+    )
     """
     The return reason code assigned to the return item by the seller.
     """
 
-    status: "FulfillmentReturnItemStatus" = attrs.field()
+    status: "FulfillmentReturnItemStatus" = attrs.field(
+        default=None,
+    )
     """
     Indicates if the return item has been processed by a fulfillment center.
     """
 
-    status_changed_date: "Timestamp" = attrs.field()
+    status_changed_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2066,7 +2326,7 @@ class ReturnItemDisposition:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _return_item_disposition_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReturnItemDisposition(**data)
 
     pass
@@ -2081,15 +2341,19 @@ class ScheduledDeliveryInfo:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _scheduled_delivery_info_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ScheduledDeliveryInfo(**data)
 
-    delivery_time_zone: str = attrs.field()
+    delivery_time_zone: str = attrs.field(
+        default=None,
+    )
     """
     The time zone of the destination address for the fulfillment order preview. Must be an IANA time zone name. Example: Asia/Tokyo.
     """
 
-    delivery_windows: List["DeliveryWindow"] = attrs.field()
+    delivery_windows: List["DeliveryWindow"] = attrs.field(
+        default=None,
+    )
     """
     An array of delivery windows.
     """
@@ -2104,7 +2368,7 @@ class ShippingSpeedCategory:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipping_speed_category_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShippingSpeedCategory(**data)
 
     pass
@@ -2115,7 +2379,7 @@ class Timestamp:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _timestamp_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Timestamp(**data)
 
     pass
@@ -2130,10 +2394,12 @@ class TrackingAddress:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tracking_address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TrackingAddress(**data)
 
-    city: str = attrs.field()
+    city: str = attrs.field(
+        default=None,
+    )
     """
     The city.
 
@@ -2141,7 +2407,9 @@ class TrackingAddress:
     {'maxLength': 150}
     """
 
-    country: str = attrs.field()
+    country: str = attrs.field(
+        default=None,
+    )
     """
     The country.
 
@@ -2149,7 +2417,9 @@ class TrackingAddress:
     {'maxLength': 6}
     """
 
-    state: str = attrs.field()
+    state: str = attrs.field(
+        default=None,
+    )
     """
     The state.
 
@@ -2167,22 +2437,30 @@ class TrackingEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tracking_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TrackingEvent(**data)
 
-    event_address: "TrackingAddress" = attrs.field()
+    event_address: "TrackingAddress" = attrs.field(
+        default=None,
+    )
     """
     Address information for tracking the package.
     """
 
-    event_code: "EventCode" = attrs.field()
+    event_code: "EventCode" = attrs.field(
+        default=None,
+    )
     """
     The event code for the delivery event.
     """
 
-    event_date: "Timestamp" = attrs.field()
+    event_date: "Timestamp" = attrs.field(
+        default=None,
+    )
 
-    event_description: str = attrs.field()
+    event_description: str = attrs.field(
+        default=None,
+    )
     """
     A description for the corresponding event code.
     """
@@ -2197,19 +2475,23 @@ class UnfulfillablePreviewItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _unfulfillable_preview_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UnfulfillablePreviewItem(**data)
 
     item_unfulfillable_reasons: Optional[List[str]] = attrs.field(
         default=None,
     )
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order item identifier created with a call to the getFulfillmentPreview operation.
 
@@ -2217,7 +2499,9 @@ class UnfulfillablePreviewItem:
     {'maxLength': 50}
     """
 
-    seller_sku: str = attrs.field()
+    seller_sku: str = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
 
@@ -2235,7 +2519,7 @@ class UpdateFulfillmentOrderItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _update_fulfillment_order_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UpdateFulfillmentOrderItem(**data)
 
     displayable_comment: Optional[str] = attrs.field(
@@ -2293,12 +2577,16 @@ class UpdateFulfillmentOrderItem:
     An amount of money, including units in the form of currency.
     """
 
-    quantity: "Quantity" = attrs.field()
+    quantity: "Quantity" = attrs.field(
+        default=None,
+    )
     """
     The item quantity.
     """
 
-    seller_fulfillment_order_item_id: str = attrs.field()
+    seller_fulfillment_order_item_id: str = attrs.field(
+        default=None,
+    )
     """
     Identifies the fulfillment order item to update. Created with a previous call to the createFulfillmentOrder operation.
 
@@ -2319,15 +2607,19 @@ class UpdateFulfillmentOrderRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _update_fulfillment_order_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UpdateFulfillmentOrderRequest(**data)
 
-    destination_address: Optional["Address"] = attrs.field()
+    destination_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     A physical address.
     """
 
-    displayable_order_comment: Optional[str] = attrs.field()
+    displayable_order_comment: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Order-specific text that appears in recipient-facing materials such as the outbound shipment packing slip.
 
@@ -2335,9 +2627,13 @@ class UpdateFulfillmentOrderRequest:
     {'maxLength': 1000}
     """
 
-    displayable_order_date: Optional["Timestamp"] = attrs.field()
+    displayable_order_date: Optional["Timestamp"] = attrs.field(
+        default=None,
+    )
 
-    displayable_order_id: Optional[str] = attrs.field()
+    displayable_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A fulfillment order identifier that the seller creates. This value displays as the order identifier in recipient-facing materials such as the outbound shipment packing slip. The value of DisplayableOrderId should match the order identifier that the seller provides to the recipient. The seller can use the SellerFulfillmentOrderId for this value or they can specify an alternate value if they want the recipient to reference an alternate order identifier.
 
@@ -2345,42 +2641,58 @@ class UpdateFulfillmentOrderRequest:
     {'maxLength': 40}
     """
 
-    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field()
+    feature_constraints: Optional[List["FeatureSettings"]] = attrs.field(
+        default=None,
+    )
     """
     A list of features and their fulfillment policies to apply to the order.
     """
 
-    fulfillment_action: Optional["FulfillmentAction"] = attrs.field()
+    fulfillment_action: Optional["FulfillmentAction"] = attrs.field(
+        default=None,
+    )
     """
     Specifies whether the fulfillment order should ship now or have an order hold put on it.
     """
 
-    fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field()
+    fulfillment_policy: Optional["FulfillmentPolicy"] = attrs.field(
+        default=None,
+    )
     """
     The FulfillmentPolicy value specified when you submitted the createFulfillmentOrder operation.
     """
 
-    items: Optional[List["UpdateFulfillmentOrderItem"]] = attrs.field()
+    items: Optional[List["UpdateFulfillmentOrderItem"]] = attrs.field(
+        default=None,
+    )
     """
     An array of fulfillment order item information for updating a fulfillment order.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The marketplace the fulfillment order is placed against.
     """
 
-    notification_emails: Optional[List[str]] = attrs.field()
+    notification_emails: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.
     """
 
-    ship_from_country_code: Optional[str] = attrs.field()
+    ship_from_country_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The two-character country code for the country from which the fulfillment order ships. Must be in ISO 3166-1 alpha-2 format.
     """
 
-    shipping_speed_category: Optional["ShippingSpeedCategory"] = attrs.field()
+    shipping_speed_category: Optional["ShippingSpeedCategory"] = attrs.field(
+        default=None,
+    )
     """
     The shipping method used for the fulfillment order.
     """
@@ -2395,10 +2707,12 @@ class UpdateFulfillmentOrderResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _update_fulfillment_order_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UpdateFulfillmentOrderResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -2413,15 +2727,19 @@ class Weight:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _weight_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Weight(**data)
 
-    unit: Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]] = attrs.field()
+    unit: Union[Literal["KG"], Literal["KILOGRAMS"], Literal["LB"], Literal["POUNDS"]] = attrs.field(
+        default=None,
+    )
     """
     The unit of weight.
     """
 
-    value: str = attrs.field()
+    value: str = attrs.field(
+        default=None,
+    )
     """
     The weight value.
     """

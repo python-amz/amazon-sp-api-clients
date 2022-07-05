@@ -22,10 +22,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -37,7 +39,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -48,20 +52,26 @@ class InventoryUpdate:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inventory_update_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InventoryUpdate(**data)
 
-    is_full_update: bool = attrs.field()
+    is_full_update: bool = attrs.field(
+        default=None,
+    )
     """
     When true, this request contains a full feed. Otherwise, this request contains a partial feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in the full feed are updated as not available. When sending a partial feed, only include the items that need an update to inventory. The status of other items will remain unchanged.
     """
 
-    items: List["ItemDetails"] = attrs.field()
+    items: List["ItemDetails"] = attrs.field(
+        default=None,
+    )
     """
     A list of inventory items with updated details, including quantity available.
     """
 
-    selling_party: "PartyIdentification" = attrs.field()
+    selling_party: "PartyIdentification" = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -73,10 +83,12 @@ class ItemDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemDetails(**data)
 
-    available_quantity: "ItemQuantity" = attrs.field()
+    available_quantity: "ItemQuantity" = attrs.field(
+        default=None,
+    )
     """
     Details of item quantity.
     """
@@ -112,7 +124,7 @@ class ItemQuantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _item_quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ItemQuantity(**data)
 
     amount: Optional[int] = attrs.field(
@@ -122,7 +134,9 @@ class ItemQuantity:
     Quantity of units available for a specific item.
     """
 
-    unit_of_measure: str = attrs.field()
+    unit_of_measure: str = attrs.field(
+        default=None,
+    )
     """
     Unit of measure for the available quantity.
     """
@@ -133,10 +147,12 @@ class PartyIdentification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _party_identification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PartyIdentification(**data)
 
-    party_id: str = attrs.field()
+    party_id: str = attrs.field(
+        default=None,
+    )
     """
     Assigned identification for the party.
     """
@@ -151,10 +167,12 @@ class SubmitInventoryUpdateRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_inventory_update_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitInventoryUpdateRequest(**data)
 
-    inventory: Optional["InventoryUpdate"] = attrs.field()
+    inventory: Optional["InventoryUpdate"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -166,15 +184,19 @@ class SubmitInventoryUpdateResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_inventory_update_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitInventoryUpdateResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["TransactionReference"] = attrs.field()
+    payload: Optional["TransactionReference"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -182,10 +204,12 @@ class TransactionReference:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _transaction_reference_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TransactionReference(**data)
 
-    transaction_id: Optional[str] = attrs.field()
+    transaction_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     """

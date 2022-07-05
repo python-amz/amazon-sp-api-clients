@@ -22,65 +22,89 @@ class Address:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Address(**data)
 
-    address_line1: Optional[str] = attrs.field()
+    address_line1: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The street address.
     """
 
-    address_line2: Optional[str] = attrs.field()
+    address_line2: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_line3: Optional[str] = attrs.field()
+    address_line3: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Additional street address information, if required.
     """
 
-    address_type: Optional["AddressTypeEnum"] = attrs.field()
+    address_type: Optional["AddressTypeEnum"] = attrs.field(
+        default=None,
+    )
     """
     The shipping address type.
     """
 
-    city: Optional[str] = attrs.field()
+    city: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The city.
     """
 
-    country_code: Optional[str] = attrs.field()
+    country_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The country code.
     """
 
-    county: Optional[str] = attrs.field()
+    county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county.
     """
 
-    district: Optional[str] = attrs.field()
+    district: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The district.
     """
 
-    name: Optional[str] = attrs.field()
+    name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name.
     """
 
-    phone: Optional[str] = attrs.field()
+    phone: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The phone number.
     """
 
-    postal_code: Optional[str] = attrs.field()
+    postal_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The postal code.
     """
 
-    state_or_region: Optional[str] = attrs.field()
+    state_or_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The state or region.
     """
@@ -95,7 +119,7 @@ class AddressTypeEnum:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _address_type_enum_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AddressTypeEnum(**data)
 
     pass
@@ -110,7 +134,7 @@ class Blob:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _blob_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Blob(**data)
 
     pass
@@ -125,20 +149,26 @@ class BuyerTaxInfo:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _buyer_tax_info_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BuyerTaxInfo(**data)
 
-    company_legal_name: Optional[str] = attrs.field()
+    company_legal_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The legal name of the company.
     """
 
-    tax_classifications: Optional[List["TaxClassification"]] = attrs.field()
+    tax_classifications: Optional[List["TaxClassification"]] = attrs.field(
+        default=None,
+    )
     """
     The list of tax classifications.
     """
 
-    taxing_region: Optional[str] = attrs.field()
+    taxing_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The country or region imposing the tax.
     """
@@ -153,10 +183,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -168,7 +200,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -183,15 +217,19 @@ class GetInvoiceStatusResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_invoice_status_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetInvoiceStatusResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ShipmentInvoiceStatusResponse"] = attrs.field()
+    payload: Optional["ShipmentInvoiceStatusResponse"] = attrs.field(
+        default=None,
+    )
     """
     The shipment invoice status response.
     """
@@ -206,15 +244,19 @@ class GetShipmentDetailsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_shipment_details_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetShipmentDetailsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ShipmentDetail"] = attrs.field()
+    payload: Optional["ShipmentDetail"] = attrs.field(
+        default=None,
+    )
     """
     The information required by a selling partner to issue a shipment invoice.
     """
@@ -229,20 +271,26 @@ class MarketplaceTaxInfo:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _marketplace_tax_info_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MarketplaceTaxInfo(**data)
 
-    company_legal_name: Optional[str] = attrs.field()
+    company_legal_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The legal name of the company.
     """
 
-    tax_classifications: Optional[List["TaxClassification"]] = attrs.field()
+    tax_classifications: Optional[List["TaxClassification"]] = attrs.field(
+        default=None,
+    )
     """
     The list of tax classifications.
     """
 
-    taxing_region: Optional[str] = attrs.field()
+    taxing_region: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The country or region imposing the tax.
     """
@@ -257,15 +305,19 @@ class Money:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _money_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Money(**data)
 
-    amount: Optional[str] = attrs.field()
+    amount: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The currency amount.
     """
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Three-digit currency code in ISO 4217 format.
     """
@@ -280,50 +332,68 @@ class ShipmentDetail:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_detail_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentDetail(**data)
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier for the order.
     """
 
-    amazon_shipment_id: Optional[str] = attrs.field()
+    amazon_shipment_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier for the shipment.
     """
 
-    buyer_county: Optional[str] = attrs.field()
+    buyer_county: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The county of the buyer.
     """
 
-    buyer_name: Optional[str] = attrs.field()
+    buyer_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the buyer.
     """
 
-    buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field()
+    buyer_tax_info: Optional["BuyerTaxInfo"] = attrs.field(
+        default=None,
+    )
     """
     Tax information about the buyer.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the marketplace where the order was placed.
     """
 
-    marketplace_tax_info: Optional["MarketplaceTaxInfo"] = attrs.field()
+    marketplace_tax_info: Optional["MarketplaceTaxInfo"] = attrs.field(
+        default=None,
+    )
     """
     Tax information about the marketplace.
     """
 
-    payment_method_details: Optional[List[str]] = attrs.field()
+    payment_method_details: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The list of payment method details.
     """
 
-    purchase_date: Optional[datetime] = attrs.field()
+    purchase_date: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time when the order was created.
 
@@ -331,27 +401,37 @@ class ShipmentDetail:
     {'schema_format': 'date-time'}
     """
 
-    seller_display_name: Optional[str] = attrs.field()
+    seller_display_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller’s friendly name registered in the marketplace.
     """
 
-    seller_id: Optional[str] = attrs.field()
+    seller_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller identifier.
     """
 
-    shipment_items: Optional[List["ShipmentItem"]] = attrs.field()
+    shipment_items: Optional[List["ShipmentItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of shipment items.
     """
 
-    shipping_address: Optional["Address"] = attrs.field()
+    shipping_address: Optional["Address"] = attrs.field(
+        default=None,
+    )
     """
     The shipping address details of the shipment.
     """
 
-    warehouse_id: Optional[str] = attrs.field()
+    warehouse_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier for the warehouse.
     """
@@ -366,7 +446,7 @@ class ShipmentInvoiceStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_invoice_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentInvoiceStatus(**data)
 
     pass
@@ -381,15 +461,19 @@ class ShipmentInvoiceStatusInfo:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_invoice_status_info_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentInvoiceStatusInfo(**data)
 
-    amazon_shipment_id: Optional[str] = attrs.field()
+    amazon_shipment_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined shipment identifier.
     """
 
-    invoice_status: Optional["ShipmentInvoiceStatus"] = attrs.field()
+    invoice_status: Optional["ShipmentInvoiceStatus"] = attrs.field(
+        default=None,
+    )
     """
     The shipment invoice status.
     """
@@ -404,10 +488,12 @@ class ShipmentInvoiceStatusResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_invoice_status_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentInvoiceStatusResponse(**data)
 
-    shipments: Optional["ShipmentInvoiceStatusInfo"] = attrs.field()
+    shipments: Optional["ShipmentInvoiceStatusInfo"] = attrs.field(
+        default=None,
+    )
     """
     The shipment invoice status information.
     """
@@ -422,60 +508,82 @@ class ShipmentItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentItem(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    gift_wrap_price: Optional["Money"] = attrs.field()
+    gift_wrap_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The currency type and amount.
     """
 
-    item_price: Optional["Money"] = attrs.field()
+    item_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The currency type and amount.
     """
 
-    order_item_id: Optional[str] = attrs.field()
+    order_item_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier for the order item.
     """
 
-    promotion_discount: Optional["Money"] = attrs.field()
+    promotion_discount: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The currency type and amount.
     """
 
-    quantity_ordered: Optional[float] = attrs.field()
+    quantity_ordered: Optional[float] = attrs.field(
+        default=None,
+    )
     """
     The number of items ordered.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
 
-    serial_numbers: Optional[List[str]] = attrs.field()
+    serial_numbers: Optional[List[str]] = attrs.field(
+        default=None,
+    )
     """
     The list of serial numbers.
     """
 
-    shipping_discount: Optional["Money"] = attrs.field()
+    shipping_discount: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The currency type and amount.
     """
 
-    shipping_price: Optional["Money"] = attrs.field()
+    shipping_price: Optional["Money"] = attrs.field(
+        default=None,
+    )
     """
     The currency type and amount.
     """
 
-    title: Optional[str] = attrs.field()
+    title: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the item.
     """
@@ -490,15 +598,19 @@ class SubmitInvoiceRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_invoice_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitInvoiceRequest(**data)
 
-    content_md5value: str = attrs.field()
+    content_md5value: str = attrs.field(
+        default=None,
+    )
     """
     MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
     """
 
-    invoice_content: "Blob" = attrs.field()
+    invoice_content: "Blob" = attrs.field(
+        default=None,
+    )
     """
     Shipment invoice document content.
     """
@@ -520,10 +632,12 @@ class SubmitInvoiceResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _submit_invoice_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SubmitInvoiceResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -538,15 +652,19 @@ class TaxClassification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_classification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxClassification(**data)
 
-    name: Optional[str] = attrs.field()
+    name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of tax.
     """
 
-    value: Optional[str] = attrs.field()
+    value: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The entity's tax identifier.
     """

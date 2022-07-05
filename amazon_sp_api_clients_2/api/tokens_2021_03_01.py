@@ -24,10 +24,12 @@ class CreateRestrictedDataTokenRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_restricted_data_token_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateRestrictedDataTokenRequest(**data)
 
-    restricted_resources: List["RestrictedResource"] = attrs.field()
+    restricted_resources: List["RestrictedResource"] = attrs.field(
+        default=None,
+    )
     """
     A list of restricted resources.
         Maximum: 50
@@ -50,15 +52,19 @@ class CreateRestrictedDataTokenResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _create_restricted_data_token_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CreateRestrictedDataTokenResponse(**data)
 
-    expires_in: Optional[int] = attrs.field()
+    expires_in: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The lifetime of the Restricted Data Token, in seconds.
     """
 
-    restricted_data_token: Optional[str] = attrs.field()
+    restricted_data_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A Restricted Data Token (RDT). This is a short-lived access token that authorizes calls to restricted operations. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources.
     """
@@ -73,10 +79,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -88,7 +96,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition.
     """
@@ -103,10 +113,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -118,7 +130,7 @@ class RestrictedResource:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _restricted_resource_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RestrictedResource(**data)
 
     data_elements: Optional[List[str]] = attrs.field(
@@ -131,12 +143,16 @@ class RestrictedResource:
         - **buyerTaxInformation**. This includes information for issuing tax invoices.
     """
 
-    method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]] = attrs.field()
+    method: Union[Literal["GET"], Literal["PUT"], Literal["POST"], Literal["DELETE"]] = attrs.field(
+        default=None,
+    )
     """
     The HTTP method in the restricted resource.
     """
 
-    path: str = attrs.field()
+    path: str = attrs.field(
+        default=None,
+    )
     """
     The path in the restricted resource. Here are some path examples:
         - ```/orders/v0/orders```. For getting an RDT for the getOrders operation of the Orders API. For bulk orders.

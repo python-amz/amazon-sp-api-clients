@@ -22,20 +22,26 @@ class AdjustmentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _adjustment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AdjustmentEvent(**data)
 
-    adjustment_amount: Optional["Currency"] = attrs.field()
+    adjustment_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    adjustment_item_list: Optional[List["AdjustmentItem"]] = attrs.field()
+    adjustment_item_list: Optional[List["AdjustmentItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about items in an adjustment to the seller's account.
     """
 
-    adjustment_type: Optional[str] = attrs.field()
+    adjustment_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of adjustment.
         Possible values:
@@ -49,7 +55,9 @@ class AdjustmentEvent:
         * SellerRewards - An award credited to a seller's account for their participation in an offer in the Seller Rewards program. Applies only to the India marketplace.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -61,40 +69,54 @@ class AdjustmentItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _adjustment_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AdjustmentItem(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    fn_sku: Optional[str] = attrs.field()
+    fn_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
     """
 
-    per_unit_amount: Optional["Currency"] = attrs.field()
+    per_unit_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    product_description: Optional[str] = attrs.field()
+    product_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A short description of the item.
     """
 
-    quantity: Optional[str] = attrs.field()
+    quantity: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Represents the number of units in the seller's inventory when the AdustmentType is FBAInventoryReimbursement.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
 
-    total_amount: Optional["Currency"] = attrs.field()
+    total_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -109,7 +131,7 @@ class AffordabilityExpenseEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _affordability_expense_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AffordabilityExpenseEvent(**data)
 
     amazon_order_id: Optional[str] = attrs.field(
@@ -137,17 +159,23 @@ class AffordabilityExpenseEvent:
         default=None,
     )
 
-    tax_type_cgst: "Currency" = attrs.field()
+    tax_type_cgst: "Currency" = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    tax_type_igst: "Currency" = attrs.field()
+    tax_type_igst: "Currency" = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    tax_type_sgst: "Currency" = attrs.field()
+    tax_type_sgst: "Currency" = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -175,7 +203,7 @@ class BigDecimal:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _big_decimal_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return BigDecimal(**data)
 
     pass
@@ -222,15 +250,19 @@ class ChargeComponent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _charge_component_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ChargeComponent(**data)
 
-    charge_amount: Optional["Currency"] = attrs.field()
+    charge_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    charge_type: Optional[str] = attrs.field()
+    charge_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of charge.
     """
@@ -245,20 +277,26 @@ class ChargeInstrument:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _charge_instrument_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ChargeInstrument(**data)
 
-    amount: Optional["Currency"] = attrs.field()
+    amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    description: Optional[str] = attrs.field()
+    description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A short description of the charge instrument.
     """
 
-    tail: Optional[str] = attrs.field()
+    tail: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The account tail (trailing digits) of the charge instrument.
     """
@@ -273,10 +311,12 @@ class CouponPaymentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _coupon_payment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return CouponPaymentEvent(**data)
 
-    charge_component: Optional["ChargeComponent"] = attrs.field()
+    charge_component: Optional["ChargeComponent"] = attrs.field(
+        default=None,
+    )
     """
     A charge on the seller's account.
         Possible values:
@@ -313,7 +353,9 @@ class CouponPaymentEvent:
         * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
     """
 
-    clip_or_redemption_count: Optional[int] = attrs.field()
+    clip_or_redemption_count: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of coupon clips or redemptions.
 
@@ -321,29 +363,41 @@ class CouponPaymentEvent:
     {'schema_format': 'int64'}
     """
 
-    coupon_id: Optional[str] = attrs.field()
+    coupon_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A coupon identifier.
     """
 
-    fee_component: Optional["FeeComponent"] = attrs.field()
+    fee_component: Optional["FeeComponent"] = attrs.field(
+        default=None,
+    )
     """
     A fee associated with the event.
     """
 
-    payment_event_id: Optional[str] = attrs.field()
+    payment_event_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A payment event identifier.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    seller_coupon_description: Optional[str] = attrs.field()
+    seller_coupon_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The description provided by the seller when they created the coupon.
     """
 
-    total_amount: Optional["Currency"] = attrs.field()
+    total_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -358,12 +412,16 @@ class Currency:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _currency_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Currency(**data)
 
-    currency_amount: Optional["BigDecimal"] = attrs.field()
+    currency_amount: Optional["BigDecimal"] = attrs.field(
+        default=None,
+    )
 
-    currency_code: Optional[str] = attrs.field()
+    currency_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The three-digit currency code in ISO 4217 format.
     """
@@ -374,7 +432,7 @@ class Date:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _date_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Date(**data)
 
     pass
@@ -389,20 +447,26 @@ class DebtRecoveryEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _debt_recovery_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DebtRecoveryEvent(**data)
 
-    charge_instrument_list: Optional[List["ChargeInstrument"]] = attrs.field()
+    charge_instrument_list: Optional[List["ChargeInstrument"]] = attrs.field(
+        default=None,
+    )
     """
     A list of payment instruments.
     """
 
-    debt_recovery_item_list: Optional[List["DebtRecoveryItem"]] = attrs.field()
+    debt_recovery_item_list: Optional[List["DebtRecoveryItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of debt recovery item information.
     """
 
-    debt_recovery_type: Optional[str] = attrs.field()
+    debt_recovery_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The debt recovery type.
         Possible values:
@@ -411,12 +475,16 @@ class DebtRecoveryEvent:
         *DebtAdjustment
     """
 
-    over_payment_credit: Optional["Currency"] = attrs.field()
+    over_payment_credit: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    recovery_amount: Optional["Currency"] = attrs.field()
+    recovery_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -431,19 +499,27 @@ class DebtRecoveryItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _debt_recovery_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DebtRecoveryItem(**data)
 
-    group_begin_date: Optional["Date"] = attrs.field()
+    group_begin_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    group_end_date: Optional["Date"] = attrs.field()
+    group_end_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    original_amount: Optional["Currency"] = attrs.field()
+    original_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    recovery_amount: Optional["Currency"] = attrs.field()
+    recovery_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -458,15 +534,19 @@ class DirectPayment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _direct_payment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DirectPayment(**data)
 
-    direct_payment_amount: Optional["Currency"] = attrs.field()
+    direct_payment_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    direct_payment_type: Optional[str] = attrs.field()
+    direct_payment_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of payment.
         Possible values:
@@ -488,10 +568,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -503,7 +585,9 @@ class Error:
     Additional details that can help the caller understand or fix the issue.
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A message that describes the error condition in a human-readable form.
     """
@@ -518,25 +602,33 @@ class FBALiquidationEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fbaliquidation_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FBALiquidationEvent(**data)
 
-    liquidation_fee_amount: Optional["Currency"] = attrs.field()
+    liquidation_fee_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    liquidation_proceeds_amount: Optional["Currency"] = attrs.field()
+    liquidation_proceeds_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    original_removal_order_id: Optional[str] = attrs.field()
+    original_removal_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the original removal order.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -548,15 +640,19 @@ class FeeComponent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _fee_component_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FeeComponent(**data)
 
-    fee_amount: Optional["Currency"] = attrs.field()
+    fee_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    fee_type: Optional[str] = attrs.field()
+    fee_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
     """
@@ -571,46 +667,66 @@ class FinancialEventGroup:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _financial_event_group_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FinancialEventGroup(**data)
 
-    account_tail: Optional[str] = attrs.field()
+    account_tail: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The account tail of the payment instrument.
     """
 
-    beginning_balance: Optional["Currency"] = attrs.field()
+    beginning_balance: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    converted_total: Optional["Currency"] = attrs.field()
+    converted_total: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    financial_event_group_end: Optional["Date"] = attrs.field()
+    financial_event_group_end: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    financial_event_group_id: Optional[str] = attrs.field()
+    financial_event_group_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A unique identifier for the financial event group.
     """
 
-    financial_event_group_start: Optional["Date"] = attrs.field()
+    financial_event_group_start: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    fund_transfer_date: Optional["Date"] = attrs.field()
+    fund_transfer_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    fund_transfer_status: Optional[str] = attrs.field()
+    fund_transfer_status: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The status of the fund transfer.
     """
 
-    original_total: Optional["Currency"] = attrs.field()
+    original_total: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    processing_status: Optional[str] = attrs.field()
+    processing_status: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The processing status of the financial event group indicates whether the balance of the financial event group is settled.
         Possible values:
@@ -618,7 +734,9 @@ class FinancialEventGroup:
         * Closed
     """
 
-    trace_id: Optional[str] = attrs.field()
+    trace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The trace identifier used by sellers to look up transactions externally.
     """
@@ -633,140 +751,194 @@ class FinancialEvents:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _financial_events_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return FinancialEvents(**data)
 
-    adjustment_event_list: Optional[List["AdjustmentEvent"]] = attrs.field()
+    adjustment_event_list: Optional[List["AdjustmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of adjustment event information for the seller's account.
     """
 
-    affordability_expense_event_list: Optional[List["AffordabilityExpenseEvent"]] = attrs.field()
+    affordability_expense_event_list: Optional[List["AffordabilityExpenseEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of expense information related to an affordability promotion.
     """
 
-    affordability_expense_reversal_event_list: Optional[List["AffordabilityExpenseEvent"]] = attrs.field()
+    affordability_expense_reversal_event_list: Optional[List["AffordabilityExpenseEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of expense information related to an affordability promotion.
     """
 
-    chargeback_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    chargeback_event_list: Optional[List["ShipmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of shipment event information.
     """
 
-    coupon_payment_event_list: Optional[List["CouponPaymentEvent"]] = attrs.field()
+    coupon_payment_event_list: Optional[List["CouponPaymentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of coupon payment event information.
     """
 
-    debt_recovery_event_list: Optional[List["DebtRecoveryEvent"]] = attrs.field()
+    debt_recovery_event_list: Optional[List["DebtRecoveryEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of debt recovery event information.
     """
 
-    fbaliquidation_event_list: Optional[List["FBALiquidationEvent"]] = attrs.field()
+    fbaliquidation_event_list: Optional[List["FBALiquidationEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of FBA inventory liquidation payment events.
     """
 
-    guarantee_claim_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    guarantee_claim_event_list: Optional[List["ShipmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of shipment event information.
     """
 
-    imaging_services_fee_event_list: Optional[List["ImagingServicesFeeEvent"]] = attrs.field()
+    imaging_services_fee_event_list: Optional[List["ImagingServicesFeeEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee events related to Amazon Imaging services.
     """
 
-    loan_servicing_event_list: Optional[List["LoanServicingEvent"]] = attrs.field()
+    loan_servicing_event_list: Optional[List["LoanServicingEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of loan servicing events.
     """
 
-    network_commingling_transaction_event_list: Optional[List["NetworkComminglingTransactionEvent"]] = attrs.field()
+    network_commingling_transaction_event_list: Optional[List["NetworkComminglingTransactionEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of network commingling transaction events.
     """
 
-    pay_with_amazon_event_list: Optional[List["PayWithAmazonEvent"]] = attrs.field()
+    pay_with_amazon_event_list: Optional[List["PayWithAmazonEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of events related to the seller's Pay with Amazon account.
     """
 
-    product_ads_payment_event_list: Optional[List["ProductAdsPaymentEvent"]] = attrs.field()
+    product_ads_payment_event_list: Optional[List["ProductAdsPaymentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of sponsored products payment events.
     """
 
-    refund_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    refund_event_list: Optional[List["ShipmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of shipment event information.
     """
 
-    removal_shipment_adjustment_event_list: Optional[List["RemovalShipmentAdjustmentEvent"]] = attrs.field()
+    removal_shipment_adjustment_event_list: Optional[List["RemovalShipmentAdjustmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A comma-delimited list of Removal shipmentAdjustment details for FBA inventory.
     """
 
-    removal_shipment_event_list: Optional[List["RemovalShipmentEvent"]] = attrs.field()
+    removal_shipment_event_list: Optional[List["RemovalShipmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of removal shipment event information.
     """
 
-    rental_transaction_event_list: Optional[List["RentalTransactionEvent"]] = attrs.field()
+    rental_transaction_event_list: Optional[List["RentalTransactionEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of rental transaction event information.
     """
 
-    retrocharge_event_list: Optional[List["RetrochargeEvent"]] = attrs.field()
+    retrocharge_event_list: Optional[List["RetrochargeEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about Retrocharge or RetrochargeReversal events.
     """
 
-    safetreimbursement_event_list: Optional[List["SAFETReimbursementEvent"]] = attrs.field()
+    safetreimbursement_event_list: Optional[List["SAFETReimbursementEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of SAFETReimbursementEvents.
     """
 
-    seller_deal_payment_event_list: Optional[List["SellerDealPaymentEvent"]] = attrs.field()
+    seller_deal_payment_event_list: Optional[List["SellerDealPaymentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of payment events for deal-related fees.
     """
 
-    seller_review_enrollment_payment_event_list: Optional[List["SellerReviewEnrollmentPaymentEvent"]] = attrs.field()
+    seller_review_enrollment_payment_event_list: Optional[List["SellerReviewEnrollmentPaymentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about fee events for the Early Reviewer Program.
     """
 
-    service_fee_event_list: Optional[List["ServiceFeeEvent"]] = attrs.field()
+    service_fee_event_list: Optional[List["ServiceFeeEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about service fee events.
     """
 
-    service_provider_credit_event_list: Optional[List["SolutionProviderCreditEvent"]] = attrs.field()
+    service_provider_credit_event_list: Optional[List["SolutionProviderCreditEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about solution provider credits.
     """
 
-    shipment_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    shipment_event_list: Optional[List["ShipmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of shipment event information.
     """
 
-    shipment_settle_event_list: Optional[List["ShipmentEvent"]] = attrs.field()
+    shipment_settle_event_list: Optional[List["ShipmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about shipment settle financial events.
     """
 
-    tax_withholding_event_list: Optional[List["TaxWithholdingEvent"]] = attrs.field()
+    tax_withholding_event_list: Optional[List["TaxWithholdingEvent"]] = attrs.field(
+        default=None,
+    )
     """
     List of TaxWithholding events.
     """
 
-    trial_shipment_event_list: Optional[List["TrialShipmentEvent"]] = attrs.field()
+    trial_shipment_event_list: Optional[List["TrialShipmentEvent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about trial shipment financial events.
     """
@@ -781,25 +953,33 @@ class ImagingServicesFeeEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _imaging_services_fee_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ImagingServicesFeeEvent(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
     """
 
-    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    imaging_request_billing_item_id: Optional[str] = attrs.field()
+    imaging_request_billing_item_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the imaging services request.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -811,15 +991,19 @@ class ListFinancialEventGroupsPayload:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_financial_event_groups_payload_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListFinancialEventGroupsPayload(**data)
 
-    financial_event_group_list: Optional[List["FinancialEventGroup"]] = attrs.field()
+    financial_event_group_list: Optional[List["FinancialEventGroup"]] = attrs.field(
+        default=None,
+    )
     """
     A list of financial event group information.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -834,15 +1018,19 @@ class ListFinancialEventGroupsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_financial_event_groups_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListFinancialEventGroupsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ListFinancialEventGroupsPayload"] = attrs.field()
+    payload: Optional["ListFinancialEventGroupsPayload"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the listFinancialEventGroups operation.
     """
@@ -857,15 +1045,19 @@ class ListFinancialEventsPayload:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_financial_events_payload_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListFinancialEventsPayload(**data)
 
-    financial_events: Optional["FinancialEvents"] = attrs.field()
+    financial_events: Optional["FinancialEvents"] = attrs.field(
+        default=None,
+    )
     """
     Contains all information related to a financial event.
     """
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     When present and not empty, pass this string token in the next request to return the next response page.
     """
@@ -880,15 +1072,19 @@ class ListFinancialEventsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_financial_events_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListFinancialEventsResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    payload: Optional["ListFinancialEventsPayload"] = attrs.field()
+    payload: Optional["ListFinancialEventsPayload"] = attrs.field(
+        default=None,
+    )
     """
     The payload for the listFinancialEvents operation.
     """
@@ -903,15 +1099,19 @@ class LoanServicingEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _loan_servicing_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LoanServicingEvent(**data)
 
-    loan_amount: Optional["Currency"] = attrs.field()
+    loan_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    source_business_event_type: Optional[str] = attrs.field()
+    source_business_event_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of event.
         Possible values:
@@ -930,42 +1130,58 @@ class NetworkComminglingTransactionEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _network_commingling_transaction_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return NetworkComminglingTransactionEvent(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the swapped item.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The marketplace in which the event took place.
     """
 
-    net_co_transaction_id: Optional[str] = attrs.field()
+    net_co_transaction_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the network item swap.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    swap_reason: Optional[str] = attrs.field()
+    swap_reason: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The reason for the network item swap.
     """
 
-    tax_amount: Optional["Currency"] = attrs.field()
+    tax_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    tax_exclusive_amount: Optional["Currency"] = attrs.field()
+    tax_exclusive_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    transaction_type: Optional[str] = attrs.field()
+    transaction_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of network item swap.
         Possible values:
@@ -983,20 +1199,26 @@ class PayWithAmazonEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _pay_with_amazon_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PayWithAmazonEvent(**data)
 
-    amount_description: Optional[str] = attrs.field()
+    amount_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A short description of this payment event.
     """
 
-    business_object_type: Optional[str] = attrs.field()
+    business_object_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of business object.
     """
 
-    charge: Optional["ChargeComponent"] = attrs.field()
+    charge: Optional["ChargeComponent"] = attrs.field(
+        default=None,
+    )
     """
     A charge on the seller's account.
         Possible values:
@@ -1033,12 +1255,16 @@ class PayWithAmazonEvent:
         * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
     """
 
-    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    fulfillment_channel: Optional[str] = attrs.field()
+    fulfillment_channel: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The fulfillment channel.
         Possible values:
@@ -1046,29 +1272,39 @@ class PayWithAmazonEvent:
         * MFN - Merchant Fulfillment Network (self-fulfilled)
     """
 
-    payment_amount_type: Optional[str] = attrs.field()
+    payment_amount_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of payment.
         Possible values:
         * Sales
     """
 
-    sales_channel: Optional[str] = attrs.field()
+    sales_channel: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The sales channel for the transaction.
     """
 
-    seller_order_id: Optional[str] = attrs.field()
+    seller_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An order identifier that is specified by the seller.
     """
 
-    store_name: Optional[str] = attrs.field()
+    store_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The store name where the event occurred.
     """
 
-    transaction_posted_date: Optional["Date"] = attrs.field()
+    transaction_posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1080,27 +1316,37 @@ class ProductAdsPaymentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _product_ads_payment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ProductAdsPaymentEvent(**data)
 
-    base_value: Optional["Currency"] = attrs.field()
+    base_value: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    invoice_id: Optional[str] = attrs.field()
+    invoice_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Identifier for the invoice that the transaction appears in.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    tax_value: Optional["Currency"] = attrs.field()
+    tax_value: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    transaction_type: Optional[str] = attrs.field()
+    transaction_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates if the transaction is for a charge or a refund.
         Possible values:
@@ -1108,7 +1354,9 @@ class ProductAdsPaymentEvent:
         * refund - Refund
     """
 
-    transaction_value: Optional["Currency"] = attrs.field()
+    transaction_value: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -1123,20 +1371,26 @@ class Promotion:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _promotion_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Promotion(**data)
 
-    promotion_amount: Optional["Currency"] = attrs.field()
+    promotion_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    promotion_id: Optional[str] = attrs.field()
+    promotion_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller-specified identifier for the promotion.
     """
 
-    promotion_type: Optional[str] = attrs.field()
+    promotion_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of promotion.
     """
@@ -1151,32 +1405,44 @@ class RemovalShipmentAdjustmentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _removal_shipment_adjustment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RemovalShipmentAdjustmentEvent(**data)
 
-    adjustment_event_id: Optional[str] = attrs.field()
+    adjustment_event_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The unique identifier for the adjustment event.
     """
 
-    merchant_order_id: Optional[str] = attrs.field()
+    merchant_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The merchant removal orderId.
     """
 
-    order_id: Optional[str] = attrs.field()
+    order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The orderId for shipping inventory.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    removal_shipment_item_adjustment_list: Optional[List["RemovalShipmentItemAdjustment"]] = attrs.field()
+    removal_shipment_item_adjustment_list: Optional[List["RemovalShipmentItemAdjustment"]] = attrs.field(
+        default=None,
+    )
     """
     A comma-delimited list of Removal shipmentItemAdjustment details for FBA inventory.
     """
 
-    transaction_type: Optional[str] = attrs.field()
+    transaction_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of removal order.
         Possible values:
@@ -1193,27 +1459,37 @@ class RemovalShipmentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _removal_shipment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RemovalShipmentEvent(**data)
 
-    merchant_order_id: Optional[str] = attrs.field()
+    merchant_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The merchant removal orderId.
     """
 
-    order_id: Optional[str] = attrs.field()
+    order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier for the removal shipment order.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    removal_shipment_item_list: Optional[List["RemovalShipmentItem"]] = attrs.field()
+    removal_shipment_item_list: Optional[List["RemovalShipmentItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about removal shipment items.
     """
 
-    transaction_type: Optional[str] = attrs.field()
+    transaction_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of removal order.
         Possible values:
@@ -1230,20 +1506,26 @@ class RemovalShipmentItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _removal_shipment_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RemovalShipmentItem(**data)
 
-    fee_amount: Optional["Currency"] = attrs.field()
+    fee_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    fulfillment_network_sku: Optional[str] = attrs.field()
+    fulfillment_network_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon fulfillment network SKU for the item.
     """
 
-    quantity: Optional[int] = attrs.field()
+    quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The quantity of the item.
 
@@ -1251,22 +1533,30 @@ class RemovalShipmentItem:
     {'schema_format': 'int32'}
     """
 
-    removal_shipment_item_id: Optional[str] = attrs.field()
+    removal_shipment_item_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An identifier for an item in a removal shipment.
     """
 
-    revenue: Optional["Currency"] = attrs.field()
+    revenue: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    tax_amount: Optional["Currency"] = attrs.field()
+    tax_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    tax_collection_model: Optional[str] = attrs.field()
+    tax_collection_model: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The tax collection model applied to the item.
         Possible values:
@@ -1274,7 +1564,9 @@ class RemovalShipmentItem:
         * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     """
 
-    tax_withheld: Optional["Currency"] = attrs.field()
+    tax_withheld: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -1289,10 +1581,12 @@ class RemovalShipmentItemAdjustment:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _removal_shipment_item_adjustment_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RemovalShipmentItemAdjustment(**data)
 
-    adjusted_quantity: Optional[int] = attrs.field()
+    adjusted_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     Adjusted quantity of removal shipmentItemAdjustment items.
 
@@ -1300,27 +1594,37 @@ class RemovalShipmentItemAdjustment:
     {'schema_format': 'int32'}
     """
 
-    fulfillment_network_sku: Optional[str] = attrs.field()
+    fulfillment_network_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon fulfillment network SKU for the item.
     """
 
-    removal_shipment_item_id: Optional[str] = attrs.field()
+    removal_shipment_item_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An identifier for an item in a removal shipment.
     """
 
-    revenue_adjustment: Optional["Currency"] = attrs.field()
+    revenue_adjustment: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    tax_amount_adjustment: Optional["Currency"] = attrs.field()
+    tax_amount_adjustment: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    tax_collection_model: Optional[str] = attrs.field()
+    tax_collection_model: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The tax collection model applied to the item.
         Possible values:
@@ -1328,7 +1632,9 @@ class RemovalShipmentItemAdjustment:
         * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     """
 
-    tax_withheld_adjustment: Optional["Currency"] = attrs.field()
+    tax_withheld_adjustment: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -1343,15 +1649,19 @@ class RentalTransactionEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _rental_transaction_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RentalTransactionEvent(**data)
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined identifier for an order.
     """
 
-    extension_length: Optional[int] = attrs.field()
+    extension_length: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of days that the buyer extended an already rented item. This value is only returned for RentalCustomerPayment-Extension and RentalCustomerRefund-Extension events.
 
@@ -1359,19 +1669,27 @@ class RentalTransactionEvent:
     {'schema_format': 'int32'}
     """
 
-    marketplace_name: Optional[str] = attrs.field()
+    marketplace_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the marketplace.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    rental_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    rental_charge_list: Optional[List["ChargeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of charge information on the seller's account.
     """
 
-    rental_event_type: Optional[str] = attrs.field()
+    rental_event_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of rental event.
         Possible values:
@@ -1384,22 +1702,30 @@ class RentalTransactionEvent:
         * RentalLostItemReimbursement - Transaction type that represents when Amazon sends money to the seller to compensate for a lost item.
     """
 
-    rental_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    rental_fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    rental_initial_value: Optional["Currency"] = attrs.field()
+    rental_initial_value: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    rental_reimbursement: Optional["Currency"] = attrs.field()
+    rental_reimbursement: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    rental_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field()
+    rental_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about taxes withheld.
     """
@@ -1414,27 +1740,37 @@ class RetrochargeEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _retrocharge_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return RetrochargeEvent(**data)
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined identifier for an order.
     """
 
-    base_tax: Optional["Currency"] = attrs.field()
+    base_tax: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    marketplace_name: Optional[str] = attrs.field()
+    marketplace_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the marketplace where the retrocharge event occurred.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    retrocharge_event_type: Optional[str] = attrs.field()
+    retrocharge_event_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of event.
         Possible values:
@@ -1442,12 +1778,16 @@ class RetrochargeEvent:
         * RetrochargeReversal
     """
 
-    retrocharge_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field()
+    retrocharge_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about taxes withheld.
     """
 
-    shipping_tax: Optional["Currency"] = attrs.field()
+    shipping_tax: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -1462,27 +1802,37 @@ class SAFETReimbursementEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _safetreimbursement_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SAFETReimbursementEvent(**data)
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    reason_code: Optional[str] = attrs.field()
+    reason_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Indicates why the seller was reimbursed.
     """
 
-    reimbursed_amount: Optional["Currency"] = attrs.field()
+    reimbursed_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    safetclaim_id: Optional[str] = attrs.field()
+    safetclaim_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A SAFE-T claim identifier.
     """
 
-    safetreimbursement_item_list: Optional[List["SAFETReimbursementItem"]] = attrs.field()
+    safetreimbursement_item_list: Optional[List["SAFETReimbursementItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of SAFETReimbursementItems.
     """
@@ -1497,20 +1847,26 @@ class SAFETReimbursementItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _safetreimbursement_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SAFETReimbursementItem(**data)
 
-    item_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    item_charge_list: Optional[List["ChargeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of charge information on the seller's account.
     """
 
-    product_description: Optional[str] = attrs.field()
+    product_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The description of the item as shown on the product detail page on the retail website.
     """
 
-    quantity: Optional[str] = attrs.field()
+    quantity: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The number of units of the item being reimbursed.
     """
@@ -1525,42 +1881,58 @@ class SellerDealPaymentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_deal_payment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerDealPaymentEvent(**data)
 
-    deal_description: Optional[str] = attrs.field()
+    deal_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The internal description of the deal.
     """
 
-    deal_id: Optional[str] = attrs.field()
+    deal_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The unique identifier of the deal.
     """
 
-    event_type: Optional[str] = attrs.field()
+    event_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of event: SellerDealComplete.
     """
 
-    fee_amount: Optional["Currency"] = attrs.field()
+    fee_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    fee_type: Optional[str] = attrs.field()
+    fee_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The type of fee: RunLightningDealFee.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    tax_amount: Optional["Currency"] = attrs.field()
+    tax_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    total_amount: Optional["Currency"] = attrs.field()
+    total_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -1575,10 +1947,12 @@ class SellerReviewEnrollmentPaymentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _seller_review_enrollment_payment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SellerReviewEnrollmentPaymentEvent(**data)
 
-    charge_component: Optional["ChargeComponent"] = attrs.field()
+    charge_component: Optional["ChargeComponent"] = attrs.field(
+        default=None,
+    )
     """
     A charge on the seller's account.
         Possible values:
@@ -1615,24 +1989,34 @@ class SellerReviewEnrollmentPaymentEvent:
         * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
     """
 
-    enrollment_id: Optional[str] = attrs.field()
+    enrollment_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An enrollment identifier.
     """
 
-    fee_component: Optional["FeeComponent"] = attrs.field()
+    fee_component: Optional["FeeComponent"] = attrs.field(
+        default=None,
+    )
     """
     A fee associated with the event.
     """
 
-    parent_asin: Optional[str] = attrs.field()
+    parent_asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early Reviewer Program.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    total_amount: Optional["Currency"] = attrs.field()
+    total_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -1647,40 +2031,54 @@ class ServiceFeeEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _service_fee_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ServiceFeeEvent(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of the item.
     """
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined identifier for an order.
     """
 
-    fee_description: Optional[str] = attrs.field()
+    fee_description: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A short description of the service fee event.
     """
 
-    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    fee_reason: Optional[str] = attrs.field()
+    fee_reason: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A short description of the service fee reason.
     """
 
-    fn_sku: Optional[str] = attrs.field()
+    fn_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon fulfillment center.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
@@ -1695,67 +2093,93 @@ class ShipmentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentEvent(**data)
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined identifier for an order.
     """
 
-    direct_payment_list: Optional[List["DirectPayment"]] = attrs.field()
+    direct_payment_list: Optional[List["DirectPayment"]] = attrs.field(
+        default=None,
+    )
     """
     A list of direct payment information.
     """
 
-    marketplace_name: Optional[str] = attrs.field()
+    marketplace_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The name of the marketplace where the event occurred.
     """
 
-    order_charge_adjustment_list: Optional[List["ChargeComponent"]] = attrs.field()
+    order_charge_adjustment_list: Optional[List["ChargeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of charge information on the seller's account.
     """
 
-    order_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    order_charge_list: Optional[List["ChargeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of charge information on the seller's account.
     """
 
-    order_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field()
+    order_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    order_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    order_fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    seller_order_id: Optional[str] = attrs.field()
+    seller_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A seller-defined identifier for an order.
     """
 
-    shipment_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field()
+    shipment_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    shipment_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    shipment_fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    shipment_item_adjustment_list: Optional[List["ShipmentItem"]] = attrs.field()
+    shipment_item_adjustment_list: Optional[List["ShipmentItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of shipment items.
     """
 
-    shipment_item_list: Optional[List["ShipmentItem"]] = attrs.field()
+    shipment_item_list: Optional[List["ShipmentItem"]] = attrs.field(
+        default=None,
+    )
     """
     A list of shipment items.
     """
@@ -1770,65 +2194,89 @@ class ShipmentItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _shipment_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ShipmentItem(**data)
 
-    cost_of_points_granted: Optional["Currency"] = attrs.field()
+    cost_of_points_granted: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    cost_of_points_returned: Optional["Currency"] = attrs.field()
+    cost_of_points_returned: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    item_charge_adjustment_list: Optional[List["ChargeComponent"]] = attrs.field()
+    item_charge_adjustment_list: Optional[List["ChargeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of charge information on the seller's account.
     """
 
-    item_charge_list: Optional[List["ChargeComponent"]] = attrs.field()
+    item_charge_list: Optional[List["ChargeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of charge information on the seller's account.
     """
 
-    item_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field()
+    item_fee_adjustment_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    item_fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    item_fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    item_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field()
+    item_tax_withheld_list: Optional[List["TaxWithheldComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of information about taxes withheld.
     """
 
-    order_adjustment_item_id: Optional[str] = attrs.field()
+    order_adjustment_item_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
     """
 
-    order_item_id: Optional[str] = attrs.field()
+    order_item_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined order item identifier.
     """
 
-    promotion_adjustment_list: Optional[List["Promotion"]] = attrs.field()
+    promotion_adjustment_list: Optional[List["Promotion"]] = attrs.field(
+        default=None,
+    )
     """
     A list of promotions.
     """
 
-    promotion_list: Optional[List["Promotion"]] = attrs.field()
+    promotion_list: Optional[List["Promotion"]] = attrs.field(
+        default=None,
+    )
     """
     A list of promotions.
     """
 
-    quantity_shipped: Optional[int] = attrs.field()
+    quantity_shipped: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of items shipped.
 
@@ -1836,7 +2284,9 @@ class ShipmentItem:
     {'schema_format': 'int32'}
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """
@@ -1851,55 +2301,75 @@ class SolutionProviderCreditEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _solution_provider_credit_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SolutionProviderCreditEvent(**data)
 
-    marketplace_country_code: Optional[str] = attrs.field()
+    marketplace_country_code: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The two-letter country code of the country associated with the marketplace where the order was placed.
     """
 
-    marketplace_id: Optional[str] = attrs.field()
+    marketplace_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier of the marketplace where the order was placed.
     """
 
-    provider_id: Optional[str] = attrs.field()
+    provider_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier of the solution provider.
     """
 
-    provider_store_name: Optional[str] = attrs.field()
+    provider_store_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The store name where the payment event occurred.
     """
 
-    provider_transaction_type: Optional[str] = attrs.field()
+    provider_transaction_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The transaction type.
     """
 
-    seller_id: Optional[str] = attrs.field()
+    seller_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon-defined identifier of the seller.
     """
 
-    seller_order_id: Optional[str] = attrs.field()
+    seller_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A seller-defined identifier for an order.
     """
 
-    seller_store_name: Optional[str] = attrs.field()
+    seller_store_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The store name where the payment event occurred.
     """
 
-    transaction_amount: Optional["Currency"] = attrs.field()
+    transaction_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    transaction_creation_date: Optional["Date"] = attrs.field()
+    transaction_creation_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1911,10 +2381,12 @@ class TaxWithheldComponent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_withheld_component_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxWithheldComponent(**data)
 
-    tax_collection_model: Optional[str] = attrs.field()
+    tax_collection_model: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The tax collection model applied to the item.
         Possible values:
@@ -1922,7 +2394,9 @@ class TaxWithheldComponent:
         * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     """
 
-    taxes_withheld: Optional[List["ChargeComponent"]] = attrs.field()
+    taxes_withheld: Optional[List["ChargeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of charge information on the seller's account.
     """
@@ -1937,22 +2411,30 @@ class TaxWithholdingEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_withholding_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxWithholdingEvent(**data)
 
-    base_amount: Optional["Currency"] = attrs.field()
+    base_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    tax_withholding_period: Optional["TaxWithholdingPeriod"] = attrs.field()
+    tax_withholding_period: Optional["TaxWithholdingPeriod"] = attrs.field(
+        default=None,
+    )
     """
     Period which taxwithholding on seller's account is calculated.
     """
 
-    withheld_amount: Optional["Currency"] = attrs.field()
+    withheld_amount: Optional["Currency"] = attrs.field(
+        default=None,
+    )
     """
     A currency type and amount.
     """
@@ -1967,12 +2449,16 @@ class TaxWithholdingPeriod:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _tax_withholding_period_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TaxWithholdingPeriod(**data)
 
-    end_date: Optional["Date"] = attrs.field()
+    end_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    start_date: Optional["Date"] = attrs.field()
+    start_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1984,27 +2470,37 @@ class TrialShipmentEvent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _trial_shipment_event_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TrialShipmentEvent(**data)
 
-    amazon_order_id: Optional[str] = attrs.field()
+    amazon_order_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     An Amazon-defined identifier for an order.
     """
 
-    fee_list: Optional[List["FeeComponent"]] = attrs.field()
+    fee_list: Optional[List["FeeComponent"]] = attrs.field(
+        default=None,
+    )
     """
     A list of fee component information.
     """
 
-    financial_event_group_id: Optional[str] = attrs.field()
+    financial_event_group_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The identifier of the financial event group.
     """
 
-    posted_date: Optional["Date"] = attrs.field()
+    posted_date: Optional["Date"] = attrs.field(
+        default=None,
+    )
 
-    sku: Optional[str] = attrs.field()
+    sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     """

@@ -22,10 +22,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     An error code that identifies the type of error that occurred.
     """
@@ -54,20 +56,26 @@ class GetInventorySummariesResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_inventory_summaries_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetInventorySummariesResponse(**data)
 
-    errors: Optional[List["Error"]] = attrs.field()
+    errors: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
 
-    pagination: Optional["Pagination"] = attrs.field()
+    pagination: Optional["Pagination"] = attrs.field(
+        default=None,
+    )
     """
     The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
     """
 
-    payload: Optional["GetInventorySummariesResult"] = attrs.field()
+    payload: Optional["GetInventorySummariesResult"] = attrs.field(
+        default=None,
+    )
     """
     The payload schema for the getInventorySummaries operation.
     """
@@ -82,15 +90,19 @@ class GetInventorySummariesResult:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_inventory_summaries_result_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetInventorySummariesResult(**data)
 
-    granularity: "Granularity" = attrs.field()
+    granularity: "Granularity" = attrs.field(
+        default=None,
+    )
     """
     Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
     """
 
-    inventory_summaries: List["InventorySummary"] = attrs.field()
+    inventory_summaries: List["InventorySummary"] = attrs.field(
+        default=None,
+    )
     """
     A list of inventory summaries.
     """
@@ -105,15 +117,19 @@ class Granularity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _granularity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Granularity(**data)
 
-    granularity_id: Optional[str] = attrs.field()
+    granularity_id: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
     """
 
-    granularity_type: Optional[str] = attrs.field()
+    granularity_type: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The granularity type for the inventory aggregation level.
     """
@@ -128,40 +144,54 @@ class InventoryDetails:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inventory_details_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InventoryDetails(**data)
 
-    fulfillable_quantity: Optional[int] = attrs.field()
+    fulfillable_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The item quantity that can be picked, packed, and shipped.
     """
 
-    inbound_receiving_quantity: Optional[int] = attrs.field()
+    inbound_receiving_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units that have not yet been received at an Amazon fulfillment center for processing, but are part of an inbound shipment with some units that have already been received and processed.
     """
 
-    inbound_shipped_quantity: Optional[int] = attrs.field()
+    inbound_shipped_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in an inbound shipment that you have notified Amazon about and have provided a tracking number.
     """
 
-    inbound_working_quantity: Optional[int] = attrs.field()
+    inbound_working_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in an inbound shipment for which you have notified Amazon.
     """
 
-    researching_quantity: Optional["ResearchingQuantity"] = attrs.field()
+    researching_quantity: Optional["ResearchingQuantity"] = attrs.field(
+        default=None,
+    )
     """
     The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
     """
 
-    reserved_quantity: Optional["ReservedQuantity"] = attrs.field()
+    reserved_quantity: Optional["ReservedQuantity"] = attrs.field(
+        default=None,
+    )
     """
     The quantity of reserved inventory.
     """
 
-    unfulfillable_quantity: Optional["UnfulfillableQuantity"] = attrs.field()
+    unfulfillable_quantity: Optional["UnfulfillableQuantity"] = attrs.field(
+        default=None,
+    )
     """
     The quantity of unfulfillable inventory.
     """
@@ -176,30 +206,40 @@ class InventorySummary:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _inventory_summary_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return InventorySummary(**data)
 
-    asin: Optional[str] = attrs.field()
+    asin: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN) of an item.
     """
 
-    condition: Optional[str] = attrs.field()
+    condition: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The condition of the item as described by the seller (for example, New Item).
     """
 
-    fn_sku: Optional[str] = attrs.field()
+    fn_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     Amazon's fulfillment network SKU identifier.
     """
 
-    inventory_details: Optional["InventoryDetails"] = attrs.field()
+    inventory_details: Optional["InventoryDetails"] = attrs.field(
+        default=None,
+    )
     """
     Summarized inventory details. This object will not appear if the details parameter in the request is false.
     """
 
-    last_updated_time: Optional[datetime] = attrs.field()
+    last_updated_time: Optional[datetime] = attrs.field(
+        default=None,
+    )
     """
     The date and time that any quantity was last updated.
 
@@ -207,17 +247,23 @@ class InventorySummary:
     {'schema_format': 'date-time'}
     """
 
-    product_name: Optional[str] = attrs.field()
+    product_name: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The localized language product title of the item within the specific marketplace.
     """
 
-    seller_sku: Optional[str] = attrs.field()
+    seller_sku: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     The seller SKU of the item.
     """
 
-    total_quantity: Optional[int] = attrs.field()
+    total_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The total number of units in an inbound shipment or in Amazon fulfillment centers.
     """
@@ -232,10 +278,12 @@ class Pagination:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _pagination_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Pagination(**data)
 
-    next_token: Optional[str] = attrs.field()
+    next_token: Optional[str] = attrs.field(
+        default=None,
+    )
     """
     A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
     """
@@ -250,15 +298,19 @@ class ResearchingQuantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _researching_quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ResearchingQuantity(**data)
 
-    researching_quantity_breakdown: Optional[List["ResearchingQuantityEntry"]] = attrs.field()
+    researching_quantity_breakdown: Optional[List["ResearchingQuantityEntry"]] = attrs.field(
+        default=None,
+    )
     """
     A list of quantity details for items currently being researched.
     """
 
-    total_researching_quantity: Optional[int] = attrs.field()
+    total_researching_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The total number of units currently being researched in Amazon's fulfillment network.
     """
@@ -273,19 +325,23 @@ class ResearchingQuantityEntry:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _researching_quantity_entry_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ResearchingQuantityEntry(**data)
 
     name: Union[
         Literal["researchingQuantityInShortTerm"],
         Literal["researchingQuantityInMidTerm"],
         Literal["researchingQuantityInLongTerm"],
-    ] = attrs.field()
+    ] = attrs.field(
+        default=None,
+    )
     """
     The duration of the research.
     """
 
-    quantity: int = attrs.field()
+    quantity: int = attrs.field(
+        default=None,
+    )
     """
     The number of units.
     """
@@ -300,25 +356,33 @@ class ReservedQuantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _reserved_quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ReservedQuantity(**data)
 
-    fc_processing_quantity: Optional[int] = attrs.field()
+    fc_processing_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units that have been sidelined at the fulfillment center for additional processing.
     """
 
-    pending_customer_order_quantity: Optional[int] = attrs.field()
+    pending_customer_order_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units reserved for customer orders.
     """
 
-    pending_transshipment_quantity: Optional[int] = attrs.field()
+    pending_transshipment_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units being transferred from one fulfillment center to another.
     """
 
-    total_reserved_quantity: Optional[int] = attrs.field()
+    total_reserved_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
     """
@@ -333,40 +397,54 @@ class UnfulfillableQuantity:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _unfulfillable_quantity_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return UnfulfillableQuantity(**data)
 
-    carrier_damaged_quantity: Optional[int] = attrs.field()
+    carrier_damaged_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in carrier damaged disposition.
     """
 
-    customer_damaged_quantity: Optional[int] = attrs.field()
+    customer_damaged_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in customer damaged disposition.
     """
 
-    defective_quantity: Optional[int] = attrs.field()
+    defective_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in defective disposition.
     """
 
-    distributor_damaged_quantity: Optional[int] = attrs.field()
+    distributor_damaged_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in distributor damaged disposition.
     """
 
-    expired_quantity: Optional[int] = attrs.field()
+    expired_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in expired disposition.
     """
 
-    total_unfulfillable_quantity: Optional[int] = attrs.field()
+    total_unfulfillable_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The total number of units in Amazon's fulfillment network in unsellable condition.
     """
 
-    warehouse_damaged_quantity: Optional[int] = attrs.field()
+    warehouse_damaged_quantity: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of units in warehouse damaged disposition.
     """

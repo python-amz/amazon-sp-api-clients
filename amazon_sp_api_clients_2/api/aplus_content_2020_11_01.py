@@ -22,7 +22,7 @@ class AplusPaginatedResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _aplus_paginated_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AplusPaginatedResponse(**data)
 
     pass
@@ -37,10 +37,12 @@ class AplusResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _aplus_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AplusResponse(**data)
 
-    warnings: Optional[List["Error"]] = attrs.field()
+    warnings: Optional[List["Error"]] = attrs.field(
+        default=None,
+    )
     """
     A set of messages to the user, such as warnings or comments.
     """
@@ -55,7 +57,7 @@ class Asin:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _asin_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Asin(**data)
 
     pass
@@ -70,7 +72,7 @@ class AsinBadge:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _asin_badge_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AsinBadge(**data)
 
     pass
@@ -85,10 +87,12 @@ class AsinMetadata:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _asin_metadata_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return AsinMetadata(**data)
 
-    asin: "Asin" = attrs.field()
+    asin: "Asin" = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN).
     """
@@ -144,7 +148,7 @@ class ColorType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _color_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ColorType(**data)
 
     pass
@@ -159,7 +163,7 @@ class ContentBadge:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_badge_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentBadge(**data)
 
     pass
@@ -174,10 +178,12 @@ class ContentDocument:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_document_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentDocument(**data)
 
-    content_module_list: List["ContentModule"] = attrs.field()
+    content_module_list: List["ContentModule"] = attrs.field(
+        default=None,
+    )
     """
     A list of A+ Content modules.
     """
@@ -189,18 +195,24 @@ class ContentDocument:
     The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
     """
 
-    content_type: "ContentType" = attrs.field()
+    content_type: "ContentType" = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document type.
     """
 
-    locale: "LanguageTag" = attrs.field()
+    locale: "LanguageTag" = attrs.field(
+        default=None,
+    )
     """
     The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
         **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document name.
 
@@ -218,20 +230,26 @@ class ContentMetadata:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_metadata_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentMetadata(**data)
 
-    badge_set: List["ContentBadge"] = attrs.field()
+    badge_set: List["ContentBadge"] = attrs.field(
+        default=None,
+    )
     """
     The set of content badges.
     """
 
-    marketplace_id: "MarketplaceId" = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field(
+        default=None,
+    )
     """
     The identifier for the marketplace where the A+ Content is published.
     """
 
-    name: str = attrs.field()
+    name: str = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document name.
 
@@ -239,12 +257,16 @@ class ContentMetadata:
     {'maxLength': 100, 'minLength': 1}
     """
 
-    status: "ContentStatus" = attrs.field()
+    status: "ContentStatus" = attrs.field(
+        default=None,
+    )
     """
     The submission status of the content document.
     """
 
-    update_time: datetime = attrs.field()
+    update_time: datetime = attrs.field(
+        default=None,
+    )
     """
     The approximate age of the A+ Content document and metadata.
 
@@ -262,15 +284,19 @@ class ContentMetadataRecord:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_metadata_record_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentMetadataRecord(**data)
 
-    content_metadata: "ContentMetadata" = attrs.field()
+    content_metadata: "ContentMetadata" = attrs.field(
+        default=None,
+    )
     """
     The metadata of an A+ Content document.
     """
 
-    content_reference_key: "ContentReferenceKey" = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field(
+        default=None,
+    )
     """
     A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
     """
@@ -285,10 +311,12 @@ class ContentModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentModule(**data)
 
-    content_module_type: "ContentModuleType" = attrs.field()
+    content_module_type: "ContentModuleType" = attrs.field(
+        default=None,
+    )
     """
     The type of A+ Content module.
     """
@@ -408,7 +436,7 @@ class ContentModuleType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_module_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentModuleType(**data)
 
     pass
@@ -423,7 +451,7 @@ class ContentRecord:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_record_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentRecord(**data)
 
     content_document: Optional["ContentDocument"] = attrs.field(
@@ -440,7 +468,9 @@ class ContentRecord:
     The metadata of an A+ Content document.
     """
 
-    content_reference_key: "ContentReferenceKey" = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field(
+        default=None,
+    )
     """
     A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
     """
@@ -455,7 +485,7 @@ class ContentReferenceKey:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_reference_key_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentReferenceKey(**data)
 
     pass
@@ -470,7 +500,7 @@ class ContentStatus:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_status_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentStatus(**data)
 
     pass
@@ -485,7 +515,7 @@ class ContentSubType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_sub_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentSubType(**data)
 
     pass
@@ -500,7 +530,7 @@ class ContentType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _content_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ContentType(**data)
 
     pass
@@ -515,10 +545,12 @@ class Decorator:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _decorator_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Decorator(**data)
 
-    depth: Optional[int] = attrs.field()
+    depth: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The relative intensity or variation of this decorator. Decorators such as bullet-points, for example, can have multiple indentation depths.
 
@@ -526,7 +558,9 @@ class Decorator:
     {'maximum': 100.0, 'minimum': 0.0}
     """
 
-    length: Optional[int] = attrs.field()
+    length: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The number of content characters to alter with this decorator. Decorators such as line breaks can have zero length and fit between characters.
 
@@ -534,7 +568,9 @@ class Decorator:
     {'maximum': 10000.0, 'minimum': 0.0}
     """
 
-    offset: Optional[int] = attrs.field()
+    offset: Optional[int] = attrs.field(
+        default=None,
+    )
     """
     The starting character of this decorator within the content string. Use zero for the first character.
 
@@ -542,7 +578,9 @@ class Decorator:
     {'maximum': 10000.0, 'minimum': 0.0}
     """
 
-    type: Optional["DecoratorType"] = attrs.field()
+    type: Optional["DecoratorType"] = attrs.field(
+        default=None,
+    )
     """
     The type of rich text decorator.
     """
@@ -557,7 +595,7 @@ class DecoratorType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _decorator_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return DecoratorType(**data)
 
     pass
@@ -572,10 +610,12 @@ class Error:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return Error(**data)
 
-    code: str = attrs.field()
+    code: str = attrs.field(
+        default=None,
+    )
     """
     The code that identifies the type of error condition.
 
@@ -593,7 +633,9 @@ class Error:
     {'minLength': 1}
     """
 
-    message: str = attrs.field()
+    message: str = attrs.field(
+        default=None,
+    )
     """
     A human readable description of the error condition.
 
@@ -611,10 +653,12 @@ class ErrorList:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _error_list_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ErrorList(**data)
 
-    errors: List["Error"] = attrs.field()
+    errors: List["Error"] = attrs.field(
+        default=None,
+    )
     """
     A list of error responses returned when a request is unsuccessful.
     """
@@ -625,7 +669,7 @@ class GetContentDocumentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _get_content_document_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return GetContentDocumentResponse(**data)
 
     pass
@@ -640,10 +684,12 @@ class ImageComponent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _image_component_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ImageComponent(**data)
 
-    alt_text: str = attrs.field()
+    alt_text: str = attrs.field(
+        default=None,
+    )
     """
     The alternative text for the image.
 
@@ -651,12 +697,16 @@ class ImageComponent:
     {'maxLength': 100, 'minLength': 1}
     """
 
-    image_crop_specification: "ImageCropSpecification" = attrs.field()
+    image_crop_specification: "ImageCropSpecification" = attrs.field(
+        default=None,
+    )
     """
     The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
     """
 
-    upload_destination_id: str = attrs.field()
+    upload_destination_id: str = attrs.field(
+        default=None,
+    )
     """
     This identifier is provided by the Selling Partner API for Uploads.
 
@@ -674,7 +724,7 @@ class ImageCropSpecification:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _image_crop_specification_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ImageCropSpecification(**data)
 
     offset: Optional["ImageOffsets"] = attrs.field(
@@ -684,7 +734,9 @@ class ImageCropSpecification:
     The top left corner of the cropped image, specified in the original image's coordinate space.
     """
 
-    size: "ImageDimensions" = attrs.field()
+    size: "ImageDimensions" = attrs.field(
+        default=None,
+    )
     """
     The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
     """
@@ -699,15 +751,19 @@ class ImageDimensions:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _image_dimensions_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ImageDimensions(**data)
 
-    height: "IntegerWithUnits" = attrs.field()
+    height: "IntegerWithUnits" = attrs.field(
+        default=None,
+    )
     """
     A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
     """
 
-    width: "IntegerWithUnits" = attrs.field()
+    width: "IntegerWithUnits" = attrs.field(
+        default=None,
+    )
     """
     A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
     """
@@ -722,15 +778,19 @@ class ImageOffsets:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _image_offsets_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ImageOffsets(**data)
 
-    x: "IntegerWithUnits" = attrs.field()
+    x: "IntegerWithUnits" = attrs.field(
+        default=None,
+    )
     """
     A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
     """
 
-    y: "IntegerWithUnits" = attrs.field()
+    y: "IntegerWithUnits" = attrs.field(
+        default=None,
+    )
     """
     A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
     """
@@ -745,15 +805,19 @@ class IntegerWithUnits:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _integer_with_units_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return IntegerWithUnits(**data)
 
-    units: str = attrs.field()
+    units: str = attrs.field(
+        default=None,
+    )
     """
     The unit of measurement.
     """
 
-    value: int = attrs.field()
+    value: int = attrs.field(
+        default=None,
+    )
     """
     The dimension value.
     """
@@ -769,7 +833,7 @@ class LanguageTag:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _language_tag_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return LanguageTag(**data)
 
     pass
@@ -780,7 +844,7 @@ class ListContentDocumentAsinRelationsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _list_content_document_asin_relations_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ListContentDocumentAsinRelationsResponse(**data)
 
     pass
@@ -795,7 +859,7 @@ class MarketplaceId:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _marketplace_id_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return MarketplaceId(**data)
 
     pass
@@ -810,7 +874,7 @@ class PageToken:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _page_token_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PageToken(**data)
 
     pass
@@ -825,10 +889,12 @@ class ParagraphComponent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _paragraph_component_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ParagraphComponent(**data)
 
-    text_list: List["TextComponent"] = attrs.field()
+    text_list: List["TextComponent"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -840,10 +906,12 @@ class PlainTextItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _plain_text_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PlainTextItem(**data)
 
-    position: int = attrs.field()
+    position: int = attrs.field(
+        default=None,
+    )
     """
     The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
 
@@ -851,7 +919,9 @@ class PlainTextItem:
     {'maximum': 100.0, 'minimum': 1.0}
     """
 
-    value: str = attrs.field()
+    value: str = attrs.field(
+        default=None,
+    )
     """
     The actual plain text.
 
@@ -869,7 +939,7 @@ class PositionType:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _position_type_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PositionType(**data)
 
     pass
@@ -880,7 +950,7 @@ class PostContentDocumentApprovalSubmissionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _post_content_document_approval_submission_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PostContentDocumentApprovalSubmissionResponse(**data)
 
     pass
@@ -891,10 +961,12 @@ class PostContentDocumentAsinRelationsRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _post_content_document_asin_relations_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PostContentDocumentAsinRelationsRequest(**data)
 
-    asin_set: List["Asin"] = attrs.field()
+    asin_set: List["Asin"] = attrs.field(
+        default=None,
+    )
     """
     The set of ASINs.
     """
@@ -905,7 +977,7 @@ class PostContentDocumentAsinRelationsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _post_content_document_asin_relations_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PostContentDocumentAsinRelationsResponse(**data)
 
     pass
@@ -916,10 +988,12 @@ class PostContentDocumentRequest:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _post_content_document_request_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PostContentDocumentRequest(**data)
 
-    content_document: "ContentDocument" = attrs.field()
+    content_document: "ContentDocument" = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document. This is the enhanced content that is published to product detail pages.
     """
@@ -930,7 +1004,7 @@ class PostContentDocumentResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _post_content_document_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PostContentDocumentResponse(**data)
 
     pass
@@ -941,7 +1015,7 @@ class PostContentDocumentSuspendSubmissionResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _post_content_document_suspend_submission_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PostContentDocumentSuspendSubmissionResponse(**data)
 
     pass
@@ -956,15 +1030,19 @@ class PublishRecord:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _publish_record_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return PublishRecord(**data)
 
-    asin: "Asin" = attrs.field()
+    asin: "Asin" = attrs.field(
+        default=None,
+    )
     """
     The Amazon Standard Identification Number (ASIN).
     """
 
-    content_reference_key: "ContentReferenceKey" = attrs.field()
+    content_reference_key: "ContentReferenceKey" = attrs.field(
+        default=None,
+    )
     """
     A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ content identifier.
     """
@@ -976,18 +1054,24 @@ class PublishRecord:
     The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
     """
 
-    content_type: "ContentType" = attrs.field()
+    content_type: "ContentType" = attrs.field(
+        default=None,
+    )
     """
     The A+ Content document type.
     """
 
-    locale: "LanguageTag" = attrs.field()
+    locale: "LanguageTag" = attrs.field(
+        default=None,
+    )
     """
     The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
         **Pattern:** ^[a-z]{2,}-[A-Z0-9]{2,}$
     """
 
-    marketplace_id: "MarketplaceId" = attrs.field()
+    marketplace_id: "MarketplaceId" = attrs.field(
+        default=None,
+    )
     """
     The identifier for the marketplace where the A+ Content is published.
     """
@@ -998,7 +1082,7 @@ class SearchContentDocumentsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _search_content_documents_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SearchContentDocumentsResponse(**data)
 
     pass
@@ -1009,7 +1093,7 @@ class SearchContentPublishRecordsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _search_content_publish_records_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return SearchContentPublishRecordsResponse(**data)
 
     pass
@@ -1024,10 +1108,12 @@ class StandardCompanyLogoModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_company_logo_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardCompanyLogoModule(**data)
 
-    company_logo: "ImageComponent" = attrs.field()
+    company_logo: "ImageComponent" = attrs.field(
+        default=None,
+    )
     """
     A reference to an image, hosted in the A+ Content media library.
     """
@@ -1042,7 +1128,7 @@ class StandardComparisonProductBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_comparison_product_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardComparisonProductBlock(**data)
 
     asin: Optional["Asin"] = attrs.field(
@@ -1076,7 +1162,9 @@ class StandardComparisonProductBlock:
     {'maxItems': 10, 'minItems': 0}
     """
 
-    position: int = attrs.field()
+    position: int = attrs.field(
+        default=None,
+    )
     """
     The rank or index of this comparison product block within the module. Different blocks cannot occupy the same position within a single module.
 
@@ -1104,12 +1192,16 @@ class StandardComparisonTableModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_comparison_table_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardComparisonTableModule(**data)
 
-    metric_row_labels: Optional[List["PlainTextItem"]] = attrs.field()
+    metric_row_labels: Optional[List["PlainTextItem"]] = attrs.field(
+        default=None,
+    )
 
-    product_columns: Optional[List["StandardComparisonProductBlock"]] = attrs.field()
+    product_columns: Optional[List["StandardComparisonProductBlock"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1121,30 +1213,40 @@ class StandardFourImageTextModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_four_image_text_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardFourImageTextModule(**data)
 
-    block1: Optional["StandardImageTextBlock"] = attrs.field()
+    block1: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block2: Optional["StandardImageTextBlock"] = attrs.field()
+    block2: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block3: Optional["StandardImageTextBlock"] = attrs.field()
+    block3: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block4: Optional["StandardImageTextBlock"] = attrs.field()
+    block4: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1159,25 +1261,33 @@ class StandardFourImageTextQuadrantModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_four_image_text_quadrant_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardFourImageTextQuadrantModule(**data)
 
-    block1: "StandardImageTextBlock" = attrs.field()
+    block1: "StandardImageTextBlock" = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block2: "StandardImageTextBlock" = attrs.field()
+    block2: "StandardImageTextBlock" = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block3: "StandardImageTextBlock" = attrs.field()
+    block3: "StandardImageTextBlock" = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block4: "StandardImageTextBlock" = attrs.field()
+    block4: "StandardImageTextBlock" = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
@@ -1192,15 +1302,19 @@ class StandardHeaderImageTextModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_header_image_text_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardHeaderImageTextModule(**data)
 
-    block: Optional["StandardImageTextBlock"] = attrs.field()
+    block: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1215,15 +1329,19 @@ class StandardHeaderTextListBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_header_text_list_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardHeaderTextListBlock(**data)
 
-    block: Optional["StandardTextListBlock"] = attrs.field()
+    block: Optional["StandardTextListBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard fixed length list of text, usually presented as bullet points.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1238,15 +1356,19 @@ class StandardImageCaptionBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_image_caption_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardImageCaptionBlock(**data)
 
-    caption: Optional["TextComponent"] = attrs.field()
+    caption: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    image: Optional["ImageComponent"] = attrs.field()
+    image: Optional["ImageComponent"] = attrs.field(
+        default=None,
+    )
     """
     A reference to an image, hosted in the A+ Content media library.
     """
@@ -1261,35 +1383,47 @@ class StandardImageSidebarModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_image_sidebar_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardImageSidebarModule(**data)
 
-    description_list_block: Optional["StandardTextListBlock"] = attrs.field()
+    description_list_block: Optional["StandardTextListBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard fixed length list of text, usually presented as bullet points.
     """
 
-    description_text_block: Optional["StandardTextBlock"] = attrs.field()
+    description_text_block: Optional["StandardTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    image_caption_block: Optional["StandardImageCaptionBlock"] = attrs.field()
+    image_caption_block: Optional["StandardImageCaptionBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and caption block.
     """
 
-    sidebar_image_text_block: Optional["StandardImageTextBlock"] = attrs.field()
+    sidebar_image_text_block: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    sidebar_list_block: Optional["StandardTextListBlock"] = attrs.field()
+    sidebar_list_block: Optional["StandardTextListBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard fixed length list of text, usually presented as bullet points.
     """
@@ -1304,20 +1438,26 @@ class StandardImageTextBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_image_text_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardImageTextBlock(**data)
 
-    body: Optional["ParagraphComponent"] = attrs.field()
+    body: Optional["ParagraphComponent"] = attrs.field(
+        default=None,
+    )
     """
     A list of rich text content, usually presented in a text box.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    image: Optional["ImageComponent"] = attrs.field()
+    image: Optional["ImageComponent"] = attrs.field(
+        default=None,
+    )
     """
     A reference to an image, hosted in the A+ Content media library.
     """
@@ -1332,15 +1472,19 @@ class StandardImageTextCaptionBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_image_text_caption_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardImageTextCaptionBlock(**data)
 
-    block: Optional["StandardImageTextBlock"] = attrs.field()
+    block: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    caption: Optional["TextComponent"] = attrs.field()
+    caption: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1355,7 +1499,7 @@ class StandardImageTextOverlayModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_image_text_overlay_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardImageTextOverlayModule(**data)
 
     block: Optional["StandardImageTextBlock"] = attrs.field(
@@ -1365,7 +1509,9 @@ class StandardImageTextOverlayModule:
     The A+ Content standard image and text box block.
     """
 
-    overlay_color_type: "ColorType" = attrs.field()
+    overlay_color_type: "ColorType" = attrs.field(
+        default=None,
+    )
     """
     The relative color scheme of content.
     """
@@ -1380,10 +1526,12 @@ class StandardMultipleImageTextModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_multiple_image_text_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardMultipleImageTextModule(**data)
 
-    blocks: Optional[List["StandardImageTextCaptionBlock"]] = attrs.field()
+    blocks: Optional[List["StandardImageTextCaptionBlock"]] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1395,10 +1543,12 @@ class StandardProductDescriptionModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_product_description_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardProductDescriptionModule(**data)
 
-    body: "ParagraphComponent" = attrs.field()
+    body: "ParagraphComponent" = attrs.field(
+        default=None,
+    )
     """
     A list of rich text content, usually presented in a text box.
     """
@@ -1413,35 +1563,47 @@ class StandardSingleImageHighlightsModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_single_image_highlights_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardSingleImageHighlightsModule(**data)
 
-    bulleted_list_block: Optional["StandardHeaderTextListBlock"] = attrs.field()
+    bulleted_list_block: Optional["StandardHeaderTextListBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ standard fixed-length list of text, with a related headline.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    image: Optional["ImageComponent"] = attrs.field()
+    image: Optional["ImageComponent"] = attrs.field(
+        default=None,
+    )
     """
     A reference to an image, hosted in the A+ Content media library.
     """
 
-    text_block1: Optional["StandardTextBlock"] = attrs.field()
+    text_block1: Optional["StandardTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
 
-    text_block2: Optional["StandardTextBlock"] = attrs.field()
+    text_block2: Optional["StandardTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
 
-    text_block3: Optional["StandardTextBlock"] = attrs.field()
+    text_block3: Optional["StandardTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
@@ -1456,45 +1618,61 @@ class StandardSingleImageSpecsDetailModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_single_image_specs_detail_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardSingleImageSpecsDetailModule(**data)
 
-    description_block1: Optional["StandardTextBlock"] = attrs.field()
+    description_block1: Optional["StandardTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
 
-    description_block2: Optional["StandardTextBlock"] = attrs.field()
+    description_block2: Optional["StandardTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
 
-    description_headline: Optional["TextComponent"] = attrs.field()
+    description_headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    image: Optional["ImageComponent"] = attrs.field()
+    image: Optional["ImageComponent"] = attrs.field(
+        default=None,
+    )
     """
     A reference to an image, hosted in the A+ Content media library.
     """
 
-    specification_headline: Optional["TextComponent"] = attrs.field()
+    specification_headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    specification_list_block: Optional["StandardHeaderTextListBlock"] = attrs.field()
+    specification_list_block: Optional["StandardHeaderTextListBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ standard fixed-length list of text, with a related headline.
     """
 
-    specification_text_block: Optional["StandardTextBlock"] = attrs.field()
+    specification_text_block: Optional["StandardTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard text box block, comprised of a paragraph with a headline.
     """
@@ -1509,7 +1687,7 @@ class StandardSingleSideImageModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_single_side_image_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardSingleSideImageModule(**data)
 
     block: Optional["StandardImageTextBlock"] = attrs.field(
@@ -1519,7 +1697,9 @@ class StandardSingleSideImageModule:
     The A+ Content standard image and text box block.
     """
 
-    image_position_type: "PositionType" = attrs.field()
+    image_position_type: "PositionType" = attrs.field(
+        default=None,
+    )
     """
     The relative positioning of content.
     """
@@ -1534,7 +1714,7 @@ class StandardTechSpecsModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_tech_specs_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardTechSpecsModule(**data)
 
     headline: Optional["TextComponent"] = attrs.field(
@@ -1544,7 +1724,9 @@ class StandardTechSpecsModule:
     Rich text content.
     """
 
-    specification_list: List["StandardTextPairBlock"] = attrs.field()
+    specification_list: List["StandardTextPairBlock"] = attrs.field(
+        default=None,
+    )
     """
     The specification list.
 
@@ -1572,15 +1754,19 @@ class StandardTextBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_text_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardTextBlock(**data)
 
-    body: Optional["ParagraphComponent"] = attrs.field()
+    body: Optional["ParagraphComponent"] = attrs.field(
+        default=None,
+    )
     """
     A list of rich text content, usually presented in a text box.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1595,10 +1781,12 @@ class StandardTextListBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_text_list_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardTextListBlock(**data)
 
-    text_list: List["TextItem"] = attrs.field()
+    text_list: List["TextItem"] = attrs.field(
+        default=None,
+    )
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1610,10 +1798,12 @@ class StandardTextModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_text_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardTextModule(**data)
 
-    body: "ParagraphComponent" = attrs.field()
+    body: "ParagraphComponent" = attrs.field(
+        default=None,
+    )
     """
     A list of rich text content, usually presented in a text box.
     """
@@ -1635,15 +1825,19 @@ class StandardTextPairBlock:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_text_pair_block_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardTextPairBlock(**data)
 
-    description: Optional["TextComponent"] = attrs.field()
+    description: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
 
-    label: Optional["TextComponent"] = attrs.field()
+    label: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1658,25 +1852,33 @@ class StandardThreeImageTextModule:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _standard_three_image_text_module_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return StandardThreeImageTextModule(**data)
 
-    block1: Optional["StandardImageTextBlock"] = attrs.field()
+    block1: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block2: Optional["StandardImageTextBlock"] = attrs.field()
+    block2: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    block3: Optional["StandardImageTextBlock"] = attrs.field()
+    block3: Optional["StandardImageTextBlock"] = attrs.field(
+        default=None,
+    )
     """
     The A+ Content standard image and text box block.
     """
 
-    headline: Optional["TextComponent"] = attrs.field()
+    headline: Optional["TextComponent"] = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1691,7 +1893,7 @@ class TextComponent:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _text_component_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TextComponent(**data)
 
     decorator_set: Optional[List["Decorator"]] = attrs.field(
@@ -1701,7 +1903,9 @@ class TextComponent:
     A set of content decorators.
     """
 
-    value: str = attrs.field()
+    value: str = attrs.field(
+        default=None,
+    )
     """
     The actual plain text.
 
@@ -1719,10 +1923,12 @@ class TextItem:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _text_item_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return TextItem(**data)
 
-    position: int = attrs.field()
+    position: int = attrs.field(
+        default=None,
+    )
     """
     The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
 
@@ -1730,7 +1936,9 @@ class TextItem:
     {'maximum': 100.0, 'minimum': 1.0}
     """
 
-    text: "TextComponent" = attrs.field()
+    text: "TextComponent" = attrs.field(
+        default=None,
+    )
     """
     Rich text content.
     """
@@ -1741,7 +1949,7 @@ class ValidateContentDocumentAsinRelationsResponse:
     @classmethod
     def from_json(cls, data: dict):
         name_convert = _validate_content_document_asin_relations_response_name_convert
-        data = {name_convert[k]: v for k, v in data}
+        data = {name_convert[k]: v for k, v in data.items()}
         return ValidateContentDocumentAsinRelationsResponse(**data)
 
     pass
