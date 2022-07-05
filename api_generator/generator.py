@@ -448,10 +448,14 @@ class Generator:
 
     @classmethod
     def main(cls):
-        # files = list((Path(__file__).parent.parent / 'swagger3_apis').glob('*report*21*.json'))
-        files = list((Path(__file__).parent.parent / 'swagger3_apis').glob('*.json'))
-        with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
-            generators = pool.map(cls.worker, files)
+        debug = True
+        glob_pattern = 'order*.json' if debug else '*.json'
+        files = list((Path(__file__).parent.parent / 'swagger3_apis').glob(glob_pattern))
+        if debug:
+            with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
+                generators = pool.map(cls.worker, files)
+        else:
+            generators = [cls.worker(f) for f in files]
         [g.generate() for g in generators]
         content = render(RequestFactory(), 'init.html', {'data': generators}).content.decode('utf-8')
         content = cls.format_python_file(content)
