@@ -73,7 +73,7 @@ client_config = dict(
     lwa_client_key=client_id,
     lwa_client_secret=client_secret,
 )
-order_client = amazon_sp_api_clients.OrdersV0Client(**client_config, use_cache=True)
+order_client = amazon_sp_api_clients.OrdersV0Client(**client_config)
 
 orders = order_client.getOrders(
     MarketplaceIds=[marketplace_id],
