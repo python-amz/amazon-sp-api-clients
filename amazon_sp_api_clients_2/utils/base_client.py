@@ -236,7 +236,8 @@ class BaseClient:
         response = self.request(url, method=method, params=query, data=body)
         data = response.json()
         klass = responses.get(response.status_code)
-        obj = klass(data)
+        # noinspection PyUnresolvedReferences
+        obj = klass.from_json(data)
         return obj
 
 
