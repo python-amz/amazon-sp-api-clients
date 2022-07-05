@@ -9,22 +9,17 @@ License for the OpenAPI file: {{ data.data.info.license.name }} {{ data.data.inf
 """
 import attrs
 from ..utils.base_client import BaseClient
+from ..utils.base_object import BaseObject
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 {% for schema in data.schemas %}
 @attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
-class {{ schema.name }}:
+class {{ schema.name }}(BaseObject):
     {% if schema.parsed_description %}"""
     {{ schema.parsed_description }}
     """
     {% endif %}
-
-    @classmethod
-    def from_json(cls, data: dict):
-        name_convert = _{{ schema.variable_name }}_name_convert
-        data = {name_convert[k]: v for k,v in data.items()}
-        return {{ schema.name }}(**data)
 
     {% for p in schema.all_properties %}
     {{ p.variable_name }}: {% if p.name in schema.required %}{{ p.type_hint }}{% else %}Optional[{{ p.type_hint }}]{% endif %} = attrs.field(
@@ -49,15 +44,16 @@ class {{ schema.name }}:
     {% if not schema.properties %}
     pass
     {% endif %}
+
+    _attrs_config = {
+        'name-convert': {
+            {% for property in schema.all_properties %}
+                "{{ property.name }}": "{{ property.variable_name }}",
+            {% endfor %}
+        }
+    }
 {% endfor %}
 
-{% for schema in data.schemas %}
-_{{ schema.variable_name }}_name_convert = {
-    {% for property in schema.all_properties %}
-        "{{ property.name }}": "{{ property.variable_name }}",
-    {% endfor %}
-}
-{% endfor %}
 
 class {{ data.class_name }}Client(BaseClient):
 {% for operation in data.operations %}
