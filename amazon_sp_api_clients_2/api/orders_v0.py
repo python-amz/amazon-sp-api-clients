@@ -2325,14 +2325,14 @@ class OrdersV0Client(BaseClient):
         above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
 
         Args:
-            created_after: A date used for selecting orders created after (or at) a specified time. Only orders
-                placed after the specified time are returned. Either the CreatedAfter parameter or the LastUpdatedAfter
+            created_after: A date used for selecting orders created after (or at) a specified time. Only orders placed
+                after the specified time are returned. Either the CreatedAfter parameter or the LastUpdatedAfter
                 parameter is required. Both cannot be empty. The date must be in ISO 8601 format.
-            created_before: A date used for selecting orders created before (or at) a specified time. Only orders
-                placed before the specified time are returned. The date must be in ISO 8601 format.
-            last_updated_after: A date used for selecting orders that were last updated after (or at) a specified
-                time. An update is defined as any change in order status, including the creation of a new order.
-                Includes updates made by Amazon and by the seller. The date must be in ISO 8601 format.
+            created_before: A date used for selecting orders created before (or at) a specified time. Only orders placed
+                before the specified time are returned. The date must be in ISO 8601 format.
+            last_updated_after: A date used for selecting orders that were last updated after (or at) a specified time.
+                An update is defined as any change in order status, including the creation of a new order. Includes
+                updates made by Amazon and by the seller. The date must be in ISO 8601 format.
             last_updated_before: A date used for selecting orders that were last updated before (or at) a specified
                 time. An update is defined as any change in order status, including the creation of a new order.
                 Includes updates made by Amazon and by the seller. The date must be in ISO 8601 format.
@@ -2348,36 +2348,35 @@ class OrdersV0Client(BaseClient):
                 orders.).
             marketplace_ids: A list of MarketplaceId values. Used to select orders that were placed in the specified
                 marketplaces.
-                See the [Selling Partner API Developer Guide](doc:marketplace-ids) for a complete list of marketplaceId
+            See the [Selling Partner API Developer Guide](doc:marketplace-ids) for a complete list of marketplaceId
                 values.
-            fulfillment_channels: A list that indicates how an order was fulfilled. Filters the results by
-                fulfillment channel. Possible values: AFN (Fulfillment by Amazon); MFN (Fulfilled by the seller).
+            fulfillment_channels: A list that indicates how an order was fulfilled. Filters the results by fulfillment
+                channel. Possible values: AFN (Fulfillment by Amazon); MFN (Fulfilled by the seller).
             payment_methods: A list of payment method values. Used to select orders paid using the specified payment
                 methods. Possible values: COD (Cash on delivery); CVS (Convenience store payment); Other (Any payment
                 method other than COD or CVS).
-            buyer_email: The email address of a buyer. Used to select orders that contain the specified email
-                address.
-            seller_order_id: An order identifier that is specified by the seller. Used to select only the orders
-                that match the order identifier. If SellerOrderId is specified, then FulfillmentChannels, OrderStatuses,
+            buyer_email: The email address of a buyer. Used to select orders that contain the specified email address.
+            seller_order_id: An order identifier that is specified by the seller. Used to select only the orders that
+                match the order identifier. If SellerOrderId is specified, then FulfillmentChannels, OrderStatuses,
                 PaymentMethod, LastUpdatedAfter, LastUpdatedBefore, and BuyerEmail cannot be specified.
-            max_results_per_page: A number that indicates the maximum number of orders that can be returned per
-                page. Value must be 1 - 100. Default 100.
-            easy_ship_shipment_statuses: A list of EasyShipShipmentStatus values. Used to select Easy Ship orders
-                with statuses that match the specified  values. If EasyShipShipmentStatus is specified, only Amazon Easy
-                Ship orders are returned.Possible values: PendingPickUp (Amazon has not yet picked up the package from
-                the seller). LabelCanceled (The seller canceled the pickup). PickedUp (Amazon has picked up the package
-                from the seller). AtOriginFC (The packaged is at the origin fulfillment center). AtDestinationFC (The
-                package is at the destination fulfillment center). OutForDelivery (The package is out for delivery).
-                Damaged (The package was damaged by the carrier). Delivered (The package has been delivered to the
-                buyer). RejectedByBuyer (The package has been rejected by the buyer). Undeliverable (The package cannot
-                be delivered). ReturnedToSeller (The package was not delivered to the buyer and was returned to the
+            max_results_per_page: A number that indicates the maximum number of orders that can be returned per page.
+                Value must be 1 - 100. Default 100.
+            easy_ship_shipment_statuses: A list of EasyShipShipmentStatus values. Used to select Easy Ship orders with
+                statuses that match the specified  values. If EasyShipShipmentStatus is specified, only Amazon Easy Ship
+                orders are returned.Possible values: PendingPickUp (Amazon has not yet picked up the package from the
+                seller). LabelCanceled (The seller canceled the pickup). PickedUp (Amazon has picked up the package from
+                the seller). AtOriginFC (The packaged is at the origin fulfillment center). AtDestinationFC (The package
+                is at the destination fulfillment center). OutForDelivery (The package is out for delivery). Damaged
+                (The package was damaged by the carrier). Delivered (The package has been delivered to the buyer).
+                RejectedByBuyer (The package has been rejected by the buyer). Undeliverable (The package cannot be
+                delivered). ReturnedToSeller (The package was not delivered to the buyer and was returned to the
                 seller). ReturningToSeller (The package was not delivered to the buyer and is being returned to the
                 seller).
             next_token: A string token returned in the response of your previous request.
-            amazon_order_ids: A list of AmazonOrderId values. An AmazonOrderId is an Amazon-defined order
-                identifier, in 3-7-7 format.
-            actual_fulfillment_supply_source_id: Denotes the recommended sourceId where the order should be
-                fulfilled from.
+            amazon_order_ids: A list of AmazonOrderId values. An AmazonOrderId is an Amazon-defined order identifier, in
+                3-7-7 format.
+            actual_fulfillment_supply_source_id: Denotes the recommended sourceId where the order should be fulfilled
+                from.
             is_ispu: When true, this order is marked to be picked up from a store rather than delivered.
             store_chain_store_id: The store chain store identifier. Linked to a specific store in a store chain.
         """
@@ -2453,8 +2452,8 @@ class OrdersV0Client(BaseClient):
         Args:
             order_id: An Amazon-defined order identifier, in 3-7-7 format.
             marketplace_id: the unobfuscated marketplace ID
-            order_items: the list of order items and quantities when the seller wants to partially update the
-                shipment status of the order
+            order_items: the list of order items and quantities when the seller wants to partially update the shipment
+                status of the order
             shipment_status: the status of the shipment of the order to be updated
         """
         url = "/orders/v0/orders/{orderId}/shipment"

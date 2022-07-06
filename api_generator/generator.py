@@ -2,7 +2,6 @@ import html
 import json
 import multiprocessing
 import re
-import textwrap
 from functools import cached_property
 from itertools import chain
 from pathlib import Path
@@ -14,6 +13,8 @@ from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
 from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Response
+
+from api_generator.utils import Utils
 
 settings.configure(TEMPLATES=[{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -49,11 +50,7 @@ class ParsedSchema(Schema):
     def parsed_description(self):
         result = self.description if self.description else ''
         result = self.items.description if not result and self.items and self.items.description else result
-        result = result.splitlines()
-        result = [line.strip() for line in result]
-        result = list(chain.from_iterable(textwrap.wrap(i, 116) for i in result))
-        result = [line for line in result if line]
-        return '\n    '.join(result)
+        return Utils.wrap_description(result, subsequent_indent=4, initial_indent=4, width=120)
 
     @property
     def is_list(self):
@@ -105,11 +102,8 @@ class ParsedParameter(Parameter):
 
     @property
     def parsed_description(self):
-        result = f'{self.variable_name}: {self.description if self.description else "no description"}'.splitlines()
-        result = [line.strip() for line in result]
-        result = chain.from_iterable(textwrap.wrap(i, 104) for i in result)
-        result = [line for line in result if line]
-        return '\n        '.join(result)
+        result = f'{self.variable_name}: {self.description if self.description else "no description"}'
+        return Utils.wrap_description(result, subsequent_indent=8, initial_indent=4, width=112)
 
 
 class ParsedResponse(Response):
@@ -205,12 +199,7 @@ class ParsedOperation(Operation):
 
     @property
     def parsed_description(self):
-        result = self.description.splitlines()
-        result = [line.strip() for line in result]
-        result = list(chain.from_iterable(textwrap.wrap(i, 112) for i in result))
-        result = [line.strip() for line in result]
-        result = [line for line in result if line]
-        return '\n'.join(result)
+        return Utils.wrap_description(self.description, subsequent_indent=0, initial_indent=0, width=112)
 
 
 class Generator:

@@ -18,7 +18,7 @@ from datetime import date, datetime
 @attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
 class {{ schema.name }}(BaseObject):
     {% if schema.parsed_description %}"""
-    {{ schema.parsed_description }}
+{{ schema.parsed_description }}
     """
     {% endif %}
 
@@ -34,7 +34,7 @@ class {{ schema.name }}(BaseObject):
             {% endif %},
         )
     {% if p.parsed_description or p.extra_fields %}"""{% if p.parsed_description %}
-    {{ p.parsed_description }}{% endif %}{% if p.extra_fields %}
+{{ p.parsed_description }}{% endif %}{% if p.extra_fields %}
 
     Extra fields:
     {{ p.extra_fields }}{% endif %}
@@ -69,8 +69,8 @@ class {{ data.class_name }}Client(BaseClient):
 {{ operation.parsed_description }}
 
 Args:
-    {% for param in operation.parsed_parameters %}{{ param.parsed_description }}
-    {% endfor %}
+{% for param in operation.parsed_parameters %}{{ param.parsed_description }}
+{% endfor %}
 """
         url = "{{ operation.path }}"
         values = ({% for p in operation.parsed_parameters %}{{ p.variable_name }},{% endfor %})
