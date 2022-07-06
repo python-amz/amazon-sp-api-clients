@@ -70,8 +70,6 @@ class ParsedSchema(Schema):
             is_ref = isinstance(src, Reference)
             dst = self.generator.resolve_ref(src) if is_ref else src
             dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'generator': self.generator})
-            if is_ref:
-                dst.ref_name = src.ref.split('/')[-1]
             result.append(dst)
         result.sort(key=lambda i: i.name)
         return result
@@ -94,7 +92,7 @@ class ParsedParameter(Parameter):
 
     @property
     def type_hint(self):
-        return self.generator.get_type_hint_of_schema(self.param_schema)
+        return self.generator.get_type_hint_of_schema(self.generator.resolve_ref(self.param_schema))
 
     @property
     def variable_name(self):
@@ -115,6 +113,7 @@ class ParsedResponse(Response):
     def type_hint(self):
         schema = self.content.get(self.media_type).media_type_schema
         assert isinstance(schema, Reference), type(schema)
+        schema = self.generator.resolve_ref(schema)
         return self.generator.get_type_hint_of_schema(schema)
 
 
@@ -219,7 +218,9 @@ class Generator:
         selected = [i for i in self.schemas if i.name == name]
         if not selected:
             raise ValueError(f'schema not found: {category}/{name}')
-        return selected[0]
+        schema = selected[0]
+        schema = ParsedSchema.parse_obj(schema.dict() | {'ref_name': name})
+        return schema
 
     @cached_property
     def openapi_data(self) -> OpenAPI:
@@ -327,7 +328,9 @@ class Generator:
         # dst = [v for v in dst if v.type != 'array']  # do not render array type as standalone class
         return dst
 
-    def get_type_hint_of_schema(self, schema: Schema):
+    @staticmethod
+    def get_type_hint_of_schema(schema: Schema):
+        assert isinstance(schema, Schema)
         type_convert = {
             ('integer', None): 'int',
             ('string', None): 'str',
@@ -347,15 +350,6 @@ class Generator:
         }
         if schema is None:
             return 'Any'
-
-        # for ``Reference`` components, which will be created as dataclasses, the type is itself.
-        if isinstance(schema, Reference):
-            resolved = self.resolve_ref(schema)
-            if resolved.type == 'array':
-                return self.get_type_hint_of_schema(resolved)
-            assert (match := re.match(r'^#/components/(.*?)/(.*?)$', schema.ref))
-            name = match.group(2)
-            return f"'{name}'"
 
         assert schema.type is not None
         probable_fields = {'generator', 'type', 'description', 'name', 'enum', 'maximum', 'minimum', 'items',
