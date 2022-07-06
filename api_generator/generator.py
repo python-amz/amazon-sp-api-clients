@@ -328,8 +328,23 @@ class Generator:
         return dst
 
     def get_type_hint_of_schema(self, schema: Schema):
-        # recursively get inline type hint of a schema
-
+        type_convert = {
+            ('integer', None): 'int',
+            ('string', None): 'str',
+            ('boolean', None): 'bool',
+            ('object', None): "Dict[str, {child}]",
+            ('array', None): "List[{child}]",
+            ('number', None): 'float',
+            ('string', 'date-time'): 'datetime',
+            ('string', 'date'): 'date',
+            ('string', 'boolean'): 'bool',
+            ('string', 'uri'): 'str',
+            ('string', '[A-Z]{2}'): 'str',
+            ('string', 'byte'): 'bytes',
+            ('integer', 'int32'): 'int',
+            ('integer', 'int64'): 'int',
+            ('number', 'double'): 'float',
+        }
         if schema is None:
             return 'Any'
 
@@ -358,36 +373,15 @@ class Generator:
                 child = schema.items.ref.split('/')[-1]
                 child = f"'{child}'"
             elif isinstance(child_item, Schema):
-                child = self.get_type_hint_of_schema(schema.items)
+                child = type_convert[(child_item.type, child_item.schema_format)].format(child='Any')
             else:
                 raise TypeError(type(child_item))
-        if isinstance(schema, ParsedSchema) and schema.type == 'object' and schema.ref_name:
+        elif isinstance(schema, ParsedSchema) and schema.type == 'object' and schema.ref_name:
             return f"'{schema.ref_name}'"
-
-        type_convert = {
-            ('integer', None): 'int',
-            ('string', None): 'str',
-            ('boolean', None): 'bool',
-            ('object', None): f"Dict[str, {child}]",
-            ('array', None): f"List[{child}]",
-            ('number', None): 'float',
-            ('string', 'date-time'): 'datetime',
-            ('string', 'date'): 'date',
-            ('string', 'boolean'): 'bool',
-            ('string', 'uri'): 'str',
-            ('string', '[A-Z]{2}'): 'str',
-            ('string', 'byte'): 'bytes',
-            ('integer', 'int32'): 'int',
-            ('integer', 'int64'): 'int',
-            ('number', 'double'): 'float',
-        }
-        type_hint = type_convert[(schema.type, schema.schema_format)]
-
-        # make string enum like Literal["v1"]
+        type_hint = type_convert[(schema.type, schema.schema_format)].format(child=child)
         assert schema.enum is None or type_hint == 'str'
         choices = ', '.join(f'Literal["{v}"]' for v in schema.enum) if schema.enum is not None else None
         type_hint = f'Union[{choices}]' if type_hint == 'str' and choices is not None else type_hint
-
         return type_hint
 
     @cached_property
