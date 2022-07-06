@@ -76,33 +76,24 @@ class ParsedSchemaProperty(SchemaBase, Schema):
 
 class ParsedSchema(SchemaBase):
     @property
-    def parsed_properties(self):
-        dst = self.properties
-        dst = dst.items() if dst else ()
-        dst = list(sorted(dst, key=lambda i: i[0]))
-        return dst
+    def parsed_properties(self) -> list[SchemaBase]:
+        parsed = self.properties
+        parsed = parsed.items() if parsed else ()
+        parsed = list(sorted(parsed, key=lambda i: i[0]))
 
-    @property
-    def reference_properties(self) -> list[ParsedReferenceProperty]:
-        return [ParsedReferenceProperty.parse_obj(v.dict() | {'name': k, 'generator': self.generator})
-                for k, v in self.parsed_properties if isinstance(v, Reference)]
+        result: list[SchemaBase] = [
+            ParsedReferenceProperty.parse_obj(v.dict() | {'name': k, 'generator': self.generator})
+            for k, v in parsed if isinstance(v, Reference)]
 
-    @property
-    def schema_properties(self) -> list[ParsedSchemaProperty]:
-        return [ParsedSchemaProperty.parse_obj(v.dict() | {'name': k, 'generator': self.generator})
-                for k, v in self.parsed_properties if isinstance(v, Schema)]
-
-    @property
-    def all_properties(self) -> list[SchemaBase]:
-        result: list[SchemaBase] = self.reference_properties
-        result.extend(self.schema_properties)
+        result.extend([ParsedSchemaProperty.parse_obj(v.dict() | {'name': k, 'generator': self.generator})
+                       for k, v in parsed if isinstance(v, Schema)])
         result.sort(key=lambda i: i.name)
         return result
 
     @property
     def attrs_config(self):
         data = {}
-        for p in self.all_properties:
+        for p in self.parsed_properties:
             # resolved = p.resolve()
             # print(resolved.name)
             # if p.type in ('array', 'object'):

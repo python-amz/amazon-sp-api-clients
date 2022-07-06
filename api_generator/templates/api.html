@@ -22,7 +22,7 @@ class {{ schema.name }}(BaseObject):
     """
     {% endif %}
 
-    {% for p in schema.all_properties %}
+    {% for p in schema.parsed_properties %}
     {{ p.variable_name }}: {% if p.name in schema.required %}{{ p.type_hint }}{% else %}Optional[{{ p.type_hint }}]{% endif %} = attrs.field(
 
         {# default value #}
