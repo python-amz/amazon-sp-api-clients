@@ -417,11 +417,6 @@ class Generator:
         operations = (sorted(operations, key=lambda k: k.operationId))
         return list(operations)
 
-    @cached_property
-    def rendered_content(self):
-        content = render(RequestFactory(), 'api.html', {'data': self}).content.decode('utf-8')
-        return self.format_python_file(content)
-
     @staticmethod
     def format_python_file(content: str):
         content = html.unescape(content)
@@ -451,9 +446,13 @@ class Generator:
         with open(directory / '__init__.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
             init_content != existing_content and f.write(init_content)
+
+        content = render(RequestFactory(), 'api.html', {'data': self}).content.decode('utf-8')
+        content = self.format_python_file(content)
+
         with open(directory / f'{self.package_name}.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
-            self.rendered_content != existing_content and f.write(self.rendered_content)
+            content != existing_content and f.write(content)
 
     @classmethod
     def worker(cls, path: Path):
