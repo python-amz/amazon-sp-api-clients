@@ -325,7 +325,6 @@ class Generator:
         values = [v.dict() | {'name': k, 'generator': self} for k, v in schemas]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
-        # dst = [v for v in dst if v.type != 'array']  # do not render array type as standalone class
         return dst
 
     @staticmethod
