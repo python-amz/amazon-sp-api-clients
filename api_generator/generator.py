@@ -47,7 +47,6 @@ class ParsedSchema(Schema):
     @property
     def parsed_description(self):
         obj = self
-        obj = self.generator.resolve_ref(obj) if isinstance(obj, Reference) else obj
         result = obj.description if obj.description else ''
         result = obj.items.description if not result and obj.items and obj.items.description else result
         result = result.splitlines()
