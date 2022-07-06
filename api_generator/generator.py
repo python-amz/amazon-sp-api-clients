@@ -9,6 +9,7 @@ from typing import Any
 
 import black
 import django.template
+import pydantic
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
@@ -27,11 +28,12 @@ class ParsedSchema(Schema):
     name: str
     generator: Any
     ref_name: str = ''
+    is_property: bool = False  # both class and class property use Schema, use this flag to distinguish.
 
     @property
     def extra_fields(self):
         known = {'description', 'name', 'generator', 'type', 'ref', 'enum', 'items', 'properties', 'required',
-                 'ref_name'}
+                 'ref_name', 'is_property'}
         fields = self.__fields_set__ - known
         fields = list(sorted(fields))
         fields = {k: getattr(self, k) for k in fields}
@@ -69,7 +71,7 @@ class ParsedSchema(Schema):
         for k, src in parsed:
             is_ref = isinstance(src, Reference)
             dst = self.generator.resolve_ref(src) if is_ref else src
-            dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'generator': self.generator})
+            dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'generator': self.generator, 'is_property': True})
             result.append(dst)
         result.sort(key=lambda i: i.name)
         return result
