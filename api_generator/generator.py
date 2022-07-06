@@ -40,7 +40,7 @@ class ParsedSchema(Schema):
 
     @property
     def type_hint(self):
-        return self.generator.get_type_hint_of_schema(self)
+        return Utils.get_type_hint(self)
 
     @property
     def variable_name(self):
@@ -92,7 +92,7 @@ class ParsedParameter(Parameter):
 
     @property
     def type_hint(self):
-        return self.generator.get_type_hint_of_schema(self.generator.resolve_ref(self.param_schema))
+        return Utils.get_type_hint(self.generator.resolve_ref(self.param_schema))
 
     @property
     def variable_name(self):
@@ -114,7 +114,7 @@ class ParsedResponse(Response):
         schema = self.content.get(self.media_type).media_type_schema
         assert isinstance(schema, Reference), type(schema)
         schema = self.generator.resolve_ref(schema)
-        return self.generator.get_type_hint_of_schema(schema)
+        return Utils.get_type_hint(schema)
 
 
 class ParsedOperation(Operation):
@@ -327,56 +327,6 @@ class Generator:
         dst.sort(key=lambda i: i.name)
         return dst
 
-    @staticmethod
-    def get_type_hint_of_schema(schema: Schema):
-        assert isinstance(schema, Schema)
-        type_convert = {
-            ('integer', None): 'int',
-            ('string', None): 'str',
-            ('boolean', None): 'bool',
-            ('object', None): "Dict[str, {child}]",
-            ('array', None): "List[{child}]",
-            ('number', None): 'float',
-            ('string', 'date-time'): 'datetime',
-            ('string', 'date'): 'date',
-            ('string', 'boolean'): 'bool',
-            ('string', 'uri'): 'str',
-            ('string', '[A-Z]{2}'): 'str',
-            ('string', 'byte'): 'bytes',
-            ('integer', 'int32'): 'int',
-            ('integer', 'int64'): 'int',
-            ('number', 'double'): 'float',
-        }
-        if schema is None:
-            return 'Any'
-
-        assert schema.type is not None
-        probable_fields = {'generator', 'type', 'description', 'name', 'enum', 'maximum', 'minimum', 'items',
-                           'minItems', 'maxItems', 'pattern', 'default', 'required', 'minLength', 'maxLength',
-                           'uniqueItems', 'example',
-                           'schema_format', 'properties', 'additionalProperties',
-                           'ref_name'}
-        fields = {f for f in schema.__fields_set__ if getattr(schema, f) is not None}
-        assert fields.issubset(probable_fields), fields - probable_fields
-
-        child = 'Any'
-        if schema.type == 'array':
-            child_item = schema.items
-            if isinstance(child_item, Reference):
-                child = schema.items.ref.split('/')[-1]
-                child = f"'{child}'"
-            elif isinstance(child_item, Schema):
-                child = type_convert[(child_item.type, child_item.schema_format)].format(child='Any')
-            else:
-                raise TypeError(type(child_item))
-        elif isinstance(schema, ParsedSchema) and schema.type == 'object' and schema.ref_name:
-            return f"'{schema.ref_name}'"
-        type_hint = type_convert[(schema.type, schema.schema_format)].format(child=child)
-        assert schema.enum is None or type_hint == 'str'
-        choices = ', '.join(f'Literal["{v}"]' for v in schema.enum) if schema.enum is not None else None
-        type_hint = f'Union[{choices}]' if type_hint == 'str' and choices is not None else type_hint
-        return type_hint
-
     @cached_property
     def operations(self) -> list['ParsedOperation']:
         operations = (ParsedOperation.parse_obj(
@@ -443,11 +393,3 @@ class Generator:
         content = cls.format_python_file(content)
         with open(Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / '__init__.py', 'w') as f:
             f.write(content)
-
-
-def main():
-    Generator.main()
-
-
-if __name__ == '__main__':
-    main()
