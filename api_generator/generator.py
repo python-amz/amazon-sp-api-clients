@@ -36,9 +36,6 @@ class SchemaBase(Schema):
         fields = {k: v for k, v in fields.items() if v is not None}
         return fields
 
-    def resolve(self) -> 'SchemaBase':
-        return self.generator.resolve_ref(self)
-
     @property
     def type_hint(self):
         return self.generator.get_type_hint_of_schema(self)
@@ -88,15 +85,9 @@ class ParsedSchema(SchemaBase):
     def attrs_config(self):
         data = {}
         for p in self.parsed_properties:
-            # resolved = p.resolve()
-            # print(resolved.name)
-            # if p.type in ('array', 'object'):
-            #     print(p.type)
-            # if item_type is not None:
-            #     item_type = self.generator.resolve_ref(item_type)
             value = (
                 p.variable_name,
-                p.resolve().type,
+                p.type,
             )
             data.setdefault(p.name, value)
         # pprint(data)
