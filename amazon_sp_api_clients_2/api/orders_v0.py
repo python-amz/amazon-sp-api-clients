@@ -588,17 +588,6 @@ class ItemBuyerInfo(BaseObject):
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class MarketplaceId(BaseObject):
-    """
-    the unobfuscated marketplace ID
-    """
-
-    pass
-
-    _attrs_config = {}
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class MarketplaceTaxInfo(BaseObject):
     """
     Tax information about the marketplace.
@@ -1837,17 +1826,6 @@ class RejectionReason(BaseObject):
         "RejectionReasonDescription": ["rejection_reason_description", "string"],
         "RejectionReasonId": ["rejection_reason_id", "string"],
     }
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
-class ShipmentStatus(BaseObject):
-    """
-    the status of the shipment of the order to be updated
-    """
-
-    pass
-
-    _attrs_config = {}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
